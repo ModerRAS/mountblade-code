@@ -26047,7 +26047,7 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   if (*(uint *)(param_2 + 8) < 0x6a) {
     puStack_88 = (DataBuffer *)0x0;
     uStack_80 = 0;
-    dataFlags = FUN_1808a54c0(param_2,&puStack_88,0);
+    dataFlags = ProcessDataFlagsA0(param_2,&puStack_88,0);
     validationOutcome = (uint64_t)dataFlags;
     if (dataFlags != 0) {
 ValidationLabelB:
@@ -26096,7 +26096,7 @@ ValidationLabelB:
       if (statusCounter == 0) {
         return validationOutcome;
       }
-      FUN_1808aef40(&puStack_88,0);
+      CleanupDataResourcesA0(&puStack_88,0);
       return validationOutcome;
     }
     if ((int)uStack_80 == 0) {
@@ -26166,7 +26166,7 @@ ValidationLabelB:
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      FUN_1808aef40(&puStack_88,0);
+      CleanupDataResourcesA0(&puStack_88,0);
     }
   }
   else {
@@ -96225,5 +96225,59 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @note 原始函数名：FUN_1808a79f0
  */
 #define ValidateDataSecurityA0 FUN_1808a79f0
+
+/**
+ * @brief 数据处理函数A1
+ * 
+ * 该函数负责处理数据标志和状态
+ * 
+ * @note 原始函数名：FUN_1808a54c0
+ */
+#define ProcessDataFlagsA0 FUN_1808a54c0
+
+/**
+ * @brief 数据清理函数A0
+ * 
+ * 该函数负责清理数据和资源
+ * 
+ * @note 原始函数名：FUN_1808aef40
+ */
+#define CleanupDataResourcesA0 FUN_1808aef40
+
+/**
+ * @brief 系统状态检查函数A0
+ * 
+ * 该函数负责检查系统状态和标志
+ * 
+ * @note 原始函数名：FUN_180883750
+ */
+#define CheckSystemStatusA0 FUN_180883750
+
+/**
+ * @brief 数据验证函数A2
+ * 
+ * 该函数负责验证数据的安全性和完整性
+ * 
+ * @note 原始函数名：FUN_1808aec50
+ */
+#define ValidateDataSecurityA1 FUN_1808aec50
+
+/**
+ * @brief 数据处理函数A2
+ * 
+ * 该函数负责处理数据操作和验证
+ * 
+ * @note 原始函数名：FUN_1808a5780
+ */
+#define ProcessDataOperationA1 FUN_1808a5780
+
+/**
+ * @brief 系统初始化函数A0
+ * 
+ * 该函数负责初始化系统组件
+ * 
+ * @note 原始函数名：FUN_1807d3e20
+ */
+#define InitializeSystemComponentA0 FUN_1807d3e20
 
 
