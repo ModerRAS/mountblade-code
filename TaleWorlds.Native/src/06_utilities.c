@@ -100670,7 +100670,19 @@ void SetSystemResourceTertiaryHashTable(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_180910430(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源系统表指针
+ * 
+ * 该函数负责设置系统资源的系统表指针
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * 
+ * @note 该函数设置系统资源的系统表指针
+ * @warning 原始函数名：Unwind_180910430
+ */
+void SetSystemResourceSystemTablePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + ValidationContextDataProcessingOffset) = &SystemResourceTablePointer005;
