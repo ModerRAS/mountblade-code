@@ -1008,7 +1008,7 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄
 uint32_t NetworkConnectionManager;                         // 网络连接管理器
-uint32_t NetworkConnectionManagerContextPointer;     // 网络连接管理器上下文指针
+uint32_t NetworkManagerContextPointer;     // 网络连接管理器上下文指针
 uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据
 uint32_t NetworkConnectionStateFlags;                    // 网络连接状态标志
 uint32_t NetworkConnectionTimeoutMs;                    // 网络连接超时时间（毫秒）
@@ -2538,9 +2538,9 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t ConnectionOperationCode;                              // 连接操作代码
   int64_t ProcessedPacketId;                                    // 已处理网络数据包ID
   int32_t PacketIndex;                                           // 网络数据包索引
-  int32_t MaxSignedInt32Value;                                    // 最大32位整数值
+  int32_t MaximumSignedInt32Value;                                    // 最大32位整数值
   if (ConnectionOperationCode == 0) {
-PrimaryNetworkProcessingStageComplete:
+PrimaryNetworkProcessingComplete:
     if ((0 < *(int *)CalculateConnectionParameterOffset(ConnectionOperationBuffer)) && (*ConnectionOperationBuffer != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *ConnectionOperationBuffer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
