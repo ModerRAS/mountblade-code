@@ -2977,15 +2977,29 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
  * @param ProcessingBuffer 处理缓冲区
  * @return void 无返回值
  */
+/**
+ * @brief 完成数据包处理
+ * 
+ * 完成网络数据包的处理流程，包括数据验证、缓冲区清理和状态更新。
+ * 该函数是数据包处理的最后步骤，确保所有处理工作正确完成。
+ * 
+ * @param PacketData 数据包数据指针，指向已完成处理的数据包
+ * @param ProcessingBuffer 处理缓冲区，用于存储处理过程中的临时数据
+ * 
+ * @note 此函数会在数据包处理完成后调用，确保资源正确清理
+ * @warning 如果处理失败，可能导致数据包状态不一致
+ * 
+ * @return void 无返回值
+ */
 void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *ProcessingBuffer)
 {
   // 数据包处理完成变量
-  uint32_t FinalizationStatus;                      // 数据包完成状态
+  uint32_t CompletionStatus;                         // 数据包完成状态
   uint32_t BufferCleanupStatus;                     // 数据包缓冲区清理状态
   uint32_t DataValidationStatus;                    // 数据包数据验证状态
   
   // 初始化完成状态
-  FinalizationStatus = NetworkValidationFailure;
+  CompletionStatus = NetworkValidationFailure;
   BufferCleanupStatus = NetworkValidationFailure;
   DataValidationStatus = NetworkValidationFailure;
   
@@ -3001,10 +3015,10 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
   }
   
   // 综合完成状态
-  FinalizationStatus = DataValidationStatus & BufferCleanupStatus;
+  CompletionStatus = DataValidationStatus & BufferCleanupStatus;
   
   // 如果完成成功，更新处理状态
-  if (FinalizationStatus == NetworkValidationSuccess) {
+  if (CompletionStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的完成处理逻辑
     // 例如：更新统计信息、通知回调函数等
   }
