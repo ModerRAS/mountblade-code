@@ -90114,9 +90114,6 @@ void InitializeGlobalDataPointerA3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942000(void)
-// 全局数据指针设置函数A4
-// 功能：设置全局数据指针A4，初始化异常处理器B
 void InitializeGlobalDataPointerA4(void)
 
 {
@@ -90129,7 +90126,6 @@ void InitializeGlobalDataPointerA4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942020(void)
 void InitializeGlobalDataPointerA5(void)
 
 {
@@ -91904,7 +91900,6 @@ void InitializeExceptionHandlerA(void)
 
 
 
-943020(void)
 /**
  * @brief 销毁互斥锁A
  * 
@@ -91929,7 +91924,6 @@ void DestroyMutexA(void)
 
 
 
-943040(void)
 /**
  * @brief 销毁互斥锁B
  * 
