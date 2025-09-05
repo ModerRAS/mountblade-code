@@ -859,6 +859,50 @@
 // 功能：异常展开清理函数A19
 #define ExceptionUnwindHandlerA19 Unwind_180902110
 
+// 原始函数名：Unwind_180902120 - 异常展开处理函数A20
+// 功能：异常展开清理函数A20
+#define ExceptionUnwindHandlerA20 Unwind_180902120
+
+// 原始函数名：Unwind_180902130 - 异常展开处理函数A21
+// 功能：异常展开清理函数A21
+#define ExceptionUnwindHandlerA21 Unwind_180902130
+
+// 原始函数名：Unwind_180902140 - 异常展开处理函数A22
+// 功能：异常展开清理函数A22
+#define ExceptionUnwindHandlerA22 Unwind_180902140
+
+// 原始函数名：Unwind_180902150 - 异常展开处理函数A23
+// 功能：异常展开清理函数A23
+#define ExceptionUnwindHandlerA23 Unwind_180902150
+
+// 原始函数名：Unwind_180902160 - 异常展开处理函数A24
+// 功能：异常展开清理函数A24
+#define ExceptionUnwindHandlerA24 Unwind_180902160
+
+// 原始函数名：Unwind_180902170 - 异常展开处理函数A25
+// 功能：异常展开清理函数A25
+#define ExceptionUnwindHandlerA25 Unwind_180902170
+
+// 原始函数名：Unwind_180902180 - 异常展开处理函数A26
+// 功能：异常展开清理函数A26
+#define ExceptionUnwindHandlerA26 Unwind_180902180
+
+// 原始函数名：Unwind_180902190 - 异常展开处理函数A27
+// 功能：异常展开清理函数A27
+#define ExceptionUnwindHandlerA27 Unwind_180902190
+
+// 原始函数名：Unwind_1809021c0 - 异常展开处理函数A28
+// 功能：异常展开清理函数A28
+#define ExceptionUnwindHandlerA28 Unwind_1809021c0
+
+// 原始函数名：Unwind_1809021d0 - 异常展开处理函数A29
+// 功能：异常展开清理函数A29
+#define ExceptionUnwindHandlerA29 Unwind_1809021d0
+
+// 原始函数名：Unwind_1809021e0 - 异常展开处理函数A30
+// 功能：异常展开清理函数A30
+#define ExceptionUnwindHandlerA30 Unwind_1809021e0
+
 // 异常处理数据变量语义化宏定义
 // 原始变量名：UNK_18098bdc8 - 异常数据表1
 // 功能：存储异常处理相关的数据表信息
@@ -12561,36 +12605,40 @@ undefined4 ValidateAndProcessSystemData(undefined8 systemHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180895f20(longlong *param_1,int param_2)
+// 函数: undefined8 ReallocateAndCopyDataBuffer(longlong *bufferPointer,int bufferSize)
+// 功能：重新分配数据缓冲区并复制原有数据到新缓冲区
+// 参数：bufferPointer - 缓冲区指针，bufferSize - 缓冲区大小
+// 返回值：成功返回0，失败返回错误代码（0x1c或0x26）
+undefined8 ReallocateAndCopyDataBuffer(longlong *bufferPointer,int bufferSize)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
+  int itemCount;
+  longlong sourceBuffer;
+  undefined8 *newBuffer;
+  longlong itemsToCopy;
+  undefined8 *destinationPointer;
   
-  if (param_2 < (int)param_1[1]) {
+  if (bufferSize < (int)bufferPointer[1]) {
     return 0x1c;
   }
-  puVar3 = (undefined8 *)0x0;
-  if (param_2 != 0) {
-    if (param_2 * 0xc - 1U < 0x3fffffff) {
-      puVar3 = (undefined8 *)
-               FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,
+  newBuffer = (undefined8 *)0x0;
+  if (bufferSize != 0) {
+    if (bufferSize * 0xc - 1U < 0x3fffffff) {
+      newBuffer = (undefined8 *)
+               AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),bufferSize * 0xc,&UNK_180957f70,
                              0xf4,0,0,1);
-      if (puVar3 != (undefined8 *)0x0) {
-        iVar1 = (int)param_1[1];
-        lVar4 = (longlong)iVar1;
-        if ((iVar1 != 0) && (lVar2 = *param_1, 0 < iVar1)) {
-          puVar5 = puVar3;
+      if (newBuffer != (undefined8 *)0x0) {
+        itemCount = (int)bufferPointer[1];
+        itemsToCopy = (longlong)itemCount;
+        if ((itemCount != 0) && (sourceBuffer = *bufferPointer, 0 < itemCount)) {
+          destinationPointer = newBuffer;
           do {
-            *puVar5 = *(undefined8 *)((lVar2 - (longlong)puVar3) + (longlong)puVar5);
-            *(undefined4 *)(puVar5 + 1) =
-                 *(undefined4 *)((lVar2 - (longlong)puVar3) + 8 + (longlong)puVar5);
-            puVar5 = (undefined8 *)((longlong)puVar5 + 0xc);
-            lVar4 = lVar4 + -1;
-          } while (lVar4 != 0);
+            *destinationPointer = *(undefined8 *)((sourceBuffer - (longlong)newBuffer) + (longlong)destinationPointer);
+            *(undefined4 *)(destinationPointer + 1) =
+                 *(undefined4 *)((sourceBuffer - (longlong)newBuffer) + 8 + (longlong)destinationPointer);
+            destinationPointer = (undefined8 *)((longlong)destinationPointer + 0xc);
+            itemsToCopy = itemsToCopy + -1;
+          } while (itemsToCopy != 0);
         }
         goto LAB_180895fdc;
       }
@@ -12598,12 +12646,12 @@ undefined8 FUN_180895f20(longlong *param_1,int param_2)
     return 0x26;
   }
 LAB_180895fdc:
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+  if ((0 < *(int *)((longlong)bufferPointer + 0xc)) && (*bufferPointer != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    FreeMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*bufferPointer,&UNK_180957f70,0x100,1);
   }
-  *param_1 = (longlong)puVar3;
-  *(int *)((longlong)param_1 + 0xc) = param_2;
+  *bufferPointer = (longlong)newBuffer;
+  *(int *)((longlong)bufferPointer + 0xc) = bufferSize;
   return 0;
 }
 
@@ -15789,181 +15837,188 @@ LAB_1808989f7:
 
 
 undefined8
-FUN_180898a50(longlong param_1,uint *param_2,undefined8 param_3,undefined4 param_4,
-             undefined8 param_5)
+// 函数: undefined8 BinarySearchAndProcessData(longlong searchContext,uint *searchKey,undefined8 processData,undefined4 searchFlags,undefined8 additionalData)
+// 功能：使用二分查找算法在数据结构中搜索匹配的键值，并处理找到的数据
+// 参数：searchContext - 搜索上下文，searchKey - 搜索键值指针，processData - 处理数据
+//      searchFlags - 搜索标志，additionalData - 附加数据
+// 返回值：成功返回处理结果，失败返回0x4a
+undefined8 BinarySearchAndProcessData(longlong searchContext,uint *searchKey,undefined8 processData,undefined4 searchFlags,undefined8 additionalData)
 
 {
-  uint uVar1;
-  longlong lVar2;
-  int iVar3;
-  int iVar4;
-  undefined8 uVar5;
-  uint *puVar6;
-  int iVar7;
-  int iVar8;
-  int iVar9;
+  uint searchValue;
+  longlong dataArray;
+  int comparisonResult;
+  int matchResult;
+  undefined8 processResult;
+  uint *currentItem;
+  int middleIndex;
+  int leftIndex;
+  int rightIndex;
   
-  iVar8 = 0;
-  iVar9 = *(int *)(param_1 + 0x18) + -1;
-  if (-1 < iVar9) {
-    lVar2 = *(longlong *)(param_1 + 0x10);
-    uVar1 = *param_2;
+  leftIndex = 0;
+  rightIndex = *(int *)(searchContext + 0x18) + -1;
+  if (-1 < rightIndex) {
+    dataArray = *(longlong *)(searchContext + 0x10);
+    searchValue = *searchKey;
     do {
-      iVar7 = iVar9 + iVar8 >> 1;
-      puVar6 = (uint *)((longlong)iVar7 * 0x10 + lVar2);
-      if (uVar1 == *puVar6) {
-        iVar4 = (uint)(ushort)param_2[1] - (uint)(ushort)puVar6[1];
-        if ((iVar4 == 0) &&
-           (iVar4 = (uint)*(ushort *)((longlong)param_2 + 6) -
-                    (uint)*(ushort *)((longlong)puVar6 + 6), iVar4 == 0)) {
-          iVar4 = memcmp(param_2 + 2,puVar6 + 2,8);
+      middleIndex = rightIndex + leftIndex >> 1;
+      currentItem = (uint *)((longlong)middleIndex * 0x10 + dataArray);
+      if (searchValue == *currentItem) {
+        matchResult = (uint)(ushort)searchKey[1] - (uint)(ushort)currentItem[1];
+        if ((matchResult == 0) &&
+           (matchResult = (uint)*(ushort *)((longlong)searchKey + 6) -
+                    (uint)*(ushort *)((longlong)currentItem + 6), matchResult == 0)) {
+          matchResult = memcmp(searchKey + 2,currentItem + 2,8);
         }
       }
       else {
-        iVar4 = 1;
-        if (uVar1 < *puVar6) {
-          iVar4 = -1;
+        matchResult = 1;
+        if (searchValue < *currentItem) {
+          matchResult = -1;
         }
       }
-      if (iVar4 == 0) {
-        if (iVar7 < 0) {
+      if (matchResult == 0) {
+        if (middleIndex < 0) {
           return 0x4a;
         }
-        uVar5 = FUN_180898b40(param_1,iVar7,0,param_3,param_4,param_5);
-        return uVar5;
+        processResult = ProcessDataItem(searchContext,middleIndex,0,processData,searchFlags,additionalData);
+        return processResult;
       }
-      iVar3 = iVar7 + -1;
-      if (-1 < iVar4) {
-        iVar3 = iVar9;
+      comparisonResult = middleIndex + -1;
+      if (-1 < matchResult) {
+        comparisonResult = rightIndex;
       }
-      iVar9 = iVar3;
-      if (-1 < iVar4) {
-        iVar8 = iVar7 + 1;
+      rightIndex = comparisonResult;
+      if (-1 < matchResult) {
+        leftIndex = middleIndex + 1;
       }
-    } while (iVar8 <= iVar9);
+    } while (leftIndex <= rightIndex);
   }
   return 0x4a;
 }
 
 
 
-undefined4
-FUN_180898b40(longlong *param_1,int param_2,undefined4 *param_3,undefined1 *param_4,int param_5,
-             int *param_6)
+// 函数: undefined4 ProcessDataItem(longlong *dataContext,int itemIndex,undefined4 *outputBuffer,undefined1 *charBuffer,int bufferSize,int *processedCount)
+// 功能：处理指定的数据项，包括数据复制、缓冲区管理和结果返回
+// 参数：dataContext - 数据上下文，itemIndex - 项目索引，outputBuffer - 输出缓冲区
+//      charBuffer - 字符缓冲区，bufferSize - 缓冲区大小，processedCount - 处理计数指针
+// 返回值：成功返回处理结果，失败返回0x1f
+undefined4 ProcessDataItem(longlong *dataContext,int itemIndex,undefined4 *outputBuffer,undefined1 *charBuffer,int bufferSize,int *processedCount)
 
 {
-  undefined4 *puVar1;
-  undefined1 uVar2;
-  uint uVar3;
-  uint3 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  uint uVar7;
-  int iVar8;
-  int iVar9;
-  undefined1 *puVar10;
-  undefined1 *puVar11;
-  uint uVar12;
-  longlong lVar13;
-  undefined1 *puVar14;
-  int iVar15;
-  undefined4 uVar16;
-  int iVar17;
+  undefined4 *dataPointer;
+  undefined1 charValue;
+  uint dataValue;
+  uint3 nodeData;
+  undefined4 field2;
+  undefined4 field3;
+  uint nodeIndex;
+  int stringLength;
+  int copyLength;
+  undefined1 *sourcePointer;
+  undefined1 *destPointer;
+  uint bufferOffset;
+  longlong stringAddress;
+  undefined1 *stringPointer;
+  int remainingLength;
+  undefined4 processResult;
+  int totalLength;
   
-  if ((-1 < param_2) && (param_2 < (int)param_1[3])) {
-    if (param_3 != (undefined4 *)0x0) {
-      puVar1 = (undefined4 *)(param_1[2] + (longlong)param_2 * 0x10);
-      uVar16 = puVar1[1];
-      uVar5 = puVar1[2];
-      uVar6 = puVar1[3];
-      *param_3 = *puVar1;
-      param_3[1] = uVar16;
-      param_3[2] = uVar5;
-      param_3[3] = uVar6;
+  if ((-1 < itemIndex) && (itemIndex < (int)dataContext[3])) {
+    if (outputBuffer != (undefined4 *)0x0) {
+      dataPointer = (undefined4 *)(dataContext[2] + (longlong)itemIndex * 0x10);
+      processResult = dataPointer[1];
+      field2 = dataPointer[2];
+      field3 = dataPointer[3];
+      *outputBuffer = *dataPointer;
+      outputBuffer[1] = processResult;
+      outputBuffer[2] = field2;
+      outputBuffer[3] = field3;
     }
-    iVar17 = 0;
-    uVar12 = 0;
-    uVar4 = *(uint3 *)((longlong)param_2 * 3 + param_1[6]);
-    while (uVar7 = (uint)uVar4, uVar7 != 0xffffff) {
-      uVar3 = *(uint *)(*param_1 + (ulonglong)uVar7 * 8);
-      if ((uVar3 & 0xffffff) != 0xffffff) {
-        lVar13 = (ulonglong)(uVar3 & 0xffffff) + param_1[4];
-        iVar8 = func_0x00018076b690(lVar13);
-        if (param_5 != 0) {
-          puVar14 = (undefined1 *)((iVar8 + -1) + lVar13);
-          iVar15 = iVar8;
-          while (0 < iVar15) {
-            iVar9 = iVar15;
-            if ((int)(param_5 - uVar12) <= iVar15) {
-              iVar9 = param_5 - uVar12;
+    totalLength = 0;
+    bufferOffset = 0;
+    nodeData = *(uint3 *)((longlong)itemIndex * 3 + dataContext[6]);
+    while (nodeIndex = (uint)nodeData, nodeIndex != 0xffffff) {
+      dataValue = *(uint *)(*dataContext + (ulonglong)nodeIndex * 8);
+      if ((dataValue & 0xffffff) != 0xffffff) {
+        stringAddress = (ulonglong)(dataValue & 0xffffff) + dataContext[4];
+        stringLength = GetStringLength(stringAddress);
+        if (bufferSize != 0) {
+          stringPointer = (undefined1 *)((stringLength + -1) + stringAddress);
+          remainingLength = stringLength;
+          while (0 < remainingLength) {
+            copyLength = remainingLength;
+            if ((int)(bufferSize - bufferOffset) <= remainingLength) {
+              copyLength = bufferSize - bufferOffset;
             }
-            iVar15 = iVar15 - iVar9;
-            if (iVar9 != 0) {
-              puVar10 = param_4 + (int)uVar12;
-              uVar12 = uVar12 + iVar9;
+            remainingLength = remainingLength - copyLength;
+            if (copyLength != 0) {
+              destPointer = charBuffer + (int)bufferOffset;
+              bufferOffset = bufferOffset + copyLength;
               do {
-                uVar2 = *puVar14;
-                puVar14 = puVar14 + -1;
-                *puVar10 = uVar2;
-                puVar10 = puVar10 + 1;
-                iVar9 = iVar9 + -1;
-              } while (iVar9 != 0);
+                charValue = *stringPointer;
+                stringPointer = stringPointer + -1;
+                *destPointer = charValue;
+                destPointer = destPointer + 1;
+                copyLength = copyLength + -1;
+              } while (copyLength != 0);
             }
-            uVar12 = uVar12 & (int)(uVar12 - param_5) >> 0x1f;
+            bufferOffset = bufferOffset & (int)(bufferOffset - bufferSize) >> 0x1f;
           }
         }
-        iVar17 = iVar17 + iVar8;
+        totalLength = totalLength + stringLength;
       }
-      uVar4 = *(uint3 *)((ulonglong)uVar7 * 3 + param_1[8]);
+      nodeData = *(uint3 *)((ulonglong)nodeIndex * 3 + dataContext[8]);
     }
-    uVar16 = 0;
-    if (param_5 != 0) {
-      if (iVar17 < param_5) {
-        puVar10 = param_4 + iVar17;
-        puVar14 = puVar10 + -1;
-        if (param_4 < puVar14) {
+    processResult = 0;
+    if (bufferSize != 0) {
+      if (totalLength < bufferSize) {
+        destPointer = charBuffer + totalLength;
+        stringPointer = destPointer + -1;
+        if (charBuffer < stringPointer) {
           do {
-            uVar2 = *param_4;
-            *param_4 = *puVar14;
-            param_4 = param_4 + 1;
-            *puVar14 = uVar2;
-            puVar14 = puVar14 + -1;
-          } while (param_4 < puVar14);
+            charValue = *charBuffer;
+            *charBuffer = *stringPointer;
+            charBuffer = charBuffer + 1;
+            *stringPointer = charValue;
+            stringPointer = stringPointer + -1;
+          } while (charBuffer < stringPointer);
         }
-        *puVar10 = 0;
-        uVar16 = 0;
+        *destPointer = 0;
+        processResult = 0;
       }
       else {
-        puVar11 = param_4 + (int)uVar12;
-        puVar14 = puVar11 + -1;
-        puVar10 = param_4;
-        if (param_4 < puVar14) {
+        destPointer = charBuffer + (int)bufferOffset;
+        stringPointer = destPointer + -1;
+        sourcePointer = charBuffer;
+        if (charBuffer < stringPointer) {
           do {
-            uVar2 = *puVar10;
-            *puVar10 = *puVar14;
-            puVar10 = puVar10 + 1;
-            *puVar14 = uVar2;
-            puVar14 = puVar14 + -1;
-          } while (puVar10 < puVar14);
+            charValue = *sourcePointer;
+            *sourcePointer = *stringPointer;
+            sourcePointer = sourcePointer + 1;
+            *stringPointer = charValue;
+            stringPointer = stringPointer + -1;
+          } while (sourcePointer < stringPointer);
         }
-        puVar14 = puVar11 + (longlong)(int)(param_5 - uVar12) + -1;
-        if (puVar11 < puVar14) {
+        stringPointer = destPointer + (longlong)(int)(bufferSize - bufferOffset) + -1;
+        if (destPointer < stringPointer) {
           do {
-            uVar2 = *puVar11;
-            *puVar11 = *puVar14;
-            puVar11 = puVar11 + 1;
-            *puVar14 = uVar2;
-            puVar14 = puVar14 + -1;
-          } while (puVar11 < puVar14);
+            charValue = *destPointer;
+            *destPointer = *stringPointer;
+            destPointer = destPointer + 1;
+            *stringPointer = charValue;
+            stringPointer = stringPointer + -1;
+          } while (destPointer < stringPointer);
         }
-        param_4[(longlong)param_5 + -1] = 0;
-        uVar16 = 0x41;
+        charBuffer[(longlong)bufferSize + -1] = 0;
+        processResult = 0x41;
       }
     }
-    if (param_6 != (int *)0x0) {
-      *param_6 = iVar17 + 1;
+    if (processedCount != (int *)0x0) {
+      *processedCount = totalLength + 1;
     }
-    return uVar16;
+    return processResult;
   }
   return 0x1f;
 }
