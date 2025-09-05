@@ -19849,23 +19849,23 @@ void ExecuteSystemCallback(long long *CallbackParameter)
  * @param sourceString 源字符串指针
  * @note 这是系统字符串处理的重要组成部分，确保字符串复制的安全性
  */
-void ProcessSystemStringCopy(long long TargetBuffer, long long SourceString)
+void ProcessSystemStringCopy(long long DestinationBuffer, long long SourceString)
 
 {
-  long long StringLength;
+  long long CalculatedStringLength;
   
   if (SourceString == 0) {
-    *(uint32_t *)(TargetBuffer + STRING_LENGTH_OFFSET) = 0;
-    **(uint8_t **)(TargetBuffer + STRING_DATA_OFFSET) = 0;
+    *(uint32_t *)(DestinationBuffer + STRING_LENGTH_OFFSET) = 0;
+    **(uint8_t **)(DestinationBuffer + STRING_DATA_OFFSET) = 0;
     return;
   }
-  StringLength = -1;
+  CalculatedStringLength = -1;
   do {
-    StringLength = StringLength + 1;
-  } while (*(char *)(SourceString + StringLength) != '\0');
-  if ((int)StringLength < 0x1000) {
-    *(int *)(TargetBuffer + STRING_LENGTH_OFFSET) = (int)StringLength;
-    strcpy_s(*(void* *)(TargetBuffer + STRING_DATA_OFFSET), (int)StringLength + 1, (const char *)(SourceString));
+    CalculatedStringLength = CalculatedStringLength + 1;
+  } while (*(char *)(SourceString + CalculatedStringLength) != '\0');
+  if ((int)CalculatedStringLength < 0x1000) {
+    *(int *)(DestinationBuffer + STRING_LENGTH_OFFSET) = (int)CalculatedStringLength;
+    strcpy_s(*(void* *)(DestinationBuffer + STRING_DATA_OFFSET), (int)CalculatedStringLength + 1, (const char *)(SourceString));
     return;
   }
   ProcessSystemStringAllocation(&SystemMemoryTemplateSeptenary,0x1000,ConfigurationDataPointer);
