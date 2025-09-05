@@ -30080,7 +30080,7 @@ void CleanupMemoryResourcesF0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180903100(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void CleanupSystemResources100(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -30100,7 +30100,7 @@ void Unwind_180903100(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180903110(undefined8 param_1,longlong param_2)
+void ResetMemoryState110(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
@@ -30119,7 +30119,7 @@ void Unwind_180903110(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180903120(undefined8 param_1,longlong param_2)
+void CleanupThreadResources120(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
