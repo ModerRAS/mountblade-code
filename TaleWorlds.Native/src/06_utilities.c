@@ -3688,32 +3688,32 @@ void* UtilitySystemMemoryData2;
 void* UtilitySystemMemoryData3;
 void* UtilitySystemMemoryData4;
 
-// 函数: undefined SetupUtilitySystemMemory;
+// 函数: void* SetupUtilitySystemMemory;
 #define SetupUtilitySystemMemory FUN_180942790
-undefined SetupUtilitySystemMemory;
-undefined DAT_180bfaef0;
-undefined DAT_180bfaef8;
-undefined DAT_180bfaf00;
-undefined DAT_180bfaf08;
+void* SetupUtilitySystemMemory;
+void* SystemDataBufferAEF0;
+void* SystemDataBufferAEF8;
+void* SystemDataBufferAF00;
+void* SystemDataBufferAF08;
 
-// 函数: undefined ProcessUtilitySystemConfiguration;
+// 函数: void* ProcessUtilitySystemConfiguration;
 #define ProcessUtilitySystemConfiguration FUN_1809427d0
-undefined ProcessUtilitySystemConfiguration;
-undefined UtilitySystemValidationPointer58;
-undefined DAT_180bfb310;
-undefined DAT_180bfb318;
-undefined DAT_180bfb320;
-undefined DAT_180bfb328;
-undefined UtilitySystemValidationPointer6c;
+void* ProcessUtilitySystemConfiguration;
+void* UtilitySystemValidationPointer58;
+void* SystemDataBufferB310;
+void* SystemDataBufferB318;
+void* SystemDataBufferB320;
+void* SystemDataBufferB328;
+void* UtilitySystemValidationPointer6c;
 
-// 函数: undefined ValidateUtilitySystemState;
+// 函数: void* ValidateUtilitySystemState;
 #define ValidateUtilitySystemState FUN_1809427f0
-undefined ValidateUtilitySystemState;
-undefined DAT_180bfb730;
-undefined DAT_180bfb738;
-undefined DAT_180bfb740;
-undefined DAT_180bfb748;
-undefined UtilitySystemValidationPointer70;
+void* ValidateUtilitySystemState;
+void* SystemDataBufferB730;
+void* SystemDataBufferB738;
+void* SystemDataBufferB740;
+void* SystemDataBufferB748;
+void* UtilitySystemValidationPointer70;
 
 // 函数: void InitializeUtilitySystemBuffers();
 #define InitializeUtilitySystemBuffers FUN_180942810
