@@ -736,21 +736,41 @@ NetworkHandle GetNetworkConnectionResultHandle(int64_t *NetworkConnectionContext
 /**
  * @brief 验证网络连接条目
  * 
- * 验证网络连接表中的条目是否有效和安全
+ * 验证网络连接表中的条目是否有效和安全，确保连接数据的完整性
  * 
- * @param NetworkConnectionContext 网络连接上下文
- * @param NetworkConnectionFlags 网络连接标志
- * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
+ * @param NetworkConnectionContext 网络连接上下文，包含连接的配置和状态信息
+ * @param NetworkConnectionFlags 网络连接标志，用于指定验证的行为和选项
+ * @return uint32_t 验证结果句柄，0表示验证成功，其他值表示验证失败的具体错误码
+ * 
+ * @retval 0 验证成功
+ * @retval 0x1 网络连接上下文无效
+ * @retval 0x2 网络连接标志无效
+ * @retval 0x3 条目数据损坏
+ * @retval 0x4 安全验证失败
+ * 
+ * @note 此函数会进行完整性检查和安全验证，调用者需要确保参数有效
+ * @warning 如果验证失败，相关的连接操作将被拒绝
+ * @see InitializeNetworkConnection, ProcessConnectionData
  */
 uint32_t ValidateConnectionEntry(int64_t NetworkConnectionContext, uint32_t NetworkConnectionFlags);
 
 /**
- * @brief 初始化网络上下文
+ * @brief 设置网络上下文
  * 
- * 初始化网络连接的上下文数据和状态信息
+ * 初始化网络连接的上下文数据和状态信息，为网络通信做准备
  * 
- * @param NetworkContextData 网络上下文数据
- * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
+ * @param NetworkContextData 网络上下文数据，包含需要初始化的上下文信息
+ * @return uint32_t 初始化结果句柄，0表示初始化成功，其他值表示初始化失败的具体错误码
+ * 
+ * @retval 0 初始化成功
+ * @retval 0x1 网络上下文数据无效
+ * @retval 0x2 内存分配失败
+ * @retval 0x3 初始化参数错误
+ * @retval 0x4 系统资源不足
+ * 
+ * @note 此函数会分配必要的系统资源，调用者需要在适当的时候释放相关资源
+ * @warning 如果初始化失败，可能导致后续的网络操作无法正常进行
+ * @see InitializeNetworkConnection, ValidateNetworkConnectionSecurity
  */
 uint32_t SetupNetworkContext(int64_t NetworkContextData);
 
