@@ -1201,9 +1201,9 @@ void* SystemDataNodeAudioManager;           // 系统数据节点音频管理器
 void* SystemDataNodeInputManager;            // 系统数据节点输入管理器
 void* SystemDataNodePhysicsManager;         // 系统数据节点物理管理器
 void* SystemDataNodeAnimationManager;          // 系统数据节点动画管理器
-void* SystemDataNodeNinth;            // 系统数据节点第九节点
-void* SystemDataNodeTenth;            // 系统数据节点第十节点
-void* SystemDataNodeEleventh;          // 系统数据节点第十一节点
+void* SystemDataNodeFileSystem;        // 系统数据节点文件系统
+void* SystemDataNodeDatabase;          // 系统数据节点数据库
+void* SystemDataNodeCache;             // 系统数据节点缓存
 void* SystemDataNodeTwelfth;           // 系统数据节点第十二节点
 void* SystemDataNodeThirteenth;        // 系统数据节点第十三节点
 void* SystemDataNodeFourteenth;        // 系统数据节点第十四节点

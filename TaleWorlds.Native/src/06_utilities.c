@@ -7248,21 +7248,21 @@ void UtilityNoOperationD(void)
 undefined8 ValidateResourceAndReleaseA(longlong resourceParam)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  uint64_t validationResult;
+  longlong resourceContext;
   
-  uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceParam + 0x10),&resourceContext);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  if (lStackX_8 != 0) {
-    lStackX_8 = lStackX_8 + -8;
+  if (resourceContext != 0) {
+    resourceContext = resourceContext + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(longlong *)(resourceContext + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(resourceContext + 0x10),1);
 }
 
 
