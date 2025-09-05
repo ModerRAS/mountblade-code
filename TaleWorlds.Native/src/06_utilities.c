@@ -30177,72 +30177,99 @@ void ExecuteContextCleanupCallbacks(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902690(undefined8 param_1,longlong param_2)
+/**
+ * 处理系统验证和回调执行
+ * 
+ * 遍历系统验证上下文，执行注册的回调函数
+ * 在异常处理过程中进行资源清理和状态重置
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 展开参数，包含验证上下文信息
+ */
+void ProcessSystemValidationAndCallbacks(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
-  longlong *plVar2;
-  longlong lVar3;
+  longlong *systemList;
+  longlong systemEntry;
   
-  plVar2 = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x10);
+  systemList = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x10);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x18);
-  lVar3 = *plVar2;
+  systemEntry = *systemList;
   while( true ) {
-    if (lVar3 == validationContext) {
-      if (*plVar2 == 0) {
+    if (systemEntry == validationContext) {
+      if (*systemList == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateOnError();
     }
-    if (*(longlong **)(lVar3 + 0x40) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar3 + 0x40) + 0x38))();
+    if (*(longlong **)(systemEntry + 0x40) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(systemEntry + 0x40) + 0x38))();
     }
-    if (*(longlong *)(lVar3 + 0x20) != 0) break;
-    FUN_180057830(lVar3);
-    lVar3 = lVar3 + 0x48;
+    if (*(longlong *)(systemEntry + 0x20) != 0) break;
+    CleanupSystemEntry(systemEntry);
+    systemEntry = systemEntry + 0x48;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateOnError();
 }
 
 
 
-void Unwind_1809026a0(undefined8 param_1,longlong param_2)
+/**
+ * 执行验证上下文回调处理
+ * 
+ * 处理验证上下文中的回调函数列表，执行清理操作
+ * 在异常展开过程中确保资源正确释放
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 展开参数，包含验证上下文信息
+ */
+void ExecuteValidationContextCallbacks(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
-  longlong *plVar2;
-  longlong lVar3;
+  longlong *contextList;
+  longlong contextEntry;
   
-  plVar2 = *(longlong **)(param_2 + 0x78);
-  validationContext = plVar2[1];
-  lVar3 = *plVar2;
+  contextList = *(longlong **)(param_2 + 0x78);
+  validationContext = contextList[1];
+  contextEntry = *contextList;
   while( true ) {
-    if (lVar3 == validationContext) {
-      if (*plVar2 == 0) {
+    if (contextEntry == validationContext) {
+      if (*contextList == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateOnError();
     }
-    if (*(longlong **)(lVar3 + 0x40) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar3 + 0x40) + 0x38))();
+    if (*(longlong **)(contextEntry + 0x40) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(contextEntry + 0x40) + 0x38))();
     }
-    if (*(longlong *)(lVar3 + 0x20) != 0) break;
-    FUN_180057830(lVar3);
-    lVar3 = lVar3 + 0x48;
+    if (*(longlong *)(contextEntry + 0x20) != 0) break;
+    CleanupContextEntry(contextEntry);
+    contextEntry = contextEntry + 0x48;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateOnError();
 }
 
 
 
-void Unwind_1809026b0(undefined8 param_1,longlong param_2)
+/**
+ * 设置异常处理表指针
+ * 
+ * 将异常处理表的指针设置为指定的全局表地址
+ * 用于初始化异常处理机制
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 展开参数，包含异常表指针位置
+ */
+void SetExceptionHandlerTablePointer(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x70) = &UNK_18098bcb0;
+  **(undefined8 **)(param_2 + 0x70) = &GlobalExceptionHandlerTable;
   return;
 }
 
