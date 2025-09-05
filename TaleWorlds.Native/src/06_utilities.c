@@ -87,13 +87,7 @@
 #define ExecuteSecurityCheck FUN_180895b89
 
 
-// 原始函数名：FUN_180942400 - 工具回调执行函数B1
-// 功能：执行工具系统回调函数B1
-#define ExecuteUtilityCallbackB1 FUN_180942400
 
-// 原始函数名：FUN_180942420 - 工具回调执行函数B2
-// 功能：执行工具系统回调函数B2
-#define ExecuteUtilityCallbackB2 FUN_180942420
 
 // 原始函数名：FUN_180942440 - 数据验证函数A0
 // 功能：验证工具系统数据A0的有效性
@@ -18085,8 +18079,9 @@ void UtilityNoOperationI(void)
 
 
 
-// 函数: void FUN_180899c60(longlong param_1,undefined4 *param_2)
-void FUN_180899c60(longlong param_1,undefined4 *param_2)
+// 函数: void ProcessSystemDataItem(longlong param_1,undefined4 *param_2)
+// 功能：处理系统数据项，执行单个数据项的操作和验证
+void ProcessSystemDataItem(longlong param_1,undefined4 *param_2)
 
 {
   int iVar1;

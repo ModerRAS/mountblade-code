@@ -1336,7 +1336,7 @@ void AcceptConnection(void)
   NetworkCompressionMethod = NetworkCompressionMethodZLIB;                      // 设置压缩方法为ZLIB
   
   // 初始化会话参数
-  NetworkSessionEncryptionKey = NetworkDefaultSessionEncryptionKey;    // 设置会话加密密钥为默认值
+  NetworkSessionEncryptionKey = DefaultSessionEncryptionKey;    // 设置会话加密密钥为默认值
   NetworkSessionTimeoutDuration = NetworkTimeoutFiveMinutes;              // 设置会话超时时间为300秒
   NetworkHandshakeTimeout = NetworkTimeoutFiveSeconds;                     // 设置握手超时时间为5秒
   NetworkAuthenticationTimeout = NetworkTimeoutFiveSeconds;               // 设置认证超时时间为5秒
