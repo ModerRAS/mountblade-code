@@ -1431,48 +1431,48 @@ void* SystemDataBufferCoreUnvigesimal;      // 核心第二十一数据缓冲区
 void* SystemDataBufferCoreDuovigesimal;     // 核心第二十二数据缓冲区
 
 // 系统状态管理器
-void* SystemStateManager;
+void* SystemStateManager;                  // 系统状态管理器
 // 系统状态数据缓冲区
-void* SystemDataBufferStatePrimary;
-void* SystemDataBufferStateSecondary;
-void* SystemDataBufferStateTertiary;
-void* SystemDataBufferStateQuaternary;
-void* SystemDataBufferStateQuinary;
-void* SystemDataBufferStateSenary;
+void* SystemDataBufferStatePrimary;        // 主状态数据缓冲区
+void* SystemDataBufferStateSecondary;     // 次级状态数据缓冲区
+void* SystemDataBufferStateTertiary;      // 第三状态数据缓冲区
+void* SystemDataBufferStateQuaternary;    // 第四状态数据缓冲区
+void* SystemDataBufferStateQuinary;         // 第五状态数据缓冲区
+void* SystemDataBufferStateSenary;          // 第六状态数据缓冲区
 // 系统状态标志缓冲区
-char SystemStateFlagBufferPrimary;
-char SystemStateFlagBufferSecondary;
+char SystemStateFlagBufferPrimary;          // 主状态标志缓冲区
+char SystemStateFlagBufferSecondary;       // 次级状态标志缓冲区
 // 系统数据缓冲区 - 状态管理使用
-void* SystemDataBufferStateSeptenary;
-void* SystemDataBufferStateOctonary;
-void* SystemDataBufferStateNonary;
-void* SystemDataBufferStateDenary;
-void* SystemDataBufferStateUndenary;
-uint8_t SystemDataBufferStateFlag;            // 系统数据缓冲区状态标志
-void* SystemDataBufferStateDuodenary;
-void* SystemDataBufferStateTredecenary;
-void* SystemDataBufferStateQuattuordecenary;
-void* SystemDataBufferStateQuindecenary;
-void* SystemDataBufferStateSexdecenary;
-void* SystemDataBufferStateSeptendecenary;
+void* SystemDataBufferStateSeptenary;      // 第七状态数据缓冲区
+void* SystemDataBufferStateOctonary;       // 第八状态数据缓冲区
+void* SystemDataBufferStateNonary;          // 第九状态数据缓冲区
+void* SystemDataBufferStateDenary;          // 第十状态数据缓冲区
+void* SystemDataBufferStateUndenary;         // 第十一状态数据缓冲区
+uint8_t SystemDataBufferStateFlag;          // 系统数据缓冲区状态标志
+void* SystemDataBufferStateDuodenary;       // 第十二状态数据缓冲区
+void* SystemDataBufferStateTredecenary;      // 第十三状态数据缓冲区
+void* SystemDataBufferStateQuattuordecenary; // 第十四状态数据缓冲区
+void* SystemDataBufferStateQuindecenary;     // 第十五状态数据缓冲区
+void* SystemDataBufferStateSexdecenary;      // 第十六状态数据缓冲区
+void* SystemDataBufferStateSeptendecenary;   // 第十七状态数据缓冲区
 uint32_t SystemDataBufferExtendedMain;      // 系统数据缓冲区扩展-主区域
 uint32_t SystemDataBufferExtendedAuxiliary;  // 系统数据缓冲区扩展-辅助区域
 uint32_t SystemDataBufferExtendedReserve;    // 系统数据缓冲区扩展-保留区域
-void* SystemDataBufferStateOctodecenary;
+void* SystemDataBufferStateOctodecenary;     // 第十八状态数据缓冲区
 // 系统状态和数据缓冲区
-char SystemStatusBufferPrimary;
-void* SystemDataBufferGeneralPrimary;
-void* SystemDataBufferGeneralSecondary;
-void* SystemDataBufferGeneralTertiary;
-void* SystemDataBufferGeneralQuaternary;
-void* SystemDataBufferGeneralQuinary;
-void* SystemDataBufferGeneralSenary;
-void* SystemDataBufferGeneralSeptenary;
-void* SystemDataBufferGeneralOctonary;
-void* SystemDataBufferGeneralNonary;
-void* SystemDataBufferGeneralDenary;
+char SystemStatusBufferPrimary;              // 主状态缓冲区
+void* SystemDataBufferGeneralPrimary;       // 通用主数据缓冲区
+void* SystemDataBufferGeneralSecondary;    // 通用次级数据缓冲区
+void* SystemDataBufferGeneralTertiary;     // 通用第三数据缓冲区
+void* SystemDataBufferGeneralQuaternary;   // 通用第四数据缓冲区
+void* SystemDataBufferGeneralQuinary;      // 通用第五数据缓冲区
+void* SystemDataBufferGeneralSenary;       // 通用第六数据缓冲区
+void* SystemDataBufferGeneralSeptenary;    // 通用第七数据缓冲区
+void* SystemDataBufferGeneralOctonary;     // 通用第八数据缓冲区
+void* SystemDataBufferGeneralNonary;       // 通用第九数据缓冲区
+void* SystemDataBufferGeneralDenary;       // 通用第十数据缓冲区
 // 系统通用数据缓冲区
-char SystemGeneralFlagBufferPrimary;
+char SystemGeneralFlagBufferPrimary;      // 通用主标志缓冲区
 void* SystemDataBufferCommonPrimary;
 void* SystemDataBufferCommonSecondary;
 void* SystemDataBufferCommonTertiary;
