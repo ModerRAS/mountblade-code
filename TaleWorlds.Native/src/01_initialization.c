@@ -24221,7 +24221,7 @@ void SetSystemThreadId(uint32_t *threadIdPointer)
  * @return 返回初始化后的系统资源指针
  */
 void* *
-CreateSystemResourceFromTemplate(void* *SystemResourceHandle, long long TemplateParameter, void* ReservedParam3, void* ReservedParam4)
+CreateSystemResourceFromTemplate(void** SystemResourceHandle, long long TemplateParameter, void* UnusedParameter3, void* UnusedParameter4)
 
 {
   void* *resultPointer;
@@ -25462,7 +25462,7 @@ void SystemEventHandler(void)
  * @return 返回初始化后的系统资源指针
  */
 uint8_t *
-SetupSystemResourceBuffer(uint8_t *SystemResourceHandle, void* ReservedParam2, void* ReservedParam3, void* ReservedParam4)
+SetupSystemResourceBuffer(uint8_t* SystemResourceHandle, void* UnusedParameter2, void* UnusedParameter3, void* UnusedParameter4)
 
 {
   long long *primaryResourceHandle;
