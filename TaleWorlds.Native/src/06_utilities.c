@@ -5532,7 +5532,17 @@ void ProcessUtilityOperation(longlong param_1,undefined8 param_2)
 // WARNING: Removing unreachable block (ram,0x0001808d74a4)
 // WARNING: Removing unreachable block (ram,0x0001808d74b1)
 
-undefined8 FUN_180891210(longlong param_1)
+// 函数: undefined8 ProcessFloatDataResource(longlong resourceHandle)
+// 
+// 浮点数据资源处理函数
+// 处理包含浮点数据的资源，进行数据验证和转换操作
+// 
+// 参数:
+//   resourceHandle - 资源句柄
+// 
+// 返回值:
+//   成功返回0，失败返回错误代码
+undefined8 ProcessFloatDataResource(longlong resourceHandle)
 
 {
   longlong lVar1;
@@ -8892,18 +8902,18 @@ void ProcessContextValidationAndExecution(longlong contextHandle,longlong operat
 
 
 
-// 函数: void FUN_1808936a0(longlong param_1,longlong param_2)
-void FUN_1808936a0(longlong param_1,longlong param_2)
+// 函数: void ProcessExtendedContextValidation(longlong contextHandle,longlong operationHandle)
+void ProcessExtendedContextValidation(longlong contextHandle,longlong operationHandle)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int validationResult;
+  longlong extendedContext;
   
-  iVar1 = FUN_1808949c0(param_2,param_1 + 0x10,&lStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = func_0x00018088c500(*(undefined8 *)(lStackX_8 + 0xd0),param_1 + 0x20);
-    if (iVar1 == 0) {
-      FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+  validationResult = ValidateExtendedContext(operationHandle,contextHandle + 0x10,&extendedContext);
+  if (validationResult == 0) {
+    validationResult = ExecuteContextOperation(*(undefined8 *)(extendedContext + 0xd0),contextHandle + 0x20);
+    if (validationResult == 0) {
+      ExecuteExtendedOperation(*(undefined8 *)(operationHandle + 0x98),contextHandle);
     }
   }
   return;
