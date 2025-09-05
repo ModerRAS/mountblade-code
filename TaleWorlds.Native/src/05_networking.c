@@ -473,10 +473,10 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * 定义网络连接质量评估相关的参数，用于衡量网络性能和可靠性
  */
 #define NetworkConnectionQualityGood 0x05                       // 良好连接质量
-#define Network50MillisecondsLatency 50                                     // 网络延迟：50毫秒
-#define Network4KBandwidth 4096                                 // 4KB带宽
+#define NetworkLatencyFiftyMilliseconds 50                                     // 网络延迟：50毫秒
+#define NetworkBandwidthFourKB 4096                                 // 4KB带宽
 #define NetworkReliabilityLevelHigh 0x01                           // 高可靠性级别
-#define Network16WindowScale 16                                 // 窗口缩放16
+#define NetworkWindowScaleSixteen 16                                 // 窗口缩放16
 
 // 网络连接配置常量
 #define NetworkConnectionQueueEnabled 0x01                    // 网络队列启用标志
