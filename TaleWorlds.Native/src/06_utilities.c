@@ -4178,17 +4178,17 @@ undefined8 FUN_180890830(longlong param_1)
 undefined8 ProcessFloatArrayResource(longlong param_1)
 
 {
-  longlong lVar1;
-  uint uVar2;
-  uint uVar3;
-  undefined8 uVar4;
-  undefined8 *puVar5;
-  int iVar6;
-  float fVar7;
-  undefined1 auVar8 [16];
-  longlong lStackX_8;
+  longlong resourcePointer;
+  uint flagBits;
+  uint statusBits;
+  undefined8 operationResult;
+  undefined8 *arrayPointer;
+  int integerConversion;
+  float floatValue;
+  undefined1 simdBuffer [16];
+  longlong stackBuffer;
   
-  uVar4 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x1c),&lStackX_8);
+  operationResult = func_0x00018088c530(*(undefined4 *)(param_1 + 0x1c),&stackBuffer);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -6744,25 +6744,32 @@ void FUN_180892120(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180892170(longlong param_1,longlong param_2)
+/**
+ * @brief 工具数据配置函数A0
+ * @details 配置工具系统的数据结构和参数
+ * @param configPointer 配置指针
+ * @param dataPointer 数据指针
+ * @return 配置结果或错误码
+ */
+undefined8 ConfigureUtilityDataA0(longlong configPointer,longlong dataPointer)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 configurationResult;
+  longlong stackPointer;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 == 0) {
-    if (lStackX_8 != 0) {
-      lStackX_8 = lStackX_8 + -8;
+  configurationResult = func_0x00018088c530(*(undefined4 *)(configPointer + 0x10),&stackPointer);
+  if ((int)configurationResult == 0) {
+    if (stackPointer != 0) {
+      stackPointer = stackPointer + -8;
     }
-    if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+    if (*(longlong *)(stackPointer + 0x10) == 0) {
       return 0x4c;
     }
-    *(undefined8 *)(param_1 + 0x18) =
-         *(undefined8 *)(*(longlong *)(*(longlong *)(lStackX_8 + 0x10) + 0x2b0) + 0x78);
-    uVar1 = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+    *(undefined8 *)(configPointer + 0x18) =
+         *(undefined8 *)(*(longlong *)(*(longlong *)(stackPointer + 0x10) + 0x2b0) + 0x78);
+    configurationResult = FUN_18088d7c0(*(undefined8 *)(dataPointer + 0x98),configPointer);
   }
-  return uVar1;
+  return configurationResult;
 }
 
 
