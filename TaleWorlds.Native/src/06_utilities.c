@@ -84,7 +84,7 @@
  * 
  * @note 原始函数名：func_0x00018076b3e0
  */
-#define CalculateSystemDataSize func_0x00018076b3e0
+#define CalculateSystemDataSize CalculateSystemDataSize
 
 /**
  * @brief 获取系统数据句柄
@@ -93,7 +93,7 @@
  * 
  * @note 原始函数名：func_0x0001808e3470
  */
-#define AcquireSystemDataHandle func_0x0001808e3470
+#define AcquireSystemDataHandle AcquireSystemDataHandle
 
 /**
  * @brief 数据加密处理函数A0
