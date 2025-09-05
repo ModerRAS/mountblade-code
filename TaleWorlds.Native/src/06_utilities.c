@@ -2535,8 +2535,8 @@ longlong SystemGlobalDataPointer;
 uint SystemStatusIndicator;
 double SystemPerformanceMetric1;
 double SystemPerformanceMetric2;
-int UNK_180d49260;
-double UNK_180d49268;
+int SystemErrorCounter;
+double SystemTimingValue;
 undefined UNK_180a073d8;
 undefined UNK_180a073b8;
 undefined UNK_180155fc0;
@@ -9772,7 +9772,7 @@ int ProcessUtilityDataWithEncryption(longlong dataContext,longlong dataBuffer,in
 
 
 
-int FUN_180894570(longlong param_1,longlong param_2,int param_3)
+int ProcessUtilityDataWithValidation(longlong dataContext,longlong dataBuffer,int dataSize)
 
 {
   int iVar1;
@@ -9797,7 +9797,7 @@ int FUN_180894570(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180894650(longlong *param_1,longlong param_2,int param_3)
+int ProcessUtilityDataWithCallback(longlong *callbackContext,longlong dataBuffer,int dataSize)
 
 {
   int iVar1;
