@@ -2141,6 +2141,10 @@
 // 功能：执行安全验证操作并返回验证结果
 #define ExecuteSecurityValidation FUN_1808ddc20
 
+// 原始函数名：FUN_1808a5d60 - 内存分配验证函数
+// 功能：验证内存分配状态和访问权限
+#define ValidateMemoryAllocation FUN_1808a5d60
+
 // 原始函数名：FUN_1809424c0 - 工具回调执行函数B0
 // 功能：执行工具回调函数，处理参数传递
 #define ExecuteUtilityCallbackB0 FUN_1809424c0
@@ -23420,11 +23424,11 @@ DataCheckpointB:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  memoryBaseAddress = FUN_1808a5d60();
+  memoryBaseAddress = ValidateMemoryAllocation();
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  memoryBaseAddress = FUN_1808a5d60();
+  memoryBaseAddress = ValidateMemoryAllocation();
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
@@ -28956,7 +28960,7 @@ ValidationErrorHandler4:
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        validationStatus = FUN_1808a5d60(param_2,dataContext + 0x10,0);
+        validationStatus = ValidateMemoryAllocation(param_2,dataContext + 0x10,0);
         if ((int)validationStatus == 0) {
           *(undefined4 *)(dataContext + 0x44) = SystemCleanupFlag;
           goto LAB_18089d435;
@@ -29055,7 +29059,7 @@ ValidationErrorHandler4:
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        validationStatus = FUN_1808a5d60();
+        validationStatus = ValidateMemoryAllocation();
         if ((int)validationStatus == 0) {
           *(undefined4 *)(dataContext + 0x44) = SystemCleanupFlag;
           goto LAB_18089d435;
@@ -29864,13 +29868,13 @@ undefined8 ProcessDataStreamA1(longlong param_1,undefined8 *param_2)
       return 0x1c;
     }
     dataValue = GetMemoryAddressA0(*param_2,param_1 + 0x6c);
-    if (((int)dataValue == 0) && (dataValue = FUN_1808a5d60(param_2,param_1 + 0x48,0), (int)dataValue == 0)) {
+    if (((int)dataValue == 0) && (dataValue = ValidateMemoryAllocation(param_2,param_1 + 0x48,0), (int)dataValue == 0)) {
       if ((*(int *)(param_2 + 8) - 0x4aU < 0x11) &&
          (dataValue = GetContextData(param_2,param_1 + 0x44), (int)dataValue != 0)) {
         return dataValue;
       }
       if ((0x52 < *(uint *)(param_2 + 8)) &&
-         (dataValue = FUN_1808a5d60(param_2,param_1 + 0x58,0), (int)dataValue != 0)) {
+         (dataValue = ValidateMemoryAllocation(param_2,param_1 + 0x58,0), (int)dataValue != 0)) {
         return dataValue;
       }
       if (*(uint *)(param_2 + 8) < 0x88) {
