@@ -4761,8 +4761,8 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
   longlong componentData;
   longlong systemHandle;
   int bufferSize;
-  undefined8 queryResult;
-  undefined8 processResult;
+  uint64_t queryResult;
+  uint64_t processResult;
   longlong *componentPointer;
   int componentCount;
   ulonglong loopIndex;
