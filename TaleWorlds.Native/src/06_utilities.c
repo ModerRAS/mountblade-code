@@ -19374,7 +19374,7 @@ ProcessDataSecurityValidation:
   char acStackX_24 [4];
   uint8_t *in_stack_00000028;
   float in_stack_00000030;
-  DataWord in_stack_00000038;
+  DataWord InputParam38;
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000048;
@@ -19385,8 +19385,8 @@ ProcessDataSecurityValidation:
   int64_t stackOperationContext;
   uint8_t *in_stack_00000070;
   float in_stack_00000078;
-  DataWord in_stack_000001a0;
-  DataWord in_stack_000001a8;
+  DataWord InputParam1A0;
+  DataWord InputParam1A8;
   
   resourcePointer2 = (DataBuffer *)(systemContext + 8);
   fStack0000000000000048 = register_R13D;
@@ -19636,7 +19636,7 @@ ValidateDataSecurity:
   char acStackX_24 [4];
   uint8_t *in_stack_00000028;
   float in_stack_00000030;
-  DataWord in_stack_00000038;
+  DataWord InputParam38;
   float fStack0000000000000040;
   float fStack0000000000000044;
   DataBuffer in_stack_00000048;
@@ -19644,8 +19644,8 @@ ValidateDataSecurity:
   DataBuffer *in_stack_00000058;
   int64_t lStack0000000000000060;
   int64_t stackOperationContext;
-  DataWord in_stack_000001a0;
-  DataWord in_stack_000001a8;
+  DataWord InputParam1A0;
+  DataWord InputParam1A8;
   
   if (0 < inputAccumulatorRegister) {
     functionReturnValue2 = (uint64_t)(uint)register_R13D;
@@ -22830,7 +22830,7 @@ void ValidateSystemDataIntegrity(void)
   int inputParameter;
   int64_t registerContext;
   int64_t destinationIndexRegister;
-  DataWord in_stack_00000030;
+  DataWord InputParam30;
   
   inputParameter = CheckSystemStatusAndReturnO0();
   if (inputParameter == 0) {
@@ -24256,7 +24256,7 @@ uint64_t GetSystemValidationContext(void)
   uint validationOutcome;
   char cStack0000000000000030;
   uint uStack0000000000000034;
-  DataWord in_stack_00000038;
+  DataWord InputParam38;
   
   operationResult = 0;
   dataFlags = 0;
@@ -29902,7 +29902,7 @@ DataBuffer GetSystemStatusA2(void)
   int64_t dataContext;
   DataBuffer validationStatus;
   int64_t *registerContext;
-  DataWord in_stack_00000030;
+  DataWord InputParam30;
   int64_t in_stack_00000038;
   int iStack00000000000000b0;
   unsigned int stackSystemStatus;
@@ -32891,7 +32891,7 @@ DataBuffer ReturnFixedStatusCodeA3(void)
   DataBuffer dataValue;
   int64_t *registerContext;
   int64_t systemContext;
-  DataWord in_stack_000000b0;
+  DataWord InputParamB0;
   
   if (*(int *)(inputAccumulatorRegister + 0x18) == 0) {
     dataValue = ProcessDataPointerA0(*registerContext,systemContext + 0x10);
@@ -33041,7 +33041,7 @@ void ConfigureSystemOptionsC1(void)
   int64_t *registerContext;
   int register_EBP;
   int64_t systemContext;
-  DataWord in_stack_000000b0;
+  DataWord InputParamB0;
   
   if (in_EAX == 0x1b) {
     if (*(uint *)(registerContext + 8) < 0x3b) {
@@ -33320,7 +33320,7 @@ uint64_t FUN_18089f9b3(void)
   int64_t stackFramePointer;
   uint register_ESI;
   int64_t *destinationIndexRegister;
-  DataWord in_stack_00000030;
+  DataWord InputParam30;
   DataWord uStack0000000000000038;
   BytePair uStack000000000000003c;
   BytePair uStack000000000000003e;
@@ -33393,7 +33393,7 @@ uint64_t FUN_18089f9f6(void)
   int64_t stackFramePointer;
   uint register_ESI;
   int64_t *destinationIndexRegister;
-  DataWord in_stack_00000030;
+  DataWord InputParam30;
   DataWord uStack0000000000000038;
   BytePair uStack000000000000003c;
   BytePair uStack000000000000003e;

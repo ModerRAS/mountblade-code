@@ -113150,7 +113150,8 @@ uint8_t ProcessFloatingPointFilterAndVectorCalculation(uint64_t SystemContextPoi
 
 
 uint8_t
-FUN_18011f070(float *SystemContextPointer,int Utf8BufferSize,uint64_t Utf16InputPointer,double *Utf16EndPointer,double AdditionalParameter1,
+// 系统上下文UTF编码处理函数 - 处理系统上下文中的UTF编码转换和数据处理
+int ProcessSystemContextUtfEncoding(float *SystemContextPointer,int Utf8BufferSize,uint64_t Utf16InputPointer,double *Utf16EndPointer,double AdditionalParameter1,
              double AdditionalParameter2,uint64_t AdditionalParameter3,uint64_t AdditionalParameter4,uint64_t AdditionalParameter5,float *SystemContextPointer0
              
 {
