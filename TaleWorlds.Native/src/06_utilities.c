@@ -98267,7 +98267,18 @@ void ReleaseResourceTableLock(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fcf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统对象回调函数
+ * 
+ * 该函数检查系统对象是否存在，如果存在则执行其回调函数。
+ * 主要用于系统资源的清理和释放操作。
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含系统对象的指针信息
+ * @return 无返回值
+ * @note 原始函数名：Unwind_18090fcf0
+ */
+void ExecuteSystemObjectCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0x158) != (int64_t *)0x0) {

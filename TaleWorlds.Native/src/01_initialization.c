@@ -28527,7 +28527,7 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   }
   ProcessSystemQueue(SystemStackBuffer,dataTemplatePointer);
   systemGlobalPointer = &SystemGlobalDataReference;
-  dataBuffer4 = 0;
+  quaternaryDataBuffer = 0;
   dataBuffer3 = 0;
   dataFlags = 0;
   resourcePointer1 = &SystemGlobalDataReference;
