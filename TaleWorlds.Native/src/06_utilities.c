@@ -50034,6 +50034,16 @@ void ExceptionCleanupWithMutexDestructionA(undefined8 exceptionHandlerContext,lo
 
 
 
+/**
+ * @brief 异常清理与互斥体销毁函数B
+ * 
+ * 该函数用于清理异常状态并销毁相关的互斥体资源
+ * 处理偏移量为0x78的系统上下文数据
+ * 
+ * @param exceptionHandlerContext 异常处理上下文句柄
+ * @param systemContext 系统上下文指针
+ * @return 无返回值
+ */
 void ExceptionCleanupWithMutexDestructionB(undefined8 exceptionHandlerContext,longlong systemContext)
 
 {
