@@ -1978,9 +1978,6 @@ uint32_t NetworkConnectionTableIndex;               // 网络连接表索引
 uint32_t NetworkConnectionTableSize;                 // 网络连接表大小
 uint32_t NetworkPacketQueue;                        // 网络数据包队列
 uint32_t NetworkPacketQueueSize;                     // 网络数据包队列大小
-uint32_t NetworkEncryptionContext;                   // 网络加密上下文
-uint32_t NetworkCompressionContext;                  // 网络压缩上下文
-uint32_t NetworkAuthenticationContext;               // 网络认证上下文
 uint32_t NetworkEventContext;                        // 网络事件上下文
 uint32_t NetworkCallbackContext;                      // 网络回调上下文
 
