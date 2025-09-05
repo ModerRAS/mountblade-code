@@ -6062,36 +6062,36 @@ undefined SystemConfigurationManagementTableA0;
 undefined SystemStatusManagementTableA0;
 // 系统数据管理表A0
 undefined SystemDataManagementTableA0;
-undefined DAT_1809fc7ec;
-undefined DAT_180bf5240;
+undefined SystemConfigurationPointerA;
+undefined SystemExceptionCounterD;
 
 // 函数: undefined UtilityInitializeMemoryManager;
 // 初始化内存管理器，设置内存分配和释放的基础结构
 undefined UtilityInitializeMemoryManager;
-undefined DAT_180d49160;
-undefined DAT_180d49168;
-undefined DAT_180d49170;
-undefined DAT_180d49178;
-undefined UNK_1809ffb30;
-undefined DAT_180a001d0;
-undefined UNK_180083380;
-undefined UNK_180a00030;
-undefined UNK_180a00100;
-undefined UNK_180a00168;
+undefined SystemExceptionStatusA;
+undefined SystemExceptionStatusB;
+undefined SystemExceptionStatusC;
+undefined SystemExceptionStatusD;
+undefined UnknownSystemDataH;
+undefined SystemDataBufferB;
+undefined UnknownSystemDataI;
+undefined UnknownSystemDataJ;
+undefined UnknownSystemDataK;
+undefined UnknownSystemDataL;
 
 // 函数: undefined UtilityConfigureMemorySettings;
 // 配置内存管理器的设置，包括内存池大小、分配策略等
 undefined UtilityConfigureMemorySettings;
-undefined UNK_180a009a8;
-undefined UNK_180a00a18;
-undefined UNK_180a00ae8;
+undefined UnknownSystemDataM;
+undefined UnknownSystemDataN;
+undefined UnknownSystemDataO;
 
 // 函数: undefined UtilitySetupMemoryRegions;
 // 设置内存区域，划分不同用途的内存空间
 undefined UtilitySetupMemoryRegions;
-undefined UNK_180a015f0;
-undefined UNK_180a015fc;
-undefined UNK_180a01604;
+undefined UnknownSystemDataP;
+undefined UnknownSystemDataQ;
+undefined UnknownSystemDataR;
 undefined UNK_180a01610;
 undefined DAT_180a01440;
 undefined DAT_180d48d38;
@@ -27046,14 +27046,15 @@ ValidationErrorHandler2:
 
 
 /**
- * @brief 系统数据处理函数E
+ * @brief 数据验证和状态检查函数
  * 
- * 该函数用于处理系统数据，执行验证和安全性检查操作
+ * 该函数用于验证系统数据的安全性和完整性，执行多重安全检查
+ * 并返回相应的状态码。函数会检查多个数据偏移位置的安全状态。
  * 
- * @return 处理结果状态码
+ * @return ulonglong 验证结果状态码，0表示成功，非0表示错误
  * @note 原始函数名：FUN_18089c86d
  */
-ulonglong FUN_18089c86d(void)
+ulonglong ValidateSystemDataSecurityAndStatus(void)
 
 {
   longlong *validationContextPointer;
@@ -27062,29 +27063,29 @@ ulonglong FUN_18089c86d(void)
   uint memoryBaseAddress;
   ulonglong operationResult;
   ulonglong dataFlags;
-  int iVar7;
+  int validationIndex;
   longlong *registerContext;
-  longlong unaff_RBP;
+  longlong systemState;
   uint securityCheckResult;
-  uint uVar9;
-  ulonglong unaff_RDI;
-  int iVar10;
-  longlong unaff_R13;
-  int registerR14D;
-  int iVar11;
-  float extraout_XMM0_Da;
-  float extraout_XMM0_Da_00;
-  float extraout_XMM0_Da_01;
-  float extraout_XMM0_Da_02;
-  float extraout_XMM0_Da_03;
-  float extraout_XMM0_Da_04;
-  float extraout_XMM0_Da_05;
-  float fVar12;
-  float extraout_XMM0_Da_06;
-  undefined4 extraout_XMM0_Da_07;
-  undefined4 extraout_XMM0_Da_08;
-  undefined4 uVar13;
-  float extraout_XMM0_Da_09;
+  uint validationFlag;
+  ulonglong systemFlags;
+  int contextStatus;
+  longlong threadContext;
+  int registerValue;
+  int errorCounter;
+  float processingValue;
+  float tempValue1;
+  float tempValue2;
+  float tempValue3;
+  float tempValue4;
+  float tempValue5;
+  float tempValue6;
+  float mainValue;
+  float tempValue7;
+  undefined4 tempValue8;
+  undefined4 tempValue9;
+  undefined4 validationResult;
+  float finalValue;
   
   *(undefined4 *)(unaff_R13 + 0x30) = 10;
   if ((int)unaff_RDI != 0) {
