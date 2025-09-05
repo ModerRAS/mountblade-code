@@ -34440,14 +34440,14 @@ void ClearStateFlagAndExecuteCallback(DataBuffer unusedParameter,int64_t targetO
 void SetDefaultExceptionHandlerAtOffset180(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
-  *(DataBuffer *)(param_2 + 0x180) = &UNK_180a3c3e0;
-  if (*(int64_t *)(param_2 + 0x188) != 0) {
+  *(DataBuffer *)(targetObjectPointer + 0x180) = &UNK_180a3c3e0;
+  if (*(int64_t *)(targetObjectPointer + 0x188) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(param_2 + 0x188) = 0;
-  *(DataWord *)(param_2 + 0x198) = 0;
-  *(DataBuffer *)(param_2 + 0x180) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(targetObjectPointer + 0x188) = 0;
+  *(DataWord *)(targetObjectPointer + 0x198) = 0;
+  *(DataBuffer *)(targetObjectPointer + 0x180) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -34462,7 +34462,7 @@ void SetDefaultExceptionHandlerAtOffset180(DataBuffer unusedParameter,int64_t ta
  * @param param_2 参数2（目标对象指针）
  * @note 原始函数名：Unwind_1809021d0
  */
-void SetDefaultExceptionHandlerAtOffset138Again(DataBuffer param_1,int64_t param_2)
+void SetDefaultExceptionHandlerAtOffset138Again(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
   *(uint8_t **)(param_2 + 0x138) = &DefaultExceptionHandlerB;
