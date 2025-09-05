@@ -20477,17 +20477,17 @@ void* ReleaseSystemMemoryResource(void** resourcePointer, uint64_t freeFlags, ui
 
 
 /**
- * @brief 系统字符串复制函数（带长度限制）
+ * @brief 复制系统字符串（带长度限制）
  * 
  * 该函数用于将字符串从源地址复制到目标地址，有长度限制。
  * 如果源字符串为空，则清空目标字符串；如果字符串长度超过限制，
  * 则调用系统错误处理函数。
  * 
- * @param SystemResourceManager 目标字符串结构体指针
+ * @param targetBuffer 目标字符串结构体指针
  * @param sourceString 源字符串指针
  * @note 最大字符串长度限制为0x20字节
  */
-void ProcessSystemStringCopyWithLimit(long long targetBuffer,long long sourceString)
+void CopySystemStringWithLengthLimit(long long targetBuffer,long long sourceString)
 
 {
   long long stringLength;
@@ -25038,7 +25038,7 @@ void* * SystemMemoryAllocatorInitializer(void* *memoryAllocator)
 
 // 函数: void InitializeResourceHandle(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
- * @brief 系统数据表处理器A
+ * @brief 处理系统数据表（大步长遍历）
  * 
  * 该函数处理系统数据表的操作，遍历数据表中的所有条目，并调用相应的处理函数。
  * 使用0x69作为步长来遍历数据表条目。
@@ -25049,17 +25049,18 @@ void* * SystemMemoryAllocatorInitializer(void* *memoryAllocator)
  * @param operationParameter 操作参数
  * @note 这是系统数据表处理的核心函数，确保数据表条目的正确处理
  */
-void SystemDataTableProcessorA(long long *DataTablePointer,void* systemContext,void* operationFlag,void* operationParameter)
+void ProcessSystemDataTableWithLargeStep(long long *DataTablePointer,void* systemContext,void* operationFlag,void* operationParameter)
 
 {
-  void* *tableEntryPointer;
+  void* *TableEndPointer;
   void** SystemDataTable;
-  void* cleanupFlag;
+  void* CleanupFlagValue;
+  void* *CurrentTableEntry;
   
-  cleanupFlag = 0xfffffffffffffffe;
-  tableEntryPointer = (void* *)DataTablePointer[1];
-  for (ResourceHashEntryPointer = (void* *)*DataTablePointer; ResourceHashEntryPointer != tableEntryPointer; ResourceHashEntryPointer = ResourceHashEntryPointer + 0x69) {
-    (**(code **)*ResourceHashEntryPointer)(ResourceHashEntryPointer,0,operationFlag,operationParameter,cleanupFlag);
+  CleanupFlagValue = 0xfffffffffffffffe;
+  TableEndPointer = (void* *)DataTablePointer[1];
+  for (CurrentTableEntry = (void* *)*DataTablePointer; CurrentTableEntry != TableEndPointer; CurrentTableEntry = CurrentTableEntry + 0x69) {
+    (**(code **)*CurrentTableEntry)(CurrentTableEntry,0,operationFlag,operationParameter,CleanupFlagValue);
   }
   if (*DataTablePointer == 0) {
     return;
@@ -25072,7 +25073,7 @@ void SystemDataTableProcessorA(long long *DataTablePointer,void* systemContext,v
 
 // 函数: void SetupResourceHandle(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
- * @brief 系统数据表处理器B
+ * @brief 处理系统数据表（小步长遍历）
  * 
  * 该函数处理系统数据表的操作，遍历数据表中的所有条目，并调用相应的处理函数。
  * 使用0xb作为步长来遍历数据表条目。
@@ -25083,17 +25084,18 @@ void SystemDataTableProcessorA(long long *DataTablePointer,void* systemContext,v
  * @param operationParameter 操作参数
  * @note 这是系统数据表处理的辅助函数，用于处理不同结构的数据表
  */
-void SystemDataTableProcessorB(long long *DataTablePointer,void* systemContext,void* operationFlag,void* operationParameter)
+void ProcessSystemDataTableWithSmallStep(long long *DataTablePointer,void* systemContext,void* operationFlag,void* operationParameter)
 
 {
-  void* *tableEntryPointer;
+  void* *TableEndPointer;
   void** SystemDataTable;
-  void* cleanupFlag;
+  void* CleanupFlagValue;
+  void* *CurrentTableEntry;
   
-  cleanupFlag = 0xfffffffffffffffe;
-  tableEntryPointer = (void* *)DataTablePointer[1];
-  for (ResourceHashEntryPointer = (void* *)*DataTablePointer; ResourceHashEntryPointer != tableEntryPointer; ResourceHashEntryPointer = ResourceHashEntryPointer + 0xb) {
-    (**(code **)*ResourceHashEntryPointer)(ResourceHashEntryPointer,0,operationFlag,operationParameter,cleanupFlag);
+  CleanupFlagValue = 0xfffffffffffffffe;
+  TableEndPointer = (void* *)DataTablePointer[1];
+  for (CurrentTableEntry = (void* *)*DataTablePointer; CurrentTableEntry != TableEndPointer; CurrentTableEntry = CurrentTableEntry + 0xb) {
+    (**(code **)*CurrentTableEntry)(CurrentTableEntry,0,operationFlag,operationParameter,CleanupFlagValue);
   }
   if (*DataTablePointer == 0) {
     return;

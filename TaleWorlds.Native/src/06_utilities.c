@@ -17468,7 +17468,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
               if (iVar6 != 0) goto FUN_180897b16;
             }
           }
-          iVar6 = FUN_1808682e0(lVar2,&fStack_19c,0);
+          iVar6 = ConvertDataFormatA2(lVar2,&fStack_19c,0);
           if (iVar6 == 0) {
             if (fStack_19c != 1.0) {
               fStack_1a8 = fStack_19c;
@@ -17724,7 +17724,7 @@ ProcessDataSecurityValidation:
             if (iVar13 != 0) goto FUN_180897b0e;
           }
         }
-        iVar13 = FUN_1808682e0(uVar24,(longlong)&stack0x00000048 + 4,0);
+        iVar13 = ConvertDataFormatA2(uVar24,(longlong)&stack0x00000048 + 4,0);
         if (iVar13 == 0) {
           in_stack_000001a0 = unaff_XMM6_Da;
           in_stack_000001a8 = unaff_XMM6_Dc;
