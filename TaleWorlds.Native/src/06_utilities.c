@@ -445,6 +445,38 @@
 // 功能：重置工具系统状态，清理临时数据
 #define ResetUtilitySystemStateC0 FUN_1809425e0
 
+// 原始函数名：FUN_180899180 - 数据状态检查函数A0
+// 功能：检查数据状态并返回结果
+#define CheckDataStatusA0 FUN_180899180
+
+// 原始函数名：FUN_1808992c4 - 系统初始化函数A0
+// 功能：初始化系统组件和资源
+#define InitializeSystemComponentsA0 FUN_1808992c4
+
+// 原始函数名：FUN_1808995c0 - 数据验证函数A2
+// 功能：验证数据并执行安全检查
+#define ValidateDataWithSecurityCheckA2 FUN_1808995c0
+
+// 原始函数名：FUN_180899790 - 系统清理函数A0
+// 功能：清理系统资源和状态
+#define CleanupSystemResourcesA0 FUN_180899790
+
+// 原始函数名：FUN_180899799 - 系统重置函数A0
+// 功能：重置系统状态和配置
+#define ResetSystemStateA0 FUN_180899799
+
+// 原始函数名：FUN_1808997b0 - 数据同步函数A0
+// 功能：同步数据到指定位置
+#define SynchronizeDataA0 FUN_1808997b0
+
+// 原始函数名：FUN_180899891 - 内存管理函数A0
+// 功能：管理内存分配和释放
+#define ManageMemoryA0 FUN_180899891
+
+// 原始函数名：FUN_180899950 - 数据处理函数A2
+// 功能：处理数据并执行相关操作
+#define ProcessDataA2 FUN_180899950
+
 // Unwind函数语义化宏定义
 // 原始函数名：Unwind_180901f10 - 异常展开处理函数A0
 // 功能：设置异常展开指针链A0
@@ -4101,9 +4133,9 @@ undefined8 ProcessMemoryFlagUpdate(longlong param_1)
 
 
 
-// 函数: undefined8 ProcessUtilityResourceDecrement(longlong param_1,undefined8 param_2)
+// 函数: undefined8 ProcessUtilityResourceDecrement(longlong resourceContext,undefined8 decrementValue)
 // 功能：处理工具资源递减操作，减少资源计数器并在满足条件时执行资源清理
-undefined8 ProcessUtilityResourceDecrement(longlong param_1,undefined8 param_2)
+undefined8 ProcessUtilityResourceDecrement(longlong resourceContext,undefined8 decrementValue)
 
 {
   longlong resourcePointer;
