@@ -19295,14 +19295,14 @@ HandleMemoryBufferOverflow:
     SystemConfigurationTemplatePtr = &SystemConfigurationTemplatePrimary;
     SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffffffffffff,4);
     SystemMemoryTemplatePtr = &SystemMemoryTemplateQuinary;
-    SystemStackBuffer = SystemSecurityBuffer;
+    SystemTemporaryBuffer = SystemSecurityBuffer;
     CalculationFlags = 0;
     SystemSecurityBuffer[0] = 0;
     GameControllerStatusFlag = 2;
     InitializeGameSettings(&SystemMemoryTemplatePtr,&SystemDataBufferTemplateNonary,0x130a7);
     SystemStringTemplatePointer = &SystemStringTemplate;
-    if (SystemStackBuffer != (void* *)0x0) {
-      SystemStringTemplatePointer = SystemStackBuffer;
+    if (SystemTemporaryBuffer != (void* *)0x0) {
+      SystemStringTemplatePointer = SystemTemporaryBuffer;
     }
     SystemConfigurationTemplatePtr = &SystemConfigurationTemplateSecondary;
     SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffffffffffff,4);
@@ -44875,7 +44875,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
   ulong long ResourceHash;
   uint8_t SystemDataBufferTertiary [32];
   void* *SystemGlobalDataReferencePtr;
-  void* *SystemAlternateStringBuffer;
+  void* *SystemPrimaryStringBuffer;
   void* *pSystemThreadStackSize;
   void* *pointerUnsigned1b8;
   long long StackCleanupFlag;
