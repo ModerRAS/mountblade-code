@@ -28561,7 +28561,7 @@ SystemCompletionCheck:
   if (threadBuffer != (uint8_t *)0x0) {
     threadBuffer[bufferOffset] = 0;
   }
-  operationFlags2 = *(uint32_t *)(ThreadParams + 0x1c);
+  secondaryOperationFlags = *(uint32_t *)(ThreadParams + 0x1c);
   threadHandle = ConcatenatedSystemValue(operationFlags2,(uint32_t)threadHandle);
   threadStatus = dataLength;
   if (dataLength != 0xfffffffa) {

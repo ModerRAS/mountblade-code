@@ -98289,7 +98289,18 @@ void ExecuteSystemObjectCallback(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
-void Unwind_18090fd00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据标志并执行操作
+ * 
+ * 该函数检查资源数据的标志位，如果设置了特定标志，则清除该标志
+ * 并执行相应的资源操作。主要用于资源状态管理和清理。
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于执行资源操作
+ * @return 无返回值
+ * @note 原始函数名：Unwind_18090fd00
+ */
+void ClearResourceDataFlagAndExecuteOperation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
