@@ -684,8 +684,8 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkBothMagicValidFlag 0x03                        // 两个魔数都验证通过
 #define NetworkIntegrityCheckPassedFlag 0x01                   // 完整性检查通过
 #define NetworkComplianceCheckPassedFlag 0x01                  // 合规检查通过
-#define HeaderValidPass 0x01                      // 头部验证通过
-#define ContextProcessPass 0x01                    // 上下文处理通过
+#define NetworkHeaderValidationPassedFlag 0x01                      // 头部验证通过
+#define NetworkContextProcessingPassedFlag 0x01                    // 上下文处理通过
 #define FinalizationPass 0x01                      // 完成处理通过
 #define BufferCleanupPass 0x01                    // 缓冲区清理通过
 #define DataValidPass 0x01                        // 数据验证通过
