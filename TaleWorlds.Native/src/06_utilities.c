@@ -9893,6 +9893,42 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：配置系统参数和状态
 #define ConfigureSystemParametersA0 FUN_180897b40
 
+// 原始函数名：FUN_180893420 - 数据处理函数A2
+// 功能：处理数据和系统配置
+#define ProcessSystemDataA2 FUN_180893420
+
+// 原始函数名：FUN_1808920e0 - 验证和执行操作函数A0
+// 功能：验证参数并执行操作
+#define ValidateAndExecuteOperationA0 FUN_1808920e0
+
+// 原始函数名：FUN_180891d40 - 数据验证函数A0
+// 功能：验证数据完整性和状态
+#define ValidateDataIntegrityA1 FUN_180891d40
+
+// 原始函数名：FUN_180891cf0 - 数据处理函数A2
+// 功能：处理数据块和状态
+#define ProcessDataBlockA0 FUN_180891cf0
+
+// 原始函数名：FUN_180891ca0 - 数据集处理函数A0
+// 功能：处理数据集和标志
+#define ProcessDataSetFlagA0 FUN_180891ca0
+
+// 原始函数名：FUN_180891de0 - 系统事件处理函数A0
+// 功能：处理系统事件和状态
+#define ProcessSystemEventA0 FUN_180891de0
+
+// 原始函数名：FUN_180894300 - 系统验证函数A0
+// 功能：验证系统状态和配置
+#define ValidateSystemA0 FUN_180894300
+
+// 原始函数名：FUN_180891af0 - 系统状态重置函数A1
+// 功能：重置系统状态和组件
+#define ResetSystemStateA1 FUN_180891af0
+
+// 原始函数名：FUN_1808987e0 - 系统数据验证函数A0
+// 功能：验证系统数据和参数
+#define ValidateSystemDataA0 FUN_1808987e0
+
 // 函数: void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 //
 // 系统事件处理器初始化函数A0
@@ -15532,11 +15568,11 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
               uStack_c8 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 1;
-              FUN_180893420(&puStack_d8,*(undefined8 *)(param_1 + 0x58));
+              ProcessSystemDataA2(&puStack_d8,*(undefined8 *)(param_1 + 0x58));
               puStack_f0 = &UNK_180983cf8;
               uStack_e0 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
-              FUN_1808920e0(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
+              ValidateAndExecuteOperationA0(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
               pvalidationContext3 = plStack_108;
             }
           }
@@ -15548,7 +15584,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
               uStack_c8 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 0x3f800000;
-              FUN_180891d40(&puStack_d8,*(undefined8 *)(param_1 + 0x58));
+              ValidateDataIntegrityA1(&puStack_d8,*(undefined8 *)(param_1 + 0x58));
               puStack_98 = &UNK_180984358;
               uStack_88 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
               uStack_90 = 0;
