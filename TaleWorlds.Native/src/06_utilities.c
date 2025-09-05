@@ -50032,20 +50032,24 @@ void DestroyMutexInPlaceSecondary(void)
 void ValidateResourceIndexAndExecuteCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int32_t *ResourceTablePointerIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashStatusAddress;
   int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  uint64_t MemoryAddressDelta;
+  uint8_t *ResourceStatusPointer;
+  uint64_t MemoryAddressMask;
+  int32_t *ResourceIndexPointer;
   
-  ResourceStatusPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x213438);
+  ResourceHashStatusAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0x213438);
   if (ResourceHashStatusAddress == (uint8_t *)0x0) {
     return;
   }
-  MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
+  MemoryAddressDelta = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
+  MemoryAddressMask = MemoryAddressDelta;
   if (MemoryAddressMask != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * 0x50;
+    ResourceIndex = MemoryAddressDelta + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressDelta >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+    if ((*(void ***)(MemoryAddressDelta + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
