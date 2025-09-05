@@ -1558,6 +1558,15 @@ void* GetSystemInitializationFunction;
  * 
  * @return void 无返回值
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 初始化游戏核心系统，包括系统节点的创建、内存分配和初始化处理。
+ * 该函数负责设置游戏核心系统的基本架构和资源分配。
+ * 
+ * @note 该函数会检查游戏核心节点是否已激活，如果未激活则创建新节点
+ * @note 使用系统标识符进行节点匹配和验证
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;
@@ -1876,7 +1885,7 @@ void InitializeSystemMemoryPool(void)
   SystemCurrentNodePointer = (void**)SystemRootNodePointer[1];
   
   while (!IsMemoryPoolNodeActive) {
-    MemoryPoolIdentifierNodeIdentifierComparisonResult = memcmp(SystemCurrentNodePointer + 4, &SystemAllocatorSystemIdentifier1, IdentifierSize);
+    MemoryPoolIdentifierComparisonResult = memcmp(SystemCurrentNodePointer + 4, &SystemAllocatorSystemIdentifier1, IdentifierSize);
     if (MemoryPoolIdentifierComparisonResult < 0) {
       SystemNextNodePointer = (void**)SystemCurrentNodePointer[NodeNextPointerOffset];
       SystemCurrentNodePointer = SystemPreviousNodePointer;
@@ -2418,30 +2427,43 @@ int InitializeSystemSemaphore(void)
  * @param void 无参数
  * @return void 无返回值
  */
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 该函数负责初始化系统的内存管理器，创建内存管理节点并设置相关的回调函数。
+ * 它会遍历系统节点树，查找或创建内存管理器节点，并配置必要的参数。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保内存管理器正确配置
+ * @note 函数使用SystemDataComparisonTemplateD进行系统识别
+ * @note 如果找不到合适的节点，会创建新的内存管理器节点
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void InitializeSystemMemoryManager(void)
-
 {
-  char NodeActiveFlag;
+  bool IsMemoryManagerNodeActive;
   void** SystemDataTable;
-  int IdentifierCompareResult;
+  int MemoryManagerIdentifierCompareResult;
   long long* MemorySystemPointer;
   long long MemorySystemOperationTimestamp;
   void** RootNodePointer;
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemEventCallback;
+  void* MemoryManagerEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
-  NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
+  IsMemoryManagerNodeActive = *(bool*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunction;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
-  while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4, &SystemDataComparisonTemplateD, IdentifierSize);
-    if (IdentifierCompareResult < 0) {
-      NextNode = (void**)CurrentNodePointer[2];
+  
+  while (!IsMemoryManagerNodeActive) {
+    MemoryManagerIdentifierCompareResult = memcmp(CurrentNodePointer + 4, &SystemDataComparisonTemplateD, IdentifierSize);
+    if (MemoryManagerIdentifierCompareResult < 0) {
+      NextNode = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = HashTableNodePointer;
     }
     else {
@@ -2449,18 +2471,21 @@ void InitializeSystemMemoryManager(void)
     }
     HashTableNodePointer = CurrentNodePointer;
     CurrentNodePointer = NextNode;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    IsMemoryManagerNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((HashTableNodePointer == RootNodePointer) || (IdentifierCompareResult = memcmp(&SystemDataComparisonTemplateD, HashTableNodePointer + 4, IdentifierSize), IdentifierCompareResult < 0)) {
+  
+  if ((HashTableNodePointer == RootNodePointer) || 
+      (MemoryManagerIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateD, HashTableNodePointer + 4, IdentifierSize), MemoryManagerIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTableNodePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
   }
+  
   HashTableNodePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_D_ID1;
   HashTableNodePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_D_ID2;
   HashTableNodePointer[NodeDataPointerIndex] = &SystemDataNodeTertiaryRoot;
   HashTableNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
-  HashTableNodePointer[10] = SystemEventCallback;
+  HashTableNodePointer[NodeHandlerIndex] = MemoryManagerEventCallback;
   return;
 }
 
@@ -2576,22 +2601,25 @@ int InitializeSystemThreadSynchronization(void* ThreadPool, void* SyncConfig, si
  * 
  * @note 该函数在系统初始化过程中调用，确保字符串处理功能正常工作。
  * @note 函数会初始化字符串处理器节点和相关回调函数。
+ * @note 使用SYSTEM_STRING_BUFFER_SIZE_SHORT作为默认缓冲区大小
+ * 
+ * @param void 无参数
+ * @return void 无返回值
  */
 void InitializeSystemStringHandler(void)
-
 {
-  uint64_t StringProcessorParameter;
-  void* StringProcessorCallback;
+  uint64_t StringProcessorInitializationParameter;
+  void* StringProcessorInitializationCallback;
   uint8_t* StringBufferReference;
   uint32_t StringBufferSize;
   uint8_t StringBuffer [136];
   
-  StringProcessorCallback = &SystemStringProcessorNode;
+  StringProcessorInitializationCallback = &SystemStringProcessorNode;
   StringBufferPointer = StringBuffer;
   StringBuffer[0] = 0;
   StringBufferSize = SYSTEM_STRING_BUFFER_SIZE_SHORT;
-  strcpy_s(StringBuffer, StringBufferSize, &SystemStringProcessorTemplate, StringProcessorParameter, InvalidHandleValue);
-  SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessorCallback);
+  strcpy_s(StringBuffer, StringBufferSize, &SystemStringProcessorTemplate, StringProcessorInitializationParameter, InvalidHandleValue);
+  SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessorInitializationCallback);
   return;
 }
 
