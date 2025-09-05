@@ -15036,11 +15036,20 @@ void InitializeSystemResourceManagerD(void)
 
 
 
-// 函数: void InitializeSystemResourceManagerE(void)
-// 功能: 初始化系统资源管理器E，用于管理特定类型的系统资源
-// 该函数会创建系统节点并设置资源管理相关的初始化参数
+/**
+ * @brief 初始化系统资源管理器E
+ * 
+ * 该函数负责初始化系统资源管理器E，用于管理特定类型的系统资源。
+ * 它会在系统数据表中查找或创建资源管理器节点，并设置节点的标识符和回调函数。
+ * 资源管理器E主要用于管理内存分配器相关的系统资源。
+ * 
+ * @note 该函数使用SystemAllocatorIdentifier进行系统识别
+ * @note 节点标识符为 0x4c868a42644030f6 和 0xc29193aa9d9b35b9
+ * @note 该函数是系统资源管理的重要组成部分，确保资源管理器的正确初始化
+ * 
+ * @return 无返回值
+ */
 void InitializeSystemResourceManagerE(void)
-
 {
   char NodeActiveFlag;
   void** SystemDataTable;
@@ -15089,11 +15098,20 @@ void InitializeSystemResourceManagerE(void)
 
 
 /**
- * 初始化系统配置资源管理器
- * 设置系统配置标识符和相关数据结构
+ * @brief 初始化系统配置资源管理器F
+ * 
+ * 该函数负责初始化系统配置资源管理器F，用于管理系统配置相关的资源。
+ * 它会在系统数据表中查找或创建配置管理器节点，并设置节点的标识符和回调函数。
+ * 配置管理器F主要用于管理系统配置数据和参数设置。
+ * 
+ * @note 该函数使用SystemConfigurationIdentifier进行系统识别
+ * @note 节点标识符为 0x40ea3a798283cbbb 和 0x7f74eb2c5a7fadae
+ * @note 节点活动标志设置为3，表示特殊的活动状态
+ * @note 该函数是系统配置管理的重要组成部分，确保配置管理器的正确初始化
+ * 
+ * @return 无返回值
  */
 void InitializeSystemResourceManagerF(void)
-
 {
   char NodeActiveFlag;
   void** SystemDataTable;
@@ -16979,17 +16997,22 @@ int InitializeSystemSynchronizationMechanism(void)
 
 
 
-// 函数: int InitializeSystemPerformanceMonitor(void)
 /**
  * @brief 初始化系统性能监控器
  * 
  * 该函数负责初始化系统的性能监控组件，设置性能监控数据结构
  * 和性能计数器，为系统性能分析提供基础支持。
  * 
+ * 该函数会设置性能监控器的配置数据和状态数据，为后续的性能
+ * 监控和分析工作做好准备。性能监控器用于跟踪系统的各项性能指标，
+ * 包括CPU使用率、内存使用情况、网络吞吐量等。
+ * 
+ * @note 该函数是系统监控组件初始化的一部分
+ * @note 初始化完成后，性能监控器将开始收集系统性能数据
+ * 
  * @return 初始化成功返回0，失败返回-1
  */
 int InitializeSystemPerformanceMonitor(void)
-
 {
   long long SystemInitializationStatusCode;
   void* SystemParameter;
@@ -16997,11 +17020,24 @@ int InitializeSystemPerformanceMonitor(void)
   SystemPerformanceMonitorData = &SystemPerformanceMonitorConfiguration;
   SystemPerformanceMonitorStatus = &SystemPerformanceMonitorStatusData;
 
-// 函数: void InitializeSystemSubcomponentI(void)
-// 功能: 初始化系统子组件I - 负责系统性能监控组件的初始化
-// 该函数初始化系统性能监控相关的数据结构和性能计数器
+/**
+ * @brief 初始化系统性能监控子组件I
+ * 
+ * 该函数负责初始化系统性能监控子组件I，这是系统性能监控组件的
+ * 重要组成部分。它会在系统数据表中查找或创建性能监控节点，
+ * 并设置节点的标识符和回调函数。
+ * 
+ * 性能监控子组件I主要用于监控内存使用情况和系统性能指标，
+ * 为系统性能分析和优化提供数据支持。
+ * 
+ * @note 该函数使用SystemDataTemplateS进行系统识别
+ * @note 节点标识符为 0x46c54bc98fc3fc2a 和 0x727b256e3af32585
+ * @note 节点活动标志设置为2，表示性能监控活动状态
+ * @note 该函数是系统性能监控初始化的重要组成部分
+ * 
+ * @return 无返回值
+ */
 void InitializeSystemSubcomponentI(void)
-
 {
   char PerformanceMonitorNodeActiveFlag;
   void** PerformanceMonitorSystemDataTable;
