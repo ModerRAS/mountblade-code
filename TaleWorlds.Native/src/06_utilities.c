@@ -5227,30 +5227,37 @@ undefined UtilitySystemInitData1;
 undefined UtilitySystemInitData2;
 undefined UtilitySystemInitData3;
 undefined UtilitySystemInitData4;
-undefined DAT_180bfa3e8;
-undefined DAT_180bfa3f0;
-undefined DAT_180bfa3f8;
-undefined DAT_180bfa400;
-undefined DAT_180bfa480;
-undefined DAT_180bfa488;
-undefined DAT_180bfa490;
-undefined DAT_180bfa498;
-undefined DAT_180bfa518;
-undefined DAT_180bfa520;
-undefined DAT_180bfa528;
-undefined DAT_180bfa530;
-undefined DAT_180bfa5b0;
-undefined DAT_180bfa5b8;
-undefined DAT_180bfa5c0;
-undefined DAT_180bfa5c8;
-undefined DAT_180bfa648;
-undefined DAT_180bfa650;
-undefined DAT_180bfa658;
-undefined DAT_180bfa660;
-undefined DAT_180bfa6e0;
-undefined DAT_180bfa6e8;
-undefined DAT_180bfa6f0;
-undefined DAT_180bfa6f8;
+// 全局数据指针A39相关变量
+void* GlobalDataPointerA39Storage;    // DAT_180bfa3e8
+void* GlobalDataPointerA39Status;     // DAT_180bfa3f0
+void* GlobalDataPointerA39Config;     // DAT_180bfa3f8
+void* GlobalDataPointerA39Cache;      // DAT_180bfa400
+// 全局数据指针A40相关变量
+void* GlobalDataPointerA40Storage;    // DAT_180bfa480
+void* GlobalDataPointerA40Status;     // DAT_180bfa488
+void* GlobalDataPointerA40Config;     // DAT_180bfa490
+void* GlobalDataPointerA40Cache;      // DAT_180bfa498
+// 全局数据指针A41相关变量
+void* GlobalDataPointerA41Storage;    // DAT_180bfa518
+void* GlobalDataPointerA41Status;     // DAT_180bfa520
+void* GlobalDataPointerA41Config;     // DAT_180bfa528
+void* GlobalDataPointerA41Cache;      // DAT_180bfa530
+// 全局数据指针A42相关变量
+void* GlobalDataPointerA42Storage;    // DAT_180bfa5b0
+void* GlobalDataPointerA42Status;     // DAT_180bfa5b8
+void* GlobalDataPointerA42Config;     // DAT_180bfa5c0
+void* GlobalDataPointerA42Cache;      // DAT_180bfa5c8
+// 全局数据指针A43相关变量
+void* GlobalDataPointerA43Storage;    // DAT_180bfa648
+void* GlobalDataPointerA43Status;     // DAT_180bfa650
+// 全局数据指针A43相关变量（续）
+void* GlobalDataPointerA43ValidationBuffer;  // DAT_180bfa658
+void* GlobalDataPointerA43ExtraData;        // DAT_180bfa660
+// 全局数据指针A44相关变量
+void* GlobalDataPointerA44Storage;          // DAT_180bfa6e0
+void* GlobalDataPointerA44Status;           // DAT_180bfa6e8
+void* GlobalDataPointerA44Config;           // DAT_180bfa6f0
+void* GlobalDataPointerA44Cache;            // DAT_180bfa6f8
 bool UtilitySystemControlFlag600;
 bool SystemStatusControlFlag1;
 bool SystemStatusControlFlag2;
