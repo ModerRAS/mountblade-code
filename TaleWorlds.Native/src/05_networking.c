@@ -193,7 +193,6 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkConnectionContextOffset 0x78                    // 网络连接上下文偏移量
 #define NetworkConnectionValidationOffset 0x24                 // 网络连接验证偏移量
 #define NetworkConnectionStatusOffset 0x98                     // 网络连接状态偏移量
-#define NetworkPacketProcessingSize 0x20                        // 网络数据包处理大小
 #define NetworkConnectionCompressionOffset 0x1c                // 网络连接压缩偏移量
 #define NetworkConnectionEncryptionOffset 0x20                 // 网络连接加密偏移量
 #define NetworkConnectionValidationStatusOffset 0x24            // 网络连接验证状态偏移量
@@ -275,7 +274,6 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 // 网络连接相关偏移量 - 连接处理和数据管理
 #define NetworkConnectionHeaderOffset 0x10                     // 网络连接头部偏移量
 #define NetworkConnectionPrimaryValidationOffset 0xd8          // 网络连接主验证偏移量
-#define NetworkConnectionValidationSecondaryOffset 0x54        // 网络连接次验证偏移量
 #define NetworkConnectionValidationTertiaryOffset 0x78         // 网络连接第三验证偏移量
 #define NetworkConnectionValidationQuaternaryOffset 0x58       // 网络连接第四验证偏移量
 #define NetworkConnectionDataPrimaryOffset 0x5c                // 网络连接主数据偏移量
@@ -344,7 +342,6 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkEventQueueEnabled 0x01                             // 事件队列启用标志
 #define NetworkInvalidCallbackHandler 0xFFFFFFFF                  // 无效回调处理器
 #define NetworkInvalidTimeoutProcessor 0xFFFFFFFF                 // 无效超时处理器
-#define NetworkDefaultMaxConnections 100                           // 默认最大连接数
 #define NetworkConnectionContextEnabled 0x01                       // 连接上下文启用标志
 
 // 网络安全常量
@@ -396,7 +393,6 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 
 // 网络连接验证偏移量常量
 #define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证偏移量
-#define NetworkConnectionTertiaryValidationOffset 0x78          // 第三级连接验证偏移量
 #define NetworkConnectionQuaternaryValidationOffset 0x58         // 第四级连接验证偏移量
 #define NetworkConnectionPrimaryIntegrityOffset 0x70           // 第一级连接完整性偏移量
 #define NetworkConnectionSecondaryIntegrityOffset 0x74          // 第二级连接完整性偏移量
@@ -1285,9 +1281,9 @@ void InitializeNetworkSocket(void)
 void BindNetworkSocket(void)
 {
   // 设置网络地址和端口配置
-  NetworkServerIpAddr = NetworkLocalhostAddress;               // 设置为127.0.0.1 (本地回环地址)
-  NetworkServerPort = PORT_HTTP_ALT;                   // 设置端口为8080
-  NetworkClientIpAddr = CLIENT_IP_ANY;               // 客户端IP地址初始化为0.0.0.0
+  NetworkServerIpAddress = NetworkLocalhostAddress;               // 设置为127.0.0.1 (本地回环地址)
+  NetworkServerPortNumber = PORT_HTTP_ALT;                   // 设置端口为8080
+  NetworkClientIpAddress = CLIENT_IP_ANY;               // 客户端IP地址初始化为0.0.0.0
   NetworkClientPortNumber = CLIENT_PORT_ANY;                   // 客户端端口初始化为0
   
   // 设置套接字绑定状态
