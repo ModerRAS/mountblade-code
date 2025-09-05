@@ -60962,14 +60962,14 @@ void ValidateSystemResourceManagerStatus(long long SystemResourceManager)
   uint32_t ResourceAddress;
   char OperationStatusFlag;
   uint8_t ResourceHash;
-  long long in_RAX;
+  long long ResourceDataPointer;
   void** CurrentNodePointer;
   uint SystemOperationCode;
   long long MemoryBlockAddress;
   bool isSystemBusy;
   float ScalingFactor;
   
-  if ((in_RAX != 0) && (resourceDataIndex = *(long long *)(in_RAX + 0x28), resourceDataIndex != 0)) {
+  if ((ResourceDataPointer != 0) && (resourceDataIndex = *(long long *)(ResourceDataPointer + 0x28), resourceDataIndex != 0)) {
     ScalingFactor = (*(float *)(resourceDataIndex + 0x74) * *(float *)(resourceDataIndex + 0x88) -
              *(float *)(resourceDataIndex + 0x78) * *(float *)(resourceDataIndex + 0x84)) * *(float *)(resourceDataIndex + 0x90);
     CalculateSystemValue(ScalingFactor,(*(float *)(resourceDataIndex + 0x78) * *(float *)(resourceDataIndex + 0x80) -
