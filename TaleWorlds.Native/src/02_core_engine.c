@@ -113150,7 +113150,25 @@ uint8_t ProcessFloatingPointFilterAndVectorCalculation(uint64_t SystemContextPoi
 
 
 uint8_t
-// 系统上下文UTF编码处理函数 - 处理系统上下文中的UTF编码转换和数据处理
+/**
+ * @brief 处理系统上下文中的UTF编码转换和数据处理
+ * 
+ * 该函数负责处理系统上下文中的UTF-8到UTF-16编码转换，包括复杂的浮点数计算、
+ * 数据验证和状态管理。它根据不同的输入参数执行不同的计算路径，
+ * 用于游戏引擎中的字符编码处理和系统数据管理。
+ * 
+ * @param SystemContextPointer 系统上下文指针，指向系统上下文数据结构
+ * @param Utf8BufferSize UTF-8缓冲区大小，指定输入数据的长度
+ * @param Utf16InputPointer UTF-16输入指针，指向要转换的UTF-16数据
+ * @param Utf16EndPointer UTF-16结束指针，指向UTF-16数据的结束位置
+ * @param AdditionalParameter1 额外参数1，用于控制处理行为
+ * @param AdditionalParameter2 额外参数2，用于控制处理行为
+ * @param AdditionalParameter3 额外参数3，用于控制处理行为
+ * @param AdditionalParameter4 额外参数4，用于控制处理行为
+ * @param AdditionalParameter5 额外参数5，用于控制处理行为
+ * @param SystemContextPointer0 系统上下文指针0，用于返回处理结果
+ * @return int 返回处理状态码，0表示成功，非0表示错误
+ */
 int ProcessSystemContextUtfEncoding(float *SystemContextPointer,int Utf8BufferSize,uint64_t Utf16InputPointer,double *Utf16EndPointer,double AdditionalParameter1,
              double AdditionalParameter2,uint64_t AdditionalParameter3,uint64_t AdditionalParameter4,uint64_t AdditionalParameter5,float *SystemContextPointer0
              
@@ -175114,7 +175132,18 @@ uint64_t * FUN_1801504b0(uint64_t *SystemContextPointer
 
 
 uint64_t *
-// 系统上下文初始化函数 - 初始化系统上下文和状态缓冲区
+/**
+ * @brief 初始化系统上下文和状态缓冲区
+ * 
+ * 该函数负责初始化系统上下文和状态缓冲区，设置系统数据结构的基本配置
+ * 和状态信息。用于游戏引擎启动时的系统初始化。
+ * 
+ * @param SystemContextPointer 系统上下文指针，指向系统上下文数据结构
+ * @param Utf8BufferSize UTF-8缓冲区大小指针，用于返回缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针，指向输入数据
+ * @param Utf16EndPointer UTF-16结束指针，指向数据结束位置
+ * @return uint64_t* 返回初始化后的系统上下文指针
+ */
 uint64_t* InitializeSystemContext(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   uint64_t *SystemStatusBuffer;
@@ -175138,9 +175167,21 @@ uint64_t* InitializeSystemContext(uint64_t SystemContextPointer,uint64_t *Utf8Bu
 
 
 uint64_t *
-FUN_1801507b0(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 配置系统上下文参数和状态
+ * 
+ * 该函数负责配置系统上下文的参数和状态，设置更详细的系统配置信息
+ * 和状态数据。用于游戏引擎运行时的系统配置更新。
+ * 
+ * @param SystemContextPointer 系统上下文指针，指向系统上下文数据结构
+ * @param Utf8BufferSize UTF-8缓冲区大小指针，用于返回缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针，指向输入数据
+ * @param Utf16EndPointer UTF-16结束指针，指向数据结束位置
+ * @return uint64_t* 返回配置后的系统上下文指针
+ */
+uint64_t* ConfigureSystemContext(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
-  uint64_t *StatusBuffer;
+  uint64_t *SystemStatusBuffer;
   
   *Utf8BufferSize = &ThreadLocalStorageTemplate;
   Utf8BufferSize[1] = 0;
@@ -175150,11 +175191,11 @@ FUN_1801507b0(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Ut
   Utf8BufferSize[1] = 0;
   *(uint32_t *)(Utf8BufferSize + 2) = 0;
   CoreEngineProcessSystemEvent(Utf8BufferSize,0x1f,Utf16InputPointer,Utf16EndPointer,0,0xfffffffffffffffe);
-  StatusBuffer = (void *)Utf8BufferSize[1];
-  *StatusBuffer = 0x6c726f57656c6154;
-  StatusBuffer[1] = 0x6e69676e452e7364;
-  StatusBuffer[2] = 0x656e69676e452e65;
-  StatusBuffer[3] = 0x646567616e614d;
+  SystemStatusBuffer = (void *)Utf8BufferSize[1];
+  *SystemStatusBuffer = 0x6c726f57656c6154;
+  SystemStatusBuffer[1] = 0x6e69676e452e7364;
+  SystemStatusBuffer[2] = 0x656e69676e452e65;
+  SystemStatusBuffer[3] = 0x646567616e614d;
   *(uint32_t *)(Utf8BufferSize + 2) = 0x1f;
   return Utf8BufferSize;
 }
