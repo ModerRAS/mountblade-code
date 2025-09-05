@@ -9918,7 +9918,9 @@ void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
 
 
 // 函数: void FUN_18089492c(void)
-void FUN_18089492c(void)
+// 系统终止函数A
+// 调用底层系统终止函数，程序不会返回
+void TerminateSystemA(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -9929,13 +9931,15 @@ void FUN_18089492c(void)
 
 
 // 函数: void FUN_18089494e(void)
-void FUN_18089494e(void)
+// 安全检查终止函数A
+// 执行安全检查并终止程序
+void ExecuteSecurityCheckAndTerminateA(void)
 
 {
-  ulonglong in_stack_000000b0;
+  ulonglong securityParameter;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(securityParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
