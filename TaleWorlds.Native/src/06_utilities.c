@@ -12425,14 +12425,14 @@ uint64_t CleanupAndResetParameterContext(longlong *parameterContext)
         *(undefined8 *)(parameterDataPointer + 1) = 0;
         parameterDataPointer = parameterDataPointer + 4;
         cleanupCounter = cleanupCounter + -1;
-      } while (lVar4 != 0);
-      uVar5 = *(uint *)((longlong)param_1 + 0xc);
+      } while (cleanupCounter != 0);
+      parameterFlags = *(uint *)((longlong)parameterContext + 0xc);
     }
   }
-  *(undefined4 *)(param_1 + 1) = 0;
-  if ((0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) &&
-     (uVar3 = FUN_1807d3f50(param_1,0), (int)uVar3 != 0)) {
-    return uVar3;
+  *(undefined4 *)(parameterContext + 1) = 0;
+  if ((0 < (int)((parameterFlags ^ (int)parameterFlags >> 0x1f) - ((int)parameterFlags >> 0x1f))) &&
+     (operationResult = ValidateParameterContext(parameterContext,0), (int)operationResult != 0)) {
+    return operationResult;
   }
   return 0;
 }
@@ -17997,8 +17997,13 @@ undefined8 FUN_1808998a0(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180899950(longlong param_1,undefined4 *param_2)
-void FUN_180899950(longlong param_1,undefined4 *param_2)
+/**
+ * @brief 处理系统数据操作
+ * @param systemContext 系统上下文句柄
+ * @param operationData 操作数据指针
+ * @return 处理结果状态码
+ */
+void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationData)
 
 {
   int iVar1;
