@@ -1718,7 +1718,7 @@ void InitializeSystemDataTableAllocator(void)
 {
   bool IsDataTableNodeActive;
   void** SystemRootNodePointer;
-  int DataTableIdentifierComparisonResult;
+  int DataTableSystemIdentifierComparisonResult;
   long long* SystemMainTablePointer;
   long long SystemRequiredMemorySize;
   void** SystemCurrentNodePointer;
@@ -1782,7 +1782,7 @@ void InitializeSystemCoreConfig(void)
 {
   bool IsMemoryNodeActive;
   void** RootNodeReference;
-  int MemoryIdentifierComparisonResult;
+  int MemorySystemIdentifierComparisonResult;
   long long* SystemDataTablePointer;
   long long SystemMemoryAllocationSize;
   void** CurrentNodeReference;
