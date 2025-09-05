@@ -7929,24 +7929,24 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
     result = *(undefined8 *)(dataPtr + 0x20);
     *(undefined8 *)(dataBufferPtr + 0x38) = *(undefined8 *)(dataPtr + 0x18);
     *(undefined8 *)(dataBufferPtr + 0x40) = result;
-    uVar2 = *(undefined4 *)(param_1 + 0x2c);
-    uVar3 = *(undefined4 *)(param_1 + 0x30);
-    uVar4 = *(undefined4 *)(param_1 + 0x34);
-    *(undefined4 *)(lVar10 + 0x48) = *(undefined4 *)(param_1 + 0x28);
-    *(undefined4 *)(lVar10 + 0x4c) = uVar2;
-    *(undefined4 *)(lVar10 + 0x50) = uVar3;
-    *(undefined4 *)(lVar10 + 0x54) = uVar4;
-    uVar2 = *(undefined4 *)(param_1 + 0x3c);
-    uVar3 = *(undefined4 *)(param_1 + 0x40);
-    uVar4 = *(undefined4 *)(param_1 + 0x44);
-    *(undefined4 *)(lVar10 + 0x58) = *(undefined4 *)(param_1 + 0x38);
-    *(undefined4 *)(lVar10 + 0x5c) = uVar2;
-    *(undefined4 *)(lVar10 + 0x60) = uVar3;
-    *(undefined4 *)(lVar10 + 100) = uVar4;
-    lVar10 = *(longlong *)(param_2 + 0x98);
-    if ((*(int *)(lVar10 + 0x180) != 0) || (*(int *)(lVar10 + 0x184) != 0)) {
-      alStackX_8[0] = 0;
-      FUN_180768b50(alStackX_8);
+    uintComponentX = *(undefined4 *)(dataPtr + 0x2c);
+    uintComponentY = *(undefined4 *)(dataPtr + 0x30);
+    uintComponentZ = *(undefined4 *)(dataPtr + 0x34);
+    *(undefined4 *)(dataBufferPtr + 0x48) = *(undefined4 *)(dataPtr + 0x28);
+    *(undefined4 *)(dataBufferPtr + 0x4c) = uintComponentX;
+    *(undefined4 *)(dataBufferPtr + 0x50) = uintComponentY;
+    *(undefined4 *)(dataBufferPtr + 0x54) = uintComponentZ;
+    uintComponentX = *(undefined4 *)(dataPtr + 0x3c);
+    uintComponentY = *(undefined4 *)(dataPtr + 0x40);
+    uintComponentZ = *(undefined4 *)(dataPtr + 0x44);
+    *(undefined4 *)(dataBufferPtr + 0x58) = *(undefined4 *)(dataPtr + 0x38);
+    *(undefined4 *)(dataBufferPtr + 0x5c) = uintComponentX;
+    *(undefined4 *)(dataBufferPtr + 0x60) = uintComponentY;
+    *(undefined4 *)(dataBufferPtr + 100) = uintComponentZ;
+    dataBufferPtr = *(longlong *)(contextPtr + 0x98);
+    if ((*(int *)(dataBufferPtr + 0x180) != 0) || (*(int *)(dataBufferPtr + 0x184) != 0)) {
+      stackBuffer[0] = 0;
+      FUN_180768b50(stackBuffer);
       if (alStackX_8[0] == *(longlong *)((longlong)*(int *)(lVar10 + 0x17c) * 8 + 0x180c4f450)) {
         uVar5 = FUN_18088dd60(lVar10,param_1);
         if ((int)uVar5 == 0) {
