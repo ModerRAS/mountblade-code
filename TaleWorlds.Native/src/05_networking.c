@@ -2197,11 +2197,11 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   NetworkStatus *ConnectionStatusBuffer;                          // 连接状态缓冲区
   int64_t StatusIterationCounter;                           // 状态处理迭代器
   NetworkStatus *PacketFlagsBuffer;                     // 数据包标志缓冲区
-  int64_t *NetworkConnectionOperationBuffer;                             // 网络连接操作缓冲区
+  int64_t *ConnectionOperationBuffer;                             // 网络连接操作缓冲区
   int32_t ConnectionUpdateOperation;                         // 连接更新操作代码
   NetworkStatus *ConnectionStatusPointer;                          // 连接状态处理指针
   int32_t ConnectionOperationCode;                              // 连接操作代码
-  int64_t ProcessedPacketIdentifier;                                    // 已处理网络数据包ID
+  int64_t ProcessedPacketId;                                    // 已处理网络数据包ID
   int32_t PacketIndex;                                           // 网络数据包索引
   int32_t NetworkMaxSignedInt32Value;                                    // 最大32位整数值
   if (ConnectionOperationCode == 0) {
