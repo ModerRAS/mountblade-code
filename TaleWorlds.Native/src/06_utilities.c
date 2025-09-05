@@ -1808,21 +1808,21 @@
 // 功能：初始化内存管理器D4
 #define InitializeMemoryManagerD4 FUN_1809427d0
 
-// 原始函数名：FUN_180891ca0 - 数据处理函数A0
+// 原始函数名：FUN_180891ca0 - 数据处理函数
 // 功能：处理数据并设置标志位0x29
-#define ProcessDataSetFlagA0 FUN_180891ca0
+#define ProcessDataSetFlagPrimary FUN_180891ca0
 
-// 原始函数名：FUN_180891cf0 - 数据处理函数A1
+// 原始函数名：FUN_180891cf0 - 数据处理函数
 // 功能：处理数据并设置标志位0x28
-#define ProcessDataSetFlagA1 FUN_180891cf0
+#define ProcessDataSetFlagSecondary FUN_180891cf0
 
-// 原始函数名：FUN_180891d40 - 数据验证函数A2
+// 原始函数名：FUN_180891d40 - 数据验证函数
 // 功能：验证数据并返回状态码
-#define ValidateDataReturnStatusA2 FUN_180891d40
+#define ValidateDataAndReturnStatus FUN_180891d40
 
-// 原始函数名：FUN_180891e40 - 系统事件处理函数A3
+// 原始函数名：FUN_180891e40 - 系统事件处理函数
 // 功能：处理系统事件并执行相应操作
-#define ProcessSystemEventA3 FUN_180891e40
+#define ProcessSystemEvent FUN_180891e40
 
 // 原始函数名：FUN_180892333 - 空操作函数F
 // 功能：空操作函数，不执行任何操作
