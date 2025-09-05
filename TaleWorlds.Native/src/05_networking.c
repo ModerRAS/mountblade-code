@@ -1038,21 +1038,25 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 
 // 网络系统全局变量
 
-// 网络连接基础配置变量
+/**
+ * @brief 网络连接管理器上下文
+ * 
+ * 存储网络连接管理器的主要上下文数据，包括连接池、状态信息等
+ */
 uint32_t NetworkConnectionManagerContext;                    // 网络连接管理器上下文
 /**
  * @brief 网络连接池管理器状态
  * 
  * 管理网络连接池的分配、回收和维护操作的状态信息
  */
-uint32_t NetworkConnectionPoolManagerStatus;
+uint32_t NetworkConnectionPoolManagerStatus;                    // 网络连接池管理器状态
 
 /**
  * @brief 网络管理器上下文指针
  * 
  * 指向网络管理器的主要上下文数据结构
  */
-uint32_t NetworkManagerContextPointer;
+uint32_t NetworkManagerContextPointer;                         // 网络管理器上下文指针
 
 /**
  * @brief 网络管理器上下文数据
