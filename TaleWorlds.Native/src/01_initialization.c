@@ -18900,12 +18900,12 @@ uint64_t InitializeThreadLocalStorageCallbackTable(void)
   
   LocalStoragePointer = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
   *(uint64_t *)(LocalStoragePointer + LocalStorageDataOffset) = &SystemMemoryAllocatorReference;
-  *(uint64_t *)(LocalStoragePointer + 0x20) = 0;
-  *(uint32_t *)(LocalStoragePointer + 0x28) = 0;
-  *(uint64_t *)(LocalStoragePointer + 0x18) = &SystemGlobalDataReference;
-  *(uint64_t *)(LocalStoragePointer + 0x30) = 0;
-  *(uint64_t *)(LocalStoragePointer + 0x20) = 0;
-  *(uint32_t *)(LocalStoragePointer + 0x28) = 0;
+  *(uint64_t *)(LocalStoragePointer + LocalStorageSecondaryOffset) = 0;
+  *(uint32_t *)(LocalStoragePointer + LocalStorageTertiaryOffset) = 0;
+  *(uint64_t *)(LocalStoragePointer + LocalStorageDataOffset) = &SystemGlobalDataReference;
+  *(uint64_t *)(LocalStoragePointer + LocalStorageQuaternaryOffset) = 0;
+  *(uint64_t *)(LocalStoragePointer + LocalStorageSecondaryOffset) = 0;
+  *(uint32_t *)(LocalStoragePointer + LocalStorageTertiaryOffset) = 0;
   LocalStoragePointer = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
   CallbackTable = *(int **)(LocalStoragePointer + 0x50);
   if (CallbackTable == (int *)0x0) {
