@@ -1169,7 +1169,7 @@ void AcceptConnection(void)
 {
   // 分配新的连接资源
   NetworkConnectionActiveContext = NetworkConnectionContextEnabled;                      // 初始化连接上下文
-  NetworkConnectionContextSize = ContextSize512Bytes;                // 设置连接上下文大小
+  NetworkConnectionContextSize = ContextSize512Bytes;                // 设置连接上下文大小为512字节
   
   // 设置连接参数
   NetworkConnectionQuality = NetworkConnectionQualityGood;                     // 设置连接质量为良好
@@ -1462,7 +1462,7 @@ void SendNetworkData(void)
   NetworkTotalBytesSent = 0;                                 // 重置发送字节数
   NetworkTotalPacketsSent = 0;                               // 重置发送数据包数量
   NetworkPacketRetransmissionCount = 0;                 // 重置重传计数
-  NetworkPacketLossRate = 0x00;                         // 重置丢包率
+  NetworkPacketLossRate = 0x00;                         // 重置丢包率为0%
   
   // 初始化性能监控
   NetworkThroughputMonitor = NetworkMonitorActive;                     // 初始化吞吐量监控器
@@ -1501,7 +1501,7 @@ void ReceiveNetworkPacketData(void)
   
   // 初始化数据包上下文
   NetworkPacketContext = NetworkBufferEnabledFlag;                          // 初始化数据包上下文
-  NetworkPacketContextSize = ContextSize256Bytes;                    // 设置数据包上下文大小为256字节
+  NetworkPacketContextSize = ContextSize256Bytes;                    // 设置数据包上下文大小为256字节（标准大小）
   NetworkPacketData = NetworkBufferEnabledFlag;                             // 初始化数据包数据
   NetworkPacketIndex = NetworkPacketIndexResetValue;                            // 重置数据包索引
   

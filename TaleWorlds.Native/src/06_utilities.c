@@ -918,13 +918,13 @@
 // 功能：重置工具系统状态C1
 #define ResetUtilitySystemStateC1 FUN_180942580
 
-// 原始函数名：FUN_180943020 - 线程本地存储初始化函数A0
-// 功能：初始化线程本地存储A0
-#define InitializeThreadLocalStorageA0 FUN_180943020
+// 原始函数名：FUN_180943020 - 销毁互斥锁A
+// 功能：销毁互斥锁A，释放相关资源
+#define DestroyMutexA FUN_180943020
 
-// 原始函数名：FUN_180943040 - 线程本地存储初始化函数A1
-// 功能：初始化线程本地存储A1
-#define InitializeThreadLocalStorageA1 FUN_180943040
+// 原始函数名：FUN_180943040 - 销毁互斥锁B
+// 功能：销毁互斥锁B，释放相关资源
+#define DestroyMutexB FUN_180943040
 
 // 原始函数名：FUN_180943070 - 线程本地存储初始化函数A2
 // 功能：初始化线程本地存储A2
@@ -89750,7 +89750,19 @@ void DestroyMutexB(void)
 
 
 943070(void)
-void FUN_180943070(void)
+/**
+ * @brief 销毁互斥锁C
+ * 
+ * 该函数负责销毁互斥锁C，释放相关的系统资源
+ * 主要用于系统清理和资源释放
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数在系统关闭时调用，用于清理互斥锁资源
+ * @warning 确保在调用此函数前已正确释放所有依赖资源
+ * @see DestroyMutexA, DestroyMutexB
+ */
+void DestroyMutexC(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943088. Too many branches
