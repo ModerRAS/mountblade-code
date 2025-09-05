@@ -9726,7 +9726,7 @@ void InitializeSystemFrameworkManager(void)
  * 该函数负责初始化系统的搜索管理器组件，设置搜索相关的
  * 数据结构和回调函数。
  */
-void InitializeSystemSearchManagerD(void)
+void InitializeSystemSearchManagerAdvanced(void)
 {
   char SystemNodeActiveFlag;
   void** SystemDataTable;
@@ -11180,8 +11180,8 @@ void InitializeSystemDebugManagerStringProcessor(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorH(void)
-void InitializeSystemStringProcessorH(void)
+// 函数: void InitializeSystemStringProcessorExtended(void)
+void InitializeSystemStringProcessorExtended(void)
 
 {
   char NodeActiveFlag;
@@ -18951,7 +18951,7 @@ uint64_t InitializeThreadLocalStorageCallbackTable(void)
     *(uint64_t *)(CallbackTable + CallbackTableDataOffset) = *(uint64_t *)(LocalStoragePointer + LocalStorageQuinaryOffset);
   }
   *CallbackTable = 0;
-  *(int **)(LocalStoragePointer + 0x50) = CallbackTable;
+  *(int **)(LocalStoragePointer + LocalStorageQuinaryOffset) = CallbackTable;
 CallbackTableInitializationComplete:
   *(code **)(CallbackTable + (uint64_t)*CallbackTable * 2 + 4) = SystemTableCallbackFunction;
   *CallbackTable = *CallbackTable + 1;
@@ -19258,7 +19258,7 @@ int InitializeVirtualFunctionTableArray(void)
   do {
     SystemVirtualTableInitialize(SystemVirtualTablePointer);
     *SystemVirtualTablePointer = &SystemVirtualTableTemplateA;
-    SystemVirtualTablePointer = SystemVirtualTablePointer + 0x2b;
+    SystemVirtualTablePointer = SystemVirtualTablePointer + VirtualTableIncrement;
     SystemVirtualFunctionCount = SystemVirtualFunctionCount + -1;
   } while (SystemVirtualFunctionCount != 0);
   SystemVirtualFunctionCount = ProcessSystemEvent(&SystemPrimaryEventData);
@@ -19597,7 +19597,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
   SystemStackFlag = SystemInvalidHandleTemplate;
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (unsigned long long)SystemSecurityEncryptionBuffer;
   GameControllerStatusFlag = 0;
-  if (*(char *)(SystemContextManagerPointer + 0x18) == '\0') {
+  if (*(char *)(SystemContextManagerPointer + SystemContextManagerStatusOffset) == '\0') {
     InitializeGameController(&SystemGameControllerBuffer);
     (**(code **)(**(long long **)(SystemGlobalStatusFlags + 0x2b0) + 0x98))
               (*(long long **)(SystemGlobalStatusFlags + 0x2b0),&SystemGameControllerBuffer);

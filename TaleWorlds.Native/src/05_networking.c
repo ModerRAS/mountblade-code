@@ -2774,7 +2774,7 @@ void InitializeNetworkConnectionState(void)
     *ConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(CreateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + MergedConnectionDataOffset) = ((int)ConnectionStateBuffer - NetworkConnectionId) + 4U & NetworkBufferAlignmentMask;
+    *(uint32_t *)(CreateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + MergedConnectionDataOffset) = ((int)ConnectionStateBuffer - NetworkConnectionId) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
     NetworkInitializationResult = InitializeConnectionContext(*(NetworkHandle *)(NetworkContextPointer + NetworkContextSystemOffset));
