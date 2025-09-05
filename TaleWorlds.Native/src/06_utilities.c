@@ -3528,10 +3528,10 @@ undefined DAT_180bfbd80;
 void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
 
 {
-  undefined8 uVar1;
-  int iVar2;
-  longlong lVar3;
-  int iVar4;
+  undefined8 resourceHandle;
+  int operationResult;
+  longlong arrayIndex;
+  int processedCount;
   undefined1 auStack_278 [32];
   longlong alStack_258 [2];
   undefined1 *puStack_248;
@@ -3541,7 +3541,7 @@ void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
   ulonglong uStack_38;
   
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_278;
-  iVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStack_258);
+  operationResult = func_0x00018088c530(*(undefined4 *)(objectHandle + 0x10),alStack_258);
   if ((iVar2 == 0) && (*(longlong *)(alStack_258[0] + 8) != 0)) {
     puStack_248 = auStack_238;
     iVar4 = 0;
