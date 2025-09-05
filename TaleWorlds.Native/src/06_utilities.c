@@ -33061,11 +33061,11 @@ void ProcessExceptionState(void* exceptionContext, longlong contextData)
  * 
  * @return 无返回值
  */
-void ProcessExceptionStateE1(undefined8 param_1,longlong param_2)
+void ResetExceptionHandlerToDefault(void* resetContext, longlong contextData)
 
 {
   // 重置异常处理器为默认状态
-  *(undefined **)(param_2 + 0x68) = &DefaultExceptionHandlerB;
+  *(undefined **)(contextData + 0x68) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -33080,16 +33080,16 @@ void ProcessExceptionStateE1(undefined8 param_1,longlong param_2)
  * 
  * @return 无返回值
  */
-void ProcessExceptionStateE2(undefined8 param_1,longlong param_2)
+void CleanupExceptionStateResources(void* cleanupContext, longlong contextData)
 
 {
-  // 检查标志位0x01是否被设置
-  if ((*(uint *)(param_2 + 0x30) & 1) != 0) {
-    // 清除标志位0x01
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffe;
+  // 检查资源清理标志位是否被设置
+  if ((*(uint *)(contextData + 0x30) & 1) != 0) {
+    // 清除资源清理标志位
+    *(uint *)(contextData + 0x30) = *(uint *)(contextData + 0x30) & 0xfffffffe;
     
     // 释放相关资源
-    CleanupResourceHandler(*(undefined8 *)(param_2 + 0xd8));
+    CleanupResourceHandler(*(undefined8 *)(contextData + 0xd8));
   }
   return;
 }
@@ -33105,16 +33105,16 @@ void ProcessExceptionStateE2(undefined8 param_1,longlong param_2)
  * 
  * @return 无返回值
  */
-void ProcessExceptionStateE3(undefined8 param_1,longlong param_2)
+void CleanupSecondaryExceptionResources(void* cleanupContext, longlong contextData)
 
 {
-  // 检查标志位0x02是否被设置
-  if ((*(uint *)(param_2 + 0x30) & 2) != 0) {
-    // 清除标志位0x02
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffd;
+  // 检查次要资源清理标志位是否被设置
+  if ((*(uint *)(contextData + 0x30) & 2) != 0) {
+    // 清除次要资源清理标志位
+    *(uint *)(contextData + 0x30) = *(uint *)(contextData + 0x30) & 0xfffffffd;
     
-    // 释放相关资源
-    CleanupResourceHandler(param_2 + 0x40);
+    // 释放次要相关资源
+    CleanupResourceHandler(contextData + 0x40);
   }
   return;
 }
