@@ -6259,13 +6259,11 @@ void ProcessResourceCleanup(void)
 // 返回值:
 //   无
 void ExecuteSystemShutdown(void)
-
 {
-  ulonglong securityContext;
-  undefined8 systemSecurityBuffer;
+  uint64_t securityContext;
+  uint64_t systemSecurityBuffer;
   
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityContext ^ (ulonglong)&systemSecurityBuffer);
+  ExecuteSecurityCheck(securityContext ^ (uint64_t)&systemSecurityBuffer);
 }
 
 
@@ -6282,25 +6280,22 @@ void ExecuteSystemShutdown(void)
 // 返回值:
 //   无
 void ValidateSystemState(void)
-
 {
-  longlong systemContextPointer;
-  ulonglong systemValidationParameter;
-  undefined8 systemCleanupBuffer;
-  undefined8 systemSecurityBuffer;
+  int64_t systemContextPointer;
+  uint64_t systemValidationParameter;
+  uint64_t systemCleanupBuffer;
+  uint64_t systemSecurityBuffer;
   
-  if ((*(uint *)(systemContextPointer + 0x2d8) >> 7 & 1) != 0) {
-                    // WARNING: Subroutine does not return
+  if ((*(uint32_t *)(systemContextPointer + 0x2d8) >> 7 & 1) != 0) {
     ReleaseResource();
   }
   CleanupMemory(&systemCleanupBuffer);
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(systemValidationParameter ^ (ulonglong)&systemSecurityBuffer);
+  ExecuteSecurityCheck(systemValidationParameter ^ (uint64_t)&systemSecurityBuffer);
 }
 
 
 
-// 函数: undefined8 RegisterSystemComponent(longlong componentHandle)
+// 函数: uint64_t RegisterSystemComponent(int64_t componentHandle)
 // 
 // 注册系统组件函数
 // 向系统注册新的组件并验证其有效性
@@ -6309,8 +6304,8 @@ void ValidateSystemState(void)
 //   componentHandle - 组件句柄指针
 // 
 // 返回值:
-//   undefined8 - 注册结果状态码
-undefined8 RegisterSystemComponent(longlong componentHandle)
+//   uint64_t - 注册结果状态码
+uint64_t RegisterSystemComponent(int64_t componentHandle)
 
 {
   // 组件句柄结构体偏移量定义
@@ -6323,48 +6318,48 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
   #define COMPONENT_CAPACITY_OFFSET 0x4e8  // 组件容量偏移量
   #define COMPONENT_ACTIVE_OFFSET 0x4e0    // 组件活跃数偏移量
   
-  longlong componentData;
-  longlong systemHandle;
-  int bufferSize;
+  int64_t componentData;
+  int64_t systemHandle;
+  int32_t bufferSize;
   uint64_t queryResult;
   uint64_t processResult;
-  longlong *componentPointer;
-  int componentCount;
-  ulonglong loopIndex;
-  int capacity;
-  ulonglong searchIndex;
-  longlong *componentList;
-  longlong stackBuffer;
-  char processBuffer [16];
+  int64_t *componentPointer;
+  int32_t componentCount;
+  uint64_t loopIndex;
+  int32_t capacity;
+  uint64_t searchIndex;
+  int64_t *componentList;
+  int64_t stackBuffer;
+  int8_t processBuffer [16];
   
-  queryResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(componentHandle + COMPONENT_HANDLE_OFFSET),&stackBuffer);
+  queryResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + COMPONENT_HANDLE_OFFSET),&stackBuffer);
   if ((int)queryResult != 0) {
     return queryResult;
   }
-  systemHandle = *(longlong *)(stackBuffer + 8);
-  if ((systemHandle == 0) || (*(longlong *)(systemHandle + SYSTEM_CONTEXT_OFFSET) != stackBuffer)) {
+  systemHandle = *(int64_t *)(stackBuffer + 8);
+  if ((systemHandle == 0) || (*(int64_t *)(systemHandle + SYSTEM_CONTEXT_OFFSET) != stackBuffer)) {
     return 0x1c;
   }
-  componentData = *(longlong *)(systemHandle + COMPONENT_DATA_OFFSET);
+  componentData = *(int64_t *)(systemHandle + COMPONENT_DATA_OFFSET);
   if (systemHandle == 0) {
     return 0x1f;
   }
-  if (*(int *)(systemHandle + COMPONENT_STATUS_OFFSET) == -1) {
+  if (*(int32_t *)(systemHandle + COMPONENT_STATUS_OFFSET) == -1) {
     queryResult = ProcessInputData(systemHandle,processBuffer);
-    if ((int)queryResult != 0) {
+    if ((int32_t)queryResult != 0) {
       return queryResult;
     }
     processResult = ValidateInputData(processBuffer);
-    if ((int)processResult != 0) {
+    if ((int32_t)processResult != 0) {
       return processResult;
     }
-    if ((char)queryResult == (char)processResult) {
-      if (processBuffer[0] == (char)processResult) {
-        componentList = (longlong *)(componentData + COMPONENT_LIST_OFFSET);
+    if ((int8_t)queryResult == (int8_t)processResult) {
+      if (processBuffer[0] == (int8_t)processResult) {
+        componentList = (int64_t *)(componentData + COMPONENT_LIST_OFFSET);
         searchIndex = 0;
-        componentCount = *(int *)(componentData + COMPONENT_COUNT_OFFSET);
+        componentCount = *(int32_t *)(componentData + COMPONENT_COUNT_OFFSET);
         if (0 < componentCount) {
-          componentPointer = (longlong *)*componentList;
+          componentPointer = (int64_t *)*componentList;
           loopIndex = searchIndex;
           do {
             if (*componentPointer == processBuffer) {

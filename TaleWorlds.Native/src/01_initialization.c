@@ -453,7 +453,7 @@ long long RetrieveSystemStatusFlags(void);
  * @param ParameterBuffer 参数数组，包含配置参数的相关信息
  * @return 无返回值
  */
-void ConfigureSystemData(void* SystemBufferReference, void* SystemConfigurationData, void* SystemContextReference, void* SystemParameterBuffer);
+void ConfigureSystemData(void* bufferRef, void* configData, void* contextRef, void* paramBuffer);
 
 /**
  * @brief 释放系统资源
@@ -477,7 +477,7 @@ void ReleaseSystemResourcesByPointer(void* ResourceHandle);
  * @param parameter 参数，包含初始化所需的参数信息
  * @return 无返回值
  */
-void SetupSystemProcessingBuffer(void* BufferPointer, int InitializationFlag, int Parameter);
+void SetupSystemProcessingBuffer(void* bufferPtr, int initFlag, int parameter);
 
 /**
  * @brief 更新系统数据
@@ -488,7 +488,7 @@ void SetupSystemProcessingBuffer(void* BufferPointer, int InitializationFlag, in
  * @param dataPointer 数据指针，指定要更新的系统数据
  * @return 无返回值
  */
-void RefreshSystemData(void* DataPointer);
+void RefreshSystemData(void* dataPtr);
 
 /**
  * @brief 验证系统内存分配
@@ -508,7 +508,7 @@ void RefreshSystemData(void* DataPointer);
  * @param MemoryContext 内存上下文，包含内存分配的相关信息
  * @return 验证结果，成功返回非零值，失败返回0
  */
-char VerifySystemMemoryAllocation(void* MemoryContext);
+char VerifySystemMemoryAllocation(void* memoryCtx);
 
 /**
  * @brief 分配系统内存资源
@@ -520,7 +520,7 @@ char VerifySystemMemoryAllocation(void* MemoryContext);
  * @param AllocationBuffer 分配缓冲区指针
  * @return 无返回值
  */
-void AllocateSystemMemoryResources(void* MemoryContext, void* AllocationBuffer);
+void AllocateSystemMemoryResources(void* memoryCtx, void* allocBuffer);
 
 /**
  * @brief 配置系统数据缓冲区
@@ -533,7 +533,7 @@ void AllocateSystemMemoryResources(void* MemoryContext, void* AllocationBuffer);
  * @param dataSource 数据源指针
  * @return 无返回值
  */
-void ConfigureSystemDataBuffer(void* bufferContext, void* configTemplate, void* dataSource);
+void ConfigureSystemDataBuffer(void* bufferCtx, void* configTemplate, void* dataSource);
 
 /**
  * @brief 系统内存分配释放函数
@@ -543,7 +543,7 @@ void ConfigureSystemDataBuffer(void* bufferContext, void* configTemplate, void* 
  * 
  * @param MemoryContext 内存上下文指针
  */
-void ReleaseSystemMemoryAllocation(void* MemoryContext);
+void ReleaseSystemMemoryAllocation(void* memoryCtx);
 
 /**
  * @brief 系统内存状态检查函数
@@ -563,7 +563,7 @@ void ReleaseSystemMemoryAllocation(void* MemoryContext);
  * @param MemoryContext 内存上下文，包含内存状态的相关信息
  * @return 内存状态，成功返回非零值，失败返回0
  */
-char CheckSystemMemoryStatus(void* MemoryContext);
+char CheckSystemMemoryStatus(void* memoryCtx);
 
 /**
  * @brief 系统操作执行函数
@@ -576,7 +576,7 @@ char CheckSystemMemoryStatus(void* MemoryContext);
  * @param operationId 操作ID
  * @param operationFlags 操作标志
  */
-void ExecuteSystemOperation(void* operationContext, void* parameterBuffer, int operationId, uint operationFlags);
+void ExecuteSystemOperation(void* operationCtx, void* paramBuffer, int operationId, uint operationFlags);
 
 /**
  * @brief 系统数据传输处理函数
@@ -587,7 +587,7 @@ void ExecuteSystemOperation(void* operationContext, void* parameterBuffer, int o
  * @param sourceContext 源上下文指针
  * @param targetContext 目标上下文指针
  */
-void ProcessSystemDataTransfer(void* sourceContext, void* targetContext);
+void ProcessSystemDataTransfer(void* sourceCtx, void* targetCtx);
 
 /**
  * @brief 获取系统数据指针
@@ -33933,8 +33933,8 @@ void InitializeSystemResourceManager(long long *resourcePointer)
                 systemDataStructurePointer = (void* *******)*systemDataStructurePointer;
               }
             }
-            ResourceDataPosition = SystemLoopCounter2c8;
-            SystemCode = SystemIterationIndex374;
+            ResourceDataPosition = SystemLoopCounter;
+            SystemCode = SystemIterationIndex;
             if (isSystemActive6) {
               if (threadLocalStoragePointer == (void* *******)SystemDataStructurePointer358) {
                 if ((threadLocalStoragePointer != &pppppDataBufferPtr360) && (*(int *)(threadLocalStoragePointer + 6) == 0)) {
