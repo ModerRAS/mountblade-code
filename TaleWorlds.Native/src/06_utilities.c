@@ -4929,7 +4929,7 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
       while( true ) {
         if (contextDataPtr == validationContextPtr) {
           *(longlong **)(localStackContext + MODULE_COMPONENT_OFFSET) = moduleDataPtr;
-          func_0x00018085eef0(localStackContext,moduleDataPtr);
+          ExecuteSystemDataProcessing(localStackContext,moduleDataPtr);
           moduleDataPtr[2] = localStackContext;
           systemOperationResult = InitializeSystemComponent(localStackContext);
           if ((int)systemOperationResult == 0) {
@@ -5521,7 +5521,7 @@ undefined8 ProcessFloatArrayResource(longlong param_1)
           uVar3 = movmskps(uVar2,auVar8);
           fVar7 = (float)(int)(iVar6 - (uVar3 & 1));
         }
-        fVar7 = (float)func_0x00018084dcc0(*(longlong *)(validationContext + 0x18),fVar7);
+        fVar7 = (float)ConvertFloatingPointDataA0(*(longlong *)(validationContext + 0x18),fVar7);
         if (((*(char *)(validationContext + 0x34) == '\0') ||
             ((*(uint *)(*(longlong *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) &&
            (fVar7 != *(float *)(validationContext + 0x20))) {
@@ -6719,7 +6719,7 @@ undefined8 ProcessFloatDataResource(longlong resourceHandle)
           uVar3 = movmskps(uVar2,auVar8);
           fVar7 = (float)(int)(iVar6 - (uVar3 & 1));
         }
-        fVar7 = (float)func_0x00018084dcc0(*(longlong *)(validationContext + 0x18),fVar7);
+        fVar7 = (float)ConvertFloatingPointDataA0(*(longlong *)(validationContext + 0x18),fVar7);
         if (((*(char *)(validationContext + 0x34) == '\0') ||
             ((*(uint *)(*(longlong *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) &&
            (fVar7 != *(float *)(validationContext + 0x20))) {
@@ -6915,17 +6915,34 @@ undefined8 GetUtilityStatusError(void)
 
 
 
-// 函数: void ValidateAndProcessUtilityData(longlong dataContext,longlong systemContext)
-// 
-// 验证并处理工具数据
-// 对传入的数据上下文和系统上下文进行验证，并在验证通过后处理相关数据
-// 
-// 参数:
-//   dataContext - 数据上下文，包含数据的相关信息和状态
-//   systemContext - 系统上下文，包含系统的运行状态和配置
-// 
-// 返回值:
-//   void - 无返回值
+/**
+ * @brief 验证并处理工具系统数据
+ * 
+ * 该函数负责验证工具系统的数据上下文和系统上下文的有效性，并在验证通过后
+ * 执行相应的数据处理操作。函数会进行多层次的验证，确保数据的完整性和
+ * 系统状态的一致性。
+ * 
+ * @param dataContext 数据上下文指针，包含：
+ *                   - 偏移0x10: 数据类型标识符
+ *                   - 偏移0x14: 数据内容指针
+ *                   - 偏移0x20: 数据配置信息
+ *                   - 偏移0x2c: 数据处理参数
+ *                   - 偏移0x38: 数据扩展信息
+ *                   - 偏移0x44: 处理器数据
+ *                   - 偏移0x50: 处理器选择标志
+ * @param systemContext 系统上下文指针，包含：
+ *                     - 偏移0x78: 系统状态管理器
+ *                     - 偏移0x90: 系统数据基地址
+ * 
+ * @return void 无返回值
+ * 
+ * @note 函数内部使用FUN_18073b5f0进行基础数据验证
+ * @note 使用ValidateDataAndReturnA0和ValidateDataAndReturnA1进行深度验证
+ * @note 使用ProcessDataAndExecute执行最终的数据处理操作
+ * 
+ * @warning 如果验证失败，函数会提前返回而不执行数据处理
+ * @warning 数据处理的具体行为取决于dataContext+0x50处的处理器选择标志
+ */
 void ValidateAndProcessUtilityData(longlong dataContext,longlong systemContext)
 
 {
@@ -6952,17 +6969,28 @@ void ValidateAndProcessUtilityData(longlong dataContext,longlong systemContext)
 
 
 
-// 函数: void ExecuteUtilitySystemCleanup(longlong systemHandle, longlong cleanupContext)
-// 
-// 执行工具系统清理
-// 根据系统句柄和清理上下文执行工具系统的清理操作
-// 
-// 参数:
-//   systemHandle - 系统句柄，包含系统状态和配置信息
-//   cleanupContext - 清理上下文，包含清理的相关信息
-// 
-// 返回值:
-//   void - 无返回值
+/**
+ * @brief 执行工具系统清理操作
+ * 
+ * 该函数负责根据系统句柄和清理上下文执行工具系统的清理操作。
+ * 函数会先验证清理操作的有效性，然后在验证通过后执行实际的清理工作。
+ * 
+ * @param systemHandle 系统句柄指针，包含：
+ *                    - 偏移0x10: 系统标识符
+ *                    - 其他系统配置和状态信息
+ * @param cleanupContext 清理上下文指针，包含：
+ *                      - 偏移0x78: 清理状态管理器
+ *                      - 偏移0x90: 清理操作目标
+ *                      - 其他清理相关参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 函数使用FUN_18073b810进行清理操作验证
+ * @note 使用ExecuteCleanupOperation执行实际的清理工作
+ * 
+ * @warning 只有在验证通过后才会执行清理操作
+ * @warning 清理操作可能会释放系统资源，确保在适当的时机调用
+ */
 void ExecuteUtilitySystemCleanup(longlong systemHandle, longlong cleanupContext)
 
 {
@@ -6979,7 +7007,32 @@ void ExecuteUtilitySystemCleanup(longlong systemHandle, longlong cleanupContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 ValidateDataIntegrity(longlong param_1,longlong param_2)
+/**
+ * @brief 验证数据完整性
+ * 
+ * 该函数负责验证数据的完整性和一致性，通过检查数据结构中的关键标识符
+ * 和调用验证函数来确保数据的有效性。
+ * 
+ * @param dataStructure 数据结构指针，包含：
+ *                     - 偏移0x10: 数据元素数量
+ *                     - 偏移0x18: 数据元素数组起始地址
+ *                     - 每个元素8字节的结构
+ * @param validationContext 验证上下文指针，包含：
+ *                          - 偏移0x60: 验证函数参数
+ *                          - 其他验证相关数据
+ * 
+ * @return undefined8 验证结果状态码：
+ *                    - 0: 验证成功
+ *                    - 其他值: 验证失败的错误代码
+ * 
+ * @note 函数会遍历所有数据元素进行验证
+ * @note 使用FUN_1808678e0进行单个元素的验证
+ * @note 使用全局常量_DAT_180c4eaa0和_DAT_180c4eaa4作为验证基准
+ * 
+ * @warning 如果数据元素数量为0，函数会直接返回0
+ * @warning 验证失败时会立即返回错误代码
+ */
+undefined8 ValidateDataIntegrity(longlong dataStructure,longlong validationContext)
 
 {
   undefined8 uVar1;
@@ -7035,7 +7088,7 @@ void ProcessUtilityDataStructure(longlong dataStructurePointer,longlong contextP
     do {
       if (dataNodePointer == (longlong *)(contextPointer + 0x50)) {
         if (*(char *)(dataStructurePointer + 0x10) != '\0') {
-          func_0x00018088aed0(contextPointer);
+          InitializeSystemContextA0(contextPointer);
         }
         break;
       }
