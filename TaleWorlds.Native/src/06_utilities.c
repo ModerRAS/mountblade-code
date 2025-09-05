@@ -11703,10 +11703,10 @@ void UtilityProcessResourceRequest(longlong resourceHandle,longlong requestConte
 void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
 
 {
-  int validationResult;
-  unsigned char localBuffer[8];
+  int validationStatus;
+  unsigned char systemContextBuffer[8];
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + ComponentHandleOffset), localBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + ComponentHandleOffset), systemContextBuffer);
   if (validationResult == 0) {
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
