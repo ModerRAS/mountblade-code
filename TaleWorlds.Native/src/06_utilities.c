@@ -4585,7 +4585,7 @@ void* UtilityMemoryManagementData19;
 void* UtilityMemoryManagementData20;
 void* UtilityMemoryManagementData21;
 void* UtilityMemoryManagementData22;
-undefined UtilityMemoryManagementData23;
+void* UtilityMemoryManagementData23;
 undefined UtilityMemoryManagementData24;
 undefined UtilityMemoryManagementData25;
 undefined UtilityMemoryManagementData26;
