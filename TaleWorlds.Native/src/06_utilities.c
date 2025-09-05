@@ -237,7 +237,7 @@
  * 
  * @note 原始函数名：func_0x000180060150
  */
-#define InitializeData func_0x000180060150
+#define InitializeData InitializeData
 
 /**
  * @brief 系统操作函数A0
@@ -246,7 +246,7 @@
  * 
  * @note 原始函数名：func_0x00018006d490
  */
-#define ExecuteSystemOperation func_0x00018006d490
+#define ExecuteSystemOperation ExecuteSystemOperation
 
 // 全局指针设置函数宏定义
 #define SetGlobalDataPointerA0 InitializeGlobalDataPointerA0
