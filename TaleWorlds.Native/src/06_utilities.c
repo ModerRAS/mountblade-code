@@ -11220,7 +11220,7 @@ undefined8 ProcessDataSynchronizationA0(undefined8 param_1,undefined8 param_2)
   longlong registerRBX;
   longlong unaff_RSI;
   float fVar4;
-  undefined4 uStack0000000000000040;
+  undefined4 operationRangeBuffer;
   
   uStack0000000000000040 = 0;
   uVar2 = FUN_180867600(unaff_RSI + 0x60,param_2,&stack0x00000040);
@@ -13354,7 +13354,7 @@ undefined8 ValidateDataIntegrityA2(longlong param_1,undefined8 param_2,longlong 
 
 
 
-undefined8 FUN_180895d16(void)
+undefined8 UtilityNoOperationH(void)
 
 {
   return 0x1e;
