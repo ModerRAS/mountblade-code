@@ -4916,11 +4916,11 @@ undefined DAT_180a22fa8;
 // 返回值：
 //   undefined - 数据处理结果
 undefined ProcessUtilityDataBB0;
-undefined DataTableConfigurationPrimary;
-undefined DataTableConfigurationSecondary;
-undefined DataTableConfigurationTertiary;
-undefined DataTableConfigurationQuaternary;
-undefined SystemConfigurationControlFlag;
+void* DataTableConfigurationPrimary;
+void* DataTableConfigurationSecondary;
+void* DataTableConfigurationTertiary;
+void* DataTableConfigurationQuaternary;
+bool SystemConfigurationControlFlag;
 
 // 函数: undefined ValidateUtilityDataBC0;
 // 
@@ -7154,6 +7154,21 @@ undefined8 ConditionalResourceRelease(char shouldRelease)
  * @param void 无参数
  * @return void 无返回值
  */
+// 函数: void UtilityNoOperation1(void)
+// 功能：空操作函数，不执行任何操作，直接返回
+// 
+// 这是一个标准的空操作函数，用于占位或作为默认的处理函数。
+// 在某些情况下，它被用作回调函数或默认的操作处理器。
+//
+// 参数:
+//   无
+//
+// 返回值:
+//   无
+//
+// 注意事项:
+//   - 此函数不执行任何操作
+//   - 直接返回，不产生任何副作用
 void UtilityNoOperation1(void)
 
 {
