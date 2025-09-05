@@ -7668,52 +7668,54 @@ void CheckSystemConditionAndExecute(void)
 
 
 
-undefined8 FUN_180892370(longlong param_1,longlong param_2)
+// 原始函数名：FUN_180892370 - 系统数据索引验证和处理函数
+// 功能：验证系统数据索引并处理相应的系统资源，返回操作状态码
+undefined8 ValidateSystemDataIndexAndProcessResource(longlong systemContext,longlong resourceContext)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong lVar3;
-  longlong lStackX_8;
+  int dataEntryIndex;
+  undefined8 operationResult;
+  longlong systemDataPointer;
+  longlong dataBufferPointer;
   
-  uVar2 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(systemContext + 0x10),&dataBufferPointer);
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  lVar3 = lStackX_8;
-  if (lStackX_8 != 0) {
-    lVar3 = lStackX_8 + -8;
+  systemDataPointer = dataBufferPointer;
+  if (dataBufferPointer != 0) {
+    systemDataPointer = dataBufferPointer + -8;
   }
-  iVar1 = *(int *)(param_1 + 0x18);
-  if ((iVar1 < 0) || (*(int *)(lVar3 + 0x28) <= iVar1)) {
+  dataEntryIndex = *(int *)(systemContext + 0x18);
+  if ((dataEntryIndex < 0) || (*(int *)(systemDataPointer + 0x28) <= dataEntryIndex)) {
     return 0x1f;
   }
-  if (*(longlong *)(*(longlong *)(lVar3 + 0x20) + 0x10 + (longlong)iVar1 * 0x18) == 0) {
+  if (*(longlong *)(*(longlong *)(systemDataPointer + 0x20) + 0x10 + (longlong)dataEntryIndex * 0x18) == 0) {
     return 0x1e;
   }
-  uVar2 = ValidateAndProcessSystemResourceA0(*(longlong *)(lVar3 + 0x20) + (longlong)iVar1 * 0x18,param_1 + 0x1c);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  operationResult = ValidateAndProcessSystemResourceA0(*(longlong *)(systemDataPointer + 0x20) + (longlong)dataEntryIndex * 0x18,systemContext + 0x1c);
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  lVar3 = *(longlong *)(param_2 + 0x98);
-  if (*(int *)(lVar3 + 0x200) == 0) {
+  systemDataPointer = *(longlong *)(resourceContext + 0x98);
+  if (*(int *)(systemDataPointer + 0x200) == 0) {
     return 0;
   }
-  if ((*(int *)(lVar3 + 0x180) != 0) || (*(int *)(lVar3 + 0x184) != 0)) {
-    lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar3 + 0x17c) * 8 + 0x180c4f450)) {
-      uVar2 = FUN_18088dd60(lVar3,param_1);
-      goto LAB_18088d83c;
+  if ((*(int *)(systemDataPointer + 0x180) != 0) || (*(int *)(systemDataPointer + 0x184) != 0)) {
+    dataBufferPointer = 0;
+    FUN_180768b50(&dataBufferPointer);
+    if (dataBufferPointer == *(longlong *)((longlong)*(int *)(systemDataPointer + 0x17c) * 8 + 0x180c4f450)) {
+      operationResult = FUN_18088dd60(systemDataPointer,systemContext);
+      goto OperationComplete;
     }
   }
-  *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-  uVar2 = func_0x0001808e64d0(*(undefined8 *)(lVar3 + 0x1e0));
-LAB_18088d83c:
-  if ((int)uVar2 == 0) {
+  *(uint *)(systemContext + 8) = *(int *)(systemContext + 8) + 0xfU & 0xfffffff0;
+  operationResult = func_0x0001808e64d0(*(undefined8 *)(systemDataPointer + 0x1e0));
+OperationComplete:
+  if ((int)operationResult == 0) {
     return 0;
   }
-  return uVar2;
+  return operationResult;
 }
 
 
