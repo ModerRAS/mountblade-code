@@ -45027,6 +45027,20 @@ void Unwind_1809042f0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 // 功能：处理异常展开过程中的验证和清理操作
 #define ExceptionUnwindHandlerE0 Unwind_180904310
 
+/**
+ * @brief 异常展开处理函数E0
+ * 
+ * 该函数处理异常展开过程中的验证和清理操作。它会验证异常上下文，
+ * 调用相应的异常处理回调，并设置默认的异常处理器。
+ * 
+ * @param exceptionContext 异常上下文，包含异常处理所需的信息
+ * @param unwindContext 展开上下文，用于管理异常展开过程
+ * @param cleanupParameter 清理参数，用于资源清理操作
+ * @param systemFlag 系统标志，用于控制清理行为
+ * 
+ * @note 该函数会设置多个异常处理器和清理标志
+ * @warning 如果系统状态无效，会调用TerminateSystemE0终止程序
+ */
 void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParameter, DataBuffer systemFlag)
 {
   int64_t validationContext;
@@ -45084,6 +45098,20 @@ void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext
 // 功能：处理异常展开过程中的验证和清理操作
 #define ExceptionUnwindHandlerE1 Unwind_180904330
 
+/**
+ * @brief 异常展开处理函数E1
+ * 
+ * 该函数处理异常展开过程中的验证和清理操作。它会验证异常上下文，
+ * 调用相应的异常处理回调，并设置默认的异常处理器。
+ * 
+ * @param exceptionContext 异常上下文，包含异常处理所需的信息
+ * @param unwindContext 展开上下文，用于管理异常展开过程
+ * @param cleanupParameter 清理参数，用于资源清理操作
+ * @param systemFlag 系统标志，用于控制清理行为
+ * 
+ * @note 该函数会设置多个异常处理器和清理标志
+ * @warning 如果系统状态无效，会调用TerminateSystemE0终止程序
+ */
 void ExceptionUnwindHandlerE1(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParameter, DataBuffer systemFlag)
 {
   int64_t validationContext;
