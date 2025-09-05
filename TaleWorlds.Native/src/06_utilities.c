@@ -11642,19 +11642,31 @@ undefined8 ProcessResourceData(longlong resourceContext)
 
 
 
-int FUN_180896a30(longlong param_1,longlong param_2,int param_3)
+// 函数: int ProcessStringData(longlong stringContext, longlong dataBuffer, int bufferSize)
+//
+// 字符串数据处理函数
+// 处理字符串数据，包括解析和转换操作
+// 
+// 参数:
+//   stringContext - 字符串上下文指针，包含字符串处理的相关信息
+//   dataBuffer - 数据缓冲区指针，指向要处理的数据
+//   bufferSize - 缓冲区大小，指定要处理的数据长度
+// 
+// 返回值:
+//   int - 返回处理后的总字节数
+int ProcessStringData(longlong stringContext, longlong dataBuffer, int bufferSize)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 formatFlag;
+  int processedBytes1;
+  int processedBytes2;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x14);
-  iVar2 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  formatFlag = *(undefined4 *)(stringContext + 0x14);
+  processedBytes1 = func_0x00018074b7d0(dataBuffer,bufferSize,*(undefined4 *)(stringContext + 0x10));
+  processedBytes2 = FUN_18074b880(dataBuffer + processedBytes1,bufferSize - processedBytes1,&DAT_180a06434);
+  processedBytes1 = processedBytes1 + processedBytes2;
+  processedBytes2 = func_0x00018074b800(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag);
+  return processedBytes2 + processedBytes1;
 }
 
 
