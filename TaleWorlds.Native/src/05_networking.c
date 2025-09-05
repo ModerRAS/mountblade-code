@@ -1046,17 +1046,17 @@ uint32_t NetworkConnectionReliabilityLevel;                   // 网络连接可
 uint32_t NetworkSecurityLevel;                                // 网络安全级别，连接的安全保护级别
 uint32_t NetworkAuthenticationType;                           // 网络认证类型，连接使用的认证机制类型
 uint32_t NetworkSystemAuthenticationType;                     // 网络系统认证类型，系统使用的认证机制类型
-uint32_t NetworkEncryptionAlgorithmType;                        // 网络加密算法，数据传输使用的加密算法
+uint32_t NetworkEncryptionAlgorithmType;                     // 网络加密算法类型，数据传输使用的加密算法
 uint32_t NetworkEncryptionAlgorithm;                           // 网络加密算法，数据传输使用的加密算法配置
 uint32_t NetworkSystemEncryptionAlgorithm;                     // 网络系统加密算法，系统使用的加密算法类型
-uint32_t NetworkCompressionMethodType;                        // 网络压缩方法，数据压缩使用的算法方法
-uint32_t NetworkCompressionMethod;                           // 网络压缩方法，数据压缩使用的算法方法配置
-uint32_t NetworkSystemCompressionMethod;                      // 网络系统压缩方法，系统使用的压缩算法类型
-uint32_t NetworkSessionTimeoutMs;                             // 网络会话超时持续时间，会话无活动的超时时间
-uint32_t NetworkPacketBufferPointer;                          // 网络数据包缓冲区，指向数据包缓冲区的内存地址
-uint32_t NetworkPacketHeaderPointer;                          // 网络数据包头，指向数据包头部信息的内存地址
-uint32_t NetworkSendBufferSize;                               // 网络发送缓冲区大小，发送缓冲区的当前大小
-uint32_t NetworkReceiveBufferSize;                            // 网络接收缓冲区大小，接收缓冲区的当前大小
+uint32_t NetworkCompressionMethodType;                       // 网络压缩方法类型，数据压缩使用的算法方法
+uint32_t NetworkCompressionMethod;                          // 网络压缩方法，数据压缩使用的算法方法配置
+uint32_t NetworkSystemCompressionMethod;                     // 网络系统压缩方法，系统使用的压缩算法类型
+uint32_t NetworkSessionTimeoutMs;                           // 网络会话超时持续时间，会话无活动的超时时间
+uint32_t NetworkPacketBufferPointer;                        // 网络数据包缓冲区，指向数据包缓冲区的内存地址
+uint32_t NetworkPacketHeaderPointer;                        // 网络数据包头，指向数据包头部信息的内存地址
+uint32_t NetworkSendBufferSize;                             // 网络发送缓冲区大小，发送缓冲区的当前大小
+uint32_t NetworkReceiveBufferSize;                          // 网络接收缓冲区大小，接收缓冲区的当前大小
 uint32_t NetworkSendBufferCapacity;                          // 网络发送缓冲区容量，发送缓冲区的最大容量
 uint32_t NetworkReceiveBufferCapacity;                       // 网络接收缓冲区容量，接收缓冲区的最大容量
 
@@ -3707,18 +3707,18 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
 NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t NetworkHeaderValidationResult;                  // 网络头部验证结果
-  uint32_t NetworkContextProcessingStatus;                 // 网络上下文处理状态
-  uint32_t NetworkFormatValidationResult;                   // 网络头部格式检查结果
+  uint32_t HeaderValidationResult;                  // 网络头部验证结果
+  uint32_t ContextProcessingStatus;                 // 网络上下文处理状态
+  uint32_t FormatValidationResult;                   // 网络头部格式检查结果
   
   // 初始化处理状态
-  NetworkHeaderValidationResult = NetworkValidationFailure;
-  NetworkContextProcessingStatus = NetworkValidationFailure;
-  NetworkFormatValidationResult = NetworkValidationFailure;
+  HeaderValidationResult = NetworkValidationFailure;
+  ContextProcessingStatus = NetworkValidationFailure;
+  FormatValidationResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    NetworkHeaderValidationResult = NetworkValidationSuccess;
+    HeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
