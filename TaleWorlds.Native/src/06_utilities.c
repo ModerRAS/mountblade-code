@@ -762,31 +762,31 @@
 #define SetDefaultExceptionHandlerA1 FUN_180942080
 
 /**
- * @brief 设置默认异常处理器A2
+ * @brief 设置默认异常处理器A7
  * 
  * 该函数负责设置默认的异常处理器，用于处理系统异常
  * 
  * @note 原始函数名：FUN_1809420a0
  */
-#define SetDefaultExceptionHandlerA2 FUN_1809420a0
+#define SetDefaultExceptionHandlerA7 FUN_1809420a0
 
 /**
- * @brief 设置默认异常处理器A3
+ * @brief 设置默认异常处理器A8
  * 
  * 该函数负责设置默认的异常处理器，用于处理系统异常
  * 
  * @note 原始函数名：FUN_1809420c0
  */
-#define SetDefaultExceptionHandlerA3 FUN_1809420c0
+#define SetDefaultExceptionHandlerA8 FUN_1809420c0
 
 /**
- * @brief 设置默认异常处理器A4
+ * @brief 设置默认异常处理器A9
  * 
  * 该函数负责设置默认的异常处理器，用于处理系统异常
  * 
  * @note 原始函数名：FUN_1809420e0
  */
-#define SetDefaultExceptionHandlerA4 FUN_1809420e0
+#define SetDefaultExceptionHandlerA9 FUN_1809420e0
 
 /**
  * @brief 设置默认异常处理器A5
@@ -2112,6 +2112,30 @@
 // 原始变量名：_DAT_180bf9570 - 全局异常处理器指针A6
 // 功能：存储全局异常处理器A6的指针
 #define GlobalExceptionHandlerPointerA6 _DAT_180bf9570
+
+// 原始变量名：_DAT_180bf95d0 - 全局异常处理器指针A7
+// 功能：存储全局异常处理器A7的指针
+#define GlobalExceptionHandlerPointerA7 _DAT_180bf95d0
+
+// 原始变量名：_DAT_180bf9630 - 全局异常处理器指针A8
+// 功能：存储全局异常处理器A8的指针
+#define GlobalExceptionHandlerPointerA8 _DAT_180bf9630
+
+// 原始变量名：_DAT_180bf9690 - 全局异常处理器指针A9
+// 功能：存储全局异常处理器A9的指针
+#define GlobalExceptionHandlerPointerA9 _DAT_180bf9690
+
+// 原始变量名：_DAT_180bf96f0 - 全局异常处理器指针A10
+// 功能：存储全局异常处理器A10的指针
+#define GlobalExceptionHandlerPointerA10 _DAT_180bf96f0
+
+// 原始变量名：_DAT_180bf9750 - 全局异常处理器指针A11
+// 功能：存储全局异常处理器A11的指针
+#define GlobalExceptionHandlerPointerA11 _DAT_180bf9750
+
+// 原始变量名：_DAT_180bf97b0 - 全局异常处理器指针A12
+// 功能：存储全局异常处理器A12的指针
+#define GlobalExceptionHandlerPointerA12 _DAT_180bf97b0
 
 // 原始变量名：0x180c82210 - 异常临界区
 // 功能：异常处理的临界区对象
@@ -8281,7 +8305,7 @@ void TerminateSystem(void)
  * @brief 空操作函数
  * @details 执行空操作，直接返回
  */
-void NoOperation(void)
+void UtilityNoOperationBase(void)
 
 {
   return;
@@ -18563,8 +18587,8 @@ undefined4 ProcessDataItem(longlong *dataContext,int itemIndex,undefined4 *outpu
   undefined1 charValue;
   uint dataValue;
   uint3 nodeData;
-  undefined4 field2;
-  undefined4 field3;
+  undefined4 fieldIndex2;
+  undefined4 fieldIndex3;
   uint nodeIndex;
   int stringLength;
   int copyLength;
@@ -19840,7 +19864,7 @@ undefined8 CleanupDataProcessorA0(void)
   int stackParameter40;
   
   if (stackParameter40 == 0) {
-    FUN_180840270();
+    ProcessDataAndPointerA0();
   }
   else {
     iVar4 = stackParameter40 + 1;
@@ -89127,7 +89151,7 @@ void InitializeGlobalDataPointerA6(void)
 void SetDefaultExceptionHandlerA5(void)
 
 {
-  _DAT_180bf95d0 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA7 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -89142,7 +89166,7 @@ void SetDefaultExceptionHandlerA5(void)
 void SetDefaultExceptionHandlerA6(void)
 
 {
-  _DAT_180bf9630 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA8 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -89152,10 +89176,10 @@ void SetDefaultExceptionHandlerA6(void)
 
 
 9420a0(void)
-void FUN_1809420a0(void)
+void SetDefaultExceptionHandlerA7(void)
 
 {
-  _DAT_180bf9690 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA9 = &DefaultExceptionHandlerB;
   return;
 }
 
