@@ -889,7 +889,7 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄，用于访问和管理连接表的入口点
-uint32_t NetworkConnectionManagerContextPointer = &NetworkConnectionManagerContextData;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
+uint32_t NetworkConnectionManagerContextPointer;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
 uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据，存储连接管理的上下文信息和状态数据
 uint32_t NetworkConnectionStateFlags;                    // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
 uint32_t NetworkConnectionTimeoutMs;                    // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
@@ -899,7 +899,7 @@ uint32_t NetworkCurrentStateFlags;                    // 网络当前状态标�
 uint32_t NetworkErrorReportTemplate;                        // 网络错误报告模板，用于格式化错误报告数据
 
 // 网络协议和地址配置
-uint32_t NetworkConnectionProtocol;                   // 网络连接协议类型，定义连接使用的网络协议（TCP、UDP等）
+uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型，定义连接使用的网络协议（TCP、UDP等）
 uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本，指定协议的版本号用于兼容性检查
 uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址，存储服务器的IP地址信息
 uint32_t NetworkServerPortNumber;                         // 网络服务器端口号，服务器监听的端口号
@@ -908,30 +908,30 @@ uint32_t NetworkClientPortNumber;                         // 网络客户端端�
 
 // 网络套接字和缓冲区配置
 uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文件描述符，操作系统分配的套接字标识符
-uint32_t NetworkSocketType;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
-uint32_t NetworkSocketProtocol;                       // 网络套接字协议类型，套接字使用的协议类型
+uint32_t NetworkSocketCategory;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
+uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型，套接字使用的协议类型
 uint32_t NetworkSocketTablePosition;                        // 网络套接字索引，套接字在表中的索引位置
 uint32_t NetworkSocketIndex;                            // 网络套接字索引，套接字的索引位置
 uint32_t NetworkSocketContextPointer;                      // 网络套接字上下文指针，指向套接字的运行时上下文数据
 uint32_t NetworkSocketRuntimeData;                         // 网络套接字运行时数据指针，指向套接字相关的数据存储
 uint32_t NetworkSocketRuntimeContextPointer;                 // 网络套接字运行时上下文指针，指向套接字的运行时上下文数据
-uint32_t NetworkSocketStructureMemorySize;                     // 网络套接字大小，套接字结构体的大小
+uint32_t NetworkSocketStructureSize;                     // 网络套接字大小，套接字结构体的大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
-uint32_t NetworkConnectionPriority;                 // 网络连接优先级，定义连接在资源竞争中的优先级别
+uint32_t NetworkConnectionPriorityLevel;                 // 网络连接优先级，定义连接在资源竞争中的优先级别
 uint32_t NetworkConnectionContextDataSize;              // 网络连接上下文大小，连接上下文数据结构的大小
-uint32_t NetworkConnectionQuality;                     // 网络连接质量，评估连接质量的质量指标
+uint32_t NetworkConnectionQualityLevel;                     // 网络连接质量，评估连接质量的质量指标
 uint32_t NetworkConnectionBandwidth;                    // 网络连接带宽，连接可用的带宽资源
-uint32_t NetworkConnectionLatency;                      // 网络连接延迟，网络通信的延迟时间
-uint32_t NetworkConnectionReliability;                         // 网络连接可靠性，连接的稳定性和可靠性指标
+uint32_t NetworkConnectionLatencyMs;                      // 网络连接延迟，网络通信的延迟时间
+uint32_t NetworkConnectionReliabilityLevel;                         // 网络连接可靠性，连接的稳定性和可靠性指标
 uint32_t NetworkConnectionSecurityLevel;                       // 网络安全级别，连接的安全保护级别
 uint32_t NetworkConnectionAuthenticationType;                 // 网络认证类型，连接使用的认证机制类型
 uint32_t NetworkSystemAuthenticationType;                          // 网络系统认证类型，系统使用的认证机制类型
-uint32_t NetworkConnectionEncryptionAlgorithm;                // 网络加密算法，数据传输使用的加密算法
+uint32_t NetworkEncryptionAlgorithmType;                // 网络加密算法，数据传输使用的加密算法
 uint32_t NetworkSystemEncryptionAlgorithm;                          // 网络系统加密算法，系统使用的加密算法类型
-uint32_t NetworkConnectionCompressionMethod;                  // 网络压缩方法，数据压缩使用的算法方法
+uint32_t NetworkCompressionMethodType;                  // 网络压缩方法，数据压缩使用的算法方法
 uint32_t NetworkSystemCompressionMethod;                            // 网络系统压缩方法，系统使用的压缩算法类型
-uint32_t NetworkConnectionSessionTimeoutDuration;             // 网络会话超时持续时间，会话无活动的超时时间
+uint32_t NetworkSessionTimeoutMs;             // 网络会话超时持续时间，会话无活动的超时时间
 uint32_t NetworkPacketBuffer;                      // 网络数据包缓冲区，指向数据包缓冲区的内存地址
 uint32_t NetworkPacketHeader;                      // 网络数据包头，指向数据包头部信息的内存地址
 uint32_t NetworkSendBufferSize;                           // 网络发送缓冲区大小，发送缓冲区的当前大小
@@ -3476,30 +3476,30 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t NetworkHeaderValidationResult;                              // 网络头部验证结果
-  uint32_t NetworkContextProcessingStatus;                             // 网络上下文处理状态
-  uint32_t NetworkHeaderFormatCheckResult;                             // 网络头部格式检查结果
+  uint32_t PacketHeaderValidationResult;                   // 网络头部验证结果
+  uint32_t PacketContextProcessingStatus;                  // 网络上下文处理状态
+  uint32_t PacketHeaderFormatValidationResult;             // 网络头部格式检查结果
   
   // 初始化处理状态
-  NetworkHeaderValidationResult = NetworkValidationFailure;
-  NetworkContextProcessingStatus = NetworkValidationFailure;
-  NetworkHeaderFormatCheckResult = NetworkValidationFailure;
+  PacketHeaderValidationResult = NetworkValidationFailure;
+  PacketContextProcessingStatus = NetworkValidationFailure;
+  PacketHeaderFormatValidationResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    NetworkHeaderValidationResult = NetworkValidationSuccess;
+    PacketHeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    NetworkContextProcessingStatus = NetworkValidationSuccess;
+    PacketContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (NetworkHeaderValidationResult == NetworkValidationSuccess && 
-      NetworkContextProcessingStatus == NetworkValidationSuccess) {
-    NetworkHeaderFormatCheckResult = NetworkValidationSuccess;
+  if (PacketHeaderValidationResult == NetworkValidationSuccess && 
+      PacketContextProcessingStatus == NetworkValidationSuccess) {
+    PacketHeaderFormatValidationResult = NetworkValidationSuccess;
   }
   
-  return NetworkHeaderFormatCheckResult;
+  return PacketHeaderFormatValidationResult;
 }
