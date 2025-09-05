@@ -4710,7 +4710,7 @@ void ProcessResourceCleanup(void)
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityParameter ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(securityParameter ^ (ulonglong)&securityValidationBuffer);
 }
 
 
@@ -11358,7 +11358,7 @@ void ExecuteSecurityCheckAndTerminateA(void)
   ulonglong securityParameter;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityParameter ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(securityParameter ^ (ulonglong)&securityValidationBuffer);
 }
 
 
