@@ -28961,17 +28961,17 @@ void SystemResourceEnumerator(void)
   uint8_t *SystemStackBufferPointer110;
   uint32_t StackContextLimit;
   ulong long StackContextTotal;
-  int StackCounterF8;
+  int SystemIterationCounter;
   void* *StackResourceHandleF0;
   uint8_t *SystemStackBufferPointerE8;
   uint32_t StackAllocationBoundary;
   ulong long StackAllocationOffset;
   void* *StackResourceHandleD0;
-  long long StackMemoryOffsetC8;
-  int StackCounterC0;
-  uint32_t StackAllocationBase;
-  long long *StackMemoryPointerA8;
-  long long StackMemoryOffsetA0;
+  long long SystemMemoryContextOffset;
+  int SystemOperationCounter;
+  uint32_t SystemMemoryAllocationBase;
+  long long *SystemStatusFlagsPointer;
+  long long SystemMemoryDataOffset;
   void* *ParameterBufferB;
   void* *ParameterBufferC;
   uint32_t StackBufferSize;
@@ -28994,17 +28994,17 @@ void SystemResourceEnumerator(void)
   SystemResourceCount = ResourceDataLocation;
   if (0 < (int)ResourceDataLocation) {
     do {
-      systemId = SystemIdentifierF8;
+      systemId = SystemResourceIndex;
       SystemInitializationStatus = 0;
-      if (SystemIdentifierF8 < 0) {
+      if (SystemResourceIndex < 0) {
 StringIterationCheck:
         SystemAllocationFlags = RetrieveSystemStatusFlags();
       }
       else {
         SystemAllocationFlags = *(long long *)(*SystemGlobalStatusFlags + 0x888);
         if ((ulong long)(*(long long *)(*SystemGlobalStatusFlags + 0x890) - SystemAllocationFlags >> 5) <=
-            (ulong long)(long long)SystemIdentifierF8) goto StringIterationCheck;
-        SystemAllocationFlags = (long long)SystemIdentifierF8 * 0x20 + SystemAllocationFlags;
+            (ulong long)(long long)SystemResourceIndex) goto StringIterationCheck;
+        SystemAllocationFlags = (long long)SystemResourceIndex * 0x20 + SystemAllocationFlags;
       }
       SystemMemoryContext = &SystemGlobalDataReference;
       SystemThreadContextIndicators = 0;
@@ -29021,7 +29021,7 @@ StringIterationCheck:
         }
         SystemThreadContextIndicators = SystemThreadContextIndicators & SystemMaximumUnsigned32BitValue;
       }
-      if (SystemIdentifierF8 < 0) {
+      if (SystemResourceIndex < 0) {
 SystemIdCheck:
         SystemAllocationFlags = RetrieveSystemStatusFlags();
       }
@@ -29262,9 +29262,9 @@ MemoryPointerCheck:
             SystemInitializationStatus = SystemInitializationStatus + 1;
             ThreadLocalStorageEntry = ThreadLocalStorageEntry + 8;
             SystemAllocationFlags = SystemAllocationFlags + -1;
-            ResourceDataLocation = ResourceCountA0;
+            ResourceDataLocation = SystemResourceCount;
             SystemThreadContext = memoryAllocationEnd;
-            systemId = SystemIdentifierF8;
+            systemId = SystemResourceIndex;
           } while (SystemAllocationFlags != 0);
         }
         dataBufferContext = &SystemGlobalDataReference;
@@ -29297,8 +29297,8 @@ MemoryPointerCheck:
       SystemThreadContextIndicators = SystemThreadContextIndicators & SystemMemoryAlignmentMask;
       ResourceDataBufferPointer = (uint8_t *)0x0;
       SystemMemoryContext = &SystemMemoryAllocatorReference;
-      SystemIdentifierF8 = systemId + 1;
-    } while (SystemIdentifierF8 < (int)ResourceDataLocation);
+      SystemResourceIndex = systemId + 1;
+    } while (SystemResourceIndex < (int)ResourceDataLocation);
   }
     ValidateSystemChecksum(SystemResourceStatusFlag ^ (ulong long)aCalculationFlags178);
 }
