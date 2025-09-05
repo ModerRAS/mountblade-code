@@ -97715,8 +97715,21 @@ void Unwind_18090fb00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fb10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行资源验证操作（版本1）
+ * 
+ * 该函数负责执行资源验证操作，调用ProcessResourceValidation函数
+ * 对指定偏移量的资源进行验证处理
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，控制清理行为
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用ProcessResourceValidation进行具体的验证操作
+ * @warning 验证失败时可能会触发系统异常处理
+ */
+void ExecuteResourceValidationOperationVersion1(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
   ProcessResourceValidation(ValidationContext + ValidationContextSecondaryCountOffset,*(uint8_t *)(ValidationContext + ValidationContextTertiaryCountOffset),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
@@ -97724,8 +97737,19 @@ void Unwind_18090fb10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090fb20(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放系统内存（版本1）
+ * 
+ * 该函数负责释放系统内存，调用ReleaseSystemMemory函数
+ * 释放指定偏移量处的系统内存资源
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含内存释放所需的数据
+ * @return 无返回值
+ * @note 此函数会调用ReleaseSystemMemory进行具体的内存释放操作
+ * @warning 内存释放失败时可能会触发系统异常处理
+ */
+void ReleaseSystemMemoryVersion1(uint8_t ObjectContext, int64_t ValidationContext)
 {
   ReleaseSystemMemory(ValidationContext + 0x280);
   return;
@@ -97733,8 +97757,21 @@ void Unwind_18090fb20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fb30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行资源验证操作（版本2）
+ * 
+ * 该函数负责执行资源验证操作，调用ProcessResourceValidation函数
+ * 对指定偏移量的资源进行验证处理
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，控制清理行为
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用ProcessResourceValidation进行具体的验证操作
+ * @warning 验证失败时可能会触发系统异常处理
+ */
+void ExecuteResourceValidationOperationVersion2(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
   ProcessResourceValidation(ValidationContext + ValidationContextSecondaryCountOffset,*(uint8_t *)(ValidationContext + ValidationContextTertiaryCountOffset),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
@@ -97742,8 +97779,21 @@ void Unwind_18090fb30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090fb40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行资源验证操作（版本3）
+ * 
+ * 该函数负责执行资源验证操作，调用ProcessResourceValidation函数
+ * 对指定偏移量的资源进行验证处理
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，控制清理行为
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用ProcessResourceValidation进行具体的验证操作
+ * @warning 验证失败时可能会触发系统异常处理
+ */
+void ExecuteResourceValidationOperationVersion3(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
   ProcessResourceValidation(ValidationContext + ValidationContextSecondaryCountOffset,*(uint8_t *)(ValidationContext + ValidationContextTertiaryCountOffset),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
@@ -97751,8 +97801,19 @@ void Unwind_18090fb40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090fb50(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放系统内存（版本2）
+ * 
+ * 该函数负责释放系统内存，调用ReleaseSystemMemory函数
+ * 释放指定偏移量处的系统内存资源
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含内存释放所需的数据
+ * @return 无返回值
+ * @note 此函数会调用ReleaseSystemMemory进行具体的内存释放操作
+ * @warning 内存释放失败时可能会触发系统异常处理
+ */
+void ReleaseSystemMemoryVersion2(uint8_t ObjectContext, int64_t ValidationContext)
 {
   ReleaseSystemMemory(ValidationContext + 0x280);
   return;
@@ -97760,8 +97821,19 @@ void Unwind_18090fb50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fb60(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放系统内存（版本3）
+ * 
+ * 该函数负责释放系统内存，调用ReleaseSystemMemory函数
+ * 释放指定偏移量处的系统内存资源
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含内存释放所需的数据
+ * @return 无返回值
+ * @note 此函数会调用ReleaseSystemMemory进行具体的内存释放操作
+ * @warning 内存释放失败时可能会触发系统异常处理
+ */
+void ReleaseSystemMemoryVersion3(uint8_t ObjectContext, int64_t ValidationContext)
 {
   ReleaseSystemMemory(ValidationContext + 0x280);
   return;

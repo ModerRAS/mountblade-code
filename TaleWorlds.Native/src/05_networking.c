@@ -102,6 +102,79 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define SecurityComplianceValidationIndex 2                     // 安全合规性验证索引
 #define ValidationModeDataIndex 3                               // 验证模式数据索引
 
+/**
+ * @brief 计算上下文参数偏移量
+ * 
+ * 计算连接上下文中参数的偏移量，用于访问连接参数
+ * 
+ * @param Context 连接上下文指针
+ * @return int64_t 计算出的偏移量地址
+ */
+static int64_t CalculateContextParameterOffset(int64_t *Context)
+{
+    return (int64_t)Context + ConnectionParameterOffset;
+}
+
+/**
+ * @brief 计算上下文数据偏移量
+ * 
+ * 计算连接上下文数据的偏移量，用于访问上下文数据
+ * 
+ * @param ContextAddress 上下文地址
+ * @param Buffer 缓冲区指针
+ * @param Pointer 状态指针
+ * @return int64_t 计算出的偏移量地址
+ */
+static int64_t CalculateContextDataOffset(int64_t ContextAddress, void *Buffer, void *Pointer)
+{
+    return (ContextAddress - (int64_t)Buffer) + (int64_t)Pointer;
+}
+
+/**
+ * @brief 计算最后一个上下文条目偏移量
+ * 
+ * 计算连接上下文中最后一个条目的偏移量
+ * 
+ * @param ContextAddress 上下文地址
+ * @param Buffer 缓冲区指针
+ * @param Pointer 状态指针
+ * @return int64_t 计算出的最后一个条目偏移量地址
+ */
+static int64_t CalculateLastContextEntryOffset(int64_t ContextAddress, void *Buffer, void *Pointer)
+{
+    return CalculateContextDataOffset(ContextAddress, Buffer, Pointer) - 4 + (int64_t)((NetworkConnectionStatus *)Pointer + ConnectionContextStatusEntrySize);
+}
+
+/**
+ * @brief 计算状态指针偏移量
+ * 
+ * 计算网络状态指针的偏移量
+ * 
+ * @param ContextIdentifier 上下文标识符
+ * @param StatusPointer 状态指针
+ * @param StatusIterator 状态迭代器
+ * @return int64_t 计算出的状态指针偏移量地址
+ */
+static int64_t CalculateStatusPointerOffset(int64_t ContextIdentifier, void *StatusPointer, void *StatusIterator)
+{
+    return (ContextIdentifier - (int64_t)StatusPointer) + (int64_t)StatusIterator;
+}
+
+/**
+ * @brief 计算最后一个状态条目偏移量
+ * 
+ * 计算网络状态中最后一个条目的偏移量
+ * 
+ * @param ContextIdentifier 上下文标识符
+ * @param StatusPointer 状态指针
+ * @param StatusIterator 状态迭代器
+ * @return int64_t 计算出的最后一个状态条目偏移量地址
+ */
+static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *StatusPointer, void *StatusIterator)
+{
+    return CalculateStatusPointerOffset(ContextIdentifier, StatusPointer, StatusIterator) - 4 + (int64_t)((NetworkStatus *)StatusIterator + ConnectionContextStatusEntrySize);
+}
+
 // 网络连接相关偏移量 - 连接上下文和状态管理
 #define NetworkConnectionContextOffset 0x78                    // 网络连接上下文偏移量
 #define NetworkConnectionValidationOffset 0x24                 // 网络连接验证偏移量
@@ -408,10 +481,10 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络错误处理常量
 #define NetworkErrorProcessorEnabledFlag 0x01                 // 错误处理器启用
 #define NetworkErrorCountResetValue 0x00                      // 错误计数重置
-#define NetworkReportSize11Bytes 0x0B                        // 11字节报告大小
-#define NetworkReportSize13Bytes 0x0D                        // 13字节报告大小
-#define NetworkReportSize15Bytes 0x0F                        // 15字节报告大小
-#define NetworkReportSize12Bytes 0x0C                        // 12字节报告大小
+#define NetworkReportSizeSmall 0x0B                           // 小型报告大小（11字节）
+#define NetworkReportSizeMedium 0x0D                          // 中型报告大小（13字节）
+#define NetworkReportSizeLarge 0x0F                           // 大型报告大小（15字节）
+#define NetworkReportSizeStandard 0x0C                        // 标准报告大小（12字节）
 
 // 网络连接状态常量
 #define NetworkProcessingStatusActiveFlag 0x01                // 处理状态活跃
@@ -2106,7 +2179,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *ConnectionContextDataPointer = (NetworkConnectionStatus *)((ConnectionContextAddress - (long long)NetworkConnectionStatusBuffer) + (long long)ConnectionStatusBufferPointer);
+            NetworkConnectionStatus *ConnectionContextDataPointer = (NetworkConnectionStatus *)CalculateContextDataOffset(ConnectionContextAddress, NetworkConnectionStatusBuffer, ConnectionStatusBufferPointer);
             
             // 提取连接状态信息
             NetworkConnectionStatus PacketStatus = ConnectionContextDataPointer[ConnectionContextPacketStatusIndex];
@@ -2633,18 +2706,18 @@ void ValidateNetworkConnectionData(NetworkHandle ConnectionTable, int64_t Connec
   uint32_t SecurityComplianceValidationResult;               // 安全合规验证结果
   
   // 初始化验证状态
-  ConnectionValidationStatus = 0x00;
-  DataIntegrityValidationResult = 0x00;
-  SecurityComplianceValidationResult = 0x00;
+  ConnectionValidationStatus = NetworkValidationFailure;
+  DataIntegrityValidationResult = NetworkValidationFailure;
+  SecurityComplianceValidationResult = NetworkValidationFailure;
   
   // 执行数据完整性检查
   if (ConnectionData != 0) {
-    DataIntegrityValidationResult = 0x01;  // 数据完整性检查通过
+    DataIntegrityValidationResult = NetworkValidationSuccess;  // 数据完整性检查通过
   }
   
   // 执行安全合规检查
   if (ConnectionTable != 0) {
-    SecurityComplianceValidationResult = 0x01;  // 安全合规检查通过
+    SecurityComplianceValidationResult = NetworkValidationSuccess;  // 安全合规检查通过
   }
   
   // 根据验证模式设置验证结果
@@ -2656,7 +2729,7 @@ void ValidateNetworkConnectionData(NetworkHandle ConnectionTable, int64_t Connec
     ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult & NetworkValidationSuccessMask;
   } else {
     // 默认验证模式
-    ConnectionValidationStatus = 0x01;
+    ConnectionValidationStatus = NetworkValidationSuccess;
   }
   
   // 设置安全验证数据
@@ -2999,9 +3072,9 @@ NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t Contex
   uint32_t ContextSecurityCheck;                 // 上下文安全检查
   
   // 初始化验证状态
-  ContextValidationResult = 0x00;
-  ContextIntegrityCheck = 0x00;
-  ContextSecurityCheck = 0x00;
+  ContextValidationResult = NetworkValidationFailure;
+  ContextIntegrityCheck = NetworkValidationFailure;
+  ContextSecurityCheck = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData != 0) {
@@ -3039,9 +3112,9 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
   uint32_t PacketDataFormatValidationResult;         // 数据包数据格式验证结果
   
   // 初始化验证状态
-  PacketIntegrityValidationResult = 0x00;
-  PacketChecksumValidationResult = 0x00;
-  PacketDataFormatValidationResult = 0x00;
+  PacketIntegrityValidationResult = NetworkValidationFailure;
+  PacketChecksumValidationResult = NetworkValidationFailure;
+  PacketDataFormatValidationResult = NetworkValidationFailure;
   
   // 验证数据包指针有效性
   if (PacketData && *PacketData != 0) {
@@ -3081,9 +3154,9 @@ NetworkHandle ProcessNetworkPacketData(NetworkHandle *PacketData, int64_t Handle
   uint32_t PacketDataValidationResult;             // 数据包数据验证结果
   
   // 初始化处理状态
-  PacketDataProcessingResult = 0x00;
-  PacketDataParsingResult = 0x00;
-  PacketDataValidationResult = 0x00;
+  PacketDataProcessingResult = NetworkValidationFailure;
+  PacketDataParsingResult = NetworkValidationFailure;
+  PacketDataValidationResult = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
