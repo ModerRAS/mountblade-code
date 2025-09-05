@@ -321,7 +321,7 @@
  * 
  * @note 原始函数名：FUN_180898d84
  */
-#define ProcessDataBuffer FUN_180898d84
+#define ProcessDataBufferWithValidation ProcessDataBufferWithValidation
 
 /**
  * @brief 返回固定状态码A0
@@ -330,7 +330,7 @@
  * 
  * @note 原始函数名：FUN_180898e56
  */
-#define ReturnFixedStatusCode FUN_180898e56
+#define ReturnFixedStatusA0 ReturnFixedStatusA0
 
 /**
  * @brief 验证数据块状态A0
@@ -339,7 +339,7 @@
  * 
  * @note 原始函数名：FUN_180898e70
  */
-#define ValidateDataBlockStatus FUN_180898e70
+#define ValidateDataBlockStatusA0 ValidateDataBlockStatusA0
 
 /**
  * @brief 验证数据块状态A1
@@ -348,7 +348,7 @@
  * 
  * @note 原始函数名：FUN_180898eb0
  */
-#define ValidateDataBlockStatusEx FUN_180898eb0
+#define ValidateDataBlockStatusA1 ValidateDataBlockStatusA1
 
 /**
  * @brief 处理数据块操作A0

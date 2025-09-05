@@ -10062,7 +10062,7 @@ void InitializeSystemAudioNode(void)
   HashTablePointerPointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
-    IdentifierNodeIdentifierComparisonResult = memcmp(CurrentNodePointer + NodeIdentifierOffset,&SystemDataTemplateP,0x10);
+    IdentifierComparisonResult = memcmp(CurrentNodePointer + NodeIdentifierOffset,&SystemDataTemplateP,0x10);
     if (IdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointerPointer;
