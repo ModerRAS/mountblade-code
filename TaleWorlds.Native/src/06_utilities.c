@@ -24753,7 +24753,16 @@ LAB_18089cd76:
 // 原始函数名：FUN_18089ce03 - 空操作函数L
 // 功能：空操作函数，返回0
 #define UtilityNoOperationL FUN_18089ce03
-undefined8 FUN_18089ce03(void)
+/**
+ * @brief 空操作函数L
+ * 
+ * 不执行任何操作的空函数，返回0作为结果。
+ * 用于系统初始化或占位符。
+ * 
+ * @param void 无参数
+ * @return undefined8 返回值0
+ */
+undefined8 UtilityNoOperationL(void)
 
 {
   return 0;
@@ -24764,7 +24773,15 @@ undefined8 FUN_18089ce03(void)
 // 原始函数名：FUN_18089ce16 - 返回固定值函数M
 // 功能：返回固定值0xd
 #define ReturnFixedValueM FUN_18089ce16
-undefined8 FUN_18089ce16(void)
+/**
+ * @brief 返回固定值函数M
+ * 
+ * 返回固定值0xd的函数，用于系统状态检查或测试。
+ * 
+ * @param void 无参数
+ * @return undefined8 返回固定值0xd
+ */
+undefined8 ReturnFixedValueM(void)
 
 {
   return 0xd;
@@ -24776,7 +24793,15 @@ undefined8 FUN_18089ce16(void)
 // 原始函数名：FUN_18089ce25 - 空操作函数N
 // 功能：空操作函数，无返回值
 #define UtilityNoOperationN FUN_18089ce25
-void FUN_18089ce25(void)
+/**
+ * @brief 空操作函数N
+ * 
+ * 不执行任何操作的空函数，用于系统初始化或占位符。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
+void UtilityNoOperationN(void)
 
 {
   return;
@@ -87910,6 +87935,9 @@ void FUN_180942fa0(void)
 
 
 942fc0(void)
+// 函数: void InitializeExceptionHandler(void)
+// 功能：初始化异常处理器，设置默认异常处理回调
+// 返回值：无
 void FUN_180942fc0(void)
 
 {
