@@ -195,8 +195,8 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络状态常量 - 系统状态和限制值
 #define NetworkStatusActive 0x01                               // 网络状态：活跃
 #define NetworkMaxInt32Value 0x7fffffff             // 最大32位有符号整数值
-#define NetworkPacketAlternativeSizeLimit 0x53                // 替代数据包大小限制（83字节）
-#define NetworkPacketStatusSizeLimit 0x31                       // 数据包状态限制（49字节）
+#define NetworkExtendedPacketSizeLimit 0x53                // 扩展数据包大小限制（83字节）
+#define NetworkStandardPacketSizeLimit 0x31                       // 标准数据包大小限制（49字节）
 #define NetworkStatusInactive 0x00                          // 网络状态：非活跃
 #define NetworkStatusReserved 0x02                          // 网络状态：保留
 #define NetworkStatusSpecial 0x03                           // 网络状态：特殊
@@ -798,9 +798,9 @@ uint32_t NetworkConnectionManager;                    // 网络连接管理器�
 uint32_t NetworkConnectionManagerContext;             // 网络连接管理器上下文，存储连接管理的上下文信息和状态数据
 uint32_t NetworkConnectionStateFlags;                 // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
 uint32_t NetworkConnectionTimeoutValue;               // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
-uint32_t NetworkMaxConnections;                  // 网络最大连接数限制，系统允许同时建立的最大连接数量
+uint32_t NetworkMaximumConnections;                  // 网络最大连接数限制，系统允许同时建立的最大连接数量
 uint32_t NetworkConnectionAttributeFlags;              // 网络连接属性标志位，定义连接的属性特征（加密、压缩、优先级等）
-uint32_t NetworkConnectionCurrentState;                // 网络连接状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
+uint32_t NetworkConnectionCurrentStateFlags;                // 网络连接状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
 uint32_t NetworkErrorReportTemplate;                        // 网络错误报告模板，用于格式化错误报告数据
 
 // 网络协议和地址配置
@@ -1927,7 +1927,7 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer
 NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
-  int64_t NetworkConnectionContextIdentifier;              // 网络连接上下文标识符
+  int64_t NetworkConnectionContextId;              // 网络连接上下文标识符
   int64_t *NetworkConnectionValidationResult;          // 网络连接验证结果数据指针
   int32_t NetworkValidationStatusCode;               // 网络连接验证结果码
   NetworkHandle ConnectionContextHandle;           // 网络连接上下文标识符
