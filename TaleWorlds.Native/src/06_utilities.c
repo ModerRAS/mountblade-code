@@ -18089,15 +18089,15 @@ ExecuteFloatingPointSecurityCheck:
 void ProcessFloatingPointDataA0(float inputValue)
 
 {
-  float fVar1;
+  float processedValue;
   int operationResult;
   uint validationStatus;
-  float fVar4;
-  float *pfVar5;
-  longlong unaff_RBP;
-  float unaff_R13D;
-  longlong registerR14;
-  longlong unaff_R15;
+  float baseValue;
+  float *dataPointer;
+  longlong contextBase;
+  float systemValue;
+  longlong tempRegister;
+  longlong dataBase;
   float extraout_XMM0_Da;
   undefined4 extraout_XMM0_Da_00;
   undefined4 extraout_XMM0_Da_01;
@@ -18105,37 +18105,38 @@ void ProcessFloatingPointDataA0(float inputValue)
   undefined4 extraout_XMM0_Da_03;
   undefined4 extraout_XMM0_Da_04;
   undefined4 dataFlags;
-  undefined4 uStackX_20;
-  undefined *in_stack_00000028;
-  float in_stack_00000030;
-  undefined4 in_stack_00000038;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
-  float in_stack_00000050;
+  undefined4 stackFlags;
+  undefined *validationContext;
+  float contextValue;
+  undefined4 contextFlags;
+  float stackInputValue;
+  float stackBuffer40;
+  float stackBuffer44;
+  float secondaryInputValue;
   
-  if (param_1 != 1.0) {
-    in_stack_00000028 = &UNK_180983738;
-    in_stack_00000038 = uStackX_20;
-    in_stack_00000030 = unaff_R13D;
-    fStack0000000000000040 = param_1;
-    operationResult = ValidateDataIntegrityA0(param_1,&stack0x00000028);
-    param_1 = extraout_XMM0_Da;
+  if (inputValue != 1.0) {
+    validationContext = &UNK_180983738;
+    contextFlags = stackFlags;
+    contextValue = systemValue;
+    stackInputValue = inputValue;
+    operationResult = ValidateDataIntegrityA0(inputValue,&stack0x00000028);
+    inputValue = extraout_XMM0_Da;
     if (operationResult != 0) goto LAB_180897af6;
   }
-  operationResult = ValidateDataA3(param_1,&stackBuffer50,0);
+  operationResult = ValidateDataA3(inputValue,&stackBuffer50,0);
   if (operationResult == 0) {
-    if (in_stack_00000050 != 1.0) {
-      fStack0000000000000040 = in_stack_00000050;
-      in_stack_00000028 = &UNK_1809837c0;
-      in_stack_00000038 = uStackX_20;
-      in_stack_00000030 = unaff_R13D;
-      operationResult = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
+    if (secondaryInputValue != 1.0) {
+      stackInputValue = secondaryInputValue;
+      validationContext = &UNK_1809837c0;
+      contextFlags = stackFlags;
+      contextValue = systemValue;
+      operationResult = ValidateDataIntegrityA0(secondaryInputValue,&stack0x00000028);
       if (operationResult != 0) goto LAB_180897af6;
     }
-    pfVar5 = (float *)(unaff_R15 + 0x94);
-    fVar4 = unaff_R13D;
+    dataPointer = (float *)(dataBase + 0x94);
+    baseValue = systemValue;
     do {
-      fVar1 = *pfVar5;
+      processedValue = *dataPointer;
       if (fVar1 != 0.0) {
         in_stack_00000038 = uStackX_20;
         in_stack_00000028 = &UNK_1809839d8;
