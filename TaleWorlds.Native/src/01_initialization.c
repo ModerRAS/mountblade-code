@@ -23470,8 +23470,8 @@ void* SystemMemoryAllocator(void* MemoryContext, unsigned long long CurrentThrea
 void InitializeSystemMutex(void* *SystemResourceManager)
 
 {
-  *SystemResourceManager = &SystemDataBufferTemplateE;
-  *SystemResourceManager = &SystemDataBufferTemplateF;
+  *SystemResourceManager = &SystemDataBufferTemplateQuinary;
+  *SystemResourceManager = &SystemDataBufferTemplateSenary;
   return;
 }
 
@@ -23832,9 +23832,9 @@ void ExecuteSystemFinalCleanup(void)
     StartSystemInitialization();
     *(void* **)(SystemThreadHandle + 0xc0) = &SystemDataBufferTemplateH;
     DestroySystemMutex(SystemThreadHandle + 0x48);
-    *(void* *)(SystemThreadHandle + 0x10) = &SystemDataBufferTemplateE;
-    *(void* *)(SystemThreadHandle + 0x10) = &SystemDataBufferTemplateF;
-    *(void* **)(SystemThreadHandle + 8) = &SystemDataBufferTemplateG;
+    *(void* *)(SystemThreadHandle + 0x10) = &SystemDataBufferTemplateQuinary;
+    *(void* *)(SystemThreadHandle + 0x10) = &SystemDataBufferTemplateSenary;
+    *(void* **)(SystemThreadHandle + 8) = &SystemDataBufferTemplateSeptenary;
       SystemCleanupFunction(SystemThreadHandle);
   }
   SystemGraphicsContextPointer = 0;
@@ -24183,7 +24183,7 @@ CreateSystemResourceFromTemplate(void* *SystemResourceHandle, long long Template
 void SetSystemStringProcessorEntryPoint(void **stringProcessorPointer)
 
 {
-  *stringProcessorPointer = &SystemDataBufferTemplateG;
+  *stringProcessorPointer = &SystemDataBufferTemplateSeptenary;
   return;
 }
 
@@ -24383,7 +24383,7 @@ void* * InitializeSystemReferencePointer(void* *referencePointer,ulong long memo
 void* * GetSystemDataBufferConfigurationG(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
-  *SystemResourceManager = &SystemDataBufferTemplateG;
+  *SystemResourceManager = &SystemDataBufferTemplateSeptenary;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,8);
   }
@@ -24463,7 +24463,7 @@ void InitializeGameSettings(long long SystemResourceManager,void* ConfigurationD
 void* * GetSystemDataBufferConfigurationF(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
-  *SystemResourceManager = &SystemDataBufferTemplateF;
+  *SystemResourceManager = &SystemDataBufferTemplateSenary;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,8);
   }
