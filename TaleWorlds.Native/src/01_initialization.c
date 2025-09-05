@@ -30531,9 +30531,9 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemConfigurationId;
   SystemMemoryContext = &EncryptionOffset;
   EncryptionOffset = &SystemResourceTemplatePrimary;
-  EncryptionOffsetSecondary = StackMemoryBufferF0;
+  EncryptionOffsetSecondary = SystemMemoryWorkBuffer;
   MemoryBufferPointer = 0;
-  StackMemoryBufferF0[0] = 0;
+  SystemMemoryWorkBuffer[0] = 0;
   SystemSecondaryProcessFlags = 0x17;
   SystemConfigurationDataPointer = ConfigurationDataPointer;
   SystemInitializationStatus = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,3);
