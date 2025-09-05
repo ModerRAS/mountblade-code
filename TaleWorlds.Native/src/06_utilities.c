@@ -14340,7 +14340,22 @@ undefined8 CleanupSystemB0(void)
 
 
 
-// 系统重置函数B0 - 重置系统状态到初始值
+/**
+ * @brief 系统重置函数B0
+ * 
+ * 该函数负责重置系统状态到初始值，包括以下操作：
+ * 1. 执行数据验证检查
+ * 2. 比较浮点数值以确定系统状态
+ * 3. 验证操作范围是否有效
+ * 4. 处理系统数据并执行清理操作
+ * 
+ * @return undefined8 返回操作状态码，0x1c表示验证失败
+ * 
+ * @note 此函数包含安全检查机制，确保系统重置过程的安全性
+ * @warning 函数执行过程中可能会调用不返回的子函数
+ * 
+ * @see ProcessDataValidationA0, ValidateOperationRangeA0, ProcessSystemDataA0, CleanupSystemEventA0
+ */
 undefined8 ResetSystemB0(void)
 
 {
@@ -50029,13 +50044,13 @@ void Unwind_180905e40(undefined8 param_1,longlong param_2)
         validationContextPointer = (longlong *)(memoryPointer + 0x28);
         LOCK();
         memoryOffset = *validationContextPointer;
-        bVar9 = bufferPointer == memoryOffset;
-        if (bVar9) {
+        isPointerMatch = bufferPointer == memoryOffset;
+        if (isPointerMatch) {
           *validationContextPointer = resourceIterator;
           memoryOffset = bufferPointer;
         }
         UNLOCK();
-        if (bVar9) {
+        if (isPointerMatch) {
           return;
         }
         LOCK();

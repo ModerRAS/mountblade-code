@@ -2292,18 +2292,33 @@ void InitializeSystemCoreData(void)
  * @param void 无参数
  * @return void 无返回值
  */
+/**
+ * @brief 初始化系统数据表
+ * 
+ * 该函数负责初始化系统的数据表，包括创建数据表节点、分配内存空间
+ * 和设置数据表的基本参数。它会遍历系统节点树，找到合适的位置
+ * 来创建数据表节点，并设置相关的标识符和处理器。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保数据表能够正确配置
+ * 和运行。函数会创建新的系统节点或使用现有节点来存储数据表配置。
+ * @note 函数会检查系统根表的有效性，并在必要时创建新的数据表节点
+ * @note 函数会设置数据表节点的标识符、数据指针和活动状态
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void InitializeSystemDataTable(void)
 {
-  char IsDataTableNodeActive;
-  void** SystemRootPointer;
-  int DataTableIdentifierComparisonResult;
-  long long *SystemDataTablePointer;
-  long long MemoryAllocationSize;
-  void** CurrentSystemNode;
-  void** PreviousSystemNode;
-  void** NextSystemNode;
-  void** AllocatedSystemNode;
-  void* SystemInitializationHandler;
+  char IsDataTableNodeActive;                              // 数据表节点是否活动
+  void** SystemRootPointer;                                // 系统根指针
+  int DataTableIdentifierComparisonResult;                 // 数据表标识符比较结果
+  long long *SystemDataTablePointer;                       // 系统数据表指针
+  long long MemoryAllocationSize;                          // 内存分配大小
+  void** CurrentSystemNode;                                // 当前系统节点
+  void** PreviousSystemNode;                               // 前一个系统节点
+  void** NextSystemNode;                                   // 下一个系统节点
+  void** AllocatedSystemNode;                              // 已分配系统节点
+  void* SystemInitializationHandler;                      // 系统初始化处理器
   
   SystemDataTablePointer = (long long*)GetSystemRootTable();
   SystemRootPointer = (void**)*SystemDataTablePointer;
