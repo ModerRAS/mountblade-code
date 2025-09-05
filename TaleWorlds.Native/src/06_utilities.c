@@ -10467,6 +10467,10 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：清理系统资源和状态
 #define CleanupSystemStateC1 FUN_18089ef24
 
+// 原始函数名：FUN_18007f6a0 - 系统初始化函数I0
+// 功能：初始化系统资源和状态
+#define InitializeSystemResourcesI0 FUN_18007f6a0
+
 // 原始函数名：FUN_18089f31e - 系统配置函数C1
 // 功能：配置系统参数和选项
 #define ConfigureSystemOptionsC1 FUN_18089f31e
@@ -20309,13 +20313,13 @@ undefined8 ProcessDataWithMultipleAttempts(undefined8 *contextHandle,longlong da
     return 0x1c;
   }
   contextValue = *contextHandle;
-  operationResult = FUN_1808aed00(contextValue,dataOffset,4);
+  operationResult = OperateDataO0(contextValue,dataOffset,4);
   if ((int)operationResult == 0) {
-    operationResult = FUN_1808aed00(contextValue,dataOffset + 4,2);
+    operationResult = OperateDataO0(contextValue,dataOffset + 4,2);
     if ((int)operationResult == 0) {
-      operationResult = FUN_1808aed00(contextValue,dataOffset + 6,2);
+      operationResult = OperateDataO0(contextValue,dataOffset + 6,2);
       if ((int)operationResult == 0) {
-        operationResult = FUN_1808aed00(contextValue,dataOffset + 8,8);
+        operationResult = OperateDataO0(contextValue,dataOffset + 8,8);
       }
     }
   }
@@ -20349,14 +20353,14 @@ undefined8 ExecuteDataValidationA0(undefined8 *param_1,longlong *param_2)
         goto LAB_180899456;
       }
     }
-    uVar1 = FUN_180769ed0(*param_2,aiStackX_8,1,4,0);
+    uVar1 = ValidateDataAndReturnStatusO3(*param_2,aiStackX_8,1,4,0);
   }
 SecurityCheckpointA:
   if ((int)uVar1 == 0) {
-    FUN_1808b0fb0(param_1,aiStackX_8[0]);
+    UpdateSystemStateO0(param_1,aiStackX_8[0]);
     pvalidationStatus = (uint *)*param_1;
     while (0 < aiStackX_8[0]) {
-      uVar1 = FUN_1808aed00(param_2,pvalidationStatus,4);
+      uVar1 = OperateDataO0(param_2,pvalidationStatus,4);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -20437,7 +20441,7 @@ void ValidateDataWithSecurityCheck(longlong *dataHandle,undefined4 *resultBuffer
         goto LAB_18089962f;
       }
     }
-    validationResult = FUN_180769ed0(*dataHandle,dataBuffer,1,4,0);
+    validationResult = ValidateDataAndReturnStatusO3(*dataHandle,dataBuffer,1,4,0);
   }
 ProcessCheckpointA:
   if (validationResult == 0) {
@@ -20473,14 +20477,14 @@ undefined8 ProcessComplexDataStructureA0(longlong *param_1,longlong *param_2)
         goto LAB_1808996c5;
       }
     }
-    uVar1 = FUN_180769ed0(*param_1,aiStackX_8,1,4,0);
+    uVar1 = ValidateDataAndReturnStatusO3(*param_1,aiStackX_8,1,4,0);
   }
 ProcessCheckpointB:
   if ((int)uVar1 == 0) {
     if (aiStackX_8[0] < 0) {
       return 0xd;
     }
-    uVar1 = FUN_1808af2e0(param_2,aiStackX_8[0]);
+    uVar1 = ProcessDataOperationO0(param_2,aiStackX_8[0]);
     if ((int)uVar1 == 0) {
       if (0 < aiStackX_8[0]) {
         do {
@@ -22646,7 +22650,7 @@ ulonglong GetSystemValidationContext(void)
     if (*validationContextPointer != 0) {
       if (validationContextPointer[2] == 0) {
 DataCheckpointB:
-        validationStatus = FUN_180769ed0(*validationContextPointer,&stack0x00000030,unaff_ESI,unaff_ESI,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x00000030,unaff_ESI,unaff_ESI,0);
       }
       else {
         uStack0000000000000034 = 0;
@@ -22672,7 +22676,7 @@ DataCheckpointB:
   memoryBaseAddress = operationResult;
   if (0x8b < in_EAX) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      memoryBaseAddress = FUN_1808aed00(*registerContext,unaff_RBP + 0xc4,4);
+      memoryBaseAddress = OperateDataO0(*registerContext,unaff_RBP + 0xc4,4);
     }
     else {
       memoryBaseAddress = (ulonglong)unaff_EDI;
@@ -22700,7 +22704,7 @@ DataCheckpointB:
   memoryBaseAddress = operationResult;
   if (0x41 < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      memoryBaseAddress = FUN_1808aed00(*registerContext,unaff_RBP + 0xcc,4);
+      memoryBaseAddress = OperateDataO0(*registerContext,unaff_RBP + 0xcc,4);
     }
     else {
       memoryBaseAddress = (ulonglong)unaff_EDI;
@@ -22712,7 +22716,7 @@ DataCheckpointB:
   memoryBaseAddress = operationResult;
   if (0x41 < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      memoryBaseAddress = FUN_1808aed00(*registerContext,unaff_RBP + 0xd0,4);
+      memoryBaseAddress = OperateDataO0(*registerContext,unaff_RBP + 0xd0,4);
     }
     else {
       memoryBaseAddress = (ulonglong)unaff_EDI;
@@ -22733,7 +22737,7 @@ DataCheckpointB:
   }
   if (0x6e < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      operationResult = FUN_1808aed00(*registerContext,unaff_RBP + 200,4);
+      operationResult = OperateDataO0(*registerContext,unaff_RBP + 200,4);
     }
     else {
       operationResult = (ulonglong)unaff_EDI;
@@ -22749,7 +22753,7 @@ DataCheckpointB:
     if (*validationContextPointer != 0) {
       if (validationContextPointer[2] == 0) {
 MemoryCheckpointA:
-        unaff_EDI = FUN_180769ed0(*validationContextPointer,&stack0x00000038,unaff_ESI,4,0);
+        unaff_EDI = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x00000038,unaff_ESI,4,0);
       }
       else {
         uStack0000000000000034 = 0;
@@ -22899,10 +22903,10 @@ ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuff
     if (*(uint *)(param_2 + 8) < 0x5a) {
       if (*(int *)(param_2[1] + 0x18) == 0) {
         uVar1 = *param_2;
-        validationStatus = FUN_1808aed00(uVar1,&uStack_38,4);
-        if ((((int)validationStatus == 0) && (validationStatus = FUN_1808aed00(uVar1,&uStack_34,2), (int)validationStatus == 0)) &&
-           (validationStatus = FUN_1808aed00(uVar1,(longlong)&uStack_34 + 2,2), (int)validationStatus == 0)) {
-          validationStatus = FUN_1808aed00(uVar1,&uStack_30,8);
+        validationStatus = OperateDataO0(uVar1,&uStack_38,4);
+        if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(uVar1,&uStack_34,2), (int)validationStatus == 0)) &&
+           (validationStatus = OperateDataO0(uVar1,(longlong)&uStack_34 + 2,2), (int)validationStatus == 0)) {
+          validationStatus = OperateDataO0(uVar1,&uStack_30,8);
         }
       }
       else {
@@ -22919,7 +22923,7 @@ ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuff
           return validationStatus;
         }
         if ((*(int *)(param_2[1] + 0x18) == 0) &&
-           (memoryBaseAddress = FUN_1808aed00(*param_2,param_1 + 0x40,4), memoryBaseAddress == 0)) {
+           (memoryBaseAddress = OperateDataO0(*param_2,param_1 + 0x40,4), memoryBaseAddress == 0)) {
                     // WARNING: Subroutine does not return
           FUN_1808ddf80(param_2,auStack_28);
         }
@@ -23208,10 +23212,10 @@ undefined8 ExecuteAdvancedDataValidationA0(longlong param_1,longlong *param_2)
       return 0x1c;
     }
     validationContext = *param_2;
-    uVar2 = FUN_1808aed00(validationContext,param_1 + 0x60,4);
-    if ((((int)uVar2 == 0) && (uVar2 = FUN_1808aed00(validationContext,param_1 + 100,2), (int)uVar2 == 0)) &&
-       (uVar2 = FUN_1808aed00(validationContext,param_1 + 0x66,2), (int)uVar2 == 0)) {
-      uVar2 = FUN_1808aed00(validationContext,param_1 + 0x68,8);
+    uVar2 = OperateDataO0(validationContext,param_1 + 0x60,4);
+    if ((((int)uVar2 == 0) && (uVar2 = OperateDataO0(validationContext,param_1 + 100,2), (int)uVar2 == 0)) &&
+       (uVar2 = OperateDataO0(validationContext,param_1 + 0x66,2), (int)uVar2 == 0)) {
+      uVar2 = OperateDataO0(validationContext,param_1 + 0x68,8);
     }
     in_stack_00000008 = unaff_BPL;
     if ((int)uVar2 != 0) {
@@ -23255,7 +23259,7 @@ undefined8 ExecuteAdvancedDataValidationA0(longlong param_1,longlong *param_2)
         goto LAB_1808a2e6d;
       }
     }
-    uVar2 = FUN_180769ed0(*param_2,&stack0x00000008,1,1,0);
+    uVar2 = ValidateDataAndReturnStatusO3(*param_2,&stack0x00000008,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)uVar2 == 0) {
@@ -23286,10 +23290,10 @@ undefined8 CleanupDataResourcesA0(void)
     }
     validationContext = *registerContext;
     _cStack0000000000000030 = unaff_RBP;
-    validationStatus = FUN_1808aed00(validationContext,unaff_RDI + 0x60,4);
-    if ((((int)validationStatus == 0) && (validationStatus = FUN_1808aed00(validationContext,unaff_RDI + 100,2), (int)validationStatus == 0)) &&
-       (validationStatus = FUN_1808aed00(validationContext,unaff_RDI + 0x66,2), (int)validationStatus == 0)) {
-      validationStatus = FUN_1808aed00(validationContext,unaff_RDI + 0x68,8);
+    validationStatus = OperateDataO0(validationContext,unaff_RDI + 0x60,4);
+    if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(validationContext,unaff_RDI + 100,2), (int)validationStatus == 0)) &&
+       (validationStatus = OperateDataO0(validationContext,unaff_RDI + 0x66,2), (int)validationStatus == 0)) {
+      validationStatus = OperateDataO0(validationContext,unaff_RDI + 0x68,8);
     }
     if ((int)validationStatus != 0) {
       return validationStatus;
@@ -23333,7 +23337,7 @@ undefined8 CleanupDataResourcesA0(void)
         goto LAB_1808a2e6d;
       }
     }
-    validationStatus = FUN_180769ed0(*pdataContext,&stack0x00000030,1,1,0);
+    validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)validationStatus == 0) {
@@ -23356,10 +23360,10 @@ undefined8 ResetDataProcessorA1(void)
   uint stackParameter40;
   
   validationContext = *registerContext;
-  validationStatus = FUN_1808aed00(validationContext,unaff_RDI + 0x60);
-  if ((((int)validationStatus == 0) && (validationStatus = FUN_1808aed00(validationContext,unaff_RDI + 100,2), (int)validationStatus == 0)) &&
-     (validationStatus = FUN_1808aed00(validationContext,unaff_RDI + 0x66,2), (int)validationStatus == 0)) {
-    validationStatus = FUN_1808aed00(validationContext,unaff_RDI + 0x68,8);
+  validationStatus = OperateDataO0(validationContext,unaff_RDI + 0x60);
+  if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(validationContext,unaff_RDI + 100,2), (int)validationStatus == 0)) &&
+     (validationStatus = OperateDataO0(validationContext,unaff_RDI + 0x66,2), (int)validationStatus == 0)) {
+    validationStatus = OperateDataO0(validationContext,unaff_RDI + 0x68,8);
   }
   if ((int)validationStatus != 0) {
     return validationStatus;
@@ -23386,7 +23390,7 @@ undefined8 ResetDataProcessorA1(void)
         goto LAB_1808a2e6d;
       }
     }
-    validationStatus = FUN_180769ed0(*pdataContext,&stack0x00000030,1,1,0);
+    validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)validationStatus == 0) {
@@ -23460,7 +23464,7 @@ undefined8 ValidateSystemDataIntegrity(int validationFlag)
         goto LAB_1808a2e6d;
       }
     }
-    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x00000030,1,1,0);
+    uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)uVar2 == 0) {
@@ -23501,7 +23505,7 @@ void ValidateContextStatus(void)
         goto LAB_1808a2e6d;
       }
     }
-    operationResult = FUN_180769ed0(*validationContextPointer,&stack0x00000030,1,1,0);
+    operationResult = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if (operationResult == 0) {
@@ -23716,7 +23720,7 @@ ulonglong ValidateAndProcessDataBlock(longlong dataBlock, longlong *validationCo
   if (*(int *)(validationContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = FUN_1808aed00(*validationContext,dataBlock + 0xb0,4);
+  validationStatus = OperateDataO0(*validationContext,dataBlock + 0xb0,4);
   if (validationStatus != 0) {
     return (ulonglong)validationStatus;
   }
@@ -23733,7 +23737,7 @@ ulonglong ValidateAndProcessDataBlock(longlong dataBlock, longlong *validationCo
     }
     else if (validationContextPointer[2] == 0) {
 DataProcessLabelA:
-      memoryBaseAddress = FUN_180769ed0(*validationContextPointer,acStackX_18,1,1,0);
+      memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,acStackX_18,1,1,0);
     }
     else {
       auStackX_20[0] = 0;
@@ -23758,7 +23762,7 @@ DataProcessLabelA:
     if (*(int *)(validationContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    dataFlags = FUN_1808aed00(*validationContext,dataBlock + 0xb8,4);
+    dataFlags = OperateDataO0(*validationContext,dataBlock + 0xb8,4);
     if ((int)dataFlags != 0) {
       return dataFlags;
     }
@@ -23781,12 +23785,12 @@ DataProcessLabelA:
         (((dataFlags = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0 &&
           (dataFlags = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x9c), (int)dataFlags == 0)) &&
          ((dataFlags = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0 &&
-          ((dataFlags = FUN_1808aed00(*param_2,param_1 + 0xb4,4), (int)dataFlags == 0 &&
+          ((dataFlags = OperateDataO0(*param_2,param_1 + 0xb4,4), (int)dataFlags == 0 &&
            (dataFlags = FUN_18089d490(param_1 + 0x30,param_2), (int)dataFlags == 0)))))))))) {
       dataFlags = operationResult;
       if (0x34 < *(uint *)(param_2 + 8)) {
         if (*(int *)(param_2[1] + 0x18) == 0) {
-          dataFlags = FUN_1808aed00(*param_2,param_1 + 0xbc,4);
+          dataFlags = OperateDataO0(*param_2,param_1 + 0xbc,4);
         }
         else {
           dataFlags = 0x1c;
@@ -23796,7 +23800,7 @@ DataProcessLabelA:
         dataFlags = operationResult;
         if (0x46 < *(uint *)(param_2 + 8)) {
           if (*(int *)(param_2[1] + 0x18) == 0) {
-            dataFlags = FUN_1808aed00(*param_2,param_1 + 0xc0,4);
+            dataFlags = OperateDataO0(*param_2,param_1 + 0xc0,4);
           }
           else {
             dataFlags = 0x1c;
@@ -23880,7 +23884,7 @@ ulonglong ProcessUtilityDataValidation(void)
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = FUN_1808aed00(*registerContext,systemContext + 0xb0,4);
+  validationStatus = OperateDataO0(*registerContext,systemContext + 0xb0,4);
   if (validationStatus != 0) {
     return (ulonglong)validationStatus;
   }
@@ -23897,7 +23901,7 @@ ulonglong ProcessUtilityDataValidation(void)
     }
     else if (validationContextPointer[2] == 0) {
 DataProcessLabelA:
-      memoryBaseAddress = FUN_180769ed0(*validationContextPointer,&stackDataBuffer,1,1,0);
+      memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,&stackDataBuffer,1,1,0);
     }
     else {
       stackDataSize = 0;
@@ -23922,7 +23926,7 @@ DataProcessLabelA:
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    operationResult = FUN_1808aed00(*registerContext,systemContext + 0xb8,4);
+    operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -23945,12 +23949,12 @@ DataProcessLabelA:
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
-          ((operationResult = FUN_1808aed00(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
+          ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
            (operationResult = FUN_18089d490(systemContext + 0x30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + 0x18) == 0) {
-          operationResult = FUN_1808aed00(*registerContext,systemContext + 0xbc,4);
+          operationResult = OperateDataO0(*registerContext,systemContext + 0xbc,4);
         }
         else {
           operationResult = 0x1c;
@@ -23960,7 +23964,7 @@ DataProcessLabelA:
         operationResult = validationOutcome;
         if (0x46 < *(uint *)(registerContext + 8)) {
           if (*(int *)(registerContext[1] + 0x18) == 0) {
-            operationResult = FUN_1808aed00(*registerContext,systemContext + 0xc0,4);
+            operationResult = OperateDataO0(*registerContext,systemContext + 0xc0,4);
           }
           else {
             operationResult = 0x1c;
@@ -24076,7 +24080,7 @@ DataProcessSectionA:
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    operationResult = FUN_1808aed00(*registerContext,systemContext + 0xb8,4);
+    operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -24099,12 +24103,12 @@ DataProcessSectionA:
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
-          ((operationResult = FUN_1808aed00(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
+          ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
            (operationResult = FUN_18089d490(systemContext + 0x30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + 0x18) == 0) {
-          operationResult = FUN_1808aed00(*registerContext,systemContext + 0xbc,4);
+          operationResult = OperateDataO0(*registerContext,systemContext + 0xbc,4);
         }
         else {
           operationResult = 0x1c;
@@ -24114,7 +24118,7 @@ DataProcessSectionA:
         operationResult = validationOutcome;
         if (0x46 < *(uint *)(registerContext + 8)) {
           if (*(int *)(registerContext[1] + 0x18) == 0) {
-            operationResult = FUN_1808aed00(*registerContext,systemContext + 0xc0,4);
+            operationResult = OperateDataO0(*registerContext,systemContext + 0xc0,4);
           }
           else {
             operationResult = 0x1c;
@@ -24201,7 +24205,7 @@ ulonglong ExecuteUtilityDataCheck(void)
     }
     else if (validationContextPointer[2] == 0) {
 DataProcessLabelA:
-      validationStatus = FUN_180769ed0(*validationContextPointer,&stackDataBuffer,1,1,0);
+      validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&stackDataBuffer,1,1,0);
     }
     else {
       stackDataSize = 0;
@@ -24226,7 +24230,7 @@ DataProcessLabelA:
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    operationResult = FUN_1808aed00(*registerContext,systemContext + 0xb8,4);
+    operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -24249,12 +24253,12 @@ DataProcessLabelA:
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
-          ((operationResult = FUN_1808aed00(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
+          ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
            (operationResult = FUN_18089d490(systemContext + 0x30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + 0x18) == 0) {
-          operationResult = FUN_1808aed00(*registerContext,systemContext + 0xbc,4);
+          operationResult = OperateDataO0(*registerContext,systemContext + 0xbc,4);
         }
         else {
           operationResult = 0x1c;
@@ -24264,7 +24268,7 @@ DataProcessLabelA:
         operationResult = validationOutcome;
         if (0x46 < *(uint *)(registerContext + 8)) {
           if (*(int *)(registerContext[1] + 0x18) == 0) {
-            operationResult = FUN_1808aed00(*registerContext,systemContext + 0xc0,4);
+            operationResult = OperateDataO0(*registerContext,systemContext + 0xc0,4);
           }
           else {
             operationResult = 0x1c;
@@ -24595,7 +24599,7 @@ void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int v
   *(uint *)(param_1 + 0x28) = uVar1;
   if (uVar1 != 0) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      operationResult = FUN_1808aed00(*param_2,*(undefined8 *)(param_1 + 0x20),lVar6);
+      operationResult = OperateDataO0(*param_2,*(undefined8 *)(param_1 + 0x20),lVar6);
       if (operationResult == 0) goto LAB_18089bfc7;
     }
     else {
@@ -24704,7 +24708,7 @@ void CheckSystemStatusB0(void)
   *(int *)(unaff_R15 + 0x28) = iVar1;
   if (iVar1 != 0) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      iVar1 = FUN_1808aed00(*registerContext,*(undefined8 *)(unaff_R15 + 0x20),lVar5);
+      iVar1 = OperateDataO0(*registerContext,*(undefined8 *)(unaff_R15 + 0x20),lVar5);
       if (iVar1 == 0) goto LAB_18089bfc7;
     }
     else {
@@ -24770,7 +24774,7 @@ ulonglong ValidateAndAllocateMemory(longlong MemoryContext, undefined8 *Allocati
   if (*(int *)(AllocationParams[1] + 0x18) != 0) {
     return 0x1c;
   }
-  allocatedAddress = FUN_1808aed00(*AllocationParams,MemoryContext,4);
+  allocatedAddress = OperateDataO0(*AllocationParams,MemoryContext,4);
   if ((int)allocatedAddress != 0) {
     return allocatedAddress;
   }
@@ -24804,7 +24808,7 @@ ulonglong ValidateAndAllocateMemory(longlong MemoryContext, undefined8 *Allocati
   *(int *)(MemoryContext + 0x10) = operationOutcome;
   if (operationOutcome != 0) {
     if (*(int *)(AllocationParams[1] + 0x18) == 0) {
-      allocatedAddress = FUN_1808aed00(*AllocationParams,*(undefined8 *)(MemoryContext + 8),allocationSize << 3);
+      allocatedAddress = OperateDataO0(*AllocationParams,*(undefined8 *)(MemoryContext + 8),allocationSize << 3);
       if ((int)allocatedAddress == 0) goto LAB_18089c131;
     }
     else {
@@ -24821,7 +24825,7 @@ ValidationLabelA:
       memoryValidationStatus = 0;
     }
     else if (*(int *)(AllocationParams[1] + 0x18) == 0) {
-      memoryValidationStatus = FUN_1808aed00(*AllocationParams,MemoryContext + 4,4);
+      memoryValidationStatus = OperateDataO0(*AllocationParams,MemoryContext + 4,4);
     }
     if (memoryValidationStatus == 0) {
       allocatedAddress = func_0x000180069ee0(MemoryContext);
@@ -24904,19 +24908,19 @@ ulonglong ValidateMemoryStatus(longlong ValidationContext, undefined8 *SecurityP
   if (*(uint *)(param_2 + 8) < 0x6d) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       uVar1 = *param_2;
-      validationOutcome = FUN_1808aed00(uVar1,&uStack_78,4);
+      validationOutcome = OperateDataO0(uVar1,&uStack_78,4);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = FUN_1808aed00(uVar1,&uStack_74,2);
+      validationOutcome = OperateDataO0(uVar1,&uStack_74,2);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = FUN_1808aed00(uVar1,(longlong)&uStack_74 + 2,2);
+      validationOutcome = OperateDataO0(uVar1,(longlong)&uStack_74 + 2,2);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = FUN_1808aed00(uVar1,&uStack_70,8);
+      validationOutcome = OperateDataO0(uVar1,&uStack_70,8);
     }
     else {
       validationOutcome = 0x1c;
@@ -25072,7 +25076,7 @@ ValidationLabelC:
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(param_2 + 8)) && (operationResult = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
-    operationResult = FUN_1808aed00(*param_2,param_1 + 0x68,4);
+    operationResult = OperateDataO0(*param_2,param_1 + 0x68,4);
   }
   if (operationResult != 0) {
     return (ulonglong)operationResult;
@@ -25143,19 +25147,19 @@ undefined8 * FUN_18089c1fb(void)
   if (uVar9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       uVar1 = *unaff_RDI;
-      puVar13 = (undefined8 *)FUN_1808aed00(uVar1,unaff_RBP + -0x19,4);
+      puVar13 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x19,4);
       if ((int)puVar13 != 0) {
         return puVar13;
       }
-      puVar13 = (undefined8 *)FUN_1808aed00(uVar1,unaff_RBP + -0x15,2);
+      puVar13 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x15,2);
       if ((int)puVar13 != 0) {
         return puVar13;
       }
-      puVar13 = (undefined8 *)FUN_1808aed00(uVar1,unaff_RBP + -0x13,2);
+      puVar13 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x13,2);
       if ((int)puVar13 != 0) {
         return puVar13;
       }
-      puVar13 = (undefined8 *)FUN_1808aed00(uVar1,unaff_RBP + -0x11,8);
+      puVar13 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x11,8);
       uVar20 = extraout_XMM0_Da;
     }
     else {
@@ -25326,7 +25330,7 @@ ValidationLabelC:
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) && (securityCheckResult = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
-    securityCheckResult = FUN_1808aed00(*unaff_RDI,systemContext + 0x68,4);
+    securityCheckResult = OperateDataO0(*unaff_RDI,systemContext + 0x68,4);
     fVar21 = extraout_XMM0_Da_01;
   }
   if (securityCheckResult != 0) {
@@ -25390,19 +25394,19 @@ undefined8 * FUN_18089c22e(void)
   if (uVar9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       uVar1 = *unaff_RDI;
-      puVar12 = (undefined8 *)FUN_1808aed00(uVar1,unaff_RBP + -0x19,4);
+      puVar12 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x19,4);
       if ((int)puVar12 != 0) {
         return puVar12;
       }
-      puVar12 = (undefined8 *)FUN_1808aed00(uVar1,unaff_RBP + -0x15,2);
+      puVar12 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x15,2);
       if ((int)puVar12 != 0) {
         return puVar12;
       }
-      puVar12 = (undefined8 *)FUN_1808aed00(uVar1,unaff_RBP + -0x13,2);
+      puVar12 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x13,2);
       if ((int)puVar12 != 0) {
         return puVar12;
       }
-      puVar12 = (undefined8 *)FUN_1808aed00(uVar1,unaff_RBP + -0x11,8);
+      puVar12 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x11,8);
       uVar20 = extraout_XMM0_Da;
     }
     else {
@@ -25573,7 +25577,7 @@ ValidationLabelC:
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) && (securityCheckResult = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
-    securityCheckResult = FUN_1808aed00(*unaff_RDI,systemContext + 0x68,4);
+    securityCheckResult = OperateDataO0(*unaff_RDI,systemContext + 0x68,4);
     fVar21 = extraout_XMM0_Da_01;
   }
   if (securityCheckResult != 0) {
@@ -25786,7 +25790,7 @@ ValidationLabelC:
 ValidationLabelD:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) &&
      (bVar19 = *(uint *)(unaff_RDI[1] + 0x18) == securityCheckResult, securityCheckResult = unaff_R15D, bVar19)) {
-    securityCheckResult = FUN_1808aed00(*unaff_RDI,systemContext + 0x68,4);
+    securityCheckResult = OperateDataO0(*unaff_RDI,systemContext + 0x68,4);
     fVar20 = extraout_XMM0_Da_00;
   }
   if (securityCheckResult != 0) {
@@ -25893,7 +25897,7 @@ ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
   validationStatus = dataFlags;
   if (0x6f < *(uint *)(param_2 + 8)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      validationStatus = FUN_1808aed00(*param_2,param_1 + 0x34,4);
+      validationStatus = OperateDataO0(*param_2,param_1 + 0x34,4);
     }
     else {
       validationStatus = 0x1c;
@@ -25914,7 +25918,7 @@ ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
     }
     else if (validationContextPointer[2] == 0) {
 OperationLabelA:
-      uVar9 = FUN_180769ed0(*validationContextPointer,auStackX_18,1,1,0);
+      uVar9 = ValidateDataAndReturnStatusO3(*validationContextPointer,auStackX_18,1,1,0);
     }
     else {
       auStackX_20[0] = 0;
@@ -25964,7 +25968,7 @@ OperationLabelB:
         goto LAB_18089c808;
       }
     }
-    validationStatus = FUN_180769ed0(*validationContextPointer,&uStack_84,1,4,0);
+    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&uStack_84,1,4,0);
   }
 OperationLabelC:
   if ((int)validationStatus != 0) {
@@ -26064,7 +26068,7 @@ OperationLabelD:
     }
     else if (validationContextPointer[2] == 0) {
 ValidationContextHandler:
-      uVar2 = FUN_180769ed0(*validationContextPointer,auStackX_18,1,1,0);
+      uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,auStackX_18,1,1,0);
     }
     else {
       uStack_84 = 0;
@@ -26120,7 +26124,7 @@ ValidationErrorHandler:
       }
       else if (validationContextPointer[2] == 0) {
 ValidationRetryHandler:
-        uVar2 = FUN_180769ed0(*validationContextPointer,auStackX_18,1,1,0);
+        uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,auStackX_18,1,1,0);
       }
       else {
         uStack_84 = 0;
@@ -26243,7 +26247,7 @@ ulonglong FUN_18089c69d(void)
   memoryBaseAddress = validationOutcome;
   if (0x6f < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      memoryBaseAddress = FUN_1808aed00(*registerContext,unaff_R13 + 0x34,(ulonglong)operationResult);
+      memoryBaseAddress = OperateDataO0(*registerContext,unaff_R13 + 0x34,(ulonglong)operationResult);
     }
     else {
       memoryBaseAddress = 0x1c;
@@ -26265,7 +26269,7 @@ ulonglong FUN_18089c69d(void)
     }
     else if (validationContextPointer[2] == 0) {
 OperationLabelA:
-      securityCheckResult = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D,0);
+      securityCheckResult = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D,0);
     }
     else {
       *(undefined4 *)(unaff_RBP + 0x7f) = 0;
@@ -26316,7 +26320,7 @@ OperationLabelB:
         goto LAB_18089c808;
       }
     }
-    memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x25,registerR14D,operationResult,0);
+    memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + -0x25,registerR14D,operationResult,0);
   }
 OperationLabelC:
   if ((int)memoryBaseAddress != 0) {
@@ -26417,7 +26421,7 @@ OperationLabelD:
       }
       else if (validationContextPointer[2] == 0) {
 ValidationContextHandler:
-        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D,0);
         fVar9 = extraout_XMM0_Da_01;
       }
       else {
@@ -26480,7 +26484,7 @@ ValidationContextHandler:
   }
   else if (validationContextPointer[2] == 0) {
 ValidationRetryHandler:
-    validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D,0);
+    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D,0);
     fVar9 = extraout_XMM0_Da_05;
   }
   else {
@@ -26663,7 +26667,7 @@ ulonglong FUN_18089c86d(void)
       }
       else if (validationContextPointer[2] == unaff_RDI) {
 ValidationContextHandler:
-        memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
@@ -26730,7 +26734,7 @@ ValidationContextHandler:
   }
   else if (validationContextPointer[2] == unaff_RDI) {
 ValidationRetryHandler:
-    memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
+    memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
@@ -26913,7 +26917,7 @@ ulonglong FUN_18089c872(void)
       }
       else if (validationContextPointer[2] == unaff_RDI) {
 ValidationContextHandler:
-        memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
@@ -26980,7 +26984,7 @@ ValidationContextHandler:
   }
   else if (validationContextPointer[2] == unaff_RDI) {
 ValidationRetryHandler:
-    memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
+    memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
@@ -27116,7 +27120,7 @@ ulonglong FUN_18089c94a(float param_1)
       }
       else if (validationContextPointer[2] == unaff_RDI) {
 ValidationContextHandler:
-        memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
         param_1 = extraout_XMM0_Da_00;
       }
       else {
@@ -27178,7 +27182,7 @@ ValidationContextHandler:
       }
       else if (validationContextPointer[2] == unaff_RDI) {
 ValidationRetryHandler:
-        memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
         param_1 = extraout_XMM0_Da_04;
       }
       else {
@@ -27341,7 +27345,7 @@ ulonglong FUN_18089cc80(longlong param_1,longlong *param_2)
           goto LAB_18089cd46;
         }
       }
-      validationStatus = FUN_180769ed0(*validationContextPointer,auStackX_18,1,4,0);
+      validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,auStackX_18,1,4,0);
     }
 ValidationContextHandler2:
     if ((int)validationStatus != 0) {
@@ -27416,7 +27420,7 @@ ulonglong FUN_18089ccb9(void)
           goto LAB_18089cd46;
         }
       }
-      validationStatus = FUN_180769ed0(*validationContextPointer,&stack0x00000080,1,4,0);
+      validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x00000080,1,4,0);
     }
 ValidationContextHandler2:
     if ((int)validationStatus != 0) {
@@ -27554,7 +27558,7 @@ ulonglong FUN_18089ce30(longlong param_1,longlong *param_2)
         goto LAB_18089cef2;
       }
     }
-    uVar2 = FUN_180769ed0(*validationContextPointer,auStackX_20,1,4,0);
+    uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,auStackX_20,1,4,0);
   }
 ValidationContextCleanup:
   if ((int)uVar2 != 0) {
@@ -27587,7 +27591,7 @@ ValidationContextCleanup:
         goto LAB_18089cf93;
       }
     }
-    uVar2 = FUN_180769ed0(*validationContextPointer,auStackX_20,1,4,0);
+    uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,auStackX_20,1,4,0);
   }
 ValidationStateUpdate:
   if ((int)uVar2 != 0) {
@@ -27612,7 +27616,7 @@ ValidationStateUpdate:
   if (*validationContextPointer != 0) {
     if (validationContextPointer[2] == 0) {
 ValidationCompleteHandler:
-      validationStatus = FUN_180769ed0(*validationContextPointer,auStackX_18,1,1,0);
+      validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,auStackX_18,1,1,0);
     }
     else {
       auStackX_20[0] = 0;
@@ -27674,7 +27678,7 @@ ulonglong FUN_18089ce60(void)
         goto LAB_18089cef2;
       }
     }
-    uVar2 = FUN_180769ed0(*validationContextPointer,&stackDataSize,1,4,0);
+    uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,&stackDataSize,1,4,0);
   }
 ValidationContextCleanup:
   if ((int)uVar2 != 0) {
@@ -27707,7 +27711,7 @@ ValidationContextCleanup:
         goto LAB_18089cf93;
       }
     }
-    uVar2 = FUN_180769ed0(*validationContextPointer,&stackDataSize,1,4,0);
+    uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,&stackDataSize,1,4,0);
   }
 ValidationStateUpdate:
   if ((int)uVar2 != 0) {
@@ -27732,7 +27736,7 @@ ValidationStateUpdate:
   if (*validationContextPointer != 0) {
     if (validationContextPointer[2] == 0) {
 ValidationCompleteHandler:
-      validationStatus = FUN_180769ed0(*validationContextPointer,&stackDataBuffer,1,1,0);
+      validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&stackDataBuffer,1,1,0);
     }
     else {
       stackDataSize = 0;
@@ -27781,7 +27785,7 @@ ulonglong FUN_18089cfd6(void)
   if (*validationContextPointer != 0) {
     if (validationContextPointer[2] == unaff_R15) {
 ValidationCompleteHandler:
-      uVar2 = FUN_180769ed0(*validationContextPointer,&stackDataBuffer,1);
+      uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,&stackDataBuffer,1);
     }
     else {
       stackDataSize = (uint)unaff_R15;
@@ -28064,7 +28068,7 @@ ValidationDataHandler:
         goto LAB_18089d378;
       }
     }
-    validationStatus = FUN_180769ed0(*validationContextPointer,auStack_68,1,4,0);
+    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,auStack_68,1,4,0);
   }
 ValidationErrorHandler4:
   if ((int)validationStatus == 0) {
@@ -28075,12 +28079,12 @@ ValidationErrorHandler4:
       return validationStatus;
     }
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      validationStatus = FUN_1808aed00(*param_2,lStack_60 + 0x48,2);
+      validationStatus = OperateDataO0(*param_2,lStack_60 + 0x48,2);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
       if (*(int *)(param_2[1] + 0x18) == 0) {
-        validationStatus = FUN_1808aed00(*param_2,dataContext + 0x4a,2);
+        validationStatus = OperateDataO0(*param_2,dataContext + 0x4a,2);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -28163,7 +28167,7 @@ ValidationDataHandler:
         goto LAB_18089d378;
       }
     }
-    validationStatus = FUN_180769ed0(*validationContextPointer,&stack0x00000030,1,4,0);
+    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x00000030,1,4,0);
   }
 ValidationErrorHandler4:
   if ((int)validationStatus == 0) {
@@ -28174,12 +28178,12 @@ ValidationErrorHandler4:
       return validationStatus;
     }
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      validationStatus = FUN_1808aed00(*registerContext,in_stack_00000038 + 0x48,2);
+      validationStatus = OperateDataO0(*registerContext,in_stack_00000038 + 0x48,2);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
       if (*(int *)(registerContext[1] + 0x18) == 0) {
-        validationStatus = FUN_1808aed00(*registerContext,dataContext + 0x4a,2);
+        validationStatus = OperateDataO0(*registerContext,dataContext + 0x4a,2);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -28248,7 +28252,7 @@ undefined8 ValidateDataIntegrityA1(longlong param_1,undefined8 *param_2)
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = FUN_1808aed00(*param_2,param_1 + 0xc,4);
+      uVar1 = OperateDataO0(*param_2,param_1 + 0xc,4);
       if ((int)uVar1 == 0) {
         uVar1 = FUN_1808de0e0(param_2,0);
       }
@@ -28275,7 +28279,7 @@ void ValidateDataParametersC0(longlong param_1,undefined8 *param_2)
       iVar1 = 0;
     }
     else if (*(int *)(param_2[1] + 0x18) == 0) {
-      iVar1 = FUN_1808aed00(*param_2,param_1 + 0x210,8);
+      iVar1 = OperateDataO0(*param_2,param_1 + 0x210,8);
     }
     else {
       iVar1 = 0x1c;
@@ -28286,7 +28290,7 @@ void ValidateDataParametersC0(longlong param_1,undefined8 *param_2)
         iVar1 = 0;
       }
       else if (*(int *)(param_2[1] + 0x18) == 0) {
-        iVar1 = FUN_1808aed00(*param_2,param_1 + 0x2f4,4);
+        iVar1 = OperateDataO0(*param_2,param_1 + 0x2f4,4);
       }
       else {
         iVar1 = 0x1c;
@@ -28296,7 +28300,7 @@ void ValidateDataParametersC0(longlong param_1,undefined8 *param_2)
           iVar1 = 0;
         }
         else if (*(int *)(param_2[1] + 0x18) == 0) {
-          iVar1 = FUN_1808aed00(*param_2,param_1 + 0x21c,4);
+          iVar1 = OperateDataO0(*param_2,param_1 + 0x21c,4);
         }
         else {
           iVar1 = 0x1c;
@@ -28335,7 +28339,7 @@ void CheckSystemStateC0(undefined4 param_1)
         iVar1 = 0;
       }
       else if (*(int *)(registerContext[1] + 0x18) == 0) {
-        iVar1 = FUN_1808aed00(*registerContext,unaff_RDI + 0x210,8);
+        iVar1 = OperateDataO0(*registerContext,unaff_RDI + 0x210,8);
       }
       else {
         iVar1 = 0x1c;
@@ -28346,7 +28350,7 @@ void CheckSystemStateC0(undefined4 param_1)
           iVar1 = 0;
         }
         else if (*(int *)(registerContext[1] + 0x18) == 0) {
-          iVar1 = FUN_1808aed00(*registerContext,unaff_RDI + 0x2f4,4);
+          iVar1 = OperateDataO0(*registerContext,unaff_RDI + 0x2f4,4);
         }
         else {
           iVar1 = 0x1c;
@@ -28356,7 +28360,7 @@ void CheckSystemStateC0(undefined4 param_1)
             iVar1 = 0;
           }
           else if (*(int *)(registerContext[1] + 0x18) == 0) {
-            iVar1 = FUN_1808aed00(*registerContext,unaff_RDI + 0x21c,4);
+            iVar1 = OperateDataO0(*registerContext,unaff_RDI + 0x21c,4);
           }
           else {
             iVar1 = 0x1c;
@@ -28407,12 +28411,12 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    validationStatus = FUN_1808aed00(*param_2,param_1 + 0xf0,4);
+    validationStatus = OperateDataO0(*param_2,param_1 + 0xf0,4);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar2 = FUN_1808aed00(*param_2,param_1 + 0xf8,4);
+      uVar2 = OperateDataO0(*param_2,param_1 + 0xf8,4);
       validationStatus = (ulonglong)uVar2;
       if (uVar2 == 0) {
         if (((*(uint *)(param_2 + 8) < 0x8a) && (*(int *)(param_1 + 0xf8) == 0)) ||
@@ -28442,7 +28446,7 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
             else {
               validationStatus = memoryBaseAddress;
               if (*(int *)(param_2[1] + 0x18) == 0) {
-                validationStatus = FUN_1808aed00(*param_2,param_1 + 0xf4,4);
+                validationStatus = OperateDataO0(*param_2,param_1 + 0xf4,4);
               }
             }
             if ((int)validationStatus == 0) {
@@ -28490,10 +28494,10 @@ ulonglong FUN_18089dd54(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = FUN_1808aed00(*registerContext,systemContext + 0xf0,4);
+  validationStatus = OperateDataO0(*registerContext,systemContext + 0xf0,4);
   if ((int)validationStatus == 0) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      uVar2 = FUN_1808aed00(*registerContext,systemContext + 0xf8,4);
+      uVar2 = OperateDataO0(*registerContext,systemContext + 0xf8,4);
       validationStatus = (ulonglong)uVar2;
       if (uVar2 == 0) {
         if (((*(uint *)(registerContext + 8) < 0x8a) && (*(int *)(systemContext + 0xf8) == 0)) ||
@@ -28523,7 +28527,7 @@ ulonglong FUN_18089dd54(void)
             else {
               validationStatus = memoryBaseAddress;
               if (*(int *)(registerContext[1] + 0x18) == 0) {
-                validationStatus = FUN_1808aed00(*registerContext,systemContext + 0xf4,4);
+                validationStatus = OperateDataO0(*registerContext,systemContext + 0xf4,4);
               }
             }
             if ((int)validationStatus == 0) {
@@ -28568,12 +28572,12 @@ ulonglong FUN_18089dd78(void)
   longlong systemContext;
   ulonglong memoryBaseAddress;
   
-  validationStatus = FUN_1808aed00(*registerContext,systemContext + 0xf0,4);
+  validationStatus = OperateDataO0(*registerContext,systemContext + 0xf0,4);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
   if (*(int *)(registerContext[1] + 0x18) == 0) {
-    uVar2 = FUN_1808aed00(*registerContext,systemContext + 0xf8,4);
+    uVar2 = OperateDataO0(*registerContext,systemContext + 0xf8,4);
     validationStatus = (ulonglong)uVar2;
     if (uVar2 == 0) {
       if (((*(uint *)(registerContext + 8) < 0x8a) && (*(int *)(systemContext + 0xf8) == 0)) ||
@@ -28603,7 +28607,7 @@ ulonglong FUN_18089dd78(void)
           else {
             validationStatus = memoryBaseAddress;
             if (*(int *)(registerContext[1] + 0x18) == 0) {
-              validationStatus = FUN_1808aed00(*registerContext,systemContext + 0xf4,4);
+              validationStatus = OperateDataO0(*registerContext,systemContext + 0xf4,4);
             }
           }
           if ((int)validationStatus == 0) {
@@ -28646,7 +28650,7 @@ ulonglong FUN_18089dda2(void)
   ulonglong memoryBaseAddress;
   
   if (*(int *)(registerContext[1] + 0x18) == 0) {
-    uVar2 = FUN_1808aed00(*registerContext,systemContext + 0xf8,4);
+    uVar2 = OperateDataO0(*registerContext,systemContext + 0xf8,4);
     validationStatus = (ulonglong)uVar2;
     if (uVar2 == 0) {
       if (((*(uint *)(registerContext + 8) < 0x8a) && (*(int *)(systemContext + 0xf8) == 0)) ||
@@ -28676,7 +28680,7 @@ ulonglong FUN_18089dda2(void)
           else {
             validationStatus = memoryBaseAddress;
             if (*(int *)(registerContext[1] + 0x18) == 0) {
-              validationStatus = FUN_1808aed00(*registerContext,systemContext + 0xf4,4);
+              validationStatus = OperateDataO0(*registerContext,systemContext + 0xf4,4);
             }
           }
           if ((int)validationStatus == 0) {
@@ -28727,7 +28731,7 @@ ulonglong FUN_18089de39(void)
       uVar2 = 0;
     }
     else if (*(int *)(registerContext[1] + 0x18) == 0) {
-      uVar2 = FUN_1808aed00(*registerContext,systemContext + 0xf4,4);
+      uVar2 = OperateDataO0(*registerContext,systemContext + 0xf4,4);
     }
     else {
       uVar2 = (ulonglong)unaff_EDI;
@@ -28766,7 +28770,7 @@ ulonglong FUN_18089de72(void)
     uVar1 = 0;
   }
   else if (*(int *)(registerContext[1] + 0x18) == 0) {
-    uVar1 = FUN_1808aed00(*registerContext,systemContext + 0xf4,4);
+    uVar1 = OperateDataO0(*registerContext,systemContext + 0xf4,4);
   }
   else {
     uVar1 = (ulonglong)unaff_EDI;
@@ -28821,10 +28825,10 @@ undefined8 ExecuteSystemCheckA1(longlong param_1,undefined8 *param_2)
       return 0x1c;
     }
     uVar1 = *param_2;
-    uVar2 = FUN_1808aed00(uVar1,param_1 + 0x4c,4);
-    if ((((int)uVar2 == 0) && (uVar2 = FUN_1808aed00(uVar1,param_1 + 0x50,2), (int)uVar2 == 0)) &&
-       (uVar2 = FUN_1808aed00(uVar1,param_1 + 0x52,2), (int)uVar2 == 0)) {
-      uVar2 = FUN_1808aed00(uVar1,param_1 + 0x54,8);
+    uVar2 = OperateDataO0(uVar1,param_1 + 0x4c,4);
+    if ((((int)uVar2 == 0) && (uVar2 = OperateDataO0(uVar1,param_1 + 0x50,2), (int)uVar2 == 0)) &&
+       (uVar2 = OperateDataO0(uVar1,param_1 + 0x52,2), (int)uVar2 == 0)) {
+      uVar2 = OperateDataO0(uVar1,param_1 + 0x54,8);
     }
     if ((int)uVar2 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -28866,10 +28870,10 @@ undefined8 ReturnFixedStatusCodeA1(void)
     return 0x1c;
   }
   uVar1 = *registerContext;
-  uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0x4c,4);
-  if ((((int)uVar2 == 0) && (uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0x50,2), (int)uVar2 == 0)) &&
-     (uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0x52,2), (int)uVar2 == 0)) {
-    uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0x54,8);
+  uVar2 = OperateDataO0(uVar1,unaff_RDI + 0x4c,4);
+  if ((((int)uVar2 == 0) && (uVar2 = OperateDataO0(uVar1,unaff_RDI + 0x50,2), (int)uVar2 == 0)) &&
+     (uVar2 = OperateDataO0(uVar1,unaff_RDI + 0x52,2), (int)uVar2 == 0)) {
+    uVar2 = OperateDataO0(uVar1,unaff_RDI + 0x54,8);
   }
   if ((int)uVar2 == 0) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
@@ -28906,13 +28910,13 @@ undefined8 ValidateSystemStatusA0(void)
   longlong unaff_RDI;
   
   uVar1 = *registerContext;
-  uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0x4c,4);
+  uVar2 = OperateDataO0(uVar1,unaff_RDI + 0x4c,4);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0x50,2);
+    uVar2 = OperateDataO0(uVar1,unaff_RDI + 0x50,2);
     if ((int)uVar2 == 0) {
-      uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0x52,2);
+      uVar2 = OperateDataO0(uVar1,unaff_RDI + 0x52,2);
       if ((int)uVar2 == 0) {
-        uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0x54,8);
+        uVar2 = OperateDataO0(uVar1,unaff_RDI + 0x54,8);
       }
     }
   }
@@ -29059,7 +29063,7 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = FUN_1808aed00(*param_2,param_1 + 0x44,4);
+  uVar2 = OperateDataO0(*param_2,param_1 + 0x44,4);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -29120,7 +29124,7 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*validationContextPointer,auStackX_20,1,4,0);
+    uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,auStackX_20,1,4,0);
   }
 ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
@@ -29165,7 +29169,7 @@ ulonglong FUN_18089e297(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = FUN_1808aed00(*registerContext,systemContext + 0x44,4);
+  uVar2 = OperateDataO0(*registerContext,systemContext + 0x44,4);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -29224,7 +29228,7 @@ ulonglong FUN_18089e297(void)
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x000000b8,1,4,0);
+    uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x000000b8,1,4,0);
   }
 ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
@@ -29265,7 +29269,7 @@ ulonglong FUN_18089e2be(void)
   uint in_stack_000000b0;
   uint in_stack_000000b8;
   
-  uVar2 = FUN_1808aed00(*registerContext,systemContext + 0x44,4);
+  uVar2 = OperateDataO0(*registerContext,systemContext + 0x44,4);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -29324,7 +29328,7 @@ ulonglong FUN_18089e2be(void)
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x000000b8,1,4,0);
+    uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x000000b8,1,4,0);
   }
 ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
@@ -29420,7 +29424,7 @@ ulonglong FUN_18089e2e8(void)
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x000000b8,1,4,0);
+    uVar2 = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x000000b8,1,4,0);
   }
 ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
@@ -29489,19 +29493,19 @@ ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
     if (*(uint *)(param_2 + 8) < 0x6d) {
       if (*(int *)(param_2[1] + 0x18) == 0) {
         uVar2 = *param_2;
-        memoryBaseAddress = FUN_1808aed00(uVar2,&uStack_78,4);
+        memoryBaseAddress = OperateDataO0(uVar2,&uStack_78,4);
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
-        memoryBaseAddress = FUN_1808aed00(uVar2,&uStack_74,2);
+        memoryBaseAddress = OperateDataO0(uVar2,&uStack_74,2);
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
-        memoryBaseAddress = FUN_1808aed00(uVar2,(longlong)&uStack_74 + 2,2);
+        memoryBaseAddress = OperateDataO0(uVar2,(longlong)&uStack_74 + 2,2);
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
-        memoryBaseAddress = FUN_1808aed00(uVar2,&uStack_70,8);
+        memoryBaseAddress = OperateDataO0(uVar2,&uStack_70,8);
       }
       else {
         memoryBaseAddress = 0x1c;
@@ -29600,19 +29604,19 @@ ulonglong FUN_18089e558(void)
   if (operationResult < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       uVar1 = *unaff_RDI;
-      securityCheckResult = FUN_1808aed00(uVar1,unaff_RBP + -0x19,4);
+      securityCheckResult = OperateDataO0(uVar1,unaff_RBP + -0x19,4);
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
       }
-      securityCheckResult = FUN_1808aed00(uVar1,unaff_RBP + -0x15,2);
+      securityCheckResult = OperateDataO0(uVar1,unaff_RBP + -0x15,2);
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
       }
-      securityCheckResult = FUN_1808aed00(uVar1,unaff_RBP + -0x13,2);
+      securityCheckResult = OperateDataO0(uVar1,unaff_RBP + -0x13,2);
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
       }
-      securityCheckResult = FUN_1808aed00(uVar1,unaff_RBP + -0x11,8);
+      securityCheckResult = OperateDataO0(uVar1,unaff_RBP + -0x11,8);
       uVar11 = extraout_XMM0_Da;
     }
     else {
@@ -29796,16 +29800,16 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
     return 0x1c;
   }
   validationContext = *param_2;
-  validationStatus = FUN_1808aed00(validationContext,param_1 + 0x10,4);
+  validationStatus = OperateDataO0(validationContext,param_1 + 0x10,4);
   memoryBaseAddress = (ulonglong)validationStatus;
   if (validationStatus == 0) {
-    validationStatus = FUN_1808aed00(validationContext,param_1 + 0x14,2);
+    validationStatus = OperateDataO0(validationContext,param_1 + 0x14,2);
     memoryBaseAddress = (ulonglong)validationStatus;
     if (validationStatus == 0) {
-      validationStatus = FUN_1808aed00(validationContext,param_1 + 0x16,2);
+      validationStatus = OperateDataO0(validationContext,param_1 + 0x16,2);
       memoryBaseAddress = (ulonglong)validationStatus;
       if (validationStatus == 0) {
-        validationStatus = FUN_1808aed00(validationContext,param_1 + 0x18,8);
+        validationStatus = OperateDataO0(validationContext,param_1 + 0x18,8);
         memoryBaseAddress = (ulonglong)validationStatus;
       }
     }
@@ -29820,14 +29824,14 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = FUN_1808aed00(*param_2,param_1 + 0x30,4);
+  validationStatus = OperateDataO0(*param_2,param_1 + 0x30,4);
   if (validationStatus != 0) {
     return (ulonglong)validationStatus;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = FUN_1808aed00(*param_2,param_1 + 0x34);
+  validationStatus = OperateDataO0(*param_2,param_1 + 0x34);
   if (validationStatus != 0) {
     return (ulonglong)validationStatus;
   }
@@ -29857,7 +29861,7 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
   }
   else if (pdataContext[2] == 0) {
 ValidationStartHandler:
-    memoryBaseAddress = FUN_180769ed0(*pdataContext,auStack_a0,1,4,0);
+    memoryBaseAddress = ValidateDataAndReturnStatusO3(*pdataContext,auStack_a0,1,4,0);
   }
   else {
     auStackX_18[0] = 0;
@@ -29890,7 +29894,7 @@ ValidationErrorHandler6:
       else {
         if (pdataContext[2] == 0) {
 ValidationStateHandler2:
-          validationStatus = FUN_180769ed0(*pdataContext,acStack_a8,1,1,0);
+          validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
           goto LAB_18089eaae;
         }
         uStack_a4 = 0;
@@ -29925,7 +29929,7 @@ ValidationStateHandler2:
       }
       else if (pdataContext[2] == 0) {
 ValidationDataHandler2:
-        validationStatus = FUN_180769ed0(*pdataContext,acStack_a8,1,1,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
       }
       else {
         uStack_a4 = 0;
@@ -29959,7 +29963,7 @@ ValidationDataHandler2:
       }
       else if (pdataContext[2] == 0) {
 ValidationStateHandler3:
-        validationStatus = FUN_180769ed0(*pdataContext,acStack_a8,1,1,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
       }
       else {
         uStack_a4 = 0;
@@ -29993,7 +29997,7 @@ ValidationStateHandler3:
       }
       else if (pdataContext[2] == 0) {
 LAB_18089ec32:
-        validationStatus = FUN_180769ed0(*pdataContext,acStack_a8,1,1,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
       }
       else {
         uStack_a4 = 0;
@@ -30025,7 +30029,7 @@ LAB_18089ec32:
       }
       else if (pdataContext[2] == 0) {
 LAB_18089ecba:
-        validationStatus = FUN_180769ed0(*pdataContext,acStack_a8,1,1,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
       }
       else {
         uStack_a4 = 0;
@@ -30058,7 +30062,7 @@ LAB_18089ecba:
 LAB_18089ed1b:
   memoryBaseAddress = 0;
   if ((0x7e < validationStatus) && (memoryBaseAddress = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
-    validationStatus = FUN_1808aed00(*param_2,param_1 + 0x38,4);
+    validationStatus = OperateDataO0(*param_2,param_1 + 0x38,4);
     memoryBaseAddress = (ulonglong)validationStatus;
   }
   if ((int)memoryBaseAddress == 0) {
@@ -30091,16 +30095,16 @@ ulonglong FUN_18089e87d(void)
     return 0x1c;
   }
   validationContext = *unaff_RDI;
-  validationStatus = FUN_1808aed00(validationContext,unaff_R15 + 0x10,unaff_R12D + 3);
+  validationStatus = OperateDataO0(validationContext,unaff_R15 + 0x10,unaff_R12D + 3);
   memoryBaseAddress = (ulonglong)validationStatus;
   if (validationStatus == 0) {
-    validationStatus = FUN_1808aed00(validationContext,unaff_R15 + 0x14,unaff_R12D + 1);
+    validationStatus = OperateDataO0(validationContext,unaff_R15 + 0x14,unaff_R12D + 1);
     memoryBaseAddress = (ulonglong)validationStatus;
     if (validationStatus == 0) {
-      validationStatus = FUN_1808aed00(validationContext,unaff_R15 + 0x16,unaff_R12D + 1);
+      validationStatus = OperateDataO0(validationContext,unaff_R15 + 0x16,unaff_R12D + 1);
       memoryBaseAddress = (ulonglong)validationStatus;
       if (validationStatus == 0) {
-        validationStatus = FUN_1808aed00(validationContext,unaff_R15 + 0x18,unaff_R12D + 7);
+        validationStatus = OperateDataO0(validationContext,unaff_R15 + 0x18,unaff_R12D + 7);
         memoryBaseAddress = (ulonglong)validationStatus;
       }
     }
@@ -30115,14 +30119,14 @@ ulonglong FUN_18089e87d(void)
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = FUN_1808aed00(*unaff_RDI,unaff_R15 + 0x30,4);
+  validationStatus = OperateDataO0(*unaff_RDI,unaff_R15 + 0x30,4);
   if (validationStatus != 0) {
     return (ulonglong)validationStatus;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = FUN_1808aed00(*unaff_RDI,unaff_R15 + 0x34);
+  validationStatus = OperateDataO0(*unaff_RDI,unaff_R15 + 0x34);
   if (validationStatus != 0) {
     return (ulonglong)validationStatus;
   }
@@ -30153,7 +30157,7 @@ ulonglong FUN_18089e87d(void)
   }
   else if (pdataContext[2] == 0) {
 ValidationStartHandler:
-    memoryBaseAddress = FUN_180769ed0(*pdataContext,unaff_RBP + -0x41,unaff_R12D,4,0);
+    memoryBaseAddress = ValidateDataAndReturnStatusO3(*pdataContext,unaff_RBP + -0x41,unaff_R12D,4,0);
   }
   else {
     *(undefined4 *)(unaff_RBP + 0x77) = 0;
@@ -30187,7 +30191,7 @@ ValidationErrorHandler6:
       else {
         if (pdataContext[2] == 0) {
 ValidationStateHandler2:
-          validationStatus = FUN_180769ed0(*pdataContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
+          validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
           goto LAB_18089eaae;
         }
         *(undefined4 *)(unaff_RBP + -0x45) = 0;
@@ -30223,7 +30227,7 @@ ValidationStateHandler2:
       }
       else if (pdataContext[2] == 0) {
 ValidationDataHandler2:
-        validationStatus = FUN_180769ed0(*pdataContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x45) = 0;
@@ -30259,7 +30263,7 @@ ValidationDataHandler2:
       }
       else if (pdataContext[2] == 0) {
 ValidationStateHandler3:
-        validationStatus = FUN_180769ed0(*pdataContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x45) = 0;
@@ -30295,7 +30299,7 @@ ValidationStateHandler3:
       }
       else if (pdataContext[2] == 0) {
 LAB_18089ec32:
-        validationStatus = FUN_180769ed0(*pdataContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x45) = 0;
@@ -30331,7 +30335,7 @@ LAB_18089ec32:
       }
       else if (pdataContext[2] == 0) {
 LAB_18089ecba:
-        validationStatus = FUN_180769ed0(*pdataContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x45) = 0;
@@ -30366,7 +30370,7 @@ LAB_18089ecba:
 LAB_18089ed1b:
   memoryBaseAddress = 0;
   if ((0x7e < validationStatus) && (memoryBaseAddress = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
-    validationStatus = FUN_1808aed00(*unaff_RDI,unaff_R15 + 0x38,4);
+    validationStatus = OperateDataO0(*unaff_RDI,unaff_R15 + 0x38,4);
     memoryBaseAddress = (ulonglong)validationStatus;
   }
   if ((int)memoryBaseAddress == 0) {
@@ -30408,7 +30412,7 @@ ulonglong FUN_18089e9af(undefined8 param_1,undefined8 param_2,ulonglong param_3)
   else {
     if (validationContextPointer[2] == param_3) {
 ValidationStartHandler:
-      memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x41,unaff_R12D,4,param_3);
+      memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + -0x41,unaff_R12D,4,param_3);
     }
     else {
       *(int *)(unaff_RBP + 0x77) = (int)param_3;
@@ -30450,7 +30454,7 @@ ValidationErrorHandler6:
     else {
       if (validationContextPointer[2] == 0) {
 ValidationStateHandler2:
-        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
         goto LAB_18089eaae;
       }
       *(int *)(unaff_RBP + -0x45) = (int)param_3;
@@ -30488,7 +30492,7 @@ ValidationStateHandler2:
     else {
       if (validationContextPointer[2] == 0) {
 ValidationDataHandler2:
-        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
@@ -30531,7 +30535,7 @@ ValidationErrorHandler7:
     else {
       if (validationContextPointer[2] == 0) {
 ValidationStateHandler3:
-        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
@@ -30574,7 +30578,7 @@ ValidationErrorHandler8:
     else {
       if (validationContextPointer[2] == 0) {
 LAB_18089ec32:
-        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
@@ -30617,7 +30621,7 @@ LAB_18089ec4c:
     else {
       if (validationContextPointer[2] == 0) {
 LAB_18089ecba:
-        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
@@ -30659,7 +30663,7 @@ LAB_18089ed1b:
     operationResult = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    validationStatus = FUN_1808aed00(*unaff_RDI,unaff_R15 + 0x38,4);
+    validationStatus = OperateDataO0(*unaff_RDI,unaff_R15 + 0x38,4);
     operationResult = (ulonglong)validationStatus;
   }
   if ((int)operationResult != 0) {
@@ -30709,10 +30713,10 @@ undefined8 ProcessDataCollectionA1(longlong param_1,undefined8 *param_2)
       return 0x1c;
     }
     uVar1 = *param_2;
-    uVar2 = FUN_1808aed00(uVar1,param_1 + 0xdc,4);
-    if ((((int)uVar2 == 0) && (uVar2 = FUN_1808aed00(uVar1,param_1 + 0xe0,2), (int)uVar2 == 0)) &&
-       (uVar2 = FUN_1808aed00(uVar1,param_1 + 0xe2,2), (int)uVar2 == 0)) {
-      uVar2 = FUN_1808aed00(uVar1,param_1 + 0xe4,8);
+    uVar2 = OperateDataO0(uVar1,param_1 + 0xdc,4);
+    if ((((int)uVar2 == 0) && (uVar2 = OperateDataO0(uVar1,param_1 + 0xe0,2), (int)uVar2 == 0)) &&
+       (uVar2 = OperateDataO0(uVar1,param_1 + 0xe2,2), (int)uVar2 == 0)) {
+      uVar2 = OperateDataO0(uVar1,param_1 + 0xe4,8);
     }
     if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
@@ -30737,13 +30741,13 @@ undefined8 ReturnFixedStatusCodeA2(void)
     return 0x1c;
   }
   uVar1 = *registerContext;
-  uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0xdc,4);
+  uVar2 = OperateDataO0(uVar1,unaff_RDI + 0xdc,4);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0xe0,2);
+    uVar2 = OperateDataO0(uVar1,unaff_RDI + 0xe0,2);
     if ((int)uVar2 == 0) {
-      uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0xe2,2);
+      uVar2 = OperateDataO0(uVar1,unaff_RDI + 0xe2,2);
       if ((int)uVar2 == 0) {
-        uVar2 = FUN_1808aed00(uVar1,unaff_RDI + 0xe4,8);
+        uVar2 = OperateDataO0(uVar1,unaff_RDI + 0xe4,8);
       }
     }
   }
@@ -30767,13 +30771,13 @@ void ValidateSystemConfigurationC1(void)
   longlong unaff_RDI;
   
   uVar1 = *registerContext;
-  operationResult = FUN_1808aed00(uVar1,unaff_RDI + 0xdc,4);
+  operationResult = OperateDataO0(uVar1,unaff_RDI + 0xdc,4);
   if (operationResult == 0) {
-    operationResult = FUN_1808aed00(uVar1,unaff_RDI + 0xe0,2);
+    operationResult = OperateDataO0(uVar1,unaff_RDI + 0xe0,2);
     if (operationResult == 0) {
-      operationResult = FUN_1808aed00(uVar1,unaff_RDI + 0xe2,2);
+      operationResult = OperateDataO0(uVar1,unaff_RDI + 0xe2,2);
       if (operationResult == 0) {
-        operationResult = FUN_1808aed00(uVar1,unaff_RDI + 0xe4,8);
+        operationResult = OperateDataO0(uVar1,unaff_RDI + 0xe4,8);
       }
     }
   }
@@ -50960,7 +50964,7 @@ void Unwind_180906950(undefined8 param_1,longlong param_2)
 void Unwind_180906960(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x58) + 0x38))();
   }
@@ -51012,7 +51016,7 @@ void Unwind_1809069a0(undefined8 param_1,longlong param_2)
 void Unwind_1809069b0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 0x48) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x48) + 0x38))();
   }
@@ -51136,7 +51140,7 @@ void Unwind_180906a30(undefined8 param_1,longlong param_2)
 void Unwind_180906a40(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 0x90) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x90) + 0x38))();
   }
@@ -51184,7 +51188,7 @@ void Unwind_180906a70(undefined8 param_1,longlong param_2)
 void Unwind_180906a80(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 200) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 200) + 0x38))();
   }
@@ -51243,7 +51247,7 @@ void Unwind_180906ad0(undefined8 param_1,longlong param_2)
 void Unwind_180906ae0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 0x50) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x50) + 0x38))();
   }
@@ -51453,7 +51457,7 @@ void Unwind_180906b80(undefined8 param_1,longlong param_2)
 void Unwind_180906b90(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x58) + 0x38))();
   }
@@ -51643,7 +51647,7 @@ void SetDefaultExceptionHandlerB(void)
 void ExecuteExceptionCallbackA(undefined8 exceptionContext, longlong callbackContext)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(callbackContext + 0x60) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(callbackContext + 0x60) + 0x38))();
   }
@@ -52611,7 +52615,7 @@ void Unwind_180906e30(undefined8 param_1,longlong param_2)
 void Unwind_180906e40(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 0xd0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0xd0) + 0x38))();
   }
@@ -52855,7 +52859,7 @@ void Unwind_180906f50(undefined8 param_1,longlong param_2)
 void Unwind_180906f60(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x40) + 0x38))();
   }
@@ -58030,7 +58034,7 @@ void Unwind_180908990(undefined8 param_1,longlong param_2)
 void Unwind_1809089a0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 0x98) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x98) + 0x38))();
   }
@@ -66745,7 +66749,7 @@ void Unwind_18090bdc0(undefined8 param_1,longlong param_2)
 void Unwind_18090bdd0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 0x80) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x80) + 0x38))();
   }
@@ -66818,7 +66822,7 @@ void Unwind_18090be30(undefined8 param_1,longlong param_2)
 void Unwind_18090be40(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 0x88) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x88) + 0x38))();
   }
@@ -66962,7 +66966,7 @@ void Unwind_18090bf80(undefined8 param_1,longlong param_2)
 void Unwind_18090bf90(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  InitializeSystemResourcesI0();
   if (*(longlong **)(param_2 + 0x60) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x60) + 0x38))();
   }
@@ -93158,5 +93162,95 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
  * @note 原始函数名：Unwind_1809060e0
  */
 #define DestroyMutexE Unwind_1809060e0
+
+/**
+ * @brief 清理异常状态偏移量112
+ * 
+ * 该函数用于清理异常状态偏移量为112的资源
+ * 
+ * @note 原始函数名：Unwind_1809064a0
+ */
+#define CleanupExceptionAtOffset112 Unwind_1809064a0
+
+/**
+ * @brief 清理异常状态偏移量130
+ * 
+ * 该函数用于清理异常状态偏移量为130的资源
+ * 
+ * @note 原始函数名：Unwind_1809064b0
+ */
+#define CleanupExceptionAtOffset130 Unwind_1809064b0
+
+/**
+ * @brief 清理异常状态偏移量144
+ * 
+ * 该函数用于清理异常状态偏移量为144的资源
+ * 
+ * @note 原始函数名：Unwind_1809064c0
+ */
+#define CleanupExceptionAtOffset144 Unwind_1809064c0
+
+/**
+ * @brief 清理异常状态偏移量160
+ * 
+ * 该函数用于清理异常状态偏移量为160的资源
+ * 
+ * @note 原始函数名：Unwind_1809064d0
+ */
+#define CleanupExceptionAtOffset160 Unwind_1809064d0
+
+/**
+ * @brief 清理异常状态偏移量176
+ * 
+ * 该函数用于清理异常状态偏移量为176的资源
+ * 
+ * @note 原始函数名：Unwind_1809064e0
+ */
+#define CleanupExceptionAtOffset176 Unwind_1809064e0
+
+/**
+ * @brief 清理异常状态偏移量192
+ * 
+ * 该函数用于清理异常状态偏移量为192的资源
+ * 
+ * @note 原始函数名：Unwind_1809064f0
+ */
+#define CleanupExceptionAtOffset192 Unwind_1809064f0
+
+/**
+ * @brief 清理异常状态偏移量208
+ * 
+ * 该函数用于清理异常状态偏移量为208的资源
+ * 
+ * @note 原始函数名：Unwind_180906500
+ */
+#define CleanupExceptionAtOffset208 Unwind_180906500
+
+/**
+ * @brief 清理异常状态偏移量224
+ * 
+ * 该函数用于清理异常状态偏移量为224的资源
+ * 
+ * @note 原始函数名：Unwind_180906510
+ */
+#define CleanupExceptionAtOffset224 Unwind_180906510
+
+/**
+ * @brief 清理异常状态偏移量240
+ * 
+ * 该函数用于清理异常状态偏移量为240的资源
+ * 
+ * @note 原始函数名：Unwind_180906520
+ */
+#define CleanupExceptionAtOffset240 Unwind_180906520
+
+/**
+ * @brief 清理异常状态偏移量256
+ * 
+ * 该函数用于清理异常状态偏移量为256的资源
+ * 
+ * @note 原始函数名：Unwind_180906530
+ */
+#define CleanupExceptionAtOffset256 Unwind_180906530
 
 
