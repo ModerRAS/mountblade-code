@@ -22751,7 +22751,7 @@ InitializeSystemSyncObject(void** SyncObject, void* SyncContextParameter, void* 
   SyncObject[3] = MAX_UINT64_VALUE;
   *SyncObject = &SystemMutexTemplate;
   _Cnd_init_in_situ(SyncObject + 4);
-  _Mtx_init_in_situ(SyncObject + 0xd, 2, SyncConfigurationParameter, SyncSecurityParameter, SystemErrorFlag);
+  _Mtx_init_in_situ(SyncObject + 0xd, 2, SyncConfigurationParameter, SyncSecurityParameter, SystemErrorHandle);
   *(uint8_t *)(SyncObject + 0x17) = 0;
   return SyncObject;
 }
