@@ -9354,7 +9354,7 @@ void ProcessUtilityDataStructure(longlong dataStructurePointer,longlong contextP
       }
       previousNodePointer = dataNodePointer + 2;
       if (dataNodePointer == (longlong *)0x0) {
-        previousNodePointer = (longlong *)&DAT_00000018;
+        previousNodePointer = (longlong *)&DefaultDataNodePointer;
       }
       dataNodePointer = nextNodePointer;
     } while ((*previousNodePointer == 0) || (validationResult = CheckSystemStateCW0(contextPointer), validationResult == 0));
