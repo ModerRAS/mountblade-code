@@ -100028,7 +100028,16 @@ void ReleaseResourceContextOffset0x60(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_180910270(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放SRW锁排他锁处理器
+ * 
+ * 该函数用于释放SRW（Slim Reader-Writer）锁的排他锁
+ * 确保线程同步资源的正确释放
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ReleaseSRWLockExclusiveHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(char *)(*(uint8_t **)(ValidationContext + 0x40) + 1) != '\0') {
@@ -100039,7 +100048,16 @@ void Unwind_180910270(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910280(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清除资源标志并清理内存
+ * 
+ * 该函数用于清除资源标志并执行系统内存清理操作
+ * 确保资源被正确释放和内存被回收
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearResourceFlagAndCleanupMemory(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
