@@ -92503,73 +92503,143 @@ void ExecuteSystemResourceCleanup(undefined8 param_1,undefined8 param_2,undefine
 
 
 
-942b30(void)
-void FUN_180942b30(void)
+/**
+ * @brief 清理系统资源A0
+ * 
+ * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 
+ * @note 原始函数名：FUN_180942b30
+ */
+#define CleanupSystemResourceA0 FUN_180942b30
 
+void CleanupSystemResourceA0(void)
 {
-  if (DAT_180c95ef0 != '\0') {
-    FUN_1804a6ec0();
+  if (SystemResourceCleanupFlagA0 != '\0') {
+    ExecuteResourceCleanupA0();
+  }
+}
 
-942b80(void)
-void FUN_180942b80(void)
+/**
+ * @brief 清理系统资源A1
+ * 
+ * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 
+ * @note 原始函数名：FUN_180942b80
+ */
+#define CleanupSystemResourceA1 FUN_180942b80
 
+void CleanupSystemResourceA1(void)
 {
-  if (DAT_180c96008 != '\0') {
-    FUN_180552e70(_DAT_180c95ff0);
-    _DAT_180c95ff0 = 0;
+  if (SystemResourceCleanupFlagA1 != '\0') {
+    ReleaseMemoryResourceA0(SystemResourcePointerA0);
+    SystemResourcePointerA0 = 0;
+  }
+}
 
-942bb0(void)
-void FUN_180942bb0(void)
+/**
+ * @brief 清理系统资源A2
+ * 
+ * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 
+ * @note 原始函数名：FUN_180942bb0
+ */
+#define CleanupSystemResourceA2 FUN_180942bb0
 
+void CleanupSystemResourceA2(void)
 {
-  if (DAT_180c96028 != '\0') {
-    if (_DAT_180c96010 != 0) {
+  if (SystemResourceCleanupFlagA2 != '\0') {
+    if (SystemResourcePointerA1 != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    _DAT_180c96010 = 0;
+    SystemResourcePointerA1 = 0;
+  }
+}
 
-942bf0(void)
-void FUN_180942bf0(void)
+/**
+ * @brief 清理系统资源A3
+ * 
+ * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 
+ * @note 原始函数名：FUN_180942bf0
+ */
+#define CleanupSystemResourceA3 FUN_180942bf0
 
+void CleanupSystemResourceA3(void)
 {
-  if (DAT_180c96048 != '\0') {
-    FUN_180555430(_DAT_180c96030);
-    _DAT_180c96030 = 0;
+  if (SystemResourceCleanupFlagA3 != '\0') {
+    ReleaseMemoryResourceA0(SystemResourcePointerA2);
+    SystemResourcePointerA2 = 0;
+  }
+}
 
-942c20(void)
-void FUN_180942c20(void)
+/**
+ * @brief 清理系统资源A4
+ * 
+ * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 
+ * @note 原始函数名：FUN_180942c20
+ */
+#define CleanupSystemResourceA4 FUN_180942c20
 
+void CleanupSystemResourceA4(void)
 {
-  if (DAT_180c96068 != '\0') {
-    FUN_180555430(_DAT_180c96050);
-    _DAT_180c96050 = 0;
+  if (SystemResourceCleanupFlagA4 != '\0') {
+    ReleaseMemoryResourceA0(SystemResourcePointerA3);
+    SystemResourcePointerA3 = 0;
+  }
+}
 
-942c50(void)
-void FUN_180942c50(void)
+/**
+ * @brief 清理系统资源A5
+ * 
+ * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 
+ * @note 原始函数名：FUN_180942c50
+ */
+#define CleanupSystemResourceA5 FUN_180942c50
 
+void CleanupSystemResourceA5(void)
 {
-  if (DAT_180c96098 != '\0') {
-    FUN_180057830();
-    if (_DAT_180c96070 != (longlong *)0x0) {
-      (**(code **)(*_DAT_180c96070 + 0x38))();
+  if (SystemResourceCleanupFlagA5 != '\0') {
+    ExecuteSystemCleanupA0();
+    if (SystemResourcePointerA4 != (longlong *)0x0) {
+      (**(code **)(*SystemResourcePointerA4 + 0x38))();
     }
+  }
+}
 
-942cb0(void)
-void FUN_180942cb0(void)
+/**
+ * @brief 清理系统资源A6
+ * 
+ * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 
+ * @note 原始函数名：FUN_180942cb0
+ */
+#define CleanupSystemResourceA6 FUN_180942cb0
 
+void CleanupSystemResourceA6(void)
 {
-  if (DAT_180c960b8 != '\0') {
-    FUN_18055a350(_DAT_180c960a0);
-    _DAT_180c960a0 = 0;
+  if (SystemResourceCleanupFlagA6 != '\0') {
+    ReleaseMemoryResourceA1(SystemResourcePointerA5);
+    SystemResourcePointerA5 = 0;
+  }
+}
 
-942ce0(void)
-void FUN_180942ce0(void)
+/**
+ * @brief 清理系统资源A7
+ * 
+ * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 
+ * @note 原始函数名：FUN_180942ce0
+ */
+#define CleanupSystemResourceA7 FUN_180942ce0
 
+void CleanupSystemResourceA7(void)
 {
-  if (DAT_180c96100 != '\0') {
-    FUN_1804a5b60();
-    FUN_1804a5b00(&DAT_180c960c0);
+  if (SystemResourceCleanupFlagA7 != '\0') {
+    ExecuteThreadCleanupA0();
+    ExecuteThreadCleanupA1(&SystemResourceDataBufferA0);
 
 /**
  * @brief 执行系统验证和清理操作
