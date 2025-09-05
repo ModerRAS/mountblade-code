@@ -49932,17 +49932,17 @@ void CleanupExceptionAtOffset16(undefined8 exceptionContext,longlong systemState
 
 
 
-void Unwind_1809062b0(undefined8 param_1,longlong param_2)
+void InitializeExceptionHandlerB(undefined8 exceptionHandler,longlong systemContext)
 
 {
-  *(undefined8 *)(param_2 + 0xb0) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0xb8) != 0) {
+  *(undefined8 *)(systemContext + 0xb0) = &TemporaryExceptionHandler;
+  if (*(longlong *)(systemContext + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0xb8) = 0;
-  *(undefined4 *)(param_2 + 200) = 0;
-  *(undefined8 *)(param_2 + 0xb0) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(systemContext + 0xb8) = 0;
+  *(undefined4 *)(systemContext + 200) = 0;
+  *(undefined8 *)(systemContext + 0xb0) = &DefaultExceptionHandlerB;
   return;
 }
 
