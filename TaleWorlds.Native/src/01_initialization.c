@@ -28334,7 +28334,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   void* *pSystemStackFlag;
   void* SystemResourceHandlePrimary;
   int SystemOperationMaximum;
-  uint8_t SystemStackBufferE8 [16];
+  uint8_t SystemStackBufferValidation [16];
   void* *systemDataPointer;
   void* SystemResourceHandleSecondary;
   int IntegerStackC8;
@@ -28342,7 +28342,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   
   CalculationFlagsExtended = 0xfffffffffffffffe;
   ConcatenatedSystemValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemThreadStackSize;
-  CopySystemDataStructure(SystemStackBufferE8,
+  CopySystemDataStructure(SystemStackBufferValidation,
                 (long long)*(int *)(SystemTextureManagerPointer + 0x1d40) * 0xd0 +
                 *(long long *)(SystemTextureManagerPointer + 0x1d20));
   SetupSystemProcessingBuffer(&pSystemStackFlag);
@@ -59744,9 +59744,9 @@ void SystemNoOperationA(void)
          BaseValue * InterpolationFactorA + floatValue6 * FloatVectorThirdComponent + MatrixElement2 * FloatVectorNinthComponent + FloatParameterBuffer[0xe];
     FloatTransformDC =
          BaseValue * InterpolationFactorW + floatValue6 * FloatVectorFourthComponent + MatrixElement2 * FloatVectorTenthComponent + FloatParameterBuffer[0xf];
-    FloatParameterBuffer39 = &SystemStackBufferA0;
+    FloatParameterBuffer39 = &SystemStackBufferSecondary;
   }
-  ConfigureSystemResourceBuffer(&SystemStackBuffer60,ResourceMemoryOffset4 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),FloatParameterBuffer39);
+  ConfigureSystemResourceBuffer(&SystemStackBufferPrimary,ResourceMemoryOffset4 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),FloatParameterBuffer39);
   resourceCreationFlagsSecondary = ThreadCreationParameter;
   resourceCreationFlags7 = FinalParameter;
   NetworkConnectionFlags = DebugInformation;
@@ -59880,7 +59880,7 @@ void CleanupGlobalSystemResources(void)
   uint32_t StackParameterG;
   uint32_t StackParameterH;
   uint32_t ConfigurationParameter70;
-  long long ConfigurationParameter78;
+  long long SystemConfigurationParameter;
   float *FloatParameterBuffer;
   void* StackParameterI;
   long long ConfigurationParameter90;
@@ -59892,7 +59892,7 @@ void CleanupGlobalSystemResources(void)
     isOperationComplete0 = CheckSystemStatus();
     *(byte *)(ResourceMemoryOffset3 + 0x38c) = isOperationComplete0;
   }
-  SystemThreadHandle9 = ConfigurationParameter78;
+  SystemThreadHandle9 = SystemConfigurationParameter;
   ResourceMemoryOffset3 = *(long long *)(ResourceMemoryOffset5 + 0x1e0);
   *systemDataIndexPtr = *(void* *)(ResourceMemoryOffset3 + (ulong long)isOperationComplete0 * 0x18);
   systemDataIndexPtr[1] = *(void* *)(ResourceMemoryOffset3 + 8 + (ulong long)isOperationComplete0 * 0x18);
@@ -59982,41 +59982,41 @@ void CleanupGlobalSystemResources(void)
     MagnitudeSquared = FloatParameterBuffer[8];
     FloatVectorNinthComponent = FloatParameterBuffer[9];
     FloatVectorTenthComponent = FloatParameterBuffer[10];
-    FloatTransformValue1 = *(float *)(MemoryBlockAddress + 0x124);
-    FloatTransformValue2 = *(float *)(MemoryBlockAddress + 0x120);
-    FloatTransformValue3 = *(float *)(MemoryBlockAddress + 0x128);
-    FloatTransformValue4 = *(float *)(MemoryBlockAddress + 0x134);
-    FloatTransformValue5 = *(float *)(MemoryBlockAddress + 0x130);
-    FloatTransformA0 = FloatTransformValue1 * InterpolationFactorX + FloatTransformValue2 * FloatVectorFirstComponent + FloatTransformValue3 * InterpolationFactorW;
-    FloatTransformA4 = FloatTransformValue1 * InterpolationFactorY + FloatTransformValue2 * FloatVectorSecondComponent + FloatTransformValue3 * MagnitudeSquared;
-    FloatTransformA8 = FloatTransformValue1 * InterpolationFactorA + FloatTransformValue2 * FloatVectorThirdComponent + FloatTransformValue3 * FloatVectorNinthComponent;
-    FloatTransformAC = FloatTransformValue1 * InterpolationFactorW + FloatTransformValue2 * FloatVectorFourthComponent + FloatTransformValue3 * FloatVectorTenthComponent;
-    FloatTransformValue6 = *(float *)(MemoryBlockAddress + 0x138);
-    FloatTransformValue7 = *(float *)(MemoryBlockAddress + 0x140);
-    FloatTransformValue8 = *(float *)(MemoryBlockAddress + 0x144);
-    FloatTransformB0 = FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorFirstComponent + FloatTransformValue6 * InterpolationFactorW;
-    FloatTransformB4 = FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue6 * MagnitudeSquared;
-    FloatTransformB8 = FloatTransformValue4 * InterpolationFactorA + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue6 * FloatVectorNinthComponent;
-    FloatTransformBC = FloatTransformValue4 * InterpolationFactorW + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent;
-    FloatTransformValue6 = *(float *)(MemoryBlockAddress + 0x148);
-    FloatTransformValue4 = *(float *)(MemoryBlockAddress + 0x154);
-    FloatTransformValue5 = *(float *)(MemoryBlockAddress + 0x150);
-    FloatTransformC0 = FloatTransformValue8 * InterpolationFactorX + FloatTransformValue7 * FloatVectorFirstComponent + FloatTransformValue6 * InterpolationFactorW;
-    FloatTransformC4 = FloatTransformValue8 * InterpolationFactorY + FloatTransformValue7 * FloatVectorSecondComponent + FloatTransformValue6 * MagnitudeSquared;
-    FloatTransformC8 = FloatTransformValue8 * InterpolationFactorA + FloatTransformValue7 * FloatVectorThirdComponent + FloatTransformValue6 * FloatVectorNinthComponent;
-    FloatTransformCC = FloatTransformValue8 * InterpolationFactorW + FloatTransformValue7 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent;
-    FloatTransformValue6 = *(float *)(MemoryBlockAddress + 0x158);
+    FloatTransformRotationX = *(float *)(MemoryBlockAddress + 0x124);
+    FloatTransformRotationY = *(float *)(MemoryBlockAddress + 0x120);
+    FloatTransformRotationZ = *(float *)(MemoryBlockAddress + 0x128);
+    FloatTransformScaleX = *(float *)(MemoryBlockAddress + 0x134);
+    FloatTransformScaleY = *(float *)(MemoryBlockAddress + 0x130);
+    FloatTransformA0 = FloatTransformRotationX * InterpolationFactorX + FloatTransformRotationY * FloatVectorFirstComponent + FloatTransformRotationZ * InterpolationFactorW;
+    FloatTransformA4 = FloatTransformRotationX * InterpolationFactorY + FloatTransformRotationY * FloatVectorSecondComponent + FloatTransformRotationZ * MagnitudeSquared;
+    FloatTransformA8 = FloatTransformRotationX * InterpolationFactorA + FloatTransformRotationY * FloatVectorThirdComponent + FloatTransformRotationZ * FloatVectorNinthComponent;
+    FloatTransformAC = FloatTransformRotationX * InterpolationFactorW + FloatTransformRotationY * FloatVectorFourthComponent + FloatTransformRotationZ * FloatVectorTenthComponent;
+    FloatTransformScaleZ = *(float *)(MemoryBlockAddress + 0x138);
+    FloatTransformTranslationX = *(float *)(MemoryBlockAddress + 0x140);
+    FloatTransformTranslationY = *(float *)(MemoryBlockAddress + 0x144);
+    FloatTransformB0 = FloatTransformScaleX * InterpolationFactorX + FloatTransformScaleY * FloatVectorFirstComponent + FloatTransformScaleZ * InterpolationFactorW;
+    FloatTransformB4 = FloatTransformScaleX * InterpolationFactorY + FloatTransformScaleY * FloatVectorSecondComponent + FloatTransformScaleZ * MagnitudeSquared;
+    FloatTransformB8 = FloatTransformScaleX * InterpolationFactorA + FloatTransformScaleY * FloatVectorThirdComponent + FloatTransformScaleZ * FloatVectorNinthComponent;
+    FloatTransformBC = FloatTransformScaleX * InterpolationFactorW + FloatTransformScaleY * FloatVectorFourthComponent + FloatTransformScaleZ * FloatVectorTenthComponent;
+    FloatTransformScaleZ = *(float *)(MemoryBlockAddress + 0x148);
+    FloatTransformScaleX = *(float *)(MemoryBlockAddress + 0x154);
+    FloatTransformScaleY = *(float *)(MemoryBlockAddress + 0x150);
+    FloatTransformC0 = FloatTransformTranslationY * InterpolationFactorX + FloatTransformTranslationX * FloatVectorFirstComponent + FloatTransformScaleZ * InterpolationFactorW;
+    FloatTransformC4 = FloatTransformTranslationY * InterpolationFactorY + FloatTransformTranslationX * FloatVectorSecondComponent + FloatTransformScaleZ * MagnitudeSquared;
+    FloatTransformC8 = FloatTransformTranslationY * InterpolationFactorA + FloatTransformTranslationX * FloatVectorThirdComponent + FloatTransformScaleZ * FloatVectorNinthComponent;
+    FloatTransformCC = FloatTransformTranslationY * InterpolationFactorW + FloatTransformTranslationX * FloatVectorFourthComponent + FloatTransformScaleZ * FloatVectorTenthComponent;
+    FloatTransformScaleZ = *(float *)(MemoryBlockAddress + 0x158);
     FloatTransformD0 =
-         FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorFirstComponent + FloatTransformValue6 * InterpolationFactorW + FloatParameterBuffer[0xc];
+         FloatTransformScaleX * InterpolationFactorX + FloatTransformScaleY * FloatVectorFirstComponent + FloatTransformScaleZ * InterpolationFactorW + FloatParameterBuffer[0xc];
     FloatTransformD4 =
-         FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue6 * MagnitudeSquared + FloatParameterBuffer[0xd];
+         FloatTransformScaleX * InterpolationFactorY + FloatTransformScaleY * FloatVectorSecondComponent + FloatTransformScaleZ * MagnitudeSquared + FloatParameterBuffer[0xd];
     FloatTransformD8 =
-         FloatTransformValue4 * InterpolationFactorA + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue6 * FloatVectorNinthComponent + FloatParameterBuffer[0xe];
+         FloatTransformScaleX * InterpolationFactorA + FloatTransformScaleY * FloatVectorThirdComponent + FloatTransformScaleZ * FloatVectorNinthComponent + FloatParameterBuffer[0xe];
     FloatTransformDC =
-         FloatTransformValue4 * InterpolationFactorW + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent + FloatParameterBuffer[0xf];
-    FloatParameterBuffer36 = &SystemStackBufferA0;
+         FloatTransformScaleX * InterpolationFactorW + FloatTransformScaleY * FloatVectorFourthComponent + FloatTransformScaleZ * FloatVectorTenthComponent + FloatParameterBuffer[0xf];
+    FloatParameterBuffer36 = &SystemStackBufferSecondary;
   }
-  InitializeSystemThreadBuffer(&SystemStackBuffer60,SystemThreadHandle9 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),FloatParameterBuffer36);
+  InitializeSystemThreadBuffer(&SystemStackBufferPrimary,SystemThreadHandle9 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),FloatParameterBuffer36);
   resourceCreationFlagsSecondary = ThreadCreationParameter;
   resourceCreationFlags7 = InputStackParameterFinalParam;
   NetworkConnectionFlags = InputStackParameterDebugInfo;
@@ -60334,41 +60334,41 @@ void InitializeSystemVectorCalculations(void)
     InterpolationFactorW = FloatParameterBuffer[9];
     InterpolationFactorV = FloatParameterBuffer[10];
     MagnitudeSquared = FloatParameterBuffer[0xb];
-    FloatTransformValue1 = *(float *)(MemoryBlockAddress + 0x124);
-    FloatTransformValue2 = *(float *)(MemoryBlockAddress + 0x120);
-    FloatTransformValue3 = *(float *)(MemoryBlockAddress + 0x128);
-    FloatTransformValue4 = *(float *)(MemoryBlockAddress + 0x134);
-    FloatTransformValue5 = *(float *)(MemoryBlockAddress + 0x130);
-    FloatTransformA0 = FloatTransformValue1 * FloatVectorFifthComponent + FloatTransformValue2 * FloatVectorFirstComponent + FloatTransformValue3 * InterpolationFactorZ;
-    FloatTransformA4 = FloatTransformValue1 * FloatVectorSixthComponent + FloatTransformValue2 * FloatVectorSecondComponent + FloatTransformValue3 * InterpolationFactorW;
-    FloatTransformA8 = FloatTransformValue1 * InterpolationFactorX + FloatTransformValue2 * FloatVectorThirdComponent + FloatTransformValue3 * InterpolationFactorV;
-    FloatTransformAC = FloatTransformValue1 * InterpolationFactorY + FloatTransformValue2 * FloatVectorFourthComponent + FloatTransformValue3 * MagnitudeSquared;
-    FloatTransformValue6 = *(float *)(MemoryBlockAddress + 0x138);
-    FloatTransformValue7 = *(float *)(MemoryBlockAddress + 0x140);
-    FloatTransformValue8 = *(float *)(MemoryBlockAddress + 0x144);
-    FloatTransformB0 = FloatTransformValue4 * FloatVectorFifthComponent + FloatTransformValue5 * FloatVectorFirstComponent + FloatTransformValue6 * InterpolationFactorZ;
-    FloatTransformB4 = FloatTransformValue4 * FloatVectorSixthComponent + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue6 * InterpolationFactorW;
-    FloatTransformB8 = FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue6 * InterpolationFactorV;
-    FloatTransformBC = FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * MagnitudeSquared;
+    FloatTransformRotationX = *(float *)(MemoryBlockAddress + 0x124);
+    FloatTransformRotationY = *(float *)(MemoryBlockAddress + 0x120);
+    FloatTransformRotationZ = *(float *)(MemoryBlockAddress + 0x128);
+    FloatTransformScaleX = *(float *)(MemoryBlockAddress + 0x134);
+    FloatTransformScaleY = *(float *)(MemoryBlockAddress + 0x130);
+    FloatTransformA0 = FloatTransformRotationX * FloatVectorFifthComponent + FloatTransformRotationY * FloatVectorFirstComponent + FloatTransformRotationZ * InterpolationFactorZ;
+    FloatTransformA4 = FloatTransformRotationX * FloatVectorSixthComponent + FloatTransformRotationY * FloatVectorSecondComponent + FloatTransformRotationZ * InterpolationFactorW;
+    FloatTransformA8 = FloatTransformRotationX * InterpolationFactorX + FloatTransformRotationY * FloatVectorThirdComponent + FloatTransformRotationZ * InterpolationFactorV;
+    FloatTransformAC = FloatTransformRotationX * InterpolationFactorY + FloatTransformRotationY * FloatVectorFourthComponent + FloatTransformRotationZ * MagnitudeSquared;
+    FloatTransformScaleZ = *(float *)(MemoryBlockAddress + 0x138);
+    FloatTransformTranslationX = *(float *)(MemoryBlockAddress + 0x140);
+    FloatTransformTranslationY = *(float *)(MemoryBlockAddress + 0x144);
+    FloatTransformB0 = FloatTransformScaleX * FloatVectorFifthComponent + FloatTransformScaleY * FloatVectorFirstComponent + FloatTransformScaleZ * InterpolationFactorZ;
+    FloatTransformB4 = FloatTransformScaleX * FloatVectorSixthComponent + FloatTransformScaleY * FloatVectorSecondComponent + FloatTransformScaleZ * InterpolationFactorW;
+    FloatTransformB8 = FloatTransformScaleX * InterpolationFactorX + FloatTransformScaleY * FloatVectorThirdComponent + FloatTransformScaleZ * InterpolationFactorV;
+    FloatTransformBC = FloatTransformScaleX * InterpolationFactorY + FloatTransformScaleY * FloatVectorFourthComponent + FloatTransformScaleZ * MagnitudeSquared;
     FloatTransformValue9 = *(float *)(MemoryBlockAddress + 0x148);
-    FloatTransformValue4 = *(float *)(MemoryBlockAddress + 0x154);
-    FloatTransformValue5 = *(float *)(MemoryBlockAddress + 0x150);
-    FloatTransformC0 = FloatTransformValue8 * FloatVectorFifthComponent + FloatTransformValue7 * FloatVectorFirstComponent + FloatTransformValue9 * InterpolationFactorZ;
-    FloatTransformC4 = FloatTransformValue8 * FloatVectorSixthComponent + FloatTransformValue7 * FloatVectorSecondComponent + FloatTransformValue9 * InterpolationFactorW;
-    FloatTransformC8 = FloatTransformValue8 * InterpolationFactorX + FloatTransformValue7 * FloatVectorThirdComponent + FloatTransformValue9 * InterpolationFactorV;
-    FloatTransformCC = FloatTransformValue8 * InterpolationFactorY + FloatTransformValue7 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared;
+    FloatTransformScaleX = *(float *)(MemoryBlockAddress + 0x154);
+    FloatTransformScaleY = *(float *)(MemoryBlockAddress + 0x150);
+    FloatTransformC0 = FloatTransformTranslationY * FloatVectorFifthComponent + FloatTransformTranslationX * FloatVectorFirstComponent + FloatTransformValue9 * InterpolationFactorZ;
+    FloatTransformC4 = FloatTransformTranslationY * FloatVectorSixthComponent + FloatTransformTranslationX * FloatVectorSecondComponent + FloatTransformValue9 * InterpolationFactorW;
+    FloatTransformC8 = FloatTransformTranslationY * InterpolationFactorX + FloatTransformTranslationX * FloatVectorThirdComponent + FloatTransformValue9 * InterpolationFactorV;
+    FloatTransformCC = FloatTransformTranslationY * InterpolationFactorY + FloatTransformTranslationX * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared;
     FloatTransformValue9 = *(float *)(MemoryBlockAddress + 0x158);
     FloatTransformD0 =
-         FloatTransformValue4 * FloatVectorFifthComponent + FloatTransformValue5 * FloatVectorFirstComponent + FloatTransformValue9 * InterpolationFactorZ + FloatParameterBuffer[0xc];
+         FloatTransformScaleX * FloatVectorFifthComponent + FloatTransformScaleY * FloatVectorFirstComponent + FloatTransformValue9 * InterpolationFactorZ + FloatParameterBuffer[0xc];
     FloatTransformD4 =
-         FloatTransformValue4 * FloatVectorSixthComponent + FloatTransformValue5 * FloatVectorSecondComponent + FloatTransformValue9 * InterpolationFactorW + FloatParameterBuffer[0xd];
+         FloatTransformScaleX * FloatVectorSixthComponent + FloatTransformScaleY * FloatVectorSecondComponent + FloatTransformValue9 * InterpolationFactorW + FloatParameterBuffer[0xd];
     FloatTransformD8 =
-         FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue9 * InterpolationFactorV + FloatParameterBuffer[0xe];
+         FloatTransformScaleX * InterpolationFactorX + FloatTransformScaleY * FloatVectorThirdComponent + FloatTransformValue9 * InterpolationFactorV + FloatParameterBuffer[0xe];
     FloatTransformDC =
-         FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared + FloatParameterBuffer[0xf];
+         FloatTransformScaleX * InterpolationFactorY + FloatTransformScaleY * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared + FloatParameterBuffer[0xf];
     VectorParameterPointer = &TransformStackBuffer;
   }
-  ConfigureSystemContextBuffer(&SystemStackBuffer60,SystemContextReference + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),VectorParameterPointer);
+  ConfigureSystemContextBuffer(&SystemStackBufferPrimary,SystemContextReference + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),VectorParameterPointer);
   NetworkConnectionFlags = ThreadCreationParameter;
   SecurityParameter = SystemSecurityParameter;
   ConfigurationData = SystemConfigurationParameter;
@@ -60444,7 +60444,7 @@ void ExecuteSystemTransformOperations(void)
   void* InputStackParameterFinalParam;
   void* ThreadCreationParameter;
   
-  FinalizeSystemContextBuffer(&SystemStackBuffer60,SystemContextReference + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7));
+  FinalizeSystemContextBuffer(&SystemStackBufferPrimary,SystemContextReference + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7));
   ThreadContextIndicator = ThreadCreationParameter;
   SystemOperationCode = InputStackParameterFinalParam;
   ThreadContextIndicator = InputStackParameterDebugInfo;
@@ -63954,7 +63954,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   long long SystemThreadHandleCounter;
   long long SystemThreadHandleSecondary;
   int *pointerToInteger25;
-  int *pointerToInteger26;
+  int *ResourceDataPointerSecondary;
   int SystemOperationResult7;
   ulong long resourceCreationFlagsSecondary;
   uint32_t *HashEntryPointer2;
@@ -64781,7 +64781,7 @@ ThreadContextCleanup:
         SystemConfigurationPointer = 4;
         pointerToInteger25 = (int *)0x0;
         do {
-          pointerToInteger26 = MatrixPointer210;
+          ResourceDataPointerSecondary = MatrixPointer210;
           SystemIntegerPointer6 = (int *)0x0;
           if (MatrixPointer210 < SystemIntegerPointer3) {
             *MatrixPointer210 = *(int *)(SystemConfigurationPointer + (long long)MatrixPointer1F8);
@@ -64799,7 +64799,7 @@ ThreadHandleValidation:
               StackRegisterValue1F0 = (int *)(((long long)SystemTimeFlag1d8 >> 2) * 2);
               if (StackRegisterValue1F0 != (int *)0x0) goto ThreadHandleValidation;
             }
-            if (pointerToInteger25 != pointerToInteger26) {
+            if (pointerToInteger25 != ResourceDataPointerSecondary) {
                 memmove(SystemIntegerPointer6,pointerToInteger25,SystemTimeFlag1d8);
             }
             *SystemIntegerPointer6 = *(int *)(SystemConfigurationPointer + (long long)MatrixPointer1F8);
@@ -64832,7 +64832,7 @@ ThreadHandleValidation:
         isSystemBusy = false;
         ResourceAllocationContextSecondary = 0;
         ContextManagerPointer = (long long)MatrixPointer210 - (long long)MatrixPointer218 >> 2;
-        pointerToInteger26 = (int *)0x0;
+        ResourceDataPointerSecondary = (int *)0x0;
         pointerToInteger25 = (int *)0x0;
         SystemIntegerPointer6 = pointerToInteger25;
         pointerToInteger34 = SystemIntegerPointer3;
@@ -64844,13 +64844,13 @@ ThreadHandleValidation:
             SystemIntegerPointer6 = (int *)0x0;
             SystemOperationResult7 = *StackRegisterValue1F0;
             if ((SystemThreadStackSize & ResourceBufferPointerSecondary[SystemOperationResult7]) == 0) {
-              if (pointerToInteger26 < SystemIntegerPointer3) {
-                *pointerToInteger26 = SystemOperationResult7;
+              if (ResourceDataPointerSecondary < SystemIntegerPointer3) {
+                *ResourceDataPointerSecondary = SystemOperationResult7;
                 SystemIntegerPointer6 = pointerToInteger25;
                 ResourceAllocationContextSecondary = (uint)pointerToInteger34;
               }
               else {
-                SystemTimeFlag1d8 = (long long)pointerToInteger26 - (long long)pointerToInteger25;
+                SystemTimeFlag1d8 = (long long)ResourceDataPointerSecondary - (long long)pointerToInteger25;
                 if ((long long)SystemTimeFlag1d8 >> 2 == 0) {
                   SystemThreadHandlePrimary = 1;
 LabelCreateSystemThread:
@@ -64860,7 +64860,7 @@ LabelCreateSystemThread:
                   SystemThreadHandlePrimary = ((long long)SystemTimeFlag1d8 >> 2) * 2;
                   if (SystemThreadHandlePrimary != 0) goto LabelCreateSystemThread;
                 }
-                if (pointerToInteger25 != pointerToInteger26) {
+                if (pointerToInteger25 != ResourceDataPointerSecondary) {
                     memmove(SystemIntegerPointer6,pointerToInteger25,SystemTimeFlag1d8);
                 }
                 *SystemIntegerPointer6 = *StackRegisterValue1F0;
@@ -64871,10 +64871,10 @@ LabelCreateSystemThread:
                 StackOperationValue = (uint32_t)((ulong long)SystemIntegerPointer6 >> 0x20);
                 SystemIntegerPointer3 = SystemIntegerPointer6 + SystemThreadHandlePrimary;
                 MatrixPointer1B0 = SystemIntegerPointer3;
-                pointerToInteger26 = SystemIntegerPointer6;
+                ResourceDataPointerSecondary = SystemIntegerPointer6;
               }
-              pointerToInteger26 = pointerToInteger26 + 1;
-              SystemOperationFlag1b8 = pointerToInteger26;
+              ResourceDataPointerSecondary = ResourceDataPointerSecondary + 1;
+              SystemOperationFlag1b8 = ResourceDataPointerSecondary;
               isResourceAvailable4 = isSystemBusy;
             }
             else {
@@ -64933,10 +64933,10 @@ LabelExpandSystemThread:
         MatrixPointer1B0 = MatrixPointer208;
         StackAllocationSize = 3;
         StackConfigurationValue = 3;
-        MatrixPointer210 = pointerToInteger26;
+        MatrixPointer210 = ResourceDataPointerSecondary;
         MatrixPointer208 = SystemIntegerPointer3;
-        MatrixPointer1F8 = pointerToInteger26;
-        if ((((long long)pointerToInteger26 - (long long)SystemIntegerPointer6 & SystemMemoryAddressAlignmentMaskU) == 0) || (!isResourceAvailable4))
+        MatrixPointer1F8 = ResourceDataPointerSecondary;
+        if ((((long long)ResourceDataPointerSecondary - (long long)SystemIntegerPointer6 & SystemMemoryAddressAlignmentMaskU) == 0) || (!isResourceAvailable4))
         goto LabelCheckSystemResource;
         isResourceAvailable4 = MatrixPointer218 != (int *)0x0;
         MatrixPointer218 = SystemIntegerPointer6;
@@ -64965,7 +64965,7 @@ MemoryAllocationComplete:
     *(uint32_t *)(paGlobalDataFlags2[1] + SystemCalculationValue170 + 8) = 3;
     CalculationFlagsExtended = SystemIntegerPointer3;
     if (pSystemMemoryAllocationOffset168 < pSystemMemoryAllocationOffset160) {
-      ResourceAddressPrimary = (long long)pointerToInteger26 - (long long)SystemIntegerPointer6;
+      ResourceAddressPrimary = (long long)ResourceDataPointerSecondary - (long long)SystemIntegerPointer6;
       *(uint32_t *)(pSystemMemoryAllocationOffset168 + 3) = 3;
       if (ResourceAddressPrimary < 4) {
         SystemThreadHandlePrimary = 0;
@@ -64978,14 +64978,14 @@ MemoryAllocationComplete:
       *SystemResourceOffsetPointer9 = SystemThreadHandlePrimary;
       SystemResourceOffsetPointer9[1] = SystemThreadHandlePrimary;
       SystemResourceOffsetPointer9[2] = SystemThreadHandlePrimary + ((long long)ResourceAddressPrimary >> 2) * 4;
-      if (SystemIntegerPointer6 != pointerToInteger26) {
+      if (SystemIntegerPointer6 != ResourceDataPointerSecondary) {
           memmove(*SystemResourceOffsetPointer9,SystemIntegerPointer6,ResourceAddressPrimary);
       }
       SystemResourceOffsetPointer9[1] = *SystemResourceOffsetPointer9;
     }
     else {
       UpdateThreadContext(&SystemCalculationValue170,&MatrixPointer218);
-      pointerToInteger26 = MatrixPointer210;
+      ResourceDataPointerSecondary = MatrixPointer210;
       SystemIntegerPointer6 = MatrixPointer218;
     }
     SystemThreadHandleCounter = SystemCalculationValue1d0;
@@ -65009,7 +65009,7 @@ MemoryAllocationComplete:
     systemDataBuffer = *(void* *)(ResourceMemoryOffset + 0x50 + SystemThreadHandlePrimary);
     SystemResourceStatusFlag = *(uint32_t *)(ResourceMemoryOffset + 0x58 + SystemThreadHandlePrimary);
     ProcessIntegerPointer(SystemIntegerPointer,&EncryptionOffset);
-    ResourceAllocationLoopCounter = (long long)pointerToInteger26 - (long long)SystemIntegerPointer6 >> 2;
+    ResourceAllocationLoopCounter = (long long)ResourceDataPointerSecondary - (long long)SystemIntegerPointer6 >> 2;
     ResourceAllocationIndex = 0;
     ResourceDataPointer = SystemIntegerPointer6;
     CurrentResourceAddress = ResourceAllocationIndex;

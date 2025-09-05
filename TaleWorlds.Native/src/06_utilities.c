@@ -19430,7 +19430,9 @@ ulonglong FUN_18089a8b4(void)
 
 
 // 函数: void FUN_18089a9d5(void)
-void FUN_18089a9d5(void)
+// 工具系统空操作函数
+// 功能：执行空操作，用于占位或初始化
+void UtilitySystemNoOperation(void)
 
 {
   return;
@@ -87015,32 +87017,41 @@ void FUN_1809428d8(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809428e0(void)
-void FUN_1809428e0(void)
+// 函数: void ReleaseSystemReferenceCount(void)
+// 
+// 释放系统引用计数
+// 处理系统资源的引用计数管理，当引用计数降为0时执行清理操作
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void ReleaseSystemReferenceCount(void)
 
 {
-  longlong *pvalidationContext;
-  int *poperationResult;
-  int iVar3;
-  longlong lVar4;
-  longlong *plVar5;
+  longlong *referenceContextPointer;
+  int *operationResultPointer;
+  int currentOperationCount;
+  longlong referenceValue;
+  longlong *systemResourcePointer;
   
-  plVar5 = _DAT_180c92498;
+  systemResourcePointer = _DAT_180c92498;
   if (_DAT_180c92498 != (longlong *)0x0) {
     LOCK();
-    pvalidationContext = _DAT_180c92498 + 1;
-    lVar4 = *pvalidationContext;
-    *(int *)pvalidationContext = (int)*pvalidationContext + -1;
+    referenceContextPointer = _DAT_180c92498 + 1;
+    referenceValue = *referenceContextPointer;
+    *(int *)referenceContextPointer = (int)*referenceContextPointer + -1;
     UNLOCK();
-    if ((int)lVar4 == 1) {
-      (**(code **)*plVar5)(plVar5);
+    if ((int)referenceValue == 1) {
+      (**(code **)*systemResourcePointer)(systemResourcePointer);
       LOCK();
-      poperationResult = (int *)((longlong)plVar5 + 0xc);
-      iVar3 = *poperationResult;
-      *poperationResult = *poperationResult + -1;
+      operationResultPointer = (int *)((longlong)systemResourcePointer + 0xc);
+      currentOperationCount = *operationResultPointer;
+      *operationResultPointer = *operationResultPointer + -1;
       UNLOCK();
-      if (iVar3 == 1) {
-        (**(code **)(*plVar5 + 8))(plVar5);
+      if (currentOperationCount == 1) {
+        (**(code **)(*systemResourcePointer + 8))(systemResourcePointer);
       }
     }
   }
@@ -87050,30 +87061,39 @@ void FUN_1809428e0(void)
 
 
 
-// 函数: void FUN_1809428f2(void)
-void FUN_1809428f2(void)
+// 函数: void ReleaseSystemResourceReference(void)
+// 
+// 释放系统资源引用
+// 处理系统资源的引用释放，包括引用计数递减和资源清理
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void ReleaseSystemResourceReference(void)
 
 {
-  longlong *pvalidationContext;
-  int *poperationResult;
-  int iVar3;
-  longlong lVar4;
-  longlong *registerRBX;
+  longlong *referenceContextPointer;
+  int *operationResultPointer;
+  int operationCount;
+  longlong referenceValue;
+  longlong *resourceHandlePointer;
   
   LOCK();
-  pvalidationContext = registerRBX + 1;
-  lVar4 = *pvalidationContext;
-  *(int *)pvalidationContext = (int)*pvalidationContext + -1;
+  referenceContextPointer = resourceHandlePointer + 1;
+  referenceValue = *referenceContextPointer;
+  *(int *)referenceContextPointer = (int)*referenceContextPointer + -1;
   UNLOCK();
-  if ((int)lVar4 == 1) {
-    (**(code **)*registerRBX)();
+  if ((int)referenceValue == 1) {
+    (**(code **)*resourceHandlePointer)();
     LOCK();
-    poperationResult = (int *)((longlong)registerRBX + 0xc);
-    iVar3 = *poperationResult;
-    *poperationResult = *poperationResult + -1;
+    operationResultPointer = (int *)((longlong)resourceHandlePointer + 0xc);
+    operationCount = *operationResultPointer;
+    *operationResultPointer = *operationResultPointer + -1;
     UNLOCK();
-    if (iVar3 == 1) {
-      (**(code **)(*registerRBX + 8))();
+    if (operationCount == 1) {
+      (**(code **)(*resourceHandlePointer + 8))();
     }
   }
   return;
@@ -87094,32 +87114,41 @@ void FUN_180942928(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942930(void)
-void FUN_180942930(void)
+// 函数: void CleanupSystemResourceHandle(void)
+// 
+// 清理系统资源句柄
+// 处理系统资源句柄的清理操作，包括引用计数管理和资源释放
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void CleanupSystemResourceHandle(void)
 
 {
-  longlong *pvalidationContext;
-  int *poperationResult;
-  int iVar3;
-  longlong lVar4;
-  longlong *plVar5;
+  longlong *resourceContextPointer;
+  int *cleanupStatusPointer;
+  int currentCleanupCount;
+  longlong referenceCount;
+  longlong *systemResourcePointer;
   
-  plVar5 = _DAT_180c92488;
+  systemResourcePointer = _DAT_180c92488;
   if (_DAT_180c92488 != (longlong *)0x0) {
     LOCK();
-    pvalidationContext = _DAT_180c92488 + 1;
-    lVar4 = *pvalidationContext;
-    *(int *)pvalidationContext = (int)*pvalidationContext + -1;
+    resourceContextPointer = _DAT_180c92488 + 1;
+    referenceCount = *resourceContextPointer;
+    *(int *)resourceContextPointer = (int)*resourceContextPointer + -1;
     UNLOCK();
-    if ((int)lVar4 == 1) {
-      (**(code **)*plVar5)(plVar5);
+    if ((int)referenceCount == 1) {
+      (**(code **)*systemResourcePointer)(systemResourcePointer);
       LOCK();
-      poperationResult = (int *)((longlong)plVar5 + 0xc);
-      iVar3 = *poperationResult;
-      *poperationResult = *poperationResult + -1;
+      cleanupStatusPointer = (int *)((longlong)systemResourcePointer + 0xc);
+      currentCleanupCount = *cleanupStatusPointer;
+      *cleanupStatusPointer = *cleanupStatusPointer + -1;
       UNLOCK();
-      if (iVar3 == 1) {
-        (**(code **)(*plVar5 + 8))(plVar5);
+      if (currentCleanupCount == 1) {
+        (**(code **)(*systemResourcePointer + 8))(systemResourcePointer);
       }
     }
   }
