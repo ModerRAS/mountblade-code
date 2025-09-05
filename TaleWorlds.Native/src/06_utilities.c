@@ -11592,40 +11592,50 @@ void ResetResourceState(longlong *resourceHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808968a0(longlong param_1)
+// 函数: undefined8 ProcessResourceData(longlong resourceContext)
+//
+// 资源数据处理函数
+// 处理指定资源上下文中的数据，分配内存并复制数据到新的缓冲区
+// 
+// 参数:
+//   resourceContext - 资源上下文指针，包含要处理的数据信息
+// 
+// 返回值:
+//   undefined8 - 返回0表示处理成功
+undefined8 ProcessResourceData(longlong resourceContext)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  int *piVar3;
-  undefined8 uVar4;
-  int iVar5;
+  longlong dataSource;
+  longlong adjustedSize;
+  int *dataBuffer;
+  undefined8 dataHandle;
+  int dataSize;
   
-  if ((*(longlong *)(param_1 + 8) != 0) && (iVar5 = *(int *)(param_1 + 0x30), 0 < iVar5)) {
-    lVar1 = *(longlong *)(param_1 + 0x28);
-    if (0x40000 < iVar5) {
-      lVar2 = func_0x00018076b3e0(lVar1 + 0x40000,10);
-      if (lVar2 != 0) {
-        iVar5 = ((int)lVar2 - (int)lVar1) + 1;
+  if ((*(longlong *)(resourceContext + 8) != 0) && (dataSize = *(int *)(resourceContext + 0x30), 0 < dataSize)) {
+    dataSource = *(longlong *)(resourceContext + 0x28);
+    if (0x40000 < dataSize) {
+      adjustedSize = func_0x00018076b3e0(dataSource + 0x40000,10);
+      if (adjustedSize != 0) {
+        dataSize = ((int)adjustedSize - (int)dataSource) + 1;
       }
     }
-    piVar3 = (int *)FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar5 + 0x19,
+    dataBuffer = (int *)FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),dataSize + 0x19,
                                   &UNK_1809868b0,0x278,0,0,1);
-    piVar3[0] = 0;
-    piVar3[1] = 0;
-    piVar3[2] = 0;
-    piVar3[3] = 0;
-    piVar3[4] = 0;
-    piVar3[5] = 0;
-    *piVar3 = iVar5 + 0x19;
-    *(undefined2 *)(piVar3 + 2) = 0x508;
-    *(undefined1 *)((longlong)piVar3 + 10) = 3;
-    piVar3[3] = 1;
-    lVar2 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x90);
-    uVar4 = func_0x0001808e3470(*(undefined8 *)(lVar2 + 0x4d0),*(undefined4 *)(lVar2 + 0x774));
-    *(undefined8 *)(piVar3 + 4) = uVar4;
+    dataBuffer[0] = 0;
+    dataBuffer[1] = 0;
+    dataBuffer[2] = 0;
+    dataBuffer[3] = 0;
+    dataBuffer[4] = 0;
+    dataBuffer[5] = 0;
+    *dataBuffer = dataSize + 0x19;
+    *(undefined2 *)(dataBuffer + 2) = 0x508;
+    *(undefined1 *)((longlong)dataBuffer + 10) = 3;
+    dataBuffer[3] = 1;
+    adjustedSize = *(longlong *)(*(longlong *)(resourceContext + 8) + 0x90);
+    dataHandle = func_0x0001808e3470(*(undefined8 *)(adjustedSize + 0x4d0),*(undefined4 *)(adjustedSize + 0x774));
+    *(undefined8 *)(dataBuffer + 4) = dataHandle;
                     // WARNING: Subroutine does not return
-    memcpy(piVar3 + 6,lVar1,(longlong)iVar5);
+    memcpy(dataBuffer + 6,dataSource,(longlong)dataSize);
   }
   return 0;
 }
