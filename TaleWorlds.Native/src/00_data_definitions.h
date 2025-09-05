@@ -3804,7 +3804,7 @@ LabelStringProcessingExit:
                       InitializeSystemBuffer(&StackBufferPointer14,pMemoryAddress7);
                       SystemBufferSetup(&StackBufferPointer14);
                       UnsignedIndex = 0;
-                      StringPointer = pcStack_328;
+                      StringPointer = StackCharacterBuffer;
                       if (StackParameter13 != 0) {
                         do {
                           if (*StringPointer == '/') goto Label_PathSeparatorFound;
@@ -3816,11 +3816,11 @@ LabelStringProcessingExit:
 Label_PathSeparatorFound:
                       if (UnsignedIndex != 0xffffffff) {
                         SystemDataPointer = SystemDataProcess(&StackBufferPointer14,&StackDataPointer,0);
-                        if (pcStack_328 != (char *)0x0) {
+                        if (StackCharacterBuffer != (char *)0x0) {
                           CleanupSystemResources();
                         }
                         StackParameter13 = *(uint *)(SystemDataPointer + 0x10);
-                        pcStack_328 = *(char **)(SystemDataPointer + 8);
+                        StackCharacterBuffer = *(char **)(SystemDataPointer + 8);
                         StackParameter14 = *(longlong *)(SystemDataPointer + 0x18);
                         *(uint32_t *)(SystemDataPointer + 0x10) = 0;
                         *(uint64_t *)(SystemDataPointer + 8) = 0;
@@ -3838,11 +3838,11 @@ Label_PathSeparatorFound:
                       SystemDataPointer = SystemControlDataAddress;
                       *(uint8_t *)(SystemControlDataAddress + 0x48) = 1;
                       BufferSize1 = (ulonglong)StackParameter13;
-                      if (pcStack_328 != (char *)0x0) {
+                      if (StackCharacterBuffer != (char *)0x0) {
                         SystemBufferCopy(SystemDataPointer + 0x50,BufferSize1);
                       }
                       if (UnsignedIndex != 0) {
-                        memcpy(*(uint64_t *)(SystemDataPointer + 0x58),pcStack_328,BufferSize1);
+                        memcpy(*(uint64_t *)(SystemDataPointer + 0x58),StackCharacterBuffer,BufferSize1);
                       }
                       *(uint32_t *)(SystemDataPointer + 0x60) = 0;
                       if (*(longlong *)(SystemDataPointer + 0x58) != 0) {
@@ -3850,10 +3850,10 @@ Label_PathSeparatorFound:
                       }
                       *(uint *)(SystemDataPointer + 0x6c) = StackParameter14._4_4_;
                       StackBufferPointer14 = &SystemNullPointer;
-                      if (pcStack_328 != (char *)0x0) {
-                        SystemBufferValidate(pcStack_328,pcStack_328);
+                      if (StackCharacterBuffer != (char *)0x0) {
+                        SystemBufferValidate(StackCharacterBuffer,StackCharacterBuffer);
                       }
-                      pcStack_328 = (char *)0x0;
+                      StackCharacterBuffer = (char *)0x0;
                       StackParameter14 = (ulonglong)StackParameter14._4_4_ << 0x20;
                       StackBufferPointer14 = &SystemBufferTemplate;
                     }
@@ -4735,13 +4735,13 @@ ProcessMemoryAllocation(uint64_t *memoryPtr, ulonglong controlFlags, uint64_t me
       do {
         IntegerCounter = ReleaseSemaphore(SystemSemaphoreHandle,1);
       } while (IntegerCounter == 0);
-      puStack_138 = &SystemNullPointer;
+      StackPointerBuffer312 = &SystemNullPointer;
       if (puStack_130 != (uint8_t *)0x0) {
         CleanupSystemResources();
       }
       puStack_130 = (uint8_t *)0x0;
       uStack_120 = uStack_120 & SystemMemoryAlignmentMask;
-      puStack_138 = &SystemBufferTemplate;
+      StackPointerBuffer312 = &SystemBufferTemplate;
       puStack_110 = &SystemNullPointer;
       if (pMemoryAddress0 != (void *)0x0) {
         SystemBufferValidate(pMemoryAddress0);
@@ -10559,6 +10559,24 @@ Label_18062e327:
 Label_18062e3f0:
   memcpy(pMemoryAllocationResult + 3,acStack_40,(longlong)((int)LongAddress + 2));
 }
+/**
+ * @brief 处理系统字符串数据
+ * 
+ * 根据指定的格式处理字符串数据，包括内存分配、数据复制和格式化操作。
+ * 该函数负责处理各种字符串格式，并返回处理后的字符串结果。
+ * 
+ * @param StringFormatId 字符串格式标识符，指定字符串的处理格式
+ * @param BufferSizeParameter 缓冲区大小参数，控制内存分配的大小
+ * @param StringPointer 字符串指针，指向待处理的原始字符串
+ * @param MemoryAddressParameter 内存地址参数，指定内存操作的地址
+ * @param DataArrayPointer 数据数组指针，包含处理所需的数据
+ * @param ArrayIndex 数组索引，指定数据数组中的位置
+ * @param MemoryOffset 内存偏移量，指定内存操作的偏移位置
+ * @param ResultBufferPointer 结果缓冲区指针，用于存储处理结果
+ * @param StatusPointer 状态指针，用于返回操作状态
+ * @param OutputBufferPointer 输出缓冲区指针，用于存储最终输出
+ * @return char* 返回处理后的字符串指针
+ */
 char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParameter,char *StringPointer,uint64_t MemoryAddressParameter,
                     longlong *DataArrayPointer,longlong ArrayIndex,ulonglong MemoryOffset,uint64_t *ResultBufferPointer,
                     int *StatusPointer,uint64_t *OutputBufferPointer)
@@ -10584,40 +10602,40 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   char *pBooleanCheck0;
   longlong LongCounter1;
   char *pBooleanCheck2;
-  void *puStack_140;
-  void *puStack_138;
-  uint uStack_130;
-  uint64_t uStack_128;
-  longlong *plStack_120;
-  void *puStack_118;
-  void *puStack_110;
-  uint32_t uStack_108;
-  ulonglong uStack_100;
-  void *puStack_f8;
-  uint32_t *puStack_f0;
-  uint32_t uStack_e8;
-  uint64_t uStack_e0;
-  ulonglong uStack_d8;
-  longlong lStack_d0;
+  void *StackPointerBuffer320;
+  void *StackPointerBuffer312;
+  uint StackCounter304;
+  uint64_t StackDataBuffer296;
+  longlong *StackPointerBuffer288;
+  void *StackPointerBuffer280;
+  void *StackPointerBuffer272;
+  uint32_t StackDataBuffer264;
+  ulonglong StackDataBuffer256;
+  void *StackPointerBuffer248;
+  uint32_t *StackDataBuffer240;
+  uint32_t StackCounter232;
+  uint64_t StackDataBuffer224;
+  ulonglong StackDataBuffer216;
+  longlong StackCounter208;
   uint64_t *StackDataPointer;
-  void *puStack_c0;
-  uint32_t *puStack_b8;
+  void *StackPointerBuffer192;
+  uint32_t *StackDataBuffer184;
   uint32_t StackMemoryFlag;
-  ulonglong uStack_a8;
+  ulonglong StackDataBuffer168;
   uint64_t *StackPointerBuffer;
   void *StackBufferPointer;
   uint32_t *UnsignedStackPointer;
   uint32_t StackBufferSize;
   uint64_t StackParameter3;
-  int *piStack_78;
-  char *pcStack_70;
+  int *StackIntegerPointer120;
+  char *StackCharacterBuffer112;
   uint64_t StackCounter1;
-  void *pStackCounter2;
+  void *StackPointerCounter2;
   uint64_t StackCounter3;
   uint64_t *pStackParameter1;
   ulonglong MemoryAddress7;
   StackCounter3 = SystemMutexFlags;
-  plStack_120 = SystemFifthParameter;
+  StackPointerBuffer288 = SystemFifthParameter;
   lStack_d0 = SystemSixthParameter;
   uStack_d8 = SystemSeventhParameter;
   StackPointerBuffer = SystemEighthParameter;
@@ -10671,19 +10689,19 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
       }
       puStack_140 = &SystemNullPointer;
       uStack_128 = 0;
-      puStack_138 = (void *)0x0;
+      StackPointerBuffer312 = (void *)0x0;
       uStack_130 = 0;
       UnsignedValue = *(uint *)(StackDataPointer + 2);
       MemoryAddress6 = (ulonglong)UnsignedValue;
       if (StackDataPointer[1] != 0) {
         SystemBufferCopy(&puStack_140,MemoryAddress6);
       }
-      pNetworkRequestResult = puStack_138;
+      pNetworkRequestResult = StackPointerBuffer312;
       if (UnsignedValue != 0) {
-        memcpy(puStack_138,StackDataPointer[1],MemoryAddress6);
+        memcpy(StackPointerBuffer312,StackDataPointer[1],MemoryAddress6);
       }
-      if (puStack_138 != (void *)0x0) {
-        puStack_138[MemoryAddress6] = 0;
+      if (StackPointerBuffer312 != (void *)0x0) {
+        StackPointerBuffer312[MemoryAddress6] = 0;
       }
       uStack_130 = UnsignedValue;
       uStack_128._4_4_ = *(uint *)((longlong)StackDataPointer + 0x1c);
@@ -10693,22 +10711,22 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
           MemoryAddress7 = MemoryAddress6;
           MemoryAddress6 = MemoryAddress7 + 1;
         } while (pMemoryAddress3[MemoryAddress6] != '\0');
-        SystemFifthParameter = plStack_120;
+        SystemFifthParameter = StackPointerBuffer288;
         if (0 < (int)MemoryAddress6) {
           SystemBufferCopy(&puStack_140,MemoryAddress6 & 0xffffffff);
-          memcpy(puStack_138 + uStack_130,pMemoryAddress3,(longlong)((int)MemoryAddress7 + 2));
+          memcpy(StackPointerBuffer312 + uStack_130,pMemoryAddress3,(longlong)((int)MemoryAddress7 + 2));
         }
       }
       pMemoryAddress3 = &SystemConstantStringPrimary;
-      if (puStack_138 != (void *)0x0) {
-        pMemoryAddress3 = puStack_138;
+      if (StackPointerBuffer312 != (void *)0x0) {
+        pMemoryAddress3 = StackPointerBuffer312;
       }
       HandleMemoryOperation(pMemoryAddress3,LongCounter1,(longlong)IntegerCounter * 0x20 + SystemSeventhParameter);
       puStack_140 = &SystemNullPointer;
       if (pNetworkRequestResult != (void *)0x0) {
         SystemBufferValidate(pNetworkRequestResult);
       }
-      puStack_138 = (void *)0x0;
+      StackPointerBuffer312 = (void *)0x0;
       uStack_128 = (ulonglong)uStack_128._4_4_ << 0x20;
       puStack_140 = &SystemBufferTemplate;
       LongOffset = LongOffset + 0x20;
@@ -10722,7 +10740,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   }
   pBooleanCheck2 = (char *)0x0;
   uStack_d8 = uStack_d8 & SystemMemoryAlignmentMask;
-  plStack_120 = (longlong *)((ulonglong)plStack_120 & SystemMemoryAlignmentMask);
+  StackPointerBuffer288 = (longlong *)((ulonglong)StackPointerBuffer288 & SystemMemoryAlignmentMask);
   pNetworkRequestStatus5 = pBooleanCheck2;
   if (0 < IntegerCounter) {
     do {
@@ -10862,12 +10880,12 @@ Label_18062e8bc:
           StackBufferSize = 0x15;
           puStack_140 = &SystemNullPointer;
           uStack_128 = 0;
-          puStack_138 = (uint8_t *)0x0;
+          StackPointerBuffer312 = (uint8_t *)0x0;
           uStack_130 = 0;
           if (pMemoryAddress1 != (uint32_t *)0x0) {
             pMemoryAddress2 = (uint8_t *)MemoryAllocateEx(SystemMemoryAllocator,0x15,0x13);
             *pMemoryAddress2 = 0;
-            puStack_138 = pMemoryAddress2;
+            StackPointerBuffer312 = pMemoryAddress2;
             memoryValidationResult = MemoryValidateEx(pMemoryAddress2);
             uStack_128 = CONCAT44(uStack_128._4_4_,memoryValidationResult);
           }
@@ -10878,8 +10896,8 @@ Label_18062e8bc:
         pNetworkRequestStatus5 = (char *)(ulonglong)UnsignedValue;
         uStack_d8 = CONCAT44(uStack_d8._4_4_,UnsignedValue);
       }
-      IntegerCounter = (int)plStack_120 + 1;
-      plStack_120 = (longlong *)CONCAT44(plStack_120._4_4_,IntegerCounter);
+      IntegerCounter = (int)StackPointerBuffer288 + 1;
+      StackPointerBuffer288 = (longlong *)CONCAT44(StackPointerBuffer288._4_4_,IntegerCounter);
       SystemSixthParameter = SystemSixthParameter + 0x3088;
       SystemTertiaryParameter = pcStack_70;
       lStack_d0 = SystemSixthParameter;
