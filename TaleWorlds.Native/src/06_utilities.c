@@ -21055,8 +21055,12 @@ LAB_18089bbcc:
 
 
 
-// 函数: void FUN_18089bbff(void)
-void FUN_18089bbff(void)
+// 函数: void UtilityNoOperationN(void)
+/**
+ * @brief 空操作函数N
+ * @details 不执行任何操作的空函数，用作占位符
+ */
+void UtilityNoOperationN(void)
 
 {
   return;
@@ -29210,7 +29214,12 @@ void Unwind_180902110(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902120(undefined8 param_1,longlong param_2)
+// 函数: void ExceptionUnwindHandlerA20(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常展开处理器A20
+ * @details 处理异常展开过程中的特定操作，调用相关的异常处理回调
+ */
+void ExceptionUnwindHandlerA20(undefined8 param_1,longlong param_2)
 
 {
   if (*(longlong **)(param_2 + 0xa8) != (longlong *)0x0) {
@@ -29221,7 +29230,12 @@ void Unwind_180902120(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902130(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void ExceptionUnwindHandlerA21(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常展开处理器A21
+ * @details 处理异常展开过程中的特定操作，调用相关的异常处理回调
+ */
+void ExceptionUnwindHandlerA21(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   code *pcVar1;
@@ -29235,7 +29249,12 @@ void Unwind_180902130(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902140(undefined8 param_1,longlong param_2)
+// 函数: void ExceptionUnwindHandlerA22(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常展开处理器A22
+ * @details 处理异常展开过程中的特定操作，调用相关的异常处理回调
+ */
+void ExceptionUnwindHandlerA22(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(param_2 + 0xf0) = &DefaultExceptionHandlerB;
