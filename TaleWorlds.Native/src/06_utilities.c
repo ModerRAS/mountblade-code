@@ -9136,42 +9136,50 @@ int ValidateDataStateAndProcess(longlong dataContext,longlong operationContext)
 // WARNING: Removing unreachable block (ram,0x000180893a22)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180893964(undefined8 param_1,undefined8 param_2)
+// 原始函数名：FUN_180893964 - 条件数据处理函数
+// 功能：根据输入条件执行不同的数据处理操作
+#define ProcessDataByCondition FUN_180893964
+
+int ProcessDataByCondition(undefined8 inputCondition,undefined8 dataSize)
 
 {
-  int in_EAX;
-  int iVar1;
-  longlong lVar2;
-  longlong unaff_RDI;
-  longlong unaff_R15;
-  longlong in_stack_00000060;
+  int eaxRegister;
+  int operationResult;
+  longlong allocatedBuffer;
+  longlong contextHandle;
+  longlong resourceHandle;
+  longlong stackBuffer;
   
-  if (in_EAX == 0) {
-    lVar2 = FUN_180741d10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2,0x20,&UNK_180957f70,0xdd);
-    if (lVar2 != 0) {
+  if (eaxRegister == 0) {
+    allocatedBuffer = FUN_180741d10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),dataSize,0x20,&UNK_180957f70,0xdd);
+    if (allocatedBuffer != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(lVar2,*(undefined8 *)(unaff_RDI + 0x10),(longlong)*(int *)(unaff_RDI + 0x18));
+      memcpy(allocatedBuffer,*(undefined8 *)(contextHandle + 0x10),(longlong)*(int *)(contextHandle + 0x18));
     }
-    iVar1 = 0x26;
+    operationResult = 0x26;
   }
   else {
-    iVar1 = FUN_1808de900();
-    if ((iVar1 == 0) &&
-       (iVar1 = func_0x00018088c530(*(undefined4 *)(unaff_RDI + 0x24),&stack0x00000060), iVar1 == 0)
+    operationResult = FUN_1808de900();
+    if ((operationResult == 0) &&
+       (operationResult = func_0x00018088c530(*(undefined4 *)(contextHandle + 0x24),&stackBuffer), operationResult == 0)
        ) {
-      if (*(int *)(in_stack_00000060 + 0x30) == 1) {
-        *(undefined4 *)(in_stack_00000060 + 0x30) = 2;
+      if (*(int *)(stackBuffer + 0x30) == 1) {
+        *(undefined4 *)(stackBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(unaff_R15 + 0x98));
+      FUN_18088d720(*(undefined8 *)(resourceHandle + 0x98));
     }
   }
-  return iVar1;
+  return operationResult;
 }
 
 
 
-undefined8 FUN_180893a63(void)
+// 原始函数名：FUN_180893a63 - 返回错误码函数
+// 功能：返回固定错误码0x1f
+#define ReturnErrorCode31 FUN_180893a63
+
+undefined8 ReturnErrorCode31(void)
 
 {
   return 0x1f;
