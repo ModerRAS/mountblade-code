@@ -2203,24 +2203,24 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t ConnectionOperationCode;                              // 连接操作代码
   int64_t ProcessedPacketId;                                    // 已处理网络数据包ID
   int32_t PacketIndex;                                           // 网络数据包索引
-  int32_t NetworkMaxSignedInt32Value;                                    // 最大32位整数值
+  int32_t MaxSignedInt32Value;                                    // 最大32位整数值
   if (ConnectionOperationCode == 0) {
 PrimaryNetworkProcessingStageComplete:
-    if ((0 < *(int *)CalculateContextParameterOffset(NetworkConnectionOperationBuffer)) && (*NetworkConnectionOperationBuffer != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *NetworkConnectionOperationBuffer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)CalculateContextParameterOffset(ConnectionOperationBuffer)) && (*ConnectionOperationBuffer != 0)) {
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *ConnectionOperationBuffer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *NetworkConnectionOperationBuffer = (int64_t)ProcessedPacketIdentifier;
-    *(int *)CalculateContextParameterOffset(NetworkConnectionOperationBuffer) = ConnectionOperationCode;
+    *ConnectionOperationBuffer = (int64_t)ProcessedPacketId;
+    *(int *)CalculateContextParameterOffset(ConnectionOperationBuffer) = ConnectionOperationCode;
     return NetworkOperationSuccess;
   }
-  if (PacketIndex * ConnectionEntrySize - 1U < NetworkMaxSignedInt32Value) {
+  if (PacketIndex * ConnectionEntrySize - 1U < MaxSignedInt32Value) {
     ConnectionStatusPointer = (NetworkStatus *)
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            ConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
-      int32_t NetworkOperationProcessingCode = (int)NetworkConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
+      int32_t NetworkOperationProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
       int64_t NetworkStatusIterationCounter = (long long)NetworkOperationProcessingCode;
-      if ((NetworkOperationProcessingCode != 0) && (ConnectionContextId = *NetworkConnectionOperationBuffer, 0 < NetworkOperationProcessingCode)) {
+      if ((NetworkOperationProcessingCode != 0) && (ConnectionContextId = *ConnectionOperationBuffer, 0 < NetworkOperationProcessingCode)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
           NetworkStatus *ContextStatusPointer = (NetworkStatus *)CalculateStatusPointerOffset(ConnectionContextId, ConnectionStatusPointer, ConnectionStatusIterator);
