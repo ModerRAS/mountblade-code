@@ -4952,41 +4952,41 @@ undefined8 ProcessBatchDataOperations(longlong param_1)
 undefined8 ProcessUtilitySystemInitialization(void)
 
 {
-  longlong lVar1;
-  int iVar2;
-  longlong in_RAX;
-  undefined8 uVar3;
-  undefined4 *puVar4;
-  ulonglong uVar5;
-  longlong unaff_RSI;
-  uint uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
+  longlong resourceHandle;
+  int entryIndex;
+  longlong systemContext;
+  undefined8 operationResult;
+  undefined4 *dataPointer;
+  ulonglong baseAddress;
+  longlong registryPointer;
+  uint iterationCount;
+  ulonglong loopCounter;
+  longlong offsetDelta;
   
-  uVar7 = 0;
-  uVar5 = in_RAX - 8;
-  if (in_RAX == 0) {
-    uVar5 = uVar7;
+  loopCounter = 0;
+  baseAddress = systemContext - 8;
+  if (systemContext == 0) {
+    baseAddress = loopCounter;
   }
-  puVar4 = (undefined4 *)(unaff_RSI + 0x20 + (longlong)*(int *)(unaff_RSI + 0x18) * 4);
-  if (0 < *(int *)(unaff_RSI + 0x18)) {
-    lVar8 = (unaff_RSI + 0x20) - (longlong)puVar4;
+  dataPointer = (undefined4 *)(registryPointer + 0x20 + (longlong)*(int *)(registryPointer + 0x18) * 4);
+  if (0 < *(int *)(registryPointer + 0x18)) {
+    offsetDelta = (registryPointer + 0x20) - (longlong)dataPointer;
     do {
-      iVar2 = *(int *)(lVar8 + (longlong)puVar4);
-      if (iVar2 != -1) {
-        lVar1 = *(longlong *)(uVar5 + 0x20) + (longlong)iVar2 * 0x18;
-        if ((lVar1 == 0) || (lVar1 = *(longlong *)(lVar1 + 8), lVar1 == 0)) {
+      entryIndex = *(int *)(offsetDelta + (longlong)dataPointer);
+      if (entryIndex != -1) {
+        resourceHandle = *(longlong *)(baseAddress + 0x20) + (longlong)entryIndex * 0x18;
+        if ((resourceHandle == 0) || (resourceHandle = *(longlong *)(resourceHandle + 8), resourceHandle == 0)) {
           return 0x1c;
         }
-        uVar3 = FUN_1808d73b0(lVar1,*puVar4,0);
-        if ((int)uVar3 != 0) {
-          return uVar3;
+        operationResult = FUN_1808d73b0(resourceHandle,*dataPointer,0);
+        if ((int)operationResult != 0) {
+          return operationResult;
         }
       }
-      uVar6 = (int)uVar7 + 1;
-      uVar7 = (ulonglong)uVar6;
-      puVar4 = puVar4 + 1;
-    } while ((int)uVar6 < *(int *)(unaff_RSI + 0x18));
+      iterationCount = (int)loopCounter + 1;
+      loopCounter = (ulonglong)iterationCount;
+      dataPointer = dataPointer + 1;
+    } while ((int)iterationCount < *(int *)(registryPointer + 0x18));
   }
   return 0;
 }
