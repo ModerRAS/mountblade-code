@@ -11978,7 +11978,7 @@ OperationComplete:
 // 
 // 返回值:
 //   无 - 验证失败会终止程序执行
-void ExecuteSecurityValidation(longlong param_1, longlong param_2)
+void ExecuteSecurityValidation(longlong securityContext, longlong operationDescriptor)
 
 {
   longlong validationContext;
@@ -11991,14 +11991,14 @@ void ExecuteSecurityValidation(longlong param_1, longlong param_2)
   ulonglong stackGuardValue;
   
   stackGuardValue = ExceptionEncryptionKey ^ (ulonglong)securityValidationBuffer;
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&systemContext);
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(securityContext + 0x10),&systemContext);
   if (operationResult == 0) {
     if (systemContext != 0) {
       systemContext = systemContext + -8;
     }
     if (*(longlong *)(systemContext + 0x18) != 0) {
       validationContext = *(longlong *)(systemContext + 0x18) + 0x30;
-      calculatedOffset = (**(code **)(**(longlong **)(param_2 + 800) + 0x2f0))
+      securityValidationResult = (**(code **)(**(longlong **)(operationDescriptor + 800) + 0x2f0))
                         (*(longlong **)(param_2 + 800),validationContext,1);
       if (calculatedOffset == 0) {
                     // WARNING: Subroutine does not return
