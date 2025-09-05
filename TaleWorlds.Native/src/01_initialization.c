@@ -7,6 +7,33 @@
 #define SystemResourceManagerOffset         0x42687  // 系统资源管理器偏移量
 #define SystemMemoryFreeSize                0x213458  // 系统内存空闲大小
 
+// 系统资源管理器偏移量
+#define SystemResourceMemoryAllocatorOffset 0x1a     // 系统资源内存分配器偏移量
+#define SystemResourceMemoryCapacityOffset  0x1c     // 系统资源内存容量偏移量
+#define SystemResourceDataPointerOffset     0x10     // 系统资源数据指针偏移量
+#define SystemResourceComparisonIndexOffset 0x68     // 系统资源比较索引偏移量
+#define SystemResourceBlockSizeOffset       0x10     // 系统资源块大小偏移量
+#define SystemResourceDataLengthOffset      0x10     // 系统资源数据长度偏移量
+#define SystemResourceSourcePointerOffset   0x8      // 系统资源源指针偏移量
+#define SystemResourceCopyFlagsOffset       0x15     // 系统资源复制标志偏移量
+#define SystemResourceAdditionalDataOffset  0xac     // 系统资源附加数据偏移量
+#define SystemResourceStatusFlagsOffset     0x16     // 系统资源状态标志偏移量
+#define SystemResourceSecondaryStatusOffset 0x17     // 系统资源次要状态偏移量
+#define SystemResourceTertiaryStatusOffset  0x18     // 系统资源第三状态偏移量
+
+// 系统节点偏移量常量
+#define SystemNodeNextPointerOffset           2  // 系统节点下一指针偏移量
+#define SystemNodeHeadPointerOffset           0  // 系统节点头指针偏移量
+#define SystemNodeActiveFlagOffset           0x98  // 系统节点活动标志偏移量
+#define SystemNodeDataPointerOffset           8  // 系统节点数据指针偏移量
+#define SystemNodeHandlerOffset              0x20  // 系统节点处理器偏移量
+#define SystemNodeResourceOffset             0x890  // 系统节点资源偏移量
+#define SystemNodeCalculationOffset          0x888  // 系统节点计算偏移量
+#define SystemNodeFunctionOffset             0x1e0  // 系统节点函数偏移量
+#define SystemManagerStatusOffset            0xd    // 系统管理器状态偏移量
+#define SystemNodeMemoryPoolOffset           0x3f0  // 系统节点内存池偏移量
+#define SystemNodeIntegerOffset              0x3f8  // 系统节点整型偏移量
+
 // 位操作和数学计算相关常量
 #define SystemBitMask32Bit                    0x1f  // 32位掩码
 #define SystemMaximumUnsigned32BitValue               0xffffffff  // 最大32位无符号值
@@ -21322,7 +21349,7 @@ SystemValueCalculation:
 void InitializeSystemDataBlock(void* *SystemResourceManager,void* DataSourcePointer,void* MemoryBufferCapacityValue,void* AllocationFlags)
 
 {
-  InitializeAndCleanupSystemMemoryAllocator(SystemResourceManager + 0x1a,SystemResourceManager[0x1c],MemoryBufferCapacityValue,AllocationFlags,InvalidHandleValue);
+  InitializeAndCleanupSystemMemoryAllocator(SystemResourceManager + SystemResourceMemoryAllocatorOffset,SystemResourceManager[SystemResourceMemoryCapacityOffset],MemoryBufferCapacityValue,AllocationFlags,InvalidHandleValue);
   *SystemResourceManager = &SystemGlobalDataReference;
   if (SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] != 0) {
       SystemCleanupFunction();
@@ -21350,11 +21377,11 @@ ulong long CompareSystemDataBlocks(long long SystemResourceManager,long long Com
   ulong long DataBlockComparisonIndex;
   ulong long DataBlockLoopCounter;
   
-  DataBlockComparisonIndex = (ulong long)*(int *)(SystemResourceManager + 0x68);
-  DataBlockResourceMemoryOffset = *(long long *)(SystemResourceManager + 8);
-  if (DataBlockComparisonIndex < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - DataBlockResourceMemoryOffset >> 8)) {
-    DataBlockByteDifference = *(int *)(ComparisonDataPointer + 0x10);
-    DataBlockComparisonResult = *(int *)(DataBlockComparisonIndex * 0x100 + 0x10 + DataBlockResourceMemoryOffset);
+  DataBlockComparisonIndex = (ulong long)*(int *)(SystemResourceManager + SystemResourceComparisonIndexOffset);
+  DataBlockResourceMemoryOffset = *(long long *)(SystemResourceManager + SystemResourceSourcePointerOffset);
+  if (DataBlockComparisonIndex < (ulong long)(*(long long *)(SystemResourceManager + SystemResourceBlockSizeOffset) - DataBlockResourceMemoryOffset >> 8)) {
+    DataBlockByteDifference = *(int *)(ComparisonDataPointer + SystemResourceDataLengthOffset);
+    DataBlockComparisonResult = *(int *)(DataBlockComparisonIndex * 0x100 + SystemResourceDataLengthOffset + DataBlockResourceMemoryOffset);
     if (DataBlockComparisonResult == DataBlockByteDifference) {
       if (DataBlockComparisonResult != 0) {
         DataBlockSourceBytePointer = *(byte **)(DataBlockComparisonIndex * 0x100 + 8 + DataBlockResourceMemoryOffset);

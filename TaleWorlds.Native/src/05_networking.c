@@ -3089,7 +3089,6 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
 {
   // 连接状态处理变量
   int64_t ContextIdentifier = 0;                               // 网络连接上下文标识符
-  NetworkStatus SecondaryProcessingStatus = 0;              // 次级处理状态
   int64_t StatusIterator = 0;                           // 网络状态处理迭代器
   int64_t *ContextBuffer = NULL;                             // 网络连接上下文缓冲区
   int32_t ProcessingCode = 0;                              // 网络连接处理代码
@@ -3116,11 +3115,11 @@ PrimaryNetworkProcessingComplete:
       if ((ProcessingIterationCount != 0) && (ContextIdentifier = *OperationBuffer, 0 < ProcessingIterationCount)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
-          NetworkStatus *NetworkContextStatusPointer = (NetworkStatus *)CalculateConnectionStatusPointerAddress(ContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
-          NetworkStatus NetworkConnectionValidationStatus = NetworkContextStatusPointer[NetworkStatusValidationIndex];
-          NetworkStatus NetworkConnectionTimeoutStatus = NetworkContextStatusPointer[NetworkStatusTimeoutIndex];
-          NetworkStatus NetworkConnectionSecondaryStatus = NetworkContextStatusPointer[NetworkStatusSecondaryIndex];
-          *ConnectionStatusIterator = *NetworkContextStatusPointer;
+          NetworkStatus *ContextStatusPtr = (NetworkStatus *)CalculateConnectionStatusPointerAddress(ContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
+          NetworkStatus NetworkConnectionValidationStatus = ContextStatusPtr[NetworkStatusValidationIndex];
+          NetworkStatus NetworkConnectionTimeoutStatus = ContextStatusPtr[NetworkStatusTimeoutIndex];
+          NetworkStatus NetworkConnectionSecondaryStatus = ContextStatusPtr[NetworkStatusSecondaryIndex];
+          *ConnectionStatusIterator = *ContextStatusPtr;
           ConnectionStatusIterator[NetworkStatusValidationIndex] = NetworkConnectionValidationStatus;
           ConnectionStatusIterator[NetworkStatusTimeoutIndex] = NetworkConnectionTimeoutStatus;
           ConnectionStatusIterator[NetworkStatusSecondaryIndex] = NetworkConnectionSecondaryStatus;
