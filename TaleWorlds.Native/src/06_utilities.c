@@ -49956,12 +49956,12 @@ void InitializeExceptionHandlerB(undefined8 exceptionHandler,longlong systemCont
 
 
 
-void Unwind_1809062c0(undefined8 param_1,longlong param_2)
+void CleanupExceptionAtOffset80(undefined8 exceptionContext,longlong systemState)
 
 {
-  if ((*(uint *)(param_2 + 0x6c) & 1) != 0) {
-    *(uint *)(param_2 + 0x6c) = *(uint *)(param_2 + 0x6c) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0x108);
+  if ((*(uint *)(systemState + 0x6c) & 1) != 0) {
+    *(uint *)(systemState + 0x6c) = *(uint *)(systemState + 0x6c) & 0xfffffffe;
+    CleanupResourceHandler(systemState + 0x108);
   }
   return;
 }
