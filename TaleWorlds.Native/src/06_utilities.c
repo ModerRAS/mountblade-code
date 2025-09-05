@@ -101,6 +101,10 @@
 // 功能：返回固定错误码0x1c
 #define ReturnErrorCode FUN_180895345
 
+// 原始函数名：FUN_1808947b0 - 数据缓冲区处理函数
+// 功能：处理数据缓冲区并进行验证，返回处理的总字节数
+#define ProcessDataBufferWithValidation FUN_1808947b0
+
 // 原始函数名：FUN_180895b89 - 安全检查执行函数
 // 功能：执行安全检查，程序不会返回
 #define ExecuteSecurityCheck FUN_180895b89
@@ -1847,7 +1851,10 @@ undefined DeserializationDataBuffer;
 undefined DeserializationDataSize;
 undefined DeserializationDataFlags;
 undefined DeserializationDataChecksum;
-undefined UNK_180a22df8;
+// 原始变量名：UNK_180a22df8 - 系统配置数据表
+// 功能：存储系统配置信息
+#define SystemConfigurationDataTable UNK_180a22df8
+undefined SystemConfigurationDataTable;
 
 // 函数: undefined UtilityCloneData;
 // 
@@ -9875,21 +9882,21 @@ int ProcessUtilityDataWithEncryptionB(longlong *encryptionContext,longlong dataB
 
 
 
-int FUN_1808947b0(longlong *param_1,longlong param_2,int param_3)
+int ProcessDataBufferWithValidation(longlong *bufferContext,longlong dataBuffer,int bufferSize)
 
 {
-  int iVar1;
-  int iVar2;
+  int processedBytes1;
+  int processedBytes2;
   
-  iVar1 = FUN_18074b880(param_2,param_3,&UNK_180982240);
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,((int)param_1[2] + 2) * 0xc);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
-  return iVar2 + iVar1;
+  processedBytes1 = FUN_18074b880(dataBuffer,bufferSize,&UNK_180982240);
+  processedBytes2 = FUN_18074b880(dataBuffer + processedBytes1,bufferSize - processedBytes1,&DAT_180a06434);
+  processedBytes1 = processedBytes1 + processedBytes2;
+  processedBytes2 = func_0x00018074b7d0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,((int)bufferContext[2] + 2) * 0xc);
+  processedBytes1 = processedBytes1 + processedBytes2;
+  processedBytes2 = FUN_18074b880(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&DAT_180a06434);
+  processedBytes1 = processedBytes1 + processedBytes2;
+  processedBytes2 = (**(code **)(*bufferContext + 8))(bufferContext,processedBytes1 + dataBuffer,bufferSize - processedBytes1);
+  return processedBytes2 + processedBytes1;
 }
 
 
