@@ -5401,12 +5401,14 @@ int CheckUtilityPermissionG0(undefined4 param_1)
     FUN_180741df0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourcePointer,&UNK_180957f70,0xe9,operationMode);
     return operationResult;
   }
-  return iVar1;
+  return operationResult;
 }
 
 
 
-undefined8 FUN_180891492(void)
+// 函数: undefined8 GetUtilityStatusSuccess(void)
+// 功能：获取工具状态成功标识，返回0表示操作成功
+undefined8 GetUtilityStatusSuccess(void)
 
 {
   return 0;
@@ -5516,56 +5518,57 @@ undefined8 FUN_180891650(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1808916f0(longlong param_1,longlong param_2)
-void FUN_1808916f0(longlong param_1,longlong param_2)
+// 函数: void ProcessUtilityDataStructure(longlong dataStructurePointer,longlong contextPointer)
+// 功能：处理工具系统数据结构，根据上下文参数执行相应的数据处理操作
+void ProcessUtilityDataStructure(longlong dataStructurePointer,longlong contextPointer)
 
 {
-  longlong *plVar1;
-  int iVar2;
-  longlong *plVar3;
-  longlong *plVar4;
-  longlong *plVar5;
-  undefined8 auStackX_18 [2];
+  longlong *dataNodePointer;
+  int validationResult;
+  longlong *previousNodePointer;
+  longlong *nextNodePointer;
+  longlong *currentNodePointer;
+  undefined8 stackBuffer[2];
   
-  plVar5 = (longlong *)0x0;
-  auStackX_18[0] = 0;
-  iVar2 = FUN_18088c740(auStackX_18);
-  if ((iVar2 == 0) && (iVar2 = FUN_1808bdd90(*(undefined8 *)(param_2 + 0x90)), iVar2 == 0)) {
-    plVar4 = (longlong *)(*(longlong *)(param_2 + 0x50) + -8);
-    if (*(longlong *)(param_2 + 0x50) == 0) {
-      plVar4 = plVar5;
+  currentNodePointer = (longlong *)0x0;
+  stackBuffer[0] = 0;
+  validationResult = FUN_18088c740(stackBuffer);
+  if ((validationResult == 0) && (validationResult = FUN_1808bdd90(*(undefined8 *)(contextPointer + 0x90)), validationResult == 0)) {
+    nextNodePointer = (longlong *)(*(longlong *)(contextPointer + 0x50) + -8);
+    if (*(longlong *)(contextPointer + 0x50) == 0) {
+      nextNodePointer = currentNodePointer;
     }
-    plVar1 = plVar5;
-    if (plVar4 != (longlong *)0x0) {
-      plVar1 = plVar4 + 1;
+    dataNodePointer = currentNodePointer;
+    if (nextNodePointer != (longlong *)0x0) {
+      dataNodePointer = nextNodePointer + 1;
     }
     do {
-      if (plVar1 == (longlong *)(param_2 + 0x50)) {
-        if (*(char *)(param_1 + 0x10) != '\0') {
-          func_0x00018088aed0(param_2);
+      if (dataNodePointer == (longlong *)(contextPointer + 0x50)) {
+        if (*(char *)(dataStructurePointer + 0x10) != '\0') {
+          func_0x00018088aed0(contextPointer);
         }
         break;
       }
-      plVar4 = plVar1;
-      if (plVar1 != (longlong *)(param_2 + 0x50)) {
-        plVar3 = (longlong *)(*plVar1 + -8);
-        if (*plVar1 == 0) {
-          plVar3 = plVar5;
+      nextNodePointer = dataNodePointer;
+      if (dataNodePointer != (longlong *)(contextPointer + 0x50)) {
+        previousNodePointer = (longlong *)(*dataNodePointer + -8);
+        if (*dataNodePointer == 0) {
+          previousNodePointer = currentNodePointer;
         }
-        plVar4 = plVar5;
-        if (plVar3 != (longlong *)0x0) {
-          plVar4 = plVar3 + 1;
+        nextNodePointer = currentNodePointer;
+        if (previousNodePointer != (longlong *)0x0) {
+          nextNodePointer = previousNodePointer + 1;
         }
       }
-      plVar3 = plVar1 + 2;
-      if (plVar1 == (longlong *)0x0) {
-        plVar3 = (longlong *)&DAT_00000018;
+      previousNodePointer = dataNodePointer + 2;
+      if (dataNodePointer == (longlong *)0x0) {
+        previousNodePointer = (longlong *)&DAT_00000018;
       }
-      plVar1 = plVar4;
-    } while ((*plVar3 == 0) || (iVar2 = FUN_18088aca0(param_2), iVar2 == 0));
+      dataNodePointer = nextNodePointer;
+    } while ((*previousNodePointer == 0) || (validationResult = FUN_18088aca0(contextPointer), validationResult == 0));
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(auStackX_18);
+  FUN_18088c790(stackBuffer);
 }
 
 
