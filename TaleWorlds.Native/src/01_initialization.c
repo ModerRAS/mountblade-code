@@ -955,24 +955,24 @@ char SystemProtectionStatusIndicator;
 void* SystemDataTableEntrySystem;
 void* SystemMemoryBlockArchiveQuinary;
 void* SystemDataTableEntryKernel;
-void* SystemMemoryBlockArchiveSenary;
-void* SystemMemoryBlockArchiveSeptenary;
-void* SystemMemoryBlockArchiveOctonary;
-void* SystemMemoryBlockArchiveNonary;
-void* SystemMemoryBlockArchiveDenary;
-void* SystemMemoryBlockArchiveUndenary;
-void* SystemMemoryBlockArchiveDuodenary;
-void* SystemMemoryBlockArchiveTridenary;
-void* SystemMemoryBlockArchiveQuattuordenary;
-void* SystemMemoryBlockArchiveQuindenary;
-void* SystemMemoryBlockArchivePhi;
-void* SystemMemoryBlockArchiveChi;
-void* SystemMemoryBlockArchivePsi;
-void* SystemMemoryBlockArchiveOmega;
-void* SystemMemoryBlockArchiveFinal;
+void* SystemMemoryBlockArchiveSixth;
+void* SystemMemoryBlockArchiveSeventh;
+void* SystemMemoryBlockArchiveEighth;
+void* SystemMemoryBlockArchiveNinth;
+void* SystemMemoryBlockArchiveTenth;
+void* SystemMemoryBlockArchiveEleventh;
+void* SystemMemoryBlockArchiveTwelfth;
+void* SystemMemoryBlockArchiveThirteenth;
+void* SystemMemoryBlockArchiveFourteenth;
+void* SystemMemoryBlockArchiveFifteenth;
+void* SystemMemoryBlockArchiveSpecial;
+void* SystemMemoryBlockArchiveAdvanced;
+void* SystemMemoryBlockArchiveEnhanced;
 void* SystemMemoryBlockArchiveUltimate;
-void* SystemMemoryBlockArchiveOmegaPrime;
-void* SystemMemoryBlockArchiveOmegaSecondary;
+void* SystemMemoryBlockArchiveFinal;
+void* SystemMemoryBlockArchiveComplete;
+void* SystemMemoryBlockArchiveSuperior;
+void* SystemMemoryBlockArchiveSecondary;
 void* SystemFunctionPointerEmergency;
 
 /**
@@ -1140,11 +1140,11 @@ void* SystemDataNodeAnimationManager;          // 系统数据节点动画管理
 void* SystemDataNodeNinth;            // 系统数据节点第九节点
 void* SystemDataNodeTenth;            // 系统数据节点第十节点
 void* SystemDataNodeEleventh;          // 系统数据节点第十一节点
-void* SystemDataNodeDuodenary;         // 系统数据节点第十二节点
-void* SystemDataNodeTredecimal;         // 系统数据节点第十三节点
-void* SystemDataNodeQuattuordecimal;    // 系统数据节点第十四节点
-void* SystemDataNodeQuindecimal;        // 系统数据节点第十五节点
-void* SystemDataNodeSexdecimal;         // 系统数据节点第十六节点
+void* SystemDataNodeTwelfth;           // 系统数据节点第十二节点
+void* SystemDataNodeThirteenth;        // 系统数据节点第十三节点
+void* SystemDataNodeFourteenth;        // 系统数据节点第十四节点
+void* SystemDataNodeFifteenth;         // 系统数据节点第十五节点
+void* SystemDataNodeSixteenth;          // 系统数据节点第十六节点
 void* SystemDataNodeLinkageTable;                // 系统数据节点链接表
 void* SystemDataNodeLinkageManager;               // 系统数据节点链接管理器
 void* SystemDataNodeLinkageHandler;               // 系统数据节点链接处理器
@@ -1153,12 +1153,12 @@ void* SystemStringTemplate;                       // 系统字符串模板
 void* SystemDataTemplate;                         // 系统数据模板
 void* SystemDataNodeLinkageCache;                 // 系统数据节点链接缓存
 void* SystemDataNodeLinkageBackup;                 // 系统数据节点链接备份
-void* SystemDataNodeLinkageFirst;               // 系统数据节点链接第一表
-void* SystemDataNodeLinkageSecond;             // 系统数据节点链接第二表
+void* SystemDataNodeLinkagePrimary;           // 系统数据节点链接主表
+void* SystemDataNodeLinkageSecondary;         // 系统数据节点链接次表
 // 系统数据比较模板变量已在上面声明
 void* SystemDataNodeLinkageTertiary;              // 系统数据节点链接第三表
-void* SystemDataNodeLinkageFourth;            // 系统数据节点链接第四表
-void* SystemDataNodeLinkageFifth;               // 系统数据节点链接第五表
+void* SystemDataNodeLinkageQuaternary;         // 系统数据节点链接第四表
+void* SystemDataNodeLinkageQuinary;            // 系统数据节点链接第五表
 void* SystemConfigurationDataPointerTertiary;        // 系统配置数据指针第三
 void* SystemConfigurationDataPointerQuaternary;        // 系统配置数据指针第四
 void* SystemResourceManager;        // 系统资源管理器
