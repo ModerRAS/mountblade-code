@@ -70011,22 +70011,32 @@ void Unwind_18090c1c0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_18090c1d0(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 异常恢复处理函数C0
+ * 
+ * 该函数用于处理异常恢复过程中的流清理操作
+ * 
+ * @param exceptionContext 异常上下文数据
+ * @param recoveryContext 恢复上下文指针
+ * 
+ * @note 原始函数名：Unwind_18090c1d0
+ */
+void ExceptionRecoveryHandlerC0(DataBuffer exceptionContext, int64_t recoveryContext)
 
 {
-  int64_t validationContext;
-  int operationResult;
+  int64_t streamContext;
+  int cleanupResult;
   
-  validationContext = param_2 + 0x138;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(param_2 + 0x80) + 4) + -0xb8 + validationContext) =
-       &UNK_180a03ad8;
-  operationResult = *(int *)(*(int64_t *)(param_2 + 0x80) + 4);
-  *(int *)((int64_t)operationResult + -0xbc + validationContext) = operationResult + -0xb8;
-  FUN_18009fb60(param_2 + 0x98);
-  __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(param_2 + 0xa0);
+  streamContext = recoveryContext + 0x138;
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(recoveryContext + 0x80) + 4) + -0xb8 + streamContext) =
+       &DefaultStreamCleanupHandler;
+  cleanupResult = *(int *)(*(int64_t *)(recoveryContext + 0x80) + 4);
+  *(int *)((int64_t)cleanupResult + -0xbc + streamContext) = cleanupResult + -0xb8;
+  CleanupStreamResources(recoveryContext + 0x98);
+  DestroyBasicIoStream(recoveryContext + 0xa0);
                     // WARNING: Could not recover jumptable at 0x0001800c3c62. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(validationContext);
+  DestroyBasicIoStream(streamContext);
   return;
 }
 
