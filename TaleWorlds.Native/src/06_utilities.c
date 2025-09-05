@@ -24401,6 +24401,9 @@ LAB_18089cd76:
 
 
 
+// 原始函数名：FUN_18089ce03 - 空操作函数L
+// 功能：空操作函数，返回0
+#define UtilityNoOperationL FUN_18089ce03
 undefined8 FUN_18089ce03(void)
 
 {
@@ -24409,6 +24412,9 @@ undefined8 FUN_18089ce03(void)
 
 
 
+// 原始函数名：FUN_18089ce16 - 返回固定值函数M
+// 功能：返回固定值0xd
+#define ReturnFixedValueM FUN_18089ce16
 undefined8 FUN_18089ce16(void)
 
 {
@@ -24418,7 +24424,9 @@ undefined8 FUN_18089ce16(void)
 
 
 
-// 函数: void FUN_18089ce25(void)
+// 原始函数名：FUN_18089ce25 - 空操作函数N
+// 功能：空操作函数，无返回值
+#define UtilityNoOperationN FUN_18089ce25
 void FUN_18089ce25(void)
 
 {
