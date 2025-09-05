@@ -98988,7 +98988,7 @@ void FinalizeFloatDataTexture(void
   }
   ProcessMemoryCleanup(FloatVariable4);
   StackParameter2 = 0;
-  SystemCheckResult = FUN_1801166f0(&CoreEngineDataTemplate,&TertiaryDataBuffer,0x40,&DataStackBuffer,
+  SystemCheckResult = ValidateSystemBufferAndProcessData(&CoreEngineDataTemplate,&TertiaryDataBuffer,0x40,&DataStackBuffer,
                         CONCAT44(SystemByteValue,LoopCounter));
   if (SystemCheckResult != '\0') {
     CopyAndProcessSystemData(&TertiaryDataBuffer,*(void *)(RegisterGeneral14 + 0x1ec8),RegisterValueEBP);
