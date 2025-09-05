@@ -1871,12 +1871,12 @@ uint32_t NetworkCurrentConnectionTime;                    // 网络当前连接�
 uint32_t NetworkLastActivityTime;                      // 网络最后活动时间
 uint32_t NetworkCurrentBandwidthUsage;                     // 网络当前带宽使用量
 uint32_t NetworkCurrentLatency;                            // 网络当前延迟
-uint32_t NetworkPacketLoss;                         // 网络数据包丢失率
-uint32_t NetworkPacketRetransmissionCount;          // 网络数据包重传次数
-uint32_t NetworkActiveConnectionsCount;             // 活跃网络连接数量
+uint32_t NetworkCurrentPacketLossRate;                         // 网络当前数据包丢失率
+uint32_t NetworkCurrentPacketRetransmissionCount;          // 网络当前数据包重传次数
+uint32_t NetworkCurrentActiveConnectionsCount;             // 网络当前活跃连接数量
 uint32_t NetworkTotalConnectionAttempts;            // 网络连接总尝试次数
-uint32_t NetworkFailedConnectionAttempts;            // 网络连接失败尝试次数
-uint32_t NetworkAverageConnectionTime;               // 网络平均连接时间
+uint32_t NetworkTotalFailedConnectionAttempts;            // 网络连接总失败尝试次数
+uint32_t NetworkCurrentAverageConnectionTime;               // 网络当前平均连接时间
 uint32_t NetworkLastActivityTimestamp;              // 网络最后活动时间戳
 uint32_t NetworkPacketBufferPointer;                 // 网络数据包缓冲区指针
 uint32_t NetworkPacketHeaderPointer;                 // 网络数据包头指针
@@ -2149,7 +2149,7 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer
  * @note 此函数使用状态机模式处理连接请求的各个阶段
  * @warning 如果连接验证失败，系统会记录错误日志并拒绝连接
  */
-NetworkHandle ProcessNetworkRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
+NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
   int64_t ConnectionContextId;      // 网络连接上下文标识符
@@ -2190,7 +2190,7 @@ NetworkHandle ProcessNetworkRequest(NetworkHandle ConnectionContext, NetworkHand
  * @note 此函数在网络系统启动时调用，确保所有连接处理资源正确初始化
  * @warning 如果初始化失败，系统将无法建立新的网络连接
  */
-NetworkHandle InitializeNetworkSystem(void)
+NetworkHandle InitializeNetworkConnectionHandler(void)
 {
   // 初始化网络连接表
   if (NetworkConnectionTable == 0) {
