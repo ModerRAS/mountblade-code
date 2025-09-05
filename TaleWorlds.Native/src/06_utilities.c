@@ -12936,54 +12936,54 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
 DataBuffer ValidateAndProcessFloatingPointNumber(int64_t DataHandle, int64_t ContextHandle)
 {
     // 浮点数处理变量
-    float InputFloatValue;                           // 输入浮点数值
-    int64_t DataPointer;                           // 数据指针
-    DataBuffer OperationResult;                     // 操作结果
-    int64_t StackBuffer;                           // 栈缓冲区
-    int64_t SystemDataArray [2];                    // 系统数据数组
+    float InputValue;                           // 输入浮点数值
+    int64_t ValuePointer;                      // 数据指针
+    DataBuffer ValidationStatus;               // 操作结果
+    int64_t ContextBuffer;                     // 栈缓冲区
+    int64_t SystemDataBuffer[2];               // 系统数据数组
     
     // 查询系统数据并获取相关信息
-    OperationResult = QueryAndRetrieveSystemData(*(DataWord *)(DataHandle + 0x10), SystemDataArray);
-    if ((int)OperationResult == 0) {
+    ValidationStatus = QueryAndRetrieveSystemData(*(DataWord *)(DataHandle + 0x10), SystemDataBuffer);
+    if ((int)ValidationStatus == 0) {
         // 处理系统数据数组
-        if (SystemDataArray[0] == 0) {
-            SystemDataArray[0] = 0;
+        if (SystemDataBuffer[0] == 0) {
+            SystemDataBuffer[0] = 0;
         }
         else {
-            SystemDataArray[0] = SystemDataArray[0] - 8;
+            SystemDataBuffer[0] = SystemDataBuffer[0] - 8;
         }
-        StackBuffer = 0;
-        OperationResult = ValidateSystemDataStructure(SystemDataArray[0], DataHandle + 0x18, &StackBuffer);
-        if ((int)OperationResult == 0) {
+        ContextBuffer = 0;
+        ValidationStatus = ValidateSystemDataStructure(SystemDataBuffer[0], DataHandle + 0x18, &ContextBuffer);
+        if ((int)ValidationStatus == 0) {
             // 验证数据指针有效性
-            if (StackBuffer == 0) {
+            if (ContextBuffer == 0) {
                 return 0x4a;
             }
-            DataPointer = *(int64_t *)(StackBuffer + 0x10);
-            if (DataPointer == 0) {
+            ValuePointer = *(int64_t *)(ContextBuffer + 0x10);
+            if (ValuePointer == 0) {
                 return 0x1e;
             }
             // 检查数据状态标志位
-            if ((*(byte *)(DataPointer + 0x34) & 0x11) != 0) {
+            if ((*(byte *)(ValuePointer + 0x34) & 0x11) != 0) {
                 return 0x1f;
             }
             // 执行数据验证操作
-            OperationResult = ValidateDataRangeAndFlags(DataPointer, DataHandle + 0x25, DataHandle + 0x20);
-            if ((int)OperationResult == 0) {
-                InputFloatValue = *(float *)(DataHandle + 0x20);
+            ValidationStatus = ValidateDataRangeAndFlags(ValuePointer, DataHandle + 0x25, DataHandle + 0x20);
+            if ((int)ValidationStatus == 0) {
+                InputValue = *(float *)(DataHandle + 0x20);
                 // 验证浮点数范围
-                if ((*(float *)(DataPointer + 0x38) <= InputFloatValue) &&
-                   (InputFloatValue < *(float *)(DataPointer + 0x3c) || InputFloatValue == *(float *)(DataPointer + 0x3c))) {
-                    OperationResult = *(DataBuffer *)(ContextHandle + 0x98);
-                    *(float *)(StackBuffer + 4) = InputFloatValue;
+                if ((*(float *)(ValuePointer + 0x38) <= InputValue) &&
+                   (InputValue < *(float *)(ValuePointer + 0x3c) || InputValue == *(float *)(ValuePointer + 0x3c))) {
+                    ValidationStatus = *(DataBuffer *)(ContextHandle + 0x98);
+                    *(float *)(ContextBuffer + 4) = InputValue;
                     // 执行系统上下文操作
-                    ExecuteSystemContextOperation(OperationResult, DataHandle);
+                    ExecuteSystemContextOperation(ValidationStatus, DataHandle);
                 }
-                OperationResult = 0x1c;
+                ValidationStatus = 0x1c;
             }
         }
   }
-  return OperationResult;
+  return ValidationStatus;
 }
 
 
@@ -17261,7 +17261,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
   int inputParameter4;
   int64_t validationContext5;
   int inputParameter6;
-  bool bVar17;
+  bool validationStatusFlag;
   int stackContextBuffer [2];
   unsigned int stackParameterBuffer [2];
   DataBuffer uStackX_18;
@@ -18577,7 +18577,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   uint8_t *exceptionDataBuffer2;
   float processedValue;
   int64_t validationContext4;
-  float *pfVar15;
+  float *floatValuePointer;
   DataBuffer *exceptionDataBuffer6;
   ByteFlag auStack_1e8 [32];
   DataWord uStack_1c8;
