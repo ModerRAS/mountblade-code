@@ -5811,7 +5811,7 @@ undefined8 ValidateUtilitySystemState(void)
       if ((*poperationResult != _DAT_180c4eaa0) || (poperationResult[1] != _DAT_180c4eaa4)) {
         lStack0000000000000050 = 0;
         uVar1 = FUN_1808681d0(uVar6,(int *)(unaff_RBP + 0x20) + (longlong)(int)uVar5 * 2,
-                              &stack0x00000050);
+                              &stackBuffer50);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
@@ -6487,16 +6487,16 @@ undefined8 ValidateResourceAndTerminateB(longlong resourceHandle)
 undefined4 NoOperationC(void)
 
 {
-  longlong in_stack_00000040;
+  longlong stackParameter40;
   
-  if (in_stack_00000040 != 0) {
-    in_stack_00000040 = in_stack_00000040 + -8;
+  if (stackParameter40 != 0) {
+    stackParameter40 = stackParameter40 + -8;
   }
-  if (*(longlong *)(in_stack_00000040 + 0x10) == 0) {
+  if (*(longlong *)(stackParameter40 + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(in_stack_00000040 + 0x10),1);
+  ReleaseResource(*(longlong *)(stackParameter40 + 0x10),1);
 }
 
 
@@ -6595,16 +6595,16 @@ undefined8 ValidateResourceAndReleaseA(longlong resourceParam)
 undefined4 NoOperationH(void)
 
 {
-  longlong in_stack_00000040;
+  longlong stackParameter40;
   
-  if (in_stack_00000040 != 0) {
-    in_stack_00000040 = in_stack_00000040 + -8;
+  if (stackParameter40 != 0) {
+    stackParameter40 = stackParameter40 + -8;
   }
-  if (*(longlong *)(in_stack_00000040 + 0x10) == 0) {
+  if (*(longlong *)(stackParameter40 + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(in_stack_00000040 + 0x10),1);
+  ReleaseResource(*(longlong *)(stackParameter40 + 0x10),1);
 }
 
 
@@ -9321,12 +9321,12 @@ undefined8 QuerySystemStatusE0(void)
   undefined8 uVar3;
   longlong unaff_RBP;
   longlong unaff_RDI;
-  longlong in_stack_00000040;
+  longlong stackParameter40;
   
-  if (in_stack_00000040 == 0) {
+  if (stackParameter40 == 0) {
     return 0x4a;
   }
-  lVar2 = *(longlong *)(in_stack_00000040 + 0x10);
+  lVar2 = *(longlong *)(stackParameter40 + 0x10);
   if (lVar2 == 0) {
     return 0x1e;
   }
@@ -9339,7 +9339,7 @@ undefined8 QuerySystemStatusE0(void)
     if ((*(float *)(lVar2 + 0x38) <= fVar1) &&
        (fVar1 < *(float *)(lVar2 + 0x3c) || fVar1 == *(float *)(lVar2 + 0x3c))) {
       uVar3 = *(undefined8 *)(unaff_RBP + 0x98);
-      *(float *)(in_stack_00000040 + 4) = fVar1;
+      *(float *)(stackParameter40 + 4) = fVar1;
                     // WARNING: Subroutine does not return
       FUN_18088d720(uVar3);
     }
@@ -9359,7 +9359,7 @@ undefined8 InitializeSystemE0(void)
   longlong registerRBX;
   longlong unaff_RBP;
   longlong unaff_RDI;
-  longlong in_stack_00000040;
+  longlong stackParameter40;
   
   lVar2 = *(longlong *)(registerRBX + 0x10);
   if (lVar2 == 0) {
@@ -9374,7 +9374,7 @@ undefined8 InitializeSystemE0(void)
     if ((*(float *)(lVar2 + 0x38) <= fVar1) &&
        (fVar1 < *(float *)(lVar2 + 0x3c) || fVar1 == *(float *)(lVar2 + 0x3c))) {
       uVar3 = *(undefined8 *)(unaff_RBP + 0x98);
-      *(float *)(in_stack_00000040 + 4) = fVar1;
+      *(float *)(stackParameter40 + 4) = fVar1;
                     // WARNING: Subroutine does not return
       FUN_18088d720(uVar3);
     }
@@ -9423,7 +9423,7 @@ undefined8 ValidateParametersE1(undefined4 validationFlags)
   longlong registerRBX;
   longlong unaff_RBP;
   longlong unaff_RDI;
-  longlong in_stack_00000040;
+  longlong stackParameter40;
   
   uVar2 = FUN_18084de40(param_1,unaff_RDI + 0x25,unaff_RDI + 0x20);
   if ((int)uVar2 == 0) {
@@ -9431,7 +9431,7 @@ undefined8 ValidateParametersE1(undefined4 validationFlags)
     if ((*(float *)(registerRBX + 0x38) <= fVar1) &&
        (fVar1 < *(float *)(registerRBX + 0x3c) || fVar1 == *(float *)(registerRBX + 0x3c))) {
       uVar2 = *(undefined8 *)(unaff_RBP + 0x98);
-      *(float *)(in_stack_00000040 + 4) = fVar1;
+      *(float *)(stackParameter40 + 4) = fVar1;
                     // WARNING: Subroutine does not return
       FUN_18088d720(uVar2);
     }
@@ -10692,7 +10692,7 @@ void ProcessFloatComparisonAndValidation(void)
   longlong registerRBX;
   longlong unaff_RSI;
   float fVar3;
-  undefined4 in_stack_00000040;
+  undefined4 stackParameter40;
   
   fVar3 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
   fVar1 = *(float *)(registerRBX + 0x18);
@@ -10701,7 +10701,7 @@ void ProcessFloatComparisonAndValidation(void)
     fVar3 = fVar1;
   }
   *(float *)(registerRBX + 0x18) = fVar3;
-  operationResult = func_0x000180867960(unaff_RSI + 0x60,in_stack_00000040,fVar3);
+  operationResult = func_0x000180867960(unaff_RSI + 0x60,stackParameter40,fVar3);
   if (operationResult == 0) {
                     // WARNING: Subroutine does not return
     FUN_18088d720(*(undefined8 *)(unaff_RSI + 0x98));
@@ -10906,7 +10906,7 @@ undefined8 ValidateSystemConfigurationA0(void)
   longlong registerRBX;
   longlong unaff_RDI;
   float fVar5;
-  undefined4 in_stack_00000040;
+  undefined4 stackParameter40;
   
   lVar2 = func_0x000180867680();
   if ((*(uint *)(lVar2 + 0x34) >> 4 & 1) != 0) {
@@ -10919,9 +10919,9 @@ undefined8 ValidateSystemConfigurationA0(void)
     fVar5 = fVar1;
   }
   *(float *)(registerRBX + 0x10) = fVar5;
-  uVar3 = func_0x000180867960(unaff_RDI + 0x60,in_stack_00000040,fVar5);
+  uVar3 = func_0x000180867960(unaff_RDI + 0x60,stackParameter40,fVar5);
   if ((int)uVar3 == 0) {
-    puVar4 = (undefined8 *)func_0x000180867660(unaff_RDI + 0x60,&stack0x00000030,in_stack_00000040);
+    puVar4 = (undefined8 *)func_0x000180867660(unaff_RDI + 0x60,&stack0x00000030,stackParameter40);
     *(undefined8 *)(registerRBX + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
     FUN_18088d720(*(undefined8 *)(unaff_RDI + 0x98));
@@ -10944,7 +10944,7 @@ void ProcessFloatRangeValidation(void)
   longlong contextPointer;
   longlong systemHandle;
   float processedValue;
-  undefined4 in_stack_00000040;
+  undefined4 stackParameter40;
   
   processedValue = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
   currentValue = *(float *)(contextPointer + 0x10);
@@ -10953,9 +10953,9 @@ void ProcessFloatRangeValidation(void)
     processedValue = currentValue;
   }
   *(float *)(contextPointer + 0x10) = processedValue;
-  validationStatus = ValidateFloatValue(systemHandle + 0x60,in_stack_00000040,processedValue);
+  validationStatus = ValidateFloatValue(systemHandle + 0x60,stackParameter40,processedValue);
   if (validationStatus == 0) {
-    resultPointer = (undefined8 *)ProcessFloatData(systemHandle + 0x60,&stack0x00000030,in_stack_00000040);
+    resultPointer = (undefined8 *)ProcessFloatData(systemHandle + 0x60,&stack0x00000030,stackParameter40);
     *(undefined8 *)(contextPointer + 0x18) = *resultPointer;
                     // WARNING: Subroutine does not return
     ExecuteCriticalOperation(*(undefined8 *)(systemHandle + 0x98));
@@ -12525,10 +12525,10 @@ LAB_18089555d:
     }
     else {
       if ((cVar2 != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto LAB_18089555d;
-      in_stack_00000040._4_4_ = *(undefined4 *)(lVar8 + 0x20);
+      stackParameter40._4_4_ = *(undefined4 *)(lVar8 + 0x20);
       iVar4 = FUN_180895c60(param_1,unaff_EBX,(longlong)&stack0x00000040 + 4);
       if (iVar4 != 0) goto LAB_180895b69;
-      iVar4 = QueryAndRetrieveSystemDataA0(in_stack_00000040._4_4_,unaff_RBP + -0x78);
+      iVar4 = QueryAndRetrieveSystemDataA0(stackParameter40._4_4_,unaff_RBP + -0x78);
       if ((iVar4 != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
       goto LAB_18089555d;
     }
@@ -14180,7 +14180,7 @@ void ProcessFloatingPointDataA0(void)
   float fStackX_24;
   undefined *in_stack_00000030;
   int in_stack_00000038;
-  undefined4 in_stack_00000040;
+  undefined4 stackParameter40;
   float in_stack_00000048;
   
   if (((unaff_R15B != '\0') || (*(int *)(*(longlong *)(unaff_R13 + 0x2e8) + 0x34) == unaff_R12D)) &&
@@ -14213,7 +14213,7 @@ void ProcessFloatingPointDataA0(void)
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809842e0;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000038 = iVar8;
           iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da;
@@ -14222,7 +14222,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_00;
@@ -14231,7 +14231,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(lVar2 + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
@@ -14266,7 +14266,7 @@ void ProcessFloatingPointDataA0(void)
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809842e0;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000038 = iVar8;
           iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_01;
@@ -14275,7 +14275,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_02;
@@ -14284,7 +14284,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(lVar2 + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
@@ -14319,7 +14319,7 @@ void ProcessFloatingPointDataA0(void)
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809842e0;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000038 = iVar8;
           iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_03;
@@ -14328,7 +14328,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_04;
@@ -14337,7 +14337,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(lVar2 + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
@@ -14372,7 +14372,7 @@ void ProcessFloatingPointDataA0(void)
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809842e0;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000038 = iVar8;
           iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_05;
@@ -14381,7 +14381,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_06;
@@ -14390,7 +14390,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(lVar2 + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
@@ -14426,7 +14426,7 @@ void ProcessFloatingPointDataA0(void)
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809844c8;
-          in_stack_00000040 = uStackX_20;
+          stackParameter40 = uStackX_20;
           in_stack_00000038 = iVar9;
           iVar9 = FUN_180897520(fStackX_24,&stack0x00000030);
           if (iVar9 != 0) break;
@@ -14952,7 +14952,7 @@ FUN_180897b16:
             fStack000000000000004c = extraout_XMM0_Da_03;
             if (iVar13 != 0) goto FUN_180897b0e;
           }
-          iVar13 = FUN_180868270(fStack000000000000004c,&stack0x00000050,0);
+          iVar13 = FUN_180868270(fStack000000000000004c,&stackBuffer50,0);
           if (iVar13 == 0) {
             if (in_stack_00000050 != 1.0) {
               fStack0000000000000040 = in_stack_00000050;
@@ -15199,7 +15199,7 @@ FUN_180897b0e:
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
         if (iVar13 != 0) goto FUN_180897afe;
       }
-      iVar13 = FUN_180868270(in_stack_00000048._4_4_,&stack0x00000050,0);
+      iVar13 = FUN_180868270(in_stack_00000048._4_4_,&stackBuffer50,0);
       if (iVar13 == 0) {
         if (in_stack_00000050 != 1.0) {
           fStack0000000000000040 = in_stack_00000050;
@@ -15342,7 +15342,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     param_1 = extraout_XMM0_Da;
     if (operationResult != 0) goto LAB_180897af6;
   }
-  operationResult = FUN_180868270(param_1,&stack0x00000050,0);
+  operationResult = FUN_180868270(param_1,&stackBuffer50,0);
   if (operationResult == 0) {
     if (in_stack_00000050 != 1.0) {
       fStack0000000000000040 = in_stack_00000050;
@@ -17225,7 +17225,7 @@ undefined8 FUN_18089923e(longlong *param_1)
 {
   undefined8 uVar1;
   uint *unaff_RDI;
-  uint in_stack_00000040;
+  uint stackParameter40;
   uint in_stack_00000050;
   
   param_1 = (longlong *)*param_1;
@@ -17234,17 +17234,17 @@ undefined8 FUN_18089923e(longlong *param_1)
   }
   else {
     if (param_1[2] != 0) {
-      in_stack_00000040 = 0;
+      stackParameter40 = 0;
       uVar1 = func_0x00018076a7d0(*param_1,&stack0x00000040);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
-      if ((ulonglong)param_1[2] < (ulonglong)in_stack_00000040 + 4) {
+      if ((ulonglong)param_1[2] < (ulonglong)stackParameter40 + 4) {
         uVar1 = 0x11;
         goto LAB_1808992a5;
       }
     }
-    uVar1 = FUN_180769ed0(*param_1,&stack0x00000050,1,4,0);
+    uVar1 = FUN_180769ed0(*param_1,&stackBuffer50,1,4,0);
   }
 LAB_1808992a5:
   if ((int)uVar1 == 0) {
@@ -17614,13 +17614,13 @@ undefined8 FUN_180899816(void)
   uint uVar3;
   longlong *registerRBX;
   int iVar4;
-  int in_stack_00000040;
+  int stackParameter40;
   
-  if (in_stack_00000040 == 0) {
+  if (stackParameter40 == 0) {
     FUN_180840270();
   }
   else {
-    iVar4 = in_stack_00000040 + 1;
+    iVar4 = stackParameter40 + 1;
     uVar3 = (int)*(uint *)((longlong)registerRBX + 0xc) >> 0x1f;
     if (((int)((*(uint *)((longlong)registerRBX + 0xc) ^ uVar3) - uVar3) < iVar4) &&
        (uVar2 = FUN_180849030(), (int)uVar2 != 0)) {
@@ -17636,7 +17636,7 @@ undefined8 FUN_180899816(void)
     if ((int)uVar2 != 0) {
       return uVar2;
     }
-    *(undefined1 *)((longlong)in_stack_00000040 + *registerRBX) = 0;
+    *(undefined1 *)((longlong)stackParameter40 + *registerRBX) = 0;
   }
   return 0;
 }
@@ -20077,7 +20077,7 @@ undefined8 FUN_18089b52a(void)
   longlong unaff_RDI;
   bool in_CF;
   char cStack0000000000000030;
-  uint in_stack_00000040;
+  uint stackParameter40;
   
   if (in_CF) {
     if (*(int *)(in_RAX + 0x18) != 0) {
@@ -20122,12 +20122,12 @@ undefined8 FUN_18089b52a(void)
   }
   else {
     if (plVar2[2] != 0) {
-      in_stack_00000040 = 0;
+      stackParameter40 = 0;
       uVar3 = func_0x00018076a7d0(*plVar2,&stack0x00000040);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      if ((ulonglong)plVar2[2] < (ulonglong)in_stack_00000040 + 1) {
+      if ((ulonglong)plVar2[2] < (ulonglong)stackParameter40 + 1) {
         uVar3 = 0x11;
         goto LAB_1808a2e6d;
       }
@@ -20152,7 +20152,7 @@ undefined8 FUN_18089b540(void)
   longlong *registerRBX;
   char unaff_BPL;
   longlong unaff_RDI;
-  uint in_stack_00000040;
+  uint stackParameter40;
   
   validationContext = *registerRBX;
   uVar3 = FUN_1808aed00(validationContext,unaff_RDI + 0x60);
@@ -20175,12 +20175,12 @@ undefined8 FUN_18089b540(void)
   }
   else {
     if (plVar2[2] != 0) {
-      in_stack_00000040 = 0;
+      stackParameter40 = 0;
       uVar3 = func_0x00018076a7d0(*plVar2,&stack0x00000040);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      if ((ulonglong)plVar2[2] < (ulonglong)in_stack_00000040 + 1) {
+      if ((ulonglong)plVar2[2] < (ulonglong)stackParameter40 + 1) {
         uVar3 = 0x11;
         goto LAB_1808a2e6d;
       }
@@ -21404,7 +21404,7 @@ void FUN_18089be41(void)
     } while (iVar1 < (int)uVar4);
   }
   in_stack_00000050 = 0;
-  operationResult = FUN_1808afe30(*registerRBX,&stack0x00000050);
+  operationResult = FUN_1808afe30(*registerRBX,&stackBuffer50);
   iVar1 = in_stack_00000050;
   if (operationResult != 0) {
     return;
