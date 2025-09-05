@@ -17524,7 +17524,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
               uStack_b0 = 0;
               uStack_a0 = uStack_a0 & 0xffffff00;
               ProcessDataSetFlagA0(&puStack_b8,*(DataBuffer *)(param_1 + 0x58));
-              puStack_f0 = &UNK_1809841e0;
+              puStack_f0 = &SystemValidationDataTableA6;
               uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
               ProcessSystemEventA0(&puStack_f0,*(DataBuffer *)(param_1 + 0x58));
@@ -17535,7 +17535,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
             arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),auStack_70);
             validationContextPointer3 = plStack_108;
             if (arrayIndex == 0) {
-              puStack_b8 = &UNK_1809844c8;
+              puStack_b8 = &SystemValidationDataTableA7;
               uStack_a8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = 0x3f800000;
