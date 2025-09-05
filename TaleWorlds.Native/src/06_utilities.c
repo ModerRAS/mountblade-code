@@ -5515,9 +5515,11 @@ undefined8 ConditionalResourceRelease(char shouldRelease)
 
 
 
-// 函数: void FUN_18089064b(void)
-// 空操作函数
-// 不执行任何操作，仅作为占位符或桩函数使用
+/**
+ * @brief 空操作函数
+ * 
+ * 不执行任何操作，仅作为占位符或桩函数使用
+ */
 void UtilityNoOperation1(void)
 
 {
@@ -6609,7 +6611,6 @@ undefined4 ValidateResourceHandleAndReleaseAlternate(void)
 
 
 
-// 函数: void FUN_180890e5c(void)
 /**
  * @brief 系统终止函数
  * @details 调用系统终止函数，程序将不会返回
@@ -11648,9 +11649,11 @@ void TerminateSystemA(void)
 
 
 
-// 函数: void FUN_18089494e(void)
-// 安全检查终止函数A
-// 执行安全检查并终止程序
+/**
+ * @brief 安全检查终止函数A
+ * 
+ * 执行安全检查并终止程序
+ */
 void ExecuteSecurityCheckAndTerminateA(void)
 
 {
