@@ -14429,7 +14429,17 @@ void ExecuteNoOperationA0(void)
 
 
 // 函数: void FUN_180898040(longlong *param_1)
-void FUN_180898040(longlong *param_1)
+/**
+ * @brief 浮点数据处理函数A1
+ * @details 处理复杂的浮点数据计算和转换，包含多个处理阶段
+ * 
+ * 参数:
+ *   param_1 - 数据上下文句柄指针
+ * 
+ * 返回值:
+ *   无 - 通过安全检查机制处理结果
+ */
+void ProcessFloatingPointDataA1(longlong *param_1)
 
 {
   float fVar1;
