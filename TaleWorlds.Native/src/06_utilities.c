@@ -337,6 +337,38 @@
 // 功能：设置全局数据指针A31到指定地址
 #define SetGlobalDataPointerA31 FUN_180942360
 
+// 原始函数名：FUN_180897d20 - 数据块处理函数A0
+// 功能：处理数据块并执行安全检查，包含加密/解密操作
+#define ProcessDataBlockWithSecurityCheck FUN_180897d20
+
+// 原始函数名：FUN_180897d90 - 数据验证函数A0
+// 功能：验证数据结构并执行相关操作
+#define ValidateDataStructureA0 FUN_180897d90
+
+// 原始函数名：FUN_180898040 - 浮点数据处理函数A1
+// 功能：处理复杂的浮点数据计算和转换
+#define ProcessFloatingPointDataA1 FUN_180898040
+
+// 原始函数名：FUN_1808986b0 - 数据块验证函数A0
+// 功能：验证数据块的完整性和有效性
+#define ValidateDataBlockA0 FUN_1808986b0
+
+// 原始函数名：FUN_180898fc0 - 多段数据处理函数A0
+// 功能：处理多段数据，包括不同大小的数据块
+#define ProcessMultiSegmentDataA0 FUN_180898fc0
+
+// 原始函数名：FUN_180899040 - 数据验证处理函数A0
+// 功能：验证并处理数据，包含多个验证阶段
+#define ValidateAndProcessDataA0 FUN_180899040
+
+// 原始函数名：FUN_180899090 - 数据处理函数A1
+// 功能：处理数据块，支持多种数据格式
+#define ProcessDataBlocksA1 FUN_180899090
+
+// 原始函数名：FUN_180899100 - 数据验证函数A1
+// 功能：验证数据并执行相应的操作
+#define ValidateAndExecuteOperationsA1 FUN_180899100
+
 // 原始函数名：FUN_180942380 - 全局指针设置函数A32
 // 功能：设置全局数据指针A32到指定地址
 #define SetGlobalDataPointerA32 FUN_180942380
@@ -14175,9 +14207,9 @@ LAB_180897ce8:
       stackIndex = processCount;
       validationResult = FUN_180897520(contextHandle,&callbackPointer);
       if (validationResult != 0) goto LAB_180897ce8;
-      iVar6 = 0;
-      iVar5 = func_0x0001808c7ed0(*(undefined8 *)(lVar1 + 0xd0));
-      iVar4 = iVar3;
+      currentIteration = 0;
+      maxIterations = func_0x0001808c7ed0(*(undefined8 *)(resourceEntry + 0xd0));
+      validationResult = processCount + 1;
       if (0 < iVar5) {
         do {
           uStack_278 = 0;
@@ -85584,6 +85616,12 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ValidateDataIntegrityDR0 FUN_180891d40
 #define ProcessSystemDataDS0 FUN_180891cf0
 #define CheckSystemStatusDT0 FUN_180891ca0
+
+// 系统事件处理相关宏定义
+#define HandleSystemEventDU0 FUN_180891de0
+#define ProcessDataValidationDV0 FUN_180894300
+#define CleanupSystemResourceDW0 FUN_18084c470
+#define ResetSystemStateDX0 FUN_180891af0
 
 
 
