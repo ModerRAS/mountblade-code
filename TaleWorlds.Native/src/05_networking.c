@@ -3356,12 +3356,12 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
-    PacketValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
+    PacketValidationResult = ProcessNetworkPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
     if ((int)PacketValidationResult == 0) {
       if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorCodeInvalidPacket;
       }
-      PacketValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionPrimaryValidationOffset);
+      PacketValidationResult = ProcessNetworkPacketHeader(*PacketData, ConnectionContext + NetworkConnectionPrimaryValidationOffset);
       if ((((int)PacketValidationResult == 0) && (PacketValidationResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityContextOffset), (int)PacketValidationResult == 0)) &&
          (PacketValidationResult = ProcessNetworkPacketDataWithContext(PacketData, ConnectionContext + NetworkConnectionResultHandleContextOffset, 1, ConnectionContext), (int)PacketValidationResult == 0)) {
           FinalizePacketProcessing(PacketData, ConnectionSecurityBuffer);
