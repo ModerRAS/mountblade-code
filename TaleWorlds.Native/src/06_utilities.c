@@ -3129,6 +3129,11 @@ uint32_t UtilitySystemStatus1;
 // 异常处理器指针变量宏定义
 #define ExceptionHandlerPointerA _DAT_180bf90b0         // 异常处理器指针A
 
+// 内存验证相关变量宏定义
+#define MemoryValidationStartPointer _DAT_180c91f18     // 内存验证起始指针
+#define MemoryValidationEndPointer _DAT_180c91f28       // 内存验证结束指针
+#define MemoryValidationStatus uRam0000000180c91f20    // 内存验证状态
+
 // 异常处理系统全局变量
 void* ExceptionHandlerTablePointer;        // 异常处理器表指针
 int SystemExceptionHandlerState;          // 系统异常处理状态
@@ -4941,8 +4946,8 @@ undefined SystemDataBufferA1;
 undefined SystemConfigurationTableA3;
 // 系统配置表A4
 undefined SystemConfigurationTableA4;
-undefined1 DAT_180c82841;
-undefined1 DAT_180c82840;
+undefined1 SystemInitializationFlag;
+undefined1 SystemReadyFlag;
 undefined DAT_180c82864;
 undefined DAT_180c91048;
 undefined DAT_180c8ed18;
@@ -87942,21 +87947,29 @@ void SetThirdExceptionHandlerB(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941e00(void)
-void FUN_180941e00(void)
+/**
+ * @brief 初始化系统异常处理并验证状态
+ * 
+ * 该函数负责初始化系统异常处理机制，包括调用初始化函数、
+ * 验证系统状态、设置默认异常处理器等操作。
+ * 
+ * @note 此函数没有参数，也不返回值
+ * @warning 如果系统状态验证失败，会调用系统终止函数
+ */
+void InitializeSystemExceptionHandlingAndValidate(void)
 
 {
-  FUN_180320e20(0x180d497e0);
-  if (_DAT_180d49970 != 0) {
+  InitializeSystemExceptionA0(0x180d497e0);
+  if (SystemValidationFlag1 != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  if (_DAT_180d49950 != 0) {
+  if (SystemValidationFlag2 != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_180320b20(0x180d498a0);
-  _DAT_180d49830 = &DefaultExceptionHandlerB;
+  InitializeSystemExceptionB0(0x180d498a0);
+  SystemExceptionHandlerLocation = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -87965,28 +87978,27 @@ void FUN_180941e00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941e90(void)
-void FUN_180941e90(void)
+void ValidateAndCleanMemoryL0(void)
 
 {
-  longlong validationContext;
-  ulonglong uVar2;
+  longlong memoryValidationContext;
+  ulonglong memoryBlockSize;
   
-  if (_DAT_180c91f18 != 0) {
-    uVar2 = _DAT_180c91f28 - _DAT_180c91f18 & 0xfffffffffffffff8;
-    validationContext = _DAT_180c91f18;
-    if (0xfff < uVar2) {
-      validationContext = *(longlong *)(_DAT_180c91f18 + -8);
-      uVar2 = uVar2 + 0x27;
-      if (0x1f < (_DAT_180c91f18 - validationContext) - 8U) {
+  if (MemoryValidationStartPointer != 0) {
+    memoryBlockSize = MemoryValidationEndPointer - MemoryValidationStartPointer & 0xfffffffffffffff8;
+    memoryValidationContext = MemoryValidationStartPointer;
+    if (0xfff < memoryBlockSize) {
+      memoryValidationContext = *(longlong *)(MemoryValidationStartPointer + -8);
+      memoryBlockSize = memoryBlockSize + 0x27;
+      if (0x1f < (MemoryValidationStartPointer - memoryValidationContext) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn();
       }
     }
-    free(validationContext,uVar2);
-    _DAT_180c91f28 = 0;
-    _DAT_180c91f18 = 0;
-    uRam0000000180c91f20 = 0;
+    free(memoryValidationContext,memoryBlockSize);
+    MemoryValidationEndPointer = 0;
+    MemoryValidationStartPointer = 0;
+    MemoryValidationStatus = 0;
   }
   return;
 }
@@ -87996,11 +88008,18 @@ void FUN_180941e90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941f00(void)
-void FUN_180941f00(void)
+/**
+ * @brief 设置默认异常处理器B到位置3
+ * 
+ * 该函数将默认异常处理器B设置到另一个指定的全局位置，用于处理系统异常。
+ * 
+ * @note 此函数没有参数，也不返回值
+ * @warning 此函数会覆盖现有的异常处理器设置
+ */
+void SetDefaultExceptionHandlerB3(void)
 
 {
-  _DAT_180bf91b0 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerLocation3 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -88009,11 +88028,18 @@ void FUN_180941f00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941f20(void)
-void FUN_180941f20(void)
+/**
+ * @brief 设置默认异常处理器B到位置4
+ * 
+ * 该函数将默认异常处理器B设置到另一个指定的全局位置，用于处理系统异常。
+ * 
+ * @note 此函数没有参数，也不返回值
+ * @warning 此函数会覆盖现有的异常处理器设置
+ */
+void SetDefaultExceptionHandlerB4(void)
 
 {
-  _DAT_180bf9210 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerLocation4 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -88022,11 +88048,18 @@ void FUN_180941f20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941f40(void)
-void FUN_180941f40(void)
+/**
+ * @brief 设置默认异常处理器B到位置5
+ * 
+ * 该函数将默认异常处理器B设置到另一个指定的全局位置，用于处理系统异常。
+ * 
+ * @note 此函数没有参数，也不返回值
+ * @warning 此函数会覆盖现有的异常处理器设置
+ */
+void SetDefaultExceptionHandlerB5(void)
 
 {
-  _DAT_180bf9270 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerLocation5 = &DefaultExceptionHandlerB;
   return;
 }
 
