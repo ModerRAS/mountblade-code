@@ -918,6 +918,49 @@ char SystemConfigStateArray[64];
 #define SystemRequestMutexAddress 0x180c91ff0
 #define SystemMutexFlagsMask 0xfffffffffffffffe
 
+// 系统条件变量地址
+#define SystemConditionVariableAddress 0x180c91240
+#define SystemEngineInitializationAddress 0x180c911a0
+#define SystemMutexUnlockAddress 0x180c91148
+
+// 系统内存配置地址
+#define SystemMemoryConfigPrimaryAddress 0x180c919f0
+#define SystemDataTemplateAddress 0x180d496e0
+#define SystemResourceTemplateAddress 0x180d497e0
+#define SystemModuleMutexAddress 0x180c95d70
+#define SystemModuleDataAddress 0x180c95de0
+
+// 系统颜色处理地址
+#define SystemColorProcessingStartAddress 0x180c2e040
+#define SystemColorProcessingEndAddress 0x180c2e880
+#define SystemNetworkModuleAddress 0x180c2ea70
+
+// 系统常量定义
+#define SystemMaximumUnsignedValue 0xffffffff
+#define SystemMaximumSignedValue 0x7fffffffffffffff
+#define SystemFrameCounterMask 0x80000001
+#define SystemFrameCounterReset 0xfffffffe
+#define SystemFloatOneValue 0x3f800000
+#define SystemFloatTwoValue 0x40000000
+#define SystemFloatMaxValue 0x7f7fffff
+#define SystemMemoryAlignmentMask 0xffffffff00000000
+#define SystemBufferSizeMask 0xffffffffffffff00
+#define SystemAddressAlignmentMask 0xffffffffffffffe0
+#define SystemNetworkAddressBase 0x180c80000
+#define SystemColorTableMultiplier 0xaaaaaaaaaaaaaaab
+
+// 浮点数常量定义
+#define SystemFloatOneThirdValue 0x3d088889
+#define SystemFloatPiValue 0x40490fdb
+#define SystemFloatTwoPiValue 0x40c90fdb
+#define SystemFloatHalfPiValue 0x3fc90fdb
+#define SystemFloatEpsilonValue 0x34000000
+#define SystemFloatSmallValue 0x2e000000
+#define SystemFloatLargeValue 0x42c80000
+#define SystemFloatZeroPointOneValue 0x3dcccccd
+#define SystemFloatZeroPointZeroOneValue 0x3c23d70a
+#define SystemFloatZeroPointZeroZeroOneValue 0x38d1b717
+
 // 系统配置数据常量定义
 #define SystemConfigTemplateAlpha SystemConfigDataAlpha
 #define SystemConfigTemplateBeta SystemConfigDataBeta  
@@ -1028,7 +1071,7 @@ int InitializeRenderingSystem(void)
   int64_t CallbackRegistrationResult;
   GlobalRenderingSystemEnabled = 1;
   GlobalRenderingSystemFlags = 0;
-  GlobalRenderingSystemMaxValue = 0x7fffffffffffffff;
+  GlobalRenderingSystemMaxValue = SystemMaximumSignedValue;
   GlobalRenderingSystemStatus = 0;
   CallbackRegistrationResult = RegisterSystemCallback(RenderingSystemCallback);
   return (CallbackRegistrationResult != 0) - 1;
@@ -3118,7 +3161,7 @@ LabelStringProcessingSpaceCheck1:
       StringPointer = StringPointer + 1;
     } while (MemoryAddress5 < StackBufferSize);
   }
-  MemoryAddress4 = 0xffffffff;
+  MemoryAddress4 = SystemMaximumUnsignedValue;
 LabelStringProcessingSpaceCheck2:
   if (StringIndex != -1) {
     ProcessStackOperation(&StackBufferPointer,&StackDataBuffer,StringProcessingResult,MemoryAddress4);
@@ -4062,7 +4105,7 @@ Label_CharacterValidationComplete:
   SystemModuleInitialize(SystemDataPointer,StringSearchResult,LongAddress,BufferSize7);
 }
     SystemRenderingEnabled = 1;
-    IntegerError = _Cnd_broadcast(0x180c91240);
+    IntegerError = _Cnd_broadcast(SystemConditionVariableAddress);
     if (IntegerError != 0) {
       __Throw_C_error_std__YAXH_Z(IntegerError);
     }
@@ -4070,7 +4113,7 @@ Label_CharacterValidationComplete:
     if (IntegerError != 0) {
       __Throw_C_error_std__YAXH_Z(IntegerError);
     }
-    InitializeGameEngine(0x180c911a0);
+    InitializeGameEngine(SystemEngineInitializationAddress);
   }
   *(uint32_t *)(SystemStatusRegister + 4) = 0;
   if (*(char *)(LongData + 0x1ee) == '\0') {
@@ -4093,7 +4136,7 @@ Label_CharacterValidationComplete:
       *(float *)(LongData + 0x220) = FloatCalculationResult;
     }
     else {
-      *(uint32_t *)(LongData + 0x220) = 0x3d088889;
+      *(uint32_t *)(LongData + 0x220) = SystemFloatOneThirdValue;
       FloatCalculationResult = 0.033333335;
     }
     ProcessInputEvent(LongData,FloatCalculationResult);
@@ -4171,7 +4214,7 @@ Label_CharacterValidationComplete:
   return;
 }
     SystemRenderingEnabled = 1;
-    LoopCounterValue = _Cnd_broadcast(0x180c91240);
+    LoopCounterValue = _Cnd_broadcast(SystemConditionVariableAddress);
     if (LoopCounterValue != 0) {
       __Throw_C_error_std__YAXH_Z(LoopCounterValue);
     }
@@ -4179,7 +4222,7 @@ Label_CharacterValidationComplete:
     if (LoopCounterValue != 0) {
       __Throw_C_error_std__YAXH_Z(LoopCounterValue);
     }
-    InitializeGameEngine(0x180c911a0);
+    InitializeGameEngine(SystemEngineInitializationAddress);
   }
   *(uint32_t *)(SystemStatusRegister + 4) = 0;
   if (*(char *)(SystemParameterPointer + 0x1ee) == '\0') {
@@ -4202,7 +4245,7 @@ Label_CharacterValidationComplete:
       *(float *)(SystemParameterPointer + 0x220) = FloatValue;
     }
     else {
-      *(uint32_t *)(SystemParameterPointer + 0x220) = 0x3d088889;
+      *(uint32_t *)(SystemParameterPointer + 0x220) = SystemFloatOneThirdValue;
       FloatValue = 0.033333335;
     }
     ProcessInputEvent(SystemParameterPointer,FloatValue);
@@ -4376,8 +4419,8 @@ Label_ModuleConfigurationStart:
     SystemModuleContext = (longlong *)*configurationPointer;
     SystemInitializeSecondary(&SystemInitializationBufferA,0,0);
     ConfigureSystemComponent(&SystemConstantDD);
-    SystemInitializationFlag = 0x40000000;
-    auStack_2c8[0] = 0x3f800000;
+    SystemInitializationFlag = SystemFloatTwoValue;
+    auStack_2c8[0] = SystemFloatOneValue;
     StackParameter14 = 0x20000;
     StackParameterPointer = &SystemRegistrationBuffer;
     pplStack_328 = (longlong **)&uStack_2f0;
@@ -4435,7 +4478,7 @@ Label_ModuleConfigurationStart:
     pplStack_328 = (longlong **)&StackCounter48;
     RegisterSystemConfigurationParameter(&SystemConfigurationParameterBuffer,4,SystemConfigurationData + 0x168c,&plStack_2f8);
     if (*(float *)(SystemConfigurationData + 0x168c) == 0.0) {
-      *(uint32_t *)(SystemConfigurationData + 0x168c) = 0x3f800000;
+      *(uint32_t *)(SystemConfigurationData + 0x168c) = SystemFloatOneValue;
     }
     FinalizeSystemComponent();
     SystemModuleContext = pModuleInitializationResult4;
@@ -4764,7 +4807,7 @@ uint HandleMutexOperations(void)
     *(uint8_t *)(*(longlong *)(*(longlong *)(SystemEngineContext + 8) + 0x140) + 0x208) = 1;
   }
   SystemRenderingActive = '\0';
-  LoopCounter3 = _Mtx_unlock(0x180c91148);
+  LoopCounter3 = _Mtx_unlock(SystemMutexUnlockAddress);
   if (LoopCounter3 != 0) {
     __Throw_C_error_std__YAXH_Z(LoopCounter3);
   }
@@ -6936,7 +6979,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   return MemoryAllocationResult;
 }
     SystemOperationFlag = 0;
-    InitializeSystemDataTemplate(0x180d496e0);
+    InitializeSystemDataTemplate(SystemDataTemplateAddress);
     ProcessSystemConfigurationTemplate(GetSystemConfigurationTemplate);
     ValidateSystemConfigurationData(&SystemConfigDataStructure);
   }
@@ -6967,8 +7010,8 @@ Label_18032b96c:
     if ((StringProcessingResultPointer != *(uint **)(ModuleInitializationResult + LongValue * 8)) && (LongValue = *(longlong *)(StringProcessingResultPointer + 2), LongValue != 0)
        ) goto Label_18032b98e;
   }
-  InitializeSystemDataTemplate(0x180d496e0);
-  LongValue = 0x180d496e0;
+  InitializeSystemDataTemplate(SystemDataTemplateAddress);
+  LongValue = SystemDataTemplateAddress;
 Label_18032b98e:
   StringIndex = _Mtx_unlock(SystemParameterPointer + 0x6e8);
   if (StringIndex != 0) {
@@ -6994,7 +7037,7 @@ longlong FindAndValidateSystemModule(longlong SystemContext, uint ModuleId, uint
   uint *StringProcessingResultPointer;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                0x48) < _SystemConfigurationValidationResult2) && (ValidateSystemConfigurationTemplate(&SystemConfigurationValidationResult2), _SystemConfigurationValidationResult2 == -1)) {
-    InitializeSystemDataResources(0x180d497e0);
+    InitializeSystemDataResources(SystemResourceTemplateAddress);
     ProcessSystemConfigurationTemplate(GetSystemDataResources);
     ValidateSystemConfigurationData(&SystemConfigurationValidationResult2);
   }
@@ -7022,8 +7065,8 @@ Label_18032bb25:
       return *(longlong *)(StringProcessingResultPointer + 2);
     }
   }
-  ProcessSystemDataResources(0x180d497e0);
-  return 0x180d497e0;
+  ProcessSystemDataResources(SystemResourceTemplateAddress);
+  return SystemResourceTemplateAddress;
 }
 /**
  * @brief 初始化系统模块
@@ -7482,7 +7525,7 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
     LongCounter = LongCounter + -1;
   } while (LongCounter != 0);
   SystemMemoryInitFlag = 0;
-  _Mtx_init_in_situ(0x180c95d70,2,MutexParameter3,MutexParameter4,StringProcessingResult);
+  _Mtx_init_in_situ(SystemModuleMutexAddress,2,MutexParameter3,MutexParameter4,StringProcessingResult);
   SystemModuleConfigMask1 = 0xffffffff;
   SystemModuleConfigFlag3 = 0;
   SystemModuleConfigMask2 = 0;
@@ -7514,8 +7557,8 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
   InitializeSystemData(0x180c95de0);
   SystemModuleConfigStatus2 = 1;
   SystemModuleConfigSize5 = 3;
-  SystemModuleConfigValue3 = 0x40000000;
-  SystemModuleConfigValue4 = 0x3f800000;
+  SystemModuleConfigValue3 = SystemFloatTwoValue;
+  SystemModuleConfigValue4 = SystemFloatOneValue;
   SystemModuleConfigFlag6 = 0;
   SystemModuleConfigFlag7 = 1;
   SystemModuleConfigDataPointer = &SystemModuleConfigDataBuffer;
@@ -7528,8 +7571,8 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
   SystemModuleConfigFlag9 = 0;
   SystemLightEnabled = 1;
   SystemModuleConfigSize7 = 3;
-  SystemModuleConfigValue5 = 0x40000000;
-  SystemModuleConfigValue6 = 0x3f800000;
+  SystemModuleConfigValue5 = SystemFloatTwoValue;
+  SystemModuleConfigValue6 = SystemFloatOneValue;
   SystemModuleConfigFlag10 = 0;
   SystemModuleConfigFlag11 = 1;
   SystemModuleConfigDataPointer2 = &SystemModuleConfigDataBuffer;
@@ -7563,8 +7606,8 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
   SystemLightConfigFlag3 = 0;
   SystemLightConfigValue1 = 0;
   SystemLightConfigSize = 4;
-  SystemLightConfigValue2 = 0x40000000;
-  SystemLightConfigValue3 = 0x3f800000;
+  SystemLightConfigValue2 = SystemFloatTwoValue;
+  SystemLightConfigValue3 = SystemFloatOneValue;
   SystemLightConfigFlag4 = 0;
   SystemLightConfigFlag5 = 1;
   SystemLightConfigDataPointer = &SystemModuleConfigDataBuffer;
@@ -11625,7 +11668,7 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
   LoopCounter = ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigC,SystemTertiaryParameter,SystemTertiaryParameter + 4,SystemTertiaryParameter + 8,
                         (uint32_t *)(SystemTertiaryParameter + 0xc),uVar6);
   if (LoopCounter == 3) {
-    *(uint32_t *)(SystemTertiaryParameter + 0xc) = 0x3f800000;
+    *(uint32_t *)(SystemTertiaryParameter + 0xc) = SystemFloatOneValue;
   }
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {

@@ -324,16 +324,16 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define ContextSize512Bytes 0x200                           // 512字节上下文大小
 
 // 网络超时常量
-#define NetworkTimeoutOneSecond 0x3E8                             // 1秒超时
-#define NetworkTimeoutFiveSeconds 0x1388                           // 5秒超时
-#define NetworkTimeoutThirtySeconds 0x7530                          // 30秒超时
-#define NetworkTimeoutFiveMinutes 0x493E0                          // 5分钟超时
-#define NetworkHeartbeatThirtySeconds 0x1E                          // 30秒心跳
-#define NetworkHeartbeatSixtySeconds 0x3C                          // 60秒心跳
+#define NetworkTimeoutOneSecond 1000                             // 1秒超时
+#define NetworkTimeoutFiveSeconds 5000                           // 5秒超时
+#define NetworkTimeoutThirtySeconds 30000                          // 30秒超时
+#define NetworkTimeoutFiveMinutes 300000                          // 5分钟超时
+#define NetworkHeartbeatThirtySeconds 30                          // 30秒心跳
+#define NetworkHeartbeatSixtySeconds 60                          // 60秒心跳
 
 // 网络质量常量
 #define NetworkConnectionQualityGood 0x05                       // 良好连接质量
-#define NetworkLatencyFiftyMilliseconds 0x32                                     // 50毫秒延迟
+#define NetworkLatencyFiftyMilliseconds 50                                     // 50毫秒延迟
 #define NetworkBandwidthFourKilobytes 0x1000                                 // 4KB带宽
 #define NetworkReliabilityLevelHigh 0x01                           // 高可靠性级别
 #define NetworkWindowScaleSixteen 0x10                                 // 窗口缩放16
@@ -389,9 +389,6 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkDataFormatValid 0x01                        // 数据格式有效
 #define NetworkChecksumValid 0x01                           // 校验和有效
 #define NetworkPacketSizeLimit85Bytes 0x55                          // 数据包大小限制（85字节）
-#define NetworkPacketSizeLimit NetworkPacketSizeLimit85Bytes          // 数据包大小限制（85字节）
-#define NetworkPacketAlternativeSizeLimit NetworkPacketSizeLimit85Bytes  // 替代数据包大小限制（85字节）
-#define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名 - 替代数据包大小限制
 
 // 网络连接验证偏移量常量
 #define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证偏移量
