@@ -35049,24 +35049,38 @@ void ExceptionResourceCleanupA1(undefined8 exceptionContext,longlong resourceMan
 
 
 
-void Unwind_180902800(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理异常状态偏移量120
+ * 
+ * 该函数用于清理异常状态偏移量为120的资源
+ * 
+ * @note 原始函数名：Unwind_180902800
+ */
+void CleanupExceptionAtOffset120(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *resourcePointer;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(puVar1);
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
+  if (resourcePointer != (undefined8 *)0x0) {
+    FUN_1800587d0(*(longlong *)(param_2 + 0x78),*resourcePointer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18005cb60(resourcePointer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(resourcePointer);
   }
   return;
 }
 
 
 
-void Unwind_180902810(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理异常状态偏移量112
+ * 
+ * 该函数用于清理异常状态偏移量为112的资源
+ * 
+ * @note 原始函数名：Unwind_180902810
+ */
+void CleanupExceptionAtOffset112(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x70) + 0x18,
@@ -35077,7 +35091,14 @@ void Unwind_180902810(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902820(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理异常状态偏移量96
+ * 
+ * 该函数用于清理异常状态偏移量为96的资源
+ * 
+ * @note 原始函数名：Unwind_180902820
+ */
+void CleanupExceptionAtOffset96(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1801fef10(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
