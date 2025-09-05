@@ -21154,7 +21154,7 @@ void InitializeSystemDataStructure(undefined8 *param_1)
         securityCheckResult = extraout_XMM0_Da_01;
       } while (lVar7 < systemContext);
     }
-    iVar3 = FUN_1808aca30(securityCheckResult,registerR14 + 0x60);
+    iVar3 = CheckSystemStateAndReturnStatusA2(securityCheckResult,registerR14 + 0x60);
     if (iVar3 == 0) {
       resourcePointer = *(undefined8 **)(registerContext + 8);
       iVar3 = *(int *)(registerR14 + 0x78);
