@@ -19566,49 +19566,49 @@ uint32_t FinalSystemInitialization(void)
   SystemObjectHandle = SystemContextManagerPointer;
   MemoryAllocationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3);
   SystemMemoryManager = (long long ****)AllocateSystemMemory(MemoryAllocationFlags,2,SystemObjectHandle);
-  SystemTemporaryManagerBackup = SystemMemoryManager;
-  if (SystemTemporaryManager != (long long ****)0x0) {
-    (*(code *)(*SystemTemporaryManager)[5])(SystemTemporaryManager);
+  SystemMemoryManagerBackup = SystemMemoryManager;
+  if (SystemMemoryManager != (long long ****)0x0) {
+    (*(code *)(*SystemMemoryManager)[5])(SystemMemoryManager);
   }
   SystemInterfacePointer = *(void* **)(SystemObjectHandle + 400);
   SystemCallbackFunction = *(code **)*SystemInterfacePointer;
   SystemStackManager = &StackController;
-  StackController = (long long ***)SystemTemporaryManager;
-  if (SystemTemporaryManager != (long long ****)0x0) {
-    (*(code *)(*SystemTemporaryManager)[5])(SystemTemporaryManager);
+  StackController = (long long ***)SystemMemoryManager;
+  if (SystemMemoryManager != (long long ****)0x0) {
+    (*(code *)(*SystemMemoryManager)[5])(SystemMemoryManager);
   }
   (*SystemCallbackFunction)(SystemInterfacePointer,&StackController);
-  CalculationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3,CalculationFlags,SystemGlobalManager,SystemTemporaryManager);
-  SystemSecondaryTemporaryManager = (long long ***)AllocateSystemMemory(CalculationFlags,0,SystemObjectHandle);
-  if (SystemSecondaryTemporaryManager != (long long ***)0x0) {
-    (*(code *)(*SystemSecondaryTemporaryManager)[5])(SystemSecondaryTemporaryManager);
+  CalculationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3,CalculationFlags,SystemGlobalManager,SystemMemoryManager);
+  SystemSecondaryMemoryManager = (long long ***)AllocateSystemMemory(CalculationFlags,0,SystemObjectHandle);
+  if (SystemSecondaryMemoryManager != (long long ***)0x0) {
+    (*(code *)(*SystemSecondaryMemoryManager)[5])(SystemSecondaryMemoryManager);
   }
   SystemInterfacePointer = *(void* **)(SystemObjectHandle + 400);
   SystemCallbackFunction = *(code **)*SystemInterfacePointer;
   SystemStackManager = (long long ****)&SystemStackController;
-  SystemStackController = (long long **)SystemSecondaryTemporaryManager;
-  if (SystemSecondaryTemporaryManager != (long long ***)0x0) {
-    (*(code *)(*SystemSecondaryTemporaryManager)[5])(SystemSecondaryTemporaryManager);
+  SystemStackController = (long long **)SystemSecondaryMemoryManager;
+  if (SystemSecondaryMemoryManager != (long long ***)0x0) {
+    (*(code *)(*SystemSecondaryMemoryManager)[5])(SystemSecondaryMemoryManager);
   }
   (*SystemCallbackFunction)(SystemInterfacePointer,&SystemStackController);
   ProcessSystemCallback(*(void* *)(SystemObjectHandle + 400));
-  if (SystemSecondaryTemporaryManager != (long long ***)0x0) {
-    (*(code *)(*SystemSecondaryTemporaryManager)[7])(SystemSecondaryTemporaryManager);
+  if (SystemSecondaryMemoryManager != (long long ***)0x0) {
+    (*(code *)(*SystemSecondaryMemoryManager)[7])(SystemSecondaryMemoryManager);
   }
-  if (SystemPrimaryTemporaryManager != (long long ****)0x0) {
-    (*(code *)(*SystemPrimaryTemporaryManager)[7])(SystemPrimaryTemporaryManager);
+  if (SystemPrimaryMemoryManager != (long long ****)0x0) {
+    (*(code *)(*SystemPrimaryMemoryManager)[7])(SystemPrimaryMemoryManager);
   }
-  SystemTemporaryManager = SystemManagerPointerStorage;
+  SystemMemoryManager = SystemManagerPointerStorage;
   *(uint8_t *)(SystemManagerPointerStorage[1] + 0x80) = 1;
   while( true ) {
-    SystemControllerInstance = *SystemTemporaryManager[1];
+    SystemControllerInstance = *SystemMemoryManager[1];
     if (SystemControllerInstance == (long long **)&SystemControllerDefaultTable) {
-      SystemActiveStatus = *(char *)(SystemTemporaryManager[1] + 2) != '\0';
+      SystemActiveStatus = *(char *)(SystemMemoryManager[1] + 2) != '\0';
     }
     else {
       SystemActiveStatus = (*(code *)SystemControllerInstance[0xd])();
     }
-    SystemPrimaryTemporaryManager = SystemManagerPointerStorage;
+    SystemPrimaryMemoryManager = SystemManagerPointerStorage;
     if (SystemActiveStatus != '\0') break;
     Sleep(1);
   }
@@ -28418,15 +28418,17 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   uint8_t SystemStackBuffer [32];
   void* ThreadParameterPrimary;
   void* ThreadParameterSecondary;
+  void* SystemThreadParameter1;
+  void* SystemThreadParameter2;
   char processNameBuffer [16];
   ulong long encryptionKey;
   
-  ThreadParameter1 = 0xfffffffffffffffe;
+  SystemThreadParameter1 = 0xfffffffffffffffe;
   encryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)encryptionBuffer;
   threadBuffer = (uint8_t *)0x0;
   operationFlags1 = 0;
   dataBuffer2 = ThreadConfig;
-  ThreadParameter2 = ThreadConfig;
+  SystemThreadParameter2 = ThreadConfig;
   processId = GetCurrentProcessId();
   configPointer = &SystemGlobalDataReference;
   dataBuffer1 = 0;
