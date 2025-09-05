@@ -27092,9 +27092,9 @@ void SystemCleanupHandler(void)
   uint8_t systemResourceDataBuffer [264];
   ulong long systemEncryptionKey;
   
-  ResourceMemoryOffset = SystemGlobalStatusFlags;
-  SystemThreadFlag = SystemInvalidHandleValue;
-  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)SystemMaxOperationCountSecondary;
+  resourceMemoryOffset = SystemGlobalStatusFlags;
+  systemThreadFlag = SystemInvalidHandleValue;
+  systemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)systemMaxOperationCountSecondary;
   if (*(void* **)*SystemMemoryBlockStorage == &SystemMemoryBlockTemplatePrimary) {
     systemAvailabilityFlag = *(int *)(SystemStatusFlags + 0xe0) != 0;
   }
@@ -27107,67 +27107,67 @@ void SystemCleanupHandler(void)
   else {
     SystemRandomSeed = 0xb061;
   }
-  SystemThreadHandle = SystemNodeManagerPointer;
+  systemThreadHandle = SystemNodeManagerPointer;
   SystemRandomSeed = SystemRandomSeed ^ 0x41c64e6d;
   if ((*(long long *)(SystemDataMemoryContext + 0x7ab8) == 0) || (*(int *)(SystemNodeManagerPointer + 0x540) < 1)) {
     if (*(int *)(SystemNodeManagerPointer + 0x2140) == 0) {
-      ScalingFactor = *(float *)(SystemNodeManagerPointer + 0x20d0);
+      scalingFactor = *(float *)(SystemNodeManagerPointer + 0x20d0);
     }
     else {
-      ScalingFactor = 100.0;
+      scalingFactor = 100.0;
     }
-    ScalingFactor = ScalingFactor * 0.01;
+    scalingFactor = scalingFactor * 0.01;
   }
   else {
-    ScalingFactor = 1.0;
+    scalingFactor = 1.0;
   }
-  *(float *)(ResourceMemoryOffset + 0x234) = ScalingFactor;
-  *(uint32_t *)(ResourceMemoryOffset + 0x238) = 0x3f800000;
-  RatioValue = 1.0;
-  if (*(int *)(SystemThreadHandle + 0x1ea0) == 1) {
-    SystemInitializationStatus = *(int *)(SystemThreadHandle + 0x1d50);
-    SystemResourceHandle = (int *)GetSystemResourceManager(*(void* *)(SystemGlobalStatusFlags + 8),SystemStackBuffer);
-    RatioValue = (float)SystemInitializationStatus / (float)*SystemResourceHandle;
-    ScalingFactor = RatioValue * *(float *)(ResourceMemoryOffset + 0x234);
-    RatioValue = RatioValue * *(float *)(ResourceMemoryOffset + 0x238);
+  *(float *)(resourceMemoryOffset + 0x234) = scalingFactor;
+  *(uint32_t *)(resourceMemoryOffset + 0x238) = 0x3f800000;
+  ratioValue = 1.0;
+  if (*(int *)(systemThreadHandle + 0x1ea0) == 1) {
+    systemInitializationStatus = *(int *)(systemThreadHandle + 0x1d50);
+    systemResourceHandle = (int *)GetSystemResourceManager(*(void* *)(SystemGlobalStatusFlags + 8),systemStackBuffer);
+    ratioValue = (float)systemInitializationStatus / (float)*systemResourceHandle;
+    scalingFactor = ratioValue * *(float *)(resourceMemoryOffset + 0x234);
+    ratioValue = ratioValue * *(float *)(resourceMemoryOffset + 0x238);
   }
-  if (0.2 <= ScalingFactor) {
-    if (1.0 <= ScalingFactor) {
-      ScalingFactor = 1.0;
+  if (0.2 <= scalingFactor) {
+    if (1.0 <= scalingFactor) {
+      scalingFactor = 1.0;
     }
   }
   else {
-    ScalingFactor = 0.2;
+    scalingFactor = 0.2;
   }
-  *(float *)(ResourceMemoryOffset + 0x234) = ScalingFactor;
-  ScalingFactor = 0.2;
-  if ((0.2 <= RatioValue) && (ScalingFactor = RatioValue, 1.0 <= RatioValue)) {
-    ScalingFactor = 1.0;
+  *(float *)(resourceMemoryOffset + 0x234) = scalingFactor;
+  scalingFactor = 0.2;
+  if ((0.2 <= ratioValue) && (scalingFactor = ratioValue, 1.0 <= ratioValue)) {
+    scalingFactor = 1.0;
   }
-  *(float *)(ResourceMemoryOffset + 0x238) = ScalingFactor;
-  *(uint8_t *)(ResourceMemoryOffset + 0x22d) = 0;
-  SystemOperationResult = log2f();
-  *(uint32_t *)(ResourceMemoryOffset + 0x230) = SystemOperationResult;
-  SystemOperationResult = log2f();
-  *(uint32_t *)(ResourceMemoryOffset + 0x240) = SystemOperationResult;
-  SystemOperationResult = log2f();
-  *(uint32_t *)(ResourceMemoryOffset + 0x244) = SystemOperationResult;
-  SystemOperationResult = log2f();
-  *(uint32_t *)(ResourceMemoryOffset + 0x248) = SystemOperationResult;
-  SystemOperationResult = log2f();
-  *(uint32_t *)(ResourceMemoryOffset + 0x24c) = SystemOperationResult;
-  SystemOperationResult = log2f(*(float *)(SystemNodeManagerPointer + 0x2220) * 0.01);
-  *(uint32_t *)(ResourceMemoryOffset + 0x23c) = SystemOperationResult;
-  *(void* *)(ResourceMemoryOffset + 0x254) = 0x3f8000003f800000;
-  SystemMemoryPoolHandle = 0x3f8000003f800000;
-  *(void* *)(ResourceMemoryOffset + 0x25c) = 0x3f8000003f800000;
+  *(float *)(resourceMemoryOffset + 0x238) = scalingFactor;
+  *(uint8_t *)(resourceMemoryOffset + 0x22d) = 0;
+  systemOperationResult = CalculateLogarithmBase2();
+  *(uint32_t *)(resourceMemoryOffset + 0x230) = systemOperationResult;
+  systemOperationResult = CalculateLogarithmBase2();
+  *(uint32_t *)(resourceMemoryOffset + 0x240) = systemOperationResult;
+  systemOperationResult = CalculateLogarithmBase2();
+  *(uint32_t *)(resourceMemoryOffset + 0x244) = systemOperationResult;
+  systemOperationResult = CalculateLogarithmBase2();
+  *(uint32_t *)(resourceMemoryOffset + 0x248) = systemOperationResult;
+  systemOperationResult = CalculateLogarithmBase2();
+  *(uint32_t *)(resourceMemoryOffset + 0x24c) = systemOperationResult;
+  systemOperationResult = log2f(*(float *)(SystemNodeManagerPointer + 0x2220) * 0.01);
+  *(uint32_t *)(resourceMemoryOffset + 0x23c) = systemOperationResult;
+  *(void* *)(resourceMemoryOffset + 0x254) = 0x3f8000003f800000;
+  systemMemoryPoolHandle = 0x3f8000003f800000;
+  *(void* *)(resourceMemoryOffset + 0x25c) = 0x3f8000003f800000;
   SystemProcessBufferPtr = SystemDataMemoryContext;
-  SystemThreadHandle = SystemAllocationTemplate;
-  SystemResourceHandle = &SystemResourceTemplateSecondary;
-  SystemResourceBuffer = SystemResourceDataBuffer;
-  SystemResourceDataBuffer[0] = 0;
-  SystemConfigurationId = 0xd;
-  strcpy_s(SystemResourceDataBuffer,0x10,&SystemVersionString);
+  systemThreadHandle = SystemAllocationTemplate;
+  systemResourceHandle = &SystemResourceTemplateSecondary;
+  systemResourceBuffer = systemResourceDataBuffer;
+  systemResourceDataBuffer[0] = 0;
+  systemConfigurationId = 0xd;
+  strcpy_s(systemResourceDataBuffer,0x10,&SystemVersionString);
   resourceEntryPointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x208,8,3);
   SystemMemoryPoolOffset = SystemThreadHandle + 0x70;
   SystemResourceArray[0] = resourceEntryPointer;
@@ -61181,12 +61181,12 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   float AudioInterpolationCoeff1;
   uint32_t SystemStackParameter28;
   float FloatTransform30;
-  float FloatStack34;
-  float FloatStack38;
+  float MatrixTransformResult34;
+  float VectorDotProduct38;
   uint32_t SystemDataFlag0;
-  float FloatStack40;
-  float FloatStack44;
-  float FloatStack48;
+  float InterpolatedValue40;
+  float ScaledVectorResult44;
+  float NormalizedVector48;
   uint32_t SystemDataFlag1;
   float FloatStack50;
   float FloatStack54;
