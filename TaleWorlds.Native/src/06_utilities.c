@@ -287,7 +287,7 @@
  * 
  * @note 原始函数名：FUN_18089923e
  */
-#define ProcessDataSequenceA0 FUN_18089923e
+#define ProcessDataSequence FUN_18089923e
 
 /**
  * @brief 执行数据验证A0
