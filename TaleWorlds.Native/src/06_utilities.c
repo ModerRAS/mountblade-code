@@ -143,6 +143,7 @@
  * @note 原始函数名：func_0x000180060c10
  */
 #define ProcessSystemOperations ProcessSystemOperations
+#define ProcessSystemA0 ProcessSystemOperations
 
 /**
  * @brief 数据初始化函数A0
@@ -4563,11 +4564,11 @@ void *UtilityMemoryPointer2;
 int32_t UtilityMemoryValidate1;
 int32_t UtilityMemoryValidate2;
 int32_t UtilityMemoryValidate3;
-undefined UtilityMemoryValidate4;
-undefined UtilityMemoryValidate5;
-undefined UtilityMemoryValidate6;
-undefined UtilityMemoryValidate7;
-undefined UtilityMemoryValidate8;
+int32_t UtilityMemoryValidate4;
+int32_t UtilityMemoryValidate5;
+int32_t UtilityMemoryValidate6;
+int32_t UtilityMemoryValidate7;
+int32_t UtilityMemoryValidate8;
 undefined UtilityMemoryValidate9;
 undefined UtilityMemoryValidate10;
 undefined UtilityMemoryValidate11;
@@ -12586,17 +12587,17 @@ undefined8 ValidateParametersE0(undefined4 parameterFlags)
 undefined8 ValidateParametersE1(undefined4 validationFlags)
 
 {
-  float floatValue;
+  float inputValue;
   undefined8 validationResult;
-  longlong registerContext;
+  longlong contextHandle;
   longlong stackFramePointer;
   longlong dataInputPointer;
   longlong stackParameter40;
   
-  validationResult = ProcessDataValidationA0(param_1,dataInputPointer + 0x25,dataInputPointer + 0x20);
+  validationResult = ProcessDataValidationA0(validationFlags,dataInputPointer + 0x25,dataInputPointer + 0x20);
   if ((int)validationResult == 0) {
-    floatValue = *(float *)(dataInputPointer + 0x20);
-    if ((*(float *)(registerContext + 0x38) <= floatValue) &&
+    inputValue = *(float *)(dataInputPointer + 0x20);
+    if ((*(float *)(contextHandle + 0x38) <= inputValue) &&
        (floatValue < *(float *)(registerContext + 0x3c) || floatValue == *(float *)(registerContext + 0x3c))) {
       validationResult = *(undefined8 *)(stackFramePointer + 0x98);
       *(float *)(stackParameter40 + 4) = floatValue;
