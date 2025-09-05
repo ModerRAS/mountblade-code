@@ -31,7 +31,7 @@
 // 系统索引和查找表常量
 #define SystemIndexTableSize                 0xffffffffffff  // 系统索引表大小
 #define SystemLookupTableSize               0xffff  // 系统查找表大小
-#define SystemFullRangeMask                  0xffffffffffffffff  // 系统全范围掩码
+#define SystemFullRangeMask                  SystemMaxHandleValue  // 系统全范围掩码
 
 // 系统地址和偏移量常量
 #define SystemMemoryPageAlignment            0xffc00000  // 系统内存页对齐
@@ -203,7 +203,7 @@
 #define SystemEventHandlerSize                  0x20  // 系统事件处理器大小
 #define SystemEventHandlerCapacity             8  // 系统事件处理器容量
 #define InvalidHandleValue                     0xfffffffffffffffe  // 无效句柄值
-#define MaxUint64Value                         0xffffffffffffffff  // 最大64位无符号值
+#define MaxUint64Value                         SystemMaxHandleValue  // 最大64位无符号值
 #define MemoryFlagFreeEnabled                  0x1  // 内存标志启用释放
 #define MemoryBlockSize                        0x98  // 内存块大小
 #define StringBufferCapacityValue                   0x40  // 字符串缓冲区容量值
@@ -19419,7 +19419,7 @@ HandleMemoryBufferOverflow:
       SystemStringTemplatePointer = SystemPrimaryStringBuffer;
     }
     SystemConfigurationTemplatePtr = &SystemConfigurationTemplatePrimary;
-    SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffffffffffff,4);
+    SystemManagerSetFlags(SystemContextManagerPointer,5,SystemMaxHandleValue,4);
     SystemMemoryTemplatePtr = &SystemMemoryTemplateQuinary;
     SystemTemporaryBuffer = SystemSecurityBuffer;
     CalculationFlags = 0;
@@ -19431,7 +19431,7 @@ HandleMemoryBufferOverflow:
       SystemStringTemplatePointer = SystemTemporaryBuffer;
     }
     SystemConfigurationTemplatePtr = &SystemConfigurationTemplateSecondary;
-    SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffffffffffff,4);
+    SystemManagerSetFlags(SystemContextManagerPointer,5,SystemMaxHandleValue,4);
     GameControllerStatusFlag = 0;
     SystemMemoryTemplatePtr = &SystemMemoryAllocatorReference;
     SystemGlobalDataReferencePtrSecondary = &SystemGlobalDataReference;
@@ -19817,7 +19817,7 @@ uint32_t FinalSystemInitialization(void)
   if (SystemManagerPointerStorage != (long long ****)0x0) {
     SystemManagerPointer = __RTCastToVoid(SystemManagerPointerStorage);
     *SystemManagerTable = (long long ***)&SystemManagerCompletionTable;
-    PostQueuedCompletionStatus(SystemManagerTable[CompletionPortHandleOffset],0,0xffffffffffffffff);
+    PostQueuedCompletionStatus(SystemManagerTable[CompletionPortHandleOffset],0,SystemMaxHandleValue);
     CloseHandle(SystemManagerTable[CompletionPortHandleOffset]);
     SystemResourceManager = (long long ***)(SystemManagerTable + ResourceManagerOffset);
     if ((long long ***)*SystemCleanupFlagPointer != (long long ***)0x0) {
@@ -20066,7 +20066,7 @@ void** InitializeSystemPointerPool(void** SystemPointerPool, unsigned long long 
 void* CleanupSystemCompletionPortResources(void* SystemResourceHandle, uint32_t CleanupFlags)
 {
   *SystemResourceHandle = &SystemCompletionPortTemplate;
-  PostQueuedCompletionStatus(SystemResourceHandle[CompletionPortHandleOffset],0,0xffffffffffffffff,0,InvalidHandleValue);
+  PostQueuedCompletionStatus(SystemResourceHandle[CompletionPortHandleOffset],0,SystemMaxHandleValue,0,InvalidHandleValue);
   CloseHandle(SystemResourceHandle[CompletionPortHandleOffset]);
   if (SystemResourceHandle[ResourceManagerOffset] != 0) {
       TerminateSystemProcess();
@@ -20886,7 +20886,7 @@ void ReleaseMemoryBlockReference(ulong long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(MemoryPageBase,CombineExceptionFlags(0xff000000,*(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
+      SystemExceptionCheck(MemoryPageBase,CombineExceptionFlags(SystemExceptionIdentifierTemplate1,*(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
                           ResourceEntryIterator,MemoryPageBase,InvalidHandleValue);
     }
   }
@@ -22056,7 +22056,7 @@ void ProcessSystemExceptionList(ulong long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                           ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
     }
   }
@@ -22709,7 +22709,7 @@ void ProcessSystemMemoryTimestampHandler(void* SystemResourceManager,void* *Conf
     ThrowCppSystemError(4);
   }
   resourceCreationFlags = _Cnd_timedwait(SystemResourceManager,*ConfigurationDataPointer,&SystemTimeoutValue);
-  if ((resourceCreationFlags & 0xfffffffd) != 0) {
+  if ((resourceCreationFlags & SystemMemoryFlagMask) != 0) {
     ThrowSystemError(resourceCreationFlags);
   }
     ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)SystemEncryptionKeyBuffer);
@@ -23979,7 +23979,7 @@ void InitializeSystemDataCleaner(void)
       initializationStatusFlag = encryptionKeyBuffer[SystemThreadFlags];
       if (((byte)(initializationStatusFlag + 0x9fU) < 0x1a) ||
          (((byte)(initializationStatusFlag - 0x30U) < 0x30 &&
-          ((0x87fffffe03ffU >> ((long long)(char)(initializationStatusFlag - 0x30U) & 0x3fU) & 1) != 0)))) {
+          ((SystemCharacterValidationMask >> ((long long)(char)(initializationStatusFlag - 0x30U) & 0x3fU) & 1) != 0)))) {
         if (LocalSystemOffset != SystemThreadFlags) {
           encryptionKeyBuffer[LocalSystemOffset] = initializationStatusFlag;
         }
@@ -25277,7 +25277,7 @@ void CleanupSystemResources(long long ResourceHandle)
         }
       }
       else {
-        SystemExceptionCheck(ResourceCount,CombineMemoryFlags(0xff000000,*(void ***)(ResourceCount + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceCount,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceCount + 0x70) == &ExceptionList),
                             ResourceArray,ResourceCount,InvalidHandleValue);
       }
     }
@@ -25434,7 +25434,7 @@ void SystemMemoryInitialize(long long SystemResourceManager)
         }
       }
       else {
-        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(0xff000000,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
                             SystemHashNodeData,ResourceHash,InvalidHandleValue);
       }
     }
@@ -25509,7 +25509,7 @@ void ManageSystemResourceReferenceCount(ulong long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                           ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
     }
   }
@@ -26967,7 +26967,7 @@ void SystemMemoryManager(long long SystemResourceManager)
         }
       }
       else {
-        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(0xff000000,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
                             SystemHashNodeData,ResourceHash,InvalidHandleValue);
       }
     }
@@ -27029,7 +27029,7 @@ void SystemMemoryCleanup(long long SystemResourceManager)
         }
       }
       else {
-        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(0xff000000,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
                             SystemHashNodeData,ResourceHash,InvalidHandleValue);
       }
     }
@@ -27269,7 +27269,7 @@ void InitializeSystemDataStructures(void)
     LOCK();
     *(uint8_t *)(ppresourceCounter + 2) = 0;
     UNLOCK();
-    ppresourceCounter[3] = (long long *)0xffffffffffffffff;
+    ppresourceCounter[3] = (long long *)SystemMaxHandleValue;
     *ppresourceCounter = (long long *)&MemoryAllocationPool;
     *(uint32_t *)(ppresourceCounter + 5) = 4;
     ppresourceCounter[4] = PrimaryResourceHandle;
@@ -27397,7 +27397,7 @@ void InitializeSystemResourceAllocator(long long SystemResourceHandle)
     LOCK();
     *(uint8_t *)(memoryAllocationPointer + 2) = 0;
     UNLOCK();
-    memoryAllocationPointer[3] = (long long *)0xffffffffffffffff;
+    memoryAllocationPointer[3] = (long long *)SystemMaxHandleValue;
     *memoryAllocationPointer = (long long *)&MemoryAllocationPool;
     *(uint32_t *)(memoryAllocationPointer + 5) = 4;
     memoryAllocationPointer[4] = primaryResourceHandle;
@@ -27565,7 +27565,7 @@ void InitializeSystemResourceManager(long long SystemResourceHandle)
       }
     }
     else {
-      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                           ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
     }
   }
@@ -31423,7 +31423,7 @@ void ReleaseSystemMemoryHandles(long long SystemResourceManager)
         }
       }
       else {
-        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(0xff000000,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
                             SystemHashNodeData,ResourceHash,InvalidHandleValue);
       }
     }
@@ -31485,7 +31485,7 @@ void CleanupSystemResourceArray(long long SystemResourceManager)
         }
       }
       else {
-        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(0xff000000,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
                             SystemHashNodeData,ResourceHash,InvalidHandleValue);
       }
     }
@@ -31543,7 +31543,7 @@ void SystemCleanupFunction(void)
         }
       }
       else {
-        SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                             ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
       }
     }
@@ -31590,7 +31590,7 @@ void InitializeSystemResourceManager(void)
         }
       }
       else {
-        SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                             ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
       }
     }
@@ -31637,7 +31637,7 @@ void InitializeSystemResourceAllocator(void)
       }
     }
     else {
-      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                           ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
     }
   }
@@ -31831,7 +31831,7 @@ void CleanupSystemProcessingBuffer(long long SystemResourceManager)
         }
       }
       else {
-        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(0xff000000,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
                             SystemHashNodeData,ResourceHash,InvalidHandleValue);
       }
     }
@@ -31894,7 +31894,7 @@ void DeepCleanupSystemResources(long long SystemResourceManager)
         }
       }
       else {
-        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(0xff000000,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceHash,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceHash + 0x70) == &ExceptionList),
                             SystemHashNodeData,ResourceHash,InvalidHandleValue);
       }
     }
@@ -31954,7 +31954,7 @@ void SystemMemoryCleanup(void)
         }
       }
       else {
-        ProcessMemoryBlockException(memoryBlockFlags,CombineMemoryFlags(0xff000000,*(void ***)(memoryBlockFlags + 0x70) == &ExceptionList),
+        ProcessMemoryBlockException(memoryBlockFlags,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(memoryBlockFlags + 0x70) == &ExceptionList),
                             systemMemoryBlock,memoryBlockFlags,InvalidHandleValue);
       }
     }
@@ -32003,7 +32003,7 @@ void SystemResourceRelease(void)
         }
       }
       else {
-        ProcessResourceException(resourceFlags,CombineMemoryFlags(0xff000000,*(void ***)(resourceFlags + 0x70) == &ExceptionList),
+        ProcessResourceException(resourceFlags,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(resourceFlags + 0x70) == &ExceptionList),
                             systemResource,resourceFlags,InvalidHandleValue);
       }
     }
@@ -32050,7 +32050,7 @@ void SystemExceptionHandler(void)
       }
     }
     else {
-      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                           ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
     }
   }
@@ -32142,7 +32142,7 @@ void DestroyRenderingSystem(void)
       }
     }
     else {
-      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                           RenderManagerPointer,ResourceAddress,InvalidHandleValue);
     }
   }
@@ -32666,7 +32666,7 @@ void InitializeSystemResourceManager(ulong long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(SystemResourcePrimaryValue,CombineMemoryFlags(0xff000000,*(void ***)(SystemResourcePrimaryValue + 0x70) == &ExceptionList),
+      SystemExceptionCheck(SystemResourcePrimaryValue,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(SystemResourcePrimaryValue + 0x70) == &ExceptionList),
                           resourcePointer,SystemResourcePrimaryValue,InvalidHandleValue);
     }
   }
@@ -34201,7 +34201,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
               }
               SystemContextValueSecondary = SystemContextValueSecondary & SystemMaximumUnsigned32BitValue;
             }
-            SystemMemoryOperationFlags = SystemMemoryOperationFlags & 0xfffffffd;
+            SystemMemoryOperationFlags = SystemMemoryOperationFlags & SystemMemoryFlagMask;
             memoryAllocatorPointer = &SystemGlobalDataReference;
             if (ThreadLocalStoragePointerSecondary != (uint8_t *)0x0) {
                 SystemCleanupFunction(ThreadLocalStoragePointerSecondary);
@@ -35097,7 +35097,7 @@ void AllocateSystemResource(void* *resourceManagerPointer)
       }
     }
     else {
-      SystemExceptionCheck(pageAlignedAddress,CombineMemoryFlags(0xff000000,*(void ***)(pageAlignedAddress + 0x70) == &ExceptionList),
+      SystemExceptionCheck(pageAlignedAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(pageAlignedAddress + 0x70) == &ExceptionList),
                           resourceManagerPointer,pageAlignedAddress,InvalidHandleValue);
     }
   }
@@ -35291,7 +35291,7 @@ void CleanupSystemResources(long long *ResourceHandle)
       }
     }
     else {
-      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(0xff000000,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
+      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
                           SystemHashNodeData,CurrentThreadIdentifier,InvalidHandleValue);
     }
   }
@@ -35358,7 +35358,7 @@ void InitializeSystemDataPointer(long long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(0xff000000,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
+      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
                           SystemHashNodeData,CurrentThreadIdentifier,InvalidHandleValue);
     }
   }
@@ -35440,7 +35440,7 @@ void CleanupSystemAndProcessBuffers(void)
         }
       }
       else {
-        SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(0xff000000,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
+        SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
                             SystemHashNodeData,CurrentThreadIdentifier,InvalidHandleValue);
       }
     }
@@ -35485,7 +35485,7 @@ void ManageSystemResourceManagerWithExceptionHandling(void* *SystemResourceManag
       }
     }
     else {
-      SystemExceptionCheck(resourceAllocationContext,CombineMemoryFlags(0xff000000,*(void ***)(resourceAllocationContext + 0x70) == &ExceptionList),
+      SystemExceptionCheck(resourceAllocationContext,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(resourceAllocationContext + 0x70) == &ExceptionList),
                           SystemResourceManager,resourceAllocationContext,InvalidHandleValue);
     }
   }
@@ -35554,7 +35554,7 @@ void CleanupAndDestroySystemResources(long long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(0xff000000,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
+      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
                           SystemHashNodeData,CurrentThreadIdentifier,InvalidHandleValue);
     }
   }
@@ -35601,7 +35601,7 @@ void ProcessSystemResourceCleanup(long long SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                           ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
     }
   }
@@ -35691,7 +35691,7 @@ void ValidateSystemResourceManager(long long SystemResourceManager)
         }
       }
       else {
-        SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                             ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
       }
     }
@@ -35739,7 +35739,7 @@ void ValidateAndCleanupSystemResourceTable(long long SystemResourceManager)
         }
       }
       else {
-        SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                             ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
       }
     }
@@ -35786,7 +35786,7 @@ void HandleSystemResourceException(long long SystemResourceManager)
         }
       }
       else {
-        SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                             ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
       }
     }
@@ -36684,7 +36684,7 @@ CreateMemoryAllocationHandle(void* *SystemResourceManager,void* *ConfigurationDa
   LOCK();
   *(uint8_t *)(SystemResourceManager + 2) = 0;
   UNLOCK();
-  SystemResourceManager[3] = 0xffffffffffffffff;
+  SystemResourceManager[3] = SystemMaxHandleValue;
   *SystemResourceManager = &SystemDataStructureTemplateA;
   SystemDataPointer = SystemResourceManager + 4;
   SystemResourceManager[6] = 0;
@@ -37371,7 +37371,7 @@ void* * InitializeResourceContext(void* *SystemResourceManager,void* *Configurat
   LOCK();
   *(uint8_t *)(SystemResourceManager + 2) = 0;
   UNLOCK();
-  SystemResourceManager[3] = 0xffffffffffffffff;
+  SystemResourceManager[3] = SystemMaxHandleValue;
   *SystemResourceManager = &SystemFunctionPointerTableA;
   SystemDataPointer = SystemResourceManager + 4;
   *SystemDataPointer = &SystemMemoryAllocatorReference;
@@ -41619,7 +41619,7 @@ int InitializeProcessSystem(void* SystemResourceManager,void* ConfigurationDataP
   SystemParameterPointer = AdditionalParameter;
   SystemConfigurationPointer = ConfigurationFlag;
   ResourceHashEntryPointer = (ulong long *)SystemGlobalDataAllocate();
-  SystemInitializationStatus = __stdio_common_vsprintf(*ResourceHashEntryPointer | 1,SystemResourceManager,0xffffffffffffffff,ConfigurationDataPointer,0,&SystemParameterPointer);
+  SystemInitializationStatus = __stdio_common_vsprintf(*ResourceHashEntryPointer | 1,SystemResourceManager,SystemMaxHandleValue,ConfigurationDataPointer,0,&SystemParameterPointer);
   if (SystemInitializationStatus < 0) {
     SystemInitializationStatus = -1;
   }
@@ -43459,7 +43459,7 @@ AllocateSystemMemory(void* *SystemResourceManager,uint32_t ConfigurationDataPoin
   LOCK();
   *(uint8_t *)(SystemResourceManager + 2) = 0;
   UNLOCK();
-  SystemResourceManager[3] = 0xffffffffffffffff;
+  SystemResourceManager[3] = SystemMaxHandleValue;
   *SystemResourceManager = &SystemMemoryBufferTemplate;
   PrimaryResourceHandle = SystemResourceManager + 6;
   *PrimaryResourceHandle = (long long)&SystemMemoryAllocatorReference;
@@ -44169,7 +44169,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
   HashNodeOffset = dataBufferLength;
   SystemHashNodeData = (void* *)InitializeSystemResource(SystemThreadContext,systemGlobalDataPtrB8);
   dataBufferPointer = SystemHashNodeData;
-  if (SystemHashNodeData == (void* *)0xffffffffffffffff) {
+  if (SystemHashNodeData == (void* *)SystemMaxHandleValue) {
     if (0xf < StackParameterC) {
       SystemOperationCode = StackParameterC + 1;
       SystemInitializationStatus = ThreadContextIndicator;
@@ -45784,7 +45784,7 @@ void* AllocateSystemMemory(ulong long MemoryAllocationSize)
   if (0xfff < MemoryAllocationSize) {
     adjustedMemorySize = MemoryAllocationSize + 0x27;
     if (adjustedMemorySize <= MemoryAllocationSize) {
-      adjustedMemorySize = 0xffffffffffffffff;
+      adjustedMemorySize = SystemMaxHandleValue;
     }
     allocatedMemoryPointer = SystemLevelMemoryAllocation(adjustedMemorySize);
     if (allocatedMemoryPointer == 0) {
@@ -45803,7 +45803,7 @@ void* AllocateSystemMemory(ulong long MemoryAllocationSize)
     }
     memoryAllocationResult = _callnewh(MemoryAllocationSize);
   } while (memoryAllocationResult != 0);
-  if (MemoryAllocationSize == 0xffffffffffffffff) {
+  if (MemoryAllocationSize == SystemMaxHandleValue) {
     SystemExceptionHandler();
     systemExceptionHandler = (code *)swi(3);
     (*systemExceptionHandler)();
@@ -47156,9 +47156,9 @@ void* * InitializeSystemMemoryAllocatorTemplate(void* *SystemResourceManager)
   SystemResourceManager[0x2c] = _guard_check_icall;
   SystemResourceManager[0x2f] = 0;
   SystemResourceManager[0x30] = _guard_check_icall;
-  SystemResourceManager[0x27] = 0xffffffffffffffff;
-  SystemResourceManager[0x24] = 0xffffffffffffffff;
-  SystemResourceManager[0x23] = 0xffffffffffffffff;
+  SystemResourceManager[0x27] = SystemMaxHandleValue;
+  SystemResourceManager[0x24] = SystemMaxHandleValue;
+  SystemResourceManager[0x23] = SystemMaxHandleValue;
   SystemResourceManager[0x25] = 0;
   SystemResourceManager[0x26] = 0;
   *(uint8_t *)(SystemResourceManager + 0x28) = 0;
@@ -47966,7 +47966,7 @@ InitializeSystemResource(void* *SystemResourceManager,void* *ConfigurationDataPo
   LOCK();
   *(uint8_t *)(SystemResourceManager + 2) = 0;
   UNLOCK();
-  SystemResourceManager[3] = 0xffffffffffffffff;
+  SystemResourceManager[3] = SystemMaxHandleValue;
   *SystemResourceManager = &SystemMemoryPoolTemplate;
   SystemResourceManager[6] = 0;
   SystemResourceManager[7] = _guard_check_icall;
@@ -48242,7 +48242,7 @@ void InitializeSystemResources(long long SystemResourceManager)
   SystemTablePointer[10] = 0;
   *(uint32_t *)(SystemTablePointer + 0xb) = 3;
   *(uint8_t *)(SystemTablePointer + 0xc) = 0;
-  *(void* *)((long long)SystemTablePointer + 100) = 0xffffffffffffffff;
+  *(void* *)((long long)SystemTablePointer + 100) = SystemMaxHandleValue;
   *(uint32_t *)((long long)SystemTablePointer + 0x6c) = 0;
   *(void*2 *)(SystemTablePointer + 0xe) = 0;
   *(uint8_t *)((long long)SystemTablePointer + 0x72) = 0;
@@ -49081,8 +49081,8 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
     CodePointer80 = (code *)0x0;
     SystemFunctionPointer78 = _guard_check_icall;
     LongStackC0 = -1;
-    SystemMemoryAllocatorStatus = 0xffffffffffffffff;
-    SystemMemoryManagerHandle = 0xffffffffffffffff;
+    SystemMemoryAllocatorStatus = SystemMaxHandleValue;
+    SystemMemoryManagerHandle = SystemMaxHandleValue;
     SystemMemoryAllocationOffset = 0;
     SystemMemoryAllocationCounter = 0;
     SystemDataBuffer = 0;
@@ -49115,7 +49115,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
           ThrowCppSystemError(4);
         }
         SystemInitializationStatusFlags = _Cnd_timedwait(SystemResourceManager + 0x330,resourceDataIndexPrimary,&StackInteger48);
-        if ((SystemInitializationStatusFlags & 0xfffffffd) != 0) {
+        if ((SystemInitializationStatusFlags & SystemMemoryFlagMask) != 0) {
           ThrowSystemError(SystemInitializationStatusFlags);
         }
         charOutput = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemSecondaryGlobalDataReferencePtr);
@@ -51096,7 +51096,7 @@ void CleanupSystemResourceManagers(long long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(0xff000000,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
+      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
                           SystemHashNodeData,CurrentThreadIdentifier,InvalidHandleValue);
     }
   }
@@ -51163,7 +51163,7 @@ void CleanupResourceManagerExtendedPointers(long long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(0xff000000,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
+      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
                           SystemHashNodeData,CurrentThreadIdentifier,InvalidHandleValue);
     }
   }
@@ -51239,7 +51239,7 @@ void CleanupSystemStringIteratorResources(void)
         }
       }
       else {
-        SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(0xff000000,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
+        SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
                             HashNodePointer,CurrentThreadIdentifier,InvalidHandleValue);
       }
     }
@@ -51283,7 +51283,7 @@ void ReleaseSystemResourceManager(void* *SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(resourceAllocationContext,CombineMemoryFlags(0xff000000,*(void ***)(resourceAllocationContext + 0x70) == &ExceptionList),
+      SystemExceptionCheck(resourceAllocationContext,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(resourceAllocationContext + 0x70) == &ExceptionList),
                           SystemResourceManager,resourceAllocationContext,InvalidHandleValue);
     }
   }
@@ -51352,7 +51352,7 @@ void DestroySystemResources(long long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(0xff000000,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
+      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
                           SystemHashNodeData,CurrentThreadIdentifier,InvalidHandleValue);
     }
   }
@@ -54340,7 +54340,7 @@ SystemOperationCodeValidation:
         }
         ThreadContextIndicator = CreateSystemObject(&SystemResourceHandlePrimary,pThreadLocalStorage);
         if ((ResourceHash & 2) != 0) {
-          ResourceHash = ResourceHash & 0xfffffffd;
+          ResourceHash = ResourceHash & SystemMemoryFlagMask;
           dataBufferContext = &SystemGlobalDataReference;
           SystemOperationMode = ResourceHash;
           if (SystemDataConfigurationPointer != (void* *)0x0) {
@@ -54651,7 +54651,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   SystemUnsignedFlagSecondary = 0;
   SystemFlagTertiary = 0;
   if ((SystemOperationResult & 2) != 0) {
-    SystemInitializationStatus = SystemOperationResult & 0xfffffffd;
+    SystemInitializationStatus = SystemOperationResult & SystemMemoryFlagMask;
     pUnsignedStackFlagSecondary = &SystemGlobalDataReference;
     if (resourceEntryPointer != (void* *)0x0) {
         SystemCleanupFunction(resourceEntryPointer);
@@ -59267,7 +59267,7 @@ void ResetSystemResourceManagerState(long long SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+      SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                           ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
     }
   }
@@ -59437,7 +59437,7 @@ SystemResourceProcessingComplete:
         HashEntryPointer = *(void* **)(SystemResourceManager + 600);
         if (HashEntryPointer == (void* *)0x0) {
           HashEntryPointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,3);
-          *(void* *)((long long)HashEntryPointer + 0x2c) = 0xffffffffffffffff;
+          *(void* *)((long long)HashEntryPointer + 0x2c) = SystemMaxHandleValue;
           *(uint32_t *)(HashEntryPointer + 9) = 0xffffffff;
           *HashEntryPointer = 0;
           HashEntryPointer[2] = 0;
@@ -61076,7 +61076,7 @@ LabelSetSystemStatus:
   if ((*(long long *)(SystemResourceManager + 600) == 0) &&
      ((*(uint *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     HashTablePointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,9);
-    *(void* *)((long long)HashTablePointer + 0x2c) = 0xffffffffffffffff;
+    *(void* *)((long long)HashTablePointer + 0x2c) = SystemMaxHandleValue;
     *(uint32_t *)(HashTablePointer + 9) = 0xffffffff;
     *HashTablePointer = 0;
     HashTablePointer[2] = 0;
@@ -61186,7 +61186,7 @@ LabelSetSystemStatus:
   if ((*(long long *)(MemoryBlockAddress + 600) == 0) &&
      ((*(uint *)(*(long long *)(MemoryBlockAddress + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     HashTablePointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,9);
-    *(void* *)((long long)HashTablePointer + 0x2c) = 0xffffffffffffffff;
+    *(void* *)((long long)HashTablePointer + 0x2c) = SystemMaxHandleValue;
     *(uint32_t *)(HashTablePointer + 9) = 0xffffffff;
     *HashTablePointer = 0;
     HashTablePointer[2] = 0;
@@ -61300,7 +61300,7 @@ LabelSetSystemStatus:
   if ((*(long long *)(MemoryBlockAddress + 600) == 0) &&
      ((*(uint *)(*(long long *)(MemoryBlockAddress + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     HashTablePointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,9);
-    *(void* *)((long long)HashTablePointer + 0x2c) = 0xffffffffffffffff;
+    *(void* *)((long long)HashTablePointer + 0x2c) = SystemMaxHandleValue;
     *(uint32_t *)(HashTablePointer + 9) = 0xffffffff;
     *HashTablePointer = 0;
     HashTablePointer[2] = 0;
@@ -61402,7 +61402,7 @@ LabelSetSystemStatus:
   if ((*(long long *)(MemoryBlockAddress + 600) == 0) &&
      ((*(uint *)(*(long long *)(MemoryBlockAddress + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     HashTablePointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,9);
-    *(void* *)((long long)HashTablePointer + 0x2c) = 0xffffffffffffffff;
+    *(void* *)((long long)HashTablePointer + 0x2c) = SystemMaxHandleValue;
     *(uint32_t *)(HashTablePointer + 9) = 0xffffffff;
     *HashTablePointer = 0;
     HashTablePointer[2] = 0;
@@ -61443,7 +61443,7 @@ void InitializeSystemDataIndex(void)
   
   if ((*(uint *)(*(long long *)(MemoryBlockAddress + 0x1b8) + 0x388) >> 0x19 & 1) != 0) {
     SystemDataPointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,9);
-    *(void* *)((long long)SystemDataPointer + 0x2c) = 0xffffffffffffffff;
+    *(void* *)((long long)SystemDataPointer + 0x2c) = SystemMaxHandleValue;
     *(uint32_t *)(SystemDataPointer + 9) = 0xffffffff;
     *SystemDataPointer = systemDataIndexPtr;
     SystemDataPointer[2] = systemDataIndexPtr;
@@ -66126,7 +66126,7 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
   if ((*(long long *)(SystemResourceManager + 600) == 0) &&
      ((*(uint *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     SystemOperationCounterPointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x58,8,0x1c);
-    *(void* *)((long long)SystemOperationCounterPointer + 0x2c) = 0xffffffffffffffff;
+    *(void* *)((long long)SystemOperationCounterPointer + 0x2c) = SystemMaxHandleValue;
     *(uint32_t *)(SystemOperationCounterPointer + 9) = 0xffffffff;
     *SystemOperationCounterPointer = 0;
     SystemOperationCounterPointer[2] = 0;
@@ -71648,8 +71648,8 @@ void* SystemStringConstantWindowTitleDefault;
 #define SystemDataIdentifierTemplate2              0x2e2f2e2e  // 系统数据标识符模板2 (".../")
 #define SystemExceptionIdentifierTemplate1         0xff000000  // 系统异常标识符模板1
 #define SystemInvalidHandleTemplate                0xfffffffffffffffe  // 系统无效句柄模板
-#define SystemMaxHandleValue                       0xffffffffffffffff  // 系统最大句柄值
-#define SystemMemoryFlagMask                       0xfffffffd  // 系统内存标志掩码
+#define SystemMaxHandleValue                       SystemMaxHandleValue  // 系统最大句柄值
+#define SystemMemoryFlagMask                       SystemMemoryFlagMask  // 系统内存标志掩码
 #define SystemCharacterValidationMask              0x87fffffe03ff  // 系统字符验证掩码
 
 // 系统虚拟函数表模板
