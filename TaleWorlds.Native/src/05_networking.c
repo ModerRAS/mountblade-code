@@ -460,12 +460,12 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * 
  * 定义网络操作中的超时时间设置，用于控制各种网络操作的等待时间
  */
-#define Network1SecondTimeout 1000                             // 网络超时：1秒
-#define Network5SecondsTimeout 5000                           // 网络超时：5秒
-#define Network30SecondsTimeout 30000                          // 网络超时：30秒
-#define Network5MinutesTimeout 300000                          // 网络超时：5分钟
-#define Network30SecondsHeartbeat 30                          // 网络心跳：30秒
-#define Network60SecondsHeartbeat 60                          // 网络心跳：60秒
+#define NetworkTimeoutOneSecond 1000                             // 网络超时：1秒
+#define NetworkTimeoutFiveSeconds 5000                           // 网络超时：5秒
+#define NetworkTimeoutThirtySeconds 30000                          // 网络超时：30秒
+#define NetworkTimeoutFiveMinutes 300000                          // 网络超时：5分钟
+#define NetworkHeartbeatThirtySeconds 30                          // 网络心跳：30秒
+#define NetworkHeartbeatSixtySeconds 60                          // 网络心跳：60秒
 
 /**
  * @brief 网络质量常量
