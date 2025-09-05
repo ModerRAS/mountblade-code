@@ -2481,11 +2481,11 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
   }
   // 验证连接安全性
   if ((0 < *(int *)CalculateConnectionParameterOffset(ConnectionContext)) && (*ConnectionContext != 0)) {
-      AuthenticateConnectionSecurity(*(NetworkResourceHandle *)(NetworkManagerContextPointer + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+      AuthenticateConnectionSecurity(*(NetworkResourceHandle *)(NetworkManagerContext + NetworkConnectionTableOffset), *ConnectionContext, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
   }
   
   // 更新连接上下文和参数
-  *ConnectionContext = (int64_t)NetworkProcessedPacketIdentifier;
+  *ConnectionContext = (int64_t)ProcessedPacketIdentifier;
   *(int *)CalculateConnectionParameterOffset(ConnectionContext) = PacketData;
   
   return NetworkOperationSuccess;  // 处理成功
