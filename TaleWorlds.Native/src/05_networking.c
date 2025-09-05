@@ -1901,7 +1901,6 @@ uint32_t NetworkTotalFailedConnectionAttempts;            // 网络连接总失�
 uint32_t NetworkAverageConnectionTime;              // 网络平均连接时间
 uint32_t NetworkCurrentAverageConnectionTime;               // 网络当前平均连接时间
 uint32_t NetworkLastActivityTimestamp;              // 网络最后活动时间戳
-uint32_t NetworkPacketHeaderPointer;                 // 网络数据包头指针
 uint32_t NetworkPacketSequence;                     // 网络数据包序列号
 uint32_t NetworkAcknowledgeNumber;                  // 网络确认号
 uint32_t NetworkWindowScale;                         // 网络窗口缩放
@@ -1983,7 +1982,6 @@ uint32_t NetworkPacketQueueSize;                     // 网络数据包队列大
 uint32_t NetworkEncryptionContext;                   // 网络加密上下文
 uint32_t NetworkCompressionContext;                  // 网络压缩上下文
 uint32_t NetworkAuthenticationContext;               // 网络认证上下文
-uint32_t NetworkSecurityContext;                     // 网络安全上下文
 uint32_t NetworkEventContext;                        // 网络事件上下文
 uint32_t NetworkCallbackContext;                      // 网络回调上下文
 
@@ -3323,12 +3321,12 @@ NetworkHandle FinalizePacketProcessingWithCompletion(NetworkHandle *PacketData, 
   }
   
   // 验证完成偏移量有效性
-  if (ProcessingFinalizeOffset >= 0) {
+  if (ProcessingCompletionOffset >= 0) {
     PacketResourceCleanupResult = NetworkOperationSuccess;  // 资源清理成功
   }
   
   // 验证完成值有效性
-  if (ProcessingFinalizeValue != 0) {
+  if (ProcessingCompletionValue != 0) {
     PacketStatusUpdateResult &= 0x01;  // 完成值验证通过
   }
   
