@@ -5358,12 +5358,12 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @return uint8_t 初始化结果状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandle(int64_t ObjectContext) {
-  uint8_t ValidationResult;
+  uint8_t ObjectValidationStatusCode;
   int64_t ValidatedMemoryAddress;
   
   // 验证对象上下文并获取内存地址
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedMemoryAddress);
-  if ((int)ValidationResult == 0) {
+  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedMemoryAddress);
+  if ((int)ObjectValidationStatusCode == 0) {
     // 调整验证后的内存地址
     if (ValidatedMemoryAddress == 0) {
       ValidatedMemoryAddress = 0;
@@ -55007,12 +55007,12 @@ void ExecuteResourceCleanupHandlers(uint8_t ObjectContext,int64_t ValidationCont
 {
   uint8_t *ResourceHashPtr;
   uint8_t *ValidationStatusCodeAddress;
-  uint8_t CleanupFlag;
+  uint8_t LocalCleanupFlag;
   
-  cleanupFlag = MemoryCleanupTriggerValue;
+  LocalCleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xe8);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0xe0); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ValidationStatusCodeAddress + 4) {
-    (**(code **)*ValidationStatusCodeAddress)(ValidationStatusCodeAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
+    (**(code **)*ValidationStatusCodeAddress)(ValidationStatusCodeAddress,0,CleanupOption,CleanupFlag,LocalCleanupFlag);
   }
   if (*(int64_t *)(ValidationContext + 0xe0) == 0) {
     return;
@@ -55507,7 +55507,7 @@ void UnwindSetResourceHashTablePointer(uint8_t ObjectContext, int64_t Validation
  * @note 此函数会初始化多个系统数据结构
  * @warning 调用此函数会覆盖原有的资源哈希表和相关数据结构
  */
-void UnwindInitializeResourceHashTableAndSystemData(uint8_t ObjectContext, int64_t ValidationContext)
+void InitializeResourceHashTableAndSystemData(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
