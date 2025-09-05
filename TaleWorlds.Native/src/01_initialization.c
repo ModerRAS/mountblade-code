@@ -179,24 +179,21 @@
 #define ResourceDataBoneRotationOffset      0x298  // 资源数据骨骼旋转偏移量
 #define ResourceDataBoneScaleOffset         0x29c  // 资源数据骨骼缩放偏移量
 #define ResourceDataFinalScaleOffset        0x2a4  // 资源数据最终缩放偏移量
-#define SystemDataTemplateIId2   0xb97f048d2153e1b0  // 系统数据模板I标识符2
-#define DataComparisonTemplateSystemNodeId1   0x402feffe4481676e  // 系统数据模板系统节点标识符1
-#define SystemDataTemplateLId1   0x402feffe4481676e  // 系统数据模板L标识符1
-#define SystemDataTemplateLId2   0xd4c2151109de93a0  // 系统数据模板L标识符2
-#define SystemDataTemplateMId1   0x4384dcc4b6d3f417  // 系统数据模板M标识符1
-#define SystemDataTemplateMId2   0x92a15d52fe2679bd  // 系统数据模板M标识符2
-#define PerformanceMonitorSystemId1   0x4384dcc4b6d3f417  // 性能监控器标识符1
-#define PerformanceMonitorSystemId2   0x92a15d52fe2679bd  // 性能监控器标识符2
-#define SystemDataTemplateNId1   0x4140994454d56503  // 系统数据模板N标识符1
-#define SystemDataTemplateNId2   0x399eced9bb5517ad  // 系统数据模板N标识符2
-#define DebugManagerSystemId1   0x4140994454d56503  // 调试管理器标识符1
-#define DebugManagerSystemId2   0x399eced9bb5517ad  // 调试管理器标识符2
-#define SystemDataTemplateOId1   0x40db4257e97d3df8  // 系统数据模板O标识符1
-#define SystemDataTemplateOId2   0x81d539e33614429f  // 系统数据模板O标识符2
-#define SystemMemoryTemplateId1   0x4e33c4803e67a08f  // 内存比较模板标识符1
-#define SystemMemoryTemplateId2   0x703a29a844ce399  // 内存比较模板标识符2
-#define SystemSecondaryNodeId1        0x1aa83fc0020dc1b6  // 系统次级节点标识符1
-#define SystemSecondaryNodeId2        0x1aa83fc0020dc1b6  // 系统次级节点标识符2
+// 系统管理模块模板标识符
+#define SystemNetworkModuleTemplateId2   0xb97f048d2153e1b0  // 系统网络模块模板标识符2
+#define SystemFileSystemModuleTemplateId1   0x402feffe4481676e  // 系统文件系统模块模板标识符1
+#define SystemFileSystemModuleTemplateId2   0xd4c2151109de93a0  // 系统文件系统模块模板标识符2
+#define SystemPerformanceModuleTemplateId1   0x4384dcc4b6d3f417  // 系统性能模块模板标识符1
+#define SystemPerformanceModuleTemplateId2   0x92a15d52fe2679bd  // 系统性能模块模板标识符2
+#define SystemDebugModuleTemplateId1   0x4140994454d56503  // 系统调试模块模板标识符1
+#define SystemDebugModuleTemplateId2   0x399eced9bb5517ad  // 系统调试模块模板标识符2
+#define SystemSecurityModuleTemplateId1   0x40db4257e97d3df8  // 系统安全模块模板标识符1
+#define SystemSecurityModuleTemplateId2   0x81d539e33614429f  // 系统安全模块模板标识符2
+// 系统内存管理模板标识符
+#define SystemMemoryManagerTemplateId1   0x4e33c4803e67a08f  // 系统内存管理器模板标识符1
+#define SystemMemoryManagerTemplateId2   0x703a29a844ce399  // 系统内存管理器模板标识符2
+#define SystemSecondaryNodeTemplateId1        0x1aa83fc0020dc1b6  // 系统次级节点模板标识符1
+#define SystemSecondaryNodeTemplateId2        0x1aa83fc0020dc1b6  // 系统次级节点模板标识符2
 
 // 系统参数常量
 #define SystemMaxSemaphoreCount                    0x7fffffff  // 系统最大信号量计数
@@ -308,8 +305,8 @@
 // 系统配置标识符常量
 #define SystemConfigurationIdentifier         SystemConfigurationSystemIdentifier1
 
-// 系统系统数据模板Alpha常量
-#define SystemDataTemplateAlpha         DataComparisonTemplateAlphaId1
+// 系统核心模块模板标识符映射
+#define SystemCoreModuleTemplate         SystemCoreModuleTemplateId1
 
 // 系统节点分配额外大小常量
 #define SystemNodeAllocationExtraSize     NodeAllocationExtraSize
@@ -1170,22 +1167,21 @@ void* SystemInitializationProgressStatus;
 
 // 系统内存分配器 - 负责动态内存分配和管理
 
-// 系统系统数据模板和节点指针
-void* SystemDataTemplateAlpha;  // 系统系统数据模板Alpha
-void* SystemDataTemplateBeta;   // 系统系统数据模板Beta
-void* SystemDataTemplateGamma;  // 系统系统数据模板Gamma
-void* SystemDataTemplateDelta;  // 系统系统数据模板Delta
-void* SystemDataTemplateEpsilon; // 系统系统数据模板Epsilon
-void* SystemDataTemplateZeta;   // 系统系统数据模板Zeta
-void* SystemDataTemplateEta;    // 系统系统数据模板Eta
-void* SystemDataTemplateTheta;  // 系统系统数据模板Theta
-void* SystemDataTemplateIota;   // 系统系统数据模板Iota
-void* SystemDataTemplateKappa;  // 系统系统数据模板Kappa
-void* SystemDataTemplateLambda; // 系统系统数据模板Lambda
-void* SystemDataTemplateMu;     // 系统系统数据模板Mu
-void* SystemDataTemplateNu;     // 系统系统数据模板Nu
-void* SystemDataTemplateXi;     // 系统系统数据模板Xi
-void* SystemDataTemplateOmicron; // 系统系统数据模板Omicron
+// 系统模块模板指针
+void* SystemCoreModuleTemplate;      // 系统核心模块模板
+void* SystemMemoryModuleTemplate;    // 系统内存模块模板
+void* SystemResourceModuleTemplate;  // 系统资源模块模板
+void* SystemEventModuleTemplate;     // 系统事件模块模板
+void* SystemRenderingModuleTemplate;  // 系统渲染模块模板
+void* SystemAudioModuleTemplate;     // 系统音频模块模板
+void* SystemInputModuleTemplate;     // 系统输入模块模板
+void* SystemPhysicsModuleTemplate;    // 系统物理模块模板
+void* SystemScriptingModuleTemplate;  // 系统脚本模块模板
+void* SystemNetworkModuleTemplate;   // 系统网络模块模板
+void* SystemFileSystemModuleTemplate; // 系统文件系统模块模板
+void* SystemPerformanceModuleTemplate; // 系统性能模块模板
+void* SystemDebugModuleTemplate;      // 系统调试模块模板
+void* SystemSecurityModuleTemplate;  // 系统安全模块模板
 
 // 系统内存分配表条目 - 用于存储内存分配的结果
 void* SystemMemoryAllocationPrimaryEntry;    // 系统内存分配表主条目
@@ -22805,25 +22801,24 @@ void DestroySystemMutexAndConditionVariable(void* conditionVariable)
  * 
  * @note 这是系统同步机制的重要组成部分，确保多线程环境下的正确同步
  */
-void* *
-InitializeSystemSyncObject(void** SyncObject, void* SyncContextParameter, void* SyncConfigurationParameter, void* SyncSecurityParameter)
+void** InitializeSystemSyncObject(void** syncObject, void* syncContextParameter, void* syncConfigurationParameter, void* syncSecurityParameter)
 {
-  void* SystemErrorHandle;
+  void* systemErrorHandle;
   
-  SystemErrorHandle = INVALID_HANDLE_VALUE;
-  *SyncObject = &SystemMemoryRegionTemplateA;
-  *SyncObject = &SystemMemoryRegionTemplateB;
-  *(uint32_t *)(SyncObject + 1) = 0;
-  *SyncObject = &SystemMemoryAllocatorReference;
+  systemErrorHandle = INVALID_HANDLE_VALUE;
+  *syncObject = &SystemMemoryRegionTemplateA;
+  *syncObject = &SystemMemoryRegionTemplateB;
+  *(uint32_t *)(syncObject + 1) = 0;
+  *syncObject = &SystemMemoryAllocatorReference;
   LOCK();
-  *(uint8_t *)(SyncObject + 2) = 0;
+  *(uint8_t *)(syncObject + 2) = 0;
   UNLOCK();
-  SyncObject[3] = MAX_UINT64_VALUE;
-  *SyncObject = &SystemMutexTemplate;
-  _Cnd_init_in_situ(SyncObject + 4);
-  _Mtx_init_in_situ(SyncObject + 0xd, 2, SyncConfigurationParameter, SyncSecurityParameter, SystemErrorHandle);
-  *(uint8_t *)(SyncObject + 0x17) = 0;
-  return SyncObject;
+  syncObject[3] = MAX_UINT64_VALUE;
+  *syncObject = &SystemMutexTemplate;
+  _Cnd_init_in_situ(syncObject + 4);
+  _Mtx_init_in_situ(syncObject + 0xd, 2, syncConfigurationParameter, syncSecurityParameter, systemErrorHandle);
+  *(uint8_t *)(syncObject + 0x17) = 0;
+  return syncObject;
 }
 
 
@@ -22843,15 +22838,14 @@ InitializeSystemSyncObject(void** SyncObject, void* SyncContextParameter, void* 
  * 
  * @note 这是内存管理的重要函数，确保内存正确释放和分配器设置
  */
-void* *
-ReleaseMemoryAndConfigureAllocator(void** MemoryBlock, unsigned long long MemoryFlags, void* SyncContextParameter, void* SyncConfigurationParameter)
+void** ReleaseMemoryAndConfigureAllocator(void** memoryBlock, unsigned long long memoryFlags, void* syncContextParameter, void* syncConfigurationParameter)
 
 {
-  *MemoryBlock = &SystemMemoryAllocatorReference;
-  if ((MemoryFlags & MEMORY_FLAG_FREE_ENABLED) != 0) {
-    free(MemoryBlock,MEMORY_BLOCK_SIZE,SyncContextParameter,SyncConfigurationParameter,INVALID_HANDLE_VALUE);
+  *memoryBlock = &SystemMemoryAllocatorReference;
+  if ((memoryFlags & MEMORY_FLAG_FREE_ENABLED) != 0) {
+    free(memoryBlock, MEMORY_BLOCK_SIZE, syncContextParameter, syncConfigurationParameter, INVALID_HANDLE_VALUE);
   }
-  return MemoryBlock;
+  return memoryBlock;
 }
 
 
@@ -23254,28 +23248,27 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
  * 
  * @note 这是字符串管理系统的重要函数，用于创建安全的字符串存储缓冲区
  */
-void* *
-CreateStringBufferWithBackup(void** StringBuffer, long long StringLength, void* UnusedParameter3, void* UnusedParameter4)
+void** CreateStringBufferWithBackup(void** stringBuffer, long long stringLength, void* unusedParameter3, void* unusedParameter4)
 
 {
-  long long CharacterIndex;
+  long long characterIndex;
   
-  *StringBuffer = &SystemMemoryAllocatorReference;
-  StringBuffer[1] = 0;
-  *(uint32_t *)(StringBuffer + 2) = 0;
-  *StringBuffer = &SystemDataBufferBackupTemplateB;
-  StringBuffer[1] = StringBuffer + 3;
-  *(uint32_t *)(StringBuffer + 2) = 0;
-  *(uint8_t *)(StringBuffer + 3) = 0;
-  if (StringLength != 0) {
-    CharacterIndex = -1;
+  *stringBuffer = &SystemMemoryAllocatorReference;
+  stringBuffer[1] = 0;
+  *(uint32_t *)(stringBuffer + 2) = 0;
+  *stringBuffer = &SystemDataBufferBackupTemplateB;
+  stringBuffer[1] = stringBuffer + 3;
+  *(uint32_t *)(stringBuffer + 2) = 0;
+  *(uint8_t *)(stringBuffer + 3) = 0;
+  if (stringLength != 0) {
+    characterIndex = -1;
     do {
-      CharacterIndex = CharacterIndex + 1;
-    } while (*(char *)(StringLength + CharacterIndex) != '\0');
-    *(int *)(StringBuffer + 2) = (int)CharacterIndex;
-    strcpy_s(StringBuffer[1],STRING_BUFFER_SIZE,StringLength,ReservedParam4,INVALID_HANDLE_VALUE);
+      characterIndex = characterIndex + 1;
+    } while (*(char *)(stringLength + characterIndex) != '\0');
+    *(int *)(stringBuffer + 2) = (int)characterIndex;
+    strcpy_s(stringBuffer[1], STRING_BUFFER_SIZE, stringLength, ReservedParam4, INVALID_HANDLE_VALUE);
   }
-  return StringBuffer;
+  return stringBuffer;
 }
 
 
@@ -23292,17 +23285,17 @@ CreateStringBufferWithBackup(void** StringBuffer, long long StringLength, void* 
  * 
  * @note 这是系统内存管理的重要组成部分，确保内存分配器的正确重置
  */
-void ResetSystemMemoryAllocator(void* *MemoryManager)
+void ResetSystemMemoryAllocator(void** memoryManager)
 
 {
-  MemoryManager[4] = &SystemGlobalDataReference;
-  if (MemoryManager[5] != 0) {
+  memoryManager[4] = &SystemGlobalDataReference;
+  if (memoryManager[5] != 0) {
       SystemCleanupFunction();
   }
-  MemoryManager[5] = 0;
-  *(uint32_t *)(MemoryManager + 7) = 0;
-  MemoryManager[4] = &SystemMemoryAllocatorReference;
-  *MemoryManager = &SystemGlobalDataReference;
+  memoryManager[5] = 0;
+  *(uint32_t *)(memoryManager + 7) = 0;
+  memoryManager[4] = &SystemMemoryAllocatorReference;
+  *memoryManager = &SystemGlobalDataReference;
   return;
 }
 
@@ -23704,15 +23697,15 @@ void StartAndManageSystemThread(long long SystemResourceManager,long long Config
  * @note 这是数据缓冲区管理系统的重要函数，用于初始化数据缓冲区模板
  */
 void* *
-SetupDataBufferTemplates(void** DataBufferReference, unsigned long long InitializationFlags, void* UnusedParameter3, void* UnusedParameter4)
+SetupDataBufferTemplates(void** dataBufferReference, unsigned long long initializationFlags, void* unusedParameter3, void* unusedParameter4)
 
 {
-  *DataBufferReference = &SystemDataBufferInputTemplateE;
-  *DataBufferReference = &SystemDataBufferOutputTemplateF;
-  if ((InitializationFlags & 1) != 0) {
-    free(DataBufferReference,0x10,ReservedParam3,ReservedParam4,InvalidHandleValue);
+  *dataBufferReference = &SystemDataBufferInputTemplateE;
+  *dataBufferReference = &SystemDataBufferOutputTemplateF;
+  if ((initializationFlags & 1) != 0) {
+    free(dataBufferReference, 0x10, ReservedParam3, ReservedParam4, InvalidHandleValue);
   }
-  return DataBufferReference;
+  return dataBufferReference;
 }
 
 
@@ -23721,60 +23714,60 @@ SetupDataBufferTemplates(void** DataBufferReference, unsigned long long Initiali
 bool SystemNodeCheckStatus(void)
 
 {
-  char NodeActiveFlag;
-  uint32_t *ResourceHashEntryPointer;
-  void* *SystemHashNodeData;
-  int SystemIndex;
-  bool SystemNodeStatus;
-  void* SystemEncryptionKey;
-  long long SystemValidationResult;
-  void* *StringBufferPointer;
-  void* *EncryptionKeyPointer;
-  uint StringOffsetValue;
+  char nodeActiveFlag;
+  uint32_t* resourceHashEntryPointer;
+  void** systemHashNodeData;
+  int systemIndex;
+  bool systemNodeStatus;
+  void* systemEncryptionKey;
+  long long systemValidationResult;
+  void** stringBufferPointer;
+  void** encryptionKeyPointer;
+  uint stringOffsetValue;
   
-  InitializeSystemStringBuffer(&StringBufferPointer);
-  SystemIndex = StringOffsetValue + 0x11;
-  ProcessSystemStringData(&StringBufferPointer,SystemIndex);
-  ResourceHashEntryPointer = (uint32_t *)(EncryptionKeyPointer + StringOffsetValue);
-  *ResourceHashEntryPointer = 0x69676e65;
-  ResourceHashEntryPointer[1] = 0x635f656e;
-  ResourceHashEntryPointer[2] = 0x69666e6f;
-  ResourceHashEntryPointer[3] = 0x78742e67;
-  *(void*2 *)(ResourceHashEntryPointer + 4) = 0x74;
-  SystemEncryptionKey = 0;
-  SystemValidationResult = 0;
-  SystemHashNodeData = &SystemStringTemplate;
-  if (EncryptionKeyPointer != (void* *)0x0) {
-    SystemHashNodeData = EncryptionKeyPointer;
+  InitializeSystemStringBuffer(&stringBufferPointer);
+  systemIndex = stringOffsetValue + 0x11;
+  ProcessSystemStringData(&stringBufferPointer, systemIndex);
+  resourceHashEntryPointer = (uint32_t*)(encryptionKeyPointer + stringOffsetValue);
+  *resourceHashEntryPointer = 0x69676e65;
+  resourceHashEntryPointer[1] = 0x635f656e;
+  resourceHashEntryPointer[2] = 0x69666e6f;
+  resourceHashEntryPointer[3] = 0x78742e67;
+  *(void**)(resourceHashEntryPointer + 4) = 0x74;
+  systemEncryptionKey = 0;
+  systemValidationResult = 0;
+  systemHashNodeData = &SystemStringTemplate;
+  if (encryptionKeyPointer != (void**)0x0) {
+    systemHashNodeData = encryptionKeyPointer;
   }
-  StringOffsetValue = SystemIndex;
-  ValidateSystemStringFormat(&SystemEncryptionKey,SystemHashNodeData,&SystemStringConstant);
-  if (SystemValidationResult == 0) {
-    SystemNodeStatus = false;
+  stringOffsetValue = systemIndex;
+  ValidateSystemStringFormat(&systemEncryptionKey, systemHashNodeData, &SystemStringConstant);
+  if (systemValidationResult == 0) {
+    systemNodeStatus = false;
   }
   else {
-    InitializationStatusFlag = CheckSystemNodeAvailability(SystemNodeManagerPointer,&SystemEncryptionKey);
-    if (SystemValidationResult != 0) {
+    InitializationStatusFlag = CheckSystemNodeAvailability(SystemNodeManagerPointer, &systemEncryptionKey);
+    if (systemValidationResult != 0) {
       fclose();
-      SystemValidationResult = 0;
+      systemValidationResult = 0;
       LOCK();
       SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
       UNLOCK();
     }
-    SystemNodeStatus = InitializationStatusFlag != '\0';
+    systemNodeStatus = InitializationStatusFlag != '\0';
   }
-  if (SystemValidationResult != 0) {
+  if (systemValidationResult != 0) {
     fclose();
-    SystemValidationResult = 0;
+    systemValidationResult = 0;
     LOCK();
     SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
     UNLOCK();
   }
-  StringBufferPointer = &SystemGlobalDataReference;
-  if (EncryptionKeyPointer != (void* *)0x0) {
+  stringBufferPointer = &SystemGlobalDataReference;
+  if (encryptionKeyPointer != (void**)0x0) {
       SystemCleanupFunction();
   }
-  return SystemNodeStatus;
+  return systemNodeStatus;
 }
 
 
