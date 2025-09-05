@@ -890,13 +890,13 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄，用于访问和管理连接表的入口点
-uint32_t *NetworkConnectionManagerContextPointer = &NetworkConnectionManagerContextData;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
+uint32_t NetworkConnectionManagerContextPointer = &NetworkConnectionManagerContextData;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
 uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据，存储连接管理的上下文信息和状态数据
-uint32_t NetworkConnectionStateFlags;                 // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
-uint32_t NetworkConnectionTimeoutMs;               // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
+uint32_t NetworkConnectionStateFlags;                    // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
+uint32_t NetworkConnectionTimeoutMs;                    // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
 uint32_t NetworkMaxConnectionsAllowed;                  // 网络最大连接数限制，系统允许同时建立的最大连接数量
 uint32_t NetworkConnectionAttributeFlags;              // 网络连接属性标志位，定义连接的属性特征（加密、压缩、优先级等）
-uint32_t NetworkCurrentStateFlags;                // 网络当前状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
+uint32_t NetworkCurrentStateFlags;                    // 网络当前状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
 uint32_t NetworkErrorReportTemplate;                        // 网络错误报告模板，用于格式化错误报告数据
 
 // 网络协议和地址配置
@@ -3409,7 +3409,7 @@ void DuplicateNetworkConnectionBuffer(void* SourceBuffer)
  * @note 这是简化实现，实际应用中需要实现完整的数据包解码逻辑
  * @warning 简化实现仅执行基本的验证，不进行实际的解码工作
  */
-NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
+NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
                          uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
   // 网络数据包解码变量
@@ -3463,7 +3463,7 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
  * @note 这是简化实现，实际应用中需要实现完整的头部处理逻辑
  * @warning 简化实现仅执行基本的验证，不进行实际的头部解析工作
  */
-NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
+NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
   uint32_t HeaderValidationResult;                              // 网络头部验证结果
