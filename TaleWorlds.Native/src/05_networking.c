@@ -2264,16 +2264,16 @@ NetworkHandle ShutdownNetworkSystem(void)
  */
 void ReleaseNetworkConnectionResources(NetworkHandle ConnectionContext)
 {
-  int32_t ConnectionStatusCode;                         // 连接状态码
-  int32_t DataProcessingResult;                       // 数据处理结果
+  int32_t NetworkConnectionStatusCode;                         // 网络连接状态码
+  int32_t NetworkDataProcessingResult;                       // 网络数据处理结果
   NetworkByte CleanupBuffer [48];                     // 清理缓冲区
   int64_t HandleStorage [2];                           // 句柄存储
   NetworkHandle *HandleBuffer [34];                   // 句柄缓冲区
   uint64_t ValidationKey;                              // 验证密钥
   
   // 清理连接状态和数据
-  ConnectionStatusCode = 0;
-  DataProcessingResult = 0;
+  NetworkConnectionStatusCode = 0;
+  NetworkDataProcessingResult = 0;
   
   // 释放网络缓冲区
   memset(CleanupBuffer, 0, sizeof(CleanupBuffer));
@@ -2322,24 +2322,24 @@ NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t Con
   NetworkByte PacketEncryptionBuffer [32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
-  if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkMagicBinaryData, NetworkMagicMemoryValidation), (int)SecurityValidationResult == 0)) {
+  NetworkHandle NetworkSecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
+  if (((int)NetworkSecurityValidationResult == 0) &&
+     (NetworkSecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkMagicBinaryData, NetworkMagicMemoryValidation), (int)NetworkSecurityValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
-    SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
-    if ((int)SecurityValidationResult == 0) {
+    NetworkSecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
+    if ((int)NetworkSecurityValidationResult == 0) {
       if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorCodeInvalidPacket;
       }
-      SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionPrimaryValidationOffset);
-      if ((int)SecurityValidationResult == 0) {
+      NetworkSecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionPrimaryValidationOffset);
+      if ((int)NetworkSecurityValidationResult == 0) {
           FinalizePacketProcessing(PacketData, PacketValidationBuffer);
       }
     }
   }
-  return SecurityValidationResult;
+  return NetworkSecurityValidationResult;
 }
 
 /**
@@ -2529,8 +2529,8 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
       ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBatchData);
       if ((int)ProcessingResult == 0) {
         // 处理连接数据
-        NetworkHandle DataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
-        if ((int)DataProcessingResult == 0) {
+        NetworkHandle NetworkDataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
+        if ((int)NetworkDataProcessingResult == 0) {
             // 完成数据包处理
             FinalizePacketProcessing(PacketData, DecodedDataStreamBuffer);
         }
@@ -2669,31 +2669,31 @@ void ValidateNetworkConnectionData(NetworkHandle ConnectionTable, int64_t Connec
 {
   // 连接数据验证变量
   uint32_t ConnectionValidationStatus;                       // 连接验证状态
-  uint32_t DataIntegrityValidationResult;                    // 数据完整性验证结果
-  uint32_t SecurityComplianceValidationResult;               // 安全合规验证结果
+  uint32_t NetworkDataIntegrityValidationResult;                    // 网络数据完整性验证结果
+  uint32_t NetworkSecurityComplianceValidationResult;               // 网络安全合规验证结果
   
   // 初始化验证状态
   ConnectionValidationStatus = NetworkValidationFailure;
-  DataIntegrityValidationResult = NetworkValidationFailure;
-  SecurityComplianceValidationResult = NetworkValidationFailure;
+  NetworkDataIntegrityValidationResult = NetworkValidationFailure;
+  NetworkSecurityComplianceValidationResult = NetworkValidationFailure;
   
   // 执行数据完整性检查
   if (ConnectionData != 0) {
-    DataIntegrityValidationResult = NetworkValidationSuccess;  // 数据完整性检查通过
+    NetworkDataIntegrityValidationResult = NetworkValidationSuccess;  // 数据完整性检查通过
   }
   
   // 执行安全合规检查
   if (ConnectionTable != 0) {
-    SecurityComplianceValidationResult = NetworkValidationSuccess;  // 安全合规检查通过
+    NetworkSecurityComplianceValidationResult = NetworkValidationSuccess;  // 安全合规检查通过
   }
   
   // 根据验证模式设置验证结果
   if (ValidationMode == NetworkConnectionBasicValidationMode) {
     // 基本验证模式
-    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult;
+    ConnectionValidationStatus = NetworkDataIntegrityValidationResult & NetworkSecurityComplianceValidationResult;
   } else if (ValidationMode == NetworkConnectionStrictValidationMode) {
     // 严格验证模式
-    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult & NetworkValidationSuccessMask;
+    ConnectionValidationStatus = NetworkDataIntegrityValidationResult & NetworkSecurityComplianceValidationResult & NetworkValidationSuccessMask;
   } else {
     // 默认验证模式
     ConnectionValidationStatus = NetworkValidationSuccess;
@@ -2760,8 +2760,8 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
 {
   // 数据包解码变量
   uint32_t DecodingStatus;                             // 数据包解码状态
-  uint32_t MagicValidationResult;                      // 数据包魔数验证结果
-  uint32_t DataIntegrityStatus;                        // 数据包完整性状态
+  uint32_t NetworkMagicValidationResult;                      // 网络数据包魔数验证结果
+  uint32_t NetworkDataIntegrityStatus;                        // 网络数据包完整性状态
   
   // 初始化解码状态
   DecodingStatus = NetworkValidationFailure;

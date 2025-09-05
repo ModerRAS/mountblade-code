@@ -1268,6 +1268,43 @@
 // 功能：空函数，用作占位符或桩函数
 #define UtilityNoOperationE FUN_1808911a2
 
+// 更多系统函数宏定义
+// 原始函数名：FUN_18089a370 - 系统数据处理函数A0
+// 功能：处理系统数据并返回处理结果
+#define ProcessSystemDataA0 FUN_18089a370
+
+// 原始函数名：FUN_18089a51d - 系统状态查询函数A0
+// 功能：查询系统状态并返回状态信息
+#define QuerySystemStateA0 FUN_18089a51d
+
+// 原始函数名：FUN_18089a690 - 系统参数验证函数A0
+// 功能：验证系统参数并返回验证结果
+#define ValidateSystemParametersA0 FUN_18089a690
+
+// 原始函数名：FUN_18089a6e8 - 系统配置更新函数A0
+// 功能：更新系统配置并返回更新结果
+#define UpdateSystemConfigurationA0 FUN_18089a6e8
+
+// 原始函数名：FUN_18089a7e0 - 系统数据同步函数A0
+// 功能：同步系统数据并返回同步结果
+#define SynchronizeSystemDataA0 FUN_18089a7e0
+
+// 原始函数名：FUN_18089a880 - 系统资源管理函数A0
+// 功能：管理系统资源并返回管理结果
+#define ManageSystemResourcesA0 FUN_18089a880
+
+// 原始函数名：FUN_18089a8b4 - 系统初始化函数A0
+// 功能：初始化系统并返回初始化结果
+#define InitializeSystemComponentsA0 FUN_18089a8b4
+
+// 原始函数名：FUN_18089a9dd - 系统清理函数A0
+// 功能：清理系统并返回清理结果
+#define CleanupSystemA0 FUN_18089a9dd
+
+// 原始函数名：FUN_18089abe0 - 系统监控函数A0
+// 功能：监控系统状态并返回监控结果
+#define MonitorSystemA0 FUN_18089abe0
+
 // 错误处理函数语义化宏定义
 // 原始函数名：FUN_180890fe2 - 错误处理函数D
 // 功能：调用系统错误处理函数
@@ -1320,6 +1357,43 @@
 
 // 原始函数名：Unwind_180905000 - 文件句柄清理函数A0
 // 功能：清理文件句柄并递减引用计数器
+
+// 数据处理函数宏定义
+// 原始函数名：FUN_18089ac64 - 系统状态检查函数A0
+// 功能：检查系统状态并返回状态信息
+#define CheckSystemStateA0 FUN_18089ac64
+
+// 原始函数名：FUN_18089ace4 - 系统配置验证函数A0
+// 功能：验证系统配置并返回验证结果
+#define ValidateSystemConfigurationA0 FUN_18089ace4
+
+// 原始函数名：FUN_18089b2a0 - 系统数据传输函数A0
+// 功能：传输系统数据并返回传输结果
+#define TransferSystemDataA0 FUN_18089b2a0
+
+// 原始函数名：FUN_18089b307 - 系统初始化函数A0
+// 功能：初始化系统并返回初始化结果
+#define InitializeSystemA0 FUN_18089b307
+
+// 原始函数名：FUN_18089b31f - 系统参数设置函数A0
+// 功能：设置系统参数并返回设置结果
+#define SetSystemParametersA0 FUN_18089b31f
+
+// 原始函数名：FUN_18089b380 - 系统状态获取函数A0
+// 功能：获取系统状态并返回状态信息
+#define GetSystemStateA0 FUN_18089b380
+
+// 原始函数名：FUN_18089b460 - 系统数据验证函数A0
+// 功能：验证系统数据并返回验证结果
+#define ValidateSystemDataA0 FUN_18089b460
+
+// 原始函数名：FUN_18089b52a - 系统资源释放函数A0
+// 功能：释放系统资源并返回释放结果
+#define ReleaseSystemResourcesA0 FUN_18089b52a
+
+// 原始函数名：FUN_18089b540 - 系统内存管理函数A0
+// 功能：管理系统内存并返回管理结果
+#define ManageSystemMemoryA0 FUN_18089b540
 #define CleanupFileHandleA0 Unwind_180905000
 
 // 原始函数名：Unwind_180905010 - 异常处理初始化函数A0
@@ -1401,6 +1475,43 @@
 // FUN_1808函数语义化宏定义 - 工具系统函数
 
 // 原始函数名：FUN_1808fc050 - 执行安全检查
+
+// 内存管理函数宏定义
+// 原始函数名：FUN_18089b7d0 - 内存分配函数A0
+// 功能：分配内存并返回分配结果
+#define AllocateMemoryA0 FUN_18089b7d0
+
+// 原始函数名：FUN_18089b813 - 内存释放函数A0
+// 功能：释放内存并返回释放结果
+#define FreeMemoryA0 FUN_18089b813
+
+// 原始函数名：FUN_18089b86d - 内存复制函数A0
+// 功能：复制内存并返回复制结果
+#define CopyMemoryA0 FUN_18089b86d
+
+// 原始函数名：FUN_18089b896 - 内存移动函数A0
+// 功能：移动内存并返回移动结果
+#define MoveMemoryA0 FUN_18089b896
+
+// 原始函数名：FUN_18089bd70 - 内存验证函数A0
+// 功能：验证内存并返回验证结果
+#define ValidateMemoryA0 FUN_18089bd70
+
+// 原始函数名：FUN_18089c030 - 内存初始化函数A0
+// 功能：初始化内存并返回初始化结果
+#define InitializeMemoryA0 FUN_18089c030
+
+// 原始函数名：FUN_18089c190 - 内存清零函数A0
+// 功能：清零内存并返回清零结果
+#define ZeroMemoryA0 FUN_18089c190
+
+// 原始函数名：FUN_18089c2d8 - 内存比较函数A0
+// 功能：比较内存并返回比较结果
+#define CompareMemoryA0 FUN_18089c2d8
+
+// 原始函数名：FUN_18089c630 - 内存查找函数A0
+// 功能：查找内存并返回查找结果
+#define FindInMemoryA0 FUN_18089c630
 // 功能：执行栈安全检查和数据验证
 #define ExecuteSecurityCheck FUN_1808fc050
 
@@ -14034,18 +14145,29 @@ CalculationLabel:
 // 原始函数名：FUN_180895f44 - 内存分配和初始化函数
 // 功能：分配内存并进行初始化操作
 #define AllocateAndInitializeMemory FUN_180895f44
+
+/**
+ * @brief 内存分配和初始化函数
+ * 
+ * 该函数负责分配指定大小的内存块，并将现有数据复制到新分配的内存中。
+ * 如果参数为0，则释放现有内存。函数包含错误检查和内存管理逻辑。
+ * 
+ * @param param_1 系统内存管理器指针
+ * @param param_2 需要分配的内存大小（以12字节为单位）
+ * @return undefined8 返回操作状态码：0表示成功，0x26表示失败
+ */
 undefined8 AllocateAndInitializeMemory(undefined8 param_1,int param_2)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
-  longlong *registerRBX;
-  int unaff_EDI;
+  int itemCount;              // 项目计数器
+  longlong sourceBuffer;      // 源缓冲区指针
+  undefined8 *newBuffer;      // 新分配的缓冲区
+  longlong itemsToCopy;       // 需要复制的项目数量
+  undefined8 *destinationPointer; // 目标指针
+  longlong *bufferPointer;     // 缓冲区指针
+  int bufferSize;             // 缓冲区大小
   
-  puVar3 = (undefined8 *)0x0;
+  newBuffer = (undefined8 *)0x0;
   if (unaff_EDI == 0) {
 CalculationLabel:
     if ((0 < *(int *)((longlong)registerRBX + 0xc)) && (*registerRBX != 0)) {
@@ -64927,7 +65049,15 @@ void Unwind_18090c4a0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_18090c4b0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理器函数 - 复杂验证上下文清理
+ * 
+ * 该函数负责处理复杂的异常验证上下文清理操作，
+ * 包括设置异常处理器、验证状态、终止系统等
+ * 
+ * @note 原始函数名：Unwind_18090c4b0
+ */
+void ComplexValidationContextCleanup(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -64952,7 +65082,15 @@ void Unwind_18090c4b0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_18090c4c0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理器函数 - 设置默认异常处理器C0
+ * 
+ * 该函数负责为异常处理上下文设置默认的异常处理器，
+ * 用于处理特定偏移量的异常情况
+ * 
+ * @note 原始函数名：Unwind_18090c4c0
+ */
+void SetDefaultExceptionHandlerC0(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(param_2 + 0x140) = &DefaultExceptionHandlerB;
@@ -64961,7 +65099,15 @@ void Unwind_18090c4c0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_18090c4d0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理器函数 - 验证上下文回调执行
+ * 
+ * 该函数负责验证异常处理上下文并执行相应的回调函数，
+ * 确保异常处理的完整性
+ * 
+ * @note 原始函数名：Unwind_18090c4d0
+ */
+void ValidateAndExecuteContextCallback(undefined8 param_1,longlong param_2)
 
 {
   if (*(longlong **)(param_2 + 0xd0) != (longlong *)0x0) {
