@@ -42667,7 +42667,7 @@ void ProcessSystemResourceCounter(int *SystemResourceManager)
   *(uint8_t *)SystemThreadContext = 0;
   SystemResourceHandle1a8 = SystemThreadContext;
   resourceAllocationContext = StartSystemThread(SystemThreadContext);
-  SystemStackFlag = ConcatenatedSystemValue(SystemStackFlag._4_4_,resourceAllocationContext);
+  SystemStackFlag = ConcatenatedSystemValue(SystemStackFlag.LowPart,resourceAllocationContext);
   *SystemThreadContext = 0x5f657375;
   SystemThreadContext[1] = 0x65726170;
   SystemThreadContext[2] = 0x635f746e;
@@ -43985,7 +43985,7 @@ ResourceDataIndexCheckLoop:
     *(uint32_t *)(dataBufferContext + 2) = 0;
     *(uint32_t *)(dataBufferContext + 2) = MemoryBufferPointer;
     dataBufferContext[1] = pEncryptionOffsetSecondary;
-    *(uint32_t *)((long long)dataBufferContext + 0x1c) = SystemResourceDataIndex._4_4_;
+    *(uint32_t *)((long long)dataBufferContext + 0x1c) = SystemResourceDataIndex.LowPart;
     *(uint32_t *)(dataBufferContext + 3) = (uint32_t)SystemResourceDataIndex;
     MemoryBufferPointer = 0;
     pEncryptionOffsetSecondary = (uint8_t *)0x0;
@@ -44878,7 +44878,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
         SystemCleanupFunction();
     }
     StackCleanupFlag = 0;
-    CalculationFlagsExtended = (ulong long)CalculationFlagsExtended._4_4_ << 0x20;
+    CalculationFlagsExtended = (ulong long)CalculationFlagsExtended.LowPart << 0x20;
     SystemGameControllerBuffer = &SystemMemoryAllocatorReference;
     goto SystemStatusCheckPoint;
   }

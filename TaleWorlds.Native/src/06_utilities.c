@@ -97925,28 +97925,28 @@ void ReleaseSystemMemoryVersion3(uint8_t ObjectContext, int64_t ValidationContex
 
 
 
-void Unwind_18090fb70(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetResourceHashHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  uint8_t *ResourceHashPtr;
+  uint8_t *ResourceHashPointer;
   
-  ResourceHashPtr = *(uint8_t **)(ValidationContext + ResourceContextExtendedOffset);
-  *ResourceHashPtr = &SystemResourceHandlerTemplate;
+  ResourceHashPointer = *(uint8_t **)(ValidationContext + ResourceContextExtendedOffset);
+  *ResourceHashPointer = &SystemResourceHandlerTemplate;
   if (ResourceHashAddress[1] != 0) {
           ExecuteSystemEmergencyExit();
   }
   ResourceHashAddress[1] = 0;
   *(uint32_t *)(ResourceHashAddress + 3) = 0;
-  *ResourceHashPtr = &SystemDataStructure;
+  *ResourceHashPointer = &SystemDataStructure;
   return;
 }
 
 
 
-void Unwind_18090fb80(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  *(uint8_t **)(*(int64_t *)(ValidationContext + 0x88) + 0x20) = &SystemDataStructure;
+  *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextSecondaryOffset) + SystemDataStructureOffset) = &SystemDataStructure;
   return;
 }
 
