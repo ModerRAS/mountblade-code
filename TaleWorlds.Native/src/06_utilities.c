@@ -1774,6 +1774,38 @@
 // 功能：处理异常数据并执行相应的清理操作
 #define ExceptionDataProcessorA0 Unwind_180902fe0
 
+// 原始函数名：Unwind_180903000 - 异常数据处理函数A1
+// 功能：处理异常数据并执行相应的清理操作
+#define ExceptionDataProcessorA1 Unwind_180903000
+
+// 原始函数名：Unwind_180903010 - 异常数据处理函数A2
+// 功能：处理异常数据并执行相应的清理操作
+#define ExceptionDataProcessorA2 Unwind_180903010
+
+// 原始函数名：Unwind_180903050 - 异常数据处理函数A3
+// 功能：处理异常数据并执行相应的清理操作
+#define ExceptionDataProcessorA3 Unwind_180903050
+
+// 原始函数名：Unwind_180903060 - 异常数据处理函数A4
+// 功能：处理异常数据并执行相应的清理操作
+#define ExceptionDataProcessorA4 Unwind_180903060
+
+// 原始函数名：Unwind_180903070 - 异常数据处理函数A5
+// 功能：处理异常数据并执行相应的清理操作
+#define ExceptionDataProcessorA5 Unwind_180903070
+
+// 原始函数名：Unwind_180903080 - 异常数据处理函数A6
+// 功能：处理异常数据并执行相应的清理操作
+#define ExceptionDataProcessorA6 Unwind_180903080
+
+// 原始函数名：Unwind_180903090 - 异常数据处理函数A7
+// 功能：处理异常数据并执行相应的清理操作
+#define ExceptionDataProcessorA7 Unwind_180903090
+
+// 原始函数名：Unwind_1809030a0 - 异常数据处理函数A8
+// 功能：处理异常数据并执行相应的清理操作
+#define ExceptionDataProcessorA8 Unwind_1809030a0
+
 // 原始函数名：Unwind_18090b7d0 - 资源清理函数A0
 // 功能：清理系统资源，遍历并释放内存块
 #define ResourceCleanupA0 Unwind_18090b7d0
@@ -7006,8 +7038,8 @@ uint8_t SystemExceptionHandlerDataB;
 uint8_t SystemExceptionHandlerDataC;
 uint8_t SystemExceptionHandlerDataD;
 uint8_t SystemExceptionHandlerDataE;
-uint8_t UNK_180a39408;
-uint8_t UNK_180a39428;
+uint8_t SystemExceptionHandlerDataF;
+uint8_t SystemExceptionHandlerDataG;
 uint8_t UNK_180a39450;
 uint8_t UNK_180a39468;
 uint8_t UNK_180a39480;
