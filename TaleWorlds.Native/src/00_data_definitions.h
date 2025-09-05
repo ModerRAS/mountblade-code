@@ -1917,7 +1917,7 @@ int InitializeMultiStringProcessorSystem(void)
   strcpy_s(&SystemStringConstantDenary,64,&SystemStringTemplateDenary);
   SystemDataPointer1 = &SystemMemoryPool;
   SystemDataPointer2 = &SystemDataTableEntry1;
-  SystemDataTableEntry1 = 0;
+  SystemDataTableEntryPrimary = 0;
   SystemDataSizeFirst = 0xf;
   strcpy_s(&SystemDataTableEntry1,64,&SystemDataTableTemplate1);
   SystemDataPointer3 = &SystemMemoryPool;
@@ -12733,7 +12733,7 @@ uint64_t SystemConfigureParameters(uint64_t *ConfigurationArrayPointer,longlong 
   uint StackBuffer28 [2];
   ulonglong StackVariable20;
   if (*(int *)(ConfigurationIndex + 0x18) < *(int *)(*(longlong *)(ConfigurationIndex + 0x10) + 0xb4)) {
-Label_1808c72a7:
+MemoryAllocationReset:
     MemoryAllocationResult = 0;
   }
   else {
@@ -13418,6 +13418,8 @@ bool SystemAudioIsInitialized(void)
   bool CharValue2;
   uint FileSystemParameter;
   uint ProcessIdParameter;
+  void *ConsoleWindowHandle;
+  uint SystemBufferParameter;
   if (SystemContextPointer != 0) {
     LongLoop = -1;
     do {
@@ -13431,9 +13433,9 @@ bool SystemAudioIsInitialized(void)
       }
       FileSystemHandle = _wfsopen();
       if ((1 < FileSystemStatusCounter) && ((uint)SystemRegister12 < FileSystemParameter)) {
-        uVar6 = GetConsoleWindow();
+        ConsoleWindowHandle = GetConsoleWindow();
         ProcessIdParameter = (uint)SystemRegister12;
-        GetWindowThreadProcessId(uVar6,&ProcessIdBuffer);
+        GetWindowThreadProcessId(ConsoleWindowHandle,&ProcessIdBuffer);
         StringProcessingResult = GetCurrentProcessId();
         if (StringProcessingResult != ProcessIdParameter) {
           IntegerResult = AllocConsole();
@@ -13488,16 +13490,16 @@ Label_1808fbdeb:
               FileSystemHandle = _wfsopen(LongOffset,pMemoryAddress1,0x20);
               if (FileSystemHandle != 0) {
                 pMemoryAddress1 = &SystemCommandBuffer07;
-                uVar6 = 0xeb;
+                SystemBufferParameter = 0xeb;
                 goto Label_1808fbebe;
               }
               IntegerResult = IntegerResult + 1;
               LongCounter = 0;
             } while (IntegerResult < 9);
             pMemoryAddress1 = &SystemCommandBuffer08;
-            uVar6 = 0xef;
+            SystemBufferParameter = 0xef;
 Label_1808fbebe:
-            ProcessSystemBuffer(&SystemBufferPointer,uVar6,&SystemBufferPointer,pMemoryAddress1);
+            ProcessSystemBuffer(&SystemBufferPointer,SystemBufferParameter,&SystemBufferPointer,pMemoryAddress1);
             free(SystemStateValue);
             free(LongOffset);
           }

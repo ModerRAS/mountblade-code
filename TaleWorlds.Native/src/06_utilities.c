@@ -6207,20 +6207,28 @@ undefined SystemDebugDataBlock5;
 
 // 函数: undefined UtilityHandleEvent1;
 undefined UtilityHandleEvent1;
-undefined DAT_180d49648;
-undefined DAT_180d49640;
-undefined DAT_180d49650;
-undefined UNK_180a0b650;
-undefined DAT_180d49638;
-undefined UNK_180a0c258;
-undefined UNK_1801bc7a0;
-undefined UNK_1801bc7e0;
-undefined UNK_180a0b640;
-undefined UNK_180a0b660;
-undefined UNK_180a0b670;
-undefined UNK_1801bc6b0;
-undefined UNK_180a0b680;
-undefined UNK_180a0b690;
+// 系统数据表
+undefined SystemDataTable1;
+undefined SystemDataTable2;
+undefined SystemDataTable3;
+// 系统内存管理数据块D
+undefined SystemMemoryManagementBlockD1;
+// 系统数据表
+undefined SystemDataTable4;
+// 系统配置数据块
+undefined SystemConfigurationDataBlock1;
+undefined SystemConfigurationDataBlock2;
+// 系统配置数据块
+undefined SystemConfigurationDataBlock3;
+// 系统内存管理数据块D
+undefined SystemMemoryManagementBlockD2;
+undefined SystemMemoryManagementBlockD3;
+undefined SystemMemoryManagementBlockD4;
+// 系统配置数据块
+undefined SystemConfigurationDataBlock4;
+// 系统内存管理数据块D
+undefined SystemMemoryManagementBlockD5;
+undefined SystemMemoryManagementBlockD6;
 
 // 函数: undefined UtilityResizeMemoryHeap;
 // 调整内存堆大小，重新分配内存空间
