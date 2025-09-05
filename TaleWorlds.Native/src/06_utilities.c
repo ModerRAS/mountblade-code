@@ -85183,8 +85183,8 @@ void SetGlobalDataPointerB5(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809418c0(void)
-void FUN_1809418c0(void)
+// 函数: void SetGlobalDataPointerB6(void)
+void SetGlobalDataPointerB6(void)
 
 {
   _DAT_180bf6650 = &UNK_18098bcb0;
