@@ -20021,6 +20021,16 @@ void** InitializeSystemPointerPool(void** SystemPointerPool, unsigned long long 
 
 
 
+/**
+ * @brief 清理系统完成端口资源
+ * 
+ * 该函数负责清理系统的完成端口相关资源，包括关闭完成端口句柄、
+ * 终止相关进程、销毁互斥体以及释放内存资源。这是系统资源清理的重要组成部分。
+ * 
+ * @param SystemResourceHandle 系统资源句柄，指向需要清理的资源
+ * @param CleanupFlags 清理标志，控制清理行为
+ * @return void* 返回清理后的系统资源句柄
+ */
 void* CleanupSystemCompletionPortResources(void* SystemResourceHandle, uint32_t CleanupFlags)
 {
   *SystemResourceHandle = &SystemCompletionPortTemplate;
