@@ -51352,9 +51352,9 @@ void InitializeSystemResourceManagerEx(void* SystemResourceManager,void* Configu
     SystemStackParameter3 = (uint32_t)((ulong long)SystemResourceManager >> 0x20);
     *(int *)(SystemPointer + 2) = SystemIndex + SystemOperationResult;
     *(uint32_t *)((long long)SystemPointer + 0x14) = ConfigurationParameter;
-    *(uint32_t *)(SystemPointer + 3) = StackParameter2;
-    *(uint32_t *)((long long)SystemPointer + 0x1c) = StackParameter3;
-    SystemPointer[4] = (ulong long)StackParameter4 << 8;
+    *(uint32_t *)(SystemPointer + 3) = SystemStackParameter2;
+    *(uint32_t *)((long long)SystemPointer + 0x1c) = SystemStackParameter3;
+    SystemPointer[4] = (ulong long)SystemStackParameter4 << 8;
     *SystemPointer = SystemFlags;
     SystemPointer[1] = *(long long *)(ResourceOffset + 0xf8);
     **(long long **)(ResourceOffset + 0xf8) = (long long)SystemPointer;
