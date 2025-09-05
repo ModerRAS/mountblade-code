@@ -58409,15 +58409,15 @@ void ProcessDataBufferA1(DataBuffer contextParameter, int64_t systemContext, Dat
   int64_t dataContext;
   DataBuffer validationStatus;
   
-  dataContext = *(int64_t *)(param_2 + 0x70);
+  dataContext = *(int64_t *)(systemContext + 0x70);
   validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
-  FUN_180058370(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),param_3,param_4,validationStatus);
-  pdataValue = *(DataBuffer **)(dataContext + 0x20);
-  if (pdataValue != (DataBuffer *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_180058370(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),dataParameter,validationParameter,validationStatus);
+  dataValuePointer = *(DataBuffer **)(dataContext + 0x20);
+  if (dataValuePointer != (DataBuffer *)0x0) {
+    FUN_18004b790(dataContext + 0x10,*dataValuePointer,dataParameter,validationParameter,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pdataValue);
+    FUN_18064e900(dataValuePointer);
   }
   return;
 }
