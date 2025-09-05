@@ -28779,16 +28779,16 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   SystemStackVariable1a8 = 0;
   LongStackVariableSecondary = 0;
   SystemStackVariablePrimary = 0;
-  StackVariableControl = 0x100;
+  SystemStackVariableControl = 0x100;
   SystemStackFlag = 0;
-  StackProcessingFlag = 0;
+  SystemStackProcessingFlag = 0;
   SystemThreadContext = &SystemStringTemplate;
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
     SystemThreadContext = *(void* **)(ConfigurationDataPointer + 8);
   }
   SetupSystemDataBuffer(&pGlobalDataFlags,SystemThreadContext);
   CalculationFlagsExtended = 0;
-  StackVariableControl = StackVariableControl & 0xffffff00;
+  SystemStackVariableControl = SystemStackVariableControl & 0xffffff00;
   resourceAllocationContext = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x60d30,0x10,0x1f);
   SystemCalculatedBufferPointer = (long long *)InitializeSystemMemoryAllocator(resourceAllocationContext,&pGlobalDataFlags);
   StackBufferPointer = (void* **)SystemCalculatedBufferPointer;
@@ -28798,7 +28798,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   StackFloatingValue1 = 0x3f800000;
   StackPaddingValue1 = 0;
   StackPaddingValue2 = 0;
-  StackVariableTemp = 0;
+  SystemStackVariableTemp = 0;
   StackFlagValue1 = 0;
   StackFloatingValue2 = 0x3f800000;
   SystemStackVariable130 = 0;
