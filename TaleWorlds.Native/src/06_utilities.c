@@ -5266,24 +5266,29 @@ bool SystemStatusControlFlag4;
 bool SystemStatusControlFlag5;
 void* SystemDataBufferPrimary;
 void* SystemDataBufferSecondary;
-undefined DAT_180bfa780;
-undefined DAT_180bfa788;
-undefined DAT_180bfa790;
-undefined DAT_180bfa798;
-undefined DAT_180bfa818;
-undefined DAT_180bfa820;
-undefined DAT_180bfa828;
-undefined DAT_180bfa830;
-undefined DAT_180bfa8b0;
-undefined DAT_180bfa8b8;
-undefined DAT_180bfa8c0;
-undefined DAT_180bfa8c8;
-undefined DAT_180bfa948;
-undefined DAT_180bfa950;
-undefined DAT_180bfa958;
-undefined DAT_180bfa960;
-undefined DAT_180bfa9e0;
-undefined DAT_180bfa9e8;
+// 全局数据指针A45相关变量
+void* GlobalDataPointerA45Storage;    // DAT_180bfa780
+void* GlobalDataPointerA45Status;     // DAT_180bfa788
+void* GlobalDataPointerA45Config;     // DAT_180bfa790
+void* GlobalDataPointerA45Cache;      // DAT_180bfa798
+// 全局数据指针A46相关变量
+void* GlobalDataPointerA46Storage;    // DAT_180bfa818
+void* GlobalDataPointerA46Status;     // DAT_180bfa820
+void* GlobalDataPointerA46Config;     // DAT_180bfa828
+void* GlobalDataPointerA46Cache;      // DAT_180bfa830
+// 全局数据指针A47相关变量
+void* GlobalDataPointerA47Storage;    // DAT_180bfa8b0
+void* GlobalDataPointerA47Status;     // DAT_180bfa8b8
+void* GlobalDataPointerA47Config;     // DAT_180bfa8c0
+void* GlobalDataPointerA47Cache;      // DAT_180bfa8c8
+// 全局数据指针A48相关变量
+void* GlobalDataPointerA48Storage;    // DAT_180bfa948
+void* GlobalDataPointerA48Status;     // DAT_180bfa950
+void* GlobalDataPointerA48Config;     // DAT_180bfa958
+void* GlobalDataPointerA48Cache;      // DAT_180bfa960
+// 全局数据指针A49相关变量
+void* GlobalDataPointerA49Storage;    // DAT_180bfa9e0
+void* GlobalDataPointerA49Status;     // DAT_180bfa9e8
 undefined DAT_180bfa9f0;
 undefined DAT_180bfa9f8;
 undefined DAT_180bfaa78;
