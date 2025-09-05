@@ -60068,28 +60068,28 @@ void Unwind_1809089e0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_1809089f0(DataBuffer param_1,int64_t param_2)
+void ReleaseMutexLockA20(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(param_2 + 0x68));
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + 0x68));
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
   return;
 }
 
 
 
-void Unwind_180908a00(DataBuffer param_1,int64_t param_2)
+void ReleaseMutexLockA30(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(param_2 + 0x148));
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + 0x148));
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
   return;
 }
