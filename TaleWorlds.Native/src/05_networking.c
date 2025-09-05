@@ -1263,7 +1263,7 @@ void InitializeNetworkSocket(void)
   // 初始化网络配置
   NetworkProtocolVersion = NetworkProtocolVersionOne;                    // 设置协议版本为1.0
   NetworkConnectionMode = NetworkConnectionModeClient;                      // 设置连接模式为客户端模式
-  NetworkConnectionPriorityLevel = NetworkConnectionPriorityMedium;                 // 设置连接优先级为中等
+  NetworkConnectionPriority = NetworkConnectionPriorityMedium;                 // 设置连接优先级为中等
 }
 
 /**
@@ -1290,7 +1290,7 @@ void BindNetworkSocket(void)
   NetworkSocketBindingStatus = SOCKET_BOUND;                   // 设置绑定标志为已绑定
   
   // 初始化网络协议配置
-  NetworkConnectionProtocolType = NetworkSystemEnabled;               // 设置协议类型为TCP
+  NetworkConnectionProtocol = NetworkSystemEnabled;               // 设置协议类型为TCP
   NetworkConnectionProtocolVersion = NetworkSystemEnabled;            // 设置协议版本为1.0
   
   // 初始化缓冲区配置
@@ -2152,10 +2152,10 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer
 NetworkHandle ProcessNetworkRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
-  int64_t NetworkConnectionContextIdentifier;      // 网络连接上下文标识符
-  int64_t *ConnectionValidationData;                // 网络连接验证结果数据指针
-  int32_t ConnectionValidationResultCode;           // 网络连接验证结果码
-  NetworkHandle ConnectionContextHandle;           // 网络连接上下文标识符
+  int64_t ConnectionContextId;      // 网络连接上下文标识符
+  int64_t *ValidationDataPointer;                // 网络连接验证结果数据指针
+  int32_t ValidationStatusCode;           // 网络连接验证结果码
+  NetworkHandle ContextHandle;           // 网络连接上下文句柄
   
   NetworkConnectionContextIdentifier = 0;
   ConnectionValidationResultCode = 0;  // 初始化验证结果码
