@@ -24564,7 +24564,7 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourceManager)
   void* ThreadContext;
   void* *memoryAllocationBuffer;
   void* *memoryAllocationEnd;
-  void* *pSystemEncryptionKey;
+  void* *SystemEncryptionKeyPointer;
   uint32_t SystemOperationCounter;
   void* SystemSecurityEncryptionBufferArray [32];
   ulong long ConcatenatedSystemValue;
@@ -24590,15 +24590,15 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourceManager)
     *(uint *)(SystemResourceManager + 2) = SystemInitializationStatus + 1;
   }
   memoryAllocationEnd = &SystemMemoryTemplateQuinary;
-  pSystemEncryptionKey = SystemSecurityEncryptionBufferArray;
+  SystemEncryptionKeyPointer = SystemSecurityEncryptionBufferArray;
   SystemOperationCounter = 0;
   SystemSecurityEncryptionBufferArray[0] = 0;
   SystemEncryptionStatus = 3;
   memoryAllocationBuffer = SystemResourceManager;
   InitializeGameSettings(&memoryAllocationEnd,&SystemDataBufferTemplateNonary,0x130a7);
   SystemThreadContext = &SystemStringTemplate;
-  if (pSystemEncryptionKey != (void* *)0x0) {
-    SystemThreadContext = pSystemEncryptionKey;
+  if (SystemEncryptionKeyPointer != (void* *)0x0) {
+    SystemThreadContext = SystemEncryptionKeyPointer;
   }
   ResourceMemoryOffset = -1;
   do {
@@ -25746,7 +25746,7 @@ void SystemResourceAllocate(long long SystemResourceManager)
   void* ThreadContext;
   void* SystemProcessFlags;
   uint32_t ConcatenatedSystemValue;
-  void* *pSystemEncryptionKey;
+  void* *SystemEncryptionKeyPointer;
   long long SystemValidationResult;
   uint32_t SystemResourceStatusFlag;
   void* EncryptionKeyValue;
@@ -26643,7 +26643,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   void* *SystemMemoryBufferPointerTertiary;
   int SystemOperationPrimary;
   uint32_t calculationFlagsPrimary;
-  void* *pSystemStackFlag;
+  void* *SystemStackFlagPointer;
   void* *SystemMemoryBufferPointerQuaternary;
   int SystemOperationMaximum;
   uint32_t concatenatedSystemValue;
@@ -27354,7 +27354,7 @@ void SystemDataInitializer(void)
   void* ThreadContext;
   void* SystemProcessFlags;
   void* *memoryAllocationEnd;
-  uint8_t *pSystemEncryptionKey;
+  uint8_t *SystemEncryptionKeyPointer;
   uint32_t SystemOperationCounter;
   uint8_t SystemSecurityEncryptionBufferArray [16];
   ulong long EncryptionKeyValue;
@@ -27448,7 +27448,7 @@ void SystemDataInitializer(void)
   }
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
   memoryAllocationEnd = &SystemResourceTemplateSecondary;
-  pSystemEncryptionKey = SystemSecurityEncryptionBufferArray;
+  SystemEncryptionKeyPointer = SystemSecurityEncryptionBufferArray;
   SystemSecurityEncryptionBufferArray[0] = 0;
   SystemOperationCounter = 3;
   strcpy_s(SystemSecurityEncryptionBufferArray,0x10,&SystemVersionString2);
@@ -28385,7 +28385,7 @@ void* SystemResourceAllocator(void* SystemResourceManager,void* ConfigurationDat
   void* *SystemStatusFlagPointer;
   uint32_t SystemUnsignedFlagSecondary;
   void* SystemSecondaryProcessFlags;
-  void* *pSystemEncryptionStatus;
+  void* *SystemEncryptionStatusPointer;
   void* *systemContextPointer;
   uint32_t SystemProcessFlags;
   void* ConcatenatedSystemValue;
@@ -28801,7 +28801,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   uint8_t SystemThreadStackSize [32];
   void* **SystemResourceManagerA;
   void* CalculationFlagsPrimary;
-  void* *pSystemStackFlag;
+  void* *SystemStackFlagPointer;
   void* SystemResourceHandlePrimary;
   int SystemOperationMaximum;
   uint8_t SystemStackBufferValidation [16];
@@ -28815,7 +28815,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   CopySystemDataStructure(SystemStackBufferValidation,
                 (long long)*(int *)(SystemTextureManagerPointer + 0x1d40) * 0xd0 +
                 *(long long *)(SystemTextureManagerPointer + 0x1d20));
-  SetupSystemProcessingBuffer(&pSystemStackFlag);
+  SetupSystemProcessingBuffer(&SystemStackFlagPointer);
   SystemOperationResult = 0;
   *(uint32_t *)(ConfigurationDataPointer + 0x10) = 0;
   if (*(uint8_t **)(ConfigurationDataPointer + 8) != (uint8_t *)0x0) {
@@ -28850,7 +28850,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   ExecuteSystemCommand(ConfigurationDataPointer,SystemOperationResult + 0xc);
   *(uint16_t *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
   *(int *)(ConfigurationDataPointer + 0x10) = SystemOperationResult + 0xc;
-  pSystemStackFlag = &SystemMemoryAllocatorReference;
+  SystemStackFlagPointer = &SystemMemoryAllocatorReference;
   SystemResourceManagerA = &systemDataPointer;
   SystemMemoryAllocatorReferencePointer = &SystemMemoryAllocatorReference;
     ValidateSystemChecksum(ConcatenatedSystemValue ^ (ulong long)SystemThreadStackSize);
@@ -29322,7 +29322,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   long long SystemMemoryAllocationOffsetPrimary;
   uint SystemResourceCountTertiary;
   void* SystemResourceHandleQuaternary;
-  void* *pGlobalDataFlags;
+  void* *GlobalDataFlagsPointer;
   long long SystemMemoryAllocationOffsetSecondary;
   uint32_t SystemOperationResultSecondary;
   ulong long SystemResourceHandlePrimary;
@@ -30561,7 +30561,7 @@ void InitializeSystemMemoryResource(long long* SystemResourceManager)
   long long **ppsystemMemoryOffset;
   void* SystemProcessFlags;
   void* *memoryAllocationEnd;
-  uint8_t *pSystemEncryptionKey;
+  uint8_t *SystemEncryptionKeyPointer;
   uint32_t SystemOperationCounter;
   uint8_t SystemSecurityEncryptionBufferArray [16];
   ulong long EncryptionKeyValue;
@@ -30583,7 +30583,7 @@ void InitializeSystemMemoryResource(long long* SystemResourceManager)
   }
   ResourceMemoryOffset = SystemAllocationTemplate;
   memoryAllocationEnd = &SystemResourceTemplateSecondary;
-  pSystemEncryptionKey = SystemSecurityEncryptionBufferArray;
+  SystemEncryptionKeyPointer = SystemSecurityEncryptionBufferArray;
   SystemSecurityEncryptionBufferArray[0] = 0;
   SystemOperationCounter = 0xc;
   strcpy_s(SystemSecurityEncryptionBufferArray,0x10,&SystemProcessingBufferString);
@@ -36476,11 +36476,11 @@ void InitializeSystemResourceB(void* SystemResourceManager,void* ConfigurationDa
   
   memoryAllocationEnd = &SystemGlobalDataReference;
   SystemContextValue = 0;
-  pSystemEncryptionKey = (uint32_t *)0x0;
+  SystemEncryptionKeyPointer = (uint32_t *)0x0;
   SystemOperationCounter = 0;
   ResourceHashEntryPointer = (uint32_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x13,0x13,ConfigurationFlag,InvalidHandleValue);
   *(uint8_t *)ResourceHashEntryPointer = 0;
-  pSystemEncryptionKey = ResourceHashEntryPointer;
+  SystemEncryptionKeyPointer = ResourceHashEntryPointer;
   SystemInitializationStatus = StartSystemThread(ResourceHashEntryPointer);
   SystemContextValue = ConcatenatedSystemValue(SystemContextValue.LowPart,SystemInitializationStatus);
   *ResourceHashEntryPointer = 0x65766544;
@@ -43406,7 +43406,7 @@ void DispatchSystemResourcesAndCreateThreads(long long SystemResourceManager)
   uint8_t aSystemParameterPointer [8];
   uint aSystemConfigurationPointer [2];
   void* *SystemProcessFlagsPointer;
-  void* *pSystemEncryptionStatus;
+  void* *SystemEncryptionStatusPointer;
   uint32_t SystemThreadContext;
   void* SystemProcessFlags;
   int ConsoleReferenceCounter;
@@ -44722,20 +44722,20 @@ void ReleaseSystemResource(void* SystemResourceManager)
   void* *SecondaryGlobalDataFlagsPtr;
   void* *SystemGlobalDataReferencePtr;
   uint32_t SystemThreadStackSize;
-  void* *pGlobalDataFlags;
+  void* *GlobalDataFlagsPointer;
   void* *pointerUnsigned1b8;
   uint32_t StackUnsignedValue;
   void* *pCalculationFlagsExtended;
-  void* *pSystemStackFlag;
+  void* *SystemStackFlagPointer;
   uint32_t TimeStructurePointer;
   void* *SystemStackBuffer;
   void* *pSystemCalculationFlags;
   uint32_t StackUnsignedValue168;
   void* *SystemResourceHandleSecondary;
-  void* *pSystemConfigurationPointer;
+  void* *SystemConfigurationPointer;
   void* SystemResourceSize;
   uint32_t SystemCurrentThreadId;
-  void* *pSystemThreadContext;
+  void* *SystemThreadContextPointer;
   void* *SystemMemoryContext;
   void* StackPointerOneHundredThirtieth;
   uint32_t SystemMemoryAllocationOffset;
@@ -45351,7 +45351,7 @@ void ExecuteSystemResourceCommand(long long* SystemResourceManager,void* Configu
   uint SystemThreadContext;
   void* SystemProcessFlags;
   void* *memoryAllocationEnd;
-  void* *pSystemEncryptionKey;
+  void* *SystemEncryptionKeyPointer;
   uint32_t SystemContextValue;
   
   SystemMemoryAllocationFlag = 0;
@@ -45386,7 +45386,7 @@ void ExecuteSystemResourceCommand(long long* SystemResourceManager,void* Configu
   SystemProcessFlags = (ulong long)SystemProcessFlags.HighPart << 0x20;
   SystemProcessFlagsPointer = &SystemMemoryAllocatorReference;
   SystemHashNodeData = &SystemStringTemplate;
-  if (pSystemEncryptionKey != (void* *)0x0) {
+  if (SystemEncryptionKeyPointer != (void* *)0x0) {
     SystemHashNodeData = pSystemEncryptionKey;
   }
   ProcessSystemResourceData(&SystemConfigurationFlag,SystemHashNodeData,&SystemEventTemplate,ConfigurationFlag,0);
@@ -45400,10 +45400,10 @@ void ExecuteSystemResourceCommand(long long* SystemResourceManager,void* Configu
   }
   (**(code **)(**(long long **)SystemResourceManager[1] + 0x40))(*(long long **)SystemResourceManager[1],&memoryAllocationEnd);
   memoryAllocationEnd = &SystemGlobalDataReference;
-  if (pSystemEncryptionKey != (void* *)0x0) {
+  if (SystemEncryptionKeyPointer != (void* *)0x0) {
       SystemCleanupFunction();
   }
-  pSystemEncryptionKey = (void* *)0x0;
+  SystemEncryptionKeyPointer = (void* *)0x0;
   SystemContextValue = 0;
   memoryAllocationEnd = &SystemMemoryAllocatorReference;
   if (SystemResourceCleanupFlag != 0) {
@@ -45440,14 +45440,14 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
   long long StackCleanupFlag;
   uint32_t SystemThreadCleanupFlag;
   void* CalculationFlagsPrimary;
-  void* *pSystemStackFlag;
+  void* *SystemStackFlagPointer;
   long long SystemMemoryAllocationOffsetExtended;
   uint32_t ContextManagerPointer;
   void* *pSystemCalculationFlags;
   void* *pSystemOperationFlags;
   uint32_t SystemInitializationFlag;
   ulong long SystemContextData;
-  void* *pSystemConfigurationPointer;
+  void* *SystemConfigurationPointer;
   void* *pSystemResourceSize;
   uint32_t SystemCurrentThreadId;
   ulong long SystemThreadContext;
@@ -45650,13 +45650,13 @@ SystemIndexCheckPoint:
     MemoryAllocatorReferencePointer = (void* *)0x0;
     systemDataBuffer = 0;
     dataBufferContext = &SystemMemoryAllocatorReference;
-    pSystemStackFlag = &SystemGlobalDataReference;
+    SystemStackFlagPointer = &SystemGlobalDataReference;
     if (SystemMemoryAllocationOffsetExtended != 0) {
         SystemCleanupFunction();
     }
     SystemMemoryAllocationOffsetExtended = 0;
     ContextManagerPointer = 0;
-    pSystemStackFlag = &SystemMemoryAllocatorReference;
+    SystemStackFlagPointer = &SystemMemoryAllocatorReference;
   }
 SystemStatusCheckPoint:
     ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)SystemDataBufferTertiary);
@@ -46307,7 +46307,7 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
   uint32_t SystemProcessFlags;
   uint32_t ThreadHandleHigh32Copy;
   void* *memoryAllocationEnd;
-  void* *pSystemEncryptionKey;
+  void* *SystemEncryptionKeyPointer;
   
   ResourceAddress = GetCurrentThread();
   SetThreadPriority(ResourceAddress,0);
@@ -46332,7 +46332,7 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
         CurrentThreadIdentifier = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x40,8,10);
         pStackResourcePointer = (long long *)&SystemThreadContext;
         memoryAllocationEnd = &SystemMemoryAllocationEndMarker;
-        pSystemEncryptionKey = &SystemMemoryAllocationStartMarker;
+        SystemEncryptionKeyPointer = &SystemMemoryAllocationStartMarker;
         SystemSecondaryProcessFlags = (uint32_t)ResourceAddress;
         ResourceAddressHigh32 = (uint32_t)((ulong long)ResourceAddress >> 0x20);
         SystemEncryptionStatus = (uint32_t)SystemThreadHandle;
@@ -46584,7 +46584,7 @@ void CleanupAndInitializeSystemResource(void* *SystemResourceManager)
   uint8_t asystemDataBuffer [48];
   void* *SystemTertiaryStackPointer;
   void* SystemSecondaryProcessFlags;
-  void* *pSystemEncryptionStatus;
+  void* *SystemEncryptionStatusPointer;
   ulong long SystemResourceStatusFlag;
   
   SystemSecondaryProcessFlags = 0xfffffffffffffffe;
@@ -52453,7 +52453,7 @@ ulong long InitializeSystemResourceManagerA(void* SystemResourceManager,void* Co
   void* *SystemThreadStorage;
   bool isSystemBusy;
   void* *memoryAllocationEnd;
-  void* *pSystemEncryptionKey;
+  void* *SystemEncryptionKeyPointer;
   uint32_t SystemOperationCounter;
   void* SystemContextValue;
   uint8_t SystemResourceStatusFlagCompact [8];
@@ -52483,12 +52483,12 @@ ulong long InitializeSystemResourceManagerA(void* SystemResourceManager,void* Co
   ProcessSystemMemoryAllocation(SystemResourceStatusFlagCompact,0);
   memoryAllocationEnd = &SystemGlobalDataReference;
   SystemContextValue = 0;
-  pSystemEncryptionKey = (void* *)0x0;
+  SystemEncryptionKeyPointer = (void* *)0x0;
   SystemOperationCounter = 0;
   ConfigureSystemDataBuffer(&memoryAllocationEnd,&SystemDataBufferTemplate,ConfigurationDataPointer);
   ConfigureSystemManager(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationTemplate);
   SystemThreadStorage = &SystemStringTemplate;
-  if (pSystemEncryptionKey != (void* *)0x0) {
+  if (SystemEncryptionKeyPointer != (void* *)0x0) {
     SystemThreadStorage = pSystemEncryptionKey;
   }
   ConfigureSystemManager(SystemContextManagerPointer,5,0xffffffff00000000,&SystemStringTemplateBuffer,SystemThreadStorage);
@@ -52499,7 +52499,7 @@ ulong long InitializeSystemResourceManagerA(void* SystemResourceManager,void* Co
   SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffff00000000,3,SystemThreadStorage);
   InitializeSystemManager();
   SystemThreadStorage = &SystemStringTemplate;
-  if (pSystemEncryptionKey != (void* *)0x0) {
+  if (SystemEncryptionKeyPointer != (void* *)0x0) {
     SystemThreadStorage = pSystemEncryptionKey;
   }
   OutputDebugStringA(SystemThreadStorage);
@@ -52521,7 +52521,7 @@ ulong long InitializeSystemResourceManagerA(void* SystemResourceManager,void* Co
   }
   else if (SystemInitializationFlag == '\0') {
     SystemThreadStorage = &SystemStringTemplate;
-    if (pSystemEncryptionKey != (void* *)0x0) {
+    if (SystemEncryptionKeyPointer != (void* *)0x0) {
       SystemThreadStorage = pSystemEncryptionKey;
     }
     ConfigureSystemDataTemplate(SystemThreadStorage);
@@ -53224,7 +53224,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   uint8_t *pSystemConfigurationPointer;
   uint8_t SystemCurrentThreadId;
   char SystemStatusCharacter;
-  void* *pSystemThreadContext;
+  void* *SystemThreadContextPointer;
   uint8_t *SystemMemoryContext;
   uint StackContextValue;
   ulong long SystemMemoryAllocationOffset;
@@ -54758,7 +54758,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   uint32_t SystemFlagTertiary;
   ulong long SystemUnsignedFlagSecondary;
   void* *SystemProcessFlagsPointer;
-  void* *pSystemEncryptionStatus;
+  void* *SystemEncryptionStatusPointer;
   void* *systemContextPointer;
   long long SystemStatusFlag48;
   void* SystemOperationCounter;
@@ -64206,7 +64206,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
   void* *memoryAllocationBuffer;
   float SystemFloatValue3;
   float SystemStackFloatValue4C;
-  void* *pSystemEncryptionKey;
+  void* *SystemEncryptionKeyPointer;
   void* SystemOperationCounter;
   void* SystemContextValue;
   uint8_t SystemResourceStatusFlagCompact [8];
@@ -64225,9 +64225,9 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     if ((10 < (int)SystemTimeFloatValue) ||
        ((int)(*(int *)(*(long long *)(SystemResourceManager + 0x84) + 0x88) +
              (*(int *)(*(long long *)(SystemResourceManager + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)SystemTimeFloatValue)) {
-      pSystemEncryptionKey = &SystemStringTemplate;
+      SystemEncryptionKeyPointer = &SystemStringTemplate;
       if (*(void* **)(SystemResourceManager + 6) != (void* *)0x0) {
-        pSystemEncryptionKey = *(void* **)(SystemResourceManager + 6);
+        SystemEncryptionKeyPointer = *(void* **)(SystemResourceManager + 6);
       }
       SystemOperationCounter = ConcatenatedSystemValue(SystemOperationCounter.LowPart,*(uint32_t *)(*(long long *)(SystemResourceManager + 0x84) + 0x60));
       memoryAllocationBuffer = &SystemMemoryBufferTemplateA;
@@ -64306,7 +64306,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       memoryAllocationBuffer = *(void* **)(SystemResourceManager + 0x50);
       SystemFloatValue3 = SystemResourceManager[0x52];
       SystemStackFloatValue4C = SystemResourceManager[0x53];
-      pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
+      SystemEncryptionKeyPointer = *(void* **)(SystemResourceManager + 0x54);
       SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
       ProcessSystemUnsignedFlagInitialization(&SystemUnsignedFlagSecondary);
       ProcessRenderObjectStateAllocation(SystemPrimaryFloatPointer,SystemPrimaryFloatPointer,&SystemUnsignedFlagSecondary);
@@ -64319,7 +64319,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         memoryAllocationBuffer = *(void* **)(SystemResourceManager + 0x50);
         SystemFloatValue3 = SystemResourceManager[0x52];
         SystemStackFloatValue4C = SystemResourceManager[0x53];
-        pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
+        SystemEncryptionKeyPointer = *(void* **)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
         ProcessSystemUnsignedFlagWithFloatingValue(&SystemUnsignedFlagSecondary,0x3fc90fdb);
         ProcessRenderObjectStateAllocation(SystemPrimaryFloatPointer,SystemPrimaryFloatPointer,&SystemUnsignedFlagSecondary);
@@ -64330,7 +64330,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         memoryAllocationBuffer = *(void* **)(SystemResourceManager + 0x50);
         SystemFloatValue3 = SystemResourceManager[0x52];
         SystemStackFloatValue4C = SystemResourceManager[0x53];
-        pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
+        SystemEncryptionKeyPointer = *(void* **)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
         ResetSystemUnsignedFlag(&SystemUnsignedFlagSecondary);
         VertexDataBuffer = (float *)ProcessRenderObjectStateAllocation(SystemPrimaryFloatPointer,SystemPrimaryFloatPointer,&SystemUnsignedFlagSecondary);
