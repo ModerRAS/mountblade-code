@@ -34002,8 +34002,8 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           SystemThreadObjectSecondary = (void* *)0x0;
           SystemMemoryBufferPointer = SystemMemoryBufferPointer & SystemMemoryAlignmentMask;
           MemoryContextPointer = &SystemMemoryAllocatorReference;
-          SystemIterationIndex374 = SystemCode + 1;
-          SystemLoopCounter2c8 = ResourceDataPosition + 1;
+          SystemIterationIndexPrimary = SystemCode + 1;
+          SystemLoopCounterPrimary = ResourceDataPosition + 1;
           ResourceHashEntryPointer = DataBufferPointer;
           SystemHashNodeData = DataBufferPointer;
           ResourceAddressPointer = VerticalResolutionPointer;
@@ -34035,8 +34035,8 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       SystemMemoryAllocationOffset2e0 = 0;
       SystemResourceHandle = 0;
       ResourceDataPointer = &SystemMemoryAllocatorReference;
-      SystemIterationIndex370 = SystemCode + 1;
-      SystemLoopCounter368 = ResourceDataPosition + 1;
+      SystemIterationIndexSecondary = SystemCode + 1;
+      SystemLoopCounterSecondary = ResourceDataPosition + 1;
       SystemAllocationFlags = *(long long *)(SystemMemoryBase2b8 + 0x8a8);
       DataBufferPointer = SystemHashNodeData;
       VerticalResolutionPointer = ResourceAddressPointer;
