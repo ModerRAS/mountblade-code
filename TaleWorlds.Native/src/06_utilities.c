@@ -448,6 +448,31 @@
 // 功能：调用系统错误处理函数
 #define UtilityErrorHandlerG FUN_180891185
 
+// Unwind_函数语义化宏定义
+// 原始函数名：Unwind_1809057c0 - 异常清理函数A0
+// 功能：清理异常处理过程中的资源和状态
+#define CleanupExceptionResourcesA0 Unwind_1809057c0
+
+// 原始函数名：Unwind_1809057e0 - 异常清理函数A1
+// 功能：清理多个异常处理点的资源和状态
+#define CleanupExceptionResourcesA1 Unwind_1809057e0
+
+// 原始函数名：Unwind_180905820 - 异常清理函数A2
+// 功能：设置异常处理表指针
+#define SetupExceptionTablePointer Unwind_180905820
+
+// 原始函数名：Unwind_180905830 - 异常清理函数A3
+// 功能：调用异常处理函数指针
+#define InvokeExceptionHandler Unwind_180905830
+
+// 原始函数名：Unwind_180905840 - 异常清理函数A4
+// 功能：释放异常处理分配的内存
+#define FreeExceptionMemory Unwind_180905840
+
+// 原始函数名：Unwind_180905860 - 异常清理函数A5
+// 功能：遍历并清理异常处理链表
+#define CleanupExceptionList Unwind_180905860
+
 // FUN_1808函数语义化宏定义 - 工具系统函数
 
 // 原始函数名：FUN_1808fc050 - 执行安全检查
@@ -30273,7 +30298,7 @@ void CleanupExceptionStack160(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180903170(undefined8 param_1,longlong param_2)
+void CleanupResourceState170(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
