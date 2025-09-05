@@ -59990,34 +59990,54 @@ void ClearSystemStatusFlagA0(DataBuffer exceptionContext, int64_t stackFrame)
 
 
 
-void Unwind_180908950(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 清理系统状态标志A1
+ * 
+ * 该函数负责清理系统的状态标志，当第二个标志位被设置时，
+ * 会清除该标志并调用相应的清理函数。
+ * 
+ * @param exceptionContext 异常上下文，用于处理异常情况
+ * @param stackFrame 栈帧参数，包含函数调用的上下文信息
+ * @note 原始函数名：Unwind_180908950
+ */
+void ClearSystemStatusFlagA1(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  if ((*(uint *)(param_2 + 0x30) & 2) != 0) {
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffd;
-    FUN_180045af0(*(DataBuffer *)(param_2 + 0x40));
+  if ((*(uint *)(stackFrame + 0x30) & 2) != 0) {
+    *(uint *)(stackFrame + 0x30) = *(uint *)(stackFrame + 0x30) & 0xfffffffd;
+    ProcessSystemResourceCleanup(*(DataBuffer *)(stackFrame + 0x40));
   }
   return;
 }
 
 
 
-void Unwind_180908980(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 执行系统验证和清理A0
+ * 
+ * 该函数负责执行系统的验证和清理操作，包括检查验证上下文、
+ * 调用清理函数和处理系统资源。这是一个综合性的系统维护函数。
+ * 
+ * @param exceptionContext 异常上下文，用于处理异常情况
+ * @param stackFrame 栈帧参数，包含函数调用的上下文信息
+ * @note 原始函数名：Unwind_180908980
+ */
+void ExecuteSystemValidationAndCleanupA0(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
   int64_t *validationContextPointer;
   
-  if (*(int64_t *)(param_2 + 0x70) != 0) {
-    FUN_18022f390();
+  if (*(int64_t *)(stackFrame + 0x70) != 0) {
+    ExecuteSystemValidationRoutine();
   }
-  FUN_18007f6a0(param_2 + 0x80);
-  if (*(int64_t **)(param_2 + 0x98) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x98) + 0x38))();
+  ProcessSystemDataBuffer(stackFrame + 0x80);
+  if (*(int64_t **)(stackFrame + 0x98) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(stackFrame + 0x98) + 0x38))();
   }
-  if (*(int64_t **)(param_2 + 0x78) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x78) + 0x38))();
+  if (*(int64_t **)(stackFrame + 0x78) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(stackFrame + 0x78) + 0x38))();
   }
-  validationContextPointer = *(int64_t **)(param_2 + 0x70);
+  validationContextPointer = *(int64_t **)(stackFrame + 0x70);
   if (validationContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*validationContextPointer + 0x38))();
   }
@@ -60026,35 +60046,62 @@ void Unwind_180908980(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180908990(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 执行系统资源清理A0
+ * 
+ * 该函数负责执行系统资源的清理操作，检查特定的资源指针并调用相应的清理函数。
+ * 
+ * @param exceptionContext 异常上下文，用于处理异常情况
+ * @param stackFrame 栈帧参数，包含函数调用的上下文信息
+ * @note 原始函数名：Unwind_180908990
+ */
+void ExecuteSystemResourceCleanupA0(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  if (*(int64_t **)(param_2 + 0x78) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x78) + 0x38))();
+  if (*(int64_t **)(stackFrame + 0x78) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(stackFrame + 0x78) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_1809089a0(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 初始化系统资源并执行清理A0
+ * 
+ * 该函数负责初始化系统资源并执行相关的清理操作，确保系统资源处于正确状态。
+ * 
+ * @param exceptionContext 异常上下文，用于处理异常情况
+ * @param stackFrame 栈帧参数，包含函数调用的上下文信息
+ * @note 原始函数名：Unwind_1809089a0
+ */
+void InitializeSystemResourcesAndCleanupA0(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
   InitializeSystemResourcesI0();
-  if (*(int64_t **)(param_2 + 0x98) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x98) + 0x38))();
+  if (*(int64_t **)(stackFrame + 0x98) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(stackFrame + 0x98) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_1809089b0(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 执行验证上下文清理A0
+ * 
+ * 该函数负责执行验证上下文的清理操作，获取验证上下文指针并调用相应的清理函数。
+ * 
+ * @param exceptionContext 异常上下文，用于处理异常情况
+ * @param stackFrame 栈帧参数，包含函数调用的上下文信息
+ * @note 原始函数名：Unwind_1809089b0
+ */
+void ExecuteValidationContextCleanupA0(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
   int64_t *validationContextPointer;
   
-  validationContextPointer = *(int64_t **)(*(int64_t *)(param_2 + 0x20) + 0x60);
+  validationContextPointer = *(int64_t **)(*(int64_t *)(stackFrame + 0x20) + 0x60);
   if (validationContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*validationContextPointer + 0x38))();
   }
