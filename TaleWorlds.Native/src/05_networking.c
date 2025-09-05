@@ -840,10 +840,17 @@ uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t Conn
 /**
  * @brief 初始化连接上下文
  * 
- * 初始化网络连接的上下文数据，设置连接参数和状态
+ * 初始化网络连接的上下文数据，设置连接参数和状态信息
  * 
- * @param ConnectionHandle 连接句柄
+ * @param ConnectionHandle 连接句柄，标识要初始化的网络连接
  * @return uint32_t 初始化结果，0表示成功，其他值表示错误码
+ * 
+ * @retval NetworkOperationSuccess 初始化成功
+ * @retval NetworkErrorInvalidHandle 连接句柄无效
+ * @retval NetworkErrorInitializationFailed 初始化失败
+ * 
+ * @note 此函数会为连接分配必要的资源并设置初始状态
+ * @warning 初始化失败时，连接将无法正常工作
  */
 uint32_t SetupConnectionContext(NetworkHandle ConnectionHandle);
 
@@ -852,8 +859,11 @@ uint32_t SetupConnectionContext(NetworkHandle ConnectionHandle);
  * 
  * 清理网络连接的堆栈数据，释放相关资源
  * 
- * @param ConnectionStackPointer 连接堆栈指针
+ * @param ConnectionStackPointer 连接堆栈指针，指向待清理的连接堆栈
  * @return void 无返回值
+ * 
+ * @note 此函数会释放堆栈中所有连接相关的资源
+ * @warning 清理后，堆栈中的所有数据将无法恢复
  */
 void ClearConnectionStack(uint32_t *ConnectionStackPointer);
 
@@ -862,8 +872,11 @@ void ClearConnectionStack(uint32_t *ConnectionStackPointer);
  * 
  * 复制网络连接的缓冲区数据到目标位置
  * 
- * @param ConnectionBufferPointer 连接缓冲区指针
+ * @param ConnectionBufferPointer 连接缓冲区指针，指向待复制的缓冲区数据
  * @return void 无返回值
+ * 
+ * @note 此函数会创建缓冲区数据的副本
+ * @warning 调用者需要确保目标位置有足够的空间
  */
 void DuplicateConnectionBuffer(uint8_t *ConnectionBufferPointer);
 
