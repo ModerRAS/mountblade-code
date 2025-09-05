@@ -1919,22 +1919,22 @@ void InitializeGameCoreSystem(void)
 void InitializeSystemDataTableBaseAllocator(void)
 {
   bool IsBaseAllocatorNodeInitialized;                     // 基础分配器节点是否已初始化
-  void** RootNodeReference;                                // 根节点引用
+  void** SystemRootNodeReference;                                // 系统根节点引用
   int BaseAllocatorIdentifierMatchResult;                  // 基础分配器标识符匹配结果
-  long long* MainSystemTablePointer;                        // 主系统表指针
+  long long* SystemMainTablePointer;                        // 系统主表指针
   long long SystemRequiredMemorySize;                       // 系统所需内存大小
-  void** CurrentNodePointer;                               // 当前节点指针
-  void** PreviousNodePointer;                              // 前一个节点指针
-  void** NextNodePointer;                                  // 下一个节点指针
-  void** NewAllocatorNodePointer;                          // 新分配器节点指针
-  void* BaseAllocatorInitializer;                          // 基础分配器初始化器
+  void** CurrentSystemNodePointer;                         // 当前系统节点指针
+  void** PreviousSystemNodePointer;                        // 前一个系统节点指针
+  void** NextSystemNodePointer;                           // 下一个系统节点指针
+  void** NewBaseAllocatorNodePointer;                     // 新基础分配器节点指针
+  void* BaseAllocatorInitializationHandler;              // 基础分配器初始化处理器
   
-  MainSystemTablePointer = (long long*)GetSystemRootTable();
-  RootNodeReference = (void**)*MainSystemTablePointer;
-  IsBaseAllocatorNodeInitialized = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  BaseAllocatorInitializer = GetBaseAllocatorSystemInitializationFunction;
-  PreviousNodePointer = RootNodeReference;
-  CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
+  SystemMainTablePointer = (long long*)GetSystemRootTable();
+  SystemRootNodeReference = (void**)*SystemMainTablePointer;
+  IsBaseAllocatorNodeInitialized = *(bool*)((long long)SystemRootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
+  BaseAllocatorInitializationHandler = GetBaseAllocatorSystemInitializationFunction;
+  PreviousSystemNodePointer = SystemRootNodeReference;
+  CurrentSystemNodePointer = (void**)SystemRootNodeReference[RootNodeCurrentNodeIndex];
   
   while (!IsBaseAllocatorNodeInitialized) {
     BaseAllocatorIdentifierMatchResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &BaseAllocatorSystemIdentifier1, IdentifierSize);
