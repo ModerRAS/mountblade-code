@@ -25719,14 +25719,14 @@ void ValidateAndProcessDataB0(int64_t dataContext,DataBuffer *dataPointer,int va
   }
 DataProcessLabelC:
   if (param_3 == 0) {
-    operationResult = FUN_1808a84c0(param_1,param_2);
+    operationResult = ProcessDataOperationA0(param_1,param_2);
   }
   else {
-    operationResult = FUN_1808ad600(param_2,param_1 + 0x30);
+    operationResult = AllocateMemoryA0(param_2,param_1 + 0x30);
     if (operationResult != 0) {
       return;
     }
-    operationResult = FUN_1808ad600(param_2,param_1 + 0x40);
+    operationResult = AllocateMemoryA0(param_2,param_1 + 0x40);
   }
   if (operationResult == 0) {
     InitializeMemory(param_1);
@@ -25828,14 +25828,14 @@ void CheckSystemStatusB0(void)
   }
 DataProcessLabelC:
   if (register_R12D == 0) {
-    inputParameter = FUN_1808a84c0();
+    inputParameter = ProcessDataOperationA0();
   }
   else {
-    inputParameter = FUN_1808ad600();
+    inputParameter = AllocateMemoryA0();
     if (inputParameter != 0) {
       return;
     }
-    inputParameter = FUN_1808ad600();
+    inputParameter = AllocateMemoryA0();
   }
   if (inputParameter == 0) {
     InitializeMemory();
@@ -96189,5 +96189,41 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @note 原始函数名：FUN_18089ce30
  */
 #define ValidateDataIntegrityA0 FUN_18089ce30
+
+/**
+ * @brief 数据处理函数A0
+ * 
+ * 该函数负责处理数据操作和验证
+ * 
+ * @note 原始函数名：FUN_1808a84c0
+ */
+#define ProcessDataOperationA0 FUN_1808a84c0
+
+/**
+ * @brief 内存分配函数A0
+ * 
+ * 该函数负责内存分配和管理操作
+ * 
+ * @note 原始函数名：FUN_1808ad600
+ */
+#define AllocateMemoryA0 FUN_1808ad600
+
+/**
+ * @brief 系统查询函数A0
+ * 
+ * 该函数负责查询系统信息和状态
+ * 
+ * @note 原始函数名：FUN_180748010
+ */
+#define QuerySystemInformationA0 FUN_180748010
+
+/**
+ * @brief 数据验证函数A1
+ * 
+ * 该函数负责验证数据的正确性和安全性
+ * 
+ * @note 原始函数名：FUN_1808a79f0
+ */
+#define ValidateDataSecurityA0 FUN_1808a79f0
 
 
