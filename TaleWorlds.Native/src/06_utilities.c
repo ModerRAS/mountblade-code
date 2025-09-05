@@ -26234,7 +26234,7 @@ ValidationStateUpdate:
   pvalidationContext = (longlong *)*param_2;
   if (*pvalidationContext != 0) {
     if (pvalidationContext[2] == 0) {
-LAB_18089d034:
+ValidationCompleteHandler:
       uVar3 = FUN_180769ed0(*pvalidationContext,auStackX_18,1,1,0);
     }
     else {
@@ -26251,13 +26251,13 @@ LAB_18089d034:
     uVar3 = 0;
   }
   if (uVar3 != 0) {
-LAB_18089d06e:
+ValidationErrorHandler3:
     return (ulonglong)uVar3;
   }
   if (bVar4) {
     *(undefined4 *)(param_1 + 0x10) = 3;
   }
-LAB_18089d07f:
+ValidationExitHandler:
                     // WARNING: Subroutine does not return
   FUN_1808ddf80(param_2,auStack_48);
 }
@@ -26354,7 +26354,7 @@ ValidationStateUpdate:
   pvalidationContext = (longlong *)*unaff_RDI;
   if (*pvalidationContext != 0) {
     if (pvalidationContext[2] == 0) {
-LAB_18089d034:
+ValidationCompleteHandler:
       uVar3 = FUN_180769ed0(*pvalidationContext,&stack0x00000090,1,1,0);
     }
     else {
@@ -26371,13 +26371,13 @@ LAB_18089d034:
     uVar3 = 0;
   }
   if (uVar3 != 0) {
-LAB_18089d06e:
+ValidationErrorHandler3:
     return (ulonglong)uVar3;
   }
   if (bVar4) {
     *(undefined4 *)(registerR14 + 0x10) = 3;
   }
-LAB_18089d07f:
+ValidationExitHandler:
                     // WARNING: Subroutine does not return
   FUN_1808ddf80();
 }
@@ -26403,7 +26403,7 @@ ulonglong FUN_18089cfd6(void)
   pvalidationContext = (longlong *)*unaff_RDI;
   if (*pvalidationContext != 0) {
     if (pvalidationContext[2] == unaff_R15) {
-LAB_18089d034:
+ValidationCompleteHandler:
       uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x00000090,1);
     }
     else {
@@ -26420,13 +26420,13 @@ LAB_18089d034:
     registerRBX = unaff_R15 & 0xffffffff;
   }
   if ((int)registerRBX != 0) {
-LAB_18089d06e:
+ValidationErrorHandler3:
     return registerRBX & 0xffffffff;
   }
   if (uVar2 == 0 && in_stack_00000090 != (char)unaff_R15) {
     *(undefined4 *)(registerR14 + 0x10) = 3;
   }
-LAB_18089d07f:
+ValidationExitHandler:
                     // WARNING: Subroutine does not return
   FUN_1808ddf80();
 }
@@ -26655,7 +26655,7 @@ undefined8 ValidateDataFormatA1(undefined8 param_1,longlong *param_2)
   aiStackX_18[0] = 0;
   uVar3 = FUN_1808de650(param_2,aiStackX_18);
   if ((int)uVar3 == 0x12) {
-LAB_18089d455:
+ValidationDataHandler:
                     // WARNING: Subroutine does not return
     FUN_1808ddf80(param_2,auStack_38);
   }
@@ -26689,7 +26689,7 @@ LAB_18089d455:
     }
     uVar3 = FUN_180769ed0(*pvalidationContext,auStack_68,1,4,0);
   }
-LAB_18089d378:
+ValidationErrorHandler4:
   if ((int)uVar3 == 0) {
     lStack_60 = 0;
     uVar3 = FUN_1808b0490(param_1,auStack_68[0],&lStack_60);
@@ -26729,7 +26729,7 @@ LAB_18089d378:
       uVar3 = 0x1c;
     }
     if ((int)uVar3 == 0) {
-LAB_18089d435:
+ValidationStateUpdate2:
                     // WARNING: Subroutine does not return
       FUN_1808ddf80(param_2,auStack_58);
     }
@@ -26754,7 +26754,7 @@ undefined8 GetSystemStatusA2(void)
   iStack00000000000000b0 = 0;
   uVar3 = FUN_1808de650();
   if ((int)uVar3 == 0x12) {
-LAB_18089d455:
+ValidationDataHandler:
                     // WARNING: Subroutine does not return
     FUN_1808ddf80();
   }
@@ -26788,7 +26788,7 @@ LAB_18089d455:
     }
     uVar3 = FUN_180769ed0(*pvalidationContext,&stack0x00000030,1,4,0);
   }
-LAB_18089d378:
+ValidationErrorHandler4:
   if ((int)uVar3 == 0) {
     in_stack_00000038 = 0;
     uVar3 = FUN_1808b0490();
@@ -26828,7 +26828,7 @@ LAB_18089d378:
       uVar3 = 0x1c;
     }
     if ((int)uVar3 == 0) {
-LAB_18089d435:
+ValidationStateUpdate2:
                     // WARNING: Subroutine does not return
       FUN_1808ddf80();
     }

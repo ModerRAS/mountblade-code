@@ -21577,6 +21577,8 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   ulong long SystemOperationFlags;
   long long SystemResourceDataIndex;
   ulong long SystemProcessingResult;
+  double SystemAlphaValue;
+  double SystemBetaValue;
   long long ResourceDataOffset;
   char *SystemFunctionPointer;
   void* *ThreadLocalStorageEntry;
@@ -21726,47 +21728,47 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationDepthTemplate,
                     (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x50 + SystemOperationFlags);
-      formatValue = (double)SystemResourceDataIndex;
+      SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        formatValue = formatValue + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationFormatTemplate,
-                    (double)(float)(formatValue * 9.5367431640625e-07));
+                    (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x58 + SystemOperationFlags);
-      formatValue = (double)SystemResourceDataIndex;
+      SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        formatValue = formatValue + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationTypeTemplate,
-                    (double)(float)(formatValue * 9.5367431640625e-07));
+                    (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x60 + SystemOperationFlags);
-      formatValue = (double)SystemResourceDataIndex;
+      SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        formatValue = formatValue + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationModeTemplate,
-                    (double)(float)(formatValue * 9.5367431640625e-07));
+                    (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x68 + SystemOperationFlags);
-      formatValue = (double)SystemResourceDataIndex;
+      SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        formatValue = formatValue + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationSpeedTemplate,
-                    (double)(float)(formatValue * 9.5367431640625e-07));
+                    (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x70 + SystemOperationFlags);
-      qualityValue = (double)SystemResourceDataIndex;
+      SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        qualityValue = qualityValue + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationQualityTemplate,
-                    (double)(float)(qualityValue * 9.5367431640625e-07));
-      alphaValue = *(double *)(ResourceDataOffset + 0x78 + SystemOperationFlags);
-      if (alphaValue != 0.0) {
-        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyAlphaTemplate,alphaValue);
+                    (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
+      SystemAlphaValue = *(double *)(ResourceDataOffset + 0x78 + SystemOperationFlags);
+      if (SystemAlphaValue != 0.0) {
+        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyAlphaTemplate,SystemAlphaValue);
       }
-      betaValue = *(double *)(ResourceDataOffset + 0x80 + SystemOperationFlags);
-      if (betaValue != 0.0) {
-        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyBetaTemplate,betaValue);
+      SystemBetaValue = *(double *)(ResourceDataOffset + 0x80 + SystemOperationFlags);
+      if (SystemBetaValue != 0.0) {
+        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyBetaTemplate,SystemBetaValue);
       }
       ResourceDataOffset = SystemOperationFlags + 0xd0 + ResourceDataOffset;
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 8);
