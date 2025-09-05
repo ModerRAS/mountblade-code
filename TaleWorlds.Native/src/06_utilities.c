@@ -12006,37 +12006,57 @@ undefined8 ResetSystemStateDX0(longlong systemContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180895070(longlong *param_1)
+/**
+ * @brief 系统参数配置函数DK0
+ * 
+ * 该函数负责配置系统参数，验证参数有效性，并执行相应的配置操作。
+ * 包括参数验证、内存清理和状态设置。
+ * 
+ * @param parameterContext 参数上下文指针
+ * @return 配置结果状态码，0表示成功，其他值表示错误状态
+ */
+undefined8 ConfigureSystemParameterDK0(longlong *parameterContext)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  uint uVar3;
+  int itemCount;
+  undefined8 operationStatus;
+  uint validationCounter;
   
-  uVar3 = *(uint *)((longlong)param_1 + 0xc);
-  if ((int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
-      return 0x1c;
+  // 获取验证计数器
+  validationCounter = *(uint *)((longlong)parameterContext + 0xc);
+  
+  // 验证数据完整性
+  if ((int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f)) < 0) {
+    if (0 < (int)parameterContext[1]) {
+      return 0x1c; // 返回参数错误码
     }
-    if ((0 < (int)uVar3) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    if ((0 < (int)validationCounter) && (*parameterContext != 0)) {
+      // 调用安全清理函数
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*parameterContext,&UNK_180957f70,0x100,1);
     }
-    *param_1 = 0;
-    uVar3 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    // 重置参数上下文
+    *parameterContext = 0;
+    validationCounter = 0;
+    *(undefined4 *)((longlong)parameterContext + 0xc) = 0;
   }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
-                    // WARNING: Subroutine does not return
-    memset(*param_1 + (longlong)iVar1 * 0xc,0,(longlong)-iVar1 * 0xc);
+  
+  // 检查参数项数量
+  itemCount = (int)parameterContext[1];
+  if (itemCount < 0) {
+    // 清理负数项的参数内存
+    memset(*parameterContext + (longlong)itemCount * 0xc,0,(longlong)-itemCount * 0xc);
   }
-  *(undefined4 *)(param_1 + 1) = 0;
-  if ((0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) &&
-     (uVar2 = FUN_180896040(param_1,0), (int)uVar2 != 0)) {
-    return uVar2;
+  
+  // 重置参数状态标志
+  *(undefined4 *)(parameterContext + 1) = 0;
+  
+  // 最终验证和配置操作
+  if ((0 < (int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f))) &&
+     (operationStatus = FUN_180896040(parameterContext,0), (int)operationStatus != 0)) {
+    return operationStatus;
   }
-  return 0;
+  
+  return 0; // 参数配置成功
 }
 
 
