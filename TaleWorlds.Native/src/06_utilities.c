@@ -19460,7 +19460,7 @@ uint8_t ValidateResourceStatusFlags(int64_t ResourceContext, int64_t statusPoint
     ResourceTotalArray[0] = *(int *)(ValidationContext + 0x20);
     LoopIncrement = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),ResourceTotalArray,4);
     if ((int)LoopCondition == 0) {
-      ResourceTotalArray[0] = CONCAT22(ResourceTotalArray[0].ShortValue,ResourceContextOffset);
+      ResourceTotalArray[0] = MergeHigh31BitsWithLow33Bits(ResourceTotalArray[0].ShortValue,ResourceContextOffset);
       LoopIncrement = (**(code **)**(uint8_t **)(ObjectContext + 8))
                         (*(uint8_t **)(ObjectContext + 8),ResourceTotalArray,2);
       if (((int)LoopCondition == 0) && (LoopIncrement = VerifyResourceIntegrity(ObjectContext,ValidationContext + ResourceContextValidationOffset), (int)LoopCondition == 0)) {
@@ -19737,7 +19737,7 @@ void ProcessResourceHash(int64_t ResourceContext, uint *ResourceHashPointer)
   
   ResourceHash = *ResourceHashPointer;
   if (ResourceHash + 0x4000 < 0x8000) {
-    formattedHash = CONCAT22(formattedHash.ShortValue,(short)ResourceHash) & 0xffff7fff;
+    formattedHash = MergeHigh31BitsWithLow33Bits(formattedHash.ShortValue,(short)ResourceHash) & 0xffff7fff;
     HashType = 2;
   }
   else {
