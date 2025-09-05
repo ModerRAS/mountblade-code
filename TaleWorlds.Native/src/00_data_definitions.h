@@ -1589,27 +1589,27 @@ int InitializeConfigurationMutex(uint64_t ThreadId,uint64_t SyncPtr,uint64_t Mut
   SystemConfigDataPointerAP = &SystemMemoryPool;
   SystemConfigDataPointerAQ = &SystemConfigStringBufferN;
   SystemConfigStringBufferN = 0;
-  SystemConfigDataSizePsi = 0x14;
+  SystemConfigDataSizeCertificate = 0x14;
   strcpy_s(&SystemConfigStringBufferN,64,&SystemConfigStringTemplateT);
   SystemConfigDataPointerAR = &SystemMemoryPool;
   SystemConfigDataPointerAS = &SystemConfigStringBufferO;
   SystemConfigStringBufferO = 0;
-  SystemConfigDataSizeY = 32;
+  SystemConfigDataSizeMetadata = 32;
   strcpy_s(&SystemConfigStringBufferO,64,&SystemConfigStringTemplateU);
   SystemConfigDataAddressV = &SystemMemoryPool;
   SystemConfigDataAddressW = &SystemConfigStringBufferV;
   SystemConfigStringBufferV = 0;
-  SystemConfigDataSizeV = 0x13;
+  SystemConfigDataSizeHeader = 0x13;
   strcpy_s(&SystemConfigStringBufferV,64,&SystemConfigStringTemplateV);
   SystemConfigDataAddressX = &SystemMemoryPool;
   SystemConfigDataAddressY = &SystemConfigStringBufferW;
   SystemConfigStringBufferW = 0;
-  SystemConfigDataSizeW = 0x16;
+  SystemConfigDataSizePayload = 0x16;
   strcpy_s(&SystemConfigStringBufferW,64,&SystemConfigStringTemplateW);
   SystemConfigDataAddressZ = &SystemMemoryPool;
   SystemConfigDataAddressAA = &SystemConfigStringBufferX;
   SystemConfigStringBufferX = 0;
-  SystemConfigDataSizeX = 0xf;
+  SystemConfigDataSizeTrailer = 0xf;
   strcpy_s(&SystemConfigStringBufferX,64,&SystemConfigStringTemplateX);
   int64_t callbackResult = RegisterSystemModule(&SystemModuleEntryPointA);
   return (callbackResult != 0) - 1;
@@ -13345,9 +13345,9 @@ Label_1808fa963:
             LongValue = SystemStateValue;
             while( true ) {
               LongAddress = 0;
-              if (((LongValue == 0) || (sVar1 = *(short *)(LongData + LongValue * 2), LongAddress = 0, sVar1 == 0x2f)
-                  ) || (LongAddress = 0, sVar1 == 0x5c)) goto Label_1808fbdeb;
-              if (sVar1 == 0x2e) break;
+              if (((LongValue == 0) || (PathCharacter = *(short *)(LongData + LongValue * 2), LongAddress = 0, PathCharacter == 0x2f)
+                  ) || (LongAddress = 0, PathCharacter == 0x5c)) goto Label_1808fbdeb;
+              if (PathCharacter == 0x2e) break;
               LongValue = LongValue + -1;
             }
             *(uint16_t *)(LongData + LongValue * 2) = 0;
@@ -13401,7 +13401,7 @@ Label_1808fbebe:
 }
 bool SystemAudioIsInitialized(void)
 {
-  short sVar1;
+  short PathCharacter;
   longlong LoopCounter;
   uint StringProcessingResult;
   int IntegerResult;
@@ -13412,7 +13412,7 @@ bool SystemAudioIsInitialized(void)
   longlong LongAddress;
   char unaff_SIL;
   longlong SystemContextPointer;
-  short sVar10;
+  short RegisterValue;
   longlong SystemRegister12;
   void *pMemoryAddress1;
   bool CharValue2;
@@ -13422,8 +13422,8 @@ bool SystemAudioIsInitialized(void)
     LongLoop = -1;
     do {
       LongLoop = LongLoop + 1;
-      sVar10 = (short)SystemRegister12;
-    } while (*(short *)(SystemContextPointer + LongLoop * 2) != sVar10);
+      RegisterValue = (short)SystemRegister12;
+    } while (*(short *)(SystemContextPointer + LongLoop * 2) != RegisterValue);
     if (LongLoop != 0) {
       pMemoryAddress1 = &SystemCommandBuffer02;
       if (unaff_SIL != '\0') {
@@ -13458,15 +13458,15 @@ bool SystemAudioIsInitialized(void)
               LongAddress = LongLoop;
               LongLoop = LongAddress + 1;
               LongOffset = LongAddress;
-            } while (*(short *)(SystemContextPointer + 2 + LongAddress * 2) != sVar10);
+            } while (*(short *)(SystemContextPointer + 2 + LongAddress * 2) != RegisterValue);
             while( true ) {
               LongLoop = SystemRegister12;
-              if (((LongOffset == 0) || (sVar1 = *(short *)(SystemStateValue + LongOffset * 2), sVar1 == 0x2f)) ||
-                 (sVar1 == 0x5c)) goto Label_1808fbdeb;
-              if (sVar1 == 0x2e) break;
+              if (((LongOffset == 0) || (PathCharacter = *(short *)(SystemStateValue + LongOffset * 2), PathCharacter == 0x2f)) ||
+                 (PathCharacter == 0x5c)) goto Label_1808fbdeb;
+              if (PathCharacter == 0x2e) break;
               LongOffset = LongOffset + -1;
             }
-            *(short *)(SystemStateValue + LongOffset * 2) = sVar10;
+            *(short *)(SystemStateValue + LongOffset * 2) = RegisterValue;
             LongLoop = SystemStateValue + 2 + LongOffset * 2;
 Label_1808fbdeb:
             LongAddress = LongAddress + 9;
@@ -13516,7 +13516,7 @@ Label_1808fbebe:
 }
 bool SystemAudioIsPlaying(void)
 {
-  short sVar1;
+  short PathCharacter;
   longlong LoopCounter;
   longlong IndexValue;
   longlong DataValue;
@@ -13539,9 +13539,9 @@ bool SystemAudioIsPlaying(void)
     } while (*(short *)(SystemContextPointer + 2 + SystemStateValue * 2) != (short)SystemRegister12);
     while( true ) {
       LongAddress = SystemRegister12;
-      if (((LongValue == 0) || (sVar1 = *(short *)(LongIndex + LongValue * 2), sVar1 == 0x2f)) ||
-         (sVar1 == 0x5c)) goto Label_1808fbdeb;
-      if (sVar1 == 0x2e) break;
+      if (((LongValue == 0) || (PathCharacter = *(short *)(LongIndex + LongValue * 2), PathCharacter == 0x2f)) ||
+         (PathCharacter == 0x5c)) goto Label_1808fbdeb;
+      if (PathCharacter == 0x2e) break;
       LongValue = LongValue + -1;
     }
     *(short *)(LongIndex + LongValue * 2) = (short)SystemRegister12;
