@@ -29997,6 +29997,8 @@ void HandleSystemNodeResourceProcessing(long long SystemResourceManager)
   long long *SystemMemoryPointer;
   long long ResourceCount;
   ulong long SystemOperationFlags;
+  int SystemResourceCounter;
+  char SystemInitializationStatusFlag;
   long long ResourceDataIndex;
   long long ResourceDataPosition;
   int SystemInitializationStatus;
