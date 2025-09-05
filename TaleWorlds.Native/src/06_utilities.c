@@ -17280,7 +17280,10 @@ undefined4 ProcessDataF0(undefined8 param_1,int param_2,undefined4 *param_3)
 
 
 
-undefined4 FUN_180898bc0(undefined8 param_1,ulonglong param_2)
+// 原始函数名：FUN_180898bc0 - 数据处理函数F1
+// 功能：处理输入数据并返回32位结果
+#define ProcessDataF1 FUN_180898bc0
+undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
 
 {
   undefined1 uVar1;
@@ -17385,7 +17388,10 @@ undefined4 FUN_180898bc0(undefined8 param_1,ulonglong param_2)
 
 
 
-undefined4 FUN_180898c86(void)
+// 原始函数名：FUN_180898c86 - 系统状态查询函数F0
+// 功能：查询系统状态并返回32位状态信息
+#define QuerySystemStatusF0 FUN_180898c86
+undefined4 QuerySystemStatusF0(void)
 
 {
   undefined1 uVar1;
@@ -17451,7 +17457,10 @@ undefined4 FUN_180898c86(void)
 
 
 
-undefined4 FUN_180898d31(undefined8 param_1,int *param_2)
+// 原始函数名：FUN_180898d31 - 数据处理函数F2
+// 功能：处理输入数据并返回32位结果
+#define ProcessDataF2 FUN_180898d31
+undefined4 ProcessDataF2(undefined8 param_1,int *param_2)
 
 {
   undefined4 unaff_R13D;

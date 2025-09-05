@@ -25806,7 +25806,7 @@ void ExecuteSystemResourceCallback(long long* SystemResourceManager)
  * @note 这是内存管理系统的核心函数之一
  */
 void* *
-ManageSystemMemoryTemplate(void* *SystemResourceManager, unsigned long long ConfigurationDataPointer, void* AdditionalParameter, void* ConfigurationFlag)
+ManageSystemMemoryTemplate(void** SystemResourceManager, unsigned long long ConfigurationDataPointer, void* AdditionalParameter, void* ConfigurationFlag)
 
 {
   if (SystemResourceManager[2] != 0) {
