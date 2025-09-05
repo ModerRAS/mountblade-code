@@ -13219,7 +13219,7 @@ uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *Resou
         }
       }
       NewEntryPointer = (uint8_t *)((int64_t)(int)hashTablePointer[3] * HashTableEntrySize + hashTablePointer[2]);
-      *NewEntryPointer = CombineHighLow32Bits(0xffffffff,ResourceHashValue);
+      *NewEntryPointer = CombineHighLow32Bits(ResourceInvalidHandleValue,ResourceHashValue);
       NewEntryPointer[1] = PackageValidationStatus;
       *(int *)(hashTablePointer + 3) = (int)hashTablePointer[3] + 1;
     }
@@ -13317,7 +13317,7 @@ uint64_t FindOrInsertInResourcePool(uint8_t ResourcePoolId, int SearchKey)
       }
     }
     EntryDataPointer = (uint8_t *)((int64_t)(int)PoolHeaderPointer[3] * 0x10 + PoolHeaderPointer[2]);
-    *EntryDataPointer = CombineHighLow32Bits(0xffffffff, searchKey);
+    *EntryDataPointer = CombineHighLow32Bits(ResourceInvalidHandleValue, searchKey);
     EntryDataPointer[1] = NewValue;
     *(int *)(PoolHeaderPointer + 3) = (int)PoolHeaderPointer[3] + 1;
   }
@@ -13387,7 +13387,7 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t ExtendedResourcePoolI
     }
     uint8_t *ValidationStatusCodePointer = (uint8_t *)
              ((int64_t)*(int *)(SystemRegisterContext + 0x18) * 0x10 + *(int64_t *)(SystemRegisterContext + 0x10));
-    *ValidationStatusCodePointer = CombineHighLow32Bits(0xffffffff, ValidationContext);
+    *ValidationStatusCodePointer = CombineHighLow32Bits(ResourceInvalidHandleValue, ValidationContext);
     ResourceHashStatusAddress[1] = StackValidationByte;
     *(int *)(SystemRegisterContext + 0x18) = *(int *)(SystemRegisterContext + 0x18) + 1;
   }
@@ -13957,7 +13957,7 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
                     }
                   }
                 }
-                ResourceValidationStatus = ResourceValidationStatus & 0xffffffff00000000;
+                ResourceValidationStatus = ResourceValidationStatus & ResourceSystemStatusMask;
                 if ((int)ValidationCounter < 0) {
                   ValidationCounter = -ValidationCounter;
                 }
@@ -14007,7 +14007,7 @@ ResourceAllocationSuccess:
     ResourceTableIterator = (int64_t)(ResourceCapacityMultiplier + -1);
     if (-1 < ResourceCapacityMultiplier + -1) {
       do {
-        ResourceHandlerParam = ResourceHandlerParam & 0xffffffff00000000;
+        ResourceHandlerParam = ResourceHandlerParam & ResourceSystemStatusMask;
         DataHandlerContextPointer = (int64_t *)&SystemDataTemplateActive;
         ResourceHandlerArray[0] = *(int *)(ResourceHashValidationStatus + ResourceTableIterator * 4);
         NormalizeData(&DataHandlerContextPointer,*(uint8_t *)(ObjectContext + ObjectContextQuinaryHandleOffset));
@@ -14038,7 +14038,7 @@ ResourceAllocationSuccess:
         }
       }
     }
-    ResourceValidationStatus = ResourceValidationStatus & 0xffffffff00000000;
+    ResourceValidationStatus = ResourceValidationStatus & ResourceSystemStatusMask;
     if (OperationResult < 0) {
       OperationStatus = -OperationResult;
     }
