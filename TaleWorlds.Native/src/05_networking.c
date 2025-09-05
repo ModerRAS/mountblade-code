@@ -990,13 +990,13 @@ uint32_t NetworkConnectionVerificationInfo;                    // 网络连接�
  * 
  * 用于管理网络连接的加密状态、加密算法和加密密钥等信息
  */
-uint32_t NetworkConnectionEncryptionContext;
+uint32_t NetworkConnectionEncryptionContext;                 // 网络连接加密上下文，存储连接的加密相关信息
 /**
  * @brief 网络连接压缩上下文信息，存储连接压缩的相关信息
  * 
  * 用于管理网络连接的压缩状态、压缩算法和压缩级别等信息
  */
-uint32_t NetworkConnectionCompressionContext;
+uint32_t NetworkConnectionCompressionContext;                // 网络连接压缩上下文，存储连接的压缩相关信息
 
 // 网络缓冲区管理变量
 uint32_t NetworkValidationBufferPool;                      // 网络验证缓冲池，用于验证操作的缓冲区资源池
@@ -1497,7 +1497,7 @@ int32_t ValidateNetworkProtocol(int64_t NetworkData, int64_t PacketData);
  * 处理网络连接相关的事件，包括连接建立、断开、错误处理等。
  * 此处理器负责管理和响应网络连接过程中的各种事件。
  */
-uint32_t NetworkConnectionEventHandler;
+uint32_t NetworkConnectionEventHandler;                    // 网络连接事件处理器，处理连接相关的事件
 
 // 网络连接状态常量
 #define NetworkConnectionNotFound 0xFFFFFFFF
@@ -1763,13 +1763,13 @@ void InitializeNetworkErrorHandlingSystem(void)
  * 处理网络系统中的各种错误，包括连接错误、传输错误、验证错误等。
  * 此处理器负责错误检测、错误报告和错误恢复等功能。
  */
-uint32_t NetworkErrorProcessor;
+uint32_t NetworkErrorProcessor;                         // 网络错误处理器，处理网络相关的错误
 /**
  * @brief 网络错误计数器
  * 
  * 统计网络系统中发生的错误次数，用于错误监控和分析。
  */
-uint32_t NetworkErrorCounter;
+uint32_t NetworkErrorCounter;                          // 网络错误计数器，统计网络错误发生的次数
 
 /**
  * @brief 网络连接尝试次数
