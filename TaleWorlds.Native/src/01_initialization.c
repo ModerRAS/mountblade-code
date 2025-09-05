@@ -19251,11 +19251,11 @@ void InitializeSystemInfoAndUserEnvironment(void)
     ConfigureInputSystem();
     SystemGlobalDataReferencePtr = &SystemGlobalDataReference;
     GlobalDataFlags = 0;
-    SystemAlternateStringBuffer = (void* *)0x0;
+    SystemPrimaryStringBuffer = (void* *)0x0;
     SystemDataProcessingFlag = 0;
     SystemGlobalDataReferencePtrSecondary = &SystemGlobalDataReference;
     GlobalDataFlagsSecondary = 0;
-    SystemSystemAlternateStringBufferTertiary = (void* *)0x0;
+    SystemSecondaryStringBuffer = (void* *)0x0;
     SystemInitializationStatusFlag = 0;
     SystemMemoryAllocationOffset = (long long *)ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,0x10);
     OperationResult = GetComputerNameA(ComputerNameBufferPointer,&MemoryBufferCapacityValue);
@@ -19285,12 +19285,12 @@ HandleMemoryBufferOverflow:
       (**(code **)(SystemGlobalDataReferencePtr2 + 0x10))(&SystemGlobalDataReferencePtr2,UserNameBuffer);
     }
     SystemStringTemplatePointer = &SystemStringTemplate;
-    if (SystemSystemSystemAlternateStringBufferTertiary != (void* *)0x0) {
-      SystemStringTemplatePointer = SystemSystemSystemAlternateStringBufferTertiary;
+    if (SystemTertiaryStringBuffer != (void* *)0x0) {
+      SystemStringTemplatePointer = SystemTertiaryStringBuffer;
     }
     SystemStringTemplatePointer = &SystemStringTemplate;
-    if (SystemAlternateStringBuffer != (void* *)0x0) {
-      SystemStringTemplatePointer = SystemAlternateStringBuffer;
+    if (SystemPrimaryStringBuffer != (void* *)0x0) {
+      SystemStringTemplatePointer = SystemPrimaryStringBuffer;
     }
     SystemConfigurationTemplatePtr = &SystemConfigurationTemplatePrimary;
     SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffffffffffff,4);
@@ -19309,17 +19309,17 @@ HandleMemoryBufferOverflow:
     GameControllerStatusFlag = 0;
     SystemMemoryTemplatePtr = &SystemMemoryAllocatorReference;
     SystemGlobalDataReferencePtrSecondary = &SystemGlobalDataReference;
-    if (SystemSystemSystemAlternateStringBufferTertiary != (void* *)0x0) {
+    if (SystemTertiaryStringBuffer != (void* *)0x0) {
         SystemCleanupFunction();
     }
-    SystemSystemAlternateStringBufferTertiary = (void* *)0x0;
+    SystemSecondaryStringBuffer = (void* *)0x0;
     GlobalDataFlagsSecondary = GlobalDataFlagsSecondary & SystemMemoryAlignmentMask;
     SystemGlobalDataReferencePtrSecondary = &SystemMemoryAllocatorReference;
     SystemGlobalDataReferencePtr = &SystemGlobalDataReference;
-    if (SystemAlternateStringBuffer != (void* *)0x0) {
+    if (SystemPrimaryStringBuffer != (void* *)0x0) {
         SystemCleanupFunction();
     }
-    SystemAlternateStringBuffer = (void* *)0x0;
+    SystemPrimaryStringBuffer = (void* *)0x0;
     GlobalDataFlags = GlobalDataFlags & SystemMemoryAlignmentMask;
     SystemGlobalDataReferencePtr = &SystemMemoryAllocatorReference;
     SystemGameControllerBuffer = &SystemGlobalDataReference;
@@ -20662,17 +20662,17 @@ void ReleaseMemoryBlockReference(ulong long* SystemResourceManager)
   long long ResourceMemoryOffset;
   ulong long MemoryPageBase;
   
-  void** ResourceHashEntryPointer = (void* *)*SystemResourceManager;
-  if (ResourceHashEntryPointer == (void* *)0x0) {
+  void** ResourceEntryIterator = (void* *)*SystemResourceManager;
+  if (ResourceEntryIterator == (void* *)0x0) {
     return;
   }
-  MemoryPageBase = (ulong long)ResourceHashEntryPointer & SystemMemoryPageAlignmentMask;
+  MemoryPageBase = (ulong long)ResourceEntryIterator & SystemMemoryPageAlignmentMask;
   if (MemoryPageBase != 0) {
-    ResourceMemoryOffset = MemoryPageBase + 0x80 + ((long long)ResourceHashEntryPointer - MemoryPageBase >> 0x10) * 0x50;
+    ResourceMemoryOffset = MemoryPageBase + 0x80 + ((long long)ResourceEntryIterator - MemoryPageBase >> 0x10) * 0x50;
     ResourceMemoryOffset = ResourceMemoryOffset - (ulong long)*(uint *)(ResourceMemoryOffset + 4);
     if ((*(void ***)(MemoryPageBase + 0x70) == &ExceptionList) && (*(char *)(ResourceMemoryOffset + 0xe) == '\0')) {
-      *ResourceHashEntryPointer = *(void* *)(ResourceMemoryOffset + 0x20);
-      *(void* **)(ResourceMemoryOffset + 0x20) = ResourceHashEntryPointer;
+      *ResourceEntryIterator = *(void* *)(ResourceMemoryOffset + 0x20);
+      *(void* **)(ResourceMemoryOffset + 0x20) = ResourceEntryIterator;
       ReferenceCountPointer = (int *)(ResourceMemoryOffset + 0x18);
       *ReferenceCountPointer = *ReferenceCountPointer + -1;
       if (*ReferenceCountPointer == 0) {
@@ -20682,7 +20682,7 @@ void ReleaseMemoryBlockReference(ulong long* SystemResourceManager)
     }
     else {
       SystemExceptionCheck(MemoryPageBase,CONCAT71(0xff000000,*(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
-                          ResourceHashEntryPointer,MemoryPageBase,InvalidHandleValue);
+                          ResourceEntryIterator,MemoryPageBase,InvalidHandleValue);
     }
   }
   return;
@@ -21799,14 +21799,14 @@ void InitializeSystemDataTable(long long* SystemResourceManager)
   void** SystemDataTable;
   
   SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
-  for (ResourceHashEntryPointer = (void* *)*SystemResourceManager; ResourceHashEntryPointer != SystemDataPointer; ResourceHashEntryPointer = ResourceHashEntryPointer + 5) {
-    *ResourceHashEntryPointer = &SystemGlobalDataReference;
-    if (ResourceHashEntryPointer[1] != 0) {
+  for (ResourceEntryIterator = (void* *)*SystemResourceManager; ResourceEntryIterator != SystemDataPointer; ResourceEntryIterator = ResourceEntryIterator + 5) {
+    *ResourceEntryIterator = &SystemGlobalDataReference;
+    if (ResourceEntryIterator[1] != 0) {
         SystemCleanupFunction();
     }
-    ResourceHashEntryPointer[1] = 0;
-    *(uint32_t *)(ResourceHashEntryPointer + 3) = 0;
-    *ResourceHashEntryPointer = &SystemMemoryAllocatorReference;
+    ResourceEntryIterator[1] = 0;
+    *(uint32_t *)(ResourceEntryIterator + 3) = 0;
+    *ResourceEntryIterator = &SystemMemoryAllocatorReference;
   }
   if (*SystemResourceManager != 0) {
       SystemCleanupFunction();
