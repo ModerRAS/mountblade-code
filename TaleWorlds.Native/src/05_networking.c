@@ -262,10 +262,10 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkBufferInitializationFlag NetworkBufferInitialized // 缓冲区初始化标志别名
 
 // 网络连接状态标志
-#define NetworkHealthGoodFlag NetworkHealthGood                    // 连接健康状态良好标志
-#define NetworkStabilityHighFlag NetworkStabilityHigh             // 连接稳定性高标志  
-#define NetworkPerformanceGoodFlag NetworkPerformanceGood         // 连接性能良好标志
-#define NetworkQueueEnabledFlag NetworkQueueEnabled                // 队列启用标志别名
+#define NetworkHealthGoodFlag 0x01                          // 连接健康状态良好标志
+#define NetworkStabilityHighFlag 0x01                         // 连接稳定性高标志
+#define NetworkPerformanceGoodFlag 0x01                       // 连接性能良好标志
+#define NetworkQueueEnabledFlag 0x01                          // 队列启用标志别名
 #define NetworkPacketStatusPrimaryOffset 0x38                  // 网络数据包主状态偏移量
 #define NetworkPacketStatusSecondaryOffset 0x3c                // 网络数据包次级状态偏移量
 #define NetworkPacketStatusTertiaryOffset 0x40                 // 网络数据包第三级状态偏移量
@@ -424,7 +424,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkWindowScaleSixteen 16                                 // 窗口缩放16
 
 // 网络连接配置常量
-#define NetworkQueueEnabled 0x01                           // 网络队列启用标志
+#define NetworkConnectionQueueEnabled 0x01                    // 网络队列启用标志
 #define NetworkConnectionStateEnabled 0x01                        // 连接状态启用标志
 #define NetworkEventQueueEnabled 0x01                             // 事件队列启用标志
 #define NetworkInvalidCallbackHandler 0xFFFFFFFF                  // 无效回调处理器
