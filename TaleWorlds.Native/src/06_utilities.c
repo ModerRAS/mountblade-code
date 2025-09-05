@@ -10225,7 +10225,7 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
 {
   int iVar1;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong lVar4;
   uint uVar5;
   longlong unaff_RBP;
@@ -10237,10 +10237,10 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
   if (iVar1 != 0) {
     return;
   }
-  lVar3 = 0;
+  calculatedOffset = 0;
   lVar4 = in_stack_00000060 + 8;
   if (in_stack_00000060 == 0) {
-    lVar4 = lVar3;
+    lVar4 = calculatedOffset;
   }
   iVar1 = ValidateAndProcessSystemResourceA0(lVar4,unaff_RBP + 0x18);
   if (iVar1 != 0) {
@@ -10260,11 +10260,11 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
     if (iVar1 < *(int *)(in_stack_00000070 + 0x28)) goto LAB_180891fc0;
     if (iVar1 != 0) {
       if ((0x3ffffffe < iVar1 * 8 - 1U) ||
-         (lVar3 = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,
-                                0xf4,0), lVar3 == 0)) goto LAB_180891fc0;
+         (calculatedOffset = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,
+                                0xf4,0), calculatedOffset == 0)) goto LAB_180891fc0;
       if (*(int *)(in_stack_00000070 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar3,*(undefined8 *)(in_stack_00000070 + 0x20),
+        memcpy(calculatedOffset,*(undefined8 *)(in_stack_00000070 + 0x20),
                (longlong)*(int *)(in_stack_00000070 + 0x28) << 3);
       }
     }
@@ -10274,7 +10274,7 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
       ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(in_stack_00000070 + 0x20),
                     &UNK_180957f70,0x100,1);
     }
-    *(longlong *)(in_stack_00000070 + 0x20) = lVar3;
+    *(longlong *)(in_stack_00000070 + 0x20) = calculatedOffset;
     *(int *)(in_stack_00000070 + 0x2c) = iVar1;
   }
   *(longlong *)
@@ -10343,7 +10343,7 @@ void ResetUtilitySystemAA0(void)
       ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(registerRBX + 0x20),
                     &UNK_180957f70,0x100,1);
     }
-    *(longlong *)(registerRBX + 0x20) = lVar3;
+    *(longlong *)(registerRBX + 0x20) = calculatedOffset;
     *(int *)(registerRBX + 0x2c) = iVar1;
   }
   *(undefined8 *)(*(longlong *)(registerRBX + 0x20) + (longlong)*(int *)(registerRBX + 0x28) * 8) =
@@ -10931,14 +10931,14 @@ void ExecuteSecurityValidation(longlong param_1, longlong param_2)
     }
     if (*(longlong *)(systemContext + 0x18) != 0) {
       validationContext = *(longlong *)(systemContext + 0x18) + 0x30;
-      lVar3 = (**(code **)(**(longlong **)(param_2 + 800) + 0x2f0))
+      calculatedOffset = (**(code **)(**(longlong **)(param_2 + 800) + 0x2f0))
                         (*(longlong **)(param_2 + 800),validationContext,1);
-      if (lVar3 == 0) {
+      if (calculatedOffset == 0) {
                     // WARNING: Subroutine does not return
         ValidateSystemDataA0(validationContext,auStack_40);
       }
-      plVar4 = (longlong *)(lVar3 + 0x58);
-      if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(lVar3 + 0x60) != plVar4)) {
+      plVar4 = (longlong *)(calculatedOffset + 0x58);
+      if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(calculatedOffset + 0x60) != plVar4)) {
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
       }
@@ -11523,12 +11523,12 @@ undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
       return memoryBaseAddress;
     }
     lVar5 = *(longlong *)(lVar5 + 0x20);
-    lVar3 = *(longlong *)(lVar5 + 0x10 + (longlong)(int)auStackX_8[0] * 0x18);
-    if ((*(byte *)(lVar3 + 0x34) & 0x11) == 0) {
+    calculatedOffset = *(longlong *)(lVar5 + 0x10 + (longlong)(int)auStackX_8[0] * 0x18);
+    if ((*(byte *)(calculatedOffset + 0x34) & 0x11) == 0) {
       fVar1 = *(float *)(param_1 + 0x18);
-      fVar6 = *(float *)(lVar3 + 0x38);
-      if ((*(float *)(lVar3 + 0x38) <= fVar1) &&
-         (fVar6 = *(float *)(lVar3 + 0x3c), fVar1 <= *(float *)(lVar3 + 0x3c))) {
+      fVar6 = *(float *)(calculatedOffset + 0x38);
+      if ((*(float *)(calculatedOffset + 0x38) <= fVar1) &&
+         (fVar6 = *(float *)(calculatedOffset + 0x3c), fVar1 <= *(float *)(calculatedOffset + 0x3c))) {
         fVar6 = fVar1;
       }
       *(float *)(param_1 + 0x18) = fVar6;
@@ -11550,7 +11550,7 @@ undefined8 ValidateAndProcessFloatingPointNumberA2(longlong param_1,longlong par
 {
   float fVar1;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 memoryBaseAddress;
   longlong lVar5;
   longlong lVar6;
@@ -11577,15 +11577,15 @@ undefined8 ValidateAndProcessFloatingPointNumberA2(longlong param_1,longlong par
     }
     lVar5 = (longlong)aiStackX_8[0];
     lVar6 = *(longlong *)(lVar6 + 0x20);
-    lVar3 = *(longlong *)(lVar6 + 0x10 + lVar5 * 0x18);
-    if ((*(byte *)(lVar3 + 0x34) & 0x11) == 0) {
-      memoryBaseAddress = ProcessDataValidationA0(lVar3,param_1 + 0xa8,param_1 + 0x18);
+    calculatedOffset = *(longlong *)(lVar6 + 0x10 + lVar5 * 0x18);
+    if ((*(byte *)(calculatedOffset + 0x34) & 0x11) == 0) {
+      memoryBaseAddress = ProcessDataValidationA0(calculatedOffset,param_1 + 0xa8,param_1 + 0x18);
       if ((int)memoryBaseAddress != 0) {
         return memoryBaseAddress;
       }
       fVar1 = *(float *)(param_1 + 0x18);
-      if ((*(float *)(lVar3 + 0x38) <= fVar1) &&
-         (fVar1 < *(float *)(lVar3 + 0x3c) || fVar1 == *(float *)(lVar3 + 0x3c))) {
+      if ((*(float *)(calculatedOffset + 0x38) <= fVar1) &&
+         (fVar1 < *(float *)(calculatedOffset + 0x3c) || fVar1 == *(float *)(calculatedOffset + 0x3c))) {
         lVar2 = *(longlong *)(lVar2 + 0x90);
         *(float *)(lVar6 + 4 + lVar5 * 0x18) = fVar1;
         *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(lVar2 + (longlong)aiStackX_8[0] * 8);
@@ -11606,7 +11606,7 @@ undefined8 ProcessComplexDataStructureA0(longlong param_1,longlong param_2,undef
 {
   float fVar1;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 memoryBaseAddress;
   longlong lVar5;
   undefined8 unaff_RDI;
@@ -11630,15 +11630,15 @@ undefined8 ProcessComplexDataStructureA0(longlong param_1,longlong param_2,undef
     return 0x1f;
   }
   lVar5 = *(longlong *)(lVar5 + 0x20) + (longlong)operationResult * 0x18;
-  lVar3 = *(longlong *)(lVar5 + 0x10);
-  if (lVar3 == 0) {
+  calculatedOffset = *(longlong *)(lVar5 + 0x10);
+  if (calculatedOffset == 0) {
     return 0x1e;
   }
-  if ((*(byte *)(lVar3 + 0x34) & 0x11) == 0) {
+  if ((*(byte *)(calculatedOffset + 0x34) & 0x11) == 0) {
     fVar1 = *(float *)(resourceDescriptor + 0x20);
-    fVar6 = *(float *)(lVar3 + 0x38);
-    if ((*(float *)(lVar3 + 0x38) <= fVar1) &&
-       (fVar6 = *(float *)(lVar3 + 0x3c), fVar1 <= *(float *)(lVar3 + 0x3c))) {
+    fVar6 = *(float *)(calculatedOffset + 0x38);
+    if ((*(float *)(calculatedOffset + 0x38) <= fVar1) &&
+       (fVar6 = *(float *)(calculatedOffset + 0x3c), fVar1 <= *(float *)(calculatedOffset + 0x3c))) {
       fVar6 = fVar1;
     }
     *(float *)(resourceDescriptor + 0x20) = fVar6;
@@ -12014,19 +12014,19 @@ code_r0x00018089322c:
     return uVar2;
   }
   if (lStackX_8 == 0) {
-    lVar3 = 0;
+    calculatedOffset = 0;
   }
   else {
-    lVar3 = lStackX_8 + -8;
+    calculatedOffset = lStackX_8 + -8;
   }
-  *(undefined4 *)(lVar3 + 0xa4 + (longlong)*(int *)(param_1 + 0x18) * 4) =
+  *(undefined4 *)(calculatedOffset + 0xa4 + (longlong)*(int *)(param_1 + 0x18) * 4) =
        *(undefined4 *)(resourceDescriptor + 0x1c);
-  lVar3 = *(longlong *)(param_2 + 0x98);
-  if ((*(int *)(lVar3 + 0x180) != 0) || (*(int *)(lVar3 + 0x184) != 0)) {
+  calculatedOffset = *(longlong *)(param_2 + 0x98);
+  if ((*(int *)(calculatedOffset + 0x180) != 0) || (*(int *)(calculatedOffset + 0x184) != 0)) {
     lStackX_8 = 0;
     InitializeSystemContextA0(&lStackX_8);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar3 + 0x17c) * 8 + 0x180c4f450)) {
-      uVar2 = ProcessSystemDataEC0(lVar3,param_1);
+    if (lStackX_8 == *(longlong *)((longlong)*(int *)(calculatedOffset + 0x17c) * 8 + 0x180c4f450)) {
+      uVar2 = ProcessSystemDataEC0(calculatedOffset,param_1);
       if ((int)uVar2 == 0) {
         return 0;
       }
@@ -12034,7 +12034,7 @@ code_r0x00018089322c:
     }
   }
   *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-  uVar2 = GetSystemCurrentStateA0(*(undefined8 *)(lVar3 + 0x1e0));
+  uVar2 = GetSystemCurrentStateA0(*(undefined8 *)(calculatedOffset + 0x1e0));
   if ((int)uVar2 == 0) {
     return 0;
   }
@@ -12668,7 +12668,7 @@ undefined8 ProcessDataSynchronizationA0(undefined8 param_1,undefined8 param_2)
 {
   float fVar1;
   undefined8 uVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong registerRBX;
   longlong unaff_RSI;
   float fVar4;
@@ -12677,14 +12677,14 @@ undefined8 ProcessDataSynchronizationA0(undefined8 param_1,undefined8 param_2)
   uStack0000000000000040 = 0;
   uVar2 = ProcessSystemDataTransferA0(unaff_RSI + 0x60,param_2,&stack0x00000040);
   if ((int)uVar2 == 0) {
-    lVar3 = GetOperationRangeDataA0(unaff_RSI + 0x60,uStack0000000000000040);
-    if ((*(uint *)(lVar3 + 0x34) >> 4 & 1) != 0) {
+    calculatedOffset = GetOperationRangeDataA0(unaff_RSI + 0x60,uStack0000000000000040);
+    if ((*(uint *)(calculatedOffset + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
     fVar1 = *(float *)(registerRBX + 0x18);
-    fVar4 = *(float *)(lVar3 + 0x38);
-    if ((*(float *)(lVar3 + 0x38) <= fVar1) &&
-       (fVar4 = *(float *)(lVar3 + 0x3c), fVar1 <= *(float *)(lVar3 + 0x3c))) {
+    fVar4 = *(float *)(calculatedOffset + 0x38);
+    if ((*(float *)(calculatedOffset + 0x38) <= fVar1) &&
+       (fVar4 = *(float *)(calculatedOffset + 0x3c), fVar1 <= *(float *)(calculatedOffset + 0x3c))) {
       fVar4 = fVar1;
     }
     *(float *)(registerRBX + 0x18) = fVar4;
@@ -12736,21 +12736,21 @@ undefined8 ProcessEventA0(longlong param_1,longlong param_2)
 {
   float fVar1;
   undefined8 uVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined4 auStackX_10 [2];
   
   auStackX_10[0] = 0;
   uVar2 = ProcessSystemDataTransferA0(param_2 + 0x60,param_1 + 0x10,auStackX_10);
   if ((int)uVar2 == 0) {
-    lVar3 = GetOperationRangeDataA0(param_2 + 0x60,auStackX_10[0]);
-    if ((*(uint *)(lVar3 + 0x34) >> 4 & 1) != 0) {
+    calculatedOffset = GetOperationRangeDataA0(param_2 + 0x60,auStackX_10[0]);
+    if ((*(uint *)(calculatedOffset + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    uVar2 = ProcessDataValidationA0(lVar3,param_1 + 0x1d,param_1 + 0x18);
+    uVar2 = ProcessDataValidationA0(calculatedOffset,param_1 + 0x1d,param_1 + 0x18);
     if ((int)uVar2 == 0) {
       fVar1 = *(float *)(param_1 + 0x18);
-      if ((fVar1 < *(float *)(lVar3 + 0x38)) ||
-         (*(float *)(lVar3 + 0x3c) <= fVar1 && fVar1 != *(float *)(lVar3 + 0x3c))) {
+      if ((fVar1 < *(float *)(calculatedOffset + 0x38)) ||
+         (*(float *)(calculatedOffset + 0x3c) <= fVar1 && fVar1 != *(float *)(calculatedOffset + 0x3c))) {
         uVar2 = 0x1c;
       }
       else {
@@ -12877,7 +12877,7 @@ undefined8 SaveSystemConfigurationA0(longlong param_1,longlong param_2)
 {
   float fVar1;
   undefined8 uVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   float fVar5;
   uint auStackX_8 [2];
@@ -12890,14 +12890,14 @@ undefined8 SaveSystemConfigurationA0(longlong param_1,longlong param_2)
   auStackX_18[0] = 0;
   uVar2 = ExecuteSystemDataProcessingA0(param_2,param_1 + 0x20,auStackX_18);
   if ((int)uVar2 == 0) {
-    lVar3 = GetOperationRangeDataA0(param_2 + 0x60,auStackX_18[0]);
-    if ((*(uint *)(lVar3 + 0x34) >> 4 & 1) != 0) {
+    calculatedOffset = GetOperationRangeDataA0(param_2 + 0x60,auStackX_18[0]);
+    if ((*(uint *)(calculatedOffset + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
     fVar1 = *(float *)(param_1 + 0x10);
-    fVar5 = *(float *)(lVar3 + 0x38);
-    if ((*(float *)(lVar3 + 0x38) <= fVar1) &&
-       (fVar5 = *(float *)(lVar3 + 0x3c), fVar1 <= *(float *)(lVar3 + 0x3c))) {
+    fVar5 = *(float *)(calculatedOffset + 0x38);
+    if ((*(float *)(calculatedOffset + 0x38) <= fVar1) &&
+       (fVar5 = *(float *)(calculatedOffset + 0x3c), fVar1 <= *(float *)(calculatedOffset + 0x3c))) {
       fVar5 = fVar1;
     }
     *(float *)(param_1 + 0x10) = fVar5;
@@ -13000,7 +13000,7 @@ undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
 {
   float fVar1;
   undefined8 uVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   undefined1 auStackX_8 [8];
   undefined4 auStackX_18 [2];
@@ -13008,15 +13008,15 @@ undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
   auStackX_18[0] = 0;
   uVar2 = ExecuteSystemDataProcessingA0(param_2,param_1 + 0x20,auStackX_18);
   if ((int)uVar2 == 0) {
-    lVar3 = GetOperationRangeDataA0(param_2 + 0x60,auStackX_18[0]);
-    if ((*(uint *)(lVar3 + 0x34) >> 4 & 1) != 0) {
+    calculatedOffset = GetOperationRangeDataA0(param_2 + 0x60,auStackX_18[0]);
+    if ((*(uint *)(calculatedOffset + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    uVar2 = ProcessDataValidationA0(lVar3,param_1 + 0xa0,param_1 + 0x10);
+    uVar2 = ProcessDataValidationA0(calculatedOffset,param_1 + 0xa0,param_1 + 0x10);
     if ((int)uVar2 == 0) {
       fVar1 = *(float *)(param_1 + 0x10);
-      if ((fVar1 < *(float *)(lVar3 + 0x38)) ||
-         (*(float *)(lVar3 + 0x3c) <= fVar1 && fVar1 != *(float *)(lVar3 + 0x3c))) {
+      if ((fVar1 < *(float *)(calculatedOffset + 0x38)) ||
+         (*(float *)(calculatedOffset + 0x3c) <= fVar1 && fVar1 != *(float *)(calculatedOffset + 0x3c))) {
         uVar2 = 0x1c;
       }
       else {
@@ -13335,7 +13335,7 @@ void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validat
 {
   longlong *pvalidationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined1 auStack_c8 [32];
   uint uStack_a8;
   uint uStack_a0;
@@ -13362,8 +13362,8 @@ void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validat
     uStack_54 = param_2[1];
     uStack_50 = param_2[2];
     uStack_4c = param_2[3];
-    lVar3 = (**(code **)(*pvalidationContext + 0x150))(pvalidationContext,&uStack_58,1);
-    if (lVar3 == 0) {
+    calculatedOffset = (**(code **)(*pvalidationContext + 0x150))(pvalidationContext,&uStack_58,1);
+    if (calculatedOffset == 0) {
       uStack_80 = uStack_50 >> 0x18;
       uStack_60 = uStack_4c >> 0x18;
       uStack_a0 = uStack_54 >> 0x10;
@@ -13377,9 +13377,9 @@ void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validat
                     // WARNING: Subroutine does not return
       InitializeSystemBufferA0(auStack_40,0x27,&UNK_180958180,uStack_58);
     }
-    if (((*(byte *)(lVar3 + 0xc4) & 1) != 0) &&
-       ((systemContext = *(longlong *)(lVar3 + 0x68), systemContext != 0 ||
-        (operationResult = ProcessSystemConfigurationA0(param_1,lVar3,&systemContext), operationResult == 0)))) {
+    if (((*(byte *)(calculatedOffset + 0xc4) & 1) != 0) &&
+       ((systemContext = *(longlong *)(calculatedOffset + 0x68), systemContext != 0 ||
+        (operationResult = ProcessSystemConfigurationA0(param_1,calculatedOffset,&systemContext), operationResult == 0)))) {
       *param_3 = systemContext;
     }
   }
@@ -13428,7 +13428,7 @@ void ExecuteUtilitySystemOperation(longlong operationContext,undefined4 *operati
 {
   longlong *pvalidationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined1 auStack_b8 [32];
   uint uStack_98;
   uint uStack_90;
@@ -13454,8 +13454,8 @@ void ExecuteUtilitySystemOperation(longlong operationContext,undefined4 *operati
     uStack_44 = param_2[1];
     uStack_40 = param_2[2];
     uStack_3c = param_2[3];
-    lVar3 = (**(code **)(*pvalidationContext + 0x288))(pvalidationContext,&uStack_48,1);
-    if (lVar3 == 0) {
+    calculatedOffset = (**(code **)(*pvalidationContext + 0x288))(pvalidationContext,&uStack_48,1);
+    if (calculatedOffset == 0) {
       uStack_70 = uStack_40 >> 0x18;
       uStack_50 = uStack_3c >> 0x18;
       uStack_90 = uStack_44 >> 0x10;
@@ -13469,9 +13469,9 @@ void ExecuteUtilitySystemOperation(longlong operationContext,undefined4 *operati
                     // WARNING: Subroutine does not return
       InitializeSystemBufferA0(auStack_38,0x27,&UNK_180958180,uStack_48);
     }
-    if ((**(int **)(lVar3 + 0xd0) != 0) ||
+    if ((**(int **)(calculatedOffset + 0xd0) != 0) ||
        (operationResult = ValidateSystemConfigurationA0(*(undefined4 *)(param_1 + 0x18)), operationResult == 0)) {
-      *param_3 = lVar3;
+      *param_3 = calculatedOffset;
     }
   }
                     // WARNING: Subroutine does not return
@@ -13542,7 +13542,7 @@ void ProcessDataOperationB1(longlong DataPointer, undefined4 *DataBuffer, longlo
 {
   longlong *pvalidationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined1 auStack_c8 [32];
   uint uStack_a8;
   uint uStack_a0;
@@ -13569,8 +13569,8 @@ void ProcessDataOperationB1(longlong DataPointer, undefined4 *DataBuffer, longlo
     uStack_54 = param_2[1];
     uStack_50 = param_2[2];
     uStack_4c = param_2[3];
-    lVar3 = (**(code **)(*pvalidationContext + 0x2f8))(pvalidationContext,&uStack_58,1);
-    if (lVar3 == 0) {
+    calculatedOffset = (**(code **)(*pvalidationContext + 0x2f8))(pvalidationContext,&uStack_58,1);
+    if (calculatedOffset == 0) {
       uStack_80 = uStack_50 >> 0x18;
       uStack_60 = uStack_4c >> 0x18;
       uStack_a0 = uStack_54 >> 0x10;
@@ -13584,8 +13584,8 @@ void ProcessDataOperationB1(longlong DataPointer, undefined4 *DataBuffer, longlo
                     // WARNING: Subroutine does not return
       InitializeSystemBufferA0(auStack_40,0x27,&UNK_180958180,uStack_58);
     }
-    systemContext = *(longlong *)(lVar3 + 0x48);
-    if ((systemContext != 0) || (operationResult = ProcessSystemContextA0(param_1,lVar3,&systemContext), operationResult == 0)) {
+    systemContext = *(longlong *)(calculatedOffset + 0x48);
+    if ((systemContext != 0) || (operationResult = ProcessSystemContextA0(param_1,calculatedOffset,&systemContext), operationResult == 0)) {
       *param_3 = systemContext;
     }
   }
@@ -14832,7 +14832,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
   uint *puVar10;
   uint uVar11;
   int iVar12;
-  int *piVar13;
+  int *referenceCountPointer3;
   
   memoryBaseAddress = InitializeSystemA1();
   if ((int)memoryBaseAddress == 0) {
@@ -14841,7 +14841,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
     }
     uVar1 = *param_2;
     lVar8 = (longlong)(int)((int)param_1[1] - 1U & uVar1);
-    piVar13 = (int *)(*param_1 + lVar8 * 4);
+    referenceCountPointer3 = (int *)(*param_1 + lVar8 * 4);
     operationResult = *(int *)(*param_1 + lVar8 * 4);
     if (operationResult != -1) {
       lVar8 = param_1[2];
@@ -14852,7 +14852,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
           return 0;
         }
         operationResult = *(int *)(lVar8 + 4 + lVar9 * 0x10);
-        piVar13 = (int *)(lVar8 + 4 + lVar9 * 0x10);
+        referenceCountPointer3 = (int *)(lVar8 + 4 + lVar9 * 0x10);
       } while (operationResult != -1);
     }
     operationResult = (int)param_1[4];
@@ -14891,7 +14891,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
       *puVar10 = *param_2;
       *(undefined8 *)(puVar10 + 2) = *param_3;
     }
-    *piVar13 = operationResult;
+    *referenceCountPointer3 = operationResult;
     *(int *)((longlong)param_1 + 0x24) = *(int *)((longlong)param_1 + 0x24) + 1;
     memoryBaseAddress = 0;
   }
@@ -14917,13 +14917,13 @@ undefined8 ValidateAndProcessDataStructure(undefined8 param_1,int param_2)
   undefined4 *puVar8;
   uint uVar9;
   int iVar10;
-  int *piVar11;
+  int *referenceCountPointer1;
   longlong *unaff_RDI;
   undefined8 *registerR14;
   undefined4 *unaff_R15;
   undefined8 uStack0000000000000028;
   
-  piVar11 = (int *)(*unaff_RDI + (longlong)in_EAX * 4);
+  referenceCountPointer1 = (int *)(*unaff_RDI + (longlong)in_EAX * 4);
   operationResult = *(int *)(*unaff_RDI + (longlong)in_EAX * 4);
   if (operationResult != -1) {
     validationContext = unaff_RDI[2];
@@ -14934,7 +14934,7 @@ undefined8 ValidateAndProcessDataStructure(undefined8 param_1,int param_2)
         return 0;
       }
       operationResult = *(int *)(validationContext + 4 + lVar7 * 0x10);
-      piVar11 = (int *)(validationContext + 4 + lVar7 * 0x10);
+      referenceCountPointer1 = (int *)(validationContext + 4 + lVar7 * 0x10);
     } while (operationResult != -1);
   }
   operationResult = (int)unaff_RDI[4];
@@ -14973,7 +14973,7 @@ undefined8 ValidateAndProcessDataStructure(undefined8 param_1,int param_2)
     *puVar8 = *unaff_R15;
     *(undefined8 *)(puVar8 + 2) = *registerR14;
   }
-  *piVar11 = operationResult;
+  *referenceCountPointer1 = operationResult;
   *(int *)((longlong)unaff_RDI + 0x24) = *(int *)((longlong)unaff_RDI + 0x24) + 1;
   return 0;
 }
@@ -16652,7 +16652,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
 {
   float fVar1;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong lVar4;
   char cVar5;
   int iVar6;
@@ -16734,11 +16734,11 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
         if (0 < lStack_188) {
           do {
             lVar9 = *(longlong *)(lVar2 + 0x20);
-            lVar3 = *(longlong *)(validationContext4 + 0x10 + lVar9);
+            calculatedOffset = *(longlong *)(validationContext4 + 0x10 + lVar9);
             lVar4 = *(longlong *)(validationContext4 + 8 + lVar9);
-            cVar5 = func_0x000180894c50(lVar3,1);
+            cVar5 = func_0x000180894c50(calculatedOffset,1);
             puVar16 = puStack_190;
-            if ((cVar5 == '\0') && (*(float *)(lVar3 + 0x4c) != *(float *)(lVar4 + 0x28))) {
+            if ((cVar5 == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(lVar4 + 0x28))) {
               uStack_f0 = *(undefined4 *)(validationContext4 + 4 + lVar9);
               puStack_108 = &UNK_180984038;
               uStack_f8 = uStack_1c8;
@@ -16746,11 +16746,11 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
               lVar9 = (**(code **)*puStack_190)(puStack_190);
               uStack_e8 = *(undefined8 *)(*(longlong *)(lVar9 + 0x90) + lVar8 * 8);
               uStack_ec = 0;
-              if (*(int *)(lVar3 + 0x58) < 1) {
+              if (*(int *)(calculatedOffset + 0x58) < 1) {
                 puVar12 = &DAT_18098bc73;
               }
               else {
-                puVar12 = *(undefined **)(lVar3 + 0x50);
+                puVar12 = *(undefined **)(calculatedOffset + 0x50);
               }
               func_0x00018076b450(auStack_e0,puVar12,0x80);
               iVar6 = FUN_180897520(param_1,&puStack_108);
@@ -16898,7 +16898,7 @@ ProcessDataSecurityValidation:
 {
   float fVar1;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   undefined4 uVar5;
   undefined4 uVar6;
@@ -16975,10 +16975,10 @@ ProcessDataSecurityValidation:
         do {
           validationContext5 = *(longlong *)(unaff_R15 + 0x20);
           lVar2 = *(longlong *)(uVar20 + 0x10 + validationContext5);
-          lVar3 = *(longlong *)(uVar20 + 8 + validationContext5);
+          calculatedOffset = *(longlong *)(uVar20 + 8 + validationContext5);
           cVar12 = func_0x000180894c50(lVar2,1);
           resourcePointer2 = puStack0000000000000058;
-          if ((cVar12 == '\0') && (*(float *)(lVar2 + 0x4c) != *(float *)(lVar3 + 0x28))) {
+          if ((cVar12 == '\0') && (*(float *)(lVar2 + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
             uVar24 = *(undefined4 *)(uVar20 + 4 + validationContext5);
             unaff_RBP[-4] = &UNK_180984038;
             *(undefined4 *)(unaff_RBP + -2) = uStackX_20;
@@ -17161,7 +17161,7 @@ ValidateDataSecurity:
 {
   float fVar1;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   undefined4 uVar5;
   undefined4 uVar6;
@@ -17222,10 +17222,10 @@ ValidateDataSecurity:
     do {
       validationContext5 = *(longlong *)(unaff_R15 + 0x20);
       lVar2 = *(longlong *)(uVar20 + 0x10 + validationContext5);
-      lVar3 = *(longlong *)(uVar20 + 8 + validationContext5);
+      calculatedOffset = *(longlong *)(uVar20 + 8 + validationContext5);
       cVar12 = func_0x000180894c50(lVar2,1);
       unaff_R12 = in_stack_00000058;
-      if ((cVar12 == '\0') && (*(float *)(lVar2 + 0x4c) != *(float *)(lVar3 + 0x28))) {
+      if ((cVar12 == '\0') && (*(float *)(lVar2 + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
         uVar23 = *(undefined4 *)(uVar20 + 4 + validationContext5);
         unaff_RBP[-4] = &UNK_180984038;
         *(undefined4 *)(unaff_RBP + -2) = uStackX_20;
@@ -17760,7 +17760,7 @@ undefined8 ValidateDataStructureA0(longlong *param_1)
 {
   longlong validationContext;
   undefined8 uVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined4 memoryBaseAddress;
   undefined4 uVar5;
   undefined4 uVar6;
@@ -17778,8 +17778,8 @@ undefined8 ValidateDataStructureA0(longlong *param_1)
   uVar2 = FUN_180897520(param_1,&puStack_28);
   if ((int)uVar2 == 0) {
     validationContext = *(longlong *)(param_1[1] + 0x78);
-    lVar3 = func_0x000180879a40();
-    if (lVar3 == 0) {
+    calculatedOffset = func_0x000180879a40();
+    if (calculatedOffset == 0) {
       uVar2 = 0x1c;
     }
     else {
@@ -17814,9 +17814,9 @@ undefined8 ValidateDataStructureA0(longlong *param_1)
                                   *(undefined4 *)(validationContext + 0x11654),*(undefined4 *)(validationContext + 0x11658),
                                   *(undefined4 *)(validationContext + 0x1165c),uVar6,uVar7,uVar8,memoryBaseAddress);
             if ((int)uVar2 == 0) {
-              uVar5 = *(undefined4 *)(lVar3 + 0x10);
-              uVar2 = FUN_180897d20(param_1,&UNK_1809867b0,*(undefined4 *)(lVar3 + 4),
-                                    *(undefined4 *)(lVar3 + 8),*(undefined4 *)(lVar3 + 0xc),uVar5,
+              uVar5 = *(undefined4 *)(calculatedOffset + 0x10);
+              uVar2 = FUN_180897d20(param_1,&UNK_1809867b0,*(undefined4 *)(calculatedOffset + 4),
+                                    *(undefined4 *)(calculatedOffset + 8),*(undefined4 *)(calculatedOffset + 0xc),uVar5,
                                     uVar6,uVar7,uVar8,memoryBaseAddress);
               if ((((int)uVar2 == 0) &&
                   (uVar2 = FUN_180897d20(param_1,&UNK_180986850,*(undefined4 *)(validationContext + 0x1e0),
@@ -32072,9 +32072,9 @@ void Unwind_1809023e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809023f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x48);
@@ -32083,14 +32083,14 @@ void Unwind_1809023f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -32314,9 +32314,9 @@ void Unwind_180902500(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902510(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x120);
@@ -32325,14 +32325,14 @@ void Unwind_180902510(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -33220,9 +33220,9 @@ void Unwind_180902870(undefined8 param_1,longlong param_2)
 void Unwind_180902880(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x18);
@@ -33231,14 +33231,14 @@ void Unwind_180902880(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -33267,9 +33267,9 @@ void Unwind_180902890(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809028a0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x98);
@@ -33278,14 +33278,14 @@ void Unwind_1809028a0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -33342,9 +33342,9 @@ void Unwind_1809028e0(undefined8 param_1,longlong param_2)
 void Unwind_1809028f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x68);
@@ -33353,14 +33353,14 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -33378,9 +33378,9 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
 void Unwind_180902900(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x88);
@@ -33389,14 +33389,14 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -33445,7 +33445,7 @@ void Unwind_180902940(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902950(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   longlong lVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -33478,9 +33478,9 @@ void Unwind_180902950(undefined8 param_1,longlong param_2)
       if ((*(void ***)(uVar7 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
         *puVar3 = *(undefined8 *)(lVar5 + 0x20);
         *(undefined8 **)(lVar5 + 0x20) = puVar3;
-        piVar1 = (int *)(lVar5 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        referenceCountPointer = (int *)(lVar5 + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -33500,7 +33500,7 @@ void Unwind_180902950(undefined8 param_1,longlong param_2)
 void Unwind_180902960(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   longlong lVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -33533,9 +33533,9 @@ void Unwind_180902960(undefined8 param_1,longlong param_2)
       if ((*(void ***)(uVar7 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
         *puVar3 = *(undefined8 *)(lVar5 + 0x20);
         *(undefined8 **)(lVar5 + 0x20) = puVar3;
-        piVar1 = (int *)(lVar5 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        referenceCountPointer = (int *)(lVar5 + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -33557,12 +33557,12 @@ void Unwind_180902970(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x70);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x78);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x18) {
-    FUN_18004bf50(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x18) {
+    FUN_18004bf50(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -33603,7 +33603,7 @@ void Unwind_180902a00(undefined8 param_1,longlong param_2)
 void Unwind_180902a40(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   longlong lVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -33636,9 +33636,9 @@ void Unwind_180902a40(undefined8 param_1,longlong param_2)
       if ((*(void ***)(uVar7 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
         *puVar3 = *(undefined8 *)(lVar5 + 0x20);
         *(undefined8 **)(lVar5 + 0x20) = puVar3;
-        piVar1 = (int *)(lVar5 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        referenceCountPointer = (int *)(lVar5 + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -33658,7 +33658,7 @@ void Unwind_180902a40(undefined8 param_1,longlong param_2)
 void Unwind_180902a50(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   longlong lVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -33691,9 +33691,9 @@ void Unwind_180902a50(undefined8 param_1,longlong param_2)
       if ((*(void ***)(uVar7 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
         *puVar3 = *(undefined8 *)(lVar5 + 0x20);
         *(undefined8 **)(lVar5 + 0x20) = puVar3;
-        piVar1 = (int *)(lVar5 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        referenceCountPointer = (int *)(lVar5 + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -33715,12 +33715,12 @@ void Unwind_180902a60(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x78);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x18) {
-    FUN_18004bf50(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x18) {
+    FUN_18004bf50(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -33736,13 +33736,13 @@ void Unwind_180902a70(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x70);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x70);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -33757,10 +33757,10 @@ void Unwind_180902a70(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -33774,13 +33774,13 @@ void Unwind_180902a80(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x78);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x78);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -33795,10 +33795,10 @@ void Unwind_180902a80(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -33812,13 +33812,13 @@ void Unwind_180902a90(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x78);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x78);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -33833,10 +33833,10 @@ void Unwind_180902a90(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -33858,9 +33858,9 @@ void Unwind_180902aa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902ab0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x30);
@@ -33869,14 +33869,14 @@ void Unwind_180902ab0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -33950,12 +33950,12 @@ void Unwind_180902b30(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x40);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x48) {
-    FUN_180058c20(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x48) {
+    FUN_180058c20(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -33991,13 +33991,13 @@ void Unwind_180902b60(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -34012,10 +34012,10 @@ void Unwind_180902b60(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -34029,13 +34029,13 @@ void Unwind_180902b70(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -34050,10 +34050,10 @@ void Unwind_180902b70(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -34122,9 +34122,9 @@ void Unwind_180902ba0(undefined8 param_1,longlong param_2)
 void Unwind_180902bb0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x48);
@@ -34133,14 +34133,14 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -34205,9 +34205,9 @@ void Unwind_180902be0(undefined8 param_1,longlong param_2)
 void Unwind_180902bf0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x90) + 0x48);
@@ -34216,14 +34216,14 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -34241,9 +34241,9 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
 void Unwind_180902c00(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x98);
@@ -34252,14 +34252,14 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -34277,9 +34277,9 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
 void Unwind_180902c10(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x98);
@@ -34288,14 +34288,14 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -34322,9 +34322,9 @@ void Unwind_180902c20(undefined8 param_1,longlong param_2)
 void Unwind_180902c30(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x28);
@@ -34333,14 +34333,14 @@ void Unwind_180902c30(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -34358,9 +34358,9 @@ void Unwind_180902c30(undefined8 param_1,longlong param_2)
 void Unwind_180902c40(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x28);
@@ -34369,14 +34369,14 @@ void Unwind_180902c40(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -34524,9 +34524,9 @@ void Unwind_180902cc0(undefined8 param_1,longlong param_2)
 void Unwind_180902cd0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
@@ -34535,14 +34535,14 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -34560,9 +34560,9 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
 void Unwind_180902ce0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
@@ -34571,14 +34571,14 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -34598,13 +34598,13 @@ void Unwind_180902cf0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x20);
   pvalidationContext = (longlong *)plVar2[1];
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -34782,13 +34782,13 @@ void Unwind_180902e10(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x1868);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1870);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -34805,13 +34805,13 @@ void Unwind_180902e30(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x48);
   pvalidationContext = (longlong *)plVar2[1];
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -34845,9 +34845,9 @@ void Unwind_180902e40(undefined8 param_1,longlong param_2)
 void Unwind_180902e50(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x48);
@@ -34856,14 +34856,14 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -34881,9 +34881,9 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
 void Unwind_180902e60(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x58);
@@ -34892,14 +34892,14 @@ void Unwind_180902e60(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -34917,9 +34917,9 @@ void Unwind_180902e60(undefined8 param_1,longlong param_2)
 void Unwind_180902e70(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x58);
@@ -34928,14 +34928,14 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -34953,7 +34953,7 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
 void Unwind_180902e80(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
   ulonglong *puVar3;
   longlong lVar4;
@@ -34974,9 +34974,9 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
         *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        referenceCountPointer = (int *)(lVar4 + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -35015,9 +35015,9 @@ void Unwind_180902e90(undefined8 param_1,longlong param_2)
 void Unwind_180902eb0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong *pmemoryBaseAddress;
   undefined8 *puVar5;
   ulonglong uVar6;
@@ -35031,14 +35031,14 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
   if (resourcePointer != (undefined8 *)0x0) {
     uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar3 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -35058,7 +35058,7 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
 void Unwind_180902ec0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
   ulonglong *puVar3;
   longlong lVar4;
@@ -35079,9 +35079,9 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
         *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        referenceCountPointer = (int *)(lVar4 + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -35176,9 +35176,9 @@ void Unwind_180902f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902f60(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x8c8);
@@ -35187,14 +35187,14 @@ void Unwind_180902f60(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -35547,9 +35547,9 @@ void CleanupThreadResources120(undefined8 param_1,longlong param_2)
 void CleanupExceptionHandlers130(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x20);
@@ -35558,14 +35558,14 @@ void CleanupExceptionHandlers130(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -35583,9 +35583,9 @@ void CleanupExceptionHandlers130(undefined8 param_1,longlong param_2)
 void CleanupExceptionPointers140(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x88);
@@ -35594,14 +35594,14 @@ void CleanupExceptionPointers140(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -35642,9 +35642,9 @@ void CleanupThreadMemory150(undefined8 param_1,longlong param_2)
 void CleanupExceptionStack160(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x20);
@@ -35653,14 +35653,14 @@ void CleanupExceptionStack160(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -35720,9 +35720,9 @@ void ResetResourcePointer180(undefined8 param_1,longlong param_2)
 void CleanupExceptionTable190(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x20);
@@ -35731,14 +35731,14 @@ void CleanupExceptionTable190(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -35758,12 +35758,12 @@ void CleanupMemoryPool1a0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x28);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x30);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x548) {
-    FUN_1800594b0(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x548) {
+    FUN_1800594b0(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -35779,12 +35779,12 @@ void Unwind_1809031b0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x48);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x548) {
-    FUN_1800594b0(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x548) {
+    FUN_1800594b0(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -35832,9 +35832,9 @@ void Unwind_1809031e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809031f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
@@ -35843,14 +35843,14 @@ void Unwind_1809031f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -35868,9 +35868,9 @@ void Unwind_1809031f0(undefined8 param_1,longlong param_2)
 void Unwind_180903200(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
@@ -35879,14 +35879,14 @@ void Unwind_180903200(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -35906,12 +35906,12 @@ void Unwind_180903210(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x40);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x548) {
-    FUN_1800594b0(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x548) {
+    FUN_1800594b0(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -36039,9 +36039,9 @@ void Unwind_180903300(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180903310(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
@@ -36050,14 +36050,14 @@ void Unwind_180903310(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -36207,12 +36207,12 @@ void Unwind_180903440(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x40);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x50) {
-    FUN_1800596a0(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x50) {
+    FUN_1800596a0(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -36235,7 +36235,7 @@ void Unwind_180903450(void)
 void Unwind_180903460(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong *plVar4;
@@ -36276,9 +36276,9 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -36314,9 +36314,9 @@ void Unwind_180903490(void)
 void Unwind_1809034b0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x18);
@@ -36325,14 +36325,14 @@ void Unwind_1809034b0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -36350,9 +36350,9 @@ void Unwind_1809034b0(undefined8 param_1,longlong param_2)
 void Unwind_1809034c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x18);
@@ -36361,14 +36361,14 @@ void Unwind_1809034c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -36386,9 +36386,9 @@ void Unwind_1809034c0(undefined8 param_1,longlong param_2)
 void Unwind_1809034d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x18);
@@ -36397,14 +36397,14 @@ void Unwind_1809034d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -36422,9 +36422,9 @@ void Unwind_1809034d0(undefined8 param_1,longlong param_2)
 void Unwind_1809034e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x60);
@@ -36433,14 +36433,14 @@ void Unwind_1809034e0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -36458,25 +36458,25 @@ void Unwind_1809034e0(undefined8 param_1,longlong param_2)
 void Unwind_1809034f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+  if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
+     (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -36496,25 +36496,25 @@ void Unwind_1809034f0(undefined8 param_1,longlong param_2)
 void Unwind_180903500(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+  if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
+     (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -36534,7 +36534,7 @@ void Unwind_180903500(undefined8 param_1,longlong param_2)
 void Unwind_180903510(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong *plVar4;
@@ -36577,9 +36577,9 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -36597,9 +36597,9 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
 void Unwind_180903520(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x300);
@@ -36608,14 +36608,14 @@ void Unwind_180903520(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -36647,25 +36647,25 @@ void Unwind_180903540(undefined8 param_1,longlong param_2)
 void Unwind_180903560(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x70);
+  calculatedOffset = *(longlong *)(param_2 + 0x70);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(lVar3 + 0x340)) &&
-     (resourcePointer = *(undefined8 **)(lVar3 + 0x338), resourcePointer != (undefined8 *)0x0)) {
+  if ((1 < *(ulonglong *)(calculatedOffset + 0x340)) &&
+     (resourcePointer = *(undefined8 **)(calculatedOffset + 0x338), resourcePointer != (undefined8 *)0x0)) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -36685,7 +36685,7 @@ void Unwind_180903560(undefined8 param_1,longlong param_2)
 void Unwind_180903580(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong *plVar4;
@@ -36726,9 +36726,9 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -36773,25 +36773,25 @@ void Unwind_1809035d0(undefined8 param_1,longlong param_2)
 void Unwind_1809035e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x80);
+  calculatedOffset = *(longlong *)(param_2 + 0x80);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+  if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
+     (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -36811,25 +36811,25 @@ void Unwind_1809035e0(undefined8 param_1,longlong param_2)
 void Unwind_1809035f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x80);
+  calculatedOffset = *(longlong *)(param_2 + 0x80);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+  if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
+     (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -41635,9 +41635,9 @@ void Unwind_1809045f0(undefined8 param_1,longlong param_2)
 void Unwind_180904630(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x10400);
@@ -41646,14 +41646,14 @@ void Unwind_180904630(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42197,9 +42197,9 @@ void Unwind_180904910(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904920(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x28);
@@ -42208,14 +42208,14 @@ void Unwind_180904920(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42233,9 +42233,9 @@ void Unwind_180904920(undefined8 param_1,longlong param_2)
 void Unwind_180904930(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x48);
@@ -42244,14 +42244,14 @@ void Unwind_180904930(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42287,7 +42287,7 @@ void Unwind_180904950(undefined8 param_1,longlong param_2)
 void Unwind_180904960(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -42329,9 +42329,9 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42349,7 +42349,7 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
 void Unwind_180904970(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -42391,9 +42391,9 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42411,7 +42411,7 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
 void Unwind_180904990(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -42453,9 +42453,9 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42491,9 +42491,9 @@ void Unwind_1809049c0(undefined8 param_1,longlong param_2)
 void Unwind_1809049d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 8);
@@ -42502,14 +42502,14 @@ void Unwind_1809049d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42527,9 +42527,9 @@ void Unwind_1809049d0(undefined8 param_1,longlong param_2)
 void Unwind_1809049e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x28);
@@ -42538,14 +42538,14 @@ void Unwind_1809049e0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42563,9 +42563,9 @@ void Unwind_1809049e0(undefined8 param_1,longlong param_2)
 void Unwind_1809049f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x48);
@@ -42574,14 +42574,14 @@ void Unwind_1809049f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42617,7 +42617,7 @@ void Unwind_180904a10(undefined8 param_1,longlong param_2)
 void Unwind_180904a20(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -42659,9 +42659,9 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42679,7 +42679,7 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
 void Unwind_180904a30(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -42721,9 +42721,9 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42741,7 +42741,7 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
 void Unwind_180904a50(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -42783,9 +42783,9 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42812,9 +42812,9 @@ void Unwind_180904a70(undefined8 param_1,longlong param_2)
 void Unwind_180904a80(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x70);
@@ -42823,14 +42823,14 @@ void Unwind_180904a80(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -42848,9 +42848,9 @@ void Unwind_180904a80(undefined8 param_1,longlong param_2)
 void Unwind_180904a90(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x70);
@@ -42859,14 +42859,14 @@ void Unwind_180904a90(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -43043,7 +43043,7 @@ void Catch_180904b90(undefined8 param_1,longlong param_2)
 {
   ulonglong uVar1;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong lVar4;
   ulonglong uVar5;
   ulonglong uVar6;
@@ -43052,7 +43052,7 @@ void Catch_180904b90(undefined8 param_1,longlong param_2)
   
   uVar1 = *(ulonglong *)(param_2 + 0x20);
   lVar2 = *(longlong *)(param_2 + 0xa0);
-  lVar3 = *(longlong *)(lVar2 + 0x40);
+  calculatedOffset = *(longlong *)(lVar2 + 0x40);
   *(undefined8 *)(lVar2 + 0x70) = *(undefined8 *)(param_2 + 0x30);
   *(undefined8 *)(lVar2 + 0x60) = *(undefined8 *)(param_2 + 0xb8);
   lVar7 = *(longlong *)(param_2 + 0x28);
@@ -43080,7 +43080,7 @@ void Catch_180904b90(undefined8 param_1,longlong param_2)
       } while (uVar6 != uVar8);
       *(ulonglong *)(param_2 + 0x20) = uVar6;
     }
-    if (lVar7 == lVar3) break;
+    if (lVar7 == calculatedOffset) break;
     lVar7 = *(longlong *)(lVar7 + 0x100);
     uVar5 = uVar6;
   }
@@ -43095,7 +43095,7 @@ void Catch_180904c60(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   longlong lVar6;
@@ -43137,14 +43137,14 @@ void Catch_180904c60(undefined8 param_1,longlong param_2)
   if (lVar2 != 0) {
     while( true ) {
       *(ulonglong *)(param_2 + 0x20) = uVar8 + 0x20;
-      plVar3 = *(longlong **)(validationContext + 0x60);
+      pcalculatedOffset = *(longlong **)(validationContext + 0x60);
       *(undefined8 *)
        (*(longlong *)
-         (plVar3[3] +
-         (((uVar8 + 0x20 & 0xffffffffffffffe0) - **(longlong **)(plVar3[3] + plVar3[1] * 8) >> 5) +
-          plVar3[1] & *plVar3 - 1U) * 8) + 8) = 0;
-      plVar3 = *(longlong **)(validationContext + 0x60);
-      plVar3[1] = plVar3[1] - 1U & *plVar3 - 1U;
+         (pcalculatedOffset[3] +
+         (((uVar8 + 0x20 & 0xffffffffffffffe0) - **(longlong **)(pcalculatedOffset[3] + pcalculatedOffset[1] * 8) >> 5) +
+          pcalculatedOffset[1] & *pcalculatedOffset - 1U) * 8) + 8) = 0;
+      pcalculatedOffset = *(longlong **)(validationContext + 0x60);
+      pcalculatedOffset[1] = pcalculatedOffset[1] - 1U & *pcalculatedOffset - 1U;
       lVar9 = *(longlong *)(lVar9 + 0x100);
       if (lVar9 == 0) break;
       uVar8 = *(ulonglong *)(param_2 + 0x20);
@@ -43388,9 +43388,9 @@ void Unwind_180904e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904e70(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xc0);
@@ -43399,14 +43399,14 @@ void Unwind_180904e70(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -43502,9 +43502,9 @@ void Unwind_180904f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904f30(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x90);
@@ -43513,14 +43513,14 @@ void Unwind_180904f30(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -43630,9 +43630,9 @@ void Unwind_180904fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904fb0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x20);
@@ -43641,14 +43641,14 @@ void Unwind_180904fb0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -43790,9 +43790,9 @@ void Unwind_180905020(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905030(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x40);
@@ -43801,14 +43801,14 @@ void Unwind_180905030(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -43847,9 +43847,9 @@ void Unwind_180905040(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905050(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x98);
@@ -43858,14 +43858,14 @@ void Unwind_180905050(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -44204,9 +44204,9 @@ void Unwind_1809051f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905200(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x148);
@@ -44215,14 +44215,14 @@ void Unwind_180905200(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -44261,9 +44261,9 @@ void Unwind_180905210(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905220(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x208);
@@ -44272,14 +44272,14 @@ void Unwind_180905220(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -44336,9 +44336,9 @@ void Unwind_180905250(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905260(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x108);
@@ -44347,14 +44347,14 @@ void Unwind_180905260(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -44393,9 +44393,9 @@ void Unwind_180905270(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905280(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x228);
@@ -44404,14 +44404,14 @@ void Unwind_180905280(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -44536,9 +44536,9 @@ void Unwind_180905370(undefined8 param_1,longlong param_2)
 void Unwind_180905380(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
@@ -44547,14 +44547,14 @@ void Unwind_180905380(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -44903,9 +44903,9 @@ void Unwind_180905520(void)
 void Unwind_180905540(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x213438);
@@ -44914,14 +44914,14 @@ void Unwind_180905540(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -44966,9 +44966,9 @@ void Unwind_180905590(void)
 void Unwind_1809055b0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x30);
@@ -44977,14 +44977,14 @@ void Unwind_1809055b0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -45002,9 +45002,9 @@ void Unwind_1809055b0(undefined8 param_1,longlong param_2)
 void Unwind_1809055c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x30);
@@ -45013,14 +45013,14 @@ void Unwind_1809055c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -45290,7 +45290,7 @@ void Unwind_1809057b0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   longlong *plVar4;
   undefined8 *puVar5;
   int iVar6;
@@ -45355,9 +45355,9 @@ LAB_1801571ef:
   }
   pvalidationContext = puVar5 + 6;
   FUN_18015b450(pvalidationContext);
-  plVar3 = puVar5 + 0x2d;
+  pcalculatedOffset = puVar5 + 0x2d;
   plVar4 = (longlong *)puVar5[0x2e];
-  plVar8 = (longlong *)*plVar3;
+  plVar8 = (longlong *)*pcalculatedOffset;
   if (plVar8 != plVar4) {
     do {
       if ((longlong *)*plVar8 != (longlong *)0x0) {
@@ -45365,7 +45365,7 @@ LAB_1801571ef:
       }
       plVar8 = plVar8 + 1;
     } while (plVar8 != plVar4);
-    plVar8 = (longlong *)*plVar3;
+    plVar8 = (longlong *)*pcalculatedOffset;
   }
   puVar5[0x2e] = plVar8;
   iVar6 = _Mtx_unlock(plVar2);
@@ -45381,8 +45381,8 @@ LAB_1801571ef:
   if ((longlong *)puVar5[0x3d] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar5[0x3d] + 0x38))();
   }
-  plStackX_10 = plVar3;
-  FUN_180057830(plVar3);
+  plStackX_10 = pcalculatedOffset;
+  FUN_180057830(pcalculatedOffset);
   plStackX_10 = puVar5 + 0x28;
   FUN_180048980();
   plStackX_10 = puVar5 + 0x24;
@@ -45693,9 +45693,9 @@ void Unwind_180905870(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905880(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x2e8);
@@ -45704,14 +45704,14 @@ void Unwind_180905880(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -45731,19 +45731,19 @@ void Unwind_180905890(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x2e0);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x28) {
-    *(undefined8 *)(lVar3 + 8) = &UNK_180a3c3e0;
-    if (*(longlong *)(lVar3 + 0x10) != 0) {
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x28) {
+    *(undefined8 *)(calculatedOffset + 8) = &UNK_180a3c3e0;
+    if (*(longlong *)(calculatedOffset + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *(undefined8 *)(lVar3 + 0x10) = 0;
-    *(undefined4 *)(lVar3 + 0x20) = 0;
-    *(undefined8 *)(lVar3 + 8) = &DefaultExceptionHandlerB;
+    *(undefined8 *)(calculatedOffset + 0x10) = 0;
+    *(undefined4 *)(calculatedOffset + 0x20) = 0;
+    *(undefined8 *)(calculatedOffset + 8) = &DefaultExceptionHandlerB;
   }
   if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
@@ -45805,19 +45805,19 @@ void Unwind_1809058c0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x2e8);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x28) {
-    *(undefined8 *)(lVar3 + 8) = &UNK_180a3c3e0;
-    if (*(longlong *)(lVar3 + 0x10) != 0) {
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x28) {
+    *(undefined8 *)(calculatedOffset + 8) = &UNK_180a3c3e0;
+    if (*(longlong *)(calculatedOffset + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *(undefined8 *)(lVar3 + 0x10) = 0;
-    *(undefined4 *)(lVar3 + 0x20) = 0;
-    *(undefined8 *)(lVar3 + 8) = &DefaultExceptionHandlerB;
+    *(undefined8 *)(calculatedOffset + 0x10) = 0;
+    *(undefined4 *)(calculatedOffset + 0x20) = 0;
+    *(undefined8 *)(calculatedOffset + 8) = &DefaultExceptionHandlerB;
   }
   if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
@@ -45939,7 +45939,7 @@ void Unwind_180905930(undefined8 param_1,longlong param_2)
 void Unwind_180905940(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
   ulonglong *puVar3;
   longlong lVar4;
@@ -45960,9 +45960,9 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
         *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        referenceCountPointer = (int *)(lVar4 + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -45986,7 +45986,7 @@ void Unwind_180905950(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   longlong *plVar4;
   undefined8 *puVar5;
   int iVar6;
@@ -46051,9 +46051,9 @@ LAB_1801571ef:
   }
   pvalidationContext = puVar5 + 6;
   FUN_18015b450(pvalidationContext);
-  plVar3 = puVar5 + 0x2d;
+  pcalculatedOffset = puVar5 + 0x2d;
   plVar4 = (longlong *)puVar5[0x2e];
-  plVar8 = (longlong *)*plVar3;
+  plVar8 = (longlong *)*pcalculatedOffset;
   if (plVar8 != plVar4) {
     do {
       if ((longlong *)*plVar8 != (longlong *)0x0) {
@@ -46061,7 +46061,7 @@ LAB_1801571ef:
       }
       plVar8 = plVar8 + 1;
     } while (plVar8 != plVar4);
-    plVar8 = (longlong *)*plVar3;
+    plVar8 = (longlong *)*pcalculatedOffset;
   }
   puVar5[0x2e] = plVar8;
   iVar6 = _Mtx_unlock(plVar2);
@@ -46077,8 +46077,8 @@ LAB_1801571ef:
   if ((longlong *)puVar5[0x3d] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar5[0x3d] + 0x38))();
   }
-  plStackX_10 = plVar3;
-  FUN_180057830(plVar3);
+  plStackX_10 = pcalculatedOffset;
+  FUN_180057830(pcalculatedOffset);
   plStackX_10 = puVar5 + 0x28;
   FUN_180048980();
   plStackX_10 = puVar5 + 0x24;
@@ -46464,7 +46464,7 @@ void Unwind_180905b50(undefined8 param_1,longlong param_2)
 void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePointer)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -46508,9 +46508,9 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -46530,13 +46530,13 @@ void Unwind_180905b70(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x58);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x340);
-  validationContext = *(longlong *)(lVar3 + 0x338);
+  calculatedOffset = *(longlong *)(param_2 + 0x58);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x340);
+  validationContext = *(longlong *)(calculatedOffset + 0x338);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -46549,10 +46549,10 @@ void Unwind_180905b70(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x340);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x340);
   }
-  *(undefined8 *)(lVar3 + 0x348) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 0x338) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x348) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46686,13 +46686,13 @@ void UnwindCleanupPointerArray(undefined8 exceptionContext,longlong unwindContex
 {
   longlong validationContext;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(unwindContext + 0x38);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(unwindContext + 0x38);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -46705,10 +46705,10 @@ void UnwindCleanupPointerArray(undefined8 exceptionContext,longlong unwindContex
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46722,13 +46722,13 @@ void Unwind_180905c20(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(unwindContext + 0x38);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(unwindContext + 0x38);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -46741,10 +46741,10 @@ void Unwind_180905c20(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46758,13 +46758,13 @@ void Unwind_180905c30(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -46777,10 +46777,10 @@ void Unwind_180905c30(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46794,13 +46794,13 @@ void Unwind_180905c40(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -46813,10 +46813,10 @@ void Unwind_180905c40(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46828,7 +46828,7 @@ void Unwind_180905c40(undefined8 param_1,longlong param_2)
 void Unwind_180905c50(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -46872,9 +46872,9 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -46894,13 +46894,13 @@ void Unwind_180905c60(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x340);
-  validationContext = *(longlong *)(lVar3 + 0x338);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x340);
+  validationContext = *(longlong *)(calculatedOffset + 0x338);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -46913,10 +46913,10 @@ void Unwind_180905c60(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x340);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x340);
   }
-  *(undefined8 *)(lVar3 + 0x348) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 0x338) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x348) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46930,13 +46930,13 @@ void Unwind_180905c80(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x48);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x48);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -46949,10 +46949,10 @@ void Unwind_180905c80(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46966,13 +46966,13 @@ void Unwind_180905c90(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x48);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x48);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -46985,10 +46985,10 @@ void Unwind_180905c90(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -47000,7 +47000,7 @@ void Unwind_180905c90(undefined8 param_1,longlong param_2)
 void Unwind_180905ca0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong *plVar4;
@@ -47041,9 +47041,9 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -47248,7 +47248,7 @@ void Unwind_180905e40(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   int *poperationResult;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   int iVar4;
   longlong lVar5;
   longlong lVar6;
@@ -47256,16 +47256,16 @@ void Unwind_180905e40(undefined8 param_1,longlong param_2)
   longlong lVar8;
   bool bVar9;
   
-  plVar3 = (longlong *)(param_2 + 0x28);
-  FUN_180069530((ulonglong)(*(uint *)(param_2 + 0x30) & 0x1f) * 0x1a8 + *plVar3);
+  pcalculatedOffset = (longlong *)(param_2 + 0x28);
+  FUN_180069530((ulonglong)(*(uint *)(param_2 + 0x30) & 0x1f) * 0x1a8 + *pcalculatedOffset);
   LOCK();
-  pvalidationContext = (longlong *)(*plVar3 + 0x3508);
+  pvalidationContext = (longlong *)(*pcalculatedOffset + 0x3508);
   lVar5 = *pvalidationContext;
   *pvalidationContext = *pvalidationContext + 1;
   UNLOCK();
   if (lVar5 == 0x1f) {
     *(undefined8 *)(*(longlong *)(param_2 + 0x38) + 8) = 0;
-    lVar5 = *plVar3;
+    lVar5 = *pcalculatedOffset;
     lVar6 = *(longlong *)(param_2 + 0x40);
     LOCK();
     poperationResult = (int *)(lVar5 + 0x3530);
@@ -47348,7 +47348,7 @@ void Unwind_180905e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905ea0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -47392,9 +47392,9 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -47414,12 +47414,12 @@ void Unwind_180905ec0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x50) + 0x3c8);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x3d0);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x1a8) {
-    FUN_180069530(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x1a8) {
+    FUN_180069530(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -47435,12 +47435,12 @@ void Unwind_180905ee0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x60);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x1a8) {
-    FUN_180069530(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x1a8) {
+    FUN_180069530(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -47454,7 +47454,7 @@ void Unwind_180905ee0(undefined8 param_1,longlong param_2)
 void Unwind_180905ef0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong *plVar4;
@@ -47495,9 +47495,9 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -47663,7 +47663,7 @@ void Unwind_180905f90(undefined8 param_1,longlong param_2)
 void Unwind_180905fa0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong lVar4;
@@ -47707,9 +47707,9 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -47729,12 +47729,12 @@ void Unwind_180905fc0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x3c8);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x3d0);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x1a8) {
-    FUN_180069530(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x1a8) {
+    FUN_180069530(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -47748,7 +47748,7 @@ void Unwind_180905fc0(undefined8 param_1,longlong param_2)
 void Unwind_180905fe0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   char *pcVar2;
   undefined8 *puVar3;
   longlong *plVar4;
@@ -47789,9 +47789,9 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
     if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *puVar3 = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      referenceCountPointer = (int *)(lVar5 + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -47856,12 +47856,12 @@ void Unwind_180906060(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x78);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x1a8) {
-    FUN_180069530(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x1a8) {
+    FUN_180069530(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -48053,9 +48053,9 @@ void Unwind_180906140(undefined8 param_1,longlong param_2)
 void Unwind_180906160(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0xa8) + 0x1d8);
@@ -48064,14 +48064,14 @@ void Unwind_180906160(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -48089,9 +48089,9 @@ void Unwind_180906160(undefined8 param_1,longlong param_2)
 void Unwind_180906180(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xb0);
@@ -48100,14 +48100,14 @@ void Unwind_180906180(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -48125,9 +48125,9 @@ void Unwind_180906180(undefined8 param_1,longlong param_2)
 void Unwind_180906190(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xb0);
@@ -48136,14 +48136,14 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -48217,9 +48217,9 @@ void Unwind_1809061d0(undefined8 param_1,longlong param_2)
 void Unwind_1809061f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x1d8);
@@ -48228,14 +48228,14 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -48463,9 +48463,9 @@ void Unwind_180906460(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180906470(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xe0);
@@ -48474,14 +48474,14 @@ void Unwind_180906470(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -48615,37 +48615,37 @@ void Unwind_1809064c0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x20);
   pvalidationContext = (longlong *)plVar2[1];
-  plVar3 = (longlong *)*plVar2;
+  pcalculatedOffset = (longlong *)*plVar2;
   while( true ) {
-    if (plVar3 == pvalidationContext) {
+    if (pcalculatedOffset == pvalidationContext) {
       if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       return;
     }
-    if (*(longlong *)((longlong)plVar3 + 0x12) != 0) {
+    if (*(longlong *)((longlong)pcalculatedOffset + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *(undefined8 *)((longlong)plVar3 + 0x12) = 0;
-    if (*(longlong *)((longlong)plVar3 + 0x1a) != 0) break;
-    *(undefined8 *)((longlong)plVar3 + 0x1a) = 0;
-    if (*plVar3 != 0) {
+    *(undefined8 *)((longlong)pcalculatedOffset + 0x12) = 0;
+    if (*(longlong *)((longlong)pcalculatedOffset + 0x1a) != 0) break;
+    *(undefined8 *)((longlong)pcalculatedOffset + 0x1a) = 0;
+    if (*pcalculatedOffset != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *plVar3 = 0;
-    if (plVar3[1] != 0) {
+    *pcalculatedOffset = 0;
+    if (pcalculatedOffset[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    plVar3[1] = 0;
-    plVar3 = (longlong *)((longlong)plVar3 + 0x24);
+    pcalculatedOffset[1] = 0;
+    pcalculatedOffset = (longlong *)((longlong)pcalculatedOffset + 0x24);
   }
                     // WARNING: Subroutine does not return
   TerminateSystemE0();
@@ -48658,37 +48658,37 @@ void Unwind_1809064d0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x20);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x28);
-  plVar3 = (longlong *)*plVar2;
+  pcalculatedOffset = (longlong *)*plVar2;
   while( true ) {
-    if (plVar3 == pvalidationContext) {
+    if (pcalculatedOffset == pvalidationContext) {
       if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       return;
     }
-    if (*(longlong *)((longlong)plVar3 + 0x12) != 0) {
+    if (*(longlong *)((longlong)pcalculatedOffset + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *(undefined8 *)((longlong)plVar3 + 0x12) = 0;
-    if (*(longlong *)((longlong)plVar3 + 0x1a) != 0) break;
-    *(undefined8 *)((longlong)plVar3 + 0x1a) = 0;
-    if (*plVar3 != 0) {
+    *(undefined8 *)((longlong)pcalculatedOffset + 0x12) = 0;
+    if (*(longlong *)((longlong)pcalculatedOffset + 0x1a) != 0) break;
+    *(undefined8 *)((longlong)pcalculatedOffset + 0x1a) = 0;
+    if (*pcalculatedOffset != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *plVar3 = 0;
-    if (plVar3[1] != 0) {
+    *pcalculatedOffset = 0;
+    if (pcalculatedOffset[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    plVar3[1] = 0;
-    plVar3 = (longlong *)((longlong)plVar3 + 0x24);
+    pcalculatedOffset[1] = 0;
+    pcalculatedOffset = (longlong *)((longlong)pcalculatedOffset + 0x24);
   }
                     // WARNING: Subroutine does not return
   TerminateSystemE0();
@@ -48743,37 +48743,37 @@ void Unwind_180906500(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x48);
   pvalidationContext = (longlong *)plVar2[1];
-  plVar3 = (longlong *)*plVar2;
+  pcalculatedOffset = (longlong *)*plVar2;
   while( true ) {
-    if (plVar3 == pvalidationContext) {
+    if (pcalculatedOffset == pvalidationContext) {
       if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       return;
     }
-    if (*(longlong *)((longlong)plVar3 + 0x12) != 0) {
+    if (*(longlong *)((longlong)pcalculatedOffset + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *(undefined8 *)((longlong)plVar3 + 0x12) = 0;
-    if (*(longlong *)((longlong)plVar3 + 0x1a) != 0) break;
-    *(undefined8 *)((longlong)plVar3 + 0x1a) = 0;
-    if (*plVar3 != 0) {
+    *(undefined8 *)((longlong)pcalculatedOffset + 0x12) = 0;
+    if (*(longlong *)((longlong)pcalculatedOffset + 0x1a) != 0) break;
+    *(undefined8 *)((longlong)pcalculatedOffset + 0x1a) = 0;
+    if (*pcalculatedOffset != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *plVar3 = 0;
-    if (plVar3[1] != 0) {
+    *pcalculatedOffset = 0;
+    if (pcalculatedOffset[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    plVar3[1] = 0;
-    plVar3 = (longlong *)((longlong)plVar3 + 0x24);
+    pcalculatedOffset[1] = 0;
+    pcalculatedOffset = (longlong *)((longlong)pcalculatedOffset + 0x24);
   }
                     // WARNING: Subroutine does not return
   TerminateSystemE0();
@@ -48786,37 +48786,37 @@ void Unwind_180906510(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x40);
   pvalidationContext = (longlong *)plVar2[1];
-  plVar3 = (longlong *)*plVar2;
+  pcalculatedOffset = (longlong *)*plVar2;
   while( true ) {
-    if (plVar3 == pvalidationContext) {
+    if (pcalculatedOffset == pvalidationContext) {
       if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       return;
     }
-    if (*(longlong *)((longlong)plVar3 + 0x12) != 0) {
+    if (*(longlong *)((longlong)pcalculatedOffset + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *(undefined8 *)((longlong)plVar3 + 0x12) = 0;
-    if (*(longlong *)((longlong)plVar3 + 0x1a) != 0) break;
-    *(undefined8 *)((longlong)plVar3 + 0x1a) = 0;
-    if (*plVar3 != 0) {
+    *(undefined8 *)((longlong)pcalculatedOffset + 0x12) = 0;
+    if (*(longlong *)((longlong)pcalculatedOffset + 0x1a) != 0) break;
+    *(undefined8 *)((longlong)pcalculatedOffset + 0x1a) = 0;
+    if (*pcalculatedOffset != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *plVar3 = 0;
-    if (plVar3[1] != 0) {
+    *pcalculatedOffset = 0;
+    if (pcalculatedOffset[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    plVar3[1] = 0;
-    plVar3 = (longlong *)((longlong)plVar3 + 0x24);
+    pcalculatedOffset[1] = 0;
+    pcalculatedOffset = (longlong *)((longlong)pcalculatedOffset + 0x24);
   }
                     // WARNING: Subroutine does not return
   TerminateSystemE0();
@@ -49830,9 +49830,9 @@ void Unwind_180906b40(undefined8 param_1,longlong param_2)
 void Unwind_180906b50(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x88);
@@ -49841,14 +49841,14 @@ void Unwind_180906b50(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -49952,6 +49952,16 @@ void Unwind_180906ba0(undefined8 param_1,longlong param_2)
 
 
 
+/**
+ * @brief 清理异常处理资源
+ * 
+ * 该函数负责清理异常处理相关的资源，包括释放内存和重置状态。
+ * 这是一个系统级的资源清理函数，用于处理异常发生后的资源回收。
+ * 
+ * @param exceptionContext 异常上下文指针，包含异常处理的相关信息
+ * @param cleanupContext 清理上下文指针，包含清理操作的配置信息
+ * @note 这是简化实现，原始函数名为 Unwind_180906bb0
+ */
 void CleanupExceptionHandlingResources(undefined8 exceptionContext, longlong cleanupContext)
 
 {
@@ -49966,14 +49976,14 @@ void CleanupExceptionHandlingResources(undefined8 exceptionContext, longlong cle
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -49988,28 +49998,38 @@ void CleanupExceptionHandlingResources(undefined8 exceptionContext, longlong cle
 
 
 
-void Unwind_180906bc0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理异常处理资源的替代实现
+ * 
+ * 该函数是清理异常处理资源的替代实现，提供不同的资源清理策略。
+ * 用于处理不同类型的异常情况和资源回收需求。
+ * 
+ * @param exceptionContext 异常上下文指针，包含异常处理的相关信息
+ * @param cleanupContext 清理上下文指针，包含清理操作的配置信息
+ * @note 这是简化实现，原始函数名为 Unwind_180906bc0
+ */
+void CleanupExceptionHandlingResourcesAlternative(undefined8 exceptionContext, longlong cleanupContext)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  resourcePointer = *(undefined8 **)(param_2 + 0x58);
+  resourcePointer = *(undefined8 **)(cleanupContext + 0x58);
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50248,9 +50268,9 @@ void ValidateContextStateB(undefined8 validationContext, longlong validationRang
 void Unwind_180906c80(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xa8);
@@ -50259,14 +50279,14 @@ void Unwind_180906c80(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50284,9 +50304,9 @@ void Unwind_180906c80(undefined8 param_1,longlong param_2)
 void Unwind_180906c90(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x30);
@@ -50295,14 +50315,14 @@ void Unwind_180906c90(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50320,9 +50340,9 @@ void Unwind_180906c90(undefined8 param_1,longlong param_2)
 void Unwind_180906ca0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x88);
@@ -50331,14 +50351,14 @@ void Unwind_180906ca0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50377,9 +50397,9 @@ void Unwind_180906cb0(undefined8 param_1,longlong param_2)
 void Unwind_180906cc0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x118);
@@ -50388,14 +50408,14 @@ void Unwind_180906cc0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50413,9 +50433,9 @@ void Unwind_180906cc0(undefined8 param_1,longlong param_2)
 void Unwind_180906cd0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x118);
@@ -50424,14 +50444,14 @@ void Unwind_180906cd0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50470,9 +50490,9 @@ void Unwind_180906ce0(undefined8 param_1,longlong param_2)
 void Unwind_180906cf0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xf8);
@@ -50481,14 +50501,14 @@ void Unwind_180906cf0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50506,9 +50526,9 @@ void Unwind_180906cf0(undefined8 param_1,longlong param_2)
 void Unwind_180906d00(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x260);
@@ -50517,14 +50537,14 @@ void Unwind_180906d00(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50542,9 +50562,9 @@ void Unwind_180906d00(undefined8 param_1,longlong param_2)
 void Unwind_180906d10(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x260);
@@ -50553,14 +50573,14 @@ void Unwind_180906d10(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50599,9 +50619,9 @@ void Unwind_180906d20(undefined8 param_1,longlong param_2)
 void Unwind_180906d30(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xd8);
@@ -50610,14 +50630,14 @@ void Unwind_180906d30(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50769,9 +50789,9 @@ void CleanupExceptionMemoryBlock(undefined8 ExceptionContext, longlong MemoryCon
 void Unwind_180906d70(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x30);
@@ -50780,14 +50800,14 @@ void Unwind_180906d70(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50805,9 +50825,9 @@ void Unwind_180906d70(undefined8 param_1,longlong param_2)
 void Unwind_180906d80(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x88);
@@ -50816,14 +50836,14 @@ void Unwind_180906d80(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50841,9 +50861,9 @@ void Unwind_180906d80(undefined8 param_1,longlong param_2)
 void Unwind_180906d90(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x268);
@@ -50852,14 +50872,14 @@ void Unwind_180906d90(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50877,9 +50897,9 @@ void Unwind_180906d90(undefined8 param_1,longlong param_2)
 void Unwind_180906da0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x268);
@@ -50888,14 +50908,14 @@ void Unwind_180906da0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -50934,9 +50954,9 @@ void Unwind_180906db0(undefined8 param_1,longlong param_2)
 void Unwind_180906dc0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x30);
@@ -50945,14 +50965,14 @@ void Unwind_180906dc0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -52062,9 +52082,9 @@ void Unwind_180907340(undefined8 param_1,longlong param_2)
 void Unwind_180907350(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x40);
@@ -52073,14 +52093,14 @@ void Unwind_180907350(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -52098,9 +52118,9 @@ void Unwind_180907350(undefined8 param_1,longlong param_2)
 void Unwind_180907360(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
@@ -52109,14 +52129,14 @@ void Unwind_180907360(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -52134,9 +52154,9 @@ void Unwind_180907360(undefined8 param_1,longlong param_2)
 void Unwind_180907370(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
@@ -52145,14 +52165,14 @@ void Unwind_180907370(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -52392,9 +52412,9 @@ void Unwind_1809074a0(undefined8 param_1,longlong param_2)
 void Unwind_1809074d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x50);
@@ -52403,14 +52423,14 @@ void Unwind_1809074d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -52428,9 +52448,9 @@ void Unwind_1809074d0(undefined8 param_1,longlong param_2)
 void Unwind_1809074e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x50);
@@ -52439,14 +52459,14 @@ void Unwind_1809074e0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -52464,9 +52484,9 @@ void Unwind_1809074e0(undefined8 param_1,longlong param_2)
 void Unwind_1809074f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x40);
@@ -52475,14 +52495,14 @@ void Unwind_1809074f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -52848,17 +52868,17 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
 {
   undefined8 *puVar1;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x50);
   *resourcePointer = &UNK_180a14bb8;
   puVar1 = (undefined8 *)resourcePointer[0x11];
   if (puVar1 != (undefined8 *)0x0) {
-    lVar3 = __RTCastToVoid(puVar1);
+    calculatedOffset = __RTCastToVoid(puVar1);
     (**(code **)*puVar1)(puVar1,0);
-    if (lVar3 != 0) {
+    if (calculatedOffset != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar3);
+      FUN_18064e900(calculatedOffset);
     }
   }
   resourcePointer[0x11] = 0;
@@ -52900,17 +52920,17 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
 {
   undefined8 *puVar1;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x40);
   *resourcePointer = &UNK_180a14bb8;
   puVar1 = (undefined8 *)resourcePointer[0x11];
   if (puVar1 != (undefined8 *)0x0) {
-    lVar3 = __RTCastToVoid(puVar1);
+    calculatedOffset = __RTCastToVoid(puVar1);
     (**(code **)*puVar1)(puVar1,0);
-    if (lVar3 != 0) {
+    if (calculatedOffset != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar3);
+      FUN_18064e900(calculatedOffset);
     }
   }
   resourcePointer[0x11] = 0;
@@ -53051,12 +53071,12 @@ void Unwind_180907800(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x20) + 8);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x10);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x60) {
-    FUN_180089640(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x60) {
+    FUN_180089640(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -53147,9 +53167,9 @@ void Unwind_180907860(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907880(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x110);
@@ -53158,14 +53178,14 @@ void Unwind_180907880(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -53185,12 +53205,12 @@ void Unwind_1809078a0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x28);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x60) {
-    FUN_180089640(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x60) {
+    FUN_180089640(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -53362,12 +53382,12 @@ void Unwind_180907920(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x40);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x60) {
-    FUN_180089640(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x60) {
+    FUN_180089640(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -53534,30 +53554,30 @@ void Unwind_1809079c0(undefined8 param_1,longlong param_2)
 void Unwind_1809079d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x80);
-  *(undefined **)(lVar3 + 0xd8) = &DefaultExceptionHandlerB;
-  if (*(longlong *)(lVar3 + 0xa8) != 0) {
+  calculatedOffset = *(longlong *)(param_2 + 0x80);
+  *(undefined **)(calculatedOffset + 0xd8) = &DefaultExceptionHandlerB;
+  if (*(longlong *)(calculatedOffset + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1800ba100(lVar3 + 0x78);
-  if ((1 < *(ulonglong *)(lVar3 + 0x88)) &&
-     (resourcePointer = *(undefined8 **)(lVar3 + 0x80), resourcePointer != (undefined8 *)0x0)) {
+  FUN_1800ba100(calculatedOffset + 0x78);
+  if ((1 < *(ulonglong *)(calculatedOffset + 0x88)) &&
+     (resourcePointer = *(undefined8 **)(calculatedOffset + 0x80), resourcePointer != (undefined8 *)0x0)) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -53577,9 +53597,9 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
 void Unwind_1809079e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x180);
@@ -53588,14 +53608,14 @@ void Unwind_1809079e0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -53631,9 +53651,9 @@ void Unwind_180907a00(undefined8 param_1,longlong param_2)
 void Unwind_180907a10(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x130);
@@ -53642,14 +53662,14 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -53710,9 +53730,9 @@ void Unwind_180907a40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907a50(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x130);
@@ -53721,14 +53741,14 @@ void Unwind_180907a50(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -53746,9 +53766,9 @@ void Unwind_180907a50(undefined8 param_1,longlong param_2)
 void Unwind_180907a60(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x130);
@@ -53757,14 +53777,14 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -54045,9 +54065,9 @@ void Unwind_180907c10(undefined8 param_1,longlong param_2)
 void Unwind_180907c20(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x230);
@@ -54056,14 +54076,14 @@ void Unwind_180907c20(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -54125,9 +54145,9 @@ void Unwind_180907c60(undefined8 param_1,longlong param_2)
 void Unwind_180907c70(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x230);
@@ -54136,14 +54156,14 @@ void Unwind_180907c70(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -54161,9 +54181,9 @@ void Unwind_180907c70(undefined8 param_1,longlong param_2)
 void Unwind_180907c80(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x230);
@@ -54172,14 +54192,14 @@ void Unwind_180907c80(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -54342,9 +54362,9 @@ void Unwind_180907d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907d30(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x168);
@@ -54353,14 +54373,14 @@ void Unwind_180907d30(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -54525,9 +54545,9 @@ void Unwind_180907e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907e90(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x28);
@@ -54536,14 +54556,14 @@ void Unwind_180907e90(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -54561,9 +54581,9 @@ void Unwind_180907e90(undefined8 param_1,longlong param_2)
 void Unwind_180907ea0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x38);
@@ -54572,14 +54592,14 @@ void Unwind_180907ea0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -54597,9 +54617,9 @@ void Unwind_180907ea0(undefined8 param_1,longlong param_2)
 void Unwind_180907eb0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x60);
@@ -54608,14 +54628,14 @@ void Unwind_180907eb0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -54633,9 +54653,9 @@ void Unwind_180907eb0(undefined8 param_1,longlong param_2)
 void Unwind_180907ec0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x38);
@@ -54644,14 +54664,14 @@ void Unwind_180907ec0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -54669,9 +54689,9 @@ void Unwind_180907ec0(undefined8 param_1,longlong param_2)
 void Unwind_180907ed0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x38);
@@ -54680,14 +54700,14 @@ void Unwind_180907ed0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -54917,9 +54937,9 @@ void Unwind_180907ff0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180908000(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x48);
@@ -54928,14 +54948,14 @@ void Unwind_180908000(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -55024,14 +55044,14 @@ void HandleExceptionA3(undefined8 ContextParameter, longlong SystemContext)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -55786,9 +55806,9 @@ void Unwind_180908630(undefined8 param_1,longlong param_2)
 void Unwind_180908650(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x10);
@@ -55797,14 +55817,14 @@ void Unwind_180908650(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -55961,13 +55981,13 @@ void Unwind_180908730(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x50) + 0x1868);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1870);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -56002,13 +56022,13 @@ void Unwind_180908770(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x60);
   pvalidationContext = (longlong *)plVar2[1];
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -56063,9 +56083,9 @@ void Unwind_1809087b0(undefined8 param_1,longlong param_2)
 void Unwind_1809087c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xa0);
@@ -56074,14 +56094,14 @@ void Unwind_1809087c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56173,9 +56193,9 @@ void Unwind_180908820(undefined8 param_1,longlong param_2)
 void Unwind_180908830(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xa0);
@@ -56184,14 +56204,14 @@ void Unwind_180908830(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56209,9 +56229,9 @@ void Unwind_180908830(undefined8 param_1,longlong param_2)
 void Unwind_180908840(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xa0);
@@ -56220,14 +56240,14 @@ void Unwind_180908840(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56277,9 +56297,9 @@ void Unwind_180908860(undefined8 param_1,longlong param_2)
 void Unwind_180908870(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x160);
@@ -56288,14 +56308,14 @@ void Unwind_180908870(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56589,9 +56609,9 @@ void Unwind_180908a10(undefined8 param_1,longlong param_2)
 void Unwind_180908a20(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1a0);
@@ -56600,14 +56620,14 @@ void Unwind_180908a20(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56625,9 +56645,9 @@ void Unwind_180908a20(undefined8 param_1,longlong param_2)
 void Unwind_180908a30(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x160);
@@ -56636,14 +56656,14 @@ void Unwind_180908a30(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56661,9 +56681,9 @@ void Unwind_180908a30(undefined8 param_1,longlong param_2)
 void Unwind_180908a40(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x120);
@@ -56672,14 +56692,14 @@ void Unwind_180908a40(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56697,9 +56717,9 @@ void Unwind_180908a40(undefined8 param_1,longlong param_2)
 void Unwind_180908a50(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1a0);
@@ -56708,14 +56728,14 @@ void Unwind_180908a50(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56733,9 +56753,9 @@ void Unwind_180908a50(undefined8 param_1,longlong param_2)
 void Unwind_180908a60(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1a0);
@@ -56744,14 +56764,14 @@ void Unwind_180908a60(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56769,9 +56789,9 @@ void Unwind_180908a60(undefined8 param_1,longlong param_2)
 void Unwind_180908a70(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x160);
@@ -56780,14 +56800,14 @@ void Unwind_180908a70(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56805,9 +56825,9 @@ void Unwind_180908a70(undefined8 param_1,longlong param_2)
 void Unwind_180908a80(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x120);
@@ -56816,14 +56836,14 @@ void Unwind_180908a80(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56841,9 +56861,9 @@ void Unwind_180908a80(undefined8 param_1,longlong param_2)
 void Unwind_180908a90(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x68);
@@ -56852,14 +56872,14 @@ void Unwind_180908a90(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56886,9 +56906,9 @@ void Unwind_180908aa0(undefined8 param_1,longlong param_2)
 void Unwind_180908ab0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x48);
@@ -56897,14 +56917,14 @@ void Unwind_180908ab0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56922,9 +56942,9 @@ void Unwind_180908ab0(undefined8 param_1,longlong param_2)
 void Unwind_180908ac0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x68);
@@ -56933,14 +56953,14 @@ void Unwind_180908ac0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -56958,9 +56978,9 @@ void Unwind_180908ac0(undefined8 param_1,longlong param_2)
 void Unwind_180908ad0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x68);
@@ -56969,14 +56989,14 @@ void Unwind_180908ad0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -57031,9 +57051,9 @@ void Unwind_180908b00(undefined8 param_1,longlong param_2)
 void Unwind_180908b10(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x30) + 0x48);
@@ -57042,14 +57062,14 @@ void Unwind_180908b10(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -57534,9 +57554,9 @@ void Unwind_180908dc0(undefined8 param_1,longlong param_2)
 void Unwind_180908dd0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x108) + 0x48);
@@ -57545,14 +57565,14 @@ void Unwind_180908dd0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -57579,9 +57599,9 @@ void Unwind_180908de0(undefined8 param_1,longlong param_2)
 void Unwind_180908df0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xa0);
@@ -57590,14 +57610,14 @@ void Unwind_180908df0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -57615,9 +57635,9 @@ void Unwind_180908df0(undefined8 param_1,longlong param_2)
 void Unwind_180908e00(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xa0);
@@ -57626,14 +57646,14 @@ void Unwind_180908e00(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -57679,9 +57699,9 @@ void Unwind_180908e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180908e50(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x20);
@@ -57690,14 +57710,14 @@ void Unwind_180908e50(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -57715,9 +57735,9 @@ void Unwind_180908e50(undefined8 param_1,longlong param_2)
 void Unwind_180908e60(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
@@ -57726,14 +57746,14 @@ void Unwind_180908e60(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -57751,9 +57771,9 @@ void Unwind_180908e60(undefined8 param_1,longlong param_2)
 void Unwind_180908e70(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
@@ -57762,14 +57782,14 @@ void Unwind_180908e70(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -57932,20 +57952,20 @@ void Unwind_180908f30(undefined8 param_1,longlong param_2)
 {
   undefined8 uVar1;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  pmemoryBaseAddress = (undefined8 *)(lVar3 + -0xa0);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  pmemoryBaseAddress = (undefined8 *)(calculatedOffset + -0xa0);
   *pmemoryBaseAddress = &UNK_180a01668;
-  if ((*(longlong *)(lVar3 + -0x20) != 0) && (**(longlong **)(lVar3 + -0x88) == lVar3 + -0x30)) {
-    uVar1 = *(undefined8 *)(lVar3 + -0x10);
-    lVar2 = *(longlong *)(lVar3 + -0x18);
-    **(longlong **)(lVar3 + -0x88) = lVar2;
-    **(longlong **)(lVar3 + -0x68) = lVar2;
-    **(int **)(lVar3 + -0x50) = (int)uVar1 - (int)lVar2;
+  if ((*(longlong *)(calculatedOffset + -0x20) != 0) && (**(longlong **)(calculatedOffset + -0x88) == calculatedOffset + -0x30)) {
+    uVar1 = *(undefined8 *)(calculatedOffset + -0x10);
+    lVar2 = *(longlong *)(calculatedOffset + -0x18);
+    **(longlong **)(calculatedOffset + -0x88) = lVar2;
+    **(longlong **)(calculatedOffset + -0x68) = lVar2;
+    **(int **)(calculatedOffset + -0x50) = (int)uVar1 - (int)lVar2;
   }
-  if (*(char *)(lVar3 + -0x24) != '\0') {
+  if (*(char *)(calculatedOffset + -0x24) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -58135,9 +58155,9 @@ void Unwind_180909080(undefined8 param_1,longlong param_2)
 void Unwind_180909090(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x48);
@@ -58146,14 +58166,14 @@ void Unwind_180909090(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -58226,9 +58246,9 @@ void Unwind_1809090a0(undefined8 param_1,longlong param_2)
 void Unwind_1809090b0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x121c0);
@@ -58237,14 +58257,14 @@ void Unwind_1809090b0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -58458,9 +58478,9 @@ void Unwind_180909270(undefined8 param_1,longlong param_2)
 void Unwind_180909290(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong *pmemoryBaseAddress;
   ulonglong uVar5;
   ulonglong uVar6;
@@ -58474,14 +58494,14 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
   if (resourcePointer != (undefined8 *)0x0) {
     uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar3 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -58515,7 +58535,7 @@ void Unwind_1809092b0(undefined8 param_1,longlong param_2)
 void Unwind_1809092d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
   ulonglong *puVar3;
   longlong lVar4;
@@ -58536,9 +58556,9 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
         *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        referenceCountPointer = (int *)(lVar4 + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -58558,7 +58578,7 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
 void Unwind_1809092e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
   ulonglong *puVar3;
   longlong lVar4;
@@ -58579,9 +58599,9 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
         *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        referenceCountPointer = (int *)(lVar4 + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -58859,16 +58879,16 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   longlong *pvalidationContext;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong lVar4;
   longlong lVar5;
   ulonglong uVar6;
   
-  lVar3 = *(longlong *)(param_2 + 0x90);
+  calculatedOffset = *(longlong *)(param_2 + 0x90);
   uVar6 = 0;
-  pvalidationContext = (longlong *)(lVar3 + 0x8090);
+  pvalidationContext = (longlong *)(calculatedOffset + 0x8090);
   lVar4 = *pvalidationContext;
-  if (*(longlong *)(lVar3 + 0x8098) - lVar4 >> 3 != 0) {
+  if (*(longlong *)(calculatedOffset + 0x8098) - lVar4 >> 3 != 0) {
     do {
       resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
       if (resourcePointer != (undefined8 *)0x0) {
@@ -58899,30 +58919,30 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
       lVar4 = *pvalidationContext;
-    } while (uVar6 < (ulonglong)(*(longlong *)(lVar3 + 0x8098) - lVar4 >> 3));
+    } while (uVar6 < (ulonglong)(*(longlong *)(calculatedOffset + 0x8098) - lVar4 >> 3));
   }
-  *(longlong *)(lVar3 + 0x8098) = lVar4;
-  resourcePointer = *(undefined8 **)(lVar3 + 0x8218);
+  *(longlong *)(calculatedOffset + 0x8098) = lVar4;
+  resourcePointer = *(undefined8 **)(calculatedOffset + 0x8218);
   if (resourcePointer != (undefined8 *)0x0) {
-    FUN_1800f74f0(lVar3 + 0x8208,*resourcePointer);
+    FUN_1800f74f0(calculatedOffset + 0x8208,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
     FUN_18064e900(resourcePointer);
   }
-  FUN_180058370(lVar3 + 0x81d8,*(undefined8 *)(lVar3 + 0x81e8),param_3,param_4,0xfffffffffffffffe);
-  FUN_180058370(lVar3 + 0x81a8,*(undefined8 *)(lVar3 + 0x81b8));
-  FUN_180058370(lVar3 + 0x8178,*(undefined8 *)(lVar3 + 0x8188));
-  FUN_1808fc8a8(lVar3 + 0x80d8,0x20,5,FUN_180046860);
+  FUN_180058370(calculatedOffset + 0x81d8,*(undefined8 *)(calculatedOffset + 0x81e8),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058370(calculatedOffset + 0x81a8,*(undefined8 *)(calculatedOffset + 0x81b8));
+  FUN_180058370(calculatedOffset + 0x8178,*(undefined8 *)(calculatedOffset + 0x8188));
+  FUN_1808fc8a8(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
   if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1808fc8a8(lVar3 + 0x7fe8,0x20,5,FUN_180046860);
-  lVar4 = *(longlong *)(lVar3 + 0x7fd0);
-  for (lVar5 = *(longlong *)(lVar3 + 0x7fc8); lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
+  FUN_1808fc8a8(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
+  lVar4 = *(longlong *)(calculatedOffset + 0x7fd0);
+  for (lVar5 = *(longlong *)(calculatedOffset + 0x7fc8); lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
     FUN_180152b00(lVar5);
   }
-  if (*(longlong *)(lVar3 + 0x7fc8) != 0) {
+  if (*(longlong *)(calculatedOffset + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -59106,12 +59126,12 @@ void Unwind_1809094c0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x40);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x78) {
-    FUN_1800adb30(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x78) {
+    FUN_1800adb30(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -59439,9 +59459,9 @@ void Unwind_180909650(undefined8 param_1,longlong param_2)
 void Unwind_180909660(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xd8);
@@ -59450,14 +59470,14 @@ void Unwind_180909660(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -59475,9 +59495,9 @@ void Unwind_180909660(undefined8 param_1,longlong param_2)
 void Unwind_180909670(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xd8);
@@ -59486,14 +59506,14 @@ void Unwind_180909670(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -59511,9 +59531,9 @@ void Unwind_180909670(undefined8 param_1,longlong param_2)
 void Unwind_180909680(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0xb8) + 8);
@@ -59522,14 +59542,14 @@ void Unwind_180909680(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -59547,9 +59567,9 @@ void Unwind_180909680(undefined8 param_1,longlong param_2)
 void Unwind_180909690(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xb8);
@@ -59558,14 +59578,14 @@ void Unwind_180909690(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -59583,9 +59603,9 @@ void Unwind_180909690(undefined8 param_1,longlong param_2)
 void Unwind_1809096a0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xb8);
@@ -59594,14 +59614,14 @@ void Unwind_1809096a0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -59702,16 +59722,16 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   longlong *pvalidationContext;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong lVar4;
   longlong lVar5;
   ulonglong uVar6;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
   uVar6 = 0;
-  pvalidationContext = (longlong *)(lVar3 + 0x8090);
+  pvalidationContext = (longlong *)(calculatedOffset + 0x8090);
   lVar4 = *pvalidationContext;
-  if (*(longlong *)(lVar3 + 0x8098) - lVar4 >> 3 != 0) {
+  if (*(longlong *)(calculatedOffset + 0x8098) - lVar4 >> 3 != 0) {
     do {
       resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
       if (resourcePointer != (undefined8 *)0x0) {
@@ -59742,30 +59762,30 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
       lVar4 = *pvalidationContext;
-    } while (uVar6 < (ulonglong)(*(longlong *)(lVar3 + 0x8098) - lVar4 >> 3));
+    } while (uVar6 < (ulonglong)(*(longlong *)(calculatedOffset + 0x8098) - lVar4 >> 3));
   }
-  *(longlong *)(lVar3 + 0x8098) = lVar4;
-  resourcePointer = *(undefined8 **)(lVar3 + 0x8218);
+  *(longlong *)(calculatedOffset + 0x8098) = lVar4;
+  resourcePointer = *(undefined8 **)(calculatedOffset + 0x8218);
   if (resourcePointer != (undefined8 *)0x0) {
-    FUN_1800f74f0(lVar3 + 0x8208,*resourcePointer);
+    FUN_1800f74f0(calculatedOffset + 0x8208,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
     FUN_18064e900(resourcePointer);
   }
-  FUN_180058370(lVar3 + 0x81d8,*(undefined8 *)(lVar3 + 0x81e8),param_3,param_4,0xfffffffffffffffe);
-  FUN_180058370(lVar3 + 0x81a8,*(undefined8 *)(lVar3 + 0x81b8));
-  FUN_180058370(lVar3 + 0x8178,*(undefined8 *)(lVar3 + 0x8188));
-  FUN_1808fc8a8(lVar3 + 0x80d8,0x20,5,FUN_180046860);
+  FUN_180058370(calculatedOffset + 0x81d8,*(undefined8 *)(calculatedOffset + 0x81e8),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058370(calculatedOffset + 0x81a8,*(undefined8 *)(calculatedOffset + 0x81b8));
+  FUN_180058370(calculatedOffset + 0x8178,*(undefined8 *)(calculatedOffset + 0x8188));
+  FUN_1808fc8a8(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
   if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1808fc8a8(lVar3 + 0x7fe8,0x20,5,FUN_180046860);
-  lVar4 = *(longlong *)(lVar3 + 0x7fd0);
-  for (lVar5 = *(longlong *)(lVar3 + 0x7fc8); lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
+  FUN_1808fc8a8(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
+  lVar4 = *(longlong *)(calculatedOffset + 0x7fd0);
+  for (lVar5 = *(longlong *)(calculatedOffset + 0x7fc8); lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
     FUN_180152b00(lVar5);
   }
-  if (*(longlong *)(lVar3 + 0x7fc8) != 0) {
+  if (*(longlong *)(calculatedOffset + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -60043,9 +60063,9 @@ void Unwind_180909850(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180909860(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x68);
@@ -60054,14 +60074,14 @@ void Unwind_180909860(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -60250,9 +60270,9 @@ void Unwind_1809099d0(undefined8 param_1,longlong param_2)
 void Unwind_180909a00(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x38);
@@ -60261,14 +60281,14 @@ void Unwind_180909a00(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -60318,9 +60338,9 @@ void Unwind_180909a30(undefined8 param_1,longlong param_2)
 void Unwind_180909a40(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x38);
@@ -60329,14 +60349,14 @@ void Unwind_180909a40(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -60354,9 +60374,9 @@ void Unwind_180909a40(undefined8 param_1,longlong param_2)
 void Unwind_180909a50(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x38);
@@ -60365,14 +60385,14 @@ void Unwind_180909a50(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -60616,9 +60636,9 @@ void Unwind_180909bf0(undefined8 param_1,longlong param_2)
 void Unwind_180909c20(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x30) + 8);
@@ -60627,14 +60647,14 @@ void Unwind_180909c20(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -60770,13 +60790,13 @@ void Unwind_180909d00(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x580);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x588);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -60802,13 +60822,13 @@ void Unwind_180909d60(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x6c0);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x6c8);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -60825,13 +60845,13 @@ void Unwind_180909d80(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x6e0);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x6e8);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -60848,13 +60868,13 @@ void Unwind_180909da0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x700);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x708);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -60871,13 +60891,13 @@ void Unwind_180909dc0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x720);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x728);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -61010,30 +61030,30 @@ void Unwind_180909f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180909f60(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
   FUN_1802ab380();
   _Mtx_destroy_in_situ();
-  if (*(longlong *)(lVar3 + 0xae0) != 0) {
+  if (*(longlong *)(calculatedOffset + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  resourcePointer = *(undefined8 **)(lVar3 + 0xac0);
+  resourcePointer = *(undefined8 **)(calculatedOffset + 0xac0);
   if (resourcePointer != (undefined8 *)0x0) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -61118,13 +61138,13 @@ void Unwind_18090a060(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0xd00);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd08);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -61335,13 +61355,13 @@ void Unwind_18090a1f0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x580);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x588);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -61367,13 +61387,13 @@ void Unwind_18090a250(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x6c0);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x6c8);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -61390,13 +61410,13 @@ void Unwind_18090a270(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x6e0);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x6e8);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -61413,13 +61433,13 @@ void Unwind_18090a290(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x700);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x708);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -61436,13 +61456,13 @@ void Unwind_18090a2b0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x720);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x728);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -61575,30 +61595,30 @@ void Unwind_18090a430(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a450(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x60);
+  calculatedOffset = *(longlong *)(param_2 + 0x60);
   FUN_1802ab380();
   _Mtx_destroy_in_situ();
-  if (*(longlong *)(lVar3 + 0xae0) != 0) {
+  if (*(longlong *)(calculatedOffset + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  resourcePointer = *(undefined8 **)(lVar3 + 0xac0);
+  resourcePointer = *(undefined8 **)(calculatedOffset + 0xac0);
   if (resourcePointer != (undefined8 *)0x0) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -61813,9 +61833,9 @@ void Unwind_18090a5b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
@@ -61824,14 +61844,14 @@ void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -61849,9 +61869,9 @@ void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
 void Unwind_18090a5d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x20);
@@ -61860,14 +61880,14 @@ void Unwind_18090a5d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -62057,9 +62077,9 @@ void Unwind_18090a750(undefined8 param_1,longlong param_2)
 void Unwind_18090a780(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x40);
@@ -62068,14 +62088,14 @@ void Unwind_18090a780(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -62107,9 +62127,9 @@ void Unwind_18090a790(undefined8 param_1,longlong param_2)
 void Unwind_18090a7a0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x40);
@@ -62118,14 +62138,14 @@ void Unwind_18090a7a0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -62286,9 +62306,9 @@ void Unwind_18090a870(undefined8 param_1,longlong param_2)
 void Unwind_18090a880(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 8);
@@ -62297,14 +62317,14 @@ void Unwind_18090a880(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -62322,9 +62342,9 @@ void Unwind_18090a880(undefined8 param_1,longlong param_2)
 void Unwind_18090a890(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 8);
@@ -62333,14 +62353,14 @@ void Unwind_18090a890(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -62360,13 +62380,13 @@ void Unwind_18090a8a0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x58) + 0x28);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x30);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -62383,13 +62403,13 @@ void Unwind_18090a8b0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 8);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x10);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -62406,13 +62426,13 @@ void Unwind_18090a8c0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x70) + 8);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x10);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -62429,13 +62449,13 @@ void Unwind_18090a8d0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x88);
   pvalidationContext = (longlong *)plVar2[1];
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -62480,13 +62500,13 @@ void Unwind_18090a900(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x50);
   pvalidationContext = (longlong *)plVar2[1];
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -62525,13 +62545,13 @@ void Unwind_18090a920(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 8);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x10);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -62546,25 +62566,25 @@ void Unwind_18090a920(undefined8 param_1,longlong param_2)
 void Unwind_18090a930(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+  if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
+     (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -62584,25 +62604,25 @@ void Unwind_18090a930(undefined8 param_1,longlong param_2)
 void Unwind_18090a940(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+  if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
+     (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -62622,25 +62642,25 @@ void Unwind_18090a940(undefined8 param_1,longlong param_2)
 void Unwind_18090a950(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+  if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
+     (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -62660,25 +62680,25 @@ void Unwind_18090a950(undefined8 param_1,longlong param_2)
 void Unwind_18090a960(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x50);
+  calculatedOffset = *(longlong *)(param_2 + 0x50);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+  if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
+     (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -62698,25 +62718,25 @@ void Unwind_18090a960(undefined8 param_1,longlong param_2)
 void Unwind_18090a970(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x50);
+  calculatedOffset = *(longlong *)(param_2 + 0x50);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+  if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
+     (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
     memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (memoryBaseAddress != 0) {
-      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+      calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
+        *referenceCountPointer = *referenceCountPointer + -1;
+        if (*referenceCountPointer == 0) {
           FUN_18064d630();
           return;
         }
@@ -63374,13 +63394,13 @@ void Unwind_18090af70(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x50);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x2b0);
-  validationContext = *(longlong *)(lVar3 + 0x2a8);
+  calculatedOffset = *(longlong *)(param_2 + 0x50);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x2b0);
+  validationContext = *(longlong *)(calculatedOffset + 0x2a8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -63395,10 +63415,10 @@ void Unwind_18090af70(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x2b0);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x2b0);
   }
-  *(undefined8 *)(lVar3 + 0x2b8) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 0x2a8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x2b8) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -63981,13 +64001,13 @@ void Unwind_18090b4b0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x58);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x58);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -64002,10 +64022,10 @@ void Unwind_18090b4b0(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -64019,13 +64039,13 @@ void Unwind_18090b4c0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x58);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x58);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -64040,10 +64060,10 @@ void Unwind_18090b4c0(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -64075,13 +64095,13 @@ void Unwind_18090b4f0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -64096,10 +64116,10 @@ void Unwind_18090b4f0(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -64113,13 +64133,13 @@ void Unwind_18090b500(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -64134,10 +64154,10 @@ void Unwind_18090b500(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -64416,13 +64436,13 @@ void Unwind_18090b7d0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x2b0);
-  validationContext = *(longlong *)(lVar3 + 0x2a8);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x2b0);
+  validationContext = *(longlong *)(calculatedOffset + 0x2a8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -64437,10 +64457,10 @@ void Unwind_18090b7d0(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x2b0);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x2b0);
   }
-  *(undefined8 *)(lVar3 + 0x2b8) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 0x2a8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x2b8) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -65023,13 +65043,13 @@ void Unwind_18090bd10(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x48);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x48);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -65044,10 +65064,10 @@ void Unwind_18090bd10(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -65061,13 +65081,13 @@ void Unwind_18090bd20(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
-  lVar3 = *(longlong *)(param_2 + 0x48);
-  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
-  validationContext = *(longlong *)(lVar3 + 8);
+  calculatedOffset = *(longlong *)(param_2 + 0x48);
+  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
+  validationContext = *(longlong *)(calculatedOffset + 8);
   uVar5 = 0;
   if (memoryBaseAddress != 0) {
     do {
@@ -65082,10 +65102,10 @@ void Unwind_18090bd20(undefined8 param_1,longlong param_2)
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
+    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
   }
-  *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
+  *(undefined8 *)(calculatedOffset + 0x18) = 0;
+  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -65491,13 +65511,13 @@ void Unwind_18090bfe0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x20) + 0x80);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x88);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -65565,13 +65585,13 @@ void Unwind_18090c060(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x28);
   pvalidationContext = (longlong *)plVar2[1];
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -65731,9 +65751,9 @@ void Unwind_18090c130(undefined8 param_1,longlong param_2)
 void Unwind_18090c140(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x50);
@@ -65742,14 +65762,14 @@ void Unwind_18090c140(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -65876,9 +65896,9 @@ void Unwind_18090c1b0(undefined8 param_1,longlong param_2)
 void Unwind_18090c1c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 8);
@@ -65887,14 +65907,14 @@ void Unwind_18090c1c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -65946,20 +65966,20 @@ void Unwind_18090c200(undefined8 param_1,longlong param_2)
 {
   undefined8 uVar1;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x70);
-  pmemoryBaseAddress = (undefined8 *)(lVar3 + -0xa0);
+  calculatedOffset = *(longlong *)(param_2 + 0x70);
+  pmemoryBaseAddress = (undefined8 *)(calculatedOffset + -0xa0);
   *pmemoryBaseAddress = &UNK_180a01668;
-  if ((*(longlong *)(lVar3 + -0x20) != 0) && (**(longlong **)(lVar3 + -0x88) == lVar3 + -0x30)) {
-    uVar1 = *(undefined8 *)(lVar3 + -0x10);
-    lVar2 = *(longlong *)(lVar3 + -0x18);
-    **(longlong **)(lVar3 + -0x88) = lVar2;
-    **(longlong **)(lVar3 + -0x68) = lVar2;
-    **(int **)(lVar3 + -0x50) = (int)uVar1 - (int)lVar2;
+  if ((*(longlong *)(calculatedOffset + -0x20) != 0) && (**(longlong **)(calculatedOffset + -0x88) == calculatedOffset + -0x30)) {
+    uVar1 = *(undefined8 *)(calculatedOffset + -0x10);
+    lVar2 = *(longlong *)(calculatedOffset + -0x18);
+    **(longlong **)(calculatedOffset + -0x88) = lVar2;
+    **(longlong **)(calculatedOffset + -0x68) = lVar2;
+    **(int **)(calculatedOffset + -0x50) = (int)uVar1 - (int)lVar2;
   }
-  if (*(char *)(lVar3 + -0x24) != '\0') {
+  if (*(char *)(calculatedOffset + -0x24) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -65986,20 +66006,20 @@ void Unwind_18090c240(undefined8 param_1,longlong param_2)
 {
   undefined8 uVar1;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  pmemoryBaseAddress = (undefined8 *)(lVar3 + -0xa0);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  pmemoryBaseAddress = (undefined8 *)(calculatedOffset + -0xa0);
   *pmemoryBaseAddress = &UNK_180a01668;
-  if ((*(longlong *)(lVar3 + -0x20) != 0) && (**(longlong **)(lVar3 + -0x88) == lVar3 + -0x30)) {
-    uVar1 = *(undefined8 *)(lVar3 + -0x10);
-    lVar2 = *(longlong *)(lVar3 + -0x18);
-    **(longlong **)(lVar3 + -0x88) = lVar2;
-    **(longlong **)(lVar3 + -0x68) = lVar2;
-    **(int **)(lVar3 + -0x50) = (int)uVar1 - (int)lVar2;
+  if ((*(longlong *)(calculatedOffset + -0x20) != 0) && (**(longlong **)(calculatedOffset + -0x88) == calculatedOffset + -0x30)) {
+    uVar1 = *(undefined8 *)(calculatedOffset + -0x10);
+    lVar2 = *(longlong *)(calculatedOffset + -0x18);
+    **(longlong **)(calculatedOffset + -0x88) = lVar2;
+    **(longlong **)(calculatedOffset + -0x68) = lVar2;
+    **(int **)(calculatedOffset + -0x50) = (int)uVar1 - (int)lVar2;
   }
-  if (*(char *)(lVar3 + -0x24) != '\0') {
+  if (*(char *)(calculatedOffset + -0x24) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -66031,9 +66051,9 @@ void Unwind_18090c270(undefined8 param_1,longlong param_2)
 void Unwind_18090c280(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xe8);
@@ -66042,14 +66062,14 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -66103,9 +66123,9 @@ void Unwind_18090c2c0(undefined8 param_1,longlong param_2)
 void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xe8);
@@ -66114,14 +66134,14 @@ void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -66139,9 +66159,9 @@ void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
 void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xe8);
@@ -66150,14 +66170,14 @@ void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -66246,20 +66266,20 @@ void Unwind_18090c380(undefined8 param_1,longlong param_2)
 {
   undefined8 uVar1;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  pmemoryBaseAddress = (undefined8 *)(lVar3 + 0x18);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  pmemoryBaseAddress = (undefined8 *)(calculatedOffset + 0x18);
   *pmemoryBaseAddress = &UNK_180a01668;
-  if ((*(longlong *)(lVar3 + 0x98) != 0) && (**(longlong **)(lVar3 + 0x30) == lVar3 + 0x88)) {
-    uVar1 = *(undefined8 *)(lVar3 + 0xa8);
-    lVar2 = *(longlong *)(lVar3 + 0xa0);
-    **(longlong **)(lVar3 + 0x30) = lVar2;
-    **(longlong **)(lVar3 + 0x50) = lVar2;
-    **(int **)(lVar3 + 0x68) = (int)uVar1 - (int)lVar2;
+  if ((*(longlong *)(calculatedOffset + 0x98) != 0) && (**(longlong **)(calculatedOffset + 0x30) == calculatedOffset + 0x88)) {
+    uVar1 = *(undefined8 *)(calculatedOffset + 0xa8);
+    lVar2 = *(longlong *)(calculatedOffset + 0xa0);
+    **(longlong **)(calculatedOffset + 0x30) = lVar2;
+    **(longlong **)(calculatedOffset + 0x50) = lVar2;
+    **(int **)(calculatedOffset + 0x68) = (int)uVar1 - (int)lVar2;
   }
-  if (*(char *)(lVar3 + 0x94) != '\0') {
+  if (*(char *)(calculatedOffset + 0x94) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -66287,9 +66307,9 @@ void Unwind_18090c390(undefined8 param_1,longlong param_2)
 void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x1d8);
@@ -66298,14 +66318,14 @@ void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -66346,9 +66366,9 @@ void Unwind_18090c3e0(undefined8 param_1,longlong param_2)
 void Unwind_18090c400(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x2d0);
@@ -66357,14 +66377,14 @@ void Unwind_18090c400(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -66461,7 +66481,7 @@ void Unwind_18090c490(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66476,9 +66496,9 @@ void Unwind_18090c490(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -66684,9 +66704,9 @@ void Unwind_18090c520(undefined8 param_1,longlong param_2)
 void Unwind_18090c530(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xb8);
@@ -66695,14 +66715,14 @@ void Unwind_18090c530(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -66724,7 +66744,7 @@ void Unwind_18090c540(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66739,9 +66759,9 @@ void Unwind_18090c540(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -66770,7 +66790,7 @@ void Unwind_18090c550(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66785,9 +66805,9 @@ void Unwind_18090c550(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -66846,7 +66866,7 @@ void Unwind_18090c590(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66861,9 +66881,9 @@ void Unwind_18090c590(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -66913,7 +66933,7 @@ void Unwind_18090c5c0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66928,9 +66948,9 @@ void Unwind_18090c5c0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -66959,7 +66979,7 @@ void Unwind_18090c5d0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66974,9 +66994,9 @@ void Unwind_18090c5d0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -67017,7 +67037,7 @@ void Unwind_18090c5f0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -67032,9 +67052,9 @@ void Unwind_18090c5f0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -67063,7 +67083,7 @@ void Unwind_18090c600(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -67078,9 +67098,9 @@ void Unwind_18090c600(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -67105,9 +67125,9 @@ void Unwind_18090c600(undefined8 param_1,longlong param_2)
 void Unwind_18090c610(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xb8);
@@ -67116,14 +67136,14 @@ void Unwind_18090c610(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -67141,9 +67161,9 @@ void Unwind_18090c610(undefined8 param_1,longlong param_2)
 void Unwind_18090c620(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xb8);
@@ -67152,14 +67172,14 @@ void Unwind_18090c620(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -67752,7 +67772,7 @@ void Unwind_18090ca20(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -67767,9 +67787,9 @@ void Unwind_18090ca20(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -67810,7 +67830,7 @@ void Unwind_18090ca40(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -67825,9 +67845,9 @@ void Unwind_18090ca40(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -67880,7 +67900,7 @@ void Unwind_18090ca70(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -67895,9 +67915,9 @@ void Unwind_18090ca70(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -67947,7 +67967,7 @@ void Unwind_18090caa0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -67962,9 +67982,9 @@ void Unwind_18090caa0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -68014,7 +68034,7 @@ void Unwind_18090cad0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -68029,9 +68049,9 @@ void Unwind_18090cad0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -68081,7 +68101,7 @@ void Unwind_18090cb00(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -68096,9 +68116,9 @@ void Unwind_18090cb00(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -68136,7 +68156,7 @@ void Unwind_18090cb20(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -68151,9 +68171,9 @@ void Unwind_18090cb20(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -68191,7 +68211,7 @@ void Unwind_18090cb40(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -68206,9 +68226,9 @@ void Unwind_18090cb40(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -68249,7 +68269,7 @@ void Unwind_18090cb60(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -68264,9 +68284,9 @@ void Unwind_18090cb60(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -68304,7 +68324,7 @@ void Unwind_18090cb80(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -68319,9 +68339,9 @@ void Unwind_18090cb80(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -68395,7 +68415,7 @@ void Unwind_18090cbd0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -68410,9 +68430,9 @@ void Unwind_18090cbd0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -68462,7 +68482,7 @@ void Unwind_18090cc00(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -68477,9 +68497,9 @@ void Unwind_18090cc00(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -68628,7 +68648,7 @@ void Unwind_18090cce0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -68643,9 +68663,9 @@ void Unwind_18090cce0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -69266,9 +69286,9 @@ void Unwind_18090cff0(undefined8 param_1,longlong param_2)
 void Unwind_18090d000(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xb0);
@@ -69277,14 +69297,14 @@ void Unwind_18090d000(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69302,9 +69322,9 @@ void Unwind_18090d000(undefined8 param_1,longlong param_2)
 void Unwind_18090d010(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xd0);
@@ -69313,14 +69333,14 @@ void Unwind_18090d010(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69338,9 +69358,9 @@ void Unwind_18090d010(undefined8 param_1,longlong param_2)
 void Unwind_18090d020(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xf0);
@@ -69349,14 +69369,14 @@ void Unwind_18090d020(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69374,9 +69394,9 @@ void Unwind_18090d020(undefined8 param_1,longlong param_2)
 void Unwind_18090d030(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x110);
@@ -69385,14 +69405,14 @@ void Unwind_18090d030(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69435,14 +69455,14 @@ void CleanupExceptionAtOffset210(undefined8 ExceptionContext,longlong ExceptionO
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69485,14 +69505,14 @@ void CleanupExceptionAtOffset220(undefined8 ExceptionContext,longlong ExceptionO
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69510,9 +69530,9 @@ void CleanupExceptionAtOffset220(undefined8 ExceptionContext,longlong ExceptionO
 void Unwind_18090d060(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 400);
@@ -69521,14 +69541,14 @@ void Unwind_18090d060(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69546,9 +69566,9 @@ void Unwind_18090d060(undefined8 param_1,longlong param_2)
 void Unwind_18090d070(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1b0);
@@ -69557,14 +69577,14 @@ void Unwind_18090d070(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69582,9 +69602,9 @@ void Unwind_18090d070(undefined8 param_1,longlong param_2)
 void Unwind_18090d080(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1d0);
@@ -69593,14 +69613,14 @@ void Unwind_18090d080(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69618,9 +69638,9 @@ void Unwind_18090d080(undefined8 param_1,longlong param_2)
 void Unwind_18090d090(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1f0);
@@ -69629,14 +69649,14 @@ void Unwind_18090d090(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69654,9 +69674,9 @@ void Unwind_18090d090(undefined8 param_1,longlong param_2)
 void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x210);
@@ -69665,14 +69685,14 @@ void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69690,9 +69710,9 @@ void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
 void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x250);
@@ -69701,14 +69721,14 @@ void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69726,9 +69746,9 @@ void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
 void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x390);
@@ -69737,14 +69757,14 @@ void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69762,9 +69782,9 @@ void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
 void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x3b0);
@@ -69773,14 +69793,14 @@ void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69798,9 +69818,9 @@ void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
 void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x490);
@@ -69809,14 +69829,14 @@ void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69834,9 +69854,9 @@ void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
 void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x2f0);
@@ -69845,14 +69865,14 @@ void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69870,9 +69890,9 @@ void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
 void Unwind_18090d100(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x310);
@@ -69881,14 +69901,14 @@ void Unwind_18090d100(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69906,9 +69926,9 @@ void Unwind_18090d100(undefined8 param_1,longlong param_2)
 void Unwind_18090d110(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x330);
@@ -69917,14 +69937,14 @@ void Unwind_18090d110(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69942,9 +69962,9 @@ void Unwind_18090d110(undefined8 param_1,longlong param_2)
 void Unwind_18090d120(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x350);
@@ -69953,14 +69973,14 @@ void Unwind_18090d120(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -69978,9 +69998,9 @@ void Unwind_18090d120(undefined8 param_1,longlong param_2)
 void Unwind_18090d130(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x470);
@@ -69989,14 +70009,14 @@ void Unwind_18090d130(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70014,9 +70034,9 @@ void Unwind_18090d130(undefined8 param_1,longlong param_2)
 void Unwind_18090d140(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x370);
@@ -70025,14 +70045,14 @@ void Unwind_18090d140(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70050,9 +70070,9 @@ void Unwind_18090d140(undefined8 param_1,longlong param_2)
 void Unwind_18090d150(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x270);
@@ -70061,14 +70081,14 @@ void Unwind_18090d150(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70086,9 +70106,9 @@ void Unwind_18090d150(undefined8 param_1,longlong param_2)
 void Unwind_18090d160(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x290);
@@ -70097,14 +70117,14 @@ void Unwind_18090d160(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70122,9 +70142,9 @@ void Unwind_18090d160(undefined8 param_1,longlong param_2)
 void Unwind_18090d170(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x2b0);
@@ -70133,14 +70153,14 @@ void Unwind_18090d170(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70158,9 +70178,9 @@ void Unwind_18090d170(undefined8 param_1,longlong param_2)
 void Unwind_18090d180(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x2d0);
@@ -70169,14 +70189,14 @@ void Unwind_18090d180(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70205,9 +70225,9 @@ void Unwind_18090d190(undefined8 param_1,longlong param_2)
 void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xb0);
@@ -70216,14 +70236,14 @@ void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70241,9 +70261,9 @@ void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
 void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xb0);
@@ -70252,14 +70272,14 @@ void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70277,9 +70297,9 @@ void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
 void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xd0);
@@ -70288,14 +70308,14 @@ void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70313,9 +70333,9 @@ void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
 void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xd0);
@@ -70324,14 +70344,14 @@ void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70349,9 +70369,9 @@ void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
 void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xf0);
@@ -70360,14 +70380,14 @@ void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70385,9 +70405,9 @@ void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
 void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xf0);
@@ -70396,14 +70416,14 @@ void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70421,9 +70441,9 @@ void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
 void Unwind_18090d200(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x110);
@@ -70432,14 +70452,14 @@ void Unwind_18090d200(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70457,9 +70477,9 @@ void Unwind_18090d200(undefined8 param_1,longlong param_2)
 void Unwind_18090d210(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x110);
@@ -70468,14 +70488,14 @@ void Unwind_18090d210(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70493,9 +70513,9 @@ void Unwind_18090d210(undefined8 param_1,longlong param_2)
 void Unwind_18090d220(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x150);
@@ -70504,14 +70524,14 @@ void Unwind_18090d220(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70529,9 +70549,9 @@ void Unwind_18090d220(undefined8 param_1,longlong param_2)
 void Unwind_18090d230(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x150);
@@ -70540,14 +70560,14 @@ void Unwind_18090d230(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70565,9 +70585,9 @@ void Unwind_18090d230(undefined8 param_1,longlong param_2)
 void Unwind_18090d240(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x170);
@@ -70576,14 +70596,14 @@ void Unwind_18090d240(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70601,9 +70621,9 @@ void Unwind_18090d240(undefined8 param_1,longlong param_2)
 void Unwind_18090d250(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x170);
@@ -70612,14 +70632,14 @@ void Unwind_18090d250(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70637,9 +70657,9 @@ void Unwind_18090d250(undefined8 param_1,longlong param_2)
 void Unwind_18090d260(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 400);
@@ -70648,14 +70668,14 @@ void Unwind_18090d260(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70673,9 +70693,9 @@ void Unwind_18090d260(undefined8 param_1,longlong param_2)
 void Unwind_18090d270(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 400);
@@ -70684,14 +70704,14 @@ void Unwind_18090d270(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70709,9 +70729,9 @@ void Unwind_18090d270(undefined8 param_1,longlong param_2)
 void Unwind_18090d280(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1b0);
@@ -70720,14 +70740,14 @@ void Unwind_18090d280(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70745,9 +70765,9 @@ void Unwind_18090d280(undefined8 param_1,longlong param_2)
 void Unwind_18090d290(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1b0);
@@ -70756,14 +70776,14 @@ void Unwind_18090d290(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70781,9 +70801,9 @@ void Unwind_18090d290(undefined8 param_1,longlong param_2)
 void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1d0);
@@ -70792,14 +70812,14 @@ void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70817,9 +70837,9 @@ void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
 void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1d0);
@@ -70828,14 +70848,14 @@ void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70853,9 +70873,9 @@ void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
 void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1f0);
@@ -70864,14 +70884,14 @@ void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70889,9 +70909,9 @@ void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
 void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x1f0);
@@ -70900,14 +70920,14 @@ void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70925,9 +70945,9 @@ void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
 void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x210);
@@ -70936,14 +70956,14 @@ void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70961,9 +70981,9 @@ void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
 void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x210);
@@ -70972,14 +70992,14 @@ void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -70997,9 +71017,9 @@ void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
 void Unwind_18090d300(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x250);
@@ -71008,14 +71028,14 @@ void Unwind_18090d300(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71033,9 +71053,9 @@ void Unwind_18090d300(undefined8 param_1,longlong param_2)
 void Unwind_18090d310(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x250);
@@ -71044,14 +71064,14 @@ void Unwind_18090d310(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71125,9 +71145,9 @@ void Unwind_18090d350(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090d360(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x390);
@@ -71136,14 +71156,14 @@ void Unwind_18090d360(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71161,9 +71181,9 @@ void Unwind_18090d360(undefined8 param_1,longlong param_2)
 void Unwind_18090d370(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x390);
@@ -71172,14 +71192,14 @@ void Unwind_18090d370(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71197,9 +71217,9 @@ void Unwind_18090d370(undefined8 param_1,longlong param_2)
 void Unwind_18090d380(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x3b0);
@@ -71208,14 +71228,14 @@ void Unwind_18090d380(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71233,9 +71253,9 @@ void Unwind_18090d380(undefined8 param_1,longlong param_2)
 void Unwind_18090d390(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x3b0);
@@ -71244,14 +71264,14 @@ void Unwind_18090d390(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71269,9 +71289,9 @@ void Unwind_18090d390(undefined8 param_1,longlong param_2)
 void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x490);
@@ -71280,14 +71300,14 @@ void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71305,9 +71325,9 @@ void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
 void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x490);
@@ -71316,14 +71336,14 @@ void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71341,9 +71361,9 @@ void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
 void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x2f0);
@@ -71352,14 +71372,14 @@ void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71377,9 +71397,9 @@ void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
 void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x2f0);
@@ -71388,14 +71408,14 @@ void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71413,9 +71433,9 @@ void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
 void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x310);
@@ -71424,14 +71444,14 @@ void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71449,9 +71469,9 @@ void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
 void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x310);
@@ -71460,14 +71480,14 @@ void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71485,9 +71505,9 @@ void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
 void Unwind_18090d400(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x330);
@@ -71496,14 +71516,14 @@ void Unwind_18090d400(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71521,9 +71541,9 @@ void Unwind_18090d400(undefined8 param_1,longlong param_2)
 void Unwind_18090d410(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x330);
@@ -71532,14 +71552,14 @@ void Unwind_18090d410(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71557,9 +71577,9 @@ void Unwind_18090d410(undefined8 param_1,longlong param_2)
 void Unwind_18090d420(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x350);
@@ -71568,14 +71588,14 @@ void Unwind_18090d420(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71593,9 +71613,9 @@ void Unwind_18090d420(undefined8 param_1,longlong param_2)
 void Unwind_18090d430(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x350);
@@ -71604,14 +71624,14 @@ void Unwind_18090d430(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71629,9 +71649,9 @@ void Unwind_18090d430(undefined8 param_1,longlong param_2)
 void Unwind_18090d440(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x470);
@@ -71640,14 +71660,14 @@ void Unwind_18090d440(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71665,9 +71685,9 @@ void Unwind_18090d440(undefined8 param_1,longlong param_2)
 void Unwind_18090d450(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x470);
@@ -71676,14 +71696,14 @@ void Unwind_18090d450(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71701,9 +71721,9 @@ void Unwind_18090d450(undefined8 param_1,longlong param_2)
 void Unwind_18090d460(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x370);
@@ -71712,14 +71732,14 @@ void Unwind_18090d460(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71737,9 +71757,9 @@ void Unwind_18090d460(undefined8 param_1,longlong param_2)
 void Unwind_18090d470(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x370);
@@ -71748,14 +71768,14 @@ void Unwind_18090d470(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71773,9 +71793,9 @@ void Unwind_18090d470(undefined8 param_1,longlong param_2)
 void Unwind_18090d480(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x270);
@@ -71784,14 +71804,14 @@ void Unwind_18090d480(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71809,9 +71829,9 @@ void Unwind_18090d480(undefined8 param_1,longlong param_2)
 void Unwind_18090d490(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x270);
@@ -71820,14 +71840,14 @@ void Unwind_18090d490(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71845,9 +71865,9 @@ void Unwind_18090d490(undefined8 param_1,longlong param_2)
 void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x290);
@@ -71856,14 +71876,14 @@ void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71881,9 +71901,9 @@ void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
 void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x290);
@@ -71892,14 +71912,14 @@ void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71917,9 +71937,9 @@ void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
 void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x2b0);
@@ -71928,14 +71948,14 @@ void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71953,9 +71973,9 @@ void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
 void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x2b0);
@@ -71964,14 +71984,14 @@ void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -71989,9 +72009,9 @@ void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
 void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x2d0);
@@ -72000,14 +72020,14 @@ void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -72025,9 +72045,9 @@ void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
 void Unwind_18090d4f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x2d0);
@@ -72036,14 +72056,14 @@ void Unwind_18090d4f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -72329,13 +72349,13 @@ void Unwind_18090d650(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x40);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x48);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -72504,40 +72524,40 @@ void Unwind_18090d7c0(undefined8 param_1,longlong param_2)
 void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  if (*(longlong **)(lVar3 + 0x14d0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(lVar3 + 0x14d0) + 0x38))();
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  if (*(longlong **)(calculatedOffset + 0x14d0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(calculatedOffset + 0x14d0) + 0x38))();
   }
-  if (*(longlong **)(lVar3 + 0x14c8) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(lVar3 + 0x14c8) + 0x38))();
+  if (*(longlong **)(calculatedOffset + 0x14c8) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(calculatedOffset + 0x14c8) + 0x38))();
   }
-  if (*(longlong **)(lVar3 + 0x14c0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(lVar3 + 0x14c0) + 0x38))();
+  if (*(longlong **)(calculatedOffset + 0x14c0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(calculatedOffset + 0x14c0) + 0x38))();
   }
   FUN_180080df0();
-  if (*(longlong *)(lVar3 + 0x1480) != 0) {
+  if (*(longlong *)(calculatedOffset + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  resourcePointer = *(undefined8 **)(lVar3 + 0x1460);
+  resourcePointer = *(undefined8 **)(calculatedOffset + 0x1460);
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -73042,9 +73062,9 @@ void Unwind_18090de30(undefined8 param_1,longlong param_2)
 void Unwind_18090de40(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0xe0) + 0x20);
@@ -73053,14 +73073,14 @@ void Unwind_18090de40(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -73080,13 +73100,13 @@ void Unwind_18090de50(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0xe0) + 0x40);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x48);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -73278,40 +73298,40 @@ void Unwind_18090dfe0(undefined8 param_1,longlong param_2)
 void Unwind_18090e000(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0xe0);
-  if (*(longlong **)(lVar3 + 0x14d0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(lVar3 + 0x14d0) + 0x38))();
+  calculatedOffset = *(longlong *)(param_2 + 0xe0);
+  if (*(longlong **)(calculatedOffset + 0x14d0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(calculatedOffset + 0x14d0) + 0x38))();
   }
-  if (*(longlong **)(lVar3 + 0x14c8) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(lVar3 + 0x14c8) + 0x38))();
+  if (*(longlong **)(calculatedOffset + 0x14c8) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(calculatedOffset + 0x14c8) + 0x38))();
   }
-  if (*(longlong **)(lVar3 + 0x14c0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(lVar3 + 0x14c0) + 0x38))();
+  if (*(longlong **)(calculatedOffset + 0x14c0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(calculatedOffset + 0x14c0) + 0x38))();
   }
   FUN_180080df0();
-  if (*(longlong *)(lVar3 + 0x1480) != 0) {
+  if (*(longlong *)(calculatedOffset + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  resourcePointer = *(undefined8 **)(lVar3 + 0x1460);
+  resourcePointer = *(undefined8 **)(calculatedOffset + 0x1460);
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -73604,9 +73624,9 @@ void Unwind_18090e3a0(undefined8 param_1,longlong param_2)
 void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xe8);
@@ -73615,14 +73635,14 @@ void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -73640,9 +73660,9 @@ void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
 void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xe8);
@@ -73651,14 +73671,14 @@ void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -73678,13 +73698,13 @@ void Unwind_18090e3e0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0xe8);
   pvalidationContext = (longlong *)plVar2[1];
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -73929,7 +73949,7 @@ void Unwind_18090e760(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -73944,9 +73964,9 @@ void Unwind_18090e760(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -73987,7 +74007,7 @@ void Unwind_18090e7a0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -74002,9 +74022,9 @@ void Unwind_18090e7a0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -74033,7 +74053,7 @@ void Unwind_18090e7b0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -74048,9 +74068,9 @@ void Unwind_18090e7b0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -74079,7 +74099,7 @@ void Unwind_18090e7c0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -74094,9 +74114,9 @@ void Unwind_18090e7c0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -74125,7 +74145,7 @@ void Unwind_18090e7d0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -74140,9 +74160,9 @@ void Unwind_18090e7d0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -74171,7 +74191,7 @@ void Unwind_18090e7e0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -74186,9 +74206,9 @@ void Unwind_18090e7e0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -74217,7 +74237,7 @@ void Unwind_18090e7f0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -74232,9 +74252,9 @@ void Unwind_18090e7f0(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -74263,7 +74283,7 @@ void Unwind_18090e800(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -74278,9 +74298,9 @@ void Unwind_18090e800(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -74321,7 +74341,7 @@ void Unwind_18090e820(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -74336,9 +74356,9 @@ void Unwind_18090e820(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -74379,7 +74399,7 @@ void Unwind_18090e840(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -74394,9 +74414,9 @@ void Unwind_18090e840(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -74437,7 +74457,7 @@ void Unwind_18090e860(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -74452,9 +74472,9 @@ void Unwind_18090e860(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -74876,7 +74896,7 @@ void Unwind_18090eb00(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   longlong lVar5;
   
@@ -74891,9 +74911,9 @@ void Unwind_18090eb00(undefined8 param_1,longlong param_2)
       if (*(longlong *)(validationContext + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
       }
-      lVar3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(lVar3 + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(lVar3 + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
         lVar5 = (longlong)operationResult;
         do {
@@ -75638,9 +75658,9 @@ void Unwind_18090eea0(undefined8 param_1,longlong param_2)
 void Unwind_18090eeb0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 8);
@@ -75649,14 +75669,14 @@ void Unwind_18090eeb0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -75683,9 +75703,9 @@ void Unwind_18090eec0(undefined8 param_1,longlong param_2)
 void Unwind_18090eee0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 0x2d0);
@@ -75694,14 +75714,14 @@ void Unwind_18090eee0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -75733,9 +75753,9 @@ void Unwind_18090ef00(undefined8 param_1,longlong param_2)
 void Unwind_18090ef20(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x1d8);
@@ -75744,14 +75764,14 @@ void Unwind_18090ef20(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -75783,9 +75803,9 @@ void Unwind_18090ef40(undefined8 param_1,longlong param_2)
 void Unwind_18090ef50(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x10);
@@ -75794,14 +75814,14 @@ void Unwind_18090ef50(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -75819,9 +75839,9 @@ void Unwind_18090ef50(undefined8 param_1,longlong param_2)
 void Unwind_18090ef60(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x10);
@@ -75830,14 +75850,14 @@ void Unwind_18090ef60(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -75905,25 +75925,25 @@ void Unwind_18090efe0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong lVar4;
   longlong *plVar5;
   
   validationContext = *(longlong *)(param_2 + 0x70);
   plVar2 = (longlong *)(validationContext + 0x300);
-  lVar3 = *(longlong *)(validationContext + 0x310);
+  calculatedOffset = *(longlong *)(validationContext + 0x310);
   lVar4 = *(longlong *)(validationContext + 800);
   plVar5 = *(longlong **)(validationContext + 0x328);
-  if (lVar3 != *(longlong *)(validationContext + 0x330)) {
+  if (calculatedOffset != *(longlong *)(validationContext + 0x330)) {
     do {
-      FUN_1800edd10(lVar3);
-      lVar3 = lVar3 + 0x78;
-      if (lVar3 == lVar4) {
+      FUN_1800edd10(calculatedOffset);
+      calculatedOffset = calculatedOffset + 0x78;
+      if (calculatedOffset == lVar4) {
         plVar5 = plVar5 + 1;
-        lVar3 = *plVar5;
-        lVar4 = lVar3 + 0x1e0;
+        calculatedOffset = *plVar5;
+        lVar4 = calculatedOffset + 0x1e0;
       }
-    } while (lVar3 != *(longlong *)(validationContext + 0x330));
+    } while (calculatedOffset != *(longlong *)(validationContext + 0x330));
   }
   if (*plVar2 != 0) {
     plVar5 = *(longlong **)(validationContext + 0x328);
@@ -75951,22 +75971,22 @@ void Unwind_18090f000(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x358);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x360);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 4) {
-    if ((longlong *)plVar3[3] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar3[3] + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 4) {
+    if ((longlong *)pcalculatedOffset[3] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pcalculatedOffset[3] + 0x38))();
     }
-    if ((longlong *)plVar3[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar3[2] + 0x38))();
+    if ((longlong *)pcalculatedOffset[2] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pcalculatedOffset[2] + 0x38))();
     }
-    if ((longlong *)plVar3[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar3[1] + 0x38))();
+    if ((longlong *)pcalculatedOffset[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pcalculatedOffset[1] + 0x38))();
     }
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -76003,30 +76023,30 @@ void Unwind_18090f040(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   
   pvalidationContext = *(longlong **)(param_2 + 0x78);
   lVar2 = pvalidationContext[2];
-  lVar3 = pvalidationContext[4];
+  calculatedOffset = pvalidationContext[4];
   plVar4 = (longlong *)pvalidationContext[5];
   if (lVar2 != pvalidationContext[6]) {
     do {
       FUN_1800edd10(lVar2);
       lVar2 = lVar2 + 0x78;
-      if (lVar2 == lVar3) {
+      if (lVar2 == calculatedOffset) {
         plVar4 = plVar4 + 1;
         lVar2 = *plVar4;
-        lVar3 = lVar2 + 0x1e0;
+        calculatedOffset = lVar2 + 0x1e0;
       }
     } while (lVar2 != pvalidationContext[6]);
   }
   if (*pvalidationContext != 0) {
     plVar4 = (longlong *)pvalidationContext[5];
     while (plVar4 < (longlong *)(pvalidationContext[9] + 8)) {
-      lVar3 = *plVar4;
+      calculatedOffset = *plVar4;
       plVar4 = plVar4 + 1;
-      if (lVar3 != 0) {
+      if (calculatedOffset != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
@@ -76047,21 +76067,21 @@ void Unwind_18090f050(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong lVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   pvalidationContext = *(longlong **)(param_2 + 0x78);
   lVar2 = *pvalidationContext;
   if (lVar2 != 0) {
-    plVar3 = (longlong *)pvalidationContext[5];
-    if (plVar3 < (longlong *)(pvalidationContext[9] + 8)) {
+    pcalculatedOffset = (longlong *)pvalidationContext[5];
+    if (pcalculatedOffset < (longlong *)(pvalidationContext[9] + 8)) {
       do {
-        lVar2 = *plVar3;
-        plVar3 = plVar3 + 1;
+        lVar2 = *pcalculatedOffset;
+        pcalculatedOffset = pcalculatedOffset + 1;
         if (lVar2 != 0) {
                     // WARNING: Subroutine does not return
           TerminateSystemE0();
         }
-      } while (plVar3 < (longlong *)(pvalidationContext[9] + 8));
+      } while (pcalculatedOffset < (longlong *)(pvalidationContext[9] + 8));
       lVar2 = *pvalidationContext;
     }
     if (lVar2 != 0) {
@@ -76080,22 +76100,22 @@ void Unwind_18090f060(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x78);
   pvalidationContext = (longlong *)plVar2[1];
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 4) {
-    if ((longlong *)plVar3[3] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar3[3] + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 4) {
+    if ((longlong *)pcalculatedOffset[3] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pcalculatedOffset[3] + 0x38))();
     }
-    if ((longlong *)plVar3[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar3[2] + 0x38))();
+    if ((longlong *)pcalculatedOffset[2] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pcalculatedOffset[2] + 0x38))();
     }
-    if ((longlong *)plVar3[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar3[1] + 0x38))();
+    if ((longlong *)pcalculatedOffset[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pcalculatedOffset[1] + 0x38))();
     }
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -76166,30 +76186,30 @@ void Unwind_18090f0c0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong *plVar4;
   
   pvalidationContext = *(longlong **)(param_2 + 0x40);
   lVar2 = pvalidationContext[2];
-  lVar3 = pvalidationContext[4];
+  calculatedOffset = pvalidationContext[4];
   plVar4 = (longlong *)pvalidationContext[5];
   if (lVar2 != pvalidationContext[6]) {
     do {
       FUN_1800edd10(lVar2);
       lVar2 = lVar2 + 0x78;
-      if (lVar2 == lVar3) {
+      if (lVar2 == calculatedOffset) {
         plVar4 = plVar4 + 1;
         lVar2 = *plVar4;
-        lVar3 = lVar2 + 0x1e0;
+        calculatedOffset = lVar2 + 0x1e0;
       }
     } while (lVar2 != pvalidationContext[6]);
   }
   if (*pvalidationContext != 0) {
     plVar4 = (longlong *)pvalidationContext[5];
     while (plVar4 < (longlong *)(pvalidationContext[9] + 8)) {
-      lVar3 = *plVar4;
+      calculatedOffset = *plVar4;
       plVar4 = plVar4 + 1;
-      if (lVar3 != 0) {
+      if (calculatedOffset != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
@@ -76210,22 +76230,22 @@ void Unwind_18090f0d0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x40);
   pvalidationContext = (longlong *)plVar2[1];
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 4) {
-    if ((longlong *)plVar3[3] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar3[3] + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 4) {
+    if ((longlong *)pcalculatedOffset[3] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pcalculatedOffset[3] + 0x38))();
     }
-    if ((longlong *)plVar3[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar3[2] + 0x38))();
+    if ((longlong *)pcalculatedOffset[2] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pcalculatedOffset[2] + 0x38))();
     }
-    if ((longlong *)plVar3[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar3[1] + 0x38))();
+    if ((longlong *)pcalculatedOffset[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pcalculatedOffset[1] + 0x38))();
     }
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -76276,21 +76296,21 @@ void Unwind_18090f110(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong lVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   pvalidationContext = *(longlong **)(param_2 + 0x40);
   lVar2 = *pvalidationContext;
   if (lVar2 != 0) {
-    plVar3 = (longlong *)pvalidationContext[5];
-    if (plVar3 < (longlong *)(pvalidationContext[9] + 8)) {
+    pcalculatedOffset = (longlong *)pvalidationContext[5];
+    if (pcalculatedOffset < (longlong *)(pvalidationContext[9] + 8)) {
       do {
-        lVar2 = *plVar3;
-        plVar3 = plVar3 + 1;
+        lVar2 = *pcalculatedOffset;
+        pcalculatedOffset = pcalculatedOffset + 1;
         if (lVar2 != 0) {
                     // WARNING: Subroutine does not return
           TerminateSystemE0();
         }
-      } while (plVar3 < (longlong *)(pvalidationContext[9] + 8));
+      } while (pcalculatedOffset < (longlong *)(pvalidationContext[9] + 8));
       lVar2 = *pvalidationContext;
     }
     if (lVar2 != 0) {
@@ -76453,9 +76473,9 @@ void Unwind_18090f1a0(undefined8 param_1,longlong param_2)
 void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x130);
@@ -76464,14 +76484,14 @@ void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -76489,9 +76509,9 @@ void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
 void Unwind_18090f1d0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x150);
@@ -76500,14 +76520,14 @@ void Unwind_18090f1d0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -76547,9 +76567,9 @@ void Unwind_18090f200(undefined8 param_1,longlong param_2)
 void Unwind_18090f210(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xc0);
@@ -76558,14 +76578,14 @@ void Unwind_18090f210(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -76583,9 +76603,9 @@ void Unwind_18090f210(undefined8 param_1,longlong param_2)
 void Unwind_18090f230(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xe0);
@@ -76594,14 +76614,14 @@ void Unwind_18090f230(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -76619,9 +76639,9 @@ void Unwind_18090f230(undefined8 param_1,longlong param_2)
 void Unwind_18090f250(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x100);
@@ -76630,14 +76650,14 @@ void Unwind_18090f250(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -76655,9 +76675,9 @@ void Unwind_18090f250(undefined8 param_1,longlong param_2)
 void Unwind_18090f270(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x120);
@@ -76666,14 +76686,14 @@ void Unwind_18090f270(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -76691,9 +76711,9 @@ void Unwind_18090f270(undefined8 param_1,longlong param_2)
 void Unwind_18090f290(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x140);
@@ -76702,14 +76722,14 @@ void Unwind_18090f290(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -76727,9 +76747,9 @@ void Unwind_18090f290(undefined8 param_1,longlong param_2)
 void Unwind_18090f2b0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x160);
@@ -76738,14 +76758,14 @@ void Unwind_18090f2b0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -76765,11 +76785,11 @@ void Unwind_18090f2d0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x180);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x188);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x30) {
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x30) {
     FUN_1800f89b0();
   }
   if (*plVar2 == 0) {
@@ -76784,9 +76804,9 @@ void Unwind_18090f2d0(undefined8 param_1,longlong param_2)
 void Unwind_18090f2f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x1a0);
@@ -76795,14 +76815,14 @@ void Unwind_18090f2f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -76831,13 +76851,13 @@ void Unwind_18090f330(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x210);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x218);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -76854,13 +76874,13 @@ void Unwind_18090f350(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x230);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x238);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -77234,11 +77254,11 @@ void Unwind_18090f690(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x68);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x30) {
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x30) {
     FUN_1800f89b0();
   }
   if (*plVar2 == 0) {
@@ -77428,11 +77448,11 @@ void Unwind_18090f7e0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x40);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x30) {
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x30) {
     FUN_1800f89b0();
   }
   if (*plVar2 == 0) {
@@ -78374,12 +78394,12 @@ void Unwind_18090fe50(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x70) + 8);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x10);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x128) {
-    FUN_1800f8930(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x128) {
+    FUN_1800f8930(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -78395,12 +78415,12 @@ void Unwind_18090fe60(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x80);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x128) {
-    FUN_1800f8930(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x128) {
+    FUN_1800f8930(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -78501,12 +78521,12 @@ void Unwind_18090ff10(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x100) + 0x18);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x100) + 0x20);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x128) {
-    FUN_1800f8930(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x128) {
+    FUN_1800f8930(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -78563,12 +78583,12 @@ void Unwind_18090ff80(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x158);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x128) {
-    FUN_1800f8930(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x128) {
+    FUN_1800f8930(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -78582,9 +78602,9 @@ void Unwind_18090ff80(undefined8 param_1,longlong param_2)
 void Unwind_18090ff90(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x158);
@@ -78593,14 +78613,14 @@ void Unwind_18090ff90(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -78641,12 +78661,12 @@ void Unwind_18090ffe0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x58) + 8);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x58) + 0x10);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x128) {
-    FUN_1800f8930(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x128) {
+    FUN_1800f8930(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -78662,12 +78682,12 @@ void Unwind_18090fff0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x60);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x128) {
-    FUN_1800f8930(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x128) {
+    FUN_1800f8930(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -78697,12 +78717,12 @@ void Unwind_180910010(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 8);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x10);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x128) {
-    FUN_1800f8930(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x128) {
+    FUN_1800f8930(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -78718,12 +78738,12 @@ void Unwind_180910020(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x68);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x128) {
-    FUN_1800f8930(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x128) {
+    FUN_1800f8930(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -78739,13 +78759,13 @@ void Unwind_180910030(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   pvalidationContext = (longlong *)(*(longlong *)(param_2 + 0x68) + 0x28);
   lVar2 = *(longlong *)(*(longlong *)(param_2 + 0x68) + 0x30);
-  for (lVar3 = *pvalidationContext; lVar3 != lVar2; lVar3 = lVar3 + 0x18) {
-    if (*(longlong **)(lVar3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar3 + 8) + 0x38))();
+  for (calculatedOffset = *pvalidationContext; calculatedOffset != lVar2; calculatedOffset = calculatedOffset + 0x18) {
+    if (*(longlong **)(calculatedOffset + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(calculatedOffset + 8) + 0x38))();
     }
   }
   if (*pvalidationContext == 0) {
@@ -78762,13 +78782,13 @@ void Unwind_180910040(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x70) + 8);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x10);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x18) {
-    if (*(longlong **)(lVar3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar3 + 8) + 0x38))();
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x18) {
+    if (*(longlong **)(calculatedOffset + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(calculatedOffset + 8) + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -78785,13 +78805,13 @@ void Unwind_180910050(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x78);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x18) {
-    if (*(longlong **)(lVar3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar3 + 8) + 0x38))();
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x18) {
+    if (*(longlong **)(calculatedOffset + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(calculatedOffset + 8) + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -78954,13 +78974,13 @@ void Unwind_1809100d0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 8);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x10);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x18) {
-    if (*(longlong **)(lVar3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar3 + 8) + 0x38))();
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x18) {
+    if (*(longlong **)(calculatedOffset + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(calculatedOffset + 8) + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -78977,13 +78997,13 @@ void Unwind_1809100e0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x48);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x18) {
-    if (*(longlong **)(lVar3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar3 + 8) + 0x38))();
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x18) {
+    if (*(longlong **)(calculatedOffset + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(calculatedOffset + 8) + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -79050,13 +79070,13 @@ void Unwind_180910100(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x40);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x18) {
-    if (*(longlong **)(lVar3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(lVar3 + 8) + 0x38))();
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x18) {
+    if (*(longlong **)(calculatedOffset + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(calculatedOffset + 8) + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -79111,12 +79131,12 @@ void Unwind_180910150(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   longlong *plVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   
   plVar2 = *(longlong **)(param_2 + 0x40);
   validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x128) {
-    FUN_1800f8930(lVar3);
+  for (calculatedOffset = *plVar2; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x128) {
+    FUN_1800f8930(calculatedOffset);
   }
   if (*plVar2 == 0) {
     return;
@@ -79450,9 +79470,9 @@ void Unwind_180910310(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180910320(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x150);
@@ -79461,14 +79481,14 @@ void Unwind_180910320(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -79507,9 +79527,9 @@ void Unwind_180910330(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180910340(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0xa8);
@@ -79518,14 +79538,14 @@ void Unwind_180910340(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -79543,9 +79563,9 @@ void Unwind_180910340(undefined8 param_1,longlong param_2)
 void Unwind_180910350(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x150);
@@ -79554,14 +79574,14 @@ void Unwind_180910350(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -79618,9 +79638,9 @@ void Unwind_1809103b0(undefined8 param_1,longlong param_2)
 void Unwind_1809103c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 8);
@@ -79629,14 +79649,14 @@ void Unwind_1809103c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -79737,16 +79757,16 @@ void Unwind_180910450(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   
-  lVar3 = *(longlong *)(param_2 + 0x60);
-  validationContext = lVar3 + 0x1d8;
-  *(undefined **)((longlong)*(int *)(*(longlong *)(lVar3 + 0x128) + 4) + -0xb0 + validationContext) =
+  calculatedOffset = *(longlong *)(param_2 + 0x60);
+  validationContext = calculatedOffset + 0x1d8;
+  *(undefined **)((longlong)*(int *)(*(longlong *)(calculatedOffset + 0x128) + 4) + -0xb0 + validationContext) =
        &UNK_180a05168;
-  operationResult = *(int *)(*(longlong *)(lVar3 + 0x128) + 4);
+  operationResult = *(int *)(*(longlong *)(calculatedOffset + 0x128) + 4);
   *(int *)((longlong)operationResult + -0xb4 + validationContext) = operationResult + -0xb0;
-  FUN_18009fb60(lVar3 + 0x138);
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(lVar3 + 0x140);
+  FUN_18009fb60(calculatedOffset + 0x138);
+  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(calculatedOffset + 0x140);
                     // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
                     // WARNING: Treating indirect jump as call
   __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(validationContext);
@@ -79802,13 +79822,13 @@ void Unwind_1809104d0(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x268);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x270);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -79823,9 +79843,9 @@ void Unwind_1809104d0(undefined8 param_1,longlong param_2)
 void Unwind_1809104f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x338);
@@ -79834,14 +79854,14 @@ void Unwind_1809104f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -79859,9 +79879,9 @@ void Unwind_1809104f0(undefined8 param_1,longlong param_2)
 void Unwind_180910510(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x358);
@@ -79870,14 +79890,14 @@ void Unwind_180910510(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -79920,20 +79940,20 @@ void Unwind_180910580(undefined8 param_1,longlong param_2)
 {
   undefined8 uVar1;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x68);
-  pmemoryBaseAddress = (undefined8 *)(lVar3 + 0x10);
+  calculatedOffset = *(longlong *)(param_2 + 0x68);
+  pmemoryBaseAddress = (undefined8 *)(calculatedOffset + 0x10);
   *pmemoryBaseAddress = &UNK_180a01668;
-  if ((*(longlong *)(lVar3 + 0x90) != 0) && (**(longlong **)(lVar3 + 0x28) == lVar3 + 0x80)) {
-    uVar1 = *(undefined8 *)(lVar3 + 0xa0);
-    lVar2 = *(longlong *)(lVar3 + 0x98);
-    **(longlong **)(lVar3 + 0x28) = lVar2;
-    **(longlong **)(lVar3 + 0x48) = lVar2;
-    **(int **)(lVar3 + 0x60) = (int)uVar1 - (int)lVar2;
+  if ((*(longlong *)(calculatedOffset + 0x90) != 0) && (**(longlong **)(calculatedOffset + 0x28) == calculatedOffset + 0x80)) {
+    uVar1 = *(undefined8 *)(calculatedOffset + 0xa0);
+    lVar2 = *(longlong *)(calculatedOffset + 0x98);
+    **(longlong **)(calculatedOffset + 0x28) = lVar2;
+    **(longlong **)(calculatedOffset + 0x48) = lVar2;
+    **(int **)(calculatedOffset + 0x60) = (int)uVar1 - (int)lVar2;
   }
-  if (*(char *)(lVar3 + 0x8c) != '\0') {
+  if (*(char *)(calculatedOffset + 0x8c) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -79958,16 +79978,16 @@ void Unwind_1809105a0(undefined8 param_1,longlong param_2)
 {
   longlong validationContext;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  validationContext = lVar3 + 0x1d8;
-  *(undefined **)((longlong)*(int *)(*(longlong *)(lVar3 + 0x128) + 4) + -0xb0 + validationContext) =
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  validationContext = calculatedOffset + 0x1d8;
+  *(undefined **)((longlong)*(int *)(*(longlong *)(calculatedOffset + 0x128) + 4) + -0xb0 + validationContext) =
        &UNK_180a05168;
-  operationResult = *(int *)(*(longlong *)(lVar3 + 0x128) + 4);
+  operationResult = *(int *)(*(longlong *)(calculatedOffset + 0x128) + 4);
   *(int *)((longlong)operationResult + -0xb4 + validationContext) = operationResult + -0xb0;
-  FUN_18009fb60(lVar3 + 0x138);
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(lVar3 + 0x140);
+  FUN_18009fb60(calculatedOffset + 0x138);
+  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(calculatedOffset + 0x140);
                     // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
                     // WARNING: Treating indirect jump as call
   __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(validationContext);
@@ -80023,13 +80043,13 @@ void Unwind_180910620(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   longlong *plVar2;
-  longlong *plVar3;
+  longlong *pcalculatedOffset;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x268);
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x270);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  for (pcalculatedOffset = (longlong *)*plVar2; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+    if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
   }
   if (*plVar2 == 0) {
@@ -80044,9 +80064,9 @@ void Unwind_180910620(undefined8 param_1,longlong param_2)
 void Unwind_180910640(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x338);
@@ -80055,14 +80075,14 @@ void Unwind_180910640(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -80080,9 +80100,9 @@ void Unwind_180910640(undefined8 param_1,longlong param_2)
 void Unwind_180910660(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x358);
@@ -80091,14 +80111,14 @@ void Unwind_180910660(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -80129,20 +80149,20 @@ void Unwind_1809106a0(undefined8 param_1,longlong param_2)
 {
   undefined8 uVar1;
   longlong lVar2;
-  longlong lVar3;
+  longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   
-  lVar3 = *(longlong *)(param_2 + 0x40);
-  pmemoryBaseAddress = (undefined8 *)(lVar3 + -0xa0);
+  calculatedOffset = *(longlong *)(param_2 + 0x40);
+  pmemoryBaseAddress = (undefined8 *)(calculatedOffset + -0xa0);
   *pmemoryBaseAddress = &UNK_180a01668;
-  if ((*(longlong *)(lVar3 + -0x20) != 0) && (**(longlong **)(lVar3 + -0x88) == lVar3 + -0x30)) {
-    uVar1 = *(undefined8 *)(lVar3 + -0x10);
-    lVar2 = *(longlong *)(lVar3 + -0x18);
-    **(longlong **)(lVar3 + -0x88) = lVar2;
-    **(longlong **)(lVar3 + -0x68) = lVar2;
-    **(int **)(lVar3 + -0x50) = (int)uVar1 - (int)lVar2;
+  if ((*(longlong *)(calculatedOffset + -0x20) != 0) && (**(longlong **)(calculatedOffset + -0x88) == calculatedOffset + -0x30)) {
+    uVar1 = *(undefined8 *)(calculatedOffset + -0x10);
+    lVar2 = *(longlong *)(calculatedOffset + -0x18);
+    **(longlong **)(calculatedOffset + -0x88) = lVar2;
+    **(longlong **)(calculatedOffset + -0x68) = lVar2;
+    **(int **)(calculatedOffset + -0x50) = (int)uVar1 - (int)lVar2;
   }
-  if (*(char *)(lVar3 + -0x24) != '\0') {
+  if (*(char *)(calculatedOffset + -0x24) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -80178,9 +80198,9 @@ void Unwind_1809106d0(undefined8 param_1,longlong param_2)
 void Unwind_1809106e0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x78);
@@ -80189,14 +80209,14 @@ void Unwind_1809106e0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -80238,9 +80258,9 @@ void Unwind_180910720(undefined8 param_1,longlong param_2)
 void Unwind_180910750(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x78);
@@ -80249,14 +80269,14 @@ void Unwind_180910750(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -80296,9 +80316,9 @@ void Unwind_180910760(undefined8 param_1,longlong param_2)
 void Unwind_180910770(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x30);
@@ -80307,14 +80327,14 @@ void Unwind_180910770(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -80332,9 +80352,9 @@ void Unwind_180910770(undefined8 param_1,longlong param_2)
 void Unwind_180910780(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x30);
@@ -80343,14 +80363,14 @@ void Unwind_180910780(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -80368,9 +80388,9 @@ void Unwind_180910780(undefined8 param_1,longlong param_2)
 void Unwind_180910790(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x58) + 8);
@@ -80379,14 +80399,14 @@ void Unwind_180910790(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -84522,9 +84542,9 @@ void Unwind_1809118b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809118c0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x20);
@@ -84533,14 +84553,14 @@ void Unwind_1809118c0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -84588,9 +84608,9 @@ void Unwind_1809118e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809118f0(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x70);
@@ -84599,14 +84619,14 @@ void Unwind_1809118f0(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -84729,9 +84749,9 @@ void Unwind_180911940(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911950(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x20);
@@ -84740,14 +84760,14 @@ void Unwind_180911950(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
@@ -85399,9 +85419,9 @@ void Unwind_180911dc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   int operationResult;
-  longlong lVar3;
+  longlong calculatedOffset;
   longlong lVar4;
   ulonglong uVar5;
   uint uVar6;
@@ -85409,45 +85429,45 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   lVar4 = *(longlong *)(param_2 + 0x70);
   uVar5 = 0;
-  piVar1 = (int *)(lVar4 + 0x1e70);
+  referenceCountPointer = (int *)(lVar4 + 0x1e70);
   uVar7 = uVar5;
-  if (0 < *piVar1) {
+  if (0 < *referenceCountPointer) {
     do {
       operationResult = *(int *)(*(longlong *)(lVar4 + 0x1e78) + 8 + uVar5);
       if ((operationResult != -1) &&
-         (lVar3 = *(longlong *)((longlong)operationResult * 0x60 + *(longlong *)(lVar4 + 0x1e68) + 8),
-         lVar3 != 0)) {
+         (calculatedOffset = *(longlong *)((longlong)operationResult * 0x60 + *(longlong *)(lVar4 + 0x1e68) + 8),
+         calculatedOffset != 0)) {
         if (_DAT_180c8a9b0 != 0) {
           *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(lVar3,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+        FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
       }
       uVar6 = (int)uVar7 + 1;
       uVar5 = uVar5 + 0x10;
       uVar7 = (ulonglong)uVar6;
-    } while ((int)uVar6 < *piVar1);
+    } while ((int)uVar6 < *referenceCountPointer);
   }
-  lVar3 = *(longlong *)(lVar4 + 0x1e78);
-  if (lVar3 != 0) {
-    piVar1[0] = 0;
-    piVar1[1] = 0;
+  calculatedOffset = *(longlong *)(lVar4 + 0x1e78);
+  if (calculatedOffset != 0) {
+    referenceCountPointer[0] = 0;
+    referenceCountPointer[1] = 0;
     if (_DAT_180c8a9b0 != 0) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar3,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar3 = *(longlong *)(lVar4 + 0x1e68);
-  if (lVar3 == 0) {
+  calculatedOffset = *(longlong *)(lVar4 + 0x1e68);
+  if (calculatedOffset == 0) {
     *(undefined4 *)(lVar4 + 0x1e80) = 0;
-    lVar3 = *(longlong *)(lVar4 + 0x1e78);
-    if (lVar3 != 0) {
+    calculatedOffset = *(longlong *)(lVar4 + 0x1e78);
+    if (calculatedOffset != 0) {
       if (_DAT_180c8a9b0 != 0) {
         *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_180059ba0(lVar3,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+      FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
     }
     lVar4 = *(longlong *)(lVar4 + 0x1e68);
     if (lVar4 == 0) {
@@ -85464,7 +85484,7 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(lVar3,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+  FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
 }
 
 
@@ -87708,9 +87728,9 @@ void Unwind_180912910(undefined8 param_1,longlong param_2)
 void Unwind_180912930(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
+  int *referenceCountPointer;
   undefined8 *resourcePointer;
-  longlong lVar3;
+  longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x360);
@@ -87719,14 +87739,14 @@ void Unwind_180912930(undefined8 param_1,longlong param_2)
   }
   memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
   if (memoryBaseAddress != 0) {
-    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+    calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         FUN_18064d630();
         return;
       }
