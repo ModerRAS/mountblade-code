@@ -15176,7 +15176,7 @@ DataBuffer ValidateSystemConfigurationA0(void)
   *(float *)(registerContext + 0x10) = secondFloatValue;
   validationStatus = ValidateOperationRangeA0(systemContext + 0x60,operationParameter,secondFloatValue);
   if ((int)validationStatus == 0) {
-    pmemoryBaseAddress = (DataBuffer *)ProcessSystemDataA0(destinationIndexRegister + 0x60,&stack0x00000030,stackParameterOffset);
+    pmemoryBaseAddress = (DataBuffer *)ProcessSystemDataA0(destinationIndexRegister + 0x60,&stackBufferMidAddress,stackParameterOffset);
     *(DataBuffer *)(registerContext + 0x18) = *pmemoryBaseAddress;
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(DataBuffer *)(destinationIndexRegister + 0x98));
@@ -15210,7 +15210,7 @@ void ProcessFloatRangeValidation(void)
   *(float *)(contextPointer + 0x10) = processedValue;
   validationStatus = ValidateFloatValue(systemHandle + 0x60,stackParameterOffset,processedValue);
   if (validationStatus == 0) {
-    resultPointer = (DataBuffer *)ProcessFloatData(systemHandle + 0x60,&stack0x00000030,stackParameterOffset);
+    resultPointer = (DataBuffer *)ProcessFloatData(systemHandle + 0x60,&stackBufferMidAddress,stackParameterOffset);
     *(DataBuffer *)(contextPointer + 0x18) = *resultPointer;
                     // WARNING: Subroutine does not return
     ExecuteCriticalOperation(*(DataBuffer *)(systemHandle + 0x98));
@@ -15908,7 +15908,7 @@ void ExecuteSecurityValidationOperation(uint64_t securityContext)
   securityContextHandle = (**(FunctionPointer**)(systemHandler + 0x288))();
   if (securityContextHandle == 0) {
                     // WARNING: Subroutine does not return
-    InitializeSystemBufferA0(&stack0x00000080,0x27,&SystemBufferConfiguration,contextValue & SystemCleanupFlag,
+    InitializeSystemBufferA0(&stackBufferHighAddress,0x27,&SystemBufferConfiguration,contextValue & SystemCleanupFlag,
                   contextValue._4_2_);
   }
   if (**(int **)(securityContextHandle + 0xd0) == 0) {
@@ -15918,7 +15918,7 @@ void ExecuteSecurityValidationOperation(uint64_t securityContext)
   *resultPointer = securityContextHandle;
 DataProcessingLabel:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(stackGuard ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(stackGuard ^ (uint64_t)&stackBufferBaseAddress);
 }
 
 
@@ -15931,7 +15931,7 @@ void ExecuteSecurityCheckWrapper(void)
   uint64_t stackGuardValue;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(stackGuardValue ^ (uint64_t)&StackBufferBase);
+  ExecuteSecurityCheck(stackGuardValue ^ (uint64_t)&stackBufferBaseAddress);
 }
 
 
@@ -18697,7 +18697,7 @@ void ProcessFloatingPointDataA0(void)
   float floatValue;
   DataWord uStackX_20;
   float fStackX_24;
-  uint8_t *in_stack_00000030;
+  uint8_t *InputParam30;
   int stackContextParameter;
   DataWord stackParameterOffset;
   float InputParam48;
@@ -19372,19 +19372,19 @@ ProcessDataSecurityValidation:
   DataWord register_XMM6_Dc;
   DataWord uStackX_20;
   char acStackX_24 [4];
-  uint8_t *in_stack_00000028;
+  uint8_t *InputParam28;
   float InputParam30;
   DataWord InputParam38;
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000048;
   float fStack000000000000004c;
-  float in_stack_00000050;
+  float InputParam50;
   DataBuffer *puStack0000000000000058;
   int64_t stackDataBuffer;
   int64_t stackOperationContext;
-  uint8_t *in_stack_00000070;
-  float in_stack_00000078;
+  uint8_t *InputParam70;
+  float InputParam78;
   DataWord InputParam1A0;
   DataWord InputParam1A8;
   
@@ -19634,13 +19634,13 @@ ValidateDataSecurity:
   DataWord register_XMM6_Dc;
   DataWord uStackX_20;
   char acStackX_24 [4];
-  uint8_t *in_stack_00000028;
+  uint8_t *InputParam28;
   float InputParam30;
   DataWord InputParam38;
   float fStack0000000000000040;
   float fStack0000000000000044;
   DataBuffer in_stack_00000048;
-  float in_stack_00000050;
+  float InputParam50;
   DataBuffer *in_stack_00000058;
   int64_t lStack0000000000000060;
   int64_t stackOperationContext;
@@ -21223,7 +21223,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
   DataWord register_R13D;
   int64_t *systemContext;
   int register_R15D;
-  int *in_stack_00000078;
+  int *InputParam78;
   
   do {
     memoryBaseAddress = *(uint *)(*systemContext + param_2 * 8);
@@ -21325,7 +21325,7 @@ DataWord QuerySystemStatusWithValidation(void)
   ByteFlag *poperationResult;
   DataWord register_R13D;
   int register_R15D;
-  int *in_stack_00000078;
+  int *InputParam78;
   
   arrayIndex = (int)stackFramePointer;
   if (arrayIndex != 0) {
@@ -45023,8 +45023,11 @@ void Unwind_1809042f0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
-void Unwind_180904310(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+// 原始函数名：Unwind_180904310 - 异常展开处理函数E0
+// 功能：处理异常展开过程中的验证和清理操作
+#define ExceptionUnwindHandlerE0 Unwind_180904310
 
+void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParameter, DataBuffer systemFlag)
 {
   int64_t validationContext;
   
