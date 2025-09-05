@@ -80,7 +80,7 @@
 #define ResourceHashShiftMask 0xffffc000                   // 资源哈希移位掩码
 #define ResourceHashReservedBit 0x4000                     // 资源哈希保留位
 #define ResourceHashValueMask 0x7fff                        // 资源哈希值掩码
-#define ResourceDataProcessingOffset 4                                 // 资源数据偏移量
+#define ResourceDataOffset 4                                 // 资源数据偏移量
 #define ResourcePoolEntrySize 4                             // 资源池条目大小
 #define ResourcePoolSecondaryOffset 4                      // 资源池次要偏移量
 #define ResourceContextOffsetStandard 0x48                 // 资源上下文标准偏移量
