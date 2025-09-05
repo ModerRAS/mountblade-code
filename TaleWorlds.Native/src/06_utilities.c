@@ -37139,7 +37139,17 @@ void CleanupResourceReference(DataBuffer resourceBuffer,int64_t contextOffset)
 
 
 
-void Unwind_CleanupResourcePointer(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 清理资源指针
+ * 
+ * 该函数负责清理资源指针，管理引用计数和内存释放
+ * 
+ * @param resourceBuffer 资源缓冲区
+ * @param contextOffset 上下文偏移量
+ * 
+ * @note 原始函数名：Unwind_CleanupResourcePointer
+ */
+void CleanupResourcePointer(DataBuffer resourceBuffer,int64_t contextOffset)
 
 {
   int *referenceCountPointer;
@@ -37147,7 +37157,7 @@ void Unwind_CleanupResourcePointer(DataBuffer param_1,int64_t param_2)
   int64_t calculatedOffset;
   uint64_t memoryBaseAddress;
   
-  resourcePointer = (DataBuffer *)**(uint64_t **)(param_2 + 0x98);
+  resourcePointer = (DataBuffer *)**(uint64_t **)(contextOffset + 0x98);
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
