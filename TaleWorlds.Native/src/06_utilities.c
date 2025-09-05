@@ -1397,6 +1397,27 @@ uint32_t FreeValidationResources(void* ResourceHandles);
  * @warning 调用此函数前必须确保系统已准备好处理模块依赖关系
  */
 void SetupModuleDependencies(int64_t ModuleHandle, int64_t ModuleContext);
+// 资源哈希表偏移常量
+#define ResourceHashTablePrimaryOffset 0xff9                    // 资源哈希表主偏移量
+#define ResourceHashTableSecondaryOffset 0xffa                  // 资源哈希表次偏移量
+#define ResourceHashTableTertiaryOffset 0xffd                   // 资源哈希表第三偏移量
+#define ResourceHashTableOperationOffset1 0x102f                 // 资源哈希表操作偏移量1
+#define ResourceHashTableOperationOffset2 0x1031                 // 资源哈希表操作偏移量2
+#define ResourceHashTableOperationOffset3 0x1035                 // 资源哈希表操作偏移量3
+#define ResourceHashTableOperationOffset4 0x1037                 // 资源哈希表操作偏移量4
+#define ResourceHashTableOperationOffset5 0x103b                 // 资源哈希表操作偏移量5
+#define ResourceHashTableOperationOffset6 0x103d                 // 资源哈希表操作偏移量6
+#define ResourceHashTableResourceOffset 0x101b                   // 资源哈希表资源偏移量
+#define ResourceHashTableLoopStartOffset 0x1013                  // 资源哈希表循环开始偏移量
+#define ResourceHashTableLoopEndOffset 0x1043                   // 资源哈希表循环结束偏移量
+#define ResourceHashTableCallbackOffset 0x1049                  // 资源哈希表回调偏移量
+#define ResourceHashTableValidationOffset 0x1012                 // 资源哈希表验证偏移量
+#define ResourceHashTableSize 0x40                              // 资源哈希表大小
+#define ResourceHashTableEntrySize 0x8                           // 资源哈希表条目大小
+#define ResourceHashTableShiftAmount 3                           // 资源哈希表位移量
+#define ResourceHashTableResourceSize 0x20                       // 资源哈希表资源大小
+#define ResourceHashTableResourceType 5                          // 资源哈希表资源类型
+
 // 系统模块依赖全局变量
 void* GlobalModuleDependencyRegistry;                    // 全局模块依赖注册表
 uint32_t ModuleDependencyEntryCount;                     // 模块依赖条目数量
@@ -70129,13 +70150,13 @@ void UnwindSystemResourceHandlerC(uint8_t ObjectContext,int64_t ValidationContex
   
   PackageValidationStatusCodePointer = *(uint8_t **)(ValidationContext + 0x80);
   *PackageValidationStatusCodePointer = &SystemDataStructureReference004;
-  if ((int64_t *)ResourceHashStatusAddress[0x1049] != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ResourceHashStatusAddress[0x1049] + 0x38))();
+  if ((int64_t *)ResourceHashStatusAddress[ResourceHashTableCallbackOffset] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ResourceHashStatusAddress[ResourceHashTableCallbackOffset] + 0x38))();
   }
   ContextProcessingStatusCode = 0;
-  ResourceContext = ResourceHashStatusAddress + 0x1012;
+  ResourceContext = ResourceHashStatusAddress + ResourceHashTableValidationOffset;
   ResourceLoopIndex = *ResourceContext;
-  if (ResourceHashStatusAddress[0x1013] - ResourceLoopIndex >> 3 != 0) {
+  if (ResourceHashStatusAddress[ResourceHashTableLoopStartOffset] - ResourceLoopIndex >> ResourceHashTableShiftAmount != 0) {
     do {
       ValidationStatusCodeAddress = *(uint8_t **)(ResourceHashValidationStatus * 8 + ResourceLoopIndex);
       if (ValidationStatusCodeAddress != (uint8_t *)0x0) {
@@ -97995,7 +98016,16 @@ void ProcessResourceOperationWithCleanup(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_18090fbf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放对象上下文的独占锁
+ * 
+ * 该函数负责在对象上下文中释放独占锁资源
+ * 用于线程同步和资源管理
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针
+ */
+void ReleaseObjectContextExclusiveLock(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + 0x88) != '\0') {
@@ -98006,7 +98036,16 @@ void Unwind_18090fbf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fc00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文的主要方法指针
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文中
+ * 用于系统初始化和方法调用配置
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针
+ */
+void SetValidationContextPrimaryMethodPointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ValidationContextPrimaryMethodPointerOffset) = &SystemDataStructure;
@@ -98015,7 +98054,16 @@ void Unwind_18090fc00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fc10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放验证上下文的独占锁
+ * 
+ * 该函数负责在验证上下文中释放独占锁资源
+ * 用于线程同步和资源管理
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针
+ */
+void ReleaseValidationContextExclusiveLock(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + 0x88) != '\0') {

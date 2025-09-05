@@ -67,6 +67,12 @@
 #define UNION_LOW_PART(union_var)             (union_var).LowPart
 #define UNION_HIGH_PART(union_var)            (union_var).HighPart
 #define UNION_LOW_BYTE(union_var)             (union_var).LowByte
+#define UNION_HIGH_WORD(union_var)            (union_var)._0_4_
+#define UNION_BYTE_1(union_var)               (union_var)._1_7_
+#define UNION_BYTE_2(union_var)               (union_var)._1_1_
+#define UNION_HIGH_DWORD(union_var)           (union_var)._0_8_
+#define UNION_MID_WORD(union_var)             (union_var)._8_4_
+#define UNION_HIGH_WORD2(union_var)           (union_var)._12_4_
 
 // 系统标识符常量
 #define EventSystemIdentifier1          0x45b8d074df27d12f
