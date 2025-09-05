@@ -312,7 +312,17 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define TCP_PROTOCOL 0x06                                    // TCP协议类型
 #define NetworkLocalhostAddress 0x7F000001                   // 网络本地回环地址127.0.0.1
 #define NetworkLoopbackAddress NetworkLocalhostAddress       // 网络回环地址别名
+/**
+ * @brief HTTP备用端口
+ * 
+ * 用于HTTP服务的备用端口号8080
+ */
 #define PORT_HTTP_ALT 0x1F90                                 // 端口8080
+/**
+ * @brief HTTPS备用端口
+ * 
+ * 用于HTTPS服务的备用端口号8091
+ */
 #define PORT_HTTPS_ALT 0x1FBB                                // 端口8091
 #define PORT_RANGE_END 0x270F                                // 端口9999
 

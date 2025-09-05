@@ -45382,21 +45382,34 @@ void FreeExceptionMemory(undefined8 memoryContext, longlong memoryPointer)
 
 
 
-void Unwind_180905860(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 执行异常处理回调链
+ * 
+ * 该函数负责执行一系列异常处理回调函数，通过遍历回调函数
+ * 数组并依次调用每个回调函数来处理异常情况。
+ * 
+ * @param chainContext 链式处理上下文参数
+ * @param callbackChain 回调链指针，包含多个回调函数
+ * @param callbackParam1 回调参数1
+ * @param callbackParam2 回调参数2
+ * 
+ * @note 原始函数名：Unwind_180905860
+ */
+void ExecuteExceptionCallbackChain(undefined8 chainContext, longlong callbackChain, undefined8 callbackParam1, undefined8 callbackParam2)
 
 {
-  undefined8 *puVar1;
-  longlong *plVar2;
-  undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 *callbackEndPointer;
+  longlong *callbackStartPointer;
+  undefined8 *currentCallback;
+  undefined8 callbackFlag;
   
-  plVar2 = (longlong *)(*(longlong *)(param_2 + 0x2e0) + 8);
-  uVar4 = 0xfffffffffffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x2e0) + 0x10);
-  for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+  callbackStartPointer = (longlong *)(*(longlong *)(callbackChain + 0x2e0) + 8);
+  callbackFlag = 0xfffffffffffffffe;
+  callbackEndPointer = *(undefined8 **)(*(longlong *)(callbackChain + 0x2e0) + 0x10);
+  for (currentCallback = (undefined8 *)*callbackStartPointer; currentCallback != callbackEndPointer; currentCallback = currentCallback + 4) {
+    (**(code **)*currentCallback)(currentCallback,0,callbackParam1,callbackParam2,callbackFlag);
   }
-  if (*plVar2 == 0) {
+  if (*callbackStartPointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
