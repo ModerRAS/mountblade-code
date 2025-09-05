@@ -33731,6 +33731,19 @@ void DestroyMutexInExceptionD(void)
 
 
 
+/**
+ * @brief 异常恢复处理器B21
+ * 
+ * 该函数负责处理系统异常恢复，验证异常上下文中的各个条目，
+ * 确保异常处理的安全性。如果发现任何异常状态，会调用系统终止函数。
+ * 
+ * @param exceptionContext 异常上下文参数
+ * @param unwindParam 展开参数，包含验证上下文信息
+ * @param exceptionData 异常数据
+ * @param exceptionFlags 异常标志
+ * 
+ * @note 原始函数名：Unwind_1809025e0
+ */
 void ExceptionRecoveryHandlerB21(undefined8 exceptionContext,longlong unwindParam,undefined8 exceptionData,undefined8 exceptionFlags)
 
 {
@@ -33754,6 +33767,17 @@ void ExceptionRecoveryHandlerB21(undefined8 exceptionContext,longlong unwindPara
 
 
 
+/**
+ * @brief 异常展开处理器A31
+ * 
+ * 该函数负责处理异常展开操作，管理异常表的引用计数，
+ * 在异常处理完成后清理相关资源。
+ * 
+ * @param exceptionContext 异常上下文参数
+ * @param unwindParam 展开参数，包含异常表信息
+ * 
+ * @note 原始函数名：ExceptionUnwindHandlerA31
+ */
 void ExceptionUnwindHandlerA31(undefined8 exceptionContext,longlong unwindParam)
 
 {
@@ -92752,5 +92776,56 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
  * @note 原始函数名：Unwind_1809025e0
  */
 #define ExceptionRecoveryHandlerB21 Unwind_1809025e0
+
+// 资源清理处理器宏定义 (180906系列)
+/**
+ * @brief 销毁互斥体A
+ * 
+ * 该宏定义将原始的Unwind_180906010函数映射为DestroyMutexA
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180906010
+ */
+#define DestroyMutexA Unwind_180906010
+
+/**
+ * @brief 销毁条件变量A
+ * 
+ * 该宏定义将原始的Unwind_180906030函数映射为DestroyConditionVariableA
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180906030
+ */
+#define DestroyConditionVariableA Unwind_180906030
+
+/**
+ * @brief 销毁互斥体B
+ * 
+ * 该宏定义将原始的Unwind_180906040函数映射为DestroyMutexB
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180906040
+ */
+#define DestroyMutexB Unwind_180906040
+
+/**
+ * @brief 销毁互斥体C
+ * 
+ * 该宏定义将原始的Unwind_180906050函数映射为DestroyMutexC
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180906050
+ */
+#define DestroyMutexC Unwind_180906050
+
+/**
+ * @brief 清理验证上下文A
+ * 
+ * 该宏定义将原始的Unwind_180906060函数映射为CleanupValidationContextA
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180906060
+ */
+#define CleanupValidationContextA Unwind_180906060
 
 
