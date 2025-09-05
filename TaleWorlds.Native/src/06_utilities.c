@@ -3991,9 +3991,6 @@
 // 功能：处理数据操作
 #define ProcessDataOperationA6 FUN_18089bd70
 
-// 原始函数名：FUN_1808a4a20 - 内存管理函数A1
-// 功能：管理系统内存
-#define ManageSystemMemoryA1 FUN_1808a4a20
 
 // 原始函数名：FUN_180897520 - 上下文验证函数A2
 // 功能：验证上下文有效性
