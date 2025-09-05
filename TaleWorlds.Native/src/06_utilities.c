@@ -12228,6 +12228,13 @@ undefined8 ValidateAndProcessFloatingPointNumberA1(longlong DataHandle,longlong 
 
 
 
+/**
+ * @brief 查询系统状态E0
+ * 
+ * 该函数用于查询系统当前状态，包括数据验证和资源检查
+ * 
+ * @return undefined8 系统状态码，0x4a表示参数错误，0x1e表示数据上下文空，0x1f表示状态异常，0x1c表示成功
+ */
 undefined8 QuerySystemStatusE0(void)
 
 {
@@ -12330,6 +12337,14 @@ undefined8 ValidateParametersE0(undefined4 parameterFlags)
 
 
 
+/**
+ * @brief 验证参数E1
+ * 
+ * 该函数用于验证输入参数的有效性，包括数据范围检查和系统状态验证
+ * 
+ * @param validationFlags 验证标志位，用于指定验证类型和范围
+ * @return undefined8 验证结果状态码，0x1c表示验证成功
+ */
 undefined8 ValidateParametersE1(undefined4 validationFlags)
 
 {
@@ -12357,9 +12372,13 @@ undefined8 ValidateParametersE1(undefined4 validationFlags)
 
 
 
-// 系统清理函数E0
-// 功能：清理系统资源并返回状态码
-// 返回值：0x1c表示清理成功
+/**
+ * @brief 系统清理函数E0
+ * 
+ * 该函数用于清理系统资源并返回状态码
+ * 
+ * @return undefined8 清理结果状态码，0x1c表示清理成功
+ */
 undefined8 CleanupSystemE0(void)
 
 {
@@ -12369,9 +12388,13 @@ undefined8 CleanupSystemE0(void)
 
 
 
-// 空操作函数H
-// 功能：执行空操作，无任何实际功能
-// 用途：用于占位或测试目的
+/**
+ * @brief 空操作函数H
+ * 
+ * 该函数执行空操作，无任何实际功能
+ * 
+ * 用途：用于占位或测试目的
+ */
 void UtilityNoOperationH(void)
 
 {
@@ -21657,7 +21680,7 @@ void ValidateAndInitializeSystem(undefined4 param_1)
       if (iVar3 != 0) {
         return;
       }
-      iVar3 = FUN_180899100(extraout_XMM0_Da_01,lVar4 + 0x34);
+      iVar3 = ValidateAndExecuteOperationsA1(extraout_XMM0_Da_01,lVar4 + 0x34);
       if (iVar3 != 0) {
         return;
       }
