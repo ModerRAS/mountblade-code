@@ -21733,7 +21733,7 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   SystemInitializationStatusFlags = *(uint *)(SystemGlobalStatusFlags + 0x180);
   SystemOperationFlags = (ulong long)SystemInitializationStatusFlags;
   if (*(long long *)(SystemGlobalStatusFlags + 0x178) != 0) {
-    StoreDataInBuffer(&SystemDataPointer,SystemOperationFlags,AdditionalParameter,ConfigurationFlag,1,InvalidHandleValue);
+    StoreDataInBuffer(&SystemDataPointer,SystemOperationFlags,AdditionalParameter,SystemConfigurationFlag,1,InvalidHandleValue);
   }
   if (SystemInitializationStatusFlags != 0) {
       memcpy(SystemStackBuffer,*(void* *)(SystemResourceDataIndex + 0x178),SystemOperationFlags);
