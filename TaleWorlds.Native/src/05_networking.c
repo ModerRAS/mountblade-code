@@ -2548,9 +2548,9 @@ PrimaryNetworkProcessingComplete:
     *(int *)CalculateConnectionParameterOffset(ConnectionOperationBuffer) = ConnectionOperationCode;
     return NetworkOperationSuccess;
   }
-  if (PacketIndex * ConnectionEntrySize - 1U < MaxSignedInt32Value) {
+  if (PacketIndex * ConnectionEntrySize - 1U < MaximumSignedInt32Value) {
     ConnectionStatusPointer = (NetworkStatus *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkManagerContextPointer + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            ConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
       int32_t NetworkOperationProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
