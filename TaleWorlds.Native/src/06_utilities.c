@@ -7728,11 +7728,11 @@ undefined8 ValidateUtilitySystemState(void)
           return uVar1;
         }
       }
-      uVar4 = (int)uVar5 + 1;
-      uVar5 = (ulonglong)uVar4;
+      memoryBaseAddress = (int)uVar5 + 1;
+      uVar5 = (ulonglong)memoryBaseAddress;
       puVar3 = puVar3 + 1;
       poperationResult = poperationResult + 2;
-    } while ((int)uVar4 < *(int *)(unaff_RBP + 0x18));
+    } while ((int)memoryBaseAddress < *(int *)(unaff_RBP + 0x18));
   }
   return 0;
 }
@@ -10769,7 +10769,7 @@ undefined8 ProcessSystemResourceValidationWithStack(void)
   longlong validationContext;
   int operationResult;
   undefined8 uVar3;
-  undefined *puVar4;
+  undefined *pmemoryBaseAddress;
   uint uVar5;
   ulonglong uVar6;
   longlong lVar7;
@@ -10793,12 +10793,12 @@ undefined8 ProcessSystemResourceValidationWithStack(void)
         return 0x1e;
       }
       if (*(int *)(validationContext + 0x58) < 1) {
-        puVar4 = &DAT_18098bc73;
+        pmemoryBaseAddress = &DAT_18098bc73;
       }
       else {
-        puVar4 = *(undefined **)(validationContext + 0x50);
+        pmemoryBaseAddress = *(undefined **)(validationContext + 0x50);
       }
-      operationResult = ValidateResourceDataIntegrityA0(puVar4);
+      operationResult = ValidateResourceDataIntegrityA0(pmemoryBaseAddress);
       if (operationResult == 0) {
         uVar3 = ValidateAndProcessSystemResourceA0(lVar7,registerR14 + 0x18);
         if ((int)uVar3 != 0) {
@@ -11519,8 +11519,8 @@ undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
     }
     validationBuffer[0] = 0;
     operationResult = ExecuteSystemOperationA0(dataBuffer,resourceHandle,systemContext + 0x28,validationBuffer);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    if ((int)memoryBaseAddress != 0) {
+      return memoryBaseAddress;
     }
     lVar5 = *(longlong *)(lVar5 + 0x20);
     lVar3 = *(longlong *)(lVar5 + 0x10 + (longlong)(int)auStackX_8[0] * 0x18);
@@ -11551,16 +11551,16 @@ undefined8 ValidateAndProcessFloatingPointNumberA2(longlong param_1,longlong par
   float fVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   longlong lVar5;
   longlong lVar6;
   int aiStackX_8 [2];
   longlong lStackX_18;
   
   if (param_1 + 0x28 != 0) {
-    uVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    memoryBaseAddress = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
+    if ((int)memoryBaseAddress != 0) {
+      return memoryBaseAddress;
     }
     lVar6 = lStackX_18;
     if (lStackX_18 != 0) {
@@ -11571,17 +11571,17 @@ undefined8 ValidateAndProcessFloatingPointNumberA2(longlong param_1,longlong par
       return 0x1e;
     }
     aiStackX_8[0] = 0;
-    uVar4 = ExecuteSystemOperationA0(param_2,lVar6,param_1 + 0x28,aiStackX_8);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    memoryBaseAddress = ExecuteSystemOperationA0(param_2,lVar6,param_1 + 0x28,aiStackX_8);
+    if ((int)memoryBaseAddress != 0) {
+      return memoryBaseAddress;
     }
     lVar5 = (longlong)aiStackX_8[0];
     lVar6 = *(longlong *)(lVar6 + 0x20);
     lVar3 = *(longlong *)(lVar6 + 0x10 + lVar5 * 0x18);
     if ((*(byte *)(lVar3 + 0x34) & 0x11) == 0) {
-      uVar4 = ProcessDataValidationA0(lVar3,param_1 + 0xa8,param_1 + 0x18);
-      if ((int)uVar4 != 0) {
-        return uVar4;
+      memoryBaseAddress = ProcessDataValidationA0(lVar3,param_1 + 0xa8,param_1 + 0x18);
+      if ((int)memoryBaseAddress != 0) {
+        return memoryBaseAddress;
       }
       fVar1 = *(float *)(param_1 + 0x18);
       if ((*(float *)(lVar3 + 0x38) <= fVar1) &&
@@ -11607,7 +11607,7 @@ undefined8 ProcessComplexDataStructureA0(longlong param_1,longlong param_2,undef
   float fVar1;
   int operationResult;
   longlong lVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   longlong lVar5;
   undefined8 unaff_RDI;
   float fVar6;
@@ -11617,9 +11617,9 @@ undefined8 ProcessComplexDataStructureA0(longlong param_1,longlong param_2,undef
   if ((*(uint *)(param_1 + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   lVar5 = lStackX_8;
   if (lStackX_8 != 0) {
@@ -11643,28 +11643,28 @@ undefined8 ProcessComplexDataStructureA0(longlong param_1,longlong param_2,undef
     }
     *(float *)(resourceDescriptor + 0x20) = fVar6;
     *(float *)(lVar5 + 4) = fVar6;
-    uVar4 = ValidateAndProcessSystemResourceA0(lVar5,param_1 + 0x1c);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    memoryBaseAddress = ValidateAndProcessSystemResourceA0(lVar5,param_1 + 0x1c);
+    if ((int)memoryBaseAddress != 0) {
+      return memoryBaseAddress;
     }
     lVar5 = *(longlong *)(param_2 + 0x98);
     if ((*(int *)(lVar5 + 0x180) != 0) || (*(int *)(lVar5 + 0x184) != 0)) {
       lStackX_8 = 0;
       InitializeSystemContextA0(&lStackX_8,param_1,param_3,param_4,unaff_RDI);
       if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar5 + 0x17c) * 8 + 0x180c4f450)) {
-        uVar4 = ProcessSystemDataEC0(lVar5,param_1);
-        if ((int)uVar4 == 0) {
+        memoryBaseAddress = ProcessSystemDataEC0(lVar5,param_1);
+        if ((int)memoryBaseAddress == 0) {
           return 0;
         }
-        return uVar4;
+        return memoryBaseAddress;
       }
     }
     *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-    uVar4 = GetSystemCurrentStateA0(*(undefined8 *)(lVar5 + 0x1e0));
-    if ((int)uVar4 == 0) {
+    memoryBaseAddress = GetSystemCurrentStateA0(*(undefined8 *)(lVar5 + 0x1e0));
+    if ((int)memoryBaseAddress == 0) {
       return 0;
     }
-    return uVar4;
+    return memoryBaseAddress;
   }
   return 0x1f;
 }
@@ -12878,7 +12878,7 @@ undefined8 SaveSystemConfigurationA0(longlong param_1,longlong param_2)
   float fVar1;
   undefined8 uVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   float fVar5;
   uint auStackX_8 [2];
   undefined4 auStackX_18 [2];
@@ -12903,8 +12903,8 @@ undefined8 SaveSystemConfigurationA0(longlong param_1,longlong param_2)
     *(float *)(param_1 + 0x10) = fVar5;
     uVar2 = ValidateOperationRangeA0(param_2 + 0x60,auStackX_18[0],fVar5);
     if ((int)uVar2 == 0) {
-      puVar4 = (undefined8 *)ProcessSystemDataA0(param_2 + 0x60,auStackX_8,auStackX_18[0]);
-      *(undefined8 *)(param_1 + 0x18) = *puVar4;
+      pmemoryBaseAddress = (undefined8 *)ProcessSystemDataA0(param_2 + 0x60,auStackX_8,auStackX_18[0]);
+      *(undefined8 *)(param_1 + 0x18) = *pmemoryBaseAddress;
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
@@ -12921,7 +12921,7 @@ undefined8 ValidateSystemConfigurationA0(void)
   float fVar1;
   longlong lVar2;
   undefined8 uVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   longlong registerRBX;
   longlong unaff_RDI;
   float fVar5;
@@ -12940,8 +12940,8 @@ undefined8 ValidateSystemConfigurationA0(void)
   *(float *)(registerRBX + 0x10) = fVar5;
   uVar3 = ValidateOperationRangeA0(unaff_RDI + 0x60,stackParameter40,fVar5);
   if ((int)uVar3 == 0) {
-    puVar4 = (undefined8 *)ProcessSystemDataA0(unaff_RDI + 0x60,&stack0x00000030,stackParameter40);
-    *(undefined8 *)(registerRBX + 0x18) = *puVar4;
+    pmemoryBaseAddress = (undefined8 *)ProcessSystemDataA0(unaff_RDI + 0x60,&stack0x00000030,stackParameter40);
+    *(undefined8 *)(registerRBX + 0x18) = *pmemoryBaseAddress;
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(undefined8 *)(unaff_RDI + 0x98));
   }
@@ -13001,7 +13001,7 @@ undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
   float fVar1;
   undefined8 uVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   undefined1 auStackX_8 [8];
   undefined4 auStackX_18 [2];
   
@@ -13022,8 +13022,8 @@ undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
       else {
         uVar2 = ValidateOperationRangeA0(param_2 + 0x60,auStackX_18[0]);
         if ((int)uVar2 == 0) {
-          puVar4 = (undefined8 *)ProcessSystemDataA0(param_2 + 0x60,auStackX_8,auStackX_18[0]);
-          *(undefined8 *)(param_1 + 0x18) = *puVar4;
+          pmemoryBaseAddress = (undefined8 *)ProcessSystemDataA0(param_2 + 0x60,auStackX_8,auStackX_18[0]);
+          *(undefined8 *)(param_1 + 0x18) = *pmemoryBaseAddress;
                     // WARNING: Subroutine does not return
           CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
         }
@@ -13042,7 +13042,7 @@ undefined8 CleanupSystemB0(void)
   float fVar1;
   longlong lVar2;
   undefined8 uVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   longlong unaff_RDI;
   longlong registerR14;
   undefined4 in_stack_00000050;
@@ -13061,9 +13061,9 @@ undefined8 CleanupSystemB0(void)
     else {
       uVar3 = ValidateOperationRangeA0(registerR14 + 0x60,in_stack_00000050);
       if ((int)uVar3 == 0) {
-        puVar4 = (undefined8 *)
+        pmemoryBaseAddress = (undefined8 *)
                  ProcessSystemDataA0(registerR14 + 0x60,&stack0x00000040,in_stack_00000050);
-        *(undefined8 *)(unaff_RDI + 0x18) = *puVar4;
+        *(undefined8 *)(unaff_RDI + 0x18) = *pmemoryBaseAddress;
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(undefined8 *)(registerR14 + 0x98));
       }
@@ -14198,7 +14198,7 @@ undefined8 InitializeSystemDataStructure(longlong *param_1)
   int iVar1;
   longlong lVar2;
   undefined8 uVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   longlong lVar5;
   uint uVar6;
   int *piVar7;
@@ -14229,22 +14229,22 @@ undefined8 InitializeSystemDataStructure(longlong *param_1)
       return uVar3;
     }
     uVar9 = 0;
-    uVar4 = uVar9;
+    memoryBaseAddress = uVar9;
     if (0 < iVar8) {
       do {
-        *(undefined4 *)(*param_1 + uVar4 * 4) = 0xffffffff;
-        uVar4 = uVar4 + 1;
-      } while ((longlong)uVar4 < (longlong)iVar8);
+        *(undefined4 *)(*param_1 + memoryBaseAddress * 4) = 0xffffffff;
+        memoryBaseAddress = memoryBaseAddress + 1;
+      } while ((longlong)memoryBaseAddress < (longlong)iVar8);
     }
     lVar2 = param_1[3];
-    uVar4 = uVar9;
+    memoryBaseAddress = uVar9;
     uVar10 = uVar9;
     if (0 < (int)lVar2) {
       do {
         if ((int)param_1[1] == 0) {
           return 0x1c;
         }
-        lVar5 = (longlong)(int)(*(uint *)(uVar4 + param_1[2]) & (int)param_1[1] - 1U);
+        lVar5 = (longlong)(int)(*(uint *)(memoryBaseAddress + param_1[2]) & (int)param_1[1] - 1U);
         piVar7 = (int *)(*param_1 + lVar5 * 4);
         iVar8 = *(int *)(*param_1 + lVar5 * 4);
         while (iVar8 != -1) {
@@ -14254,8 +14254,8 @@ undefined8 InitializeSystemDataStructure(longlong *param_1)
         *piVar7 = (int)uVar9;
         uVar10 = uVar10 + 1;
         uVar9 = (ulonglong)((int)uVar9 + 1);
-        *(undefined4 *)(param_1[2] + 4 + uVar4) = 0xffffffff;
-        uVar4 = uVar4 + 0x10;
+        *(undefined4 *)(param_1[2] + 4 + memoryBaseAddress) = 0xffffffff;
+        memoryBaseAddress = memoryBaseAddress + 0x10;
       } while ((longlong)uVar10 < (longlong)(int)lVar2);
     }
   }
@@ -14782,7 +14782,7 @@ undefined8 ValidateDataIntegrityA2(longlong param_1,undefined8 param_2,longlong 
 {
   undefined8 uVar1;
   longlong in_RAX;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   int *unaff_RDI;
   longlong in_R10;
   undefined8 uStack0000000000000040;
@@ -14793,12 +14793,12 @@ undefined8 ValidateDataIntegrityA2(longlong param_1,undefined8 param_2,longlong 
     *unaff_RDI = uStack0000000000000040._4_4_;
     return 0;
   }
-  puVar2 = (undefined8 *)
+  resourcePointer = (undefined8 *)
            ((longlong)*(int *)(*(longlong *)(in_R10 + 0x18) + param_3 * 0xc) +
            *(longlong *)(in_R10 + 8));
-  if (puVar2 != (undefined8 *)0x0) {
+  if (resourcePointer != (undefined8 *)0x0) {
     uStack0000000000000040 = uVar1;
-    (**(code **)*puVar2)();
+    (**(code **)*resourcePointer)();
   }
   *unaff_RDI = 0;
   return 0;
@@ -14823,7 +14823,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
   uint uVar1;
   int operationResult;
   int iVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   undefined8 uVar5;
   undefined8 *puVar6;
   int iVar7;
@@ -14834,8 +14834,8 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
   int iVar12;
   int *piVar13;
   
-  uVar4 = InitializeSystemA1();
-  if ((int)uVar4 == 0) {
+  memoryBaseAddress = InitializeSystemA1();
+  if ((int)memoryBaseAddress == 0) {
     if ((int)param_1[1] == 0) {
       return 0x1c;
     }
@@ -14857,7 +14857,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
     }
     operationResult = (int)param_1[4];
     if (operationResult == -1) {
-      uVar4 = *param_3;
+      memoryBaseAddress = *param_3;
       operationResult = (int)param_1[3];
       iVar7 = operationResult + 1;
       uVar11 = (int)*(uint *)((longlong)param_1 + 0x1c) >> 0x1f;
@@ -14881,7 +14881,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
       }
       puVar6 = (undefined8 *)((longlong)(int)param_1[3] * 0x10 + param_1[2]);
       *puVar6 = CONCAT44(0xffffffff,uVar1);
-      puVar6[1] = uVar4;
+      puVar6[1] = memoryBaseAddress;
       *(int *)(param_1 + 3) = (int)param_1[3] + 1;
     }
     else {
@@ -14893,9 +14893,9 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
     }
     *piVar13 = operationResult;
     *(int *)((longlong)param_1 + 0x24) = *(int *)((longlong)param_1 + 0x24) + 1;
-    uVar4 = 0;
+    memoryBaseAddress = 0;
   }
-  return uVar4;
+  return memoryBaseAddress;
 }
 
 
@@ -14910,7 +14910,7 @@ undefined8 ValidateAndProcessDataStructure(undefined8 param_1,int param_2)
   int in_EAX;
   int operationResult;
   int iVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   undefined8 *puVar5;
   int iVar6;
   longlong lVar7;
@@ -14956,9 +14956,9 @@ undefined8 ValidateAndProcessDataStructure(undefined8 param_1,int param_2)
       else if (iVar10 < iVar6) {
         iVar10 = iVar6;
       }
-      uVar4 = CheckSystemDataA0(unaff_RDI + 2,iVar10);
-      if ((int)uVar4 != 0) {
-        return uVar4;
+      memoryBaseAddress = CheckSystemDataA0(unaff_RDI + 2,iVar10);
+      if ((int)memoryBaseAddress != 0) {
+        return memoryBaseAddress;
       }
     }
     puVar5 = (undefined8 *)((longlong)(int)unaff_RDI[3] * 0x10 + unaff_RDI[2]);
@@ -16259,7 +16259,7 @@ void ProcessFloatingPointDataA0(void)
   longlong validationContext;
   longlong lVar2;
   undefined4 uVar3;
-  undefined4 uVar4;
+  undefined4 memoryBaseAddress;
   undefined4 uVar5;
   undefined4 uVar6;
   int iVar7;
@@ -16296,7 +16296,7 @@ void ProcessFloatingPointDataA0(void)
         iVar8 = ValidateAndProcessSystemResourceA0(lVar2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(undefined4 *)(validationContext + 0x10);
-        uVar4 = *(undefined4 *)(validationContext + 0x14);
+        memoryBaseAddress = *(undefined4 *)(validationContext + 0x14);
         uVar5 = *(undefined4 *)(validationContext + 0x18);
         uVar6 = *(undefined4 *)(validationContext + 0x1c);
         *(undefined4 *)(unaff_RBP + -0x78) = 0;
@@ -16306,7 +16306,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x54) = uStackX_20;
         *(undefined4 *)(unaff_RBP + -0x70) = unaff_EBX;
         *(undefined4 *)(unaff_RBP + -100) = uVar3;
-        *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
+        *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
         iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
@@ -16349,7 +16349,7 @@ void ProcessFloatingPointDataA0(void)
         iVar8 = ValidateAndProcessSystemResourceA0(lVar2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(undefined4 *)(validationContext + 0x10);
-        uVar4 = *(undefined4 *)(validationContext + 0x14);
+        memoryBaseAddress = *(undefined4 *)(validationContext + 0x14);
         uVar5 = *(undefined4 *)(validationContext + 0x18);
         uVar6 = *(undefined4 *)(validationContext + 0x1c);
         *(undefined4 *)(unaff_RBP + -0x78) = 0;
@@ -16359,7 +16359,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x54) = uStackX_20;
         *(undefined4 *)(unaff_RBP + -0x70) = unaff_EBX;
         *(undefined4 *)(unaff_RBP + -100) = uVar3;
-        *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
+        *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
         iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
@@ -16402,7 +16402,7 @@ void ProcessFloatingPointDataA0(void)
         iVar8 = ValidateAndProcessSystemResourceA0(lVar2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(undefined4 *)(validationContext + 0x10);
-        uVar4 = *(undefined4 *)(validationContext + 0x14);
+        memoryBaseAddress = *(undefined4 *)(validationContext + 0x14);
         uVar5 = *(undefined4 *)(validationContext + 0x18);
         uVar6 = *(undefined4 *)(validationContext + 0x1c);
         *(undefined4 *)(unaff_RBP + -0x78) = 0;
@@ -16412,7 +16412,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x54) = uStackX_20;
         *(undefined4 *)(unaff_RBP + -0x70) = unaff_EBX;
         *(undefined4 *)(unaff_RBP + -100) = uVar3;
-        *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
+        *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
         iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
@@ -16455,7 +16455,7 @@ void ProcessFloatingPointDataA0(void)
         iVar8 = ValidateAndProcessSystemResourceA0(lVar2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(undefined4 *)(validationContext + 0x10);
-        uVar4 = *(undefined4 *)(validationContext + 0x14);
+        memoryBaseAddress = *(undefined4 *)(validationContext + 0x14);
         uVar5 = *(undefined4 *)(validationContext + 0x18);
         uVar6 = *(undefined4 *)(validationContext + 0x1c);
         *(undefined4 *)(unaff_RBP + -0x78) = 0;
@@ -16465,7 +16465,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x54) = uStackX_20;
         *(undefined4 *)(unaff_RBP + -0x70) = unaff_EBX;
         *(undefined4 *)(unaff_RBP + -100) = uVar3;
-        *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
+        *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
         iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
@@ -16511,7 +16511,7 @@ void ProcessFloatingPointDataA0(void)
         iVar9 = ValidateAndProcessSystemResourceA0(lVar2,&uStackX_20);
         if (iVar9 != 0) break;
         uVar3 = *(undefined4 *)(validationContext + 0x10);
-        uVar4 = *(undefined4 *)(validationContext + 0x14);
+        memoryBaseAddress = *(undefined4 *)(validationContext + 0x14);
         uVar5 = *(undefined4 *)(validationContext + 0x18);
         uVar6 = *(undefined4 *)(validationContext + 0x1c);
         *(undefined4 *)(unaff_RBP + -0x78) = 0;
@@ -16521,7 +16521,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x54) = uStackX_20;
         *(undefined4 *)(unaff_RBP + -0x70) = unaff_EBX;
         *(undefined4 *)(unaff_RBP + -100) = uVar3;
-        *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
+        *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
         iVar9 = FUN_180897520(uVar3,unaff_RBP + -0x80);
@@ -16899,7 +16899,7 @@ ProcessDataSecurityValidation:
   float fVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   undefined4 uVar5;
   undefined4 uVar6;
   undefined4 uVar7;
@@ -16920,7 +16920,7 @@ ProcessDataSecurityValidation:
   float *pfVar21;
   undefined8 *unaff_RBP;
   longlong unaff_RSI;
-  undefined8 *puVar22;
+  undefined8 *resourcePointer2;
   float unaff_R13D;
   longlong registerR14;
   ulonglong uVar23;
@@ -16956,10 +16956,10 @@ ProcessDataSecurityValidation:
   undefined4 in_stack_000001a0;
   undefined4 in_stack_000001a8;
   
-  puVar22 = (undefined8 *)(registerR14 + 8);
+  resourcePointer2 = (undefined8 *)(registerR14 + 8);
   fStack0000000000000048 = unaff_R13D;
-  puStack0000000000000058 = puVar22;
-  validationContext5 = (*(code *)*in_RAX)(puVar22);
+  puStack0000000000000058 = resourcePointer2;
+  validationContext5 = (*(code *)*in_RAX)(resourcePointer2);
   iVar13 = ValidateAndProcessSystemResourceA0(*(undefined8 *)(validationContext5 + 0xd0),&stack0x00000048);
   if (iVar13 == 0) {
     in_stack_00000070 = &UNK_1809832b8;
@@ -16977,15 +16977,15 @@ ProcessDataSecurityValidation:
           lVar2 = *(longlong *)(uVar20 + 0x10 + validationContext5);
           lVar3 = *(longlong *)(uVar20 + 8 + validationContext5);
           cVar12 = func_0x000180894c50(lVar2,1);
-          puVar22 = puStack0000000000000058;
+          resourcePointer2 = puStack0000000000000058;
           if ((cVar12 == '\0') && (*(float *)(lVar2 + 0x4c) != *(float *)(lVar3 + 0x28))) {
             uVar24 = *(undefined4 *)(uVar20 + 4 + validationContext5);
             unaff_RBP[-4] = &UNK_180984038;
             *(undefined4 *)(unaff_RBP + -2) = uStackX_20;
-            puVar4 = (undefined8 *)*puStack0000000000000058;
+            pmemoryBaseAddress = (undefined8 *)*puStack0000000000000058;
             *(undefined4 *)(unaff_RBP + -1) = uVar24;
             *(undefined4 *)(unaff_RBP + -3) = 0;
-            validationContext5 = (*(code *)*puVar4)(puStack0000000000000058);
+            validationContext5 = (*(code *)*pmemoryBaseAddress)(puStack0000000000000058);
             *unaff_RBP = *(undefined8 *)(*(longlong *)(validationContext5 + 0x90) + uVar23 * 8);
             *(undefined1 *)((longlong)unaff_RBP + -4) = 0;
             if (*(int *)(lVar2 + 0x58) < 1) {
@@ -17005,7 +17005,7 @@ ProcessDataSecurityValidation:
         } while ((longlong)uVar23 < in_stack_00000060);
       }
       uVar17 = *(undefined8 *)(*(longlong *)(unaff_RSI + 8) + 800);
-      uVar16 = (**(code **)*puVar22)(puVar22);
+      uVar16 = (**(code **)*resourcePointer2)(resourcePointer2);
       iVar13 = FUN_1808479d0(uVar16,uVar17,acStackX_24);
       if (iVar13 == 0) {
         uVar24 = extraout_XMM0_Da_00;
@@ -17162,7 +17162,7 @@ ValidateDataSecurity:
   float fVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   undefined4 uVar5;
   undefined4 uVar6;
   undefined4 uVar7;
@@ -17229,10 +17229,10 @@ ValidateDataSecurity:
         uVar23 = *(undefined4 *)(uVar20 + 4 + validationContext5);
         unaff_RBP[-4] = &UNK_180984038;
         *(undefined4 *)(unaff_RBP + -2) = uStackX_20;
-        puVar4 = (undefined8 *)*in_stack_00000058;
+        pmemoryBaseAddress = (undefined8 *)*in_stack_00000058;
         *(undefined4 *)(unaff_RBP + -1) = uVar23;
         *(undefined4 *)(unaff_RBP + -3) = 0;
-        validationContext5 = (*(code *)*puVar4)(in_stack_00000058);
+        validationContext5 = (*(code *)*pmemoryBaseAddress)(in_stack_00000058);
         *unaff_RBP = *(undefined8 *)(*(longlong *)(validationContext5 + 0x90) + uVar22 * 8);
         *(undefined1 *)((longlong)unaff_RBP + -4) = 0;
         if (*(int *)(lVar2 + 0x58) < 1) {
@@ -17761,7 +17761,7 @@ undefined8 ValidateDataStructureA0(longlong *param_1)
   longlong validationContext;
   undefined8 uVar2;
   longlong lVar3;
-  undefined4 uVar4;
+  undefined4 memoryBaseAddress;
   undefined4 uVar5;
   undefined4 uVar6;
   undefined4 uVar7;
@@ -17785,43 +17785,43 @@ undefined8 ValidateDataStructureA0(longlong *param_1)
     else {
       uVar2 = (**(code **)(*param_1 + 8))(param_1,&UNK_1809864dc);
       if ((int)uVar2 == 0) {
-        uVar4 = 0x14;
+        memoryBaseAddress = 0x14;
         uVar2 = FUN_180897d20(param_1,&UNK_1809864e0,2,2,0x14);
         if (((((int)uVar2 == 0) &&
              (uVar2 = FUN_180897d20(param_1,&UNK_180986508,*(undefined4 *)(validationContext + 0x116bc)),
              (int)uVar2 == 0)) &&
             (uVar2 = FUN_180897d20(param_1,&UNK_180986550,(ulonglong)*(uint *)(validationContext + 0x6d8),
                                    (ulonglong)*(uint *)(validationContext + 0x6dc) /
-                                   (ulonglong)*(uint *)(validationContext + 0x6d8),uVar4), (int)uVar2 == 0)) &&
+                                   (ulonglong)*(uint *)(validationContext + 0x6d8),memoryBaseAddress), (int)uVar2 == 0)) &&
            (uVar2 = FUN_180897d20(param_1,&UNK_180986590,*(undefined4 *)(validationContext + 0x6d0),
                                   *(undefined4 *)(validationContext + 0x1193c),*(undefined4 *)(validationContext + 0x6d4)),
            (int)uVar2 == 0)) {
-          uVar4 = *(undefined4 *)(validationContext + 0x11668);
+          memoryBaseAddress = *(undefined4 *)(validationContext + 0x11668);
           uVar8 = *(undefined4 *)(validationContext + 0x11624);
           uVar7 = *(undefined4 *)(validationContext + 0x11620);
           uVar6 = *(undefined4 *)(validationContext + 0x1161c);
           uVar2 = FUN_180897d20(param_1,&UNK_1809865f0,*(undefined4 *)(validationContext + 0x1160c),
                                 *(undefined4 *)(validationContext + 0x11610),*(undefined4 *)(validationContext + 0x11614),
-                                *(undefined4 *)(validationContext + 0x11618),uVar6,uVar7,uVar8,uVar4);
+                                *(undefined4 *)(validationContext + 0x11618),uVar6,uVar7,uVar8,memoryBaseAddress);
           if (((int)uVar2 == 0) &&
              (uVar2 = FUN_180897d20(param_1,&UNK_1809866c0,*(undefined4 *)(validationContext + 0x11628),
                                     (double)*(float *)(validationContext + 0x11640),
                                     *(undefined4 *)(validationContext + 0x11644),
-                                    *(undefined4 *)(validationContext + 0x1164c),uVar6,uVar7,uVar8,uVar4),
+                                    *(undefined4 *)(validationContext + 0x1164c),uVar6,uVar7,uVar8,memoryBaseAddress),
              (int)uVar2 == 0)) {
             uVar6 = *(undefined4 *)(validationContext + 0x11660);
             uVar2 = FUN_180897d20(param_1,&UNK_180986730,(double)*(float *)(validationContext + 0x11650),
                                   *(undefined4 *)(validationContext + 0x11654),*(undefined4 *)(validationContext + 0x11658),
-                                  *(undefined4 *)(validationContext + 0x1165c),uVar6,uVar7,uVar8,uVar4);
+                                  *(undefined4 *)(validationContext + 0x1165c),uVar6,uVar7,uVar8,memoryBaseAddress);
             if ((int)uVar2 == 0) {
               uVar5 = *(undefined4 *)(lVar3 + 0x10);
               uVar2 = FUN_180897d20(param_1,&UNK_1809867b0,*(undefined4 *)(lVar3 + 4),
                                     *(undefined4 *)(lVar3 + 8),*(undefined4 *)(lVar3 + 0xc),uVar5,
-                                    uVar6,uVar7,uVar8,uVar4);
+                                    uVar6,uVar7,uVar8,memoryBaseAddress);
               if ((((int)uVar2 == 0) &&
                   (uVar2 = FUN_180897d20(param_1,&UNK_180986850,*(undefined4 *)(validationContext + 0x1e0),
                                          *(undefined4 *)(param_1[1] + 0x20),
-                                         *(undefined4 *)(validationContext + 0x78),uVar5,uVar6,uVar7,uVar8,uVar4
+                                         *(undefined4 *)(validationContext + 0x78),uVar5,uVar6,uVar7,uVar8,memoryBaseAddress
                                         ), (int)uVar2 == 0)) &&
                  ((uVar2 = (**(code **)(*param_1 + 8))(param_1,&UNK_1809864dc), (int)uVar2 == 0 &&
                   (((*(uint *)(param_1 + 3) & 2) != 0 ||
@@ -17907,7 +17907,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
 
 {
   float fVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined4 *puVar3;
   longlong lVar4;
   char cVar5;
@@ -18026,9 +18026,9 @@ void ProcessFloatingPointDataA1(longlong *param_1)
           uStack_2c0 = (undefined4)((ulonglong)validationContext1 >> 0x20);
           uStack_2bc = (undefined4)uVar9;
           uStack_2b8 = (undefined4)(uVar9 >> 0x20);
-          puVar2 = (undefined8 *)(validationContext5 + 0xf0 + (longlong)pvalidationContext0);
-          uStack_2b4 = *puVar2;
-          uStack_2ac = puVar2[1];
+          resourcePointer = (undefined8 *)(validationContext5 + 0xf0 + (longlong)pvalidationContext0);
+          uStack_2b4 = *resourcePointer;
+          uStack_2ac = resourcePointer[1];
           puVar3 = (undefined4 *)(validationContext5 + 0x100 + (longlong)pvalidationContext0);
           uStack_2a4 = *puVar3;
           uStack_2a0 = puVar3[1];
@@ -18302,7 +18302,7 @@ undefined8 ValidateDataA1(longlong *param_1,char param_2)
   longlong validationContext;
   undefined8 uVar2;
   ulonglong uVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   undefined8 uStackX_8;
   longlong alStackX_18 [2];
   undefined *puStack_28;
@@ -18315,13 +18315,13 @@ undefined8 ValidateDataA1(longlong *param_1,char param_2)
      (uVar2 = (**(code **)(*param_1 + 0x10))(param_1), (int)uVar2 == 0)) {
     uVar3 = (ulonglong)(alStackX_18[0] * 48000) / (ulonglong)*(uint *)((longlong)param_1 + 0x1c);
     validationContext = param_1[2];
-    uVar4 = uVar3 - validationContext;
-    if (((param_2 != '\0') || (validationContext == 0)) || (47999 < uVar4)) {
+    memoryBaseAddress = uVar3 - validationContext;
+    if (((param_2 != '\0') || (validationContext == 0)) || (47999 < memoryBaseAddress)) {
       param_1[2] = uVar3;
       uStack_20 = 0;
       uStack_18 = 0;
       if (validationContext != 0) {
-        uStack_18 = uVar4;
+        uStack_18 = memoryBaseAddress;
       }
       puStack_28 = &UNK_180986390;
       uVar2 = FUN_180897520(param_1,&puStack_28);
@@ -18343,9 +18343,9 @@ undefined8 ProcessComplexDataA2(longlong *param_1,char *param_2,undefined8 *para
 
 {
   char *pcVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   byte bVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   char cVar5;
   char cVar6;
   int iVar7;
@@ -18410,10 +18410,10 @@ SystemCheckpointA:
 SystemCheckpointB:
     uVar8 = puVar11[1] & 0xffffff;
     if (((char)(puVar11[1] >> 0x18) == '\0') && ((int)uVar8 < (int)param_1[3])) {
-      puVar2 = (undefined8 *)(param_1[2] + (ulonglong)uVar8 * 0x10);
-      uVar4 = puVar2[1];
-      *param_3 = *puVar2;
-      param_3[1] = uVar4;
+      resourcePointer = (undefined8 *)(param_1[2] + (ulonglong)uVar8 * 0x10);
+      memoryBaseAddress = resourcePointer[1];
+      *param_3 = *resourcePointer;
+      param_3[1] = memoryBaseAddress;
       return 0;
     }
   }
@@ -18657,8 +18657,8 @@ undefined4 ProcessDataF0(undefined8 param_1,int param_2,undefined4 *param_3)
   iVar18 = 0;
   uVar12 = 0;
   iVar13 = (int)unaff_RBP;
-  uVar4 = *(uint3 *)((longlong)param_2 * 3 + registerR14[6]);
-  while (uVar7 = (uint)uVar4, uVar7 != 0xffffff) {
+  memoryBaseAddress = *(uint3 *)((longlong)param_2 * 3 + registerR14[6]);
+  while (uVar7 = (uint)memoryBaseAddress, uVar7 != 0xffffff) {
     uVar3 = *(uint *)(*registerR14 + (ulonglong)uVar7 * 8);
     if ((uVar3 & 0xffffff) != 0xffffff) {
       validationContext4 = (ulonglong)(uVar3 & 0xffffff) + registerR14[4];
@@ -18688,7 +18688,7 @@ undefined4 ProcessDataF0(undefined8 param_1,int param_2,undefined4 *param_3)
       }
       iVar18 = iVar18 + iVar8;
     }
-    uVar4 = *(uint3 *)((ulonglong)uVar7 * 3 + registerR14[8]);
+    memoryBaseAddress = *(uint3 *)((ulonglong)uVar7 * 3 + registerR14[8]);
   }
   uVar17 = 0;
   if (iVar13 != 0) {
@@ -18751,7 +18751,7 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
   undefined1 uVar1;
   int operationResult;
   int iVar3;
-  uint uVar4;
+  uint memoryBaseAddress;
   undefined1 *puVar5;
   undefined1 *puVar6;
   uint unaff_EBX;
@@ -18767,10 +18767,10 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
   int *in_stack_00000078;
   
   do {
-    uVar4 = *(uint *)(*registerR14 + param_2 * 8);
+    memoryBaseAddress = *(uint *)(*registerR14 + param_2 * 8);
     iVar7 = (int)unaff_RBP;
-    if ((uVar4 & 0xffffff) != 0xffffff) {
-      lVar8 = (ulonglong)(uVar4 & 0xffffff) + registerR14[4];
+    if ((memoryBaseAddress & 0xffffff) != 0xffffff) {
+      lVar8 = (ulonglong)(memoryBaseAddress & 0xffffff) + registerR14[4];
       operationResult = func_0x00018076b690(lVar8);
       if (iVar7 != 0) {
         puVar9 = (undefined1 *)((operationResult + -1) + lVar8);
@@ -18797,9 +18797,9 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
       }
       unaff_R15D = unaff_R15D + operationResult;
     }
-    uVar4 = (uint)*(uint3 *)((param_2 & 0xffffffff) * 3 + registerR14[8]);
-    param_2 = (ulonglong)uVar4;
-  } while (uVar4 != 0xffffff);
+    memoryBaseAddress = (uint)*(uint3 *)((param_2 & 0xffffffff) * 3 + registerR14[8]);
+    param_2 = (ulonglong)memoryBaseAddress;
+  } while (memoryBaseAddress != 0xffffff);
   if (iVar7 != 0) {
     if (unaff_R15D < iVar7) {
       puVar5 = unaff_RSI + unaff_R15D;
@@ -18857,7 +18857,7 @@ undefined4 QuerySystemStatusF0(void)
 
 {
   undefined1 uVar1;
-  undefined1 *puVar2;
+  undefined1 *resourcePointer;
   undefined1 *puVar3;
   int unaff_EBX;
   int iVar4;
@@ -18872,40 +18872,40 @@ undefined4 QuerySystemStatusF0(void)
   if (iVar4 != 0) {
     if (unaff_R15D < iVar4) {
       puVar5 = unaff_RSI + unaff_R15D;
-      puVar2 = puVar5 + -1;
-      if (unaff_RSI < puVar2) {
+      resourcePointer = puVar5 + -1;
+      if (unaff_RSI < resourcePointer) {
         do {
           uVar1 = *unaff_RSI;
-          *unaff_RSI = *puVar2;
+          *unaff_RSI = *resourcePointer;
           unaff_RSI = unaff_RSI + 1;
-          *puVar2 = uVar1;
-          puVar2 = puVar2 + -1;
-        } while (unaff_RSI < puVar2);
+          *resourcePointer = uVar1;
+          resourcePointer = resourcePointer + -1;
+        } while (unaff_RSI < resourcePointer);
       }
       *puVar5 = (char)unaff_R13D;
     }
     else {
       puVar3 = unaff_RSI + unaff_EBX;
-      puVar2 = puVar3 + -1;
+      resourcePointer = puVar3 + -1;
       puVar5 = unaff_RSI;
-      if (unaff_RSI < puVar2) {
+      if (unaff_RSI < resourcePointer) {
         do {
           uVar1 = *puVar5;
-          *puVar5 = *puVar2;
+          *puVar5 = *resourcePointer;
           puVar5 = puVar5 + 1;
-          *puVar2 = uVar1;
-          puVar2 = puVar2 + -1;
-        } while (puVar5 < puVar2);
+          *resourcePointer = uVar1;
+          resourcePointer = resourcePointer + -1;
+        } while (puVar5 < resourcePointer);
       }
-      puVar2 = puVar3 + (longlong)(iVar4 - unaff_EBX) + -1;
-      if (puVar3 < puVar2) {
+      resourcePointer = puVar3 + (longlong)(iVar4 - unaff_EBX) + -1;
+      if (puVar3 < resourcePointer) {
         do {
           uVar1 = *puVar3;
-          *puVar3 = *puVar2;
+          *puVar3 = *resourcePointer;
           puVar3 = puVar3 + 1;
-          *puVar2 = uVar1;
-          puVar2 = puVar2 + -1;
-        } while (puVar3 < puVar2);
+          *resourcePointer = uVar1;
+          resourcePointer = resourcePointer + -1;
+        } while (puVar3 < resourcePointer);
       }
       unaff_RSI[unaff_RBP + -1] = (char)unaff_R13D;
       unaff_R13D = 0x41;
@@ -19127,7 +19127,7 @@ undefined8 ProcessDataBlockOperationA1(longlong *param_1,undefined4 *param_2)
 
 {
   longlong validationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   undefined4 auStackX_8 [2];
   undefined4 auStackX_18 [4];
@@ -19137,12 +19137,12 @@ undefined8 ProcessDataBlockOperationA1(longlong *param_1,undefined4 *param_2)
   }
   auStackX_8[0] = *param_2;
   validationContext = *param_1;
-  puVar2 = *(undefined8 **)(validationContext + 8);
-  uVar3 = (**(code **)*puVar2)(puVar2,auStackX_8,4);
+  resourcePointer = *(undefined8 **)(validationContext + 8);
+  uVar3 = (**(code **)*resourcePointer)(resourcePointer,auStackX_8,4);
   if ((int)uVar3 == 0) {
-    puVar2 = *(undefined8 **)(validationContext + 8);
+    resourcePointer = *(undefined8 **)(validationContext + 8);
     auStackX_18[0] = param_2[1];
-    uVar3 = (**(code **)*puVar2)(puVar2,auStackX_18,4);
+    uVar3 = (**(code **)*resourcePointer)(resourcePointer,auStackX_18,4);
   }
   return uVar3;
 }
@@ -19863,7 +19863,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
   int iVar1;
   int operationResult;
   uint uVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   longlong lVar5;
   ulonglong uVar6;
   undefined4 uVar7;
@@ -19882,15 +19882,15 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
                         (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
       uVar6 = 0;
       if (operationResult == 0) {
-        uVar4 = uVar6;
+        memoryBaseAddress = uVar6;
         if (0 < iVar1) {
           do {
-            operationResult = FUN_180899c60(param_1,(longlong)(int)uVar4 * 0x6c + *(longlong *)(param_2 + 8));
+            operationResult = FUN_180899c60(param_1,(longlong)(int)memoryBaseAddress * 0x6c + *(longlong *)(param_2 + 8));
             if (operationResult != 0) {
               return;
             }
-            uVar3 = (int)uVar4 + 1;
-            uVar4 = (ulonglong)uVar3;
+            uVar3 = (int)memoryBaseAddress + 1;
+            memoryBaseAddress = (ulonglong)uVar3;
           } while ((int)uVar3 < iVar1);
         }
         iVar1 = param_2[0xe];
@@ -19898,16 +19898,16 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
         operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                           (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
         if (operationResult == 0) {
-          uVar4 = uVar6;
+          memoryBaseAddress = uVar6;
           if (0 < iVar1) {
             do {
-              operationResult = FUN_180899ef0(param_1,(longlong)(int)uVar4 * 0x10 +
+              operationResult = FUN_180899ef0(param_1,(longlong)(int)memoryBaseAddress * 0x10 +
                                             *(longlong *)(param_2 + 0xc));
               if (operationResult != 0) {
                 return;
               }
-              uVar3 = (int)uVar4 + 1;
-              uVar4 = (ulonglong)uVar3;
+              uVar3 = (int)memoryBaseAddress + 1;
+              memoryBaseAddress = (ulonglong)uVar3;
             } while ((int)uVar3 < iVar1);
           }
           iVar1 = param_2[0x12];
@@ -19915,29 +19915,29 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
           operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                             (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
           if (operationResult == 0) {
-            uVar4 = uVar6;
+            memoryBaseAddress = uVar6;
             if (0 < iVar1) {
               do {
                 uStackX_8 = CONCAT44(uStackX_8._4_4_,
-                                     *(undefined4 *)(*(longlong *)(param_2 + 0x10) + uVar4 * 4));
+                                     *(undefined4 *)(*(longlong *)(param_2 + 0x10) + memoryBaseAddress * 4));
                 operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                                   (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
                 if (operationResult != 0) {
                   return;
                 }
-                uVar4 = uVar4 + 1;
-              } while ((longlong)uVar4 < (longlong)iVar1);
+                memoryBaseAddress = memoryBaseAddress + 1;
+              } while ((longlong)memoryBaseAddress < (longlong)iVar1);
             }
             iVar1 = param_2[0x16];
             uStackX_8 = CONCAT44(uStackX_8._4_4_,iVar1);
             operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                               (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
             if (operationResult == 0) {
-              uVar4 = uVar6;
+              memoryBaseAddress = uVar6;
               uVar8 = uVar6;
               if (0 < iVar1) {
                 do {
-                  lVar5 = *(longlong *)(param_2 + 0x14) + uVar4;
+                  lVar5 = *(longlong *)(param_2 + 0x14) + memoryBaseAddress;
                   operationResult = FUN_180899ef0(param_1,lVar5);
                   if (operationResult != 0) {
                     return;
@@ -19962,7 +19962,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
                     return;
                   }
                   uVar8 = uVar8 + 1;
-                  uVar4 = uVar4 + 0x18;
+                  memoryBaseAddress = memoryBaseAddress + 0x18;
                 } while ((longlong)uVar8 < (longlong)iVar1);
               }
               iVar1 = FUN_1808aca30(param_1,param_2 + 0x18);
@@ -20017,7 +20017,7 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
   int iVar3;
   longlong registerRBX;
   longlong unaff_RBP;
-  uint uVar4;
+  uint memoryBaseAddress;
   ulonglong uVar5;
   longlong lVar6;
   ulonglong uVar7;
@@ -20045,10 +20045,10 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
         if (operationResult != 0) {
           return;
         }
-        uVar4 = (int)uVar5 + 1;
-        uVar5 = (ulonglong)uVar4;
+        memoryBaseAddress = (int)uVar5 + 1;
+        uVar5 = (ulonglong)memoryBaseAddress;
         uVar9 = extraout_XMM0_Da_00;
-      } while ((int)uVar4 < iVar3);
+      } while ((int)memoryBaseAddress < iVar3);
     }
     puVar1 = *(undefined8 **)(registerRBX + 8);
     iVar3 = *(int *)(registerR14 + 0x38);
@@ -20064,10 +20064,10 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
           if (operationResult != 0) {
             return;
           }
-          uVar4 = (int)uVar5 + 1;
-          uVar5 = (ulonglong)uVar4;
+          memoryBaseAddress = (int)uVar5 + 1;
+          uVar5 = (ulonglong)memoryBaseAddress;
           uVar9 = extraout_XMM0_Da_02;
-        } while ((int)uVar4 < iVar3);
+        } while ((int)memoryBaseAddress < iVar3);
       }
       puVar1 = *(undefined8 **)(registerRBX + 8);
       iVar3 = *(int *)(registerR14 + 0x48);
@@ -20102,15 +20102,15 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
               if (operationResult != 0) {
                 return;
               }
-              uVar4 = *(uint *)(lVar6 + 0x10);
+              memoryBaseAddress = *(uint *)(lVar6 + 0x10);
               puVar1 = *(undefined8 **)(registerRBX + 8);
-              if (uVar4 < 0x8000) {
-                *(short *)(unaff_RBP + 0x20) = (short)uVar4;
+              if (memoryBaseAddress < 0x8000) {
+                *(short *)(unaff_RBP + 0x20) = (short)memoryBaseAddress;
                 uVar9 = 2;
               }
               else {
                 uVar9 = 4;
-                *(uint *)(unaff_RBP + 0x20) = (uVar4 & 0xffffc000 | 0x4000) * 2 | uVar4 & 0x7fff;
+                *(uint *)(unaff_RBP + 0x20) = (memoryBaseAddress & 0xffffc000 | 0x4000) * 2 | memoryBaseAddress & 0x7fff;
               }
               operationResult = (**(code **)*puVar1)(puVar1,unaff_RBP + 0x20,uVar9);
               if (operationResult != 0) {
@@ -20171,7 +20171,7 @@ void InitializeSystemDataStructure(undefined8 *param_1)
 
 {
   uint uVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   int iVar3;
   int iVar4;
   longlong registerRBX;
@@ -20200,7 +20200,7 @@ void InitializeSystemDataStructure(undefined8 *param_1)
           return;
         }
         uVar1 = *(uint *)(lVar5 + 0x10);
-        puVar2 = *(undefined8 **)(registerRBX + 8);
+        resourcePointer = *(undefined8 **)(registerRBX + 8);
         if (uVar1 < 0x8000) {
           *(short *)(unaff_RBP + 0x20) = (short)uVar1;
           uVar8 = 2;
@@ -20209,7 +20209,7 @@ void InitializeSystemDataStructure(undefined8 *param_1)
           uVar8 = 4;
           *(uint *)(unaff_RBP + 0x20) = (uVar1 & 0xffffc000 | 0x4000) * 2 | uVar1 & 0x7fff;
         }
-        iVar3 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,uVar8);
+        iVar3 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,uVar8);
         if (iVar3 != 0) {
           return;
         }
@@ -20224,32 +20224,32 @@ void InitializeSystemDataStructure(undefined8 *param_1)
     }
     iVar3 = FUN_1808aca30(uVar8,registerR14 + 0x60);
     if (iVar3 == 0) {
-      puVar2 = *(undefined8 **)(registerRBX + 8);
+      resourcePointer = *(undefined8 **)(registerRBX + 8);
       iVar3 = *(int *)(registerR14 + 0x78);
       *(int *)(unaff_RBP + 0x20) = iVar3;
-      iVar4 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+      iVar4 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
       if (iVar4 == 0) {
         if (0 < iVar3) {
           do {
             lVar6 = *(longlong *)(registerR14 + 0x70);
-            puVar2 = *(undefined8 **)(registerRBX + 8);
+            resourcePointer = *(undefined8 **)(registerRBX + 8);
             *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(lVar6 + unaff_RDI * 8);
-            iVar4 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+            iVar4 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
             if (iVar4 != 0) {
               return;
             }
-            puVar2 = *(undefined8 **)(registerRBX + 8);
+            resourcePointer = *(undefined8 **)(registerRBX + 8);
             *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(lVar6 + 4 + unaff_RDI * 8);
-            iVar4 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+            iVar4 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
             if (iVar4 != 0) {
               return;
             }
             unaff_RDI = unaff_RDI + 1;
           } while (unaff_RDI < iVar3);
         }
-        puVar2 = *(undefined8 **)(registerRBX + 8);
+        resourcePointer = *(undefined8 **)(registerRBX + 8);
         *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(registerR14 + 0x80);
-        (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+        (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
       }
     }
   }
@@ -20595,14 +20595,14 @@ void ProcessComplexDataStructure(longlong systemContext,undefined4 *dataBuffer)
         uVar1 = param_2[100];
         if (uVar1 < 0x8000) {
           uStackX_8 = CONCAT62(uStackX_8._2_6_,(short)uVar1);
-          uVar4 = 2;
+          memoryBaseAddress = 2;
         }
         else {
-          uVar4 = 4;
+          memoryBaseAddress = 4;
           uStackX_8 = CONCAT44(uStackX_8._4_4_,(uVar1 & 0xffffc000 | 0x4000) * 2 | uVar1 & 0x7fff);
         }
         operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
-                          (*(undefined8 **)(param_1 + 8),&uStackX_8,uVar4);
+                          (*(undefined8 **)(param_1 + 8),&uStackX_8,memoryBaseAddress);
         if (operationResult == 0) {
           uStackX_8._0_4_ = param_2[0x65];
           operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
@@ -20694,7 +20694,7 @@ void ValidateAndInitializeSystem(undefined4 param_1)
 
 {
   uint uVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   int iVar3;
   longlong registerRBX;
   longlong unaff_RBP;
@@ -20734,7 +20734,7 @@ void ValidateAndInitializeSystem(undefined4 param_1)
     } while (iVar6 < *(int *)(unaff_RDI + 0x1a0));
   }
   uVar1 = *(uint *)(unaff_RDI + 400);
-  puVar2 = *(undefined8 **)(registerRBX + 8);
+  resourcePointer = *(undefined8 **)(registerRBX + 8);
   if (uVar1 < 0x8000) {
     *(short *)(unaff_RBP + 0x20) = (short)uVar1;
     uVar5 = 2;
@@ -20743,65 +20743,65 @@ void ValidateAndInitializeSystem(undefined4 param_1)
     uVar5 = 4;
     *(uint *)(unaff_RBP + 0x20) = (uVar1 & 0xffffc000 | 0x4000) * 2 | uVar1 & 0x7fff;
   }
-  iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,uVar5);
+  iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,uVar5);
   if (iVar6 == 0) {
-    puVar2 = *(undefined8 **)(registerRBX + 8);
+    resourcePointer = *(undefined8 **)(registerRBX + 8);
     *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x194);
-    iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+    iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
     if (((iVar6 == 0) && (iVar6 = FUN_1808aff40(extraout_XMM0_Da_03,unaff_RDI + 0x198), iVar6 == 0))
        && (iVar6 = FUN_1808aff40(extraout_XMM0_Da_04,unaff_RDI + 0x19c), iVar6 == 0)) {
-      puVar2 = *(undefined8 **)(registerRBX + 8);
+      resourcePointer = *(undefined8 **)(registerRBX + 8);
       *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1a4);
-      iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+      iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
       if (iVar6 == 0) {
-        puVar2 = *(undefined8 **)(registerRBX + 8);
+        resourcePointer = *(undefined8 **)(registerRBX + 8);
         *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1a8);
-        iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+        iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
         if (iVar6 == 0) {
-          puVar2 = *(undefined8 **)(registerRBX + 8);
+          resourcePointer = *(undefined8 **)(registerRBX + 8);
           *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1ac);
-          iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+          iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
           if (iVar6 == 0) {
-            puVar2 = *(undefined8 **)(registerRBX + 8);
+            resourcePointer = *(undefined8 **)(registerRBX + 8);
             *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1b4);
-            iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+            iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
             if (iVar6 == 0) {
-              puVar2 = *(undefined8 **)(registerRBX + 8);
+              resourcePointer = *(undefined8 **)(registerRBX + 8);
               *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1b8);
-              iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+              iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
               if (iVar6 == 0) {
-                puVar2 = *(undefined8 **)(registerRBX + 8);
+                resourcePointer = *(undefined8 **)(registerRBX + 8);
                 *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1b0);
-                iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+                iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
                 if (iVar6 == 0) {
-                  puVar2 = *(undefined8 **)(registerRBX + 8);
+                  resourcePointer = *(undefined8 **)(registerRBX + 8);
                   *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1bc);
-                  iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+                  iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
                   if (iVar6 == 0) {
-                    puVar2 = *(undefined8 **)(registerRBX + 8);
+                    resourcePointer = *(undefined8 **)(registerRBX + 8);
                     *(undefined8 *)(unaff_RBP + 0x20) = *(undefined8 *)(unaff_RDI + 0x1c0);
-                    iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,8);
+                    iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,8);
                     if (iVar6 == 0) {
-                      puVar2 = *(undefined8 **)(registerRBX + 8);
+                      resourcePointer = *(undefined8 **)(registerRBX + 8);
                       *(undefined8 *)(unaff_RBP + 0x20) = *(undefined8 *)(unaff_RDI + 0x1c8);
-                      iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,8);
+                      iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,8);
                       if (iVar6 == 0) {
-                        puVar2 = *(undefined8 **)(registerRBX + 8);
+                        resourcePointer = *(undefined8 **)(registerRBX + 8);
                         *(undefined8 *)(unaff_RBP + 0x20) = *(undefined8 *)(unaff_RDI + 0x1d0);
-                        iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,8);
+                        iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,8);
                         if (iVar6 == 0) {
-                          puVar2 = *(undefined8 **)(registerRBX + 8);
+                          resourcePointer = *(undefined8 **)(registerRBX + 8);
                           *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1dc);
-                          iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+                          iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
                           if (iVar6 == 0) {
-                            puVar2 = *(undefined8 **)(registerRBX + 8);
+                            resourcePointer = *(undefined8 **)(registerRBX + 8);
                             *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1d8);
-                            iVar6 = (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+                            iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
                             if (iVar6 == 0) {
-                              puVar2 = *(undefined8 **)(registerRBX + 8);
+                              resourcePointer = *(undefined8 **)(registerRBX + 8);
                               *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1e0)
                               ;
-                              (**(code **)*puVar2)(puVar2,unaff_RBP + 0x20,4);
+                              (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
                             }
                           }
                         }
@@ -20839,7 +20839,7 @@ undefined8 ProcessAdvancedDataOperationA0(longlong param_1,longlong param_2)
   short sVar1;
   int operationResult;
   ushort uVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   ushort uVar5;
   longlong lVar6;
   longlong lVar7;
@@ -20877,55 +20877,55 @@ undefined8 ProcessAdvancedDataOperationA0(longlong param_1,longlong param_2)
      (*(int *)(param_2 + 0x44) != 0)) {
     uVar5 = uVar5 | 0x100;
   }
-  uVar4 = FUN_180899ef0(param_1);
-  if ((int)uVar4 == 0) {
+  memoryBaseAddress = FUN_180899ef0(param_1);
+  if ((int)memoryBaseAddress == 0) {
     aiStack_48[0] = *(int *)(param_2 + 0x20);
-    uVar4 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),aiStack_48,4);
-    if ((int)uVar4 == 0) {
+    memoryBaseAddress = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),aiStack_48,4);
+    if ((int)memoryBaseAddress == 0) {
       aiStack_48[0] = CONCAT22(aiStack_48[0]._2_2_,uVar5);
-      uVar4 = (**(code **)**(undefined8 **)(param_1 + 8))
+      memoryBaseAddress = (**(code **)**(undefined8 **)(param_1 + 8))
                         (*(undefined8 **)(param_1 + 8),aiStack_48,2);
-      if (((int)uVar4 == 0) && (uVar4 = FUN_1808b00b0(param_1,param_2 + 0x24), (int)uVar4 == 0)) {
+      if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = FUN_1808b00b0(param_1,param_2 + 0x24), (int)memoryBaseAddress == 0)) {
         if ((uVar5 & 1) != 0) {
           aiStack_48[0] = *(int *)(param_2 + 0x28);
-          uVar4 = (**(code **)**(undefined8 **)(param_1 + 8))
+          memoryBaseAddress = (**(code **)**(undefined8 **)(param_1 + 8))
                             (*(undefined8 **)(param_1 + 8),aiStack_48,4);
-          if ((int)uVar4 != 0) {
-            return uVar4;
+          if ((int)memoryBaseAddress != 0) {
+            return memoryBaseAddress;
           }
         }
         if (((((uVar5 & 2) == 0) ||
-             ((uVar4 = FUN_1808aff40(param_1,param_2 + 0x2c), (int)uVar4 == 0 &&
-              (uVar4 = FUN_1808aff40(param_1,param_2 + 0x30), (int)uVar4 == 0)))) &&
-            (((uVar5 & 4) == 0 || (uVar4 = FUN_180899d90(param_1,param_2 + 0x48), (int)uVar4 == 0)))
+             ((memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x2c), (int)memoryBaseAddress == 0 &&
+              (memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x30), (int)memoryBaseAddress == 0)))) &&
+            (((uVar5 & 4) == 0 || (memoryBaseAddress = FUN_180899d90(param_1,param_2 + 0x48), (int)memoryBaseAddress == 0)))
             ) && (((uVar5 & 8) == 0 ||
-                  (uVar4 = FUN_180899d90(param_1,param_2 + 0x150), (int)uVar4 == 0)))) {
+                  (memoryBaseAddress = FUN_180899d90(param_1,param_2 + 0x150), (int)memoryBaseAddress == 0)))) {
           if ((uVar5 & 0x10) != 0) {
             operationResult = *(int *)(param_2 + 0x260);
             aiStack_48[0] = operationResult;
-            uVar4 = (**(code **)**(undefined8 **)(param_1 + 8))
+            memoryBaseAddress = (**(code **)**(undefined8 **)(param_1 + 8))
                               (*(undefined8 **)(param_1 + 8),aiStack_48,4);
-            if ((int)uVar4 != 0) {
-              return uVar4;
+            if ((int)memoryBaseAddress != 0) {
+              return memoryBaseAddress;
             }
             lVar8 = lVar7;
             if (0 < operationResult) {
               do {
                 lVar6 = *(longlong *)(param_2 + 600) + lVar7;
                 sVar1 = *(short *)(lVar6 + 0x114);
-                uVar4 = FUN_180899ef0(param_1,lVar6);
-                if ((int)uVar4 != 0) {
-                  return uVar4;
+                memoryBaseAddress = FUN_180899ef0(param_1,lVar6);
+                if ((int)memoryBaseAddress != 0) {
+                  return memoryBaseAddress;
                 }
                 aiStack_48[0] = CONCAT31(aiStack_48[0]._1_3_,sVar1 != 0);
-                uVar4 = (**(code **)**(undefined8 **)(param_1 + 8))
+                memoryBaseAddress = (**(code **)**(undefined8 **)(param_1 + 8))
                                   (*(undefined8 **)(param_1 + 8),aiStack_48,1);
-                if ((int)uVar4 != 0) {
-                  return uVar4;
+                if ((int)memoryBaseAddress != 0) {
+                  return memoryBaseAddress;
                 }
-                if ((sVar1 != 0) && (uVar4 = FUN_180899d90(param_1,lVar6 + 0x10), (int)uVar4 != 0))
+                if ((sVar1 != 0) && (memoryBaseAddress = FUN_180899d90(param_1,lVar6 + 0x10), (int)memoryBaseAddress != 0))
                 {
-                  return uVar4;
+                  return memoryBaseAddress;
                 }
                 lVar8 = lVar8 + 1;
                 lVar7 = lVar7 + 0x118;
@@ -20933,22 +20933,22 @@ undefined8 ProcessAdvancedDataOperationA0(longlong param_1,longlong param_2)
             }
           }
           if ((((((uVar5 & 0x20) == 0) ||
-                (uVar4 = FUN_1808ac8a0(param_1,param_2 + 0x268), (int)uVar4 == 0)) &&
+                (memoryBaseAddress = FUN_1808ac8a0(param_1,param_2 + 0x268), (int)memoryBaseAddress == 0)) &&
                (((uVar5 & 0x40) == 0 ||
-                ((uVar4 = FUN_1808affb0(param_1,param_2 + 0x34), (int)uVar4 == 0 &&
-                 (uVar4 = FUN_1808affb0(param_1,param_2 + 0x38), (int)uVar4 == 0)))))) &&
-              ((-1 < (char)uVar5 || (uVar4 = FUN_180899ef0(param_1,param_2 + 0x10), (int)uVar4 == 0)
+                ((memoryBaseAddress = FUN_1808affb0(param_1,param_2 + 0x34), (int)memoryBaseAddress == 0 &&
+                 (memoryBaseAddress = FUN_1808affb0(param_1,param_2 + 0x38), (int)memoryBaseAddress == 0)))))) &&
+              ((-1 < (char)uVar5 || (memoryBaseAddress = FUN_180899ef0(param_1,param_2 + 0x10), (int)memoryBaseAddress == 0)
                ))) && (((uVar5 & 0x100) == 0 ||
-                       (((uVar4 = FUN_1808aff40(param_1,param_2 + 0x3c), (int)uVar4 == 0 &&
-                         (uVar4 = FUN_1808aff40(param_1,param_2 + 0x40), (int)uVar4 == 0)) &&
-                        (uVar4 = FUN_1808aff40(param_1,param_2 + 0x44), (int)uVar4 == 0)))))) {
-            uVar4 = 0;
+                       (((memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x3c), (int)memoryBaseAddress == 0 &&
+                         (memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x40), (int)memoryBaseAddress == 0)) &&
+                        (memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x44), (int)memoryBaseAddress == 0)))))) {
+            memoryBaseAddress = 0;
           }
         }
       }
     }
   }
-  return uVar4;
+  return memoryBaseAddress;
 }
 
 
@@ -21367,20 +21367,20 @@ void ProcessSystemDataWithValidation(longlong SystemContext, int *ParameterArray
   uint unaff_EBP;
   char in_CF;
   int *piStack_8;
-  undefined4 uVar4;
+  undefined4 memoryBaseAddress;
   
   uVar6 = (undefined3)((uint)in_EAX >> 8);
   cVar3 = (char)in_EAX + -0x57 + in_CF;
-  uVar4 = CONCAT31(uVar6,cVar3);
-  *(undefined4 *)CONCAT44(in_register_00000004,uVar4) = uVar4;
+  memoryBaseAddress = CONCAT31(uVar6,cVar3);
+  *(undefined4 *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
   *(uint *)(param_1 + -0x565dff77) = *(uint *)(param_1 + -0x565dff77) & unaff_EBP;
-  *(undefined4 *)CONCAT44(in_register_00000004,uVar4) = uVar4;
+  *(undefined4 *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
   piStack_8 = param_2;
-  *(undefined4 *)CONCAT44(in_register_00000004,uVar4) = uVar4;
-  *(char *)CONCAT44(in_register_00000004,uVar4) =
-       *(char *)CONCAT44(in_register_00000004,uVar4) + cVar3;
-  *(char *)CONCAT44(in_register_00000004,uVar4) =
-       *(char *)CONCAT44(in_register_00000004,uVar4) + cVar3;
+  *(undefined4 *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
+  *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) =
+       *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + cVar3;
+  *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) =
+       *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + cVar3;
   iVar5 = CONCAT31(uVar6,cVar3 + '\x18');
   *param_2 = *param_2 + iVar5;
   pcVar1 = (char *)((longlong)&piStack_8 + CONCAT44(in_register_00000004,iVar5));
@@ -21779,66 +21779,66 @@ DataCheckpointB:
     *(uint *)(unaff_RBP + 0xc4) = (*(uint *)(unaff_RBP + 0xc4) | uVar6) & ~uVar2;
     in_EAX = *(uint *)(registerRBX + 8);
   }
-  uVar4 = uVar5;
+  memoryBaseAddress = uVar5;
   if (0x8b < in_EAX) {
     if (*(int *)(registerRBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808aed00(*registerRBX,unaff_RBP + 0xc4,4);
+      memoryBaseAddress = FUN_1808aed00(*registerRBX,unaff_RBP + 0xc4,4);
     }
     else {
-      uVar4 = (ulonglong)unaff_EDI;
+      memoryBaseAddress = (ulonglong)unaff_EDI;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = FUN_1808afc70();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808afc70();
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = FUN_1808a5d60();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808a5d60();
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = FUN_1808a5d60();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808a5d60();
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = FUN_18089bd70();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_18089bd70();
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = uVar5;
+  memoryBaseAddress = uVar5;
   if (0x41 < *(uint *)(registerRBX + 8)) {
     if (*(int *)(registerRBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808aed00(*registerRBX,unaff_RBP + 0xcc,4);
+      memoryBaseAddress = FUN_1808aed00(*registerRBX,unaff_RBP + 0xcc,4);
     }
     else {
-      uVar4 = (ulonglong)unaff_EDI;
+      memoryBaseAddress = (ulonglong)unaff_EDI;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = uVar5;
+  memoryBaseAddress = uVar5;
   if (0x41 < *(uint *)(registerRBX + 8)) {
     if (*(int *)(registerRBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808aed00(*registerRBX,unaff_RBP + 0xd0,4);
+      memoryBaseAddress = FUN_1808aed00(*registerRBX,unaff_RBP + 0xd0,4);
     }
     else {
-      uVar4 = (ulonglong)unaff_EDI;
+      memoryBaseAddress = (ulonglong)unaff_EDI;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (0x5a < *(uint *)(registerRBX + 8)) {
-    uVar4 = FUN_1808a4a20();
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    memoryBaseAddress = FUN_1808a4a20();
+    if ((int)memoryBaseAddress != 0) {
+      return memoryBaseAddress;
     }
-    uVar4 = FUN_1808a4a20();
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    memoryBaseAddress = FUN_1808a4a20();
+    if ((int)memoryBaseAddress != 0) {
+      return memoryBaseAddress;
     }
   }
   if (0x6e < *(uint *)(registerRBX + 8)) {
@@ -21997,15 +21997,15 @@ ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuff
   undefined4 bufferValue4;
   undefined1 tempBuffer [32];
   
-  puVar2 = (undefined4 *)FUN_180847820();
-  uStack_38 = *puVar2;
-  uStack_34 = puVar2[1];
-  uStack_30 = puVar2[2];
-  uStack_2c = puVar2[3];
+  resourcePointer = (undefined4 *)FUN_180847820();
+  uStack_38 = *resourcePointer;
+  uStack_34 = resourcePointer[1];
+  uStack_30 = resourcePointer[2];
+  uStack_2c = resourcePointer[3];
   uVar3 = FUN_1808ddc20(param_2,auStack_28,0,0x4c525443);
   if ((((int)uVar3 == 0) && (uVar3 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar3 == 0)) &&
      (uVar3 = FUN_180899360(param_2,param_1 + 0x20), (int)uVar3 == 0)) {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
     if (*(uint *)(param_2 + 8) < 0x5a) {
       if (*(int *)(param_2[1] + 0x18) == 0) {
         uVar1 = *param_2;
@@ -22029,12 +22029,12 @@ ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuff
           return uVar3;
         }
         if ((*(int *)(param_2[1] + 0x18) == 0) &&
-           (uVar4 = FUN_1808aed00(*param_2,param_1 + 0x40,4), uVar4 == 0)) {
+           (memoryBaseAddress = FUN_1808aed00(*param_2,param_1 + 0x40,4), memoryBaseAddress == 0)) {
                     // WARNING: Subroutine does not return
           FUN_1808ddf80(param_2,auStack_28);
         }
       }
-      return (ulonglong)uVar4;
+      return (ulonglong)memoryBaseAddress;
     }
   }
   return uVar3;
@@ -22680,8 +22680,8 @@ uint64_t ValidateAndProcessData(longlong dataContext, uint64_t *validationBuffer
         operationResult = 0;
         auStackX_18[0] = 0;
         uVar3 = auStackX_20[0] & 1;
-        uVar4 = auStackX_20[0] >> 1;
-        if (uVar4 != 0) {
+        memoryBaseAddress = auStackX_20[0] >> 1;
+        if (memoryBaseAddress != 0) {
           do {
             uVar1 = FUN_1808dde10(param_2,auStackX_18[0]);
             if ((int)uVar1 != 0) {
@@ -22697,7 +22697,7 @@ uint64_t ValidateAndProcessData(longlong dataContext, uint64_t *validationBuffer
             }
             operationResult = operationResult + 1;
             auStackX_18[0] = auStackX_18[0] & -uVar3;
-          } while (operationResult < (int)uVar4);
+          } while (operationResult < (int)memoryBaseAddress);
         }
                     // WARNING: Subroutine does not return
         FUN_1808ddf80(param_2,auStack_68);
@@ -22765,7 +22765,7 @@ ulonglong FUN_18089b7d0(longlong param_1,longlong *param_2)
   longlong *pvalidationContext;
   longlong lVar2;
   uint uVar3;
-  uint uVar4;
+  uint memoryBaseAddress;
   ulonglong uVar5;
   ulonglong uVar6;
   uint uVar7;
@@ -22812,28 +22812,28 @@ ulonglong FUN_18089b7d0(longlong param_1,longlong *param_2)
     pvalidationContext = (longlong *)*param_2;
     uVar3 = 1;
     if (*pvalidationContext == 0) {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
     else if (pvalidationContext[2] == 0) {
 DataProcessLabelA:
-      uVar4 = FUN_180769ed0(*pvalidationContext,acStackX_18,1,1,0);
+      memoryBaseAddress = FUN_180769ed0(*pvalidationContext,acStackX_18,1,1,0);
     }
     else {
       auStackX_20[0] = 0;
-      uVar4 = func_0x00018076a7d0(*pvalidationContext,auStackX_20);
-      if (uVar4 == 0) {
+      memoryBaseAddress = func_0x00018076a7d0(*pvalidationContext,auStackX_20);
+      if (memoryBaseAddress == 0) {
         if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089b91c;
-        uVar4 = 0x11;
+        memoryBaseAddress = 0x11;
       }
     }
     uVar7 = 0;
-    if (uVar4 == 0) {
+    if (memoryBaseAddress == 0) {
       uVar7 = (uint)(acStackX_18[0] != '\0');
       uVar3 = (uint)(acStackX_18[0] == '\0');
-      uVar4 = 0;
+      memoryBaseAddress = 0;
     }
-    if (uVar4 != 0) {
-      return (ulonglong)uVar4;
+    if (memoryBaseAddress != 0) {
+      return (ulonglong)memoryBaseAddress;
     }
     *(uint *)(param_1 + 0xb8) = (*(uint *)(param_1 + 0xb8) | uVar7) & ~uVar3;
   }
@@ -22935,7 +22935,7 @@ ulonglong FUN_18089b813(void)
   longlong *pvalidationContext;
   longlong lVar2;
   uint uVar3;
-  uint uVar4;
+  uint memoryBaseAddress;
   longlong in_RAX;
   ulonglong uVar5;
   uint uVar6;
@@ -22976,28 +22976,28 @@ ulonglong FUN_18089b813(void)
     pvalidationContext = (longlong *)*registerRBX;
     uVar3 = 1;
     if (*pvalidationContext == 0) {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
     else if (pvalidationContext[2] == 0) {
 DataProcessLabelA:
-      uVar4 = FUN_180769ed0(*pvalidationContext,&stack0x00000090,1,1,0);
+      memoryBaseAddress = FUN_180769ed0(*pvalidationContext,&stack0x00000090,1,1,0);
     }
     else {
       in_stack_00000098 = 0;
-      uVar4 = func_0x00018076a7d0(*pvalidationContext,&stack0x00000098);
-      if (uVar4 == 0) {
+      memoryBaseAddress = func_0x00018076a7d0(*pvalidationContext,&stack0x00000098);
+      if (memoryBaseAddress == 0) {
         if ((ulonglong)in_stack_00000098 + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089b91c;
-        uVar4 = 0x11;
+        memoryBaseAddress = 0x11;
       }
     }
     uVar6 = 0;
-    if (uVar4 == 0) {
+    if (memoryBaseAddress == 0) {
       uVar6 = (uint)(in_stack_00000090 != '\0');
       uVar3 = (uint)(in_stack_00000090 == '\0');
-      uVar4 = 0;
+      memoryBaseAddress = 0;
     }
-    if (uVar4 != 0) {
-      return (ulonglong)uVar4;
+    if (memoryBaseAddress != 0) {
+      return (ulonglong)memoryBaseAddress;
     }
     *(uint *)(unaff_RSI + 0xb8) = (*(uint *)(unaff_RSI + 0xb8) | uVar6) & ~uVar3;
   }
@@ -23099,7 +23099,7 @@ ulonglong FUN_18089b86d(void)
   longlong *pvalidationContext;
   longlong lVar2;
   uint uVar3;
-  uint uVar4;
+  uint memoryBaseAddress;
   ulonglong uVar5;
   uint uVar6;
   longlong *registerRBX;
@@ -23122,28 +23122,28 @@ ulonglong FUN_18089b86d(void)
     pvalidationContext = (longlong *)*registerRBX;
     uVar3 = 1;
     if (*pvalidationContext == 0) {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
     else if (pvalidationContext[2] == 0) {
 DataProcessLabelA:
-      uVar4 = FUN_180769ed0(*pvalidationContext,&stack0x00000090,1,1,0);
+      memoryBaseAddress = FUN_180769ed0(*pvalidationContext,&stack0x00000090,1,1,0);
     }
     else {
       in_stack_00000098 = 0;
-      uVar4 = func_0x00018076a7d0(*pvalidationContext,&stack0x00000098);
-      if (uVar4 == 0) {
+      memoryBaseAddress = func_0x00018076a7d0(*pvalidationContext,&stack0x00000098);
+      if (memoryBaseAddress == 0) {
         if ((ulonglong)in_stack_00000098 + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089b91c;
-        uVar4 = 0x11;
+        memoryBaseAddress = 0x11;
       }
     }
     uVar6 = 0;
-    if (uVar4 == 0) {
+    if (memoryBaseAddress == 0) {
       uVar6 = (uint)(in_stack_00000090 != '\0');
       uVar3 = (uint)(in_stack_00000090 == '\0');
-      uVar4 = 0;
+      memoryBaseAddress = 0;
     }
-    if (uVar4 != 0) {
-      return (ulonglong)uVar4;
+    if (memoryBaseAddress != 0) {
+      return (ulonglong)memoryBaseAddress;
     }
     *(uint *)(unaff_RSI + 0xb8) = (*(uint *)(unaff_RSI + 0xb8) | uVar6) & ~uVar3;
   }
@@ -23245,7 +23245,7 @@ ulonglong FUN_18089b896(void)
   longlong *pvalidationContext;
   longlong lVar2;
   uint uVar3;
-  uint uVar4;
+  uint memoryBaseAddress;
   ulonglong uVar5;
   uint uVar6;
   longlong *registerRBX;
@@ -23262,7 +23262,7 @@ ulonglong FUN_18089b896(void)
       return 0x1c;
     }
     pvalidationContext = (longlong *)*registerRBX;
-    uVar4 = 1;
+    memoryBaseAddress = 1;
     if (*pvalidationContext == 0) {
       uVar3 = 0x1c;
     }
@@ -23281,13 +23281,13 @@ DataProcessLabelA:
     uVar6 = 0;
     if (uVar3 == 0) {
       uVar6 = (uint)(in_stack_00000090 != '\0');
-      uVar4 = (uint)(in_stack_00000090 == '\0');
+      memoryBaseAddress = (uint)(in_stack_00000090 == '\0');
       uVar3 = 0;
     }
     if (uVar3 != 0) {
       return (ulonglong)uVar3;
     }
-    *(uint *)(unaff_RSI + 0xb8) = (*(uint *)(unaff_RSI + 0xb8) | uVar6) & ~uVar4;
+    *(uint *)(unaff_RSI + 0xb8) = (*(uint *)(unaff_RSI + 0xb8) | uVar6) & ~memoryBaseAddress;
   }
   else {
     if (*(int *)(registerRBX[1] + 0x18) != 0) {
@@ -23350,8 +23350,8 @@ DataProcessLabelA:
           if ((int)uVar5 == 0) {
             if (0x4f < *(uint *)(registerRBX + 8)) {
               if (*(int *)(registerRBX[1] + 0x18) == 0) {
-                uVar4 = FUN_1808995c0(*registerRBX,unaff_RSI + 0xac);
-                uVar7 = (ulonglong)uVar4;
+                memoryBaseAddress = FUN_1808995c0(*registerRBX,unaff_RSI + 0xac);
+                uVar7 = (ulonglong)memoryBaseAddress;
               }
               else {
                 uVar7 = 0x1c;
@@ -23366,9 +23366,9 @@ DataProcessLabelB:
               }
               uVar5 = uVar8;
               if (*(int *)(registerRBX[1] + 0x18) == 0) {
-                uVar4 = FUN_1808993e0(unaff_RSI + 200,*registerRBX);
-                uVar5 = (ulonglong)uVar4;
-                if (uVar4 == 0) goto LAB_18089bbcc;
+                memoryBaseAddress = FUN_1808993e0(unaff_RSI + 200,*registerRBX);
+                uVar5 = (ulonglong)memoryBaseAddress;
+                if (memoryBaseAddress == 0) goto LAB_18089bbcc;
               }
             }
           }
@@ -23604,9 +23604,9 @@ void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int v
     return;
   }
   uVar7 = auStackX_20[0] & 1;
-  uVar4 = (int)*(uint *)(param_1 + 0x1c) >> 0x1f;
+  memoryBaseAddress = (int)*(uint *)(param_1 + 0x1c) >> 0x1f;
   uVar5 = auStackX_20[0] >> 1;
-  if (((int)((*(uint *)(param_1 + 0x1c) ^ uVar4) - uVar4) < (int)uVar5) &&
+  if (((int)((*(uint *)(param_1 + 0x1c) ^ memoryBaseAddress) - memoryBaseAddress) < (int)uVar5) &&
      (operationResult = FUN_180748010(param_1 + 0x10,uVar5), operationResult != 0)) {
     return;
   }
@@ -23649,8 +23649,8 @@ void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int v
     return;
   }
   lVar6 = (longlong)(int)auStackX_8[0];
-  uVar4 = (int)*(uint *)(param_1 + 0x2c) >> 0x1f;
-  if (((int)((*(uint *)(param_1 + 0x2c) ^ uVar4) - uVar4) < (int)auStackX_8[0]) &&
+  memoryBaseAddress = (int)*(uint *)(param_1 + 0x2c) >> 0x1f;
+  if (((int)((*(uint *)(param_1 + 0x2c) ^ memoryBaseAddress) - memoryBaseAddress) < (int)auStackX_8[0]) &&
      (operationResult = ValidateSystemMemoryA0(param_1 + 0x20,auStackX_8[0]), operationResult != 0)) {
     return;
   }
@@ -23701,7 +23701,7 @@ void CheckSystemStatusB0(void)
   int operationResult;
   uint uVar3;
   undefined8 *registerRBX;
-  uint uVar4;
+  uint memoryBaseAddress;
   longlong lVar5;
   int unaff_R12D;
   longlong unaff_R15;
@@ -23714,18 +23714,18 @@ void CheckSystemStatusB0(void)
     return;
   }
   uVar3 = (int)*(uint *)(unaff_R15 + 0x1c) >> 0x1f;
-  uVar4 = uStack0000000000000068 >> 1;
-  if (((int)((*(uint *)(unaff_R15 + 0x1c) ^ uVar3) - uVar3) < (int)uVar4) &&
-     (iVar1 = FUN_180748010(unaff_R15 + 0x10,uVar4), iVar1 != 0)) {
+  memoryBaseAddress = uStack0000000000000068 >> 1;
+  if (((int)((*(uint *)(unaff_R15 + 0x1c) ^ uVar3) - uVar3) < (int)memoryBaseAddress) &&
+     (iVar1 = FUN_180748010(unaff_R15 + 0x10,memoryBaseAddress), iVar1 != 0)) {
     return;
   }
   iVar1 = *(int *)(unaff_R15 + 0x18);
-  if (iVar1 < (int)uVar4) {
+  if (iVar1 < (int)memoryBaseAddress) {
                     // WARNING: Subroutine does not return
     memset((longlong)iVar1 * 0x10 + *(longlong *)(unaff_R15 + 0x10),0,
-           (longlong)(int)(uVar4 - iVar1) << 4);
+           (longlong)(int)(memoryBaseAddress - iVar1) << 4);
   }
-  *(uint *)(unaff_R15 + 0x18) = uVar4;
+  *(uint *)(unaff_R15 + 0x18) = memoryBaseAddress;
   in_stack_00000050 = 0;
   iVar1 = 0;
   if (uStack0000000000000068 >> 1 != 0) {
@@ -23749,7 +23749,7 @@ void CheckSystemStatusB0(void)
       }
       iVar1 = iVar1 + 1;
       in_stack_00000050 = in_stack_00000050 & -(uStack0000000000000068 & 1);
-    } while (iVar1 < (int)uVar4);
+    } while (iVar1 < (int)memoryBaseAddress);
   }
   in_stack_00000050 = 0;
   operationResult = FUN_1808afe30(*registerRBX,&stackBuffer50);
@@ -23816,7 +23816,7 @@ ulonglong FUN_18089c030(longlong param_1,undefined8 *param_2)
   int iVar1;
   int operationResult;
   uint uVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   uint uVar5;
   undefined8 *puVar6;
   longlong lVar7;
@@ -23825,53 +23825,53 @@ ulonglong FUN_18089c030(longlong param_1,undefined8 *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808aed00(*param_2,param_1,4);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808aed00(*param_2,param_1,4);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   aiStackX_10[0] = 0;
-  uVar4 = FUN_1808afe30(*param_2,aiStackX_10);
+  memoryBaseAddress = FUN_1808afe30(*param_2,aiStackX_10);
   operationResult = aiStackX_10[0];
   uVar3 = 0x1c;
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   lVar7 = (longlong)aiStackX_10[0];
   uVar5 = (int)*(uint *)(param_1 + 0x14) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0x14) ^ uVar5) - uVar5) < aiStackX_10[0]) &&
-     (uVar4 = FUN_180882f00(param_1 + 8,aiStackX_10[0]), (int)uVar4 != 0)) {
-    return uVar4;
+     (memoryBaseAddress = FUN_180882f00(param_1 + 8,aiStackX_10[0]), (int)memoryBaseAddress != 0)) {
+    return memoryBaseAddress;
   }
   iVar1 = *(int *)(param_1 + 0x10);
   if (iVar1 < operationResult) {
     puVar6 = (undefined8 *)(*(longlong *)(param_1 + 8) + (longlong)iVar1 * 8);
     if (0 < operationResult - iVar1) {
-      uVar4 = (ulonglong)(uint)(operationResult - iVar1);
+      memoryBaseAddress = (ulonglong)(uint)(operationResult - iVar1);
       do {
         if (puVar6 != (undefined8 *)0x0) {
           *puVar6 = 0;
         }
         puVar6 = puVar6 + 1;
-        uVar4 = uVar4 - 1;
-      } while (uVar4 != 0);
+        memoryBaseAddress = memoryBaseAddress - 1;
+      } while (memoryBaseAddress != 0);
     }
   }
   *(int *)(param_1 + 0x10) = operationResult;
   if (operationResult != 0) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar4 = FUN_1808aed00(*param_2,*(undefined8 *)(param_1 + 8),lVar7 << 3);
-      if ((int)uVar4 == 0) goto LAB_18089c131;
+      memoryBaseAddress = FUN_1808aed00(*param_2,*(undefined8 *)(param_1 + 8),lVar7 << 3);
+      if ((int)memoryBaseAddress == 0) goto LAB_18089c131;
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    if ((int)memoryBaseAddress != 0) {
+      return memoryBaseAddress;
     }
   }
 ValidationLabelA:
-  uVar4 = FUN_1808ad600(param_2,param_1 + 0x18);
-  if ((int)uVar4 == 0) {
+  memoryBaseAddress = FUN_1808ad600(param_2,param_1 + 0x18);
+  if ((int)memoryBaseAddress == 0) {
     if (*(uint *)(param_2 + 8) < 0x7c) {
       uVar3 = 0;
     }
@@ -23879,13 +23879,13 @@ ValidationLabelA:
       uVar3 = FUN_1808aed00(*param_2,param_1 + 4,4);
     }
     if (uVar3 == 0) {
-      uVar4 = func_0x000180069ee0(param_1);
+      memoryBaseAddress = func_0x000180069ee0(param_1);
     }
     else {
-      uVar4 = (ulonglong)uVar3;
+      memoryBaseAddress = (ulonglong)uVar3;
     }
   }
-  return uVar4;
+  return memoryBaseAddress;
 }
 
 
@@ -23898,7 +23898,7 @@ ulonglong FUN_18089c190(longlong param_1,undefined8 *param_2)
   undefined8 uVar1;
   undefined4 uVar2;
   undefined4 uVar3;
-  undefined4 uVar4;
+  undefined4 memoryBaseAddress;
   uint uVar5;
   uint uVar6;
   ulonglong uVar7;
@@ -24008,11 +24008,11 @@ ValidationLabelB:
             puVar8 = (undefined4 *)FUN_180847820();
             uVar2 = puVar8[1];
             uVar3 = puVar8[2];
-            uVar4 = puVar8[3];
+            memoryBaseAddress = puVar8[3];
             *(undefined4 *)(validationContext1 + -0x14) = *puVar8;
             *(undefined4 *)(validationContext1 + -0x10) = uVar2;
             *(undefined4 *)(validationContext1 + -0xc) = uVar3;
-            *(undefined4 *)(validationContext1 + -8) = uVar4;
+            *(undefined4 *)(validationContext1 + -8) = memoryBaseAddress;
             *(undefined8 *)(validationContext1 + -4) = 0;
             validationContext2 = validationContext2 + -1;
             validationContext1 = validationContext1 + 0x18;
@@ -24080,11 +24080,11 @@ ValidationLabelB:
           puVar8 = (undefined4 *)FUN_180847820();
           uVar2 = puVar8[1];
           uVar3 = puVar8[2];
-          uVar4 = puVar8[3];
+          memoryBaseAddress = puVar8[3];
           *(undefined4 *)(validationContext1 + -0x14) = *puVar8;
           *(undefined4 *)(validationContext1 + -0x10) = uVar2;
           *(undefined4 *)(validationContext1 + -0xc) = uVar3;
-          *(undefined4 *)(validationContext1 + -8) = uVar4;
+          *(undefined4 *)(validationContext1 + -8) = memoryBaseAddress;
           *(undefined8 *)(validationContext1 + -4) = 0;
           validationContext2 = validationContext2 + -1;
           validationContext1 = validationContext1 + 0x18;
@@ -24134,7 +24134,7 @@ undefined8 * FUN_18089c1fb(void)
   undefined8 uVar1;
   undefined4 uVar2;
   undefined4 uVar3;
-  undefined4 uVar4;
+  undefined4 memoryBaseAddress;
   float fVar5;
   float fVar6;
   float fVar7;
@@ -24176,11 +24176,11 @@ undefined8 * FUN_18089c1fb(void)
   uVar20 = *puVar12;
   uVar2 = puVar12[1];
   uVar3 = puVar12[2];
-  uVar4 = puVar12[3];
+  memoryBaseAddress = puVar12[3];
   *(undefined4 *)(unaff_RBP + -0x19) = uVar20;
   *(undefined4 *)(unaff_RBP + -0x15) = uVar2;
   *(undefined4 *)(unaff_RBP + -0x11) = uVar3;
-  *(undefined4 *)(unaff_RBP + -0xd) = uVar4;
+  *(undefined4 *)(unaff_RBP + -0xd) = memoryBaseAddress;
   uVar8 = 0;
   puVar13 = puVar11;
   if (uVar9 < 0x6d) {
@@ -24389,7 +24389,7 @@ undefined8 * FUN_18089c22e(void)
   undefined8 uVar1;
   undefined4 uVar2;
   undefined4 uVar3;
-  undefined4 uVar4;
+  undefined4 memoryBaseAddress;
   float fVar5;
   float fVar6;
   float fVar7;
@@ -24423,11 +24423,11 @@ undefined8 * FUN_18089c22e(void)
   uVar20 = *puVar11;
   uVar2 = puVar11[1];
   uVar3 = puVar11[2];
-  uVar4 = puVar11[3];
+  memoryBaseAddress = puVar11[3];
   *(undefined4 *)(unaff_RBP + -0x19) = uVar20;
   *(undefined4 *)(unaff_RBP + -0x15) = uVar2;
   *(undefined4 *)(unaff_RBP + -0x11) = uVar3;
-  *(undefined4 *)(unaff_RBP + -0xd) = uVar4;
+  *(undefined4 *)(unaff_RBP + -0xd) = memoryBaseAddress;
   uVar8 = 0;
   puVar12 = puVar13;
   if (uVar9 < 0x6d) {
@@ -24904,7 +24904,7 @@ ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
   longlong *pvalidationContext;
   uint uVar2;
   ulonglong uVar3;
-  undefined4 uVar4;
+  undefined4 memoryBaseAddress;
   uint uVar5;
   uint uVar7;
   uint uVar8;
@@ -24930,7 +24930,7 @@ ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
   if ((int)uVar3 != 0) {
     return uVar3;
   }
-  uVar4 = 4;
+  memoryBaseAddress = 4;
   uVar6 = 0;
   uVar8 = 0;
   uVar3 = uVar6;
@@ -25015,39 +25015,39 @@ OperationLabelC:
   }
   switch(uStack_84) {
   case 0:
-    uVar4 = 0;
+    memoryBaseAddress = 0;
     break;
   case 1:
-    uVar4 = 1;
+    memoryBaseAddress = 1;
     break;
   case 2:
-    uVar4 = 2;
+    memoryBaseAddress = 2;
     break;
   case 3:
-    uVar4 = 3;
+    memoryBaseAddress = 3;
     break;
   case 4:
     break;
   case 5:
-    uVar4 = 5;
+    memoryBaseAddress = 5;
     break;
   case 6:
-    uVar4 = 6;
+    memoryBaseAddress = 6;
     break;
   case 7:
-    uVar4 = 7;
+    memoryBaseAddress = 7;
     break;
   case 8:
-    uVar4 = 8;
+    memoryBaseAddress = 8;
     break;
   case 9:
-    uVar4 = 9;
+    memoryBaseAddress = 9;
     break;
   default:
     uVar3 = 0xd;
     goto LAB_18089c878;
   }
-  *(undefined4 *)(param_1 + 0x30) = uVar4;
+  *(undefined4 *)(param_1 + 0x30) = memoryBaseAddress;
   uVar3 = uVar6;
 OperationLabelD:
   if ((int)uVar3 != 0) {
@@ -25257,7 +25257,7 @@ ulonglong FUN_18089c69d(void)
   longlong lVar2;
   int in_EAX;
   uint uVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   longlong *registerRBX;
   longlong unaff_RBP;
   uint uVar5;
@@ -25283,17 +25283,17 @@ ulonglong FUN_18089c69d(void)
   uVar5 = in_EAX + 4;
   uVar7 = 0;
   uVar6 = 0;
-  uVar4 = uVar7;
+  memoryBaseAddress = uVar7;
   if (0x6f < *(uint *)(registerRBX + 8)) {
     if (*(int *)(registerRBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808aed00(*registerRBX,unaff_R13 + 0x34,(ulonglong)uVar5);
+      memoryBaseAddress = FUN_1808aed00(*registerRBX,unaff_R13 + 0x34,(ulonglong)uVar5);
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   uVar8 = uVar6;
   if (*(uint *)(registerRBX + 8) < 0x70) {
@@ -25345,25 +25345,25 @@ OperationLabelB:
   pvalidationContext = (longlong *)*registerRBX;
   lVar2 = *pvalidationContext;
   if (lVar2 == 0) {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
   }
   else {
     if (pvalidationContext[2] != 0) {
       *(undefined4 *)(unaff_RBP + 0x77) = 0;
-      uVar4 = func_0x00018076a7d0(lVar2,unaff_RBP + 0x77);
-      if ((int)uVar4 != 0) {
-        return uVar4;
+      memoryBaseAddress = func_0x00018076a7d0(lVar2,unaff_RBP + 0x77);
+      if ((int)memoryBaseAddress != 0) {
+        return memoryBaseAddress;
       }
       if ((ulonglong)pvalidationContext[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + (ulonglong)uVar5) {
-        uVar4 = 0x11;
+        memoryBaseAddress = 0x11;
         goto LAB_18089c808;
       }
     }
-    uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x25,registerR14D,uVar5,0);
+    memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x25,registerR14D,uVar5,0);
   }
 OperationLabelC:
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   switch(*(undefined4 *)(unaff_RBP + -0x25)) {
   case 0:
@@ -25396,58 +25396,58 @@ OperationLabelC:
     uVar5 = 9;
     break;
   default:
-    uVar4 = 0xd;
+    memoryBaseAddress = 0xd;
     goto LAB_18089c878;
   }
   *(uint *)(unaff_R13 + 0x30) = uVar5;
-  uVar4 = uVar7;
+  memoryBaseAddress = uVar7;
 OperationLabelD:
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2740(*registerRBX,unaff_R13 + 0x50);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808a2740(*registerRBX,unaff_R13 + 0x50);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*registerRBX,unaff_R13 + 0x38);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808995c0(*registerRBX,unaff_R13 + 0x38);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*registerRBX,unaff_R13 + 0x3c);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808995c0(*registerRBX,unaff_R13 + 0x3c);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*registerRBX,unaff_R13 + 0x4c);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808995c0(*registerRBX,unaff_R13 + 0x4c);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*registerRBX,unaff_R13 + 0x40);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808995c0(*registerRBX,unaff_R13 + 0x40);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*registerRBX,unaff_R13 + 0x44);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808995c0(*registerRBX,unaff_R13 + 0x44);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = uVar7;
+  memoryBaseAddress = uVar7;
   fVar9 = extraout_XMM0_Da;
   uVar5 = uVar6;
   uVar8 = registerR14D;
@@ -25475,45 +25475,45 @@ ValidationContextHandler:
       }
       uVar5 = 0;
       if (uVar3 == 0) {
-        uVar4 = 0;
+        memoryBaseAddress = 0;
         uVar5 = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
         uVar8 = (uint)(*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
-        uVar4 = (ulonglong)uVar3;
+        memoryBaseAddress = (ulonglong)uVar3;
         if (uVar3 == 0) {
-          uVar4 = uVar7;
+          memoryBaseAddress = uVar7;
         }
       }
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if ((*(uint *)(registerRBX + 8) < 0x60) &&
-     (uVar4 = func_0x0001808de610(), fVar9 = extraout_XMM0_Da_02, (int)uVar4 != 0)) {
-    return uVar4;
+     (memoryBaseAddress = func_0x0001808de610(), fVar9 = extraout_XMM0_Da_02, (int)memoryBaseAddress != 0)) {
+    return memoryBaseAddress;
   }
-  uVar4 = uVar7;
+  memoryBaseAddress = uVar7;
   if (0x51 < *(uint *)(registerRBX + 8)) {
     if (*(int *)(registerRBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808995c0(*registerRBX,unaff_R13 + 0x48);
+      memoryBaseAddress = FUN_1808995c0(*registerRBX,unaff_R13 + 0x48);
       fVar9 = extraout_XMM0_Da_03;
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = uVar7;
+  memoryBaseAddress = uVar7;
   if (0x1d < (int)registerRBX[8] - 0x52U) goto LAB_18089cad8;
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
     goto LAB_18089cad8;
   }
   pvalidationContext = (longlong *)*registerRBX;
@@ -25540,13 +25540,13 @@ ValidationRetryHandler:
     uVar6 = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
     registerR14D = (uint)(*(char *)(unaff_RBP + 0x77) == '\0');
   }
-  uVar4 = (ulonglong)uVar3;
+  memoryBaseAddress = (ulonglong)uVar3;
   if (uVar3 == 0) {
-    uVar4 = uVar7;
+    memoryBaseAddress = uVar7;
   }
 ValidationErrorHandler2:
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   uVar3 = *(uint *)(registerRBX + 8);
   if (uVar3 < 0x70) {
@@ -25564,44 +25564,44 @@ ValidationErrorHandler2:
   if (0x8a < uVar3) {
     lVar2 = *registerRBX;
     *(undefined4 *)(unaff_RBP + 0x7f) = 0;
-    uVar4 = FUN_1808afe30(lVar2,unaff_RBP + 0x7f);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    memoryBaseAddress = FUN_1808afe30(lVar2,unaff_RBP + 0x7f);
+    if ((int)memoryBaseAddress != 0) {
+      return memoryBaseAddress;
     }
     uVar5 = *(uint *)(unaff_RBP + 0x7f);
-    uVar4 = FUN_1808af8b0(unaff_R13 + 0x60,uVar5 >> 1);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    memoryBaseAddress = FUN_1808af8b0(unaff_R13 + 0x60,uVar5 >> 1);
+    if ((int)memoryBaseAddress != 0) {
+      return memoryBaseAddress;
     }
     *(undefined4 *)(unaff_RBP + 0x77) = 0;
-    uVar4 = uVar7;
+    memoryBaseAddress = uVar7;
     fVar9 = extraout_XMM0_Da_06;
     if (uVar5 >> 1 != 0) {
       do {
-        uVar4 = FUN_1808dde10(fVar9,uVar4);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        memoryBaseAddress = FUN_1808dde10(fVar9,memoryBaseAddress);
+        if ((int)memoryBaseAddress != 0) {
+          return memoryBaseAddress;
         }
         if (*(int *)(registerRBX[1] + 0x18) == 0) {
-          uVar4 = FUN_1808a2740(*registerRBX,
+          memoryBaseAddress = FUN_1808a2740(*registerRBX,
                                 (longlong)(int)uVar7 * 0x10 + *(longlong *)(unaff_R13 + 0x60));
           uVar10 = extraout_XMM0_Da_08;
         }
         else {
-          uVar4 = 0x1c;
+          memoryBaseAddress = 0x1c;
           uVar10 = extraout_XMM0_Da_07;
         }
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        if ((int)memoryBaseAddress != 0) {
+          return memoryBaseAddress;
         }
-        uVar4 = FUN_1808de0e0(uVar10,unaff_RBP + 0x77);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        memoryBaseAddress = FUN_1808de0e0(uVar10,unaff_RBP + 0x77);
+        if ((int)memoryBaseAddress != 0) {
+          return memoryBaseAddress;
         }
         uVar6 = (int)uVar7 + 1;
         uVar7 = (ulonglong)uVar6;
         uVar8 = *(uint *)(unaff_RBP + 0x77) & -(uVar5 & 1);
-        uVar4 = (ulonglong)uVar8;
+        memoryBaseAddress = (ulonglong)uVar8;
         *(uint *)(unaff_RBP + 0x77) = uVar8;
         fVar9 = extraout_XMM0_Da_09;
       } while ((int)uVar6 < (int)(uVar5 >> 1));
@@ -25619,7 +25619,7 @@ ulonglong FUN_18089c86d(void)
   longlong *pvalidationContext;
   longlong lVar2;
   undefined7 uVar3;
-  uint uVar4;
+  uint memoryBaseAddress;
   ulonglong uVar5;
   ulonglong uVar6;
   int iVar7;
@@ -25702,31 +25702,31 @@ ulonglong FUN_18089c86d(void)
       pvalidationContext = (longlong *)*registerRBX;
       lVar2 = *pvalidationContext;
       if (lVar2 == 0) {
-        uVar4 = 0x1c;
+        memoryBaseAddress = 0x1c;
       }
       else if (pvalidationContext[2] == unaff_RDI) {
 ValidationContextHandler:
-        uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x25) = 0;
-        uVar4 = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
+        memoryBaseAddress = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
         fVar12 = extraout_XMM0_Da_00;
-        if (uVar4 == 0) {
+        if (memoryBaseAddress == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2])
           goto LAB_18089c9a8;
-          uVar4 = 0x11;
+          memoryBaseAddress = 0x11;
         }
       }
-      if (uVar4 == 0) {
+      if (memoryBaseAddress == 0) {
         uVar5 = unaff_RDI & 0xffffffff;
         iVar11 = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) != '\0');
         iVar10 = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
-        uVar5 = (ulonglong)uVar4;
-        if (uVar4 == 0) {
+        uVar5 = (ulonglong)memoryBaseAddress;
+        if (memoryBaseAddress == 0) {
           uVar5 = unaff_RDI & 0xffffffff;
         }
       }
@@ -25769,63 +25769,63 @@ ValidationContextHandler:
   pvalidationContext = (longlong *)*registerRBX;
   lVar2 = *pvalidationContext;
   if (lVar2 == 0) {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
   }
   else if (pvalidationContext[2] == unaff_RDI) {
 ValidationRetryHandler:
-    uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+    memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
     *(undefined4 *)(unaff_RBP + -0x25) = 0;
-    uVar4 = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
+    memoryBaseAddress = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
     fVar12 = extraout_XMM0_Da_04;
-    if (uVar4 == 0) {
+    if (memoryBaseAddress == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089ca9c;
-      uVar4 = 0x11;
+      memoryBaseAddress = 0x11;
     }
   }
-  if (uVar4 == 0) {
+  if (memoryBaseAddress == 0) {
     iVar7 = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) != '\0');
     registerR14D = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) == '\0');
   }
-  uVar5 = (ulonglong)uVar4;
-  if (uVar4 == 0) {
+  uVar5 = (ulonglong)memoryBaseAddress;
+  if (memoryBaseAddress == 0) {
     uVar5 = unaff_RDI & 0xffffffff;
   }
 ValidationErrorHandler2:
   if ((int)uVar5 != 0) {
     return uVar5;
   }
-  uVar4 = *(uint *)(registerRBX + 8);
-  if (uVar4 < 0x70) {
+  memoryBaseAddress = *(uint *)(registerRBX + 8);
+  if (memoryBaseAddress < 0x70) {
     *(uint *)(unaff_R13 + 0x34) =
          (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + 0x34)) &
            ~*(uint *)(unaff_RBP + -0x29) | iVar11 * 2) & ~(iVar10 * 2) | iVar7 * 4) &
          ~(registerR14D * 4);
-    uVar4 = *(uint *)(registerRBX + 8);
+    memoryBaseAddress = *(uint *)(registerRBX + 8);
   }
-  if ((uVar4 < 0x87) && ((*(uint *)(unaff_R13 + 0x34) >> 3 & 1) != 0)) {
+  if ((memoryBaseAddress < 0x87) && ((*(uint *)(unaff_R13 + 0x34) >> 3 & 1) != 0)) {
     fVar12 = *(float *)(unaff_R13 + 0x3c) - 1.0;
     *(float *)(unaff_R13 + 0x3c) = fVar12;
-    uVar4 = *(uint *)(registerRBX + 8);
+    memoryBaseAddress = *(uint *)(registerRBX + 8);
   }
-  if (0x8a < uVar4) {
+  if (0x8a < memoryBaseAddress) {
     lVar2 = *registerRBX;
     *(undefined4 *)(unaff_RBP + 0x7f) = 0;
     uVar5 = FUN_1808afe30(lVar2,unaff_RBP + 0x7f);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
-    uVar4 = *(uint *)(unaff_RBP + 0x7f);
-    uVar5 = FUN_1808af8b0(unaff_R13 + 0x60,uVar4 >> 1);
+    memoryBaseAddress = *(uint *)(unaff_RBP + 0x7f);
+    uVar5 = FUN_1808af8b0(unaff_R13 + 0x60,memoryBaseAddress >> 1);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
     *(undefined4 *)(unaff_RBP + 0x77) = 0;
     uVar5 = unaff_RDI & 0xffffffff;
     fVar12 = extraout_XMM0_Da_06;
-    if (uVar4 >> 1 != 0) {
+    if (memoryBaseAddress >> 1 != 0) {
       do {
         uVar6 = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
         if ((int)uVar6 != 0) {
@@ -25849,11 +25849,11 @@ ValidationErrorHandler2:
         }
         uVar8 = (int)uVar5 + 1;
         uVar5 = (ulonglong)uVar8;
-        uVar9 = *(uint *)(unaff_RBP + 0x77) & -(uVar4 & 1);
+        uVar9 = *(uint *)(unaff_RBP + 0x77) & -(memoryBaseAddress & 1);
         unaff_RDI = (ulonglong)uVar9;
         *(uint *)(unaff_RBP + 0x77) = uVar9;
         fVar12 = extraout_XMM0_Da_09;
-      } while ((int)uVar8 < (int)(uVar4 >> 1));
+      } while ((int)uVar8 < (int)(memoryBaseAddress >> 1));
     }
   }
                     // WARNING: Subroutine does not return
@@ -25868,7 +25868,7 @@ ulonglong FUN_18089c872(void)
   longlong *pvalidationContext;
   longlong lVar2;
   undefined7 uVar3;
-  uint uVar4;
+  uint memoryBaseAddress;
   ulonglong uVar5;
   ulonglong uVar6;
   int iVar7;
@@ -25952,31 +25952,31 @@ ulonglong FUN_18089c872(void)
       pvalidationContext = (longlong *)*registerRBX;
       lVar2 = *pvalidationContext;
       if (lVar2 == 0) {
-        uVar4 = 0x1c;
+        memoryBaseAddress = 0x1c;
       }
       else if (pvalidationContext[2] == unaff_RDI) {
 ValidationContextHandler:
-        uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x25) = 0;
-        uVar4 = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
+        memoryBaseAddress = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
         fVar12 = extraout_XMM0_Da_00;
-        if (uVar4 == 0) {
+        if (memoryBaseAddress == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2])
           goto LAB_18089c9a8;
-          uVar4 = 0x11;
+          memoryBaseAddress = 0x11;
         }
       }
-      if (uVar4 == 0) {
+      if (memoryBaseAddress == 0) {
         uVar5 = unaff_RDI & 0xffffffff;
         iVar11 = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) != '\0');
         iVar10 = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
-        uVar5 = (ulonglong)uVar4;
-        if (uVar4 == 0) {
+        uVar5 = (ulonglong)memoryBaseAddress;
+        if (memoryBaseAddress == 0) {
           uVar5 = unaff_RDI & 0xffffffff;
         }
       }
@@ -26019,63 +26019,63 @@ ValidationContextHandler:
   pvalidationContext = (longlong *)*registerRBX;
   lVar2 = *pvalidationContext;
   if (lVar2 == 0) {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
   }
   else if (pvalidationContext[2] == unaff_RDI) {
 ValidationRetryHandler:
-    uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+    memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
     *(undefined4 *)(unaff_RBP + -0x25) = 0;
-    uVar4 = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
+    memoryBaseAddress = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
     fVar12 = extraout_XMM0_Da_04;
-    if (uVar4 == 0) {
+    if (memoryBaseAddress == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089ca9c;
-      uVar4 = 0x11;
+      memoryBaseAddress = 0x11;
     }
   }
-  if (uVar4 == 0) {
+  if (memoryBaseAddress == 0) {
     iVar7 = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) != '\0');
     registerR14D = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) == '\0');
   }
-  uVar5 = (ulonglong)uVar4;
-  if (uVar4 == 0) {
+  uVar5 = (ulonglong)memoryBaseAddress;
+  if (memoryBaseAddress == 0) {
     uVar5 = unaff_RDI & 0xffffffff;
   }
 ValidationErrorHandler2:
   if ((int)uVar5 != 0) {
     return uVar5;
   }
-  uVar4 = *(uint *)(registerRBX + 8);
-  if (uVar4 < 0x70) {
+  memoryBaseAddress = *(uint *)(registerRBX + 8);
+  if (memoryBaseAddress < 0x70) {
     *(uint *)(unaff_R13 + 0x34) =
          (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + 0x34)) &
            ~*(uint *)(unaff_RBP + -0x29) | iVar11 * 2) & ~(iVar10 * 2) | iVar7 * 4) &
          ~(registerR14D * 4);
-    uVar4 = *(uint *)(registerRBX + 8);
+    memoryBaseAddress = *(uint *)(registerRBX + 8);
   }
-  if ((uVar4 < 0x87) && ((*(uint *)(unaff_R13 + 0x34) >> 3 & 1) != 0)) {
+  if ((memoryBaseAddress < 0x87) && ((*(uint *)(unaff_R13 + 0x34) >> 3 & 1) != 0)) {
     fVar12 = *(float *)(unaff_R13 + 0x3c) - 1.0;
     *(float *)(unaff_R13 + 0x3c) = fVar12;
-    uVar4 = *(uint *)(registerRBX + 8);
+    memoryBaseAddress = *(uint *)(registerRBX + 8);
   }
-  if (0x8a < uVar4) {
+  if (0x8a < memoryBaseAddress) {
     lVar2 = *registerRBX;
     *(undefined4 *)(unaff_RBP + 0x7f) = 0;
     uVar5 = FUN_1808afe30(lVar2,unaff_RBP + 0x7f);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
-    uVar4 = *(uint *)(unaff_RBP + 0x7f);
-    uVar5 = FUN_1808af8b0(unaff_R13 + 0x60,uVar4 >> 1);
+    memoryBaseAddress = *(uint *)(unaff_RBP + 0x7f);
+    uVar5 = FUN_1808af8b0(unaff_R13 + 0x60,memoryBaseAddress >> 1);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
     *(undefined4 *)(unaff_RBP + 0x77) = 0;
     uVar5 = unaff_RDI & 0xffffffff;
     fVar12 = extraout_XMM0_Da_06;
-    if (uVar4 >> 1 != 0) {
+    if (memoryBaseAddress >> 1 != 0) {
       do {
         uVar6 = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
         if ((int)uVar6 != 0) {
@@ -26099,11 +26099,11 @@ ValidationErrorHandler2:
         }
         uVar8 = (int)uVar5 + 1;
         uVar5 = (ulonglong)uVar8;
-        uVar9 = *(uint *)(unaff_RBP + 0x77) & -(uVar4 & 1);
+        uVar9 = *(uint *)(unaff_RBP + 0x77) & -(memoryBaseAddress & 1);
         unaff_RDI = (ulonglong)uVar9;
         *(uint *)(unaff_RBP + 0x77) = uVar9;
         fVar12 = extraout_XMM0_Da_09;
-      } while ((int)uVar8 < (int)(uVar4 >> 1));
+      } while ((int)uVar8 < (int)(memoryBaseAddress >> 1));
     }
   }
                     // WARNING: Subroutine does not return
@@ -26118,7 +26118,7 @@ ulonglong FUN_18089c94a(float param_1)
   longlong *pvalidationContext;
   longlong lVar2;
   undefined7 uVar3;
-  uint uVar4;
+  uint memoryBaseAddress;
   ulonglong uVar5;
   ulonglong uVar6;
   int iVar7;
@@ -26155,31 +26155,31 @@ ulonglong FUN_18089c94a(float param_1)
       pvalidationContext = (longlong *)*registerRBX;
       lVar2 = *pvalidationContext;
       if (lVar2 == 0) {
-        uVar4 = 0x1c;
+        memoryBaseAddress = 0x1c;
       }
       else if (pvalidationContext[2] == unaff_RDI) {
 ValidationContextHandler:
-        uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
         param_1 = extraout_XMM0_Da_00;
       }
       else {
         *(int *)(unaff_RBP + -0x25) = iVar9;
-        uVar4 = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
+        memoryBaseAddress = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
         param_1 = extraout_XMM0_Da;
-        if (uVar4 == 0) {
+        if (memoryBaseAddress == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2])
           goto LAB_18089c9a8;
-          uVar4 = 0x11;
+          memoryBaseAddress = 0x11;
         }
       }
-      if (uVar4 == 0) {
+      if (memoryBaseAddress == 0) {
         uVar6 = unaff_RDI & 0xffffffff;
         iVar12 = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) != '\0');
         iVar11 = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
-        uVar6 = (ulonglong)uVar4;
-        if (uVar4 == 0) {
+        uVar6 = (ulonglong)memoryBaseAddress;
+        if (memoryBaseAddress == 0) {
           uVar6 = unaff_RDI & 0xffffffff;
         }
       }
@@ -26217,29 +26217,29 @@ ValidationContextHandler:
       pvalidationContext = (longlong *)*registerRBX;
       lVar2 = *pvalidationContext;
       if (lVar2 == 0) {
-        uVar4 = 0x1c;
+        memoryBaseAddress = 0x1c;
       }
       else if (pvalidationContext[2] == unaff_RDI) {
 ValidationRetryHandler:
-        uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
         param_1 = extraout_XMM0_Da_04;
       }
       else {
         *(int *)(unaff_RBP + -0x25) = iVar9;
-        uVar4 = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
+        memoryBaseAddress = func_0x00018076a7d0(lVar2,unaff_RBP + -0x25);
         param_1 = extraout_XMM0_Da_03;
-        if (uVar4 == 0) {
+        if (memoryBaseAddress == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2])
           goto LAB_18089ca9c;
-          uVar4 = 0x11;
+          memoryBaseAddress = 0x11;
         }
       }
-      if (uVar4 == 0) {
+      if (memoryBaseAddress == 0) {
         iVar7 = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) != '\0');
         registerR14D = (int)CONCAT71(uVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
-      uVar6 = (ulonglong)uVar4;
-      if (uVar4 == 0) {
+      uVar6 = (ulonglong)memoryBaseAddress;
+      if (memoryBaseAddress == 0) {
         uVar6 = unaff_RDI & 0xffffffff;
       }
     }
@@ -26251,20 +26251,20 @@ ValidationRetryHandler:
     uVar6 = unaff_RDI & 0xffffffff;
   }
   if ((int)uVar6 == 0) {
-    uVar4 = *(uint *)(registerRBX + 8);
-    if (uVar4 < 0x70) {
+    memoryBaseAddress = *(uint *)(registerRBX + 8);
+    if (memoryBaseAddress < 0x70) {
       *(uint *)(unaff_R13 + 0x34) =
            (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + 0x34)) &
              ~*(uint *)(unaff_RBP + -0x29) | iVar12 * 2) & ~(iVar11 * 2) | iVar7 * 4) &
            ~(registerR14D * 4);
-      uVar4 = *(uint *)(registerRBX + 8);
+      memoryBaseAddress = *(uint *)(registerRBX + 8);
     }
-    if ((uVar4 < 0x87) && ((*(uint *)(unaff_R13 + 0x34) >> 3 & 1) != 0)) {
+    if ((memoryBaseAddress < 0x87) && ((*(uint *)(unaff_R13 + 0x34) >> 3 & 1) != 0)) {
       param_1 = *(float *)(unaff_R13 + 0x3c) - 1.0;
       *(float *)(unaff_R13 + 0x3c) = param_1;
-      uVar4 = *(uint *)(registerRBX + 8);
+      memoryBaseAddress = *(uint *)(registerRBX + 8);
     }
-    if (uVar4 < 0x8b) {
+    if (memoryBaseAddress < 0x8b) {
 DataProcessingHandler:
                     // WARNING: Subroutine does not return
       FUN_1808ddf80(param_1,unaff_RBP + -0x21);
@@ -26273,14 +26273,14 @@ DataProcessingHandler:
     *(int *)(unaff_RBP + 0x7f) = iVar9;
     uVar6 = FUN_1808afe30(lVar2,unaff_RBP + 0x7f);
     if ((int)uVar6 == 0) {
-      uVar4 = *(uint *)(unaff_RBP + 0x7f);
-      uVar6 = FUN_1808af8b0(unaff_R13 + 0x60,uVar4 >> 1);
+      memoryBaseAddress = *(uint *)(unaff_RBP + 0x7f);
+      uVar6 = FUN_1808af8b0(unaff_R13 + 0x60,memoryBaseAddress >> 1);
       if ((int)uVar6 == 0) {
         *(int *)(unaff_RBP + 0x77) = iVar9;
         uVar6 = unaff_RDI & 0xffffffff;
         param_1 = extraout_XMM0_Da_05;
         fVar13 = extraout_XMM0_Da_05;
-        if (uVar4 >> 1 != 0) {
+        if (memoryBaseAddress >> 1 != 0) {
           do {
             uVar5 = FUN_1808dde10(fVar13,unaff_RDI & 0xffffffff);
             if ((int)uVar5 != 0) {
@@ -26304,12 +26304,12 @@ DataProcessingHandler:
             }
             uVar8 = (int)uVar6 + 1;
             uVar6 = (ulonglong)uVar8;
-            uVar10 = *(uint *)(unaff_RBP + 0x77) & -(uVar4 & 1);
+            uVar10 = *(uint *)(unaff_RBP + 0x77) & -(memoryBaseAddress & 1);
             unaff_RDI = (ulonglong)uVar10;
             *(uint *)(unaff_RBP + 0x77) = uVar10;
             param_1 = extraout_XMM0_Da_08;
             fVar13 = extraout_XMM0_Da_08;
-          } while ((int)uVar8 < (int)(uVar4 >> 1));
+          } while ((int)uVar8 < (int)(memoryBaseAddress >> 1));
         }
         goto LAB_18089cbf6;
       }
@@ -27437,7 +27437,7 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
   undefined8 uVar1;
   uint uVar2;
   ulonglong uVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   undefined1 auStackX_18 [4];
   undefined1 auStackX_1c [12];
   undefined1 auStack_58 [32];
@@ -27464,9 +27464,9 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
         }
         uVar3 = FUN_180898ef0(param_2,param_1 + 0x100);
         if ((int)uVar3 == 0) {
-          uVar4 = 0x1c;
+          memoryBaseAddress = 0x1c;
           if (*(uint *)(param_2 + 8) < 0x68) {
-            uVar3 = uVar4;
+            uVar3 = memoryBaseAddress;
             if (*(int *)(param_2[1] + 0x18) == 0) {
               uVar1 = *param_2;
               uVar3 = FUN_1808995c0(uVar1,auStackX_18);
@@ -27483,7 +27483,7 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
               uVar3 = 0;
             }
             else {
-              uVar3 = uVar4;
+              uVar3 = memoryBaseAddress;
               if (*(int *)(param_2[1] + 0x18) == 0) {
                 uVar3 = FUN_1808aed00(*param_2,param_1 + 0xf4,4);
               }
@@ -27493,7 +27493,7 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
                 uVar3 = 0;
               }
               else {
-                uVar3 = uVar4;
+                uVar3 = memoryBaseAddress;
                 if (*(int *)(param_2[1] + 0x18) == 0) {
                   uVar2 = FUN_1808995c0(*param_2,param_1 + 0xfc);
                   uVar3 = (ulonglong)uVar2;
@@ -27528,7 +27528,7 @@ ulonglong FUN_18089dd54(void)
   ulonglong uVar3;
   undefined8 *registerRBX;
   longlong unaff_RSI;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
@@ -27545,9 +27545,9 @@ ulonglong FUN_18089dd54(void)
         }
         uVar3 = FUN_180898ef0();
         if ((int)uVar3 == 0) {
-          uVar4 = 0x1c;
+          memoryBaseAddress = 0x1c;
           if (*(uint *)(registerRBX + 8) < 0x68) {
-            uVar3 = uVar4;
+            uVar3 = memoryBaseAddress;
             if (*(int *)(registerRBX[1] + 0x18) == 0) {
               uVar1 = *registerRBX;
               uVar3 = FUN_1808995c0(uVar1,&stack0x00000090);
@@ -27564,7 +27564,7 @@ ulonglong FUN_18089dd54(void)
               uVar3 = 0;
             }
             else {
-              uVar3 = uVar4;
+              uVar3 = memoryBaseAddress;
               if (*(int *)(registerRBX[1] + 0x18) == 0) {
                 uVar3 = FUN_1808aed00(*registerRBX,unaff_RSI + 0xf4,4);
               }
@@ -27574,7 +27574,7 @@ ulonglong FUN_18089dd54(void)
                 uVar3 = 0;
               }
               else {
-                uVar3 = uVar4;
+                uVar3 = memoryBaseAddress;
                 if (*(int *)(registerRBX[1] + 0x18) == 0) {
                   uVar2 = FUN_1808995c0(*registerRBX,unaff_RSI + 0xfc);
                   uVar3 = (ulonglong)uVar2;
@@ -27609,7 +27609,7 @@ ulonglong FUN_18089dd78(void)
   ulonglong uVar3;
   undefined8 *registerRBX;
   longlong unaff_RSI;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   uVar3 = FUN_1808aed00(*registerRBX,unaff_RSI + 0xf0,4);
   if ((int)uVar3 != 0) {
@@ -27625,9 +27625,9 @@ ulonglong FUN_18089dd78(void)
       }
       uVar3 = FUN_180898ef0();
       if ((int)uVar3 == 0) {
-        uVar4 = 0x1c;
+        memoryBaseAddress = 0x1c;
         if (*(uint *)(registerRBX + 8) < 0x68) {
-          uVar3 = uVar4;
+          uVar3 = memoryBaseAddress;
           if (*(int *)(registerRBX[1] + 0x18) == 0) {
             uVar1 = *registerRBX;
             uVar3 = FUN_1808995c0(uVar1,&stack0x00000090);
@@ -27644,7 +27644,7 @@ ulonglong FUN_18089dd78(void)
             uVar3 = 0;
           }
           else {
-            uVar3 = uVar4;
+            uVar3 = memoryBaseAddress;
             if (*(int *)(registerRBX[1] + 0x18) == 0) {
               uVar3 = FUN_1808aed00(*registerRBX,unaff_RSI + 0xf4,4);
             }
@@ -27654,7 +27654,7 @@ ulonglong FUN_18089dd78(void)
               uVar3 = 0;
             }
             else {
-              uVar3 = uVar4;
+              uVar3 = memoryBaseAddress;
               if (*(int *)(registerRBX[1] + 0x18) == 0) {
                 uVar2 = FUN_1808995c0(*registerRBX,unaff_RSI + 0xfc);
                 uVar3 = (ulonglong)uVar2;
@@ -27686,7 +27686,7 @@ ulonglong FUN_18089dda2(void)
   ulonglong uVar3;
   undefined8 *registerRBX;
   longlong unaff_RSI;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   if (*(int *)(registerRBX[1] + 0x18) == 0) {
     uVar2 = FUN_1808aed00(*registerRBX,unaff_RSI + 0xf8,4);
@@ -27698,9 +27698,9 @@ ulonglong FUN_18089dda2(void)
       }
       uVar3 = FUN_180898ef0();
       if ((int)uVar3 == 0) {
-        uVar4 = 0x1c;
+        memoryBaseAddress = 0x1c;
         if (*(uint *)(registerRBX + 8) < 0x68) {
-          uVar3 = uVar4;
+          uVar3 = memoryBaseAddress;
           if (*(int *)(registerRBX[1] + 0x18) == 0) {
             uVar1 = *registerRBX;
             uVar3 = FUN_1808995c0(uVar1,&stack0x00000090);
@@ -27717,7 +27717,7 @@ ulonglong FUN_18089dda2(void)
             uVar3 = 0;
           }
           else {
-            uVar3 = uVar4;
+            uVar3 = memoryBaseAddress;
             if (*(int *)(registerRBX[1] + 0x18) == 0) {
               uVar3 = FUN_1808aed00(*registerRBX,unaff_RSI + 0xf4,4);
             }
@@ -27727,7 +27727,7 @@ ulonglong FUN_18089dda2(void)
               uVar3 = 0;
             }
             else {
-              uVar3 = uVar4;
+              uVar3 = memoryBaseAddress;
               if (*(int *)(registerRBX[1] + 0x18) == 0) {
                 uVar2 = FUN_1808995c0(*registerRBX,unaff_RSI + 0xfc);
                 uVar3 = (ulonglong)uVar2;
@@ -28078,7 +28078,7 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
   longlong *pvalidationContext;
   ulonglong uVar2;
   uint uVar3;
-  uint uVar4;
+  uint memoryBaseAddress;
   uint uVar6;
   ulonglong uVar7;
   uint auStackX_18 [2];
@@ -28131,11 +28131,11 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      uVar4 = (int)uVar5 + 1;
-      uVar5 = (ulonglong)uVar4;
+      memoryBaseAddress = (int)uVar5 + 1;
+      uVar5 = (ulonglong)memoryBaseAddress;
       auStackX_18[0] = auStackX_18[0] & -uVar3;
       uVar2 = (ulonglong)auStackX_18[0];
-    } while ((int)uVar4 < (int)uVar6);
+    } while ((int)memoryBaseAddress < (int)uVar6);
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
@@ -28197,7 +28197,7 @@ ulonglong FUN_18089e297(void)
   ulonglong uVar2;
   ulonglong uVar3;
   longlong *registerRBX;
-  uint uVar4;
+  uint memoryBaseAddress;
   longlong unaff_RSI;
   uint uVar5;
   uint uVar6;
@@ -28219,7 +28219,7 @@ ulonglong FUN_18089e297(void)
     return uVar2;
   }
   in_stack_000000b0 = 0;
-  uVar4 = in_stack_000000b8 & 1;
+  memoryBaseAddress = in_stack_000000b8 & 1;
   uVar6 = in_stack_000000b8 >> 1;
   uVar2 = uVar7;
   if (uVar6 != 0) {
@@ -28238,15 +28238,15 @@ ulonglong FUN_18089e297(void)
       }
       uVar5 = (int)uVar2 + 1;
       uVar2 = (ulonglong)uVar5;
-      in_stack_000000b0 = in_stack_000000b0 & -uVar4;
+      in_stack_000000b0 = in_stack_000000b0 & -memoryBaseAddress;
     } while ((int)uVar5 < (int)uVar6);
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2e00(*registerRBX,unaff_RSI + 0x48);
-  if (uVar4 != 0) {
-    return (ulonglong)uVar4;
+  memoryBaseAddress = FUN_1808a2e00(*registerRBX,unaff_RSI + 0x48);
+  if (memoryBaseAddress != 0) {
+    return (ulonglong)memoryBaseAddress;
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
@@ -28279,8 +28279,8 @@ ValidationCompleteHandler2:
     if ((int)uVar2 == 0) {
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(registerRBX + 8)) && (uVar2 = 0x1c, *(int *)(registerRBX[1] + 0x18) == 0)) {
-        uVar4 = FUN_1808995c0(*registerRBX,unaff_RSI + 0x40);
-        uVar2 = (ulonglong)uVar4;
+        memoryBaseAddress = FUN_1808995c0(*registerRBX,unaff_RSI + 0x40);
+        uVar2 = (ulonglong)memoryBaseAddress;
       }
       if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
@@ -28300,7 +28300,7 @@ ulonglong FUN_18089e2be(void)
   ulonglong uVar2;
   ulonglong uVar3;
   longlong *registerRBX;
-  uint uVar4;
+  uint memoryBaseAddress;
   longlong unaff_RSI;
   uint uVar5;
   uint uVar6;
@@ -28319,7 +28319,7 @@ ulonglong FUN_18089e2be(void)
     return uVar2;
   }
   in_stack_000000b0 = 0;
-  uVar4 = in_stack_000000b8 & 1;
+  memoryBaseAddress = in_stack_000000b8 & 1;
   uVar6 = in_stack_000000b8 >> 1;
   uVar2 = uVar7;
   if (uVar6 != 0) {
@@ -28338,15 +28338,15 @@ ulonglong FUN_18089e2be(void)
       }
       uVar5 = (int)uVar2 + 1;
       uVar2 = (ulonglong)uVar5;
-      in_stack_000000b0 = in_stack_000000b0 & -uVar4;
+      in_stack_000000b0 = in_stack_000000b0 & -memoryBaseAddress;
     } while ((int)uVar5 < (int)uVar6);
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2e00(*registerRBX,unaff_RSI + 0x48);
-  if (uVar4 != 0) {
-    return (ulonglong)uVar4;
+  memoryBaseAddress = FUN_1808a2e00(*registerRBX,unaff_RSI + 0x48);
+  if (memoryBaseAddress != 0) {
+    return (ulonglong)memoryBaseAddress;
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
@@ -28379,8 +28379,8 @@ ValidationCompleteHandler2:
     if ((int)uVar2 == 0) {
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(registerRBX + 8)) && (uVar2 = 0x1c, *(int *)(registerRBX[1] + 0x18) == 0)) {
-        uVar4 = FUN_1808995c0(*registerRBX,unaff_RSI + 0x40);
-        uVar2 = (ulonglong)uVar4;
+        memoryBaseAddress = FUN_1808995c0(*registerRBX,unaff_RSI + 0x40);
+        uVar2 = (ulonglong)memoryBaseAddress;
       }
       if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
@@ -28400,7 +28400,7 @@ ulonglong FUN_18089e2e8(void)
   ulonglong uVar2;
   ulonglong uVar3;
   longlong *registerRBX;
-  uint uVar4;
+  uint memoryBaseAddress;
   longlong unaff_RSI;
   uint uVar5;
   uint uVar6;
@@ -28415,7 +28415,7 @@ ulonglong FUN_18089e2e8(void)
     return uVar2;
   }
   in_stack_000000b0 = 0;
-  uVar4 = uStack00000000000000b8 & 1;
+  memoryBaseAddress = uStack00000000000000b8 & 1;
   uVar6 = uStack00000000000000b8 >> 1;
   uVar2 = uVar7;
   if (uVar6 != 0) {
@@ -28434,15 +28434,15 @@ ulonglong FUN_18089e2e8(void)
       }
       uVar5 = (int)uVar2 + 1;
       uVar2 = (ulonglong)uVar5;
-      in_stack_000000b0 = in_stack_000000b0 & -uVar4;
+      in_stack_000000b0 = in_stack_000000b0 & -memoryBaseAddress;
     } while ((int)uVar5 < (int)uVar6);
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808a2e00(*registerRBX,unaff_RSI + 0x48);
-  if (uVar4 != 0) {
-    return (ulonglong)uVar4;
+  memoryBaseAddress = FUN_1808a2e00(*registerRBX,unaff_RSI + 0x48);
+  if (memoryBaseAddress != 0) {
+    return (ulonglong)memoryBaseAddress;
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
@@ -28475,8 +28475,8 @@ ValidationCompleteHandler2:
     if ((int)uVar2 == 0) {
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(registerRBX + 8)) && (uVar2 = 0x1c, *(int *)(registerRBX[1] + 0x18) == 0)) {
-        uVar4 = FUN_1808995c0(*registerRBX,unaff_RSI + 0x40);
-        uVar2 = (ulonglong)uVar4;
+        memoryBaseAddress = FUN_1808995c0(*registerRBX,unaff_RSI + 0x40);
+        uVar2 = (ulonglong)memoryBaseAddress;
       }
       if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
@@ -28507,7 +28507,7 @@ ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
   undefined4 uVar1;
   undefined8 uVar2;
   uint uVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   undefined4 *puVar5;
   longlong lVar6;
   undefined4 *puStack_88;
@@ -28519,12 +28519,12 @@ ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
   undefined1 auStack_58 [32];
   undefined1 auStack_38 [32];
   
-  uVar4 = FUN_1808ddc20(param_2,auStack_38,1,0x4e4c4d54);
-  if ((((int)uVar4 == 0) &&
-      (uVar4 = FUN_1808ddc20(param_2,auStack_58,0,0x424e4c54), (int)uVar4 == 0)) &&
-     (uVar4 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar4 == 0)) {
+  memoryBaseAddress = FUN_1808ddc20(param_2,auStack_38,1,0x4e4c4d54);
+  if ((((int)memoryBaseAddress == 0) &&
+      (memoryBaseAddress = FUN_1808ddc20(param_2,auStack_58,0,0x424e4c54), (int)memoryBaseAddress == 0)) &&
+     (memoryBaseAddress = FUN_180899360(param_2,param_1 + 0x10), (int)memoryBaseAddress == 0)) {
     puVar5 = (undefined4 *)FUN_180847820();
-    uVar4 = 0;
+    memoryBaseAddress = 0;
     uStack_78 = *puVar5;
     uStack_74 = puVar5[1];
     uStack_70 = puVar5[2];
@@ -28532,35 +28532,35 @@ ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
     if (*(uint *)(param_2 + 8) < 0x6d) {
       if (*(int *)(param_2[1] + 0x18) == 0) {
         uVar2 = *param_2;
-        uVar4 = FUN_1808aed00(uVar2,&uStack_78,4);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        memoryBaseAddress = FUN_1808aed00(uVar2,&uStack_78,4);
+        if ((int)memoryBaseAddress != 0) {
+          return memoryBaseAddress;
         }
-        uVar4 = FUN_1808aed00(uVar2,&uStack_74,2);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        memoryBaseAddress = FUN_1808aed00(uVar2,&uStack_74,2);
+        if ((int)memoryBaseAddress != 0) {
+          return memoryBaseAddress;
         }
-        uVar4 = FUN_1808aed00(uVar2,(longlong)&uStack_74 + 2,2);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        memoryBaseAddress = FUN_1808aed00(uVar2,(longlong)&uStack_74 + 2,2);
+        if ((int)memoryBaseAddress != 0) {
+          return memoryBaseAddress;
         }
-        uVar4 = FUN_1808aed00(uVar2,&uStack_70,8);
+        memoryBaseAddress = FUN_1808aed00(uVar2,&uStack_70,8);
       }
       else {
-        uVar4 = 0x1c;
+        memoryBaseAddress = 0x1c;
       }
     }
-    if ((((int)uVar4 == 0) && (uVar4 = FUN_1808a5a90(param_2,param_1 + 0x38,0), (int)uVar4 == 0)) &&
-       (uVar4 = FUN_1808a5a90(param_2,param_1 + 0x48,0), (int)uVar4 == 0)) {
+    if ((((int)memoryBaseAddress == 0) && (memoryBaseAddress = FUN_1808a5a90(param_2,param_1 + 0x38,0), (int)memoryBaseAddress == 0)) &&
+       (memoryBaseAddress = FUN_1808a5a90(param_2,param_1 + 0x48,0), (int)memoryBaseAddress == 0)) {
       if (*(uint *)(param_2 + 8) < 0x84) {
         puStack_88 = (undefined4 *)0x0;
         uStack_80 = 0;
         uVar3 = FUN_1808a4a20(param_2,&puStack_88,0);
-        uVar4 = (ulonglong)uVar3;
+        memoryBaseAddress = (ulonglong)uVar3;
         if (uVar3 != 0) {
 ValidationErrorHandler5:
           FUN_18084c150(&puStack_88);
-          return uVar4;
+          return memoryBaseAddress;
         }
         puVar5 = puStack_88;
         if ((int)uStack_80 != 0) {
@@ -28569,7 +28569,7 @@ ValidationErrorHandler5:
             lVar6 = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,
                                   0,0,1);
             if (lVar6 == 0) {
-              uVar4 = 0x26;
+              memoryBaseAddress = 0x26;
               goto LAB_18089e70b;
             }
             uVar1 = *puVar5;
@@ -28579,26 +28579,26 @@ ValidationErrorHandler5:
             *(undefined8 *)(lVar6 + 0x18) = 0;
             *(undefined4 *)(lVar6 + 0x20) = 0;
             uVar3 = func_0x0001808aec10(param_1 + 0x58,lVar6);
-            uVar4 = (ulonglong)uVar3;
+            memoryBaseAddress = (ulonglong)uVar3;
             if (uVar3 != 0) goto LAB_18089e70b;
           }
         }
         FUN_18084c150(&puStack_88);
       }
       else {
-        uVar4 = FUN_1808a71c0(param_2,param_1 + 0x58);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        memoryBaseAddress = FUN_1808a71c0(param_2,param_1 + 0x58);
+        if ((int)memoryBaseAddress != 0) {
+          return memoryBaseAddress;
         }
       }
-      uVar4 = FUN_1808ad9d0(param_2,param_1 + 0x78,0);
-      if (((int)uVar4 == 0) && (uVar4 = FUN_1808a62d0(param_2,param_1 + 0x88,0), (int)uVar4 == 0)) {
+      memoryBaseAddress = FUN_1808ad9d0(param_2,param_1 + 0x78,0);
+      if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = FUN_1808a62d0(param_2,param_1 + 0x88,0), (int)memoryBaseAddress == 0)) {
                     // WARNING: Subroutine does not return
         FUN_1808ddf80(param_2,auStack_58);
       }
     }
   }
-  return uVar4;
+  return memoryBaseAddress;
 }
 
 
@@ -28611,7 +28611,7 @@ ulonglong FUN_18089e558(void)
   undefined8 uVar1;
   undefined4 uVar2;
   undefined4 uVar3;
-  undefined4 uVar4;
+  undefined4 memoryBaseAddress;
   uint uVar5;
   int iVar6;
   undefined4 *puVar7;
@@ -28635,11 +28635,11 @@ ulonglong FUN_18089e558(void)
   uVar11 = *puVar7;
   uVar2 = puVar7[1];
   uVar3 = puVar7[2];
-  uVar4 = puVar7[3];
+  memoryBaseAddress = puVar7[3];
   *(undefined4 *)(unaff_RBP + -0x19) = uVar11;
   *(undefined4 *)(unaff_RBP + -0x15) = uVar2;
   *(undefined4 *)(unaff_RBP + -0x11) = uVar3;
-  *(undefined4 *)(unaff_RBP + -0xd) = uVar4;
+  *(undefined4 *)(unaff_RBP + -0xd) = memoryBaseAddress;
   if (uVar5 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       uVar1 = *unaff_RDI;
@@ -28727,7 +28727,7 @@ ulonglong FUN_18089e624(void)
   undefined4 uVar1;
   uint uVar2;
   int iVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   longlong lVar5;
   undefined4 *puVar6;
   undefined8 registerRBX;
@@ -28740,11 +28740,11 @@ ulonglong FUN_18089e624(void)
     *(undefined8 *)(unaff_RBP + -0x29) = registerRBX;
     *(undefined8 *)(unaff_RBP + -0x21) = registerRBX;
     uVar2 = FUN_1808a4a20();
-    uVar4 = (ulonglong)uVar2;
+    memoryBaseAddress = (ulonglong)uVar2;
     if (uVar2 != 0) {
 ValidationErrorHandler5:
       FUN_18084c150(unaff_RBP + -0x29);
-      return uVar4;
+      return memoryBaseAddress;
     }
     iVar3 = *(int *)(unaff_RBP + -0x21);
     if (iVar3 != 0) {
@@ -28752,7 +28752,7 @@ ValidationErrorHandler5:
       for (puVar7 = puVar6; (puVar6 <= puVar7 && (puVar7 < puVar6 + iVar3)); puVar7 = puVar7 + 1) {
         lVar5 = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c);
         if (lVar5 == 0) {
-          uVar4 = 0x26;
+          memoryBaseAddress = 0x26;
           goto LAB_18089e70b;
         }
         uVar1 = *puVar7;
@@ -28762,7 +28762,7 @@ ValidationErrorHandler5:
         *(undefined8 *)(lVar5 + 0x18) = registerRBX;
         *(int *)(lVar5 + 0x20) = (int)registerRBX;
         uVar2 = func_0x0001808aec10(unaff_R15 + 0x58,lVar5);
-        uVar4 = (ulonglong)uVar2;
+        memoryBaseAddress = (ulonglong)uVar2;
         if (uVar2 != 0) goto LAB_18089e70b;
         iVar3 = *(int *)(unaff_RBP + -0x21);
         puVar6 = *(undefined4 **)(unaff_RBP + -0x29);
@@ -28771,17 +28771,17 @@ ValidationErrorHandler5:
     FUN_18084c150(unaff_RBP + -0x29);
   }
   else {
-    uVar4 = FUN_1808a71c0();
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    memoryBaseAddress = FUN_1808a71c0();
+    if ((int)memoryBaseAddress != 0) {
+      return memoryBaseAddress;
     }
   }
-  uVar4 = FUN_1808ad9d0();
-  if (((int)uVar4 == 0) && (uVar4 = FUN_1808a62d0(), (int)uVar4 == 0)) {
+  memoryBaseAddress = FUN_1808ad9d0();
+  if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = FUN_1808a62d0(), (int)memoryBaseAddress == 0)) {
                     // WARNING: Subroutine does not return
     FUN_1808ddf80();
   }
-  return uVar4;
+  return memoryBaseAddress;
 }
 
 
@@ -28812,7 +28812,7 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
   longlong validationContext;
   longlong *plVar2;
   uint uVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   undefined4 uVar6;
   bool bVar7;
@@ -28827,38 +28827,38 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
   undefined1 auStack_58 [32];
   
   uVar6 = 1;
-  uVar4 = FUN_1808ddc20(param_2,auStack_58,1,0x4e415254);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808ddc20(param_2,auStack_58,1,0x4e415254);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = FUN_1808ddc20(param_2,auStack_78,0,0x424e5254);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808ddc20(param_2,auStack_78,0,0x424e5254);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
   validationContext = *param_2;
   uVar3 = FUN_1808aed00(validationContext,param_1 + 0x10,4);
-  uVar4 = (ulonglong)uVar3;
+  memoryBaseAddress = (ulonglong)uVar3;
   if (uVar3 == 0) {
     uVar3 = FUN_1808aed00(validationContext,param_1 + 0x14,2);
-    uVar4 = (ulonglong)uVar3;
+    memoryBaseAddress = (ulonglong)uVar3;
     if (uVar3 == 0) {
       uVar3 = FUN_1808aed00(validationContext,param_1 + 0x16,2);
-      uVar4 = (ulonglong)uVar3;
+      memoryBaseAddress = (ulonglong)uVar3;
       if (uVar3 == 0) {
         uVar3 = FUN_1808aed00(validationContext,param_1 + 0x18,8);
-        uVar4 = (ulonglong)uVar3;
+        memoryBaseAddress = (ulonglong)uVar3;
       }
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = FUN_180899360(param_2,param_1 + 0x20);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_180899360(param_2,param_1 + 0x20);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
@@ -28874,13 +28874,13 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
-  uVar4 = FUN_1808ad130(param_1,param_2);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808ad130(param_1,param_2);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = FUN_180899220(param_2,param_1 + 0x50);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_180899220(param_2,param_1 + 0x50);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
@@ -28896,26 +28896,26 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
   }
   plVar2 = (longlong *)*param_2;
   if (*plVar2 == 0) {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
   }
   else if (plVar2[2] == 0) {
 ValidationStartHandler:
-    uVar4 = FUN_180769ed0(*plVar2,auStack_a0,1,4,0);
+    memoryBaseAddress = FUN_180769ed0(*plVar2,auStack_a0,1,4,0);
   }
   else {
     auStackX_18[0] = 0;
-    uVar4 = func_0x00018076a7d0(*plVar2,auStackX_18);
-    if ((int)uVar4 == 0) {
+    memoryBaseAddress = func_0x00018076a7d0(*plVar2,auStackX_18);
+    if ((int)memoryBaseAddress == 0) {
       if ((ulonglong)auStackX_18[0] + 4 <= (ulonglong)plVar2[2]) goto LAB_18089ea0f;
-      uVar4 = 0x11;
+      memoryBaseAddress = 0x11;
     }
   }
   uVar5 = 0;
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   bVar7 = *(uint *)(param_2 + 8) < 0x34;
-  cStackX_20 = (char)uVar4;
+  cStackX_20 = (char)memoryBaseAddress;
   auStackX_18[0] = CONCAT31(auStackX_18[0]._1_3_,cStackX_20);
   bVar9 = false;
   if (0x37 < *(uint *)(param_2 + 8)) {
@@ -28959,7 +28959,7 @@ ValidationStateHandler2:
   if ((int)uVar5 != 0) {
     return uVar5;
   }
-  uVar4 = 0;
+  memoryBaseAddress = 0;
   if (0x66 < *(uint *)(param_2 + 8)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       plVar2 = (longlong *)*param_2;
@@ -28981,19 +28981,19 @@ ValidationDataHandler2:
       if (uVar3 == 0) {
         auStackX_18[0] = CONCAT31(auStackX_18[0]._1_3_,acStack_a8[0] != '\0');
       }
-      uVar4 = (ulonglong)uVar3;
+      memoryBaseAddress = (ulonglong)uVar3;
       if (uVar3 == 0) {
-        uVar4 = 0;
+        memoryBaseAddress = 0;
       }
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = 0;
+  memoryBaseAddress = 0;
   if (0x78 < *(uint *)(param_2 + 8)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       plVar2 = (longlong *)*param_2;
@@ -29015,19 +29015,19 @@ ValidationStateHandler3:
       if (uVar3 == 0) {
         cStackX_20 = acStack_a8[0] != '\0';
       }
-      uVar4 = (ulonglong)uVar3;
+      memoryBaseAddress = (ulonglong)uVar3;
       if (uVar3 == 0) {
-        uVar4 = 0;
+        memoryBaseAddress = 0;
       }
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = 0;
+  memoryBaseAddress = 0;
   if (0x79 < *(uint *)(param_2 + 8)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       plVar2 = (longlong *)*param_2;
@@ -29047,19 +29047,19 @@ LAB_18089ec32:
         }
       }
       bVar9 = uVar3 == 0 && acStack_a8[0] != '\0';
-      uVar4 = (ulonglong)uVar3;
+      memoryBaseAddress = (ulonglong)uVar3;
       if (uVar3 == 0) {
-        uVar4 = 0;
+        memoryBaseAddress = 0;
       }
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = 0;
+  memoryBaseAddress = 0;
   if (0x7a < *(uint *)(param_2 + 8)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       plVar2 = (longlong *)*param_2;
@@ -29081,17 +29081,17 @@ LAB_18089ecba:
       if (uVar3 == 0) {
         bVar9 = acStack_a8[0] != '\0';
       }
-      uVar4 = (ulonglong)uVar3;
+      memoryBaseAddress = (ulonglong)uVar3;
       if (uVar3 == 0) {
-        uVar4 = 0;
+        memoryBaseAddress = 0;
       }
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if ((((!bVar7) && ((char)auStackX_18[0] == '\0')) && (cStackX_20 == '\0')) && (!bVar9)) {
     uVar6 = 0;
@@ -29099,16 +29099,16 @@ LAB_18089ecba:
   *(undefined4 *)(param_1 + 0x38) = uVar6;
   uVar3 = *(uint *)(param_2 + 8);
 LAB_18089ed1b:
-  uVar4 = 0;
-  if ((0x7e < uVar3) && (uVar4 = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
+  memoryBaseAddress = 0;
+  if ((0x7e < uVar3) && (memoryBaseAddress = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
     uVar3 = FUN_1808aed00(*param_2,param_1 + 0x38,4);
-    uVar4 = (ulonglong)uVar3;
+    memoryBaseAddress = (ulonglong)uVar3;
   }
-  if ((int)uVar4 == 0) {
+  if ((int)memoryBaseAddress == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808ddf80(param_2,auStack_78);
   }
-  return uVar4;
+  return memoryBaseAddress;
 }
 
 
@@ -29120,7 +29120,7 @@ ulonglong FUN_18089e87d(void)
   longlong *plVar2;
   uint uVar3;
   longlong in_RAX;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   longlong unaff_RBP;
   longlong *unaff_RDI;
@@ -29135,25 +29135,25 @@ ulonglong FUN_18089e87d(void)
   }
   validationContext = *unaff_RDI;
   uVar3 = FUN_1808aed00(validationContext,unaff_R15 + 0x10,unaff_R12D + 3);
-  uVar4 = (ulonglong)uVar3;
+  memoryBaseAddress = (ulonglong)uVar3;
   if (uVar3 == 0) {
     uVar3 = FUN_1808aed00(validationContext,unaff_R15 + 0x14,unaff_R12D + 1);
-    uVar4 = (ulonglong)uVar3;
+    memoryBaseAddress = (ulonglong)uVar3;
     if (uVar3 == 0) {
       uVar3 = FUN_1808aed00(validationContext,unaff_R15 + 0x16,unaff_R12D + 1);
-      uVar4 = (ulonglong)uVar3;
+      memoryBaseAddress = (ulonglong)uVar3;
       if (uVar3 == 0) {
         uVar3 = FUN_1808aed00(validationContext,unaff_R15 + 0x18,unaff_R12D + 7);
-        uVar4 = (ulonglong)uVar3;
+        memoryBaseAddress = (ulonglong)uVar3;
       }
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = FUN_180899360();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_180899360();
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
@@ -29169,13 +29169,13 @@ ulonglong FUN_18089e87d(void)
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
-  uVar4 = FUN_1808ad130();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808ad130();
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = FUN_180899220();
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_180899220();
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
@@ -29192,27 +29192,27 @@ ulonglong FUN_18089e87d(void)
   plVar2 = (longlong *)*unaff_RDI;
   validationContext = *plVar2;
   if (validationContext == 0) {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
   }
   else if (plVar2[2] == 0) {
 ValidationStartHandler:
-    uVar4 = FUN_180769ed0(*plVar2,unaff_RBP + -0x41,unaff_R12D,4,0);
+    memoryBaseAddress = FUN_180769ed0(*plVar2,unaff_RBP + -0x41,unaff_R12D,4,0);
   }
   else {
     *(undefined4 *)(unaff_RBP + 0x77) = 0;
-    uVar4 = func_0x00018076a7d0(validationContext,unaff_RBP + 0x77);
-    if ((int)uVar4 == 0) {
+    memoryBaseAddress = func_0x00018076a7d0(validationContext,unaff_RBP + 0x77);
+    if ((int)memoryBaseAddress == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + 0x77) + 4 <= (ulonglong)plVar2[2]) goto LAB_18089ea0f;
-      uVar4 = 0x11;
+      memoryBaseAddress = 0x11;
     }
   }
   uVar5 = 0;
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   bVar6 = *(uint *)(unaff_RDI + 8) < 0x34;
-  *(char *)(unaff_RBP + 0x77) = (char)uVar4;
-  *(char *)(unaff_RBP + 0x7f) = (char)uVar4;
+  *(char *)(unaff_RBP + 0x77) = (char)memoryBaseAddress;
+  *(char *)(unaff_RBP + 0x7f) = (char)memoryBaseAddress;
   bVar8 = false;
   if (0x37 < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
@@ -29256,7 +29256,7 @@ ValidationStateHandler2:
   if ((int)uVar5 != 0) {
     return uVar5;
   }
-  uVar4 = 0;
+  memoryBaseAddress = 0;
   if (0x66 < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       plVar2 = (longlong *)*unaff_RDI;
@@ -29280,19 +29280,19 @@ ValidationDataHandler2:
       if (uVar3 == 0) {
         *(bool *)(unaff_RBP + 0x77) = *(char *)(unaff_RBP + -0x49) != '\0';
       }
-      uVar4 = (ulonglong)uVar3;
+      memoryBaseAddress = (ulonglong)uVar3;
       if (uVar3 == 0) {
-        uVar4 = 0;
+        memoryBaseAddress = 0;
       }
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = 0;
+  memoryBaseAddress = 0;
   if (0x78 < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       plVar2 = (longlong *)*unaff_RDI;
@@ -29316,19 +29316,19 @@ ValidationStateHandler3:
       if (uVar3 == 0) {
         *(bool *)(unaff_RBP + 0x7f) = *(char *)(unaff_RBP + -0x49) != '\0';
       }
-      uVar4 = (ulonglong)uVar3;
+      memoryBaseAddress = (ulonglong)uVar3;
       if (uVar3 == 0) {
-        uVar4 = 0;
+        memoryBaseAddress = 0;
       }
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = 0;
+  memoryBaseAddress = 0;
   if (0x79 < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       plVar2 = (longlong *)*unaff_RDI;
@@ -29352,19 +29352,19 @@ LAB_18089ec32:
       if (uVar3 == 0) {
         bVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
       }
-      uVar4 = (ulonglong)uVar3;
+      memoryBaseAddress = (ulonglong)uVar3;
       if (uVar3 == 0) {
-        uVar4 = 0;
+        memoryBaseAddress = 0;
       }
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
-  uVar4 = 0;
+  memoryBaseAddress = 0;
   if (0x7a < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       plVar2 = (longlong *)*unaff_RDI;
@@ -29388,17 +29388,17 @@ LAB_18089ecba:
       if (uVar3 == 0) {
         bVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
       }
-      uVar4 = (ulonglong)uVar3;
+      memoryBaseAddress = (ulonglong)uVar3;
       if (uVar3 == 0) {
-        uVar4 = 0;
+        memoryBaseAddress = 0;
       }
     }
     else {
-      uVar4 = 0x1c;
+      memoryBaseAddress = 0x1c;
     }
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if ((((!bVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
      && (!bVar8)) {
@@ -29407,16 +29407,16 @@ LAB_18089ecba:
   *(int *)(unaff_R15 + 0x38) = unaff_R12D;
   uVar3 = *(uint *)(unaff_RDI + 8);
 LAB_18089ed1b:
-  uVar4 = 0;
-  if ((0x7e < uVar3) && (uVar4 = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
+  memoryBaseAddress = 0;
+  if ((0x7e < uVar3) && (memoryBaseAddress = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
     uVar3 = FUN_1808aed00(*unaff_RDI,unaff_R15 + 0x38,4);
-    uVar4 = (ulonglong)uVar3;
+    memoryBaseAddress = (ulonglong)uVar3;
   }
-  if ((int)uVar4 == 0) {
+  if ((int)memoryBaseAddress == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808ddf80();
   }
-  return uVar4;
+  return memoryBaseAddress;
 }
 
 
@@ -29428,7 +29428,7 @@ ulonglong FUN_18089e9af(undefined8 param_1,undefined8 param_2,ulonglong param_3)
   longlong lVar2;
   uint in_EAX;
   uint uVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   longlong unaff_RBP;
   longlong *unaff_RDI;
@@ -29446,20 +29446,20 @@ ulonglong FUN_18089e9af(undefined8 param_1,undefined8 param_2,ulonglong param_3)
   pvalidationContext = (longlong *)*unaff_RDI;
   lVar2 = *pvalidationContext;
   if (lVar2 == 0) {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
   }
   else {
     if (pvalidationContext[2] == param_3) {
 ValidationStartHandler:
-      uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x41,unaff_R12D,4,param_3);
+      memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x41,unaff_R12D,4,param_3);
     }
     else {
       *(int *)(unaff_RBP + 0x77) = (int)param_3;
-      uVar4 = func_0x00018076a7d0(lVar2,unaff_RBP + 0x77);
-      if ((int)uVar4 == 0) {
+      memoryBaseAddress = func_0x00018076a7d0(lVar2,unaff_RBP + 0x77);
+      if ((int)memoryBaseAddress == 0) {
         param_3 = 0;
         if ((ulonglong)pvalidationContext[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + 4) {
-          uVar4 = 0x11;
+          memoryBaseAddress = 0x11;
           goto LAB_18089ea2c;
         }
         goto LAB_18089ea0f;
@@ -29468,15 +29468,15 @@ ValidationStartHandler:
     param_3 = 0;
   }
 LAB_18089ea2c:
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   bVar6 = *(uint *)(unaff_RDI + 8) < 0x34;
-  *(char *)(unaff_RBP + 0x77) = (char)uVar4;
-  *(char *)(unaff_RBP + 0x7f) = (char)uVar4;
+  *(char *)(unaff_RBP + 0x77) = (char)memoryBaseAddress;
+  *(char *)(unaff_RBP + 0x7f) = (char)memoryBaseAddress;
   bVar8 = false;
   if (*(uint *)(unaff_RDI + 8) < 0x38) {
-    uVar4 = param_3 & 0xffffffff;
+    memoryBaseAddress = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     pvalidationContext = (longlong *)*unaff_RDI;
@@ -29508,19 +29508,19 @@ ValidationStateHandler2:
       }
     }
     param_3 = 0;
-    uVar4 = (ulonglong)uVar3;
+    memoryBaseAddress = (ulonglong)uVar3;
     if (bVar7) {
-      uVar4 = 0;
+      memoryBaseAddress = 0;
     }
   }
   else {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x67) {
-    uVar4 = param_3 & 0xffffffff;
+    memoryBaseAddress = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     pvalidationContext = (longlong *)*unaff_RDI;
@@ -29551,19 +29551,19 @@ ValidationErrorHandler7:
     if (uVar3 == 0) {
       *(bool *)(unaff_RBP + 0x77) = *(char *)(unaff_RBP + -0x49) != '\0';
     }
-    uVar4 = (ulonglong)uVar3;
+    memoryBaseAddress = (ulonglong)uVar3;
     if (uVar3 == 0) {
-      uVar4 = param_3 & 0xffffffff;
+      memoryBaseAddress = param_3 & 0xffffffff;
     }
   }
   else {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x79) {
-    uVar4 = param_3 & 0xffffffff;
+    memoryBaseAddress = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     pvalidationContext = (longlong *)*unaff_RDI;
@@ -29594,19 +29594,19 @@ ValidationErrorHandler8:
     if (uVar3 == 0) {
       *(bool *)(unaff_RBP + 0x7f) = *(char *)(unaff_RBP + -0x49) != '\0';
     }
-    uVar4 = (ulonglong)uVar3;
+    memoryBaseAddress = (ulonglong)uVar3;
     if (uVar3 == 0) {
-      uVar4 = param_3 & 0xffffffff;
+      memoryBaseAddress = param_3 & 0xffffffff;
     }
   }
   else {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x7a) {
-    uVar4 = param_3 & 0xffffffff;
+    memoryBaseAddress = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     pvalidationContext = (longlong *)*unaff_RDI;
@@ -29637,19 +29637,19 @@ LAB_18089ec4c:
     if (uVar3 == 0) {
       bVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
     }
-    uVar4 = (ulonglong)uVar3;
+    memoryBaseAddress = (ulonglong)uVar3;
     if (uVar3 == 0) {
-      uVar4 = param_3 & 0xffffffff;
+      memoryBaseAddress = param_3 & 0xffffffff;
     }
   }
   else {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x7b) {
-    uVar4 = param_3 & 0xffffffff;
+    memoryBaseAddress = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     pvalidationContext = (longlong *)*unaff_RDI;
@@ -29680,16 +29680,16 @@ LAB_18089ecd4:
     if (uVar3 == 0) {
       bVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
     }
-    uVar4 = (ulonglong)uVar3;
+    memoryBaseAddress = (ulonglong)uVar3;
     if (uVar3 == 0) {
-      uVar4 = param_3 & 0xffffffff;
+      memoryBaseAddress = param_3 & 0xffffffff;
     }
   }
   else {
-    uVar4 = 0x1c;
+    memoryBaseAddress = 0x1c;
   }
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if ((((!bVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
      && (!bVar8)) {
@@ -30401,7 +30401,7 @@ ulonglong FUN_18089f970(longlong param_1,longlong *param_2)
   longlong validationContext;
   uint uVar2;
   undefined4 *puVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   undefined2 auStackX_18 [4];
   undefined2 auStackX_20 [4];
   undefined4 auStack_58 [2];
@@ -30416,21 +30416,21 @@ ulonglong FUN_18089f970(longlong param_1,longlong *param_2)
   uStack_4c = puVar3[1];
   uStack_48 = puVar3[2];
   uStack_44 = puVar3[3];
-  uVar4 = FUN_1808ddd30(param_2,auStack_40,0,0x4c525443,0);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  memoryBaseAddress = FUN_1808ddd30(param_2,auStack_40,0,0x4c525443,0);
+  if ((int)memoryBaseAddress != 0) {
+    return memoryBaseAddress;
   }
   if (*(int *)(param_2[1] + 0x18) == 0) {
     uVar2 = FUN_180899ef0(*param_2,param_1 + 0x10);
-    uVar4 = (ulonglong)uVar2;
+    memoryBaseAddress = (ulonglong)uVar2;
     if (uVar2 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
       uVar2 = FUN_180899ef0(*param_2,param_1 + 0x20);
-      uVar4 = (ulonglong)uVar2;
+      memoryBaseAddress = (ulonglong)uVar2;
       if (uVar2 == 0) {
-        uVar4 = 0x1c;
+        memoryBaseAddress = 0x1c;
         uVar2 = 0;
         if ((*(uint *)(param_2 + 8) < 0x5a) && (uVar2 = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
           auStack_58[0] = uStack_50;
@@ -30457,11 +30457,11 @@ ulonglong FUN_18089f970(longlong param_1,longlong *param_2)
         }
         if (*(int *)(param_2[1] + 0x18) == 0) {
           uVar2 = FUN_180899ef0(*param_2,param_1 + 0x30);
-          uVar4 = (ulonglong)uVar2;
+          memoryBaseAddress = (ulonglong)uVar2;
           if (uVar2 == 0) {
-            uVar4 = FUN_180898e70(param_2,param_1 + 0x40);
-            if ((int)uVar4 != 0) {
-              return uVar4;
+            memoryBaseAddress = FUN_180898e70(param_2,param_1 + 0x40);
+            if ((int)memoryBaseAddress != 0) {
+              return memoryBaseAddress;
             }
                     // WARNING: Subroutine does not return
             FUN_1808de000(param_2,auStack_40);
@@ -30469,7 +30469,7 @@ ulonglong FUN_18089f970(longlong param_1,longlong *param_2)
         }
       }
     }
-    return uVar4;
+    return memoryBaseAddress;
   }
   return 0x1c;
 }
@@ -32031,13 +32031,13 @@ void Unwind_1809023d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x50);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x48); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x48); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x48) == 0) {
     return;
@@ -32052,13 +32052,13 @@ void Unwind_1809023e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x50);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x48); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x48); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x48) == 0) {
     return;
@@ -32073,21 +32073,21 @@ void Unwind_1809023f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -32096,8 +32096,8 @@ void Unwind_1809023f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -32241,13 +32241,13 @@ void Unwind_1809024d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x128);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x120); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x120); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x120) == 0) {
     return;
@@ -32294,13 +32294,13 @@ void Unwind_180902500(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x128);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x120); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x120); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x120) == 0) {
     return;
@@ -32315,21 +32315,21 @@ void Unwind_180902510(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x120);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x120);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -32338,8 +32338,8 @@ void Unwind_180902510(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -32906,13 +32906,13 @@ void Unwind_180902720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = *(longlong **)(param_2 + 0x70);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = (undefined8 *)plVar2[1];
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -33221,21 +33221,21 @@ void Unwind_180902880(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x18);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x18);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -33244,8 +33244,8 @@ void Unwind_180902880(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -33268,21 +33268,21 @@ void Unwind_1809028a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x98);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x98);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -33291,8 +33291,8 @@ void Unwind_1809028a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -33343,21 +33343,21 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x68);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -33366,8 +33366,8 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -33379,21 +33379,21 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x88);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x88);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -33402,8 +33402,8 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -33737,14 +33737,14 @@ void Unwind_180902a70(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x70);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -33756,11 +33756,11 @@ void Unwind_180902a70(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -33775,14 +33775,14 @@ void Unwind_180902a80(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x78);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -33794,11 +33794,11 @@ void Unwind_180902a80(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -33813,14 +33813,14 @@ void Unwind_180902a90(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x78);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -33832,11 +33832,11 @@ void Unwind_180902a90(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -33859,21 +33859,21 @@ void Unwind_180902ab0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x30);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -33882,8 +33882,8 @@ void Unwind_180902ab0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -33992,14 +33992,14 @@ void Unwind_180902b60(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -34011,11 +34011,11 @@ void Unwind_180902b60(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -34030,14 +34030,14 @@ void Unwind_180902b70(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -34049,11 +34049,11 @@ void Unwind_180902b70(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -34123,21 +34123,21 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -34146,8 +34146,8 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -34206,21 +34206,21 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x90) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x90) + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -34229,8 +34229,8 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -34242,21 +34242,21 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x98);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x98);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -34265,8 +34265,8 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -34278,21 +34278,21 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x98);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x98);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -34301,8 +34301,8 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -34323,21 +34323,21 @@ void Unwind_180902c30(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x28);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x28);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -34346,8 +34346,8 @@ void Unwind_180902c30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -34359,21 +34359,21 @@ void Unwind_180902c40(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x28);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x28);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -34382,8 +34382,8 @@ void Unwind_180902c40(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -34525,21 +34525,21 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -34548,8 +34548,8 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -34561,21 +34561,21 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -34584,8 +34584,8 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -34846,21 +34846,21 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -34869,8 +34869,8 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -34882,21 +34882,21 @@ void Unwind_180902e60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x58);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x58);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -34905,8 +34905,8 @@ void Unwind_180902e60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -34918,21 +34918,21 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x58);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x58);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -34941,8 +34941,8 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -34954,26 +34954,26 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   ulonglong *puVar3;
   longlong lVar4;
   undefined8 *puVar5;
   ulonglong uVar6;
   
   puVar3 = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x18);
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
-  for (puVar5 = (undefined8 *)*puVar3; puVar5 != puVar2; puVar5 = puVar5 + 0xe) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
+  for (puVar5 = (undefined8 *)*puVar3; puVar5 != resourcePointer; puVar5 = puVar5 + 0xe) {
     *puVar5 = &DefaultExceptionHandlerB;
   }
-  puVar2 = (undefined8 *)*puVar3;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  resourcePointer = (undefined8 *)*puVar3;
+  if (resourcePointer != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar4 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar2;
+        *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
+        *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -34983,7 +34983,7 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            resourcePointer,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -35016,26 +35016,26 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong *puVar4;
+  ulonglong *pmemoryBaseAddress;
   undefined8 *puVar5;
   ulonglong uVar6;
   
-  puVar4 = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x18);
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
-  for (puVar5 = (undefined8 *)*puVar4; puVar5 != puVar2; puVar5 = puVar5 + 0xe) {
+  pmemoryBaseAddress = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x18);
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
+  for (puVar5 = (undefined8 *)*pmemoryBaseAddress; puVar5 != resourcePointer; puVar5 = puVar5 + 0xe) {
     *puVar5 = &DefaultExceptionHandlerB;
   }
-  puVar2 = (undefined8 *)*puVar4;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  resourcePointer = (undefined8 *)*pmemoryBaseAddress;
+  if (resourcePointer != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar3 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar3 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -35045,7 +35045,7 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            resourcePointer,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -35059,26 +35059,26 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   ulonglong *puVar3;
   longlong lVar4;
   undefined8 *puVar5;
   ulonglong uVar6;
   
   puVar3 = *(ulonglong **)(param_2 + 0x40);
-  puVar2 = (undefined8 *)puVar3[1];
-  for (puVar5 = (undefined8 *)*puVar3; puVar5 != puVar2; puVar5 = puVar5 + 0xe) {
+  resourcePointer = (undefined8 *)puVar3[1];
+  for (puVar5 = (undefined8 *)*puVar3; puVar5 != resourcePointer; puVar5 = puVar5 + 0xe) {
     *puVar5 = &DefaultExceptionHandlerB;
   }
-  puVar2 = (undefined8 *)*puVar3;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  resourcePointer = (undefined8 *)*puVar3;
+  if (resourcePointer != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar4 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar2;
+        *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
+        *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -35088,7 +35088,7 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            resourcePointer,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -35133,13 +35133,13 @@ void Unwind_180902f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x888);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x890);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -35156,13 +35156,13 @@ void Unwind_180902f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x8a8);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x8b0);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -35177,21 +35177,21 @@ void Unwind_180902f60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x8c8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x8c8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -35200,8 +35200,8 @@ void Unwind_180902f60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -35405,13 +35405,13 @@ void Unwind_1809030a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x30);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x28); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x28); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x28) == 0) {
     return;
@@ -35548,21 +35548,21 @@ void CleanupExceptionHandlers130(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -35571,8 +35571,8 @@ void CleanupExceptionHandlers130(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -35584,21 +35584,21 @@ void CleanupExceptionPointers140(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x88);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x88);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -35607,8 +35607,8 @@ void CleanupExceptionPointers140(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -35643,21 +35643,21 @@ void CleanupExceptionStack160(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -35666,8 +35666,8 @@ void CleanupExceptionStack160(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -35721,21 +35721,21 @@ void CleanupExceptionTable190(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -35744,8 +35744,8 @@ void CleanupExceptionTable190(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -35833,21 +35833,21 @@ void Unwind_1809031f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -35856,8 +35856,8 @@ void Unwind_1809031f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -35869,21 +35869,21 @@ void Unwind_180903200(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -35892,8 +35892,8 @@ void Unwind_180903200(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -36040,21 +36040,21 @@ void Unwind_180903310(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -36063,8 +36063,8 @@ void Unwind_180903310(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -36315,21 +36315,21 @@ void Unwind_1809034b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x18);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x18);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -36338,8 +36338,8 @@ void Unwind_1809034b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -36351,21 +36351,21 @@ void Unwind_1809034c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x18);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x18);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -36374,8 +36374,8 @@ void Unwind_1809034c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -36387,21 +36387,21 @@ void Unwind_1809034d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x18);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x18);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -36410,8 +36410,8 @@ void Unwind_1809034d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -36423,21 +36423,21 @@ void Unwind_1809034e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x60);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x60);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -36446,8 +36446,8 @@ void Unwind_1809034e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -36459,21 +36459,21 @@ void Unwind_1809034f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(lVar3 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -36482,8 +36482,8 @@ void Unwind_1809034f0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -36497,21 +36497,21 @@ void Unwind_180903500(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(lVar3 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -36520,8 +36520,8 @@ void Unwind_180903500(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -36598,21 +36598,21 @@ void Unwind_180903520(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x300);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x300);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -36621,8 +36621,8 @@ void Unwind_180903520(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -36648,21 +36648,21 @@ void Unwind_180903560(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x70);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(lVar3 + 0x340)) &&
-     (puVar2 = *(undefined8 **)(lVar3 + 0x338), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+     (resourcePointer = *(undefined8 **)(lVar3 + 0x338), resourcePointer != (undefined8 *)0x0)) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -36671,8 +36671,8 @@ void Unwind_180903560(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -36774,21 +36774,21 @@ void Unwind_1809035e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x80);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(lVar3 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -36797,8 +36797,8 @@ void Unwind_1809035e0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -36812,21 +36812,21 @@ void Unwind_1809035f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x80);
   FUN_18005a050();
   if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(lVar3 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -36835,8 +36835,8 @@ void Unwind_1809035f0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -39957,13 +39957,13 @@ void Unwind_180904090(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x1380);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 5000);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -39980,13 +39980,13 @@ void Unwind_1809040b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x13a0);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x13a8);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -41551,13 +41551,13 @@ void Unwind_180904570(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x1380);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 5000);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -41574,13 +41574,13 @@ void Unwind_180904590(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x13a0);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x13a8);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -41597,13 +41597,13 @@ void Unwind_1809045b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = *(longlong **)(param_2 + 0x88);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = (undefined8 *)plVar2[1];
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -41636,21 +41636,21 @@ void Unwind_180904630(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x10400);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x10400);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -41659,8 +41659,8 @@ void Unwind_180904630(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -42198,21 +42198,21 @@ void Unwind_180904920(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x28);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x28);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -42221,8 +42221,8 @@ void Unwind_180904920(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -42234,21 +42234,21 @@ void Unwind_180904930(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -42257,8 +42257,8 @@ void Unwind_180904930(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -42492,21 +42492,21 @@ void Unwind_1809049d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -42515,8 +42515,8 @@ void Unwind_1809049d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -42528,21 +42528,21 @@ void Unwind_1809049e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x28);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x28);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -42551,8 +42551,8 @@ void Unwind_1809049e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -42564,21 +42564,21 @@ void Unwind_1809049f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -42587,8 +42587,8 @@ void Unwind_1809049f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -42813,21 +42813,21 @@ void Unwind_180904a80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x70);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x70);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -42836,8 +42836,8 @@ void Unwind_180904a80(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -42849,21 +42849,21 @@ void Unwind_180904a90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x70);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x70);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -42872,8 +42872,8 @@ void Unwind_180904a90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -43096,7 +43096,7 @@ void Catch_180904c60(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong *plVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   longlong lVar6;
   ulonglong uVar7;
@@ -43106,30 +43106,30 @@ void Catch_180904c60(undefined8 param_1,longlong param_2)
   uVar8 = *(ulonglong *)(param_2 + 0x20);
   validationContext = *(longlong *)(param_2 + 0x90);
   lVar9 = *(longlong *)(validationContext + 0x40);
-  uVar4 = *(ulonglong *)(param_2 + 0x30);
+  memoryBaseAddress = *(ulonglong *)(param_2 + 0x30);
   lVar2 = *(longlong *)(param_2 + 0xa0);
   lVar6 = *(longlong *)(param_2 + 0xa8);
-  if ((uVar4 & 0x1f) == 0) {
+  if ((memoryBaseAddress & 0x1f) == 0) {
     lVar6 = lVar2;
   }
-  *(ulonglong *)(param_2 + 0x20) = uVar4;
+  *(ulonglong *)(param_2 + 0x20) = memoryBaseAddress;
   while( true ) {
-    uVar7 = (uVar4 & 0xffffffffffffffe0) + 0x20;
+    uVar7 = (memoryBaseAddress & 0xffffffffffffffe0) + 0x20;
     if (0x8000000000000000 < uVar8 - uVar7) {
       uVar7 = uVar8;
     }
-    uVar5 = uVar4;
-    if (uVar4 != uVar7) {
+    uVar5 = memoryBaseAddress;
+    if (memoryBaseAddress != uVar7) {
       do {
-        uVar5 = uVar4 + 1;
-        FUN_180060bd0(lVar6 + (ulonglong)((uint)uVar4 & 0x1f) * 8);
-        uVar4 = uVar5;
+        uVar5 = memoryBaseAddress + 1;
+        FUN_180060bd0(lVar6 + (ulonglong)((uint)memoryBaseAddress & 0x1f) * 8);
+        memoryBaseAddress = uVar5;
       } while (uVar5 != uVar7);
       *(ulonglong *)(param_2 + 0x20) = uVar5;
     }
     if (lVar6 == lVar9) break;
     lVar6 = *(longlong *)(lVar6 + 0x100);
-    uVar4 = uVar5;
+    memoryBaseAddress = uVar5;
   }
   uVar8 = *(longlong *)(param_2 + 0x30) - 1U & 0xffffffffffffffe0;
   *(ulonglong *)(param_2 + 0x20) = uVar8;
@@ -43347,13 +43347,13 @@ void Unwind_180904e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 200);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xc0); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xc0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xc0) == 0) {
     return;
@@ -43368,13 +43368,13 @@ void Unwind_180904e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 200);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xc0); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xc0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xc0) == 0) {
     return;
@@ -43389,21 +43389,21 @@ void Unwind_180904e70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xc0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xc0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -43412,8 +43412,8 @@ void Unwind_180904e70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -43461,13 +43461,13 @@ void Unwind_180904f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x98);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x90); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x90); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x90) == 0) {
     return;
@@ -43482,13 +43482,13 @@ void Unwind_180904f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x98);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x90); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x90); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x90) == 0) {
     return;
@@ -43503,21 +43503,21 @@ void Unwind_180904f30(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x90);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x90);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -43526,8 +43526,8 @@ void Unwind_180904f30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -43589,13 +43589,13 @@ void Unwind_180904f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x28);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x20); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x20); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x20) == 0) {
     return;
@@ -43610,13 +43610,13 @@ void Unwind_180904fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x28);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x20); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x20); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x20) == 0) {
     return;
@@ -43631,21 +43631,21 @@ void Unwind_180904fb0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -43654,8 +43654,8 @@ void Unwind_180904fb0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -43683,13 +43683,13 @@ void Unwind_180904fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xa0);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x98); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x98); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x98) == 0) {
     return;
@@ -43770,13 +43770,13 @@ void Unwind_180905020(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x48);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x40); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x40); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x40) == 0) {
     return;
@@ -43791,21 +43791,21 @@ void Unwind_180905030(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x40);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x40);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -43814,8 +43814,8 @@ void Unwind_180905030(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -43827,13 +43827,13 @@ void Unwind_180905040(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xa0);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x98); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x98); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x98) == 0) {
     return;
@@ -43848,21 +43848,21 @@ void Unwind_180905050(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x98);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x98);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -43871,8 +43871,8 @@ void Unwind_180905050(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -44004,13 +44004,13 @@ void Unwind_180905110(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x150);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x148); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x148); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x148) == 0) {
     return;
@@ -44025,13 +44025,13 @@ void Unwind_180905120(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x210);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x208); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x208); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x208) == 0) {
     return;
@@ -44080,13 +44080,13 @@ void Unwind_180905160(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x110);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x108); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x108); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x108) == 0) {
     return;
@@ -44101,13 +44101,13 @@ void Unwind_180905170(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x230);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x228); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x228); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x228) == 0) {
     return;
@@ -44184,13 +44184,13 @@ void Unwind_1809051f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x150);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x148); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x148); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x148) == 0) {
     return;
@@ -44205,21 +44205,21 @@ void Unwind_180905200(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x148);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x148);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44228,8 +44228,8 @@ void Unwind_180905200(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -44241,13 +44241,13 @@ void Unwind_180905210(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x210);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x208); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x208); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x208) == 0) {
     return;
@@ -44262,21 +44262,21 @@ void Unwind_180905220(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x208);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x208);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44285,8 +44285,8 @@ void Unwind_180905220(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -44316,13 +44316,13 @@ void Unwind_180905250(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x110);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x108); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x108); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x108) == 0) {
     return;
@@ -44337,21 +44337,21 @@ void Unwind_180905260(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x108);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x108);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44360,8 +44360,8 @@ void Unwind_180905260(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -44373,13 +44373,13 @@ void Unwind_180905270(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x230);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x228); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x228); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x228) == 0) {
     return;
@@ -44394,21 +44394,21 @@ void Unwind_180905280(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x228);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x228);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44417,8 +44417,8 @@ void Unwind_180905280(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -44537,21 +44537,21 @@ void Unwind_180905380(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44560,8 +44560,8 @@ void Unwind_180905380(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -44904,21 +44904,21 @@ void Unwind_180905540(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x213438);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x213438);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44927,8 +44927,8 @@ void Unwind_180905540(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -44967,21 +44967,21 @@ void Unwind_1809055b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x30);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -44990,8 +44990,8 @@ void Unwind_1809055b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -45003,21 +45003,21 @@ void Unwind_1809055c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x30);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -45026,8 +45026,8 @@ void Unwind_1809055c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -45254,13 +45254,13 @@ void Unwind_180905770(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = *(longlong **)(param_2 + 0x28);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = (undefined8 *)plVar2[1];
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 0x13) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -45673,13 +45673,13 @@ void Unwind_180905870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = *(longlong **)(param_2 + 0x2e8);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = (undefined8 *)plVar2[1];
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -45694,21 +45694,21 @@ void Unwind_180905880(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x2e8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x2e8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -45717,8 +45717,8 @@ void Unwind_180905880(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -45760,13 +45760,13 @@ void Unwind_1809058a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x2e0) + 0x20);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x2e0) + 0x28);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -45783,13 +45783,13 @@ void Unwind_1809058b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x2e0) + 0x40);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x2e0) + 0x48);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -45885,13 +45885,13 @@ void Unwind_180905910(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x48) + 8);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -45940,26 +45940,26 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   ulonglong *puVar3;
   longlong lVar4;
   undefined8 *puVar5;
   ulonglong uVar6;
   
   puVar3 = *(ulonglong **)(param_2 + 0x48);
-  puVar2 = (undefined8 *)puVar3[1];
-  for (puVar5 = (undefined8 *)*puVar3; puVar5 != puVar2; puVar5 = puVar5 + 0xe) {
+  resourcePointer = (undefined8 *)puVar3[1];
+  for (puVar5 = (undefined8 *)*puVar3; puVar5 != resourcePointer; puVar5 = puVar5 + 0xe) {
     *puVar5 = &DefaultExceptionHandlerB;
   }
-  puVar2 = (undefined8 *)*puVar3;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  resourcePointer = (undefined8 *)*puVar3;
+  if (resourcePointer != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar4 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar2;
+        *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
+        *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -45969,7 +45969,7 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            resourcePointer,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -46112,13 +46112,13 @@ void Unwind_180905960(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x2e8) + 0x260);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x2e8) + 0x268);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 0x13) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -46163,13 +46163,13 @@ void Unwind_1809059a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = *(longlong **)(param_2 + 0x40);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = (undefined8 *)plVar2[1];
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 0x13) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -46529,30 +46529,30 @@ void Unwind_180905b70(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x58);
-  uVar4 = *(ulonglong *)(lVar3 + 0x340);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x340);
   validationContext = *(longlong *)(lVar3 + 0x338);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
-      puVar2 = *(undefined8 **)(validationContext + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &DefaultExceptionHandlerB;
+      resourcePointer = *(undefined8 **)(validationContext + uVar5 * 8);
+      if (resourcePointer != (undefined8 *)0x0) {
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x340);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x340);
   }
   *(undefined8 *)(lVar3 + 0x348) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 0x338) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46685,30 +46685,30 @@ void UnwindCleanupPointerArray(undefined8 exceptionContext,longlong unwindContex
 
 {
   longlong validationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(unwindContext + 0x38);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
-      puVar2 = *(undefined8 **)(validationContext + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &DefaultExceptionHandlerB;
+      resourcePointer = *(undefined8 **)(validationContext + uVar5 * 8);
+      if (resourcePointer != (undefined8 *)0x0) {
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46721,30 +46721,30 @@ void Unwind_180905c20(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(unwindContext + 0x38);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
-      puVar2 = *(undefined8 **)(validationContext + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &DefaultExceptionHandlerB;
+      resourcePointer = *(undefined8 **)(validationContext + uVar5 * 8);
+      if (resourcePointer != (undefined8 *)0x0) {
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46757,30 +46757,30 @@ void Unwind_180905c30(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
-      puVar2 = *(undefined8 **)(validationContext + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &DefaultExceptionHandlerB;
+      resourcePointer = *(undefined8 **)(validationContext + uVar5 * 8);
+      if (resourcePointer != (undefined8 *)0x0) {
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46793,30 +46793,30 @@ void Unwind_180905c40(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
-      puVar2 = *(undefined8 **)(validationContext + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &DefaultExceptionHandlerB;
+      resourcePointer = *(undefined8 **)(validationContext + uVar5 * 8);
+      if (resourcePointer != (undefined8 *)0x0) {
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46893,30 +46893,30 @@ void Unwind_180905c60(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  uVar4 = *(ulonglong *)(lVar3 + 0x340);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x340);
   validationContext = *(longlong *)(lVar3 + 0x338);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
-      puVar2 = *(undefined8 **)(validationContext + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &DefaultExceptionHandlerB;
+      resourcePointer = *(undefined8 **)(validationContext + uVar5 * 8);
+      if (resourcePointer != (undefined8 *)0x0) {
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x340);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x340);
   }
   *(undefined8 *)(lVar3 + 0x348) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 0x338) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46929,30 +46929,30 @@ void Unwind_180905c80(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x48);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
-      puVar2 = *(undefined8 **)(validationContext + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &DefaultExceptionHandlerB;
+      resourcePointer = *(undefined8 **)(validationContext + uVar5 * 8);
+      if (resourcePointer != (undefined8 *)0x0) {
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46965,30 +46965,30 @@ void Unwind_180905c90(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x48);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
-      puVar2 = *(undefined8 **)(validationContext + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &DefaultExceptionHandlerB;
+      resourcePointer = *(undefined8 **)(validationContext + uVar5 * 8);
+      if (resourcePointer != (undefined8 *)0x0) {
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -48054,21 +48054,21 @@ void Unwind_180906160(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0xa8) + 0x1d8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0xa8) + 0x1d8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -48077,8 +48077,8 @@ void Unwind_180906160(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -48090,21 +48090,21 @@ void Unwind_180906180(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xb0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xb0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -48113,8 +48113,8 @@ void Unwind_180906180(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -48126,21 +48126,21 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xb0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xb0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -48149,8 +48149,8 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -48218,21 +48218,21 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x1d8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x1d8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -48241,8 +48241,8 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -48398,13 +48398,13 @@ void Unwind_1809063f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xe8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xe0); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xe0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xe0) == 0) {
     return;
@@ -48443,13 +48443,13 @@ void Unwind_180906460(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xe8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xe0); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xe0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xe0) == 0) {
     return;
@@ -48464,21 +48464,21 @@ void Unwind_180906470(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xe0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xe0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -48487,8 +48487,8 @@ void Unwind_180906470(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -49142,13 +49142,13 @@ void Unwind_180906700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0xa0) + 0x218);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0xa0) + 0x220);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -49343,13 +49343,13 @@ void Unwind_180906890(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x50) + 0x218);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x220);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -49407,13 +49407,13 @@ void Unwind_180906940(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = *(longlong **)(param_2 + 0x58);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = (undefined8 *)plVar2[1];
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -49757,18 +49757,18 @@ void Unwind_180906b10(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   
   puVar1 = *(undefined8 **)(param_2 + 0x90);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x88); puVar2 != puVar1; puVar2 = puVar2 + 6) {
-    *puVar2 = &UNK_180a3c3e0;
-    if (puVar2[1] != 0) {
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x88); resourcePointer != puVar1; resourcePointer = resourcePointer + 6) {
+    *resourcePointer = &UNK_180a3c3e0;
+    if (resourcePointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    puVar2[1] = 0;
-    *(undefined4 *)(puVar2 + 3) = 0;
-    *puVar2 = &DefaultExceptionHandlerB;
+    resourcePointer[1] = 0;
+    *(undefined4 *)(resourcePointer + 3) = 0;
+    *resourcePointer = &DefaultExceptionHandlerB;
   }
   if (*(longlong *)(param_2 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
@@ -49805,18 +49805,18 @@ void Unwind_180906b40(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   
   puVar1 = *(undefined8 **)(param_2 + 0x90);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x88); puVar2 != puVar1; puVar2 = puVar2 + 6) {
-    *puVar2 = &UNK_180a3c3e0;
-    if (puVar2[1] != 0) {
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x88); resourcePointer != puVar1; resourcePointer = resourcePointer + 6) {
+    *resourcePointer = &UNK_180a3c3e0;
+    if (resourcePointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    puVar2[1] = 0;
-    *(undefined4 *)(puVar2 + 3) = 0;
-    *puVar2 = &DefaultExceptionHandlerB;
+    resourcePointer[1] = 0;
+    *(undefined4 *)(resourcePointer + 3) = 0;
+    *resourcePointer = &DefaultExceptionHandlerB;
   }
   if (*(longlong *)(param_2 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
@@ -49831,21 +49831,21 @@ void Unwind_180906b50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x88);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x88);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -49854,8 +49854,8 @@ void Unwind_180906b50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -49961,16 +49961,16 @@ void CleanupExceptionHandlingResources(undefined8 exceptionContext, longlong cle
   ulonglong memoryBaseAddress;
   
   resourcePointer = *(undefined8 **)(cleanupContext + 0x58);
-  if (puVar2 == (undefined8 *)0x0) {
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -49979,8 +49979,8 @@ void CleanupExceptionHandlingResources(undefined8 exceptionContext, longlong cle
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -49992,21 +49992,21 @@ void Unwind_180906bc0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x58);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x58);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50015,8 +50015,8 @@ void Unwind_180906bc0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50249,21 +50249,21 @@ void Unwind_180906c80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xa8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50272,8 +50272,8 @@ void Unwind_180906c80(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50285,21 +50285,21 @@ void Unwind_180906c90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x30);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50308,8 +50308,8 @@ void Unwind_180906c90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50321,21 +50321,21 @@ void Unwind_180906ca0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x88);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x88);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50344,8 +50344,8 @@ void Unwind_180906ca0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50378,21 +50378,21 @@ void Unwind_180906cc0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x118);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x118);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50401,8 +50401,8 @@ void Unwind_180906cc0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50414,21 +50414,21 @@ void Unwind_180906cd0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x118);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x118);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50437,8 +50437,8 @@ void Unwind_180906cd0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50471,21 +50471,21 @@ void Unwind_180906cf0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xf8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xf8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50494,8 +50494,8 @@ void Unwind_180906cf0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50507,21 +50507,21 @@ void Unwind_180906d00(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x260);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x260);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50530,8 +50530,8 @@ void Unwind_180906d00(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50543,21 +50543,21 @@ void Unwind_180906d10(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x260);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x260);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50566,8 +50566,8 @@ void Unwind_180906d10(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50600,21 +50600,21 @@ void Unwind_180906d30(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xd8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50623,8 +50623,8 @@ void Unwind_180906d30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50770,21 +50770,21 @@ void Unwind_180906d70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x30);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50793,8 +50793,8 @@ void Unwind_180906d70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50806,21 +50806,21 @@ void Unwind_180906d80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x88);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x88);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50829,8 +50829,8 @@ void Unwind_180906d80(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50842,21 +50842,21 @@ void Unwind_180906d90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x268);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x268);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50865,8 +50865,8 @@ void Unwind_180906d90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50878,21 +50878,21 @@ void Unwind_180906da0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x268);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x268);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50901,8 +50901,8 @@ void Unwind_180906da0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50935,21 +50935,21 @@ void Unwind_180906dc0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x30);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -50958,8 +50958,8 @@ void Unwind_180906dc0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -52063,21 +52063,21 @@ void Unwind_180907350(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x40);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x40);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52086,8 +52086,8 @@ void Unwind_180907350(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -52099,21 +52099,21 @@ void Unwind_180907360(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52122,8 +52122,8 @@ void Unwind_180907360(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -52135,21 +52135,21 @@ void Unwind_180907370(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52158,8 +52158,8 @@ void Unwind_180907370(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -52393,21 +52393,21 @@ void Unwind_1809074d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x50);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x50);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52416,8 +52416,8 @@ void Unwind_1809074d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -52429,21 +52429,21 @@ void Unwind_1809074e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x50);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x50);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52452,8 +52452,8 @@ void Unwind_1809074e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -52465,21 +52465,21 @@ void Unwind_1809074f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x40);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x40);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -52488,8 +52488,8 @@ void Unwind_1809074f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -52847,12 +52847,12 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x50);
-  *puVar2 = &UNK_180a14bb8;
-  puVar1 = (undefined8 *)puVar2[0x11];
+  resourcePointer = *(undefined8 **)(param_2 + 0x50);
+  *resourcePointer = &UNK_180a14bb8;
+  puVar1 = (undefined8 *)resourcePointer[0x11];
   if (puVar1 != (undefined8 *)0x0) {
     lVar3 = __RTCastToVoid(puVar1);
     (**(code **)*puVar1)(puVar1,0);
@@ -52861,21 +52861,21 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
       FUN_18064e900(lVar3);
     }
   }
-  puVar2[0x11] = 0;
-  if (puVar2[0x12] != 0) {
+  resourcePointer[0x11] = 0;
+  if (resourcePointer[0x12] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar2[0xd] = &UNK_180a3c3e0;
-  if (puVar2[0xe] != 0) {
+  resourcePointer[0xd] = &UNK_180a3c3e0;
+  if (resourcePointer[0xe] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar2[0xe] = 0;
-  *(undefined4 *)(puVar2 + 0x10) = 0;
-  puVar2[0xd] = &DefaultExceptionHandlerB;
-  FUN_180179f00(puVar2 + 7,puVar2[9]);
-  *puVar2 = &UNK_180a14c60;
+  resourcePointer[0xe] = 0;
+  *(undefined4 *)(resourcePointer + 0x10) = 0;
+  resourcePointer[0xd] = &DefaultExceptionHandlerB;
+  FUN_180179f00(resourcePointer + 7,resourcePointer[9]);
+  *resourcePointer = &UNK_180a14c60;
   return;
 }
 
@@ -52899,12 +52899,12 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x40);
-  *puVar2 = &UNK_180a14bb8;
-  puVar1 = (undefined8 *)puVar2[0x11];
+  resourcePointer = *(undefined8 **)(param_2 + 0x40);
+  *resourcePointer = &UNK_180a14bb8;
+  puVar1 = (undefined8 *)resourcePointer[0x11];
   if (puVar1 != (undefined8 *)0x0) {
     lVar3 = __RTCastToVoid(puVar1);
     (**(code **)*puVar1)(puVar1,0);
@@ -52913,21 +52913,21 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
       FUN_18064e900(lVar3);
     }
   }
-  puVar2[0x11] = 0;
-  if (puVar2[0x12] != 0) {
+  resourcePointer[0x11] = 0;
+  if (resourcePointer[0x12] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar2[0xd] = &UNK_180a3c3e0;
-  if (puVar2[0xe] != 0) {
+  resourcePointer[0xd] = &UNK_180a3c3e0;
+  if (resourcePointer[0xe] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar2[0xe] = 0;
-  *(undefined4 *)(puVar2 + 0x10) = 0;
-  puVar2[0xd] = &DefaultExceptionHandlerB;
-  FUN_180179f00(puVar2 + 7,puVar2[9]);
-  *puVar2 = &UNK_180a14c60;
+  resourcePointer[0xe] = 0;
+  *(undefined4 *)(resourcePointer + 0x10) = 0;
+  resourcePointer[0xd] = &DefaultExceptionHandlerB;
+  FUN_180179f00(resourcePointer + 7,resourcePointer[9]);
+  *resourcePointer = &UNK_180a14c60;
   return;
 }
 
@@ -53073,13 +53073,13 @@ void Unwind_180907810(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x20) + 0x28);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x30);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -53148,21 +53148,21 @@ void Unwind_180907880(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x110);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x110);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53171,8 +53171,8 @@ void Unwind_180907880(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -53535,9 +53535,9 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x80);
   *(undefined **)(lVar3 + 0xd8) = &DefaultExceptionHandlerB;
@@ -53547,14 +53547,14 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
   }
   FUN_1800ba100(lVar3 + 0x78);
   if ((1 < *(ulonglong *)(lVar3 + 0x88)) &&
-     (puVar2 = *(undefined8 **)(lVar3 + 0x80), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+     (resourcePointer = *(undefined8 **)(lVar3 + 0x80), resourcePointer != (undefined8 *)0x0)) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -53563,8 +53563,8 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -53578,21 +53578,21 @@ void Unwind_1809079e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x180);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x180);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53601,8 +53601,8 @@ void Unwind_1809079e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -53632,21 +53632,21 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x130);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x130);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53655,8 +53655,8 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -53711,21 +53711,21 @@ void Unwind_180907a50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x130);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x130);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53734,8 +53734,8 @@ void Unwind_180907a50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -53747,21 +53747,21 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x130);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x130);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -53770,8 +53770,8 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -54046,21 +54046,21 @@ void Unwind_180907c20(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x230);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x230);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -54069,8 +54069,8 @@ void Unwind_180907c20(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -54126,21 +54126,21 @@ void Unwind_180907c70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x230);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x230);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -54149,8 +54149,8 @@ void Unwind_180907c70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -54162,21 +54162,21 @@ void Unwind_180907c80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x230);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x230);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -54185,8 +54185,8 @@ void Unwind_180907c80(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -54231,13 +54231,13 @@ void Unwind_180907cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x170);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x168); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x168); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x168) == 0) {
     return;
@@ -54322,13 +54322,13 @@ void Unwind_180907d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x170);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x168); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x168); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x168) == 0) {
     return;
@@ -54343,21 +54343,21 @@ void Unwind_180907d30(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x168);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x168);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -54366,8 +54366,8 @@ void Unwind_180907d30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -54505,13 +54505,13 @@ void Unwind_180907e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x30);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x28); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x28); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x28) == 0) {
     return;
@@ -54526,21 +54526,21 @@ void Unwind_180907e90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x28);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x28);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -54549,8 +54549,8 @@ void Unwind_180907e90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -54562,21 +54562,21 @@ void Unwind_180907ea0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x38);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -54585,8 +54585,8 @@ void Unwind_180907ea0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -54598,21 +54598,21 @@ void Unwind_180907eb0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x60);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x60);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -54621,8 +54621,8 @@ void Unwind_180907eb0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -54634,21 +54634,21 @@ void Unwind_180907ec0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x38);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -54657,8 +54657,8 @@ void Unwind_180907ec0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -54670,21 +54670,21 @@ void Unwind_180907ed0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x38);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -54693,8 +54693,8 @@ void Unwind_180907ed0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -54918,21 +54918,21 @@ void Unwind_180908000(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -54941,8 +54941,8 @@ void Unwind_180908000(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -55018,17 +55018,17 @@ void HandleExceptionA3(undefined8 ContextParameter, longlong SystemContext)
   longlong MemoryAddress;
   ulonglong MemoryMask;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -55037,8 +55037,8 @@ void HandleExceptionA3(undefined8 ContextParameter, longlong SystemContext)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -55548,13 +55548,13 @@ void Unwind_180908340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x388);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x390);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -55630,13 +55630,13 @@ void Unwind_180908460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x388);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x390);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -55787,21 +55787,21 @@ void Unwind_180908650(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x10);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x10);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -55810,8 +55810,8 @@ void Unwind_180908650(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56064,21 +56064,21 @@ void Unwind_1809087c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xa0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56087,8 +56087,8 @@ void Unwind_1809087c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56174,21 +56174,21 @@ void Unwind_180908830(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xa0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56197,8 +56197,8 @@ void Unwind_180908830(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56210,21 +56210,21 @@ void Unwind_180908840(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xa0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56233,8 +56233,8 @@ void Unwind_180908840(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56278,21 +56278,21 @@ void Unwind_180908870(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x160);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x160);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56301,8 +56301,8 @@ void Unwind_180908870(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56590,21 +56590,21 @@ void Unwind_180908a20(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1a0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1a0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56613,8 +56613,8 @@ void Unwind_180908a20(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56626,21 +56626,21 @@ void Unwind_180908a30(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x160);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x160);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56649,8 +56649,8 @@ void Unwind_180908a30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56662,21 +56662,21 @@ void Unwind_180908a40(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x120);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x120);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56685,8 +56685,8 @@ void Unwind_180908a40(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56698,21 +56698,21 @@ void Unwind_180908a50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1a0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1a0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56721,8 +56721,8 @@ void Unwind_180908a50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56734,21 +56734,21 @@ void Unwind_180908a60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1a0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1a0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56757,8 +56757,8 @@ void Unwind_180908a60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56770,21 +56770,21 @@ void Unwind_180908a70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x160);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x160);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56793,8 +56793,8 @@ void Unwind_180908a70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56806,21 +56806,21 @@ void Unwind_180908a80(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x120);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x120);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56829,8 +56829,8 @@ void Unwind_180908a80(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56842,21 +56842,21 @@ void Unwind_180908a90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x68);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56865,8 +56865,8 @@ void Unwind_180908a90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56887,21 +56887,21 @@ void Unwind_180908ab0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56910,8 +56910,8 @@ void Unwind_180908ab0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56923,21 +56923,21 @@ void Unwind_180908ac0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x68);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56946,8 +56946,8 @@ void Unwind_180908ac0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -56959,21 +56959,21 @@ void Unwind_180908ad0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x68);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -56982,8 +56982,8 @@ void Unwind_180908ad0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -57032,21 +57032,21 @@ void Unwind_180908b10(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x30) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x30) + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57055,8 +57055,8 @@ void Unwind_180908b10(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -57535,21 +57535,21 @@ void Unwind_180908dd0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x108) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x108) + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57558,8 +57558,8 @@ void Unwind_180908dd0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -57580,21 +57580,21 @@ void Unwind_180908df0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xa0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xa0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57603,8 +57603,8 @@ void Unwind_180908df0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -57616,21 +57616,21 @@ void Unwind_180908e00(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xa0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xa0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57639,8 +57639,8 @@ void Unwind_180908e00(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -57680,21 +57680,21 @@ void Unwind_180908e50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57703,8 +57703,8 @@ void Unwind_180908e50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -57716,21 +57716,21 @@ void Unwind_180908e60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57739,8 +57739,8 @@ void Unwind_180908e60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -57752,21 +57752,21 @@ void Unwind_180908e70(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -57775,8 +57775,8 @@ void Unwind_180908e70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -57933,11 +57933,11 @@ void Unwind_180908f30(undefined8 param_1,longlong param_2)
   undefined8 uVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  puVar4 = (undefined8 *)(lVar3 + -0xa0);
-  *puVar4 = &UNK_180a01668;
+  pmemoryBaseAddress = (undefined8 *)(lVar3 + -0xa0);
+  *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(lVar3 + -0x20) != 0) && (**(longlong **)(lVar3 + -0x88) == lVar3 + -0x30)) {
     uVar1 = *(undefined8 *)(lVar3 + -0x10);
     lVar2 = *(longlong *)(lVar3 + -0x18);
@@ -57946,11 +57946,11 @@ void Unwind_180908f30(undefined8 param_1,longlong param_2)
     **(int **)(lVar3 + -0x50) = (int)uVar1 - (int)lVar2;
   }
   if (*(char *)(lVar3 + -0x24) != '\0') {
-    FUN_1800a19c0(puVar4);
+    FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(puVar4);
+  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -58136,21 +58136,21 @@ void Unwind_180909090(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x48);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x48);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -58159,8 +58159,8 @@ void Unwind_180909090(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -58227,21 +58227,21 @@ void Unwind_1809090b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x121c0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x121c0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -58250,8 +58250,8 @@ void Unwind_1809090b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -58459,26 +58459,26 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong *puVar4;
+  ulonglong *pmemoryBaseAddress;
   ulonglong uVar5;
   ulonglong uVar6;
   
-  puVar4 = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x1d20);
+  pmemoryBaseAddress = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x1d20);
   uVar6 = *(ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x1d28);
-  for (uVar5 = *puVar4; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
+  for (uVar5 = *pmemoryBaseAddress; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
     *(undefined **)(uVar5 + 0x10) = &DefaultExceptionHandlerB;
   }
-  puVar2 = (undefined8 *)*puVar4;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  resourcePointer = (undefined8 *)*pmemoryBaseAddress;
+  if (resourcePointer != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar3 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar3 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -58488,7 +58488,7 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            resourcePointer,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -58516,7 +58516,7 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   ulonglong *puVar3;
   longlong lVar4;
   ulonglong uVar5;
@@ -58527,15 +58527,15 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
   for (uVar5 = *puVar3; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
     *(undefined **)(uVar5 + 0x10) = &DefaultExceptionHandlerB;
   }
-  puVar2 = (undefined8 *)*puVar3;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  resourcePointer = (undefined8 *)*puVar3;
+  if (resourcePointer != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar4 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar2;
+        *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
+        *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -58545,7 +58545,7 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            resourcePointer,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -58559,7 +58559,7 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   ulonglong *puVar3;
   longlong lVar4;
   ulonglong uVar5;
@@ -58570,15 +58570,15 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
   for (uVar5 = *puVar3; uVar5 != uVar6; uVar5 = uVar5 + 0xd0) {
     *(undefined **)(uVar5 + 0x10) = &DefaultExceptionHandlerB;
   }
-  puVar2 = (undefined8 *)*puVar3;
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)puVar2 & 0xffffffffffc00000;
+  resourcePointer = (undefined8 *)*puVar3;
+  if (resourcePointer != (undefined8 *)0x0) {
+    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar2 - uVar6 >> 0x10) * 0x50;
+      lVar4 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
       if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar2;
+        *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
+        *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -58588,7 +58588,7 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar2,uVar6,0xfffffffffffffffe);
+                            resourcePointer,uVar6,0xfffffffffffffffe);
       }
     }
     return;
@@ -58629,7 +58629,7 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
 
 {
   longlong *pvalidationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 *puVar3;
   longlong lVar4;
   longlong lVar5;
@@ -58645,31 +58645,31 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
   lVar4 = *pvalidationContext;
   if (puVar3[0x1013] - lVar4 >> 3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(uVar6 * 8 + lVar4);
-      if (puVar2 != (undefined8 *)0x0) {
-        if ((longlong *)puVar2[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xd] + 0x10))();
-          puVar2[0xd] = 0;
+      resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
+      if (resourcePointer != (undefined8 *)0x0) {
+        if ((longlong *)resourcePointer[0xd] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xd] + 0x10))();
+          resourcePointer[0xd] = 0;
         }
-        if ((longlong *)puVar2[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xe] + 0x10))();
-          puVar2[0xe] = 0;
+        if ((longlong *)resourcePointer[0xe] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xe] + 0x10))();
+          resourcePointer[0xe] = 0;
         }
-        if ((longlong *)puVar2[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xf] + 0x10))();
-          puVar2[0xf] = 0;
+        if ((longlong *)resourcePointer[0xf] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xf] + 0x10))();
+          resourcePointer[0xf] = 0;
         }
-        if ((longlong *)puVar2[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x10] + 0x10))();
-          puVar2[0x10] = 0;
+        if ((longlong *)resourcePointer[0x10] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0x10] + 0x10))();
+          resourcePointer[0x10] = 0;
         }
-        if ((longlong *)puVar2[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x11] + 0x10))();
-          puVar2[0x11] = 0;
+        if ((longlong *)resourcePointer[0x11] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0x11] + 0x10))();
+          resourcePointer[0x11] = 0;
         }
-        *puVar2 = &DefaultExceptionHandlerB;
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(puVar2);
+        FUN_18064e900(resourcePointer);
       }
       *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
@@ -58677,12 +58677,12 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
     } while (uVar6 < (ulonglong)(puVar3[0x1013] - lVar4 >> 3));
   }
   puVar3[0x1013] = lVar4;
-  puVar2 = (undefined8 *)puVar3[0x1043];
-  if (puVar2 != (undefined8 *)0x0) {
-    FUN_1800f74f0(puVar3 + 0x1041,*puVar2);
-    puVar2[4] = &DefaultExceptionHandlerB;
+  resourcePointer = (undefined8 *)puVar3[0x1043];
+  if (resourcePointer != (undefined8 *)0x0) {
+    FUN_1800f74f0(puVar3 + 0x1041,*resourcePointer);
+    resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+    FUN_18064e900(resourcePointer);
   }
   FUN_180058370(puVar3 + 0x103b,puVar3[0x103d]);
   FUN_180058370(puVar3 + 0x1035,puVar3[0x1037]);
@@ -58777,7 +58777,7 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
 
 {
   longlong *pvalidationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 *puVar3;
   longlong lVar4;
   longlong lVar5;
@@ -58793,31 +58793,31 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
   lVar4 = *pvalidationContext;
   if (puVar3[0x1013] - lVar4 >> 3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(uVar6 * 8 + lVar4);
-      if (puVar2 != (undefined8 *)0x0) {
-        if ((longlong *)puVar2[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xd] + 0x10))();
-          puVar2[0xd] = 0;
+      resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
+      if (resourcePointer != (undefined8 *)0x0) {
+        if ((longlong *)resourcePointer[0xd] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xd] + 0x10))();
+          resourcePointer[0xd] = 0;
         }
-        if ((longlong *)puVar2[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xe] + 0x10))();
-          puVar2[0xe] = 0;
+        if ((longlong *)resourcePointer[0xe] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xe] + 0x10))();
+          resourcePointer[0xe] = 0;
         }
-        if ((longlong *)puVar2[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xf] + 0x10))();
-          puVar2[0xf] = 0;
+        if ((longlong *)resourcePointer[0xf] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xf] + 0x10))();
+          resourcePointer[0xf] = 0;
         }
-        if ((longlong *)puVar2[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x10] + 0x10))();
-          puVar2[0x10] = 0;
+        if ((longlong *)resourcePointer[0x10] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0x10] + 0x10))();
+          resourcePointer[0x10] = 0;
         }
-        if ((longlong *)puVar2[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x11] + 0x10))();
-          puVar2[0x11] = 0;
+        if ((longlong *)resourcePointer[0x11] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0x11] + 0x10))();
+          resourcePointer[0x11] = 0;
         }
-        *puVar2 = &DefaultExceptionHandlerB;
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(puVar2);
+        FUN_18064e900(resourcePointer);
       }
       *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
@@ -58825,12 +58825,12 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
     } while (uVar6 < (ulonglong)(puVar3[0x1013] - lVar4 >> 3));
   }
   puVar3[0x1013] = lVar4;
-  puVar2 = (undefined8 *)puVar3[0x1043];
-  if (puVar2 != (undefined8 *)0x0) {
-    FUN_1800f74f0(puVar3 + 0x1041,*puVar2);
-    puVar2[4] = &DefaultExceptionHandlerB;
+  resourcePointer = (undefined8 *)puVar3[0x1043];
+  if (resourcePointer != (undefined8 *)0x0) {
+    FUN_1800f74f0(puVar3 + 0x1041,*resourcePointer);
+    resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+    FUN_18064e900(resourcePointer);
   }
   FUN_180058370(puVar3 + 0x103b,puVar3[0x103d]);
   FUN_180058370(puVar3 + 0x1035,puVar3[0x1037]);
@@ -58858,7 +58858,7 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong *pvalidationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
   longlong lVar4;
   longlong lVar5;
@@ -58870,31 +58870,31 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   lVar4 = *pvalidationContext;
   if (*(longlong *)(lVar3 + 0x8098) - lVar4 >> 3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(uVar6 * 8 + lVar4);
-      if (puVar2 != (undefined8 *)0x0) {
-        if ((longlong *)puVar2[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xd] + 0x10))();
-          puVar2[0xd] = 0;
+      resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
+      if (resourcePointer != (undefined8 *)0x0) {
+        if ((longlong *)resourcePointer[0xd] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xd] + 0x10))();
+          resourcePointer[0xd] = 0;
         }
-        if ((longlong *)puVar2[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xe] + 0x10))();
-          puVar2[0xe] = 0;
+        if ((longlong *)resourcePointer[0xe] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xe] + 0x10))();
+          resourcePointer[0xe] = 0;
         }
-        if ((longlong *)puVar2[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xf] + 0x10))();
-          puVar2[0xf] = 0;
+        if ((longlong *)resourcePointer[0xf] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xf] + 0x10))();
+          resourcePointer[0xf] = 0;
         }
-        if ((longlong *)puVar2[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x10] + 0x10))();
-          puVar2[0x10] = 0;
+        if ((longlong *)resourcePointer[0x10] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0x10] + 0x10))();
+          resourcePointer[0x10] = 0;
         }
-        if ((longlong *)puVar2[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x11] + 0x10))();
-          puVar2[0x11] = 0;
+        if ((longlong *)resourcePointer[0x11] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0x11] + 0x10))();
+          resourcePointer[0x11] = 0;
         }
-        *puVar2 = &DefaultExceptionHandlerB;
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(puVar2);
+        FUN_18064e900(resourcePointer);
       }
       *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
@@ -58902,12 +58902,12 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     } while (uVar6 < (ulonglong)(*(longlong *)(lVar3 + 0x8098) - lVar4 >> 3));
   }
   *(longlong *)(lVar3 + 0x8098) = lVar4;
-  puVar2 = *(undefined8 **)(lVar3 + 0x8218);
-  if (puVar2 != (undefined8 *)0x0) {
-    FUN_1800f74f0(lVar3 + 0x8208,*puVar2);
-    puVar2[4] = &DefaultExceptionHandlerB;
+  resourcePointer = *(undefined8 **)(lVar3 + 0x8218);
+  if (resourcePointer != (undefined8 *)0x0) {
+    FUN_1800f74f0(lVar3 + 0x8208,*resourcePointer);
+    resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+    FUN_18064e900(resourcePointer);
   }
   FUN_180058370(lVar3 + 0x81d8,*(undefined8 *)(lVar3 + 0x81e8),param_3,param_4,0xfffffffffffffffe);
   FUN_180058370(lVar3 + 0x81a8,*(undefined8 *)(lVar3 + 0x81b8));
@@ -59440,21 +59440,21 @@ void Unwind_180909660(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xd8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -59463,8 +59463,8 @@ void Unwind_180909660(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -59476,21 +59476,21 @@ void Unwind_180909670(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xd8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -59499,8 +59499,8 @@ void Unwind_180909670(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -59512,21 +59512,21 @@ void Unwind_180909680(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0xb8) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0xb8) + 8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -59535,8 +59535,8 @@ void Unwind_180909680(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -59548,21 +59548,21 @@ void Unwind_180909690(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xb8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xb8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -59571,8 +59571,8 @@ void Unwind_180909690(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -59584,21 +59584,21 @@ void Unwind_1809096a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xb8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xb8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -59607,8 +59607,8 @@ void Unwind_1809096a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -59620,7 +59620,7 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
 
 {
   longlong *pvalidationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 *puVar3;
   longlong lVar4;
   longlong lVar5;
@@ -59636,31 +59636,31 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
   lVar4 = *pvalidationContext;
   if (puVar3[0x1013] - lVar4 >> 3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(uVar6 * 8 + lVar4);
-      if (puVar2 != (undefined8 *)0x0) {
-        if ((longlong *)puVar2[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xd] + 0x10))();
-          puVar2[0xd] = 0;
+      resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
+      if (resourcePointer != (undefined8 *)0x0) {
+        if ((longlong *)resourcePointer[0xd] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xd] + 0x10))();
+          resourcePointer[0xd] = 0;
         }
-        if ((longlong *)puVar2[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xe] + 0x10))();
-          puVar2[0xe] = 0;
+        if ((longlong *)resourcePointer[0xe] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xe] + 0x10))();
+          resourcePointer[0xe] = 0;
         }
-        if ((longlong *)puVar2[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xf] + 0x10))();
-          puVar2[0xf] = 0;
+        if ((longlong *)resourcePointer[0xf] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xf] + 0x10))();
+          resourcePointer[0xf] = 0;
         }
-        if ((longlong *)puVar2[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x10] + 0x10))();
-          puVar2[0x10] = 0;
+        if ((longlong *)resourcePointer[0x10] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0x10] + 0x10))();
+          resourcePointer[0x10] = 0;
         }
-        if ((longlong *)puVar2[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x11] + 0x10))();
-          puVar2[0x11] = 0;
+        if ((longlong *)resourcePointer[0x11] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0x11] + 0x10))();
+          resourcePointer[0x11] = 0;
         }
-        *puVar2 = &DefaultExceptionHandlerB;
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(puVar2);
+        FUN_18064e900(resourcePointer);
       }
       *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
@@ -59668,12 +59668,12 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
     } while (uVar6 < (ulonglong)(puVar3[0x1013] - lVar4 >> 3));
   }
   puVar3[0x1013] = lVar4;
-  puVar2 = (undefined8 *)puVar3[0x1043];
-  if (puVar2 != (undefined8 *)0x0) {
-    FUN_1800f74f0(puVar3 + 0x1041,*puVar2);
-    puVar2[4] = &DefaultExceptionHandlerB;
+  resourcePointer = (undefined8 *)puVar3[0x1043];
+  if (resourcePointer != (undefined8 *)0x0) {
+    FUN_1800f74f0(puVar3 + 0x1041,*resourcePointer);
+    resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+    FUN_18064e900(resourcePointer);
   }
   FUN_180058370(puVar3 + 0x103b,puVar3[0x103d]);
   FUN_180058370(puVar3 + 0x1035,puVar3[0x1037]);
@@ -59701,7 +59701,7 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   longlong *pvalidationContext;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
   longlong lVar4;
   longlong lVar5;
@@ -59713,31 +59713,31 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   lVar4 = *pvalidationContext;
   if (*(longlong *)(lVar3 + 0x8098) - lVar4 >> 3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(uVar6 * 8 + lVar4);
-      if (puVar2 != (undefined8 *)0x0) {
-        if ((longlong *)puVar2[0xd] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xd] + 0x10))();
-          puVar2[0xd] = 0;
+      resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
+      if (resourcePointer != (undefined8 *)0x0) {
+        if ((longlong *)resourcePointer[0xd] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xd] + 0x10))();
+          resourcePointer[0xd] = 0;
         }
-        if ((longlong *)puVar2[0xe] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xe] + 0x10))();
-          puVar2[0xe] = 0;
+        if ((longlong *)resourcePointer[0xe] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xe] + 0x10))();
+          resourcePointer[0xe] = 0;
         }
-        if ((longlong *)puVar2[0xf] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0xf] + 0x10))();
-          puVar2[0xf] = 0;
+        if ((longlong *)resourcePointer[0xf] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0xf] + 0x10))();
+          resourcePointer[0xf] = 0;
         }
-        if ((longlong *)puVar2[0x10] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x10] + 0x10))();
-          puVar2[0x10] = 0;
+        if ((longlong *)resourcePointer[0x10] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0x10] + 0x10))();
+          resourcePointer[0x10] = 0;
         }
-        if ((longlong *)puVar2[0x11] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)puVar2[0x11] + 0x10))();
-          puVar2[0x11] = 0;
+        if ((longlong *)resourcePointer[0x11] != (longlong *)0x0) {
+          (**(code **)(*(longlong *)resourcePointer[0x11] + 0x10))();
+          resourcePointer[0x11] = 0;
         }
-        *puVar2 = &DefaultExceptionHandlerB;
+        *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(puVar2);
+        FUN_18064e900(resourcePointer);
       }
       *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
@@ -59745,12 +59745,12 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     } while (uVar6 < (ulonglong)(*(longlong *)(lVar3 + 0x8098) - lVar4 >> 3));
   }
   *(longlong *)(lVar3 + 0x8098) = lVar4;
-  puVar2 = *(undefined8 **)(lVar3 + 0x8218);
-  if (puVar2 != (undefined8 *)0x0) {
-    FUN_1800f74f0(lVar3 + 0x8208,*puVar2);
-    puVar2[4] = &DefaultExceptionHandlerB;
+  resourcePointer = *(undefined8 **)(lVar3 + 0x8218);
+  if (resourcePointer != (undefined8 *)0x0) {
+    FUN_1800f74f0(lVar3 + 0x8208,*resourcePointer);
+    resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+    FUN_18064e900(resourcePointer);
   }
   FUN_180058370(lVar3 + 0x81d8,*(undefined8 *)(lVar3 + 0x81e8),param_3,param_4,0xfffffffffffffffe);
   FUN_180058370(lVar3 + 0x81a8,*(undefined8 *)(lVar3 + 0x81b8));
@@ -60044,21 +60044,21 @@ void Unwind_180909860(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x68);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -60067,8 +60067,8 @@ void Unwind_180909860(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -60251,21 +60251,21 @@ void Unwind_180909a00(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x38);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -60274,8 +60274,8 @@ void Unwind_180909a00(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -60319,21 +60319,21 @@ void Unwind_180909a40(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x38);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -60342,8 +60342,8 @@ void Unwind_180909a40(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -60355,21 +60355,21 @@ void Unwind_180909a50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x38);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x38);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -60378,8 +60378,8 @@ void Unwind_180909a50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -60617,21 +60617,21 @@ void Unwind_180909c20(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x30) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x30) + 8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -60640,8 +60640,8 @@ void Unwind_180909c20(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -61011,9 +61011,9 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
   FUN_1802ab380();
@@ -61022,15 +61022,15 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar2 = *(undefined8 **)(lVar3 + 0xac0);
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  resourcePointer = *(undefined8 **)(lVar3 + 0xac0);
+  if (resourcePointer != (undefined8 *)0x0) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -61039,8 +61039,8 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -61576,9 +61576,9 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x60);
   FUN_1802ab380();
@@ -61587,15 +61587,15 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar2 = *(undefined8 **)(lVar3 + 0xac0);
-  if (puVar2 != (undefined8 *)0x0) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  resourcePointer = *(undefined8 **)(lVar3 + 0xac0);
+  if (resourcePointer != (undefined8 *)0x0) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -61604,8 +61604,8 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -61814,21 +61814,21 @@ void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x68);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -61837,8 +61837,8 @@ void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -61850,21 +61850,21 @@ void Unwind_18090a5d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -61873,8 +61873,8 @@ void Unwind_18090a5d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -62058,21 +62058,21 @@ void Unwind_18090a780(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x40);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x40);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -62081,8 +62081,8 @@ void Unwind_18090a780(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -62108,21 +62108,21 @@ void Unwind_18090a7a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x40);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x40);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -62131,8 +62131,8 @@ void Unwind_18090a7a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -62287,21 +62287,21 @@ void Unwind_18090a880(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -62310,8 +62310,8 @@ void Unwind_18090a880(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -62323,21 +62323,21 @@ void Unwind_18090a890(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -62346,8 +62346,8 @@ void Unwind_18090a890(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -62547,21 +62547,21 @@ void Unwind_18090a930(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(lVar3 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -62570,8 +62570,8 @@ void Unwind_18090a930(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -62585,21 +62585,21 @@ void Unwind_18090a940(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(lVar3 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -62608,8 +62608,8 @@ void Unwind_18090a940(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -62623,21 +62623,21 @@ void Unwind_18090a950(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(lVar3 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -62646,8 +62646,8 @@ void Unwind_18090a950(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -62661,21 +62661,21 @@ void Unwind_18090a960(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x50);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(lVar3 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -62684,8 +62684,8 @@ void Unwind_18090a960(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -62699,21 +62699,21 @@ void Unwind_18090a970(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x50);
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(lVar3 + 0x10)) &&
-     (puVar2 = *(undefined8 **)(lVar3 + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+     (resourcePointer = *(undefined8 **)(lVar3 + 8), resourcePointer != (undefined8 *)0x0)) {
+    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (memoryBaseAddress != 0) {
+      lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
+      if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+        *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
@@ -62722,8 +62722,8 @@ void Unwind_18090a970(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
       }
     }
     return;
@@ -63375,14 +63375,14 @@ void Unwind_18090af70(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x50);
-  uVar4 = *(ulonglong *)(lVar3 + 0x2b0);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x2b0);
   validationContext = *(longlong *)(lVar3 + 0x2a8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -63394,11 +63394,11 @@ void Unwind_18090af70(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x2b0);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x2b0);
   }
   *(undefined8 *)(lVar3 + 0x2b8) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 0x2a8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -63982,14 +63982,14 @@ void Unwind_18090b4b0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x58);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -64001,11 +64001,11 @@ void Unwind_18090b4b0(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -64020,14 +64020,14 @@ void Unwind_18090b4c0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x58);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -64039,11 +64039,11 @@ void Unwind_18090b4c0(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -64076,14 +64076,14 @@ void Unwind_18090b4f0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -64095,11 +64095,11 @@ void Unwind_18090b4f0(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -64114,14 +64114,14 @@ void Unwind_18090b500(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -64133,11 +64133,11 @@ void Unwind_18090b500(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -64417,14 +64417,14 @@ void Unwind_18090b7d0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  uVar4 = *(ulonglong *)(lVar3 + 0x2b0);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x2b0);
   validationContext = *(longlong *)(lVar3 + 0x2a8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -64436,11 +64436,11 @@ void Unwind_18090b7d0(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x2b0);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x2b0);
   }
   *(undefined8 *)(lVar3 + 0x2b8) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 0x2a8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -65024,14 +65024,14 @@ void Unwind_18090bd10(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x48);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -65043,11 +65043,11 @@ void Unwind_18090bd10(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -65062,14 +65062,14 @@ void Unwind_18090bd20(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong lVar2;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   ulonglong uVar5;
   
   lVar3 = *(longlong *)(param_2 + 0x48);
-  uVar4 = *(ulonglong *)(lVar3 + 0x10);
+  memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   validationContext = *(longlong *)(lVar3 + 8);
   uVar5 = 0;
-  if (uVar4 != 0) {
+  if (memoryBaseAddress != 0) {
     do {
       lVar2 = *(longlong *)(validationContext + uVar5 * 8);
       if (lVar2 != 0) {
@@ -65081,11 +65081,11 @@ void Unwind_18090bd20(undefined8 param_1,longlong param_2)
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x10);
+    } while (uVar5 < memoryBaseAddress);
+    memoryBaseAddress = *(ulonglong *)(lVar3 + 0x10);
   }
   *(undefined8 *)(lVar3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
+  if ((1 < memoryBaseAddress) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -65447,13 +65447,13 @@ void Unwind_18090bfb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = *(longlong **)(param_2 + 0x20);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = (undefined8 *)plVar2[1];
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -65732,21 +65732,21 @@ void Unwind_18090c140(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x50);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x50);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65755,8 +65755,8 @@ void Unwind_18090c140(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -65877,21 +65877,21 @@ void Unwind_18090c1c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -65900,8 +65900,8 @@ void Unwind_18090c1c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -65947,11 +65947,11 @@ void Unwind_18090c200(undefined8 param_1,longlong param_2)
   undefined8 uVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x70);
-  puVar4 = (undefined8 *)(lVar3 + -0xa0);
-  *puVar4 = &UNK_180a01668;
+  pmemoryBaseAddress = (undefined8 *)(lVar3 + -0xa0);
+  *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(lVar3 + -0x20) != 0) && (**(longlong **)(lVar3 + -0x88) == lVar3 + -0x30)) {
     uVar1 = *(undefined8 *)(lVar3 + -0x10);
     lVar2 = *(longlong *)(lVar3 + -0x18);
@@ -65960,11 +65960,11 @@ void Unwind_18090c200(undefined8 param_1,longlong param_2)
     **(int **)(lVar3 + -0x50) = (int)uVar1 - (int)lVar2;
   }
   if (*(char *)(lVar3 + -0x24) != '\0') {
-    FUN_1800a19c0(puVar4);
+    FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(puVar4);
+  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -65987,11 +65987,11 @@ void Unwind_18090c240(undefined8 param_1,longlong param_2)
   undefined8 uVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  puVar4 = (undefined8 *)(lVar3 + -0xa0);
-  *puVar4 = &UNK_180a01668;
+  pmemoryBaseAddress = (undefined8 *)(lVar3 + -0xa0);
+  *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(lVar3 + -0x20) != 0) && (**(longlong **)(lVar3 + -0x88) == lVar3 + -0x30)) {
     uVar1 = *(undefined8 *)(lVar3 + -0x10);
     lVar2 = *(longlong *)(lVar3 + -0x18);
@@ -66000,11 +66000,11 @@ void Unwind_18090c240(undefined8 param_1,longlong param_2)
     **(int **)(lVar3 + -0x50) = (int)uVar1 - (int)lVar2;
   }
   if (*(char *)(lVar3 + -0x24) != '\0') {
-    FUN_1800a19c0(puVar4);
+    FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(puVar4);
+  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -66032,21 +66032,21 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xe8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xe8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66055,8 +66055,8 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -66104,21 +66104,21 @@ void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xe8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xe8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66127,8 +66127,8 @@ void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -66140,21 +66140,21 @@ void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xe8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xe8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66163,8 +66163,8 @@ void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -66247,11 +66247,11 @@ void Unwind_18090c380(undefined8 param_1,longlong param_2)
   undefined8 uVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  puVar4 = (undefined8 *)(lVar3 + 0x18);
-  *puVar4 = &UNK_180a01668;
+  pmemoryBaseAddress = (undefined8 *)(lVar3 + 0x18);
+  *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(lVar3 + 0x98) != 0) && (**(longlong **)(lVar3 + 0x30) == lVar3 + 0x88)) {
     uVar1 = *(undefined8 *)(lVar3 + 0xa8);
     lVar2 = *(longlong *)(lVar3 + 0xa0);
@@ -66260,11 +66260,11 @@ void Unwind_18090c380(undefined8 param_1,longlong param_2)
     **(int **)(lVar3 + 0x68) = (int)uVar1 - (int)lVar2;
   }
   if (*(char *)(lVar3 + 0x94) != '\0') {
-    FUN_1800a19c0(puVar4);
+    FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(puVar4);
+  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -66288,21 +66288,21 @@ void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x1d8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x1d8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66311,8 +66311,8 @@ void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -66347,21 +66347,21 @@ void Unwind_18090c400(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x2d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x2d0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66370,8 +66370,8 @@ void Unwind_18090c400(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -66685,21 +66685,21 @@ void Unwind_18090c530(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xb8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -66708,8 +66708,8 @@ void Unwind_18090c530(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -67106,21 +67106,21 @@ void Unwind_18090c610(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xb8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67129,8 +67129,8 @@ void Unwind_18090c610(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -67142,21 +67142,21 @@ void Unwind_18090c620(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xb8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -67165,8 +67165,8 @@ void Unwind_18090c620(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69267,21 +69267,21 @@ void Unwind_18090d000(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xb0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69290,8 +69290,8 @@ void Unwind_18090d000(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69303,21 +69303,21 @@ void Unwind_18090d010(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xd0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69326,8 +69326,8 @@ void Unwind_18090d010(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69339,21 +69339,21 @@ void Unwind_18090d020(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xf0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xf0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69362,8 +69362,8 @@ void Unwind_18090d020(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69375,21 +69375,21 @@ void Unwind_18090d030(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x110);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x110);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69398,8 +69398,8 @@ void Unwind_18090d030(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69430,16 +69430,16 @@ void CleanupExceptionAtOffset210(undefined8 ExceptionContext,longlong ExceptionO
   ulonglong ExceptionMemoryMask;
   
   ExceptionPointerArray = *(undefined8 ***)(ExceptionOffset + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69448,8 +69448,8 @@ void CleanupExceptionAtOffset210(undefined8 ExceptionContext,longlong ExceptionO
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69480,16 +69480,16 @@ void CleanupExceptionAtOffset220(undefined8 ExceptionContext,longlong ExceptionO
   ulonglong ExceptionMemoryMask;
   
   ExceptionPointerArray = *(undefined8 ***)(ExceptionOffset + 0x170);
-  if (puVar2 == (undefined8 *)0x0) {
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69498,8 +69498,8 @@ void CleanupExceptionAtOffset220(undefined8 ExceptionContext,longlong ExceptionO
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69511,21 +69511,21 @@ void Unwind_18090d060(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 400);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 400);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69534,8 +69534,8 @@ void Unwind_18090d060(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69547,21 +69547,21 @@ void Unwind_18090d070(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1b0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69570,8 +69570,8 @@ void Unwind_18090d070(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69583,21 +69583,21 @@ void Unwind_18090d080(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1d0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69606,8 +69606,8 @@ void Unwind_18090d080(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69619,21 +69619,21 @@ void Unwind_18090d090(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1f0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69642,8 +69642,8 @@ void Unwind_18090d090(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69655,21 +69655,21 @@ void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x210);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x210);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69678,8 +69678,8 @@ void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69691,21 +69691,21 @@ void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x250);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x250);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69714,8 +69714,8 @@ void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69727,21 +69727,21 @@ void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x390);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x390);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69750,8 +69750,8 @@ void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69763,21 +69763,21 @@ void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x3b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x3b0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69786,8 +69786,8 @@ void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69799,21 +69799,21 @@ void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x490);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x490);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69822,8 +69822,8 @@ void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69835,21 +69835,21 @@ void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x2f0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69858,8 +69858,8 @@ void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69871,21 +69871,21 @@ void Unwind_18090d100(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x310);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x310);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69894,8 +69894,8 @@ void Unwind_18090d100(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69907,21 +69907,21 @@ void Unwind_18090d110(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x330);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x330);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69930,8 +69930,8 @@ void Unwind_18090d110(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69943,21 +69943,21 @@ void Unwind_18090d120(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x350);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x350);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -69966,8 +69966,8 @@ void Unwind_18090d120(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -69979,21 +69979,21 @@ void Unwind_18090d130(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x470);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x470);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70002,8 +70002,8 @@ void Unwind_18090d130(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70015,21 +70015,21 @@ void Unwind_18090d140(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x370);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x370);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70038,8 +70038,8 @@ void Unwind_18090d140(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70051,21 +70051,21 @@ void Unwind_18090d150(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x270);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x270);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70074,8 +70074,8 @@ void Unwind_18090d150(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70087,21 +70087,21 @@ void Unwind_18090d160(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x290);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x290);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70110,8 +70110,8 @@ void Unwind_18090d160(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70123,21 +70123,21 @@ void Unwind_18090d170(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x2b0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70146,8 +70146,8 @@ void Unwind_18090d170(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70159,21 +70159,21 @@ void Unwind_18090d180(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x2d0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70182,8 +70182,8 @@ void Unwind_18090d180(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70206,21 +70206,21 @@ void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xb0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70229,8 +70229,8 @@ void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70242,21 +70242,21 @@ void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xb0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xb0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70265,8 +70265,8 @@ void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70278,21 +70278,21 @@ void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xd0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70301,8 +70301,8 @@ void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70314,21 +70314,21 @@ void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xd0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xd0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70337,8 +70337,8 @@ void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70350,21 +70350,21 @@ void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xf0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xf0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70373,8 +70373,8 @@ void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70386,21 +70386,21 @@ void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xf0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xf0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70409,8 +70409,8 @@ void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70422,21 +70422,21 @@ void Unwind_18090d200(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x110);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x110);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70445,8 +70445,8 @@ void Unwind_18090d200(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70458,21 +70458,21 @@ void Unwind_18090d210(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x110);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x110);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70481,8 +70481,8 @@ void Unwind_18090d210(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70494,21 +70494,21 @@ void Unwind_18090d220(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x150);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70517,8 +70517,8 @@ void Unwind_18090d220(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70530,21 +70530,21 @@ void Unwind_18090d230(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x150);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70553,8 +70553,8 @@ void Unwind_18090d230(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70566,21 +70566,21 @@ void Unwind_18090d240(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x170);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x170);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70589,8 +70589,8 @@ void Unwind_18090d240(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70602,21 +70602,21 @@ void Unwind_18090d250(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x170);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x170);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70625,8 +70625,8 @@ void Unwind_18090d250(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70638,21 +70638,21 @@ void Unwind_18090d260(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 400);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 400);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70661,8 +70661,8 @@ void Unwind_18090d260(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70674,21 +70674,21 @@ void Unwind_18090d270(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 400);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 400);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70697,8 +70697,8 @@ void Unwind_18090d270(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70710,21 +70710,21 @@ void Unwind_18090d280(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1b0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70733,8 +70733,8 @@ void Unwind_18090d280(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70746,21 +70746,21 @@ void Unwind_18090d290(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1b0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70769,8 +70769,8 @@ void Unwind_18090d290(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70782,21 +70782,21 @@ void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1d0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70805,8 +70805,8 @@ void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70818,21 +70818,21 @@ void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1d0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70841,8 +70841,8 @@ void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70854,21 +70854,21 @@ void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1f0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70877,8 +70877,8 @@ void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70890,21 +70890,21 @@ void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x1f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x1f0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70913,8 +70913,8 @@ void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70926,21 +70926,21 @@ void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x210);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x210);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70949,8 +70949,8 @@ void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70962,21 +70962,21 @@ void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x210);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x210);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -70985,8 +70985,8 @@ void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -70998,21 +70998,21 @@ void Unwind_18090d300(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x250);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x250);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71021,8 +71021,8 @@ void Unwind_18090d300(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71034,21 +71034,21 @@ void Unwind_18090d310(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x250);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x250);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71057,8 +71057,8 @@ void Unwind_18090d310(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71126,21 +71126,21 @@ void Unwind_18090d360(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x390);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x390);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71149,8 +71149,8 @@ void Unwind_18090d360(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71162,21 +71162,21 @@ void Unwind_18090d370(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x390);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x390);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71185,8 +71185,8 @@ void Unwind_18090d370(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71198,21 +71198,21 @@ void Unwind_18090d380(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x3b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x3b0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71221,8 +71221,8 @@ void Unwind_18090d380(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71234,21 +71234,21 @@ void Unwind_18090d390(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x3b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x3b0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71257,8 +71257,8 @@ void Unwind_18090d390(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71270,21 +71270,21 @@ void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x490);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x490);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71293,8 +71293,8 @@ void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71306,21 +71306,21 @@ void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x490);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x490);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71329,8 +71329,8 @@ void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71342,21 +71342,21 @@ void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x2f0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71365,8 +71365,8 @@ void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71378,21 +71378,21 @@ void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2f0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x2f0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71401,8 +71401,8 @@ void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71414,21 +71414,21 @@ void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x310);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x310);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71437,8 +71437,8 @@ void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71450,21 +71450,21 @@ void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x310);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x310);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71473,8 +71473,8 @@ void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71486,21 +71486,21 @@ void Unwind_18090d400(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x330);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x330);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71509,8 +71509,8 @@ void Unwind_18090d400(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71522,21 +71522,21 @@ void Unwind_18090d410(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x330);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x330);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71545,8 +71545,8 @@ void Unwind_18090d410(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71558,21 +71558,21 @@ void Unwind_18090d420(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x350);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x350);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71581,8 +71581,8 @@ void Unwind_18090d420(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71594,21 +71594,21 @@ void Unwind_18090d430(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x350);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x350);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71617,8 +71617,8 @@ void Unwind_18090d430(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71630,21 +71630,21 @@ void Unwind_18090d440(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x470);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x470);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71653,8 +71653,8 @@ void Unwind_18090d440(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71666,21 +71666,21 @@ void Unwind_18090d450(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x470);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x470);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71689,8 +71689,8 @@ void Unwind_18090d450(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71702,21 +71702,21 @@ void Unwind_18090d460(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x370);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x370);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71725,8 +71725,8 @@ void Unwind_18090d460(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71738,21 +71738,21 @@ void Unwind_18090d470(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x370);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x370);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71761,8 +71761,8 @@ void Unwind_18090d470(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71774,21 +71774,21 @@ void Unwind_18090d480(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x270);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x270);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71797,8 +71797,8 @@ void Unwind_18090d480(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71810,21 +71810,21 @@ void Unwind_18090d490(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x270);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x270);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71833,8 +71833,8 @@ void Unwind_18090d490(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71846,21 +71846,21 @@ void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x290);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x290);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71869,8 +71869,8 @@ void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71882,21 +71882,21 @@ void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x290);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x290);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71905,8 +71905,8 @@ void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71918,21 +71918,21 @@ void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x2b0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71941,8 +71941,8 @@ void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71954,21 +71954,21 @@ void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2b0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x2b0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -71977,8 +71977,8 @@ void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -71990,21 +71990,21 @@ void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x2d0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -72013,8 +72013,8 @@ void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -72026,21 +72026,21 @@ void Unwind_18090d4f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x2d0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -72049,8 +72049,8 @@ void Unwind_18090d4f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -72505,9 +72505,9 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
   if (*(longlong **)(lVar3 + 0x14d0) != (longlong *)0x0) {
@@ -72524,17 +72524,17 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar2 = *(undefined8 **)(lVar3 + 0x1460);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(lVar3 + 0x1460);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -72543,8 +72543,8 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -73043,21 +73043,21 @@ void Unwind_18090de40(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0xe0) + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0xe0) + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -73066,8 +73066,8 @@ void Unwind_18090de40(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -73279,9 +73279,9 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0xe0);
   if (*(longlong **)(lVar3 + 0x14d0) != (longlong *)0x0) {
@@ -73298,17 +73298,17 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar2 = *(undefined8 **)(lVar3 + 0x1460);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(lVar3 + 0x1460);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -73317,8 +73317,8 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -73605,21 +73605,21 @@ void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xe8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xe8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -73628,8 +73628,8 @@ void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -73641,21 +73641,21 @@ void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0xe8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0xe8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -73664,8 +73664,8 @@ void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -74759,13 +74759,13 @@ void Unwind_18090e9c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x40);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x38); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x38); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x38) == 0) {
     return;
@@ -74780,13 +74780,13 @@ void Unwind_18090e9d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x40);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x38); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x38); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x38) == 0) {
     return;
@@ -75639,21 +75639,21 @@ void Unwind_18090eeb0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75662,8 +75662,8 @@ void Unwind_18090eeb0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -75684,21 +75684,21 @@ void Unwind_18090eee0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 0x2d0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 0x2d0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75707,8 +75707,8 @@ void Unwind_18090eee0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -75734,21 +75734,21 @@ void Unwind_18090ef20(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x1d8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x1d8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75757,8 +75757,8 @@ void Unwind_18090ef20(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -75784,21 +75784,21 @@ void Unwind_18090ef50(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x10);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x10);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75807,8 +75807,8 @@ void Unwind_18090ef50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -75820,21 +75820,21 @@ void Unwind_18090ef60(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x10);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x10);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -75843,8 +75843,8 @@ void Unwind_18090ef60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -76454,21 +76454,21 @@ void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x130);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x130);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -76477,8 +76477,8 @@ void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -76490,21 +76490,21 @@ void Unwind_18090f1d0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x150);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -76513,8 +76513,8 @@ void Unwind_18090f1d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -76548,21 +76548,21 @@ void Unwind_18090f210(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xc0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xc0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -76571,8 +76571,8 @@ void Unwind_18090f210(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -76584,21 +76584,21 @@ void Unwind_18090f230(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xe0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xe0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -76607,8 +76607,8 @@ void Unwind_18090f230(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -76620,21 +76620,21 @@ void Unwind_18090f250(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x100);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x100);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -76643,8 +76643,8 @@ void Unwind_18090f250(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -76656,21 +76656,21 @@ void Unwind_18090f270(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x120);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x120);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -76679,8 +76679,8 @@ void Unwind_18090f270(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -76692,21 +76692,21 @@ void Unwind_18090f290(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x140);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x140);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -76715,8 +76715,8 @@ void Unwind_18090f290(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -76728,21 +76728,21 @@ void Unwind_18090f2b0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x160);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x160);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -76751,8 +76751,8 @@ void Unwind_18090f2b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -76785,21 +76785,21 @@ void Unwind_18090f2f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x1a0);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x1a0);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -76808,8 +76808,8 @@ void Unwind_18090f2f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -78583,21 +78583,21 @@ void Unwind_18090ff90(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x158);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x158);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -78606,8 +78606,8 @@ void Unwind_18090ff90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -79365,13 +79365,13 @@ void Unwind_1809102e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xf0);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xe8); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xe8); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xe8) == 0) {
     return;
@@ -79386,13 +79386,13 @@ void Unwind_1809102f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xd0);
-  for (puVar2 = *(undefined8 **)(param_2 + 200); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 200); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 200) == 0) {
     return;
@@ -79407,13 +79407,13 @@ void Unwind_180910300(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xf0);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xe8); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xe8); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xe8) == 0) {
     return;
@@ -79430,13 +79430,13 @@ void Unwind_180910310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = *(longlong **)(param_2 + 0x150);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = (undefined8 *)plVar2[1];
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -79451,21 +79451,21 @@ void Unwind_180910320(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x150);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -79474,8 +79474,8 @@ void Unwind_180910320(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -79487,13 +79487,13 @@ void Unwind_180910330(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xd0);
-  for (puVar2 = *(undefined8 **)(param_2 + 200); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 200); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 200) == 0) {
     return;
@@ -79508,21 +79508,21 @@ void Unwind_180910340(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0xa8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -79531,8 +79531,8 @@ void Unwind_180910340(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -79544,21 +79544,21 @@ void Unwind_180910350(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = (undefined8 *)**(ulonglong **)(param_2 + 0x150);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = (undefined8 *)**(ulonglong **)(param_2 + 0x150);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -79567,8 +79567,8 @@ void Unwind_180910350(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -79619,21 +79619,21 @@ void Unwind_1809103c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -79642,8 +79642,8 @@ void Unwind_1809103c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -79824,21 +79824,21 @@ void Unwind_1809104f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x338);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x338);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -79847,8 +79847,8 @@ void Unwind_1809104f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -79860,21 +79860,21 @@ void Unwind_180910510(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x358);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x358);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -79883,8 +79883,8 @@ void Unwind_180910510(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -79921,11 +79921,11 @@ void Unwind_180910580(undefined8 param_1,longlong param_2)
   undefined8 uVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x68);
-  puVar4 = (undefined8 *)(lVar3 + 0x10);
-  *puVar4 = &UNK_180a01668;
+  pmemoryBaseAddress = (undefined8 *)(lVar3 + 0x10);
+  *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(lVar3 + 0x90) != 0) && (**(longlong **)(lVar3 + 0x28) == lVar3 + 0x80)) {
     uVar1 = *(undefined8 *)(lVar3 + 0xa0);
     lVar2 = *(longlong *)(lVar3 + 0x98);
@@ -79934,11 +79934,11 @@ void Unwind_180910580(undefined8 param_1,longlong param_2)
     **(int **)(lVar3 + 0x60) = (int)uVar1 - (int)lVar2;
   }
   if (*(char *)(lVar3 + 0x8c) != '\0') {
-    FUN_1800a19c0(puVar4);
+    FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(puVar4);
+  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -80045,21 +80045,21 @@ void Unwind_180910640(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x338);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x338);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -80068,8 +80068,8 @@ void Unwind_180910640(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -80081,21 +80081,21 @@ void Unwind_180910660(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x358);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x358);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -80104,8 +80104,8 @@ void Unwind_180910660(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -80130,11 +80130,11 @@ void Unwind_1809106a0(undefined8 param_1,longlong param_2)
   undefined8 uVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  undefined8 *pmemoryBaseAddress;
   
   lVar3 = *(longlong *)(param_2 + 0x40);
-  puVar4 = (undefined8 *)(lVar3 + -0xa0);
-  *puVar4 = &UNK_180a01668;
+  pmemoryBaseAddress = (undefined8 *)(lVar3 + -0xa0);
+  *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(lVar3 + -0x20) != 0) && (**(longlong **)(lVar3 + -0x88) == lVar3 + -0x30)) {
     uVar1 = *(undefined8 *)(lVar3 + -0x10);
     lVar2 = *(longlong *)(lVar3 + -0x18);
@@ -80143,11 +80143,11 @@ void Unwind_1809106a0(undefined8 param_1,longlong param_2)
     **(int **)(lVar3 + -0x50) = (int)uVar1 - (int)lVar2;
   }
   if (*(char *)(lVar3 + -0x24) != '\0') {
-    FUN_1800a19c0(puVar4);
+    FUN_1800a19c0(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(puVar4);
+  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -80179,21 +80179,21 @@ void Unwind_1809106e0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x78);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x78);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -80202,8 +80202,8 @@ void Unwind_1809106e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -80239,21 +80239,21 @@ void Unwind_180910750(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x78);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x78);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -80262,8 +80262,8 @@ void Unwind_180910750(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -80297,21 +80297,21 @@ void Unwind_180910770(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x30);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -80320,8 +80320,8 @@ void Unwind_180910770(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -80333,21 +80333,21 @@ void Unwind_180910780(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x30);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -80356,8 +80356,8 @@ void Unwind_180910780(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -80369,21 +80369,21 @@ void Unwind_180910790(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x58) + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x58) + 8);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -80392,8 +80392,8 @@ void Unwind_180910790(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -82357,13 +82357,13 @@ void Unwind_180910fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x2610);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x2618);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -82380,13 +82380,13 @@ void Unwind_180910fe0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x2630);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x2638);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -84353,13 +84353,13 @@ void Unwind_180911820(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x2610);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x2618);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -84376,13 +84376,13 @@ void Unwind_180911840(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *puVar1;
   longlong *plVar2;
   undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 memoryBaseAddress;
   
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x2630);
-  uVar4 = 0xfffffffffffffffe;
+  memoryBaseAddress = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x2638);
   for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+    (**(code **)*puVar3)(puVar3,0,param_3,param_4,memoryBaseAddress);
   }
   if (*plVar2 == 0) {
     return;
@@ -84397,13 +84397,13 @@ void Unwind_180911860(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x78);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x70); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x70); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x70) == 0) {
     return;
@@ -84418,13 +84418,13 @@ void Unwind_180911870(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x118);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x110); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x110); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x110) == 0) {
     return;
@@ -84439,13 +84439,13 @@ void Unwind_180911880(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xf8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xf0); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xf0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xf0) == 0) {
     return;
@@ -84460,13 +84460,13 @@ void Unwind_180911890(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xd8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xd0); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xd0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xd0) == 0) {
     return;
@@ -84481,13 +84481,13 @@ void Unwind_1809118a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xb8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xb0); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xb0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xb0) == 0) {
     return;
@@ -84502,13 +84502,13 @@ void Unwind_1809118b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x138);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x130); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x130); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x130) == 0) {
     return;
@@ -84523,21 +84523,21 @@ void Unwind_1809118c0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -84546,8 +84546,8 @@ void Unwind_1809118c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -84568,13 +84568,13 @@ void Unwind_1809118e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x78);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x70); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x70); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x70) == 0) {
     return;
@@ -84589,21 +84589,21 @@ void Unwind_1809118f0(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x70);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x70);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -84612,8 +84612,8 @@ void Unwind_1809118f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -84625,13 +84625,13 @@ void Unwind_180911900(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x118);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x110); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x110); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x110) == 0) {
     return;
@@ -84646,13 +84646,13 @@ void Unwind_180911910(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xf8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xf0); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xf0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xf0) == 0) {
     return;
@@ -84667,13 +84667,13 @@ void Unwind_180911920(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xd8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xd0); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xd0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xd0) == 0) {
     return;
@@ -84688,13 +84688,13 @@ void Unwind_180911930(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xb8);
-  for (puVar2 = *(undefined8 **)(param_2 + 0xb0); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xb0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0xb0) == 0) {
     return;
@@ -84709,13 +84709,13 @@ void Unwind_180911940(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x138);
-  for (puVar2 = *(undefined8 **)(param_2 + 0x130); puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x130); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
   }
   if (*(longlong *)(param_2 + 0x130) == 0) {
     return;
@@ -84730,21 +84730,21 @@ void Unwind_180911950(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x20);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(param_2 + 0x20);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -84753,8 +84753,8 @@ void Unwind_180911950(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -87709,21 +87709,21 @@ void Unwind_180912930(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   longlong lVar3;
-  ulonglong uVar4;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x360);
-  if (puVar2 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x360);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
+  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryBaseAddress != 0) {
+    lVar3 = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(lVar3 + 0x20);
+      *(undefined8 **)(lVar3 + 0x20) = resourcePointer;
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -87732,8 +87732,8 @@ void Unwind_180912930(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -89382,17 +89382,17 @@ void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   puVar1 = _DAT_180bfa2f0;
   uVar3 = 0xfffffffffffffffe;
-  puVar2 = _DAT_180bfa2e8;
+  resourcePointer = _DAT_180bfa2e8;
   if (_DAT_180bfa2e8 != _DAT_180bfa2f0) {
     do {
-      (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
-      puVar2 = puVar2 + 0xb;
-    } while (puVar2 != puVar1);
+      (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
+      resourcePointer = resourcePointer + 0xb;
+    } while (resourcePointer != puVar1);
   }
   if (_DAT_180bfa2e8 == (undefined8 *)0x0) {
     return;
@@ -89411,17 +89411,17 @@ void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   puVar1 = _DAT_180bfa310;
   uVar3 = 0xfffffffffffffffe;
-  puVar2 = _DAT_180bfa308;
+  resourcePointer = _DAT_180bfa308;
   if (_DAT_180bfa308 != _DAT_180bfa310) {
     do {
-      (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
-      puVar2 = puVar2 + 0xb;
-    } while (puVar2 != puVar1);
+      (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
+      resourcePointer = resourcePointer + 0xb;
+    } while (resourcePointer != puVar1);
   }
   if (_DAT_180bfa308 == (undefined8 *)0x0) {
     return;
@@ -89440,17 +89440,17 @@ void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 {
   undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *resourcePointer;
   undefined8 uVar3;
   
   puVar1 = _DAT_180bfa330;
   uVar3 = 0xfffffffffffffffe;
-  puVar2 = _DAT_180bfa328;
+  resourcePointer = _DAT_180bfa328;
   if (_DAT_180bfa328 != _DAT_180bfa330) {
     do {
-      (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
-      puVar2 = puVar2 + 0xb;
-    } while (puVar2 != puVar1);
+      (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
+      resourcePointer = resourcePointer + 0xb;
+    } while (resourcePointer != puVar1);
   }
   if (_DAT_180bfa328 == (undefined8 *)0x0) {
     return;
