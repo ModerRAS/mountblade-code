@@ -276,12 +276,12 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 // 网络连接相关偏移量 - 连接处理和数据管理
 #define NetworkConnectionHeaderOffset 0x10                     // 网络连接头部偏移量
 #define NetworkConnectionPrimaryValidationOffset 0xd8          // 网络连接主验证偏移量
-#define NetworkConnectionValidationTertiaryOffset 0x78         // 网络连接第三验证偏移量
+#define NetworkConnectionValidationOffsetThird 0x78         // 网络连接第三验证偏移量
 #define NetworkConnectionValidationQuaternaryOffset 0x58       // 网络连接第四验证偏移量
 #define NetworkConnectionDataPrimaryOffset 0x5c                // 网络连接主数据偏移量
 #define NetworkConnectionValidatorOffset 0x60                  // 网络连接验证器偏移量
-#define NetworkConnectionIntegrityPrimaryOffset 0x70          // 网络连接主完整性偏移量
-#define NetworkConnectionIntegritySecondaryOffset 0x74       // 网络连接次完整性偏移量
+#define NetworkConnectionIntegrityOffsetFirst 0x70          // 网络连接主完整性偏移量
+#define NetworkConnectionIntegrityOffsetSecond 0x74       // 网络连接次完整性偏移量
 #define NetworkConnectionCompletionOffset 0x7c                  // 网络连接完成偏移量
 #define NetworkConnectionSecurityContextOffset 0xf8           // 网络连接安全上下文偏移量
 #define NetworkConnectionHandleContextOffset 0xe8             // 网络连接句柄上下文偏移量
@@ -393,8 +393,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 // 网络连接验证偏移量常量
 #define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证偏移量
 #define NetworkConnectionQuaternaryValidationOffset 0x58         // 第四级连接验证偏移量
-#define NetworkConnectionPrimaryIntegrityOffset 0x70           // 第一级连接完整性偏移量
-#define NetworkConnectionSecondaryIntegrityOffset 0x74          // 第二级连接完整性偏移量
+#define NetworkPacketStatusSizeLimit 0x100                      // 数据包状态大小限制（256字节）
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
 
 // 网络缓冲区对齐和大小常量
@@ -2590,7 +2589,7 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
       }
       PacketValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionPrimaryValidationOffset);
       if ((((int)PacketValidationStatusCode == 0) && (PacketValidationStatusCode = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityContextOffset), (int)PacketValidationStatusCode == 0)) &&
-         (PacketValidationStatusCode = ProcessNetworkPacketDataWithHandleOffset(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)PacketValidationStatusCode == 0)) {
+         (PacketValidationStatusCode = ProcessNetworkPacketDataWithContext(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)PacketValidationStatusCode == 0)) {
           FinalizePacketProcessing(PacketData, ConnectionSecurityBuffer);
       }
     }
@@ -3144,7 +3143,7 @@ NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t Contex
   }
   
   // 验证上下文偏移量有效性
-  if (ContextOffset >= 0) {
+  if (ContextValidationOffset >= 0) {
     ContextSecurityCheck = NetworkOperationSuccess;  // 上下文安全检查通过
   }
   
@@ -3208,7 +3207,7 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
  * @note 此函数会根据处理模式选择不同的数据处理策略
  * @warning 如果数据处理失败，系统会记录错误日志并尝试恢复
  */
-NetworkHandle ProcessNetworkPacketDataWithHandleOffset(NetworkHandle *PacketData, int64_t PacketHandleOffset, uint32_t DataProcessingMode, int64_t ConnectionContext)
+NetworkHandle ProcessNetworkPacketDataWithContext(NetworkHandle *PacketData, int64_t PacketContextOffset, uint32_t DataProcessingMode, int64_t ConnectionContext)
 {
   // 数据包数据处理变量
   uint32_t PacketDataProcessingResult;             // 数据包数据处理结果
@@ -3258,7 +3257,7 @@ NetworkHandle ProcessNetworkPacketDataWithHandleOffset(NetworkHandle *PacketData
  * @note 此函数会更新数据包状态并清理临时资源
  * @warning 如果完成处理失败，可能会导致资源泄漏或状态不一致
  */
-NetworkHandle FinalizePacketProcessingWithFinalizeOffset(NetworkHandle *PacketData, int64_t ProcessingFinalizeOffset, uint32_t ProcessingFinalizeValue)
+NetworkHandle FinalizePacketProcessingWithCompletion(NetworkHandle *PacketData, int64_t ProcessingCompletionOffset, uint32_t ProcessingCompletionValue)
 {
   // 数据包完成处理变量
   uint32_t PacketFinalizationResult;              // 数据包完成处理结果
