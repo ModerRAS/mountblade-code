@@ -692,7 +692,7 @@ uint32_t ValidateNetworkConnectionHandleSecurity(NetworkHandle ConnectionContext
  * @param ConnectionContext 连接上下文指针
  * @return NetworkHandle 连接句柄
  */
-NetworkHandle RetrieveNetworkConnectionHandle(int64_t *ConnectionContext);
+NetworkHandle GetNetworkConnectionHandle(int64_t *ConnectionContext);
 
 /**
  * @brief 验证网络连接条目

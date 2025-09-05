@@ -19079,12 +19079,12 @@ SkipControllerInitialization:
     ControllerPointer = (long long)&SystemMemoryTemplatePrimary;
     ControllerPointer = (long long)&SystemMemoryTemplateSecondary;
     (uint32_t )(ControllerPointer + 1) = 0;
-    ControllerPointer = (long long)&SystemMemoryTemplateC;
+    ControllerPointer = (long long)&SystemMemoryTemplateTertiary;
     LOCK();
     (uint8_t )(ControllerPointer + 2) = 0;
     UNLOCK();
     ControllerPointer[3] = SystemControllerDefaultValue;
-    ControllerPointer = (long long)&SystemMemoryTemplateD;
+    ControllerPointer = (long long)&SystemMemoryTemplateQuaternary;
     ControllerPointer[4] = SystemControllerAddress;
     SystemControllerPointer = ControllerPointer;
     (**(code **)(ControllerPointer + SystemVirtualTableInitializeOffset))(ControllerPointer);
@@ -19113,8 +19113,8 @@ SkipControllerInitialization:
 void* CleanupSystemMemoryManager(void** memoryManager, unsigned long long cleanupFlags, void* reservedParameter3, void* reservedParameter4)
 
 {
-  *memoryManager = &SystemMemoryTemplateD;
-  *memoryManager = &SystemMemoryTemplateC;
+  *memoryManager = &SystemMemoryTemplateQuaternary;
+  *memoryManager = &SystemMemoryTemplateTertiary;
   *memoryManager = &SystemMemoryTemplateSecondary;
   *memoryManager = &SystemMemoryTemplatePrimary;
   if ((cleanupFlags & 1) != 0) {
@@ -19294,7 +19294,7 @@ HandleMemoryBufferOverflow:
     }
     SystemConfigurationTemplatePtr = &SystemConfigurationTemplatePrimary;
     SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffffffffffff,4);
-    SystemMemoryTemplatePtr = &SystemMemoryTemplateE;
+    SystemMemoryTemplatePtr = &SystemMemoryTemplateQuinary;
     LocalSystemStackBuffer = SystemSecurityTemporaryBuffer;
     CalculationFlags = 0;
     SystemSecurityTemporaryBuffer[0] = 0;
@@ -19805,7 +19805,7 @@ void ProcessSystemStringCopy(long long TargetBuffer, long long SourceString)
                         strcpy_s(*(void* *)(SystemResourceManager + 8),0x1000);
     return;
   }
-  ProcessSystemStringAllocation(&SystemMemoryTemplateG,0x1000,ConfigurationDataPointer);
+  ProcessSystemStringAllocation(&SystemMemoryTemplateSeptenary,0x1000,ConfigurationDataPointer);
   *(uint32_t *)(TargetBuffer + STRING_LENGTH_OFFSET) = 0;
   **(uint8_t **)(TargetBuffer + STRING_DATA_OFFSET) = 0;
   return;
@@ -20055,7 +20055,7 @@ void ProcessSystemThreeParameterBuffer(long long MainParameter,long long Auxilia
   
   SystemSecurityFlag = 0xfffffffffffffffe;
   SystemChecksumValue = SystemEncryptionKeyTemplate ^ (unsigned long long)StackSecurityBuffer;
-  SystemMemoryReference = &SystemMemoryTemplateF;
+  SystemMemoryReference = &SystemMemoryTemplateSenary;
   SystemBufferPointer = SystemDataBuffer;
   SystemBufferLength = 0;
   SystemDataBuffer[0] = 0;
@@ -20335,7 +20335,7 @@ void ProcessSystemStringCopyWithLimit(long long targetBuffer,long long sourceStr
                         strcpy_s(*(void* *)(targetBuffer + 8),0x20);
     return;
   }
-  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x20,sourceString);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateSeptenary,0x20,sourceString);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -20420,7 +20420,7 @@ void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
   *memoryAllocatorPointer = &SystemMemoryAllocatorReference;
   memoryAllocatorPointer[1] = 0;
   *(uint32_t *)(memoryAllocatorPointer + 2) = 0;
-  *memoryAllocatorPointer = &SystemMemoryTemplateE;
+  *memoryAllocatorPointer = &SystemMemoryTemplateQuinary;
   memoryAllocatorPointer[1] = memoryAllocatorPointer + 3;
   *(uint32_t *)(memoryAllocatorPointer + 2) = 0;
   *(uint8_t *)(memoryAllocatorPointer + 3) = 0;
@@ -20458,7 +20458,7 @@ void ProcessSystemThreeParameterData(long long sourceStringPointer,long long tar
   
   SecurityFlags = 0xfffffffffffffffe;
   ChecksumValue = SystemEncryptionKeyTemplate ^ (ulong long)StackSecurityBuffer;
-  MemoryReference = &SystemMemoryTemplateE;
+  MemoryReference = &SystemMemoryTemplateQuinary;
   DataBuffer = TempDataBuffer;
   BufferLength = 0;
   TempDataBuffer[0] = 0;
@@ -20559,7 +20559,7 @@ void LockSystemMutexAndBroadcast(long long SystemContextPointer)
 void InitializeSystemReferencePointers(void* *SystemReferencePointer)
 
 {
-  *SystemReferencePointer = &SystemMemoryTemplateC;
+  *SystemReferencePointer = &SystemMemoryTemplateTertiary;
   *SystemReferencePointer = &SystemMemoryTemplateSecondary;
   *SystemReferencePointer = &SystemMemoryTemplatePrimary;
   return;
@@ -20581,7 +20581,7 @@ void InitializeSystemReferencePointers(void* *SystemReferencePointer)
  */
 void* InitializeSystemReferencePointersWithCleanup(void** systemReferencePointer, unsigned long long cleanupFlags, void* cleanupParameter1, void* cleanupParameter2)
 {
-  *systemReferencePointer = &SystemMemoryTemplateC;
+  *systemReferencePointer = &SystemMemoryTemplateTertiary;
   *systemReferencePointer = &SystemMemoryTemplateSecondary;
   *systemReferencePointer = &SystemMemoryTemplatePrimary;
   if ((cleanupFlags & 1) != 0) {
@@ -22406,7 +22406,7 @@ void ResetSystemMemoryManager(void* *SystemResourceManager)
   *SystemResourceManager = &SystemMutexTemplate;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(SystemResourceManager + 4);
-  *SystemResourceManager = &SystemMemoryTemplateC;
+  *SystemResourceManager = &SystemMemoryTemplateTertiary;
   *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *SystemResourceManager = &SystemMemoryTemplatePrimary;
   return;
@@ -22947,7 +22947,7 @@ void ProcessSystemStringCopySmall(long long targetBuffer, long long sourceString
     strcpy_s(*(void* *)(targetBuffer + SystemStringBufferOffset), StringBufferCapacityValue);
     return;
   }
-  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG, StringBufferCapacityValue, ConfigurationDataPointer);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateSeptenary, StringBufferCapacityValue, ConfigurationDataPointer);
   *(uint32_t *)(targetBuffer + SystemStringLengthOffset) = 0;
   **(uint8_t **)(targetBuffer + SystemStringBufferOffset) = 0;
   return;
@@ -23314,7 +23314,7 @@ void ProcessSystemStringCopyMedium(long long targetBuffer,long long sourceString
                         strcpy_s(*(void* *)(targetBuffer + 8),0x80);
     return;
   }
-  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x80,sourceString);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateSeptenary,0x80,sourceString);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -24045,7 +24045,7 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourceManager)
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
-  *SystemResourceManager = &SystemMemoryTemplateE;
+  *SystemResourceManager = &SystemMemoryTemplateQuinary;
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = SystemResourceManager + 3;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *(uint8_t *)(SystemResourceManager + 3) = 0;
@@ -24060,7 +24060,7 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourceManager)
     *(void*2 *)((ulong long)SystemInitializationStatus + SystemResourceManager[1]) = 0x2e;
     *(uint *)(SystemResourceManager + 2) = SystemInitializationStatus + 1;
   }
-  memoryAllocationEnd = &SystemMemoryTemplateE;
+  memoryAllocationEnd = &SystemMemoryTemplateQuinary;
   pSystemEncryptionKey = SystemSecurityEncryptionBufferArray;
   SystemOperationCounter = 0;
   SystemSecurityEncryptionBufferArray[0] = 0;
@@ -24156,7 +24156,7 @@ CreateSystemResourceFromTemplate(void* *SystemResourceHandle, long long Template
   *SystemResourceHandle = &SystemMemoryAllocatorReference;
   SystemResourceHandle[1] = 0;
   *(uint32_t *)(SystemResourceHandle + 2) = 0;
-  *SystemResourceHandle = &SystemMemoryTemplateE;
+  *SystemResourceHandle = &SystemMemoryTemplateQuinary;
   SystemResourceHandle[1] = SystemResourceHandle + 3;
   *(uint32_t *)(SystemResourceHandle + 2) = 0;
   *(uint8_t *)(SystemResourceHandle + 3) = 0;
@@ -25521,7 +25521,7 @@ void* * SystemResourceComplexInitializer(void* *SystemResourceManager)
   *SystemResourceOffsetPointer = (long long)&SystemMemoryAllocatorReference;
   SystemResourceManager[0x33] = 0;
   *(uint32_t *)(SystemResourceManager + 0x34) = 0;
-  *SystemResourceOffsetPointer = (long long)&SystemMemoryTemplateE;
+  *SystemResourceOffsetPointer = (long long)&SystemMemoryTemplateQuinary;
   SystemResourceManager[0x33] = SystemResourceManager + 0x35;
   *(uint32_t *)(SystemResourceManager + 0x34) = 0;
   *(uint8_t *)(SystemResourceManager + 0x35) = 0;
@@ -27016,7 +27016,7 @@ void InitializeSystemDataStructures(void)
     *ppresourceCounter = (long long *)&SystemMemoryTemplatePrimary;
     *ppresourceCounter = (long long *)&SystemMemoryTemplateSecondary;
     *(uint32_t *)(ppresourceCounter + 1) = 0;
-    *ppresourceCounter = (long long *)&SystemMemoryTemplateC;
+    *ppresourceCounter = (long long *)&SystemMemoryTemplateTertiary;
     LOCK();
     *(uint8_t *)(ppresourceCounter + 2) = 0;
     UNLOCK();
@@ -27144,7 +27144,7 @@ void InitializeSystemResourceAllocator(long long SystemResourceHandle)
     *memoryAllocationPointer = (long long *)&SystemMemoryTemplatePrimary;
     *memoryAllocationPointer = (long long *)&SystemMemoryTemplateSecondary;
     *(uint32_t *)(memoryAllocationPointer + 1) = 0;
-    *memoryAllocationPointer = (long long *)&SystemMemoryTemplateC;
+    *memoryAllocationPointer = (long long *)&SystemMemoryTemplateTertiary;
     LOCK();
     *(uint8_t *)(memoryAllocationPointer + 2) = 0;
     UNLOCK();
@@ -30558,7 +30558,7 @@ void ProcessSystemString(long long SystemResourceManager,long long Configuration
                         strcpy_s(*(void* *)(SystemResourceManager + 8),0x400);
     return;
   }
-  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x400);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateSeptenary,0x400);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
@@ -34664,7 +34664,7 @@ void ProcessSystemStringAndInitializeBuffer(long long SystemResourceManager,long
                         strcpy_s(*(void* *)(SystemResourceManager + 8),0x10);
     return;
   }
-  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG,0x10,ConfigurationDataPointer);
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateSeptenary,0x10,ConfigurationDataPointer);
   *(uint32_t *)(SystemResourceManager + 0x10) = 0;
   **(uint8_t **)(SystemResourceManager + 8) = 0;
   return;
@@ -36382,7 +36382,7 @@ void* * ConfigureSystemResourceMemoryBuffer(void* *SystemResourceManager,uint Co
   if ((code *)SystemResourceManager[6] != (code *)0x0) {
     (*(code *)SystemResourceManager[6])(SystemResourceManager + 4,0,0,ConfigurationFlag,InvalidHandleValue);
   }
-  *SystemResourceManager = &SystemMemoryTemplateC;
+  *SystemResourceManager = &SystemMemoryTemplateTertiary;
   *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *SystemResourceManager = &SystemMemoryTemplatePrimary;
   if ((ConfigurationDataPointer & 1) != 0) {
@@ -36403,7 +36403,7 @@ CreateMemoryAllocationHandle(void* *SystemResourceManager,void* *ConfigurationDa
   *SystemResourceManager = &SystemMemoryTemplatePrimary;
   *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
-  *SystemResourceManager = &SystemMemoryTemplateC;
+  *SystemResourceManager = &SystemMemoryTemplateTertiary;
   LOCK();
   *(uint8_t *)(SystemResourceManager + 2) = 0;
   UNLOCK();
@@ -37070,7 +37070,7 @@ ConfigureSystemResourceMemoryAllocator(void* *SystemResourceManager,ulong long C
 
 {
   SystemResourceManager[4] = &SystemMemoryAllocatorReference;
-  *SystemResourceManager = &SystemMemoryTemplateC;
+  *SystemResourceManager = &SystemMemoryTemplateTertiary;
   *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *SystemResourceManager = &SystemMemoryTemplatePrimary;
   if ((ConfigurationDataPointer & 1) != 0) {
@@ -37090,7 +37090,7 @@ void* * InitializeResourceContext(void* *SystemResourceManager,void* *Configurat
   *SystemResourceManager = &SystemMemoryTemplatePrimary;
   *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
-  *SystemResourceManager = &SystemMemoryTemplateC;
+  *SystemResourceManager = &SystemMemoryTemplateTertiary;
   LOCK();
   *(uint8_t *)(SystemResourceManager + 2) = 0;
   UNLOCK();
@@ -43158,7 +43158,7 @@ ConfigureSystemResources(void* *SystemResourceManager,ulong long ConfigurationDa
   SystemResourceManager[7] = 0;
   *(uint32_t *)(SystemResourceManager + 9) = 0;
   SystemResourceManager[6] = &SystemMemoryAllocatorReference;
-  *SystemResourceManager = &SystemMemoryTemplateC;
+  *SystemResourceManager = &SystemMemoryTemplateTertiary;
   *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *SystemResourceManager = &SystemMemoryTemplatePrimary;
   if ((ConfigurationDataPointer & 1) != 0) {
@@ -43178,7 +43178,7 @@ AllocateSystemMemory(void* *SystemResourceManager,uint32_t ConfigurationDataPoin
   *SystemResourceManager = &SystemMemoryTemplatePrimary;
   *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
-  *SystemResourceManager = &SystemMemoryTemplateC;
+  *SystemResourceManager = &SystemMemoryTemplateTertiary;
   LOCK();
   *(uint8_t *)(SystemResourceManager + 2) = 0;
   UNLOCK();
@@ -44238,7 +44238,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
     }
   }
   ProcessSystemQueue(&pGlobalDataFlags2,SystemResourceStringPointer);
-  MemoryAllocatorReferencePointer = &SystemMemoryTemplateE;
+  MemoryAllocatorReferencePointer = &SystemMemoryTemplateQuinary;
   pUnsignedStackFlagQuinary = aSystemFlagSecondary;
   systemDataBuffer = 0;
   aSystemFlagSecondary[0] = 0;
@@ -47110,7 +47110,7 @@ void CopyStringToSystemProcessingBuffer(long long SystemResourceManager,long lon
     strcpy_s(*(void* *)(SystemResourceManager + 8),0x100,ConfigurationDataPointer);
     return;
   }
-  AllocateSystemMemory(&SystemMemoryTemplateG,0x100,ConfigurationDataPointer);
+  AllocateSystemMemory(&SystemMemoryTemplateSeptenary,0x100,ConfigurationDataPointer);
   *(uint32_t *)(SystemResourceManager + 0x10) = 0;
   **(uint8_t **)(SystemResourceManager + 8) = 0;
   return;
@@ -47207,7 +47207,7 @@ void* *
 InitializeSystemMemoryTemplates(void* *SystemResourceManager,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  *SystemResourceManager = &SystemMemoryTemplateC;
+  *SystemResourceManager = &SystemMemoryTemplateTertiary;
   *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *SystemResourceManager = &SystemMemoryTemplatePrimary;
   if ((ConfigurationDataPointer & 1) != 0) {
@@ -47685,7 +47685,7 @@ InitializeSystemResource(void* *SystemResourceManager,void* *ConfigurationDataPo
   *SystemResourceManager = &SystemMemoryTemplatePrimary;
   *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
-  *SystemResourceManager = &SystemMemoryTemplateC;
+  *SystemResourceManager = &SystemMemoryTemplateTertiary;
   LOCK();
   *(uint8_t *)(SystemResourceManager + 2) = 0;
   UNLOCK();
@@ -58734,7 +58734,7 @@ void DestroySystemResourceManager(long long* SystemResourceManager)
   ThreadContextIndicator = 0xfffffffffffffffe;
   SystemMaxOperationCount = SystemEncryptionKeyTemplate ^ (ulong long)SystemStackBuffer;
   SystemInitializationStatus = *(void* *)(SystemResourceManager[0x37] + 0x1e0);
-  memoryAllocationBuffer = &SystemMemoryTemplateE;
+  memoryAllocationBuffer = &SystemMemoryTemplateQuinary;
   memoryAllocationEnd = SystemStackBuffer40;
   SystemStackBuffer40[0] = SystemStackBuffer40[0] & SystemMemoryStatusAlignmentMask;
   SystemEncryptionKey.HighWord = 0x12;
