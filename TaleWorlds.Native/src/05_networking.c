@@ -281,7 +281,6 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * 
  * 定义网络系统操作的状态标志，用于表示系统各组件的运行状态
  */
-#define NetworkOperationSuccess 0x01                           // 操作结果：成功
 #define NetworkSystemEnabled 0x01                              // 系统状态：已启用
 #define NetworkMonitorActive 0x01                              // 监控器状态：活跃
 #define NetworkSecurityEnabled 0x01                            // 安全功能：已启用
@@ -538,8 +537,6 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 
 // 网络连接验证偏移量常量
 #define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证数据偏移量
-#define NetworkConnectionTertiaryValidationOffset 0x56         // 第三级连接验证数据偏移量
-#define NetworkConnectionQuaternaryValidationOffset 0x58         // 第四级连接验证数据偏移量
 #define NetworkPacketStatusSizeLimit 0x100                      // 数据包状态大小限制（256字节）
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
 
@@ -2943,20 +2940,22 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameters)
 NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
-  int64_t ConnectionContextId;                                  // 网络连接上下文标识符
+  int64_t ConnectionContextIdentifier;                                  // 网络连接上下文标识符
   int64_t *ConnectionValidationData;                        // 网络连接验证数据指针
   int32_t ConnectionValidationStatus;                          // 网络连接验证状态码
+  int32_t NetworkValidationStatus;                              // 网络验证状态码
   NetworkHandle ConnectionRequestResult;                         // 网络连接请求结果句柄
   
   ConnectionContextIdentifier = 0;
   ConnectionValidationData = NULL;  // 初始化验证数据指针
   ConnectionValidationStatus = 0;  // 初始化验证状态码
+  NetworkValidationStatus = 0;     // 初始化网络验证状态码
   if (ConnectionValidationStatus == 0) {
     if (ConnectionValidationData && (0 < *(int *)CalculateConnectionParameterOffset(ConnectionValidationData)) && (*ConnectionValidationData != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationData, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
     if (ConnectionValidationData) {
-        *ConnectionValidationData = ConnectionContextId;
+        *ConnectionValidationData = ConnectionContextIdentifier;
         *(int *)CalculateConnectionParameterOffset(ConnectionValidationData) = NetworkValidationStatus;
     }
     return NetworkOperationSuccess;
@@ -3171,7 +3170,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t NetworkProcessingCode = 0;                              // 网络连接处理代码
   int64_t ProcessedPacketIdentifier = 0;                                    // 已处理网络数据包标识符
   int32_t NetworkPacketIndex = 0;                                           // 网络数据包索引
-  int32_t NetworkMaximumInt32Value = 0;                              // 网络最大32位整数值
+  int32_t NetworkMaximumInt32Value = NetworkMaximumSignedInt32Value;         // 网络最大32位整数值
   int64_t *NetworkOperationBuffer = NULL;                               // 连接操作缓冲区
   if (NetworkProcessingCode == 0) {
 PrimaryNetworkProcessingComplete:
