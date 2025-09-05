@@ -357,7 +357,7 @@
  * 
  * @note 原始函数名：FUN_180898ef0
  */
-#define ProcessDataBlockOperation FUN_180898ef0
+#define ProcessDataBlockOperationA0 ProcessDataBlockOperationA0
 
 /**
  * @brief 处理数据块操作A1
@@ -366,7 +366,7 @@
  * 
  * @note 原始函数名：FUN_180898f40
  */
-#define ProcessDataBlockOperationEx FUN_180898f40
+#define ProcessDataBlockOperationA1 ProcessDataBlockOperationA1
 
 /**
  * @brief 验证数据序列A0
@@ -438,7 +438,7 @@
  * 
  * @note 原始函数名：FUN_1808997f0
  */
-#define InitializeDataProcessor FUN_1808997f0
+#define InitializeDataProcessorA0 InitializeDataProcessorA0
 
 /**
  * @brief 清理数据处理器
