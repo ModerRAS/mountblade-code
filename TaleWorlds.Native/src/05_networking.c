@@ -142,7 +142,7 @@ static int64_t CalculateConnectionParameterOffset(int64_t *ConnectionContext)
  * @param NetworkConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的偏移量地址
  */
-static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *NetworkConnectionStatusPointer)
+static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
 {
     return (ContextAddress - (int64_t)ConnectionContextBuffer) + (int64_t)NetworkConnectionStatusPointer;
 }
