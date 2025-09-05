@@ -90189,7 +90189,7 @@ void SetDefaultExceptionHandler06(void)
 
 
 9421a0(void)
-void FUN_1809421a0(void)
+void SetExceptionHandlerBToGlobalA(void)
 
 {
   _DAT_180bf9990 = &DefaultExceptionHandlerB;
@@ -90202,7 +90202,7 @@ void FUN_1809421a0(void)
 
 
 9421c0(void)
-void FUN_1809421c0(void)
+void SetExceptionHandlerBToGlobalB(void)
 
 {
   _DAT_180bf99f0 = &DefaultExceptionHandlerB;
@@ -90215,7 +90215,7 @@ void FUN_1809421c0(void)
 
 
 9421e0(void)
-void FUN_1809421e0(void)
+void SetExceptionHandlerBToGlobalC(void)
 
 {
   _DAT_180bf9a50 = &DefaultExceptionHandlerB;
