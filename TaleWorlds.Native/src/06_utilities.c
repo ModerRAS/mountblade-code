@@ -4477,7 +4477,7 @@ int32_t UtilitySecondaryCompareData;
 int32_t UtilityTertiaryCompareData;
 int32_t UtilityQuaternaryCompareData;
 
-// 函数: void* UtilityProcessData8(void);
+// 函数: void* UtilityProcessDataEighth(void);
 void* UtilityProcessDataOctonary;
 void* UtilityDataProcessorPointerNonary;
 void* UtilityProcessDataInstancePrimary;
@@ -4486,7 +4486,7 @@ void* UtilityProcessDataInstanceTertiary;
 void* UtilityProcessDataInstanceQuaternary;
 void* UtilityDataProcessorPointerDenary;
 
-// 函数: void* UtilityProcessData9(void);
+// 函数: void* UtilityProcessDataNinth(void);
 void* UtilityProcessDataNonary;
 void* UtilityProcessConfigurationPrimary;
 void* UtilityProcessConfigurationSecondary;
@@ -4494,7 +4494,7 @@ void* UtilityProcessConfigurationTertiary;
 void* UtilityProcessConfigurationQuaternary;
 void* UtilityProcessUnknownDataPrimary;
 
-// 函数: uint32_t UtilityProcessData10(void);
+// 函数: uint32_t UtilityProcessDataTenth(void);
 uint32_t UtilityProcessInputData;
 uint32_t UtilityProcessOutputData;
 uint32_t UtilityProcessTempData;
@@ -4518,7 +4518,7 @@ uint32_t UtilityInitObjectMetadata;
 uint32_t UtilityInitObjectFooter;
 uint32_t UtilityInitObjectReservedData;
 
-// 函数: uint32_t UtilityProcessObject1(void);
+// 函数: uint32_t UtilityProcessObjectFirst(void);
 uint32_t UtilityProcessObjectPrimary;
 uint32_t UtilityProcessObjectInput;
 uint32_t UtilityProcessObjectOutput;
@@ -4526,10 +4526,10 @@ uint32_t UtilityProcessObjectState;
 uint32_t UtilityProcessObjectResult;
 uint32_t UtilityProcessObjectReservedData;
 
-// 函数: uint32_t UtilityProcessObject2(void);
+// 函数: uint32_t UtilityProcessObjectSecond(void);
 uint32_t UtilityProcessObjectSecondary;
 
-// 函数: uint32_t UtilityProcessObject3(void);
+// 函数: uint32_t UtilityProcessObjectThird(void);
 uint32_t UtilityProcessObjectTertiary;
 uint32_t SystemConfigurationData;
 void* SystemFunctionPointerPrimary;
@@ -4706,8 +4706,8 @@ uint32_t UtilityEventDataPrimary;
 uint32_t UtilityEventDataSecondary;
 uint32_t UtilityEventDataTertiary;
 
-// 函数: void UtilityHandleEvent2(void);
-void UtilityHandleEvent2(void);
+// 函数: void UtilityHandleEventSecond(void);
+void UtilityHandleEventSecond(void);
 // 工具系统事件处理相关变量
 uint32_t UtilityEventStatus;
 void* UtilitySystemPointerSecondary;
