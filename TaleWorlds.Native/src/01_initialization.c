@@ -20995,11 +20995,11 @@ ulong long CompareSystemDataBlocks(long long SystemResourceManager,long long Com
   long long DataBlockResourceMemoryOffset;
   byte *DataBlockSourceBytePointer;
   int DataBlockByteDifference;
-  int dataBlockCalculationFlags;
-  ulong long dataBlockSizeLimit;
-  long long dataBlockMemoryOffset;
-  uint dataBlockIndexCounter;
-  ulong long dataBlockComparisonIndex;
+  int DataBlockCalculationFlags;
+  ulong long DataBlockSizeLimit;
+  long long DataBlockMemoryOffset;
+  uint DataBlockIndexCounter;
+  ulong long DataBlockComparisonIndex;
   ulong long dataBlockLoopCounter;
   
   dataBlockComparisonIndex = (ulong long)*(int *)(SystemResourceManager + 0x68);
