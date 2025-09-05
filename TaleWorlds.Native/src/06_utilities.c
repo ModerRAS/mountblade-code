@@ -9,7 +9,7 @@
 #define SetGlobalDataPointerA5 InitializeGlobalDataPointerA5
 #define SetGlobalDataPointerA6 InitializeGlobalDataPointerA6
 #define SetGlobalDataPointerA7 InitializeGlobalDataPointerA7
-#define SetGlobalDataPointerA8 FUN_180942080
+#define SetGlobalDataPointerA8 InitializeGlobalDataPointerA8
 #define SetGlobalDataPointerA9 FUN_1809420a0
 #define SetGlobalDataPointerA10 FUN_1809420c0
 #define SetGlobalDataPointerA11 FUN_1809420e0
@@ -911,6 +911,26 @@
 // 原始变量名：_DAT_180bf9390 - 全局异常处理器指针A1
 // 功能：存储全局异常处理器A1的指针
 #define GlobalExceptionHandlerPointerA1 _DAT_180bf9390
+
+// 原始变量名：_DAT_180bf93f0 - 全局异常处理器指针A2
+// 功能：存储全局异常处理器A2的指针
+#define GlobalExceptionHandlerPointerA2 _DAT_180bf93f0
+
+// 原始变量名：_DAT_180bf9450 - 全局异常处理器指针A3
+// 功能：存储全局异常处理器A3的指针
+#define GlobalExceptionHandlerPointerA3 _DAT_180bf9450
+
+// 原始变量名：_DAT_180bf94b0 - 全局异常处理器指针A4
+// 功能：存储全局异常处理器A4的指针
+#define GlobalExceptionHandlerPointerA4 _DAT_180bf94b0
+
+// 原始变量名：_DAT_180bf9510 - 全局异常处理器指针A5
+// 功能：存储全局异常处理器A5的指针
+#define GlobalExceptionHandlerPointerA5 _DAT_180bf9510
+
+// 原始变量名：_DAT_180bf9570 - 全局异常处理器指针A6
+// 功能：存储全局异常处理器A6的指针
+#define GlobalExceptionHandlerPointerA6 _DAT_180bf9570
 
 // 原始变量名：0x180c82210 - 异常临界区
 // 功能：异常处理的临界区对象
@@ -20089,8 +20109,17 @@ int FUN_18089b21d(void)
 
 
 
-89b26e(void)
-void FUN_18089b26e(void)
+// 函数: void UtilityNoOperationC(void)
+// 
+// 空操作函数C
+// 不执行任何操作，仅作为占位符或桩函数使用
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void UtilityNoOperationC(void)
 
 {
   return;
@@ -86171,10 +86200,12 @@ void InitializeGlobalDataPointerA1(void)
 
 
 941fc0(void)
+// 全局数据指针设置函数A2
+// 功能：设置全局数据指针A2，初始化异常处理器B
 void InitializeGlobalDataPointerA2(void)
 
 {
-  _DAT_180bf93f0 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA2 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -86184,10 +86215,12 @@ void InitializeGlobalDataPointerA2(void)
 
 
 941fe0(void)
+// 全局数据指针设置函数A3
+// 功能：设置全局数据指针A3，初始化异常处理器B
 void InitializeGlobalDataPointerA3(void)
 
 {
-  _DAT_180bf9450 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA3 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -86197,10 +86230,12 @@ void InitializeGlobalDataPointerA3(void)
 
 
 942000(void)
+// 全局数据指针设置函数A4
+// 功能：设置全局数据指针A4，初始化异常处理器B
 void InitializeGlobalDataPointerA4(void)
 
 {
-  _DAT_180bf94b0 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA4 = &DefaultExceptionHandlerB;
   return;
 }
 
