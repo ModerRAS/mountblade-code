@@ -98313,7 +98313,18 @@ void ClearResourceDataFlagAndExecuteOperation(uint8_t ObjectContext,int64_t Vali
 
 
 
-void Unwind_18090fd30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源标志位2并处理操作
+ * 
+ * 该函数检查资源数据中偏移0x30处的第2位标志，如果置位则清除该标志
+ * 并调用ProcessResourceOperation处理相关操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090fd30
+ */
+void ReleaseResourceFlagBit2AndProcess(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
@@ -98325,7 +98336,18 @@ void Unwind_18090fd30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fd60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源标志位4并处理操作
+ * 
+ * 该函数检查资源数据中偏移0x30处的第4位标志，如果置位则清除该标志
+ * 并调用ProcessResourceOperation处理相关操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090fd60
+ */
+void ReleaseResourceFlagBit4AndProcess(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 4) != 0) {
