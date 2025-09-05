@@ -13363,7 +13363,10 @@ undefined8 UtilityNoOperationH(void)
 
 
 
-undefined8 FUN_180895d30(longlong *param_1,uint *param_2,undefined8 *param_3)
+// 原始函数名：FUN_180895d30 - 哈希表数据插入和更新函数
+// 功能：在哈希表中插入或更新数据项，处理哈希冲突和内存分配
+#define ProcessHashTableInsertAndUpdate FUN_180895d30
+undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undefined8 *param_3)
 
 {
   uint uVar1;
