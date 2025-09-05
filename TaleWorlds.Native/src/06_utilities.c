@@ -4141,122 +4141,136 @@ int SystemExceptionHandlerState;          // 系统异常处理状态
 int SystemExceptionCleanupFlag;           // 系统异常清理标志
 void* TemporaryExceptionHandler;           // 临时异常处理器
 
-// 函数: void ResetUtilityPointers3(void)
-// 
-// 重置工具模块指针组3
-// 清理和重置第三组工具模块相关的指针
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 重置工具模块指针组3
+ * 
+ * 清理和重置第三组工具模块相关的指针
+ * 
+ * @note 原始函数名：ResetUtilityPointers3
+ */
 void ResetUtilityPointers3(void);
+
+/**
+ * @brief 工具清理指针
+ */
 uint32_t UtilityPrimaryCleanupPointer;
 uint32_t UtilitySecondaryCleanupPointer;
 uint32_t UtilityTertiaryCleanupPointer;
 uint32_t UtilityQuaternaryCleanupPointer;
 uint32_t UtilityCleanupStatusIndicator;
 
-// 函数: void ResetUtilityPointers4(void)
-// 
-// 重置工具模块指针组4
-// 清理和重置第四组工具模块相关的指针
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 重置工具模块指针组4
+ * 
+ * 清理和重置第四组工具模块相关的指针
+ * 
+ * @note 原始函数名：ResetUtilityPointers4
+ */
 void ResetUtilityPointers4(void);
+
+/**
+ * @brief 工具释放指针
+ */
 uint32_t UtilityPrimaryFreePointer;
 uint32_t UtilitySecondaryFreePointer;
 uint32_t UtilityTertiaryFreePointer;
 uint32_t UtilityQuaternaryFreePointer;
 
-// 函数: uint32_t UtilityInitializeSystem
-// 
-// 初始化工具系统
-// 执行工具系统的初始化操作
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint32_t - 初始化结果状态
+/**
+ * @brief 初始化工具系统
+ * 
+ * 执行工具系统的初始化操作
+ * 
+ * @note 原始函数名：UtilityInitializeSystem
+ */
 uint32_t UtilityInitializeSystem;
+
+/**
+ * @brief 工具系统初始化数据
+ */
 uint32_t UtilityPrimaryInitializationData;
 uint32_t UtilitySecondaryInitializationData;
 uint32_t UtilityTertiaryInitializationData;
 uint32_t UtilityQuaternaryInitializationData;
 
-// 函数: uint32_t UtilityValidateSystem(void)
-// 
-// 验证工具系统状态
-// 检查工具系统的完整性和有效性
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint32_t - 验证结果状态
+/**
+ * @brief 验证工具系统状态
+ * 
+ * 检查工具系统的完整性和有效性
+ * 
+ * @note 原始函数名：UtilityValidateSystem
+ */
 uint32_t UtilityValidateSystem;
+
+/**
+ * @brief 工具系统验证标志
+ */
 uint8_t UtilitySystemValidationFlag;
 
-// 函数: uint32_t UtilityCheckSystemStatus(void)
-// 
-// 检查工具系统运行状态
-// 获取工具系统的当前运行状态信息
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint32_t - 系统状态信息
+/**
+ * @brief 检查工具系统运行状态
+ * 
+ * 获取工具系统的当前运行状态信息
+ * 
+ * @note 原始函数名：UtilityCheckSystemStatus
+ */
 uint32_t UtilityCheckSystemStatus;
+
+/**
+ * @brief 工具系统状态标志
+ */
 uint8_t UtilitySystemStatusFlag;
 
-// 函数: uint32_t UtilityResetSystem(void)
-// 
-// 重置工具系统
-// 将工具系统恢复到初始状态
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint32_t - 重置结果状态
+/**
+ * @brief 重置工具系统
+ * 
+ * 将工具系统恢复到初始状态
+ * 
+ * @note 原始函数名：UtilityResetSystem
+ */
 uint32_t UtilitySystemResetStatus;
+
+/**
+ * @brief 工具系统重置启用标志
+ */
 bool UtilitySystemResetEnabled;
 
-// 函数: uint32_t UtilityCleanupSystem(void)
-// 
-// 清理工具系统
-// 释放工具系统占用的资源并清理内存
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint32_t - 清理结果状态
+/**
+ * @brief 清理工具系统
+ * 
+ * 释放工具系统占用的资源并清理内存
+ * 
+ * @note 原始函数名：UtilityCleanupSystem
+ */
 uint32_t UtilitySystemCleanupStatus;
+
+/**
+ * @brief 工具系统清理启用标志
+ */
 bool UtilitySystemCleanupEnabled;
 
-// 函数: uint32_t UtilityProcessData1(void)
-// 
-// 处理工具数据1
-// 执行第一类工具数据的处理操作
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint32_t - 数据处理结果
+/**
+ * @brief 处理工具数据1
+ * 
+ * 执行第一类工具数据的处理操作
+ * 
+ * @note 原始函数名：UtilityProcessData1
+ */
 uint32_t UtilityPrimaryDataProcessingStatus;
+
+/**
+ * @brief 主要数据处理缓冲区
+ */
 uint32_t UtilityPrimaryDataProcessingBuffer;
 void* UtilityPrimaryDataProcessingPointer;
 
-// 函数: uint32_t UtilityProcessData2(void);
+/**
+ * @brief 处理工具数据2
+ * 
+ * 执行第二类工具数据的处理操作
+ * 
+ * @note 原始函数名：UtilityProcessData2
+ */
 uint32_t UtilitySecondaryDataProcessingStatus;
 
 // 函数: uint32_t UtilityProcessData3(void);
