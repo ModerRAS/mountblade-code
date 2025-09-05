@@ -7901,34 +7901,34 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
   floatTemp = *(float *)(dataPtr + 0x3c);
   stackBuffer[0] = CONCAT44(stackBuffer[0]._4_4_,floatComponentZ);
   infFlag4 = infFlag3;
-  if (((uint)fVar1 & 0x7f800000) == 0x7f800000) {
-    iVar9 = 0x1d;
+  if (((uint)floatComponentZ & 0x7f800000) == 0x7f800000) {
+    infFlag4 = 0x1d;
   }
-  iVar6 = iVar8;
-  if ((uStackX_18 & 0x7f800000) == 0x7f800000) {
-    iVar6 = 0x1d;
+  infFlag1 = infFlag3;
+  if ((uintComponentW & 0x7f800000) == 0x7f800000) {
+    infFlag1 = 0x1d;
   }
-  if (((uint)fStackX_20 & 0x7f800000) == 0x7f800000) {
-    iVar8 = 0x1d;
+  if (((uint)floatTemp & 0x7f800000) == 0x7f800000) {
+    infFlag3 = 0x1d;
   }
-  if ((iVar9 == 0 && iVar6 == 0) && iVar8 == 0) {
-    if (((*(float *)(param_1 + 0x30) == 0.0) && (*(float *)(param_1 + 0x34) == 0.0)) &&
-       (*(float *)(param_1 + 0x38) == 0.0)) {
+  if ((infFlag4 == 0 && infFlag1 == 0) && infFlag3 == 0) {
+    if (((*(float *)(dataPtr + 0x30) == 0.0) && (*(float *)(dataPtr + 0x34) == 0.0)) &&
+       (*(float *)(dataPtr + 0x38) == 0.0)) {
       return 0x1f;
     }
-    if (((fStackX_20 == 0.0) && (*(float *)(param_1 + 0x40) == 0.0)) && (fVar1 == 0.0)) {
+    if (((floatTemp == 0.0) && (*(float *)(dataPtr + 0x40) == 0.0)) && (floatComponentZ == 0.0)) {
       return 0x1f;
     }
-    uVar5 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),alStackX_8);
-    if ((int)uVar5 != 0) {
-      return uVar5;
+    result = QueryAndRetrieveSystemDataA0(*(undefined4 *)(dataPtr + 0x10),stackBuffer);
+    if ((int)result != 0) {
+      return result;
     }
-    if (alStackX_8[0] != 0) {
-      lVar10 = alStackX_8[0] + -8;
+    if (stackBuffer[0] != 0) {
+      dataBufferPtr = stackBuffer[0] + -8;
     }
-    uVar5 = *(undefined8 *)(param_1 + 0x20);
-    *(undefined8 *)(lVar10 + 0x38) = *(undefined8 *)(param_1 + 0x18);
-    *(undefined8 *)(lVar10 + 0x40) = uVar5;
+    result = *(undefined8 *)(dataPtr + 0x20);
+    *(undefined8 *)(dataBufferPtr + 0x38) = *(undefined8 *)(dataPtr + 0x18);
+    *(undefined8 *)(dataBufferPtr + 0x40) = result;
     uVar2 = *(undefined4 *)(param_1 + 0x2c);
     uVar3 = *(undefined4 *)(param_1 + 0x30);
     uVar4 = *(undefined4 *)(param_1 + 0x34);
