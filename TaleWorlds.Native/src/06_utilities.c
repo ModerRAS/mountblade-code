@@ -988,6 +988,7 @@
 
 // 原始函数名：FUN_180853000 - 处理输入数据
 // 功能：处理用户输入数据
+#define ProcessInputData FUN_180853000
 
 // 额外的Unwind_函数语义化宏定义
 // 原始函数名：Unwind_180908670 - 异常清理函数A6
@@ -997,6 +998,45 @@
 // 原始函数名：Unwind_180908690 - 异常清理函数A7
 // 功能：清理特定位置的异常处理指针
 #define CleanupExceptionPointer Unwind_180908690
+
+// 状态设置和获取函数语义化宏定义
+// 原始函数名：FUN_18089b218 - 系统状态设置函数A0
+// 功能：设置系统状态为7并执行状态检查
+#define SetSystemStatusToSeven FUN_18089b218
+
+// 原始函数名：FUN_18089b21d - 系统状态设置函数A1
+// 功能：根据输入参数设置系统状态并执行检查
+#define SetSystemStatusFromParameter FUN_18089b21d
+
+// 原始函数名：FUN_18089b26e - 空操作函数C
+// 功能：空函数，用于占位或同步操作
+#define UtilityNoOperationC FUN_18089b26e
+
+// 数据处理函数语义化宏定义
+// 原始函数名：FUN_180897d20 - 数据安全处理函数A0
+// 功能：处理数据块并进行安全验证，执行加密操作
+#define ProcessDataBlockWithSecurityCheckA0 FUN_180897d20
+
+// 系统操作函数语义化宏定义
+// 原始函数名：FUN_180899040 - 数据验证函数A0
+// 功能：验证系统数据的有效性，执行多重验证检查
+#define ValidateSystemDataWithMultipleChecks FUN_180899040
+
+// 原始函数名：FUN_180899090 - 数据处理函数A0
+// 功能：处理系统数据并执行验证操作
+#define ProcessAndValidateSystemData FUN_180899090
+
+// 原始函数名：FUN_180899790 - 系统清理函数A1
+// 功能：清理系统资源，空操作函数
+#define CleanupSystemResourcesA1 FUN_180899790
+
+// 原始函数名：FUN_180899799 - 系统重置函数A1
+// 功能：重置系统状态，空操作函数
+#define ResetSystemStateA1 FUN_180899799
+
+// 原始函数名：FUN_1808997b0 - 数据同步函数A0
+// 功能：同步数据并执行验证操作
+#define SynchronizeAndValidateData FUN_1808997b0
 
 // 原始函数名：Unwind_180907f70 - 句柄清理函数
 // 功能：安全关闭和清理系统句柄
@@ -4275,6 +4315,47 @@ undefined UNK_180a3c908;
 undefined UNK_180a3d970;
 undefined UNK_180a3db60;
 undefined DAT_180bfbd80;
+
+// Unwind函数语义化宏定义（180901f90系列）
+// 原始函数名：Unwind_180901f90 - 异常上下文设置函数D0
+// 功能：设置异常上下文指针并解锁互斥锁
+#define SetExceptionContextAndUnlock Unwind_180901f90
+
+// 原始函数名：Unwind_180901fa0 - 异常数据验证函数D0
+// 功能：验证异常数据指针的有效性并处理相关操作
+#define ValidateExceptionDataPointer Unwind_180901fa0
+
+// 原始函数名：Unwind_180901fc0 - 异常状态重置函数D0
+// 功能：重置异常处理状态并清理相关资源
+#define ResetExceptionState Unwind_180901fc0
+
+// 原始函数名：Unwind_180901fe0 - 异常清理函数D0
+// 功能：清理异常处理过程中的临时数据
+#define CleanupExceptionData Unwind_180901fe0
+
+// 原始函数名：Unwind_180902070 - 异常处理函数E0
+// 功能：处理异常状态并执行相应的恢复操作
+#define ProcessExceptionState Unwind_180902070
+
+// 原始函数名：Unwind_180902080 - 异常处理函数E1
+// 功能：处理异常状态并执行相应的恢复操作
+#define ProcessExceptionStateE1 Unwind_180902080
+
+// 原始函数名：Unwind_180902090 - 异常处理函数E2
+// 功能：处理异常状态并执行相应的恢复操作
+#define ProcessExceptionStateE2 Unwind_180902090
+
+// 原始函数名：Unwind_1809020c0 - 异常处理函数E3
+// 功能：处理异常状态并执行相应的恢复操作
+#define ProcessExceptionStateE3 Unwind_1809020c0
+
+// 原始函数名：Unwind_1809020f0 - 异常清理函数F0
+// 功能：清理异常处理状态并释放相关资源
+#define CleanupExceptionState Unwind_1809020f0
+
+// 原始函数名：Unwind_180902100 - 异常清理函数F1
+// 功能：清理异常处理状态并释放相关资源
+#define CleanupExceptionStateF1 Unwind_180902100
 
 // 函数: void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
 // 
@@ -10292,32 +10373,48 @@ undefined8 ValidateFloatRangeAndProcessSystemCall(void)
 
 
 
-undefined8 FUN_180893e94(void)
+/**
+ * @brief 简化的浮点数值验证和系统调用处理
+ * 
+ * 该函数是ValidateFloatRangeAndProcessSystemCall的简化版本
+ * 主要用于验证浮点数值范围并在条件满足时执行系统调用
+ * 
+ * @param resourceHandle 资源句柄指针（通过寄存器传递）
+ * @param dataDescriptor 数据描述符指针（通过寄存器传递）
+ * @param systemContext 系统上下文指针（通过寄存器传递）
+ * @param processingParameter 处理参数（通过栈传递）
+ * 
+ * @return 验证和处理结果状态码
+ *   - 0x1c: 浮点数值超出范围
+ *   - 0: 成功执行系统调用
+ *   - 其他: 验证失败状态码
+ */
+undefined8 ValidateFloatRangeAndDispatchCall(void)
 
 {
-  float fVar1;
-  undefined8 uVar2;
-  longlong unaff_RBX;
-  longlong unaff_RDI;
-  longlong unaff_R14;
-  undefined4 in_stack_00000048;
+  float floatValue;
+  undefined8 validationResult;
+  longlong resourceHandle;
+  longlong dataDescriptor;
+  longlong systemContext;
+  undefined4 processingParameter;
   
-  uVar2 = FUN_18084de40();
-  if ((int)uVar2 == 0) {
-    fVar1 = *(float *)(unaff_RDI + 0x18);
-    if ((fVar1 < *(float *)(unaff_RBX + 0x38)) ||
-       (*(float *)(unaff_RBX + 0x3c) <= fVar1 && fVar1 != *(float *)(unaff_RBX + 0x3c))) {
-      uVar2 = 0x1c;
+  validationResult = ValidateResourceData();
+  if ((int)validationResult == 0) {
+    floatValue = *(float *)(dataDescriptor + 0x18);
+    if ((floatValue < *(float *)(resourceHandle + 0x38)) ||
+       (*(float *)(resourceHandle + 0x3c) <= floatValue && floatValue != *(float *)(resourceHandle + 0x3c))) {
+      validationResult = 0x1c;
     }
     else {
-      uVar2 = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000048);
-      if ((int)uVar2 == 0) {
+      validationResult = ProcessSystemRequest(systemContext + 0x60,processingParameter);
+      if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(unaff_R14 + 0x98));
+        ExecuteSystemDispatch(*(undefined8 *)(systemContext + 0x98));
       }
     }
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -12361,43 +12458,51 @@ undefined8 FUN_180895d9c(undefined8 param_1,undefined4 param_2)
 
 
 
-undefined8 FUN_180895e00(longlong param_1,undefined8 param_2,longlong param_3)
+// 函数: undefined8 StoreResourceData(longlong resourceIndex,undefined8 resourceHandle,longlong dataBuffer)
+// 功能：将资源数据存储到指定的数据缓冲区中
+// 参数：resourceIndex - 资源索引，resourceHandle - 资源句柄，dataBuffer - 数据缓冲区
+// 返回值：成功返回0，失败返回非0值
+undefined8 StoreResourceData(longlong resourceIndex,undefined8 resourceHandle,longlong dataBuffer)
 
 {
-  undefined8 *unaff_R14;
+  undefined8 *resourceDataPointer;
   
-  *(undefined8 *)(param_3 + 8 + param_1 * 8) = *unaff_R14;
+  *(undefined8 *)(dataBuffer + 8 + resourceIndex * 8) = *resourceDataPointer;
   return 0;
 }
 
 
 
-undefined8
-FUN_180895e19(int param_1,int param_2,undefined8 param_3,undefined8 param_4,undefined8 param_5)
+// 函数: undefined8 ValidateAndProcessResourceAllocation(int minimumSize,int requestedSize,undefined8 resourceContext,undefined8 operationFlags,undefined8 resourceData)
+// 功能：验证并处理资源分配，确保请求的大小满足最小要求，并在必要时进行资源分配
+// 参数：minimumSize - 最小大小要求，requestedSize - 请求的大小，resourceContext - 资源上下文
+//      operationFlags - 操作标志，resourceData - 资源数据
+// 返回值：成功返回0，失败返回非0值
+undefined8 ValidateAndProcessResourceAllocation(int minimumSize,int requestedSize,undefined8 resourceContext,undefined8 operationFlags,undefined8 resourceData)
 
 {
-  undefined8 uVar1;
-  undefined8 *puVar2;
-  undefined4 *unaff_RBX;
-  undefined4 unaff_EBP;
-  longlong unaff_RDI;
-  undefined8 uStackX_20;
+  undefined8 allocationResult;
+  undefined8 *resourcePointer;
+  undefined4 *statusRegister;
+  undefined4 statusValue;
+  longlong systemContext;
+  undefined8 stackData;
   
-  if (param_2 < param_1) {
-    param_2 = param_1;
+  if (requestedSize < minimumSize) {
+    requestedSize = minimumSize;
   }
-  uVar1 = FUN_1807d3f50(unaff_RDI + 0x10,param_2);
-  if ((int)uVar1 == 0) {
-    puVar2 = (undefined8 *)
-             ((longlong)*(int *)(unaff_RDI + 0x18) * 0x10 + *(longlong *)(unaff_RDI + 0x10));
-    *puVar2 = uStackX_20;
-    puVar2[1] = param_5;
-    *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) + 1;
-    *unaff_RBX = unaff_EBP;
-    *(int *)(unaff_RDI + 0x24) = *(int *)(unaff_RDI + 0x24) + 1;
-    uVar1 = 0;
+  allocationResult = AllocateSystemResource(systemContext + 0x10,requestedSize);
+  if ((int)allocationResult == 0) {
+    resourcePointer = (undefined8 *)
+             ((longlong)*(int *)(systemContext + 0x18) * 0x10 + *(longlong *)(systemContext + 0x10));
+    *resourcePointer = stackData;
+    resourcePointer[1] = resourceData;
+    *(int *)(systemContext + 0x18) = *(int *)(systemContext + 0x18) + 1;
+    *statusRegister = statusValue;
+    *(int *)(systemContext + 0x24) = *(int *)(systemContext + 0x24) + 1;
+    allocationResult = 0;
   }
-  return uVar1;
+  return allocationResult;
 }
 
 
@@ -28101,50 +28206,81 @@ void ExceptionUnwindHandlerA2(undefined8 exceptionContext,longlong unwindParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180901f90(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置异常上下文并解锁互斥锁
+ * @details 设置全局异常上下文指针，然后解锁指定的互斥锁
+ * 
+ * @param param_1 异常处理上下文（未使用）
+ * @param param_2 包含异常上下文指针的数据结构
+ * 
+ * @return 无返回值
+ */
+void SetExceptionContextAndUnlock(undefined8 param_1,longlong param_2)
 
 {
-  int iVar1;
+  int unlockResult;
   
-  _DAT_180c8a9b0 = *(undefined8 *)(param_2 + 0x88);
-  iVar1 = _Mtx_unlock(0x180c91970);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  // 设置异常上下文指针
+  ExceptionContext = *(undefined8 *)(param_2 + 0x88);
+  
+  // 解锁互斥锁
+  unlockResult = _Mtx_unlock(0x180c91970);
+  if (unlockResult != 0) {
+    // 如果解锁失败，抛出C标准错误
+    __Throw_C_error_std__YAXH_Z(unlockResult);
   }
   return;
 }
 
 
 
-void Unwind_180901fa0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 验证异常数据指针并处理相关操作
+ * @details 验证异常数据指针的有效性，如果指针有效则执行相应的异常处理操作
+ * 
+ * @param param_1 异常处理上下文（未使用）
+ * @param param_2 包含异常数据指针的上下文结构
+ * 
+ * @return 无返回值
+ */
+void ValidateExceptionDataPointer(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *referenceCount;
+  undefined8 *dataPointer;
+  longlong calculatedOffset;
+  ulonglong baseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x218);
-  if (puVar2 == (undefined8 *)0x0) {
+  // 获取异常数据指针
+  dataPointer = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x218);
+  if (dataPointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  
+  // 计算基地址和偏移量
+  baseAddress = (ulonglong)dataPointer & 0xffffffffffc00000;
+  if (baseAddress != 0) {
+    calculatedOffset = baseAddress + 0x80 + ((longlong)dataPointer - baseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    
+    // 检查是否为异常列表且状态标志为0
+    if ((*(void ***)(baseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      // 更新指针链表
+      *dataPointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = dataPointer;
+      
+      // 减少引用计数
+      referenceCount = (int *)(calculatedOffset + 0x18);
+      *referenceCount = *referenceCount + -1;
+      if (*referenceCount == 0) {
         FUN_18064d630();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      // 调用异常处理函数
+      func_0x00018064e870(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
+                          dataPointer,baseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -28152,35 +28288,53 @@ void Unwind_180901fa0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180901fc0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 重置异常处理状态并清理相关资源
+ * @details 重置异常处理状态，清理异常数据指针和相关资源
+ * 
+ * @param param_1 异常处理上下文（未使用）
+ * @param param_2 包含异常数据指针的上下文结构
+ * 
+ * @return 无返回值
+ */
+void ResetExceptionState(undefined8 param_1,longlong param_2)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *referenceCount;
+  undefined8 *dataPointer;
+  longlong calculatedOffset;
+  ulonglong baseAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x218);
-  if (puVar2 == (undefined8 *)0x0) {
+  // 获取异常数据指针（使用0x40偏移量）
+  dataPointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x218);
+  if (dataPointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  
+  // 计算基地址和偏移量
+  baseAddress = (ulonglong)dataPointer & 0xffffffffffc00000;
+  if (baseAddress != 0) {
+    calculatedOffset = baseAddress + 0x80 + ((longlong)dataPointer - baseAddress >> 0x10) * 0x50;
+    calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+    
+    // 检查是否为异常列表且状态标志为0
+    if ((*(void ***)(baseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      // 更新指针链表
+      *dataPointer = *(undefined8 *)(calculatedOffset + 0x20);
+      *(undefined8 **)(calculatedOffset + 0x20) = dataPointer;
+      
+      // 减少引用计数
+      referenceCount = (int *)(calculatedOffset + 0x18);
+      *referenceCount = *referenceCount + -1;
+      if (*referenceCount == 0) {
         FUN_18064d630();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      // 调用异常处理函数
+      func_0x00018064e870(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
+                          dataPointer,baseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -28188,11 +28342,24 @@ void Unwind_180901fc0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180901fe0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理异常处理过程中的临时数据
+ * @details 检查并清理异常处理过程中的临时数据和标志位
+ * 
+ * @param param_1 异常处理上下文（未使用）
+ * @param param_2 包含异常状态标志和数据指针的结构
+ * 
+ * @return 无返回值
+ */
+void CleanupExceptionData(undefined8 param_1,longlong param_2)
 
 {
+  // 检查标志位0x01是否被设置
   if ((*(uint *)(param_2 + 0x20) & 1) != 0) {
+    // 清除标志位0x01
     *(uint *)(param_2 + 0x20) = *(uint *)(param_2 + 0x20) & 0xfffffffe;
+    
+    // 调用清理函数处理资源
     FUN_180627b90(*(undefined8 *)(param_2 + 0x48));
   }
   return;
@@ -28256,36 +28423,75 @@ void UnwindExceptionHandling040(undefined8 exceptionContext,longlong unwindParam
 
 
 
-void Unwind_180902070(undefined8 param_1,longlong param_2)
+/**
+ * @brief 处理异常状态并执行相应的恢复操作
+ * @details 处理异常状态，设置异常处理器并清理相关资源
+ * 
+ * @param param_1 异常处理上下文（未使用）
+ * @param param_2 异常状态结构体指针
+ * 
+ * @return 无返回值
+ */
+void ProcessExceptionState(undefined8 param_1,longlong param_2)
 
 {
+  // 设置异常处理器
   *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
+  
+  // 检查是否有待处理的异常
   if (*(longlong *)(param_2 + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
+    // 调用异常处理函数（不返回）
     FUN_18064e900();
   }
+  
+  // 清理异常状态
   *(undefined8 *)(param_2 + 0x70) = 0;
   *(undefined4 *)(param_2 + 0x80) = 0;
+  
+  // 重置异常处理器
   *(undefined8 *)(param_2 + 0x68) = &UNK_18098bcb0;
   return;
 }
 
 
 
-void Unwind_180902080(undefined8 param_1,longlong param_2)
+/**
+ * @brief 处理异常状态并执行相应的恢复操作
+ * @details 重置异常处理器为默认状态
+ * 
+ * @param param_1 异常处理上下文（未使用）
+ * @param param_2 异常状态结构体指针
+ * 
+ * @return 无返回值
+ */
+void ProcessExceptionStateE1(undefined8 param_1,longlong param_2)
 
 {
+  // 重置异常处理器为默认状态
   *(undefined **)(param_2 + 0x68) = &UNK_18098bcb0;
   return;
 }
 
 
 
-void Unwind_180902090(undefined8 param_1,longlong param_2)
+/**
+ * @brief 处理异常状态并执行相应的恢复操作
+ * @details 检查并清理0x30偏移处的标志位，释放相关资源
+ * 
+ * @param param_1 异常处理上下文（未使用）
+ * @param param_2 异常状态结构体指针
+ * 
+ * @return 无返回值
+ */
+void ProcessExceptionStateE2(undefined8 param_1,longlong param_2)
 
 {
+  // 检查标志位0x01是否被设置
   if ((*(uint *)(param_2 + 0x30) & 1) != 0) {
+    // 清除标志位0x01
     *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffe;
+    
+    // 释放相关资源
     FUN_180627b90(*(undefined8 *)(param_2 + 0xd8));
   }
   return;
@@ -28293,11 +28499,24 @@ void Unwind_180902090(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809020c0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 处理异常状态并执行相应的恢复操作
+ * @details 检查并清理0x30偏移处的标志位2，释放相关资源
+ * 
+ * @param param_1 异常处理上下文（未使用）
+ * @param param_2 异常状态结构体指针
+ * 
+ * @return 无返回值
+ */
+void ProcessExceptionStateE3(undefined8 param_1,longlong param_2)
 
 {
+  // 检查标志位0x02是否被设置
   if ((*(uint *)(param_2 + 0x30) & 2) != 0) {
+    // 清除标志位0x02
     *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffd;
+    
+    // 释放相关资源
     FUN_180627b90(param_2 + 0x40);
   }
   return;
