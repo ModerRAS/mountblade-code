@@ -19857,7 +19857,7 @@ void ProcessMultiSegmentDataA0(undefined8 param_1,longlong param_2)
       if (iVar1 == 0) {
         iVar1 = OperateDataO0(param_1,param_2 + 8,8);
         if (iVar1 == 0) {
-          FUN_1808aed00(param_1,param_2 + 0x10,4);
+          OperateDataO0(param_1,param_2 + 0x10,4);
         }
       }
     }
@@ -20044,7 +20044,7 @@ undefined8 ValidateDataSequenceA0(longlong *param_1,uint *param_2)
         goto LAB_1808992a5;
       }
     }
-    uVar1 = FUN_180769ed0(*param_1,auStackX_18,1,4,0);
+    uVar1 = ValidateDataAndReturnStatusO3(*param_1,auStackX_18,1,4,0);
   }
 ValidationCheckpointB:
   if ((int)uVar1 == 0) {
@@ -20052,7 +20052,7 @@ ValidationCheckpointB:
     if (2 < auStackX_18[0]) {
       return 0xd;
     }
-    uVar1 = FUN_1808aed00(param_1,param_2 + 1,4);
+    uVar1 = OperateDataO0(param_1,param_2 + 1,4);
   }
   return uVar1;
 }
@@ -20083,7 +20083,7 @@ undefined8 ProcessDataSequenceA0(longlong *param_1)
         goto LAB_1808992a5;
       }
     }
-    uVar1 = FUN_180769ed0(*param_1,&stackBuffer50,1,4,0);
+    uVar1 = ValidateDataAndReturnStatusO3(*param_1,&stackBuffer50,1,4,0);
   }
 ValidationCheckpointB:
   if ((int)uVar1 == 0) {
@@ -20091,7 +20091,7 @@ ValidationCheckpointB:
     if (2 < in_stack_00000050) {
       return 0xd;
     }
-    uVar1 = FUN_1808aed00(param_1,unaff_RDI + 1,4);
+    uVar1 = OperateDataO0(param_1,unaff_RDI + 1,4);
   }
   return uVar1;
 }
@@ -20103,7 +20103,7 @@ ValidationCheckpointB:
 void InitializeSystemComponents(void)
 
 {
-  FUN_1808aed00();
+  OperateDataO0();
   return;
 }
 
@@ -23682,7 +23682,7 @@ DataProcessLabelB:
 
 
 
-ulonglong FUN_18089b813(void)
+ulonglong ProcessUtilityDataValidation(void)
 
 {
   longlong *pvalidationContext;
@@ -23992,7 +23992,7 @@ DataProcessLabelB:
 
 
 
-ulonglong FUN_18089b896(void)
+ulonglong ExecuteUtilityDataCheck(void)
 
 {
   longlong *pvalidationContext;
@@ -90800,26 +90800,43 @@ void SetDefaultExceptionHandler19(void)
 
 
 9424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理系统资源管理器A
+ * 
+ * 该函数负责清理系统资源管理器A，遍历资源链表并调用每个资源的清理函数
+ * 主要用于系统关闭时的资源释放和清理工作
+ * 
+ * @param param_1 系统句柄（保留参数）
+ * @param param_2 数据指针（保留参数）
+ * @param param_3 操作类型标识符
+ * @param param_4 清理标志位
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会遍历资源链表，对每个资源调用清理函数
+ * @warning 如果资源链表不为空但起始指针为空，将触发系统终止
+ * @see CleanupSystemResourceManagerB, CleanupSystemResourceManagerC
+ */
+void CleanupSystemResourceManagerA(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  undefined8 *puVar1;
-  undefined8 *resourcePointer;
-  undefined8 uVar3;
+  undefined8 *resourceListEnd;
+  undefined8 *currentResource;
+  undefined8 cleanupFlag;
   
-  puVar1 = _DAT_180bfa2f0;
-  uVar3 = 0xfffffffffffffffe;
-  resourcePointer = _DAT_180bfa2e8;
+  resourceListEnd = _DAT_180bfa2f0;
+  cleanupFlag = 0xfffffffffffffffe;
+  currentResource = _DAT_180bfa2e8;
   if (_DAT_180bfa2e8 != _DAT_180bfa2f0) {
     do {
-      (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
-      resourcePointer = resourcePointer + 0xb;
-    } while (resourcePointer != puVar1);
+      (**(code **)*currentResource)(currentResource, 0, param_3, param_4, cleanupFlag);
+      currentResource = currentResource + 0xb;
+    } while (currentResource != resourceListEnd);
   }
   if (_DAT_180bfa2e8 == (undefined8 *)0x0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // 如果资源链表不为空但起始指针为空，触发系统终止
   TerminateSystemE0();
 }
 
@@ -90829,26 +90846,43 @@ void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理系统资源管理器B
+ * 
+ * 该函数负责清理系统资源管理器B，遍历资源链表并调用每个资源的清理函数
+ * 主要用于系统关闭时的资源释放和清理工作
+ * 
+ * @param param_1 系统句柄（保留参数）
+ * @param param_2 数据指针（保留参数）
+ * @param param_3 操作类型标识符
+ * @param param_4 清理标志位
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会遍历资源链表，对每个资源调用清理函数
+ * @warning 如果资源链表不为空但起始指针为空，将触发系统终止
+ * @see CleanupSystemResourceManagerA, CleanupSystemResourceManagerC
+ */
+void CleanupSystemResourceManagerB(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  undefined8 *puVar1;
-  undefined8 *resourcePointer;
-  undefined8 uVar3;
+  undefined8 *resourceListEnd;
+  undefined8 *currentResource;
+  undefined8 cleanupFlag;
   
-  puVar1 = _DAT_180bfa310;
-  uVar3 = 0xfffffffffffffffe;
-  resourcePointer = _DAT_180bfa308;
+  resourceListEnd = _DAT_180bfa310;
+  cleanupFlag = 0xfffffffffffffffe;
+  currentResource = _DAT_180bfa308;
   if (_DAT_180bfa308 != _DAT_180bfa310) {
     do {
-      (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
-      resourcePointer = resourcePointer + 0xb;
-    } while (resourcePointer != puVar1);
+      (**(code **)*currentResource)(currentResource, 0, param_3, param_4, cleanupFlag);
+      currentResource = currentResource + 0xb;
+    } while (currentResource != resourceListEnd);
   }
   if (_DAT_180bfa308 == (undefined8 *)0x0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // 如果资源链表不为空但起始指针为空，触发系统终止
   TerminateSystemE0();
 }
 
@@ -90858,26 +90892,43 @@ void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理系统资源管理器C
+ * 
+ * 该函数负责清理系统资源管理器C，遍历资源链表并调用每个资源的清理函数
+ * 主要用于系统关闭时的资源释放和清理工作
+ * 
+ * @param param_1 系统句柄（保留参数）
+ * @param param_2 数据指针（保留参数）
+ * @param param_3 操作类型标识符
+ * @param param_4 清理标志位
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会遍历资源链表，对每个资源调用清理函数
+ * @warning 如果资源链表不为空但起始指针为空，将触发系统终止
+ * @see CleanupSystemResourceManagerA, CleanupSystemResourceManagerB
+ */
+void CleanupSystemResourceManagerC(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  undefined8 *puVar1;
-  undefined8 *resourcePointer;
-  undefined8 uVar3;
+  undefined8 *resourceListEnd;
+  undefined8 *currentResource;
+  undefined8 cleanupFlag;
   
-  puVar1 = _DAT_180bfa330;
-  uVar3 = 0xfffffffffffffffe;
-  resourcePointer = _DAT_180bfa328;
+  resourceListEnd = _DAT_180bfa330;
+  cleanupFlag = 0xfffffffffffffffe;
+  currentResource = _DAT_180bfa328;
   if (_DAT_180bfa328 != _DAT_180bfa330) {
     do {
-      (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
-      resourcePointer = resourcePointer + 0xb;
-    } while (resourcePointer != puVar1);
+      (**(code **)*currentResource)(currentResource, 0, param_3, param_4, cleanupFlag);
+      currentResource = currentResource + 0xb;
+    } while (currentResource != resourceListEnd);
   }
   if (_DAT_180bfa328 == (undefined8 *)0x0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // 如果资源链表不为空但起始指针为空，触发系统终止
   TerminateSystemE0();
 }
 
