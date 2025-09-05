@@ -2664,6 +2664,14 @@
 // 功能：存储默认异常处理器A3的指针
 #define DefaultExceptionHandlerPointerA3 _DAT_180bfb730
 
+// 原始变量名：_DAT_180bf5c30 - 工具系统异常处理器指针5
+// 功能：存储工具系统的异常处理器指针5
+#define UtilitySystemExceptionHandlerPointer5 _DAT_180bf5c30
+
+// 原始变量名：_DAT_180bf6080 - 工具系统异常处理器指针6
+// 功能：存储工具系统的异常处理器指针6
+#define UtilitySystemExceptionHandlerPointer6 _DAT_180bf6080
+
 // 原始变量名：0x180c82210 - 异常临界区
 // 功能：异常处理的临界区对象
 #define ExceptionCriticalSection 0x180c82210
@@ -91964,11 +91972,18 @@ void ResetUtilityPointerE0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void UtilityResetPointer5(void)
+/**
+ * @brief 重置工具系统异常处理器指针5
+ * 
+ * 该函数负责重置工具系统的第5个异常处理器指针，将其指向默认的异常处理器B。
+ * 这是一个初始化辅助函数，用于确保系统处于已知的稳定状态。
+ * 
+ * @note 原始函数名：UtilityResetPointer5
+ */
 void UtilityResetPointer5(void)
 
 {
-  _DAT_180bf5c30 = &DefaultExceptionHandlerB;
+  UtilitySystemExceptionHandlerPointer5 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -91977,11 +91992,18 @@ void UtilityResetPointer5(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void UtilityResetPointer6(void)
+/**
+ * @brief 重置工具系统异常处理器指针6
+ * 
+ * 该函数负责重置工具系统的第6个异常处理器指针，将其指向默认的异常处理器B。
+ * 这是一个初始化辅助函数，用于确保系统处于已知的稳定状态。
+ * 
+ * @note 原始函数名：UtilityResetPointer6
+ */
 void UtilityResetPointer6(void)
 
 {
-  _DAT_180bf6080 = &DefaultExceptionHandlerB;
+  UtilitySystemExceptionHandlerPointer6 = &DefaultExceptionHandlerB;
   return;
 }
 

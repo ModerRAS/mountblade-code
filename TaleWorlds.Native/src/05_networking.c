@@ -3483,7 +3483,7 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
  * @warning 处理过程中如果发现数据包格式错误，会立即返回相应的错误码
  * @see ValidateNetworkPacketHeader, DecodePacketDataStream, ProcessConnectionData
  */
-NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
+NetworkHandle HandleNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
   // 数据包处理变量
   NetworkHandle PacketProcessingResult;                          // 数据包处理结果，存储处理流程的最终状态
@@ -3949,7 +3949,7 @@ NetworkHandle DecodeNetworkPacketStream(int64_t PacketData, NetworkByte *OutputB
  * @warning 实际应用中需要实现完整的数据处理逻辑
  * @see NetworkConnectionContext, NetworkPacketData
  */
-NetworkHandle HandleConnectionPacketData(int64_t ConnectionContext, int64_t PacketData)
+NetworkHandle ProcessConnectionDataPacket(int64_t ConnectionContext, int64_t PacketData)
 {
   // 简化实现：直接返回成功状态
   // 实际实现应该包括：
@@ -3977,7 +3977,7 @@ NetworkHandle HandleConnectionPacketData(int64_t ConnectionContext, int64_t Pack
  * @note 此函数会检查上下文数据的完整性和安全性
  * @warning 如果上下文验证失败，连接将被视为不安全并终止
  */
-NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t ContextOffset)
+NetworkHandle VerifyConnectionContextValidity(NetworkHandle PacketData, int64_t ContextOffset)
 {
   // 连接上下文验证变量
   uint32_t ContextValidationResult;              // 上下文验证结果
@@ -4017,32 +4017,32 @@ NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t Contex
  * @note 此函数会检查数据包的完整性校验和、数据格式和内容有效性
  * @warning 如果完整性验证失败，数据包将被拒绝并可能触发安全警报
  */
-NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t IntegrityOffset)
+NetworkHandle VerifyPacketDataIntegrity(NetworkHandle *PacketData, int64_t IntegrityOffset)
 {
   // 数据包完整性验证变量
-  uint32_t IntegrityValidationResult;           // 数据包完整性验证结果
-  uint32_t ChecksumValidationResult;           // 数据包校验和验证结果
-  uint32_t DataFormatValidationResult;         // 数据包数据格式验证结果
+  uint32_t PacketIntegrityCheckResult;         // 数据包完整性验证结果
+  uint32_t PacketChecksumValidationResult;     // 数据包校验和验证结果
+  uint32_t PacketFormatValidationResult;       // 数据包数据格式验证结果
   
   // 初始化验证状态
-  IntegrityValidationResult = NetworkValidationFailure;
-  ChecksumValidationResult = NetworkValidationFailure;
-  DataFormatValidationResult = NetworkValidationFailure;
+  PacketIntegrityCheckResult = NetworkValidationFailure;
+  PacketChecksumValidationResult = NetworkValidationFailure;
+  PacketFormatValidationResult = NetworkValidationFailure;
   
   // 验证数据包指针有效性
   if (PacketData && *PacketData != 0) {
-    ChecksumValidationResult = NetworkChecksumValid;  // 校验和验证通过
+    PacketChecksumValidationResult = NetworkChecksumValid;  // 校验和验证通过
   }
   
   // 验证完整性偏移量有效性
   if (IntegrityOffset >= 0) {
-    DataFormatValidationResult = NetworkDataFormatValid;  // 数据格式验证通过
+    PacketFormatValidationResult = NetworkDataFormatValid;  // 数据格式验证通过
   }
   
   // 综合完整性验证结果
-  IntegrityValidationResult = ChecksumValidationResult & DataFormatValidationResult;
+  PacketIntegrityCheckResult = PacketChecksumValidationResult & PacketFormatValidationResult;
   
-  return IntegrityValidationResult;  // 返回完整性验证结果
+  return PacketIntegrityCheckResult;  // 返回完整性验证结果
 }
 
 /**
@@ -4059,41 +4059,41 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
  * @note 此函数会根据处理模式选择不同的数据处理策略
  * @warning 如果数据处理失败，系统会记录错误日志并尝试恢复
  */
-NetworkHandle ProcessNetworkPacketDataWithContext(NetworkHandle *PacketData, int64_t PacketContextOffset, uint32_t DataProcessingMode, int64_t ConnectionContext)
+NetworkHandle HandlePacketDataWithContext(NetworkHandle *PacketData, int64_t PacketContextOffset, uint32_t DataProcessingMode, int64_t ConnectionContext)
 {
   // 数据包数据处理状态变量
-  uint32_t PacketProcessingResult;                   // 数据包处理结果
-  uint32_t DataParsingResult;                        // 数据解析结果
-  uint32_t DataValidationResult;                     // 数据验证结果
+  uint32_t ContextualProcessingResult;              // 数据包处理结果
+  uint32_t ContextualDataParsingResult;             // 数据解析结果
+  uint32_t ContextualDataValidationResult;          // 数据验证结果
   
   // 初始化处理状态
-  PacketProcessingResult = NetworkValidationFailure;
-  DataParsingResult = NetworkValidationFailure;
-  DataValidationResult = NetworkValidationFailure;
+  ContextualProcessingResult = NetworkValidationFailure;
+  ContextualDataParsingResult = NetworkValidationFailure;
+  ContextualDataValidationResult = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    DataParsingResult = NetworkOperationSuccess;          // 数据解析成功
+    ContextualDataParsingResult = NetworkOperationSuccess;          // 数据解析成功
   }
   
   // 验证数据包上下文偏移量有效性
   if (PacketContextOffset >= 0) {
-    DataValidationResult = NetworkOperationSuccess;       // 数据验证成功
+    ContextualDataValidationResult = NetworkOperationSuccess;       // 数据验证成功
   }
   
   // 根据处理模式处理数据
   if (DataProcessingMode == NetworkOperationSuccess) {
     // 基本处理模式
-    PacketProcessingResult = DataParsingResult & DataValidationResult;
+    ContextualProcessingResult = ContextualDataParsingResult & ContextualDataValidationResult;
   } else if (DataProcessingMode == NetworkPacketStrictDecodingMode) {
     // 严格处理模式
-    PacketProcessingResult = DataParsingResult & DataValidationResult & NetworkOperationSuccess;
+    ContextualProcessingResult = ContextualDataParsingResult & ContextualDataValidationResult & NetworkOperationSuccess;
   } else {
     // 默认处理模式
-    PacketProcessingResult = NetworkOperationSuccess;
+    ContextualProcessingResult = NetworkOperationSuccess;
   }
   
-  return PacketProcessingResult;  // 返回数据处理结果
+  return ContextualProcessingResult;  // 返回数据处理结果
 }
 
 /**
@@ -4109,37 +4109,37 @@ NetworkHandle ProcessNetworkPacketDataWithContext(NetworkHandle *PacketData, int
  * @note 此函数会更新数据包状态并清理临时资源
  * @warning 如果完成处理失败，可能会导致资源泄漏或状态不一致
  */
-NetworkHandle FinalizePacketProcessingWithCompletion(NetworkHandle *PacketData, int64_t ProcessingDataOffset, uint32_t ProcessingCompletionFlag)
+NetworkHandle CompletePacketProcessing(NetworkHandle *PacketData, int64_t ProcessingDataOffset, uint32_t ProcessingCompletionFlag)
 {
   // 数据包完成处理状态变量
-  uint32_t ProcessingCompletionResult;            // 处理完成结果
-  uint32_t StatusUpdateResult;                     // 状态更新结果
-  uint32_t ResourceCleanupResult;                  // 资源清理结果
+  uint32_t CompletionProcessingResult;            // 处理完成结果
+  uint32_t CompletionStatusUpdateResult;          // 状态更新结果
+  uint32_t CompletionResourceCleanupResult;       // 资源清理结果
   
   // 初始化处理完成状态
-  ProcessingCompletionResult = NetworkValidationFailure;
-  StatusUpdateResult = NetworkValidationFailure;
-  ResourceCleanupResult = NetworkValidationFailure;
+  CompletionProcessingResult = NetworkValidationFailure;
+  CompletionStatusUpdateResult = NetworkValidationFailure;
+  CompletionResourceCleanupResult = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    StatusUpdateResult = NetworkOperationSuccess;       // 状态更新成功
+    CompletionStatusUpdateResult = NetworkOperationSuccess;       // 状态更新成功
   }
   
   // 验证处理数据偏移量有效性
   if (ProcessingDataOffset >= 0) {
-    ResourceCleanupResult = NetworkOperationSuccess;    // 资源清理成功
+    CompletionResourceCleanupResult = NetworkOperationSuccess;    // 资源清理成功
   }
   
   // 验证处理完成标志有效性
   if (ProcessingCompletionFlag != 0) {
-    StatusUpdateResult &= 0x01;  // 完成标志验证通过
+    CompletionStatusUpdateResult &= 0x01;  // 完成标志验证通过
   }
   
   // 综合处理完成结果
-  ProcessingCompletionResult = StatusUpdateResult & ResourceCleanupResult;
+  CompletionProcessingResult = CompletionStatusUpdateResult & CompletionResourceCleanupResult;
   
-  return ProcessingCompletionResult;  // 返回处理完成结果
+  return CompletionProcessingResult;  // 返回处理完成结果
 }
 
 /**
