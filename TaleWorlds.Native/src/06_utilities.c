@@ -49,7 +49,7 @@
  * 
  * @note 原始函数名：func_0x00018074b7d0
  */
-#define ProcessSystemDataWithEncryption func_0x00018074b7d0
+#define ProcessSystemDataWithEncryption EncryptSystemData
 
 /**
  * @brief 验证系统配置
@@ -2551,9 +2551,9 @@
 // 功能：存储异常处理的事件句柄信息
 #define ExceptionEventHandle _DAT_180c82240
 
-// 原始变量名：_DAT_180bf00a8 - 异常加密密钥
+// 原始变量名：ExceptionEncryptionKey - 异常加密密钥
 // 功能：存储异常处理的加密密钥信息
-#define ExceptionEncryptionKey _DAT_180bf00a8
+#define ExceptionEncryptionKey ExceptionEncryptionKey
 
 // 原始变量名：_DAT_180c82250 - 异常偏移量
 // 功能：存储异常处理的偏移量信息
@@ -11850,7 +11850,7 @@ void ExecuteSecurityValidation(longlong param_1, longlong param_2)
   undefined1 authorizationData [40];
   ulonglong stackGuardValue;
   
-  stackGuardValue = _DAT_180bf00a8 ^ (ulonglong)securityValidationBuffer;
+  stackGuardValue = ExceptionEncryptionKey ^ (ulonglong)securityValidationBuffer;
   operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&systemContext);
   if (operationResult == 0) {
     if (systemContext != 0) {
@@ -12826,7 +12826,7 @@ void InitializeResourceContext(longlong contextDescriptor, undefined8 initializa
   undefined8 optionsCopy;
   ulonglong securityToken;
   
-  securityToken = _DAT_180bf00a8 ^ (ulonglong)resourceBuffer;
+  securityToken = ExceptionEncryptionKey ^ (ulonglong)resourceBuffer;
   optionsCopy = initializationOptions;
   initializationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextDescriptor + 0x10),resourceBuffer);
   if (initializationStatus == 0) {
@@ -14301,7 +14301,7 @@ void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validat
   undefined1 auStack_40 [40];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_18 = ExceptionEncryptionKey ^ (ulonglong)auStack_c8;
   validationContextPointer = *(longlong **)(param_1 + 800);
   if (validationContextPointer != (longlong *)0x0) {
     uStack_58 = *param_2;
@@ -14390,7 +14390,7 @@ void ExecuteUtilitySystemOperation(longlong operationContext,undefined4 *operati
   undefined1 auStack_38 [40];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_10 = ExceptionEncryptionKey ^ (ulonglong)auStack_b8;
   validationContextPointer = *(longlong **)(param_1 + 800);
   if (validationContextPointer != (longlong *)0x0) {
     uStack_48 = *param_2;
@@ -14505,7 +14505,7 @@ void ProcessDataOperationB1(longlong DataPointer, undefined4 *DataBuffer, longlo
   undefined1 auStack_40 [40];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_18 = ExceptionEncryptionKey ^ (ulonglong)auStack_c8;
   validationContextPointer = *(longlong **)(param_1 + 800);
   if (validationContextPointer != (longlong *)0x0) {
     uStack_58 = *param_2;
@@ -15320,7 +15320,7 @@ void ProcessUtilitySystemData(longlong systemContext,undefined1 *dataBuffer,int 
   undefined1 dataBuffer [1536];
   ulonglong securityChecksum;
   
-  securityChecksum = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  securityChecksum = ExceptionEncryptionKey ^ (ulonglong)securityBuffer;
   currentIndex = *(int *)(systemContext + 0xac);
   iterationCount = (longlong)currentIndex;
   resultCounterPtr = resultCounter;
@@ -16902,7 +16902,7 @@ void ProcessComplexDataBufferA1(undefined8 systemHandle, longlong dataContext, u
   undefined1 auStack_260 [520];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_328;
+  uStack_58 = ExceptionEncryptionKey ^ (ulonglong)auStack_328;
   iVar5 = 0;
   if (param_3 != 0) {
     iVar3 = *(int *)(param_2 + 0x220);
@@ -17523,11 +17523,11 @@ void ProcessDataPointerOperationsA0(longlong *dataPointer, longlong *resultPoint
   undefined1 auStack_228 [512];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+  uStack_28 = ExceptionEncryptionKey ^ (ulonglong)auStack_248;
   validationContext = param_1[4];
   if (((char)validationContext != '\0') || (operationResult = ValidateSystemDataA0(param_1,1), operationResult == 0)) {
     operationResult = (**(code **)(*param_2 + 0x10))(param_2,auStack_228,0x200);
-    func_0x00018074b7b0(auStack_228 + operationResult,0x200 - operationResult,10);
+    ProcessData(auStack_228 + operationResult,0x200 - operationResult,10);
     operationResult = (**(code **)(*param_1 + 8))(param_1,auStack_228);
     if ((operationResult == 0) &&
        (((char)validationContext == '\0' && (operationResult = (**(code **)(*param_1 + 0x18))(param_1), operationResult == 0)))) {
@@ -17652,7 +17652,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
   undefined1 auStack_e0 [136];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1e8;
+  uStack_58 = ExceptionEncryptionKey ^ (ulonglong)auStack_1e8;
   dataContext = *(longlong *)(param_2 + 0x80);
   validationContext4 = 0;
   uStack_1c8 = 0;
@@ -18576,7 +18576,7 @@ void ProcessSystemResourceBatch(longlong *contextHandle,longlong resourceManager
   undefined8 processingBuffer [64];
   ulonglong securityToken;
   
-  securityToken = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  securityToken = ExceptionEncryptionKey ^ (ulonglong)securityBuffer;
   processCount = 0;
   resourceIndex = 0;
   do {
@@ -18904,7 +18904,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
   undefined1 auStack_238 [512];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_368;
+  uStack_38 = ExceptionEncryptionKey ^ (ulonglong)auStack_368;
   validationContextPointer6 = (longlong *)0x0;
   alStack_300[1] = 0;
   iVar6 = InitializeBufferA0(alStack_300 + 1,param_1[1]);
@@ -32835,14 +32835,14 @@ void ExceptionHandlerA0(void)
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
+            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -52006,14 +52006,14 @@ void ResetSystemEventState(void)
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(ExceptionEventHandle);
     return;
   }
-  shiftBits = (byte)_DAT_180bf00a8 & 0x3f;
+  shiftBits = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> shiftBits |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - shiftBits))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> shiftBits |
+            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - shiftBits))(0x180c82238);
   return;
 }
 
@@ -53698,14 +53698,14 @@ void Unwind_180907130(void)
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
+            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -57007,14 +57007,14 @@ void Unwind_180908040(void)
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
+            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -59377,14 +59377,14 @@ void Unwind_180908d30(void)
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
+            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -63952,14 +63952,14 @@ void Unwind_18090a6e0(void)
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
+            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -89469,14 +89469,14 @@ void Unwind_1809127d0(void)
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
+            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
