@@ -59836,12 +59836,12 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
 {
   longlong *pvalidationContext;
   undefined8 *resourcePointer;
-  undefined8 *puVar3;
-  longlong lVar4;
-  longlong lVar5;
-  ulonglong uVar6;
+  undefined8 *presourceTable;
+  longlong resourceTableBase;
+  longlong cleanupStatus;
+  ulonglong resourceIndex;
   
-  puVar3 = *(undefined8 **)(param_2 + 0x80);
+  presourceTable = *(undefined8 **)(param_2 + 0x80);
   *puVar3 = &UNK_180a17010;
   if ((longlong *)puVar3[0x1049] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar3[0x1049] + 0x38))();
