@@ -508,25 +508,25 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkConnectionPriorityMedium 0x05        // 网络中等连接优先级
 #define NetworkProtocolVersionOne 0x01                // 网络协议版本1.0
 #define NetworkConnectionPoolSize 256             // 连接池大小256
-#define Network256ByteConnectionSize 256             // 连接大小256字节
+#define NetworkConnectionStandardSize 256             // 标准连接大小256字节
 #define Network64ByteEventSize 64                    // 事件大小64字节
 #define Network64ByteCallbackSize 64                 // 回调大小64字节
 #define NetworkMaximumRetryCount 3               // 最大重试次数3次
-#define Network2SecondBackoffTime 2000          // 退避时间2秒
+#define NetworkBackoffTimeout 2000          // 退避时间2秒
 
 // 网络数据包常量
-#define Network32BytePacketHeaderSize 0x20                        // 数据包头大小32字节
+#define NetworkStandardPacketHeaderSize 0x20                        // 标准数据包头大小32字节
 #define Network16BytePacketTrailerSize 0x10                       // 数据包尾大小16字节
 #define Network1KBPacketPayloadSize 0x400                      // 数据包负载大小1KB
 #define Network2KBMaximumPacketSize 0x800                     // 最大数据包大小2KB
-#define Network256BytePacketProcessingSize 0x100                 // 数据包处理大小256字节
+#define NetworkStandardPacketProcessingSize 0x100                 // 标准数据包处理大小256字节
 #define NetworkValidationBufferSize 0x27                   // 验证缓冲区大小39字节
 #define NetworkErrorCodeInvalidPacket 0x1c                     // 无效数据包错误码
 #define NetworkConnectionCompletionHandleValue 0x7d                   // 连接完成状态句柄值 (125)
 #define NetworkConnectionBasicValidationMode 0x01           // 基本验证模式
 #define NetworkConnectionStrictValidationMode 0x02           // 严格验证模式
 #define NetworkValidationSuccessMask 0x01                     // 验证成功掩码
-#define NetworkPacketBasicDecodingMode 0x01                 // 基本解码模式
+#define NetworkBasicDecodingMode 0x01                 // 基本解码模式
 #define NetworkPacketStrictDecodingMode 0x02                 // 严格解码模式
 #define NetworkValidationMagicMask 0x03                     // 魔数验证掩码
 #define NetworkPacketFirstMagicValidMask 0x01               // 第一个魔数有效掩码
@@ -3206,9 +3206,9 @@ NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t Con
   NetworkByte PacketEncryptionBuffer[32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkHandle SecurityValidationResult = DecodeNetworkPacket(PacketData, PacketEncryptionBuffer, 1, NetworkLiveConnectionMagic, NetworkValidationMagic);
+  NetworkHandle SecurityValidationResult = DecodeNetworkPacket(PacketData, PacketEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
   if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodeNetworkPacket(PacketData, PacketValidationBuffer, 0, NetworkBinaryDataMagic, NetworkMemoryValidationMagic), (int)SecurityValidationResult == 0)) {
+     (SecurityValidationResult = DecodeNetworkPacket(PacketData, PacketValidationBuffer, 0, NetworkMagicBinaryData, NetworkMemoryValidationMagic), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
@@ -3353,9 +3353,9 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
   NetworkByte ConnectionEncryptionBuffer[32];                     // 连接加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  PacketValidationResult = DecodeNetworkPacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkLiveConnectionMagic, NetworkValidationMagic);
+  PacketValidationResult = DecodeNetworkPacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
   if (((int)PacketValidationResult == 0) &&
-     (PacketValidationResult = DecodeNetworkPacket(PacketData, ConnectionSecurityBuffer, 0, NetworkBinaryDataMagic, NetworkMemoryValidationMagic), (int)PacketValidationResult == 0)) {
+     (PacketValidationResult = DecodeNetworkPacket(PacketData, ConnectionSecurityBuffer, 0, NetworkMagicBinaryData, NetworkMemoryValidationMagic), (int)PacketValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
