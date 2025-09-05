@@ -1267,7 +1267,6 @@ uint32_t FreeValidationResources(void* ResourceHandles);
 #define AllocatedMemoryPointerOffset 0x58
 #define SystemContextResourceContextOffset 0x58
 #define ResultBufferObjectDataProcessingOffset 0x10
-#define ObjectSystemStatusOffset 0x58
 #define MatrixProjectionDataProcessingOffset 0x5c
 #define MatrixViewDataProcessingOffset 0x60
 #define MatrixWorldDataProcessingOffset 100
@@ -5376,9 +5375,9 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
     if (*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset) != 0) {
       ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset), 1);
     }
-    ValidationResult = OperationSuccessCode;
+    ObjectValidationStatusCode = OperationSuccessCode;
   }
-  return ValidationResult;
+  return ObjectValidationStatusCode;
 }
 
 
@@ -55534,7 +55533,7 @@ void InitializeResourceHashTableAndSystemData(uint8_t ObjectContext, int64_t Val
  * @note 此函数会修改资源哈希表中的系统数据结构指针
  * @warning 调用此函数会覆盖原有的系统数据结构指针
  */
-void UnwindSetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
+void SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryOffset) + 0x10) = &SystemDataStructure;
