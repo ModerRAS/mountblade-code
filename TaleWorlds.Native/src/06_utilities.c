@@ -13024,7 +13024,22 @@ void QueryAndRetrieveSystemData(longlong dataStructure, int searchIndex, undefin
 
 
 
-undefined8 FUN_180895c60(longlong dataContext,int operationIndex,uint *validationFlags)
+/**
+ * 数据验证和标志处理函数
+ * 
+ * 此函数验证数据上下文中的标志位，执行哈希查找，并调用相应的回调函数：
+ * 1. 验证输入参数的有效性
+ * 2. 检查数据上下文的配置状态
+ * 3. 执行哈希表查找操作
+ * 4. 调用相应的回调函数
+ * 5. 返回处理结果
+ * 
+ * @param dataContext 数据上下文指针，包含系统配置和数据表
+ * @param operationIndex 操作索引，用于定位特定的操作
+ * @param validationFlags 验证标志指针，用于返回验证结果
+ * @return 处理状态码：0表示成功，0x1e表示参数错误
+ */
+undefined8 ValidateAndProcessDataFlags(longlong dataContext,int operationIndex,uint *validationFlags)
 
 {
   uint flagValue;
@@ -13072,17 +13087,17 @@ LAB_180895ccb:
 
 
 
-undefined8 FUN_180895c8b(longlong param_1,undefined8 param_2,longlong param_3,uint param_4)
+undefined8 FUN_180895c8b(longlong dataContext,undefined8 systemContext,longlong operationContext,uint validationFlag)
 
 {
-  longlong validationContext;
-  longlong lVar2;
-  undefined8 *puVar3;
-  int iVar4;
-  int *unaff_RDI;
-  longlong in_R10;
-  bool in_ZF;
-  int iStack0000000000000044;
+  longlong tablePointer;
+  longlong currentIndex;
+  undefined8 *functionPointer;
+  int hashIndex;
+  int *resultPointer;
+  longlong contextData;
+  bool isValid;
+  int validationResult;
   
   if (((!in_ZF) && (*(int *)(param_1 + 0x78) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(in_R10 + 0x70) +
@@ -20159,35 +20174,43 @@ LAB_18089b22a:
 
 
 
-int FUN_18089b218(void)
+/**
+ * @brief 设置系统状态标志
+ * @return 系统状态码
+ */
+int SetSystemStatusFlag(void)
 
 {
-  longlong unaff_RBP;
-  int unaff_R15D;
+  longlong systemContext;
+  int systemStatus;
   
-  *(undefined4 *)(unaff_RBP + 0xd4) = 7;
-  if (unaff_R15D != 0) {
-    return unaff_R15D;
+  *(undefined4 *)(systemContext + 0xd4) = 7;
+  if (systemStatus != 0) {
+    return systemStatus;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  TerminateSystemOnError();
 }
 
 
 
-int FUN_18089b21d(void)
+/**
+ * @brief 获取系统状态标志
+ * @return 系统状态码
+ */
+int GetSystemStatusFlag(void)
 
 {
-  longlong unaff_RBP;
-  undefined4 unaff_ESI;
-  int unaff_R15D;
+  longlong systemContext;
+  undefined4 statusValue;
+  int systemStatus;
   
-  *(undefined4 *)(unaff_RBP + 0xd4) = unaff_ESI;
-  if (unaff_R15D != 0) {
-    return unaff_R15D;
+  *(undefined4 *)(systemContext + 0xd4) = statusValue;
+  if (systemStatus != 0) {
+    return systemStatus;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  TerminateSystemOnError();
 }
 
 
@@ -88329,5 +88352,24 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 // 原始函数名：FUN_18088d720 - 系统终止函数FL0
 // 功能：终止系统FL0，停止系统运行
 #define TerminateSystemFL0 FUN_18088d720
+
+// 原始函数名：FUN_18089b400 - 验证并处理端口控制请求
+// 功能：验证端口控制请求的有效性，并在验证通过时执行相应的控制操作
+#define ValidateAndProcessPortControlRequest FUN_18089b400
+
+// 端口控制常量定义
+#define PORT_CONTROL_FLAG 0x4f525443  // "PORT"的ASCII值
+
+// 原始函数名：FUN_1808ddc20 - 验证端口控制请求
+// 功能：验证端口控制请求的有效性
+#define ValidatePortControlRequest FUN_1808ddc20
+
+// 原始函数名：FUN_1808a79f0 - 验证端口访问权限
+// 功能：验证端口访问权限
+#define ValidatePortAccess FUN_1808a79f0
+
+// 原始函数名：FUN_1808ddf80 - 执行端口控制操作
+// 功能：执行端口控制操作
+#define ExecutePortControlOperation FUN_1808ddf80
 
 
