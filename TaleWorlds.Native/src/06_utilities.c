@@ -581,11 +581,11 @@ undefined ResetPointerData4;
 // 返回值:
 //   无
 void ResetUtilityPointers2(void);
-undefined UtilityResetPointer1;
-undefined UtilityResetPointer2;
-undefined UtilityResetPointer3;
-undefined UtilityResetPointer4;
-undefined UtilitySystemStatus1;
+uint32_t UtilityResetPointer1;
+uint32_t UtilityResetPointer2;
+uint32_t UtilityResetPointer3;
+uint32_t UtilityResetPointer4;
+uint32_t UtilitySystemStatus1;
 
 // 函数: void ResetUtilityPointers3(void)
 // 
@@ -598,11 +598,11 @@ undefined UtilitySystemStatus1;
 // 返回值:
 //   无
 void ResetUtilityPointers3(void);
-undefined UtilityCleanupPointer1;
-undefined UtilityCleanupPointer2;
-undefined UtilityCleanupPointer3;
-undefined UtilityCleanupPointer4;
-undefined UtilityCleanupStatus1;
+uint32_t UtilityCleanupPointer1;
+uint32_t UtilityCleanupPointer2;
+uint32_t UtilityCleanupPointer3;
+uint32_t UtilityCleanupPointer4;
+uint32_t UtilityCleanupStatus1;
 
 // 函数: void ResetUtilityPointers4(void)
 // 
@@ -615,10 +615,10 @@ undefined UtilityCleanupStatus1;
 // 返回值:
 //   无
 void ResetUtilityPointers4(void);
-undefined UtilityFreePointer1;
-undefined UtilityFreePointer2;
-undefined UtilityFreePointer3;
-undefined UtilityFreePointer4;
+uint32_t UtilityFreePointer1;
+uint32_t UtilityFreePointer2;
+uint32_t UtilityFreePointer3;
+uint32_t UtilityFreePointer4;
 
 // 函数: undefined UtilityInitializeSystem
 // 
@@ -630,11 +630,11 @@ undefined UtilityFreePointer4;
 // 
 // 返回值:
 //   undefined - 初始化结果状态
-undefined UtilityInitializeSystem;
-undefined UtilityInitData1;
-undefined UtilityInitData2;
-undefined UtilityInitData3;
-undefined UtilityInitData4;
+uint32_t UtilityInitializeSystem;
+uint32_t UtilityInitData1;
+uint32_t UtilityInitData2;
+uint32_t UtilityInitData3;
+uint32_t UtilityInitData4;
 
 // 函数: undefined UtilityValidateSystem(void)
 // 
