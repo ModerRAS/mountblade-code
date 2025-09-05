@@ -22738,9 +22738,9 @@ void DestroySystemMutexAndConditionVariable(void* conditionVariable)
 void* *
 InitializeSystemSyncObject(void** SyncObject, void* SyncContextParameter, void* SyncConfigurationParameter, void* SyncSecurityParameter)
 {
-  void* SystemErrorFlag;
+  void* SystemErrorHandle;
   
-  SystemErrorFlag = INVALID_HANDLE_VALUE;
+  SystemErrorHandle = INVALID_HANDLE_VALUE;
   *SyncObject = &SystemMemoryRegionTemplateA;
   *SyncObject = &SystemMemoryRegionTemplateB;
   *(uint32_t *)(SyncObject + 1) = 0;
