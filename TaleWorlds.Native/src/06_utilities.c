@@ -7717,11 +7717,14 @@ undefined8 ValidateUtilitySystemState(void)
   ulonglong adjustedValue;
   longlong stackBuffer50;
   ulonglong loopCounter;
+  ulonglong addressOffset;
+  ulonglong validationStatus;
+  ulonglong memoryAddress;
   
   loopCounter = 0;
   adjustedValue = inputParameter - 8;
   if (in_RAX == 0) {
-    uVar6 = uVar5;
+    memoryAddress = addressOffset;
   }
   puVar3 = (undefined4 *)(unaff_RBP + 0x20 + (longlong)*(int *)(unaff_RBP + 0x18) * 8);
   poperationResult = (int *)(unaff_RBP + 0x20);
@@ -7729,22 +7732,22 @@ undefined8 ValidateUtilitySystemState(void)
     do {
       if ((*poperationResult != _DAT_180c4eaa0) || (poperationResult[1] != _DAT_180c4eaa4)) {
         lStack0000000000000050 = 0;
-        uVar1 = ValidateMemoryAddressA0(uVar6,(int *)(unaff_RBP + 0x20) + (longlong)(int)uVar5 * 2,
+        validationStatus = ValidateMemoryAddressA0(memoryAddress,(int *)(unaff_RBP + 0x20) + (longlong)(int)addressOffset * 2,
                               &stackBuffer50);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        if ((int)validationStatus != 0) {
+          return validationStatus;
         }
         if (*(longlong *)(lStack0000000000000050 + 8) == 0) {
           return 0x1c;
         }
-        uVar1 = ProcessFloatingPointDataValidationA0(*(longlong *)(lStack0000000000000050 + 8),*puVar3,
+        validationStatus = ProcessFloatingPointDataValidationA0(*(longlong *)(lStack0000000000000050 + 8),*puVar3,
                               *(undefined1 *)(unaff_RBP + 0x1c));
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        if ((int)validationStatus != 0) {
+          return validationStatus;
         }
       }
-      memoryBaseAddress = (int)uVar5 + 1;
-      uVar5 = (ulonglong)memoryBaseAddress;
+      memoryBaseAddress = (int)addressOffset + 1;
+      addressOffset = (ulonglong)memoryBaseAddress;
       puVar3 = puVar3 + 1;
       poperationResult = poperationResult + 2;
     } while ((int)memoryBaseAddress < *(int *)(unaff_RBP + 0x18));
@@ -9837,6 +9840,34 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 原始函数名：FUN_18089fb06 - 系统处理函数C1
 // 功能：处理系统操作和数据
 #define ProcessSystemDataC1 FUN_18089fb06
+
+// 原始变量名：UNK_180986350 - 数据块指针表A0
+// 功能：存储数据块指针的表结构
+#define DataBlockPointerTableA0 UNK_180986350
+
+// 原始变量名：UNK_180986370 - 数据块指针表A1
+// 功能：存储数据块指针的表结构
+#define DataBlockPointerTableA1 UNK_180986370
+
+// 原始函数名：FUN_180840270 - 数据处理函数A0
+// 功能：处理数据和指针操作
+#define ProcessDataAndPointerA0 FUN_180840270
+
+// 原始函数名：FUN_180895130 - 系统状态重置函数A0
+// 功能：重置系统状态和清理资源
+#define ResetSystemStatusA0 FUN_180895130
+
+// 原始函数名：FUN_180895360 - 数据处理函数A1
+// 功能：处理系统数据和参数
+#define ProcessSystemDataA1 FUN_180895360
+
+// 原始函数名：FUN_180897520 - 数据验证函数A0
+// 功能：验证数据完整性和处理
+#define ValidateDataIntegrityA0 FUN_180897520
+
+// 原始函数名：FUN_180897b40 - 系统配置函数A0
+// 功能：配置系统参数和状态
+#define ConfigureSystemParametersA0 FUN_180897b40
 
 // 函数: void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 //
@@ -15684,7 +15715,7 @@ ProcessCompleteLabel:
     } while ((int)uVar8 < *(int *)(param_1 + 0x20));
   }
   iVar4 = FUN_180744cc0(param_1 + 0x70);
-  if ((iVar4 == 0) && (iVar4 = FUN_180895130(param_1 + 0x80), iVar4 == 0)) {
+  if ((iVar4 == 0) && (iVar4 = ResetSystemStatusA0(param_1 + 0x80), iVar4 == 0)) {
     *(undefined4 *)(param_1 + 0x90) = 0xffffffff;
     *(undefined4 *)(param_1 + 0x94) = 0;
   }
@@ -15703,7 +15734,7 @@ ResourceCleanupLabel:
         aiStackX_8[0] = CONCAT31(aiStackX_8[0]._1_3_,1);
         auStackX_10[0] = 0;
         do {
-          uVar6 = FUN_180895360(param_1,aiStackX_8,auStackX_10);
+          uVar6 = ProcessSystemDataA1(param_1,aiStackX_8,auStackX_10);
           if ((int)uVar6 != 0) {
             return uVar6;
           }
@@ -15729,7 +15760,7 @@ ResourceCleanupLabel:
 undefined8 * InitializeDataBlockPointerA0(undefined8 *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180986350;
+  *param_1 = &DataBlockPointerTableA0;
   if ((param_2 & 1) != 0) {
     free(param_1,0x28);
   }
@@ -15741,9 +15772,9 @@ undefined8 * InitializeDataBlockPointerA0(undefined8 *param_1,ulonglong param_2)
 undefined8 * InitializeDataBlockPointerA1(undefined8 *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180986370;
-  FUN_180840270(param_1 + 5);
-  *param_1 = &UNK_180986350;
+  *param_1 = &DataBlockPointerTableA1;
+  ProcessDataAndPointerA0(param_1 + 5);
+  *param_1 = &DataBlockPointerTableA0;
   if ((param_2 & 1) != 0) {
     free(param_1,0x38);
   }
@@ -16003,7 +16034,7 @@ void ProcessComplexDataBufferA1(undefined8 systemHandle, longlong dataContext, u
       func_0x00018076b450(auStack_260,*(undefined8 *)(param_2 + 0x228),0x200);
       ppuVar6 = &puStack_278;
 SecurityValidationLabel:
-      iVar3 = FUN_180897520(param_1,ppuVar6);
+      iVar3 = ValidateDataIntegrityA0(param_1,ppuVar6);
     }
     else {
       iStack_2f0 = 0;
@@ -16025,7 +16056,7 @@ SecurityValidationLabel:
       lStack_2d8 = (ulonglong)param_3 << 0x20;
       uStack_2e8 = *(undefined8 *)(param_2 + 0x228);
       uStack_2e0 = (ulonglong)CONCAT14(iVar3 != 1,*(undefined4 *)(param_2 + 0x230));
-      iVar3 = FUN_180897520(param_1,&puStack_2f8);
+      iVar3 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
     }
     if (iVar3 != 0) goto FUN_1808974f4;
     uStack_298 = *(uint *)(param_2 + 0x10);
@@ -16036,7 +16067,7 @@ SecurityValidationLabel:
     puStack_2a8 = &UNK_180985a80;
     uStack_284 = 0;
     uStack_288 = param_3;
-    iVar3 = FUN_180897520(param_1,&puStack_2a8);
+    iVar3 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
     if (iVar3 != 0) goto FUN_1808974f4;
     iVar7 = 0;
     iVar3 = *(int *)(*(longlong *)(param_2 + 0x2e8) + 0x2c);
@@ -16045,14 +16076,14 @@ SecurityValidationLabel:
         iStack_2f0 = 0;
         puStack_2f8 = &UNK_180982cc0;
         uStack_2e8 = CONCAT44(uStack_2e8._4_4_,param_3);
-        iVar4 = FUN_180897520(param_1,&puStack_2f8);
+        iVar4 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
         if (iVar4 != 0) goto FUN_1808974f4;
         iVar7 = iVar7 + 1;
       } while (iVar7 < iVar3);
     }
   }
   if (((param_4 != '\0') || (*(int *)(*(longlong *)(param_2 + 0x2e8) + 0x34) == 0)) &&
-     (iVar3 = FUN_180897b40(param_1,param_2,param_3), iVar3 == 0)) {
+     (iVar3 = ConfigureSystemParametersA0(param_1,param_2,param_3), iVar3 == 0)) {
     for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(param_2 + 0x48))); iVar3 = iVar3 + 1) {
       validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + (longlong)iVar3 * 8);
       lVar2 = *(longlong *)(validationContext + 0x68);
@@ -16070,7 +16101,7 @@ SecurityValidationLabel:
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = iVar5;
-        iVar5 = FUN_180897520(param_1,&puStack_2a8);
+        iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
         if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
@@ -16078,7 +16109,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar5;
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
+          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
@@ -16086,7 +16117,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
+          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
         iVar5 = iVar4;
@@ -16095,7 +16126,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_1809843d0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
+          iVar7 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar7 != 0) goto FUN_1808974f4;
         }
       }
@@ -16117,7 +16148,7 @@ SecurityValidationLabel:
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = iVar5;
-        iVar5 = FUN_180897520(param_1,&puStack_2a8);
+        iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
         if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
@@ -16125,7 +16156,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar5;
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
+          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
@@ -16133,7 +16164,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
+          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
         iVar5 = iVar4;
@@ -16142,7 +16173,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_1809843d0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
+          iVar7 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar7 != 0) goto FUN_1808974f4;
         }
       }
@@ -16164,7 +16195,7 @@ SecurityValidationLabel:
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = iVar5;
-        iVar5 = FUN_180897520(param_1,&puStack_2a8);
+        iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
         if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
@@ -16172,7 +16203,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar5;
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
+          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
@@ -16180,7 +16211,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
+          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
         iVar5 = iVar4;
@@ -16189,7 +16220,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_1809843d0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
+          iVar7 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar7 != 0) goto FUN_1808974f4;
         }
       }
@@ -16211,7 +16242,7 @@ SecurityValidationLabel:
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = iVar5;
-        iVar5 = FUN_180897520(param_1,&puStack_2a8);
+        iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
         if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
@@ -16219,7 +16250,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar5;
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
+          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
@@ -16227,7 +16258,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = FUN_180897520(param_1,&puStack_2f8);
+          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar5 != 0) goto FUN_1808974f4;
         }
         iVar5 = iVar4;
@@ -16236,7 +16267,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_1809843d0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
+          iVar7 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar7 != 0) goto FUN_1808974f4;
         }
       }
@@ -16261,7 +16292,7 @@ SecurityValidationLabel:
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = iVar5;
-        iVar5 = FUN_180897520(param_1,&puStack_2a8);
+        iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
         if ((iVar5 != 0) || (iVar7 = FUN_18088cbb0(lVar2,afStack_304,0), iVar7 != 0)) break;
         iVar5 = iVar4;
         if (afStack_304[0] != 1.0) {
@@ -16269,7 +16300,7 @@ SecurityValidationLabel:
           puStack_2f8 = &UNK_1809844c8;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar7;
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
+          iVar7 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
           if (iVar7 != 0) break;
         }
       }
@@ -16322,7 +16353,7 @@ void ProcessFloatingPointDataA0(void)
   float in_stack_00000048;
   
   if (((unaff_R15B != '\0') || (*(int *)(*(longlong *)(unaff_R13 + 0x2e8) + 0x34) == unaff_R12D)) &&
-     (iVar7 = FUN_180897b40(), iVar7 == 0)) {
+     (iVar7 = ConfigureSystemParametersA0(), iVar7 == 0)) {
     for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x48))); iVar7 = iVar7 + 1) {
       validationContext = *(longlong *)(*(longlong *)(unaff_R13 + 0x40) + (longlong)iVar7 * 8);
       lVar2 = *(longlong *)(validationContext + 0x68);
@@ -16344,7 +16375,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
+        iVar8 = ValidateDataIntegrityA0(uVar3,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -16353,7 +16384,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_1809842e0;
           stackParameter40 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -16362,7 +16393,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_180984358;
           stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_00;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -16371,7 +16402,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_1809843d0;
           stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -16397,7 +16428,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
+        iVar8 = ValidateDataIntegrityA0(uVar3,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -16406,7 +16437,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_1809842e0;
           stackParameter40 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_01;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -16415,7 +16446,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_180984358;
           stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_02;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -16424,7 +16455,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_1809843d0;
           stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -16450,7 +16481,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
+        iVar8 = ValidateDataIntegrityA0(uVar3,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -16459,7 +16490,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_1809842e0;
           stackParameter40 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_03;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -16468,7 +16499,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_180984358;
           stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_04;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -16477,7 +16508,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_1809843d0;
           stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -16503,7 +16534,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
+        iVar8 = ValidateDataIntegrityA0(uVar3,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -16512,7 +16543,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_1809842e0;
           stackParameter40 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_05;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -16521,7 +16552,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_180984358;
           stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_06;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -16530,7 +16561,7 @@ void ProcessFloatingPointDataA0(void)
           in_stack_00000030 = &UNK_1809843d0;
           stackParameter40 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = ValidateDataIntegrityA0(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -16559,14 +16590,14 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar9 = FUN_180897520(uVar3,unaff_RBP + -0x80);
+        iVar9 = ValidateDataIntegrityA0(uVar3,unaff_RBP + -0x80);
         if ((iVar9 != 0) || (iVar9 = FUN_18088cbb0(lVar2,&fStackX_24,0), iVar9 != 0)) break;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809844c8;
           stackParameter40 = uStackX_20;
           in_stack_00000038 = iVar9;
-          iVar9 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar9 = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
           if (iVar9 != 0) break;
         }
       }
@@ -16762,7 +16793,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
       puStack_178 = &UNK_1809832b8;
       uStack_160 = uStack_1c8;
       uStack_168 = uStack_1a0;
-      iVar6 = FUN_180897520(param_1,&puStack_178);
+      iVar6 = ValidateDataIntegrityA0(param_1,&puStack_178);
       if (iVar6 == 0) {
         lStack_188 = (longlong)*(int *)(lVar2 + 0x28);
         lVar8 = validationContext4;
@@ -16788,7 +16819,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                 puVar12 = *(undefined **)(calculatedOffset + 0x50);
               }
               func_0x00018076b450(auStack_e0,puVar12,0x80);
-              iVar6 = FUN_180897520(param_1,&puStack_108);
+              iVar6 = ValidateDataIntegrityA0(param_1,&puStack_108);
               if (iVar6 != 0) goto FUN_180897b16;
             }
             lVar8 = lVar8 + 1;
@@ -16817,7 +16848,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
               uStack_118 = *(undefined4 *)(lVar2 + 0x60);
               uStack_114 = *(undefined4 *)(lVar2 + 100);
               uStack_148 = uStack_1c8;
-              iVar6 = FUN_180897520(param_1,&puStack_158);
+              iVar6 = ValidateDataIntegrityA0(param_1,&puStack_158);
               if (iVar6 != 0) goto FUN_180897b16;
             }
           }
@@ -16828,7 +16859,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
               puStack_1c0 = &UNK_180983738;
               uStack_1b0 = uStack_1c8;
               uStack_1b8 = 0;
-              iVar6 = FUN_180897520(param_1,&puStack_1c0);
+              iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
               if (iVar6 != 0) goto FUN_180897b16;
             }
             iVar6 = FUN_180868270(lVar2,afStack_198,0);
@@ -16838,7 +16869,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                 puStack_1c0 = &UNK_1809837c0;
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
-                iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
               fVar13 = 0.0;
@@ -16850,7 +16881,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                   puStack_1c0 = &UNK_1809839d8;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = *pfVar15;
-                  iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                  iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                   if (iVar6 != 0) goto FUN_180897b16;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
@@ -16866,7 +16897,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                   puStack_1c0 = &UNK_180983950;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = fVar1;
-                  iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                  iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                   if (iVar6 != 0) goto FUN_180897b16;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
@@ -16878,7 +16909,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 fStack_1a8 = (float)(uVar7 / 0x30);
-                iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
               if ((*(uint *)(param_2 + 0x2d8) >> 1 & 1) != 0) {
@@ -16886,7 +16917,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                 puStack_1c0 = &UNK_180983a60;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
-                iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
               iVar6 = ProcessUtilityOperation(param_2);
@@ -16894,7 +16925,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                 uStack_1b8 = 0;
                 puStack_1c0 = &UNK_180983ae8;
                 uStack_1b0 = uStack_1c8;
-                iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
               iVar6 = ProcessUtilityOperation(param_2);
@@ -16903,14 +16934,14 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                 puStack_1c0 = &UNK_180983b68;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = 0.0;
-                iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
               if ((*(uint *)(param_2 + 0x2d8) >> 3 & 1) != 0) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &UNK_180983cf8;
                 uStack_1b0 = uStack_1c8;
-                FUN_180897520(param_1,&puStack_1c0);
+                ValidateDataIntegrityA0(param_1,&puStack_1c0);
               }
             }
           }
@@ -17001,7 +17032,7 @@ ProcessDataSecurityValidation:
     *(undefined4 *)(unaff_RBP + -0xf) = uStackX_20;
     *(float *)(unaff_RBP + -0x10) = fStack0000000000000048;
     in_stack_00000078 = unaff_R13D;
-    iVar13 = FUN_180897520(extraout_XMM0_Da,&stack0x00000070);
+    iVar13 = ValidateDataIntegrityA0(extraout_XMM0_Da,&stack0x00000070);
     if (iVar13 == 0) {
       in_stack_00000060 = (longlong)*(int *)(unaff_R15 + 0x28);
       if (0 < in_stack_00000060) {
@@ -17030,7 +17061,7 @@ ProcessDataSecurityValidation:
               puVar18 = *(undefined **)(lVar2 + 0x50);
             }
             uVar24 = func_0x00018076b450(unaff_RBP + 1,puVar18,0x80);
-            iVar13 = FUN_180897520(uVar24,unaff_RBP + -4);
+            iVar13 = ValidateDataIntegrityA0(uVar24,unaff_RBP + -4);
             if (iVar13 != 0) goto FUN_180897b0e;
           }
           unaff_R13D = 0.0;
@@ -17072,7 +17103,7 @@ ProcessDataSecurityValidation:
             *(undefined4 *)((longlong)unaff_RBP + -0x34) = uVar9;
             *(undefined4 *)(unaff_RBP + -6) = uVar10;
             *(undefined4 *)((longlong)unaff_RBP + -0x2c) = uVar11;
-            iVar13 = FUN_180897520(uVar8,unaff_RBP + -0xe);
+            iVar13 = ValidateDataIntegrityA0(uVar8,unaff_RBP + -0xe);
             uVar24 = extraout_XMM0_Da_02;
             if (iVar13 != 0) goto FUN_180897b0e;
           }
@@ -17086,7 +17117,7 @@ ProcessDataSecurityValidation:
             in_stack_00000028 = &UNK_180983738;
             in_stack_00000038 = uStackX_20;
             in_stack_00000030 = unaff_R13D;
-            iVar13 = FUN_180897520(fStack000000000000004c,&stack0x00000028);
+            iVar13 = ValidateDataIntegrityA0(fStack000000000000004c,&stack0x00000028);
             fStack000000000000004c = extraout_XMM0_Da_03;
             if (iVar13 != 0) goto FUN_180897b0e;
           }
@@ -17097,7 +17128,7 @@ ProcessDataSecurityValidation:
               in_stack_00000028 = &UNK_1809837c0;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
-              iVar13 = FUN_180897520(in_stack_00000050,&stack0x00000028);
+              iVar13 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             pfVar21 = (float *)(unaff_R15 + 0x94);
@@ -17110,7 +17141,7 @@ ProcessDataSecurityValidation:
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
-                iVar13 = FUN_180897520(fVar1,&stack0x00000028);
+                iVar13 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
                 if (iVar13 != 0) goto FUN_180897b0e;
               }
               fVar19 = (float)((int)fVar19 + 1);
@@ -17126,7 +17157,7 @@ ProcessDataSecurityValidation:
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
-                iVar13 = FUN_180897520(fVar1,&stack0x00000028);
+                iVar13 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
                 if (iVar13 != 0) goto FUN_180897b0e;
               }
               fVar19 = (float)((int)fVar19 + 1);
@@ -17139,7 +17170,7 @@ ProcessDataSecurityValidation:
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = (float)(uVar14 / 0x30);
-              iVar13 = FUN_180897520(extraout_XMM0_Da_04,&stack0x00000028);
+              iVar13 = ValidateDataIntegrityA0(extraout_XMM0_Da_04,&stack0x00000028);
               uVar24 = extraout_XMM0_Da_05;
               if (iVar13 != 0) goto FUN_180897b0e;
             }
@@ -17148,7 +17179,7 @@ ProcessDataSecurityValidation:
               in_stack_00000038 = uStackX_20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               in_stack_00000030 = unaff_R13D;
-              iVar13 = FUN_180897520(uVar24,&stack0x00000028);
+              iVar13 = ValidateDataIntegrityA0(uVar24,&stack0x00000028);
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             iVar13 = ProcessUtilityOperation(registerR14);
@@ -17156,7 +17187,7 @@ ProcessDataSecurityValidation:
               in_stack_00000028 = &UNK_180983ae8;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
-              iVar13 = FUN_180897520(extraout_XMM0_Da_06,&stack0x00000028);
+              iVar13 = ValidateDataIntegrityA0(extraout_XMM0_Da_06,&stack0x00000028);
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             iVar13 = ProcessUtilityOperation(registerR14);
@@ -17166,7 +17197,7 @@ ProcessDataSecurityValidation:
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = unaff_R13D;
-              iVar13 = FUN_180897520(extraout_XMM0_Da_07,&stack0x00000028);
+              iVar13 = ValidateDataIntegrityA0(extraout_XMM0_Da_07,&stack0x00000028);
               uVar24 = extraout_XMM0_Da_08;
               if (iVar13 != 0) goto FUN_180897b0e;
             }
@@ -17174,7 +17205,7 @@ ProcessDataSecurityValidation:
               in_stack_00000028 = &UNK_180983cf8;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
-              FUN_180897520(uVar24,&stack0x00000028);
+              ValidateDataIntegrityA0(uVar24,&stack0x00000028);
             }
           }
         }
@@ -17277,7 +17308,7 @@ ValidateDataSecurity:
           puVar18 = *(undefined **)(lVar2 + 0x50);
         }
         uVar23 = func_0x00018076b450(unaff_RBP + 1,puVar18,0x80);
-        iVar13 = FUN_180897520(uVar23,unaff_RBP + -4);
+        iVar13 = ValidateDataIntegrityA0(uVar23,unaff_RBP + -4);
         if (iVar13 != 0) goto FUN_180897afe;
       }
       unaff_R13D = 0.0;
@@ -17319,7 +17350,7 @@ ValidateDataSecurity:
         *(undefined4 *)((longlong)unaff_RBP + -0x34) = uVar9;
         *(undefined4 *)(unaff_RBP + -6) = uVar10;
         *(undefined4 *)((longlong)unaff_RBP + -0x2c) = uVar11;
-        iVar13 = FUN_180897520(uVar8,unaff_RBP + -0xe);
+        iVar13 = ValidateDataIntegrityA0(uVar8,unaff_RBP + -0xe);
         uVar23 = extraout_XMM0_Da_01;
         if (iVar13 != 0) goto FUN_180897afe;
       }
@@ -17333,7 +17364,7 @@ ValidateDataSecurity:
         in_stack_00000028 = &UNK_180983738;
         in_stack_00000038 = uStackX_20;
         in_stack_00000030 = unaff_R13D;
-        iVar13 = FUN_180897520(in_stack_00000048._4_4_,&stack0x00000028);
+        iVar13 = ValidateDataIntegrityA0(in_stack_00000048._4_4_,&stack0x00000028);
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
         if (iVar13 != 0) goto FUN_180897afe;
       }
@@ -17344,7 +17375,7 @@ ValidateDataSecurity:
           in_stack_00000028 = &UNK_1809837c0;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
-          iVar13 = FUN_180897520(in_stack_00000050,&stack0x00000028);
+          iVar13 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
           if (iVar13 != 0) goto FUN_180897afe;
         }
         pfVar21 = (float *)(unaff_R15 + 0x94);
@@ -17357,7 +17388,7 @@ ValidateDataSecurity:
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
-            iVar13 = FUN_180897520(fVar1,&stack0x00000028);
+            iVar13 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
             if (iVar13 != 0) goto FUN_180897afe;
           }
           fVar19 = (float)((int)fVar19 + 1);
@@ -17373,7 +17404,7 @@ ValidateDataSecurity:
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
-            iVar13 = FUN_180897520(fVar1,&stack0x00000028);
+            iVar13 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
             if (iVar13 != 0) goto FUN_180897afe;
           }
           fVar19 = (float)((int)fVar19 + 1);
@@ -17386,7 +17417,7 @@ ValidateDataSecurity:
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = (float)(uVar14 / 0x30);
-          iVar13 = FUN_180897520(extraout_XMM0_Da_03,&stack0x00000028);
+          iVar13 = ValidateDataIntegrityA0(extraout_XMM0_Da_03,&stack0x00000028);
           uVar23 = extraout_XMM0_Da_04;
           if (iVar13 != 0) goto FUN_180897afe;
         }
@@ -17395,7 +17426,7 @@ ValidateDataSecurity:
           in_stack_00000038 = uStackX_20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           in_stack_00000030 = unaff_R13D;
-          iVar13 = FUN_180897520(uVar23,&stack0x00000028);
+          iVar13 = ValidateDataIntegrityA0(uVar23,&stack0x00000028);
           if (iVar13 != 0) goto FUN_180897afe;
         }
         iVar13 = ProcessUtilityOperation(registerR14);
@@ -17403,7 +17434,7 @@ ValidateDataSecurity:
           in_stack_00000028 = &UNK_180983ae8;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
-          iVar13 = FUN_180897520(extraout_XMM0_Da_05,&stack0x00000028);
+          iVar13 = ValidateDataIntegrityA0(extraout_XMM0_Da_05,&stack0x00000028);
           if (iVar13 != 0) goto FUN_180897afe;
         }
         iVar13 = ProcessUtilityOperation(registerR14);
@@ -17413,7 +17444,7 @@ ValidateDataSecurity:
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = unaff_R13D;
-          iVar13 = FUN_180897520(extraout_XMM0_Da_06,&stack0x00000028);
+          iVar13 = ValidateDataIntegrityA0(extraout_XMM0_Da_06,&stack0x00000028);
           uVar23 = extraout_XMM0_Da_07;
           if (iVar13 != 0) goto FUN_180897afe;
         }
@@ -17421,7 +17452,7 @@ ValidateDataSecurity:
           in_stack_00000028 = &UNK_180983cf8;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
-          FUN_180897520(uVar23,&stack0x00000028);
+          ValidateDataIntegrityA0(uVar23,&stack0x00000028);
         }
       }
     }
@@ -17476,7 +17507,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     in_stack_00000038 = uStackX_20;
     in_stack_00000030 = unaff_R13D;
     fStack0000000000000040 = param_1;
-    operationResult = FUN_180897520(param_1,&stack0x00000028);
+    operationResult = ValidateDataIntegrityA0(param_1,&stack0x00000028);
     param_1 = extraout_XMM0_Da;
     if (operationResult != 0) goto LAB_180897af6;
   }
@@ -17487,7 +17518,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       in_stack_00000028 = &UNK_1809837c0;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
-      operationResult = FUN_180897520(in_stack_00000050,&stack0x00000028);
+      operationResult = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
       if (operationResult != 0) goto LAB_180897af6;
     }
     pfVar5 = (float *)(unaff_R15 + 0x94);
@@ -17500,7 +17531,7 @@ void ProcessFloatingPointDataA0(float inputValue)
         in_stack_00000030 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
-        operationResult = FUN_180897520(fVar1,&stack0x00000028);
+        operationResult = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
         if (operationResult != 0) goto LAB_180897af6;
       }
       fVar4 = (float)((int)fVar4 + 1);
@@ -17516,7 +17547,7 @@ void ProcessFloatingPointDataA0(float inputValue)
         in_stack_00000030 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
-        operationResult = FUN_180897520(fVar1,&stack0x00000028);
+        operationResult = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
         if (operationResult != 0) goto LAB_180897af6;
       }
       fVar4 = (float)((int)fVar4 + 1);
@@ -17529,7 +17560,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       fStack0000000000000040 = (float)(uVar3 / 0x30);
-      operationResult = FUN_180897520(extraout_XMM0_Da_00,&stack0x00000028);
+      operationResult = ValidateDataIntegrityA0(extraout_XMM0_Da_00,&stack0x00000028);
       uVar6 = extraout_XMM0_Da_01;
       if (operationResult != 0) goto LAB_180897af6;
     }
@@ -17538,7 +17569,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       in_stack_00000038 = uStackX_20;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       in_stack_00000030 = unaff_R13D;
-      operationResult = FUN_180897520(uVar6,&stack0x00000028);
+      operationResult = ValidateDataIntegrityA0(uVar6,&stack0x00000028);
       if (operationResult != 0) goto LAB_180897af6;
     }
     operationResult = ProcessUtilityOperation();
@@ -17546,7 +17577,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       in_stack_00000028 = &UNK_180983ae8;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
-      operationResult = FUN_180897520(extraout_XMM0_Da_02,&stack0x00000028);
+      operationResult = ValidateDataIntegrityA0(extraout_XMM0_Da_02,&stack0x00000028);
       if (operationResult != 0) goto LAB_180897af6;
     }
     operationResult = ProcessUtilityOperation();
@@ -17556,7 +17587,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       fStack0000000000000040 = unaff_R13D;
-      operationResult = FUN_180897520(extraout_XMM0_Da_03,&stack0x00000028);
+      operationResult = ValidateDataIntegrityA0(extraout_XMM0_Da_03,&stack0x00000028);
       uVar6 = extraout_XMM0_Da_04;
       if (operationResult != 0) goto LAB_180897af6;
     }
@@ -17564,7 +17595,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       in_stack_00000028 = &UNK_180983cf8;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
-      FUN_180897520(uVar6,&stack0x00000028);
+      ValidateDataIntegrityA0(uVar6,&stack0x00000028);
     }
   }
 ValidationFailedLabel:
@@ -17688,7 +17719,7 @@ OperationFailedLabel:
       validationFlags = validationBuffer[0];
       operationParam = operationFlags;
       stackIndex = processCount;
-      validationResult = FUN_180897520(contextHandle,&callbackPointer);
+      validationResult = ValidateDataIntegrityA0(contextHandle,&callbackPointer);
       if (validationResult != 0) goto LAB_180897ce8;
       currentIteration = 0;
       maxIterations = func_0x0001808c7ed0(*(undefined8 *)(resourceEntry + 0xd0));
@@ -17810,7 +17841,7 @@ undefined8 ValidateDataStructureA0(longlong *param_1)
   puStack_28 = &UNK_180986408;
   uStack_18 = 2;
   uStack_14 = 0x20214;
-  uVar2 = FUN_180897520(param_1,&puStack_28);
+  uVar2 = ValidateDataIntegrityA0(param_1,&puStack_28);
   if ((int)uVar2 == 0) {
     validationContext = *(longlong *)(param_1[1] + 0x78);
     calculatedOffset = func_0x000180879a40();
@@ -18040,7 +18071,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
         uStack_338 = uStack_338 & 0xffffffff00000000;
         plStack_340 = (longlong *)&UNK_180982378;
         aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,iVar6);
-        iVar7 = FUN_180897520(param_1,&plStack_340);
+        iVar7 = ValidateDataIntegrityA0(param_1,&plStack_340);
         if (iVar7 != 0) goto LAB_18089866f;
       }
       pvalidationContext4 = pvalidationContext6;
@@ -18136,7 +18167,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
               if (lVar4 != 0) {
                 aplStack_330[0] = (longlong *)(uVar9 - lVar4);
               }
-              iVar7 = FUN_180897520(param_1,&plStack_340);
+              iVar7 = ValidateDataIntegrityA0(param_1,&plStack_340);
               if (iVar7 != 0) goto LAB_18089866f;
             }
             iVar7 = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
@@ -18359,7 +18390,7 @@ undefined8 ValidateDataA1(longlong *param_1,char param_2)
         uStack_18 = memoryBaseAddress;
       }
       puStack_28 = &UNK_180986390;
-      uVar2 = FUN_180897520(param_1,&puStack_28);
+      uVar2 = ValidateDataIntegrityA0(param_1,&puStack_28);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -19772,7 +19803,7 @@ undefined8 InitializeDataProcessorA0(undefined8 param_1,longlong *param_2)
   }
   lVar4 = (longlong)aiStackX_18[0];
   if (aiStackX_18[0] == 0) {
-    FUN_180840270(param_2);
+    ProcessDataAndPointerA0(param_2);
   }
   else {
     iVar5 = aiStackX_18[0] + 1;
@@ -32077,45 +32108,80 @@ void SetExtendedDefaultExceptionHandler(undefined8 exceptionContext, longlong un
 
 
 
-void Unwind_180902310(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理系统标志位6
+ * 
+ * 该函数检查并清理系统数据中的第6位标志(0x40)，
+ * 如果该位被设置，则清除它并调用相应的清理函数
+ * 
+ * @param context 上下文参数
+ * @param systemData 系统数据指针
+ */
+void CleanupSystemFlagBit6(undefined8 context, longlong systemData)
 
 {
-  if ((*(uint *)(param_2 + 0x30) & 0x40) != 0) {
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xffffffbf;
-    FUN_180627b90(param_2 + 0xb8);
+  if ((*(uint *)(systemData + 0x30) & 0x40) != 0) {
+    *(uint *)(systemData + 0x30) = *(uint *)(systemData + 0x30) & 0xffffffbf;
+    FUN_180627b90(systemData + 0xb8);
   }
   return;
 }
 
 
 
-void Unwind_180902340(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理系统标志位7
+ * 
+ * 该函数检查并清理系统数据中的第7位标志(0x80)，
+ * 如果该位被设置，则清除它并调用相应的清理函数
+ * 
+ * @param context 上下文参数
+ * @param systemData 系统数据指针
+ */
+void CleanupSystemFlagBit7(undefined8 context, longlong systemData)
 
 {
-  if ((*(uint *)(param_2 + 0x30) & 0x80) != 0) {
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xffffff7f;
-    FUN_180627b90(param_2 + 0x98);
+  if ((*(uint *)(systemData + 0x30) & 0x80) != 0) {
+    *(uint *)(systemData + 0x30) = *(uint *)(systemData + 0x30) & 0xffffff7f;
+    FUN_180627b90(systemData + 0x98);
   }
   return;
 }
 
 
 
-void Unwind_180902370(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置偏移量0x98处的默认异常处理器
+ * 
+ * 该函数在系统数据的0x98偏移处设置默认异常处理器B
+ * 
+ * @param context 上下文参数
+ * @param systemData 系统数据指针
+ */
+void SetDefaultExceptionHandlerForOffset98(undefined8 context, longlong systemData)
 
 {
-  *(undefined **)(param_2 + 0x98) = &DefaultExceptionHandlerB;
+  *(undefined **)(systemData + 0x98) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_180902380(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理系统标志位8
+ * 
+ * 该函数检查并清理系统数据中的第8位标志(0x100)，
+ * 如果该位被设置，则清除它并调用相应的清理函数
+ * 
+ * @param context 上下文参数
+ * @param systemData 系统数据指针
+ */
+void CleanupSystemFlagBit8(undefined8 context, longlong systemData)
 
 {
-  if ((*(uint *)(param_2 + 0x30) & 0x100) != 0) {
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffeff;
-    FUN_180627b90(param_2 + 0x38);
+  if ((*(uint *)(systemData + 0x30) & 0x100) != 0) {
+    *(uint *)(systemData + 0x30) = *(uint *)(systemData + 0x30) & 0xfffffeff;
+    FUN_180627b90(systemData + 0x38);
   }
   return;
 }
@@ -89056,7 +89122,9 @@ void InitializeGlobalDataPointerA6(void)
 
 
 942060(void)
-void FUN_180942060(void)
+// 设置默认异常处理器函数A5
+// 功能：设置默认异常处理器A5，初始化异常处理器B
+void SetDefaultExceptionHandlerA5(void)
 
 {
   _DAT_180bf95d0 = &DefaultExceptionHandlerB;
@@ -89069,7 +89137,9 @@ void FUN_180942060(void)
 
 
 942080(void)
-void FUN_180942080(void)
+// 设置默认异常处理器函数A6
+// 功能：设置默认异常处理器A6，初始化异常处理器B
+void SetDefaultExceptionHandlerA6(void)
 
 {
   _DAT_180bf9630 = &DefaultExceptionHandlerB;
