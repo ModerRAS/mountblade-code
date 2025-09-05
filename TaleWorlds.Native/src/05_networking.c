@@ -309,7 +309,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * 
  * 表示活跃连接的魔数值，ASCII码为"LIVE"，用于连接状态验证
  */
-#define NetworkMagicLiveConnection 0x5453494c            // "LIVE" - 表示活跃连接魔数
+#define NetworkLiveConnectionMagic 0x5453494c            // "LIVE" - 表示活跃连接魔数
 /**
  * @brief 数据包验证魔数
  * 
@@ -496,15 +496,15 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define Network256ByteConnectionSize 256             // 连接大小256字节
 #define Network64ByteEventSize 64                    // 事件大小64字节
 #define Network64ByteCallbackSize 64                 // 回调大小64字节
-#define NetworkRetryCountMaximum 3               // 最大重试次数3次
-#define NetworkBackoffTimeTwoSeconds 2000          // 退避时间2秒
+#define NetworkMaximumRetryCount 3               // 最大重试次数3次
+#define Network2SecondBackoffTime 2000          // 退避时间2秒
 
 // 网络数据包常量
-#define NetworkPacketHeaderSize32Bytes 0x20                        // 数据包头大小32字节
-#define NetworkPacketTrailerSize16Bytes 0x10                       // 数据包尾大小16字节
-#define NetworkPacketPayloadSize1KB 0x400                      // 数据包负载大小1KB
-#define NetworkMaximumPacketSize2KB 0x800                     // 最大数据包大小2KB
-#define NetworkPacketProcessingSize256Bytes 0x100                 // 数据包处理大小256字节
+#define Network32BytePacketHeaderSize 0x20                        // 数据包头大小32字节
+#define Network16BytePacketTrailerSize 0x10                       // 数据包尾大小16字节
+#define Network1KBPacketPayloadSize 0x400                      // 数据包负载大小1KB
+#define Network2KBMaximumPacketSize 0x800                     // 最大数据包大小2KB
+#define Network256BytePacketProcessingSize 0x100                 // 数据包处理大小256字节
 #define NetworkValidationBufferSize 0x27                   // 验证缓冲区大小39字节
 #define NetworkErrorCodeInvalidPacket 0x1c                     // 无效数据包错误码
 #define NetworkConnectionCompletionHandleValue 0x7d                   // 连接完成状态句柄值 (125)
