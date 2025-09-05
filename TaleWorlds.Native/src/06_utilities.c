@@ -208,9 +208,9 @@
  * 
  * 获取系统的安全状态信息
  * 
- * @note 原始函数名：FUN_1808afd90
+ * @note 原始函数名：GetSystemSecurityStatus
  */
-#define GetSystemSecurityStatus FUN_1808afd90
+#define GetSystemSecurityStatus GetSystemSecurityStatus
 
 /**
  * @brief 内存操作执行函数
@@ -521,7 +521,7 @@
  * 
  * 该函数负责验证数据块的状态，确保数据块的完整性
  * 
- * @note 原始函数名：FUN_180898eb0
+ * @note 原始函数名：CheckDataIntegrity
  */
 #define ValidateDataBlockStatusA1 ValidateDataBlockStatusA1
 
@@ -530,7 +530,7 @@
  * 
  * 该函数负责处理数据块的各种操作，包括读取和写入
  * 
- * @note 原始函数名：FUN_180898ef0
+ * @note 原始函数名：ValidateDataStructureA1
  */
 #define ProcessDataBlockOperationA0 ProcessDataBlockOperationA0
 
@@ -2361,13 +2361,13 @@
 // 功能：验证内存分配状态和访问权限
 #define ValidateMemoryAllocation FUN_1808a5d60
 
-// 原始函数名：FUN_1808a62d0 - 系统参数获取函数
+// 原始函数名：GetSystemParameter - 系统参数获取函数
 // 功能：获取系统参数并返回参数值
-#define GetSystemParameter FUN_1808a62d0
+#define GetSystemParameter GetSystemParameter
 
-// 原始函数名：FUN_1808a71c0 - 安全检查结果函数
+// 原始函数名：GetSecurityCheckResult - 安全检查结果函数
 // 功能：执行安全检查并返回检查结果
-#define GetSecurityCheckResult FUN_1808a71c0
+#define GetSecurityCheckResult GetSecurityCheckResult
 
 // 原始函数名：FUN_18089dcf0 - 数据验证和安全检查处理函数
 // 功能：执行数据验证和安全检查，处理端口控制和数据操作
@@ -2461,13 +2461,13 @@
 // 功能：处理数据并返回处理结果
 #define ProcessDataWithSecurityA0 ProcessDataWithSecurityA0
 
-// 原始函数名：FUN_180898ef0 - 数据验证函数A3
+// 原始函数名：ValidateDataStructureA1 - 数据验证函数A3
 // 功能：验证数据完整性和状态
-#define ValidateDataStructureA1 FUN_180898ef0
+#define ValidateDataStructureA1 ValidateDataStructureA1
 
-// 原始函数名：FUN_1808a8120 - 数据处理函数A4
+// 原始函数名：ProcessDataWithValidationA1 - 数据处理函数A4
 // 功能：处理数据并返回处理结果
-#define ProcessDataWithValidationA1 FUN_1808a8120
+#define ProcessDataWithValidationA1 ProcessDataWithValidationA1
 
 // 原始函数名：FUN_18089e2e8 - 系统缓冲区处理函数
 // 功能：处理系统缓冲区和数据操作
@@ -2525,17 +2525,17 @@
 // 功能：初始化系统组件和设置
 #define InitializeSystemSettings FUN_18089fad8
 
-// 原始函数名：FUN_1808ad9d0 - 内存分配验证函数
+// 原始函数名：ValidateMemoryAllocationStatus - 内存分配验证函数
 // 功能：验证内存分配状态并返回验证结果
-#define ValidateMemoryAllocationStatus FUN_1808ad9d0
+#define ValidateMemoryAllocationStatus ValidateMemoryAllocationStatus
 
 // 原始函数名：FUN_1808af700 - 数组索引验证函数
 // 功能：验证数组索引的有效性并返回索引值
 #define ValidateArrayIndex FUN_1808af700
 
-// 原始函数名：FUN_1808a4a20 - 系统内存管理函数
+// 原始函数名：ManageSystemMemory - 系统内存管理函数
 // 功能：管理系统内存分配和初始化
-#define ManageSystemMemory FUN_1808a4a20
+#define ManageSystemMemory ManageSystemMemory
 
 // 原始函数名：FUN_180847820 - 资源指针获取函数
 // 功能：获取系统资源指针，用于访问和管理资源
@@ -2998,13 +2998,13 @@
 // 功能：验证配置的有效性并返回验证结果
 #define ValidateConfigurationA0 FUN_180898e70
 
-// 原始函数名：FUN_180898eb0 - 配置处理函数A0
+// 原始函数名：CheckDataIntegrity - 配置处理函数A0
 // 功能：处理配置数据并返回处理结果
-#define ProcessConfigurationDataA0 FUN_180898eb0
+#define ProcessConfigurationDataA0 CheckDataIntegrity
 
-// 原始函数名：FUN_180898ef0 - 配置更新函数A0
+// 原始函数名：ValidateDataStructureA1 - 配置更新函数A0
 // 功能：更新配置数据并返回更新结果
-#define UpdateConfigurationDataA0 FUN_180898ef0
+#define UpdateConfigurationDataA0 ValidateDataStructureA1
 
 // 原始函数名：FUN_180898f40 - 配置验证函数A1
 // 功能：验证配置的有效性并返回验证结果
@@ -4640,9 +4640,9 @@
  * 
  * 该函数负责执行内存分配操作，为系统分配所需的内存空间
  * 
- * @note 原始函数名：FUN_1808a4a20
+ * @note 原始函数名：ManageSystemMemory
  */
-#define ExecuteMemoryAllocationOperation FUN_1808a4a20
+#define ExecuteMemoryAllocationOperation ManageSystemMemory
 
 /**
  * @brief 执行系统资源操作
@@ -11625,9 +11625,9 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 #define ValidateSystemOperationA0 FUN_1808a5a90
 
 
-// 原始函数名：FUN_18084c150 - 系统清理函数A0
+// 原始函数名：CleanupSystemResourcesA0 - 系统清理函数A0
 // 功能：清理系统资源和内存
-#define CleanupSystemResourcesA0 FUN_18084c150
+#define CleanupSystemResourcesA0 CleanupSystemResourcesA0
 
 
 // 原始函数名：FUN_1808b0fb0 - 系统状态更新函数O0
@@ -30221,7 +30221,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1,DataBuffer *param
            ((*(uint *)(param_2 + 8) < 0x8e && (*(int *)(param_1 + 0xf8) == 0x7fffffff)))) {
           *(DataWord *)(param_1 + 0xf8) = 0x21;
         }
-        validationStatus = FUN_180898ef0(param_2,param_1 + 0x100);
+        validationStatus = ValidateDataStructureA1(param_2,param_1 + 0x100);
         if ((int)validationStatus == 0) {
           memoryBaseAddress = 0x1c;
           if (*(uint *)(param_2 + 8) < 0x68) {
@@ -30309,7 +30309,7 @@ uint64_t ProcessDataAndValidationA(void)
            ((*(uint *)(contextRegister + 8) < 0x8e && (*(int *)(systemContext + 0xf8) == 0x7fffffff)))) {
           *(DataWord *)(systemContext + 0xf8) = 0x21;
         }
-        validationStatus = FUN_180898ef0();
+        validationStatus = ValidateDataStructureA1();
         if ((int)validationStatus == 0) {
           errorCode = 0x1c;
           if (*(uint *)(contextRegister + 8) < 0x68) {
@@ -30396,7 +30396,7 @@ uint64_t ProcessDataAndValidationB(void)
          ((*(uint *)(registerContext + 8) < 0x8e && (*(int *)(systemContext + 0xf8) == 0x7fffffff)))) {
         *(DataWord *)(systemContext + 0xf8) = 0x21;
       }
-      validationStatus = FUN_180898ef0();
+      validationStatus = ValidateDataStructureA1();
       if ((int)validationStatus == 0) {
         memoryBaseAddress = 0x1c;
         if (*(uint *)(registerContext + 8) < 0x68) {
@@ -30469,7 +30469,7 @@ uint64_t FUN_18089dda2(void)
          ((*(uint *)(registerContext + 8) < 0x8e && (*(int *)(systemContext + 0xf8) == 0x7fffffff)))) {
         *(DataWord *)(systemContext + 0xf8) = 0x21;
       }
-      validationStatus = FUN_180898ef0();
+      validationStatus = ValidateDataStructureA1();
       if ((int)validationStatus == 0) {
         memoryBaseAddress = 0x1c;
         if (*(uint *)(registerContext + 8) < 0x68) {
@@ -30945,7 +30945,7 @@ uint64_t FUN_18089e230(int64_t param_1,int64_t *param_2)
       if ((int)functionReturnValue != 0) {
         return functionReturnValue;
       }
-      functionReturnValue = FUN_1808a8120(param_2,param_1 + 0x30,operationResult,param_1);
+      functionReturnValue = ProcessDataWithValidationA1(param_2,param_1 + 0x30,operationResult,param_1);
       if ((int)functionReturnValue != 0) {
         return functionReturnValue;
       }
@@ -31050,7 +31050,7 @@ uint64_t FUN_18089e297(void)
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      validationStatus = FUN_1808a8120();
+      validationStatus = ProcessDataWithValidationA1();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -31150,7 +31150,7 @@ uint64_t FUN_18089e2be(void)
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      validationStatus = FUN_1808a8120();
+      validationStatus = ProcessDataWithValidationA1();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -31246,7 +31246,7 @@ uint64_t ProcessSystemBuffer(void)
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      validationStatus = FUN_1808a8120();
+      validationStatus = ProcessDataWithValidationA1();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -31405,16 +31405,16 @@ ValidationErrorHandler5:
             if (validationStatus != 0) goto ProcessCheckpointValidationError4;
           }
         }
-        FUN_18084c150(&puStack_88);
+        CleanupSystemResourcesA0(&puStack_88);
       }
       else {
-        memoryBaseAddress = FUN_1808a71c0(param_2,param_1 + 0x58);
+        memoryBaseAddress = GetSecurityCheckResult(param_2,param_1 + 0x58);
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
       }
-      memoryBaseAddress = FUN_1808ad9d0(param_2,param_1 + 0x78,0);
-      if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = FUN_1808a62d0(param_2,param_1 + 0x88,0), (int)memoryBaseAddress == 0)) {
+      memoryBaseAddress = ValidateMemoryAllocationStatus(param_2,param_1 + 0x78,0);
+      if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = GetSystemParameter(param_2,param_1 + 0x88,0), (int)memoryBaseAddress == 0)) {
                     // WARNING: Subroutine does not return
         CleanupSystemResourcesA0(param_2,colorDataBuffer);
       }
@@ -31520,18 +31520,18 @@ ValidationErrorHandler5:
           pvalidationOutcome = *(DataWord **)(stackFramePointer + -0x29);
         }
       }
-      dataValue1 = FUN_18084c150(stackFramePointer + -0x29);
+      dataValue1 = CleanupSystemResourcesA0(stackFramePointer + -0x29);
     }
     else {
-      securityCheckResult = FUN_1808a71c0(floatResultA_01,register_R15 + 0x58);
+      securityCheckResult = GetSecurityCheckResult(floatResultA_01,register_R15 + 0x58);
       dataValue1 = floatResultA_02;
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
       }
     }
-    securityCheckResult = FUN_1808ad9d0(dataValue1,register_R15 + 0x78,0);
+    securityCheckResult = ValidateMemoryAllocationStatus(dataValue1,register_R15 + 0x78,0);
     if (((int)securityCheckResult == 0) &&
-       (securityCheckResult = FUN_1808a62d0(floatResultA_03,register_R15 + 0x88,0), (int)securityCheckResult == 0)) {
+       (securityCheckResult = GetSystemParameter(floatResultA_03,register_R15 + 0x88,0), (int)securityCheckResult == 0)) {
                     // WARNING: Subroutine does not return
       ExecutePortControlOperation(floatResultA_04,stackFramePointer + 7);
     }
@@ -31561,11 +31561,11 @@ uint64_t ResetSystemComponents(void)
   if (*(uint *)(destinationIndexRegister + 0x40) < 0x84) {
     *(DataBuffer *)(stackFramePointer + -0x29) = registerContext;
     *(DataBuffer *)(stackFramePointer + -0x21) = registerContext;
-    functionReturnValue = FUN_1808a4a20();
+    functionReturnValue = ManageSystemMemory();
     memoryBaseAddress = (uint64_t)functionReturnValue;
     if (functionReturnValue != 0) {
 ValidationErrorHandler5:
-      FUN_18084c150(stackFramePointer + -0x29);
+      CleanupSystemResourcesA0(stackFramePointer + -0x29);
       return memoryBaseAddress;
     }
     operationStatus = *(int *)(stackFramePointer + -0x21);
@@ -31590,16 +31590,16 @@ ValidationErrorHandler5:
         pdataFlags = *(DataWord **)(stackFramePointer + -0x29);
       }
     }
-    FUN_18084c150(stackFramePointer + -0x29);
+    CleanupSystemResourcesA0(stackFramePointer + -0x29);
   }
   else {
-    memoryBaseAddress = FUN_1808a71c0();
+    memoryBaseAddress = GetSecurityCheckResult();
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
   }
-  memoryBaseAddress = FUN_1808ad9d0();
-  if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = FUN_1808a62d0(), (int)memoryBaseAddress == 0)) {
+  memoryBaseAddress = ValidateMemoryAllocationStatus();
+  if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = GetSystemParameter(), (int)memoryBaseAddress == 0)) {
                     // WARNING: Subroutine does not return
     CleanupSystemResourcesA0();
   }
@@ -31708,7 +31708,7 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t validationContext,int6
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
-  memoryBaseAddress = FUN_1808ad130(param_1,param_2);
+  memoryBaseAddress = ProcessMemoryAddressOperation(param_1,param_2);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
@@ -32003,7 +32003,7 @@ uint64_t FUN_18089e87d(void)
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
-  memoryBaseAddress = FUN_1808ad130();
+  memoryBaseAddress = ProcessMemoryAddressOperation();
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
@@ -32581,7 +32581,7 @@ DataBuffer ProcessDataCollectionA1(int64_t param_1,DataBuffer *param_2)
        (functionReturnValue = ExecuteSecurityValidation(param_2,ainputDataWord,0,0x42494157), (int)functionReturnValue == 0)) &&
       (functionReturnValue = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)functionReturnValue == 0)) &&
      ((0x45 < *(uint *)(param_2 + 8) ||
-      (functionReturnValue = FUN_1808a2d50(param_2,param_1 + 0xd8), (int)functionReturnValue == 0)))) {
+      (functionReturnValue = ValidateSystemDataStructure(param_2,param_1 + 0xd8), (int)functionReturnValue == 0)))) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -32717,13 +32717,13 @@ DataBuffer ExecuteDataValidationA2(int64_t param_1,int64_t *param_2)
         stackUIntBuffer[0] = *(DataWord *)(param_1 + 0x60);
         dataValue = (**(FunctionPointer**)**(DataBuffer **)(*param_2 + 8))
                           (*(DataBuffer **)(*param_2 + 8),stackUIntBuffer,4);
-        if (((((int)dataValue == 0) && (dataValue = FUN_180898eb0(param_2,param_1 + 100), (int)dataValue == 0))
-            && (dataValue = FUN_180898eb0(param_2,param_1 + 0x68), (int)dataValue == 0)) &&
-           (((dataValue = FUN_180898eb0(param_2,param_1 + 0x6c), (int)dataValue == 0 &&
-             (dataValue = FUN_180898eb0(param_2,param_1 + 0x70), (int)dataValue == 0)) &&
-            ((dataValue = FUN_180898eb0(param_2,param_1 + 0x74), (int)dataValue == 0 &&
-             (dataValue = FUN_180898eb0(param_2,param_1 + 0x78), (int)dataValue == 0)))))) {
-          dataValue = FUN_1808a7c40(param_2,param_1 + 0x5c,0x74);
+        if (((((int)dataValue == 0) && (dataValue = CheckDataIntegrity(param_2,param_1 + 100), (int)dataValue == 0))
+            && (dataValue = CheckDataIntegrity(param_2,param_1 + 0x68), (int)dataValue == 0)) &&
+           (((dataValue = CheckDataIntegrity(param_2,param_1 + 0x6c), (int)dataValue == 0 &&
+             (dataValue = CheckDataIntegrity(param_2,param_1 + 0x70), (int)dataValue == 0)) &&
+            ((dataValue = CheckDataIntegrity(param_2,param_1 + 0x74), (int)dataValue == 0 &&
+             (dataValue = CheckDataIntegrity(param_2,param_1 + 0x78), (int)dataValue == 0)))))) {
+          dataValue = ProcessDataSecurityValidation(param_2,param_1 + 0x5c,0x74);
         }
       }
     }
@@ -32741,14 +32741,14 @@ DataBuffer ProcessComplexDataStructureA1(int64_t param_1,int64_t *param_2)
   ByteFlag auStack_68 [64];
   ByteFlag auStack_28 [32];
   
-  dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x46464542);
+  dataValue = ExecuteDataBufferOperation(param_2,auStack_28,1,0x5453494c,0x46464542);
   if (((int)dataValue == 0) &&
-     (dataValue = FUN_1808ddd30(param_2,auStack_68,0,0x42464542,0), (int)dataValue == 0)) {
+     (dataValue = ExecuteDataBufferOperation(param_2,auStack_68,0,0x42464542,0), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x10);
       if (((int)dataValue == 0) &&
          ((0x5a < *(uint *)(param_2 + 8) ||
-          (dataValue = FUN_1808afd90(param_2,param_1 + 0x44), (int)dataValue == 0)))) {
+          (dataValue = GetSystemSecurityStatus(param_2,param_1 + 0x44), (int)dataValue == 0)))) {
         if (*(int *)(param_2[1] + 0x18) == 0) {
           switch(*(DataWord *)(param_1 + 0x60)) {
           default:
@@ -32865,9 +32865,9 @@ DataBuffer ProcessComplexDataStructureA1(int64_t param_1,int64_t *param_2)
           dataValue = (**(FunctionPointer**)**(DataBuffer **)(*param_2 + 8))
                             (*(DataBuffer **)(*param_2 + 8),auStackX_18,4);
           if (((int)dataValue == 0) &&
-             (dataValue = FUN_1808a7c90(param_2,param_1 + 0x40,0x3d), (int)dataValue == 0)) {
+             (dataValue = ValidateDataFormatStructure(param_2,param_1 + 0x40,0x3d), (int)dataValue == 0)) {
                     // WARNING: Subroutine does not return
-            FUN_1808de000(param_2,auStack_68);
+            ExecuteSystemCleanupRoutine(param_2,auStack_68);
           }
         }
         else {
@@ -33012,9 +33012,9 @@ DataBuffer ReturnFixedStatusCodeA3(void)
         }
         dataValue = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
                           (*(DataBuffer **)(*registerContext + 8),&stack0x000000b0,4);
-        if (((int)dataValue == 0) && (dataValue = FUN_1808a7c90(), (int)dataValue == 0)) {
+        if (((int)dataValue == 0) && (dataValue = ValidateDataFormatStructure(), (int)dataValue == 0)) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000();
+          ExecuteSystemCleanupRoutine();
         }
       }
       else {
@@ -33045,7 +33045,7 @@ void ConfigureSystemOptionsC1(void)
   
   if (in_EAX == 0x1b) {
     if (*(uint *)(registerContext + 8) < 0x3b) {
-      inputParameter = FUN_1808a87d0();
+      inputParameter = GetInputParameterStatus();
       if (inputParameter != 0) {
         return;
       }
@@ -33053,7 +33053,7 @@ void ConfigureSystemOptionsC1(void)
     }
   }
   else if ((in_EAX == 0x12) && (*(uint *)(registerContext + 8) < 0x40)) {
-    inputParameter = FUN_1808ddd30();
+    inputParameter = ExecuteDataBufferOperation();
     if (inputParameter != 0) {
       return;
     }
@@ -33068,7 +33068,7 @@ void ConfigureSystemOptionsC1(void)
     }
     inputParameter = 0;
     do {
-      operationResult = FUN_1808acf30();
+      operationResult = ExecuteOperationValidation();
       if (operationResult != 0) {
         return;
       }
@@ -33086,7 +33086,7 @@ void ConfigureSystemOptionsC1(void)
       return;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808de000();
+    ExecuteSystemCleanupRoutine();
   }
   inputParameter = FUN_1808a1090();
   if (inputParameter != 0) {
@@ -33094,7 +33094,7 @@ void ConfigureSystemOptionsC1(void)
   }
 ProcessCheckpointValidationCase:
                     // WARNING: Subroutine does not return
-  FUN_1808de000();
+  ExecuteSystemCleanupRoutine();
 }
 
 
@@ -33128,8 +33128,8 @@ uint64_t FUN_18089f530(int64_t param_1,DataBuffer *param_2,DataWord param_3,Data
   ByteFlag auStack_70 [64];
   ByteFlag auStack_30 [40];
   
-  functionReturnValue = FUN_1808ddd30(param_2,auStack_30,1,0x5453494c,param_3);
-  if (((int)functionReturnValue == 0) && (functionReturnValue = FUN_1808ddd30(param_2,auStack_70,0,param_4,0), (int)functionReturnValue == 0))
+  functionReturnValue = ExecuteDataBufferOperation(param_2,auStack_30,1,0x5453494c,param_3);
+  if (((int)functionReturnValue == 0) && (functionReturnValue = ExecuteDataBufferOperation(param_2,auStack_70,0,param_4,0), (int)functionReturnValue == 0))
   {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x10);
@@ -33137,7 +33137,7 @@ uint64_t FUN_18089f530(int64_t param_1,DataBuffer *param_2,DataWord param_3,Data
       if ((dataValue == 0) &&
          ((param_5 == '\0' || (functionReturnValue = FUN_1808a1870(param_1 + 0x48,param_2), (int)functionReturnValue == 0)))) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,auStack_70);
+        ExecuteSystemCleanupRoutine(param_2,auStack_70);
       }
     }
     else {
@@ -33158,7 +33158,7 @@ uint64_t FUN_18089f571(void)
   int64_t stackFramePointer;
   char in_stack_000000d0;
   
-  functionReturnValue = FUN_1808ddd30();
+  functionReturnValue = ExecuteDataBufferOperation();
   if ((int)functionReturnValue == 0) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
       dataValue = ProcessDataPointerA0(*registerContext,stackFramePointer + 0x10);
@@ -33167,7 +33167,7 @@ uint64_t FUN_18089f571(void)
          ((in_stack_000000d0 == '\0' || (functionReturnValue = FUN_1808a1870(stackFramePointer + 0x48), (int)functionReturnValue == 0)))
          ) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        ExecuteSystemCleanupRoutine();
       }
     }
     else {
@@ -33197,9 +33197,9 @@ DataBuffer ProcessDataConversionA1(int64_t param_1,int64_t *param_2)
   ByteFlag ainputDataWord [32];
   ByteFlag auStack_28 [32];
   
-  dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x49444d43);
+  dataValue = ExecuteDataBufferOperation(param_2,auStack_28,1,0x5453494c,0x49444d43);
   if (((int)dataValue == 0) &&
-     (dataValue = FUN_1808ddd30(param_2,ainputDataWord,0,0x42444d43,0), (int)dataValue == 0)) {
+     (dataValue = ExecuteDataBufferOperation(param_2,ainputDataWord,0,0x42444d43,0), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -33217,9 +33217,9 @@ DataBuffer ProcessDataConversionA1(int64_t param_1,int64_t *param_2)
         }
         dataValue = ProcessDataPointerA0(*param_2,param_1 + 0xdc);
         if (((int)dataValue == 0) &&
-           (dataValue = FUN_1808a7c40(param_2,param_1 + 0xec,0x80), (int)dataValue == 0)) {
+           (dataValue = ProcessDataSecurityValidation(param_2,param_1 + 0xec,0x80), (int)dataValue == 0)) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000(param_2,ainputDataWord);
+          ExecuteSystemCleanupRoutine(param_2,ainputDataWord);
         }
       }
     }
@@ -33250,7 +33250,7 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
   colorPackedData = validationStatusPointer[1];
   inputDataWord = validationStatusPointer[2];
   inputComponent1 = validationStatusPointer[3];
-  memoryBaseAddress = FUN_1808ddd30(param_2,systemConfigBuffer,0,0x4c525443,0);
+  memoryBaseAddress = ExecuteDataBufferOperation(param_2,systemConfigBuffer,0,0x4c525443,0);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
@@ -33298,7 +33298,7 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
               return memoryBaseAddress;
             }
                     // WARNING: Subroutine does not return
-            FUN_1808de000(param_2,systemConfigBuffer);
+            ExecuteSystemCleanupRoutine(param_2,systemConfigBuffer);
           }
         }
       }
@@ -33372,7 +33372,7 @@ uint64_t FUN_18089f9b3(void)
           validationStatus = FUN_180898e70();
           if ((int)validationStatus == 0) {
                     // WARNING: Subroutine does not return
-            FUN_1808de000();
+            ExecuteSystemCleanupRoutine();
           }
           return validationStatus;
         }
@@ -33438,7 +33438,7 @@ uint64_t FUN_18089f9f6(void)
           return validationStatus;
         }
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        ExecuteSystemCleanupRoutine();
       }
     }
   }
@@ -33486,7 +33486,7 @@ uint64_t FUN_18089fa3c(void)
       validationStatus = FUN_180898e70();
       if ((int)validationStatus == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        ExecuteSystemCleanupRoutine();
       }
       return validationStatus;
     }
@@ -33516,7 +33516,7 @@ uint64_t FUN_18089fac2(void)
       functionReturnValue = FUN_180898e70();
       if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        ExecuteSystemCleanupRoutine();
       }
       return functionReturnValue;
     }
@@ -33542,7 +33542,7 @@ uint64_t FUN_18089fad8(void)
       functionReturnValue = FUN_180898e70();
       if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        ExecuteSystemCleanupRoutine();
       }
       return functionReturnValue;
     }
@@ -33562,7 +33562,7 @@ void ProcessSystemDataC1(void)
   inputParameter = FUN_180898e70();
   if (inputParameter == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808de000();
+    ExecuteSystemCleanupRoutine();
   }
   return;
 }
@@ -33621,7 +33621,7 @@ DataBuffer ValidateDataSynchronizationA1(int64_t param_1,DataBuffer *param_2)
   DataBuffer dataValue;
   ByteFlag auStack_28 [32];
   
-  dataValue = FUN_1808ddd30(param_2,auStack_28,0,0x56525543,0);
+  dataValue = ExecuteDataBufferOperation(param_2,auStack_28,0,0x56525543,0);
   if ((int)dataValue == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -33635,7 +33635,7 @@ DataBuffer ValidateDataSynchronizationA1(int64_t param_1,DataBuffer *param_2)
       if (((int)dataValue == 0) && (dataValue = FUN_1808a4fb0(param_2,param_1 + 0x30,1,0), (int)dataValue == 0))
       {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,auStack_28);
+        ExecuteSystemCleanupRoutine(param_2,auStack_28);
       }
     }
   }
@@ -33651,9 +33651,9 @@ DataBuffer ExecuteDataCleanupA1(int64_t param_1,DataBuffer *param_2)
   ByteFlag ainputDataWord [32];
   ByteFlag auStack_28 [32];
   
-  dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54494645);
+  dataValue = ExecuteDataBufferOperation(param_2,auStack_28,1,0x5453494c,0x54494645);
   if (((int)dataValue == 0) &&
-     (dataValue = FUN_1808ddd30(param_2,ainputDataWord,0,0x42494645,0), (int)dataValue == 0)) {
+     (dataValue = ExecuteDataBufferOperation(param_2,ainputDataWord,0,0x42494645,0), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -33665,7 +33665,7 @@ DataBuffer ExecuteDataCleanupA1(int64_t param_1,DataBuffer *param_2)
       dataValue = ProcessDataPointerA0(*param_2,param_1 + 0xd8);
       if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,ainputDataWord);
+        ExecuteSystemCleanupRoutine(param_2,ainputDataWord);
       }
     }
   }
@@ -33737,16 +33737,16 @@ DataBuffer InitializeDataProcessorA1(int64_t param_1,int64_t *param_2)
       }
     }
     else {
-      dataValue = FUN_180898eb0(param_2,param_1 + 0x70);
+      dataValue = CheckDataIntegrity(param_2,param_1 + 0x70);
       if ((int)dataValue != 0) {
         return dataValue;
       }
-      dataValue = FUN_180898eb0(param_2,param_1 + 0x74);
+      dataValue = CheckDataIntegrity(param_2,param_1 + 0x74);
       if ((int)dataValue != 0) {
         return dataValue;
       }
     }
-    dataValue = FUN_1808a7c90(param_2,param_1 + 0x7c,0x7d);
+    dataValue = ValidateDataFormatStructure(param_2,param_1 + 0x7c,0x7d);
     return dataValue;
   }
   return dataValue;
@@ -33761,9 +33761,9 @@ DataBuffer ProcessDataCacheA1(int64_t param_1,DataBuffer *param_2)
   ByteFlag ainputDataWord [32];
   ByteFlag auStack_28 [32];
   
-  dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54495645);
+  dataValue = ExecuteDataBufferOperation(param_2,auStack_28,1,0x5453494c,0x54495645);
   if (((int)dataValue == 0) &&
-     (dataValue = FUN_1808ddd30(param_2,ainputDataWord,0,0x42495645,0), (int)dataValue == 0)) {
+     (dataValue = ExecuteDataBufferOperation(param_2,ainputDataWord,0,0x42495645,0), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -33773,10 +33773,10 @@ DataBuffer ProcessDataCacheA1(int64_t param_1,DataBuffer *param_2)
         return 0x1c;
       }
       dataValue = ProcessDataPointerA0(*param_2,param_1 + 0xd8);
-      if ((((int)dataValue == 0) && (dataValue = FUN_180898eb0(param_2,param_1 + 0xf8), (int)dataValue == 0)) &&
+      if ((((int)dataValue == 0) && (dataValue = CheckDataIntegrity(param_2,param_1 + 0xf8), (int)dataValue == 0)) &&
          (dataValue = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)dataValue == 0)) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,ainputDataWord);
+        ExecuteSystemCleanupRoutine(param_2,ainputDataWord);
       }
     }
   }
@@ -33798,14 +33798,14 @@ DataBuffer CleanupDataCacheA1(DataBuffer param_1,int64_t param_2)
     }
   }
   else {
-    dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x544e5645);
+    dataValue = ExecuteDataBufferOperation(param_2,auStack_28,1,0x5453494c,0x544e5645);
     if ((int)dataValue == 0) {
       dataValue = FUN_1808a3d50(param_1,param_2,0x42545645);
       if ((int)dataValue == 0) {
         dataValue = FUN_1808a1610(param_1,param_2);
         if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000(param_2,auStack_28);
+          ExecuteSystemCleanupRoutine(param_2,auStack_28);
         }
       }
     }
@@ -96553,9 +96553,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define CheckSystemStatusEW0 FUN_18088ac50
 
 
-// 原始函数名：FUN_18084c150 - 内存释放函数EY0
+// 原始函数名：CleanupSystemResourcesA0 - 内存释放函数EY0
 // 功能：释放内存EY0，清理内存资源
-#define FreeMemoryEY0 FUN_18084c150
+#define FreeMemoryEY0 CleanupSystemResourcesA0
 
 // 原始函数名：ExecuteSystemDataProcessingA0 - 数据验证函数EZ0
 // 功能：验证数据EZ0，确保数据完整性
@@ -96633,17 +96633,17 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：处理端口控制请求，验证请求的有效性并在验证通过时执行控制操作
 #define ProcessPortControlRequestB FUN_18089fb40
 
-// 原始函数名：FUN_1808ddd30 - 验证端口控制请求扩展
+// 原始函数名：ExecuteDataBufferOperation - 验证端口控制请求扩展
 // 功能：验证端口控制请求的有效性（扩展版本）
-#define ValidatePortControlRequestExtended FUN_1808ddd30
+#define ValidatePortControlRequestExtended ExecuteDataBufferOperation
 
 // 原始函数名：FUN_1808a7b00 - 验证端口访问权限扩展
 // 功能：验证端口访问权限（扩展版本）
 #define ValidatePortAccessExtended FUN_1808a7b00
 
-// 原始函数名：FUN_1808de000 - 执行端口控制操作扩展
+// 原始函数名：ExecuteSystemCleanupRoutine - 执行端口控制操作扩展
 // 功能：执行端口控制操作（扩展版本）
-#define ExecutePortControlOperationExtended FUN_1808de000
+#define ExecutePortControlOperationExtended ExecuteSystemCleanupRoutine
 
 // 验证上下文处理标签宏定义
 #define ValidationContextHandler ProcessCheckpointValidationContext
