@@ -1244,10 +1244,10 @@ bool SystemSecondaryStatusFlag;                  // 系统次状态标志
 void* SystemMemoryBlockMirror;                   // 系统内存块镜像
 void* SystemMemoryBlockReplica;                  // 系统内存块副本
 void* SystemMemoryBlockShadow;                   // 系统内存块阴影
-void* SystemMemoryBlockClone;
-char SystemSecurityStatusIndicator;
-void* SystemMemoryBlockVault;
-void* SystemMemoryBlockSafe;
+void* SystemMemoryBlockClone;                    // 系统内存块克隆
+char SystemSecurityStatusIndicator;             // 系统安全状态指示器
+void* SystemMemoryBlockVault;                    // 系统内存块保险库
+void* SystemMemoryBlockSafe;                     // 系统内存块安全区
 void* SystemMemoryBlockLockbox;
 // 系统内存块存档主区域
 void* SystemDataTableEntryArchiveMain;
@@ -1257,7 +1257,7 @@ void* SystemDataTableEntryArchiveSecondary;
 void* SystemDataTableEntryArchiveTertiary;
 // 系统内存块存档第四区域
 void* SystemDataTableEntryArchiveQuaternary;
-char SystemProtectionStatusIndicator;
+char SystemProtectionStatusIndicator;            // 系统保护状态指示器
 void* SystemDataTableEntrySystem;
 void* SystemMemoryBlockArchiveQuinary;
 void* SystemDataTableEntryKernel;
@@ -1352,7 +1352,7 @@ void* SystemMemoryRegionSenary;
 // 系统辅助内存区域指针 - 区域二百零六
 void* SystemMemoryRegionExtendedQuaternary;
 // 系统状态指示器 - 用于表示系统运行状态
-char SystemAdditionalStatusIndicator;
+char SystemAdditionalStatusIndicator;           // 系统附加状态指示器
 // 系统辅助内存区域指针 - 区域二百零七
 void* SystemMemoryRegionExtendedQuinary;
 // 系统辅助内存区域指针 - 区域二百零八
@@ -1383,11 +1383,11 @@ void* SystemInitializationStatusBlockQuaternary;// 系统初始化状态块第�
 void* SystemPerformanceMetricsBlockPrimary;   // 系统性能指标块第一个
 void* SystemPerformanceMetricsBlockSecondary; // 系统性能指标块第二个
 void* SystemPerformanceMetricsBlockTertiary;  // 系统性能指标块第三个
-uint32_t SystemGlobalConfigurationFlag;
-void* SystemMemoryAllocatorState;
-uint32_t SystemMemoryPoolSize;
-uint32_t SystemMemoryPoolAlignment;
-uint32_t SystemMemoryPoolAttributes;
+uint32_t SystemGlobalConfigurationFlag;           // 系统全局配置标志
+void* SystemMemoryAllocatorState;                // 系统内存分配器状态
+uint32_t SystemMemoryPoolSize;                   // 系统内存池大小
+uint32_t SystemMemoryPoolAlignment;              // 系统内存池对齐
+uint32_t SystemMemoryPoolAttributes;             // 系统内存池属性
 void* SystemMemoryPoolConfiguration;
 void* SystemInitializationProgressStatus;
 
@@ -1685,7 +1685,7 @@ void* SystemDataBufferCommonQuinary;
 void* SystemDataBufferCommonSenary;
 void* SystemDataBufferCommonSeptenary;
 // 系统数据缓冲区 - 通用用途
-char SystemCommonFlagBufferPrimary;
+char SystemCommonFlagBufferPrimary;              // 系统通用标志缓冲区主区域
 void* SystemDataBufferStandardPrimary;
 void* SystemDataBufferStandardSecondary;
 void* SystemDataBufferStandardTertiary;
@@ -12668,7 +12668,7 @@ void InitializeSystemDataTableConfigurator(void)
  * @return 无返回值
  * @note 该函数在系统初始化阶段调用，确保内存管理系统的正常运行
  */
-void InitializeSystemMemoryManagerG(void)
+void InitializeSystemMemoryManagerGamma(void)
 
 {
   char NodeActiveFlag;
@@ -70701,9 +70701,9 @@ void* SystemInitializationCompleteCheck;
 
 // 函数: 系统配置验证函数
 void* SystemConfigurationValidation;
-uint32_t SystemStatusIndicator;
-void* SystemInitializationFlag;
-void* SystemConfigurationFlag;
+uint32_t SystemStatusIndicator;                  // 系统状态指示器
+void* SystemInitializationFlag;                   // 系统初始化标志
+void* SystemConfigurationFlag;                    // 系统配置标志
 
 /**
  * @brief 音频数据归一化处理函数
@@ -71894,11 +71894,11 @@ void* SystemModuleLoader;
 void* SystemInterfaceManager;
 void* SystemModuleLoadFlag;
 void* SystemInterfaceHandle;
-uint32_t SystemInterfaceVersion;
-void* *SystemInterfaceTable;
-uint8_t *SystemInterfaceData;
-uint32_t SystemInterfaceConfig;
-long long SystemInterfaceMemoryBase;
+uint32_t SystemInterfaceVersion;                  // 系统接口版本
+void* *SystemInterfaceTable;                      // 系统接口表
+uint8_t *SystemInterfaceData;                     // 系统接口数据
+uint32_t SystemInterfaceConfig;                   // 系统接口配置
+long long SystemInterfaceMemoryBase;               // 系统接口内存基址
 long long SystemInterfaceMemorySize;
 long long SystemInterfaceDataOffset;
 long long SystemInterfaceDataSize;
