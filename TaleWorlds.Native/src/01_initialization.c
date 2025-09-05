@@ -38935,7 +38935,7 @@ void ResumeSystemThreadsWithPriority(void)
 
 
 /**
- * @brief 系统空操作函数D
+ * @brief 系统空操作函数（默认处理）
  * 
  * 该函数是一个空操作函数，不执行任何实际操作
  * 用于系统初始化过程中的占位符或默认处理
