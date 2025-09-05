@@ -34282,7 +34282,7 @@ void ValidateExceptionDataPointer(DataBuffer exceptionContext, int64_t contextDa
  * 
  * @return 无返回值
  */
-void ResetExceptionState(DataBuffer param_1,int64_t param_2)
+void ResetExceptionState(DataBuffer ExceptionContext, int64_t ExceptionDataContext)
 
 {
   int *referenceCount;
@@ -34291,7 +34291,7 @@ void ResetExceptionState(DataBuffer param_1,int64_t param_2)
   uint64_t baseAddress;
   
   // 获取异常数据指针（使用0x40偏移量）
-  dataPointer = *(DataBuffer **)(*(int64_t *)(param_2 + 0x40) + 0x218);
+  dataPointer = *(DataBuffer **)(*(int64_t *)(ExceptionDataContext + 0x40) + 0x218);
   if (dataPointer == (DataBuffer *)0x0) {
     return;
   }
@@ -34331,21 +34331,21 @@ void ResetExceptionState(DataBuffer param_1,int64_t param_2)
  * @brief 清理异常处理过程中的临时数据
  * @details 检查并清理异常处理过程中的临时数据和标志位
  * 
- * @param param_1 异常处理上下文（未使用）
- * @param param_2 包含异常状态标志和数据指针的结构
+ * @param ExceptionContext 异常处理上下文（未使用）
+ * @param ExceptionStatusData 包含异常状态标志和数据指针的结构
  * 
  * @return 无返回值
  */
-void CleanupExceptionData(DataBuffer param_1,int64_t param_2)
+void CleanupExceptionData(DataBuffer ExceptionContext, int64_t ExceptionStatusData)
 
 {
   // 检查标志位0x01是否被设置
-  if ((*(uint *)(param_2 + 0x20) & 1) != 0) {
+  if ((*(uint *)(ExceptionStatusData + 0x20) & 1) != 0) {
     // 清除标志位0x01
-    *(uint *)(param_2 + 0x20) = *(uint *)(param_2 + 0x20) & 0xfffffffe;
+    *(uint *)(ExceptionStatusData + 0x20) = *(uint *)(ExceptionStatusData + 0x20) & 0xfffffffe;
     
     // 调用清理函数处理资源
-    CleanupResourceHandler(*(DataBuffer *)(param_2 + 0x48));
+    CleanupResourceHandler(*(DataBuffer *)(ExceptionStatusData + 0x48));
   }
   return;
 }
@@ -34595,11 +34595,11 @@ void ExceptionHandlerA1(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Da
  * @brief 异常展开处理器A20
  * @details 处理异常展开过程中的特定操作，调用相关的异常处理回调
  */
-void ExceptionUnwindHandlerA20(DataBuffer param_1,int64_t param_2)
+void ExceptionUnwindHandlerA20(DataBuffer ExceptionContext, int64_t ExceptionHandlerData)
 
 {
-  if (*(int64_t **)(param_2 + 0xa8) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(param_2 + 0xa8) + 0x38))();
+  if (*(int64_t **)(ExceptionHandlerData + 0xa8) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(ExceptionHandlerData + 0xa8) + 0x38))();
   }
   return;
 }
