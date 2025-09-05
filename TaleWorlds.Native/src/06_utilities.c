@@ -29957,37 +29957,44 @@ uint64_t FUN_18089dcf0(int64_t param_1,DataBuffer *param_2)
 
 
 
-uint64_t FUN_18089dd54(void)
+/**
+ * @brief 数据处理和验证函数A
+ * 
+ * 该函数负责处理数据操作和验证，包括安全检查和资源清理
+ * 
+ * @return uint64_t - 处理状态码，0表示成功，非0表示错误
+ */
+uint64_t ProcessDataAndValidationA(void)
 
 {
   DataBuffer dataValue;
-  uint functionReturnValue;
-  int64_t inputAccumulatorRegister;
+  uint operationResult;
+  int64_t inputDataRegister;
   uint64_t validationStatus;
-  DataBuffer *registerContext;
+  DataBuffer *contextRegister;
   int64_t systemContext;
-  uint64_t memoryBaseAddress;
+  uint64_t errorCode;
   
-  if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
+  if (*(int *)(inputDataRegister + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = OperateDataO0(*registerContext,systemContext + 0xf0,4);
+  validationStatus = OperateDataO0(*contextRegister,systemContext + 0xf0,4);
   if ((int)validationStatus == 0) {
-    if (*(int *)(registerContext[1] + 0x18) == 0) {
-      functionReturnValue = OperateDataO0(*registerContext,systemContext + 0xf8,4);
-      validationStatus = (uint64_t)functionReturnValue;
-      if (functionReturnValue == 0) {
-        if (((*(uint *)(registerContext + 8) < 0x8a) && (*(int *)(systemContext + 0xf8) == 0)) ||
-           ((*(uint *)(registerContext + 8) < 0x8e && (*(int *)(systemContext + 0xf8) == 0x7fffffff)))) {
+    if (*(int *)(contextRegister[1] + 0x18) == 0) {
+      operationResult = OperateDataO0(*contextRegister,systemContext + 0xf8,4);
+      validationStatus = (uint64_t)operationResult;
+      if (operationResult == 0) {
+        if (((*(uint *)(contextRegister + 8) < 0x8a) && (*(int *)(systemContext + 0xf8) == 0)) ||
+           ((*(uint *)(contextRegister + 8) < 0x8e && (*(int *)(systemContext + 0xf8) == 0x7fffffff)))) {
           *(DataWord *)(systemContext + 0xf8) = 0x21;
         }
         validationStatus = FUN_180898ef0();
         if ((int)validationStatus == 0) {
-          memoryBaseAddress = 0x1c;
-          if (*(uint *)(registerContext + 8) < 0x68) {
-            validationStatus = memoryBaseAddress;
-            if (*(int *)(registerContext[1] + 0x18) == 0) {
-              dataValue = *registerContext;
+          errorCode = 0x1c;
+          if (*(uint *)(contextRegister + 8) < 0x68) {
+            validationStatus = errorCode;
+            if (*(int *)(contextRegister[1] + 0x18) == 0) {
+              dataValue = *contextRegister;
               validationStatus = ValidateDataWithSecurityCheckA2(dataValue,&stackDataBuffer);
               if ((int)validationStatus == 0) {
                 validationStatus = ValidateDataWithSecurityCheckA2(dataValue,&stack0x00000094);
@@ -29998,28 +30005,28 @@ uint64_t FUN_18089dd54(void)
             validationStatus = 0;
           }
           if ((int)validationStatus == 0) {
-            if (*(uint *)(registerContext + 8) < 0x39) {
+            if (*(uint *)(contextRegister + 8) < 0x39) {
               validationStatus = 0;
             }
             else {
-              validationStatus = memoryBaseAddress;
-              if (*(int *)(registerContext[1] + 0x18) == 0) {
-                validationStatus = OperateDataO0(*registerContext,systemContext + 0xf4,4);
+              validationStatus = errorCode;
+              if (*(int *)(contextRegister[1] + 0x18) == 0) {
+                validationStatus = OperateDataO0(*contextRegister,systemContext + 0xf4,4);
               }
             }
             if ((int)validationStatus == 0) {
-              if (*(uint *)(registerContext + 8) < 0x5e) {
+              if (*(uint *)(contextRegister + 8) < 0x5e) {
                 validationStatus = 0;
               }
               else {
-                validationStatus = memoryBaseAddress;
-                if (*(int *)(registerContext[1] + 0x18) == 0) {
-                  functionReturnValue = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xfc);
-                  validationStatus = (uint64_t)functionReturnValue;
+                validationStatus = errorCode;
+                if (*(int *)(contextRegister[1] + 0x18) == 0) {
+                  operationResult = ValidateDataWithSecurityCheckA2(*contextRegister,systemContext + 0xfc);
+                  validationStatus = (uint64_t)operationResult;
                 }
               }
               if (((int)validationStatus == 0) &&
-                 ((*(uint *)(registerContext + 8) < 0x85 || (validationStatus = ValidateDataSequence(), (int)validationStatus == 0))))
+                 ((*(uint *)(contextRegister + 8) < 0x85 || (validationStatus = ValidateDataSequence(), (int)validationStatus == 0))))
               {
                     // WARNING: Subroutine does not return
                 CleanupSystemResourcesA0();
@@ -30039,15 +30046,22 @@ uint64_t FUN_18089dd54(void)
 
 
 
-uint64_t FUN_18089dd78(void)
+/**
+ * @brief 数据处理和验证函数B
+ * 
+ * 该函数负责处理数据操作和验证，包括安全检查和资源管理
+ * 
+ * @return uint64_t - 处理状态码，0表示成功，非0表示错误
+ */
+uint64_t ProcessDataAndValidationB(void)
 
 {
   DataBuffer dataValue;
-  uint functionReturnValue;
+  uint operationResult;
   uint64_t validationStatus;
-  DataBuffer *registerContext;
+  DataBuffer *contextRegister;
   int64_t systemContext;
-  uint64_t memoryBaseAddress;
+  uint64_t errorCode;
   
   validationStatus = OperateDataO0(*registerContext,systemContext + 0xf0,4);
   if ((int)validationStatus != 0) {
@@ -49996,7 +50010,12 @@ void Unwind_180905a30(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180905a50(void)
+/**
+ * @brief 销毁系统互斥锁
+ * 
+ * 销毁系统中的互斥锁资源，确保资源正确释放
+ */
+void DestroySystemMutexA(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -50005,37 +50024,61 @@ void Unwind_180905a50(void)
 
 
 
-void Unwind_180905a60(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 清理执行上下文互斥锁
+ * 
+ * 清理执行上下文中的互斥锁资源
+ * 
+ * @param SystemContext 系统上下文
+ * @param ExecutionContext 执行上下文
+ */
+void CleanupExecutionContextMutex(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(param_2 + 0x2e0));
+  _Mtx_destroy_in_situ(*(DataBuffer *)(ExecutionContext + 0x2e0));
   return;
 }
 
 
 
-void Unwind_180905a70(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 执行系统回调函数
+ * 
+ * 检查并执行系统回调函数
+ * 
+ * @param SystemContext 系统上下文
+ * @param ExecutionContext 执行上下文
+ */
+void ExecuteSystemCallbackFunction(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
-  if (*(int64_t **)(param_2 + 0x250) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x250) + 0x38))();
+  if (*(int64_t **)(ExecutionContext + 0x250) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(ExecutionContext + 0x250) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180905a80(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 重置异常处理器A
+ * 
+ * 重置第一个异常处理器，先设置为临时处理器，然后恢复默认处理器
+ * 
+ * @param SystemContext 系统上下文
+ * @param ExecutionContext 执行上下文
+ */
+void ResetExceptionHandlerA(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
-  *(DataBuffer *)(param_2 + 0x68) = &UNK_180a3c3e0;
-  if (*(int64_t *)(param_2 + 0x70) != 0) {
+  *(DataBuffer *)(ExecutionContext + 0x68) = &UNK_180a3c3e0;
+  if (*(int64_t *)(ExecutionContext + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(param_2 + 0x70) = 0;
-  *(DataWord *)(param_2 + 0x80) = 0;
-  *(DataBuffer *)(param_2 + 0x68) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(ExecutionContext + 0x70) = 0;
+  *(DataWord *)(ExecutionContext + 0x80) = 0;
+  *(DataBuffer *)(ExecutionContext + 0x68) = &DefaultExceptionHandlerB;
   return;
 }
 
