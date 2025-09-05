@@ -38278,17 +38278,29 @@ void Unwind_180903080(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
 
 
 
+/**
+ * @brief 异常处理展开函数090
+ * 
+ * 该函数负责处理系统异常展开操作，主要功能是处理8位数据值的清理和释放。
+ * 函数会检查数据值指针的有效性，并依次调用多个清理函数来处理资源。
+ * 
+ * @param param_1 异常处理参数1
+ * @param param_2 异常处理参数2，包含数据值指针信息
+ * @param param_3 异常处理参数3
+ * @param param_4 异常处理参数4
+ */
 void Unwind_180903090(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  uint8_t8 *pdataValue;
+  uint8_t8 *DataValuePointer;
   
-  pdataValue = *(uint8_t8 **)(*(int64_t *)(param_2 + 0x40) + 0x10);
-  if (pdataValue != (uint8_t8 *)0x0) {
-    FUN_1800587d0(*(int64_t *)(param_2 + 0x40),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(pdataValue);
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(pdataValue);
+  // 获取8位数据值指针
+  DataValuePointer = *(uint8_t8 **)(*(int64_t *)(param_2 + 0x40) + 0x10);
+  if (DataValuePointer != (uint8_t8 *)0x0) {
+    // 调用一系列清理函数处理8位数据值指针
+    FUN_1800587d0(*(int64_t *)(param_2 + 0x40),*DataValuePointer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18005cb60(DataValuePointer);
+    FUN_18064e900(DataValuePointer);
   }
   return;
 }
