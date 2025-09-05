@@ -26539,8 +26539,8 @@ uint32_t GetSystemResourceStatus(void)
   void* *stringBufferPointer;
   long long stringBufferOffset;
   uint stringBufferIndex;
-  void* StackParamC;
-  void* systemSemaphore;
+  void* StackParameterC;
+  void* SystemSemaphore;
   uint8_t systemDataBuffer [32];
   uint8_t threadLocalStorageBuffer [40];
   
