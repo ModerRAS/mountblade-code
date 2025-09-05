@@ -22728,13 +22728,13 @@ undefined8 CleanupDataCacheA0(void)
   longlong unaff_RDI;
   
   if (*(int *)(in_RAX + 0x18) == 0) {
-    uVar1 = FUN_1808a2890(*registerContext,unaff_RDI + 0x60,0x25);
+    uVar1 = QuerySystemStatusA0(*registerContext,unaff_RDI + 0x60,0x25);
     if ((int)uVar1 == 0) {
       if (*(uint *)(registerContext + 8) < 0x3d) {
         uVar1 = 0;
       }
       else if (*(int *)(registerContext[1] + 0x18) == 0) {
-        uVar1 = FUN_1808a2e00(*registerContext,unaff_RDI + 0x40);
+        uVar1 = GetMemoryAddressA0(*registerContext,unaff_RDI + 0x40);
       }
       else {
         uVar1 = 0x1c;
