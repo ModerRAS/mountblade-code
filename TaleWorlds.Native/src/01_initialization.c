@@ -28528,14 +28528,14 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   ProcessSystemQueue(SystemStackBuffer,dataTemplatePointer);
   systemGlobalPointer = &SystemGlobalDataReference;
   quaternaryDataBuffer = 0;
-  dataBuffer3 = 0;
+  tertiaryDataBuffer = 0;
   dataFlags = 0;
-  resourcePointer1 = &SystemGlobalDataReference;
+  primaryResourcePointer = &SystemGlobalDataReference;
   threadFlags = 0;
   threadHandle = 0;
   threadBufferPointer = (uint8_t *)0x0;
   threadStatus = 0;
-  operationFlags1 = 2;
+  primaryOperationFlags = 2;
   dataLength = *(uint *)(ThreadParams + 0x10);
   bufferOffset = (ulong long)dataLength;
   threadId = 0;
@@ -51406,7 +51406,7 @@ void InitializeSystemResourceManagerEx(void* SystemResourceManager,void* Configu
   uint32_t ConfigurationParameter;
   uint32_t ResourceHandleLowPart;
   uint32_t ResourceHandleHighPart;
-  uint7 SystemStackParameter4;
+  uint7 ResourceConfigurationFlag;
   
   ResourceOffset = SystemInitializationFlag;
   SystemValue = 0xfffffffffffffffe;
