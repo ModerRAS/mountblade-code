@@ -5527,12 +5527,12 @@ undefined SystemProcessData;
 undefined SystemEventData;
 undefined SystemCacheData;
 undefined SystemBufferData;
-undefined UNK_1809fe100;
-undefined UNK_180a21690;
-undefined UNK_180a21720;
+undefined SystemMemoryManager;
+undefined SystemResourceManager;
+undefined SystemThreadManager;
 undefined DAT_180bf00a8;
 undefined DAT_180c86928;
-undefined UNK_18098bab0;
+undefined SystemNetworkManager;
 undefined UNK_18098bac8;
 undefined UNK_1809fd0a0;
 undefined UNK_180a3c110;
@@ -5659,7 +5659,8 @@ longlong utilityGlobalDataPointer;
 uint utilitySystemStatusIndicator;
 double utilityPerformanceMetric1;
 double utilityPerformanceMetric2;
-int utilityErrorCounter;
+// 工具错误计数器
+int UtilityErrorCount;
 double utilityTimingValue;
 undefined UtilitySystemState1;
 undefined UtilitySystemState2;
@@ -6618,7 +6619,8 @@ undefined UNK_180a3ae00;
 undefined UNK_180a3ae18;
 undefined UNK_180a2eac0;
 undefined DAT_180c92510;
-char DAT_180c8aa68;
+// 系统缓存状态变量A
+char SystemCacheStatusA;
 undefined UNK_180a3e5e8;
 
 9430e0;
@@ -6631,7 +6633,8 @@ undefined DAT_180bfbf60;
 undefined DAT_180bf7308;
 undefined DAT_180bfbf78;
 undefined DAT_180bf72a8;
-char DAT_180c8efc8;
+// 系统缓存状态变量B
+char SystemCacheStatusB;
 undefined UNK_18064ffc0;
 undefined UNK_180a3c8c8;
 undefined UNK_180a3c908;
@@ -10730,15 +10733,14 @@ ExitHandler:
 void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlags)
 
 {
-  int iVar1;
+  int processStatus;
   int operationResult;
   longlong calculatedOffset;
-  longlong lVar4;
-  uint uVar5;
-  longlong unaff_RBP;
-  longlong registerR14;
-  longlong in_stack_00000060;
-  longlong in_stack_00000070;
+  longlong resourcePointer;
+  uint signExtendedValue;
+  longlong eventHandle;
+  longlong systemContext;
+  longlong queueInfo;
   
   iVar1 = ProcessSystemEventDataA0(param_1,param_2,*(undefined8 *)(in_stack_00000070 + 8));
   if (iVar1 != 0) {
