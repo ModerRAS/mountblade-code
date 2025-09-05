@@ -101,6 +101,24 @@
 #define SystemOperationErrorCode 0x4a                       // 系统操作错误代码
 #define SystemStatusConstant 0x1c                            // 系统状态常量
 
+// 验证操作类型常量
+#define ValidationOperationTypeBasic 0                     // 基本验证操作类型
+#define ValidationOperationTypeSimple1 1                   // 简单验证操作类型1
+#define ValidationOperationTypeSimple2 2                   // 简单验证操作类型2
+#define ValidationOperationTypeSimple3 3                   // 简单验证操作类型3
+#define ValidationOperationTypeExtended 0x12               // 扩展验证操作类型
+#define ValidationOperationTypeComplex 0x30                 // 复杂验证操作类型
+#define ValidationOperationTypeResourceSingle 0x10         // 单资源验证操作类型
+#define ValidationOperationTypeResourceEntry 0x11          // 资源条目验证操作类型
+#define ValidationOperationTypeResourceDual 0x20            // 双资源验证操作类型
+
+// 验证子操作类型常量
+#define ValidationSubOperationTypeSecondary 0xb             // 次要验证子操作类型
+#define ValidationSubOperationTypeTertiary 0xc              // 第三验证子操作类型
+#define ValidationSubOperationTypeQuaternary 0xd            // 第四验证子操作类型
+#define ValidationSubOperationTypeQuinary 0xe               // 第五验证子操作类型
+#define ValidationSubOperationTypeSenary 0xf                // 第六验证子操作类型
+
 // 系统限制相关常量
 #define MaximumProcessableItemsLimit 0xffffffc0               // 最大可处理项目限制
 #define MaximumCapacityLimit 0xffffffc0                      // 最大容量限制
@@ -198,6 +216,11 @@
 #define ValidationContextSecondaryOffset 0x220           // 验证上下文次级偏移量
 #define PackageValidationStatusBit 1                      // 包验证状态位
 #define ValidationArraySizeMultiplier 3                    // 验证数组大小乘数
+
+// 资源哈希相关偏移常量
+#define ResourceHashPrimaryOffset 0x18                     // 资源哈希主偏移量
+#define ResourceHashSecondaryOffset 0x30                   // 资源哈希次偏移量
+#define ResourceHashTertiaryOffset 0x40                    // 资源哈希第三偏移量
 #define ValidationContextLoopCounterOffset 0x98           // 验证上下文循环计数器偏移量
 #define ValidationContextSecondaryResourceOffset 0x14      // 验证上下文次级资源偏移量
 #define ValidationContextValidationDataOffset 0x220 // 验证上下文验证数据处理偏移量
@@ -20073,18 +20096,18 @@ uint64_t ProcessResourceValidation(void)
         return ResourceHash;
       }
       switch(*SystemRegisterContext & 0xff) {
-      case 0:
-      case 1:
-      case 2:
-      case 3:
-      case 0x12:
-      case 0x30:
+      case ValidationOperationTypeBasic:
+      case ValidationOperationTypeSimple1:
+      case ValidationOperationTypeSimple2:
+      case ValidationOperationTypeSimple3:
+      case ValidationOperationTypeExtended:
+      case ValidationOperationTypeComplex:
         ResourceTablePointer = 4;
         ValidationStatusCode = -4;
         break;
       default:
         return ErrorInvalidObjectHandle;
-      case 0x10:
+      case ValidationOperationTypeResourceSingle:
         SecondaryStackParameter = SystemRegisterContext[1];
         ResourceHash = (**(code **)**(uint8_t **)(SystemContext + 8))
                           (*(uint8_t **)(SystemContext + 8),&SecondaryStackParameter,4);
@@ -20094,7 +20117,7 @@ uint64_t ProcessResourceValidation(void)
         ResourceTablePointer = 8;
         ValidationStatusCode = -8;
         break;
-      case 0x11:
+      case ValidationOperationTypeResourceEntry:
         ResourceHash = GetResourceEntry(FloatingPointCalculationResult,SystemRegisterContext + 1);
         if ((int)ResourceHash != 0) {
           return ResourceHash;
@@ -20102,7 +20125,7 @@ uint64_t ProcessResourceValidation(void)
         ResourceTablePointer = 0x14;
         ValidationStatusCode = -0x14;
         break;
-      case 0x20:
+      case ValidationOperationTypeResourceDual:
         TertiaryStackStorage = SystemRegisterContext[1];
         ResourceHash = (**(code **)**(uint8_t **)(SystemContext + 8))
                           (*(uint8_t **)(SystemContext + 8),&TertiaryStackStorage,4);
@@ -20985,13 +21008,13 @@ uint64_t GetResourceHashA(void)
   if ((int)ResourceHashStatus != 0) {
     return ResourceHashStatus;
   }
-  if (*(int *)(ResourceContext[1] + 0x18) == 0) {
-    ValidationStatusCode = GetResourceHashValue(*ResourceContext,SystemExecutionPointer + 0x30);
+  if (*(int *)(ResourceContext[1] + ResourceHashPrimaryOffset) == 0) {
+    ValidationStatusCode = GetResourceHashValue(*ResourceContext,SystemExecutionPointer + ResourceHashSecondaryOffset);
     if ((int)ResourceHashStatus != 0) {
       return ResourceHashStatus;
     }
-    if (*(int *)(ResourceContext[1] + 0x18) == 0) {
-      ValidationStatusCode = ReadResourceData(*ResourceContext,SystemExecutionPointer + 0x40,4);
+    if (*(int *)(ResourceContext[1] + ResourceHashPrimaryOffset) == 0) {
+      ValidationStatusCode = ReadResourceData(*ResourceContext,SystemExecutionPointer + ResourceHashTertiaryOffset,4);
       SystemRegisterContext = (uint64_t)ResourceHashStatus;
       if (ValidationStatusCode == 0) {
               CleanupResourceData();
@@ -21020,13 +21043,13 @@ uint64_t GetResourceHashB(void)
   int64_t SystemExecutionPointer;
   uint64_t SavedRegisterValue;
   
-  if (*(int *)(ResourceContext[1] + 0x18) == 0) {
-    ValidationStatusCode = GetResourceHashValue(*ResourceContext,SystemExecutionPointer + 0x30);
+  if (*(int *)(ResourceContext[1] + ResourceHashPrimaryOffset) == 0) {
+    ValidationStatusCode = GetResourceHashValue(*ResourceContext,SystemExecutionPointer + ResourceHashSecondaryOffset);
     if ((int)ResourceHashStatus != 0) {
       return ResourceHashStatus;
     }
-    if (*(int *)(ResourceContext[1] + 0x18) == 0) {
-      ResourceHash = ReadResourceData(*ResourceContext,SystemExecutionPointer + 0x40,4);
+    if (*(int *)(ResourceContext[1] + ResourceHashPrimaryOffset) == 0) {
+      ResourceHash = ReadResourceData(*ResourceContext,SystemExecutionPointer + ResourceHashTertiaryOffset,4);
       SystemRegisterContext = (uint64_t)ResourceHash;
       if (ResourceHash == 0) {
               CleanupResourceData();
