@@ -25296,15 +25296,16 @@ void UtilityNoOperationT(void)
 
 
 
-89d0b0(longlong param_1,undefined8 param_2)
-void FUN_18089d0b0(longlong param_1,undefined8 param_2)
+// 原始函数名：FUN_18089d0b0 - 条件执行函数A0
+// 功能：根据验证结果条件性地执行系统操作
+void ExecuteConditionallyAfterValidation(longlong systemContext, undefined8 operationData)
 
 {
-  int iVar1;
+  int validationStatus;
   
-  iVar1 = FUN_18089ce30(param_1 + 0xd8);
-  if (iVar1 == 0) {
-    FUN_18089b7d0(param_1,param_2);
+  validationStatus = ValidateSystemState(systemContext + 0xd8);
+  if (validationStatus == 0) {
+    ExecuteSystemOperation(systemContext, operationData);
   }
   return;
 }
@@ -25453,19 +25454,20 @@ ulonglong FUN_18089d193(void)
 
 
 
-89d208(void)
-void FUN_18089d208(void)
+// 原始函数名：FUN_18089d208 - 系统终止函数A0
+// 功能：调用系统终止函数，程序不会返回
+void TerminateSystemWithoutReturn(void)
 
 {
-                    // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  // WARNING: Subroutine does not return
+  ExecuteSystemTermination();
 }
 
 
 
 
 89d23a(void)
-void FUN_18089d23a(void)
+void UtilityNoOperationV(void)
 
 {
   return;
@@ -25678,7 +25680,7 @@ LAB_18089d435:
 
 
 89d47a(void)
-void FUN_18089d47a(void)
+void UtilityNoOperationW(void)
 
 {
   return;
@@ -25722,7 +25724,7 @@ undefined8 FUN_18089d490(longlong param_1,undefined8 *param_2)
 
 
 89d520(longlong param_1,undefined8 *param_2)
-void FUN_18089d520(longlong param_1,undefined8 *param_2)
+void ValidateDataParametersC0(longlong param_1,undefined8 *param_2)
 
 {
   int iVar1;
@@ -25780,7 +25782,7 @@ void FUN_18089d520(longlong param_1,undefined8 *param_2)
 
 
 89d557(undefined4 param_1)
-void FUN_18089d557(undefined4 param_1)
+void CheckSystemStateC0(undefined4 param_1)
 
 {
   int iVar1;
@@ -25841,7 +25843,7 @@ void FUN_18089d557(undefined4 param_1)
 
 
 89dcd6(void)
-void FUN_18089dcd6(void)
+void CleanupSystemResourcesC0(void)
 
 {
   return;
