@@ -982,12 +982,12 @@ void* SystemFunctionPointerEmergency;
  * 和数据结构，为后续的系统启动做准备
  */
 void* SystemInitializationEntryPointPrimary;
-void* SystemMemoryRegionReservedAlpha;
-void* SystemMemoryRegionReservedBeta;
-void* SystemMemoryRegionReservedGamma;
+void* SystemMemoryRegionReservedPrimary;
+void* SystemMemoryRegionReservedSecondary;
+void* SystemMemoryRegionReservedTertiary;
 void* SystemDataTableEntryDriver;
-void* SystemMemoryRegionReservedDelta;
-void* SystemMemoryRegionReservedEpsilon;
+void* SystemMemoryRegionReservedQuaternary;
+void* SystemMemoryRegionReservedQuinary;
 void* SystemDataTableEntryFirmware;
 
 /**
@@ -998,7 +998,7 @@ void* SystemDataTableEntryFirmware;
  */
 void* SystemInitializationEntryPointSecondary;
 // 系统扩展内存区域指针 - 区域六
-void* SystemMemoryRegionExtendedSix;
+void* SystemMemoryRegionExtendedHexary;
 
 /**
  * @brief 系统初始化入口点C
@@ -1048,17 +1048,17 @@ void* SystemMemoryRegionExtendedQuaternary;
 // 系统状态指示器 - 用于表示系统运行状态
 char SystemAdditionalStatusIndicator;
 // 系统辅助内存区域指针 - 区域二百零七
-void* SystemMemoryRegionExtendedTwoHundredSeven;
+void* SystemMemoryRegionExtendedQuinary;
 // 系统辅助内存区域指针 - 区域二百零八
-void* SystemMemoryRegionExtendedTwoHundredEight;
+void* SystemMemoryRegionExtendedSenary;
 // 系统数据表条目指针 - 条目十二
-void* SystemDataTableEntryTwelfth;
+void* SystemDataTableEntryFinal;
 // 系统辅助内存区域指针 - 区域二百零九
-void* SystemMemoryRegionExtendedTwoHundredNine;
+void* SystemMemoryRegionExtendedSeptenary;
 // 系统大容量内存区域指针 - 区域三百
-void* SystemMemoryRegionExtendedThreeHundred;
+void* SystemMemoryRegionExtendedOctonary;
 // 系统大容量内存区域指针 - 区域三百零一
-void* SystemMemoryRegionExtendedThreeHundredOne;
+void* SystemMemoryRegionExtendedNonary;
 // 系统全局数据常量块
 // 系统配置和状态数据块
 void* SystemGlobalDataConfigBlockPrimary;   // 系统全局数据配置块第一个
