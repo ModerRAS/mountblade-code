@@ -6774,27 +6774,34 @@ undefined8 ConfigureUtilityDataA0(longlong configPointer,longlong dataPointer)
 
 
 
-undefined8 FUN_1808921f0(longlong param_1,longlong param_2)
+/**
+ * @brief 工具数据配置函数A1
+ * @details 配置工具系统的数据结构和参数，验证数据完整性
+ * @param configPointer 配置指针
+ * @param dataPointer 数据指针
+ * @return 配置结果或错误码
+ */
+undefined8 ConfigureUtilityDataA1(longlong configPointer,longlong dataPointer)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 configurationResult;
+  longlong stackPointer;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 == 0) {
-    if (lStackX_8 != 0) {
-      lStackX_8 = lStackX_8 + -8;
+  configurationResult = func_0x00018088c530(*(undefined4 *)(configPointer + 0x10),&stackPointer);
+  if ((int)configurationResult == 0) {
+    if (stackPointer != 0) {
+      stackPointer = stackPointer + -8;
     }
-    if (*(longlong *)(lStackX_8 + 0x18) == 0) {
+    if (*(longlong *)(stackPointer + 0x18) == 0) {
       return 0x1e;
     }
-    uVar1 = func_0x00018088c500(*(undefined8 *)(*(longlong *)(lStackX_8 + 0x18) + 0xd0),
-                                param_1 + 0x18);
-    if ((int)uVar1 == 0) {
-      uVar1 = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+    configurationResult = func_0x00018088c500(*(undefined8 *)(*(longlong *)(stackPointer + 0x18) + 0xd0),
+                                configPointer + 0x18);
+    if ((int)configurationResult == 0) {
+      configurationResult = FUN_18088d7c0(*(undefined8 *)(dataPointer + 0x98),configPointer);
     }
   }
-  return uVar1;
+  return configurationResult;
 }
 
 
@@ -30013,7 +30020,7 @@ void Unwind_1809030a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_1809030b0(undefined8 param_1,longlong param_2)
+void CleanupResourcePointerB0(undefined8 param_1,longlong param_2)
 
 {
   longlong *plVar1;
@@ -30030,7 +30037,7 @@ void Unwind_1809030b0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809030c0(undefined8 param_1,longlong param_2)
+void ResetResourcePointerC0(undefined8 param_1,longlong param_2)
 
 {
   **(undefined8 **)(param_2 + 0x60) = &UNK_18098bcb0;
@@ -30039,7 +30046,7 @@ void Unwind_1809030c0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809030d0(undefined8 param_1,longlong param_2)
+void CleanupResourceHandlerD0(undefined8 param_1,longlong param_2)
 
 {
   longlong *plVar1;
