@@ -1561,9 +1561,9 @@ void HandleNetworkErrors(void)
   NetworkPacketReportSize = NetworkPacketReportSize;                       // 设置数据包报告大小为12字节
   
   // 初始化资源分配参数
-  NetworkResourceAllocationSize = 0x20;                  // 设置资源分配大小为32字节
-  NetworkResourceAllocationSizeEx = 0x28;               // 设置扩展资源分配大小为40字节
-  NetworkHandleStorageSize = 0x30;                      // 设置句柄存储大小为48字节
+  NetworkResourceAllocationSize = NetworkResourceAllocationSize;                  // 设置资源分配大小为32字节
+  NetworkResourceAllocationSizeEx = NetworkResourceAllocationSizeEx;               // 设置扩展资源分配大小为40字节
+  NetworkHandleStorageSize = NetworkHandleStorageSize;                      // 设置句柄存储大小为48字节
   
   // 初始化处理缓冲区
   PacketProcessingSize = NetworkPacketProcessingSize256Bytes;                  // 设置数据包处理大小为256字节
@@ -1574,8 +1574,8 @@ void HandleNetworkErrors(void)
   
   // 初始化连接超时参数
   NetworkConnectionTimeout = NetworkTimeoutThirtySeconds;                   // 设置连接超时时间为30秒
-  NetworkTimeoutValueOffset = 0x30;                     // 设置超时值偏移量
-  NetworkRetryCountOffset = 0x34;                       // 设置重试计数偏移量
+  NetworkTimeoutValueOffset = NetworkTimeoutValueOffset;                     // 设置超时值偏移量
+  NetworkRetryCountOffset = NetworkRetryCountOffset;                       // 设置重试计数偏移量
   
   // 初始化超时标志
   ConnectionTimeoutFlagsOffset = 0x38;                 // 设置连接超时标志偏移量
