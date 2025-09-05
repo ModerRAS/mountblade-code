@@ -10995,9 +10995,6 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 // 功能：执行系统验证操作，检查数据完整性
 #define ValidateSystemOperationA0 FUN_1808a5a90
 
-// 原始函数名：FUN_1808a4a20 - 系统初始化函数A0
-// 功能：初始化系统组件和配置
-#define InitializeSystemComponentA0 FUN_1808a4a20
 
 // 原始函数名：FUN_18084c150 - 系统清理函数A0
 // 功能：清理系统资源和内存
