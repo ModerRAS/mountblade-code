@@ -98582,7 +98582,20 @@ void ExecuteSystemResourceTableBulkCleanupOffset80(uint8_t ObjectContext, int64_
 
 
 
-void Unwind_18090fe70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放验证上下文资源上下文三级偏移处的共享锁
+ * 
+ * 该函数检查验证上下文资源上下文三级偏移处的字符值，如果不为零，
+ * 则释放验证上下文中偏移0x28处的共享锁。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数用于线程同步和资源表管理
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090fe70
+ */
+void ReleaseValidationContextResourceContextTertiarySharedLock(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + ResourceContextTertiaryOffset) != '\0') {
