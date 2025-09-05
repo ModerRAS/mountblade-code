@@ -63946,7 +63946,7 @@ void Unwind_18090a6e0(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49238 = 0;
+  ExceptionStatusFlagA5 = 0;
   LeaveCriticalSection(0x180c82210);
   if (_DAT_180c82240 != 0) {
     SetEvent();
@@ -68394,7 +68394,7 @@ void Unwind_18090c470(undefined8 param_1,longlong param_2)
 void Unwind_18090c480(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -68414,7 +68414,7 @@ void Unwind_18090c490(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x150)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -68677,7 +68677,7 @@ void Unwind_18090c540(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x180)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -68723,7 +68723,7 @@ void Unwind_18090c550(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x240)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -68770,7 +68770,7 @@ void Unwind_18090c560(undefined8 param_1,longlong param_2)
 void Unwind_18090c570(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -68799,7 +68799,7 @@ void Unwind_18090c590(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x1e0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -68846,7 +68846,7 @@ void Unwind_18090c5a0(undefined8 param_1,longlong param_2)
 void Unwind_18090c5b0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -68866,7 +68866,7 @@ void Unwind_18090c5c0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x120)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -68912,7 +68912,7 @@ void Unwind_18090c5d0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x2a0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -68950,7 +68950,7 @@ void Unwind_18090c5d0(undefined8 param_1,longlong param_2)
 void Unwind_18090c5e0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -68970,7 +68970,7 @@ void Unwind_18090c5f0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x300)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -69016,7 +69016,7 @@ void Unwind_18090c600(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x360)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -69673,7 +69673,7 @@ void Unwind_18090c9d0(undefined8 param_1,longlong param_2)
 void Unwind_18090ca00(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -69685,7 +69685,7 @@ void Unwind_18090ca00(void)
 void Unwind_18090ca10(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -69705,7 +69705,7 @@ void Unwind_18090ca20(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0xd0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -69743,7 +69743,7 @@ void Unwind_18090ca20(undefined8 param_1,longlong param_2)
 void Unwind_18090ca30(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -69763,7 +69763,7 @@ void Unwind_18090ca40(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x130)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -69801,7 +69801,7 @@ void Unwind_18090ca40(undefined8 param_1,longlong param_2)
 void Unwind_18090ca50(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -69813,7 +69813,7 @@ void Unwind_18090ca50(void)
 void Unwind_18090ca60(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -69833,7 +69833,7 @@ void Unwind_18090ca70(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 400)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -69880,7 +69880,7 @@ void Unwind_18090ca80(undefined8 param_1,longlong param_2)
 void Unwind_18090ca90(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -69900,7 +69900,7 @@ void Unwind_18090caa0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x1f0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -69947,7 +69947,7 @@ void Unwind_18090cab0(undefined8 param_1,longlong param_2)
 void Unwind_18090cac0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -69967,7 +69967,7 @@ void Unwind_18090cad0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x250)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -70014,7 +70014,7 @@ void Unwind_18090cae0(undefined8 param_1,longlong param_2)
 void Unwind_18090caf0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -70034,7 +70034,7 @@ void Unwind_18090cb00(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x2b0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -70089,7 +70089,7 @@ void Unwind_18090cb20(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x310)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -70144,7 +70144,7 @@ void Unwind_18090cb40(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x4f0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -70182,7 +70182,7 @@ void Unwind_18090cb40(undefined8 param_1,longlong param_2)
 void Unwind_18090cb50(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -70202,7 +70202,7 @@ void Unwind_18090cb60(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x370)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -70257,7 +70257,7 @@ void Unwind_18090cb80(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x3d0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -70295,7 +70295,7 @@ void Unwind_18090cb80(undefined8 param_1,longlong param_2)
 void Unwind_18090cb90(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -70316,7 +70316,7 @@ void Unwind_18090cba0(undefined8 param_1,longlong param_2)
 void Unwind_18090cbb0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -70328,7 +70328,7 @@ void Unwind_18090cbb0(void)
 void Unwind_18090cbc0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -70348,7 +70348,7 @@ void Unwind_18090cbd0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x430)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -70395,7 +70395,7 @@ void Unwind_18090cbe0(undefined8 param_1,longlong param_2)
 void Unwind_18090cbf0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -70415,7 +70415,7 @@ void Unwind_18090cc00(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x490)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -70561,7 +70561,7 @@ void Unwind_18090ccc0(undefined8 param_1,longlong param_2)
 void Unwind_18090ccd0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -70581,7 +70581,7 @@ void Unwind_18090cce0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x50)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -75882,7 +75882,7 @@ void Unwind_18090e760(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x70)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -75940,7 +75940,7 @@ void Unwind_18090e7a0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x1a0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -75986,7 +75986,7 @@ void Unwind_18090e7b0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0xa0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -76032,7 +76032,7 @@ void Unwind_18090e7c0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x100)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -76078,7 +76078,7 @@ void Unwind_18090e7d0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x60)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -76124,7 +76124,7 @@ void Unwind_18090e7e0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x90)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -76170,7 +76170,7 @@ void Unwind_18090e7f0(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0xf0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -76216,7 +76216,7 @@ void Unwind_18090e800(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x1b0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -76254,7 +76254,7 @@ void Unwind_18090e800(undefined8 param_1,longlong param_2)
 void Unwind_18090e810(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -76274,7 +76274,7 @@ void Unwind_18090e820(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x210)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -76312,7 +76312,7 @@ void Unwind_18090e820(undefined8 param_1,longlong param_2)
 void Unwind_18090e830(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -76332,7 +76332,7 @@ void Unwind_18090e840(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x270)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -76370,7 +76370,7 @@ void Unwind_18090e840(undefined8 param_1,longlong param_2)
 void Unwind_18090e850(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -76390,7 +76390,7 @@ void Unwind_18090e860(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x2d0)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
@@ -76428,7 +76428,7 @@ void Unwind_18090e860(undefined8 param_1,longlong param_2)
 void Unwind_18090e870(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -76695,7 +76695,7 @@ void Unwind_18090e9a0(undefined8 param_1,longlong param_2)
 void Unwind_18090e9b0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
+  SystemResourceCounter = SystemResourceCounter + -1;
   (**(code **)(*_DAT_180c86968 + 0x20))();
   return;
 }
@@ -76829,7 +76829,7 @@ void Unwind_18090eb00(undefined8 param_1,longlong param_2)
   
   if (0 < *(int *)(param_2 + 0x140)) {
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       validationContext = *plVar4;
