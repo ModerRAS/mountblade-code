@@ -9151,7 +9151,7 @@ uint64_t ReturnConstantValueA0(void)
 // 功能：验证内存结构并调用相关处理函数
 #define ValidateMemoryStructureA0 FUN_180890ad0
 
-// 函数: DataBuffer ValidateMemoryStructureA0(int64_t param_1)
+// 函数: DataBuffer ValidateMemoryStructureA0(int64_t memoryContext)
 // 功能：验证内存结构并调用相关处理函数
 DataBuffer ValidateMemoryStructureA0(int64_t memoryContext)
 
@@ -14497,9 +14497,9 @@ void ProcessFloatComparisonAndValidation(void)
 
 {
   float inputValue;
-  DataWord registerEAX;
+  DataWord registerLowPart;
   int operationResult;
-  DataWord registerParameter;
+  DataWord registerHighPart;
   int64_t registerContext;
   int64_t systemContext;
   float rangeValue;
