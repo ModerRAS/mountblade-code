@@ -40968,11 +40968,11 @@ SystemOperationComplete:
       *SystemLocalContextPointer = SystemResourceDataIndex * 2;
       presourceCounter = (long long *)CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemResourceDataIndex * 0x20 + 0x27,10);
       if (presourceCounter != (long long *)0x0) {
-        ResourceHashEntryPointer2 = (uint32_t *)((ulong long)(-(int)(presourceCounter + 4) & 7) + (long long)(presourceCounter + 4));
+        ResourceHashStartPointer = (uint32_t *)((ulong long)(-(int)(presourceCounter + 4) & 7) + (long long)(presourceCounter + 4));
         SystemThreadHandleCounter = 0;
         if (*(long long *)(SystemResourceManager + 0x60) != 0) {
           SystemInitializationStatusFlags = *(long long *)(SystemResourceManager + 0x70) - *(long long *)(SystemResourceManager + 0x60) & SystemResourceDataIndex - 1U;
-          ResourceHashEntryPointer1 = ResourceHashEntryPointer2;
+          ResourceHashCurrentPointer = ResourceHashStartPointer;
           do {
             ResourceHashEntryPointer = (uint32_t *)(*(long long *)(SystemResourceManager + 0x78) + SystemInitializationStatusFlags * 0x10);
             ResourceHash = ResourceHashEntryPointer[1];

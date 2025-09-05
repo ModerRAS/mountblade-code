@@ -1042,28 +1042,38 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 uint32_t NetworkConnectionManagerContext;                    // 网络连接管理器上下文
 /**
  * @brief 网络连接池管理器
+ * 
+ * 管理网络连接池的分配、回收和维护操作
  */
-uint32_t ConnectionPoolManager;
+uint32_t NetworkConnectionPoolManager;
 
 /**
  * @brief 网络管理器上下文指针
+ * 
+ * 指向网络管理器的主要上下文数据结构
  */
-uint32_t ManagerContextPtr;
+uint32_t NetworkManagerContextPointer;
 
 /**
  * @brief 网络管理器上下文数据
+ * 
+ * 存储网络管理器的配置和状态信息
  */
-uint32_t ManagerContextData;
+uint32_t NetworkManagerContextData;
 
 /**
- * @brief 网络连接状态标志
+ * @brief 网络连接状态标志集合
+ * 
+ * 存储网络连接的各种状态标志位
  */
-uint32_t ConnectionStateFlags;
+uint32_t NetworkConnectionStateFlags;
 
 /**
  * @brief 网络连接超时时间（毫秒）
+ * 
+ * 定义网络连接的超时时间，单位为毫秒
  */
-uint32_t ConnectionTimeoutMs;
+uint32_t NetworkConnectionTimeoutMilliseconds;
 
 /**
  * @brief 网络最大连接数限制
