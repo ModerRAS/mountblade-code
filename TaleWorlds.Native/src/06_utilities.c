@@ -4111,10 +4111,10 @@ void ProcessResourceCleanup(void)
 void ExecuteSystemShutdown(void)
 
 {
-  ulonglong in_stack_00000240;
+  ulonglong securityContext;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
