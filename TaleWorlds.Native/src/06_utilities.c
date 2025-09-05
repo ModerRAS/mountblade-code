@@ -6038,9 +6038,12 @@ undefined ExceptionCacheManagerA;
 undefined ExceptionCacheManagerB;
 // 系统状态数据表A
 undefined SystemStatusDataTableA;
-undefined DAT_180c8ed68;
-undefined DAT_180c8ed00;
-undefined DAT_180c8ed50;
+// 系统状态数据表B
+undefined SystemStatusDataTableB;
+// 系统配置数据表B
+undefined SystemConfigDataTableB;
+// 系统缓存数据表A
+undefined SystemCacheDataTableA;
 // 系统状态标志变量A
 char SystemStatusFlagA;
 undefined DAT_180c8ed58;
