@@ -4786,11 +4786,11 @@ undefined UtilityCopyBlockStatus1;
 //   无
 void InitializeUtilitySystem(void);
 // 工具系统初始化数据变量
-undefined UtilityInitializeData1;
-undefined UtilityInitializeData2;
-undefined UtilityInitializeData3;
-undefined UtilityInitializeData4;
-undefined UtilityInitializeStatus1;
+int32_t UtilityInitializeData1;
+int32_t UtilityInitializeData2;
+int32_t UtilityInitializeData3;
+int32_t UtilityInitializeData4;
+int32_t UtilityInitializeStatus1;
 
 // 函数: void ConfigureUtilitySystem(void)
 // 
@@ -4804,11 +4804,11 @@ undefined UtilityInitializeStatus1;
 //   无
 void ConfigureUtilitySystem(void);
 // 工具系统配置数据变量
-undefined UtilityConfigureData1;
-undefined UtilityConfigureData2;
-undefined UtilityConfigureData3;
-undefined UtilityConfigureData4;
-undefined UtilityConfigureStatus1;
+int32_t UtilityConfigureData1;
+int32_t UtilityConfigureData2;
+int32_t UtilityConfigureData3;
+int32_t UtilityConfigureData4;
+int32_t UtilityConfigureStatus1;
 
 // 函数: void SetupUtilityMemory(void)
 // 
@@ -7546,6 +7546,15 @@ undefined8 ConditionalResourceRelease(char shouldRelease)
 // 注意事项:
 //   - 此函数不执行任何操作
 //   - 直接返回，不产生任何副作用
+/**
+ * @brief 工具系统空操作函数1
+ * 
+ * 该函数执行空操作，主要用于系统初始化或作为占位符函数。
+ * 在某些情况下，空操作函数用于保持函数指针表的完整性。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void UtilityNoOperation1(void)
 
 {

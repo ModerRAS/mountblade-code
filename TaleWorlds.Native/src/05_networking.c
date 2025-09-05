@@ -898,6 +898,7 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄，用于访问和管理连接表的入口点
+uint32_t NetworkConnectionManager;                         // 网络连接管理器，管理网络连接的核心组件
 uint32_t NetworkConnectionManagerContextPointer;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
 uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据，存储连接管理的上下文信息和状态数据
 uint32_t NetworkConnectionStateFlags;                    // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
