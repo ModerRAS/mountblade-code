@@ -12231,11 +12231,11 @@ undefined8 ValidateAndProcessFloatingPointNumberA1(longlong DataHandle,longlong 
 undefined8 QuerySystemStatusE0(void)
 
 {
-  float fVar1;
+  float floatValue;
   longlong dataContext;
   undefined8 validationStatus;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
+  longlong stackFramePointer;
+  longlong dataInputPointer;
   longlong stackParameter40;
   
   if (stackParameter40 == 0) {
@@ -12333,26 +12333,26 @@ undefined8 ValidateParametersE0(undefined4 parameterFlags)
 undefined8 ValidateParametersE1(undefined4 validationFlags)
 
 {
-  float fVar1;
-  undefined8 uVar2;
+  float floatValue;
+  undefined8 validationResult;
   longlong registerContext;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
+  longlong stackFramePointer;
+  longlong dataInputPointer;
   longlong stackParameter40;
   
-  uVar2 = ProcessDataValidationA0(param_1,unaff_RDI + 0x25,unaff_RDI + 0x20);
-  if ((int)uVar2 == 0) {
-    fVar1 = *(float *)(unaff_RDI + 0x20);
-    if ((*(float *)(registerContext + 0x38) <= fVar1) &&
-       (fVar1 < *(float *)(registerContext + 0x3c) || fVar1 == *(float *)(registerContext + 0x3c))) {
-      uVar2 = *(undefined8 *)(unaff_RBP + 0x98);
-      *(float *)(stackParameter40 + 4) = fVar1;
+  validationResult = ProcessDataValidationA0(param_1,dataInputPointer + 0x25,dataInputPointer + 0x20);
+  if ((int)validationResult == 0) {
+    floatValue = *(float *)(dataInputPointer + 0x20);
+    if ((*(float *)(registerContext + 0x38) <= floatValue) &&
+       (floatValue < *(float *)(registerContext + 0x3c) || floatValue == *(float *)(registerContext + 0x3c))) {
+      validationResult = *(undefined8 *)(stackFramePointer + 0x98);
+      *(float *)(stackParameter40 + 4) = floatValue;
                     // WARNING: Subroutine does not return
-      CleanupSystemEventA0(uVar2);
+      CleanupSystemEventA0(validationResult);
     }
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -19992,21 +19992,21 @@ undefined8 ValidateDataBlockStatusA1(longlong *param_1,undefined4 *param_2)
 
 
 
-undefined8 ProcessDataBlockOperationA0(undefined8 *param_1,longlong param_2)
+undefined8 ProcessDataBlockOperationA0(undefined8 *SystemContext,longlong DataBuffer)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
+  undefined8 SystemHandle;
+  undefined8 ValidationStatus;
   
-  if (*(int *)(param_1[1] + 0x18) != 0) {
+  if (*(int *)(SystemContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar1 = *param_1;
-  uVar2 = ValidateDataWithSecurityCheckA2(uVar1);
-  if ((int)uVar2 == 0) {
-    uVar2 = ValidateDataWithSecurityCheckA2(uVar1,param_2 + 4);
+  SystemHandle = *SystemContext;
+  ValidationStatus = ValidateDataWithSecurityCheckA2(SystemHandle);
+  if ((int)ValidationStatus == 0) {
+    ValidationStatus = ValidateDataWithSecurityCheckA2(SystemHandle,DataBuffer + 4);
   }
-  return uVar2;
+  return ValidationStatus;
 }
 
 
@@ -21505,19 +21505,19 @@ void ProcessComplexDataStructure(longlong systemContext,undefined4 *dataBuffer)
         operationResult = 0;
         if (0 < (int)param_2[0x68]) {
           do {
-            iVar3 = FUN_180899100(param_1,param_2 + (longlong)operationResult * 0xc + 4);
+            iVar3 = ValidateAndExecuteOperationsA1(param_1,param_2 + (longlong)operationResult * 0xc + 4);
             if (iVar3 != 0) {
               return;
             }
-            iVar3 = FUN_180899100(param_1,param_2 + (longlong)operationResult * 0xc + 7);
+            iVar3 = ValidateAndExecuteOperationsA1(param_1,param_2 + (longlong)operationResult * 0xc + 7);
             if (iVar3 != 0) {
               return;
             }
-            iVar3 = FUN_180899100(param_1,param_2 + (longlong)operationResult * 0xc + 10);
+            iVar3 = ValidateAndExecuteOperationsA1(param_1,param_2 + (longlong)operationResult * 0xc + 10);
             if (iVar3 != 0) {
               return;
             }
-            iVar3 = FUN_180899100(param_1,param_2 + (longlong)operationResult * 0xc + 0xd);
+            iVar3 = ValidateAndExecuteOperationsA1(param_1,param_2 + (longlong)operationResult * 0xc + 0xd);
             if (iVar3 != 0) {
               return;
             }
@@ -21645,15 +21645,15 @@ void ValidateAndInitializeSystem(undefined4 param_1)
   if (0 < *(int *)(unaff_RDI + 0x1a0)) {
     do {
       lVar4 = (longlong)iVar6 * 0x30 + unaff_RDI;
-      iVar3 = FUN_180899100(param_1,lVar4 + 0x10);
+      iVar3 = ValidateAndExecuteOperationsA1(param_1,lVar4 + 0x10);
       if (iVar3 != 0) {
         return;
       }
-      iVar3 = FUN_180899100(extraout_XMM0_Da,lVar4 + 0x1c);
+      iVar3 = ValidateAndExecuteOperationsA1(extraout_XMM0_Da,lVar4 + 0x1c);
       if (iVar3 != 0) {
         return;
       }
-      iVar3 = FUN_180899100(extraout_XMM0_Da_00,lVar4 + 0x28);
+      iVar3 = ValidateAndExecuteOperationsA1(extraout_XMM0_Da_00,lVar4 + 0x28);
       if (iVar3 != 0) {
         return;
       }
