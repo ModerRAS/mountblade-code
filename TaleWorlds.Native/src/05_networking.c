@@ -1973,7 +1973,6 @@ uint32_t NetworkTimeoutProcessor;                       // 网络超时处理器
  * @brief 网络连接处理变量 - 记录连接处理相关的状态和数据
  */
 uint32_t NetworkProcessedPacketIdentifier;          // 已处理的网络连接数据包标识符
-uint32_t NetworkSecurityValidationBuffer;                  // 网络安全验证缓冲区，用于存储安全验证过程中的临时数据
 uint32_t NetworkBufferTemplate;                     // 网络缓冲区模板
 uint32_t NetworkConnectionDefaultData;                    // 网络连接默认数据
 uint32_t NetworkConnectionSourceAddress;                   // 网络连接源地址
@@ -2267,11 +2266,8 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
       if (ConnectionStatusBuffer != NULL) {
         int32_t ActiveConnectionCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
         int64_t ConnectionIterationCounter = (long long)ActiveConnectionCount;
-        int64_t ConnectionContextAddress = 0;  // 连接上下文基地址指针
-        
-        // 如果有活跃连接，处理连接数据
-        if ((ActiveConnectionCount != 0) && (ConnectionContextAddress = *ConnectionContext, 0 < ActiveConnectionCount)) {
-          NetworkConnectionStatus *ConnectionStatusBufferPointer = ConnectionStatusBuffer;
+        int64_t ConnectionContextAddress = 0;  // 连接上下文基地址
+        NetworkConnectionStatus *ConnectionStatusBufferPointer = ConnectionStatusBuffer;
           
           // 循环处理所有连接数据
           do {
@@ -2330,14 +2326,14 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   // 连接状态处理变量
   NetworkStatus *ContextDataPointer;                           // 上下文数据指针
   int32_t PacketProcessingStatus;                       // 数据包处理状态
-  int64_t ConnectionContextIdentifier;                               // 连接上下文标识符
+  int64_t NetworkConnectionContextIdentifier;                               // 网络连接上下文标识符
   NetworkStatus ConnectionValidationStatus;                       // 验证状态
   NetworkStatus ConnectionTimeoutStatus;                          // 超时状态
   NetworkStatus SecondaryProcessingStatus;              // 次级处理状态
   NetworkStatus *ConnectionStatusBuffer;                          // 连接状态缓冲区
   int64_t StatusIterationCounter;                           // 状态处理迭代器
   NetworkStatus *PacketFlagsBuffer;                     // 数据包标志缓冲区
-  int64_t *ConnectionOperationBuffer;                             // 连接操作缓冲区
+  int64_t *NetworkConnectionOperationBuffer;                             // 网络连接操作缓冲区
   int32_t ConnectionUpdateOperation;                         // 连接更新操作代码
   NetworkStatus *ConnectionStatusPointer;                          // 连接状态处理指针
   int32_t ConnectionOperationCode;                              // 连接操作代码
@@ -2345,12 +2341,12 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t PacketIndex;                                           // 网络数据包索引
   int32_t MaxIntValue;                                           // 最大32位整数值
   if (ConnectionOperationCode == 0) {
-PrimaryNetworkProcessingCompleted:
-    if ((0 < *(int *)CalculateContextParameterOffset(ConnectionOperationBuffer)) && (*ConnectionOperationBuffer != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionOperationBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
+PrimaryNetworkProcessingStageComplete:
+    if ((0 < *(int *)CalculateContextParameterOffset(NetworkConnectionOperationBuffer)) && (*NetworkConnectionOperationBuffer != 0)) {
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionOperationBuffer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *ConnectionOperationBuffer = (int64_t)ProcessedPacketIdentifier;
-    *(int *)CalculateContextParameterOffset(ConnectionOperationBuffer) = ConnectionOperationCode;
+    *NetworkConnectionOperationBuffer = (int64_t)ProcessedPacketIdentifier;
+    *(int *)CalculateContextParameterOffset(NetworkConnectionOperationBuffer) = ConnectionOperationCode;
     return NetworkOperationSuccess;
   }
   if (PacketIndex * ConnectionEntrySize - 1U < MaxIntValue) {
@@ -2358,12 +2354,12 @@ PrimaryNetworkProcessingCompleted:
              HandleConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            ConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
-      int32_t OperationProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
+      int32_t OperationProcessingCode = (int)NetworkConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
       int64_t StatusIterationCounter = (long long)OperationProcessingCode;
-      if ((OperationProcessingCode != 0) && (ConnectionContextIdentifier = *ConnectionOperationBuffer, 0 < OperationProcessingCode)) {
+      if ((OperationProcessingCode != 0) && (NetworkConnectionContextIdentifier = *NetworkConnectionOperationBuffer, 0 < OperationProcessingCode)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
-          NetworkStatus *ContextStatusPointer = (NetworkStatus *)CalculateStatusPointerOffset(ConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
+          NetworkStatus *ContextStatusPointer = (NetworkStatus *)CalculateStatusPointerOffset(NetworkConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
           NetworkStatus ValidationState = ContextStatusPointer[NetworkStatusValidationIndex];
           NetworkStatus TimeoutState = ContextStatusPointer[NetworkStatusTimeoutIndex];
           NetworkStatus SecondaryState = ContextStatusPointer[NetworkStatusSecondaryIndex];
@@ -2371,12 +2367,12 @@ PrimaryNetworkProcessingCompleted:
           ConnectionStatusIterator[NetworkStatusValidationIndex] = ValidationState;
           ConnectionStatusIterator[NetworkStatusTimeoutIndex] = TimeoutState;
           ConnectionStatusIterator[NetworkStatusSecondaryIndex] = SecondaryState;
-          ConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkStatus *)CalculateLastStatusEntryOffset(ConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
+          ConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkStatus *)CalculateLastStatusEntryOffset(NetworkConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
           StatusIterationCounter = StatusIterationCounter - 1;
           ConnectionStatusIterator = ConnectionStatusIterator + ConnectionContextEntrySize;
         } while (StatusIterationCounter != 0);
       }
-SecondaryNetworkProcessingCompleted:
+SecondaryNetworkProcessingStageComplete:
       // 网络处理循环完成，继续后续处理
       return NetworkOperationSuccess;
     }
