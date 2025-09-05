@@ -20898,14 +20898,14 @@ void UtilityNoOperationB(void)
 uint64_t ValidateAndProcessData(longlong dataContext, uint64_t *validationBuffer)
 
 {
-  undefined8 uVar1;
+  uint64_t validationResult;
   int operationResult;
-  uint uVar3;
-  uint uVar4;
-  uint auStackX_18 [2];
-  uint auStackX_20 [2];
-  undefined1 auStack_68 [32];
-  undefined1 auStack_48 [32];
+  uint bitFlag;
+  uint iterationCount;
+  uint resultBuffer[2];
+  uint parameterBuffer[2];
+  uint8_t validationDataA[32];
+  uint8_t validationDataB[32];
   
   uVar1 = FUN_1808ddc20(param_2,auStack_48,1,0x54495645);
   if (((((int)uVar1 == 0) &&
