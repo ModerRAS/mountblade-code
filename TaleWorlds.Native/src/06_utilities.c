@@ -90734,7 +90734,15 @@ void SetDefaultExceptionHandler18(void)
 
 
 9424a0(void)
-void FUN_1809424a0(void)
+/**
+ * @brief 设置默认异常处理器19
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_1809424a0
+ */
+void SetDefaultExceptionHandler19(void)
 
 {
   _DAT_180bfa290 = &DefaultExceptionHandlerB;
