@@ -4172,62 +4172,6 @@ void CopyNetworkConnectionBuffer(void* SourceBuffer)
   }
 }
 
-/**
- * @brief 解码网络数据包
- * 
- * 解码网络数据包的头部信息和有效负载，验证数据包的完整性和安全性。
- * 该函数是网络数据包处理的核心函数，负责将原始数据包解码为可处理的数据。
- * 
- * @param PacketData 数据包数据指针数组，包含待解码的数据包信息
- * @param OutputBuffer 输出缓冲区，用于存储解码后的数据
- * @param DecodingMode 解码模式，指定解码算法和参数
- * @param PrimaryMagicNumber 主魔数，用于数据包验证
- * @param SecondaryMagicNumber 次魔数，用于额外的数据包验证
- * @return NetworkHandle 解码结果句柄，0表示解码成功，非0值表示解码失败
- * 
- * @note 这是简化实现，实际应用中需要实现完整的数据包解码逻辑
- * @warning 简化实现仅执行基本的验证，不进行实际的解码工作
- */
-NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
-                         uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
-{
-  // 网络数据包解码变量
-  uint32_t SecurityValidationResult;           // 网络数据包安全验证结果
-  uint32_t HeaderValidationStatus;              // 网络数据包头部验证状态
-  uint32_t PayloadValidationStatus;             // 网络数据包负载验证状态
-  
-  // 初始化解码状态
-  SecurityValidationResult = NetworkValidationFailure;
-  HeaderValidationStatus = NetworkValidationFailure;
-  PayloadValidationStatus = NetworkValidationFailure;
-  
-  // 验证数据包有效性
-  if (PacketData && OutputBuffer) {
-    // 验证魔数
-    if (PrimaryMagicNumber == NetworkMagicLiveConnection || 
-        PrimaryMagicNumber == NetworkMagicValidation) {
-      HeaderValidationStatus = NetworkValidationSuccess;
-    }
-    
-    if (SecondaryMagicNumber == NetworkMagicBinaryData || 
-        SecondaryMagicNumber == NetworkMagicMemoryValidation) {
-      PayloadValidationStatus = NetworkValidationSuccess;
-    }
-    
-    // 综合验证结果
-    SecurityValidationResult = HeaderValidationStatus & PayloadValidationStatus;
-    
-    // 初始化输出缓冲区
-    if (SecurityValidationResult == NetworkValidationSuccess) {
-      memset(OutputBuffer, 0, NetworkStandardBufferSize);
-      OutputBuffer[NetworkPacketDecodingModeIndex] = (NetworkByte)DecodingMode;
-      OutputBuffer[PrimaryNetworkMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
-      OutputBuffer[SecondaryNetworkMagicNumberIndex] = (NetworkByte)SecondaryMagicNumber;
-    }
-  }
-  
-  return SecurityValidationResult;
-}
 
 /**
  * @brief 处理数据包头部
