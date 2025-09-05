@@ -1177,6 +1177,26 @@ uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑�
  * 
  * @return void 无返回值
  */
+/**
+ * @brief 初始化网络连接池
+ * 
+ * 初始化网络连接池的各项参数和状态，为后续的连接管理做准备。
+ * 此函数负责设置连接池的容量、计数器、健康状态、管理器句柄和性能监控等。
+ * 
+ * @details 该函数执行以下初始化操作：
+ * - 设置连接池的最大容量为预设值
+ * - 重置连接分配和释放计数器
+ * - 设置连接池健康状态为正常
+ * - 初始化连接池管理器句柄和当前索引
+ * - 重置性能监控指标和统计数据
+ * 
+ * @note 此函数会在网络系统启动时调用，确保连接池正确初始化
+ * @warning 如果初始化失败，系统将无法管理网络连接
+ * 
+ * @return void 无返回值
+ * 
+ * @see InitializeNetworkConnection, SetupNetworkConnection
+ */
 void InitializeNetworkConnectionPool(void)
 {
   // 初始化连接池配置参数
@@ -3424,27 +3444,27 @@ NetworkHandle ProcessNetworkPacketDataWithContext(NetworkHandle *PacketData, int
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    NetworkPacketDataParsingResult = NetworkOperationSuccess;  // 数据解析成功
+    DataParsingResult = NetworkOperationSuccess;          // 数据解析成功
   }
   
   // 验证数据包上下文偏移量有效性
   if (PacketContextOffset >= 0) {
-    NetworkPacketDataValidationResult = NetworkOperationSuccess;  // 数据验证成功
+    DataValidationResult = NetworkOperationSuccess;       // 数据验证成功
   }
   
   // 根据处理模式处理数据
   if (DataProcessingMode == NetworkOperationSuccess) {
     // 基本处理模式
-    PacketDataProcessingResult = NetworkPacketDataParsingResult & NetworkPacketDataValidationResult;
+    PacketProcessingResult = DataParsingResult & DataValidationResult;
   } else if (DataProcessingMode == NetworkPacketStrictDecodingMode) {
     // 严格处理模式
-    PacketDataProcessingResult = NetworkPacketDataParsingResult & NetworkPacketDataValidationResult & NetworkOperationSuccess;
+    PacketProcessingResult = DataParsingResult & DataValidationResult & NetworkOperationSuccess;
   } else {
     // 默认处理模式
-    PacketDataProcessingResult = NetworkOperationSuccess;
+    PacketProcessingResult = NetworkOperationSuccess;
   }
   
-  return PacketDataProcessingResult;  // 返回数据处理结果
+  return PacketProcessingResult;  // 返回数据处理结果
 }
 
 /**
@@ -3462,35 +3482,35 @@ NetworkHandle ProcessNetworkPacketDataWithContext(NetworkHandle *PacketData, int
  */
 NetworkHandle FinalizePacketProcessingWithCompletion(NetworkHandle *PacketData, int64_t ProcessingDataOffset, uint32_t ProcessingCompletionFlag)
 {
-  // 数据包完成处理变量
-  uint32_t PacketFinalizationResult;              // 数据包完成处理结果
-  uint32_t PacketStatusUpdateResult;              // 数据包状态更新结果
-  uint32_t PacketResourceCleanupResult;           // 数据包资源清理结果
+  // 数据包完成处理状态变量
+  uint32_t ProcessingCompletionResult;            // 处理完成结果
+  uint32_t StatusUpdateResult;                     // 状态更新结果
+  uint32_t ResourceCleanupResult;                  // 资源清理结果
   
-  // 初始化完成状态
-  PacketFinalizationResult = NetworkValidationFailure;
-  PacketStatusUpdateResult = NetworkValidationFailure;
-  PacketResourceCleanupResult = NetworkValidationFailure;
+  // 初始化处理完成状态
+  ProcessingCompletionResult = NetworkValidationFailure;
+  StatusUpdateResult = NetworkValidationFailure;
+  ResourceCleanupResult = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    PacketStatusUpdateResult = NetworkOperationSuccess;  // 状态更新成功
+    StatusUpdateResult = NetworkOperationSuccess;       // 状态更新成功
   }
   
   // 验证处理数据偏移量有效性
   if (ProcessingDataOffset >= 0) {
-    PacketResourceCleanupResult = NetworkOperationSuccess;  // 资源清理成功
+    ResourceCleanupResult = NetworkOperationSuccess;    // 资源清理成功
   }
   
   // 验证处理完成标志有效性
   if (ProcessingCompletionFlag != 0) {
-    PacketStatusUpdateResult &= 0x01;  // 完成标志验证通过
+    StatusUpdateResult &= 0x01;  // 完成标志验证通过
   }
   
-  // 综合完成处理结果
-  PacketFinalizationResult = PacketStatusUpdateResult & PacketResourceCleanupResult;
+  // 综合处理完成结果
+  ProcessingCompletionResult = StatusUpdateResult & ResourceCleanupResult;
   
-  return PacketFinalizationResult;  // 返回完成处理结果
+  return ProcessingCompletionResult;  // 返回处理完成结果
 }
 
 /**
@@ -3591,29 +3611,29 @@ void CleanupNetworkConnectionStack(void* ConnectionBuffer)
  */
 void DuplicateNetworkConnectionBuffer(void* SourceBuffer)
 {
-  // 连接缓冲区复制变量
-  uint32_t BufferCopyStatus;                          // 复制操作状态
-  uint32_t DataValidationResult;                       // 数据验证结果
-  uint32_t SecurityCheckResult;                        // 安全验证结果
+  // 连接缓冲区复制状态变量
+  uint32_t CopyOperationStatus;                       // 复制操作状态
+  uint32_t SourceDataValidationResult;                // 源数据验证结果
+  uint32_t SecurityComplianceResult;                  // 安全合规验证结果
   
   // 初始化复制状态
-  BufferCopyStatus = NetworkValidationFailure;
-  DataValidationResult = NetworkValidationFailure;
-  SecurityCheckResult = NetworkValidationFailure;
+  CopyOperationStatus = NetworkValidationFailure;
+  SourceDataValidationResult = NetworkValidationFailure;
+  SecurityComplianceResult = NetworkValidationFailure;
   
   // 验证源缓冲区有效性
   if (SourceBuffer) {
-    DataValidationResult = NetworkValidationSuccess;     // 数据验证通过
-    SecurityCheckResult = NetworkValidationSuccess;     // 安全验证通过
+    SourceDataValidationResult = NetworkValidationSuccess;   // 数据验证通过
+    SecurityComplianceResult = NetworkValidationSuccess;     // 安全验证通过
     
     // 在实际实现中，这里应该实现实际的缓冲区复制逻辑
     // 包括：数据验证、加密复制、完整性检查等
     // 由于这是简化实现，暂时不执行具体操作
-    BufferCopyStatus = DataValidationResult & SecurityCheckResult;
+    CopyOperationStatus = SourceDataValidationResult & SecurityComplianceResult;
   }
   
   // 如果复制成功，更新系统状态
-  if (BufferCopyStatus == NetworkValidationSuccess) {
+  if (CopyOperationStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的复制后处理逻辑
     // 例如：更新备份状态、记录日志、触发回调等
   }
