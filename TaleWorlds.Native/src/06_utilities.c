@@ -7525,7 +7525,7 @@ void ProcessUtilityDataStructure(longlong dataStructurePointer,longlong contextP
   currentNodePointer = (longlong *)0x0;
   stackBuffer[0] = 0;
   validationResult = AllocateSystemBufferCA0(stackBuffer);
-  if ((validationResult == 0) && (validationResult = FUN_1808bdd90(*(undefined8 *)(contextPointer + 0x90)), validationResult == 0)) {
+  if ((validationResult == 0) && (validationResult = ValidateContextA0(*(undefined8 *)(contextPointer + 0x90)), validationResult == 0)) {
     nextNodePointer = (longlong *)(*(longlong *)(contextPointer + 0x50) + -8);
     if (*(longlong *)(contextPointer + 0x50) == 0) {
       nextNodePointer = currentNodePointer;
@@ -20941,8 +20941,8 @@ undefined8 FUN_18089b630(longlong param_1,undefined8 *param_2)
 
 
 
-89b6df(void)
-void FUN_18089b6df(void)
+// 系统初始化检查函数A - 执行系统初始化和验证检查
+void SystemInitializationCheckA(void)
 
 {
   int iVar1;
@@ -20981,8 +20981,8 @@ void FUN_18089b6df(void)
 
 
 
-89b7c7(void)
-void FUN_18089b7c7(void)
+// 空操作函数C - 不执行任何操作
+void UtilityNoOperationC(void)
 
 {
   return;
