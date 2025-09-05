@@ -10688,16 +10688,16 @@ void InitializeSystemStringProcessorPrimary(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorB(void)
+// 函数: void InitializeSystemStringProcessorSecondary(void)
 /**
- * @brief 初始化系统字符串处理器B
+ * @brief 初始化系统字符串处理器-次处理器
  * 
- * 该函数负责初始化系统的字符串处理组件B，设置字符串处理的基础结构。
+ * 该函数负责初始化系统的字符串处理次组件，设置字符串处理的基础结构。
  * 它会配置字符串缓冲区，设置处理参数，并建立字符串处理的回调机制。
  * 
  * @note 这是系统初始化过程中的重要组成部分，确保字符串处理系统的正常运行
  */
-void InitializeSystemStringProcessorB(void)
+void InitializeSystemStringProcessorSecondary(void)
 
 {
   void* SystemRegisterValue;
@@ -10719,16 +10719,16 @@ void InitializeSystemStringProcessorB(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorC(void)
+// 函数: void InitializeSystemStringProcessorTertiary(void)
 /**
- * @brief 初始化系统字符串处理器C
+ * @brief 初始化系统字符串处理器-第三处理器
  * 
- * 该函数负责初始化系统的字符串处理组件C，设置字符串处理的基础结构。
+ * 该函数负责初始化系统的字符串处理第三组件，设置字符串处理的基础结构。
  * 它会配置字符串缓冲区，设置处理参数，并建立字符串处理的回调机制。
  * 
  * @note 这是系统初始化过程中的重要组成部分，确保字符串处理系统的正常运行
  */
-void InitializeSystemStringProcessorC(void)
+void InitializeSystemStringProcessorTertiary(void)
 
 {
   void* SystemRegisterValue;
@@ -10750,8 +10750,8 @@ void InitializeSystemStringProcessorC(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorA(void)
-void InitializeSystemStringProcessorA(void)
+// 函数: void InitializeSystemStringProcessorQuaternary(void)
+void InitializeSystemStringProcessorQuaternary(void)
 
 {
   void* SystemRegisterValue;
