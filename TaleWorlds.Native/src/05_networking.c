@@ -2543,7 +2543,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   NetworkPacketProcessor DataPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
   PacketValidationResult = DataPacketProcessor(*(NetworkHandle **)(*PacketData + 8), DataProcessingArray, 4);
   if ((int)PacketValidationResult == 0) {
-    if (*(uint *)(PacketData + 8) < NetworkPacketSizeAlternative) {
+    if (*(uint *)(PacketData + PacketDataSizeIndex) < NetworkPacketSizeAlternative) {
       if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorCodeInvalidPacket;
       }

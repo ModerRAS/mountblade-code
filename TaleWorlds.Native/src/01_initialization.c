@@ -53630,7 +53630,7 @@ SystemOperationSetup:
         }
         else {
           if (ResourceHash <= SystemInitializationStatusFlags) goto SystemResourceSetup;
-          pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
+          pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
           SystemDataBufferPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemDataBufferPointer,ResourceHash,0x10);
         }
         pEncryptionOffset1 = SystemDataBufferPointer;
@@ -53747,7 +53747,7 @@ SystemResourceDataProcessing:
         SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
       }
       else if (ResourceHash < 0x16) {
-        pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
+        pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
         SystemMemoryAllocationOffset = 0x14;
         ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,0x16,0x10);
         goto ProcessSystemResourceData;
@@ -53764,7 +53764,7 @@ SystemOperationComplete:
         SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
       }
       else if ((uint)SystemThreadContextIndicators < 0x17) {
-        pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
+        pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
         SystemMemoryAllocationOffset = 0x15;
         ResourceDataBufferPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceDataBufferPointer,0x17,0x10);
         goto SystemOperationComplete;
@@ -53793,7 +53793,7 @@ SystemOperationComplete:
             else {
               ResourceAddress = SystemMemoryAllocationOffset;
               if (SystemInitializationStatusFlags <= (uint)SystemThreadContextIndicators) goto LabelSystemThreadContextValidation;
-              pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
+              pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
               SystemMemoryAllocationOffset = ResourceHash;
               ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,SystemInitializationStatusFlags,0x10);
             }
@@ -53815,7 +53815,7 @@ SystemContextValidation:
         SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
       }
       else if ((uint)SystemThreadContextIndicators < 0x18) {
-        pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
+        pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
         SystemMemoryAllocationOffset = ResourceHash;
         ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,0x18,0x10);
         goto SystemContextValidation;
@@ -53836,7 +53836,7 @@ SystemContextValidation:
         }
         else {
           if (SystemInitializationStatusFlags <= (uint)SystemThreadContextIndicators) goto LabelSystemThreadContextSecondary;
-          pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
+          pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
           ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,SystemInitializationStatusFlags,0x10);
         }
         ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
@@ -53857,7 +53857,7 @@ SystemMemoryAllocationComplete:
         }
         else {
           if (ResourceAddress <= (uint)SystemThreadContextIndicators) goto ResourceAddressValidation;
-          pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
+          pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
           ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,ResourceAddress,0x10);
         }
         ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
@@ -53888,7 +53888,7 @@ ResourceAddressValidation:
             }
             else {
               if (ResourceHash <= (uint)SystemThreadContextIndicators) goto ResourceHashValidation;
-              pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
+              pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
               ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,ResourceHash,0x10);
             }
             ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
@@ -53910,7 +53910,7 @@ ResourceHashValidation:
         }
         else {
           if (SystemOperationCode <= (uint)SystemThreadContextIndicators) goto LabelSystemSystemOperationCodeValidation;
-          pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
+          pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
           ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,SystemOperationCode,0x10);
         }
         ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
@@ -53931,7 +53931,7 @@ SystemResourceOperationFinalize:
         }
         else {
           if (ResourceAddress <= (uint)SystemThreadContextIndicators) goto SystemOperationCodeValidation;
-          pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
+          pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
           ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,ResourceAddress,0x10);
         }
         ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
