@@ -1,14 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 全局指针设置函数宏定义 (A0-A23)
-#define SetGlobalDataPointerA0 FUN_180941f80
-#define SetGlobalDataPointerA1 FUN_180941fa0
-#define SetGlobalDataPointerA2 FUN_180941fc0
-#define SetGlobalDataPointerA3 FUN_180941fe0
-#define SetGlobalDataPointerA4 FUN_180942000
-#define SetGlobalDataPointerA5 FUN_180942020
-#define SetGlobalDataPointerA6 FUN_180942040
-#define SetGlobalDataPointerA7 FUN_180942060
+#define SetGlobalDataPointerA0 InitializeGlobalDataPointerA0
+#define SetGlobalDataPointerA1 InitializeGlobalDataPointerA1
+#define SetGlobalDataPointerA2 InitializeGlobalDataPointerA2
+#define SetGlobalDataPointerA3 InitializeGlobalDataPointerA3
+#define SetGlobalDataPointerA4 InitializeGlobalDataPointerA4
+#define SetGlobalDataPointerA5 InitializeGlobalDataPointerA5
+#define SetGlobalDataPointerA6 InitializeGlobalDataPointerA6
+#define SetGlobalDataPointerA7 InitializeGlobalDataPointerA7
 #define SetGlobalDataPointerA8 FUN_180942080
 #define SetGlobalDataPointerA9 FUN_1809420a0
 #define SetGlobalDataPointerA10 FUN_1809420c0
@@ -566,13 +566,13 @@
 // 功能：设置全局数据指针B28到指定地址
 #define SetGlobalDataPointerB28 FUN_180941fa0
 
-// 原始函数名：FUN_180941fc0 - 全局指针设置函数B29
+// 原始函数名：InitializeGlobalDataPointerA2 - 全局指针设置函数B29
 // 功能：设置全局数据指针B29到指定地址
-#define SetGlobalDataPointerB29 FUN_180941fc0
+#define SetGlobalDataPointerB29 InitializeGlobalDataPointerA2
 
-// 原始函数名：FUN_180941fe0 - 全局指针设置函数B30
+// 原始函数名：InitializeGlobalDataPointerA3 - 全局指针设置函数B30
 // 功能：设置全局数据指针B30到指定地址
-#define SetGlobalDataPointerB30 FUN_180941fe0
+#define SetGlobalDataPointerB30 InitializeGlobalDataPointerA3
 
 // 原始函数名：FUN_1809424c0 - 工具回调执行函数B0
 // 功能：执行工具回调函数，处理参数传递
@@ -907,6 +907,10 @@
 // 原始变量名：_DAT_180c82250 - 异常偏移量
 // 功能：存储异常处理的偏移量信息
 #define ExceptionOffsetValue _DAT_180c82250
+
+// 原始变量名：_DAT_180bf9390 - 全局异常处理器指针A1
+// 功能：存储全局异常处理器A1的指针
+#define GlobalExceptionHandlerPointerA1 _DAT_180bf9390
 
 // 原始变量名：0x180c82210 - 异常临界区
 // 功能：异常处理的临界区对象
@@ -5024,12 +5028,12 @@ void ExecuteSystemShutdown(void)
 void ValidateSystemState(void)
 
 {
-  longlong registerRBX;
+  longlong systemContextPointer;
   ulonglong systemValidationParameter;
   undefined8 systemCleanupBuffer;
   undefined8 systemSecurityBuffer;
   
-  if ((*(uint *)(registerRBX + 0x2d8) >> 7 & 1) != 0) {
+  if ((*(uint *)(systemContextPointer + 0x2d8) >> 7 & 1) != 0) {
                     // WARNING: Subroutine does not return
     ReleaseResource();
   }
@@ -6059,10 +6063,10 @@ undefined8 ValidateDataArray(longlong arrayDescriptor)
 undefined8 ValidateUtilitySystemState(void)
 
 {
-  longlong inputRegisterRAX;
+  longlong inputParameter;
   undefined8 operationResult;
   int *operationPointer;
-  longlong registerRBP;
+  longlong basePointer;
   undefined4 *dataPointer3;
   uint counterValue;
   ulonglong adjustedValue;
@@ -6070,7 +6074,7 @@ undefined8 ValidateUtilitySystemState(void)
   ulonglong loopCounter;
   
   loopCounter = 0;
-  adjustedValue = inputRegisterRAX - 8;
+  adjustedValue = inputParameter - 8;
   if (in_RAX == 0) {
     uVar6 = uVar5;
   }
@@ -8545,17 +8549,17 @@ void ResetUtilitySystemAA0(void)
 {
   int validationStatus;
   int operationResult;
-  longlong inputRegisterRAX;
+  longlong inputParameter;
   longlong stackPointer;
   longlong adjustedPointer;
   uint flagsValue;
-  longlong registerRBX;
-  longlong registerR14;
+  longlong systemContext;
+  longlong tempRegister;
   undefined8 stackParameter60;
   
   stackPointer = 0;
-  adjustedPointer = inputRegisterRAX + 8;
-  if (inputRegisterRAX == 0) {
+  adjustedPointer = inputParameter + 8;
+  if (inputParameter == 0) {
     adjustedPointer = stackPointer;
   }
   validationStatus = ValidateAndProcessSystemResourceA0(adjustedPointer);
@@ -86142,10 +86146,12 @@ void FUN_180941f80(void)
 
 
 941fa0(void)
-void FUN_180941fa0(void)
+// 全局数据指针设置函数A1
+// 功能：设置全局数据指针A1，初始化异常处理器B
+void InitializeGlobalDataPointerA1(void)
 
 {
-  _DAT_180bf9390 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA1 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -86155,7 +86161,7 @@ void FUN_180941fa0(void)
 
 
 941fc0(void)
-void FUN_180941fc0(void)
+void InitializeGlobalDataPointerA2(void)
 
 {
   _DAT_180bf93f0 = &DefaultExceptionHandlerB;
@@ -86168,7 +86174,7 @@ void FUN_180941fc0(void)
 
 
 941fe0(void)
-void FUN_180941fe0(void)
+void InitializeGlobalDataPointerA3(void)
 
 {
   _DAT_180bf9450 = &DefaultExceptionHandlerB;
@@ -86181,7 +86187,7 @@ void FUN_180941fe0(void)
 
 
 942000(void)
-void FUN_180942000(void)
+void InitializeGlobalDataPointerA4(void)
 
 {
   _DAT_180bf94b0 = &DefaultExceptionHandlerB;
@@ -86194,7 +86200,7 @@ void FUN_180942000(void)
 
 
 942020(void)
-void FUN_180942020(void)
+void InitializeGlobalDataPointerA5(void)
 
 {
   _DAT_180bf9510 = &DefaultExceptionHandlerB;
@@ -86207,7 +86213,7 @@ void FUN_180942020(void)
 
 
 942040(void)
-void FUN_180942040(void)
+void InitializeGlobalDataPointerA6(void)
 
 {
   _DAT_180bf9570 = &DefaultExceptionHandlerB;
