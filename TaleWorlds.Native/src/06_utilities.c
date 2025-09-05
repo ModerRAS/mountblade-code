@@ -95970,8 +95970,18 @@ void ProcessResourceCleanupAtOffset460(uint8_t ObjectContext, int64_t Validation
 
 
 
-void Unwind_18090f570(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源处理回调第五级
+ * 
+ * 该函数负责执行资源处理的第五级回调函数
+ * 通过资源上下文调用相应的处理方法
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * 
+ * @note 原始函数名为Unwind_18090f570，现已重命名为ExecuteResourceProcessingCallbackQuinary
+ */
+void ExecuteResourceProcessingCallbackQuinary(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t *ResourceProcessingPointer;
   
@@ -96220,8 +96230,20 @@ void ExecuteResourceTableTraversalCleanup(uint8_t ObjectContext,int64_t Validati
 
 
 
-void Unwind_18090f6a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行资源处理回调第六级
+ * 
+ * 该函数负责执行资源处理的第六级回调函数
+ * 通过配置资源处理参数来执行相应的操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指示是否需要清理
+ * 
+ * @note 原始函数名为Unwind_18090f6a0，现已重命名为ExecuteResourceProcessingCallbackSenary
+ */
+void ExecuteResourceProcessingCallbackSenary(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
   ProcessResourceConfiguration(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + 0x10),
                 CleanupOption,CleanupFlag,0xfffffffffffffffe);
@@ -96230,8 +96252,20 @@ void Unwind_18090f6a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090f6b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行资源处理回调第七级
+ * 
+ * 该函数负责执行资源处理的第七级回调函数
+ * 通过配置资源处理参数来执行相应的操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指示是否需要清理
+ * 
+ * @note 原始函数名为Unwind_18090f6b0，现已重命名为ExecuteResourceProcessingCallbackSeptenary
+ */
+void ExecuteResourceProcessingCallbackSeptenary(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
   ProcessResourceConfiguration(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + 0x10),
                 CleanupOption,CleanupFlag,0xfffffffffffffffe);

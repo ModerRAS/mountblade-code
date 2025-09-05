@@ -17139,7 +17139,7 @@ void InitializeSystemSubcomponentM(void)
  * @param syncParameter2 同步参数2
  * @return int 初始化成功返回0，失败返回-1
  */
-int InitializeSystemMutex(void* MutexIdentifier,void* MutexType,void* SyncParameter1,void* SyncParameter2)
+int InitializeSystemMutex(void* MutexIdentifier,void* MutexType,void* SyncConfiguration,void* SyncTimeout)
 
 {
   long long InitializationStatusCode;
@@ -18422,7 +18422,7 @@ int InitializeSystemPerformanceCounters(void)
  * @param mutexParameter4 互斥锁参数4
  * @return 初始化状态，成功返回0，失败返回-1
  */
-int InitializeSystemMutex(void* MutexParameter1,void* MutexParameter2,void* MutexParameter3,void* MutexParameter4)
+int InitializeSystemMutex(void* MutexIdentifier,void* MutexType,void* SyncConfiguration,void* SyncTimeout)
 
 {
   long long InitializationStatus;
@@ -18446,7 +18446,7 @@ int InitializeSystemMutex(void* MutexParameter1,void* MutexParameter2,void* Mute
  * @param semaphoreParameter4 信号量参数4
  * @return 初始化状态，成功返回0，失败返回-1
  */
-int InitializeSystemSemaphore(void* SemaphoreParameter1,void* SemaphoreParameter2,void* SemaphoreParameter3,void* SemaphoreParameter4)
+int InitializeSystemSemaphore(void* SemaphoreIdentifier,void* SemaphoreType,void* SemaphoreConfiguration,void* SemaphoreTimeout)
 
 {
   long long InitializationStatus;
@@ -19072,7 +19072,7 @@ SkipControllerInitialization:
  * @param reservedParam4 保留参数
  * @return 返回内存管理器指针
  */
-void* CleanupSystemMemoryManager(void** memoryManager, unsigned long long cleanupFlags, void* reservedParam3, void* reservedParam4)
+void* CleanupSystemMemoryManager(void** memoryManager, unsigned long long cleanupFlags, void* reservedParameter3, void* reservedParameter4)
 
 {
   *memoryManager = &SystemMemoryTemplateD;
@@ -19800,7 +19800,7 @@ void FinalizeSystemInitialization(void)
  * @param reservedParam4 保留参数4
  * @return 返回系统指针池指针
  */
-void** InitializeSystemPointerPool(void** SystemPointerPool, unsigned long long InitializationFlags, void* ReservedParam3, void* ReservedParam4)
+void** InitializeSystemPointerPool(void** SystemPointerPool, unsigned long long InitializationFlags, void* ReservedParameter3, void* ReservedParameter4)
 
 {
   *SystemPointerPool = &SystemMemoryAllocatorReference;
@@ -19838,11 +19838,11 @@ void GuardCheckICall(void)
 
 
 
-void** SystemMemoryAllocatorReferenceManager(void** systemResourceManager, unsigned long long memoryFlags, void* memoryFreeParam1, void* memoryFreeParam2)
+void** SystemMemoryAllocatorReferenceManager(void** systemResourceManager, unsigned long long memoryFlags, void* memoryFreeConfiguration, void* memoryFreeTimeout)
 {
   *systemResourceManager = &SystemMemoryAllocatorReference;
   if ((memoryFlags & 1) != 0) {
-    free(systemResourceManager, 0x418, memoryFreeParam1, memoryFreeParam2, InvalidHandleValue);
+    free(systemResourceManager, 0x418, memoryFreeConfiguration, memoryFreeTimeout, InvalidHandleValue);
   }
   return systemResourceManager;
 }
@@ -20180,11 +20180,11 @@ void UpdateSystemConfigurationParameter(uint64_t ConfigHandle, uint32_t ConfigVa
  * @param freeParameter2 释放参数2
  * @return 资源指针
  */
-void* ReleaseSystemMemoryResource(void** resourcePointer, uint64_t freeFlags, uint64_t freeParameter1, uint64_t freeParameter2)
+void* ReleaseSystemMemoryResource(void** resourcePointer, uint64_t freeFlags, uint64_t freeConfiguration, uint64_t freeTimeout)
 {
   *resourcePointer = &SystemMemoryResourceTemplate;
   if ((freeFlags & 1) != 0) {
-    free(resourcePointer, 0x38, freeParameter1, freeParameter2, InvalidHandleValue);
+    free(resourcePointer, 0x38, freeConfiguration, freeTimeout, InvalidHandleValue);
   }
   return resourcePointer;
 }
@@ -28090,7 +28090,7 @@ void ProcessSystemResourceAndRenderManagement(long long* SystemResourceManager,v
   renderManagerOffset = SystemNodeManagerPointer;
   if ((*(long long *)(SystemDataMemoryContext + 0x7ab8) == 0) || (*(int *)(SystemNodeManagerPointer + 0x540) < 1)) {
     if (*(int *)(SystemNodeManagerPointer + 0x2140) == 0) {
-      scaleFactor1 = *(float *)(SystemNodeManagerPointer + 0x20d0);
+      primaryScaleFactor = *(float *)(SystemNodeManagerPointer + 0x20d0);
     }
     else {
       scaleFactor1 = 100.0;

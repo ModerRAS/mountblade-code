@@ -2361,28 +2361,28 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
 NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
   // 数据包处理变量
-  NetworkHandle ConnectionPacketResult;                    // 数据包处理结果，存储处理流程的最终状态
-  NetworkByte DecodedDataStreamBuffer [32];             // 已解码数据流缓冲区，用于存储解码后的数据流信息
-  uint32_t PacketTertiaryStatus;                   // 数据包第三级状态值，用于确定处理策略
+  NetworkHandle ProcessingResult;                          // 数据包处理结果，存储处理流程的最终状态
+  NetworkByte DecodedDataStreamBuffer [32];               // 已解码数据流缓冲区，用于存储解码后的数据流信息
+  uint32_t PacketProcessingStatus;                        // 数据包处理状态值，用于确定处理策略
   
-  // 获取第三级状态值
-  PacketTertiaryStatus = *(uint *)(PacketData + NetworkPacketStatusTertiaryOffset);
+  // 获取处理状态值
+  PacketProcessingStatus = *(uint *)(PacketData + NetworkPacketStatusTertiaryOffset);
   
   // 根据数据包状态选择不同的处理路径
-  if (PacketTertiaryStatus < NetworkPacketStatusLimit) {
+  if (PacketProcessingStatus < NetworkPacketStatusLimit) {
     // 处理状态限制内的数据包
-    ConnectionPacketResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkMagicEventData);
-    if ((int)ConnectionPacketResult == 0) {
-      ConnectionPacketResult = NetworkOperationSuccessCode;  // 验证成功
+    ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkMagicEventData);
+    if ((int)ProcessingResult == 0) {
+      ProcessingResult = NetworkOperationSuccessCode;  // 验证成功
     }
   }
   else {
     // 处理状态限制外的数据包，需要解码处理
-    ConnectionPacketResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkMagicLiveConnection, NetworkMagicEventData);
-    if ((int)ConnectionPacketResult == 0) {
+    ProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkMagicLiveConnection, NetworkMagicEventData);
+    if ((int)ProcessingResult == 0) {
       // 验证数据包头部
-      ConnectionPacketResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBatchData);
-      if ((int)ConnectionPacketResult == 0) {
+      ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBatchData);
+      if ((int)ProcessingResult == 0) {
         // 处理连接数据
         NetworkHandle DataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
         if ((int)DataProcessingResult == 0) {
@@ -2393,7 +2393,7 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
     }
   }
   
-  return ConnectionPacketResult;  // 返回处理结果
+  return ProcessingResult;  // 返回处理结果
 }
 
 // =============================================================================
