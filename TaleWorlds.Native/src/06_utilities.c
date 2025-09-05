@@ -11023,68 +11023,70 @@ FUN_180895b89:
 
 
 
-// 函数: void FUN_1808953bf(longlong param_1,undefined8 param_2,int *param_3)
-void FUN_1808953bf(longlong param_1,undefined8 param_2,int *param_3)
+// 函数: void ProcessSystemDataWithValidation(longlong systemContext,undefined8 dataHandle,int *resultStatus)
+// 功能：处理系统数据并进行验证，包括数据读取、类型检查和结果计算
+// 参数：systemContext - 系统上下文，dataHandle - 数据句柄，resultStatus - 结果状态指针
+void ProcessSystemDataWithValidation(longlong systemContext,undefined8 dataHandle,int *resultStatus)
 
 {
-  longlong lVar1;
-  char cVar2;
-  int iVar3;
-  int iVar4;
-  longlong in_RAX;
-  longlong lVar5;
-  undefined8 uVar6;
-  longlong lVar7;
-  int unaff_EBX;
-  undefined4 unaff_0000001c;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  char in_R11B;
-  undefined1 *unaff_R13;
-  longlong lVar8;
-  float fVar9;
-  float fVar10;
-  undefined8 in_stack_00000040;
-  int *in_stack_00000048;
+  longlong dataOffset;
+  char dataType;
+  int validationResult;
+  int itemCount;
+  longlong dataPointer;
+  longlong arrayIndex;
+  undefined8 processData;
+  longlong dataValue;
+  int currentIndex;
+  undefined4 processFlags;
+  longlong stackPointer;
+  longlong dataIterator;
+  char typeCheck;
+  undefined1 *dataBuffer;
+  longlong calculatedValue;
+  float floatValue;
+  float normalizedValue;
+  undefined8 additionalData;
+  int *statusPointer;
   
-  lVar5 = CONCAT44(unaff_0000001c,unaff_EBX) + CONCAT44(unaff_0000001c,unaff_EBX) * 2;
-  lVar8 = (longlong)*(int *)(in_RAX + lVar5 * 4) + *(longlong *)(param_1 + 8);
-  cVar2 = *(char *)(in_RAX + 8 + lVar5 * 4);
-  *(longlong *)(unaff_RBP + -0x80) = lVar5;
-  if (cVar2 == in_R11B) {
-    iVar4 = *(int *)(param_1 + 0xb0);
-    if (unaff_EBX < iVar4) {
-      *(int *)(param_1 + 0xac) = unaff_EBX + 1;
+  arrayIndex = CONCAT44(processFlags,currentIndex) + CONCAT44(processFlags,currentIndex) * 2;
+  calculatedValue = (longlong)*(int *)(dataPointer + arrayIndex * 4) + *(longlong *)(systemContext + 8);
+  dataType = *(char *)(dataPointer + 8 + arrayIndex * 4);
+  *(longlong *)(stackPointer + -0x80) = arrayIndex;
+  if (dataType == typeCheck) {
+    itemCount = *(int *)(systemContext + 0xb0);
+    if (currentIndex < itemCount) {
+      *(int *)(systemContext + 0xac) = currentIndex + 1;
       goto LAB_180895b69;
     }
-    fVar9 = *(float *)(lVar8 + 0x18);
-    fVar10 = fVar9;
-    if (iVar4 != -1) {
-      fVar10 = *(float *)(param_1 + 0xb4);
-      iVar4 = -1;
-      *(undefined4 *)(param_1 + 0xb0) = 0xffffffff;
-      *(undefined4 *)(param_1 + 0xb4) = 0xbf800000;
+    floatValue = *(float *)(calculatedValue + 0x18);
+    normalizedValue = floatValue;
+    if (itemCount != -1) {
+      normalizedValue = *(float *)(systemContext + 0xb4);
+      itemCount = -1;
+      *(undefined4 *)(systemContext + 0xb0) = 0xffffffff;
+      *(undefined4 *)(systemContext + 0xb4) = 0xbf800000;
     }
-    *(float *)(param_1 + 0xa8) = fVar9;
-    lVar5 = 0;
-    fVar9 = (float)*(uint *)(param_1 + 0x68) * fVar9;
-    if ((9.223372e+18 <= fVar9) && (fVar9 = fVar9 - 9.223372e+18, fVar9 < 9.223372e+18)) {
-      lVar5 = -0x8000000000000000;
+    *(float *)(systemContext + 0xa8) = floatValue;
+    arrayIndex = 0;
+    floatValue = (float)*(uint *)(systemContext + 0x68) * floatValue;
+    if ((9.223372e+18 <= floatValue) && (floatValue = floatValue - 9.223372e+18, floatValue < 9.223372e+18)) {
+      arrayIndex = -0x8000000000000000;
     }
-    lVar1 = *(longlong *)(param_1 + 0xa0);
-    lVar7 = *(longlong *)(param_1 + 0x98);
-    if (lVar7 == 0) {
-      fVar10 = (float)*(uint *)(param_1 + 0x68) * fVar10;
-      lVar7 = 0;
-      if ((9.223372e+18 <= fVar10) && (fVar10 = fVar10 - 9.223372e+18, fVar10 < 9.223372e+18)) {
-        lVar7 = -0x8000000000000000;
+    dataOffset = *(longlong *)(systemContext + 0xa0);
+    dataValue = *(longlong *)(systemContext + 0x98);
+    if (dataValue == 0) {
+      normalizedValue = (float)*(uint *)(systemContext + 0x68) * normalizedValue;
+      dataValue = 0;
+      if ((9.223372e+18 <= normalizedValue) && (normalizedValue = normalizedValue - 9.223372e+18, normalizedValue < 9.223372e+18)) {
+        dataValue = -0x8000000000000000;
       }
-      lVar7 = lVar1 - ((longlong)fVar10 + lVar7);
-      *(longlong *)(unaff_RDI + 0x98) = lVar7;
+      dataValue = dataOffset - ((longlong)normalizedValue + dataValue);
+      *(longlong *)(dataIterator + 0x98) = dataValue;
     }
-    cVar2 = (longlong)fVar9 + lVar5 < lVar1 - lVar7;
-    if ((*(byte *)(unaff_RDI + 0x6c) & 2) != 0) {
-      cVar2 = in_R11B;
+    dataType = (longlong)floatValue + arrayIndex < dataOffset - dataValue;
+    if ((*(byte *)(dataIterator + 0x6c) & 2) != 0) {
+      dataType = typeCheck;
     }
     if (*(longlong *)(unaff_RDI + 0xc0) != 0) {
       uVar6 = FUN_180895ef0();
