@@ -11453,7 +11453,7 @@ undefined8 ProcessSystemResourceValidationWithStack(void)
   undefined8 validationStatus;
   undefined *pmemoryBaseAddress;
   uint operationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   longlong lVar7;
   ulonglong securityCheckResult;
   ulonglong uVar9;
@@ -11461,12 +11461,12 @@ undefined8 ProcessSystemResourceValidationWithStack(void)
   longlong registerR14;
   longlong in_stack_00000050;
   
-  uVar6 = 0;
-  securityCheckResult = uVar6;
+  dataFlags = 0;
+  securityCheckResult = dataFlags;
   if (in_stack_00000050 != 0) {
     securityCheckResult = in_stack_00000050 - 8;
   }
-  uVar9 = uVar6;
+  uVar9 = dataFlags;
   if (0 < *(int *)(securityCheckResult + 0x28)) {
     do {
       lVar7 = *(longlong *)(securityCheckResult + 0x20) + uVar9;
@@ -11489,8 +11489,8 @@ undefined8 ProcessSystemResourceValidationWithStack(void)
         validationStatus = ProcessSystemEventB0(*(undefined8 *)(unaff_R13 + 0x98));
         return validationStatus;
       }
-      operationResult = (int)uVar6 + 1;
-      uVar6 = (ulonglong)operationResult;
+      operationResult = (int)dataFlags + 1;
+      dataFlags = (ulonglong)operationResult;
       uVar9 = uVar9 + 0x18;
     } while ((int)operationResult < *(int *)(securityCheckResult + 0x28));
   }
@@ -12362,7 +12362,7 @@ undefined8 ProcessFloatingPointArrayA0(longlong param_1,longlong param_2)
   undefined8 validationStatus;
   float *pfVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   float *pfVar7;
   ulonglong securityCheckResult;
   uint uVar9;
@@ -12376,11 +12376,11 @@ undefined8 ProcessFloatingPointArrayA0(longlong param_1,longlong param_2)
     return validationStatus;
   }
   securityCheckResult = 0;
-  uVar6 = CONCAT44(uStackX_c,fStackX_8) - 8;
+  dataFlags = CONCAT44(uStackX_c,fStackX_8) - 8;
   if (CONCAT44(uStackX_c,fStackX_8) == 0) {
-    uVar6 = securityCheckResult;
+    dataFlags = securityCheckResult;
   }
-  iVar1 = *(int *)(uVar6 + 0x28);
+  iVar1 = *(int *)(dataFlags + 0x28);
   pfVar7 = (float *)(param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 4);
   if (0 < *(int *)(param_1 + 0x18)) {
     pfVar4 = pfVar7;
@@ -12395,7 +12395,7 @@ undefined8 ProcessFloatingPointArrayA0(longlong param_1,longlong param_2)
         if ((operationResult < 0) || (iVar1 <= operationResult)) {
           return 0x1f;
         }
-        lVar5 = *(longlong *)(uVar6 + 0x20) + (longlong)operationResult * 0x18;
+        lVar5 = *(longlong *)(dataFlags + 0x20) + (longlong)operationResult * 0x18;
         if (lVar5 == 0) {
           return 0x1c;
         }
@@ -12422,7 +12422,7 @@ undefined8 ProcessFloatingPointArrayA0(longlong param_1,longlong param_2)
       do {
         iVar1 = *(int *)((longlong)pfVar7 + lVar5);
         if (iVar1 != -1) {
-          *(float *)(*(longlong *)(uVar6 + 0x20) + 4 + (longlong)iVar1 * 0x18) = *pfVar7;
+          *(float *)(*(longlong *)(dataFlags + 0x20) + 4 + (longlong)iVar1 * 0x18) = *pfVar7;
         }
         uVar9 = (int)securityCheckResult + 1;
         securityCheckResult = (ulonglong)uVar9;
@@ -12447,18 +12447,18 @@ undefined8 GetSystemStatusA0(void)
   float *pfVar4;
   longlong registerContext;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   float *pfVar7;
   uint in_R9D;
   uint securityCheckResult;
   longlong unaff_R15;
   float fVar9;
   
-  uVar6 = in_RAX - 8;
+  dataFlags = in_RAX - 8;
   if (in_RAX == 0) {
-    uVar6 = (ulonglong)in_R9D;
+    dataFlags = (ulonglong)in_R9D;
   }
-  operationResult = *(int *)(uVar6 + 0x28);
+  operationResult = *(int *)(dataFlags + 0x28);
   pfVar7 = (float *)(registerContext + 0x20 + (longlong)*(int *)(registerContext + 0x18) * 4);
   if (0 < *(int *)(registerContext + 0x18)) {
     pfVar4 = pfVar7;
@@ -12473,7 +12473,7 @@ undefined8 GetSystemStatusA0(void)
         if ((iVar3 < 0) || (operationResult <= iVar3)) {
           return 0x1f;
         }
-        lVar5 = *(longlong *)(uVar6 + 0x20) + (longlong)iVar3 * 0x18;
+        lVar5 = *(longlong *)(dataFlags + 0x20) + (longlong)iVar3 * 0x18;
         if (lVar5 == 0) {
           return 0x1c;
         }
@@ -12499,7 +12499,7 @@ undefined8 GetSystemStatusA0(void)
       do {
         operationResult = *(int *)((longlong)pfVar7 + lVar5);
         if (operationResult != -1) {
-          *(float *)(*(longlong *)(uVar6 + 0x20) + 4 + (longlong)operationResult * 0x18) = *pfVar7;
+          *(float *)(*(longlong *)(dataFlags + 0x20) + 4 + (longlong)operationResult * 0x18) = *pfVar7;
         }
         in_R9D = in_R9D + 1;
         pfVar7 = pfVar7 + 1;
@@ -14010,7 +14010,7 @@ int ProcessDataBufferWithValidation(longlong *bufferContext,longlong dataBuffer,
 void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validationFlags,longlong *resultPointer)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   int operationResult;
   longlong calculatedOffset;
   undefined1 auStack_c8 [32];
@@ -14033,13 +14033,13 @@ void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validat
   ulonglong uStack_18;
   
   uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
-  pvalidationContext = *(longlong **)(param_1 + 800);
-  if (pvalidationContext != (longlong *)0x0) {
+  validationContextPointer = *(longlong **)(param_1 + 800);
+  if (validationContextPointer != (longlong *)0x0) {
     uStack_58 = *param_2;
     uStack_54 = param_2[1];
     uStack_50 = param_2[2];
     uStack_4c = param_2[3];
-    calculatedOffset = (**(code **)(*pvalidationContext + 0x150))(pvalidationContext,&uStack_58,1);
+    calculatedOffset = (**(code **)(*validationContextPointer + 0x150))(validationContextPointer,&uStack_58,1);
     if (calculatedOffset == 0) {
       uStack_80 = uStack_50 >> 0x18;
       uStack_60 = uStack_4c >> 0x18;
@@ -14100,7 +14100,7 @@ void ExecuteSecurityCheckAndTerminateA(void)
 void ExecuteUtilitySystemOperation(longlong operationContext,undefined4 *operationFlags,longlong *resultPointer)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   int operationResult;
   longlong calculatedOffset;
   undefined1 auStack_b8 [32];
@@ -14122,13 +14122,13 @@ void ExecuteUtilitySystemOperation(longlong operationContext,undefined4 *operati
   ulonglong uStack_10;
   
   uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
-  pvalidationContext = *(longlong **)(param_1 + 800);
-  if (pvalidationContext != (longlong *)0x0) {
+  validationContextPointer = *(longlong **)(param_1 + 800);
+  if (validationContextPointer != (longlong *)0x0) {
     uStack_48 = *param_2;
     uStack_44 = param_2[1];
     uStack_40 = param_2[2];
     uStack_3c = param_2[3];
-    calculatedOffset = (**(code **)(*pvalidationContext + 0x288))(pvalidationContext,&uStack_48,1);
+    calculatedOffset = (**(code **)(*validationContextPointer + 0x288))(validationContextPointer,&uStack_48,1);
     if (calculatedOffset == 0) {
       uStack_70 = uStack_40 >> 0x18;
       uStack_50 = uStack_3c >> 0x18;
@@ -14214,7 +14214,7 @@ void ExecuteSecurityCheckWrapper(void)
 void ProcessDataOperationB1(longlong DataPointer, undefined4 *DataBuffer, longlong *ResultPointer)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   int operationResult;
   longlong calculatedOffset;
   undefined1 auStack_c8 [32];
@@ -14237,13 +14237,13 @@ void ProcessDataOperationB1(longlong DataPointer, undefined4 *DataBuffer, longlo
   ulonglong uStack_18;
   
   uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
-  pvalidationContext = *(longlong **)(param_1 + 800);
-  if (pvalidationContext != (longlong *)0x0) {
+  validationContextPointer = *(longlong **)(param_1 + 800);
+  if (validationContextPointer != (longlong *)0x0) {
     uStack_58 = *param_2;
     uStack_54 = param_2[1];
     uStack_50 = param_2[2];
     uStack_4c = param_2[3];
-    calculatedOffset = (**(code **)(*pvalidationContext + 0x2f8))(pvalidationContext,&uStack_58,1);
+    calculatedOffset = (**(code **)(*validationContextPointer + 0x2f8))(validationContextPointer,&uStack_58,1);
     if (calculatedOffset == 0) {
       uStack_80 = uStack_50 >> 0x18;
       uStack_60 = uStack_4c >> 0x18;
@@ -14877,7 +14877,7 @@ undefined8 InitializeSystemDataStructure(longlong *param_1)
   undefined8 validationStatus;
   ulonglong memoryBaseAddress;
   longlong lVar5;
-  uint uVar6;
+  uint dataFlags;
   int *piVar7;
   int iVar8;
   ulonglong uVar9;
@@ -14896,8 +14896,8 @@ undefined8 InitializeSystemDataStructure(longlong *param_1)
     if (((iVar8 <= iVar1) || ((int)param_1[3] != iVar1)) || ((int)param_1[4] != -1)) {
       return 0x1c;
     }
-    uVar6 = (int)*(uint *)((longlong)param_1 + 0x1c) >> 0x1f;
-    if (((int)((*(uint *)((longlong)param_1 + 0x1c) ^ uVar6) - uVar6) < iVar8) &&
+    dataFlags = (int)*(uint *)((longlong)param_1 + 0x1c) >> 0x1f;
+    if (((int)((*(uint *)((longlong)param_1 + 0x1c) ^ dataFlags) - dataFlags) < iVar8) &&
        (validationStatus = CheckSystemDataA0(param_1 + 2,iVar8), (int)validationStatus != 0)) {
       return validationStatus;
     }
@@ -15216,9 +15216,9 @@ void ProcessSystemDataWithValidation(longlong systemContext,undefined8 dataHandl
       dataType = typeCheck;
     }
     if (*(longlong *)(unaff_RDI + 0xc0) != 0) {
-      uVar6 = CleanupAndValidateDataStructure();
+      dataFlags = CleanupAndValidateDataStructure();
       iVar3 = (**(code **)(unaff_RDI + 0xc0))
-                        (uVar6,unaff_EBX,*(undefined4 *)(lVar8 + 0x18),
+                        (dataFlags,unaff_EBX,*(undefined4 *)(lVar8 + 0x18),
                          *(undefined8 *)(unaff_RDI + 0xb8));
       param_3 = in_stack_00000048;
       if (iVar3 != 0) goto LAB_180895b69;
@@ -15502,7 +15502,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
   int iVar3;
   undefined8 memoryBaseAddress;
   undefined8 operationResult;
-  undefined8 *puVar6;
+  undefined8 *pdataFlags;
   int iVar7;
   longlong lVar8;
   longlong lVar9;
@@ -15556,9 +15556,9 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
           return operationResult;
         }
       }
-      puVar6 = (undefined8 *)((longlong)(int)param_1[3] * 0x10 + param_1[2]);
-      *puVar6 = CONCAT44(0xffffffff,uVar1);
-      puVar6[1] = memoryBaseAddress;
+      pdataFlags = (undefined8 *)((longlong)(int)param_1[3] * 0x10 + param_1[2]);
+      *pdataFlags = CONCAT44(0xffffffff,uVar1);
+      pdataFlags[1] = memoryBaseAddress;
       *(int *)(param_1 + 3) = (int)param_1[3] + 1;
     }
     else {
@@ -15668,7 +15668,7 @@ undefined8 ProcessAndValidateDataBlock(undefined8 param_1,undefined4 param_2)
   undefined8 *pvalidationStatus;
   int iVar4;
   undefined4 *poperationResult;
-  uint uVar6;
+  uint dataFlags;
   int iVar7;
   int *registerContext;
   int iVar8;
@@ -15682,8 +15682,8 @@ undefined8 ProcessAndValidateDataBlock(undefined8 param_1,undefined4 param_2)
     uStack0000000000000028 = *registerR14;
     iVar8 = *(int *)(unaff_RDI + 0x18);
     iVar4 = iVar8 + 1;
-    uVar6 = (int)*(uint *)(unaff_RDI + 0x1c) >> 0x1f;
-    iVar1 = (*(uint *)(unaff_RDI + 0x1c) ^ uVar6) - uVar6;
+    dataFlags = (int)*(uint *)(unaff_RDI + 0x1c) >> 0x1f;
+    iVar1 = (*(uint *)(unaff_RDI + 0x1c) ^ dataFlags) - dataFlags;
     if (iVar1 < iVar4) {
       iVar7 = (int)((float)iVar1 * 1.5);
       iVar1 = iVar4;
@@ -16030,14 +16030,14 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
   undefined8 validationStatus;
   int iVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   int iVar7;
   uint securityCheckResult;
   uint uVar9;
   ulonglong uVar10;
   int iVar11;
   undefined4 *puVar12;
-  longlong *pvalidationContext3;
+  longlong *validationContextPointer3;
   int iVar14;
   longlong validationContext5;
   int iVar16;
@@ -16071,7 +16071,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
   undefined1 auStack_68 [40];
   
   securityCheckResult = *(uint *)(param_1 + 0x6c);
-  uVar6 = 0;
+  dataFlags = 0;
   iVar4 = 0;
   if ((securityCheckResult >> 0x1a & 1) == 0) goto LAB_1808963ec;
   if ((securityCheckResult & 1) == 0) {
@@ -16085,21 +16085,21 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
     ProcessDataConversionDN0(plStack_108,&uStack_100,aiStack_f8);
     aiStackX_8[0] = aiStack_f8[0];
     if (aiStack_f8[0] != -1) {
-      pvalidationContext3 = plStack_108;
-      uVar10 = uVar6;
+      validationContextPointer3 = plStack_108;
+      uVar10 = dataFlags;
       iVar11 = (int)uStack_100;
       do {
         do {
           iVar16 = (int)uVar10;
-          lVar5 = pvalidationContext3[2];
+          lVar5 = validationContextPointer3[2];
           validationContext5 = (longlong)aiStackX_8[0];
           iVar4 = *(int *)(lVar5 + 8 + validationContext5 * 0x10);
           if (iVar4 == 2) {
             iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10),&uStackX_18);
             validationStatus = uStackX_18;
-            pvalidationContext3 = plStack_108;
+            validationContextPointer3 = plStack_108;
             if ((iVar4 == 0) &&
-               (iVar4 = PerformSystemValidationCheck(uStackX_18), pvalidationContext3 = plStack_108, 0 < iVar4)) {
+               (iVar4 = PerformSystemValidationCheck(uStackX_18), validationContextPointer3 = plStack_108, 0 < iVar4)) {
               do {
                 uStack_e0 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
                 uStack_e8 = 0;
@@ -16107,13 +16107,13 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
                 DoubleValidateAndExecuteOperation(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
                 iVar4 = PerformSystemValidationCheck(validationStatus);
               } while (0 < iVar4);
-              uVar6 = (ulonglong)auStackX_10[0];
-              pvalidationContext3 = plStack_108;
+              dataFlags = (ulonglong)auStackX_10[0];
+              validationContextPointer3 = plStack_108;
             }
           }
           else if (iVar4 == 3) {
             iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10),auStackX_20);
-            pvalidationContext3 = plStack_108;
+            validationContextPointer3 = plStack_108;
             if (iVar4 == 0) {
               puStack_d8 = &UNK_180983b68;
               uStack_c8 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
@@ -16124,12 +16124,12 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
               uStack_e0 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
               ValidateAndExecuteOperationA0(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
-              pvalidationContext3 = plStack_108;
+              validationContextPointer3 = plStack_108;
             }
           }
           else if (iVar4 == 5) {
             iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10),auStack_78);
-            pvalidationContext3 = plStack_108;
+            validationContextPointer3 = plStack_108;
             if (iVar4 == 0) {
               puStack_d8 = &UNK_1809842e0;
               uStack_c8 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
@@ -16150,31 +16150,31 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
               uStack_e0 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
               ProcessSystemEventA0(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
-              pvalidationContext3 = plStack_108;
+              validationContextPointer3 = plStack_108;
             }
           }
           else if (iVar4 == 6) {
             iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10),auStack_70);
-            pvalidationContext3 = plStack_108;
+            validationContextPointer3 = plStack_108;
             if (iVar4 == 0) {
               puStack_b8 = &UNK_1809844c8;
               uStack_a8 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = 0x3f800000;
               ValidateSystemA0(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
-              pvalidationContext3 = plStack_108;
+              validationContextPointer3 = plStack_108;
             }
           }
           else if ((iVar4 == 7) &&
                   (iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10),
-                                               auStack_68), pvalidationContext3 = plStack_108, iVar4 == 0)) {
+                                               auStack_68), validationContextPointer3 = plStack_108, iVar4 == 0)) {
             uVar2 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
-            iVar7 = (int)uVar6 + 1;
+            iVar7 = (int)dataFlags + 1;
             iVar4 = iVar16;
             if (iVar16 < 0) {
               iVar4 = -iVar16;
             }
-            iVar14 = (int)uVar6;
+            iVar14 = (int)dataFlags;
             if (iVar4 < iVar7) {
               if (iVar16 < 0) {
                 iVar16 = -iVar16;
@@ -16191,7 +16191,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
                 iVar16 = iVar7;
               }
               securityCheckResult = CleanupSystemResourceDW0(&uStack_118,iVar16);
-              uVar6 = (ulonglong)securityCheckResult;
+              dataFlags = (ulonglong)securityCheckResult;
               iVar4 = (int)uStack_110;
               if (securityCheckResult != 0) {
                 securityCheckResult = uStack_110._4_4_;
@@ -16202,7 +16202,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
                 uVar9 = uStack_110._4_4_;
                 if ((int)securityCheckResult < 0) {
                   if (0 < (int)uStack_110) {
-                    return uVar6;
+                    return dataFlags;
                   }
                   if ((0 < (int)uStack_110._4_4_) && (uStack_118 != 0)) {
                     // WARNING: Subroutine does not return
@@ -16228,54 +16228,54 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
                   uVar9 = -uVar9;
                 }
                 if (uVar9 == 0) {
-                  return uVar6;
+                  return dataFlags;
                 }
                 CleanupSystemResourceDW0(&uStack_118,0);
-                return uVar6;
+                return dataFlags;
               }
               uVar10 = (ulonglong)uStack_110._4_4_;
               iVar14 = (int)uStack_110;
             }
             auStackX_10[0] = iVar14 + 1;
-            uVar6 = (ulonglong)auStackX_10[0];
+            dataFlags = (ulonglong)auStackX_10[0];
             uStack_110 = CONCAT44(uStack_110._4_4_,auStackX_10[0]);
             *(undefined4 *)(uStack_118 + (longlong)iVar14 * 4) = uVar2;
-            pvalidationContext3 = plStack_108;
+            validationContextPointer3 = plStack_108;
           }
           iVar4 = (int)uVar10;
-          iVar16 = (int)uVar6;
+          iVar16 = (int)dataFlags;
         } while ((aiStackX_8[0] != -1) &&
-                (aiStackX_8[0] = *(int *)(pvalidationContext3[2] + 4 + validationContext5 * 0x10), aiStackX_8[0] != -1));
+                (aiStackX_8[0] = *(int *)(validationContextPointer3[2] + 4 + validationContext5 * 0x10), aiStackX_8[0] != -1));
         iVar7 = iVar11 + 1;
         bVar17 = iVar11 != -1;
         iVar11 = 0;
         if (bVar17) {
           iVar11 = iVar7;
         }
-        if (iVar11 != (int)pvalidationContext3[1]) {
+        if (iVar11 != (int)validationContextPointer3[1]) {
           lVar5 = (longlong)iVar11;
           do {
-            if (*(int *)(*pvalidationContext3 + lVar5 * 4) != -1) {
-              aiStackX_8[0] = *(int *)(*pvalidationContext3 + (longlong)iVar11 * 4);
+            if (*(int *)(*validationContextPointer3 + lVar5 * 4) != -1) {
+              aiStackX_8[0] = *(int *)(*validationContextPointer3 + (longlong)iVar11 * 4);
               goto LAB_1808962af;
             }
             iVar11 = iVar11 + 1;
             lVar5 = lVar5 + 1;
-          } while (lVar5 != (int)pvalidationContext3[1]);
+          } while (lVar5 != (int)validationContextPointer3[1]);
         }
         aiStackX_8[0] = -1;
         iVar11 = aiStackX_8[0];
 MemoryAllocationLabel:
       } while (aiStackX_8[0] != -1);
       aiStackX_8[0] = -1;
-      uVar6 = uStack_118;
+      dataFlags = uStack_118;
     }
     lVar5 = (longlong)(iVar16 + -1);
     if (-1 < iVar16 + -1) {
       do {
         uStack_100 = uStack_100 & 0xffffffff00000000;
         plStack_108 = (longlong *)&UNK_180982dc0;
-        aiStack_f8[0] = *(int *)(uVar6 + lVar5 * 4);
+        aiStack_f8[0] = *(int *)(dataFlags + lVar5 * 4);
         ResetSystemStateA1(&plStack_108,*(undefined8 *)(param_1 + 0x58));
         lVar5 = lVar5 + -1;
       } while (-1 < lVar5);
@@ -16286,18 +16286,18 @@ MemoryAllocationLabel:
     }
     if (iVar11 < 0) {
       if (0 < iVar16) goto LAB_18089638e;
-      if ((0 < iVar4) && (uVar6 != 0)) {
+      if ((0 < iVar4) && (dataFlags != 0)) {
                     // WARNING: Subroutine does not return
-        ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uVar6,&UNK_180957f70,0x100,1);
+        ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),dataFlags,&UNK_180957f70,0x100,1);
       }
       uStack_118 = 0;
       uStack_110 = 0;
-      uVar6 = 0;
+      dataFlags = 0;
       iVar4 = 0;
     }
     if (iVar16 < 0) {
       lVar5 = (longlong)-iVar16;
-      puVar12 = (undefined4 *)(uVar6 + (longlong)iVar16 * 4);
+      puVar12 = (undefined4 *)(dataFlags + (longlong)iVar16 * 4);
       if (iVar16 < 0) {
         for (; lVar5 != 0; lVar5 = lVar5 + -1) {
           *puVar12 = 0;
@@ -16314,14 +16314,14 @@ MemoryAllocationLabel:
     }
   }
 ProcessCompleteLabel:
-  uVar6 = 0;
-  uVar10 = uVar6;
+  dataFlags = 0;
+  uVar10 = dataFlags;
   if (0 < *(int *)(param_1 + 0x20)) {
     do {
       securityCheckResult = (int)uVar10 + 1;
-      pbVar1 = (byte *)(uVar6 + 0xb + *(longlong *)(param_1 + 0x18));
+      pbVar1 = (byte *)(dataFlags + 0xb + *(longlong *)(param_1 + 0x18));
       *pbVar1 = *pbVar1 & 0xfe;
-      uVar6 = uVar6 + 0xc;
+      dataFlags = dataFlags + 0xc;
       uVar10 = (ulonglong)securityCheckResult;
     } while ((int)securityCheckResult < *(int *)(param_1 + 0x20));
   }
@@ -16335,9 +16335,9 @@ ProcessCompleteLabel:
 ResourceCleanupLabel:
   if ((securityCheckResult >> 0x19 & 1) != 0) {
     lVar5 = *(longlong *)(param_1 + 0xa0);
-    uVar6 = ProcessDataBufferA0(*(undefined8 *)(param_1 + 0x60),param_1 + 0xa0,0);
-    if ((int)uVar6 != 0) {
-      return uVar6;
+    dataFlags = ProcessDataBufferA0(*(undefined8 *)(param_1 + 0x60),param_1 + 0xa0,0);
+    if ((int)dataFlags != 0) {
+      return dataFlags;
     }
     if ((*(uint *)(param_1 + 0x6c) >> 0x18 & 1) == 0) {
       if ((*(int *)(param_1 + 0xb0) == -1) || (*(int *)(param_1 + 0xac) <= *(int *)(param_1 + 0xb0))
@@ -16345,11 +16345,11 @@ ResourceCleanupLabel:
         aiStackX_8[0] = CONCAT31(aiStackX_8[0]._1_3_,1);
         auStackX_10[0] = 0;
         do {
-          uVar6 = ProcessSystemDataA1(param_1,aiStackX_8,auStackX_10);
-          if ((int)uVar6 != 0) {
-            return uVar6;
+          dataFlags = ProcessSystemDataA1(param_1,aiStackX_8,auStackX_10);
+          if ((int)dataFlags != 0) {
+            return dataFlags;
           }
-        } while ((char)aiStackX_8[0] != (char)uVar6);
+        } while ((char)aiStackX_8[0] != (char)dataFlags);
       }
       else {
         *(undefined8 *)(param_1 + 0xa8) = 0;
@@ -16600,7 +16600,7 @@ void ProcessComplexDataBufferA1(undefined8 systemHandle, longlong dataContext, u
   int iVar3;
   int iVar4;
   int iVar5;
-  undefined **ppuVar6;
+  undefined **ppdataFlags;
   int iVar7;
   undefined1 auStack_328 [32];
   undefined4 uStack_308;
@@ -16643,15 +16643,15 @@ void ProcessComplexDataBufferA1(undefined8 systemHandle, longlong dataContext, u
       uStack_264 = 0;
       uStack_268 = param_3;
       func_0x00018076b450(auStack_260,*(undefined8 *)(param_2 + 0x228),0x200);
-      ppuVar6 = &puStack_278;
+      ppdataFlags = &puStack_278;
 SecurityValidationLabel:
-      iVar3 = ValidateDataIntegrityA0(param_1,ppuVar6);
+      iVar3 = ValidateDataIntegrityA0(param_1,ppdataFlags);
     }
     else {
       iStack_2f0 = 0;
       if (1 < iVar3 - 1U) {
         puStack_2f8 = &UNK_180982608;
-        ppuVar6 = &puStack_2f8;
+        ppdataFlags = &puStack_2f8;
         uStack_2b0 = 0;
         uStack_2e8 = 0;
         uStack_2e0 = 0;
@@ -16938,7 +16938,7 @@ void ProcessFloatingPointDataA0(void)
   undefined4 validationStatus;
   undefined4 memoryBaseAddress;
   undefined4 operationResult;
-  undefined4 uVar6;
+  undefined4 dataFlags;
   int iVar7;
   int iVar8;
   int iVar9;
@@ -16975,7 +16975,7 @@ void ProcessFloatingPointDataA0(void)
         validationStatus = *(undefined4 *)(validationContext + 0x10);
         memoryBaseAddress = *(undefined4 *)(validationContext + 0x14);
         operationResult = *(undefined4 *)(validationContext + 0x18);
-        uVar6 = *(undefined4 *)(validationContext + 0x1c);
+        dataFlags = *(undefined4 *)(validationContext + 0x1c);
         *(undefined4 *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
         *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
@@ -16985,7 +16985,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -100) = validationStatus;
         *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = operationResult;
-        *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
+        *(undefined4 *)(unaff_RBP + -0x58) = dataFlags;
         iVar8 = ValidateDataIntegrityA0(validationStatus,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = SynchronizeDataEQ0(dataContext,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
@@ -17028,7 +17028,7 @@ void ProcessFloatingPointDataA0(void)
         validationStatus = *(undefined4 *)(validationContext + 0x10);
         memoryBaseAddress = *(undefined4 *)(validationContext + 0x14);
         operationResult = *(undefined4 *)(validationContext + 0x18);
-        uVar6 = *(undefined4 *)(validationContext + 0x1c);
+        dataFlags = *(undefined4 *)(validationContext + 0x1c);
         *(undefined4 *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
         *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
@@ -17038,7 +17038,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -100) = validationStatus;
         *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = operationResult;
-        *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
+        *(undefined4 *)(unaff_RBP + -0x58) = dataFlags;
         iVar8 = ValidateDataIntegrityA0(validationStatus,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = SynchronizeDataEQ0(dataContext,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
@@ -17081,7 +17081,7 @@ void ProcessFloatingPointDataA0(void)
         validationStatus = *(undefined4 *)(validationContext + 0x10);
         memoryBaseAddress = *(undefined4 *)(validationContext + 0x14);
         operationResult = *(undefined4 *)(validationContext + 0x18);
-        uVar6 = *(undefined4 *)(validationContext + 0x1c);
+        dataFlags = *(undefined4 *)(validationContext + 0x1c);
         *(undefined4 *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
         *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
@@ -17091,7 +17091,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -100) = validationStatus;
         *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = operationResult;
-        *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
+        *(undefined4 *)(unaff_RBP + -0x58) = dataFlags;
         iVar8 = ValidateDataIntegrityA0(validationStatus,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = SynchronizeDataEQ0(dataContext,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
@@ -17134,7 +17134,7 @@ void ProcessFloatingPointDataA0(void)
         validationStatus = *(undefined4 *)(validationContext + 0x10);
         memoryBaseAddress = *(undefined4 *)(validationContext + 0x14);
         operationResult = *(undefined4 *)(validationContext + 0x18);
-        uVar6 = *(undefined4 *)(validationContext + 0x1c);
+        dataFlags = *(undefined4 *)(validationContext + 0x1c);
         *(undefined4 *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
         *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
@@ -17144,7 +17144,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -100) = validationStatus;
         *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = operationResult;
-        *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
+        *(undefined4 *)(unaff_RBP + -0x58) = dataFlags;
         iVar8 = ValidateDataIntegrityA0(validationStatus,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = SynchronizeDataEQ0(dataContext,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
@@ -17190,7 +17190,7 @@ void ProcessFloatingPointDataA0(void)
         validationStatus = *(undefined4 *)(validationContext + 0x10);
         memoryBaseAddress = *(undefined4 *)(validationContext + 0x14);
         operationResult = *(undefined4 *)(validationContext + 0x18);
-        uVar6 = *(undefined4 *)(validationContext + 0x1c);
+        dataFlags = *(undefined4 *)(validationContext + 0x1c);
         *(undefined4 *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = iVar8;
         *(undefined **)(unaff_RBP + -0x80) = &UNK_180983238;
@@ -17200,7 +17200,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -100) = validationStatus;
         *(undefined4 *)(unaff_RBP + -0x60) = memoryBaseAddress;
         *(undefined4 *)(unaff_RBP + -0x5c) = operationResult;
-        *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
+        *(undefined4 *)(unaff_RBP + -0x58) = dataFlags;
         iVar9 = ValidateDataIntegrityA0(validationStatus,unaff_RBP + -0x80);
         if ((iVar9 != 0) || (iVar9 = ValidateDataA2(dataContext,&fStackX_24,0), iVar9 != 0)) break;
         if (fStackX_24 != 1.0) {
@@ -17578,7 +17578,7 @@ ProcessDataSecurityValidation:
   longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   undefined4 operationResult;
-  undefined4 uVar6;
+  undefined4 dataFlags;
   undefined4 validationOutcome;
   undefined4 securityCheckResult;
   undefined4 uVar9;
@@ -17695,7 +17695,7 @@ ProcessDataSecurityValidation:
             uVar16 = *(undefined8 *)(unaff_R15 + 0x40);
             uVar24 = *(undefined4 *)(unaff_R15 + 0x48);
             operationResult = *(undefined4 *)(unaff_R15 + 0x4c);
-            uVar6 = *(undefined4 *)(unaff_R15 + 0x50);
+            dataFlags = *(undefined4 *)(unaff_R15 + 0x50);
             validationOutcome = *(undefined4 *)(unaff_R15 + 0x54);
             unaff_RBP[-0xe] = &UNK_180983840;
             unaff_RBP[-0xb] = uVar17;
@@ -17708,7 +17708,7 @@ ProcessDataSecurityValidation:
             *(undefined4 *)(unaff_RBP + -0xc) = uStackX_20;
             *(undefined4 *)(unaff_RBP + -9) = uVar24;
             *(undefined4 *)((longlong)unaff_RBP + -0x44) = operationResult;
-            *(undefined4 *)(unaff_RBP + -8) = uVar6;
+            *(undefined4 *)(unaff_RBP + -8) = dataFlags;
             *(undefined4 *)((longlong)unaff_RBP + -0x3c) = validationOutcome;
             *(undefined4 *)(unaff_RBP + -7) = securityCheckResult;
             *(undefined4 *)((longlong)unaff_RBP + -0x34) = uVar9;
@@ -17841,7 +17841,7 @@ ValidateDataSecurity:
   longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
   undefined4 operationResult;
-  undefined4 uVar6;
+  undefined4 dataFlags;
   undefined4 validationOutcome;
   undefined4 securityCheckResult;
   undefined4 uVar9;
@@ -17942,7 +17942,7 @@ ValidateDataSecurity:
         uVar16 = *(undefined8 *)(unaff_R15 + 0x40);
         uVar23 = *(undefined4 *)(unaff_R15 + 0x48);
         operationResult = *(undefined4 *)(unaff_R15 + 0x4c);
-        uVar6 = *(undefined4 *)(unaff_R15 + 0x50);
+        dataFlags = *(undefined4 *)(unaff_R15 + 0x50);
         validationOutcome = *(undefined4 *)(unaff_R15 + 0x54);
         unaff_RBP[-0xe] = &UNK_180983840;
         unaff_RBP[-0xb] = uVar17;
@@ -17955,7 +17955,7 @@ ValidateDataSecurity:
         *(undefined4 *)(unaff_RBP + -0xc) = uStackX_20;
         *(undefined4 *)(unaff_RBP + -9) = uVar23;
         *(undefined4 *)((longlong)unaff_RBP + -0x44) = operationResult;
-        *(undefined4 *)(unaff_RBP + -8) = uVar6;
+        *(undefined4 *)(unaff_RBP + -8) = dataFlags;
         *(undefined4 *)((longlong)unaff_RBP + -0x3c) = validationOutcome;
         *(undefined4 *)(unaff_RBP + -7) = securityCheckResult;
         *(undefined4 *)((longlong)unaff_RBP + -0x34) = uVar9;
@@ -18104,7 +18104,7 @@ void ProcessFloatingPointDataA0(float inputValue)
   undefined4 extraout_XMM0_Da_02;
   undefined4 extraout_XMM0_Da_03;
   undefined4 extraout_XMM0_Da_04;
-  undefined4 uVar6;
+  undefined4 dataFlags;
   undefined4 uStackX_20;
   undefined *in_stack_00000028;
   float in_stack_00000030;
@@ -18165,14 +18165,14 @@ void ProcessFloatingPointDataA0(float inputValue)
       pfVar5 = pfVar5 + 1;
     } while ((int)fVar4 < 6);
     validationStatus = func_0x000180855b70(registerR14 + 200);
-    uVar6 = extraout_XMM0_Da_00;
+    dataFlags = extraout_XMM0_Da_00;
     if ((float)(validationStatus / 0x30) != 0.0) {
       in_stack_00000028 = &UNK_180983be8;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       fStack0000000000000040 = (float)(validationStatus / 0x30);
       operationResult = ValidateDataIntegrityA0(extraout_XMM0_Da_00,&stack0x00000028);
-      uVar6 = extraout_XMM0_Da_01;
+      dataFlags = extraout_XMM0_Da_01;
       if (operationResult != 0) goto LAB_180897af6;
     }
     if ((*(uint *)(registerR14 + 0x2d8) >> 1 & 1) != 0) {
@@ -18180,7 +18180,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       in_stack_00000038 = uStackX_20;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       in_stack_00000030 = unaff_R13D;
-      operationResult = ValidateDataIntegrityA0(uVar6,&stack0x00000028);
+      operationResult = ValidateDataIntegrityA0(dataFlags,&stack0x00000028);
       if (operationResult != 0) goto LAB_180897af6;
     }
     operationResult = ProcessUtilityOperation();
@@ -18192,21 +18192,21 @@ void ProcessFloatingPointDataA0(float inputValue)
       if (operationResult != 0) goto LAB_180897af6;
     }
     operationResult = ProcessUtilityOperation();
-    uVar6 = extraout_XMM0_Da_03;
+    dataFlags = extraout_XMM0_Da_03;
     if (operationResult == 4) {
       in_stack_00000028 = &UNK_180983b68;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       fStack0000000000000040 = unaff_R13D;
       operationResult = ValidateDataIntegrityA0(extraout_XMM0_Da_03,&stack0x00000028);
-      uVar6 = extraout_XMM0_Da_04;
+      dataFlags = extraout_XMM0_Da_04;
       if (operationResult != 0) goto LAB_180897af6;
     }
     if ((*(uint *)(registerR14 + 0x2d8) >> 3 & 1) != 0) {
       in_stack_00000028 = &UNK_180983cf8;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
-      ValidateDataIntegrityA0(uVar6,&stack0x00000028);
+      ValidateDataIntegrityA0(dataFlags,&stack0x00000028);
     }
   }
 ValidationFailedLabel:
@@ -18440,7 +18440,7 @@ undefined8 ValidateDataStructureA0(longlong *param_1)
   longlong calculatedOffset;
   undefined4 memoryBaseAddress;
   undefined4 operationResult;
-  undefined4 uVar6;
+  undefined4 dataFlags;
   undefined4 validationOutcome;
   undefined4 securityCheckResult;
   undefined *puStack_28;
@@ -18476,29 +18476,29 @@ undefined8 ValidateDataStructureA0(longlong *param_1)
           memoryBaseAddress = *(undefined4 *)(validationContext + 0x11668);
           securityCheckResult = *(undefined4 *)(validationContext + 0x11624);
           validationOutcome = *(undefined4 *)(validationContext + 0x11620);
-          uVar6 = *(undefined4 *)(validationContext + 0x1161c);
+          dataFlags = *(undefined4 *)(validationContext + 0x1161c);
           uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA4,*(undefined4 *)(validationContext + 0x1160c),
                                 *(undefined4 *)(validationContext + 0x11610),*(undefined4 *)(validationContext + 0x11614),
-                                *(undefined4 *)(validationContext + 0x11618),uVar6,validationOutcome,securityCheckResult,memoryBaseAddress);
+                                *(undefined4 *)(validationContext + 0x11618),dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress);
           if (((int)uVar2 == 0) &&
              (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA5,*(undefined4 *)(validationContext + 0x11628),
                                     (double)*(float *)(validationContext + 0x11640),
                                     *(undefined4 *)(validationContext + 0x11644),
-                                    *(undefined4 *)(validationContext + 0x1164c),uVar6,validationOutcome,securityCheckResult,memoryBaseAddress),
+                                    *(undefined4 *)(validationContext + 0x1164c),dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress),
              (int)uVar2 == 0)) {
-            uVar6 = *(undefined4 *)(validationContext + 0x11660);
+            dataFlags = *(undefined4 *)(validationContext + 0x11660);
             uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA6,(double)*(float *)(validationContext + 0x11650),
                                   *(undefined4 *)(validationContext + 0x11654),*(undefined4 *)(validationContext + 0x11658),
-                                  *(undefined4 *)(validationContext + 0x1165c),uVar6,validationOutcome,securityCheckResult,memoryBaseAddress);
+                                  *(undefined4 *)(validationContext + 0x1165c),dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress);
             if ((int)uVar2 == 0) {
               operationResult = *(undefined4 *)(calculatedOffset + 0x10);
               uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA7,*(undefined4 *)(calculatedOffset + 4),
                                     *(undefined4 *)(calculatedOffset + 8),*(undefined4 *)(calculatedOffset + 0xc),operationResult,
-                                    uVar6,validationOutcome,securityCheckResult,memoryBaseAddress);
+                                    dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress);
               if ((((int)uVar2 == 0) &&
                   (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA8,*(undefined4 *)(validationContext + 0x1e0),
                                          *(undefined4 *)(param_1[1] + 0x20),
-                                         *(undefined4 *)(validationContext + 0x78),operationResult,uVar6,validationOutcome,securityCheckResult,memoryBaseAddress
+                                         *(undefined4 *)(validationContext + 0x78),operationResult,dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress
                                         ), (int)uVar2 == 0)) &&
                  ((uVar2 = (**(code **)(*param_1 + 8))(param_1,&UNK_1809864dc), (int)uVar2 == 0 &&
                   (((*(uint *)(param_1 + 3) & 2) != 0 ||
@@ -18592,16 +18592,16 @@ void ProcessFloatingPointDataA1(longlong *param_1)
   int iVar7;
   int iVar8;
   ulonglong uVar9;
-  longlong *pvalidationContext0;
+  longlong *validationContextPointer0;
   longlong validationContext1;
   undefined *puVar12;
-  longlong *pvalidationContext3;
-  longlong *pvalidationContext4;
+  longlong *validationContextPointer3;
+  longlong *validationContextPointer4;
   longlong validationContext5;
-  longlong *pvalidationContext6;
+  longlong *validationContextPointer6;
   uint uVar17;
   float fVar18;
-  longlong *pvalidationContext9;
+  longlong *validationContextPointer9;
   bool bVar20;
   undefined1 auStack_368 [32];
   float afStack_348 [2];
@@ -18635,7 +18635,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
   ulonglong uStack_38;
   
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_368;
-  pvalidationContext6 = (longlong *)0x0;
+  validationContextPointer6 = (longlong *)0x0;
   alStack_300[1] = 0;
   iVar6 = InitializeBufferA0(alStack_300 + 1,param_1[1]);
   if ((iVar6 == 0) && (iVar6 = ValidateSystemDataA0(param_1,1), iVar6 == 0)) {
@@ -18643,38 +18643,38 @@ void ProcessFloatingPointDataA1(longlong *param_1)
     if (((*(uint *)(param_1 + 3) & 0x1000000) == 0) ||
        (iVar6 = ValidateResourceA0(param_1,*(undefined8 *)(param_1[1] + 0xc0),0,1), iVar6 == 0)) {
       validationContext5 = param_1[1];
-      pvalidationContext4 = (longlong *)(validationContext5 + 0x50);
-      pvalidationContext0 = (longlong *)(*(longlong *)(validationContext5 + 0x50) + -8);
+      validationContextPointer4 = (longlong *)(validationContext5 + 0x50);
+      validationContextPointer0 = (longlong *)(*(longlong *)(validationContext5 + 0x50) + -8);
       if (*(longlong *)(validationContext5 + 0x50) == 0) {
-        pvalidationContext0 = pvalidationContext6;
+        validationContextPointer0 = validationContextPointer6;
       }
-      pvalidationContext3 = pvalidationContext6;
-      if (pvalidationContext0 != (longlong *)0x0) {
-        pvalidationContext3 = pvalidationContext0 + 1;
+      validationContextPointer3 = validationContextPointer6;
+      if (validationContextPointer0 != (longlong *)0x0) {
+        validationContextPointer3 = validationContextPointer0 + 1;
       }
-      if (pvalidationContext3 != pvalidationContext4) {
+      if (validationContextPointer3 != validationContextPointer4) {
         do {
-          pvalidationContext0 = pvalidationContext3 + -1;
-          if (pvalidationContext3 == (longlong *)0x0) {
-            pvalidationContext0 = pvalidationContext6;
+          validationContextPointer0 = validationContextPointer3 + -1;
+          if (validationContextPointer3 == (longlong *)0x0) {
+            validationContextPointer0 = validationContextPointer6;
           }
-          validationContext5 = pvalidationContext0[3];
+          validationContext5 = validationContextPointer0[3];
           if (validationContext5 != 0) {
             afStack_348[0] = 0.0;
-            iVar6 = ValidateAndProcessSystemResourceA0(pvalidationContext0,afStack_348);
+            iVar6 = ValidateAndProcessSystemResourceA0(validationContextPointer0,afStack_348);
             if ((iVar6 != 0) || (iVar6 = ValidateResourceA0(param_1,validationContext5,afStack_348[0],0), iVar6 != 0)
                ) goto LAB_18089866f;
           }
-          if (pvalidationContext3 == pvalidationContext4) break;
-          pvalidationContext0 = (longlong *)(*pvalidationContext3 + -8);
-          if (*pvalidationContext3 == 0) {
-            pvalidationContext0 = pvalidationContext6;
+          if (validationContextPointer3 == validationContextPointer4) break;
+          validationContextPointer0 = (longlong *)(*validationContextPointer3 + -8);
+          if (*validationContextPointer3 == 0) {
+            validationContextPointer0 = validationContextPointer6;
           }
-          pvalidationContext3 = pvalidationContext6;
-          if (pvalidationContext0 != (longlong *)0x0) {
-            pvalidationContext3 = pvalidationContext0 + 1;
+          validationContextPointer3 = validationContextPointer6;
+          if (validationContextPointer0 != (longlong *)0x0) {
+            validationContextPointer3 = validationContextPointer0 + 1;
           }
-        } while (pvalidationContext3 != pvalidationContext4);
+        } while (validationContextPointer3 != validationContextPointer4);
         validationContext5 = param_1[1];
       }
       iVar6 = *(int *)(validationContext5 + 0x28);
@@ -18685,34 +18685,34 @@ void ProcessFloatingPointDataA1(longlong *param_1)
         iVar7 = ValidateDataIntegrityA0(param_1,&plStack_340);
         if (iVar7 != 0) goto LAB_18089866f;
       }
-      pvalidationContext4 = pvalidationContext6;
-      pvalidationContext0 = pvalidationContext6;
-      pvalidationContext3 = pvalidationContext6;
-      pvalidationContext9 = pvalidationContext6;
+      validationContextPointer4 = validationContextPointer6;
+      validationContextPointer0 = validationContextPointer6;
+      validationContextPointer3 = validationContextPointer6;
+      validationContextPointer9 = validationContextPointer6;
       alStack_300[0] = (longlong)iVar6;
       if (0 < iVar6) {
         do {
           validationContext5 = param_1[1];
           uStack_2d0 = 0;
           puStack_2d8 = &UNK_1809823f8;
-          fVar18 = SUB84(pvalidationContext3,0);
-          pvalidationContext3 = (longlong *)(validationContext5 + 0xe0 + (longlong)pvalidationContext0);
-          validationContext1 = *pvalidationContext3;
-          uVar9 = pvalidationContext3[1];
+          fVar18 = SUB84(validationContextPointer3,0);
+          validationContextPointer3 = (longlong *)(validationContext5 + 0xe0 + (longlong)validationContextPointer0);
+          validationContext1 = *validationContextPointer3;
+          uVar9 = validationContextPointer3[1];
           uStack_2c4 = (uint)validationContext1;
           uStack_2c0 = (undefined4)((ulonglong)validationContext1 >> 0x20);
           uStack_2bc = (undefined4)uVar9;
           uStack_2b8 = (undefined4)(uVar9 >> 0x20);
-          resourcePointer = (undefined8 *)(validationContext5 + 0xf0 + (longlong)pvalidationContext0);
+          resourcePointer = (undefined8 *)(validationContext5 + 0xf0 + (longlong)validationContextPointer0);
           uStack_2b4 = *resourcePointer;
           uStack_2ac = resourcePointer[1];
-          pvalidationStatus = (undefined4 *)(validationContext5 + 0x100 + (longlong)pvalidationContext0);
+          pvalidationStatus = (undefined4 *)(validationContext5 + 0x100 + (longlong)validationContextPointer0);
           uStack_2a4 = *pvalidationStatus;
           uStack_2a0 = pvalidationStatus[1];
           uStack_29c = pvalidationStatus[2];
           uStack_298 = pvalidationStatus[3];
-          lStack_294 = *(longlong *)(validationContext5 + 0x260 + (longlong)pvalidationContext9);
-          uStack_28c = *(uint *)(validationContext5 + 0x268 + (longlong)pvalidationContext9);
+          lStack_294 = *(longlong *)(validationContext5 + 0x260 + (longlong)validationContextPointer9);
+          uStack_28c = *(uint *)(validationContext5 + 0x268 + (longlong)validationContextPointer9);
           validationContext1 = validationContext1 - lStack_294;
           if (validationContext1 == 0) {
             validationContext1 = (uVar9 & 0xffffffff) - (ulonglong)uStack_28c;
@@ -18732,20 +18732,20 @@ void ProcessFloatingPointDataA1(longlong *param_1)
             if (iVar6 != 0) goto LAB_18089866f;
             *(undefined1 *)(param_1 + 4) = 0;
           }
-          pvalidationContext4 = (longlong *)((longlong)pvalidationContext4 + 1);
-          pvalidationContext0 = pvalidationContext0 + 6;
-          pvalidationContext3 = (longlong *)(ulonglong)((int)fVar18 + 1);
-          pvalidationContext9 = (longlong *)((longlong)pvalidationContext9 + 0xc);
-        } while ((longlong)pvalidationContext4 < alStack_300[0]);
+          validationContextPointer4 = (longlong *)((longlong)validationContextPointer4 + 1);
+          validationContextPointer0 = validationContextPointer0 + 6;
+          validationContextPointer3 = (longlong *)(ulonglong)((int)fVar18 + 1);
+          validationContextPointer9 = (longlong *)((longlong)validationContextPointer9 + 0xc);
+        } while ((longlong)validationContextPointer4 < alStack_300[0]);
       }
       validationContext5 = param_1[1] + 0x60;
       iVar6 = func_0x0001808675f0(validationContext5);
-      pvalidationContext4 = pvalidationContext6;
+      validationContextPointer4 = validationContextPointer6;
       if (0 < iVar6) {
         do {
-          ProcessSystemDataA0(validationContext5,auStack_2f0,pvalidationContext4);
-          func_0x0001808676a0(validationContext5,pvalidationContext4,afStack_348,alStack_300);
-          validationContext1 = func_0x000180867680(validationContext5,pvalidationContext4);
+          ProcessSystemDataA0(validationContext5,auStack_2f0,validationContextPointer4);
+          func_0x0001808676a0(validationContext5,validationContextPointer4,afStack_348,alStack_300);
+          validationContext1 = func_0x000180867680(validationContext5,validationContextPointer4);
           cVar5 = func_0x000180894c50(validationContext1,0);
           if ((cVar5 == '\0') && (afStack_348[0] != *(float *)(validationContext1 + 0x4c))) {
             uStack_2c0 = auStack_2f0._0_4_;
@@ -18774,7 +18774,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
               plStack_340 = (longlong *)&UNK_180986390;
               uStack_338 = uStack_338 & 0xffffffff00000000;
               param_1[2] = uVar9;
-              aplStack_330[0] = pvalidationContext6;
+              aplStack_330[0] = validationContextPointer6;
               if (lVar4 != 0) {
                 aplStack_330[0] = (longlong *)(uVar9 - lVar4);
               }
@@ -18791,8 +18791,8 @@ void ProcessFloatingPointDataA1(longlong *param_1)
               *(undefined1 *)(param_1 + 4) = 0;
             }
           }
-          uVar17 = (int)pvalidationContext4 + 1;
-          pvalidationContext4 = (longlong *)(ulonglong)uVar17;
+          uVar17 = (int)validationContextPointer4 + 1;
+          validationContextPointer4 = (longlong *)(ulonglong)uVar17;
         } while ((int)uVar17 < iVar6);
       }
       uStack_310 = 0xffffffffffffffff;
@@ -18801,53 +18801,53 @@ void ProcessFloatingPointDataA1(longlong *param_1)
       ProcessDataAndExecuteOperationO5(plStack_318,&uStack_310,afStack_308);
       afStack_348[0] = afStack_308[0];
       if (afStack_308[0] != -NAN) {
-        pvalidationContext6 = plStack_318;
+        validationContextPointer6 = plStack_318;
         fVar18 = (float)uStack_310;
         do {
           do {
             validationContext5 = (longlong)(int)afStack_348[0] * 0x20;
             uStack_338 = 0xffffffffffffffff;
             aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,0xffffffff);
-            plStack_340 = *(longlong **)(pvalidationContext6[2] + 0x18 + validationContext5);
+            plStack_340 = *(longlong **)(validationContextPointer6[2] + 0x18 + validationContext5);
             lStack_320 = validationContext5;
             ProcessDataConversionDN0(plStack_340,&uStack_338,aplStack_330);
-            pvalidationContext4 = plStack_340;
+            validationContextPointer4 = plStack_340;
             if ((int)aplStack_330[0] != -1) {
               iVar6 = (int)aplStack_330[0];
               iVar7 = (int)uStack_338;
               do {
                 do {
-                  validationContext5 = *(longlong *)(pvalidationContext4[2] + 8 + (longlong)iVar6 * 0x10);
+                  validationContext5 = *(longlong *)(validationContextPointer4[2] + 8 + (longlong)iVar6 * 0x10);
                   if (((*(longlong *)(validationContext5 + 0x80) != 0) && (*(longlong *)(validationContext5 + 0x350) == 0))
                      && (iVar8 = ConvertAndValidateDataA0(param_1), iVar8 != 0)) goto LAB_18089866f;
                 } while ((iVar6 != -1) &&
-                        (iVar6 = *(int *)(pvalidationContext4[2] + 4 + (longlong)iVar6 * 0x10), iVar6 != -1));
+                        (iVar6 = *(int *)(validationContextPointer4[2] + 4 + (longlong)iVar6 * 0x10), iVar6 != -1));
                 iVar6 = iVar7 + 1;
                 bVar20 = iVar7 != -1;
                 iVar7 = 0;
                 if (bVar20) {
                   iVar7 = iVar6;
                 }
-                if (iVar7 != (int)pvalidationContext4[1]) {
+                if (iVar7 != (int)validationContextPointer4[1]) {
                   validationContext5 = (longlong)iVar7;
                   do {
-                    if (*(int *)(*pvalidationContext4 + validationContext5 * 4) != -1) {
-                      iVar6 = *(int *)(*pvalidationContext4 + (longlong)iVar7 * 4);
+                    if (*(int *)(*validationContextPointer4 + validationContext5 * 4) != -1) {
+                      iVar6 = *(int *)(*validationContextPointer4 + (longlong)iVar7 * 4);
                       goto LAB_1808985be;
                     }
                     iVar7 = iVar7 + 1;
                     validationContext5 = validationContext5 + 1;
-                  } while (validationContext5 != (int)pvalidationContext4[1]);
+                  } while (validationContext5 != (int)validationContextPointer4[1]);
                 }
                 iVar6 = -1;
                 iVar7 = iVar6;
 DataProcessingCheckpoint:
                 validationContext5 = lStack_320;
-                pvalidationContext6 = plStack_318;
+                validationContextPointer6 = plStack_318;
               } while (iVar6 != -1);
             }
           } while ((afStack_348[0] != -NAN) &&
-                  (afStack_348[0] = *(float *)(pvalidationContext6[2] + 0x10 + validationContext5), afStack_348[0] != -NAN))
+                  (afStack_348[0] = *(float *)(validationContextPointer6[2] + 0x10 + validationContext5), afStack_348[0] != -NAN))
           ;
           fVar1 = (float)((int)fVar18 + 1);
           bVar20 = fVar18 != -NAN;
@@ -18855,16 +18855,16 @@ DataProcessingCheckpoint:
           if (bVar20) {
             fVar18 = fVar1;
           }
-          if (fVar18 != *(float *)(pvalidationContext6 + 1)) {
+          if (fVar18 != *(float *)(validationContextPointer6 + 1)) {
             validationContext5 = (longlong)(int)fVar18;
             do {
-              if (*(int *)(*pvalidationContext6 + validationContext5 * 4) != -1) {
-                afStack_348[0] = *(float *)(*pvalidationContext6 + (longlong)(int)fVar18 * 4);
+              if (*(int *)(*validationContextPointer6 + validationContext5 * 4) != -1) {
+                afStack_348[0] = *(float *)(*validationContextPointer6 + (longlong)(int)fVar18 * 4);
                 goto LAB_180898629;
               }
               fVar18 = (float)((int)fVar18 + 1);
               validationContext5 = validationContext5 + 1;
-            } while (validationContext5 != (int)*(float *)(pvalidationContext6 + 1));
+            } while (validationContext5 != (int)*(float *)(validationContextPointer6 + 1));
           }
           afStack_348[0] = -NAN;
           fVar18 = afStack_348[0];
@@ -19325,11 +19325,11 @@ undefined4 ProcessDataF0(undefined8 param_1,int param_2,undefined4 *param_3)
     dataBuffer = (undefined4 *)(registerR14[2] + (longlong)param_2 * 0x10);
     finalResult = dataBuffer[1];
     operationResult = puVar1[2];
-    uVar6 = puVar1[3];
+    dataFlags = puVar1[3];
     *param_3 = *puVar1;
     param_3[1] = uVar17;
     param_3[2] = operationResult;
-    param_3[3] = uVar6;
+    param_3[3] = dataFlags;
   }
   iVar18 = 0;
   uVar12 = 0;
@@ -19430,7 +19430,7 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
   int iVar3;
   uint memoryBaseAddress;
   undefined1 *poperationResult;
-  undefined1 *puVar6;
+  undefined1 *pdataFlags;
   uint unaff_EBX;
   int iVar7;
   longlong unaff_RBP;
@@ -19493,8 +19493,8 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
       *poperationResult = (char)unaff_R13D;
     }
     else {
-      puVar6 = systemContext + (int)unaff_EBX;
-      puVar9 = puVar6 + -1;
+      pdataFlags = systemContext + (int)unaff_EBX;
+      puVar9 = pdataFlags + -1;
       poperationResult = systemContext;
       if (systemContext < puVar9) {
         do {
@@ -19505,15 +19505,15 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
           puVar9 = puVar9 + -1;
         } while (poperationResult < puVar9);
       }
-      puVar9 = puVar6 + (longlong)(int)(iVar7 - unaff_EBX) + -1;
-      if (puVar6 < puVar9) {
+      puVar9 = pdataFlags + (longlong)(int)(iVar7 - unaff_EBX) + -1;
+      if (pdataFlags < puVar9) {
         do {
-          uVar1 = *puVar6;
-          *puVar6 = *puVar9;
-          puVar6 = puVar6 + 1;
+          uVar1 = *pdataFlags;
+          *pdataFlags = *puVar9;
+          pdataFlags = pdataFlags + 1;
           *puVar9 = uVar1;
           puVar9 = puVar9 + -1;
-        } while (puVar6 < puVar9);
+        } while (pdataFlags < puVar9);
       }
       systemContext[unaff_RBP + -1] = (char)unaff_R13D;
       unaff_R13D = 0x41;
@@ -20586,7 +20586,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
   uint validationStatus;
   ulonglong memoryBaseAddress;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   undefined4 validationOutcome;
   ulonglong securityCheckResult;
   undefined8 uStackX_8;
@@ -20601,9 +20601,9 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
       uStackX_8 = CONCAT44(uStackX_8._4_4_,iVar1);
       operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                         (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
-      uVar6 = 0;
+      dataFlags = 0;
       if (operationResult == 0) {
-        memoryBaseAddress = uVar6;
+        memoryBaseAddress = dataFlags;
         if (0 < iVar1) {
           do {
             operationResult = ValidateDataParametersA0(param_1,(longlong)(int)memoryBaseAddress * 0x6c + *(longlong *)(param_2 + 8));
@@ -20619,7 +20619,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
         operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                           (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
         if (operationResult == 0) {
-          memoryBaseAddress = uVar6;
+          memoryBaseAddress = dataFlags;
           if (0 < iVar1) {
             do {
               operationResult = ProcessDataPointerA0(param_1,(longlong)(int)memoryBaseAddress * 0x10 +
@@ -20636,7 +20636,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
           operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                             (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
           if (operationResult == 0) {
-            memoryBaseAddress = uVar6;
+            memoryBaseAddress = dataFlags;
             if (0 < iVar1) {
               do {
                 uStackX_8 = CONCAT44(uStackX_8._4_4_,
@@ -20654,8 +20654,8 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
             operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                               (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
             if (operationResult == 0) {
-              memoryBaseAddress = uVar6;
-              securityCheckResult = uVar6;
+              memoryBaseAddress = dataFlags;
+              securityCheckResult = dataFlags;
               if (0 < iVar1) {
                 do {
                   lVar5 = *(longlong *)(param_2 + 0x14) + memoryBaseAddress;
@@ -20696,20 +20696,20 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
                   if (0 < iVar1) {
                     do {
                       lVar5 = *(longlong *)(param_2 + 0x1c);
-                      uStackX_8._0_4_ = *(undefined4 *)(lVar5 + uVar6 * 8);
+                      uStackX_8._0_4_ = *(undefined4 *)(lVar5 + dataFlags * 8);
                       operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                                         (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
                       if (operationResult != 0) {
                         return;
                       }
-                      uStackX_8 = CONCAT44(uStackX_8._4_4_,*(undefined4 *)(lVar5 + 4 + uVar6 * 8));
+                      uStackX_8 = CONCAT44(uStackX_8._4_4_,*(undefined4 *)(lVar5 + 4 + dataFlags * 8));
                       operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                                         (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
                       if (operationResult != 0) {
                         return;
                       }
-                      uVar6 = uVar6 + 1;
-                    } while ((longlong)uVar6 < (longlong)iVar1);
+                      dataFlags = dataFlags + 1;
+                    } while ((longlong)dataFlags < (longlong)iVar1);
                   }
                   uStackX_8 = CONCAT44(uStackX_8._4_4_,param_2[0x20]);
                   (**(code **)**(undefined8 **)(param_1 + 8))
@@ -22082,7 +22082,7 @@ void ProcessSystemDataWithValidation(longlong SystemContext, int *ParameterArray
   code *pcVar2;
   char cVar3;
   undefined4 in_EAX;
-  undefined3 uVar6;
+  undefined3 dataFlags;
   int iVar5;
   undefined4 in_register_00000004;
   uint unaff_EBP;
@@ -22090,9 +22090,9 @@ void ProcessSystemDataWithValidation(longlong SystemContext, int *ParameterArray
   int *piStack_8;
   undefined4 memoryBaseAddress;
   
-  uVar6 = (undefined3)((uint)in_EAX >> 8);
+  dataFlags = (undefined3)((uint)in_EAX >> 8);
   cVar3 = (char)in_EAX + -0x57 + in_CF;
-  memoryBaseAddress = CONCAT31(uVar6,cVar3);
+  memoryBaseAddress = CONCAT31(dataFlags,cVar3);
   *(undefined4 *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
   *(uint *)(param_1 + -0x565dff77) = *(uint *)(param_1 + -0x565dff77) & unaff_EBP;
   *(undefined4 *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
@@ -22102,7 +22102,7 @@ void ProcessSystemDataWithValidation(longlong SystemContext, int *ParameterArray
        *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + cVar3;
   *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) =
        *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + cVar3;
-  iVar5 = CONCAT31(uVar6,cVar3 + '\x18');
+  iVar5 = CONCAT31(dataFlags,cVar3 + '\x18');
   *param_2 = *param_2 + iVar5;
   pcVar1 = (char *)((longlong)&piStack_8 + CONCAT44(in_register_00000004,iVar5));
   *pcVar1 = *pcVar1 + cVar3 + '\x18';
@@ -22459,45 +22459,45 @@ ulonglong GetSystemValidationContext(void)
   longlong unaff_RBP;
   uint unaff_ESI;
   uint unaff_EDI;
-  uint uVar6;
+  uint dataFlags;
   uint validationOutcome;
   char cStack0000000000000030;
   uint uStack0000000000000034;
   undefined4 in_stack_00000038;
   
   operationResult = 0;
-  uVar6 = 0;
+  dataFlags = 0;
   validationOutcome = 0;
   if (in_EAX < 0x8c) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return (ulonglong)unaff_EDI;
     }
-    pvalidationContext = (longlong *)*registerContext;
+    validationContextPointer = (longlong *)*registerContext;
     validationStatus = unaff_EDI;
-    if (*pvalidationContext != 0) {
-      if (pvalidationContext[2] == 0) {
+    if (*validationContextPointer != 0) {
+      if (validationContextPointer[2] == 0) {
 DataCheckpointB:
-        validationStatus = FUN_180769ed0(*pvalidationContext,&stack0x00000030,unaff_ESI,unaff_ESI,0);
+        validationStatus = FUN_180769ed0(*validationContextPointer,&stack0x00000030,unaff_ESI,unaff_ESI,0);
       }
       else {
         uStack0000000000000034 = 0;
-        validationStatus = func_0x00018076a7d0(*pvalidationContext,(longlong)&stack0x00000030 + 4);
+        validationStatus = func_0x00018076a7d0(*validationContextPointer,(longlong)&stack0x00000030 + 4);
         if (validationStatus == 0) {
-          if ((ulonglong)uStack0000000000000034 + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089af81;
+          if ((ulonglong)uStack0000000000000034 + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089af81;
           validationStatus = 0x11;
         }
       }
     }
     uVar2 = unaff_ESI;
     if (validationStatus == 0) {
-      uVar6 = (uint)(cStack0000000000000030 != '\0');
+      dataFlags = (uint)(cStack0000000000000030 != '\0');
       validationStatus = validationOutcome;
       uVar2 = (uint)(cStack0000000000000030 == '\0');
     }
     if (validationStatus != 0) {
       return (ulonglong)validationStatus;
     }
-    *(uint *)(unaff_RBP + 0xc4) = (*(uint *)(unaff_RBP + 0xc4) | uVar6) & ~uVar2;
+    *(uint *)(unaff_RBP + 0xc4) = (*(uint *)(unaff_RBP + 0xc4) | dataFlags) & ~uVar2;
     in_EAX = *(uint *)(registerContext + 8);
   }
   memoryBaseAddress = operationResult;
@@ -22573,25 +22573,25 @@ DataCheckpointB:
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  uVar6 = validationOutcome;
-  if ((0x8b < *(uint *)(registerContext + 8)) && (uVar6 = unaff_EDI, *(int *)(registerContext[1] + 0x18) == 0))
+  dataFlags = validationOutcome;
+  if ((0x8b < *(uint *)(registerContext + 8)) && (dataFlags = unaff_EDI, *(int *)(registerContext[1] + 0x18) == 0))
   {
-    pvalidationContext = (longlong *)*registerContext;
-    if (*pvalidationContext != 0) {
-      if (pvalidationContext[2] == 0) {
+    validationContextPointer = (longlong *)*registerContext;
+    if (*validationContextPointer != 0) {
+      if (validationContextPointer[2] == 0) {
 MemoryCheckpointA:
-        unaff_EDI = FUN_180769ed0(*pvalidationContext,&stack0x00000038,unaff_ESI,4,0);
+        unaff_EDI = FUN_180769ed0(*validationContextPointer,&stack0x00000038,unaff_ESI,4,0);
       }
       else {
         uStack0000000000000034 = 0;
-        unaff_EDI = func_0x00018076a7d0(*pvalidationContext,(longlong)&stack0x00000030 + 4);
+        unaff_EDI = func_0x00018076a7d0(*validationContextPointer,(longlong)&stack0x00000030 + 4);
         if (unaff_EDI == 0) {
-          if ((ulonglong)uStack0000000000000034 + 4 <= (ulonglong)pvalidationContext[2]) goto LAB_18089b1ab;
+          if ((ulonglong)uStack0000000000000034 + 4 <= (ulonglong)validationContextPointer[2]) goto LAB_18089b1ab;
           unaff_EDI = 0x11;
         }
       }
     }
-    uVar6 = unaff_EDI;
+    dataFlags = unaff_EDI;
     if (unaff_EDI != 0) goto LAB_18089b22a;
     switch(in_stack_00000038) {
     case 0:
@@ -22615,19 +22615,19 @@ MemoryCheckpointA:
       unaff_ESI = 6;
       break;
     default:
-      uVar6 = 0xd;
+      dataFlags = 0xd;
       goto LAB_18089b226;
     }
     *(uint *)(unaff_RBP + 0xd4) = unaff_ESI;
-    uVar6 = validationOutcome;
+    dataFlags = validationOutcome;
   }
 MemoryCheckpointB:
-  if (uVar6 == 0) {
+  if (dataFlags == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808ddf80();
   }
 MemoryCheckpointC:
-  return (ulonglong)uVar6;
+  return (ulonglong)dataFlags;
 }
 
 
@@ -23274,24 +23274,24 @@ undefined8 ValidateSystemDataIntegrity(int validationFlag)
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*registerContext;
+  validationContextPointer = (longlong *)*registerContext;
   in_stack_00000038 = CONCAT44(uStack0000000000000044,uStack0000000000000040);
-  if (*pvalidationContext == 0) {
+  if (*validationContextPointer == 0) {
     uVar2 = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       uStack0000000000000040 = 0;
-      uVar2 = func_0x00018076a7d0(*pvalidationContext,&stack0x00000040);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x00000040);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)uStack0000000000000040 + 1) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)uStack0000000000000040 + 1) {
         uVar2 = 0x11;
         goto LAB_1808a2e6d;
       }
     }
-    uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x00000030,1,1,0);
+    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if ((int)uVar2 == 0) {
@@ -23317,22 +23317,22 @@ void ValidateContextStatus(void)
   
   validationContext = (longlong *)*contextRegister;
   tempStackValue = _bufferSize;
-  if (*pvalidationContext == 0) {
+  if (*validationContextPointer == 0) {
     operationResult = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       uStack0000000000000040 = 0;
-      operationResult = func_0x00018076a7d0(*pvalidationContext,&stack0x00000040);
+      operationResult = func_0x00018076a7d0(*validationContextPointer,&stack0x00000040);
       if (operationResult != 0) {
         return;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)uStack0000000000000040 + 1) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)uStack0000000000000040 + 1) {
         operationResult = 0x11;
         goto LAB_1808a2e6d;
       }
     }
-    operationResult = FUN_180769ed0(*pvalidationContext,&stack0x00000030,1,1,0);
+    operationResult = FUN_180769ed0(*validationContextPointer,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
   if (operationResult == 0) {
@@ -23510,12 +23510,12 @@ void UtilityNoOperationC(void)
 ulonglong ValidateAndProcessDataBlock(longlong dataBlock, longlong *validationContext)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   uint validationStatus;
   uint memoryBaseAddress;
   ulonglong operationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   uint validationOutcome;
   ulonglong securityCheckResult;
   char acStackX_18 [8];
@@ -23557,20 +23557,20 @@ ulonglong ValidateAndProcessDataBlock(longlong dataBlock, longlong *validationCo
     if (*(int *)(validationContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    pvalidationContext = (longlong *)*validationContext;
+    validationContextPointer = (longlong *)*validationContext;
     validationStatus = 1;
-    if (*pvalidationContext == 0) {
+    if (*validationContextPointer == 0) {
       memoryBaseAddress = 0x1c;
     }
-    else if (pvalidationContext[2] == 0) {
+    else if (validationContextPointer[2] == 0) {
 DataProcessLabelA:
-      memoryBaseAddress = FUN_180769ed0(*pvalidationContext,acStackX_18,1,1,0);
+      memoryBaseAddress = FUN_180769ed0(*validationContextPointer,acStackX_18,1,1,0);
     }
     else {
       auStackX_20[0] = 0;
-      memoryBaseAddress = func_0x00018076a7d0(*pvalidationContext,auStackX_20);
+      memoryBaseAddress = func_0x00018076a7d0(*validationContextPointer,auStackX_20);
       if (memoryBaseAddress == 0) {
-        if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089b91c;
+        if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089b91c;
         memoryBaseAddress = 0x11;
       }
     }
@@ -23589,81 +23589,81 @@ DataProcessLabelA:
     if (*(int *)(validationContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar6 = FUN_1808aed00(*validationContext,dataBlock + 0xb8,4);
-    if ((int)uVar6 != 0) {
-      return uVar6;
+    dataFlags = FUN_1808aed00(*validationContext,dataBlock + 0xb8,4);
+    if ((int)dataFlags != 0) {
+      return dataFlags;
     }
   }
-  uVar6 = securityCheckResult;
+  dataFlags = securityCheckResult;
   if ((((*(int *)(param_2[1] + 0x18) == 0) &&
-       (uVar6 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x94), (int)uVar6 == 0)) &&
-      (uVar6 = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0)) &&
-     ((uVar6 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x98), (int)uVar6 == 0 &&
-      (uVar6 = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0)))) {
+       (dataFlags = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x94), (int)dataFlags == 0)) &&
+      (dataFlags = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0)) &&
+     ((dataFlags = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x98), (int)dataFlags == 0 &&
+      (dataFlags = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0)))) {
     dataContext = *param_2;
-    uVar6 = ValidateDataWithSecurityCheckA2(dataContext,param_1 + 0x80);
-    if (((((int)uVar6 == 0) &&
-         ((uVar6 = ValidateDataWithSecurityCheckA2(dataContext,param_1 + 0x84), (int)uVar6 == 0 &&
-          (uVar6 = FUN_180899220(param_2,param_1 + 0x88), (int)uVar6 == 0)))) &&
-        (uVar6 = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0)) &&
-       ((((uVar6 = ProcessDataBlocksA1(*param_2,param_1 + 0x70), (int)uVar6 == 0 &&
-          (uVar6 = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0)) &&
-         (uVar6 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0xa8), (int)uVar6 == 0)) &&
-        (((uVar6 = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0 &&
-          (uVar6 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x9c), (int)uVar6 == 0)) &&
-         ((uVar6 = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0 &&
-          ((uVar6 = FUN_1808aed00(*param_2,param_1 + 0xb4,4), (int)uVar6 == 0 &&
-           (uVar6 = FUN_18089d490(param_1 + 0x30,param_2), (int)uVar6 == 0)))))))))) {
-      uVar6 = operationResult;
+    dataFlags = ValidateDataWithSecurityCheckA2(dataContext,param_1 + 0x80);
+    if (((((int)dataFlags == 0) &&
+         ((dataFlags = ValidateDataWithSecurityCheckA2(dataContext,param_1 + 0x84), (int)dataFlags == 0 &&
+          (dataFlags = FUN_180899220(param_2,param_1 + 0x88), (int)dataFlags == 0)))) &&
+        (dataFlags = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0)) &&
+       ((((dataFlags = ProcessDataBlocksA1(*param_2,param_1 + 0x70), (int)dataFlags == 0 &&
+          (dataFlags = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0)) &&
+         (dataFlags = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0xa8), (int)dataFlags == 0)) &&
+        (((dataFlags = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0 &&
+          (dataFlags = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x9c), (int)dataFlags == 0)) &&
+         ((dataFlags = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0 &&
+          ((dataFlags = FUN_1808aed00(*param_2,param_1 + 0xb4,4), (int)dataFlags == 0 &&
+           (dataFlags = FUN_18089d490(param_1 + 0x30,param_2), (int)dataFlags == 0)))))))))) {
+      dataFlags = operationResult;
       if (0x34 < *(uint *)(param_2 + 8)) {
         if (*(int *)(param_2[1] + 0x18) == 0) {
-          uVar6 = FUN_1808aed00(*param_2,param_1 + 0xbc,4);
+          dataFlags = FUN_1808aed00(*param_2,param_1 + 0xbc,4);
         }
         else {
-          uVar6 = 0x1c;
+          dataFlags = 0x1c;
         }
       }
-      if ((int)uVar6 == 0) {
-        uVar6 = operationResult;
+      if ((int)dataFlags == 0) {
+        dataFlags = operationResult;
         if (0x46 < *(uint *)(param_2 + 8)) {
           if (*(int *)(param_2[1] + 0x18) == 0) {
-            uVar6 = FUN_1808aed00(*param_2,param_1 + 0xc0,4);
+            dataFlags = FUN_1808aed00(*param_2,param_1 + 0xc0,4);
           }
           else {
-            uVar6 = 0x1c;
+            dataFlags = 0x1c;
           }
         }
-        if ((int)uVar6 == 0) {
-          uVar6 = operationResult;
+        if ((int)dataFlags == 0) {
+          dataFlags = operationResult;
           if (0x47 < *(uint *)(param_2 + 8)) {
             if (*(int *)(param_2[1] + 0x18) == 0) {
-              uVar6 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0xa0);
+              dataFlags = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0xa0);
             }
             else {
-              uVar6 = 0x1c;
+              dataFlags = 0x1c;
             }
           }
-          if ((int)uVar6 == 0) {
-            uVar6 = operationResult;
+          if ((int)dataFlags == 0) {
+            dataFlags = operationResult;
             if (0x4f < *(uint *)(param_2 + 8)) {
               if (*(int *)(param_2[1] + 0x18) == 0) {
                 validationStatus = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0xac);
-                uVar6 = (ulonglong)validationStatus;
+                dataFlags = (ulonglong)validationStatus;
               }
               else {
-                uVar6 = 0x1c;
+                dataFlags = 0x1c;
               }
             }
-            if ((int)uVar6 == 0) {
+            if ((int)dataFlags == 0) {
               if (*(uint *)(param_2 + 8) < 0x82) {
 DataProcessLabelB:
                     // WARNING: Subroutine does not return
                 FUN_1808ddf80(param_2,auStack_48);
               }
-              uVar6 = securityCheckResult;
+              dataFlags = securityCheckResult;
               if (*(int *)(param_2[1] + 0x18) == 0) {
                 validationStatus = FUN_1808993e0(param_1 + 200,*param_2);
-                uVar6 = (ulonglong)validationStatus;
+                dataFlags = (ulonglong)validationStatus;
                 if (validationStatus == 0) goto LAB_18089bbcc;
               }
             }
@@ -23672,7 +23672,7 @@ DataProcessLabelB:
       }
     }
   }
-  return uVar6;
+  return dataFlags;
 }
 
 
@@ -23680,19 +23680,19 @@ DataProcessLabelB:
 ulonglong ProcessUtilityDataValidation(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   uint validationStatus;
   uint memoryBaseAddress;
   longlong in_RAX;
   ulonglong operationResult;
-  uint uVar6;
+  uint dataFlags;
   longlong *registerContext;
   ulonglong validationOutcome;
   longlong systemContext;
   ulonglong securityCheckResult;
-  char in_stack_00000090;
-  uint in_stack_00000098;
+  char stackDataBuffer;
+  uint stackDataSize;
   
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
@@ -23721,33 +23721,33 @@ ulonglong ProcessUtilityDataValidation(void)
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    pvalidationContext = (longlong *)*registerContext;
+    validationContextPointer = (longlong *)*registerContext;
     validationStatus = 1;
-    if (*pvalidationContext == 0) {
+    if (*validationContextPointer == 0) {
       memoryBaseAddress = 0x1c;
     }
-    else if (pvalidationContext[2] == 0) {
+    else if (validationContextPointer[2] == 0) {
 DataProcessLabelA:
-      memoryBaseAddress = FUN_180769ed0(*pvalidationContext,&stack0x00000090,1,1,0);
+      memoryBaseAddress = FUN_180769ed0(*validationContextPointer,&stack0x00000090,1,1,0);
     }
     else {
-      in_stack_00000098 = 0;
-      memoryBaseAddress = func_0x00018076a7d0(*pvalidationContext,&stack0x00000098);
+      stackDataSize = 0;
+      memoryBaseAddress = func_0x00018076a7d0(*validationContextPointer,&stack0x00000098);
       if (memoryBaseAddress == 0) {
-        if ((ulonglong)in_stack_00000098 + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089b91c;
+        if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089b91c;
         memoryBaseAddress = 0x11;
       }
     }
-    uVar6 = 0;
+    dataFlags = 0;
     if (memoryBaseAddress == 0) {
-      uVar6 = (uint)(in_stack_00000090 != '\0');
-      validationStatus = (uint)(in_stack_00000090 == '\0');
+      dataFlags = (uint)(stackDataBuffer != '\0');
+      validationStatus = (uint)(stackDataBuffer == '\0');
       memoryBaseAddress = 0;
     }
     if (memoryBaseAddress != 0) {
       return (ulonglong)memoryBaseAddress;
     }
-    *(uint *)(systemContext + 0xb8) = (*(uint *)(systemContext + 0xb8) | uVar6) & ~validationStatus;
+    *(uint *)(systemContext + 0xb8) = (*(uint *)(systemContext + 0xb8) | dataFlags) & ~validationStatus;
   }
   else {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
@@ -24006,18 +24006,18 @@ DataProcessLabelB:
 ulonglong ExecuteUtilityDataCheck(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   uint validationStatus;
   uint memoryBaseAddress;
   ulonglong operationResult;
-  uint uVar6;
+  uint dataFlags;
   longlong *registerContext;
   ulonglong validationOutcome;
   longlong systemContext;
   ulonglong securityCheckResult;
-  char in_stack_00000090;
-  uint in_stack_00000098;
+  char stackDataBuffer;
+  uint stackDataSize;
   
   securityCheckResult = 0x1c;
   validationOutcome = 0;
@@ -24025,33 +24025,33 @@ ulonglong ExecuteUtilityDataCheck(void)
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    pvalidationContext = (longlong *)*registerContext;
+    validationContextPointer = (longlong *)*registerContext;
     memoryBaseAddress = 1;
-    if (*pvalidationContext == 0) {
+    if (*validationContextPointer == 0) {
       validationStatus = 0x1c;
     }
-    else if (pvalidationContext[2] == 0) {
+    else if (validationContextPointer[2] == 0) {
 DataProcessLabelA:
-      validationStatus = FUN_180769ed0(*pvalidationContext,&stack0x00000090,1,1,0);
+      validationStatus = FUN_180769ed0(*validationContextPointer,&stack0x00000090,1,1,0);
     }
     else {
-      in_stack_00000098 = 0;
-      validationStatus = func_0x00018076a7d0(*pvalidationContext,&stack0x00000098);
+      stackDataSize = 0;
+      validationStatus = func_0x00018076a7d0(*validationContextPointer,&stack0x00000098);
       if (validationStatus == 0) {
-        if ((ulonglong)in_stack_00000098 + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089b91c;
+        if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089b91c;
         validationStatus = 0x11;
       }
     }
-    uVar6 = 0;
+    dataFlags = 0;
     if (validationStatus == 0) {
-      uVar6 = (uint)(in_stack_00000090 != '\0');
-      memoryBaseAddress = (uint)(in_stack_00000090 == '\0');
+      dataFlags = (uint)(stackDataBuffer != '\0');
+      memoryBaseAddress = (uint)(stackDataBuffer == '\0');
       validationStatus = 0;
     }
     if (validationStatus != 0) {
       return (ulonglong)validationStatus;
     }
-    *(uint *)(systemContext + 0xb8) = (*(uint *)(systemContext + 0xb8) | uVar6) & ~memoryBaseAddress;
+    *(uint *)(systemContext + 0xb8) = (*(uint *)(systemContext + 0xb8) | dataFlags) & ~memoryBaseAddress;
   }
   else {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
@@ -24169,7 +24169,7 @@ void ValidateAndProcessSystemData(longlong SystemContext, undefined8 *DataArray)
   uint validationStatus;
   int iVar4;
   int iVar5;
-  uint uVar6;
+  uint dataFlags;
   uint validationOutcome;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
@@ -24181,7 +24181,7 @@ void ValidateAndProcessSystemData(longlong SystemContext, undefined8 *DataArray)
     iVar4 = FUN_1808afe30(*param_2,auStackX_20);
     validationStatus = auStackX_20[0];
     if (iVar4 == 0) {
-      uVar6 = auStackX_20[0] & 1;
+      dataFlags = auStackX_20[0] & 1;
       validationOutcome = auStackX_20[0] >> 1;
       iVar4 = FUN_1808af700((longlong *)(param_1 + 0x20),validationOutcome);
       if (iVar4 == 0) {
@@ -24213,7 +24213,7 @@ void ValidateAndProcessSystemData(longlong SystemContext, undefined8 *DataArray)
               return;
             }
             iVar4 = iVar4 + 1;
-            auStackX_18[0] = auStackX_18[0] & -uVar6;
+            auStackX_18[0] = auStackX_18[0] & -dataFlags;
           } while (iVar4 < (int)validationOutcome);
         }
                     // WARNING: Subroutine does not return
@@ -24247,15 +24247,15 @@ void ValidateAndInitializeSystemA0(void)
   int iVar5;
   longlong registerContext;
   undefined8 *unaff_RDI;
-  uint uVar6;
+  uint dataFlags;
   uint uStack0000000000000088;
   
   uStack0000000000000088 = 0;
   iVar4 = FUN_1808afe30();
   validationStatus = uStack0000000000000088;
   if (iVar4 == 0) {
-    uVar6 = uStack0000000000000088 >> 1;
-    iVar4 = FUN_1808af700((longlong *)(registerContext + 0x20),uVar6);
+    dataFlags = uStack0000000000000088 >> 1;
+    iVar4 = FUN_1808af700((longlong *)(registerContext + 0x20),dataFlags);
     if (iVar4 == 0) {
       iVar4 = 0;
       if (validationStatus >> 1 != 0) {
@@ -24284,7 +24284,7 @@ void ValidateAndInitializeSystemA0(void)
             return;
           }
           iVar4 = iVar4 + 1;
-        } while (iVar4 < (int)uVar6);
+        } while (iVar4 < (int)dataFlags);
       }
                     // WARNING: Subroutine does not return
       FUN_1808ddf80();
@@ -24582,7 +24582,7 @@ ulonglong FUN_18089c030(longlong param_1,undefined8 *param_2)
   uint validationStatus;
   ulonglong memoryBaseAddress;
   uint operationResult;
-  undefined8 *puVar6;
+  undefined8 *pdataFlags;
   longlong lVar7;
   int aiStackX_10 [2];
   
@@ -24608,14 +24608,14 @@ ulonglong FUN_18089c030(longlong param_1,undefined8 *param_2)
   }
   iVar1 = *(int *)(param_1 + 0x10);
   if (iVar1 < operationResult) {
-    puVar6 = (undefined8 *)(*(longlong *)(param_1 + 8) + (longlong)iVar1 * 8);
+    pdataFlags = (undefined8 *)(*(longlong *)(param_1 + 8) + (longlong)iVar1 * 8);
     if (0 < operationResult - iVar1) {
       memoryBaseAddress = (ulonglong)(uint)(operationResult - iVar1);
       do {
-        if (puVar6 != (undefined8 *)0x0) {
-          *puVar6 = 0;
+        if (pdataFlags != (undefined8 *)0x0) {
+          *pdataFlags = 0;
         }
-        puVar6 = puVar6 + 1;
+        pdataFlags = pdataFlags + 1;
         memoryBaseAddress = memoryBaseAddress - 1;
       } while (memoryBaseAddress != 0);
     }
@@ -24664,7 +24664,7 @@ ulonglong FUN_18089c190(longlong param_1,undefined8 *param_2)
   undefined4 validationStatus;
   undefined4 memoryBaseAddress;
   uint operationResult;
-  uint uVar6;
+  uint dataFlags;
   ulonglong validationOutcome;
   undefined4 *psecurityCheckResult;
   uint uVar9;
@@ -24742,17 +24742,17 @@ ulonglong FUN_18089c190(longlong param_1,undefined8 *param_2)
   if (*(uint *)(param_2 + 8) < 0x6a) {
     puStack_88 = (undefined8 *)0x0;
     uStack_80 = 0;
-    uVar6 = FUN_1808a54c0(param_2,&puStack_88,0);
-    validationOutcome = (ulonglong)uVar6;
-    if (uVar6 != 0) {
+    dataFlags = FUN_1808a54c0(param_2,&puStack_88,0);
+    validationOutcome = (ulonglong)dataFlags;
+    if (dataFlags != 0) {
 ValidationLabelB:
-      uVar6 = uStack_80._4_4_;
+      dataFlags = uStack_80._4_4_;
       if ((longlong)uStack_80 < 0) {
-        uVar6 = -uStack_80._4_4_;
+        dataFlags = -uStack_80._4_4_;
       }
       iVar13 = (int)uStack_80;
       uVar9 = uStack_80._4_4_;
-      if ((int)uVar6 < 0) {
+      if ((int)dataFlags < 0) {
         if (0 < (int)uStack_80) {
           return validationOutcome;
         }
@@ -24798,20 +24798,20 @@ ValidationLabelB:
       iVar13 = 0;
     }
     else {
-      uVar6 = (int)*(uint *)(param_1 + 0x54) >> 0x1f;
+      dataFlags = (int)*(uint *)(param_1 + 0x54) >> 0x1f;
       puVar10 = puStack_88;
-      if ((int)((*(uint *)(param_1 + 0x54) ^ uVar6) - uVar6) < (int)uStack_80) {
-        uVar6 = FUN_180883750(param_1 + 0x48,uStack_80 & 0xffffffff);
-        validationOutcome = (ulonglong)uVar6;
+      if ((int)((*(uint *)(param_1 + 0x54) ^ dataFlags) - dataFlags) < (int)uStack_80) {
+        dataFlags = FUN_180883750(param_1 + 0x48,uStack_80 & 0xffffffff);
+        validationOutcome = (ulonglong)dataFlags;
         puVar10 = puStack_88;
-        if (uVar6 != 0) goto LAB_18089c40a;
+        if (dataFlags != 0) goto LAB_18089c40a;
       }
       for (; (iVar13 = (int)uStack_80, puStack_88 <= puVar10 &&
              (puVar10 < puStack_88 + (longlong)iVar13 * 3)); puVar10 = puVar10 + 3) {
         puStackX_18 = (undefined8 *)0x0;
-        uVar6 = FUN_1808aec50(param_1 + 0x48,&puStackX_18);
-        validationOutcome = (ulonglong)uVar6;
-        if (uVar6 != 0) goto LAB_18089c40a;
+        dataFlags = FUN_1808aec50(param_1 + 0x48,&puStackX_18);
+        validationOutcome = (ulonglong)dataFlags;
+        if (dataFlags != 0) goto LAB_18089c40a;
         uVar1 = puVar10[1];
         *puStackX_18 = *puVar10;
         puStackX_18[1] = uVar1;
@@ -24821,12 +24821,12 @@ ValidationLabelB:
         *(undefined1 *)(puStackX_18 + 3) = 1;
       }
     }
-    uVar6 = uStack_80._4_4_;
+    dataFlags = uStack_80._4_4_;
     if ((longlong)uStack_80 < 0) {
-      uVar6 = -uStack_80._4_4_;
+      dataFlags = -uStack_80._4_4_;
     }
     uVar9 = uStack_80._4_4_;
-    if ((int)uVar6 < 0) {
+    if ((int)dataFlags < 0) {
       if (0 < iVar13) goto LAB_18089c586;
       if ((0 < (int)uStack_80._4_4_) && (puStack_88 != (undefined8 *)0x0)) {
                     // WARNING: Subroutine does not return
@@ -25665,7 +25665,7 @@ void UtilityNoOperationO(void)
 ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   uint uVar2;
   ulonglong validationStatus;
   undefined4 memoryBaseAddress;
@@ -25679,7 +25679,7 @@ ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
   uint uStack_84;
   undefined1 auStack_80 [32];
   undefined1 auStack_60 [40];
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   operationResult = 1;
   validationStatus = FUN_1808ddc20(param_2,auStack_60,1,0x4d524150);
@@ -25695,9 +25695,9 @@ ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
     return validationStatus;
   }
   memoryBaseAddress = 4;
-  uVar6 = 0;
+  dataFlags = 0;
   securityCheckResult = 0;
-  validationStatus = uVar6;
+  validationStatus = dataFlags;
   if (0x6f < *(uint *)(param_2 + 8)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       validationStatus = FUN_1808aed00(*param_2,param_1 + 0x34,4);
@@ -25715,19 +25715,19 @@ ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
       uVar9 = 0x1c;
       goto LAB_18089c78f;
     }
-    pvalidationContext = (longlong *)*param_2;
-    if (*pvalidationContext == 0) {
+    validationContextPointer = (longlong *)*param_2;
+    if (*validationContextPointer == 0) {
       uVar9 = 0x1c;
     }
-    else if (pvalidationContext[2] == 0) {
+    else if (validationContextPointer[2] == 0) {
 OperationLabelA:
-      uVar9 = FUN_180769ed0(*pvalidationContext,auStackX_18,1,1,0);
+      uVar9 = FUN_180769ed0(*validationContextPointer,auStackX_18,1,1,0);
     }
     else {
       auStackX_20[0] = 0;
-      uVar9 = func_0x00018076a7d0(*pvalidationContext,auStackX_20);
+      uVar9 = func_0x00018076a7d0(*validationContextPointer,auStackX_20);
       if (uVar9 == 0) {
-        if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089c743;
+        if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089c743;
         uVar9 = 0x11;
       }
     }
@@ -25755,23 +25755,23 @@ OperationLabelB:
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*param_2;
-  if (*pvalidationContext == 0) {
+  validationContextPointer = (longlong *)*param_2;
+  if (*validationContextPointer == 0) {
     validationStatus = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       auStackX_18[0] = 0;
-      validationStatus = func_0x00018076a7d0(*pvalidationContext,auStackX_18);
+      validationStatus = func_0x00018076a7d0(*validationContextPointer,auStackX_18);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)auStackX_18[0] + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)auStackX_18[0] + 4) {
         validationStatus = 0x11;
         goto LAB_18089c808;
       }
     }
-    validationStatus = FUN_180769ed0(*pvalidationContext,&uStack_84,1,4,0);
+    validationStatus = FUN_180769ed0(*validationContextPointer,&uStack_84,1,4,0);
   }
 OperationLabelC:
   if ((int)validationStatus != 0) {
@@ -25812,7 +25812,7 @@ OperationLabelC:
     goto LAB_18089c878;
   }
   *(undefined4 *)(param_1 + 0x30) = memoryBaseAddress;
-  validationStatus = uVar6;
+  validationStatus = dataFlags;
 OperationLabelD:
   if ((int)validationStatus != 0) {
     return validationStatus;
@@ -25859,25 +25859,25 @@ OperationLabelD:
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  validationStatus = uVar6;
+  validationStatus = dataFlags;
   if (*(uint *)(param_2 + 8) < 0x70) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       validationStatus = 0x1c;
       goto LAB_18089c9ee;
     }
-    pvalidationContext = (longlong *)*param_2;
-    if (*pvalidationContext == 0) {
+    validationContextPointer = (longlong *)*param_2;
+    if (*validationContextPointer == 0) {
       uVar2 = 0x1c;
     }
-    else if (pvalidationContext[2] == 0) {
+    else if (validationContextPointer[2] == 0) {
 ValidationContextHandler:
-      uVar2 = FUN_180769ed0(*pvalidationContext,auStackX_18,1,1,0);
+      uVar2 = FUN_180769ed0(*validationContextPointer,auStackX_18,1,1,0);
     }
     else {
       uStack_84 = 0;
-      uVar2 = func_0x00018076a7d0(*pvalidationContext,&uStack_84);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,&uStack_84);
       if (uVar2 == 0) {
-        if ((ulonglong)uStack_84 + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089c9a8;
+        if ((ulonglong)uStack_84 + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089c9a8;
         uVar2 = 0x11;
       }
     }
@@ -25891,7 +25891,7 @@ ValidationContextHandler:
       validationOutcome = 1;
       validationStatus = (ulonglong)uVar2;
       if (uVar2 == 0) {
-        validationStatus = uVar6;
+        validationStatus = dataFlags;
       }
     }
   }
@@ -25906,7 +25906,7 @@ ValidationErrorHandler:
   if ((*(uint *)(param_2 + 8) < 0x60) && (validationStatus = func_0x0001808de610(param_2), (int)validationStatus != 0)) {
     return validationStatus;
   }
-  validationStatus = uVar6;
+  validationStatus = dataFlags;
   if (0x51 < *(uint *)(param_2 + 8)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       validationStatus = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x48);
@@ -25918,22 +25918,22 @@ ValidationErrorHandler:
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  validationStatus = uVar6;
+  validationStatus = dataFlags;
   if ((int)param_2[8] - 0x52U < 0x1e) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      pvalidationContext = (longlong *)*param_2;
-      if (*pvalidationContext == 0) {
+      validationContextPointer = (longlong *)*param_2;
+      if (*validationContextPointer == 0) {
         uVar2 = 0x1c;
       }
-      else if (pvalidationContext[2] == 0) {
+      else if (validationContextPointer[2] == 0) {
 ValidationRetryHandler:
-        uVar2 = FUN_180769ed0(*pvalidationContext,auStackX_18,1,1,0);
+        uVar2 = FUN_180769ed0(*validationContextPointer,auStackX_18,1,1,0);
       }
       else {
         uStack_84 = 0;
-        uVar2 = func_0x00018076a7d0(*pvalidationContext,&uStack_84);
+        uVar2 = func_0x00018076a7d0(*validationContextPointer,&uStack_84);
         if (uVar2 == 0) {
-          if ((ulonglong)uStack_84 + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089ca9c;
+          if ((ulonglong)uStack_84 + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089ca9c;
           uVar2 = 0x11;
         }
       }
@@ -25945,7 +25945,7 @@ ValidationRetryHandler:
       }
       validationStatus = (ulonglong)uVar2;
       if (uVar2 == 0) {
-        validationStatus = uVar6;
+        validationStatus = dataFlags;
       }
     }
     else {
@@ -25978,7 +25978,7 @@ DataProcessingHandler:
       validationStatus = FUN_1808af8b0(param_1 + 0x60,uVar9);
       if ((int)validationStatus == 0) {
         auStackX_18[0] = 0;
-        validationStatus = uVar6;
+        validationStatus = dataFlags;
         if (operationResult >> 1 != 0) {
           do {
             validationStatus = FUN_1808dde10(param_2,validationStatus);
@@ -25986,7 +25986,7 @@ DataProcessingHandler:
               return validationStatus;
             }
             if (*(int *)(param_2[1] + 0x18) == 0) {
-              validationStatus = FUN_1808a2740(*param_2,(longlong)(int)uVar6 * 0x10 +
+              validationStatus = FUN_1808a2740(*param_2,(longlong)(int)dataFlags * 0x10 +
                                              *(longlong *)(param_1 + 0x60));
             }
             else {
@@ -25999,8 +25999,8 @@ DataProcessingHandler:
             if ((int)validationStatus != 0) {
               return validationStatus;
             }
-            operationResult = (int)uVar6 + 1;
-            uVar6 = (ulonglong)operationResult;
+            operationResult = (int)dataFlags + 1;
+            dataFlags = (ulonglong)operationResult;
             auStackX_18[0] = auStackX_18[0] & -securityCheckResult;
             validationStatus = (ulonglong)auStackX_18[0];
           } while ((int)operationResult < (int)uVar9);
@@ -26017,7 +26017,7 @@ DataProcessingHandler:
 ulonglong FUN_18089c69d(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   int in_EAX;
   uint validationStatus;
@@ -26025,7 +26025,7 @@ ulonglong FUN_18089c69d(void)
   longlong *registerContext;
   longlong unaff_RBP;
   uint operationResult;
-  uint uVar6;
+  uint dataFlags;
   uint securityCheckResult;
   longlong unaff_R13;
   uint registerR14D;
@@ -26046,7 +26046,7 @@ ulonglong FUN_18089c69d(void)
   
   operationResult = in_EAX + 4;
   validationOutcome = 0;
-  uVar6 = 0;
+  dataFlags = 0;
   memoryBaseAddress = validationOutcome;
   if (0x6f < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
@@ -26059,26 +26059,26 @@ ulonglong FUN_18089c69d(void)
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  securityCheckResult = uVar6;
+  securityCheckResult = dataFlags;
   if (*(uint *)(registerContext + 8) < 0x70) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       securityCheckResult = 0x1c;
       goto LAB_18089c78f;
     }
-    pvalidationContext = (longlong *)*registerContext;
-    dataContext = *pvalidationContext;
+    validationContextPointer = (longlong *)*registerContext;
+    dataContext = *validationContextPointer;
     if (dataContext == 0) {
       securityCheckResult = 0x1c;
     }
-    else if (pvalidationContext[2] == 0) {
+    else if (validationContextPointer[2] == 0) {
 OperationLabelA:
-      securityCheckResult = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D,0);
+      securityCheckResult = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D,0);
     }
     else {
       *(undefined4 *)(unaff_RBP + 0x7f) = 0;
       securityCheckResult = func_0x00018076a7d0(dataContext,unaff_RBP + 0x7f);
       if (securityCheckResult == 0) {
-        if ((ulonglong)*(uint *)(unaff_RBP + 0x7f) + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089c743;
+        if ((ulonglong)*(uint *)(unaff_RBP + 0x7f) + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089c743;
         securityCheckResult = 0x11;
       }
     }
@@ -26091,7 +26091,7 @@ OperationLabelA:
       *(undefined4 *)(unaff_RBP + 0x7f) = 0;
       *(uint *)(unaff_RBP + -0x29) = registerR14D;
       if (securityCheckResult == 0) {
-        securityCheckResult = uVar6;
+        securityCheckResult = dataFlags;
       }
     }
   }
@@ -26106,24 +26106,24 @@ OperationLabelB:
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*registerContext;
-  dataContext = *pvalidationContext;
+  validationContextPointer = (longlong *)*registerContext;
+  dataContext = *validationContextPointer;
   if (dataContext == 0) {
     memoryBaseAddress = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       *(undefined4 *)(unaff_RBP + 0x77) = 0;
       memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + 0x77);
       if ((int)memoryBaseAddress != 0) {
         return memoryBaseAddress;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + (ulonglong)operationResult) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + (ulonglong)operationResult) {
         memoryBaseAddress = 0x11;
         goto LAB_18089c808;
       }
     }
-    memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x25,registerR14D,operationResult,0);
+    memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x25,registerR14D,operationResult,0);
   }
 OperationLabelC:
   if ((int)memoryBaseAddress != 0) {
@@ -26213,18 +26213,18 @@ OperationLabelD:
   }
   memoryBaseAddress = validationOutcome;
   fVar9 = extraout_XMM0_Da;
-  operationResult = uVar6;
+  operationResult = dataFlags;
   securityCheckResult = registerR14D;
   if (*(uint *)(registerContext + 8) < 0x70) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      pvalidationContext = (longlong *)*registerContext;
-      dataContext = *pvalidationContext;
+      validationContextPointer = (longlong *)*registerContext;
+      dataContext = *validationContextPointer;
       if (dataContext == 0) {
         validationStatus = 0x1c;
       }
-      else if (pvalidationContext[2] == 0) {
+      else if (validationContextPointer[2] == 0) {
 ValidationContextHandler:
-        validationStatus = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D,0);
+        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D,0);
         fVar9 = extraout_XMM0_Da_01;
       }
       else {
@@ -26232,7 +26232,7 @@ ValidationContextHandler:
         validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
         fVar9 = extraout_XMM0_Da_00;
         if (validationStatus == 0) {
-          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2])
           goto LAB_18089c9a8;
           validationStatus = 0x11;
         }
@@ -26280,14 +26280,14 @@ ValidationContextHandler:
     memoryBaseAddress = 0x1c;
     goto LAB_18089cad8;
   }
-  pvalidationContext = (longlong *)*registerContext;
-  dataContext = *pvalidationContext;
+  validationContextPointer = (longlong *)*registerContext;
+  dataContext = *validationContextPointer;
   if (dataContext == 0) {
     validationStatus = 0x1c;
   }
-  else if (pvalidationContext[2] == 0) {
+  else if (validationContextPointer[2] == 0) {
 ValidationRetryHandler:
-    validationStatus = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D,0);
+    validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D,0);
     fVar9 = extraout_XMM0_Da_05;
   }
   else {
@@ -26295,13 +26295,13 @@ ValidationRetryHandler:
     validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
     fVar9 = extraout_XMM0_Da_04;
     if (validationStatus == 0) {
-      if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089ca9c;
+      if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089ca9c;
       validationStatus = 0x11;
     }
   }
-  uVar6 = 0;
+  dataFlags = 0;
   if (validationStatus == 0) {
-    uVar6 = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
+    dataFlags = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
     registerR14D = (uint)(*(char *)(unaff_RBP + 0x77) == '\0');
   }
   memoryBaseAddress = (ulonglong)validationStatus;
@@ -26316,7 +26316,7 @@ ValidationErrorHandler2:
   if (validationStatus < 0x70) {
     *(uint *)(unaff_R13 + 0x34) =
          (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + 0x34)) &
-           ~*(uint *)(unaff_RBP + -0x29) | operationResult * 2) & ~(securityCheckResult * 2) | uVar6 * 4) &
+           ~*(uint *)(unaff_RBP + -0x29) | operationResult * 2) & ~(securityCheckResult * 2) | dataFlags * 4) &
          ~(registerR14D * 4);
     validationStatus = *(uint *)(registerContext + 8);
   }
@@ -26362,13 +26362,13 @@ ValidationErrorHandler2:
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
-        uVar6 = (int)validationOutcome + 1;
-        validationOutcome = (ulonglong)uVar6;
+        dataFlags = (int)validationOutcome + 1;
+        validationOutcome = (ulonglong)dataFlags;
         securityCheckResult = *(uint *)(unaff_RBP + 0x77) & -(operationResult & 1);
         memoryBaseAddress = (ulonglong)securityCheckResult;
         *(uint *)(unaff_RBP + 0x77) = securityCheckResult;
         fVar9 = extraout_XMM0_Da_09;
-      } while ((int)uVar6 < (int)(operationResult >> 1));
+      } while ((int)dataFlags < (int)(operationResult >> 1));
     }
   }
                     // WARNING: Subroutine does not return
@@ -26380,12 +26380,12 @@ ValidationErrorHandler2:
 ulonglong FUN_18089c86d(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   undefined7 validationStatus;
   uint memoryBaseAddress;
   ulonglong operationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   int iVar7;
   longlong *registerContext;
   longlong unaff_RBP;
@@ -26463,14 +26463,14 @@ ulonglong FUN_18089c86d(void)
   iVar10 = registerR14D;
   if (*(uint *)(registerContext + 8) < 0x70) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      pvalidationContext = (longlong *)*registerContext;
-      dataContext = *pvalidationContext;
+      validationContextPointer = (longlong *)*registerContext;
+      dataContext = *validationContextPointer;
       if (dataContext == 0) {
         memoryBaseAddress = 0x1c;
       }
-      else if (pvalidationContext[2] == unaff_RDI) {
+      else if (validationContextPointer[2] == unaff_RDI) {
 ValidationContextHandler:
-        memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
@@ -26478,7 +26478,7 @@ ValidationContextHandler:
         memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (memoryBaseAddress == 0) {
-          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2])
           goto LAB_18089c9a8;
           memoryBaseAddress = 0x11;
         }
@@ -26530,14 +26530,14 @@ ValidationContextHandler:
     operationResult = 0x1c;
     goto LAB_18089cad8;
   }
-  pvalidationContext = (longlong *)*registerContext;
-  dataContext = *pvalidationContext;
+  validationContextPointer = (longlong *)*registerContext;
+  dataContext = *validationContextPointer;
   if (dataContext == 0) {
     memoryBaseAddress = 0x1c;
   }
-  else if (pvalidationContext[2] == unaff_RDI) {
+  else if (validationContextPointer[2] == unaff_RDI) {
 ValidationRetryHandler:
-    memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+    memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
@@ -26545,7 +26545,7 @@ ValidationRetryHandler:
     memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (memoryBaseAddress == 0) {
-      if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089ca9c;
+      if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089ca9c;
       memoryBaseAddress = 0x11;
     }
   }
@@ -26591,25 +26591,25 @@ ValidationErrorHandler2:
     fVar12 = extraout_XMM0_Da_06;
     if (memoryBaseAddress >> 1 != 0) {
       do {
-        uVar6 = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
-        if ((int)uVar6 != 0) {
-          return uVar6;
+        dataFlags = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
+        if ((int)dataFlags != 0) {
+          return dataFlags;
         }
         if (*(int *)(registerContext[1] + 0x18) == 0) {
-          uVar6 = FUN_1808a2740(*registerContext,
+          dataFlags = FUN_1808a2740(*registerContext,
                                 (longlong)(int)operationResult * 0x10 + *(longlong *)(unaff_R13 + 0x60));
           uVar13 = extraout_XMM0_Da_08;
         }
         else {
-          uVar6 = 0x1c;
+          dataFlags = 0x1c;
           uVar13 = extraout_XMM0_Da_07;
         }
-        if ((int)uVar6 != 0) {
-          return uVar6;
+        if ((int)dataFlags != 0) {
+          return dataFlags;
         }
-        uVar6 = FUN_1808de0e0(uVar13,unaff_RBP + 0x77);
-        if ((int)uVar6 != 0) {
-          return uVar6;
+        dataFlags = FUN_1808de0e0(uVar13,unaff_RBP + 0x77);
+        if ((int)dataFlags != 0) {
+          return dataFlags;
         }
         securityCheckResult = (int)operationResult + 1;
         operationResult = (ulonglong)securityCheckResult;
@@ -26629,12 +26629,12 @@ ValidationErrorHandler2:
 ulonglong FUN_18089c872(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   undefined7 validationStatus;
   uint memoryBaseAddress;
   ulonglong operationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   int iVar7;
   longlong *registerContext;
   longlong unaff_RBP;
@@ -26713,14 +26713,14 @@ ulonglong FUN_18089c872(void)
   iVar10 = registerR14D;
   if (*(uint *)(registerContext + 8) < 0x70) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      pvalidationContext = (longlong *)*registerContext;
-      dataContext = *pvalidationContext;
+      validationContextPointer = (longlong *)*registerContext;
+      dataContext = *validationContextPointer;
       if (dataContext == 0) {
         memoryBaseAddress = 0x1c;
       }
-      else if (pvalidationContext[2] == unaff_RDI) {
+      else if (validationContextPointer[2] == unaff_RDI) {
 ValidationContextHandler:
-        memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
@@ -26728,7 +26728,7 @@ ValidationContextHandler:
         memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (memoryBaseAddress == 0) {
-          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2])
           goto LAB_18089c9a8;
           memoryBaseAddress = 0x11;
         }
@@ -26780,14 +26780,14 @@ ValidationContextHandler:
     operationResult = 0x1c;
     goto LAB_18089cad8;
   }
-  pvalidationContext = (longlong *)*registerContext;
-  dataContext = *pvalidationContext;
+  validationContextPointer = (longlong *)*registerContext;
+  dataContext = *validationContextPointer;
   if (dataContext == 0) {
     memoryBaseAddress = 0x1c;
   }
-  else if (pvalidationContext[2] == unaff_RDI) {
+  else if (validationContextPointer[2] == unaff_RDI) {
 ValidationRetryHandler:
-    memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+    memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
@@ -26795,7 +26795,7 @@ ValidationRetryHandler:
     memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (memoryBaseAddress == 0) {
-      if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089ca9c;
+      if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089ca9c;
       memoryBaseAddress = 0x11;
     }
   }
@@ -26841,25 +26841,25 @@ ValidationErrorHandler2:
     fVar12 = extraout_XMM0_Da_06;
     if (memoryBaseAddress >> 1 != 0) {
       do {
-        uVar6 = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
-        if ((int)uVar6 != 0) {
-          return uVar6;
+        dataFlags = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
+        if ((int)dataFlags != 0) {
+          return dataFlags;
         }
         if (*(int *)(registerContext[1] + 0x18) == 0) {
-          uVar6 = FUN_1808a2740(*registerContext,
+          dataFlags = FUN_1808a2740(*registerContext,
                                 (longlong)(int)operationResult * 0x10 + *(longlong *)(unaff_R13 + 0x60));
           uVar13 = extraout_XMM0_Da_08;
         }
         else {
-          uVar6 = 0x1c;
+          dataFlags = 0x1c;
           uVar13 = extraout_XMM0_Da_07;
         }
-        if ((int)uVar6 != 0) {
-          return uVar6;
+        if ((int)dataFlags != 0) {
+          return dataFlags;
         }
-        uVar6 = FUN_1808de0e0(uVar13,unaff_RBP + 0x77);
-        if ((int)uVar6 != 0) {
-          return uVar6;
+        dataFlags = FUN_1808de0e0(uVar13,unaff_RBP + 0x77);
+        if ((int)dataFlags != 0) {
+          return dataFlags;
         }
         securityCheckResult = (int)operationResult + 1;
         operationResult = (ulonglong)securityCheckResult;
@@ -26879,12 +26879,12 @@ ValidationErrorHandler2:
 ulonglong FUN_18089c94a(float param_1)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   undefined7 validationStatus;
   uint memoryBaseAddress;
   ulonglong operationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   int iVar7;
   longlong *registerContext;
   longlong unaff_RBP;
@@ -26916,14 +26916,14 @@ ulonglong FUN_18089c94a(float param_1)
   iVar11 = registerR14D;
   if (in_CF) {
     if (*(int *)(registerContext[1] + 0x18) == iVar9) {
-      pvalidationContext = (longlong *)*registerContext;
-      dataContext = *pvalidationContext;
+      validationContextPointer = (longlong *)*registerContext;
+      dataContext = *validationContextPointer;
       if (dataContext == 0) {
         memoryBaseAddress = 0x1c;
       }
-      else if (pvalidationContext[2] == unaff_RDI) {
+      else if (validationContextPointer[2] == unaff_RDI) {
 ValidationContextHandler:
-        memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
         param_1 = extraout_XMM0_Da_00;
       }
       else {
@@ -26931,61 +26931,61 @@ ValidationContextHandler:
         memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
         param_1 = extraout_XMM0_Da;
         if (memoryBaseAddress == 0) {
-          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2])
           goto LAB_18089c9a8;
           memoryBaseAddress = 0x11;
         }
       }
       if (memoryBaseAddress == 0) {
-        uVar6 = unaff_RDI & 0xffffffff;
+        dataFlags = unaff_RDI & 0xffffffff;
         iVar12 = (int)CONCAT71(validationStatus,*(char *)(unaff_RBP + 0x77) != '\0');
         iVar11 = (int)CONCAT71(validationStatus,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
-        uVar6 = (ulonglong)memoryBaseAddress;
+        dataFlags = (ulonglong)memoryBaseAddress;
         if (memoryBaseAddress == 0) {
-          uVar6 = unaff_RDI & 0xffffffff;
+          dataFlags = unaff_RDI & 0xffffffff;
         }
       }
     }
     else {
-      uVar6 = 0x1c;
+      dataFlags = 0x1c;
     }
   }
   else {
-    uVar6 = unaff_RDI & 0xffffffff;
+    dataFlags = unaff_RDI & 0xffffffff;
   }
-  if ((int)uVar6 != 0) {
-    return uVar6;
+  if ((int)dataFlags != 0) {
+    return dataFlags;
   }
   if ((*(uint *)(registerContext + 8) < 0x60) &&
-     (uVar6 = func_0x0001808de610(), param_1 = extraout_XMM0_Da_01, (int)uVar6 != 0)) {
-    return uVar6;
+     (dataFlags = func_0x0001808de610(), param_1 = extraout_XMM0_Da_01, (int)dataFlags != 0)) {
+    return dataFlags;
   }
   if (*(uint *)(registerContext + 8) < 0x52) {
-    uVar6 = unaff_RDI & 0xffffffff;
+    dataFlags = unaff_RDI & 0xffffffff;
   }
   else if (*(int *)(registerContext[1] + 0x18) == iVar9) {
-    uVar6 = ValidateDataWithSecurityCheckA2(*registerContext,unaff_R13 + 0x48);
+    dataFlags = ValidateDataWithSecurityCheckA2(*registerContext,unaff_R13 + 0x48);
     param_1 = extraout_XMM0_Da_02;
   }
   else {
-    uVar6 = 0x1c;
+    dataFlags = 0x1c;
   }
-  if ((int)uVar6 != 0) {
-    return uVar6;
+  if ((int)dataFlags != 0) {
+    return dataFlags;
   }
   iVar7 = iVar9;
   if ((int)registerContext[8] - 0x52U < 0x1e) {
     if (*(int *)(registerContext[1] + 0x18) == iVar9) {
-      pvalidationContext = (longlong *)*registerContext;
-      dataContext = *pvalidationContext;
+      validationContextPointer = (longlong *)*registerContext;
+      dataContext = *validationContextPointer;
       if (dataContext == 0) {
         memoryBaseAddress = 0x1c;
       }
-      else if (pvalidationContext[2] == unaff_RDI) {
+      else if (validationContextPointer[2] == unaff_RDI) {
 ValidationRetryHandler:
-        memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + 0x77,registerR14D,registerR14D);
         param_1 = extraout_XMM0_Da_04;
       }
       else {
@@ -26993,7 +26993,7 @@ ValidationRetryHandler:
         memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
         param_1 = extraout_XMM0_Da_03;
         if (memoryBaseAddress == 0) {
-          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)pvalidationContext[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2])
           goto LAB_18089ca9c;
           memoryBaseAddress = 0x11;
         }
@@ -27002,19 +27002,19 @@ ValidationRetryHandler:
         iVar7 = (int)CONCAT71(validationStatus,*(char *)(unaff_RBP + 0x77) != '\0');
         registerR14D = (int)CONCAT71(validationStatus,*(char *)(unaff_RBP + 0x77) == '\0');
       }
-      uVar6 = (ulonglong)memoryBaseAddress;
+      dataFlags = (ulonglong)memoryBaseAddress;
       if (memoryBaseAddress == 0) {
-        uVar6 = unaff_RDI & 0xffffffff;
+        dataFlags = unaff_RDI & 0xffffffff;
       }
     }
     else {
-      uVar6 = 0x1c;
+      dataFlags = 0x1c;
     }
   }
   else {
-    uVar6 = unaff_RDI & 0xffffffff;
+    dataFlags = unaff_RDI & 0xffffffff;
   }
-  if ((int)uVar6 == 0) {
+  if ((int)dataFlags == 0) {
     memoryBaseAddress = *(uint *)(registerContext + 8);
     if (memoryBaseAddress < 0x70) {
       *(uint *)(unaff_R13 + 0x34) =
@@ -27035,13 +27035,13 @@ DataProcessingHandler:
     }
     dataContext = *registerContext;
     *(int *)(unaff_RBP + 0x7f) = iVar9;
-    uVar6 = FUN_1808afe30(dataContext,unaff_RBP + 0x7f);
-    if ((int)uVar6 == 0) {
+    dataFlags = FUN_1808afe30(dataContext,unaff_RBP + 0x7f);
+    if ((int)dataFlags == 0) {
       memoryBaseAddress = *(uint *)(unaff_RBP + 0x7f);
-      uVar6 = FUN_1808af8b0(unaff_R13 + 0x60,memoryBaseAddress >> 1);
-      if ((int)uVar6 == 0) {
+      dataFlags = FUN_1808af8b0(unaff_R13 + 0x60,memoryBaseAddress >> 1);
+      if ((int)dataFlags == 0) {
         *(int *)(unaff_RBP + 0x77) = iVar9;
-        uVar6 = unaff_RDI & 0xffffffff;
+        dataFlags = unaff_RDI & 0xffffffff;
         param_1 = extraout_XMM0_Da_05;
         fVar13 = extraout_XMM0_Da_05;
         if (memoryBaseAddress >> 1 != 0) {
@@ -27052,7 +27052,7 @@ DataProcessingHandler:
             }
             if (*(int *)(registerContext[1] + 0x18) == 0) {
               operationResult = FUN_1808a2740(*registerContext,
-                                    (longlong)(int)uVar6 * 0x10 + *(longlong *)(unaff_R13 + 0x60));
+                                    (longlong)(int)dataFlags * 0x10 + *(longlong *)(unaff_R13 + 0x60));
               uVar14 = extraout_XMM0_Da_07;
             }
             else {
@@ -27066,8 +27066,8 @@ DataProcessingHandler:
             if ((int)operationResult != 0) {
               return operationResult;
             }
-            securityCheckResult = (int)uVar6 + 1;
-            uVar6 = (ulonglong)securityCheckResult;
+            securityCheckResult = (int)dataFlags + 1;
+            dataFlags = (ulonglong)securityCheckResult;
             uVar10 = *(uint *)(unaff_RBP + 0x77) & -(memoryBaseAddress & 1);
             unaff_RDI = (ulonglong)uVar10;
             *(uint *)(unaff_RBP + 0x77) = uVar10;
@@ -27079,7 +27079,7 @@ DataProcessingHandler:
       }
     }
   }
-  return uVar6;
+  return dataFlags;
 }
 
 
@@ -27117,7 +27117,7 @@ void UtilityNoOperationR(void)
 ulonglong FUN_18089cc80(longlong param_1,longlong *param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   uint uVar2;
   ulonglong validationStatus;
   int iVar4;
@@ -27132,23 +27132,23 @@ ulonglong FUN_18089cc80(longlong param_1,longlong *param_2)
   auStackX_18[0] = *(uint *)(param_1 + 0x50);
   uVar2 = 0x1c;
   if (*(int *)(param_2[1] + 0x18) == 0) {
-    pvalidationContext = (longlong *)*param_2;
-    if (*pvalidationContext == 0) {
+    validationContextPointer = (longlong *)*param_2;
+    if (*validationContextPointer == 0) {
       validationStatus = 0x1c;
     }
     else {
-      if (pvalidationContext[2] != 0) {
+      if (validationContextPointer[2] != 0) {
         auStackX_20[0] = 0;
-        validationStatus = func_0x00018076a7d0(*pvalidationContext,auStackX_20);
+        validationStatus = func_0x00018076a7d0(*validationContextPointer,auStackX_20);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        if ((ulonglong)pvalidationContext[2] < (ulonglong)auStackX_20[0] + 4) {
+        if ((ulonglong)validationContextPointer[2] < (ulonglong)auStackX_20[0] + 4) {
           validationStatus = 0x11;
           goto LAB_18089cd46;
         }
       }
-      validationStatus = FUN_180769ed0(*pvalidationContext,auStackX_18,1,4,0);
+      validationStatus = FUN_180769ed0(*validationContextPointer,auStackX_18,1,4,0);
     }
 ValidationContextHandler2:
     if ((int)validationStatus != 0) {
@@ -27195,7 +27195,7 @@ ValidationStateHandler:
 ulonglong FUN_18089ccb9(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   uint uVar2;
   longlong in_RAX;
   ulonglong validationStatus;
@@ -27207,23 +27207,23 @@ ulonglong FUN_18089ccb9(void)
   
   uVar2 = 0x1c;
   if (*(int *)(in_RAX + 0x18) == 0) {
-    pvalidationContext = (longlong *)*systemContext;
-    if (*pvalidationContext == 0) {
+    validationContextPointer = (longlong *)*systemContext;
+    if (*validationContextPointer == 0) {
       validationStatus = 0x1c;
     }
     else {
-      if (pvalidationContext[2] != 0) {
+      if (validationContextPointer[2] != 0) {
         in_stack_00000088 = 0;
-        validationStatus = func_0x00018076a7d0(*pvalidationContext,&stack0x00000088);
+        validationStatus = func_0x00018076a7d0(*validationContextPointer,&stack0x00000088);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        if ((ulonglong)pvalidationContext[2] < (ulonglong)in_stack_00000088 + 4) {
+        if ((ulonglong)validationContextPointer[2] < (ulonglong)in_stack_00000088 + 4) {
           validationStatus = 0x11;
           goto LAB_18089cd46;
         }
       }
-      validationStatus = FUN_180769ed0(*pvalidationContext,&stack0x00000080,1,4,0);
+      validationStatus = FUN_180769ed0(*validationContextPointer,&stack0x00000080,1,4,0);
     }
 ValidationContextHandler2:
     if ((int)validationStatus != 0) {
@@ -27329,7 +27329,7 @@ void UtilityNoOperationN(void)
 ulonglong FUN_18089ce30(longlong param_1,longlong *param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   ulonglong uVar2;
   uint validationStatus;
   bool bVar4;
@@ -27344,24 +27344,24 @@ ulonglong FUN_18089ce30(longlong param_1,longlong *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*param_2;
+  validationContextPointer = (longlong *)*param_2;
   validationStatus = 0x1c;
-  if (*pvalidationContext == 0) {
+  if (*validationContextPointer == 0) {
     uVar2 = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       auStackX_18[0] = 0;
-      uVar2 = func_0x00018076a7d0(*pvalidationContext,auStackX_18);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,auStackX_18);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)auStackX_18[0] + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)auStackX_18[0] + 4) {
         uVar2 = 0x11;
         goto LAB_18089cef2;
       }
     }
-    uVar2 = FUN_180769ed0(*pvalidationContext,auStackX_20,1,4,0);
+    uVar2 = FUN_180769ed0(*validationContextPointer,auStackX_20,1,4,0);
   }
 ValidationContextCleanup:
   if ((int)uVar2 != 0) {
@@ -27378,23 +27378,23 @@ ValidationContextCleanup:
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*param_2;
-  if (*pvalidationContext == 0) {
+  validationContextPointer = (longlong *)*param_2;
+  if (*validationContextPointer == 0) {
     uVar2 = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       auStackX_18[0] = 0;
-      uVar2 = func_0x00018076a7d0(*pvalidationContext,auStackX_18);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,auStackX_18);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)auStackX_18[0] + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)auStackX_18[0] + 4) {
         uVar2 = 0x11;
         goto LAB_18089cf93;
       }
     }
-    uVar2 = FUN_180769ed0(*pvalidationContext,auStackX_20,1,4,0);
+    uVar2 = FUN_180769ed0(*validationContextPointer,auStackX_20,1,4,0);
   }
 ValidationStateUpdate:
   if ((int)uVar2 != 0) {
@@ -27415,17 +27415,17 @@ ValidationStateUpdate:
   if (2 < (int)param_2[8] - 0x65U) goto LAB_18089d07f;
   bVar4 = false;
   if (*(int *)(param_2[1] + 0x18) != 0) goto LAB_18089d06e;
-  pvalidationContext = (longlong *)*param_2;
-  if (*pvalidationContext != 0) {
-    if (pvalidationContext[2] == 0) {
+  validationContextPointer = (longlong *)*param_2;
+  if (*validationContextPointer != 0) {
+    if (validationContextPointer[2] == 0) {
 ValidationCompleteHandler:
-      validationStatus = FUN_180769ed0(*pvalidationContext,auStackX_18,1,1,0);
+      validationStatus = FUN_180769ed0(*validationContextPointer,auStackX_18,1,1,0);
     }
     else {
       auStackX_20[0] = 0;
-      validationStatus = func_0x00018076a7d0(*pvalidationContext,auStackX_20);
+      validationStatus = func_0x00018076a7d0(*validationContextPointer,auStackX_20);
       if (validationStatus == 0) {
-        if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089d034;
+        if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089d034;
         validationStatus = 0x11;
       }
     }
@@ -27451,7 +27451,7 @@ ValidationExitHandler:
 ulonglong FUN_18089ce60(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong in_RAX;
   ulonglong uVar2;
   uint validationStatus;
@@ -27459,37 +27459,37 @@ ulonglong FUN_18089ce60(void)
   longlong registerR14;
   bool bVar4;
   char cStack0000000000000090;
-  uint in_stack_00000098;
+  uint stackDataSize;
   
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*unaff_RDI;
+  validationContextPointer = (longlong *)*unaff_RDI;
   validationStatus = 0x1c;
-  if (*pvalidationContext == 0) {
+  if (*validationContextPointer == 0) {
     uVar2 = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       _cStack0000000000000090 = 0;
-      uVar2 = func_0x00018076a7d0(*pvalidationContext,&stack0x00000090);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x00000090);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)_cStack0000000000000090 + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)_cStack0000000000000090 + 4) {
         uVar2 = 0x11;
         goto LAB_18089cef2;
       }
     }
-    uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x00000098,1,4,0);
+    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x00000098,1,4,0);
   }
 ValidationContextCleanup:
   if ((int)uVar2 != 0) {
     return uVar2;
   }
-  *(uint *)(registerR14 + 0x10) = in_stack_00000098;
+  *(uint *)(registerR14 + 0x10) = stackDataSize;
   uVar2 = 0xd;
-  if (in_stack_00000098 < 5) {
+  if (stackDataSize < 5) {
     uVar2 = 0;
   }
   if ((int)uVar2 != 0) {
@@ -27498,31 +27498,31 @@ ValidationContextCleanup:
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*unaff_RDI;
-  if (*pvalidationContext == 0) {
+  validationContextPointer = (longlong *)*unaff_RDI;
+  if (*validationContextPointer == 0) {
     uVar2 = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       _cStack0000000000000090 = 0;
-      uVar2 = func_0x00018076a7d0(*pvalidationContext,&stack0x00000090);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x00000090);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)_cStack0000000000000090 + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)_cStack0000000000000090 + 4) {
         uVar2 = 0x11;
         goto LAB_18089cf93;
       }
     }
-    uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x00000098,1,4,0);
+    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x00000098,1,4,0);
   }
 ValidationStateUpdate:
   if ((int)uVar2 != 0) {
     return uVar2;
   }
-  *(uint *)(registerR14 + 0x14) = in_stack_00000098;
+  *(uint *)(registerR14 + 0x14) = stackDataSize;
   uVar2 = 0xd;
-  if (in_stack_00000098 < 3) {
+  if (stackDataSize < 3) {
     uVar2 = 0;
   }
   if ((int)uVar2 != 0) {
@@ -27535,17 +27535,17 @@ ValidationStateUpdate:
   if (2 < (int)unaff_RDI[8] - 0x65U) goto LAB_18089d07f;
   bVar4 = false;
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) goto LAB_18089d06e;
-  pvalidationContext = (longlong *)*unaff_RDI;
-  if (*pvalidationContext != 0) {
-    if (pvalidationContext[2] == 0) {
+  validationContextPointer = (longlong *)*unaff_RDI;
+  if (*validationContextPointer != 0) {
+    if (validationContextPointer[2] == 0) {
 ValidationCompleteHandler:
-      validationStatus = FUN_180769ed0(*pvalidationContext,&stack0x00000090,1,1,0);
+      validationStatus = FUN_180769ed0(*validationContextPointer,&stack0x00000090,1,1,0);
     }
     else {
-      in_stack_00000098 = 0;
-      validationStatus = func_0x00018076a7d0(*pvalidationContext,&stack0x00000098);
+      stackDataSize = 0;
+      validationStatus = func_0x00018076a7d0(*validationContextPointer,&stack0x00000098);
       if (validationStatus == 0) {
-        if ((ulonglong)in_stack_00000098 + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089d034;
+        if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089d034;
         validationStatus = 0x11;
       }
     }
@@ -27571,30 +27571,30 @@ ValidationExitHandler:
 ulonglong FUN_18089cfd6(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   uint in_EAX;
   uint uVar2;
   ulonglong registerContext;
   longlong *unaff_RDI;
   longlong registerR14;
   ulonglong unaff_R15;
-  char in_stack_00000090;
-  uint in_stack_00000098;
+  char stackDataBuffer;
+  uint stackDataSize;
   
   uVar2 = (uint)registerContext;
   if (2 < in_EAX) goto LAB_18089d07f;
   if (*(uint *)(unaff_RDI[1] + 0x18) != (uint)unaff_R15) goto LAB_18089d06e;
-  pvalidationContext = (longlong *)*unaff_RDI;
-  if (*pvalidationContext != 0) {
-    if (pvalidationContext[2] == unaff_R15) {
+  validationContextPointer = (longlong *)*unaff_RDI;
+  if (*validationContextPointer != 0) {
+    if (validationContextPointer[2] == unaff_R15) {
 ValidationCompleteHandler:
-      uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x00000090,1);
+      uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x00000090,1);
     }
     else {
-      in_stack_00000098 = (uint)unaff_R15;
-      uVar2 = func_0x00018076a7d0(*pvalidationContext,&stack0x00000098);
+      stackDataSize = (uint)unaff_R15;
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x00000098);
       if (uVar2 == 0) {
-        if ((ulonglong)in_stack_00000098 + 1 <= (ulonglong)pvalidationContext[2]) goto LAB_18089d034;
+        if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089d034;
         uVar2 = 0x11;
       }
     }
@@ -27607,7 +27607,7 @@ ValidationCompleteHandler:
 ValidationErrorHandler3:
     return registerContext & 0xffffffff;
   }
-  if (uVar2 == 0 && in_stack_00000090 != (char)unaff_R15) {
+  if (uVar2 == 0 && stackDataBuffer != (char)unaff_R15) {
     *(undefined4 *)(registerR14 + 0x10) = 3;
   }
 ValidationExitHandler:
@@ -27822,7 +27822,7 @@ void UtilityNoOperationV(void)
 undefined8 ValidateDataFormatA1(undefined8 param_1,longlong *param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   undefined8 validationStatus;
   int aiStackX_18 [2];
@@ -27855,23 +27855,23 @@ ValidationDataHandler:
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*param_2;
-  if (*pvalidationContext == 0) {
+  validationContextPointer = (longlong *)*param_2;
+  if (*validationContextPointer == 0) {
     validationStatus = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       auStackX_20[0] = 0;
-      validationStatus = func_0x00018076a7d0(*pvalidationContext,auStackX_20);
+      validationStatus = func_0x00018076a7d0(*validationContextPointer,auStackX_20);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)auStackX_20[0] + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)auStackX_20[0] + 4) {
         validationStatus = 0x11;
         goto LAB_18089d378;
       }
     }
-    validationStatus = FUN_180769ed0(*pvalidationContext,auStack_68,1,4,0);
+    validationStatus = FUN_180769ed0(*validationContextPointer,auStack_68,1,4,0);
   }
 ValidationErrorHandler4:
   if ((int)validationStatus == 0) {
@@ -27926,7 +27926,7 @@ ValidationStateUpdate2:
 undefined8 GetSystemStatusA2(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   undefined8 validationStatus;
   longlong *registerContext;
@@ -27954,23 +27954,23 @@ ValidationDataHandler:
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*registerContext;
-  if (*pvalidationContext == 0) {
+  validationContextPointer = (longlong *)*registerContext;
+  if (*validationContextPointer == 0) {
     validationStatus = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       in_stack_000000b8 = 0;
-      validationStatus = func_0x00018076a7d0(*pvalidationContext,&stack0x000000b8);
+      validationStatus = func_0x00018076a7d0(*validationContextPointer,&stack0x000000b8);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)in_stack_000000b8 + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)in_stack_000000b8 + 4) {
         validationStatus = 0x11;
         goto LAB_18089d378;
       }
     }
-    validationStatus = FUN_180769ed0(*pvalidationContext,&stack0x00000030,1,4,0);
+    validationStatus = FUN_180769ed0(*validationContextPointer,&stack0x00000030,1,4,0);
   }
 ValidationErrorHandler4:
   if ((int)validationStatus == 0) {
@@ -28839,11 +28839,11 @@ undefined8 ProcessDataStreamA1(longlong param_1,undefined8 *param_2)
 ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   ulonglong uVar2;
   uint validationStatus;
   uint memoryBaseAddress;
-  uint uVar6;
+  uint dataFlags;
   ulonglong validationOutcome;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
@@ -28878,10 +28878,10 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
   }
   auStackX_18[0] = 0;
   validationStatus = auStackX_20[0] & 1;
-  uVar6 = auStackX_20[0] >> 1;
+  dataFlags = auStackX_20[0] >> 1;
   uVar2 = validationOutcome;
   operationResult = validationOutcome;
-  if (uVar6 != 0) {
+  if (dataFlags != 0) {
     do {
       uVar2 = FUN_1808dde10(param_2,uVar2);
       if ((int)uVar2 != 0) {
@@ -28899,7 +28899,7 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
       operationResult = (ulonglong)memoryBaseAddress;
       auStackX_18[0] = auStackX_18[0] & -validationStatus;
       uVar2 = (ulonglong)auStackX_18[0];
-    } while ((int)memoryBaseAddress < (int)uVar6);
+    } while ((int)memoryBaseAddress < (int)dataFlags);
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
@@ -28911,23 +28911,23 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*param_2;
-  if (*pvalidationContext == 0) {
+  validationContextPointer = (longlong *)*param_2;
+  if (*validationContextPointer == 0) {
     uVar2 = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       auStackX_18[0] = 0;
-      uVar2 = func_0x00018076a7d0(*pvalidationContext,auStackX_18);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,auStackX_18);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)auStackX_18[0] + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)auStackX_18[0] + 4) {
         uVar2 = 0x11;
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*pvalidationContext,auStackX_20,1,4,0);
+    uVar2 = FUN_180769ed0(*validationContextPointer,auStackX_20,1,4,0);
   }
 ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
@@ -28956,7 +28956,7 @@ ValidationCompleteHandler2:
 ulonglong FUN_18089e297(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong in_RAX;
   ulonglong uVar2;
   ulonglong validationStatus;
@@ -28964,7 +28964,7 @@ ulonglong FUN_18089e297(void)
   uint memoryBaseAddress;
   longlong systemContext;
   uint operationResult;
-  uint uVar6;
+  uint dataFlags;
   ulonglong validationOutcome;
   uint in_stack_000000b0;
   uint in_stack_000000b8;
@@ -28984,9 +28984,9 @@ ulonglong FUN_18089e297(void)
   }
   in_stack_000000b0 = 0;
   memoryBaseAddress = in_stack_000000b8 & 1;
-  uVar6 = in_stack_000000b8 >> 1;
+  dataFlags = in_stack_000000b8 >> 1;
   uVar2 = validationOutcome;
-  if (uVar6 != 0) {
+  if (dataFlags != 0) {
     do {
       validationStatus = FUN_1808dde10();
       if ((int)validationStatus != 0) {
@@ -29003,7 +29003,7 @@ ulonglong FUN_18089e297(void)
       operationResult = (int)uVar2 + 1;
       uVar2 = (ulonglong)operationResult;
       in_stack_000000b0 = in_stack_000000b0 & -memoryBaseAddress;
-    } while ((int)operationResult < (int)uVar6);
+    } while ((int)operationResult < (int)dataFlags);
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
@@ -29015,23 +29015,23 @@ ulonglong FUN_18089e297(void)
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*registerContext;
-  if (*pvalidationContext == 0) {
+  validationContextPointer = (longlong *)*registerContext;
+  if (*validationContextPointer == 0) {
     uVar2 = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       in_stack_000000b0 = 0;
-      uVar2 = func_0x00018076a7d0(*pvalidationContext,&stack0x000000b0);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x000000b0);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)in_stack_000000b0 + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)in_stack_000000b0 + 4) {
         uVar2 = 0x11;
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x000000b8,1,4,0);
+    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x000000b8,1,4,0);
   }
 ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
@@ -29060,14 +29060,14 @@ ValidationCompleteHandler2:
 ulonglong FUN_18089e2be(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   ulonglong uVar2;
   ulonglong validationStatus;
   longlong *registerContext;
   uint memoryBaseAddress;
   longlong systemContext;
   uint operationResult;
-  uint uVar6;
+  uint dataFlags;
   ulonglong validationOutcome;
   uint in_stack_000000b0;
   uint in_stack_000000b8;
@@ -29084,9 +29084,9 @@ ulonglong FUN_18089e2be(void)
   }
   in_stack_000000b0 = 0;
   memoryBaseAddress = in_stack_000000b8 & 1;
-  uVar6 = in_stack_000000b8 >> 1;
+  dataFlags = in_stack_000000b8 >> 1;
   uVar2 = validationOutcome;
-  if (uVar6 != 0) {
+  if (dataFlags != 0) {
     do {
       validationStatus = FUN_1808dde10();
       if ((int)validationStatus != 0) {
@@ -29103,7 +29103,7 @@ ulonglong FUN_18089e2be(void)
       operationResult = (int)uVar2 + 1;
       uVar2 = (ulonglong)operationResult;
       in_stack_000000b0 = in_stack_000000b0 & -memoryBaseAddress;
-    } while ((int)operationResult < (int)uVar6);
+    } while ((int)operationResult < (int)dataFlags);
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
@@ -29115,23 +29115,23 @@ ulonglong FUN_18089e2be(void)
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*registerContext;
-  if (*pvalidationContext == 0) {
+  validationContextPointer = (longlong *)*registerContext;
+  if (*validationContextPointer == 0) {
     uVar2 = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       in_stack_000000b0 = 0;
-      uVar2 = func_0x00018076a7d0(*pvalidationContext,&stack0x000000b0);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x000000b0);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)in_stack_000000b0 + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)in_stack_000000b0 + 4) {
         uVar2 = 0x11;
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x000000b8,1,4,0);
+    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x000000b8,1,4,0);
   }
 ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
@@ -29160,14 +29160,14 @@ ValidationCompleteHandler2:
 ulonglong FUN_18089e2e8(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   ulonglong uVar2;
   ulonglong validationStatus;
   longlong *registerContext;
   uint memoryBaseAddress;
   longlong systemContext;
   uint operationResult;
-  uint uVar6;
+  uint dataFlags;
   ulonglong validationOutcome;
   uint in_stack_000000b0;
   uint uStack00000000000000b8;
@@ -29180,9 +29180,9 @@ ulonglong FUN_18089e2e8(void)
   }
   in_stack_000000b0 = 0;
   memoryBaseAddress = uStack00000000000000b8 & 1;
-  uVar6 = uStack00000000000000b8 >> 1;
+  dataFlags = uStack00000000000000b8 >> 1;
   uVar2 = validationOutcome;
-  if (uVar6 != 0) {
+  if (dataFlags != 0) {
     do {
       validationStatus = FUN_1808dde10();
       if ((int)validationStatus != 0) {
@@ -29199,7 +29199,7 @@ ulonglong FUN_18089e2e8(void)
       operationResult = (int)uVar2 + 1;
       uVar2 = (ulonglong)operationResult;
       in_stack_000000b0 = in_stack_000000b0 & -memoryBaseAddress;
-    } while ((int)operationResult < (int)uVar6);
+    } while ((int)operationResult < (int)dataFlags);
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
@@ -29211,23 +29211,23 @@ ulonglong FUN_18089e2e8(void)
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*registerContext;
-  if (*pvalidationContext == 0) {
+  validationContextPointer = (longlong *)*registerContext;
+  if (*validationContextPointer == 0) {
     uVar2 = 0x1c;
   }
   else {
-    if (pvalidationContext[2] != 0) {
+    if (validationContextPointer[2] != 0) {
       in_stack_000000b0 = 0;
-      uVar2 = func_0x00018076a7d0(*pvalidationContext,&stack0x000000b0);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x000000b0);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      if ((ulonglong)pvalidationContext[2] < (ulonglong)in_stack_000000b0 + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)in_stack_000000b0 + 4) {
         uVar2 = 0x11;
         goto LAB_18089e447;
       }
     }
-    uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x000000b8,1,4,0);
+    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x000000b8,1,4,0);
   }
 ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
@@ -29493,7 +29493,7 @@ ulonglong FUN_18089e624(void)
   int iVar3;
   ulonglong memoryBaseAddress;
   longlong lVar5;
-  undefined4 *puVar6;
+  undefined4 *pdataFlags;
   undefined8 registerContext;
   longlong unaff_RBP;
   undefined4 *pvalidationOutcome;
@@ -29512,8 +29512,8 @@ ValidationErrorHandler5:
     }
     iVar3 = *(int *)(unaff_RBP + -0x21);
     if (iVar3 != 0) {
-      puVar6 = *(undefined4 **)(unaff_RBP + -0x29);
-      for (pvalidationOutcome = puVar6; (puVar6 <= pvalidationOutcome && (pvalidationOutcome < puVar6 + iVar3)); pvalidationOutcome = pvalidationOutcome + 1) {
+      pdataFlags = *(undefined4 **)(unaff_RBP + -0x29);
+      for (pvalidationOutcome = pdataFlags; (pdataFlags <= pvalidationOutcome && (pvalidationOutcome < pdataFlags + iVar3)); pvalidationOutcome = pvalidationOutcome + 1) {
         lVar5 = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c);
         if (lVar5 == 0) {
           memoryBaseAddress = 0x26;
@@ -29529,7 +29529,7 @@ ValidationErrorHandler5:
         memoryBaseAddress = (ulonglong)uVar2;
         if (uVar2 != 0) goto LAB_18089e70b;
         iVar3 = *(int *)(unaff_RBP + -0x21);
-        puVar6 = *(undefined4 **)(unaff_RBP + -0x29);
+        pdataFlags = *(undefined4 **)(unaff_RBP + -0x29);
       }
     }
     FUN_18084c150(unaff_RBP + -0x29);
@@ -29578,7 +29578,7 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
   uint validationStatus;
   ulonglong memoryBaseAddress;
   ulonglong operationResult;
-  undefined4 uVar6;
+  undefined4 dataFlags;
   bool bVar7;
   bool bVar8;
   bool bVar9;
@@ -29590,7 +29590,7 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
   undefined1 auStack_78 [32];
   undefined1 auStack_58 [32];
   
-  uVar6 = 1;
+  dataFlags = 1;
   memoryBaseAddress = FUN_1808ddc20(param_2,auStack_58,1,0x4e415254);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
@@ -29858,9 +29858,9 @@ LAB_18089ecba:
     return memoryBaseAddress;
   }
   if ((((!bVar7) && ((char)auStackX_18[0] == '\0')) && (cStackX_20 == '\0')) && (!bVar9)) {
-    uVar6 = 0;
+    dataFlags = 0;
   }
-  *(undefined4 *)(param_1 + 0x38) = uVar6;
+  *(undefined4 *)(param_1 + 0x38) = dataFlags;
   validationStatus = *(uint *)(param_2 + 8);
 LAB_18089ed1b:
   memoryBaseAddress = 0;
@@ -30188,7 +30188,7 @@ LAB_18089ed1b:
 ulonglong FUN_18089e9af(undefined8 param_1,undefined8 param_2,ulonglong param_3)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   uint in_EAX;
   uint validationStatus;
@@ -30207,22 +30207,22 @@ ulonglong FUN_18089e9af(undefined8 param_1,undefined8 param_2,ulonglong param_3)
   if (*(int *)(unaff_RDI[1] + 0x18) != (int)param_3) {
     return 0x1c;
   }
-  pvalidationContext = (longlong *)*unaff_RDI;
-  dataContext = *pvalidationContext;
+  validationContextPointer = (longlong *)*unaff_RDI;
+  dataContext = *validationContextPointer;
   if (dataContext == 0) {
     memoryBaseAddress = 0x1c;
   }
   else {
-    if (pvalidationContext[2] == param_3) {
+    if (validationContextPointer[2] == param_3) {
 ValidationStartHandler:
-      memoryBaseAddress = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x41,unaff_R12D,4,param_3);
+      memoryBaseAddress = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x41,unaff_R12D,4,param_3);
     }
     else {
       *(int *)(unaff_RBP + 0x77) = (int)param_3;
       memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + 0x77);
       if ((int)memoryBaseAddress == 0) {
         param_3 = 0;
-        if ((ulonglong)pvalidationContext[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + 4) {
+        if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + 4) {
           memoryBaseAddress = 0x11;
           goto LAB_18089ea2c;
         }
@@ -30243,8 +30243,8 @@ LAB_18089ea2c:
     memoryBaseAddress = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    pvalidationContext = (longlong *)*unaff_RDI;
-    dataContext = *pvalidationContext;
+    validationContextPointer = (longlong *)*unaff_RDI;
+    dataContext = *validationContextPointer;
     if (dataContext == 0) {
       validationStatus = 0x1c;
 ValidationErrorHandler6:
@@ -30255,16 +30255,16 @@ ValidationErrorHandler6:
       }
     }
     else {
-      if (pvalidationContext[2] == 0) {
+      if (validationContextPointer[2] == 0) {
 ValidationStateHandler2:
-        validationStatus = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
+        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
         goto LAB_18089eaae;
       }
       *(int *)(unaff_RBP + -0x45) = (int)param_3;
       validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x45);
       bVar7 = validationStatus == 0;
       if (bVar7) {
-        if ((ulonglong)pvalidationContext[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
+        if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
           validationStatus = 0x11;
           goto LAB_18089eaae;
         }
@@ -30287,22 +30287,22 @@ ValidationStateHandler2:
     memoryBaseAddress = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    pvalidationContext = (longlong *)*unaff_RDI;
-    dataContext = *pvalidationContext;
+    validationContextPointer = (longlong *)*unaff_RDI;
+    dataContext = *validationContextPointer;
     if (dataContext == 0) {
       validationStatus = 0x1c;
     }
     else {
-      if (pvalidationContext[2] == 0) {
+      if (validationContextPointer[2] == 0) {
 ValidationDataHandler2:
-        validationStatus = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
+        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
         validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
-          if ((ulonglong)pvalidationContext[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
+          if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
             validationStatus = 0x11;
             goto LAB_18089eb3c;
           }
@@ -30330,22 +30330,22 @@ ValidationErrorHandler7:
     memoryBaseAddress = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    pvalidationContext = (longlong *)*unaff_RDI;
-    dataContext = *pvalidationContext;
+    validationContextPointer = (longlong *)*unaff_RDI;
+    dataContext = *validationContextPointer;
     if (dataContext == 0) {
       validationStatus = 0x1c;
     }
     else {
-      if (pvalidationContext[2] == 0) {
+      if (validationContextPointer[2] == 0) {
 ValidationStateHandler3:
-        validationStatus = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
+        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
         validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
-          if ((ulonglong)pvalidationContext[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
+          if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
             validationStatus = 0x11;
             goto LAB_18089ebc4;
           }
@@ -30373,22 +30373,22 @@ ValidationErrorHandler8:
     memoryBaseAddress = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    pvalidationContext = (longlong *)*unaff_RDI;
-    dataContext = *pvalidationContext;
+    validationContextPointer = (longlong *)*unaff_RDI;
+    dataContext = *validationContextPointer;
     if (dataContext == 0) {
       validationStatus = 0x1c;
     }
     else {
-      if (pvalidationContext[2] == 0) {
+      if (validationContextPointer[2] == 0) {
 LAB_18089ec32:
-        validationStatus = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
+        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
         validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
-          if ((ulonglong)pvalidationContext[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
+          if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
             validationStatus = 0x11;
             goto LAB_18089ec4c;
           }
@@ -30416,22 +30416,22 @@ LAB_18089ec4c:
     memoryBaseAddress = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    pvalidationContext = (longlong *)*unaff_RDI;
-    dataContext = *pvalidationContext;
+    validationContextPointer = (longlong *)*unaff_RDI;
+    dataContext = *validationContextPointer;
     if (dataContext == 0) {
       validationStatus = 0x1c;
     }
     else {
-      if (pvalidationContext[2] == 0) {
+      if (validationContextPointer[2] == 0) {
 LAB_18089ecba:
-        validationStatus = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
+        validationStatus = FUN_180769ed0(*validationContextPointer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
         validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
-          if ((ulonglong)pvalidationContext[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
+          if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
             validationStatus = 0x11;
             goto LAB_18089ecd4;
           }
@@ -34438,11 +34438,11 @@ void Unwind_180902860(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902870(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -34682,23 +34682,23 @@ void Unwind_180902950(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   ulonglong validationOutcome;
   
   lVar4 = *(longlong *)(param_2 + 0x70);
   validationOutcome = *(ulonglong *)(lVar4 + 0x10);
   lVar5 = *(longlong *)(lVar4 + 8);
-  uVar6 = 0;
+  dataFlags = 0;
   if (validationOutcome != 0) {
     do {
-      dataContext = *(longlong *)(lVar5 + uVar6 * 8);
+      dataContext = *(longlong *)(lVar5 + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(dataContext);
       }
-      *(undefined8 *)(lVar5 + uVar6 * 8) = 0;
-      uVar6 = uVar6 + 1;
-    } while (uVar6 < validationOutcome);
+      *(undefined8 *)(lVar5 + dataFlags * 8) = 0;
+      dataFlags = dataFlags + 1;
+    } while (dataFlags < validationOutcome);
     validationOutcome = *(ulonglong *)(lVar4 + 0x10);
   }
   *(undefined8 *)(lVar4 + 0x18) = 0;
@@ -34737,23 +34737,23 @@ void Unwind_180902960(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   ulonglong validationOutcome;
   
   lVar4 = *(longlong *)(param_2 + 0x70);
   validationOutcome = *(ulonglong *)(lVar4 + 0x40);
   lVar5 = *(longlong *)(lVar4 + 0x38);
-  uVar6 = 0;
+  dataFlags = 0;
   if (validationOutcome != 0) {
     do {
-      dataContext = *(longlong *)(lVar5 + uVar6 * 8);
+      dataContext = *(longlong *)(lVar5 + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(dataContext);
       }
-      *(undefined8 *)(lVar5 + uVar6 * 8) = 0;
-      uVar6 = uVar6 + 1;
-    } while (uVar6 < validationOutcome);
+      *(undefined8 *)(lVar5 + dataFlags * 8) = 0;
+      dataFlags = dataFlags + 1;
+    } while (dataFlags < validationOutcome);
     validationOutcome = *(ulonglong *)(lVar4 + 0x40);
   }
   *(undefined8 *)(lVar4 + 0x48) = 0;
@@ -34840,23 +34840,23 @@ void Unwind_180902a40(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   ulonglong validationOutcome;
   
   lVar4 = *(longlong *)(param_2 + 0x78);
   validationOutcome = *(ulonglong *)(lVar4 + 0x10);
   lVar5 = *(longlong *)(lVar4 + 8);
-  uVar6 = 0;
+  dataFlags = 0;
   if (validationOutcome != 0) {
     do {
-      dataContext = *(longlong *)(lVar5 + uVar6 * 8);
+      dataContext = *(longlong *)(lVar5 + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(dataContext);
       }
-      *(undefined8 *)(lVar5 + uVar6 * 8) = 0;
-      uVar6 = uVar6 + 1;
-    } while (uVar6 < validationOutcome);
+      *(undefined8 *)(lVar5 + dataFlags * 8) = 0;
+      dataFlags = dataFlags + 1;
+    } while (dataFlags < validationOutcome);
     validationOutcome = *(ulonglong *)(lVar4 + 0x10);
   }
   *(undefined8 *)(lVar4 + 0x18) = 0;
@@ -34895,23 +34895,23 @@ void Unwind_180902a50(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   ulonglong validationOutcome;
   
   lVar4 = *(longlong *)(param_2 + 0x78);
   validationOutcome = *(ulonglong *)(lVar4 + 0x10);
   lVar5 = *(longlong *)(lVar4 + 8);
-  uVar6 = 0;
+  dataFlags = 0;
   if (validationOutcome != 0) {
     do {
-      dataContext = *(longlong *)(lVar5 + uVar6 * 8);
+      dataContext = *(longlong *)(lVar5 + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(dataContext);
       }
-      *(undefined8 *)(lVar5 + uVar6 * 8) = 0;
-      uVar6 = uVar6 + 1;
-    } while (uVar6 < validationOutcome);
+      *(undefined8 *)(lVar5 + dataFlags * 8) = 0;
+      dataFlags = dataFlags + 1;
+    } while (dataFlags < validationOutcome);
     validationOutcome = *(ulonglong *)(lVar4 + 0x10);
   }
   *(undefined8 *)(lVar4 + 0x18) = 0;
@@ -35157,11 +35157,11 @@ void Unwind_180902ae0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902af0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x70) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -35828,13 +35828,13 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
 void Unwind_180902cf0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0x20);
-  pvalidationContext = (longlong *)pdataContext[1];
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = (longlong *)pdataContext[1];
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -35869,11 +35869,11 @@ void Unwind_180902d10(undefined8 param_1,longlong param_2)
 void Unwind_180902d20(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -35883,11 +35883,11 @@ void Unwind_180902d20(undefined8 param_1,longlong param_2)
 void Unwind_180902d30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -35915,7 +35915,7 @@ void Unwind_180902d40(undefined8 param_1,longlong param_2)
 void Unwind_180902d50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   undefined8 validationStatus;
   
@@ -35925,19 +35925,19 @@ void Unwind_180902d50(undefined8 param_1,longlong param_2)
        *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(dataContext + 0x15e0) * 8) + -100000;
   FUN_180090b80((longlong *)(dataContext + 0x8b0));
   *(undefined4 *)(dataContext + 0x15e8) = 0;
-  pvalidationContext = *(longlong **)(dataContext + 0x15d0);
+  validationContextPointer = *(longlong **)(dataContext + 0x15d0);
   *(undefined8 *)(dataContext + 0x15d0) = 0;
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   if (*(longlong **)(dataContext + 0x15d0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(dataContext + 0x15d0) + 0x38))();
   }
   FUN_1808fc8a8(dataContext + 0x8e0,0x20,0x50,FUN_180627b90,validationStatus);
   FUN_1808fc8a8(dataContext + 0x8b8,8,4,FUN_180045af0);
-  pvalidationContext = *(longlong **)(dataContext + 0x8b0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x8b0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -35947,11 +35947,11 @@ void Unwind_180902d50(undefined8 param_1,longlong param_2)
 void Unwind_180902d70(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1600);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1600);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -35961,11 +35961,11 @@ void Unwind_180902d70(undefined8 param_1,longlong param_2)
 void Unwind_180902d90(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1698);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1698);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -35975,11 +35975,11 @@ void Unwind_180902d90(undefined8 param_1,longlong param_2)
 void Unwind_180902db0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1800);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1800);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -35998,11 +35998,11 @@ void Unwind_180902dd0(void)
 void Unwind_180902df0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1858);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1858);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -36012,13 +36012,13 @@ void Unwind_180902df0(undefined8 param_1,longlong param_2)
 void Unwind_180902e10(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x1868);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1870);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1870);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -36035,13 +36035,13 @@ void Unwind_180902e10(undefined8 param_1,longlong param_2)
 void Unwind_180902e30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0x48);
-  pvalidationContext = (longlong *)pdataContext[1];
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = (longlong *)pdataContext[1];
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -36190,7 +36190,7 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
   ulonglong *pvalidationStatus;
   longlong lVar4;
   undefined8 *poperationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   pvalidationStatus = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x18);
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
@@ -36199,11 +36199,11 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
   }
   resourcePointer = (undefined8 *)*pvalidationStatus;
   if (resourcePointer != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
+    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (dataFlags != 0) {
+      lVar4 = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
         *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
         referenceCountPointer = (int *)(lVar4 + 0x18);
@@ -36214,8 +36214,8 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            resourcePointer,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                            resourcePointer,dataFlags,0xfffffffffffffffe);
       }
     }
     return;
@@ -36252,7 +36252,7 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
   longlong calculatedOffset;
   ulonglong *pmemoryBaseAddress;
   undefined8 *poperationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   pmemoryBaseAddress = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x18);
   resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x20);
@@ -36261,11 +36261,11 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
   }
   resourcePointer = (undefined8 *)*pmemoryBaseAddress;
   if (resourcePointer != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      calculatedOffset = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
+    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (dataFlags != 0) {
+      calculatedOffset = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
         *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
@@ -36276,8 +36276,8 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            resourcePointer,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                            resourcePointer,dataFlags,0xfffffffffffffffe);
       }
     }
     return;
@@ -36295,7 +36295,7 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
   ulonglong *pvalidationStatus;
   longlong lVar4;
   undefined8 *poperationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   pvalidationStatus = *(ulonglong **)(param_2 + 0x40);
   resourcePointer = (undefined8 *)pvalidationStatus[1];
@@ -36304,11 +36304,11 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
   }
   resourcePointer = (undefined8 *)*pvalidationStatus;
   if (resourcePointer != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
+    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (dataFlags != 0) {
+      lVar4 = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
         *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
         referenceCountPointer = (int *)(lVar4 + 0x18);
@@ -36319,8 +36319,8 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            resourcePointer,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                            resourcePointer,dataFlags,0xfffffffffffffffe);
       }
     }
     return;
@@ -36657,13 +36657,13 @@ void Unwind_1809030a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void CleanupResourcePointerB0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   
   dataContext = *(longlong *)(param_2 + 0x58);
-  pvalidationContext = *(longlong **)(dataContext + 0xb8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0xb8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   *(undefined **)(dataContext + 0x20) = &DefaultExceptionHandlerB;
   return;
@@ -36683,11 +36683,11 @@ void ResetResourcePointerC0(undefined8 param_1,longlong param_2)
 void CleanupResourceHandlerD0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x98);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x98);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -37030,11 +37030,11 @@ void Unwind_1809031b0(undefined8 param_1,longlong param_2)
 void Unwind_1809031c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x98);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x98);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -37472,7 +37472,7 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong *plVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   plVar4 = *(longlong **)(param_2 + 0x40);
   pvalidationStatus = (undefined8 *)*plVar4;
@@ -37501,11 +37501,11 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -37516,8 +37516,8 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -37771,7 +37771,7 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong *plVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   plVar4 = *(longlong **)(param_2 + 0x70);
   _Mtx_destroy_in_situ();
@@ -37802,11 +37802,11 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -37817,8 +37817,8 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -37865,11 +37865,11 @@ void Unwind_180903520(undefined8 param_1,longlong param_2)
 void Unwind_180903540(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x328);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x328);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -37922,7 +37922,7 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong *plVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   plVar4 = *(longlong **)(param_2 + 0x80);
   pvalidationStatus = (undefined8 *)*plVar4;
@@ -37951,11 +37951,11 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -37966,8 +37966,8 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -43524,7 +43524,7 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   lVar5 = *(longlong *)(param_2 + 0x40);
   pvalidationStatus = *(undefined8 **)(lVar5 + 0x78);
@@ -43554,11 +43554,11 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -43569,8 +43569,8 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -43586,7 +43586,7 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   lVar5 = *(longlong *)(param_2 + 0x40);
   pvalidationStatus = *(undefined8 **)(lVar5 + 0x2e0);
@@ -43616,11 +43616,11 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -43631,8 +43631,8 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -43648,7 +43648,7 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   lVar5 = *(longlong *)(param_2 + 0x40);
   pvalidationStatus = *(undefined8 **)(lVar5 + 0x548);
@@ -43678,11 +43678,11 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -43693,8 +43693,8 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -43854,7 +43854,7 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   lVar5 = *(longlong *)(param_2 + 0x70);
   pvalidationStatus = *(undefined8 **)(lVar5 + 0x78);
@@ -43884,11 +43884,11 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -43899,8 +43899,8 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -43916,7 +43916,7 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   lVar5 = *(longlong *)(param_2 + 0x70);
   pvalidationStatus = *(undefined8 **)(lVar5 + 0x2e0);
@@ -43946,11 +43946,11 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -43961,8 +43961,8 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -43978,7 +43978,7 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   lVar5 = *(longlong *)(param_2 + 0x70);
   pvalidationStatus = *(undefined8 **)(lVar5 + 0x548);
@@ -44008,11 +44008,11 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -44023,8 +44023,8 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -44278,7 +44278,7 @@ void Catch_180904b90(undefined8 param_1,longlong param_2)
   longlong calculatedOffset;
   longlong lVar4;
   ulonglong operationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   longlong lVar7;
   ulonglong securityCheckResult;
   
@@ -44303,18 +44303,18 @@ void Catch_180904b90(undefined8 param_1,longlong param_2)
     if (0x8000000000000000 < uVar1 - securityCheckResult) {
       securityCheckResult = uVar1;
     }
-    uVar6 = operationResult;
+    dataFlags = operationResult;
     if (operationResult != securityCheckResult) {
       do {
-        uVar6 = operationResult + 1;
+        dataFlags = operationResult + 1;
         FUN_180060bd0(lVar7 + (ulonglong)((uint)operationResult & 0x1f) * 8);
-        operationResult = uVar6;
-      } while (uVar6 != securityCheckResult);
-      *(ulonglong *)(param_2 + 0x20) = uVar6;
+        operationResult = dataFlags;
+      } while (dataFlags != securityCheckResult);
+      *(ulonglong *)(param_2 + 0x20) = dataFlags;
     }
     if (lVar7 == calculatedOffset) break;
     lVar7 = *(longlong *)(lVar7 + 0x100);
-    operationResult = uVar6;
+    operationResult = dataFlags;
   }
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
@@ -46520,7 +46520,7 @@ void Unwind_180905780(undefined8 param_1,uint *param_2)
 void Unwind_1809057b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   longlong *plVar4;
@@ -46585,8 +46585,8 @@ LAB_1801571ef:
       uVar11 = (longlong)(int)uVar9;
     } while ((ulonglong)(longlong)(int)uVar9 < (ulonglong)poperationResult[9]);
   }
-  pvalidationContext = poperationResult + 6;
-  FUN_18015b450(pvalidationContext);
+  validationContextPointer = poperationResult + 6;
+  FUN_18015b450(validationContextPointer);
   pcalculatedOffset = poperationResult + 0x2d;
   plVar4 = (longlong *)poperationResult[0x2e];
   plVar8 = (longlong *)*pcalculatedOffset;
@@ -46628,8 +46628,8 @@ LAB_1801571ef:
   }
   plStackX_10 = poperationResult + 0xc;
   _Mtx_destroy_in_situ();
-  plStackX_10 = pvalidationContext;
-  FUN_18015b450(pvalidationContext);
+  plStackX_10 = validationContextPointer;
+  FUN_18015b450(validationContextPointer);
   if ((1 < (ulonglong)poperationResult[8]) && (poperationResult[7] != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -47176,7 +47176,7 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
   ulonglong *pvalidationStatus;
   longlong lVar4;
   undefined8 *poperationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   pvalidationStatus = *(ulonglong **)(param_2 + 0x48);
   resourcePointer = (undefined8 *)pvalidationStatus[1];
@@ -47185,11 +47185,11 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
   }
   resourcePointer = (undefined8 *)*pvalidationStatus;
   if (resourcePointer != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
+    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (dataFlags != 0) {
+      lVar4 = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
         *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
         referenceCountPointer = (int *)(lVar4 + 0x18);
@@ -47200,8 +47200,8 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            resourcePointer,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                            resourcePointer,dataFlags,0xfffffffffffffffe);
       }
     }
     return;
@@ -47216,7 +47216,7 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
 void Unwind_180905950(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   longlong *plVar4;
@@ -47281,8 +47281,8 @@ LAB_1801571ef:
       uVar11 = (longlong)(int)uVar9;
     } while ((ulonglong)(longlong)(int)uVar9 < (ulonglong)poperationResult[9]);
   }
-  pvalidationContext = poperationResult + 6;
-  FUN_18015b450(pvalidationContext);
+  validationContextPointer = poperationResult + 6;
+  FUN_18015b450(validationContextPointer);
   pcalculatedOffset = poperationResult + 0x2d;
   plVar4 = (longlong *)poperationResult[0x2e];
   plVar8 = (longlong *)*pcalculatedOffset;
@@ -47324,8 +47324,8 @@ LAB_1801571ef:
   }
   plStackX_10 = poperationResult + 0xc;
   _Mtx_destroy_in_situ();
-  plStackX_10 = pvalidationContext;
-  FUN_18015b450(pvalidationContext);
+  plStackX_10 = validationContextPointer;
+  FUN_18015b450(validationContextPointer);
   if ((1 < (ulonglong)poperationResult[8]) && (poperationResult[7] != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -47451,11 +47451,11 @@ void Unwind_1809059d0(void)
 void Unwind_1809059f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -47465,11 +47465,11 @@ void Unwind_1809059f0(undefined8 param_1,longlong param_2)
 void Unwind_180905a10(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -47479,11 +47479,11 @@ void Unwind_180905a10(undefined8 param_1,longlong param_2)
 void Unwind_180905a30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xe0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xe0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -47670,11 +47670,11 @@ void Unwind_180905b40(undefined8 param_1,longlong param_2)
 void Unwind_180905b50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x58) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x58) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -47701,7 +47701,7 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   lVar5 = *(longlong *)(param_2 + 0x58);
   _Mtx_destroy_in_situ();
@@ -47733,11 +47733,11 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -47748,8 +47748,8 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -48065,7 +48065,7 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   lVar5 = *(longlong *)(param_2 + 0x40);
   _Mtx_destroy_in_situ();
@@ -48097,11 +48097,11 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -48112,8 +48112,8 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -48237,7 +48237,7 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong *plVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   plVar4 = *(longlong **)(param_2 + 0x48);
   pvalidationStatus = (undefined8 *)*plVar4;
@@ -48266,11 +48266,11 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -48281,8 +48281,8 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -48478,7 +48478,7 @@ void Catch_180905e00(undefined8 param_1,longlong param_2)
 void Unwind_180905e40(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   int *poperationResult;
   longlong *pcalculatedOffset;
   int iVar4;
@@ -48491,9 +48491,9 @@ void Unwind_180905e40(undefined8 param_1,longlong param_2)
   pcalculatedOffset = (longlong *)(param_2 + 0x28);
   FUN_180069530((ulonglong)(*(uint *)(param_2 + 0x30) & 0x1f) * 0x1a8 + *pcalculatedOffset);
   LOCK();
-  pvalidationContext = (longlong *)(*pcalculatedOffset + 0x3508);
-  lVar5 = *pvalidationContext;
-  *pvalidationContext = *pvalidationContext + 1;
+  validationContextPointer = (longlong *)(*pcalculatedOffset + 0x3508);
+  lVar5 = *validationContextPointer;
+  *validationContextPointer = *validationContextPointer + 1;
   UNLOCK();
   if (lVar5 == 0x1f) {
     *(undefined8 *)(*(longlong *)(param_2 + 0x38) + 8) = 0;
@@ -48509,12 +48509,12 @@ void Unwind_180905e40(undefined8 param_1,longlong param_2)
       do {
         *(longlong *)(lVar5 + 0x3538) = lVar8;
         *(undefined4 *)(lVar5 + 0x3530) = 1;
-        pvalidationContext = (longlong *)(lVar6 + 0x28);
+        validationContextPointer = (longlong *)(lVar6 + 0x28);
         LOCK();
-        lVar7 = *pvalidationContext;
+        lVar7 = *validationContextPointer;
         bVar9 = lVar8 == lVar7;
         if (bVar9) {
-          *pvalidationContext = lVar5;
+          *validationContextPointer = lVar5;
           lVar7 = lVar8;
         }
         UNLOCK();
@@ -48585,7 +48585,7 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   lVar5 = *(longlong *)(param_2 + 0x50);
   _Mtx_destroy_in_situ();
@@ -48617,11 +48617,11 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -48632,8 +48632,8 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -48691,7 +48691,7 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong *plVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   plVar4 = *(longlong **)(param_2 + 0x60);
   pvalidationStatus = (undefined8 *)*plVar4;
@@ -48720,11 +48720,11 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -48735,8 +48735,8 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -48900,7 +48900,7 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   lVar5 = *(longlong *)(param_2 + 0x70);
   _Mtx_destroy_in_situ();
@@ -48932,11 +48932,11 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -48947,8 +48947,8 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -48985,7 +48985,7 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
   undefined8 *pvalidationStatus;
   longlong *plVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   plVar4 = *(longlong **)(param_2 + 0x78);
   pvalidationStatus = (undefined8 *)*plVar4;
@@ -49014,11 +49014,11 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)pvalidationStatus - uVar6 >> 0x10) * 0x50;
+  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  if (dataFlags != 0) {
+    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
       *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
       *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
       referenceCountPointer = (int *)(lVar5 + 0x18);
@@ -49029,8 +49029,8 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          pvalidationStatus,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
     }
   }
   return;
@@ -49107,15 +49107,15 @@ void Unwind_180906060(undefined8 param_1,longlong param_2)
 void Unwind_180906070(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
   pdataContext = *(longlong **)(param_2 + 0x60);
   _Mtx_destroy_in_situ();
-  pvalidationContext = (longlong *)*pdataContext;
-  if (pvalidationContext != pdataContext) {
+  validationContextPointer = (longlong *)*pdataContext;
+  if (validationContextPointer != pdataContext) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationContext);
+    FUN_18064e900(validationContextPointer);
   }
   return;
 }
@@ -49125,15 +49125,15 @@ void Unwind_180906070(undefined8 param_1,longlong param_2)
 void Unwind_180906080(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x78);
   _Mtx_destroy_in_situ();
-  pvalidationContext = (longlong *)*pdataContext;
-  if (pvalidationContext != pdataContext) {
+  validationContextPointer = (longlong *)*pdataContext;
+  if (validationContextPointer != pdataContext) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationContext);
+    FUN_18064e900(validationContextPointer);
   }
   return;
 }
@@ -49143,15 +49143,15 @@ void Unwind_180906080(undefined8 param_1,longlong param_2)
 void Unwind_180906090(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 0xf0);
   _Mtx_destroy_in_situ();
-  pvalidationContext = (longlong *)*pdataContext;
-  if (pvalidationContext != pdataContext) {
+  validationContextPointer = (longlong *)*pdataContext;
+  if (validationContextPointer != pdataContext) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationContext);
+    FUN_18064e900(validationContextPointer);
   }
   return;
 }
@@ -49161,12 +49161,12 @@ void Unwind_180906090(undefined8 param_1,longlong param_2)
 void Unwind_1809060b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = (longlong *)**(longlong **)(param_2 + 0x68);
-  if (pvalidationContext != *(longlong **)(param_2 + 0x68)) {
+  validationContextPointer = (longlong *)**(longlong **)(param_2 + 0x68);
+  if (validationContextPointer != *(longlong **)(param_2 + 0x68)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationContext);
+    FUN_18064e900(validationContextPointer);
   }
   return;
 }
@@ -49185,12 +49185,12 @@ void Unwind_1809060c0(void)
 void Unwind_1809060d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = (longlong *)**(longlong **)(param_2 + 0x70);
-  if (pvalidationContext != *(longlong **)(param_2 + 0x70)) {
+  validationContextPointer = (longlong *)**(longlong **)(param_2 + 0x70);
+  if (validationContextPointer != *(longlong **)(param_2 + 0x70)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationContext);
+    FUN_18064e900(validationContextPointer);
   }
   return;
 }
@@ -49232,12 +49232,12 @@ void Unwind_180906100(undefined8 param_1,longlong param_2)
 void Unwind_180906110(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = (longlong *)**(longlong **)(param_2 + 0x40);
-  if (pvalidationContext != *(longlong **)(param_2 + 0x40)) {
+  validationContextPointer = (longlong *)**(longlong **)(param_2 + 0x40);
+  if (validationContextPointer != *(longlong **)(param_2 + 0x40)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationContext);
+    FUN_18064e900(validationContextPointer);
   }
   return;
 }
@@ -49256,12 +49256,12 @@ void Unwind_180906120(void)
 void Unwind_180906130(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = (longlong *)**(longlong **)(param_2 + 0x40);
-  if (pvalidationContext != *(longlong **)(param_2 + 0x40)) {
+  validationContextPointer = (longlong *)**(longlong **)(param_2 + 0x40);
+  if (validationContextPointer != *(longlong **)(param_2 + 0x40)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationContext);
+    FUN_18064e900(validationContextPointer);
   }
   return;
 }
@@ -49271,11 +49271,11 @@ void Unwind_180906130(undefined8 param_1,longlong param_2)
 void Unwind_180906140(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa8) + 0x1b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa8) + 0x1b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -49393,11 +49393,11 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
 void Unwind_1809061a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xb8) + 0x70);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xb8) + 0x70);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -49407,11 +49407,11 @@ void Unwind_1809061a0(undefined8 param_1,longlong param_2)
 void Unwind_1809061b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x70);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x70);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -49421,11 +49421,11 @@ void Unwind_1809061b0(undefined8 param_1,longlong param_2)
 void Unwind_1809061c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x70);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x70);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -49435,11 +49435,11 @@ void Unwind_1809061c0(undefined8 param_1,longlong param_2)
 void Unwind_1809061d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -49768,13 +49768,13 @@ void Unwind_180906480(undefined8 param_1,longlong param_2)
 void Unwind_180906490(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x58);
+  validationContextPointer = *(longlong **)(param_2 + 0x58);
   pdataContext = *(longlong **)(param_2 + 0x50);
   while( true ) {
-    if (pdataContext == pvalidationContext) {
+    if (pdataContext == validationContextPointer) {
       if (*(longlong *)(param_2 + 0x50) != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
@@ -49845,15 +49845,15 @@ void Unwind_1809064b0(undefined8 param_1,longlong param_2)
 void Unwind_1809064c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0x20);
-  pvalidationContext = (longlong *)pdataContext[1];
+  validationContextPointer = (longlong *)pdataContext[1];
   pcalculatedOffset = (longlong *)*pdataContext;
   while( true ) {
-    if (pcalculatedOffset == pvalidationContext) {
+    if (pcalculatedOffset == validationContextPointer) {
       if (*pdataContext != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
@@ -49888,15 +49888,15 @@ void Unwind_1809064c0(undefined8 param_1,longlong param_2)
 void Unwind_1809064d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x20);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x28);
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x28);
   pcalculatedOffset = (longlong *)*pdataContext;
   while( true ) {
-    if (pcalculatedOffset == pvalidationContext) {
+    if (pcalculatedOffset == validationContextPointer) {
       if (*pdataContext != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
@@ -49973,15 +49973,15 @@ void Unwind_1809064f0(undefined8 param_1,longlong param_2)
 void Unwind_180906500(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0x48);
-  pvalidationContext = (longlong *)pdataContext[1];
+  validationContextPointer = (longlong *)pdataContext[1];
   pcalculatedOffset = (longlong *)*pdataContext;
   while( true ) {
-    if (pcalculatedOffset == pvalidationContext) {
+    if (pcalculatedOffset == validationContextPointer) {
       if (*pdataContext != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
@@ -50016,15 +50016,15 @@ void Unwind_180906500(undefined8 param_1,longlong param_2)
 void Unwind_180906510(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0x40);
-  pvalidationContext = (longlong *)pdataContext[1];
+  validationContextPointer = (longlong *)pdataContext[1];
   pcalculatedOffset = (longlong *)*pdataContext;
   while( true ) {
-    if (pcalculatedOffset == pvalidationContext) {
+    if (pcalculatedOffset == validationContextPointer) {
       if (*pdataContext != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
@@ -50092,19 +50092,19 @@ void Unwind_180906540(undefined8 param_1,longlong param_2)
 void Unwind_180906550(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x58);
-  if (*pvalidationContext != 0) {
+  validationContextPointer = *(longlong **)(param_2 + 0x58);
+  if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *pvalidationContext = 0;
-  if (pvalidationContext[1] != 0) {
+  *validationContextPointer = 0;
+  if (validationContextPointer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  pvalidationContext[1] = 0;
+  validationContextPointer[1] = 0;
   return;
 }
 
@@ -50134,19 +50134,19 @@ void Unwind_180906560(undefined8 param_1,longlong param_2)
 void Unwind_180906570(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x50);
-  if (*pvalidationContext != 0) {
+  validationContextPointer = *(longlong **)(param_2 + 0x50);
+  if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *pvalidationContext = 0;
-  if (pvalidationContext[1] != 0) {
+  *validationContextPointer = 0;
+  if (validationContextPointer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  pvalidationContext[1] = 0;
+  validationContextPointer[1] = 0;
   return;
 }
 
@@ -50176,19 +50176,19 @@ void Unwind_180906580(undefined8 param_1,longlong param_2)
 void Unwind_180906590(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x60);
-  if (*pvalidationContext != 0) {
+  validationContextPointer = *(longlong **)(param_2 + 0x60);
+  if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *pvalidationContext = 0;
-  if (pvalidationContext[1] != 0) {
+  *validationContextPointer = 0;
+  if (validationContextPointer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  pvalidationContext[1] = 0;
+  validationContextPointer[1] = 0;
   return;
 }
 
@@ -50290,11 +50290,11 @@ void Unwind_180906630(undefined8 param_1,longlong param_2)
 void Unwind_180906640(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x118);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x118);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50304,11 +50304,11 @@ void Unwind_180906640(undefined8 param_1,longlong param_2)
 void Unwind_180906660(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x1b0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x1b0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50318,11 +50318,11 @@ void Unwind_180906660(undefined8 param_1,longlong param_2)
 void Unwind_180906680(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x1b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x1b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50332,11 +50332,11 @@ void Unwind_180906680(undefined8 param_1,longlong param_2)
 void Unwind_1809066a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x1c0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x1c0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50357,11 +50357,11 @@ void Unwind_1809066c0(undefined8 param_1,longlong param_2)
 void Unwind_1809066e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x210);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x210);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50394,11 +50394,11 @@ void Unwind_180906700(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180906720(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x268);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x268);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50491,11 +50491,11 @@ void Unwind_1809067c0(undefined8 param_1,longlong param_2)
 void Unwind_1809067d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x118);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x118);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50505,11 +50505,11 @@ void Unwind_1809067d0(undefined8 param_1,longlong param_2)
 void Unwind_1809067f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1b0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1b0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50519,11 +50519,11 @@ void Unwind_1809067f0(undefined8 param_1,longlong param_2)
 void Unwind_180906810(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50533,11 +50533,11 @@ void Unwind_180906810(undefined8 param_1,longlong param_2)
 void Unwind_180906830(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1c0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1c0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50558,11 +50558,11 @@ void Unwind_180906850(undefined8 param_1,longlong param_2)
 void Unwind_180906870(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x210);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x210);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50595,11 +50595,11 @@ void Unwind_180906890(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809068b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x268);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x268);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50743,7 +50743,7 @@ void Unwind_1809069c0(undefined8 param_1,longlong param_2)
 void Unwind_1809069d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
   if (*(longlong *)(param_2 + 0x68) != 0) {
     FUN_18022f390();
@@ -50755,9 +50755,9 @@ void Unwind_1809069d0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x70) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x70) + 0x38))();
   }
-  pvalidationContext = *(longlong **)(param_2 + 0x68);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(param_2 + 0x68);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50787,7 +50787,7 @@ void Unwind_1809069f0(undefined8 param_1,longlong param_2)
 void Unwind_180906a00(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
   if (*(longlong *)(param_2 + 0xa0) != 0) {
     FUN_18022f390();
@@ -50799,9 +50799,9 @@ void Unwind_180906a00(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0xa8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0xa8) + 0x38))();
   }
-  pvalidationContext = *(longlong **)(param_2 + 0xa0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(param_2 + 0xa0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50856,11 +50856,11 @@ void Unwind_180906a40(undefined8 param_1,longlong param_2)
 void Unwind_180906a50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x180) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x180) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50916,7 +50916,7 @@ void Unwind_180906a90(undefined8 param_1,longlong param_2)
 void Unwind_180906ac0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
   if (*(longlong *)(param_2 + 0x28) != 0) {
     FUN_18022f390();
@@ -50928,9 +50928,9 @@ void Unwind_180906ac0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x30) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x30) + 0x38))();
   }
-  pvalidationContext = *(longlong **)(param_2 + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(param_2 + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -50963,11 +50963,11 @@ void Unwind_180906ae0(undefined8 param_1,longlong param_2)
 void Unwind_180906af0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -51126,7 +51126,7 @@ void Unwind_180906b60(undefined8 param_1,longlong param_2)
 void Unwind_180906b70(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
   if (*(longlong *)(param_2 + 0x30) != 0) {
     FUN_18022f390();
@@ -51138,9 +51138,9 @@ void Unwind_180906b70(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x38) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x38) + 0x38))();
   }
-  pvalidationContext = *(longlong **)(param_2 + 0x30);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(param_2 + 0x30);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -51173,11 +51173,11 @@ void Unwind_180906b90(undefined8 param_1,longlong param_2)
 void Unwind_180906ba0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -51608,11 +51608,11 @@ void Unwind_180906ca0(undefined8 param_1,longlong param_2)
 void Unwind_180906cb0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  for (pvalidationContext = *(longlong **)(param_2 + 0x30); pvalidationContext != *(longlong **)(param_2 + 0x38);
-      pvalidationContext = pvalidationContext + 4) {
-    if (*pvalidationContext != 0) {
+  for (validationContextPointer = *(longlong **)(param_2 + 0x30); validationContextPointer != *(longlong **)(param_2 + 0x38);
+      validationContextPointer = validationContextPointer + 4) {
+    if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
@@ -51701,11 +51701,11 @@ void Unwind_180906cd0(undefined8 param_1,longlong param_2)
 void Unwind_180906ce0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  for (pvalidationContext = *(longlong **)(param_2 + 0xf8); pvalidationContext != *(longlong **)(param_2 + 0x100);
-      pvalidationContext = pvalidationContext + 4) {
-    if (*pvalidationContext != 0) {
+  for (validationContextPointer = *(longlong **)(param_2 + 0xf8); validationContextPointer != *(longlong **)(param_2 + 0x100);
+      validationContextPointer = validationContextPointer + 4) {
+    if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
@@ -51830,11 +51830,11 @@ void Unwind_180906d10(undefined8 param_1,longlong param_2)
 void Unwind_180906d20(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  for (pvalidationContext = *(longlong **)(param_2 + 0xd8); pvalidationContext != *(longlong **)(param_2 + 0xe0);
-      pvalidationContext = pvalidationContext + 4) {
-    if (*pvalidationContext != 0) {
+  for (validationContextPointer = *(longlong **)(param_2 + 0xd8); validationContextPointer != *(longlong **)(param_2 + 0xe0);
+      validationContextPointer = validationContextPointer + 4) {
+    if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
@@ -52165,11 +52165,11 @@ void Unwind_180906da0(undefined8 param_1,longlong param_2)
 void Unwind_180906db0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  for (pvalidationContext = *(longlong **)(param_2 + 0x30); pvalidationContext != *(longlong **)(param_2 + 0x38);
-      pvalidationContext = pvalidationContext + 4) {
-    if (*pvalidationContext != 0) {
+  for (validationContextPointer = *(longlong **)(param_2 + 0x30); validationContextPointer != *(longlong **)(param_2 + 0x38);
+      validationContextPointer = validationContextPointer + 4) {
+    if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
@@ -52222,17 +52222,17 @@ void Unwind_180906dc0(undefined8 param_1,longlong param_2)
 void Unwind_180906dd0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x40);
-  for (pdataContext = (longlong *)*pvalidationContext; pdataContext != (longlong *)pvalidationContext[1]; pdataContext = pdataContext + 4) {
+  validationContextPointer = *(longlong **)(param_2 + 0x40);
+  for (pdataContext = (longlong *)*validationContextPointer; pdataContext != (longlong *)validationContextPointer[1]; pdataContext = pdataContext + 4) {
     if (*pdataContext != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  if (*pvalidationContext == 0) {
+  if (*validationContextPointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -52244,17 +52244,17 @@ void Unwind_180906dd0(undefined8 param_1,longlong param_2)
 void Unwind_180906de0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x40);
-  for (pdataContext = (longlong *)*pvalidationContext; pdataContext != (longlong *)pvalidationContext[1]; pdataContext = pdataContext + 4) {
+  validationContextPointer = *(longlong **)(param_2 + 0x40);
+  for (pdataContext = (longlong *)*validationContextPointer; pdataContext != (longlong *)validationContextPointer[1]; pdataContext = pdataContext + 4) {
     if (*pdataContext != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  if (*pvalidationContext == 0) {
+  if (*validationContextPointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -52378,11 +52378,11 @@ void Unwind_180906e80(undefined8 param_1,longlong param_2)
 void Unwind_180906e90(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x178) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x178) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52414,11 +52414,11 @@ void Unwind_180906eb0(undefined8 param_1,longlong param_2)
 void Unwind_180906ec0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x178) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x178) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52428,11 +52428,11 @@ void Unwind_180906ec0(undefined8 param_1,longlong param_2)
 void Unwind_180906ed0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x178) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x178) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52442,17 +52442,17 @@ void Unwind_180906ed0(undefined8 param_1,longlong param_2)
 void Unwind_180906ee0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   
   dataContext = *(longlong *)(param_2 + 0x178);
-  pvalidationContext = *(longlong **)(dataContext + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
-  pvalidationContext = *(longlong **)(dataContext + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52476,11 +52476,11 @@ void Unwind_180906ef0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180906f00(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52490,11 +52490,11 @@ void Unwind_180906f00(undefined8 param_1,longlong param_2)
 void Unwind_180906f10(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52504,17 +52504,17 @@ void Unwind_180906f10(undefined8 param_1,longlong param_2)
 void Unwind_180906f20(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   
   dataContext = *(longlong *)(param_2 + 0x30);
-  pvalidationContext = *(longlong **)(dataContext + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
-  pvalidationContext = *(longlong **)(dataContext + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52524,11 +52524,11 @@ void Unwind_180906f20(undefined8 param_1,longlong param_2)
 void Unwind_180906f30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xb0) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xb0) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52538,11 +52538,11 @@ void Unwind_180906f30(undefined8 param_1,longlong param_2)
 void Unwind_180906f40(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xb0) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xb0) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52586,11 +52586,11 @@ void Unwind_180906f70(undefined8 param_1,longlong param_2)
 void Unwind_180906f80(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52632,17 +52632,17 @@ void Unwind_180906ff0(undefined8 param_1,longlong param_2)
 void Unwind_180907000(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   
   dataContext = *(longlong *)(param_2 + 0xd0);
-  pvalidationContext = *(longlong **)(dataContext + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
-  pvalidationContext = *(longlong **)(dataContext + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52871,11 +52871,11 @@ void Unwind_1809070a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809070b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x160) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x160) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52885,11 +52885,11 @@ void Unwind_1809070b0(undefined8 param_1,longlong param_2)
 void Unwind_1809070c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x160) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x160) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52910,11 +52910,11 @@ void Unwind_1809070d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809070e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52924,11 +52924,11 @@ void Unwind_1809070e0(undefined8 param_1,longlong param_2)
 void Unwind_1809070f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52938,17 +52938,17 @@ void Unwind_1809070f0(undefined8 param_1,longlong param_2)
 void Unwind_180907100(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   
   dataContext = *(longlong *)(param_2 + 0x28);
-  pvalidationContext = *(longlong **)(dataContext + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
-  pvalidationContext = *(longlong **)(dataContext + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52958,11 +52958,11 @@ void Unwind_180907100(undefined8 param_1,longlong param_2)
 void Unwind_180907110(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -52972,17 +52972,17 @@ void Unwind_180907110(undefined8 param_1,longlong param_2)
 void Unwind_180907120(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   
   dataContext = *(longlong *)(param_2 + 0x20);
-  pvalidationContext = *(longlong **)(dataContext + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
-  pvalidationContext = *(longlong **)(dataContext + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53422,17 +53422,17 @@ void Unwind_180907370(undefined8 param_1,longlong param_2)
 void Unwind_180907380(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   
   dataContext = *(longlong *)(param_2 + 0x78);
-  pvalidationContext = *(longlong **)(dataContext + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
-  pvalidationContext = *(longlong **)(dataContext + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(dataContext + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53442,11 +53442,11 @@ void Unwind_180907380(undefined8 param_1,longlong param_2)
 void Unwind_180907390(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x80) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x80) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53573,11 +53573,11 @@ void ValidationContextHandlerA4(undefined8 param_1,longlong param_2)
 void Unwind_1809073f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x78) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x78) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53810,11 +53810,11 @@ void Unwind_180907560(undefined8 param_1,longlong param_2)
 void Unwind_180907570(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53824,11 +53824,11 @@ void Unwind_180907570(undefined8 param_1,longlong param_2)
 void Unwind_180907580(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53851,11 +53851,11 @@ void Unwind_180907590(undefined8 param_1,longlong param_2)
 void Unwind_1809075a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53865,11 +53865,11 @@ void Unwind_1809075a0(undefined8 param_1,longlong param_2)
 void Unwind_1809075b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53879,11 +53879,11 @@ void Unwind_1809075b0(undefined8 param_1,longlong param_2)
 void Unwind_1809075c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x30);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x30);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53893,11 +53893,11 @@ void Unwind_1809075c0(undefined8 param_1,longlong param_2)
 void Unwind_1809075d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x38);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x38);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53907,11 +53907,11 @@ void Unwind_1809075d0(undefined8 param_1,longlong param_2)
 void Unwind_1809075e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x40);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x40);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53921,11 +53921,11 @@ void Unwind_1809075e0(undefined8 param_1,longlong param_2)
 void Unwind_1809075f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x48);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x48);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53935,11 +53935,11 @@ void Unwind_1809075f0(undefined8 param_1,longlong param_2)
 void Unwind_180907600(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x50);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x50);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53949,11 +53949,11 @@ void Unwind_180907600(undefined8 param_1,longlong param_2)
 void Unwind_180907610(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53963,11 +53963,11 @@ void Unwind_180907610(undefined8 param_1,longlong param_2)
 void Unwind_180907620(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x60);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x60);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -53977,11 +53977,11 @@ void Unwind_180907620(undefined8 param_1,longlong param_2)
 void Unwind_180907630(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x20) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x20) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -54136,11 +54136,11 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
 void Unwind_180907720(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xb0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xb0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -54188,11 +54188,11 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
 void Unwind_180907750(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xb0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xb0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -54693,15 +54693,15 @@ void Unwind_180907960(undefined8 param_1,longlong param_2)
 void Unwind_180907970(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = (longlong *)(param_2 + 0x50);
-  if (*pvalidationContext != -1) {
+  validationContextPointer = (longlong *)(param_2 + 0x50);
+  if (*validationContextPointer != -1) {
     LOCK();
     _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
     UNLOCK();
-    CloseHandle(*pvalidationContext);
-    *pvalidationContext = -1;
+    CloseHandle(*validationContextPointer);
+    *validationContextPointer = -1;
   }
   return;
 }
@@ -56330,13 +56330,13 @@ void Unwind_180908040(void)
 void Unwind_180908050(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = _DAT_180d49200;
+  validationContextPointer = _DAT_180d49200;
   FUN_18008d1f0(&DAT_180d49200,_DAT_180d49200[1],param_3,param_4,0xfffffffffffffffe);
-  _DAT_180d49200[1] = (longlong)pvalidationContext;
-  *_DAT_180d49200 = (longlong)pvalidationContext;
-  _DAT_180d49200[2] = (longlong)pvalidationContext;
+  _DAT_180d49200[1] = (longlong)validationContextPointer;
+  *_DAT_180d49200 = (longlong)validationContextPointer;
+  _DAT_180d49200[2] = (longlong)validationContextPointer;
   _DAT_180d49208 = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -56947,11 +56947,11 @@ void Unwind_180908520(undefined8 param_1,longlong param_2)
 void Unwind_180908550(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -57024,11 +57024,11 @@ void Unwind_180908600(undefined8 param_1,longlong param_2)
 void Unwind_180908630(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xd20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xd20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -57160,11 +57160,11 @@ void CleanupExceptionPointer(undefined8 exceptionContext,longlong unwindInfo)
 void Unwind_1809086b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1698);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1698);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -57174,11 +57174,11 @@ void Unwind_1809086b0(undefined8 param_1,longlong param_2)
 void Unwind_1809086d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1800);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1800);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -57197,11 +57197,11 @@ void Unwind_1809086f0(void)
 void Unwind_180908710(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1858);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1858);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -57211,13 +57211,13 @@ void Unwind_180908710(undefined8 param_1,longlong param_2)
 void Unwind_180908730(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x50) + 0x1868);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1870);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1870);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -57252,13 +57252,13 @@ void Unwind_180908760(undefined8 param_1,longlong param_2)
 void Unwind_180908770(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0x60);
-  pvalidationContext = (longlong *)pdataContext[1];
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = (longlong *)pdataContext[1];
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -57351,11 +57351,11 @@ void Unwind_1809087c0(undefined8 param_1,longlong param_2)
 void Unwind_1809087d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x168);
-  for (pdataContext = *(longlong **)(param_2 + 0x160); pdataContext != pvalidationContext; pdataContext = pdataContext + 1) {
+  validationContextPointer = *(longlong **)(param_2 + 0x168);
+  for (pdataContext = *(longlong **)(param_2 + 0x160); pdataContext != validationContextPointer; pdataContext = pdataContext + 1) {
     if ((longlong *)*pdataContext != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pdataContext + 0x38))();
     }
@@ -57508,11 +57508,11 @@ void Unwind_180908850(undefined8 param_1,longlong param_2)
 void Unwind_180908860(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x168);
-  for (pdataContext = *(longlong **)(param_2 + 0x160); pdataContext != pvalidationContext; pdataContext = pdataContext + 1) {
+  validationContextPointer = *(longlong **)(param_2 + 0x168);
+  for (pdataContext = *(longlong **)(param_2 + 0x160); pdataContext != validationContextPointer; pdataContext = pdataContext + 1) {
     if ((longlong *)*pdataContext != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pdataContext + 0x38))();
     }
@@ -57703,7 +57703,7 @@ void Unwind_180908950(undefined8 param_1,longlong param_2)
 void Unwind_180908980(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
   if (*(longlong *)(param_2 + 0x70) != 0) {
     FUN_18022f390();
@@ -57715,9 +57715,9 @@ void Unwind_180908980(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x78) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x78) + 0x38))();
   }
-  pvalidationContext = *(longlong **)(param_2 + 0x70);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(param_2 + 0x70);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -57750,11 +57750,11 @@ void Unwind_1809089a0(undefined8 param_1,longlong param_2)
 void Unwind_1809089b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x60);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x60);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -58350,11 +58350,11 @@ void Unwind_180908b40(undefined8 param_1,longlong param_2)
 void Unwind_180908b50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -58364,11 +58364,11 @@ void Unwind_180908b50(undefined8 param_1,longlong param_2)
 void Unwind_180908b60(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -58389,11 +58389,11 @@ void Unwind_180908b70(undefined8 param_1,longlong param_2)
 void Unwind_180908b80(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -58579,11 +58579,11 @@ void Unwind_180908c40(undefined8 param_1,longlong param_2)
 void Unwind_180908c50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x1b8) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x1b8) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -58612,11 +58612,11 @@ void Unwind_180908c60(undefined8 param_1,longlong param_2)
 void Unwind_180908c70(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x1b8) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x1b8) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59222,21 +59222,21 @@ undefined * Catch_180908f50(undefined8 param_1,longlong param_2)
 void Unwind_180908f90(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   char cVar2;
   
   cVar2 = _uncaught_exception_std__YA_NXZ();
   if (cVar2 == '\0') {
     __Osfx___basic_ostream_DU__char_traits_D_std___std__QEAAXXZ(*(longlong *)(param_2 + 0x38));
   }
-  pvalidationContext = *(longlong **)(param_2 + 0x38);
-  pvalidationContext = *(longlong **)((longlong)*(int *)(*pvalidationContext + 4) + 0x48 + (longlong)pvalidationContext);
-  if (pvalidationContext != (longlong *)0x0) {
-    if (*(code **)(*pvalidationContext + 0x10) != (code *)&UNK_18009ee10) {
-      (**(code **)(*pvalidationContext + 0x10))();
+  validationContextPointer = *(longlong **)(param_2 + 0x38);
+  validationContextPointer = *(longlong **)((longlong)*(int *)(*validationContextPointer + 4) + 0x48 + (longlong)validationContextPointer);
+  if (validationContextPointer != (longlong *)0x0) {
+    if (*(code **)(*validationContextPointer + 0x10) != (code *)&UNK_18009ee10) {
+      (**(code **)(*validationContextPointer + 0x10))();
       return;
     }
-    if (pvalidationContext[0x10] != 0) {
+    if (validationContextPointer[0x10] != 0) {
       _unlock_file();
       return;
     }
@@ -59249,17 +59249,17 @@ void Unwind_180908f90(undefined8 param_1,longlong param_2)
 void Unwind_180908fa0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)
+  validationContextPointer = *(longlong **)
             ((longlong)*(int *)(**(longlong **)(param_2 + 0x38) + 4) + 0x48 +
             (longlong)*(longlong **)(param_2 + 0x38));
-  if (pvalidationContext != (longlong *)0x0) {
-    if (*(code **)(*pvalidationContext + 0x10) != (code *)&UNK_18009ee10) {
-      (**(code **)(*pvalidationContext + 0x10))();
+  if (validationContextPointer != (longlong *)0x0) {
+    if (*(code **)(*validationContextPointer + 0x10) != (code *)&UNK_18009ee10) {
+      (**(code **)(*validationContextPointer + 0x10))();
       return;
     }
-    if (pvalidationContext[0x10] != 0) {
+    if (validationContextPointer[0x10] != 0) {
       _unlock_file();
       return;
     }
@@ -59272,17 +59272,17 @@ void Unwind_180908fa0(undefined8 param_1,longlong param_2)
 void Unwind_180908fb0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)
+  validationContextPointer = *(longlong **)
             ((longlong)*(int *)(*(longlong *)**(longlong **)(param_2 + 0x40) + 4) + 0x48 +
             **(longlong **)(param_2 + 0x40));
-  if (pvalidationContext != (longlong *)0x0) {
-    if (*(code **)(*pvalidationContext + 0x10) != (code *)&UNK_18009ee10) {
-      (**(code **)(*pvalidationContext + 0x10))();
+  if (validationContextPointer != (longlong *)0x0) {
+    if (*(code **)(*validationContextPointer + 0x10) != (code *)&UNK_18009ee10) {
+      (**(code **)(*validationContextPointer + 0x10))();
       return;
     }
-    if (pvalidationContext[0x10] != 0) {
+    if (validationContextPointer[0x10] != 0) {
       _unlock_file();
       return;
     }
@@ -59514,11 +59514,11 @@ void Unwind_1809090b0(undefined8 param_1,longlong param_2)
 void Unwind_1809090d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x121e0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x121e0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59528,11 +59528,11 @@ void Unwind_1809090d0(undefined8 param_1,longlong param_2)
 void Unwind_1809090f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c70);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c70);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59542,11 +59542,11 @@ void Unwind_1809090f0(undefined8 param_1,longlong param_2)
 void Unwind_180909110(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c78);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c78);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59556,11 +59556,11 @@ void Unwind_180909110(undefined8 param_1,longlong param_2)
 void Unwind_180909130(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c80);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c80);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59570,11 +59570,11 @@ void Unwind_180909130(undefined8 param_1,longlong param_2)
 void Unwind_180909150(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c88);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c88);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59584,11 +59584,11 @@ void Unwind_180909150(undefined8 param_1,longlong param_2)
 void Unwind_180909170(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c90);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c90);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59598,11 +59598,11 @@ void Unwind_180909170(undefined8 param_1,longlong param_2)
 void Unwind_180909190(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c98);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c98);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59612,11 +59612,11 @@ void Unwind_180909190(undefined8 param_1,longlong param_2)
 void Unwind_1809091b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1ca0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1ca0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59626,11 +59626,11 @@ void Unwind_1809091b0(undefined8 param_1,longlong param_2)
 void Unwind_1809091d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1ca8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1ca8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59640,11 +59640,11 @@ void Unwind_1809091d0(undefined8 param_1,longlong param_2)
 void Unwind_1809091f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cb0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cb0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59654,11 +59654,11 @@ void Unwind_1809091f0(undefined8 param_1,longlong param_2)
 void Unwind_180909210(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cb8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cb8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59668,11 +59668,11 @@ void Unwind_180909210(undefined8 param_1,longlong param_2)
 void Unwind_180909230(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cc0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cc0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59682,11 +59682,11 @@ void Unwind_180909230(undefined8 param_1,longlong param_2)
 void Unwind_180909250(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cc8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cc8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59696,11 +59696,11 @@ void Unwind_180909250(undefined8 param_1,longlong param_2)
 void Unwind_180909270(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cd0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cd0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59715,20 +59715,20 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
   longlong calculatedOffset;
   ulonglong *pmemoryBaseAddress;
   ulonglong operationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   pmemoryBaseAddress = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x1d20);
-  uVar6 = *(ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x1d28);
-  for (operationResult = *pmemoryBaseAddress; operationResult != uVar6; operationResult = operationResult + 0xd0) {
+  dataFlags = *(ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x1d28);
+  for (operationResult = *pmemoryBaseAddress; operationResult != dataFlags; operationResult = operationResult + 0xd0) {
     *(undefined **)(operationResult + 0x10) = &DefaultExceptionHandlerB;
   }
   resourcePointer = (undefined8 *)*pmemoryBaseAddress;
   if (resourcePointer != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      calculatedOffset = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
+    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (dataFlags != 0) {
+      calculatedOffset = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
         *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
@@ -59739,8 +59739,8 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            resourcePointer,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                            resourcePointer,dataFlags,0xfffffffffffffffe);
       }
     }
     return;
@@ -59753,11 +59753,11 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
 void Unwind_1809092b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1d50);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1d50);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -59772,20 +59772,20 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
   ulonglong *pvalidationStatus;
   longlong lVar4;
   ulonglong operationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   pvalidationStatus = *(ulonglong **)(param_2 + 0x48);
-  uVar6 = pvalidationStatus[1];
-  for (operationResult = *pvalidationStatus; operationResult != uVar6; operationResult = operationResult + 0xd0) {
+  dataFlags = pvalidationStatus[1];
+  for (operationResult = *pvalidationStatus; operationResult != dataFlags; operationResult = operationResult + 0xd0) {
     *(undefined **)(operationResult + 0x10) = &DefaultExceptionHandlerB;
   }
   resourcePointer = (undefined8 *)*pvalidationStatus;
   if (resourcePointer != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
+    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (dataFlags != 0) {
+      lVar4 = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
         *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
         referenceCountPointer = (int *)(lVar4 + 0x18);
@@ -59796,8 +59796,8 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            resourcePointer,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                            resourcePointer,dataFlags,0xfffffffffffffffe);
       }
     }
     return;
@@ -59815,20 +59815,20 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
   ulonglong *pvalidationStatus;
   longlong lVar4;
   ulonglong operationResult;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   pvalidationStatus = *(ulonglong **)(param_2 + 0x40);
-  uVar6 = pvalidationStatus[1];
-  for (operationResult = *pvalidationStatus; operationResult != uVar6; operationResult = operationResult + 0xd0) {
+  dataFlags = pvalidationStatus[1];
+  for (operationResult = *pvalidationStatus; operationResult != dataFlags; operationResult = operationResult + 0xd0) {
     *(undefined **)(operationResult + 0x10) = &DefaultExceptionHandlerB;
   }
   resourcePointer = (undefined8 *)*pvalidationStatus;
   if (resourcePointer != (undefined8 *)0x0) {
-    uVar6 = (ulonglong)resourcePointer & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)resourcePointer - uVar6 >> 0x10) * 0x50;
+    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    if (dataFlags != 0) {
+      lVar4 = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
         *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
         *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
         referenceCountPointer = (int *)(lVar4 + 0x18);
@@ -59839,8 +59839,8 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            resourcePointer,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+                            resourcePointer,dataFlags,0xfffffffffffffffe);
       }
     }
     return;
@@ -59880,7 +59880,7 @@ void Unwind_180909310(undefined8 param_1,longlong param_2)
 void Unwind_180909320(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   undefined8 *resourcePointer;
   undefined8 *presourceTable;
   longlong resourceTableBase;
@@ -59893,8 +59893,8 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
     (**(code **)(*(longlong *)presourceTable[0x1049] + 0x38))();
   }
   resourceIndex = 0;
-  pvalidationContext = presourceTable + 0x1012;
-  resourceTableBase = *pvalidationContext;
+  validationContextPointer = presourceTable + 0x1012;
+  resourceTableBase = *validationContextPointer;
   if (presourceTable[0x1013] - resourceTableBase >> 3 != 0) {
     do {
       resourcePointer = *(undefined8 **)(resourceIndex * 8 + resourceTableBase);
@@ -59923,10 +59923,10 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
         FUN_18064e900(resourcePointer);
       }
-      *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
-      uVar6 = (ulonglong)((int)uVar6 + 1);
-      lVar4 = *pvalidationContext;
-    } while (uVar6 < (ulonglong)(pvalidationStatus[0x1013] - lVar4 >> 3));
+      *(undefined8 *)(dataFlags * 8 + *validationContextPointer) = 0;
+      dataFlags = (ulonglong)((int)dataFlags + 1);
+      lVar4 = *validationContextPointer;
+    } while (dataFlags < (ulonglong)(pvalidationStatus[0x1013] - lVar4 >> 3));
   }
   pvalidationStatus[0x1013] = lVar4;
   resourcePointer = (undefined8 *)pvalidationStatus[0x1043];
@@ -59940,7 +59940,7 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
   FUN_180058370(pvalidationStatus + 0x1035,pvalidationStatus[0x1037]);
   FUN_180058370(pvalidationStatus + 0x102f,pvalidationStatus[0x1031]);
   FUN_1808fc8a8(pvalidationStatus + 0x101b,0x20,5,FUN_180046860);
-  if (*pvalidationContext != 0) {
+  if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -60028,24 +60028,24 @@ void Unwind_1809093a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809093b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   undefined8 *resourcePointer;
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   pvalidationStatus = *(undefined8 **)(param_2 + 0x90);
   *pvalidationStatus = &UNK_180a17010;
   if ((longlong *)pvalidationStatus[0x1049] != (longlong *)0x0) {
     (**(code **)(*(longlong *)pvalidationStatus[0x1049] + 0x38))();
   }
-  uVar6 = 0;
-  pvalidationContext = pvalidationStatus + 0x1012;
-  lVar4 = *pvalidationContext;
+  dataFlags = 0;
+  validationContextPointer = pvalidationStatus + 0x1012;
+  lVar4 = *validationContextPointer;
   if (pvalidationStatus[0x1013] - lVar4 >> 3 != 0) {
     do {
-      resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
+      resourcePointer = *(undefined8 **)(dataFlags * 8 + lVar4);
       if (resourcePointer != (undefined8 *)0x0) {
         if ((longlong *)resourcePointer[0xd] != (longlong *)0x0) {
           (**(code **)(*(longlong *)resourcePointer[0xd] + 0x10))();
@@ -60071,10 +60071,10 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
         FUN_18064e900(resourcePointer);
       }
-      *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
-      uVar6 = (ulonglong)((int)uVar6 + 1);
-      lVar4 = *pvalidationContext;
-    } while (uVar6 < (ulonglong)(pvalidationStatus[0x1013] - lVar4 >> 3));
+      *(undefined8 *)(dataFlags * 8 + *validationContextPointer) = 0;
+      dataFlags = (ulonglong)((int)dataFlags + 1);
+      lVar4 = *validationContextPointer;
+    } while (dataFlags < (ulonglong)(pvalidationStatus[0x1013] - lVar4 >> 3));
   }
   pvalidationStatus[0x1013] = lVar4;
   resourcePointer = (undefined8 *)pvalidationStatus[0x1043];
@@ -60088,7 +60088,7 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
   FUN_180058370(pvalidationStatus + 0x1035,pvalidationStatus[0x1037]);
   FUN_180058370(pvalidationStatus + 0x102f,pvalidationStatus[0x1031]);
   FUN_1808fc8a8(pvalidationStatus + 0x101b,0x20,5,FUN_180046860);
-  if (*pvalidationContext != 0) {
+  if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -60109,20 +60109,20 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
 void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   undefined8 *resourcePointer;
   longlong calculatedOffset;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   calculatedOffset = *(longlong *)(param_2 + 0x90);
-  uVar6 = 0;
-  pvalidationContext = (longlong *)(calculatedOffset + 0x8090);
-  lVar4 = *pvalidationContext;
+  dataFlags = 0;
+  validationContextPointer = (longlong *)(calculatedOffset + 0x8090);
+  lVar4 = *validationContextPointer;
   if (*(longlong *)(calculatedOffset + 0x8098) - lVar4 >> 3 != 0) {
     do {
-      resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
+      resourcePointer = *(undefined8 **)(dataFlags * 8 + lVar4);
       if (resourcePointer != (undefined8 *)0x0) {
         if ((longlong *)resourcePointer[0xd] != (longlong *)0x0) {
           (**(code **)(*(longlong *)resourcePointer[0xd] + 0x10))();
@@ -60148,10 +60148,10 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
         FUN_18064e900(resourcePointer);
       }
-      *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
-      uVar6 = (ulonglong)((int)uVar6 + 1);
-      lVar4 = *pvalidationContext;
-    } while (uVar6 < (ulonglong)(*(longlong *)(calculatedOffset + 0x8098) - lVar4 >> 3));
+      *(undefined8 *)(dataFlags * 8 + *validationContextPointer) = 0;
+      dataFlags = (ulonglong)((int)dataFlags + 1);
+      lVar4 = *validationContextPointer;
+    } while (dataFlags < (ulonglong)(*(longlong *)(calculatedOffset + 0x8098) - lVar4 >> 3));
   }
   *(longlong *)(calculatedOffset + 0x8098) = lVar4;
   resourcePointer = *(undefined8 **)(calculatedOffset + 0x8218);
@@ -60165,7 +60165,7 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   FUN_180058370(calculatedOffset + 0x81a8,*(undefined8 *)(calculatedOffset + 0x81b8));
   FUN_180058370(calculatedOffset + 0x8178,*(undefined8 *)(calculatedOffset + 0x8188));
   FUN_1808fc8a8(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
-  if (*pvalidationContext != 0) {
+  if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -60186,11 +60186,11 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809093e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x90) + 0x8248);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x90) + 0x8248);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -60241,11 +60241,11 @@ void Unwind_180909430(undefined8 param_1,longlong param_2)
 void Unwind_180909440(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xb8) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xb8) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -60255,11 +60255,11 @@ void Unwind_180909440(undefined8 param_1,longlong param_2)
 void Unwind_180909450(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xb8) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xb8) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -60490,15 +60490,15 @@ void Unwind_180909540(undefined8 param_1,longlong param_2)
 void Unwind_180909550(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = (longlong *)(param_2 + 0x1e8);
-  if (*pvalidationContext != -1) {
+  validationContextPointer = (longlong *)(param_2 + 0x1e8);
+  if (*validationContextPointer != -1) {
     LOCK();
     _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
     UNLOCK();
-    CloseHandle(*pvalidationContext);
-    *pvalidationContext = -1;
+    CloseHandle(*validationContextPointer);
+    *validationContextPointer = -1;
   }
   return;
 }
@@ -60871,24 +60871,24 @@ void Unwind_1809096a0(undefined8 param_1,longlong param_2)
 void Unwind_1809096b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   undefined8 *resourcePointer;
   undefined8 *pvalidationStatus;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   pvalidationStatus = *(undefined8 **)(param_2 + 0x40);
   *pvalidationStatus = &UNK_180a17010;
   if ((longlong *)pvalidationStatus[0x1049] != (longlong *)0x0) {
     (**(code **)(*(longlong *)pvalidationStatus[0x1049] + 0x38))();
   }
-  uVar6 = 0;
-  pvalidationContext = pvalidationStatus + 0x1012;
-  lVar4 = *pvalidationContext;
+  dataFlags = 0;
+  validationContextPointer = pvalidationStatus + 0x1012;
+  lVar4 = *validationContextPointer;
   if (pvalidationStatus[0x1013] - lVar4 >> 3 != 0) {
     do {
-      resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
+      resourcePointer = *(undefined8 **)(dataFlags * 8 + lVar4);
       if (resourcePointer != (undefined8 *)0x0) {
         if ((longlong *)resourcePointer[0xd] != (longlong *)0x0) {
           (**(code **)(*(longlong *)resourcePointer[0xd] + 0x10))();
@@ -60914,10 +60914,10 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
         FUN_18064e900(resourcePointer);
       }
-      *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
-      uVar6 = (ulonglong)((int)uVar6 + 1);
-      lVar4 = *pvalidationContext;
-    } while (uVar6 < (ulonglong)(pvalidationStatus[0x1013] - lVar4 >> 3));
+      *(undefined8 *)(dataFlags * 8 + *validationContextPointer) = 0;
+      dataFlags = (ulonglong)((int)dataFlags + 1);
+      lVar4 = *validationContextPointer;
+    } while (dataFlags < (ulonglong)(pvalidationStatus[0x1013] - lVar4 >> 3));
   }
   pvalidationStatus[0x1013] = lVar4;
   resourcePointer = (undefined8 *)pvalidationStatus[0x1043];
@@ -60931,7 +60931,7 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
   FUN_180058370(pvalidationStatus + 0x1035,pvalidationStatus[0x1037]);
   FUN_180058370(pvalidationStatus + 0x102f,pvalidationStatus[0x1031]);
   FUN_1808fc8a8(pvalidationStatus + 0x101b,0x20,5,FUN_180046860);
-  if (*pvalidationContext != 0) {
+  if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -60952,20 +60952,20 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
 void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   undefined8 *resourcePointer;
   longlong calculatedOffset;
   longlong lVar4;
   longlong lVar5;
-  ulonglong uVar6;
+  ulonglong dataFlags;
   
   calculatedOffset = *(longlong *)(param_2 + 0x40);
-  uVar6 = 0;
-  pvalidationContext = (longlong *)(calculatedOffset + 0x8090);
-  lVar4 = *pvalidationContext;
+  dataFlags = 0;
+  validationContextPointer = (longlong *)(calculatedOffset + 0x8090);
+  lVar4 = *validationContextPointer;
   if (*(longlong *)(calculatedOffset + 0x8098) - lVar4 >> 3 != 0) {
     do {
-      resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
+      resourcePointer = *(undefined8 **)(dataFlags * 8 + lVar4);
       if (resourcePointer != (undefined8 *)0x0) {
         if ((longlong *)resourcePointer[0xd] != (longlong *)0x0) {
           (**(code **)(*(longlong *)resourcePointer[0xd] + 0x10))();
@@ -60991,10 +60991,10 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
         FUN_18064e900(resourcePointer);
       }
-      *(undefined8 *)(uVar6 * 8 + *pvalidationContext) = 0;
-      uVar6 = (ulonglong)((int)uVar6 + 1);
-      lVar4 = *pvalidationContext;
-    } while (uVar6 < (ulonglong)(*(longlong *)(calculatedOffset + 0x8098) - lVar4 >> 3));
+      *(undefined8 *)(dataFlags * 8 + *validationContextPointer) = 0;
+      dataFlags = (ulonglong)((int)dataFlags + 1);
+      lVar4 = *validationContextPointer;
+    } while (dataFlags < (ulonglong)(*(longlong *)(calculatedOffset + 0x8098) - lVar4 >> 3));
   }
   *(longlong *)(calculatedOffset + 0x8098) = lVar4;
   resourcePointer = *(undefined8 **)(calculatedOffset + 0x8218);
@@ -61008,7 +61008,7 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   FUN_180058370(calculatedOffset + 0x81a8,*(undefined8 *)(calculatedOffset + 0x81b8));
   FUN_180058370(calculatedOffset + 0x8178,*(undefined8 *)(calculatedOffset + 0x8188));
   FUN_1808fc8a8(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
-  if (*pvalidationContext != 0) {
+  if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -61029,11 +61029,11 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809096e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x8248);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x8248);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -61734,11 +61734,11 @@ void Unwind_180909b20(undefined8 param_1,longlong param_2)
 void Unwind_180909b30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -61748,11 +61748,11 @@ void Unwind_180909b30(undefined8 param_1,longlong param_2)
 void Unwind_180909b40(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -61771,11 +61771,11 @@ void Unwind_180909b50(undefined8 param_1,longlong param_2)
 void Unwind_180909b60(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -61802,11 +61802,11 @@ void Unwind_180909b70(undefined8 param_1,longlong param_2)
 void Unwind_180909b80(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0xe8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0xe8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -61816,11 +61816,11 @@ void Unwind_180909b80(undefined8 param_1,longlong param_2)
 void Unwind_180909ba0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -62020,13 +62020,13 @@ void Unwind_180909ce0(undefined8 param_1,longlong param_2)
 void Unwind_180909d00(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x580);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x588);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x588);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -62052,13 +62052,13 @@ void Unwind_180909d20(undefined8 param_1,longlong param_2)
 void Unwind_180909d60(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x6c0);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x6c8);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x6c8);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -62075,13 +62075,13 @@ void Unwind_180909d60(undefined8 param_1,longlong param_2)
 void Unwind_180909d80(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x6e0);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x6e8);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x6e8);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -62098,13 +62098,13 @@ void Unwind_180909d80(undefined8 param_1,longlong param_2)
 void Unwind_180909da0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x700);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x708);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x708);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -62121,13 +62121,13 @@ void Unwind_180909da0(undefined8 param_1,longlong param_2)
 void Unwind_180909dc0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x720);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x728);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x728);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -62345,11 +62345,11 @@ void Unwind_180909fe0(undefined8 param_1,longlong param_2)
 void Unwind_18090a000(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xc58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xc58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -62368,13 +62368,13 @@ void Unwind_18090a020(undefined8 param_1,longlong param_2)
 void Unwind_18090a060(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0xd00);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd08);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd08);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -62585,13 +62585,13 @@ void Unwind_18090a1d0(undefined8 param_1,longlong param_2)
 void Unwind_18090a1f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x580);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x588);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x588);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -62617,13 +62617,13 @@ void Unwind_18090a210(undefined8 param_1,longlong param_2)
 void Unwind_18090a250(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x6c0);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x6c8);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x6c8);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -62640,13 +62640,13 @@ void Unwind_18090a250(undefined8 param_1,longlong param_2)
 void Unwind_18090a270(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x6e0);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x6e8);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x6e8);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -62663,13 +62663,13 @@ void Unwind_18090a270(undefined8 param_1,longlong param_2)
 void Unwind_18090a290(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x700);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x708);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x708);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -62686,13 +62686,13 @@ void Unwind_18090a290(undefined8 param_1,longlong param_2)
 void Unwind_18090a2b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x720);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x728);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x728);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -62910,11 +62910,11 @@ void Unwind_18090a4d0(undefined8 param_1,longlong param_2)
 void Unwind_18090a4f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0xc58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0xc58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -63444,11 +63444,11 @@ void Unwind_18090a7d0(undefined8 param_1,longlong param_2)
 void Unwind_18090a7e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -63458,11 +63458,11 @@ void Unwind_18090a7e0(undefined8 param_1,longlong param_2)
 void Unwind_18090a7f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x38);
-  for (pdataContext = *(longlong **)(param_2 + 0x30); pdataContext != pvalidationContext; pdataContext = pdataContext + 1) {
+  validationContextPointer = *(longlong **)(param_2 + 0x38);
+  for (pdataContext = *(longlong **)(param_2 + 0x30); pdataContext != validationContextPointer; pdataContext = pdataContext + 1) {
     if ((longlong *)*pdataContext != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pdataContext + 0x38))();
     }
@@ -63491,11 +63491,11 @@ void Unwind_18090a800(undefined8 param_1,longlong param_2)
 void Unwind_18090a830(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x38);
-  for (pdataContext = *(longlong **)(param_2 + 0x30); pdataContext != pvalidationContext; pdataContext = pdataContext + 1) {
+  validationContextPointer = *(longlong **)(param_2 + 0x38);
+  for (pdataContext = *(longlong **)(param_2 + 0x30); pdataContext != validationContextPointer; pdataContext = pdataContext + 1) {
     if ((longlong *)*pdataContext != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pdataContext + 0x38))();
     }
@@ -63524,11 +63524,11 @@ void Unwind_18090a840(undefined8 param_1,longlong param_2)
 void Unwind_18090a870(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -63610,13 +63610,13 @@ void Unwind_18090a890(undefined8 param_1,longlong param_2)
 void Unwind_18090a8a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x58) + 0x28);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x30);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x30);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -63633,13 +63633,13 @@ void Unwind_18090a8a0(undefined8 param_1,longlong param_2)
 void Unwind_18090a8b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 8);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x10);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x10);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -63656,13 +63656,13 @@ void Unwind_18090a8b0(undefined8 param_1,longlong param_2)
 void Unwind_18090a8c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x70) + 8);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x10);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x10);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -63679,13 +63679,13 @@ void Unwind_18090a8c0(undefined8 param_1,longlong param_2)
 void Unwind_18090a8d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0x88);
-  pvalidationContext = (longlong *)pdataContext[1];
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = (longlong *)pdataContext[1];
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -63702,11 +63702,11 @@ void Unwind_18090a8d0(undefined8 param_1,longlong param_2)
 void Unwind_18090a8e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -63716,11 +63716,11 @@ void Unwind_18090a8e0(undefined8 param_1,longlong param_2)
 void Unwind_18090a8f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -63730,13 +63730,13 @@ void Unwind_18090a8f0(undefined8 param_1,longlong param_2)
 void Unwind_18090a900(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0x50);
-  pvalidationContext = (longlong *)pdataContext[1];
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = (longlong *)pdataContext[1];
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -63775,13 +63775,13 @@ void Unwind_18090a910(undefined8 param_1,longlong param_2)
 void Unwind_18090a920(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 8);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x10);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x10);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -63988,11 +63988,11 @@ void Unwind_18090a970(undefined8 param_1,longlong param_2)
 void Unwind_18090a980(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xe8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xe8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64002,11 +64002,11 @@ void Unwind_18090a980(undefined8 param_1,longlong param_2)
 void Unwind_18090a9a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64149,11 +64149,11 @@ void Unwind_18090ab50(undefined8 param_1,longlong param_2)
 void Unwind_18090ab80(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64163,11 +64163,11 @@ void Unwind_18090ab80(undefined8 param_1,longlong param_2)
 void Unwind_18090ab90(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64177,11 +64177,11 @@ void Unwind_18090ab90(undefined8 param_1,longlong param_2)
 void Unwind_18090aba0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64191,11 +64191,11 @@ void Unwind_18090aba0(undefined8 param_1,longlong param_2)
 void Unwind_18090abb0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x30);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x30);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64205,11 +64205,11 @@ void Unwind_18090abb0(undefined8 param_1,longlong param_2)
 void Unwind_18090abc0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x38);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x38);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64219,11 +64219,11 @@ void Unwind_18090abc0(undefined8 param_1,longlong param_2)
 void Unwind_18090abd0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x40);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x40);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64233,11 +64233,11 @@ void Unwind_18090abd0(undefined8 param_1,longlong param_2)
 void Unwind_18090abe0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x48);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x48);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64247,11 +64247,11 @@ void Unwind_18090abe0(undefined8 param_1,longlong param_2)
 void Unwind_18090abf0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x50);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x50);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64261,11 +64261,11 @@ void Unwind_18090abf0(undefined8 param_1,longlong param_2)
 void Unwind_18090ac00(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64275,11 +64275,11 @@ void Unwind_18090ac00(undefined8 param_1,longlong param_2)
 void Unwind_18090ac10(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x60);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x60);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64289,11 +64289,11 @@ void Unwind_18090ac10(undefined8 param_1,longlong param_2)
 void Unwind_18090ac20(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x68);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x68);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64303,11 +64303,11 @@ void Unwind_18090ac20(undefined8 param_1,longlong param_2)
 void Unwind_18090ac30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x70);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x70);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64317,11 +64317,11 @@ void Unwind_18090ac30(undefined8 param_1,longlong param_2)
 void Unwind_18090ac40(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x78);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x78);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64331,11 +64331,11 @@ void Unwind_18090ac40(undefined8 param_1,longlong param_2)
 void Unwind_18090ac50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x80);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x80);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64345,11 +64345,11 @@ void Unwind_18090ac50(undefined8 param_1,longlong param_2)
 void Unwind_18090ac70(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x88);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x88);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64359,11 +64359,11 @@ void Unwind_18090ac70(undefined8 param_1,longlong param_2)
 void Unwind_18090ac90(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x90);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x90);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64373,11 +64373,11 @@ void Unwind_18090ac90(undefined8 param_1,longlong param_2)
 void Unwind_18090acb0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x98);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x98);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64387,11 +64387,11 @@ void Unwind_18090acb0(undefined8 param_1,longlong param_2)
 void Unwind_18090acd0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xa0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xa0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64401,11 +64401,11 @@ void Unwind_18090acd0(undefined8 param_1,longlong param_2)
 void Unwind_18090acf0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xa8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xa8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64415,11 +64415,11 @@ void Unwind_18090acf0(undefined8 param_1,longlong param_2)
 void Unwind_18090ad10(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xb8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xb8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64429,11 +64429,11 @@ void Unwind_18090ad10(undefined8 param_1,longlong param_2)
 void Unwind_18090ad30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xc0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xc0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64443,11 +64443,11 @@ void Unwind_18090ad30(undefined8 param_1,longlong param_2)
 void Unwind_18090ad50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 200);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 200);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64457,11 +64457,11 @@ void Unwind_18090ad50(undefined8 param_1,longlong param_2)
 void Unwind_18090ad70(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xd0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xd0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64471,11 +64471,11 @@ void Unwind_18090ad70(undefined8 param_1,longlong param_2)
 void Unwind_18090ad90(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xd8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xd8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64485,11 +64485,11 @@ void Unwind_18090ad90(undefined8 param_1,longlong param_2)
 void Unwind_18090adb0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xe0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xe0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64499,11 +64499,11 @@ void Unwind_18090adb0(undefined8 param_1,longlong param_2)
 void Unwind_18090add0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xe8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xe8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64540,11 +64540,11 @@ void Unwind_18090ae70(undefined8 param_1,longlong param_2)
 void Unwind_18090aeb0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x270);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x270);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64554,11 +64554,11 @@ void Unwind_18090aeb0(undefined8 param_1,longlong param_2)
 void Unwind_18090aed0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x278);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x278);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64568,11 +64568,11 @@ void Unwind_18090aed0(undefined8 param_1,longlong param_2)
 void Unwind_18090aef0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x280);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x280);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64582,11 +64582,11 @@ void Unwind_18090aef0(undefined8 param_1,longlong param_2)
 void Unwind_18090af10(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x288);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x288);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64596,11 +64596,11 @@ void Unwind_18090af10(undefined8 param_1,longlong param_2)
 void Unwind_18090af30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x290);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x290);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64610,11 +64610,11 @@ void Unwind_18090af30(undefined8 param_1,longlong param_2)
 void Unwind_18090af50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x298);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x298);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64662,11 +64662,11 @@ void Unwind_18090af70(undefined8 param_1,longlong param_2)
 void Unwind_18090af90(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2d0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2d0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64676,11 +64676,11 @@ void Unwind_18090af90(undefined8 param_1,longlong param_2)
 void Unwind_18090afb0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2e0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2e0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64690,11 +64690,11 @@ void Unwind_18090afb0(undefined8 param_1,longlong param_2)
 void Unwind_18090afd0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2e8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2e8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64704,11 +64704,11 @@ void Unwind_18090afd0(undefined8 param_1,longlong param_2)
 void Unwind_18090aff0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2f0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2f0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64718,11 +64718,11 @@ void Unwind_18090aff0(undefined8 param_1,longlong param_2)
 void Unwind_18090b010(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2f8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2f8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64732,11 +64732,11 @@ void Unwind_18090b010(undefined8 param_1,longlong param_2)
 void Unwind_18090b030(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x300);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x300);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64746,11 +64746,11 @@ void Unwind_18090b030(undefined8 param_1,longlong param_2)
 void Unwind_18090b050(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x308);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x308);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64760,11 +64760,11 @@ void Unwind_18090b050(undefined8 param_1,longlong param_2)
 void Unwind_18090b070(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x310);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x310);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64774,11 +64774,11 @@ void Unwind_18090b070(undefined8 param_1,longlong param_2)
 void Unwind_18090b090(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x318);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x318);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64788,11 +64788,11 @@ void Unwind_18090b090(undefined8 param_1,longlong param_2)
 void Unwind_18090b0b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 800);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 800);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64802,11 +64802,11 @@ void Unwind_18090b0b0(undefined8 param_1,longlong param_2)
 void Unwind_18090b0d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x328);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x328);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64816,11 +64816,11 @@ void Unwind_18090b0d0(undefined8 param_1,longlong param_2)
 void Unwind_18090b0f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x330);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x330);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64830,11 +64830,11 @@ void Unwind_18090b0f0(undefined8 param_1,longlong param_2)
 void Unwind_18090b110(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x338);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x338);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64844,11 +64844,11 @@ void Unwind_18090b110(undefined8 param_1,longlong param_2)
 void Unwind_18090b130(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x340);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x340);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64858,11 +64858,11 @@ void Unwind_18090b130(undefined8 param_1,longlong param_2)
 void Unwind_18090b150(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x348);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x348);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64872,11 +64872,11 @@ void Unwind_18090b150(undefined8 param_1,longlong param_2)
 void Unwind_18090b170(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x350);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x350);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64886,11 +64886,11 @@ void Unwind_18090b170(undefined8 param_1,longlong param_2)
 void Unwind_18090b190(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x358);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x358);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64900,11 +64900,11 @@ void Unwind_18090b190(undefined8 param_1,longlong param_2)
 void Unwind_18090b1b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x360);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x360);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64914,11 +64914,11 @@ void Unwind_18090b1b0(undefined8 param_1,longlong param_2)
 void Unwind_18090b1d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x368);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x368);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64928,11 +64928,11 @@ void Unwind_18090b1d0(undefined8 param_1,longlong param_2)
 void Unwind_18090b1f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x370);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x370);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64942,11 +64942,11 @@ void Unwind_18090b1f0(undefined8 param_1,longlong param_2)
 void Unwind_18090b210(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x378);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x378);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64956,11 +64956,11 @@ void Unwind_18090b210(undefined8 param_1,longlong param_2)
 void Unwind_18090b230(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x380);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x380);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64970,11 +64970,11 @@ void Unwind_18090b230(undefined8 param_1,longlong param_2)
 void Unwind_18090b250(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x388);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x388);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64984,11 +64984,11 @@ void Unwind_18090b250(undefined8 param_1,longlong param_2)
 void Unwind_18090b270(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x390);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x390);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -64998,11 +64998,11 @@ void Unwind_18090b270(undefined8 param_1,longlong param_2)
 void Unwind_18090b290(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x398);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x398);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65012,11 +65012,11 @@ void Unwind_18090b290(undefined8 param_1,longlong param_2)
 void Unwind_18090b2b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3a0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3a0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65026,11 +65026,11 @@ void Unwind_18090b2b0(undefined8 param_1,longlong param_2)
 void Unwind_18090b2d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3a8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3a8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65040,11 +65040,11 @@ void Unwind_18090b2d0(undefined8 param_1,longlong param_2)
 void Unwind_18090b2f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3b0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3b0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65054,11 +65054,11 @@ void Unwind_18090b2f0(undefined8 param_1,longlong param_2)
 void Unwind_18090b310(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65068,11 +65068,11 @@ void Unwind_18090b310(undefined8 param_1,longlong param_2)
 void Unwind_18090b330(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3c0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3c0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65082,11 +65082,11 @@ void Unwind_18090b330(undefined8 param_1,longlong param_2)
 void Unwind_18090b350(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3c8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3c8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65096,11 +65096,11 @@ void Unwind_18090b350(undefined8 param_1,longlong param_2)
 void Unwind_18090b370(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3d0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3d0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65110,11 +65110,11 @@ void Unwind_18090b370(undefined8 param_1,longlong param_2)
 void Unwind_18090b390(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3d8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3d8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65124,11 +65124,11 @@ void Unwind_18090b390(undefined8 param_1,longlong param_2)
 void Unwind_18090b3b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3e0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3e0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65138,11 +65138,11 @@ void Unwind_18090b3b0(undefined8 param_1,longlong param_2)
 void Unwind_18090b3d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 1000);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 1000);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65152,11 +65152,11 @@ void Unwind_18090b3d0(undefined8 param_1,longlong param_2)
 void Unwind_18090b3f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3f0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3f0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65166,11 +65166,11 @@ void Unwind_18090b3f0(undefined8 param_1,longlong param_2)
 void Unwind_18090b410(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3f8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3f8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65180,11 +65180,11 @@ void Unwind_18090b410(undefined8 param_1,longlong param_2)
 void Unwind_18090b430(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x400);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x400);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65194,11 +65194,11 @@ void Unwind_18090b430(undefined8 param_1,longlong param_2)
 void Unwind_18090b450(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x408);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x408);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65208,11 +65208,11 @@ void Unwind_18090b450(undefined8 param_1,longlong param_2)
 void Unwind_18090b470(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x410);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x410);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65401,11 +65401,11 @@ void Unwind_18090b500(undefined8 param_1,longlong param_2)
 void Unwind_18090b510(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x68);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x68);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65415,11 +65415,11 @@ void Unwind_18090b510(undefined8 param_1,longlong param_2)
 void Unwind_18090b520(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x78);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x78);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65429,11 +65429,11 @@ void Unwind_18090b520(undefined8 param_1,longlong param_2)
 void Unwind_18090b530(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x80);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x80);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65443,11 +65443,11 @@ void Unwind_18090b530(undefined8 param_1,longlong param_2)
 void Unwind_18090b550(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x88);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x88);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65457,11 +65457,11 @@ void Unwind_18090b550(undefined8 param_1,longlong param_2)
 void Unwind_18090b570(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x90);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x90);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65471,11 +65471,11 @@ void Unwind_18090b570(undefined8 param_1,longlong param_2)
 void Unwind_18090b590(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xa0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xa0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65485,11 +65485,11 @@ void Unwind_18090b590(undefined8 param_1,longlong param_2)
 void Unwind_18090b5b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xa8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xa8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65499,11 +65499,11 @@ void Unwind_18090b5b0(undefined8 param_1,longlong param_2)
 void Unwind_18090b5d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xb8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xb8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65513,11 +65513,11 @@ void Unwind_18090b5d0(undefined8 param_1,longlong param_2)
 void Unwind_18090b5f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xc0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xc0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65527,11 +65527,11 @@ void Unwind_18090b5f0(undefined8 param_1,longlong param_2)
 void Unwind_18090b610(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 200);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 200);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65541,11 +65541,11 @@ void Unwind_18090b610(undefined8 param_1,longlong param_2)
 void Unwind_18090b630(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xe8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xe8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65582,11 +65582,11 @@ void Unwind_18090b6d0(undefined8 param_1,longlong param_2)
 void Unwind_18090b710(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x270);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x270);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65596,11 +65596,11 @@ void Unwind_18090b710(undefined8 param_1,longlong param_2)
 void Unwind_18090b730(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x278);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x278);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65610,11 +65610,11 @@ void Unwind_18090b730(undefined8 param_1,longlong param_2)
 void Unwind_18090b750(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x280);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x280);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65624,11 +65624,11 @@ void Unwind_18090b750(undefined8 param_1,longlong param_2)
 void Unwind_18090b770(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x288);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x288);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65638,11 +65638,11 @@ void Unwind_18090b770(undefined8 param_1,longlong param_2)
 void Unwind_18090b790(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x290);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x290);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65652,11 +65652,11 @@ void Unwind_18090b790(undefined8 param_1,longlong param_2)
 void Unwind_18090b7b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x298);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x298);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65704,11 +65704,11 @@ void Unwind_18090b7d0(undefined8 param_1,longlong param_2)
 void Unwind_18090b7f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2d0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2d0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65718,11 +65718,11 @@ void Unwind_18090b7f0(undefined8 param_1,longlong param_2)
 void Unwind_18090b810(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2e0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2e0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65732,11 +65732,11 @@ void Unwind_18090b810(undefined8 param_1,longlong param_2)
 void Unwind_18090b830(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2e8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2e8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65746,11 +65746,11 @@ void Unwind_18090b830(undefined8 param_1,longlong param_2)
 void Unwind_18090b850(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2f0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2f0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65760,11 +65760,11 @@ void Unwind_18090b850(undefined8 param_1,longlong param_2)
 void Unwind_18090b870(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2f8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2f8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65774,11 +65774,11 @@ void Unwind_18090b870(undefined8 param_1,longlong param_2)
 void Unwind_18090b890(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x300);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x300);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65788,11 +65788,11 @@ void Unwind_18090b890(undefined8 param_1,longlong param_2)
 void Unwind_18090b8b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x308);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x308);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65802,11 +65802,11 @@ void Unwind_18090b8b0(undefined8 param_1,longlong param_2)
 void Unwind_18090b8d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x310);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x310);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65816,11 +65816,11 @@ void Unwind_18090b8d0(undefined8 param_1,longlong param_2)
 void Unwind_18090b8f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x318);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x318);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65830,11 +65830,11 @@ void Unwind_18090b8f0(undefined8 param_1,longlong param_2)
 void Unwind_18090b910(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 800);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 800);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65844,11 +65844,11 @@ void Unwind_18090b910(undefined8 param_1,longlong param_2)
 void Unwind_18090b930(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x328);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x328);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65858,11 +65858,11 @@ void Unwind_18090b930(undefined8 param_1,longlong param_2)
 void Unwind_18090b950(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x330);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x330);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65872,11 +65872,11 @@ void Unwind_18090b950(undefined8 param_1,longlong param_2)
 void Unwind_18090b970(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x338);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x338);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65886,11 +65886,11 @@ void Unwind_18090b970(undefined8 param_1,longlong param_2)
 void Unwind_18090b990(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x340);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x340);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65900,11 +65900,11 @@ void Unwind_18090b990(undefined8 param_1,longlong param_2)
 void Unwind_18090b9b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x348);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x348);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65914,11 +65914,11 @@ void Unwind_18090b9b0(undefined8 param_1,longlong param_2)
 void Unwind_18090b9d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x350);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x350);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65928,11 +65928,11 @@ void Unwind_18090b9d0(undefined8 param_1,longlong param_2)
 void Unwind_18090b9f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x358);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x358);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65942,11 +65942,11 @@ void Unwind_18090b9f0(undefined8 param_1,longlong param_2)
 void Unwind_18090ba10(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x360);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x360);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65956,11 +65956,11 @@ void Unwind_18090ba10(undefined8 param_1,longlong param_2)
 void Unwind_18090ba30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x368);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x368);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65970,11 +65970,11 @@ void Unwind_18090ba30(undefined8 param_1,longlong param_2)
 void Unwind_18090ba50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x370);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x370);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65984,11 +65984,11 @@ void Unwind_18090ba50(undefined8 param_1,longlong param_2)
 void Unwind_18090ba70(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x378);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x378);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -65998,11 +65998,11 @@ void Unwind_18090ba70(undefined8 param_1,longlong param_2)
 void Unwind_18090ba90(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x380);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x380);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66012,11 +66012,11 @@ void Unwind_18090ba90(undefined8 param_1,longlong param_2)
 void Unwind_18090bab0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x388);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x388);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66026,11 +66026,11 @@ void Unwind_18090bab0(undefined8 param_1,longlong param_2)
 void Unwind_18090bad0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x390);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x390);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66040,11 +66040,11 @@ void Unwind_18090bad0(undefined8 param_1,longlong param_2)
 void Unwind_18090baf0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x398);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x398);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66054,11 +66054,11 @@ void Unwind_18090baf0(undefined8 param_1,longlong param_2)
 void Unwind_18090bb10(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3a0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3a0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66068,11 +66068,11 @@ void Unwind_18090bb10(undefined8 param_1,longlong param_2)
 void Unwind_18090bb30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3a8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3a8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66082,11 +66082,11 @@ void Unwind_18090bb30(undefined8 param_1,longlong param_2)
 void Unwind_18090bb50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3b0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3b0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66096,11 +66096,11 @@ void Unwind_18090bb50(undefined8 param_1,longlong param_2)
 void Unwind_18090bb70(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66110,11 +66110,11 @@ void Unwind_18090bb70(undefined8 param_1,longlong param_2)
 void Unwind_18090bb90(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3c0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3c0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66124,11 +66124,11 @@ void Unwind_18090bb90(undefined8 param_1,longlong param_2)
 void Unwind_18090bbb0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3c8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3c8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66138,11 +66138,11 @@ void Unwind_18090bbb0(undefined8 param_1,longlong param_2)
 void Unwind_18090bbd0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3d0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3d0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66152,11 +66152,11 @@ void Unwind_18090bbd0(undefined8 param_1,longlong param_2)
 void Unwind_18090bbf0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3d8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3d8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66166,11 +66166,11 @@ void Unwind_18090bbf0(undefined8 param_1,longlong param_2)
 void Unwind_18090bc10(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3e0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3e0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66180,11 +66180,11 @@ void Unwind_18090bc10(undefined8 param_1,longlong param_2)
 void Unwind_18090bc30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 1000);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 1000);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66194,11 +66194,11 @@ void Unwind_18090bc30(undefined8 param_1,longlong param_2)
 void Unwind_18090bc50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3f0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3f0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66208,11 +66208,11 @@ void Unwind_18090bc50(undefined8 param_1,longlong param_2)
 void Unwind_18090bc70(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3f8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3f8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66222,11 +66222,11 @@ void Unwind_18090bc70(undefined8 param_1,longlong param_2)
 void Unwind_18090bc90(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x400);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x400);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66236,11 +66236,11 @@ void Unwind_18090bc90(undefined8 param_1,longlong param_2)
 void Unwind_18090bcb0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x408);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x408);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66250,11 +66250,11 @@ void Unwind_18090bcb0(undefined8 param_1,longlong param_2)
 void Unwind_18090bcd0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x410);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x410);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66406,7 +66406,7 @@ void Unwind_18090bd70(undefined8 param_1,longlong param_2)
 void Unwind_18090bd80(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
   if (*(longlong *)(param_2 + 0x58) != 0) {
     FUN_18022f390();
@@ -66418,9 +66418,9 @@ void Unwind_18090bd80(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x60) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x60) + 0x38))();
   }
-  pvalidationContext = *(longlong **)(param_2 + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(param_2 + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66465,11 +66465,11 @@ void Unwind_18090bdd0(undefined8 param_1,longlong param_2)
 void Unwind_18090bde0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xc0) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xc0) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66479,7 +66479,7 @@ void Unwind_18090bde0(undefined8 param_1,longlong param_2)
 void Unwind_18090bdf0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
   if (*(longlong *)(param_2 + 0x60) != 0) {
     FUN_18022f390();
@@ -66491,9 +66491,9 @@ void Unwind_18090bdf0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x68) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x68) + 0x38))();
   }
-  pvalidationContext = *(longlong **)(param_2 + 0x60);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(param_2 + 0x60);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66607,11 +66607,11 @@ void Unwind_18090bf40(undefined8 param_1,longlong param_2)
 void Unwind_18090bf50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66621,11 +66621,11 @@ void Unwind_18090bf50(undefined8 param_1,longlong param_2)
 void Unwind_18090bf60(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66635,7 +66635,7 @@ void Unwind_18090bf60(undefined8 param_1,longlong param_2)
 void Unwind_18090bf70(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
   if (*(longlong *)(param_2 + 0x38) != 0) {
     FUN_18022f390();
@@ -66647,9 +66647,9 @@ void Unwind_18090bf70(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x40) + 0x38))();
   }
-  pvalidationContext = *(longlong **)(param_2 + 0x38);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(param_2 + 0x38);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66682,11 +66682,11 @@ void Unwind_18090bf90(undefined8 param_1,longlong param_2)
 void Unwind_18090bfa0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x90) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x90) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -66741,13 +66741,13 @@ void Unwind_18090bfd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090bfe0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x20) + 0x80);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x88);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x88);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -66815,13 +66815,13 @@ void Unwind_18090c050(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090c060(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0x28);
-  pvalidationContext = (longlong *)pdataContext[1];
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = (longlong *)pdataContext[1];
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -66923,11 +66923,11 @@ void Unwind_18090c0f0(undefined8 param_1,longlong param_2)
 void Unwind_18090c100(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x58);
-  for (pdataContext = *(longlong **)(param_2 + 0x50); pdataContext != pvalidationContext; pdataContext = pdataContext + 1) {
+  validationContextPointer = *(longlong **)(param_2 + 0x58);
+  for (pdataContext = *(longlong **)(param_2 + 0x50); pdataContext != validationContextPointer; pdataContext = pdataContext + 1) {
     if ((longlong *)*pdataContext != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pdataContext + 0x38))();
     }
@@ -66962,11 +66962,11 @@ void Unwind_18090c120(undefined8 param_1,longlong param_2)
 void Unwind_18090c130(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x58);
-  for (pdataContext = *(longlong **)(param_2 + 0x50); pdataContext != pvalidationContext; pdataContext = pdataContext + 1) {
+  validationContextPointer = *(longlong **)(param_2 + 0x58);
+  for (pdataContext = *(longlong **)(param_2 + 0x50); pdataContext != validationContextPointer; pdataContext = pdataContext + 1) {
     if ((longlong *)*pdataContext != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pdataContext + 0x38))();
     }
@@ -67041,11 +67041,11 @@ void Unwind_18090c150(undefined8 param_1,longlong param_2)
 void Unwind_18090c160(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -67077,11 +67077,11 @@ void Unwind_18090c170(undefined8 param_1,longlong param_2)
 void Unwind_18090c180(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -67091,11 +67091,11 @@ void Unwind_18090c180(undefined8 param_1,longlong param_2)
 void Unwind_18090c190(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x30);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x30);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -67105,11 +67105,11 @@ void Unwind_18090c190(undefined8 param_1,longlong param_2)
 void Unwind_18090c1a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -67525,11 +67525,11 @@ void Unwind_18090c380(undefined8 param_1,longlong param_2)
 void Unwind_18090c390(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x1b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x1b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -67575,11 +67575,11 @@ void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
 void Unwind_18090c3d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x80) + 0x70);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x80) + 0x70);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -67634,15 +67634,15 @@ void Unwind_18090c400(undefined8 param_1,longlong param_2)
 void Unwind_18090c420(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
   if (*(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x1b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x1b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -67889,11 +67889,11 @@ void ValidateAndExecuteContextCallbackD0(undefined8 param_1,longlong param_2)
 void Unwind_18090c500(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x118) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x118) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -67922,11 +67922,11 @@ void Unwind_18090c510(undefined8 param_1,longlong param_2)
 void Unwind_18090c520(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x118) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x118) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -70236,11 +70236,11 @@ void Unwind_18090cea0(undefined8 param_1,longlong param_2)
 void Unwind_18090ceb0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x38) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x38) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -70269,11 +70269,11 @@ void Unwind_18090cec0(undefined8 param_1,longlong param_2)
 void Unwind_18090ced0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x38) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x38) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73375,11 +73375,11 @@ void Unwind_18090d540(undefined8 param_1,longlong param_2)
 void Unwind_18090d550(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x130) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x130) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73408,11 +73408,11 @@ void Unwind_18090d560(undefined8 param_1,longlong param_2)
 void Unwind_18090d570(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x130) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x130) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73579,13 +73579,13 @@ void Unwind_18090d640(undefined8 param_1,longlong param_2)
 void Unwind_18090d650(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x40);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x48);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x48);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -73658,11 +73658,11 @@ void Unwind_18090d6e0(void)
 void Unwind_18090d700(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x13b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x13b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73672,11 +73672,11 @@ void Unwind_18090d700(undefined8 param_1,longlong param_2)
 void Unwind_18090d720(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x13d0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x13d0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73686,11 +73686,11 @@ void Unwind_18090d720(undefined8 param_1,longlong param_2)
 void Unwind_18090d740(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x13e8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x13e8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73700,11 +73700,11 @@ void Unwind_18090d740(undefined8 param_1,longlong param_2)
 void Unwind_18090d760(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1400);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1400);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73714,11 +73714,11 @@ void Unwind_18090d760(undefined8 param_1,longlong param_2)
 void Unwind_18090d780(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1418);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1418);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73728,11 +73728,11 @@ void Unwind_18090d780(undefined8 param_1,longlong param_2)
 void Unwind_18090d7a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1430);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1430);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73742,11 +73742,11 @@ void Unwind_18090d7a0(undefined8 param_1,longlong param_2)
 void Unwind_18090d7c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1448);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1448);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73807,11 +73807,11 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
 void Unwind_18090d800(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14d8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14d8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73821,11 +73821,11 @@ void Unwind_18090d800(undefined8 param_1,longlong param_2)
 void Unwind_18090d820(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14e0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14e0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73835,11 +73835,11 @@ void Unwind_18090d820(undefined8 param_1,longlong param_2)
 void Unwind_18090d840(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14e8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14e8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73849,11 +73849,11 @@ void Unwind_18090d840(undefined8 param_1,longlong param_2)
 void Unwind_18090d860(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14f0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14f0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73863,11 +73863,11 @@ void Unwind_18090d860(undefined8 param_1,longlong param_2)
 void Unwind_18090d880(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14f8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14f8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73877,11 +73877,11 @@ void Unwind_18090d880(undefined8 param_1,longlong param_2)
 void Unwind_18090d8a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1540);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1540);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73891,11 +73891,11 @@ void Unwind_18090d8a0(undefined8 param_1,longlong param_2)
 void Unwind_18090d8c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1548);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1548);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73905,11 +73905,11 @@ void Unwind_18090d8c0(undefined8 param_1,longlong param_2)
 void Unwind_18090d8e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1550);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1550);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73946,11 +73946,11 @@ void Unwind_18090d980(undefined8 param_1,longlong param_2)
 void Unwind_18090d9c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1588);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1588);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -73996,11 +73996,11 @@ void Unwind_18090da60(undefined8 param_1,longlong param_2)
 void Unwind_18090da80(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3cb0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3cb0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74127,11 +74127,11 @@ void Unwind_18090dc60(undefined8 param_1,longlong param_2)
 void Unwind_18090dc90(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x48) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x48) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74280,11 +74280,11 @@ void Unwind_18090de20(undefined8 param_1,longlong param_2)
 void Unwind_18090de30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74330,13 +74330,13 @@ void Unwind_18090de40(undefined8 param_1,longlong param_2)
 void Unwind_18090de50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0xe0) + 0x40);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x48);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x48);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -74353,11 +74353,11 @@ void Unwind_18090de50(undefined8 param_1,longlong param_2)
 void Unwind_18090de60(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x60);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x60);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74432,11 +74432,11 @@ void Unwind_18090df00(void)
 void Unwind_18090df20(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x13b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x13b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74446,11 +74446,11 @@ void Unwind_18090df20(undefined8 param_1,longlong param_2)
 void Unwind_18090df40(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x13d0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x13d0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74460,11 +74460,11 @@ void Unwind_18090df40(undefined8 param_1,longlong param_2)
 void Unwind_18090df60(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x13e8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x13e8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74474,11 +74474,11 @@ void Unwind_18090df60(undefined8 param_1,longlong param_2)
 void Unwind_18090df80(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1400);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1400);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74488,11 +74488,11 @@ void Unwind_18090df80(undefined8 param_1,longlong param_2)
 void Unwind_18090dfa0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1418);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1418);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74502,11 +74502,11 @@ void Unwind_18090dfa0(undefined8 param_1,longlong param_2)
 void Unwind_18090dfc0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1430);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1430);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74516,11 +74516,11 @@ void Unwind_18090dfc0(undefined8 param_1,longlong param_2)
 void Unwind_18090dfe0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1448);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1448);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74581,11 +74581,11 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
 void Unwind_18090e020(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14d8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14d8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74595,11 +74595,11 @@ void Unwind_18090e020(undefined8 param_1,longlong param_2)
 void Unwind_18090e040(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14e0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14e0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74609,11 +74609,11 @@ void Unwind_18090e040(undefined8 param_1,longlong param_2)
 void Unwind_18090e060(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14e8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14e8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74623,11 +74623,11 @@ void Unwind_18090e060(undefined8 param_1,longlong param_2)
 void Unwind_18090e080(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14f0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14f0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74637,11 +74637,11 @@ void Unwind_18090e080(undefined8 param_1,longlong param_2)
 void Unwind_18090e0a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14f8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14f8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74651,11 +74651,11 @@ void Unwind_18090e0a0(undefined8 param_1,longlong param_2)
 void Unwind_18090e0c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1540);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1540);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74665,11 +74665,11 @@ void Unwind_18090e0c0(undefined8 param_1,longlong param_2)
 void Unwind_18090e0e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1548);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1548);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74679,11 +74679,11 @@ void Unwind_18090e0e0(undefined8 param_1,longlong param_2)
 void Unwind_18090e100(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1550);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1550);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74720,11 +74720,11 @@ void Unwind_18090e1a0(undefined8 param_1,longlong param_2)
 void Unwind_18090e1e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1588);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1588);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74770,11 +74770,11 @@ void Unwind_18090e280(undefined8 param_1,longlong param_2)
 void Unwind_18090e2a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x3cb0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x3cb0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -74928,13 +74928,13 @@ void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
 void Unwind_18090e3e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0xe8);
-  pvalidationContext = (longlong *)pdataContext[1];
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = (longlong *)pdataContext[1];
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -75023,11 +75023,11 @@ void Unwind_18090e4e0(undefined8 param_1,longlong param_2)
 void Unwind_18090e520(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0xdf8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0xdf8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -75037,11 +75037,11 @@ void Unwind_18090e520(undefined8 param_1,longlong param_2)
 void Unwind_18090e540(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0xe00);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0xe00);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -75060,11 +75060,11 @@ void Unwind_18090e560(undefined8 param_1,longlong param_2)
 void Unwind_18090e5a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0xe18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0xe18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -75101,11 +75101,11 @@ void Unwind_18090e620(undefined8 param_1,longlong param_2)
 void Unwind_18090e650(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x30) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x30) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -75115,11 +75115,11 @@ void Unwind_18090e650(undefined8 param_1,longlong param_2)
 void Unwind_18090e660(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xe8) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xe8) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -75904,11 +75904,11 @@ void Unwind_18090e930(undefined8 param_1,longlong param_2)
 void Unwind_18090e940(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -75937,11 +75937,11 @@ void Unwind_18090e950(undefined8 param_1,longlong param_2)
 void Unwind_18090e960(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -76213,11 +76213,11 @@ void Unwind_18090eb30(undefined8 param_1,longlong param_2)
 void Unwind_18090eb40(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x108) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x108) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -76246,11 +76246,11 @@ void Unwind_18090eb50(undefined8 param_1,longlong param_2)
 void Unwind_18090eb60(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x108) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x108) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -76400,11 +76400,11 @@ void Unwind_18090ec40(undefined8 param_1,longlong param_2)
 void Unwind_18090ec50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -76481,11 +76481,11 @@ void Unwind_18090ecd0(undefined8 param_1,longlong param_2)
 void Unwind_18090ece0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -76638,11 +76638,11 @@ void Unwind_18090ed70(undefined8 param_1,longlong param_2)
 void Unwind_18090ed80(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -76730,11 +76730,11 @@ void Unwind_18090ede0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090edf0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x88) + 0x40);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x88) + 0x40);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -76808,11 +76808,11 @@ void Unwind_18090ee40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090ee50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x98) + 0x40);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x98) + 0x40);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -76872,15 +76872,15 @@ void Unwind_18090ee90(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090eea0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
   if (*(longlong *)(*(longlong *)(param_2 + 0x58) + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x1b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x1b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -76971,11 +76971,11 @@ void Unwind_18090eee0(undefined8 param_1,longlong param_2)
 void Unwind_18090ef00(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x1b8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x1b8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -77021,11 +77021,11 @@ void Unwind_18090ef20(undefined8 param_1,longlong param_2)
 void Unwind_18090ef40(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 8) + 0x70);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 8) + 0x70);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -77107,11 +77107,11 @@ void Unwind_18090ef60(undefined8 param_1,longlong param_2)
 void Unwind_18090ef70(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x70);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x70);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -77201,13 +77201,13 @@ void Unwind_18090efe0(undefined8 param_1,longlong param_2)
 void Unwind_18090f000(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x358);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x360);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 4) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x360);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 4) {
     if ((longlong *)pcalculatedOffset[3] != (longlong *)0x0) {
       (**(code **)(*(longlong *)pcalculatedOffset[3] + 0x38))();
     }
@@ -77253,16 +77253,16 @@ void Unwind_18090f030(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090f040(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   longlong calculatedOffset;
   longlong *plVar4;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x78);
-  dataContext = pvalidationContext[2];
-  calculatedOffset = pvalidationContext[4];
-  plVar4 = (longlong *)pvalidationContext[5];
-  if (dataContext != pvalidationContext[6]) {
+  validationContextPointer = *(longlong **)(param_2 + 0x78);
+  dataContext = validationContextPointer[2];
+  calculatedOffset = validationContextPointer[4];
+  plVar4 = (longlong *)validationContextPointer[5];
+  if (dataContext != validationContextPointer[6]) {
     do {
       FUN_1800edd10(dataContext);
       dataContext = dataContext + 0x78;
@@ -77271,11 +77271,11 @@ void Unwind_18090f040(undefined8 param_1,longlong param_2)
         dataContext = *plVar4;
         calculatedOffset = dataContext + 0x1e0;
       }
-    } while (dataContext != pvalidationContext[6]);
+    } while (dataContext != validationContextPointer[6]);
   }
-  if (*pvalidationContext != 0) {
-    plVar4 = (longlong *)pvalidationContext[5];
-    while (plVar4 < (longlong *)(pvalidationContext[9] + 8)) {
+  if (*validationContextPointer != 0) {
+    plVar4 = (longlong *)validationContextPointer[5];
+    while (plVar4 < (longlong *)(validationContextPointer[9] + 8)) {
       calculatedOffset = *plVar4;
       plVar4 = plVar4 + 1;
       if (calculatedOffset != 0) {
@@ -77283,11 +77283,11 @@ void Unwind_18090f040(undefined8 param_1,longlong param_2)
         TerminateSystemE0();
       }
     }
-    if (*pvalidationContext != 0) {
+    if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *pvalidationContext = 0;
+    *validationContextPointer = 0;
   }
   return;
 }
@@ -77297,15 +77297,15 @@ void Unwind_18090f040(undefined8 param_1,longlong param_2)
 void Unwind_18090f050(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   longlong *pcalculatedOffset;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x78);
-  dataContext = *pvalidationContext;
+  validationContextPointer = *(longlong **)(param_2 + 0x78);
+  dataContext = *validationContextPointer;
   if (dataContext != 0) {
-    pcalculatedOffset = (longlong *)pvalidationContext[5];
-    if (pcalculatedOffset < (longlong *)(pvalidationContext[9] + 8)) {
+    pcalculatedOffset = (longlong *)validationContextPointer[5];
+    if (pcalculatedOffset < (longlong *)(validationContextPointer[9] + 8)) {
       do {
         dataContext = *pcalculatedOffset;
         pcalculatedOffset = pcalculatedOffset + 1;
@@ -77313,14 +77313,14 @@ void Unwind_18090f050(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
           TerminateSystemE0();
         }
-      } while (pcalculatedOffset < (longlong *)(pvalidationContext[9] + 8));
-      dataContext = *pvalidationContext;
+      } while (pcalculatedOffset < (longlong *)(validationContextPointer[9] + 8));
+      dataContext = *validationContextPointer;
     }
     if (dataContext != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *pvalidationContext = 0;
+    *validationContextPointer = 0;
   }
   return;
 }
@@ -77330,13 +77330,13 @@ void Unwind_18090f050(undefined8 param_1,longlong param_2)
 void Unwind_18090f060(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0x78);
-  pvalidationContext = (longlong *)pdataContext[1];
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 4) {
+  validationContextPointer = (longlong *)pdataContext[1];
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 4) {
     if ((longlong *)pcalculatedOffset[3] != (longlong *)0x0) {
       (**(code **)(*(longlong *)pcalculatedOffset[3] + 0x38))();
     }
@@ -77362,11 +77362,11 @@ void Unwind_18090f060(undefined8 param_1,longlong param_2)
 void Unwind_18090f070(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x78) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x78) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -77416,16 +77416,16 @@ void Unwind_18090f0b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090f0c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   longlong calculatedOffset;
   longlong *plVar4;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x40);
-  dataContext = pvalidationContext[2];
-  calculatedOffset = pvalidationContext[4];
-  plVar4 = (longlong *)pvalidationContext[5];
-  if (dataContext != pvalidationContext[6]) {
+  validationContextPointer = *(longlong **)(param_2 + 0x40);
+  dataContext = validationContextPointer[2];
+  calculatedOffset = validationContextPointer[4];
+  plVar4 = (longlong *)validationContextPointer[5];
+  if (dataContext != validationContextPointer[6]) {
     do {
       FUN_1800edd10(dataContext);
       dataContext = dataContext + 0x78;
@@ -77434,11 +77434,11 @@ void Unwind_18090f0c0(undefined8 param_1,longlong param_2)
         dataContext = *plVar4;
         calculatedOffset = dataContext + 0x1e0;
       }
-    } while (dataContext != pvalidationContext[6]);
+    } while (dataContext != validationContextPointer[6]);
   }
-  if (*pvalidationContext != 0) {
-    plVar4 = (longlong *)pvalidationContext[5];
-    while (plVar4 < (longlong *)(pvalidationContext[9] + 8)) {
+  if (*validationContextPointer != 0) {
+    plVar4 = (longlong *)validationContextPointer[5];
+    while (plVar4 < (longlong *)(validationContextPointer[9] + 8)) {
       calculatedOffset = *plVar4;
       plVar4 = plVar4 + 1;
       if (calculatedOffset != 0) {
@@ -77446,11 +77446,11 @@ void Unwind_18090f0c0(undefined8 param_1,longlong param_2)
         TerminateSystemE0();
       }
     }
-    if (*pvalidationContext != 0) {
+    if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *pvalidationContext = 0;
+    *validationContextPointer = 0;
   }
   return;
 }
@@ -77460,13 +77460,13 @@ void Unwind_18090f0c0(undefined8 param_1,longlong param_2)
 void Unwind_18090f0d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = *(longlong **)(param_2 + 0x40);
-  pvalidationContext = (longlong *)pdataContext[1];
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 4) {
+  validationContextPointer = (longlong *)pdataContext[1];
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 4) {
     if ((longlong *)pcalculatedOffset[3] != (longlong *)0x0) {
       (**(code **)(*(longlong *)pcalculatedOffset[3] + 0x38))();
     }
@@ -77526,15 +77526,15 @@ void Unwind_18090f100(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090f110(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   longlong *pcalculatedOffset;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x40);
-  dataContext = *pvalidationContext;
+  validationContextPointer = *(longlong **)(param_2 + 0x40);
+  dataContext = *validationContextPointer;
   if (dataContext != 0) {
-    pcalculatedOffset = (longlong *)pvalidationContext[5];
-    if (pcalculatedOffset < (longlong *)(pvalidationContext[9] + 8)) {
+    pcalculatedOffset = (longlong *)validationContextPointer[5];
+    if (pcalculatedOffset < (longlong *)(validationContextPointer[9] + 8)) {
       do {
         dataContext = *pcalculatedOffset;
         pcalculatedOffset = pcalculatedOffset + 1;
@@ -77542,14 +77542,14 @@ void Unwind_18090f110(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
           TerminateSystemE0();
         }
-      } while (pcalculatedOffset < (longlong *)(pvalidationContext[9] + 8));
-      dataContext = *pvalidationContext;
+      } while (pcalculatedOffset < (longlong *)(validationContextPointer[9] + 8));
+      dataContext = *validationContextPointer;
     }
     if (dataContext != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    *pvalidationContext = 0;
+    *validationContextPointer = 0;
   }
   return;
 }
@@ -77559,11 +77559,11 @@ void Unwind_18090f110(undefined8 param_1,longlong param_2)
 void Unwind_18090f120(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -77573,11 +77573,11 @@ void Unwind_18090f120(undefined8 param_1,longlong param_2)
 void Unwind_18090f130(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -77644,11 +77644,11 @@ void Unwind_18090f160(undefined8 param_1,longlong param_2)
 void Unwind_18090f170(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -77658,11 +77658,11 @@ void Unwind_18090f170(undefined8 param_1,longlong param_2)
 void Unwind_18090f180(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -77691,11 +77691,11 @@ void Unwind_18090f190(undefined8 param_1,longlong param_2)
 void Unwind_18090f1a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78081,13 +78081,13 @@ void Unwind_18090f310(void)
 void Unwind_18090f330(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x210);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x218);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x218);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -78104,13 +78104,13 @@ void Unwind_18090f330(undefined8 param_1,longlong param_2)
 void Unwind_18090f350(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x230);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x238);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x238);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -78203,11 +78203,11 @@ void Unwind_18090f3d0(undefined8 param_1,longlong param_2)
 void Unwind_18090f410(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x410);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x410);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78217,11 +78217,11 @@ void Unwind_18090f410(undefined8 param_1,longlong param_2)
 void Unwind_18090f430(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x418);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x418);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78231,11 +78231,11 @@ void Unwind_18090f430(undefined8 param_1,longlong param_2)
 void Unwind_18090f450(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x420);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x420);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78245,11 +78245,11 @@ void Unwind_18090f450(undefined8 param_1,longlong param_2)
 void Unwind_18090f470(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x428);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x428);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78259,11 +78259,11 @@ void Unwind_18090f470(undefined8 param_1,longlong param_2)
 void Unwind_18090f490(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x430);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x430);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78273,11 +78273,11 @@ void Unwind_18090f490(undefined8 param_1,longlong param_2)
 void Unwind_18090f4b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x438);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x438);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78287,11 +78287,11 @@ void Unwind_18090f4b0(undefined8 param_1,longlong param_2)
 void Unwind_18090f4d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x440);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x440);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78301,11 +78301,11 @@ void Unwind_18090f4d0(undefined8 param_1,longlong param_2)
 void Unwind_18090f4f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x448);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x448);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78315,11 +78315,11 @@ void Unwind_18090f4f0(undefined8 param_1,longlong param_2)
 void Unwind_18090f510(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x450);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x450);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78329,11 +78329,11 @@ void Unwind_18090f510(undefined8 param_1,longlong param_2)
 void Unwind_18090f530(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x458);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x458);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78343,11 +78343,11 @@ void Unwind_18090f530(undefined8 param_1,longlong param_2)
 void Unwind_18090f550(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x460);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x460);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78357,11 +78357,11 @@ void Unwind_18090f550(undefined8 param_1,longlong param_2)
 void Unwind_18090f570(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x468);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x468);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78382,11 +78382,11 @@ void Unwind_18090f590(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090f5b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x40a0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x40a0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78396,11 +78396,11 @@ void Unwind_18090f5b0(undefined8 param_1,longlong param_2)
 void Unwind_18090f5d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x40a8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x40a8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78410,11 +78410,11 @@ void Unwind_18090f5d0(undefined8 param_1,longlong param_2)
 void Unwind_18090f5f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x40b0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x40b0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78534,11 +78534,11 @@ void Unwind_18090f6c0(undefined8 param_1,longlong param_2)
 void Unwind_18090f6f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x68);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x68);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78548,11 +78548,11 @@ void Unwind_18090f6f0(undefined8 param_1,longlong param_2)
 void Unwind_18090f700(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x70);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x70);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78562,11 +78562,11 @@ void Unwind_18090f700(undefined8 param_1,longlong param_2)
 void Unwind_18090f710(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x78);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x78);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78576,11 +78576,11 @@ void Unwind_18090f710(undefined8 param_1,longlong param_2)
 void Unwind_18090f720(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x80);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x80);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78590,11 +78590,11 @@ void Unwind_18090f720(undefined8 param_1,longlong param_2)
 void Unwind_18090f740(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x88);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x88);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78604,11 +78604,11 @@ void Unwind_18090f740(undefined8 param_1,longlong param_2)
 void Unwind_18090f760(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x90);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x90);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78826,11 +78826,11 @@ void Unwind_18090f8c0(undefined8 param_1,longlong param_2)
 void Unwind_18090f8d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x130) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x130) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78897,11 +78897,11 @@ void Unwind_18090f960(undefined8 param_1,longlong param_2)
 void Unwind_18090f970(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78911,11 +78911,11 @@ void Unwind_18090f970(undefined8 param_1,longlong param_2)
 void Unwind_18090f980(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x10);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78925,11 +78925,11 @@ void Unwind_18090f980(undefined8 param_1,longlong param_2)
 void Unwind_18090f990(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x18);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78939,11 +78939,11 @@ void Unwind_18090f990(undefined8 param_1,longlong param_2)
 void Unwind_18090f9a0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78953,11 +78953,11 @@ void Unwind_18090f9a0(undefined8 param_1,longlong param_2)
 void Unwind_18090f9b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x30);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x30);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78967,11 +78967,11 @@ void Unwind_18090f9b0(undefined8 param_1,longlong param_2)
 void Unwind_18090f9c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x38);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x38);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78981,11 +78981,11 @@ void Unwind_18090f9c0(undefined8 param_1,longlong param_2)
 void Unwind_18090f9d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x40);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x40);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -78995,11 +78995,11 @@ void Unwind_18090f9d0(undefined8 param_1,longlong param_2)
 void Unwind_18090f9e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x48);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x48);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -79009,11 +79009,11 @@ void Unwind_18090f9e0(undefined8 param_1,longlong param_2)
 void Unwind_18090f9f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x50);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x50);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -79023,11 +79023,11 @@ void Unwind_18090f9f0(undefined8 param_1,longlong param_2)
 void Unwind_18090fa00(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -79037,11 +79037,11 @@ void Unwind_18090fa00(undefined8 param_1,longlong param_2)
 void Unwind_18090fa10(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x60);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x60);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -79068,11 +79068,11 @@ void Unwind_18090fa20(undefined8 param_1,longlong param_2)
 void Unwind_18090fa30(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x130) + 0xc0);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x130) + 0xc0);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -79189,11 +79189,11 @@ void Unwind_18090fad0(undefined8 param_1,longlong param_2)
 void Unwind_18090fae0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x120) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x120) + 0x20);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -79222,11 +79222,11 @@ void Unwind_18090faf0(undefined8 param_1,longlong param_2)
 void Unwind_18090fb00(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x120) + 0x58);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x120) + 0x58);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -79790,11 +79790,11 @@ void Unwind_18090ff30(undefined8 param_1,longlong param_2)
 void Unwind_18090ff50(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x100) + 0x180);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x100) + 0x180);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -79933,11 +79933,11 @@ void Unwind_18090fff0(undefined8 param_1,longlong param_2)
 void Unwind_180910000(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x38) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x38) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -79989,18 +79989,18 @@ void Unwind_180910020(undefined8 param_1,longlong param_2)
 void Unwind_180910030(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   longlong calculatedOffset;
   
-  pvalidationContext = (longlong *)(*(longlong *)(param_2 + 0x68) + 0x28);
+  validationContextPointer = (longlong *)(*(longlong *)(param_2 + 0x68) + 0x28);
   dataContext = *(longlong *)(*(longlong *)(param_2 + 0x68) + 0x30);
-  for (calculatedOffset = *pvalidationContext; calculatedOffset != dataContext; calculatedOffset = calculatedOffset + 0x18) {
+  for (calculatedOffset = *validationContextPointer; calculatedOffset != dataContext; calculatedOffset = calculatedOffset + 0x18) {
     if (*(longlong **)(calculatedOffset + 8) != (longlong *)0x0) {
       (**(code **)(**(longlong **)(calculatedOffset + 8) + 0x38))();
     }
   }
-  if (*pvalidationContext == 0) {
+  if (*validationContextPointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -80058,11 +80058,11 @@ void Unwind_180910050(undefined8 param_1,longlong param_2)
 void Unwind_180910060(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x68) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x68) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -80190,11 +80190,11 @@ void Unwind_1809100a0(undefined8 param_1,longlong param_2)
 void Unwind_1809100b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x98);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x98);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -80469,11 +80469,11 @@ void Unwind_1809101e0(undefined8 param_1,longlong param_2)
 void Unwind_1809101f0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 8);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 8);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -80483,11 +80483,11 @@ void Unwind_1809101f0(undefined8 param_1,longlong param_2)
 void Unwind_180910200(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x28);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x28);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -80497,11 +80497,11 @@ void Unwind_180910200(undefined8 param_1,longlong param_2)
 void Unwind_180910210(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x30);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x30);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -80511,11 +80511,11 @@ void Unwind_180910210(undefined8 param_1,longlong param_2)
 void Unwind_180910220(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x38);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x38);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -80525,11 +80525,11 @@ void Unwind_180910220(undefined8 param_1,longlong param_2)
 void Unwind_180910230(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x40);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x40);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -80539,11 +80539,11 @@ void Unwind_180910230(undefined8 param_1,longlong param_2)
 void Unwind_180910240(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x48);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x48);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -80553,11 +80553,11 @@ void Unwind_180910240(undefined8 param_1,longlong param_2)
 void Unwind_180910250(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x50);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x50);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -80567,11 +80567,11 @@ void Unwind_180910250(undefined8 param_1,longlong param_2)
 void Unwind_180910260(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x60);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x60);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -81010,11 +81010,11 @@ void Unwind_180910450(undefined8 param_1,longlong param_2)
 void Unwind_180910470(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x238);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x238);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -81024,11 +81024,11 @@ void Unwind_180910470(undefined8 param_1,longlong param_2)
 void Unwind_180910490(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 600);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 600);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -81038,11 +81038,11 @@ void Unwind_180910490(undefined8 param_1,longlong param_2)
 void Unwind_1809104b0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x260);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x260);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -81052,13 +81052,13 @@ void Unwind_1809104b0(undefined8 param_1,longlong param_2)
 void Unwind_1809104d0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x268);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x270);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x270);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -81231,11 +81231,11 @@ void Unwind_1809105a0(undefined8 param_1,longlong param_2)
 void Unwind_1809105c0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x238);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x238);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -81245,11 +81245,11 @@ void Unwind_1809105c0(undefined8 param_1,longlong param_2)
 void Unwind_1809105e0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 600);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 600);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -81259,11 +81259,11 @@ void Unwind_1809105e0(undefined8 param_1,longlong param_2)
 void Unwind_180910600(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x260);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x260);
+  if (validationContextPointer != (longlong *)0x0) {
+    (**(code **)(*validationContextPointer + 0x38))();
   }
   return;
 }
@@ -81273,13 +81273,13 @@ void Unwind_180910600(undefined8 param_1,longlong param_2)
 void Unwind_180910620(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x268);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x270);
-  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != pvalidationContext; pcalculatedOffset = pcalculatedOffset + 1) {
+  validationContextPointer = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x270);
+  for (pcalculatedOffset = (longlong *)*pdataContext; pcalculatedOffset != validationContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
     if ((longlong *)*pcalculatedOffset != (longlong *)0x0) {
       (**(code **)(*(longlong *)*pcalculatedOffset + 0x38))();
     }
@@ -81526,17 +81526,17 @@ void Unwind_180910750(undefined8 param_1,longlong param_2)
 void Unwind_180910760(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   longlong dataContext;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x40);
-  for (dataContext = *pvalidationContext; dataContext != pvalidationContext[1]; dataContext = dataContext + 0x28) {
+  validationContextPointer = *(longlong **)(param_2 + 0x40);
+  for (dataContext = *validationContextPointer; dataContext != validationContextPointer[1]; dataContext = dataContext + 0x28) {
     if (*(longlong *)(dataContext + 8) != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  if (*pvalidationContext == 0) {
+  if (*validationContextPointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -86656,7 +86656,7 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   longlong calculatedOffset;
   longlong lVar4;
   ulonglong operationResult;
-  uint uVar6;
+  uint dataFlags;
   ulonglong validationOutcome;
   
   lVar4 = *(longlong *)(param_2 + 0x70);
@@ -86675,10 +86675,10 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
         FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
       }
-      uVar6 = (int)validationOutcome + 1;
+      dataFlags = (int)validationOutcome + 1;
       operationResult = operationResult + 0x10;
-      validationOutcome = (ulonglong)uVar6;
-    } while ((int)uVar6 < *referenceCountPointer);
+      validationOutcome = (ulonglong)dataFlags;
+    } while ((int)dataFlags < *referenceCountPointer);
   }
   calculatedOffset = *(longlong *)(lVar4 + 0x1e78);
   if (calculatedOffset != 0) {
@@ -89552,13 +89552,13 @@ void SetDefaultExceptionHandlerB0(void)
 void ProcessValidationContextA0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = _DAT_180d49200;
+  validationContextPointer = _DAT_180d49200;
   FUN_18008d1f0(param_1,_DAT_180d49200[1],param_3,param_4,0xfffffffffffffffe);
-  _DAT_180d49200[1] = (longlong)pvalidationContext;
-  *_DAT_180d49200 = (longlong)pvalidationContext;
-  _DAT_180d49200[2] = (longlong)pvalidationContext;
+  _DAT_180d49200[1] = (longlong)validationContextPointer;
+  *_DAT_180d49200 = (longlong)validationContextPointer;
+  _DAT_180d49200[2] = (longlong)validationContextPointer;
   _DAT_180d49208 = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -91308,7 +91308,7 @@ void ConfigureExceptionHandlerC(void)
 void FUN_180942890(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   int *poperationResult;
   int iVar3;
   longlong lVar4;
@@ -91317,9 +91317,9 @@ void FUN_180942890(void)
   plVar5 = _DAT_180c92478;
   if (_DAT_180c92478 != (longlong *)0x0) {
     LOCK();
-    pvalidationContext = _DAT_180c92478 + 1;
-    lVar4 = *pvalidationContext;
-    *(int *)pvalidationContext = (int)*pvalidationContext + -1;
+    validationContextPointer = _DAT_180c92478 + 1;
+    lVar4 = *validationContextPointer;
+    *(int *)validationContextPointer = (int)*validationContextPointer + -1;
     UNLOCK();
     if ((int)lVar4 == 1) {
       (**(code **)*plVar5)(plVar5);
@@ -91343,16 +91343,16 @@ void FUN_180942890(void)
 void FUN_1809428a2(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   int *poperationResult;
   int iVar3;
   longlong lVar4;
   longlong *registerContext;
   
   LOCK();
-  pvalidationContext = registerContext + 1;
-  lVar4 = *pvalidationContext;
-  *(int *)pvalidationContext = (int)*pvalidationContext + -1;
+  validationContextPointer = registerContext + 1;
+  lVar4 = *validationContextPointer;
+  *(int *)validationContextPointer = (int)*validationContextPointer + -1;
   UNLOCK();
   if ((int)lVar4 == 1) {
     (**(code **)*registerContext)();
@@ -91834,14 +91834,14 @@ void FUN_180942e20(void)
 void FUN_180942e70(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPointer;
   
-  pvalidationContext = _DAT_180c95f18;
+  validationContextPointer = _DAT_180c95f18;
   if (DAT_180c95f28 != '\0') {
     _DAT_180c95f20 = 0xffffffff;
     _DAT_180c95f18 = (longlong *)0x0;
-    if (pvalidationContext != (longlong *)0x0) {
-      (**(code **)(*pvalidationContext + 0x38))();
+    if (validationContextPointer != (longlong *)0x0) {
+      (**(code **)(*validationContextPointer + 0x38))();
     }
     if (_DAT_180c95f18 != (longlong *)0x0) {
       (**(code **)(*_DAT_180c95f18 + 0x38))();
