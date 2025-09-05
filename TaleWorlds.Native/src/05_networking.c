@@ -1935,18 +1935,18 @@ NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandl
   NetworkConnectionContextId = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证结果码
   if (NetworkValidationStatusCode == 0) {
-    if ((0 < *(int *)((long long)NetworkConnectionValidationResult + ConnectionParameterOffset)) && (*NetworkConnectionValidationResult != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionValidationResult, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)((long long)NetworkConnectionValidationData + ConnectionParameterOffset)) && (*NetworkConnectionValidationData != 0)) {
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionValidationData, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *NetworkConnectionValidationResult = NetworkConnectionContextIdentifier;
-    *(int *)((long long)NetworkConnectionValidationResult + ConnectionParameterOffset) = NetworkValidationStatusCode;
+    *NetworkConnectionValidationData = NetworkConnectionContextId;
+    *(int *)((long long)NetworkConnectionValidationData + ConnectionParameterOffset) = NetworkValidationStatusCode;
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
     ConnectionContextHandle = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
     if (ConnectionContextHandle != 0) {
-      if ((int)NetworkConnectionValidationResult[1] != 0) {
-          memcpy(ConnectionContextHandle, *NetworkConnectionValidationResult, (long long)(int)NetworkConnectionValidationResult[1]);
+      if ((int)NetworkConnectionValidationData[1] != 0) {
+          memcpy(ConnectionContextHandle, *NetworkConnectionValidationData, (long long)(int)NetworkConnectionValidationData[1]);
       }
       return ConnectionContextHandle;
     }

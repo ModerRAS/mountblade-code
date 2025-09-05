@@ -5272,21 +5272,21 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
 uint64_t DecrementSystemResourceTotal(int64_t SystemContext, uint64_t ResourceHandle)
 {
   int64_t ValidatedSystemContext;
-  uint64_t ResourceManagementResult;
-  int ActiveResourceTotal;
+  uint64_t ResourceOperationResult;
+  int CurrentResourceCount;
   int64_t ResourceValidationContext[2];
   
-  ResourceManagementResult = ValidateObjectContext(*(uint32_t *)(SystemContext + ObjectContextOffset), ResourceValidationContext);
+  ResourceOperationResult = ValidateObjectContext(*(uint32_t *)(SystemContext + ObjectContextOffset), ResourceValidationContext);
   ValidatedSystemContext = ResourceValidationContext[0];
-  if ((int)ResourceManagementResult != 0) {
-    return ResourceManagementResult;
+  if ((int)ResourceOperationResult != 0) {
+    return ResourceOperationResult;
   }
   if (*(int *)(ResourceValidationContext[0] + ResourceTotalOffset) < 1) {
     return ErrorInvalidObjectHandle;
   }
-  ActiveResourceTotal = *(int *)(ResourceValidationContext[0] + ResourceTotalOffset) + -1;
-  *(int *)(ResourceValidationContext[0] + ResourceTotalOffset) = ActiveResourceTotal;
-  if (*(int *)(ResourceValidationContext[0] + ResourceTertiaryCounterOffset) + *(int *)(ResourceValidationContext[0] + ResourceSecondaryCounterOffset) + ActiveResourceTotal != 0) {
+  CurrentResourceCount = *(int *)(ResourceValidationContext[0] + ResourceTotalOffset) + -1;
+  *(int *)(ResourceValidationContext[0] + ResourceTotalOffset) = CurrentResourceCount;
+  if (*(int *)(ResourceValidationContext[0] + ResourceTertiaryCounterOffset) + *(int *)(ResourceValidationContext[0] + ResourceSecondaryCounterOffset) + CurrentResourceCount != 0) {
     return 0;
   }
   ResourceValidationContext[0] = 0;
@@ -5317,14 +5317,14 @@ uint64_t DecrementSystemResourceTotal(int64_t SystemContext, uint64_t ResourceHa
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
-  uint8_t ValidationResult;
+  uint8_t ObjectValidationStatusCode;
   int64_t ObjectContextValidationBuffer[4];
   int64_t *ValidatedObjectPointer;
   
   // 验证对象上下文的有效性
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectContextValidationBuffer);
-  if ((int)ValidationResult != 0) {
-    return ValidationResult;
+  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectContextValidationBuffer);
+  if ((int)ObjectValidationStatusCode != 0) {
+    return ObjectValidationStatusCode;
   }
   
   // 调整对象验证缓冲区地址
@@ -33447,7 +33447,7 @@ void ReleaseVertexBufferLock(uint8_t ObjectContext,int64_t ValidationContext,uin
  * @note 此函数用于资源处理器回调执行
  * @warning 需要确保本地上下文指针有效
  */
-void UnwindResourceHandlerBase(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceHandlerBaseCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
