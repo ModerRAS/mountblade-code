@@ -4122,7 +4122,7 @@ uint32_t UtilitySystemStatus1;
 // 内存验证相关变量宏定义
 #define MemoryValidationStartPointer _DAT_180c91f18     // 内存验证起始指针
 #define MemoryValidationEndPointer _DAT_180c91f28       // 内存验证结束指针
-#define MemoryValidationStatus uRam0000000180c91f20    // 内存验证状态
+#define MemoryValidationStatus MemoryValidationStatus    // 内存验证状态
 
 // 异常处理系统全局变量
 void* ExceptionHandlerTablePointer;        // 异常处理器表指针
@@ -4163,7 +4163,7 @@ uint32_t UtilityFreePointer2;
 uint32_t UtilityFreePointer3;
 uint32_t UtilityFreePointer4;
 
-// 函数: undefined UtilityInitializeSystem
+// 函数: uint32_t UtilityInitializeSystem
 // 
 // 初始化工具系统
 // 执行工具系统的初始化操作
@@ -4172,12 +4172,12 @@ uint32_t UtilityFreePointer4;
 //   无
 // 
 // 返回值:
-//   undefined - 初始化结果状态
+//   uint32_t - 初始化结果状态
 uint32_t UtilityInitializeSystem;
-uint32_t UtilityInitData1;
-uint32_t UtilityInitData2;
-uint32_t UtilityInitData3;
-uint32_t UtilityInitData4;
+uint32_t UtilityInitializationData1;
+uint32_t UtilityInitializationData2;
+uint32_t UtilityInitializationData3;
+uint32_t UtilityInitializationData4;
 
 // 函数: uint32_t UtilityValidateSystem(void)
 // 
@@ -4190,7 +4190,7 @@ uint32_t UtilityInitData4;
 // 返回值:
 //   uint32_t - 验证结果状态
 uint32_t UtilityValidateSystem;
-uint8_t UtilityValidationFlag1;
+uint8_t UtilitySystemValidationFlag;
 
 // 函数: uint32_t UtilityCheckSystemStatus(void)
 // 
@@ -4203,7 +4203,7 @@ uint8_t UtilityValidationFlag1;
 // 返回值:
 //   uint32_t - 系统状态信息
 uint32_t UtilityCheckSystemStatus;
-uint8_t UtilityStatusFlag1;
+uint8_t UtilitySystemStatusFlag;
 
 // 函数: uint32_t UtilityResetSystem(void)
 // 
