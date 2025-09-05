@@ -65002,20 +65002,20 @@ MemoryAllocationComplete:
     SystemHashNodeDataSecondary = SystemHashNodeData[1];
     SystemHashNodeData = (void* *)(ResourceMemoryOffset + 0x30 + SystemThreadHandlePrimary);
     SystemMemoryAllocatorStatus = *SystemHashNodeData;
-    SystemHashNodeData1 = SystemHashNodeData[1];
+    SystemHashNodeDataTertiary = SystemHashNodeData[1];
     SystemHashNodeData = (void* *)(ResourceMemoryOffset + 0x40 + SystemThreadHandlePrimary);
-    SystemHashNodeData2 = *SystemHashNodeData;
-    UnsignedStackFlagSenary = SystemHashNodeData[1];
+    SystemHashNodeDataQuaternary = *SystemHashNodeData;
+    UnsignedStackFlagValidation = SystemHashNodeData[1];
     systemDataBuffer = *(void* *)(ResourceMemoryOffset + 0x50 + SystemThreadHandlePrimary);
-    SystemFlagSecondary = *(uint32_t *)(ResourceMemoryOffset + 0x58 + SystemThreadHandlePrimary);
+    SystemResourceStatusFlag = *(uint32_t *)(ResourceMemoryOffset + 0x58 + SystemThreadHandlePrimary);
     ProcessIntegerPointer(SystemIntegerPointer,&EncryptionOffset);
-    resourceAllocationContextTertiary = (long long)pointerToInteger26 - (long long)SystemIntegerPointer6 >> 2;
-    resourceAllocationContextPrimary = 0;
-    pointerToInteger20 = SystemIntegerPointer6;
-    ResourceAddressPrimary = resourceAllocationContextPrimary;
-    if (resourceAllocationContextTertiary != 0) {
+    ResourceAllocationLoopCounter = (long long)pointerToInteger26 - (long long)SystemIntegerPointer6 >> 2;
+    ResourceAllocationIndex = 0;
+    ResourceDataPointer = SystemIntegerPointer6;
+    CurrentResourceAddress = ResourceAllocationIndex;
+    if (ResourceAllocationLoopCounter != 0) {
       do {
-        ResourceMemoryOffset = (long long)*pointerToInteger20;
+        ResourceMemoryOffset = (long long)*ResourceDataPointer;
         SystemThreadHandlePrimary = *(long long *)(SystemResourceManager + 0x90);
         if (*(uint *)(SystemThreadHandlePrimary + ResourceMemoryOffset * 0xc) == (uint)SystemParameterPointer) {
           *(int *)(SystemThreadHandlePrimary + ResourceMemoryOffset * 0xc) = SystemOperationResult7;
@@ -65026,28 +65026,28 @@ MemoryAllocationComplete:
         if (*(uint *)(SystemThreadHandlePrimary + 8 + ResourceMemoryOffset * 0xc) == (uint)SystemParameterPointer) {
           *(int *)(SystemThreadHandlePrimary + 8 + ResourceMemoryOffset * 0xc) = SystemOperationResult7;
         }
-        ResourceAllocationContextSecondary = (int)ResourceAddressPrimary + 1;
-        pointerToInteger20 = pointerToInteger20 + 1;
-        ResourceAddressPrimary = (ulong long)ResourceAllocationContextSecondary;
-      } while ((ulong long)(long long)(int)ResourceAllocationContextSecondary < resourceAllocationContextTertiary);
+        NextResourceIndex = (int)CurrentResourceAddress + 1;
+        ResourceDataPointer = ResourceDataPointer + 1;
+        CurrentResourceAddress = (ulong long)NextResourceIndex;
+      } while ((ulong long)(long long)(int)NextResourceIndex < ResourceAllocationLoopCounter);
     }
-    ResourceAddressPrimary = resourceAllocationContextPrimary;
-    SystemIntegerPointer4 = SystemIntegerPointer3;
+    CurrentResourceAddress = ResourceAllocationIndex;
+    SystemSecondaryIntegerPointer = SystemIntegerPointer3;
     if (*(short *)(SystemResourceManager + 0xc0) != 0) {
       do {
-        SystemThreadHandlePrimary = resourceAllocationContextPrimary + *(long long *)(SystemResourceManager + 0xb0);
-        ResourceMemoryOffset = *(long long *)(resourceAllocationContextPrimary + 0x30 + *(long long *)(SystemResourceManager + 0xb0));
+        SystemThreadHandlePrimary = ResourceAllocationIndex + *(long long *)(SystemResourceManager + 0xb0);
+        ResourceMemoryOffset = *(long long *)(ResourceAllocationIndex + 0x30 + *(long long *)(SystemResourceManager + 0xb0));
         SystemHashNodeData = (void* *)(ResourceMemoryOffset + SystemThreadHandleCounter * 0x10);
         ResourceHash = *SystemHashNodeData;
         ThreadContextIndicator = SystemHashNodeData[1];
-        SystemOperationResult7 = *(int *)(SystemThreadHandlePrimary + 0x2c);
+        SystemOperationResultFinal = *(int *)(SystemThreadHandlePrimary + 0x2c);
         SystemOperationResult = *(int *)(SystemThreadHandlePrimary + 0x28);
-        if (SystemOperationResult7 <= SystemOperationResult) {
-          if (SystemOperationResult7 < 2) {
+        if (SystemOperationResultFinal <= SystemOperationResult) {
+          if (SystemOperationResultFinal < 2) {
             *(uint32_t *)(SystemThreadHandlePrimary + 0x2c) = 8;
           }
           else {
-            *(int *)(SystemThreadHandlePrimary + 0x2c) = (SystemOperationResult7 >> 1) + SystemOperationResult7;
+            *(int *)(SystemThreadHandlePrimary + 0x2c) = (SystemOperationResultFinal >> 1) + SystemOperationResultFinal;
           }
           ProcessThreadHandleData(SystemThreadHandlePrimary + 0x28);
           SystemOperationResult = *(int *)(SystemThreadHandlePrimary + 0x28);

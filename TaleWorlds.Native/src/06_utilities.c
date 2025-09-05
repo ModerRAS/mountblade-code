@@ -19196,7 +19196,9 @@ undefined8 FUN_18089a6e8(undefined8 *param_1,undefined8 param_2)
 
 
 // 函数: void FUN_18089a73c(void)
-void FUN_18089a73c(void)
+// 空操作函数
+// 不执行任何操作，仅作为占位符或桩函数使用
+void UtilityNoOperationL(void)
 
 {
   return;
