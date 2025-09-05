@@ -6466,8 +6466,12 @@ void ManageUtilitySystemCacheAE0(void)
 
 
 
-// 函数: void FUN_180891ff0(longlong param_1,longlong param_2)
-void FUN_180891ff0(longlong param_1,longlong param_2)
+// 函数: void ManageUtilitySystemConnectionsAF0(longlong connectionManager,longlong connectionFlags)
+// 功能：管理工具系统连接，处理网络和内部连接的建立和维护
+// 参数：
+//   connectionManager - 连接管理器实例，负责管理所有系统连接
+//   connectionFlags - 连接标志，控制连接的类型和行为
+void ManageUtilitySystemConnectionsAF0(longlong connectionManager,longlong connectionFlags)
 
 {
   int iVar1;
