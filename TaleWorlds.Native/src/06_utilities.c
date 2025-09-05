@@ -8263,8 +8263,14 @@ void TriggerSystemShutdown(void)
 
 
 
-// 函数: void SystemReturnEmptyFunction(void)
-// 功能：空返回函数
+/**
+ * @brief 系统空返回函数
+ * 
+ * 不执行任何操作的空函数，仅执行返回操作。
+ * 用于系统初始化或作为占位符函数。
+ * 
+ * @note 原始函数名：SystemReturnEmptyFunction
+ */
 void SystemReturnEmptyFunction(void)
 
 {
