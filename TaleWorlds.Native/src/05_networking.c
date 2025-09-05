@@ -1866,44 +1866,44 @@ void *NetworkConnectionTemplateConfig;
 void *NetworkConnectionPrimaryConfig;
 
 /**
- * @brief 网络连接次要配置指针
+ * @brief 网络连接次要配置
  */
-void *NetworkConnectionSecondaryConfigPointer;
+void *NetworkConnectionSecondaryConfig;
 
 /**
- * @brief 网络连接处理配置指针
+ * @brief 网络连接处理配置
  */
-void *NetworkConnectionProcessingConfigPointer;
+void *NetworkConnectionProcessingConfig;
 
 /**
- * @brief 网络连接传输配置指针
+ * @brief 网络连接传输配置
  */
-void *NetworkConnectionTransportConfigPointer;
+void *NetworkConnectionTransportConfig;
 
 /**
- * @brief 网络连接协议配置指针
+ * @brief 网络连接协议配置
  */
-void *NetworkConnectionProtocolConfigPointer;
+void *NetworkConnectionProtocolConfig;
 
 /**
- * @brief 网络连接验证配置指针
+ * @brief 网络连接验证配置
  */
-void *NetworkConnectionValidationConfigPointer;
+void *NetworkConnectionValidationConfig;
 
 /**
- * @brief 网络连接路由主配置指针
+ * @brief 网络连接路由主配置
  */
-void *NetworkConnectionRoutingPrimaryConfigPointer;
+void *NetworkConnectionRoutingPrimaryConfig;
 
 /**
- * @brief 网络连接路由备用配置指针
+ * @brief 网络连接路由备用配置
  */
-void *NetworkConnectionRoutingSecondaryConfigPointer;
+void *NetworkConnectionRoutingSecondaryConfig;
 
 /**
- * @brief 网络连接路由替代配置指针
+ * @brief 网络连接路由替代配置
  */
-void *NetworkConnectionRoutingAlternativeConfigPointer;
+void *NetworkConnectionRoutingAlternativeConfig;
 
 /**
  * @brief 网络连接路由回退配置指针
