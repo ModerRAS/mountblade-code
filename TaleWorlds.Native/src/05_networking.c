@@ -3629,14 +3629,18 @@ void AuthenticateConnectionSecurity(NetworkHandle ConnectionTable, int64_t Conne
 /**
  * @brief 解码网络数据包
  * 
- * 解码网络数据包，提取有效数据并进行初步验证
+ * 解码网络数据包的头部信息和有效负载，验证数据包的完整性和安全性。
+ * 该函数是网络数据包处理的核心函数，负责将原始数据包解码为可处理的数据。
  * 
- * @param PacketData 数据包数据指针数组
- * @param OutputBuffer 输出缓冲区
- * @param DecodingMode 解码模式
- * @param PrimaryMagicNumber 主魔数，用于数据包类型识别
- * @param SecondaryMagicNumber 次魔数，用于额外的数据包验证
- * @return NetworkHandle 解码结果句柄
+ * @param PacketData 数据包数据指针数组，包含待解码的数据包信息
+ * @param OutputBuffer 输出缓冲区，用于存储解码后的数据
+ * @param DecodingMode 解码模式，指定解码算法和参数
+ * @param PrimaryMagicNumber 主魔数，用于数据包类型识别和验证
+ * @param SecondaryMagicNumber 次魔数，用于额外的数据包验证和完整性检查
+ * @return NetworkHandle 解码结果句柄，0表示解码成功，非0值表示解码失败
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的数据包解码逻辑
+ * @warning 简化实现仅执行基本的验证，不进行实际的解码工作
  */
 NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
                           uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
@@ -3684,13 +3688,13 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
   // 设置输出缓冲区
   if (OutputBuffer) {
     memset(OutputBuffer, 0, NetworkStandardBufferSize);
-    OutputBuffer[PacketDecodingStatusIndex] = (NetworkByte)DecodingStatus;
-    OutputBuffer[MagicNumberValidationIndex] = (NetworkByte)MagicValidationResult;
-    OutputBuffer[DataIntegrityCheckIndex] = (NetworkByte)IntegrityValidationStatus;
+    OutputBuffer[PacketDecodingStatusIndex] = (NetworkByte)PacketDecodingStatus;
+    OutputBuffer[MagicNumberValidationIndex] = (NetworkByte)MagicNumberValidationResult;
+    OutputBuffer[DataIntegrityCheckIndex] = (NetworkByte)DataIntegrityValidationStatus;
     OutputBuffer[NetworkPacketDecodingModeIndex] = (NetworkByte)DecodingMode;
   }
   
-  return DecodingStatus;  // 返回解码状态
+  return PacketDecodingStatus;  // 返回解码状态
 }
 
 
