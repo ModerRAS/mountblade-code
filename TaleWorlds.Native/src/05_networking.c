@@ -707,9 +707,9 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * - 分配迭代所需的内存资源
  * - 建立连接与验证结果的关联
  * 
- * @param ConnectionContext 连接上下文句柄，包含连接的所有状态信息和配置参数
- * @param ValidationResult 验证结果数据，包含连接验证的状态和错误信息
- * @param IterationFlag 迭代控制标志，用于控制迭代行为（如：正向迭代、反向迭代、跳跃迭代等）
+ * @param NetworkConnectionContext 连接上下文句柄，包含连接的所有状态信息和配置参数
+ * @param ValidationResultData 验证结果数据，包含连接验证的状态和错误信息
+ * @param IterationControlFlag 迭代控制标志，用于控制迭代行为（如：正向迭代、反向迭代、跳跃迭代等）
  * 
  * @return uint32_t 创建结果句柄，0表示成功，非0值表示错误码
  * 
@@ -723,14 +723,14 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * @warning 如果连接上下文已存在迭代器，创建新的迭代器可能会影响现有操作
  * @see ProcessNetworkConnectionData, CleanupNetworkConnectionContext
  */
-uint32_t InitializeNetworkIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
+uint32_t CreateNetworkIterationContext(int64_t NetworkConnectionContext, int64_t ValidationResultData, uint32_t IterationControlFlag);
 
 /**
  * @brief 处理网络协议栈数据
  * 
  * 处理网络协议栈中的数据，进行协议解析和数据处理操作
  * 
- * @param NetworkStackBuffer 网络协议栈缓冲区指针，指向待处理的网络协议数据
+ * @param NetworkProtocolStackBuffer 网络协议栈缓冲区指针，指向待处理的网络协议数据
  * @param NetworkContextData 网络上下文数据，包含网络连接的上下文信息
  * @return uint32_t 处理结果句柄，0表示处理成功，其他值表示处理失败的具体错误码
  * 
@@ -744,7 +744,7 @@ uint32_t InitializeNetworkIterationContext(int64_t ConnectionContext, int64_t Va
  * @warning 如果数据格式不正确，可能会导致处理失败或系统异常
  * @see InitializeNetworkConnection, ValidateNetworkConnectionSecurity
  */
-uint32_t HandleNetworkProtocolStackData(int64_t *NetworkStackBuffer, int64_t NetworkContextData);
+uint32_t ProcessNetworkProtocolStackData(int64_t *NetworkProtocolStackBuffer, int64_t NetworkContextData);
 
 /**
  * @brief 验证网络连接结果句柄安全性
@@ -752,7 +752,7 @@ uint32_t HandleNetworkProtocolStackData(int64_t *NetworkStackBuffer, int64_t Net
  * 验证网络连接句柄的有效性和安全性，确保连接操作的合法性
  * 
  * @param NetworkConnectionContext 网络连接上下文句柄，包含连接的上下文信息
- * @param NetworkPacketData 网络数据包数据句柄，包含待验证的数据包信息
+ * @param NetworkPacketHandle 网络数据包数据句柄，包含待验证的数据包信息
  * @return uint32_t 验证结果句柄，0表示验证成功，其他值表示验证失败的具体错误码
  * 
  * @retval 0 验证成功
@@ -765,7 +765,7 @@ uint32_t HandleNetworkProtocolStackData(int64_t *NetworkStackBuffer, int64_t Net
  * @warning 如果验证失败，相关的网络操作将被拒绝
  * @see InitializeNetworkConnection, GetNetworkConnectionResultHandle
  */
-uint32_t ValidateNetworkConnectionResultHandleSecurity(NetworkHandle NetworkConnectionContext, NetworkHandle NetworkPacketData);
+uint32_t ValidateNetworkConnectionHandleSecurity(NetworkHandle NetworkConnectionContext, NetworkHandle NetworkPacketHandle);
 
 /**
  * @brief 获取网络连接结果句柄
@@ -780,9 +780,9 @@ uint32_t ValidateNetworkConnectionResultHandleSecurity(NetworkHandle NetworkConn
  * 
  * @note 此函数会从连接上下文中提取句柄信息，调用者需要确保上下文有效
  * @warning 如果连接上下文无效，返回的句柄可能无法正常使用
- * @see InitializeNetworkConnection, ValidateNetworkConnectionResultHandleSecurity
+ * @see InitializeNetworkConnection, ValidateNetworkConnectionHandleSecurity
  */
-NetworkHandle GetNetworkConnectionResultHandle(int64_t *NetworkConnectionContext);
+NetworkHandle RetrieveNetworkConnectionHandle(int64_t *NetworkConnectionContext);
 
 /**
  * @brief 验证网络连接条目
