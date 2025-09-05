@@ -16868,7 +16868,7 @@ SecurityValidationLabel:
         uStack_298 = param_3;
         iStack_290 = iVar5;
         iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar7 = FUN_18088cbb0(lVar2,afStack_304,0), iVar7 != 0)) break;
+        if ((iVar5 != 0) || (iVar7 = ValidateDataA2(lVar2,afStack_304,0), iVar7 != 0)) break;
         iVar5 = iVar4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
