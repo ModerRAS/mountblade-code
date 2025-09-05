@@ -11012,9 +11012,6 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 // 功能：清理系统资源和内存
 #define CleanupSystemResourcesA0 FUN_18084c150
 
-// 原始函数名：FUN_180847820 - 获取资源指针函数O0
-// 功能：获取系统资源指针，用于访问和管理资源
-#define GetResourcePointerO0 FUN_180847820
 
 // 原始函数名：FUN_1808b0fb0 - 系统状态更新函数O0
 // 功能：更新系统状态信息
@@ -95227,9 +95224,6 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：检查状态EW0，监控系统运行状态
 #define CheckSystemStatusEW0 FUN_18088ac50
 
-// 原始函数名：FUN_180847820 - 内存分配函数EX0
-// 功能：分配内存EX0，管理内存资源
-#define AllocateMemoryEX0 FUN_180847820
 
 // 原始函数名：FUN_18084c150 - 内存释放函数EY0
 // 功能：释放内存EY0，清理内存资源
@@ -95263,9 +95257,6 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：处理数据FF0，执行数据操作
 #define ProcessDataFF0 FUN_1808479d0
 
-// 原始函数名：FUN_180847820 - 内存管理函数FG0
-// 功能：管理内存FG0，处理内存分配和释放
-#define ManageMemoryFG0 FUN_180847820
 
 // 原始函数名：FUN_18084c470 - 系统清理函数FH0
 // 功能：清理系统FH0，释放系统资源
