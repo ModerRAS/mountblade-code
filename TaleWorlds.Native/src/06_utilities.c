@@ -4393,21 +4393,21 @@ undefined8 ValidateAndProcessResourceA(longlong resourceDescriptor)
     }
     contextBuffer[0] = 0;
     validationResult = FUN_1808681d0(resourceBuffer[0],resourceDescriptor + 0x18,contextBuffer);
-    if ((int)uVar1 == 0) {
-      if (alStackX_8[0] != 0) {
-        if (*(longlong *)(alStackX_8[0] + 8) == 0) {
+    if ((int)validationResult == 0) {
+      if (contextBuffer[0] != 0) {
+        if (*(longlong *)(contextBuffer[0] + 8) == 0) {
           return 0x1c;
         }
-        uVar1 = FUN_1808d73b0(*(longlong *)(alStackX_8[0] + 8),*(undefined4 *)(param_1 + 0x20),
-                              *(undefined1 *)(param_1 + 0x24));
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        validationResult = FUN_1808d73b0(*(longlong *)(contextBuffer[0] + 8),*(undefined4 *)(resourceDescriptor + 0x20),
+                                       *(undefined1 *)(resourceDescriptor + 0x24));
+        if ((int)validationResult != 0) {
+          return validationResult;
         }
       }
-      uVar1 = 0;
+      validationResult = 0;
     }
   }
-  return uVar1;
+  return validationResult;
 }
 
 
