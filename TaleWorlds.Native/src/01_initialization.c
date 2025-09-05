@@ -15800,7 +15800,7 @@ void InitializeSystemResourceManagerN(void)
 
 
 
-int InitializeSystemModuleF(void)
+int InitializeSystemValidationModule(void)
 
 {
   long long SystemInitializationStatus;
@@ -15810,10 +15810,10 @@ int InitializeSystemModuleF(void)
   SystemGlobalDataReferenceC = &SystemGlobalDataBufferC;
 
 /**
- * 初始化系统调试管理器A
+ * 初始化系统调试管理器（主模块）
  * 设置系统调试标识符和相关数据结构
  */
-void InitializeSystemDebugManagerA(void)
+void InitializeSystemDebugManagerPrimary(void)
 
 {
   char NodeActiveFlag;
@@ -15863,10 +15863,10 @@ void InitializeSystemDebugManagerA(void)
 
 
 /**
- * 初始化系统调试管理器B
+ * 初始化系统调试管理器（次级模块）
  * 设置系统调试标识符和相关数据结构
  */
-void InitializeSystemDebugManagerB(void)
+void InitializeSystemDebugManagerSecondary(void)
 
 {
   char NodeActiveFlag;
