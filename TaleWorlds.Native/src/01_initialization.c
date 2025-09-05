@@ -28295,7 +28295,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   uint32_t *SystemDataPointer;
   int systemResult;
   int IdentifierCompareResult;
-  uint8_t aSystemThreadStackSize [32];
+  uint8_t SystemThreadStackSize [32];
   void* **SystemResourceManagerA;
   void* CalculationFlagsPrimary;
   void* *pSystemStackFlag;
@@ -28308,7 +28308,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   ulong long ConcatenatedSystemValue;
   
   CalculationFlagsExtended = 0xfffffffffffffffe;
-  ConcatenatedSystemValue = SystemEncryptionKeyTemplate ^ (ulong long)aSystemThreadStackSize;
+  ConcatenatedSystemValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemThreadStackSize;
   CopySystemDataStructure(SystemSystemStackBufferE8,
                 (long long)*(int *)(SystemTextureManagerPointer + 0x1d40) * 0xd0 +
                 *(long long *)(SystemTextureManagerPointer + 0x1d20));
@@ -28350,7 +28350,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   pSystemStackFlag = &SystemMemoryAllocatorReference;
   SystemResourceManagerA = &systemDataPointer;
   SystemMemoryAllocatorReferencePointer = &SystemMemoryAllocatorReference;
-    ValidateSystemChecksum(ConcatenatedSystemValue ^ (ulong long)aSystemThreadStackSize);
+    ValidateSystemChecksum(ConcatenatedSystemValue ^ (ulong long)SystemThreadStackSize);
 }
 
 
@@ -30347,7 +30347,7 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
 {
   void* SystemInitializationStatus;
   void* **pResourceHashEntryPointer;
-  uint8_t aSystemConfigurationId [32];
+  uint8_t SystemConfigurationId [32];
   void* **pSystemMemoryContext;
   void* ***SystemDataSystemMemoryContextPointer;
   void* SystemMemoryAllocationOffset;
@@ -30363,7 +30363,7 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
   ulong long EncryptionKeyValue;
   
   SystemMemoryAllocationOffset = 0xfffffffffffffffe;
-  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)aSystemConfigurationId;
+  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemConfigurationId;
   SystemMemoryContext = &EncryptionOffset1;
   EncryptionOffset1 = &SystemResourceTemplatePrimary;
   EncryptionOffsetSecondary = StackMemoryBufferF0;
@@ -30399,7 +30399,7 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
   ConfigurationDataPointer[1] = 0;
   *(uint32_t *)(ConfigurationDataPointer + 3) = 0;
   *ConfigurationDataPointer = &SystemMemoryAllocatorReference;
-    ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)aSystemConfigurationId);
+    ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)SystemConfigurationId);
 }
 
 
@@ -64443,7 +64443,7 @@ ResourceInitializationLoop:
                   SystemThreadHandleSecondary = SystemThreadHandleSecondary + -1;
                 } while (SystemThreadHandleSecondary != 0);
               }
-              paResourceAddress2 = (uint8_t (*) [16])0x0;
+              ResourceAddressSecondary = (uint8_t (*) [16])0x0;
               if (SystemThreadHandlePrimary < ResourceDataCounter) {
                 ResourceMemoryOffset = SystemThreadHandlePrimary * 0x14;
                 ResourceDataCounter = ResourceDataCounter - SystemThreadHandlePrimary;
@@ -64477,47 +64477,47 @@ ResourceInitializationLoop:
                 ResourceAddressPrimary = (ulong long)*SystemHashNodeData2;
                 ResourceAllocationContextPrimary = *(uint8_t (**) [16])(MatrixPointer218 + ResourceAddressPrimary * 8 + 2);
                 GlobalDataFlags = SystemContextPointer;
-                if (paresourceAllocationContext7 < *(uint8_t (**) [16])(MatrixPointer218 + ResourceAddressPrimary * 8 + 4)) {
-                  *(uint8_t **)(MatrixPointer218 + ResourceAddressPrimary * 8 + 2) = paresourceAllocationContext7[1] + 4;
-                  aSystemOperationCode.LowPart = uStack_1bc;
-                  aSystemOperationCode.HighWord = SystemContextPointer;
-                  aSystemOperationCode.MidWord = (uint32_t)SystemOperationFlag1b8;
-                  aSystemOperationCode.HighWord2 = SystemOperationFlag1b8.LowPart;
-                  *paresourceAllocationContext7 = aSystemOperationCode;
-                  *(uint32_t *)paresourceAllocationContext7[1] = 0x7f7fffff;
+                if (ResourceAllocationContextPrimary < *(uint8_t (**) [16])(MatrixPointer218 + ResourceAddressPrimary * 8 + 4)) {
+                  *(uint8_t **)(MatrixPointer218 + ResourceAddressPrimary * 8 + 2) = ResourceAllocationContextPrimary[1] + 4;
+                  SystemOperationCode.LowPart = StackOperationValue;
+                  SystemOperationCode.HighWord = SystemContextPointer;
+                  SystemOperationCode.MidWord = (uint32_t)SystemOperationFlag1b8;
+                  SystemOperationCode.HighWord2 = SystemOperationFlag1b8.LowPart;
+                  *ResourceAllocationContextPrimary = SystemOperationCode;
+                  *(uint32_t *)ResourceAllocationContextPrimary[1] = 0x7f7fffff;
                 }
                 else {
-                  paResourceAllocationContext = *(uint8_t (**) [16])(MatrixPointer218 + ResourceAddressPrimary * 8);
-                  SystemThreadHandlePrimary = ((long long)paresourceAllocationContext7 - (long long)paResourceAllocationContext) / 0x14;
+                  ResourceAllocationContextSecondary = *(uint8_t (**) [16])(MatrixPointer218 + ResourceAddressPrimary * 8);
+                  SystemThreadHandlePrimary = ((long long)ResourceAllocationContextPrimary - (long long)ResourceAllocationContextSecondary) / 0x14;
                   if (SystemThreadHandlePrimary == 0) {
                     SystemConfigurationPointer = 1;
 SystemConfigurationAllocation:
-                    paResourceAddress2 = (uint8_t (*) [16])
+                    ResourceAddressSecondary = (uint8_t (*) [16])
                                CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemConfigurationPointer * 0x14,
                                              (char)MatrixPointer218[ResourceAddressPrimary * 8 + 6]);
-                    paresourceAllocationContext7 = *(uint8_t (**) [16])(SystemIntegerPointer + ResourceAddressPrimary * 8 + 2);
-                    paResourceAllocationContext = *(uint8_t (**) [16])(SystemIntegerPointer + ResourceAddressPrimary * 8);
+                    ResourceAllocationContextPrimary = *(uint8_t (**) [16])(SystemIntegerPointer + ResourceAddressPrimary * 8 + 2);
+                    ResourceAllocationContextSecondary = *(uint8_t (**) [16])(SystemIntegerPointer + ResourceAddressPrimary * 8);
                   }
                   else {
                     SystemConfigurationPointer = SystemThreadHandlePrimary * 2;
                     if (SystemConfigurationPointer != 0) goto SystemConfigurationAllocation;
                   }
-                  paGlobalDataFlags2 = paResourceAddress2;
-                  if (paResourceAllocationContext != paresourceAllocationContext7) {
-                      memmove(paResourceAddress2,paResourceAllocationContext,(long long)paresourceAllocationContext7 - (long long)paResourceAllocationContext);
+                  GlobalDataFlagsSecondary = ResourceAddressSecondary;
+                  if (ResourceAllocationContextSecondary != ResourceAllocationContextPrimary) {
+                      memmove(ResourceAddressSecondary,ResourceAllocationContextSecondary,(long long)ResourceAllocationContextPrimary - (long long)ResourceAllocationContextSecondary);
                   }
-                  aResourceAddress7.LowPart = uStack_1bc;
-                  aResourceAddress7.HighWord = GlobalDataFlags;
-                  aResourceAddress7.MidWord = (uint32_t)SystemOperationFlag1b8;
-                  aResourceAddress7.HighWord2 = SystemOperationFlag1b8.LowPart;
-                  *paResourceAddress2 = aResourceAddress7;
-                  *(uint32_t *)paResourceAddress2[1] = MatrixPointer1B0.HighWord;
+                  ResourceAddressTertiary.LowPart = StackOperationValue;
+                  ResourceAddressTertiary.HighWord = GlobalDataFlags;
+                  ResourceAddressTertiary.MidWord = (uint32_t)SystemOperationFlag1b8;
+                  ResourceAddressTertiary.HighWord2 = SystemOperationFlag1b8.LowPart;
+                  *ResourceAddressSecondary = ResourceAddressTertiary;
+                  *(uint32_t *)ResourceAddressSecondary[1] = MatrixPointer1B0.HighWord;
                   if (*(long long *)(SystemIntegerPointer + ResourceAddressPrimary * 8) != 0) {
                       SystemCleanupFunction();
                   }
-                  *(uint8_t (**) [16])(SystemIntegerPointer + ResourceAddressPrimary * 8) = paResourceAddress2;
-                  *(uint8_t **)(SystemIntegerPointer + ResourceAddressPrimary * 8 + 2) = paResourceAddress2[1] + 4;
-                  *(ulong long *)(SystemIntegerPointer + ResourceAddressPrimary * 8 + 4) = (long long)paResourceAddress2 + SystemConfigurationPointer * 0x14;
+                  *(uint8_t (**) [16])(SystemIntegerPointer + ResourceAddressPrimary * 8) = ResourceAddressSecondary;
+                  *(uint8_t **)(SystemIntegerPointer + ResourceAddressPrimary * 8 + 2) = ResourceAddressSecondary[1] + 4;
+                  *(ulong long *)(SystemIntegerPointer + ResourceAddressPrimary * 8 + 4) = (long long)ResourceAddressSecondary + SystemConfigurationPointer * 0x14;
                 }
               }
               SystemCalculationValue1d0 = SystemCalculationValue1d0 + 1;
@@ -64703,7 +64703,7 @@ SystemConfigurationAllocation:
   }
   SystemCalculationValue1d0 = 0;
 ThreadContextCleanup:
-  paResourceAddress2 = (uint8_t (*) [16])(SystemCalculationValue1d0 * 0x20);
+  ResourceAddressSecondary = (uint8_t (*) [16])(SystemCalculationValue1d0 * 0x20);
   pointerToInteger20 = *(int **)(*paResourceAddress2 + SystemCalculationValue170);
   ResourceAddressPrimary = *(long long *)(*paResourceAddress2 + SystemCalculationValue170 + 8) - (long long)pointerToInteger20 >> 2;
   paGlobalDataFlags2 = paResourceAddress2;
@@ -64789,10 +64789,10 @@ ThreadHandleValidation:
       do {
         SystemIntegerPointer3 = (int *)0x0;
         GlobalDataFlags = 0;
-        uStack_1bc = 0;
+        StackOperationValue = 0;
         SystemOperationFlag1b8 = (int *)0x0;
         MatrixPointer1B0 = (int *)0x0;
-        uStack_1a8 = 3;
+        StackConfigurationValue = 3;
         isResourceAvailable4 = false;
         isSystemBusy = false;
         ResourceAllocationContextSecondary = 0;
@@ -64833,7 +64833,7 @@ LabelCreateSystemThread:
                     SystemCleanupFunction(pointerToInteger25);
                 }
                 GlobalDataFlags = (uint)SystemIntegerPointer6;
-                uStack_1bc = (uint32_t)((ulong long)SystemIntegerPointer6 >> 0x20);
+                StackOperationValue = (uint32_t)((ulong long)SystemIntegerPointer6 >> 0x20);
                 SystemIntegerPointer3 = SystemIntegerPointer6 + SystemThreadHandlePrimary;
                 MatrixPointer1B0 = SystemIntegerPointer3;
                 pointerToInteger26 = SystemIntegerPointer6;
@@ -64892,12 +64892,12 @@ LabelExpandSystemThread:
         }
         SystemResourceOffsetPointer9 = pSystemMemoryAllocationOffset168;
         GlobalDataFlags = (uint)MatrixPointer218;
-        uStack_1bc = (uint32_t)((ulong long)MatrixPointer218 >> 0x20);
+        StackOperationValue = (uint32_t)((ulong long)MatrixPointer218 >> 0x20);
         SystemOperationFlag1b8._0_4_ = SUB84(MatrixPointer1F8,0);
         SystemOperationFlag1b8.LowPart = (uint32_t)((ulong long)MatrixPointer1F8 >> 0x20);
         MatrixPointer1B0 = MatrixPointer208;
         StackAllocationSize = 3;
-        uStack_1a8 = 3;
+        StackConfigurationValue = 3;
         MatrixPointer210 = pointerToInteger26;
         MatrixPointer208 = SystemIntegerPointer3;
         MatrixPointer1F8 = pointerToInteger26;
