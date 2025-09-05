@@ -4589,13 +4589,13 @@ int32_t UtilityEventError;
 //   void - 无返回值
 void UtilityProcessMemoryBlock(void);
 // 工具系统内存处理相关变量
-undefined UtilityMemoryPointer1;
-undefined UtilityMemoryData1;
-undefined UtilityMemoryData2;
-undefined UtilityMemoryData3;
-undefined UtilityMemoryData4;
+void* UtilityMemoryPointer1;
+uint32_t UtilityMemoryData1;
+uint32_t UtilityMemoryData2;
+uint32_t UtilityMemoryData3;
+uint32_t UtilityMemoryData4;
 
-// 函数: undefined UtilityValidateMemoryAccess;
+// 函数: bool UtilityValidateMemoryAccess(void);
 // 
 // 验证内存访问权限
 // 检查指定内存区域的访问权限和有效性
@@ -4604,8 +4604,8 @@ undefined UtilityMemoryData4;
 //   无
 // 
 // 返回值:
-//   undefined - 验证结果状态
-undefined UtilityValidateMemoryAccess;
+//   bool - 验证结果状态
+bool UtilityValidateMemoryAccess(void);
 // 工具系统内存验证相关变量
 undefined UtilityMemoryPointer2;
 undefined UtilityMemoryValidate1;
