@@ -1,5 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 全局数据定义
+#define DefaultDataNodePointer DAT_00000018
+
 // 全局指针设置函数宏定义 (A0-A23)
 #define SetGlobalDataPointerA0 InitializeGlobalDataPointerA0
 #define SetGlobalDataPointerA1 InitializeGlobalDataPointerA1
