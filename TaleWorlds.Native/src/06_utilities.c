@@ -10071,8 +10071,8 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(int64_t ObjectContex
     return ErrorFloatValidationFailure;
   }
   FloatValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset),&FloatValidationContext);
-  if ((int)ResourceValidationStatus != 0) {
-    return ResourceValidationStatus;
+  if ((int)FloatValidationStatusCode != 0) {
+    return FloatValidationStatusCode;
   }
   ResourceTablePointer = *(int64_t *)(CombineFloatAndInteger(FloatParameter,FloatValidationContext) + ValidationContextCleanupFunctionOffset);
   if (ResourceTablePointer == 0) {
@@ -10524,13 +10524,13 @@ uint8_t GetDefaultErrorStatus(void)
 uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext, int64_t ValidationContext)
 
 {
-  float SourceFloatValue;
-  uint8_t ResourceHashStatus;
+  float InputFloatValue;
+  uint8_t ResourceValidationStatus;
   int64_t ResourceIndex;
-  float RangeMinValue;
-  float RangeMaxValue;
-  float ClampedFloatValue;
-  uint32_t SystemSecurityValidationBuffer [2];
+  float MinimumRangeValue;
+  float MaximumRangeValue;
+  float ClampedResultValue;
+  uint32_t SecurityValidationBuffer [2];
   
   if ((*(uint *)(ObjectContext + ObjectContextValidationDataProcessingOffset) & FloatInfinityMask) == FloatInfinityMask) {
     return ErrorFloatValidationFailure;
@@ -10542,20 +10542,20 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext, int64_t V
     if ((*(uint *)(ResourceIndex + ContextResourceValidationStatussOffset) >> 4 & 1) != 0) {
       return ResourceValidationError;
     }
-    SourceFloatValue = *(float *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
-    RangeMinValue = *(float *)(ResourceIndex + ValidationContextSecondaryCleanupOffset);
-    RangeMaxValue = *(float *)(ResourceIndex + ContextResourceRangeMaxOffset);
-    if ((RangeMinValue <= SourceFloatValue) && (SourceFloatValue <= RangeMaxValue)) {
-      ClampedFloatValue = SourceFloatValue;
+    InputFloatValue = *(float *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
+    MinimumRangeValue = *(float *)(ResourceIndex + ValidationContextSecondaryCleanupOffset);
+    MaximumRangeValue = *(float *)(ResourceIndex + ContextResourceRangeMaxOffset);
+    if ((MinimumRangeValue <= InputFloatValue) && (InputFloatValue <= MaximumRangeValue)) {
+      ClampedResultValue = InputFloatValue;
     }
-    else if (SourceFloatValue < RangeMinValue) {
-      ClampedFloatValue = RangeMinValue;
+    else if (InputFloatValue < MinimumRangeValue) {
+      ClampedResultValue = MinimumRangeValue;
     }
     else {
-      ClampedFloatValue = RangeMaxValue;
+      ClampedResultValue = MaximumRangeValue;
     }
-    *(float *)(ObjectContext + ObjectContextValidationDataProcessingOffset) = ClampedFloatValue;
-    ValidationStatusCode = ValidateResourceParameters(ValidationContext + ValidationContextHashOffset, SecurityValidationBuffer[0], ClampedFloatValue);
+    *(float *)(ObjectContext + ObjectContextValidationDataProcessingOffset) = ClampedResultValue;
+    ValidationStatusCode = ValidateResourceParameters(ValidationContext + ValidationContextHashOffset, SecurityValidationBuffer[0], ClampedResultValue);
     if ((int)ValidationStatusCode == 0) {
             ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
     }
@@ -63878,17 +63878,6 @@ void SetSystemDataStructurePointerAtSecondaryOffset(uint8_t ObjectContext,int64_
 
 
 /**
- * @brief 设置系统数据结构指针到偏移量0x1c0
- * 
- * 该函数在验证上下文的偏移量0x1c0处设置系统数据结构的指针
- * 用于初始化系统数据结构的引用
- * 
- * @param ObjectContext 对象上下文，用于标识当前操作的对象
- * @param ValidationContext 验证上下文，用于设置系统数据结构指针
- * @return 无返回值
- * @note 此函数主要用于系统初始化过程
- */
-/**
  * @brief 设置系统数据结构指针
  * 
  * 该函数在偏移量0x1C0处设置系统数据结构指针
@@ -64408,7 +64397,18 @@ void ExecuteSystemResourceCleanupCallbackSecondary(uint8_t ObjectContext,int64_t
  * @param ValidationContext 验证上下文，包含验证所需的数据和参数
  * @return 无返回值
  */
-void SetSystemDataStructurePointerAtOffset90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到偏移量0x90
+ * 
+ * 该函数在验证上下文的偏移量0x90处设置系统数据结构的指针
+ * 用于系统配置和初始化过程
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含设置所需的数据
+ * @return 无返回值
+ * @note 此函数主要用于系统数据结构的配置
+ */
+void SetSystemDataStructurePointerAtOffset90(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x90) = &SystemDataStructure;
