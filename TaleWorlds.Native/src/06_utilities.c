@@ -91915,7 +91915,15 @@ void ReleaseSystemResourceReferenceEx(void)
 
 
 942978(void)
-void FUN_180942978(void)
+/**
+ * @brief 空操作内存管理函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作直接返回。
+ * 用作内存管理操作的占位符或默认回调。
+ * 
+ * @note 原始函数名：FUN_180942978
+ */
+void NoOperationMemoryFunction(void)
 
 {
   return;

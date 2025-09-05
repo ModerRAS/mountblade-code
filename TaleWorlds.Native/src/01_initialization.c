@@ -19657,7 +19657,7 @@ void InitializeSystemThreadManager(void)
   ThreadManagerInstance = ThreadManagerObject;
   ThreadCreationResult = StartSystemThread(ThreadManagerObject);
   ThreadStackMemory = ConcatenatedSystemValue(ThreadStackMemory.HighPart,ThreadCreationResult);
-  *ThreadManagerObject = 0x72657472617453;
+  *ThreadManagerObject = SystemDataIdentifierTemplate1;
   ThreadOperationFlags = 7;
   CurrentThreadHandle = GetCurrentThread();
   InitializeSystemThreadContext(CurrentThreadHandle,&ErrorHandlingPointer);
@@ -21446,10 +21446,10 @@ void InitializeSystemCoreEngine(void)
   SystemResourceCounter = SystemProcessingBufferOffsetCounter + 0x11;
   StoreDataInBuffer(&SystemGlobalDataReferenceQuaternary,SystemResourceCounter);
   SystemThreadLocalStorage = (uint32_t *)(SystemDataBufferPointer + SystemProcessingBufferOffsetCounter);
-  *SystemThreadLocalStorage = 0x69676e65;
-  SystemThreadLocalStorage[1] = 0x635f656e;
-  SystemThreadLocalStorage[2] = 0x69666e6f;
-  SystemThreadLocalStorage[3] = 0x78742e67;
+  *SystemThreadLocalStorage = SystemStringIdentifierTemplate1;
+  SystemThreadLocalStorage[1] = SystemStringIdentifierTemplate2;
+  SystemThreadLocalStorage[2] = SystemStringIdentifierTemplate3;
+  SystemThreadLocalStorage[3] = SystemStringIdentifierTemplate4;
   *(void*2 *)(SystemThreadLocalStorage + 4) = 0x74;
   SystemProcessingBufferOffsetCounter = SystemResourceCounter;
   HashTablePointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x18,8,3);
@@ -21725,15 +21725,15 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   SystemStackFlagPrimary = ConcatenatedSystemValue(*(uint32_t *)(SystemResourceDataIndex + 0x18c),(uint32_t)SystemStackFlagPrimary);
   SystemDataBuffer = SystemInitializationStatusFlags;
   InitializeSystemDataBuffer(&SystemDataPointer,5);
-  *(uint32_t *)(SystemStackBuffer + SystemDataBuffer) = 0x73676f6c;
+  *(uint32_t *)(SystemStackBuffer + SystemDataBuffer) = 0x73676f6c; // logs
   *(void*2 *)((long long)(SystemStackBuffer + SystemDataBuffer) + 4) = 0x2f;
   SystemDataBuffer = 5;
   InitializeSystemDataBuffer(&SystemDataPointer,0x18);
   SystemThreadStorage = (uint32_t *)(SystemStackBuffer + SystemDataBuffer);
-  *SystemThreadStorage = 0x66726570;
-  SystemThreadStorage[1] = 0x616d726f;
-  SystemThreadStorage[2] = 0x5f65636e;
-  SystemThreadStorage[3] = 0x2e676f6c;
+  *SystemThreadStorage = SystemThreadIdentifierTemplate1;
+  SystemThreadStorage[1] = SystemThreadIdentifierTemplate2;
+  SystemThreadStorage[2] = SystemThreadIdentifierTemplate3;
+  SystemThreadStorage[3] = SystemThreadIdentifierTemplate4;
   SystemThreadStorage[4] = 0x747874;
   SystemDataBuffer = 0x18;
   SystemThreadContext = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x18,8,3);
@@ -23807,10 +23807,10 @@ bool SystemNodeCheckStatus(void)
   systemIndex = stringOffsetValue + 0x11;
   ProcessSystemStringData(&stringBufferPointer, systemIndex);
   resourceHashEntryPointer = (uint32_t*)(encryptionKeyPointer + stringOffsetValue);
-  *resourceHashEntryPointer = 0x69676e65;
-  resourceHashEntryPointer[1] = 0x635f656e;
-  resourceHashEntryPointer[2] = 0x69666e6f;
-  resourceHashEntryPointer[3] = 0x78742e67;
+  *resourceHashEntryPointer = SystemStringIdentifierTemplate1;
+  resourceHashEntryPointer[1] = SystemStringIdentifierTemplate2;
+  resourceHashEntryPointer[2] = SystemStringIdentifierTemplate3;
+  resourceHashEntryPointer[3] = SystemStringIdentifierTemplate4;
   *(void**)(resourceHashEntryPointer + 4) = 0x74;
   systemEncryptionKey = 0;
   systemValidationResult = 0;
@@ -23898,9 +23898,9 @@ void InitializeSystemThreadPoolManager(void)
   systemValue = ConcatenatedSystemValue + 0xf;
   ProcessSystemStringData(ThreadTitleBuffer,systemValue);
   ResourceHashEntryPointer = (uint32_t *)(memoryAllocationBuffer + ConcatenatedSystemValue);
-  *ResourceHashEntryPointer = 0x72657375;
-  ResourceHashEntryPointer[1] = 0x6e6f635f;
-  ResourceHashEntryPointer[2] = 0x2e676966;
+  *ResourceHashEntryPointer = SystemResourceIdentifierTemplate1;
+  ResourceHashEntryPointer[1] = SystemResourceIdentifierTemplate2;
+  ResourceHashEntryPointer[2] = SystemResourceIdentifierTemplate3;
   ResourceHashEntryPointer[3] = 0x747874;
   ConcatenatedSystemValue = systemValue;
   SystemHashNodeData = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x18,8,3);
@@ -24132,7 +24132,7 @@ void** CreateSystemPathBuffers(void** pathBufferReference, void* unusedParameter
   systemCounter = systemIndex + 6;
   ExecuteSystemCommand(SystemResourceManager, systemCounter, AdditionalParameter, ConfigurationFlag, 1, currentThreadIdentifier);
   systemDataPointer = (uint32_t*)((unsigned long long)*(unsigned int*)(SystemResourceManager + 2) + SystemResourceManager[1]);
-  *systemDataPointer = 0x2e2f2e2e;
+  *systemDataPointer = SystemDataIdentifierTemplate2;
   *(void**)(systemDataPointer + 1) = 0x2f2e;
   *(uint8_t*)((long long)systemDataPointer + 6) = 0;
   *(int *)(SystemResourceManager + 2) = systemCounter;
@@ -71636,6 +71636,31 @@ void* SystemStringConstantUserNameError;
 void* SystemStringConstantLibraryNameDefault;
 void* SystemStringConstantFunctionNameDefault;
 void* SystemStringConstantWindowTitleDefault;
+
+// 系统模块标识符常量
+#define SystemStringIdentifierTemplate1            0x69676e65  // 系统字符串标识符模板1 ("engine")
+#define SystemStringIdentifierTemplate2            0x635f656e  // 系统字符串标识符模板2 ("ne_c")
+#define SystemStringIdentifierTemplate3            0x69666e6f  // 系统字符串标识符模板3 ("onfi")
+#define SystemStringIdentifierTemplate4            0x78742e67  // 系统字符串标识符模板4 ("g.tx")
+#define SystemResourceIdentifierTemplate1           0x72657375  // 系统资源标识符模板1 ("user")
+#define SystemResourceIdentifierTemplate2           0x6e6f635f  // 系统资源标识符模板2 ("_con")
+#define SystemResourceIdentifierTemplate3           0x2e676966  // 系统资源标识符模板3 ("fig.")
+#define SystemPathIdentifierTemplate1              0x736c6f6f  // 系统路径标识符模板1 ("ools")
+#define SystemPathIdentifierTemplate2              0x747541747365542f  // 系统路径标识符模板2 ("/TestA")
+#define SystemPathIdentifierTemplate3              0x2f6e6f6974616d6f  // 系统路径标识符模板3 ("omatio")
+#define SystemPathIdentifierTemplate4              0x656d686361747441  // 系统路径标识符模板4 ("Atta")
+#define SystemPathIdentifierTemplate5              0x2f73746e  // 系统路径标识符模板5 ("nts/")
+#define SystemThreadIdentifierTemplate1             0x66726570  // 系统线程标识符模板1 ("perf")
+#define SystemThreadIdentifierTemplate2             0x616d726f  // 系统线程标识符模板2 ("roma")
+#define SystemThreadIdentifierTemplate3             0x5f65636e  // 系统线程标识符模板3 ("nce_")
+#define SystemThreadIdentifierTemplate4             0x2e676f6c  // 系统线程标识符模板4 (".log")
+#define SystemDataIdentifierTemplate1              0x72657472617453  // 系统数据标识符模板1 ("Start")
+#define SystemDataIdentifierTemplate2              0x2e2f2e2e  // 系统数据标识符模板2 (".../")
+#define SystemExceptionIdentifierTemplate1         0xff000000  // 系统异常标识符模板1
+#define SystemInvalidHandleTemplate                0xfffffffffffffffe  // 系统无效句柄模板
+#define SystemMaxHandleValue                       0xffffffffffffffff  // 系统最大句柄值
+#define SystemMemoryFlagMask                       0xfffffffd  // 系统内存标志掩码
+#define SystemCharacterValidationMask              0x87fffffe03ff  // 系统字符验证掩码
 
 // 系统虚拟函数表模板
 void* SystemVirtualTableBaseClassPrimary;
