@@ -4217,28 +4217,28 @@ void CleanupNetworkConnectionStack(void* ConnectionBuffer)
 void CopyNetworkConnectionBuffer(void* SourceBuffer)
 {
   // 连接缓冲区复制状态变量
-  uint32_t CopyOperationStatus;                       // 复制操作状态
-  uint32_t SourceDataValidationResult;                // 源数据验证结果
-  uint32_t SecurityComplianceResult;                  // 安全合规验证结果
+  uint32_t BufferCopyOperationStatus;                       // 缓冲区复制操作状态
+  uint32_t SourceBufferDataValidationResult;                // 源缓冲区数据验证结果
+  uint32_t SecurityComplianceValidationResult;                  // 安全合规验证结果
   
   // 初始化复制状态
-  CopyOperationStatus = NetworkValidationFailure;
-  SourceDataValidationResult = NetworkValidationFailure;
-  SecurityComplianceResult = NetworkValidationFailure;
+  BufferCopyOperationStatus = NetworkValidationFailure;
+  SourceBufferDataValidationResult = NetworkValidationFailure;
+  SecurityComplianceValidationResult = NetworkValidationFailure;
   
   // 验证源缓冲区有效性
   if (SourceBuffer) {
-    SourceDataValidationResult = NetworkValidationSuccess;   // 数据验证通过
-    SecurityComplianceResult = NetworkValidationSuccess;     // 安全验证通过
+    SourceBufferDataValidationResult = NetworkValidationSuccess;   // 数据验证通过
+    SecurityComplianceValidationResult = NetworkValidationSuccess;     // 安全验证通过
     
     // 在实际实现中，这里应该实现实际的缓冲区复制逻辑
     // 包括：数据验证、加密复制、完整性检查等
     // 由于这是简化实现，暂时不执行具体操作
-    CopyOperationStatus = SourceDataValidationResult & SecurityComplianceResult;
+    BufferCopyOperationStatus = SourceBufferDataValidationResult & SecurityComplianceValidationResult;
   }
   
   // 如果复制成功，更新系统状态
-  if (CopyOperationStatus == NetworkValidationSuccess) {
+  if (BufferCopyOperationStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的复制后处理逻辑
     // 例如：更新备份状态、记录日志、触发回调等
   }
@@ -4261,30 +4261,30 @@ void CopyNetworkConnectionBuffer(void* SourceBuffer)
 NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t HeaderIntegrityCheck;                     // 网络头部完整性检查结果
-  uint32_t ContextProcessingStatus;                 // 网络上下文处理状态
-  uint32_t FormatValidationResult;                   // 网络头部格式检查结果
+  uint32_t PacketHeaderIntegrityValidationResult;                     // 数据包头部完整性验证结果
+  uint32_t HeaderContextProcessingStatus;                 // 头部上下文处理状态
+  uint32_t PacketFormatValidationResult;                   // 数据包格式验证结果
   
   // 初始化处理状态
-  HeaderIntegrityCheck = NetworkValidationFailure;
-  ContextProcessingStatus = NetworkValidationFailure;
-  FormatValidationResult = NetworkValidationFailure;
+  PacketHeaderIntegrityValidationResult = NetworkValidationFailure;
+  HeaderContextProcessingStatus = NetworkValidationFailure;
+  PacketFormatValidationResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    HeaderIntegrityCheck = NetworkValidationSuccess;
+    PacketHeaderIntegrityValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    ContextProcessingStatus = NetworkValidationSuccess;
+    HeaderContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (HeaderIntegrityCheck == NetworkValidationSuccess && 
-      ContextProcessingStatus == NetworkValidationSuccess) {
-    FormatValidationResult = NetworkValidationSuccess;
+  if (PacketHeaderIntegrityValidationResult == NetworkValidationSuccess && 
+      HeaderContextProcessingStatus == NetworkValidationSuccess) {
+    PacketFormatValidationResult = NetworkValidationSuccess;
   }
   
-  return FormatValidationResult;
+  return PacketFormatValidationResult;
 }
