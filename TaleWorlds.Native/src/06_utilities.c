@@ -12416,7 +12416,7 @@ undefined8 FUN_180896c10(longlong param_1,undefined8 param_2,undefined8 param_3)
 // 功能：处理复杂的数据缓冲区，包括多种数据类型的验证和转换
 #define ProcessComplexDataBufferA1 FUN_180896c60
 
-void FUN_180896c60(undefined8 param_1,longlong param_2,uint param_3,char param_4)
+void ProcessComplexDataBufferA1(undefined8 systemHandle, longlong dataContext, uint operationFlags, char validationType)
 
 {
   longlong lVar1;
@@ -12750,7 +12750,10 @@ FUN_1808974f4:
 
 
 
-// 函数: void FUN_180896e11(void)
+// 原始函数名：FUN_180896e11 - 浮点数据处理函数A0
+// 功能：处理和计算浮点数据，执行数学运算
+#define ProcessFloatingPointDataA0 FUN_180896e11
+
 void FUN_180896e11(void)
 
 {
