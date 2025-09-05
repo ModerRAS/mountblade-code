@@ -425,7 +425,11 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
  */
 #define NetworkPortRangeMaximum 0x270F                                // 端口9999
 
-// 网络缓冲区大小常量 - 内存和缓冲区配置
+/**
+ * @brief 网络缓冲区大小常量
+ * 
+ * 定义网络系统使用的各种缓冲区大小，用于内存分配和管理
+ */
 #define NetworkSocketContextSize 0x100                            // 套接字上下文大小256字节
 #define NetworkSocketSize 0x40                                     // 套接字大小64字节
 #define NetworkSendBufferSize 0x10000                            // 发送缓冲区大小64KB
@@ -436,7 +440,11 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkPacketContextSize 0x100                              // 网络数据包上下文大小：256字节
 #define NetworkConnectionContextSize 0x200                           // 网络连接上下文大小：512字节
 
-// 网络超时常量
+/**
+ * @brief 网络超时常量
+ * 
+ * 定义网络操作中的超时时间设置，用于控制各种网络操作的等待时间
+ */
 #define NetworkTimeout1Second 1000                             // 网络超时：1秒
 #define NetworkTimeout5Seconds 5000                           // 网络超时：5秒
 #define NetworkTimeout30Seconds 30000                          // 网络超时：30秒
@@ -444,7 +452,11 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkHeartbeat30Seconds 30                          // 网络心跳：30秒
 #define NetworkHeartbeat60Seconds 60                          // 网络心跳：60秒
 
-// 网络质量常量
+/**
+ * @brief 网络质量常量
+ * 
+ * 定义网络连接质量评估相关的参数，用于衡量网络性能和可靠性
+ */
 #define NetworkConnectionQualityGood 0x05                       // 良好连接质量
 #define NetworkLatency50Milliseconds 50                                     // 网络延迟：50毫秒
 #define NetworkBandwidthFourKilobytes 4096                                 // 4KB带宽
