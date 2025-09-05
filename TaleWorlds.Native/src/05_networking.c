@@ -3260,8 +3260,8 @@ NetworkHandle ProcessNetworkPacketDataWithContext(NetworkHandle *PacketData, int
     NetworkPacketDataParsingResult = NetworkOperationSuccess;  // 数据解析成功
   }
   
-  // 验证句柄偏移量有效性
-  if (PacketHandleOffset >= 0) {
+  // 验证数据包上下文偏移量有效性
+  if (PacketContextOffset >= 0) {
     NetworkPacketDataValidationResult = NetworkOperationSuccess;  // 数据验证成功
   }
   
