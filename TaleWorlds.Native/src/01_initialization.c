@@ -1000,9 +1000,9 @@ void* SystemMemoryBlockFastStartup;
 unsigned long long SystemPrimaryMemorySize;
 unsigned long long SystemSecondaryMemorySize;
 unsigned long long SystemCacheMemorySize;
-uint8_t SystemPrimaryByteValue;
-uint8_t SystemSecondaryByteValue;
-uint8_t SystemCacheByteValue;
+uint8_t SystemPrimaryOperationByte;
+uint8_t SystemSecondaryOperationByte;
+uint8_t SystemCacheOperationByte;
 long long SystemSecondaryOperationTimestamp;
 bool SystemPrimaryStatusFlag;
 void* SystemMemoryBlockCompression;
@@ -1405,16 +1405,16 @@ void* SystemDataBufferStateOctonary;
 void* SystemDataBufferStateNonary;
 void* SystemDataBufferStateDenary;
 void* SystemDataBufferStateUndenary;
-uint8_t SystemDataBufferStateSpecial;
+uint8_t SystemDataBufferStateFlag;
 void* SystemDataBufferStateDuodenary;
 void* SystemDataBufferStateTredecenary;
 void* SystemDataBufferStateQuattuordecenary;
 void* SystemDataBufferStateQuindecenary;
 void* SystemDataBufferStateSexdecenary;
 void* SystemDataBufferStateSeptendecenary;
-uint32_t SystemDataBufferExtendedPrimary;
-uint32_t SystemDataBufferExtendedSecondary;
-uint32_t SystemDataBufferExtendedTertiary;
+uint32_t SystemDataBufferExtendedMain;
+uint32_t SystemDataBufferExtendedAuxiliary;
+uint32_t SystemDataBufferExtendedReserve;
 void* SystemDataBufferStateOctodecenary;
 // 系统状态和数据缓冲区
 char SystemStatusBufferPrimary;
@@ -1502,15 +1502,15 @@ void* SystemDataBufferExtendedSecondary;
 void* SystemDataBufferExtendedTertiary;
 void* SystemDataBufferExtendedFinalPrime;
 void* SystemDataBufferStandardExtendedLarge;
-void* SystemDataBufferStandardExtended33;
-void* SystemDataBufferStandardExtended34;
-void* SystemDataBufferStandardExtended35;
-void* SystemDataBufferStandardExtended36;
-void* SystemDataBufferStandardExtended37;
-void* SystemDataBufferStandardExtended38;
-void* SystemDataBufferStandardExtended39;
-void* SystemDataBufferStandardExtended40;
-void* SystemDataBufferStandardExtended41;
+void* SystemDataBufferStandardExtendedResource1;
+void* SystemDataBufferStandardExtendedResource2;
+void* SystemDataBufferStandardExtendedResource3;
+void* SystemDataBufferStandardExtendedResource4;
+void* SystemDataBufferStandardExtendedResource5;
+void* SystemDataBufferStandardExtendedResource6;
+void* SystemDataBufferStandardExtendedResource7;
+void* SystemDataBufferStandardExtendedResource8;
+void* SystemDataBufferStandardExtendedResource9;
 
 // 系统初始化协调器
 void* SystemInitializationCoordinator;
@@ -18696,7 +18696,7 @@ CallbackTableInitializationComplete:
  * 初始化引擎模块A
  * 设置引擎初始化参数和配置
  */
-void InitializeEngineModuleA(void)
+void InitializeEngineMemoryCacheD(void)
 
 {
   uint64_t SystemRegisterR9Parameter;
@@ -18722,7 +18722,7 @@ void InitializeEngineModuleA(void)
  * 初始化引擎模块B
  * 设置引擎初始化参数和配置
  */
-void InitializeEngineModuleB(void)
+void InitializeEngineMemoryCacheE(void)
 
 {
   uint64_t SystemRegisterR9Parameter;
@@ -18818,7 +18818,7 @@ int InitializeEngineModuleB(void)
  * 根据系统配置设置适当的系统指针地址
  * 检查系统状态并选择合适的指针地址
  */
-void SetSystemPointerA(void)
+void SetDisplaySystemPrimaryContext(void)
 
 {
   int SystemInitializationStatus;
@@ -18840,7 +18840,7 @@ void SetSystemPointerA(void)
  * 根据系统配置设置复杂的系统指针地址
  * 首先检查高级配置，然后回退到基础配置
  */
-void SetSystemPointerB(void)
+void SetDisplaySystemSecondaryContext(void)
 
 {
   int SystemInitializationStatus;
