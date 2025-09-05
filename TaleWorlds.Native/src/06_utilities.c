@@ -3734,41 +3734,43 @@ undefined8 ProcessMemoryFlagUpdate(longlong param_1)
 
 
 
-undefined8 FUN_180890500(longlong param_1,undefined8 param_2)
+// 函数: undefined8 ProcessUtilityResourceDecrement(longlong param_1,undefined8 param_2)
+// 功能：处理工具资源递减操作，减少资源计数器并在满足条件时执行资源清理
+undefined8 ProcessUtilityResourceDecrement(longlong param_1,undefined8 param_2)
 
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  int iVar3;
-  longlong alStackX_8 [2];
+  longlong resourcePointer;
+  undefined8 validationStatus;
+  int operationResult;
+  longlong stackBuffer [2];
   
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_8);
-  lVar1 = alStackX_8[0];
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationStatus = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),stackBuffer);
+  resourcePointer = stackBuffer[0];
+  if ((int)validationStatus != 0) {
+    return validationStatus;
   }
-  if (*(int *)(alStackX_8[0] + 0x4c) < 1) {
+  if (*(int *)(stackBuffer[0] + 0x4c) < 1) {
     return 0x1c;
   }
-  iVar3 = *(int *)(alStackX_8[0] + 0x4c) + -1;
-  *(int *)(alStackX_8[0] + 0x4c) = iVar3;
-  if (*(int *)(alStackX_8[0] + 0x58) + *(int *)(alStackX_8[0] + 0x54) + iVar3 != 0) {
+  operationResult = *(int *)(stackBuffer[0] + 0x4c) + -1;
+  *(int *)(stackBuffer[0] + 0x4c) = operationResult;
+  if (*(int *)(stackBuffer[0] + 0x58) + *(int *)(stackBuffer[0] + 0x54) + operationResult != 0) {
     return 0;
   }
-  alStackX_8[0] = 0;
-  iVar3 = FUN_18088c740(alStackX_8);
-  if (iVar3 == 0) {
-    iVar3 = FUN_1808c7dc0(lVar1,0);
-    if (iVar3 == 0) {
-      iVar3 = FUN_18088ac50(param_2);
-      if (iVar3 == 0) {
+  stackBuffer[0] = 0;
+  operationResult = FUN_18088c740(stackBuffer);
+  if (operationResult == 0) {
+    operationResult = FUN_1808c7dc0(resourcePointer,0);
+    if (operationResult == 0) {
+      operationResult = FUN_18088ac50(param_2);
+      if (operationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088c790(alStackX_8);
+        FUN_18088c790(stackBuffer);
       }
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStackX_8);
+  FUN_18088c790(stackBuffer);
 }
 
 
@@ -5646,18 +5648,19 @@ void ExecuteUtilityOperation(longlong operationPointer,longlong contextPointer)
 
 
 
-// 函数: void FUN_180891970(longlong param_1,longlong param_2)
-void FUN_180891970(longlong param_1,longlong param_2)
+// 函数: void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
+// 功能：处理工具系统事件，根据事件参数执行相应的事件处理操作
+void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int processingResult;
+  longlong eventData;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    *(undefined4 *)(param_1 + 0x18) = *(undefined4 *)(lStackX_8 + 0x30);
-    *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(lStackX_8 + 0x34);
-    FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+  processingResult = func_0x00018088c530(*(undefined4 *)(eventPointer + 0x10),&eventData);
+  if (processingResult == 0) {
+    *(undefined4 *)(eventPointer + 0x18) = *(undefined4 *)(eventData + 0x30);
+    *(undefined4 *)(eventPointer + 0x1c) = *(undefined4 *)(eventData + 0x34);
+    FUN_18088d7c0(*(undefined8 *)(contextPointer + 0x98),eventPointer);
   }
   return;
 }
