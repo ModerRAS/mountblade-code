@@ -9205,6 +9205,14 @@ int ProcessDataByCondition(undefined8 inputCondition,undefined8 dataSize)
 
 
 
+// 原始函数名：func_0x00018088c500 - 系统资源验证和处理函数A0
+// 功能：验证系统资源并执行相应的处理操作
+#define ValidateAndProcessSystemResourceA0 func_0x00018088c500
+
+// 原始函数名：func_0x00018088c530 - 系统数据查询和获取函数A0
+// 功能：查询系统数据并获取相关信息
+#define QueryAndRetrieveSystemDataA0 func_0x00018088c530
+
 // 原始函数名：FUN_180893a63 - 返回错误码函数
 // 功能：返回固定错误码0x1f
 #define ReturnErrorCode31 FUN_180893a63
