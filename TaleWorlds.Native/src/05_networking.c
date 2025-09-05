@@ -357,7 +357,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 
 // 网络状态常量 - 系统状态和限制值
 #define NetworkStatusActive 0x01                               // 网络状态：活跃
-#define NetworkMaxInt32Value 0x7fffffff                        // 最大32位有符号整数值
+#define NetworkMaximumInt32Value 0x7fffffff                        // 最大32位有符号整数值
 #define NetworkExtendedPacketSizeLimit 0x53                // 扩展数据包大小限制（83字节）
 #define NetworkStandardPacketSizeLimit 0x31                       // 标准数据包大小限制（49字节）
 #define NetworkStatusInactive 0x00                          // 网络状态：非活跃
@@ -371,7 +371,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * 
  * 用于调试和内存检查的魔数值，帮助识别内存损坏问题
  */
-#define NetworkMagicMemoryValidation 0xDEADF00D            // 内存验证魔数，用于调试内存检查
+#define NetworkMemoryValidationMagic 0xDEADF00D            // 内存验证魔数，用于调试内存检查
 /**
  * @brief 调试验证魔数
  * 
@@ -404,26 +404,26 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  */
 #define TcpSocketCategory 0x01                             // TCP套接字类别
 #define NetworkTcpProtocol 0x06                               // TCP协议类型
-#define NetworkLocalhostAddress 0x7F000001                   // 网络本地回环地址127.0.0.1
+#define NetworkLocalhostIpAddress 0x7F000001                   // 网络本地回环地址127.0.0.1
 #define NetworkLoopbackAddress NetworkLocalhostAddress       // 网络回环地址别名
 /**
  * @brief HTTP备用端口
  * 
  * 用于HTTP服务的备用端口号8080
  */
-#define NetworkPortHttpAlternative 0x1F90                                 // 端口8080
+#define NetworkHttpAlternativePort 0x1F90                                 // 端口8080
 /**
  * @brief HTTPS备用端口
  * 
  * 用于HTTPS服务的备用端口号8091
  */
-#define NetworkPortHttpsAlternative 0x1FBB                                // 端口8091
+#define NetworkHttpsAlternativePort 0x1FBB                                // 端口8091
 /**
  * @brief 端口范围结束值
  * 
  * 网络端口范围的结束值，用于限制端口号的最大值
  */
-#define NetworkPortRangeMaximum 0x270F                                // 端口9999
+#define NetworkMaximumPortNumber 0x270F                                // 端口9999
 
 /**
  * @brief 网络缓冲区大小常量
@@ -436,7 +436,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkReceiveBufferSize 0x10000                          // 接收缓冲区大小64KB
 #define NetworkBufferCapacity 0x20000                              // 缓冲区容量128KB
 #define NetworkPacketQueueSize 0x100                               // 数据包队列大小256
-#define NetworkBufferSize4KB 0x1000                               // 网络缓冲区大小：4KB
+#define Network4KBBufferSize 0x1000                               // 网络缓冲区大小：4KB
 #define NetworkPacketContextSize 0x100                              // 网络数据包上下文大小：256字节
 #define NetworkConnectionContextSize 0x200                           // 网络连接上下文大小：512字节
 
