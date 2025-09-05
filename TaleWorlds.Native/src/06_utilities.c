@@ -25,6 +25,12 @@
 #define OperationFlagMask 0x10000000
 #define MemoryAlignmentMask 0xfbffffff
 
+// 资源管理常量定义
+#define ResourceDataOffset 0x10
+#define ReferenceCountOffset 500
+#define ResourceStatusOffset 0x204
+#define ResourceInvalidErrorCode 0x1c
+
 // 系统函数宏定义
 #define GetSystemContextHandle GetSystemContextHandle
 #define ProcessSystemDataWithValidation ProcessSystemDataWithValidation
@@ -7945,15 +7951,15 @@ undefined8 UpdateResourceReferenceCount(longlong resourceHandle)
   if (systemContextBuffer[0] != 0) {
     systemContextBuffer[0] = systemContextBuffer[0] + -8;
   }
-  resourcePointer = *(longlong *)(systemContextBuffer[0] + 0x10);
+  resourcePointer = *(longlong *)(systemContextBuffer[0] + ResourceDataOffset);
   if (resourcePointer != 0) {
-    *(int *)(resourcePointer + 500) = *(int *)(resourcePointer + 500) + 1;
-    if ((*(char *)(resourcePointer + 0x204) != '\0') && (validationStatus = QuerySystemStatus(), (int)validationStatus != 0)) {
+    *(int *)(resourcePointer + ReferenceCountOffset) = *(int *)(resourcePointer + ReferenceCountOffset) + 1;
+    if ((*(char *)(resourcePointer + ResourceStatusOffset) != '\0') && (validationStatus = QuerySystemStatus(), (int)validationStatus != 0)) {
       return validationStatus;
     }
     return 0;
   }
-  return 0x1c;
+  return ResourceInvalidErrorCode;
 }
 
 
@@ -7964,19 +7970,19 @@ undefined8 ReleaseUtilityResource(longlong resourceHandle)
 
 {
   uint64_t validationStatus;
-  longlong stackPointer;
+  longlong systemContextPointer;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + ComponentHandleOffset),&stackPointer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + ComponentHandleOffset),&systemContextPointer);
   if ((int)validationStatus == 0) {
-    if (stackPointer == 0) {
-      stackPointer = 0;
+    if (systemContextPointer == 0) {
+      systemContextPointer = 0;
     }
     else {
-      stackPointer = stackPointer + -8;
+      systemContextPointer = systemContextPointer + -8;
     }
-    if (*(longlong *)(stackPointer + 0x10) != 0) {
+    if (*(longlong *)(systemContextPointer + ResourceDataOffset) != 0) {
                     // WARNING: Subroutine does not return
-      ReleaseResource(*(longlong *)(stackPointer + 0x10),1);
+      ReleaseResource(*(longlong *)(systemContextPointer + ResourceDataOffset),1);
     }
     validationStatus = 0;
   }
@@ -7999,9 +8005,9 @@ undefined8 CheckNullPointerAccess(void)
   else {
     resourcePointer = registerValue + -8;
   }
-  if (*(longlong *)(resourcePointer + 0x10) != 0) {
+  if (*(longlong *)(resourcePointer + ResourceDataOffset) != 0) {
                     // WARNING: Subroutine does not return
-    ReleaseResource(*(longlong *)(resourcePointer + 0x10),1);
+    ReleaseResource(*(longlong *)(resourcePointer + ResourceDataOffset),1);
   }
   return 0;
 }
