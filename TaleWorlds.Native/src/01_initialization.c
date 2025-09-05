@@ -26402,7 +26402,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   void* *SystemMemoryBufferPointerQuaternary;
   int SystemOperationMaximum;
   uint32_t concatenatedSystemValue;
-  void* *pCalculationFlags1;
+  void* *CalculationFlagsPrimary;
   long long SystemMemoryAlignmentOffset1;
   uint32_t encryptionKeySize;
   void* threadLocalStoragePointer;
@@ -26808,7 +26808,7 @@ void SystemCleanupHandler(void)
   long long SystemThreadHandle;
   long long ResourceMemoryOffset;
   long long SystemProcessBufferPtr;
-  int *pointerToInteger5;
+  int *SystemIntegerPointer;
   void** RootNodeReference;
   uint32_t *HashTablePointer;
   void* *SystemThreadStorage;
@@ -27265,7 +27265,7 @@ void InitializeSystemDataStructures(void)
   float systemFloatValue;
   double SystemFloatingPointValuePrimary;
   double SystemFloatingPointValueSecondary;
-  long long **stackDoublePointerX8;
+  long long **SystemDoublePointerPrimary;
   long long *StackPointerX10;
   long long *StackPointerX18;
   long long SystemStackRegisterValueX20;

@@ -4583,7 +4583,7 @@ void* UtilityMemoryManagementData17;
 void* UtilityMemoryManagementData18;
 void* UtilityMemoryManagementData19;
 void* UtilityMemoryManagementData20;
-undefined UtilityMemoryManagementData21;
+void* UtilityMemoryManagementData21;
 undefined UtilityMemoryManagementData22;
 undefined UtilityMemoryManagementData23;
 undefined UtilityMemoryManagementData24;
