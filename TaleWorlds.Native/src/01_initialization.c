@@ -19417,22 +19417,22 @@ HandleMemoryBufferOverflow:
 void InitializeSystemDebugSymbolManager(void* systemContext,long long InitializationFlag)
 
 {
-  long long** SymbolTablePointer;
-  int systemInitializationStatusCode;
-  uint systemSymbolFlags;
-  uint32_t SymbolOptions;
+  long long** DebugSymbolTablePointer;
+  int SystemInitializationStatusCode;
+  uint DebugSymbolFlags;
+  uint32_t SymbolProcessingOptions;
   void* systemContextHandle;
   long long* SystemLibraryHandle;
   long long PerformanceFrequency;
-  void** symbolNextNode;
-  void** debugContextPointer;
-  void** threadContextPointer;
-  uint8_t* MemoryAllocationFlag;
-  char* SearchPathPointer;
-  void** StackPointer;
+  void** SymbolNextNodePointer;
+  void** DebugContextPointer;
+  void** ThreadContextPointer;
+  uint8_t* MemoryAllocationStatusFlag;
+  char* SymbolSearchPathPointer;
+  void** SystemCallStackPointer;
   unsigned long long SystemOperationTimestamp;
-  uint stackOperationFlags;
-  char threadExecutionState;
+  uint StackOperationFlags;
+  char ThreadExecutionState;
   long long* ThreadLocalDataBuffer;
   long long** ThreadManagerPointer;
   long long performanceCounterValue;
@@ -22585,7 +22585,7 @@ void LockSystemMutex(long long SystemResourceManager,uint8_t ConfigurationDataPo
 
 
 
-// 函数: void ProcessMemorySystemTimestampHandler(void* SystemResourceManager,void* *ConfigurationDataPointer,long long *AdditionalParameter)
+// 函数: void ProcessSystemMemoryTimestampHandler(void* SystemResourceManager,void* *ConfigurationDataPointer,long long *AdditionalParameter)
 /**
  * @brief 系统时间戳处理器
  * 
@@ -22598,7 +22598,7 @@ void LockSystemMutex(long long SystemResourceManager,uint8_t ConfigurationDataPo
  * 
  * @note 这是系统时间管理的重要组成部分，确保时间相关操作的正确性
  */
-void ProcessMemorySystemTimestampHandler(void* SystemResourceManager,void* *ConfigurationDataPointer,long long *AdditionalParameter)
+void ProcessSystemMemoryTimestampHandler(void* SystemResourceManager,void* *ConfigurationDataPointer,long long *AdditionalParameter)
 
 {
   int SystemInitializationStatus;

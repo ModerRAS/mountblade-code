@@ -4880,13 +4880,13 @@ undefined GlobalDataPointerA37ValidationBuffer;
 // 原始函数名：FUN_180942440 - 全局指针设置函数A38
 // 功能：设置全局数据指针A38到指定地址
 #define SetGlobalDataPointerA38 FUN_180942440
-undefined DAT_180bfa1d0;
-undefined DAT_180bfa1d8;
-undefined DAT_180bfa1e0;
-undefined DAT_180bfa1e8;
-undefined DAT_180a22fd0;
+void* GlobalDataPointerA38_1;
+void* GlobalDataPointerA38_2;
+void* GlobalDataPointerA38_3;
+void* GlobalDataPointerA38_4;
+void* GlobalDataPointerA38_5;
 
-// 函数: undefined UtilityProcessDataA0;
+// 函数: void* UtilityProcessDataA0;
 // 
 // 处理工具数据A0
 // 执行A0类工具数据的处理操作
@@ -4895,8 +4895,8 @@ undefined DAT_180a22fd0;
 //   无
 // 
 // 返回值:
-//   undefined - 数据处理结果
-undefined UtilityProcessDataA0;
+//   void* - 数据处理结果
+void* UtilityProcessDataA0;
 undefined DAT_180bfa230;
 undefined DAT_180bfa238;
 undefined DAT_180bfa240;
@@ -5015,14 +5015,14 @@ undefined DAT_180bfa6e0;
 undefined DAT_180bfa6e8;
 undefined DAT_180bfa6f0;
 undefined DAT_180bfa6f8;
-undefined UtilitySystemControlFlag600;
-undefined SystemStatusControlFlag1;
-undefined SystemStatusControlFlag2;
-undefined SystemStatusControlFlag3;
-undefined SystemStatusControlFlag4;
-undefined SystemStatusControlFlag5;
-undefined SystemDataBufferPrimary;
-undefined SystemDataBufferSecondary;
+bool UtilitySystemControlFlag600;
+bool SystemStatusControlFlag1;
+bool SystemStatusControlFlag2;
+bool SystemStatusControlFlag3;
+bool SystemStatusControlFlag4;
+bool SystemStatusControlFlag5;
+void* SystemDataBufferPrimary;
+void* SystemDataBufferSecondary;
 undefined DAT_180bfa780;
 undefined DAT_180bfa788;
 undefined DAT_180bfa790;
@@ -8683,34 +8683,54 @@ undefined8 ProcessFloatDataResource(longlong resourceHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: int ProcessResourceCopyOperation(longlong param_1)
+// 函数: int ProcessResourceCopyOperation(longlong ResourceOperationContext)
 // 功能：处理资源复制操作，根据条件复制资源数据并执行相关操作
-int ProcessResourceCopyOperation(longlong param_1)
+// 
+// 该函数根据传入的资源操作上下文，执行资源复制操作。它会检查资源数据，
+// 查询系统数据，并在必要时分配资源。函数会处理数据复制和资源分配，
+// 确保操作的安全性和完整性。
+//
+// 参数:
+//   ResourceOperationContext - 资源操作上下文指针，包含操作所需的配置信息
+//     偏移量 0x10: 数据长度
+//     偏移量 0x18: 资源指针
+//     偏移量 0x20: 资源计数
+//     偏移量 0x4c: 系统查询标识符
+//
+// 返回值:
+//   int - 操作结果状态码
+//     0: 操作成功
+//     非0: 操作失败或错误代码
+//
+// 注意事项:
+//   - 函数包含不返回的子程序调用警告
+//   - 使用全局内存管理器进行资源分配
+int ProcessResourceCopyOperation(longlong ResourceOperationContext)
 
 {
-  int operationResult;
-  longlong resourcePointer;
-  undefined1 stackBuffer [8];
-  undefined1 dataBuffer [72];
+  int CopyOperationStatus;
+  longlong ResourceTargetPointer;
+  uint8_t SystemQueryBuffer[8];
+  uint8_t ResourceDataBuffer[72];
   
-  resourcePointer = 0;
-  if (0 < *(int *)(param_1 + 0x20)) {
-    resourcePointer = *(longlong *)(param_1 + 0x18);
+  ResourceTargetPointer = 0;
+  if (0 < *(int *)(ResourceOperationContext + 0x20)) {
+    ResourceTargetPointer = *(longlong *)(ResourceOperationContext + 0x18);
   }
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x4c),stackBuffer);
-  if (operationResult == 0) {
-    operationResult = *(int *)(param_1 + 0x10);
-    if (0x38 < *(int *)(param_1 + 0x10)) {
-      operationResult = 0x38;
+  CopyOperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ResourceOperationContext + 0x4c),SystemQueryBuffer);
+  if (CopyOperationStatus == 0) {
+    CopyOperationStatus = *(int *)(ResourceOperationContext + 0x10);
+    if (0x38 < *(int *)(ResourceOperationContext + 0x10)) {
+      CopyOperationStatus = 0x38;
     }
                     // WARNING: Subroutine does not return
-    memcpy(dataBuffer,param_1 + 0x10,(longlong)operationResult);
+    memcpy(ResourceDataBuffer,ResourceOperationContext + 0x10,(longlong)CopyOperationStatus);
   }
-  if (resourcePointer != 0) {
+  if (ResourceTargetPointer != 0) {
                     // WARNING: Subroutine does not return
-    AllocateResourceA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourcePointer,&UNK_18095b500,0xb8,1);
+    AllocateResourceA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),ResourceTargetPointer,&UNK_18095b500,0xb8,1);
   }
-  return operationResult;
+  return CopyOperationStatus;
 }
 
 

@@ -1858,17 +1858,17 @@ uint32_t NetworkPacketValidationBufferSize;                     // 数据包验�
 uint32_t NetworkPacketSecurityValidationData;                   // 数据包安全验证数据
 uint32_t NetworkPacketSecurityValidationInfo;                   // 数据包安全验证信息
 uint32_t NetworkPacketSecurityEncryptionData;                   // 数据包安全加密数据
-uint32_t PacketSecurityEncryptionInfo;                   // 数据包安全加密信息
-uint32_t PacketSecurityAuthenticationData;              // 数据包安全认证数据
-uint32_t PacketSecurityAuthenticationInfo;              // 数据包安全认证信息
-uint32_t PacketSecurityAuthorizationData;               // 数据包安全授权数据
-uint32_t PacketSecurityAuthorizationInfo;               // 数据包安全授权信息
-uint32_t PacketSecurityAuditData;                        // 数据包安全审计数据
-uint32_t PacketSecurityAuditInfo;                        // 数据包安全审计信息
-uint32_t PacketSecurityPolicyData;                       // 数据包安全策略数据
-uint32_t PacketSecurityPolicyInfo;                       // 数据包安全策略信息
-uint32_t PacketSecurityCertificateData;                  // 数据包安全证书数据
-uint32_t PacketSecurityCertificateInfo;                  // 数据包安全证书信息
+uint32_t NetworkPacketSecurityEncryptionInfo;                   // 数据包安全加密信息
+uint32_t NetworkPacketSecurityAuthenticationData;              // 数据包安全认证数据
+uint32_t NetworkPacketSecurityAuthenticationInfo;              // 数据包安全认证信息
+uint32_t NetworkPacketSecurityAuthorizationData;               // 数据包安全授权数据
+uint32_t NetworkPacketSecurityAuthorizationInfo;               // 数据包安全授权信息
+uint32_t NetworkPacketSecurityAuditData;                        // 数据包安全审计数据
+uint32_t NetworkPacketSecurityAuditInfo;                        // 数据包安全审计信息
+uint32_t NetworkPacketSecurityPolicyData;                       // 数据包安全策略数据
+uint32_t NetworkPacketSecurityPolicyInfo;                       // 数据包安全策略信息
+uint32_t NetworkPacketSecurityCertificateData;                  // 数据包安全证书数据
+uint32_t NetworkPacketSecurityCertificateInfo;                  // 数据包安全证书信息
 uint32_t PacketCompressionDataLevel;                    // 数据包压缩数据级别
 uint32_t PacketCompressionLevel;                         // 数据包压缩级别
 uint32_t PacketCompressionAlgorithmType;                 // 数据包压缩算法类型
