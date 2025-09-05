@@ -19624,7 +19624,7 @@ uint32_t FinalSystemInitialization(void)
   long long**** SystemCoreManager;
   
   // 内存分配标志，用于控制内存分配
-  void* MemoryAllocationFlags;
+  void* AllocationFlags;
   
   // 系统主内存管理器，用于管理主要内存资源
   long long**** SystemPrimaryMemoryManager;
@@ -19701,8 +19701,8 @@ uint32_t FinalSystemInitialization(void)
   }
   InitializeSystemManager();
   SystemObjectHandle = SystemContextManagerPointer;
-  MemoryAllocationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3);
-  SystemMemoryManager = (long long ****)AllocateSystemMemory(MemoryAllocationFlags,2,SystemObjectHandle);
+  AllocationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3);
+  SystemMemoryManager = (long long ****)AllocateSystemMemory(AllocationFlags,2,SystemObjectHandle);
   SystemMemoryManagerBackup = SystemMemoryManager;
   if (SystemMemoryManager != (long long ****)0x0) {
     (*(code *)(*SystemMemoryManager)[5])(SystemMemoryManager);
@@ -19764,16 +19764,16 @@ uint32_t FinalSystemInitialization(void)
     SystemResourceManagerSecondary = (long long ***)(SystemMemoryPageBase + 0x40070);
     _Mtx_destroy_in_situ();
     ConfigureSystemProcessingBuffer(SystemMemoryPageBase);
-    if (MemoryAllocationFlags != 0) {
-        SystemCleanupFunction(MemoryAllocationFlags);
+    if (AllocationFlags != 0) {
+        SystemCleanupFunction(AllocationFlags);
     }
   }
   SystemResourceHandler = SystemInitializationFlag;
-  MemoryAllocationFlags = SystemAllocationTemplate;
+  AllocationFlags = SystemAllocationTemplate;
   SystemManagerPointerStorage = (long long ****)0x0;
   if (SystemAllocationTemplate != 0) {
     InitializeSystemLogger(SystemAllocationTemplate);
-      SystemCleanupFunction(MemoryAllocationFlags);
+      SystemCleanupFunction(AllocationFlags);
   }
   SystemAllocationTemplate = 0;
   *(uint32_t *)(SystemInitializationFlag + 0x2d) = 2;

@@ -28891,8 +28891,13 @@ void FUN_18089fb06(void)
 
 
 
-89fb2b(void)
-void FUN_18089fb2b(void)
+/**
+ * 空操作函数B
+ * 
+ * 该函数不执行任何操作，直接返回。
+ * 主要用于占位或保持接口一致性。
+ */
+void NoOperationB(void)
 
 {
   return;
@@ -28901,19 +28906,29 @@ void FUN_18089fb2b(void)
 
 
 
-89fb40(longlong param_1,undefined8 param_2)
-void FUN_18089fb40(longlong param_1,undefined8 param_2)
+/**
+ * 处理端口控制请求B
+ * 
+ * 该函数处理端口控制请求，验证请求的有效性并在验证通过时执行控制操作。
+ * 如果验证失败，函数会安全返回；如果验证通过但不执行操作，也会安全返回。
+ * 
+ * @param portContext 端口上下文句柄，包含端口相关信息
+ * @param controlRequest 控制请求参数，指定要执行的控制操作
+ */
+void ProcessPortControlRequestB(longlong portContext, undefined8 controlRequest)
 
 {
-  int iVar1;
-  undefined1 auStack_28 [32];
+  int operationResult;
+  undefined1 portBuffer [32];
   
-  iVar1 = FUN_1808ddd30(param_2,auStack_28,0,0x4f525443,0);
-  if (iVar1 == 0) {
-    iVar1 = FUN_1808a7b00(param_2,param_1 + 8);
-    if (iVar1 == 0) {
+  // 验证控制请求的有效性
+  operationResult = ValidatePortControlRequestExtended(controlRequest, portBuffer, 0, PORT_CONTROL_FLAG, 0);
+  if (operationResult == 0) {
+    // 验证端口访问权限
+    operationResult = ValidatePortAccessExtended(controlRequest, portContext + 8);
+    if (operationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808de000(param_2,auStack_28);
+      ExecutePortControlOperationExtended(controlRequest, portBuffer);
     }
   }
   return;
@@ -88371,5 +88386,25 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 // 原始函数名：FUN_1808ddf80 - 执行端口控制操作
 // 功能：执行端口控制操作
 #define ExecutePortControlOperation FUN_1808ddf80
+
+// 原始函数名：FUN_18089fb2b - 空操作函数B
+// 功能：不执行任何操作，直接返回
+#define NoOperationB FUN_18089fb2b
+
+// 原始函数名：FUN_18089fb40 - 处理端口控制请求B
+// 功能：处理端口控制请求，验证请求的有效性并在验证通过时执行控制操作
+#define ProcessPortControlRequestB FUN_18089fb40
+
+// 原始函数名：FUN_1808ddd30 - 验证端口控制请求扩展
+// 功能：验证端口控制请求的有效性（扩展版本）
+#define ValidatePortControlRequestExtended FUN_1808ddd30
+
+// 原始函数名：FUN_1808a7b00 - 验证端口访问权限扩展
+// 功能：验证端口访问权限（扩展版本）
+#define ValidatePortAccessExtended FUN_1808a7b00
+
+// 原始函数名：FUN_1808de000 - 执行端口控制操作扩展
+// 功能：执行端口控制操作（扩展版本）
+#define ExecutePortControlOperationExtended FUN_1808de000
 
 
