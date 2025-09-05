@@ -1770,6 +1770,10 @@
 // 功能：处理双参数异常情况
 #define ExceptionHandlerA8 Unwind_180902190
 
+// 原始函数名：Unwind_180902fe0 - 异常数据处理函数A0
+// 功能：处理异常数据并执行相应的清理操作
+#define ExceptionDataProcessorA0 Unwind_180902fe0
+
 // 原始函数名：Unwind_18090b7d0 - 资源清理函数A0
 // 功能：清理系统资源，遍历并释放内存块
 #define ResourceCleanupA0 Unwind_18090b7d0
@@ -6997,11 +7001,11 @@ uint8_t UNK_180a39308;
 uint8_t UNK_180a39328;
 uint8_t UNK_180a39348;
 uint8_t UNK_180a39360;
-uint8_t UNK_180a39378;
-uint8_t UNK_180a39390;
-uint8_t UNK_180a393a8;
-uint8_t UNK_180a393d0;
-uint8_t UNK_180a393f0;
+uint8_t SystemExceptionHandlerDataA;
+uint8_t SystemExceptionHandlerDataB;
+uint8_t SystemExceptionHandlerDataC;
+uint8_t SystemExceptionHandlerDataD;
+uint8_t SystemExceptionHandlerDataE;
 uint8_t UNK_180a39408;
 uint8_t UNK_180a39428;
 uint8_t UNK_180a39450;
@@ -17438,12 +17442,12 @@ DataBuffer * InitializeDataBlockPointerA1(DataBuffer *dataBlockPointer,uint64_t 
 
 {
   *dataBlockPointer = &DataBlockPointerTableA1;
-  ProcessDataAndPointerA0(param_1 + 5);
-  *param_1 = &DataBlockPointerTableA0;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x38);
+  ProcessDataAndPointerA0(dataBlockPointer + 5);
+  *dataBlockPointer = &DataBlockPointerTableA0;
+  if ((initializationFlags & 1) != 0) {
+    free(dataBlockPointer,0x38);
   }
-  return param_1;
+  return dataBlockPointer;
 }
 
 
@@ -17621,12 +17625,12 @@ int ProcessComplexData(int64_t complexContext, int64_t dataBuffer, int bufferSiz
 // 原始函数名：FUN_180896c10 - 数据验证和处理函数
 // 功能：验证输入数据的有效性并执行相应的处理操作
 #define ValidateAndProcessDataOperation FUN_180896c10
-DataBuffer ValidateAndProcessDataOperation(int64_t param_1,DataBuffer param_2,DataBuffer param_3)
+DataBuffer ValidateAndProcessDataOperation(int64_t operationContext,DataBuffer inputData,DataBuffer outputData)
 
 {
   DataBuffer dataValue;
   
-  dataValue = ValidateNetworkConnectionA0(param_3,param_1 + 0x10);
+  dataValue = ValidateNetworkConnectionA0(outputData,operationContext + 0x10);
   if ((int)dataValue == 0) {
     *(DataWord *)(param_1 + 0x14) = 0;
     if ((1 < *(int *)(param_1 + 0x10)) && (dataValue = ValidateNetworkStatusA0(param_3), (int)dataValue != 0)) {
@@ -38483,7 +38487,7 @@ void CleanupDataResourceA(DataBuffer param_1,int64_t param_2,DataBuffer param_3,
 
 
 
-void Unwind_180902fe0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void ExceptionDataProcessorA0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   DataBuffer *pdataValue;
