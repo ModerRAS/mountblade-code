@@ -1451,7 +1451,7 @@ void AcceptConnection(void)
 {
   // 分配新的连接资源
   NetworkConnectionActiveContext = NetworkConnectionContextEnabled;                      // 初始化连接上下文
-  CurrentConnectionContextSize = NetworkConnectionContextSize;                // 设置连接上下文大小为512字节
+  NetworkConnectionCurrentContextSize = NetworkConnectionContextSize;                // 设置连接上下文大小为512字节
   
   // 设置连接参数
   NetworkConnectionQuality = NetworkConnectionQualityGood;                     // 设置连接质量为良好
@@ -2152,7 +2152,7 @@ uint32_t NetworkConnectionTargetAddress;                   // 网络连接目标
 uint32_t NetworkConnectionIndexCounter;                    // 网络连接索引计数器
 uint32_t NetworkConnectionLoopCounter;                     // 网络连接循环计数器
 uint32_t NetworkConnectionExtendedFlags;                       // 网络连接扩展标志
-uint32_t CurrentConnectionContextSize;                        // 当前连接上下文大小，连接上下文数据结构的大小
+uint32_t NetworkConnectionCurrentContextSize;                        // 网络连接当前上下文大小，连接上下文数据结构的大小
 uint32_t NetworkConnectionPacketProcessingResults;               // 网络连接处理结果
 uint32_t NetworkConnectionProcessedCounts;                  // 网络连接已处理数量
 uint32_t NetworkConnectionJitterBuffer;                   // 网络连接抖动缓冲区

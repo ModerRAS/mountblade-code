@@ -12639,7 +12639,8 @@ undefined8 ProcessComplexDataStructureA0(longlong DataStructureHandle, longlong 
 
 
 // 浮点数数组处理函数A0
-undefined8 ProcessFloatingPointArrayA0(longlong param_1,longlong param_2)
+// 浮点数组处理函数A0 - 处理浮点数组的验证、范围检查和数据更新
+undefined8 ProcessFloatingPointArrayA0(longlong ArrayDescriptor,longlong SystemContext)
 
 {
   int iVar1;
