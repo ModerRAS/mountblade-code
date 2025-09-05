@@ -6740,33 +6740,34 @@ undefined SystemConnectionDataStreamTable;
 undefined SystemConnectionDataFlowTable;
 undefined SystemConnectionDataPipelineTable;
 undefined SystemConnectionDataSegmentTable;
-undefined UNK_180a330f0;
-undefined UNK_180a33140;
-undefined UNK_180a33188;
-undefined UNK_180a331c0;
-undefined UNK_180a33200;
-undefined UNK_180a33250;
-undefined UNK_180a33280;
-undefined UNK_180a332c8;
-undefined UNK_180a332f8;
-undefined UNK_180a33330;
-undefined UNK_180a33370;
-undefined UNK_180a333c0;
-undefined UNK_180a33400;
-undefined UNK_180a33450;
-undefined UNK_180a334a0;
-undefined UNK_180a334f0;
-undefined UNK_180a33540;
-undefined UNK_180a33590;
-undefined UNK_180a335d8;
-undefined UNK_180a33610;
-undefined UNK_180a33660;
-undefined UNK_180a336b0;
-undefined UNK_180a336f0;
-undefined UNK_180a33740;
-undefined UNK_180a33780;
-undefined UNK_180a337d0;
-undefined UNK_180a33820;
+// 系统异常处理数据表系列
+undefined SystemExceptionHandlerTableA0;    // UNK_180a330f0
+undefined SystemExceptionHandlerTableA1;    // UNK_180a33140
+undefined SystemExceptionHandlerTableA2;    // UNK_180a33188
+undefined SystemExceptionHandlerTableA3;    // UNK_180a331c0
+undefined SystemExceptionHandlerTableA4;    // UNK_180a33200
+undefined SystemExceptionHandlerTableA5;    // UNK_180a33250
+undefined SystemExceptionHandlerTableA6;    // UNK_180a33280
+undefined SystemExceptionHandlerTableA7;    // UNK_180a332c8
+undefined SystemExceptionHandlerTableA8;    // UNK_180a332f8
+undefined SystemExceptionHandlerTableA9;    // UNK_180a33330;
+undefined SystemExceptionHandlerTableA10;   // UNK_180a33370
+undefined SystemExceptionHandlerTableA11;   // UNK_180a333c0
+undefined SystemExceptionHandlerTableA12;   // UNK_180a33400
+undefined SystemExceptionHandlerTableA13;   // UNK_180a33450
+undefined SystemExceptionHandlerTableA14;   // UNK_180a334a0
+undefined SystemExceptionHandlerTableA15;   // UNK_180a334f0
+undefined SystemExceptionHandlerTableA16;   // UNK_180a33540
+undefined SystemExceptionHandlerTableA17;   // UNK_180a33590
+undefined SystemExceptionHandlerTableA18;   // UNK_180a335d8
+undefined SystemExceptionHandlerTableA19;   // UNK_180a33610
+undefined SystemExceptionHandlerTableA20;   // UNK_180a33660
+undefined SystemExceptionHandlerTableA21;   // UNK_180a336b0
+undefined SystemExceptionHandlerTableA22;   // UNK_180a336f0
+undefined SystemExceptionHandlerTableA23;   // UNK_180a33740
+undefined SystemExceptionHandlerTableA24;   // UNK_180a33780
+undefined SystemExceptionHandlerTableA25;   // UNK_180a337d0
+undefined SystemExceptionHandlerTableA26;   // UNK_180a33820
 undefined UNK_180a33870;
 undefined UNK_180a338e0;
 undefined UNK_180a33930;
