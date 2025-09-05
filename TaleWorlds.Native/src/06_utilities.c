@@ -28618,7 +28618,7 @@ undefined8 FUN_18089f112(void)
 
 
 89f31e(void)
-void FUN_18089f31e(void)
+void ConfigureSystemOptionsC1(void)
 
 {
   int in_EAX;
@@ -28687,7 +28687,7 @@ LAB_18089f45f:
 
 
 89f474(void)
-void FUN_18089f474(void)
+void UtilityNoOperationZ(void)
 
 {
   return;
