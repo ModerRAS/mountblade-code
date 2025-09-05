@@ -113172,80 +113172,80 @@ int ProcessSystemContextUtfEncoding(float *SystemContextPointer,int Utf8BufferSi
   float ResultFloatValue1;
   float ResultFloatValue2;
   
-  SystemDoubleValue6 = AdditionalParameter2;
-  DoubleValue2 = AdditionalParameter1;
-  ByteCounter = SystemDataConfiguration;
-  FloatVariable2 = AdditionalParameter1.LowPart;
-  FloatVariable1 = SystemContextPointer[2];
-  TertiaryStatusCode = SUB84(AdditionalParameter2,0);
-  FloatVariable10 = (FloatVariable1 - *SystemContextPointer) - 4.0;
+  InputParameterValue2 = AdditionalParameter2;
+  InputParameterValue1 = AdditionalParameter1;
+  DataConfigurationCounter = SystemDataConfiguration;
+  SystemContextFloat2 = AdditionalParameter1.LowPart;
+  SystemContextFloat1 = SystemContextPointer[2];
+  SystemStatusCode = SUB84(AdditionalParameter2,0);
+  CalculatedFloatValue1 = (SystemContextFloat1 - *SystemContextPointer) - 4.0;
   if (AdditionalParameter2 <= AdditionalParameter1) {
-    DoubleVariable3 = AdditionalParameter1 - AdditionalParameter2;
+    CalculatedDifference = AdditionalParameter1 - AdditionalParameter2;
   }
   else {
-    DoubleVariable3 = AdditionalParameter2 - AdditionalParameter1;
+    CalculatedDifference = AdditionalParameter2 - AdditionalParameter1;
   }
-  FloatVariable14 = FloatVariable10;
-  if (*(float *)(SystemDataConfiguration + 0x1694) <= FloatVariable10) {
-    FloatVariable14 = *(float *)(SystemDataConfiguration + 0x1694);
+  ResultFloatValue2 = CalculatedFloatValue1;
+  if (*(float *)(SystemDataConfiguration + 0x1694) <= CalculatedFloatValue1) {
+    ResultFloatValue2 = *(float *)(SystemDataConfiguration + 0x1694);
   }
   MutexLockResult = *(int *)(SystemDataConfiguration + 0x1b2c);
-  DataPointer = 0;
-  FloatVariable10 = FloatVariable10 - FloatVariable14;
-  FloatVariable14 = FloatVariable14 * 0.5;
-  FloatVariable13 = *SystemContextPointer + 2.0 + FloatVariable14;
-  if (MutexLockResult != Utf8BufferSize) goto FUN_18011f32e;
+  ProcessingStatusFlag = 0;
+  CalculatedFloatValue1 = CalculatedFloatValue1 - ResultFloatValue2;
+  ResultFloatValue2 = ResultFloatValue2 * 0.5;
+  ResultFloatValue1 = *SystemContextPointer + 2.0 + ResultFloatValue2;
+  if (MutexLockResult != Utf8BufferSize) goto LabelUtfEncodingProcessing;
   if (*(int *)(SystemDataConfiguration + 0x1b60) == 1) {
     if (*(char *)(SystemDataConfiguration + 0x120) == '\0') {
-LAB_18011f1e4:
-      *(bool *)(ByteCounter + 0x1b3c) = MutexLockResult != 0;
+LabelSystemDataConfiguration:
+      *(bool *)(DataConfigurationCounter + 0x1b3c) = MutexLockResult != 0;
       if (MutexLockResult != 0) {
-        *(uint32_t *)(ByteCounter + 0x1b38) = 0;
-        *(uint8_t *)(ByteCounter + 0x1b3e) = 0;
+        *(uint32_t *)(DataConfigurationCounter + 0x1b38) = 0;
+        *(uint8_t *)(DataConfigurationCounter + 0x1b3e) = 0;
       }
-      *(uint32_t *)(ByteCounter + 0x1b2c) = 0;
-      *(uint32_t *)(ByteCounter + 0x1b44) = 0;
-      *(uint8_t *)(ByteCounter + 0x1b3d) = 0;
-      *(void *)(ByteCounter + 0x1b50) = 0;
-      goto FUN_18011f32e;
+      *(uint32_t *)(DataConfigurationCounter + 0x1b2c) = 0;
+      *(uint32_t *)(DataConfigurationCounter + 0x1b44) = 0;
+      *(uint8_t *)(DataConfigurationCounter + 0x1b3d) = 0;
+      *(void *)(DataConfigurationCounter + 0x1b50) = 0;
+      goto LabelUtfEncodingProcessing;
     }
-    FloatVariable11 = 0.0;
-    if (((0.0 < FloatVariable10) &&
-        (InputParameterFloat1 = (*(float *)(SystemDataConfiguration + 0x118) - FloatVariable13) / FloatVariable10, 0.0 <= InputParameterFloat1)) &&
-       (FloatVariable11 = InputParameterFloat1, 1.0 <= InputParameterFloat1)) {
-      FloatVariable11 = 1.0;
+    CalculatedFloatValue2 = 0.0;
+    if (((0.0 < CalculatedFloatValue1) &&
+        (SystemFloatParameter1 = (*(float *)(SystemDataConfiguration + 0x118) - ResultFloatValue1) / CalculatedFloatValue1, 0.0 <= SystemFloatParameter1)) &&
+       (CalculatedFloatValue2 = SystemFloatParameter1, 1.0 <= SystemFloatParameter1)) {
+      CalculatedFloatValue2 = 1.0;
     }
   }
   else {
-    if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto FUN_18011f32e;
-    in_XMM0_Qa = (double)FUN_180131aa0(&AdditionalParameter1,3,5,0,0);
-    if ((*(int *)(ByteCounter + 0x1cac) == Utf8BufferSize) && (*(char *)(ByteCounter + 0x1b3c) == '\0')) {
-      MutexLockResult = *(int *)(ByteCounter + 0x1b2c);
-      goto LAB_18011f1e4;
+    if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto LabelUtfEncodingProcessing;
+    RegisterXMM0Value = (double)FUN_180131aa0(&AdditionalParameter1,3,5,0,0);
+    if ((*(int *)(DataConfigurationCounter + 0x1cac) == Utf8BufferSize) && (*(char *)(DataConfigurationCounter + 0x1b3c) == '\0')) {
+      MutexLockResult = *(int *)(DataConfigurationCounter + 0x1b2c);
+      goto LabelSystemDataConfiguration;
     }
-    if (AdditionalParameter1.LowPart == 0.0) goto FUN_18011f32e;
-    InputParameterFloat1 = AdditionalParameter1.LowPart;
-    FloatVariable11 = (float)FUN_18011f9b0(in_XMM0_Qa,*Utf16EndPointer,FloatVariable2,TertiaryStatusCode);
+    if (AdditionalParameter1.LowPart == 0.0) goto LabelUtfEncodingProcessing;
+    SystemFloatParameter1 = AdditionalParameter1.LowPart;
+    CalculatedFloatValue2 = (float)FUN_18011f9b0(RegisterXMM0Value,*Utf16EndPointer,SystemContextFloat2,SystemStatusCode);
     MutexLockResult = ProcessValidationCheck(AdditionalParameter3);
-    FloatVariable10 = 1.0;
-    in_XMM0_Qa = extraout_XMM0_Qa;
+    CalculatedFloatValue1 = 1.0;
+    RegisterXMM0Value = RegisterXMM0Output;
     if (MutexLockResult < 1) {
-      if (((-100.0 <= DoubleVariable3) && (DoubleVariable3 <= 100.0)) || (0.0 < *(float *)(ByteCounter + 0x370))) {
-        if (0.0 <= InputParameterFloat1) {
-          in_XMM0_Qa = (double)(unsigned long long)(uint)(float)DoubleVariable3;
-          InputParameterFloat1 = 1.0 / (float)DoubleVariable3;
+      if (((-100.0 <= CalculatedDifference) && (CalculatedDifference <= 100.0)) || (0.0 < *(float *)(DataConfigurationCounter + 0x370))) {
+        if (0.0 <= SystemFloatParameter1) {
+          RegisterXMM0Value = (double)(unsigned long long)(uint)(float)CalculatedDifference;
+          SystemFloatParameter1 = 1.0 / (float)CalculatedDifference;
         }
         else {
-          in_XMM0_Qa = (double)(unsigned long long)(uint)(float)DoubleVariable3;
-          InputParameterFloat1 = -1.0 / (float)DoubleVariable3;
+          RegisterXMM0Value = (double)(unsigned long long)(uint)(float)CalculatedDifference;
+          SystemFloatParameter1 = -1.0 / (float)CalculatedDifference;
         }
       }
       else {
-        InputParameterFloat1 = InputParameterFloat1 * 0.01;
+        SystemFloatParameter1 = SystemFloatParameter1 * 0.01;
       }
     }
     else {
-      InputParameterFloat1 = InputParameterFloat1 * 0.01;
+      SystemFloatParameter1 = SystemFloatParameter1 * 0.01;
       if (0.0 < *(float *)(ByteCounter + 0x370)) {
         InputParameterFloat1 = InputParameterFloat1 * 0.1;
       }
