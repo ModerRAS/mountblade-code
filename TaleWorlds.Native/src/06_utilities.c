@@ -50002,6 +50002,17 @@ void CleanupExceptionAtOffset80(undefined8 exceptionContext,longlong systemState
 
 
 
+/**
+ * @brief 清理偏移量96处的异常状态
+ * 
+ * 该函数负责清理系统状态中偏移量为96的异常状态，清除相应的标志位
+ * 并释放相关资源。当检测到第2位标志被设置时，执行清理操作。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param systemState 系统状态指针，包含需要清理的状态信息
+ * 
+ * @note 原始函数名：Unwind_1809062f0
+ */
 void CleanupExceptionAtOffset96(undefined8 exceptionContext,longlong systemState)
 
 {
@@ -50014,6 +50025,17 @@ void CleanupExceptionAtOffset96(undefined8 exceptionContext,longlong systemState
 
 
 
+/**
+ * @brief 清理偏移量112处的异常状态
+ * 
+ * 该函数负责清理系统状态中偏移量为112的异常状态，清除相应的标志位
+ * 并释放相关资源。当检测到第4位标志被设置时，执行清理操作。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param systemState 系统状态指针，包含需要清理的状态信息
+ * 
+ * @note 原始函数名：Unwind_180906320
+ */
 void CleanupExceptionAtOffset112(undefined8 exceptionContext,longlong systemState)
 
 {
@@ -50026,6 +50048,17 @@ void CleanupExceptionAtOffset112(undefined8 exceptionContext,longlong systemStat
 
 
 
+/**
+ * @brief 设置默认异常处理器B
+ * 
+ * 该函数负责设置系统默认的异常处理器B，将异常处理器指针
+ * 指向预定义的DefaultExceptionHandlerB函数。
+ * 
+ * @param exceptionHandler 异常处理器指针
+ * @param systemContext 系统上下文指针，包含系统状态信息
+ * 
+ * @note 原始函数名：Unwind_180906350
+ */
 void SetDefaultExceptionHandlerB(undefined8 exceptionHandler,longlong systemContext)
 
 {
@@ -50035,6 +50068,17 @@ void SetDefaultExceptionHandlerB(undefined8 exceptionHandler,longlong systemCont
 
 
 
+/**
+ * @brief 清理偏移量128处的异常状态
+ * 
+ * 该函数负责清理系统状态中偏移量为128的异常状态，清除相应的标志位
+ * 并释放相关资源。当检测到第1位标志被设置时，执行清理操作。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param systemState 系统状态指针，包含需要清理的状态信息
+ * 
+ * @note 原始函数名：Unwind_180906360
+ */
 void CleanupExceptionAtOffset128(undefined8 exceptionContext,longlong systemState)
 
 {
@@ -50047,6 +50091,17 @@ void CleanupExceptionAtOffset128(undefined8 exceptionContext,longlong systemStat
 
 
 
+/**
+ * @brief 清理偏移量144处的异常状态
+ * 
+ * 该函数负责清理系统状态中偏移量为144的异常状态，清除相应的标志位
+ * 并释放相关资源。当检测到第2位标志被设置时，执行清理操作。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param systemState 系统状态指针，包含需要清理的状态信息
+ * 
+ * @note 原始函数名：Unwind_180906390
+ */
 void CleanupExceptionAtOffset144(undefined8 exceptionContext,longlong systemState)
 
 {
