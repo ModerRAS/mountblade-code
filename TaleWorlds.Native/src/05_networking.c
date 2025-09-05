@@ -2020,6 +2020,7 @@ uint32_t NetworkConnectionBaseAddress;                  // 连接基地址
 uint32_t NetworkConnectionContextDataArray;                     // 连接上下文数据数组
 uint32_t NetworkConnectionContextDataSize;                      // 连接上下文数据大小
 uint32_t NetworkConnectionContextDataIndex;                     // 连接上下文数据索引
+uint32_t NetworkConnectionCompletionHandle;                        // 连接完成句柄
 
 /**
  * @brief 网络连接缓冲区管理 - 管理网络连接的缓冲区资源
