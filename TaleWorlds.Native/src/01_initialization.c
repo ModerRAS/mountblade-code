@@ -37338,7 +37338,7 @@ void InitializeSystemResources(ulong long SystemResourceManager,long long Config
   long long MemorySystemOperationTimestamp;
   long long LocalSystemFlags;
   int SystemMemoryAllocationOffset;
-  int SystemErrorCode;
+  int SystemErrorResult;
   float SystemFloatValue1;
   float SystemFloatValue2;
   double SystemDoubleValue;
@@ -37352,7 +37352,7 @@ void InitializeSystemResources(ulong long SystemResourceManager,long long Config
   void* LocalSystemPointer;
   
   SystemMemoryAllocationOffset = -1;
-  SystemErrorCode = -1;
+  SystemErrorResult = -1;
   SystemConfigurationValue = (uint)SystemResourceManager;
   SystemResourceHandle = SystemResourceManager & SystemMaximumUnsigned32BitValue;
   while (SystemConfigurationValue != 0) {
@@ -37381,7 +37381,7 @@ void InitializeSystemResources(ulong long SystemResourceManager,long long Config
   SystemDoublePointer = &SystemDoubleValue;
   SystemErrorCode = __stdio_common_vsprintf(*SystemResourceHandlePointer | 1,0,0,&SystemFormatString);
   if (SystemErrorCode < 0) {
-    SystemErrorCode = -1;
+    SystemErrorResult = -1;
   }
   if (SystemErrorCode < 0x400) {
     SystemPointer1 = 0;
