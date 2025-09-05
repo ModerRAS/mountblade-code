@@ -2016,7 +2016,7 @@ void AcceptNetworkConnection(void)
   
   // 初始化会话参数
   NetworkSessionEncryptionKey = DefaultSessionEncryptionKey;    // 设置会话加密密钥为默认值
-  NetworkSessionTimeoutDuration = NetworkTimeout5Minutes;              // 设置会话超时时间为300秒
+  NetworkSessionTimeoutDuration = Network5MinutesTimeout;              // 设置会话超时时间为300秒
   NetworkHandshakeTimeout = Network5SecondsTimeout;                     // 设置握手超时时间为5秒
   NetworkAuthenticationTimeout = Network5SecondsTimeout;               // 设置认证超时时间为5秒
   NetworkEncryptionTimeout = Network5SecondsTimeout;                   // 设置加密超时时间为5秒
@@ -2301,8 +2301,8 @@ void InitializeNetworkDataTransmission(void)
   NetworkAcknowledgeNumber = NetworkAckInitialValue;                      // 初始化确认号
   NetworkWindowScale = NetworkWindowScaleSixteen;                            // 设置窗口缩放为16
   NetworkRetransmitTimer = Network5SecondsTimeout;                       // 设置重传计时器为5秒
-  NetworkKeepAliveTime = NetworkHeartbeat30Seconds;                          // 设置保持连接时间为30秒
-  NetworkHeartbeatTimeout = NetworkHeartbeat60Seconds;                      // 设置心跳超时时间为60秒
+  NetworkKeepAliveTime = Network30SecondsHeartbeat;                          // 设置保持连接时间为30秒
+  NetworkHeartbeatTimeout = Network60SecondsHeartbeat;                      // 设置心跳超时时间为60秒
   
   // 初始化数据包缓冲区
   NetworkPacketBufferPointer = NetworkBufferInitializationFlag;                     // 初始化数据包缓冲区指针
