@@ -400,8 +400,8 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define RECEIVE_BUFFER_SIZE 0x10000                          // 接收缓冲区大小64KB
 #define BUFFER_CAPACITY 0x20000                              // 缓冲区容量128KB
 #define PACKET_QUEUE_SIZE 0x100                               // 数据包队列大小256
-#define BufferSize4KB 0x1000                               // 4KB缓冲区大小
-#define ContextSize256Bytes 0x100                              // 256字节上下文大小
+#define NetworkBufferSize4KB 0x1000                               // 网络缓冲区大小：4KB
+#define NetworkPacketContextSize 0x100                              // 网络数据包上下文大小：256字节
 #define NetworkConnectionContextSize 0x200                           // 网络连接上下文大小：512字节
 
 // 网络超时常量
@@ -1643,7 +1643,7 @@ void ReceiveNetworkPacketData(void)
   
   // 初始化缓冲区管理
   NetworkBufferManager = NetworkBufferInitializationFlag;                          // 初始化缓冲区管理器
-  NetworkBufferSize = BufferSize4KB;                            // 设置缓冲区大小为4KB
+  NetworkBufferSize = NetworkBufferSize4KB;                            // 设置缓冲区大小为4KB
   NetworkBufferIndex = NetworkIndexResetValue;                            // 重置缓冲区索引
   
   // 初始化数据包上下文
