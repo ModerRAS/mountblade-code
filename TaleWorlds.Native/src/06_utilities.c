@@ -4022,6 +4022,10 @@ uint32_t UtilitySystemStatus1;
 #define SystemValidationCleanupFlagA0 DAT_180c95f28       // 系统验证清理标志A0
 #define SystemValidationContextCleanupA0 _DAT_180c95f20   // 系统验证上下文清理A0
 #define SystemValidationTerminationFlagA0 _DAT_180c95ef8  // 系统验证终止标志A0
+#define SystemValidationCleanupFlagA1 DAT_180c95fe8       // 系统验证清理标志A1
+#define SystemValidationTerminationFlagA1 _DAT_180c95fc8  // 系统验证终止标志A1
+#define SystemValidationCleanupFlagA2 DAT_180c96210       // 系统验证清理标志A2
+#define DefaultExceptionHandlerBPointer _DAT_180bf64f8     // 默认异常处理器B指针
 
 // 异常处理器指针变量宏定义
 #define ExceptionHandlerPointerA _DAT_180bf90b0         // 异常处理器指针A
@@ -12548,7 +12552,7 @@ undefined8 ValidateAndProcessFloatingPointNumberA2(longlong dataParameter,longlo
 
 
 // 复杂数据处理函数A0
-undefined8 ProcessComplexDataStructureA0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+undefined8 ProcessComplexDataStructureA0(longlong DataStructureHandle, longlong ProcessingContext, undefined8 ResourceDescriptor, undefined8 OperationFlags)
 
 {
   float fVar1;
@@ -12560,11 +12564,11 @@ undefined8 ProcessComplexDataStructureA0(longlong param_1,longlong param_2,undef
   float fVar6;
   longlong lStackX_8;
   
-  lStackX_8 = CONCAT44(lStackX_8._4_4_,*(uint *)(param_1 + 0x20));
-  if ((*(uint *)(param_1 + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
+  lStackX_8 = CONCAT44(lStackX_8._4_4_,*(uint *)(DataStructureHandle + 0x20));
+  if ((*(uint *)(DataStructureHandle + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  memoryBaseAddress = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  memoryBaseAddress = QueryAndRetrieveSystemDataA0(*(undefined4 *)(DataStructureHandle + 0x10),&lStackX_8);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
@@ -92745,28 +92749,53 @@ void CleanupValidationContextA0(void)
       TerminateSystemE0();
     }
 
-942f00(void)
-void FUN_180942f00(void)
+/**
+ * @brief 清理验证上下文A1
+ * 
+ * 该函数负责清理验证上下文，释放相关资源
+ * 
+ * @note 原始函数名：FUN_180942f00
+ */
+#define CleanupValidationContextA1 FUN_180942f00
 
+void CleanupValidationContextA1(void)
 {
-  if (DAT_180c95fe8 != '\0') {
-    if (_DAT_180c95fc8 != 0) {
+  if (SystemValidationCleanupFlagA1 != '\0') {
+    if (SystemValidationTerminationFlagA1 != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
+  }
+}
 
-942f50(void)
-void FUN_180942f50(void)
+/**
+ * @brief 清理验证上下文A2
+ * 
+ * 该函数负责清理验证上下文，释放相关资源
+ * 
+ * @note 原始函数名：FUN_180942f50
+ */
+#define CleanupValidationContextA2 FUN_180942f50
 
+void CleanupValidationContextA2(void)
 {
-  if (DAT_180c96210 != '\0') {
-    FUN_1804a5bc0();
+  if (SystemValidationCleanupFlagA2 != '\0') {
+    ExecuteSystemValidationA0();
+  }
+}
 
-942fa0(void)
-void FUN_180942fa0(void)
+/**
+ * @brief 设置默认异常处理器B
+ * 
+ * 该函数负责设置默认异常处理器B
+ * 
+ * @note 原始函数名：FUN_180942fa0
+ */
+#define SetDefaultExceptionHandlerB FUN_180942fa0
 
+void SetDefaultExceptionHandlerB(void)
 {
-  _DAT_180bf64f8 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerBPointer = &DefaultExceptionHandlerB;
   return;
 }
 
