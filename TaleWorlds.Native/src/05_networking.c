@@ -276,12 +276,12 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 // 网络连接相关偏移量 - 连接处理和数据管理
 #define NetworkConnectionHeaderOffset 0x10                     // 网络连接头部偏移量
 #define NetworkConnectionPrimaryValidationOffset 0xd8          // 网络连接主验证偏移量
-#define NetworkConnectionValidationOffsetThird 0x78         // 网络连接第三验证偏移量
-#define NetworkConnectionValidationQuaternaryOffset 0x58       // 网络连接第四验证偏移量
+#define NetworkConnectionTertiaryValidationOffset 0x78         // 网络连接第三验证偏移量
+#define NetworkConnectionQuaternaryValidationOffset 0x58       // 网络连接第四验证偏移量
 #define NetworkConnectionDataPrimaryOffset 0x5c                // 网络连接主数据偏移量
 #define NetworkConnectionValidatorOffset 0x60                  // 网络连接验证器偏移量
-#define NetworkConnectionIntegrityOffsetFirst 0x70          // 网络连接主完整性偏移量
-#define NetworkConnectionIntegrityOffsetSecond 0x74       // 网络连接次完整性偏移量
+#define NetworkConnectionPrimaryIntegrityOffset 0x70          // 网络连接主完整性偏移量
+#define NetworkConnectionSecondaryIntegrityOffset 0x74       // 网络连接次完整性偏移量
 #define NetworkConnectionCompletionOffset 0x7c                  // 网络连接完成偏移量
 #define NetworkConnectionSecurityContextOffset 0xf8           // 网络连接安全上下文偏移量
 #define NetworkConnectionHandleContextOffset 0xe8             // 网络连接句柄上下文偏移量
@@ -301,7 +301,6 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 // 网络系统常量 - 调试和数值表示
 #define NetworkMagicMemoryValidation 0xdeadf00d            // 内存验证魔数，用于调试内存检查
 #define NetworkMagicDebugValidation 0xdeadf00d              // 调试验证魔数，用于调试和内存检查
-#define NetworkMaxSignedInt32Value NetworkMaxInt32Value       // 最大32位有符号整数值别名
 #define NetworkFloatOne 0x3f800000                            // 浮点数1.0的十六进制表示
 #define NetworkFloatNegativeOne 0xbf800000                    // 浮点数-1.0的十六进制表示
 #define NetworkFloatMax 0x7f7fffff                            // 最大浮点数值
@@ -422,7 +421,6 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkConnectionTimeoutDefault 30000               // 默认连接超时时间（30秒）
 #define NetworkDefaultMaxConnections 100                    // 默认最大连接数
 #define NetworkConnectionTimeout 30000                       // 连接超时时间（30秒）
-#define NetworkTimeoutThirtySeconds 30000                    // 30秒超时时间
 #define NetworkStandardBufferSize 256                         // 标准缓冲区大小（256字节）
 #define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
 
@@ -3504,30 +3502,30 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t NetworkPacketHeaderValidationResult;                         // 网络头部验证结果
-  uint32_t NetworkPacketContextProcessingStatus;                        // 网络上下文处理状态
-  uint32_t NetworkPacketHeaderFormatCheckResult;                       // 网络头部格式检查结果
+  uint32_t HeaderValidationResult;                                     // 头部验证结果
+  uint32_t ContextProcessingStatus;                                    // 上下文处理状态
+  uint32_t HeaderFormatCheckResult;                                    // 头部格式检查结果
   
   // 初始化处理状态
-  NetworkPacketHeaderValidationResult = NetworkValidationFailure;
-  NetworkPacketContextProcessingStatus = NetworkValidationFailure;
-  NetworkPacketHeaderFormatCheckResult = NetworkValidationFailure;
+  HeaderValidationResult = NetworkValidationFailure;
+  ContextProcessingStatus = NetworkValidationFailure;
+  HeaderFormatCheckResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    NetworkPacketHeaderValidationResult = NetworkValidationSuccess;
+    HeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    NetworkPacketContextProcessingStatus = NetworkValidationSuccess;
+    ContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (NetworkPacketHeaderValidationResult == NetworkValidationSuccess && 
-      NetworkPacketContextProcessingStatus == NetworkValidationSuccess) {
-    NetworkPacketHeaderFormatCheckResult = NetworkValidationSuccess;
+  if (HeaderValidationResult == NetworkValidationSuccess && 
+      ContextProcessingStatus == NetworkValidationSuccess) {
+    HeaderFormatCheckResult = NetworkValidationSuccess;
   }
   
-  return NetworkPacketHeaderFormatCheckResult;
+  return HeaderFormatCheckResult;
 }
