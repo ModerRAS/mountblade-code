@@ -60019,21 +60019,32 @@ void CleanupSystemValidationResourcesF0(undefined8 systemHandle, longlong valida
 
 
 
-void Unwind_18090a550(undefined8 param_1,longlong param_2)
+/**
+ * @brief 执行验证上下文清理F1
+ * 
+ * 该函数负责遍历验证上下文中的所有验证器，执行清理操作
+ * 并在最后终止系统
+ * 
+ * @param param_1 系统句柄
+ * @param param_2 验证上下文指针
+ * 
+ * @note 原始函数名：Unwind_18090a550
+ */
+void ExecuteValidationContextCleanupF1(undefined8 systemHandle, longlong validationContext)
 
 {
-  longlong *pvalidationContext;
-  longlong *plVar2;
-  longlong *plVar3;
+  longlong *validationContextEnd;
+  longlong *validationContextStart;
+  longlong *currentValidator;
   
-  plVar2 = (longlong *)(*(longlong *)(param_2 + 0x60) + 0xd00);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0xd08);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  validationContextStart = (longlong *)(*(longlong *)(validationContext + 0x60) + 0xd00);
+  validationContextEnd = *(longlong **)(*(longlong *)(validationContext + 0x60) + 0xd08);
+  for (currentValidator = (longlong *)*validationContextStart; currentValidator != validationContextEnd; currentValidator = currentValidator + 1) {
+    if ((longlong *)*currentValidator != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*currentValidator + 0x38))();
     }
   }
-  if (*plVar2 == 0) {
+  if (*validationContextStart == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -60042,21 +60053,32 @@ void Unwind_18090a550(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_18090a570(undefined8 param_1,longlong param_2)
+/**
+ * @brief 执行验证器清理F2
+ * 
+ * 该函数负责清理验证器数组中的所有验证器，执行各自的清理操作
+ * 并在最后终止系统
+ * 
+ * @param param_1 系统句柄
+ * @param param_2 验证器数组指针
+ * 
+ * @note 原始函数名：Unwind_18090a570
+ */
+void ExecuteValidatorCleanupF2(undefined8 systemHandle, longlong validatorArray)
 
 {
-  longlong *pvalidationContext;
-  longlong *plVar2;
-  longlong *plVar3;
+  longlong *validatorContextEnd;
+  longlong *validatorArrayStart;
+  longlong *currentValidator;
   
-  plVar2 = *(longlong **)(param_2 + 0x68);
-  pvalidationContext = (longlong *)plVar2[1];
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 1) {
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+  validatorArrayStart = *(longlong **)(validatorArray + 0x68);
+  validatorContextEnd = (longlong *)validatorArrayStart[1];
+  for (currentValidator = (longlong *)*validatorArrayStart; currentValidator != validatorContextEnd; currentValidator = currentValidator + 1) {
+    if ((longlong *)*currentValidator != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*currentValidator + 0x38))();
     }
   }
-  if (*plVar2 == 0) {
+  if (*validatorArrayStart == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -86652,8 +86674,16 @@ void TerminateAndResetSystemA0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941a30(void)
 void FUN_180941a30(void)
+/**
+ * @brief 初始化异常处理系统G0
+ * 
+ * 该函数负责初始化系统的异常处理机制，设置默认异常处理器
+ * 并确保系统状态正确
+ * 
+ * @note 原始函数名：FUN_180941a30
+ */
+void InitializeExceptionHandlerSystemG0(void)
 
 {
   _DAT_180d49240 = &UNK_180a3c3e0;
@@ -86672,36 +86702,42 @@ void FUN_180941a30(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941ad0(void)
-void FUN_180941ad0(void)
+/**
+ * @brief 处理系统异常数据G1
+ * 
+ * 该函数负责处理系统异常数据，进行数据分析和异常处理
+ * 
+ * @note 原始函数名：FUN_180941ad0
+ */
+void ProcessSystemExceptionDataG1(void)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *exceptionDataPointer;
+  undefined8 *systemDataPointer;
+  longlong memoryOffset;
+  ulonglong memoryMask;
   
-  puVar2 = _DAT_180d493f8;
+  systemDataPointer = _DAT_180d493f8;
   if (_DAT_180d493f8 == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)_DAT_180d493f8 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)_DAT_180d493f8 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *_DAT_180d493f8 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  memoryMask = (ulonglong)_DAT_180d493f8 & 0xffffffffffc00000;
+  if (memoryMask != 0) {
+    memoryOffset = memoryMask + 0x80 + ((longlong)_DAT_180d493f8 - memoryMask >> 0x10) * 0x50;
+    memoryOffset = memoryOffset - (ulonglong)*(uint *)(memoryOffset + 4);
+    if ((*(void ***)(memoryMask + 0x70) == &ExceptionList) && (*(char *)(memoryOffset + 0xe) == '\0')) {
+      *_DAT_180d493f8 = *(undefined8 *)(memoryOffset + 0x20);
+      *(undefined8 **)(memoryOffset + 0x20) = systemDataPointer;
+      exceptionDataPointer = (int *)(memoryOffset + 0x18);
+      *exceptionDataPointer = *exceptionDataPointer + -1;
+      if (*exceptionDataPointer == 0) {
         FUN_18064d630();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          _DAT_180d493f8,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryMask, CONCAT71(0xff000000, *(void ***)(memoryMask + 0x70) == &ExceptionList),
+                          _DAT_180d493f8, memoryMask, 0xfffffffffffffffe);
     }
   }
   return;

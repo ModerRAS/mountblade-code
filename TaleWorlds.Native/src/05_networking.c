@@ -1990,19 +1990,22 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
   NetworkHandle ConnectionResultHandle;           // 连接上下文结果句柄
   
   ConnectionContextId = 0;
+  ConnectionValidationDataPtr = NULL;  // 初始化指针变量
   ConnectionValidationStatus = 0;  // 初始化验证状态码
   if (ConnectionValidationStatus == 0) {
-    if ((0 < *(int *)CalculateContextParameterOffset(ConnectionValidationDataPtr)) && (*ConnectionValidationDataPtr != 0)) {
+    if (ConnectionValidationDataPtr && (0 < *(int *)CalculateContextParameterOffset(ConnectionValidationDataPtr)) && (*ConnectionValidationDataPtr != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *ConnectionValidationDataPtr, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *ConnectionValidationDataPtr = ConnectionContextIdentifier;
-    *(int *)CalculateContextParameterOffset(ConnectionValidationDataPtr) = ConnectionValidationStatus;
+    if (ConnectionValidationDataPtr) {
+        *ConnectionValidationDataPtr = ConnectionContextIdentifier;
+        *(int *)CalculateContextParameterOffset(ConnectionValidationDataPtr) = ConnectionValidationStatus;
+    }
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxSignedInt32Value) {
     ConnectionResultHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
     if (ConnectionResultHandle != 0) {
-      if ((int)ConnectionValidationDataPtr[ConnectionDataSizeIndex] != 0) {
+      if (ConnectionValidationDataPtr && (int)ConnectionValidationDataPtr[ConnectionDataSizeIndex] != 0) {
           memcpy((void *)ConnectionResultHandle, *ConnectionValidationDataPtr, (int64_t)(int)ConnectionValidationDataPtr[ConnectionDataSizeIndex]);
       }
       return ConnectionResultHandle;
@@ -2807,48 +2810,6 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
   return DecodingStatus;  // 返回解码状态
 }
 
-/**
- * @brief 处理数据包头部
- * 
- * 处理网络数据包的头部信息，验证头部格式和内容
- * 
- * @param PacketData 数据包数据
- * @param HeaderContext 头部上下文
- * @return NetworkHandle 处理结果句柄
- */
-NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
-{
-  // 数据包头部处理变量
-  uint32_t PacketHeaderStatus;                         // 头部处理状态
-  uint32_t HeaderValidationResult;                         // 头部验证结果
-  uint32_t ContextProcessingStatus;                        // 上下文处理状态
-  
-  // 初始化处理状态
-  PacketHeaderStatus = NetworkValidationFailure;
-  HeaderValidationResult = NetworkValidationFailure;
-  ContextProcessingStatus = NetworkValidationFailure;
-  
-  // 验证数据包头部有效性
-  if (PacketData != 0) {
-    HeaderValidationResult = NetworkValidationSuccess;  // 头部验证通过
-  }
-  
-  // 处理头部上下文
-  if (HeaderContext != 0) {
-    ContextProcessingStatus = NetworkValidationSuccess;  // 上下文处理成功
-  }
-  
-  // 综合处理结果
-  PacketHeaderStatus = HeaderValidationResult & ContextProcessingStatus;
-  
-  // 如果处理成功，更新头部状态
-  if (PacketHeaderStatus == NetworkValidationSuccess) {
-    // 这里可以添加更多的头部处理逻辑
-    // 例如：解析头部字段、验证头部格式等
-  }
-  
-  return PacketHeaderStatus;  // 返回处理状态
-}
 
 /**
  * @brief 完成数据包处理
