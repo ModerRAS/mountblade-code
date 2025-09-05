@@ -1097,24 +1097,24 @@ void InitializeNetworkConnectionPool(void)
  */
 
 // 网络连接配置数据结构指针
-void *NetworkConnectionContextTemplatePointer;          // 网络连接上下文模板指针，指向模板配置数据
-void *NetworkConnectionPrimaryConfigPointer;                // 网络连接主要配置指针，指向主要配置数据
-void *NetworkConnectionSecondaryConfigPointer;            // 网络连接次要配置指针，指向次要配置数据
-void *NetworkConnectionProcessingConfigPointer;           // 网络连接处理配置指针，指向处理配置数据
-void *NetworkConnectionTransportConfigPointer;             // 网络连接传输配置指针，指向传输配置数据
-void *NetworkConnectionProtocolConfigPointer;               // 网络连接协议配置指针，指向协议配置数据
-void *NetworkConnectionValidationConfigPointer;           // 网络连接验证配置指针，指向验证配置数据
-void *NetworkConnectionRoutingMainConfigPointer;       // 网络连接路由主配置指针，指向路由主配置数据
-void *NetworkConnectionRoutingBackupConfigPointer;     // 网络连接路由备用配置指针，指向路由备用配置数据
-void *NetworkConnectionRoutingAlternativeConfigPointer; // 网络连接路由替代配置指针，指向路由替代配置数据
-void *NetworkConnectionRoutingFallbackConfigPointer; // 网络连接路由回退配置指针，指向路由回退配置数据
+void *NetworkConnectionTemplateConfigPointer;                  // 网络连接模板配置指针，指向模板配置数据
+void *NetworkConnectionPrimaryConfigPointer;                  // 网络连接主要配置指针，指向主要配置数据
+void *NetworkConnectionSecondaryConfigPointer;                // 网络连接次要配置指针，指向次要配置数据
+void *NetworkConnectionProcessingConfigPointer;                // 网络连接处理配置指针，指向处理配置数据
+void *NetworkConnectionTransportConfigPointer;                 // 网络连接传输配置指针，指向传输配置数据
+void *NetworkConnectionProtocolConfigPointer;                  // 网络连接协议配置指针，指向协议配置数据
+void *NetworkConnectionValidationConfigPointer;                // 网络连接验证配置指针，指向验证配置数据
+void *NetworkConnectionRoutingMainConfigPointer;               // 网络连接路由主配置指针，指向路由主配置数据
+void *NetworkConnectionRoutingBackupConfigPointer;             // 网络连接路由备用配置指针，指向路由备用配置数据
+void *NetworkConnectionRoutingAlternativeConfigPointer;         // 网络连接路由替代配置指针，指向路由替代配置数据
+void *NetworkConnectionRoutingFallbackConfigPointer;           // 网络连接路由回退配置指针，指向路由回退配置数据
 
 /**
  * @brief 网络连接上下文模板数据
  * 
  * 包含网络连接上下文的默认配置和模板数据，用于初始化新的连接上下文
  */
-uint32_t NetworkConnectionContextTemplateConfiguration;     // 网络连接上下文模板配置数据，用于初始化连接上下文的模板
+uint32_t NetworkConnectionTemplateConfiguration;               // 网络连接模板配置数据，用于初始化连接上下文的模板
 
 /**
  * @brief 网络连接主要配置数据

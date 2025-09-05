@@ -33893,21 +33893,43 @@ void ExceptionRecoveryHandlerB23(undefined8 param_1,longlong param_2,undefined8 
 
 
 
-void Unwind_1809025a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复处理器A0
+ * 
+ * 该函数负责处理系统异常恢复，调用底层异常处理函数
+ * 处理异常上下文中的数据结构和资源清理
+ * 
+ * @param context 系统上下文参数
+ * @param exceptionData 异常数据指针
+ * @param recoveryParameter 恢复参数
+ * @param additionalData 附加数据
+ */
+void HandleExceptionRecoveryA0(undefined8 context, longlong exceptionData, undefined8 recoveryParameter, undefined8 additionalData)
 
 {
-  FUN_180058370(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+  FUN_180058370(*(longlong *)(exceptionData + 0x78),*(undefined8 *)(*(longlong *)(exceptionData + 0x78) + 0x10),
+                recoveryParameter, additionalData, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809025b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复处理器B0
+ * 
+ * 该函数负责处理系统异常恢复，调用底层异常处理函数
+ * 处理异常上下文中的数据结构和资源清理
+ * 
+ * @param context 系统上下文参数
+ * @param exceptionData 异常数据指针
+ * @param recoveryParameter 恢复参数
+ * @param additionalData 附加数据
+ */
+void HandleExceptionRecoveryB0(undefined8 context, longlong exceptionData, undefined8 recoveryParameter, undefined8 additionalData)
 
 {
-  FUN_180058370(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+  FUN_180058370(*(longlong *)(exceptionData + 0x78),*(undefined8 *)(*(longlong *)(exceptionData + 0x78) + 0x10),
+                recoveryParameter, additionalData, 0xfffffffffffffffe);
   return;
 }
 
@@ -34274,11 +34296,22 @@ void SetExceptionHandlerTablePointer(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809026c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复处理器C0
+ * 
+ * 该函数负责处理系统异常恢复，调用底层异常处理函数
+ * 处理异常上下文中的数据结构和资源清理
+ * 
+ * @param context 系统上下文参数
+ * @param exceptionData 异常数据指针
+ * @param recoveryParameter 恢复参数
+ * @param additionalData 附加数据
+ */
+void HandleExceptionRecoveryC0(undefined8 context, longlong exceptionData, undefined8 recoveryParameter, undefined8 additionalData)
 
 {
-  FUN_1803aeb70(*(longlong *)(param_2 + 0x70) + 0x98,
-                *(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0xa8),param_3,param_4,
+  FUN_1803aeb70(*(longlong *)(exceptionData + 0x70) + 0x98,
+                *(undefined8 *)(*(longlong *)(exceptionData + 0x70) + 0xa8), recoveryParameter, additionalData,
                 0xfffffffffffffffe);
   return;
 }
@@ -34315,11 +34348,22 @@ void CallCleanupFunctionForOffset78(undefined8 param_1, longlong param_2, undefi
 
 
 
-void Unwind_180902710(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复处理器D0
+ * 
+ * 该函数负责处理系统异常恢复，调用底层异常处理函数
+ * 处理异常上下文中的数据结构和资源清理
+ * 
+ * @param context 系统上下文参数
+ * @param exceptionData 异常数据指针
+ * @param recoveryParameter 恢复参数
+ * @param additionalData 附加数据
+ */
+void HandleExceptionRecoveryD0(undefined8 context, longlong exceptionData, undefined8 recoveryParameter, undefined8 additionalData)
 
 {
-  FUN_1803aeb70(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+  FUN_1803aeb70(*(longlong *)(exceptionData + 0x78),*(undefined8 *)(*(longlong *)(exceptionData + 0x78) + 0x10),
+                recoveryParameter, additionalData, 0xfffffffffffffffe);
   return;
 }
 
