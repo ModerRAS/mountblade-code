@@ -54189,7 +54189,7 @@ float * CalculateAndNormalizeVector(float *SystemContextPointer,float *Utf8Buffe
 void ProcessFloatDataStructure(float *SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer,
                                uint64_t AdditionalParameter1
 {
-  uint64_t in_XMM0_Qa;
+  uint64_t RegisterXMM0Value;
   float in_XMM0_Dc;
   float in_XMM0_Dd;
   float FloatVariable1;
@@ -54209,8 +54209,8 @@ void ProcessFloatDataStructure(float *SystemContextPointer,long long Utf8BufferS
   float normalizedScaleFactor;
   
   MemoryAddressMask = (uint32_t)((unsigned long long)Utf16EndPointer >> 0x20);
-  matrixElementX = (float)((unsigned long long)in_XMM0_Qa >> 0x20);
-  matrixElementW = (float)in_XMM0_Qa;
+  matrixElementX = (float)((unsigned long long)RegisterXMM0Value >> 0x20);
+  matrixElementW = (float)RegisterXMM0Value;
   SystemContextPointer[8] = matrixElementW;
   SystemContextPointer[9] = matrixElementX;
   SystemContextPointer[10] = in_XMM0_Dc;
@@ -113260,14 +113260,14 @@ LabelSystemDataConfiguration:
       FloatVariable11 = 1.0;
     }
   }
-  in_XMM0_Qa = (double)FUN_18011f740(AdditionalParameter3,FloatVariable10,
+  RegisterXMM0Value = (double)FUN_18011f740(AdditionalParameter3,FloatVariable10,
                                      SUB84((SystemDoubleValue6 - DoubleValue2) * (double)FloatVariable11 + DoubleValue2,0));
-  if (in_XMM0_Qa != *Utf16EndPointer) {
-    *Utf16EndPointer = in_XMM0_Qa;
+  if (RegisterXMM0Value != *Utf16EndPointer) {
+    *Utf16EndPointer = RegisterXMM0Value;
     DataPointer = 1;
   }
 FUN_18011f32e:
-  SystemFloatParameter1 = (float)FUN_18011f9b0(in_XMM0_Qa,*Utf16EndPointer,FloatVariable2,TertiaryStatusCode);
+  SystemFloatParameter1 = (float)FUN_18011f9b0(RegisterXMM0Value,*Utf16EndPointer,FloatVariable2,TertiaryStatusCode);
   FloatVariable2 = SystemContextPointer[3];
   FloatVariable10 = SystemContextPointer[1];
   FloatVariable13 = (((FloatVariable1 - 2.0) - FloatVariable14) - FloatVariable13) * SystemFloatParameter1 + FloatVariable13;
@@ -159895,7 +159895,7 @@ void FUN_18013a611(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64
   byte BooleanByteFlag4;
   long long MemoryAllocationSize;
   float CalculatedDistance;
-  uint64_t in_XMM0_Qa;
+  uint64_t RegisterXMM0Value;
   float FloatVariable7;
   float FloatValue8;
   float SystemFloatParameter1;
@@ -159908,8 +159908,8 @@ void FUN_18013a611(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64
   uint64_t uStack0000000000000080;
   uint64_t uStack0000000000000098;
   
-  afStackX_20[1] = (float)((unsigned long long)in_XMM0_Qa >> 0x20);
-  CalculatedDistance = (float)in_XMM0_Qa;
+  afStackX_20[1] = (float)((unsigned long long)RegisterXMM0Value >> 0x20);
+  CalculatedDistance = (float)RegisterXMM0Value;
   MemoryAllocationIndex = (int)Utf16EndPointer;
   ProcessStringBuffer = (int)((unsigned long long)Utf16EndPointer >> 0x20);
   do {
