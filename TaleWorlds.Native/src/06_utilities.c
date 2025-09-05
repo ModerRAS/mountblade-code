@@ -100154,7 +100154,18 @@ void ExecuteResourceHashCleanupWithOptions2(uint8_t ObjectContext, int64_t Valid
 
 
 
-void Unwind_180910300(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 扩展资源清理处理器
+ * 
+ * 该函数用于执行扩展的资源清理操作，处理资源哈希表
+ * 支持自定义清理选项和标志位
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ExtendedResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
@@ -100174,7 +100185,18 @@ void Unwind_180910300(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180910310(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 次要扩展资源清理处理器
+ * 
+ * 该函数用于执行次要扩展的资源清理操作，处理资源表迭代
+ * 支持自定义清理选项和标志位
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void SecondaryExtendedResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
