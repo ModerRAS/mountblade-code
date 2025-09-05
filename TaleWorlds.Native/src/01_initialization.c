@@ -27888,14 +27888,14 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
 
 {
   ulong long SystemInitializationStatus;
-  float calculationResult1;
-  float calculationResult2;
+  float CalculationResultPrimary;
+  float CalculationResultSecondary;
   ulong long threadContextValue;
   ulong long CurrentThreadIdentifier;
   int CalculationFlags;
-  uint renderStatusValue1;
+  uint RenderStatusValuePrimary;
   long long SystemMemoryPointer;
-  uint renderStatusValue2;
+  uint RenderStatusValueSecondary;
   void* contextParameter;
   long long SystemAllocationFlags;
   uint RenderStatusPrimary;

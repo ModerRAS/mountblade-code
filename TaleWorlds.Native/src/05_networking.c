@@ -1232,8 +1232,8 @@ void InitializeNetworkSocket(void)
   NetworkSocketProtocol = TCP_PROTOCOL;                 // 设置协议类型为TCP协议
   
   // 初始化套接字数据缓冲区
-  NetworkSocketRuntimeData = 0;                            // 重置套接字运行时数据指针为NULL
-  NetworkSocketContext = 0;                         // 重置网络套接字上下文为NULL
+  NetworkSocketRuntimeInformation = 0;                            // 重置套接字运行时数据指针为NULL
+  NetworkSocketContextData = 0;                         // 重置网络套接字上下文为NULL
   
   // 初始化网络配置
   NetworkProtocolVersion = NetworkProtocolVersionOne;                    // 设置协议版本为1.0
