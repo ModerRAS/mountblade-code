@@ -40000,29 +40000,47 @@ void Unwind_180903340(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
-void Unwind_180903350(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+/**
+ * @brief 异常数据处理器350
+ * 
+ * 处理异常数据缓冲区的清理和释放操作
+ * 
+ * @param exceptionContext 异常上下文数据
+ * @param contextOffset 上下文偏移量
+ * @param cleanupData 清理数据
+ * @param cleanupFlags 清理标志
+ */
+void ExceptionDataProcessor350(DataBuffer exceptionContext, int64_t contextOffset, DataBuffer cleanupData, DataBuffer cleanupFlags)
 
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(param_2 + 0x88) + 0x10);
+  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(contextOffset + 0x88) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(param_2 + 0x88),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    ValidateAndCleanupExceptionData(*(int64_t *)(contextOffset + 0x88), *exceptionDataBuffer, cleanupData, cleanupFlags, SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    ReleaseExceptionBuffer(exceptionDataBuffer);
   }
   return;
 }
 
 
 
-void Unwind_180903360(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 异常上下文重置处理器360
+ * 
+ * 重置异常上下文并设置默认异常处理器
+ * 
+ * @param exceptionHandler 异常处理器
+ * @param contextPointer 上下文指针
+ */
+void ExceptionContextResetHandler360(DataBuffer exceptionHandler, int64_t contextPointer)
 
 {
   int64_t validationContext;
   
-  validationContext = *(int64_t *)(param_2 + 0x50);
-  *(DataBuffer *)(validationContext + 0x40) = &UNK_180a3c3e0;
+  validationContext = *(int64_t *)(contextPointer + 0x50);
+  *(DataBuffer *)(validationContext + 0x40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -40035,10 +40053,18 @@ void Unwind_180903360(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180903370(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 异常系统初始化器370
+ * 
+ * 初始化异常处理系统的数据结构和回调函数
+ * 
+ * @param systemContext 系统上下文
+ * @param initializationData 初始化数据
+ */
+void ExceptionSystemInitializer370(DataBuffer systemContext, int64_t initializationData)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(param_2 + 0x50) + 0x88,0x20,0x10,FUN_180059620);
+  InitializeExceptionSystem(*(int64_t *)(initializationData + 0x50) + 0x88, 0x20, 0x10, SetupExceptionCallbacks);
   return;
 }
 
