@@ -375,7 +375,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 
 // 网络协议常量 - 协议类型和端口配置
 #define TcpSocketCategory 0x01                             // TCP套接字类别
-#define TCP_PROTOCOL 0x06                                    // TCP协议类型
+#define NetworkTcpProtocol 0x06                               // TCP协议类型
 #define NetworkLocalhostAddress 0x7F000001                   // 网络本地回环地址127.0.0.1
 #define NetworkLoopbackAddress NetworkLocalhostAddress       // 网络回环地址别名
 /**
@@ -618,19 +618,19 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkReportSizeStandard NetworkReportSizeStandardBytes   // 标准报告大小别名
 
 // 网络套接字配置常量
-#define SOCKET_DESCRIPTOR_INVALID 0xFFFFFFFF                  // 无效套接字描述符
-#define SOCKET_CONTEXT_SIZE 0x1000                         // 套接字上下文大小（4KB）
-#define TCP_SOCKET_CATEGORY 0x01                            // TCP套接字类别
-#define PORT_HTTP_ALT 0x1f90                                // HTTP备用端口8080
-#define CLIENT_IP_ANY 0x00000000                            // 任意客户端IP地址
-#define CLIENT_PORT_ANY 0x0000                              // 任意客户端端口
-#define SEND_BUFFER_SIZE 0x10000                            // 发送缓冲区大小（64KB）
-#define RECEIVE_BUFFER_SIZE 0x10000                         // 接收缓冲区大小（64KB）
-#define BUFFER_CAPACITY 0x20000                             // 缓冲区容量（128KB）
-#define PORT_RANGE_END 0x270f                                // 端口范围结束值9999
-#define EXTENDED_FLAGS_RESET NETWORK_RESET_VALUE              // 扩展标志重置
-#define SOCKET_SIZE 0x100                                    // 套接字结构大小（256字节）
-#define TCP_PROTOCOL 0x06                                    // TCP协议号
+#define NetworkSocketDescriptorInvalid 0xFFFFFFFF              // 无效套接字描述符
+#define NetworkSocketContextSize 0x1000                     // 套接字上下文大小（4KB）
+#define NetworkTcpSocketCategory 0x01                        // TCP套接字类别
+#define NetworkPortHttpAlternative 0x1f90                     // HTTP备用端口8080
+#define NetworkClientIpAddressAny 0x00000000                 // 任意客户端IP地址
+#define NetworkClientPortAny 0x0000                          // 任意客户端端口
+#define NetworkSendBufferSize 0x10000                       // 发送缓冲区大小（64KB）
+#define NetworkReceiveBufferSize 0x10000                    // 接收缓冲区大小（64KB）
+#define NetworkBufferCapacity 0x20000                        // 缓冲区容量（128KB）
+#define NetworkPortRangeMaximum 0x270f                        // 端口范围结束值9999
+#define ExtendedFlagsReset NetworkReset_VALUE                  // 扩展标志重置
+#define NetworkSocketSize 0x100                               // 套接字结构大小（256字节）
+#define NetworkTcpProtocol 0x06                               // TCP协议号
 #define NetworkProtocolVersionOne 0x01                        // 网络协议版本1
 #define NetworkConnectionModeClient 0x01                      // 客户端连接模式
 #define NetworkConnectionPriorityMedium 0x02                  // 中等连接优先级
@@ -3633,19 +3633,19 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     // 验证魔数
     if (PrimaryMagicNumber == NetworkMagicLiveConnection || 
         PrimaryMagicNumber == NetworkMagicValidation) {
-      PacketHeaderDecodingStatus = NetworkValidationSuccess;
+      NetworkPacketHeaderDecodingStatus = NetworkValidationSuccess;
     }
     
     if (SecondaryMagicNumber == NetworkMagicBinaryData || 
         SecondaryMagicNumber == NetworkMagicMemoryValidation) {
-      PacketPayloadDecodingStatus = NetworkValidationSuccess;
+      NetworkPacketPayloadDecodingStatus = NetworkValidationSuccess;
     }
     
     // 综合验证结果
-    PacketSecurityValidationResult = PacketHeaderDecodingStatus & PacketPayloadDecodingStatus;
+    NetworkPacketSecurityValidationResult = NetworkPacketHeaderDecodingStatus & NetworkPacketPayloadDecodingStatus;
     
     // 初始化输出缓冲区
-    if (PacketSecurityValidationResult == NetworkValidationSuccess) {
+    if (NetworkPacketSecurityValidationResult == NetworkValidationSuccess) {
       memset(OutputBuffer, 0, NetworkStandardBufferSize);
       OutputBuffer[PacketDecodingModeIndex] = (NetworkByte)DecodingMode;
       OutputBuffer[PrimaryNetworkMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
@@ -3653,7 +3653,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     }
   }
   
-  return PacketSecurityValidationResult;
+  return NetworkPacketSecurityValidationResult;
 }
 
 /**
@@ -3672,30 +3672,30 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t HeaderValidationResult;                         // 网络头部验证结果
-  uint32_t ContextProcessingStatus;                        // 网络上下文处理状态
-  uint32_t FormatValidationResult;                         // 网络头部格式检查结果
+  uint32_t NetworkHeaderValidationResult;                  // 网络头部验证结果
+  uint32_t NetworkContextProcessingStatus;                 // 网络上下文处理状态
+  uint32_t NetworkFormatValidationResult;                   // 网络头部格式检查结果
   
   // 初始化处理状态
-  HeaderValidationResult = NetworkValidationFailure;
-  ContextProcessingStatus = NetworkValidationFailure;
-  FormatValidationResult = NetworkValidationFailure;
+  NetworkHeaderValidationResult = NetworkValidationFailure;
+  NetworkContextProcessingStatus = NetworkValidationFailure;
+  NetworkFormatValidationResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    HeaderValidationResult = NetworkValidationSuccess;
+    NetworkHeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    ContextProcessingStatus = NetworkValidationSuccess;
+    NetworkContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (HeaderValidationResult == NetworkValidationSuccess && 
-      ContextProcessingStatus == NetworkValidationSuccess) {
-    FormatValidationResult = NetworkValidationSuccess;
+  if (NetworkHeaderValidationResult == NetworkValidationSuccess && 
+      NetworkContextProcessingStatus == NetworkValidationSuccess) {
+    NetworkFormatValidationResult = NetworkValidationSuccess;
   }
   
-  return FormatValidationResult;
+  return NetworkFormatValidationResult;
 }
