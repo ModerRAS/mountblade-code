@@ -12012,14 +12012,14 @@ void ExecuteSecurityValidation(longlong securityContext, longlong operationDescr
     }
     if (*(longlong *)(systemContext + 0x18) != 0) {
       validationContext = *(longlong *)(systemContext + 0x18) + 0x30;
-      securityValidationResult = (**(code **)(**(longlong **)(operationDescriptor + 800) + 0x2f0))
+      validationResult = (**(code **)(**(longlong **)(operationDescriptor + 800) + 0x2f0))
                         (*(longlong **)(operationDescriptor + 800),validationContext,1);
-      if (securityValidationResult == 0) {
+      if (validationResult == 0) {
                     // WARNING: Subroutine does not return
         ValidateSystemDataA0(validationContext,authorizationData);
       }
-      permissionPointer = (longlong *)(securityValidationResult + 0x58);
-      if (((longlong *)*permissionPointer != permissionPointer) || (*(longlong **)(securityValidationResult + 0x60) != permissionPointer)) {
+      permissionPointer = (longlong *)(validationResult + 0x58);
+      if (((longlong *)*permissionPointer != permissionPointer) || (*(longlong **)(validationResult + 0x60) != permissionPointer)) {
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(undefined8 *)(operationDescriptor + 0x98),securityContext);
       }
@@ -12049,21 +12049,22 @@ void ProcessResourcePointer(longlong *resourceHandle, longlong operationOffset)
 {
   longlong validationContext;
   longlong *dataContextPointer;
-  longlong registerRDI;
-  ulonglong stackParameter;
+  longlong resourceContext;
+  ulonglong stackGuardValue;
+  undefined1 stackBuffer [40];
   
   validationContext = (**(code **)(*resourceHandle + 0x2f0))(resourceHandle,operationOffset + 0x30);
   if (validationContext == 0) {
                     // WARNING: Subroutine does not return
-    ValidateSystemDataA0(operationOffset + 0x30,&stack0x00000028);
+    ValidateSystemDataA0(operationOffset + 0x30,stackBuffer);
   }
   dataContextPointer = (longlong *)(validationContext + 0x58);
   if (((longlong *)*dataContextPointer == dataContextPointer) && (*(longlong **)(validationContext + 0x60) == dataContextPointer)) {
                     // WARNING: Subroutine does not return
-    ExecuteSecurityCheck(stackParameter ^ (ulonglong)&stack0x00000000);
+    ExecuteSecurityCheck(stackGuardValue ^ (ulonglong)stackBuffer);
   }
                     // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(undefined8 *)(registerRDI + 0x98));
+  CleanupSystemEventA0(*(undefined8 *)(resourceContext + 0x98));
 }
 
 
@@ -12073,10 +12074,12 @@ void ProcessResourcePointer(longlong *resourceHandle, longlong operationOffset)
 void ExecuteSecurityValidation(void)
 
 {
-  ulonglong in_stack_00000050;
+  ulonglong stackGuardValue;
+  undefined1 stackBuffer [40];
   
+  stackGuardValue = ExceptionEncryptionKey ^ (ulonglong)stackBuffer;
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(stackGuardValue);
 }
 
 
@@ -12244,15 +12247,15 @@ void ValidateResourceAccess(longlong ResourceDescriptor, longlong AccessRequest)
 {
   int QueryResult;
   longlong ResourcePointer;
-  undefined8 StackData;
+  undefined8 SystemContext;
   
   QueryResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(ResourceDescriptor + 0x10));
   if (QueryResult == 0) {
-    if (StackData == 0) {
+    if (SystemContext == 0) {
       ResourcePointer = 0;
     }
     else {
-      ResourcePointer = StackData + -8;
+      ResourcePointer = SystemContext + -8;
     }
     *(undefined4 *)(ResourcePointer + 0x88) = *(undefined4 *)(ResourceDescriptor + 0x18);
                     // WARNING: Subroutine does not return
