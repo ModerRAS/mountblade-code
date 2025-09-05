@@ -10047,6 +10047,23 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：验证系统组件和配置
 #define ValidateSystemConfigurationC1 FUN_18089ee87
 
+// 数据操作函数宏定义 (O系列 - Operation系列)
+// 原始函数名：FUN_1808aed00 - 数据操作函数O0
+// 功能：执行数据操作，包括读取、写入和验证
+#define OperateDataO0 FUN_1808aed00
+
+// 原始函数名：FUN_180847820 - 获取资源指针函数O0
+// 功能：获取系统资源指针，用于访问和管理资源
+#define GetResourcePointerO0 FUN_180847820
+
+// 原始函数名：FUN_1808b0fb0 - 系统状态更新函数O0
+// 功能：更新系统状态信息
+#define UpdateSystemStateO0 FUN_1808b0fb0
+
+// 原始函数名：FUN_1808af2e0 - 数据处理函数O0
+// 功能：处理数据并执行相应操作
+#define ProcessDataOperationO0 FUN_1808af2e0
+
 // 原始函数名：FUN_18089eef2 - 系统处理函数C0
 // 功能：处理系统操作和状态
 #define ProcessSystemOperationsC0 FUN_18089eef2
