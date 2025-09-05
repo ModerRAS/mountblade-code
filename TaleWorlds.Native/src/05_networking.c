@@ -74,6 +74,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkErrorTimeout 0xFFFFFFFD                      // 网络错误：超时
 #define NetworkErrorSecurity 0xFFFFFFFC                     // 网络错误：安全问题
 #define NetworkErrorInitializationFailed 0x1f                // 网络错误：初始化失败
+#define NetworkOperationSuccess 0x0                          // 网络操作：成功
 
 // 网络连接类型定义
 #define NetworkConnectionTypeBase 0x20200                      // 网络连接类型基础值
@@ -132,7 +133,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
  * @param ConnectionContext 连接上下文指针
  * @return int64_t 计算出的偏移量地址
  */
-static int64_t CalculateConnectionParameterAddress(int64_t *ConnectionContext)
+static int64_t CalculateConnectionParameterOffset(int64_t *ConnectionContext)
 {
     return (int64_t)ConnectionContext + ConnectionParameterOffset;
 }
@@ -147,7 +148,7 @@ static int64_t CalculateConnectionParameterAddress(int64_t *ConnectionContext)
  * @param ConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的偏移量地址
  */
-static int64_t CalculateConnectionDataAddress(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
+static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
 {
     return (ContextAddress - (int64_t)ConnectionContextBuffer) + (int64_t)ConnectionStatusPointer;
 }
@@ -162,9 +163,9 @@ static int64_t CalculateConnectionDataAddress(int64_t ContextAddress, void *Conn
  * @param ConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的最后一个条目偏移量地址
  */
-static int64_t CalculateLastConnectionEntryAddress(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
+static int64_t CalculateLastConnectionEntryOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
 {
-    return CalculateConnectionDataAddress(ContextAddress, ConnectionContextBuffer, ConnectionStatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)ConnectionStatusPointer + ConnectionContextEntrySize);
+    return CalculateConnectionDataOffset(ContextAddress, ConnectionContextBuffer, ConnectionStatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)ConnectionStatusPointer + ConnectionContextEntrySize);
 }
 
 /**
@@ -177,7 +178,7 @@ static int64_t CalculateLastConnectionEntryAddress(int64_t ContextAddress, void 
  * @param StatusIteratorPointer 网络连接状态迭代器指针
  * @return int64_t 计算出的状态指针偏移量地址
  */
-static int64_t CalculateConnectionStatusPointerAddress(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
+static int64_t CalculateConnectionStatusPointerOffset(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
 {
     return (ContextIdentifier - (int64_t)StatusBasePointer) + (int64_t)StatusIteratorPointer;
 }
@@ -192,9 +193,9 @@ static int64_t CalculateConnectionStatusPointerAddress(int64_t ContextIdentifier
  * @param StatusIteratorPointer 网络连接状态迭代器指针
  * @return int64_t 计算出的最后一个状态条目偏移量地址
  */
-static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
+static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
 {
-    return CalculateConnectionStatusPointerAddress(ContextIdentifier, StatusBasePointer, StatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)StatusIteratorPointer + ConnectionContextEntrySize);
+    return CalculateConnectionStatusPointerOffset(ContextIdentifier, StatusBasePointer, StatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)StatusIteratorPointer + ConnectionContextEntrySize);
 }
 
 /**
@@ -723,7 +724,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * @warning 如果连接上下文已存在迭代器，创建新的迭代器可能会影响现有操作
  * @see ProcessNetworkConnectionData, CleanupNetworkConnectionContext
  */
-uint32_t CreateNetworkIterationContext(int64_t NetworkConnectionContext, int64_t ValidationResultData, uint32_t IterationControlFlag);
+uint32_t InitializeNetworkIterationContext(int64_t NetworkConnectionContext, int64_t ValidationResultData, uint32_t IterationControlFlag);
 
 /**
  * @brief 处理网络协议栈数据
@@ -744,7 +745,7 @@ uint32_t CreateNetworkIterationContext(int64_t NetworkConnectionContext, int64_t
  * @warning 如果数据格式不正确，可能会导致处理失败或系统异常
  * @see InitializeNetworkConnection, ValidateNetworkConnectionSecurity
  */
-uint32_t ProcessNetworkProtocolStackData(int64_t *NetworkProtocolStackBuffer, int64_t NetworkContextData);
+uint32_t HandleNetworkProtocolStackData(int64_t *NetworkProtocolStackBuffer, int64_t NetworkContextData);
 
 /**
  * @brief 验证网络连接结果句柄安全性
@@ -765,7 +766,7 @@ uint32_t ProcessNetworkProtocolStackData(int64_t *NetworkProtocolStackBuffer, in
  * @warning 如果验证失败，相关的网络操作将被拒绝
  * @see InitializeNetworkConnection, GetNetworkConnectionResultHandle
  */
-uint32_t ValidateNetworkConnectionHandleSecurity(NetworkHandle NetworkConnectionContext, NetworkHandle NetworkPacketHandle);
+uint32_t VerifyNetworkConnectionHandleSecurity(NetworkHandle NetworkConnectionContext, NetworkHandle NetworkPacketHandle);
 
 /**
  * @brief 获取网络连接结果句柄
@@ -782,7 +783,7 @@ uint32_t ValidateNetworkConnectionHandleSecurity(NetworkHandle NetworkConnection
  * @warning 如果连接上下文无效，返回的句柄可能无法正常使用
  * @see InitializeNetworkConnection, ValidateNetworkConnectionHandleSecurity
  */
-NetworkHandle RetrieveNetworkConnectionHandle(int64_t *NetworkConnectionContext);
+NetworkHandle GetNetworkConnectionHandle(int64_t *NetworkConnectionContext);
 
 /**
  * @brief 验证网络连接条目
@@ -998,7 +999,7 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 // 网络系统全局变量
 
 // 网络连接基础配置变量
-uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄
+uint32_t NetworkConnectionManagerContext;                    // 网络连接管理器上下文
 uint32_t NetworkConnectionPoolManager;                      // 网络连接池管理器
 uint32_t NetworkManagerContextPointer;                      // 网络管理器上下文指针
 uint32_t NetworkManagerContextData;                         // 网络管理器上下文数据
@@ -1007,7 +1008,7 @@ uint32_t NetworkConnectionTimeoutMs;                        // 网络连接超�
 uint32_t NetworkMaxConnectionsAllowed;                      // 网络最大连接数限制
 uint32_t NetworkConnectionAttributeFlags;                   // 网络连接属性标志
 uint32_t NetworkCurrentStateFlags;                          // 网络当前状态标志
-uint32_t NetworkErrorReportTemplate;                        // 网络错误报告模板
+uint32_t NetworkErrorReportingTemplate;                        // 网络错误报告模板
 
 // 网络协议和地址配置
 uint32_t NetworkConnectionProtocolType;                     // 网络连接协议类型
