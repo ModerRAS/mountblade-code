@@ -1279,9 +1279,9 @@ void* SystemDataTemplateQuinarySystem;           // 系统数据模板 - 第五�
 
 // 系统数据节点 - 功能模块专用节点
 void* SystemDataNodeEventProcessor;           // 系统数据节点事件处理器
-void* SystemDataNodeSecondaryRoot;            // 系统数据节点次级根节点 (原SystemDataNodeB)
-void* SystemDataNodeTertiaryRoot;             // 系统数据节点第三根节点 (原SystemDataNodeC)
-void* SystemDataNodeQuaternaryRoot;           // 系统数据节点第四根节点 (原SystemDataNodeD)
+void* SystemDataNodeSecondaryRoot;            // 系统数据节点次级根节点
+void* SystemDataNodeTertiaryRoot;             // 系统数据节点第三根节点
+void* SystemDataNodeQuaternaryRoot;           // 系统数据节点第四根节点
 void* SystemDataNodeQuinaryRoot;              // 系统数据节点第五根节点 (原SystemDataNodeE)
 void* SystemDataNodeMemoryManager;            // 系统数据节点内存管理器 (原SystemDataNodeF)
 void* SystemDataNodeResourceHandler;          // 系统数据节点资源处理器 (原SystemDataNodeG)

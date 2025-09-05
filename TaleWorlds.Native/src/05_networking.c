@@ -1503,7 +1503,7 @@ void CloseConnection(void)
   // 清理连接状态
   NetworkConnectionStatusFlags = 0x00;                // 重置连接状态标志
   NetworkConnectionStateFlags = 0x00;                 // 重置连接状态标志
-  NetworkConnectionExtendedFlags = EXTENDED_FLAGS_RESET;              // 重置连接扩展标志
+  NetworkConnectionExtendedFlags = NetworkExtendedFlagsResetValue;              // 重置连接扩展标志
   
   // 释放连接资源
   NetworkConnectionActiveContext = 0x00;                     // 释放连接上下文
