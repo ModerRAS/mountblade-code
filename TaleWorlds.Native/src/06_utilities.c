@@ -27,10 +27,10 @@
 #define SetGlobalDataPointerA23 InitializeGlobalDataPointerA23
 
 // 数据处理函数宏定义 (D系列)
-#define ProcessFloatingPointDataD0 FUN_180893e69
-#define ValidateAndProcessDataD0 FUN_180897d20
-#define ProcessSystemDataD0 FUN_180899040
-#define ProcessSystemDataD1 FUN_180899090
+#define UpdateSystemStatusA0 FUN_180893e69
+#define ProcessDataBlockWithSecurityCheckA0 FUN_180897d20
+#define ValidateAndProcessDataA0 FUN_180899040
+#define ProcessDataBlocksA1 FUN_180899090
 #define ValidateSystemDataD0 FUN_180899100
 #define InitializeSystemComponentD0 FUN_1808992c4
 #define ProcessSystemDataD2 FUN_1808995c0
