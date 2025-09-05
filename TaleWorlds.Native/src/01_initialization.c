@@ -40502,8 +40502,8 @@ ulong long ProcessSystemResourceData(long long SystemResourceManager,long long *
 {
   uint *systemDataPointer1;
   uint32_t *systemDataPointer2;
-  uint SystemInitializationStatusValue1;
-  uint SystemInitializationStatusValue2;
+  uint systemInitializationPrimaryStatus;
+  uint systemInitializationSecondaryStatus;
   long long *localMemorySystemDataPointer;
   uint32_t systemMemoryOffset1;
   uint32_t systemMemoryOffset2;
@@ -40810,8 +40810,8 @@ ulong long ProcessSystemResourceDataExtended(long long SystemResourceManager,lon
 {
   ulong long *SystemResourceHandle1;
   uint *systemDataPointer1;
-  uint SystemInitializationStatusValue1;
-  uint SystemInitializationStatusValue2;
+  uint systemOperationPrimaryStatus;
+  uint systemOperationSecondaryStatus;
   long long *localMemorySystemDataPointer;
   long long SystemOperationFlags;
   ulong long systemResourceValue1;
@@ -43077,7 +43077,7 @@ void DispatchSystemResourcesAndCreateThreads(long long SystemResourceManager)
   int SystemCode;
   void* *SystemHashBucket;
   void* *SystemDataBufferPointer;
-  uint SystemStackBuffer1 [4];
+  uint systemProcessingBuffer [4];
   uint8_t aSystemParameterPointer [8];
   uint aSystemConfigurationPointer [2];
   void* *SystemProcessFlagsPointer;
