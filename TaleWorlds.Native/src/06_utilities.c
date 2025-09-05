@@ -33351,34 +33351,46 @@ void ExceptionContextCleanupHandlerB14(undefined8 ExceptionContext, longlong Val
 
 
 
-void Unwind_180902550(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常上下文清理处理器B15
+ * 
+ * 该函数负责清理异常上下文的第二部分，包括：
+ * - 重置第二组异常处理器指针
+ * - 销毁互斥体
+ * - 清理扩展系统状态
+ * - 验证系统完整性
+ * 
+ * @param ExceptionContext 异常上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void ExceptionContextCleanupHandlerB15(undefined8 ExceptionContext, longlong ValidationContext)
 
 {
-  longlong validationContext;
+  longlong exceptionData;
   
-  validationContext = *(longlong *)(param_2 + 0x70);
-  *(undefined8 *)(validationContext + 0xd8) = &UNK_180a3cf50;
-  if (*(char *)(validationContext + 0x189) != '\0') {
+  exceptionData = *(longlong *)(ValidationContext + 0x70);
+  *(undefined8 *)(exceptionData + 0xd8) = &UNK_180a3cf50;
+  if (*(char *)(exceptionData + 0x189) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *(undefined8 *)(validationContext + 0xd8) = &UNK_180a30778;
-  *(undefined8 *)(validationContext + 0x110) = &UNK_180a3c3e0;
-  if (*(longlong *)(validationContext + 0x118) != 0) {
+  *(undefined8 *)(exceptionData + 0xd8) = &UNK_180a30778;
+  *(undefined8 *)(exceptionData + 0x110) = &UNK_180a3c3e0;
+  if (*(longlong *)(exceptionData + 0x118) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(validationContext + 0x118) = 0;
-  *(undefined4 *)(validationContext + 0x128) = 0;
-  *(undefined8 *)(validationContext + 0x110) = &DefaultExceptionHandlerB;
-  *(undefined8 *)(validationContext + 0xe0) = &UNK_180a3c3e0;
-  if (*(longlong *)(validationContext + 0xe8) != 0) {
+  *(undefined8 *)(exceptionData + 0x118) = 0;
+  *(undefined4 *)(exceptionData + 0x128) = 0;
+  *(undefined8 *)(exceptionData + 0x110) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(exceptionData + 0xe0) = &UNK_180a3c3e0;
+  if (*(longlong *)(exceptionData + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(validationContext + 0xe8) = 0;
-  *(undefined4 *)(validationContext + 0xf8) = 0;
-  *(undefined8 *)(validationContext + 0xe0) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(exceptionData + 0xe8) = 0;
+  *(undefined4 *)(exceptionData + 0xf8) = 0;
+  *(undefined8 *)(exceptionData + 0xe0) = &DefaultExceptionHandlerB;
   return;
 }
 
