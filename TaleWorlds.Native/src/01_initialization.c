@@ -28104,7 +28104,7 @@ void ProcessSystemResourceAndRenderManagement(long long* SystemResourceManager,v
   float scaleFactor1;
   float scaleFactor2;
   long long *ConfigurationParameter;
-  long long *SystemStackParameter2;
+  long long *SystemResourceAllocationHandle;
   long long **SystemStackParameter3;
   long long systemDataBufferA [2];
   void* *systemDataBufferB;
@@ -28154,7 +28154,7 @@ void ProcessSystemResourceAndRenderManagement(long long* SystemResourceManager,v
     systemDataBufferE = &SystemProcessingBuffer3;
     systemDataBufferF = &SystemProcessingBuffer4;
     SystemResourceHandle = (long long *)CreateMemoryAllocationHandle(memoryAllocationHandle,systemDataBufferD);
-    SystemStackParameter2 = SystemResourceHandle;
+    SystemResourceAllocationHandle = SystemResourceHandle;
     if (SystemResourceHandle != (long long *)0x0) {
       (**(code **)(*SystemResourceHandle + 0x28))(SystemResourceHandle);
     }
