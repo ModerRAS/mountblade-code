@@ -34369,21 +34369,32 @@ void HandleExceptionRecoveryD0(undefined8 context, longlong exceptionData, undef
 
 
 
-void Unwind_180902720(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复处理器E0
+ * 
+ * 该函数负责处理系统异常恢复，遍历异常处理表并调用相应的处理函数
+ * 对异常上下文中的各个条目进行清理和恢复操作
+ * 
+ * @param context 系统上下文参数
+ * @param exceptionData 异常数据指针
+ * @param recoveryParameter 恢复参数
+ * @param additionalData 附加数据
+ */
+void HandleExceptionRecoveryE0(undefined8 context, longlong exceptionData, undefined8 recoveryParameter, undefined8 additionalData)
 
 {
-  undefined8 *puVar1;
-  longlong *pdataContext;
-  undefined8 *pvalidationStatus;
+  undefined8 *pExceptionHandlerEnd;
+  longlong *pExceptionHandlerTable;
+  undefined8 *pCurrentHandler;
   undefined8 memoryBaseAddress;
   
-  pdataContext = *(longlong **)(param_2 + 0x70);
+  pExceptionHandlerTable = *(longlong **)(exceptionData + 0x70);
   memoryBaseAddress = 0xfffffffffffffffe;
-  puVar1 = (undefined8 *)pdataContext[1];
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
-    (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  pExceptionHandlerEnd = (undefined8 *)pExceptionHandlerTable[1];
+  for (pCurrentHandler = (undefined8 *)*pExceptionHandlerTable; pCurrentHandler != pExceptionHandlerEnd; pCurrentHandler = pCurrentHandler + 4) {
+    (**(code **)*pCurrentHandler)(pCurrentHandler, 0, recoveryParameter, additionalData, memoryBaseAddress);
   }
-  if (*pdataContext == 0) {
+  if (*pExceptionHandlerTable == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -34392,16 +34403,27 @@ void Unwind_180902720(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902730(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复处理器F0
+ * 
+ * 该函数负责处理系统异常恢复，检查并调用特定的异常处理函数
+ * 处理异常上下文中的数据结构和资源清理
+ * 
+ * @param context 系统上下文参数
+ * @param exceptionData 异常数据指针
+ * @param recoveryParameter 恢复参数
+ * @param additionalData 附加数据
+ */
+void HandleExceptionRecoveryF0(undefined8 context, longlong exceptionData, undefined8 recoveryParameter, undefined8 additionalData)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pExceptionHandler;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x70),*puVar1,param_3,param_4,0xfffffffffffffffe);
+  pExceptionHandler = *(undefined8 **)(*(longlong *)(exceptionData + 0x70) + 0x10);
+  if (pExceptionHandler != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(exceptionData + 0x70), *pExceptionHandler, recoveryParameter, additionalData, 0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pExceptionHandler);
   }
   return;
 }
