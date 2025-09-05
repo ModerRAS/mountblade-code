@@ -4187,15 +4187,15 @@ undefined8 ProcessResourceAllocation(longlong param_1,longlong param_2)
     stackBuffer[0] = 0;
     operationResult = ValidateResourceHandle(stackBuffer);
     if (operationResult == 0) {
-      operationResult = FUN_1808c7b30(resourcePointer,*(undefined8 *)(resourcePointer + 8),*(undefined8 *)(param_2 + 0x90),
+      operationResult = ExecuteResourceOperation(resourcePointer,*(undefined8 *)(resourcePointer + 8),*(undefined8 *)(param_2 + 0x90),
                             *(undefined8 *)(param_2 + 800));
       if (operationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088c790(stackBuffer);
+        ReleaseSystemResources(stackBuffer);
       }
     }
                     // WARNING: Subroutine does not return
-    FUN_18088c790(stackBuffer);
+    ReleaseSystemResources(stackBuffer);
   }
   return 0;
 }
@@ -4257,19 +4257,19 @@ undefined8 ProcessUtilityResourceDecrement(longlong resourceContext,undefined8 d
     return 0;
   }
   stackBuffer[0] = 0;
-  operationResult = FUN_18088c740(stackBuffer);
+  operationResult = ValidateResourceHandle(stackBuffer);
   if (operationResult == 0) {
-    operationResult = FUN_1808c7dc0(resourcePointer,0);
+    operationResult = CleanupResourceData(resourcePointer,0);
     if (operationResult == 0) {
-      operationResult = FUN_18088ac50(param_2);
+      operationResult = ValidateSystemParameters(param_2);
       if (operationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088c790(stackBuffer);
+        ReleaseSystemResources(stackBuffer);
       }
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(stackBuffer);
+  ReleaseSystemResources(stackBuffer);
 }
 
 
@@ -4293,7 +4293,7 @@ undefined8 UpdateResourceReferenceCount(longlong param_1)
   resourcePointer = *(longlong *)(stackBuffer[0] + 0x10);
   if (resourcePointer != 0) {
     *(int *)(resourcePointer + 500) = *(int *)(resourcePointer + 500) + 1;
-    if ((*(char *)(resourcePointer + 0x204) != '\0') && (validationStatus = FUN_1808552c0(), (int)validationStatus != 0)) {
+    if ((*(char *)(resourcePointer + 0x204) != '\0') && (validationStatus = QuerySystemStatus(), (int)validationStatus != 0)) {
       return validationStatus;
     }
     return 0;
