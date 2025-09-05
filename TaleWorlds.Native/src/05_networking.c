@@ -1994,7 +1994,7 @@ void InitializeNetworkErrorHandlingSystem(void)
   NetworkPortRangeEnd = NetworkPortRangeMaximum;           // 设置端口范围结束值为9999
   
   // 初始化连接超时参数
-  NetworkConnectionTimeout = NetworkTimeout30Seconds;                   // 设置连接超时时间为30秒
+  NetworkConnectionTimeoutMs = NetworkTimeout30Seconds;                   // 设置连接超时时间为30秒
   NetworkTimeoutValueOffset = 0x30;                         // 设置超时值偏移量
   NetworkRetryCountOffset = 0x34;                           // 设置重试计数偏移量
   
