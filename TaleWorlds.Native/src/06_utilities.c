@@ -4480,7 +4480,17 @@ undefined8 ProcessBatchDataOperations(longlong param_1)
 
 
 
-undefined8 FUN_180890923(void)
+// 函数: undefined8 ProcessUtilitySystemInitialization(void)
+// 
+// 工具系统初始化处理函数
+// 处理工具系统的初始化过程，包括内存分配和数据结构设置
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   成功返回0，失败返回错误代码
+undefined8 ProcessUtilitySystemInitialization(void)
 
 {
   longlong lVar1;
@@ -4614,7 +4624,17 @@ undefined8 ValidateDataArray(longlong arrayDescriptor)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808909f3(void)
+// 函数: undefined8 ValidateUtilitySystemState(void)
+// 
+// 工具系统状态验证函数
+// 验证工具系统的当前状态，确保系统运行正常
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   成功返回0，失败返回错误代码
+undefined8 ValidateUtilitySystemState(void)
 
 {
   longlong in_RAX;
@@ -4789,7 +4809,17 @@ void ReturnEmptyFunction(void)
 
 
 
-undefined8 FUN_180890b70(longlong param_1)
+// 函数: undefined8 ValidateResourceAccessChain(longlong resourceHandle)
+// 
+// 资源访问链验证函数
+// 验证资源访问链的完整性和有效性，确保资源访问路径正确
+// 
+// 参数:
+//   resourceHandle - 资源句柄
+// 
+// 返回值:
+//   成功返回0，失败返回错误代码
+undefined8 ValidateResourceAccessChain(longlong resourceHandle)
 
 {
   undefined8 uVar1;
@@ -6383,6 +6413,110 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 原始函数名：FUN_1808bdd90 - 验证函数CX0
 // 功能：验证系统配置
 #define ValidateSystemConfigCX0 FUN_1808bdd90
+
+// 原始函数名：FUN_180768b50 - 内存操作函数CY0
+// 功能：执行内存操作
+#define ExecuteMemoryOperationCY0 FUN_180768b50
+
+// 原始函数名：FUN_18084b240 - 数据处理函数CZ0
+// 功能：处理数据并验证
+#define ProcessDataValidationCZ0 FUN_18084b240
+
+// 原始函数名：FUN_1808fd200 - 系统初始化函数DA0
+// 功能：初始化系统组件
+#define InitializeSystemComponentDA0 FUN_1808fd200
+
+// 原始函数名：FUN_18076b390 - 资源管理函数DB0
+// 功能：管理系统资源
+#define ManageSystemResourceDB0 FUN_18076b390
+
+// 原始函数名：FUN_1808aef40 - 数据清理函数DC0
+// 功能：清理数据资源
+#define CleanupDataResourceDC0 FUN_1808aef40
+
+// 原始函数名：FUN_18088f5c0 - 字符串处理函数DD0
+// 功能：处理字符串数据
+#define ProcessStringDataDD0 FUN_18088f5c0
+
+// 原始函数名：FUN_18088f470 - 数据验证函数DE0
+// 功能：验证数据完整性
+#define ValidateDataIntegrityDE0 FUN_18088f470
+
+// 原始函数名：FUN_180882c20 - 数据转换函数DF0
+// 功能：转换数据格式
+#define ConvertDataFormatDF0 FUN_180882c20
+
+// 原始函数名：FUN_18088c620 - 状态重置函数DG0
+// 功能：重置系统状态
+#define ResetSystemStateDG0 FUN_18088c620
+
+// 原始函数名：FUN_180840270 - 数据处理函数DH0
+// 功能：处理系统数据
+#define ProcessSystemDataDH0 FUN_180840270
+
+// 原始函数名：FUN_180895130 - 验证函数DI0
+// 功能：验证系统状态
+#define ValidateSystemStateDI0 FUN_180895130
+
+// 原始函数名：FUN_180744cc0 - 资源释放函数DJ0
+// 功能：释放系统资源
+#define ReleaseSystemResourceDJ0 FUN_180744cc0
+
+// 原始函数名：FUN_180895070 - 配置函数DK0
+// 功能：配置系统参数
+#define ConfigureSystemParameterDK0 FUN_180895070
+
+// 原始函数名：FUN_180894ef0 - 初始化函数DL0
+// 功能：初始化系统组件
+#define InitializeSystemComponentDL0 FUN_180894ef0
+
+// 原始函数名：FUN_180741e10 - 资源分配函数DM0
+// 功能：分配系统资源
+#define AllocateSystemResourceDM0 FUN_180741e10
+
+// 原始函数名：FUN_1807d1650 - 数据处理函数DN0
+// 功能：处理数据并转换
+#define ProcessDataConversionDN0 FUN_1807d1650
+
+// 原始函数名：FUN_180892120 - 双重验证函数DO0
+// 功能：双重验证系统状态
+#define DoubleValidateSystemDO0 FUN_180892120
+
+// 原始函数名：FUN_180893420 - 验证函数DP0
+// 功能：验证系统配置
+#define ValidateSystemConfigDP0 FUN_180893420
+
+// 原始函数名：FUN_1808920e0 - 操作执行函数DQ0
+// 功能：执行系统操作
+#define ExecuteSystemOperationDQ0 FUN_1808920e0
+
+// 原始函数名：FUN_180891d40 - 数据验证函数DR0
+// 功能：验证数据完整性
+#define ValidateDataIntegrityDR0 FUN_180891d40
+
+// 原始函数名：FUN_180891cf0 - 数据处理函数DS0
+// 功能：处理系统数据
+#define ProcessSystemDataDS0 FUN_180891cf0
+
+// 原始函数名：FUN_180891ca0 - 状态检查函数DT0
+// 功能：检查系统状态
+#define CheckSystemStatusDT0 FUN_180891ca0
+
+// 原始函数名：FUN_180891de0 - 事件处理函数DU0
+// 功能：处理系统事件
+#define HandleSystemEventDU0 FUN_180891de0
+
+// 原始函数名：FUN_180894300 - 数据处理函数DV0
+// 功能：处理数据并验证
+#define ProcessDataValidationDV0 FUN_180894300
+
+// 原始函数名：FUN_18084c470 - 清理函数DW0
+// 功能：清理系统资源
+#define CleanupSystemResourceDW0 FUN_18084c470
+
+// 原始函数名：FUN_180891af0 - 重置函数DX0
+// 功能：重置系统状态
+#define ResetSystemStateDX0 FUN_180891af0
 
 // 函数: void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 //
