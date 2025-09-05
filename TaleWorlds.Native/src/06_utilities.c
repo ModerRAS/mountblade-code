@@ -1586,21 +1586,21 @@
 
 
 
-// 原始函数名：FUN_180942440 - 数据验证函数A0
-// 功能：验证工具系统数据A0的有效性
-#define ValidateUtilityDataA0 FUN_180942440
+// 原始函数名：FUN_180942440 - 数据验证函数
+// 功能：验证工具系统数据的有效性
+#define ValidateUtilityData FUN_180942440
 
-// 原始函数名：FUN_180942460 - 数据压缩函数A0
-// 功能：压缩工具系统数据A0
-#define CompressUtilityDataA0 FUN_180942460
+// 原始函数名：FUN_180942460 - 数据压缩函数
+// 功能：压缩工具系统数据
+#define CompressUtilityData FUN_180942460
 
-// 原始函数名：FUN_180942480 - 数据解压缩函数A0
-// 功能：解压缩工具系统数据A0
-#define DecompressUtilityDataA0 FUN_180942480
+// 原始函数名：FUN_180942480 - 数据解压缩函数
+// 功能：解压缩工具系统数据
+#define DecompressUtilityData FUN_180942480
 
-// 原始函数名：FUN_1809424a0 - 数据加密函数A0
-// 功能：加密工具系统数据A0
-#define EncryptUtilityDataA0 FUN_1809424a0
+// 原始函数名：FUN_1809424a0 - 数据加密函数
+// 功能：加密工具系统数据
+#define EncryptUtilityData FUN_1809424a0
 
 // 原始函数名：FUN_1808920e0 - 验证并执行操作函数
 // 功能：验证上下文句柄并执行相应操作，如果验证失败则调用错误处理函数
@@ -1614,9 +1614,9 @@
 // 功能：验证浮点数数据的有效性，检查INF和NaN值，处理零向量情况，并执行系统数据查询和存储操作
 #define ValidateAndProcessFloatingPointData FUN_1808924f0
 
-// 原始函数名：FUN_180897859 - 浮点数据处理函数A0
+// 原始函数名：FUN_180897859 - 浮点数据处理函数
 // 功能：处理输入的浮点数据，进行一系列验证和计算操作
-#define ProcessFloatingPointDataA0 FUN_180897859
+#define ProcessFloatingPointData FUN_180897859
 
 // 原始函数名：FUN_1809424c0 - 数据解密函数A0
 // 功能：解密工具系统数据A0
