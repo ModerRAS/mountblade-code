@@ -35136,7 +35136,19 @@ void ExceptionCleanupHandler830(undefined8 param_1,longlong param_2,undefined8 p
 
 
 
-void Unwind_180902840(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常清理处理器840
+ * 
+ * 该函数用于处理异常清理操作，调用系统清理函数进行资源释放
+ * 
+ * @param param_1 上下文参数1
+ * @param param_2 上下文参数2，包含异常状态信息
+ * @param param_3 清理参数1
+ * @param param_4 清理参数2
+ * 
+ * @note 原始函数名：Unwind_180902840
+ */
+void ExceptionCleanupHandler840(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1801fef10(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
