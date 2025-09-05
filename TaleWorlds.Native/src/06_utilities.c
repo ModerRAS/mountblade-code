@@ -6694,12 +6694,19 @@ undefined UNK_180a33ca8;
 undefined UNK_18053eee0;
 undefined UNK_18053efd0;
 
-943090;
-undefined FUN_180943090;
-undefined DAT_180d49ff8;
+// 系统状态验证函数A0
+// 功能：验证系统状态完整性
+#define ValidateSystemStatusA0 FUN_180943090
+undefined ValidateSystemStatusA0;
+// 系统数据表A0
+// 功能：存储系统数据表信息
+#define SystemDataTableA0 DAT_180d49ff8
+undefined SystemDataTableA0;
 
-9430b0;
-undefined FUN_1809430b0;
+// 系统配置处理函数A0
+// 功能：处理系统配置操作
+#define ProcessSystemConfigurationA0 FUN_1809430b0
+undefined ProcessSystemConfigurationA0;
 undefined UNK_180a38958;
 undefined UNK_180a38978;
 undefined UNK_180a38988;
