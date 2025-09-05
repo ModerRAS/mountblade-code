@@ -9743,9 +9743,9 @@ DataWord ValidateResourceHandleAndRelease(void)
 
 
 
-// 函数: void TerminateProcessWithErrorB(void)
+// 函数: void TerminateProcessWithMemoryError(void)
 // 
-// 错误终止进程函数B
+// 内存错误终止进程函数
 // 调用底层错误处理函数终止进程执行
 // 
 // 参数:
@@ -9753,7 +9753,7 @@ DataWord ValidateResourceHandleAndRelease(void)
 // 
 // 返回值:
 //   无
-void TerminateProcessWithErrorB(void)
+void TerminateProcessWithMemoryError(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -9845,9 +9845,9 @@ DataWord ValidateRegisterAndTerminate(void)
 
 
 
-// 函数: void TerminateProcessWithErrorC(void)
+// 函数: void TerminateProcessWithSecurityError(void)
 // 
-// 错误终止进程函数C
+// 安全错误终止进程函数
 // 调用底层错误处理函数终止进程执行
 // 
 // 参数:
@@ -9855,7 +9855,7 @@ DataWord ValidateRegisterAndTerminate(void)
 // 
 // 返回值:
 //   无
-void TerminateProcessWithErrorC(void)
+void TerminateProcessWithSecurityError(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -9950,9 +9950,9 @@ DataWord ValidateRegisterAndTerminateB(void)
 
 
 
-// 函数: void TerminateProcessWithErrorD(void)
+// 函数: void TerminateProcessWithSystemError(void)
 // 
-// 错误终止进程函数D
+// 系统错误终止进程函数
 // 调用底层错误处理函数终止进程执行
 // 
 // 参数:
@@ -9960,7 +9960,7 @@ DataWord ValidateRegisterAndTerminateB(void)
 // 
 // 返回值:
 //   无
-void TerminateProcessWithErrorD(void)
+void TerminateProcessWithSystemError(void)
 
 {
                     // WARNING: Subroutine does not return
