@@ -28804,9 +28804,9 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   StackVariable130 = 0;
   StackVariable12c = 0;
   SystemMemoryAllocationOffset = 0;
-  StackVariable124 = 0;
-  StackVariable120 = 0x3f800000;
-  StackVariable11c = 0;
+  SystemStackVariable124 = 0;
+  SystemStackVariable120 = 0x3f800000;
+  SystemStackVariable11c = 0;
   UnsignedStackFlagPrimary = 0;
   StackVariable114 = 0;
   UnsignedStackFlagSecondary = 0;
