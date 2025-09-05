@@ -37015,34 +37015,62 @@ void SetDefaultExceptionHandlerB(undefined8 param_1,int64_t param_2)
 
 
 
-void Unwind_ResetExceptionHandler(undefined8 param_1,int64_t param_2)
+/**
+ * @brief 重置异常处理器
+ * 
+ * 该函数用于重置异常处理器到默认状态，清理当前的异常处理状态，
+ * 并将异常处理器设置为默认的异常处理函数
+ * 
+ * @param contextHandle 上下文句柄，用于标识当前的执行上下文
+ * @param contextPointer 上下文指针，指向包含异常处理信息的上下文结构
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会重置异常处理器状态，确保系统在异常处理后能够恢复正常
+ * @warning 如果重置过程中检测到错误，会调用TerminateSystemE0终止系统
+ */
+void Unwind_ResetExceptionHandler(undefined8 contextHandle, int64_t contextPointer)
 
 {
-  undefined8 *pdataValue;
+  undefined8 *exceptionHandlerData;
   
-  pdataValue = *(undefined8 **)(param_2 + 0x90);
-  *pdataValue = &UNK_180a3c3e0;
-  if (pdataValue[1] != 0) {
-                    // WARNING: Subroutine does not return
+  exceptionHandlerData = *(undefined8 **)(contextPointer + 0x90);
+  *exceptionHandlerData = &UNK_180a3c3e0;
+  if (exceptionHandlerData[1] != 0) {
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  pdataValue[1] = 0;
-  *(undefined4 *)(pdataValue + 3) = 0;
-  *pdataValue = &DefaultExceptionHandlerB;
+  exceptionHandlerData[1] = 0;
+  *(undefined4 *)(exceptionHandlerData + 3) = 0;
+  *exceptionHandlerData = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_ResetValidationContext(undefined8 param_1,int64_t param_2)
+/**
+ * @brief 重置验证上下文
+ * 
+ * 该函数用于重置验证上下文的状态，清理验证相关的状态信息，
+ * 并将验证上下文重置为默认状态
+ * 
+ * @param contextHandle 上下文句柄，用于标识当前的执行上下文
+ * @param contextPointer 上下文指针，指向包含验证信息的上下文结构
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会重置验证上下文，确保系统在验证操作后能够恢复正常状态
+ * @warning 如果重置过程中检测到错误，会调用TerminateSystemE0终止系统
+ */
+void Unwind_ResetValidationContext(undefined8 contextHandle, int64_t contextPointer)
 
 {
   int64_t validationContext;
   
-  validationContext = *(int64_t *)(param_2 + 0x90);
+  validationContext = *(int64_t *)(contextPointer + 0x90);
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
@@ -38062,24 +38090,42 @@ void Unwind_180902f20(undefined8 param_1,int64_t param_2,undefined8 param_3,unde
 
 
 
+/**
+ * @brief 异常处理展开函数F40
+ * 
+ * 该函数负责处理系统异常展开操作，遍历数据上下文中的验证状态，
+ * 并执行相应的清理函数。与F20函数类似，但使用不同的偏移量。
+ * 如果数据上下文为空，则正常返回；否则调用系统终止函数。
+ * 
+ * @param param_1 异常处理参数1
+ * @param param_2 异常处理参数2，包含数据上下文指针
+ * @param param_3 异常处理参数3
+ * @param param_4 异常处理参数4
+ */
 void Unwind_180902f40(undefined8 param_1,int64_t param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *pdataValue;
-  int64_t *pdataContext;
-  undefined8 *pvalidationStatus;
-  undefined8 memoryBaseAddress;
+  undefined8 *DataValuePointer;
+  int64_t *DataContextPointer;
+  undefined8 *ValidationStatusPointer;
+  undefined8 MemoryBaseAddress;
   
-  pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x8a8);
-  memoryBaseAddress = SystemCleanupFlagfffffffe;
-  pdataValue = *(undefined8 **)(*(int64_t *)(param_2 + 0x40) + 0x8b0);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  // 获取数据上下文指针（使用不同的偏移量）
+  DataContextPointer = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x8a8);
+  MemoryBaseAddress = SystemCleanupFlagfffffffe;
+  DataValuePointer = *(undefined8 **)(*(int64_t *)(param_2 + 0x40) + 0x8b0);
+  
+  // 遍历验证状态并执行清理函数
+  for (ValidationStatusPointer = (undefined8 *)*DataContextPointer; ValidationStatusPointer != DataValuePointer; ValidationStatusPointer = ValidationStatusPointer + 4) {
+    (**(code **)*ValidationStatusPointer)(ValidationStatusPointer,0,param_3,param_4,MemoryBaseAddress);
   }
-  if (*pdataContext == 0) {
+  
+  // 检查数据上下文是否为空
+  if (*DataContextPointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  
+  // 如果数据上下文不为空，则终止系统
   TerminateSystemE0();
 }
 
