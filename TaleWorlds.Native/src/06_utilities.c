@@ -5535,8 +5535,8 @@ undefined SystemThreadManager;
 undefined DAT_180bf00a8;
 undefined DAT_180c86928;
 undefined SystemNetworkManager;
-undefined UNK_18098bac8;
-undefined UNK_1809fd0a0;
+undefined SystemGraphicsManager;
+undefined SystemAudioManager;
 undefined UNK_180a3c110;
 undefined UNK_180a3c138;
 undefined UNK_1809ff040;
@@ -10749,7 +10749,7 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
   longlong systemContext;
   longlong queueInfo;
   
-  iVar1 = ProcessSystemEventDataA0(param_1,param_2,*(undefined8 *)(in_stack_00000070 + 8));
+  processStatus = ProcessSystemEventDataA0(systemHandle,optimizationFlags,*(undefined8 *)(queueInfo + 8));
   if (iVar1 != 0) {
     return;
   }
