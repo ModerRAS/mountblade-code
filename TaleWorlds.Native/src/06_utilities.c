@@ -28,6 +28,12 @@
 #define ReferenceCountOffset 500
 #define ResourceStatusOffset 0x204
 #define ResourceInvalidErrorCode 0x1c
+#define ResourceReferenceCountOffset 0x4c
+#define ResourceSecondaryOffset 0x54
+#define ResourceTertiaryOffset 0x58
+#define ResourceConfigurationOffset 0x10
+#define ResourcePrimaryDataOffset 0x90
+#define ResourceSecondaryDataOffset 800
 
 // Goto 标签宏定义 - 用于美化代码
 #define GOTO_ValidationFailed goto ExecuteSecurityValidation
@@ -3048,6 +3054,38 @@
 // 原始变量名：UNK_180986e70 - 内存分配配置表
 // 功能：存储内存分配相关的配置信息
 #define MemoryAllocationConfigurationTable UNK_180986e70
+
+// 原始变量名：UNK_1809863f8 - 数据处理状态表A0
+// 功能：存储数据处理状态信息
+#define DataProcessingStatusTableA0 UNK_1809863f8
+
+// 原始变量名：UNK_180986470 - 数据处理状态表A1
+// 功能：存储数据处理状态信息
+#define DataProcessingStatusTableA1 UNK_180986470
+
+// 原始变量名：UNK_180986408 - 数据处理配置表A0
+// 功能：存储数据处理配置信息
+#define DataProcessingConfigurationTableA0 UNK_180986408
+
+// 原始变量名：UNK_1809864dc - 数据处理配置表A1
+// 功能：存储数据处理配置信息
+#define DataProcessingConfigurationTableA1 UNK_1809864dc
+
+// 原始变量名：UNK_180986488 - 数据处理配置表A2
+// 功能：存储数据处理配置信息
+#define DataProcessingConfigurationTableA2 UNK_180986488
+
+// 原始变量名：UNK_180986390 - 数据处理缓冲区A0
+// 功能：存储数据处理缓冲区
+#define DataProcessingBufferA0 UNK_180986390
+
+// 原始变量名：UNK_1809864b0 - 数据处理缓冲区A1
+// 功能：存储数据处理缓冲区
+#define DataProcessingBufferA1 UNK_1809864b0
+
+// 原始变量名：UNK_180986940 - 数据验证表A0
+// 功能：存储数据验证信息
+#define DataValidationTableA0 UNK_180986940
 
 // FUN_1809414xx函数语义化宏定义
 // 原始函数名：FUN_180941445 - 数据结构初始化函数A0
@@ -8243,14 +8281,14 @@ uint64_t ProcessResourceAllocation(int64_t ResourceConfiguration, int64_t Resour
   if ((int32_t)ValidationResult != 0) {
     return ValidationResult;
   }
-  *(int32_t *)(LocalResourceBuffer[0] + 0x4c) = *(int32_t *)(LocalResourceBuffer[0] + 0x4c) + 1;
-  if (*(int32_t *)(LocalResourceBuffer[0] + 0x58) + *(int32_t *)(LocalResourceBuffer[0] + 0x54) +
-      *(int32_t *)(LocalResourceBuffer[0] + 0x4c) == 1) {
+  *(int32_t *)(LocalResourceBuffer[0] + ResourceReferenceCountOffset) = *(int32_t *)(LocalResourceBuffer[0] + ResourceReferenceCountOffset) + 1;
+  if (*(int32_t *)(LocalResourceBuffer[0] + ResourceTertiaryOffset) + *(int32_t *)(LocalResourceBuffer[0] + ResourceSecondaryOffset) +
+      *(int32_t *)(LocalResourceBuffer[0] + ResourceReferenceCountOffset) == 1) {
     LocalResourceBuffer[0] = 0;
     AllocationStatus = ValidateResourceHandle(LocalResourceBuffer);
     if (AllocationStatus == 0) {
-      AllocationStatus = ExecuteResourceOperation(AllocatedResourceHandle, *(uint64_t *)(AllocatedResourceHandle + 8), *(uint64_t *)(ResourceData + 0x90),
-                            *(uint64_t *)(ResourceData + 800));
+      AllocationStatus = ExecuteResourceOperation(AllocatedResourceHandle, *(uint64_t *)(AllocatedResourceHandle + 8), *(uint64_t *)(ResourceData + ResourcePrimaryDataOffset),
+                            *(uint64_t *)(ResourceData + ResourceSecondaryDataOffset));
       if (AllocationStatus == 0) {
         ReleaseSystemResources(LocalResourceBuffer);
       }
@@ -17943,7 +17981,7 @@ int ProcessEncodedData(int64_t encodingContext, int64_t dataBuffer, int bufferSi
   int processedBytes2;
   
   encodingKey = *(DataBuffer *)(encodingContext + 0x10);
-  processedBytes1 = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&UNK_1809863f8);
+  processedBytes1 = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&DataProcessingStatusTableA0);
   processedBytes2 = ProcessSystemBufferDataA0(dataBuffer + processedBytes1,bufferSize - processedBytes1,&SystemDataBufferA);
   processedBytes1 = processedBytes1 + processedBytes2;
   processedBytes2 = EncryptData(processedBytes1 + dataBuffer,bufferSize - processedBytes1,encodingKey);
@@ -17974,7 +18012,7 @@ int ProcessComplexData(int64_t complexContext, int64_t dataBuffer, int bufferSiz
   
   formatFlag1 = *(DataWord *)(complexContext + 0x14);
   formatFlag2 = *(DataWord *)(complexContext + 0x10);
-  processedBytes1 = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&UNK_180986470);
+  processedBytes1 = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&DataProcessingStatusTableA1);
   processedBytes2 = ProcessSystemBufferDataA0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&SystemDataBufferA);
   processedBytes1 = processedBytes1 + processedBytes2;
   processedBytes2 = EncryptSystemData(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag2);
@@ -29874,7 +29912,7 @@ void CleanupSystemResourcesC0(void)
 
 
 
-uint64_t FUN_18089dcf0(int64_t param_1,DataBuffer *param_2)
+uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1,DataBuffer *param_2)
 
 {
   DataBuffer dataValue;
@@ -30899,7 +30937,7 @@ ValidationCompleteHandler2:
 
 
 
-uint64_t FUN_18089e2e8(void)
+uint64_t ProcessSystemBuffer(void)
 
 {
   int64_t *validationContextPointer;
@@ -31007,7 +31045,7 @@ void ConfigureSystemParametersC0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_18089e4f0(int64_t param_1,DataBuffer *param_2)
+uint64_t ValidateAndProcessDataOperation(int64_t param_1,DataBuffer *param_2)
 
 {
   DataWord dataValue;
@@ -31111,7 +31149,7 @@ ValidationErrorHandler5:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_18089e558(void)
+uint64_t InitializeSystemComponentsA0(void)
 
 {
   DataBuffer dataValue;
@@ -31185,7 +31223,7 @@ ValidationErrorHandler5:
         pvalidationOutcome = *(DataWord **)(stackFramePointer + -0x29);
         for (ploopCounter = pvalidationOutcome; (pvalidationOutcome <= ploopCounter && (ploopCounter < pvalidationOutcome + iterationCount));
             ploopCounter = ploopCounter + 1) {
-          dataPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x28,&UNK_180986e70,0xc1c,0)
+          dataPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x28,&MemoryAllocationConfigurationTable,0xc1c,0)
           ;
           if (dataPointer == 0) {
             securityCheckResult = 0x26;
@@ -31227,7 +31265,7 @@ ValidationErrorHandler5:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_18089e624(void)
+uint64_t ResetSystemComponents(void)
 
 {
   DataWord dataValue;
