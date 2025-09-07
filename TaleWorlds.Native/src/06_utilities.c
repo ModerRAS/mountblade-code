@@ -12407,9 +12407,9 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
       if ((bitShiftedFlags & 1) == 0) {
         if ((((processingFlags >> 3 & 1) != 0) && (integerConversionValue = (int)floatDataValue, integerConversionValue != -0x80000000)) &&
            ((float)integerConversionValue != floatDataValue)) {
-          vectorRegister._4_4_ = floatDataValue;
-          vectorRegister._0_4_ = floatDataValue;
-          vectorRegister._8_8_ = 0;
+          vectorRegister.xComponent = floatDataValue;
+          vectorRegister.yComponent = floatDataValue;
+          vectorRegister.zComponent = 0;
           maskResult = movmskps(bitShiftedFlags,vectorRegister);
           floatDataValue = (float)(int)(integerConversionValue - (maskResult & 1));
         }
@@ -66537,7 +66537,16 @@ void ProcessSystemStatusUpdateA2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统数据处理函数A
+ * @details 处理系统数据操作，使用操作标志A和B进行数据操作
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名: Unwind_180907930
+ */
+void ProcessSystemDataA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemDataA0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -66547,7 +66556,16 @@ void Unwind_180907930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统数据处理函数B
+ * @details 处理系统数据操作，使用操作标志A和B进行数据操作
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名: Unwind_180907940
+ */
+void ProcessSystemDataB1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemDataA0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -66557,7 +66575,14 @@ void Unwind_180907940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907950(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理程序初始化函数A
+ * @details 初始化异常处理程序，设置临时异常处理器并重置状态
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_180907950
+ */
+void InitializeExceptionHandlerA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
