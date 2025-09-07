@@ -24995,18 +24995,18 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
   uint64_t dataFlags;
   DataWord validationOutcome;
   uint64_t securityCheckResult;
-  DataBuffer temporaryDataBuffer;
+  DataBuffer operationDataBuffer;
   
-  temporaryDataBuffer = CONCAT44(temporaryDataBuffer._4_4_,*dataBuffer);
-  inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&temporaryDataBuffer,4);
+  operationDataBuffer = CONCAT44(operationDataBuffer._4_4_,*dataBuffer);
+  inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&operationDataBuffer,4);
   if (inputParameter == 0) {
-    temporaryDataBuffer = *(DataBuffer *)(dataBuffer + 2);
-    inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&temporaryDataBuffer,8);
+    operationDataBuffer = *(DataBuffer *)(dataBuffer + 2);
+    inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&operationDataBuffer,8);
     if ((inputParameter == 0) && (inputParameter = ValidateDataAndReturnCodeA1(operationBase,dataBuffer + 4), inputParameter == 0)) {
       inputParameter = dataBuffer[10];
-      temporaryDataBuffer = CONCAT44(temporaryDataBuffer._4_4_,inputParameter);
+      operationDataBuffer = CONCAT44(operationDataBuffer._4_4_,inputParameter);
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),&temporaryDataBuffer,4);
+                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),&operationDataBuffer,4);
       dataFlags = 0;
       if (operationResult == 0) {
         memoryRegionBase = dataFlags;

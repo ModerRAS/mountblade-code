@@ -2899,6 +2899,22 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 原始函数名：FUN_18010bed0 - 堆栈缓冲区处理函数
 #define ProcessStackBuffer FUN_18010bed0
 
+// 原始函数名：FUN_1800b08e0 - 字符码表指针处理函数
+#define ProcessCharacterCodeTablePointer FUN_1800b08e0
+
+// 原始函数名：FUN_1800b6f90 - 系统标志处理函数
+#define ProcessSystemFlags FUN_1800b6f90
+
+// 原始函数名：FUN_180069130 - 系统操作标志处理函数
+#define ProcessSystemOperationFlags FUN_180069130
+
+// 原始函数名：FUN_1800b9f60 - 矩阵元素处理函数
+#define ProcessMatrixElement FUN_1800b9f60
+
+// 原始函数名：FUN_180082a50 - 缓冲区状态处理函数
+#define ProcessBufferStatus FUN_180082a50
+#define ProcessStackBuffer FUN_18010bed0
+
 // 原始函数名：FUN_18010bf00 - 堆栈无符号值处理函数
 #define ProcessStackProcessingUnsignedValue FUN_18010bf00
 
@@ -173627,7 +173643,7 @@ LAB_18014961e:
   do {
     if (CharacterCodeTablePointer == NULL) {
 LAB_1801496a3:
-      CharacterCodeTablePointer = (void *)FUN_1800b08e0(SystemMemoryManagerPointer,&SystemRegisterPointerX18,CharacterCode + 0x188,1);
+      CharacterCodeTablePointer = (void *)ProcessCharacterCodeTablePointer(SystemMemoryManagerPointer,&SystemRegisterPointerX18,CharacterCode + 0x188,1);
       Utf16Char = *Utf8InputBufferPointer;
       *Utf8InputBufferPointer = 0;
       BufferAllocationStatus = *(long long **)(CharacterCode + 0x1a8);
@@ -173715,7 +173731,7 @@ void ProcessSystemContextManagement(uint64_t *Utf8InputBuffer,long long Utf8Buff
       uStack_28 = 0;
       pcStack_20 = (code *)0x0;
       pcStack_18 = _guard_check_icall;
-      FUN_1800b6f90();
+      ProcessSystemFlags();
       if (pcStack_20 != (code *)0x0) {
         (*pcStack_20)(&ProcessingFlags,0,0);
       }
@@ -174044,7 +174060,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *Utf8InputBuffer,unsigned long l
     pcStack_b0 = (code *)0x0;
     pcStack_a8 = _guard_check_icall;
     CoreEngineSignedValueC8 = CharacterCode;
-    FUN_180069130(aCoreEngineValueC0,SystemFlagBuffer);
+    ProcessSystemOperationFlags(aCoreEngineValueC0,SystemFlagBuffer);
     CoreEngineSignedValueA0 = CoreEngineSignedValueC8;
     pcStack_88 = FUN_18014f840;
     CharacterBuffer80 = FUN_18014f810;
@@ -174053,7 +174069,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *Utf8InputBuffer,unsigned long l
     *(code **)(apSystemOperationFlag98[0] + 0x18) = _guard_check_icall;
     SystemValidationPointer = apSystemOperationFlag98[0];
     if (apSystemOperationFlag98[0] != aCoreEngineValueC0) {
-      FUN_180069130(apSystemOperationFlag98[0],aCoreEngineValueC0);
+      ProcessSystemOperationFlags(apSystemOperationFlag98[0],aCoreEngineValueC0);
     }
     *(long long *)(apSystemOperationFlag98[0] + 0x20) = CoreEngineSignedValueA0;
     if (pcStack_b0 != (code *)0x0) {
@@ -228015,7 +228031,7 @@ LAB_18019a44a:
     do {
       CoreEngineExecuteSystemEvent(&PreviousContextPointer,ppppppStatusBuffer3 + 4);
       SystemFlagF = *(uint32_t *)(ppppppStatusBuffer3 + 8);
-      CharacterCode2 = (long long *)FUN_1800b08e0(SystemMemoryManagerPointer,&StackProcessingConfigurationFlag,&PreviousContextPointer,0);
+      CharacterCode2 = (long long *)ProcessCharacterCodeTablePointer(SystemMemoryManagerPointer,&StackProcessingConfigurationFlag,&PreviousContextPointer,0);
       MemoryBufferC = *Utf8InputBuffer2;
       if ((long long *)CONCAT44(uStackX_1c,StackProcessingConfigurationFlag) != (long long *)0x0) {
         (**(code **)(*(long long *)CONCAT44(uStackX_1c,StackProcessingConfigurationFlag) + 0x38))();
@@ -241653,7 +241669,7 @@ LAB_180209f34:
                       }
                     }
                   }
-                  MemoryBlockListHead = (long long *)FUN_1800b08e0(SystemMemoryManagerPointer,&plStack_80,&SystemStatusBufferPointer,1);
+                  MemoryBlockListHead = (long long *)ProcessCharacterCodeTablePointer(SystemMemoryManagerPointer,&plStack_80,&SystemStatusBufferPointer,1);
                   SystemStringIndex = *MemoryBlockListHead;
                   *MemoryBlockListHead = 0;
                   MemoryBlockListHead = (long long *)*Utf8InputBuffer8;
@@ -241719,7 +241735,7 @@ LAB_18020a094:
                         }
                       }
                     }
-                    MemoryBlockListHead = (long long *)FUN_1800b08e0(SystemMemoryManagerPointer,&pCoreEngineSignedValue70,&SystemEventDispatcher,1);
+                    MemoryBlockListHead = (long long *)ProcessCharacterCodeTablePointer(SystemMemoryManagerPointer,&pCoreEngineSignedValue70,&SystemEventDispatcher,1);
                     SystemStringIndex = *MemoryBlockListHead;
                     *MemoryBlockListHead = 0;
                     pCoreEngineSignedValue78 = (long long *)CharacterCode8[1];
@@ -241785,7 +241801,7 @@ LAB_18020a1f4:
                           }
                         }
                       }
-                      MemoryBlockListHead = (long long *)FUN_1800b08e0(SystemMemoryManagerPointer,&plStack_60,&pBufferInitializationFlag,1);
+                      MemoryBlockListHead = (long long *)ProcessCharacterCodeTablePointer(SystemMemoryManagerPointer,&plStack_60,&pBufferInitializationFlag,1);
                       SystemStringIndex = *MemoryBlockListHead;
                       *MemoryBlockListHead = 0;
                       plStack_68 = (long long *)CharacterCode8[2];
