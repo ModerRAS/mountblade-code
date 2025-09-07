@@ -52597,9 +52597,9 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
     SystemOperation90 = 0;
     pMatrixElementM = pFloatVariable7;
     ProcessSystemStackData(&pMatrixElementM);
-    if (*(int *)(lStack_88 + 0x10) != 0) {
+    if (*(int *)(StackOffset88 + 0x10) != 0) {
       do {
-        pFloatVariable7 = (float *)((long long)(int)ProcessingStatusFlag * 0x10 + *(long long *)(lStack_88 + 0x18));
+        pFloatVariable7 = (float *)((long long)(int)ProcessingStatusFlag * 0x10 + *(long long *)(StackOffset88 + 0x18));
         MatrixElementI = *pFloatVariable7;
         if (*pSystemContextPrimaryFloat < MatrixElementI) {
           MatrixElementI = *pSystemContextPrimaryFloat;
@@ -53044,7 +53044,7 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
     BufferStatus1 = StackDataBuffer150.Low64Part;
     BufferStatus3 = MemoryBlockIndex1;
   } while (MemoryBlockIndex1 < (long long)pStackDataBuffer1e0);
-  lStack_170 = 0;
+  StackOffset170 = 0;
   SystemMemoryPointer168 = (long long *)0x0;
   pLocalDataStructure160 = (long long *)0x0;
   SystemStackValue158 = 3;
