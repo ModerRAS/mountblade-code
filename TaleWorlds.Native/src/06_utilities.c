@@ -147,10 +147,50 @@
 #define ExceptionHandlerOffset 0x18                  // 异常处理器偏移量
 #define ExceptionStateOffset 0x20                     // 异常状态偏移量
 #define ExceptionStatusOffset 0x28                    // 异常状态偏移量
+
+// 数据处理相关偏移量常量定义
+#define DataProcessingContextOffset 0x14             // 数据处理上下文偏移量
+#define DataProcessingResultOffset 0x20              // 数据处理结果偏移量
+#define DataProcessingStatusOffset 0x2c              // 数据处理状态偏移量
+#define DataProcessingFlagsOffset 0x38                // 数据处理标志偏移量
+#define DataProcessingHandlerOffset 0x50              // 数据处理处理器偏移量
+
+// 资源操作相关偏移量常量定义
+#define ResourceOperationDataOffset 0x10             // 资源操作数据偏移量
+#define ResourceOperationHandleOffset 0x18           // 资源操作句柄偏移量
+#define ResourceOperationCountOffset 0x20             // 资源操作计数偏移量
+#define ResourceOperationContextOffset 0x4c           // 资源操作上下文偏移量
+
+// 系统上下文相关偏移量常量定义
+#define SystemContextDataOffset 0x78                  // 系统上下文数据偏移量
+#define SystemContextProcessingOffset 0x90            // 系统上下文处理偏移量
+
+// 数据转换相关偏移量常量定义
+#define ConversionContextOffset 0x18                  // 转换上下文偏移量
+#define ConversionDataOffset 0x20                     // 转换数据偏移量
+#define ConversionStatusOffset 0x24                   // 转换状态偏移量
 #define ExceptionDataPtrOffset 0x20                   // 异常数据指针偏移量
 #define ExceptionDataPtrSecondaryOffset 0x28          // 异常数据指针次要偏移量
 #define ExceptionHandlerContextOffset40 0x40          // 异常处理上下文偏移量40
 #define ExceptionHandlerContextOffset48 0x48          // 异常处理上下文偏移量48
+
+// 资源数据相关偏移量常量定义
+#define ResourceDataPrimaryOffset 0x14                // 资源数据主偏移量
+#define ResourceDataSecondaryOffset 0x34               // 资源数据次偏移量
+#define ResourceDataStatusOffset 0x35                  // 资源数据状态偏移量
+
+// 数据结构相关偏移量常量定义
+#define DataStructureElementOffset 0x18               // 数据结构元素偏移量
+#define DataStructureCountOffset 0x20                 // 数据结构计数偏移量
+#define DataStructureFlagOffset 0x2c                  // 数据结构标志偏移量
+#define DataStructureHandlerOffset 0x50               // 数据结构处理器偏移量
+
+// 清理操作相关偏移量常量定义
+#define CleanupContextDataOffset 0x78                 // 清理上下文数据偏移量
+#define CleanupContextProcessingOffset 0x90           // 清理上下文处理偏移量
+
+// 异常处理回调相关偏移量常量定义
+#define ExceptionHandlerCallbackOffset10 0x10          // 异常处理回调偏移量10
 #define ExceptionHandlerContextOffset50 0x50          // 异常处理上下文偏移量50
 #define ExceptionHandlerContextOffset58 0x58          // 异常处理上下文偏移量58
 #define ExceptionHandlerContextOffset60 0x60          // 异常处理上下文偏移量60
