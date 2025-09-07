@@ -62788,7 +62788,7 @@ uint FUN_180699e30(longlong uiContext,uint dataSource,undefined4 *targetBuffer)
   bool bVar7;
   
   uVar6 = 0;
-  validationResult = FUN_18069bbd0(uiContext,0x80);
+  validationResult = ValidateUIResourceData(uiContext,0x80);
   if (validationResult != 0) {
     uVar6 = 0;
     validationResult = 3;
@@ -62811,7 +62811,7 @@ uint FUN_180699e30(longlong uiContext,uint dataSource,undefined4 *targetBuffer)
       validationResult = validationResult + -1;
       *(uint *)(uiContext + 0x1c) = uVar5 << (bVar1 & 0x1f);
     } while (-1 < validationResult);
-    validationResult = FUN_18069bbd0(uiContext,0x80);
+    validationResult = ValidateUIResourceData(uiContext,0x80);
     if (validationResult != 0) {
       uVar6 = -uVar6;
     }
@@ -62836,7 +62836,7 @@ uint FUN_180699e38(longlong uiContext,uint dataSource,undefined4 *targetBuffer)
   bool bVar7;
   
   uVar6 = 0;
-  validationResult = FUN_18069bbd0(uiContext,0x80);
+  validationResult = ValidateUIResourceData(uiContext,0x80);
   if (validationResult != 0) {
     uVar6 = 0;
     validationResult = 3;
@@ -62859,7 +62859,7 @@ uint FUN_180699e38(longlong uiContext,uint dataSource,undefined4 *targetBuffer)
       validationResult = validationResult + -1;
       *(uint *)(uiContext + 0x1c) = uVar5 << (bVar1 & 0x1f);
     } while (-1 < validationResult);
-    validationResult = FUN_18069bbd0(uiContext,0x80);
+    validationResult = ValidateUIResourceData(uiContext,0x80);
     if (validationResult != 0) {
       uVar6 = -uVar6;
     }
@@ -62909,7 +62909,7 @@ uint FUN_180699e5f(void)
     iVar7 = iVar7 + -1;
     *(uint *)(unaff_RDI + 0x1c) = uVar4 << (bVar1 & 0x1f);
   } while (-1 < iVar7);
-  iVar7 = FUN_18069bbd0();
+  iVar7 = ValidateUIResourceData();
   if (iVar7 != 0) {
     uVar6 = -uVar6;
   }
@@ -68432,13 +68432,13 @@ uint FUN_18069ff67(void)
     *(uint *)(context + 0x1c) = uVar5 << (bVar1 & 0x1f);
   } while (3 < iVar7);
   if ((unaff_ESI & 0xfff0) != 0) {
-    iVar7 = FUN_18069bbd0();
+    iVar7 = ValidateUIResourceData();
     if (iVar7 == 0) goto LAB_1806a011c;
   }
   unaff_ESI = unaff_ESI + 8;
 LAB_1806a011c:
   if (unaff_ESI != 0) {
-    iVar7 = FUN_18069bbd0();
+    iVar7 = ValidateUIResourceData();
     if (iVar7 != 0) {
       unaff_ESI = -unaff_ESI;
     }
@@ -69883,14 +69883,14 @@ void FUN_1807048a0(int uiContext,int dataSource,int targetBuffer,longlong buffer
   uVar5 = 0;
   if ((functionResult != 0) &&
      (lVar6 = (longlong)(int)(uVar4 + targetBuffer * 4) + (longlong)resultPointer * 8, uVar5 = 0,
-     (&UNK_180953110)[lVar6] != (&UNK_180953112)[lVar6])) {
+     (&UiComparisonBuffer1)[lVar6] != (&UiComparisonBuffer2)[lVar6])) {
     func_0x000180705150(param_7,param_6,1);
     uVar5 = param_6;
   }
   if (allocatedMemory0 < lVar9) {
     do {
       *(int *)(bufferSize + allocatedMemory0 * 4) =
-           (int)(char)(&UNK_180953110)
+           (int)(char)(&UiComparisonBuffer1)
                       [(longlong)(int)(*(int *)(bufferSize + allocatedMemory0 * 4) + (uVar5 + targetBuffer * 2) * 2) +
                        (longlong)resultPointer * 8];
       allocatedMemory0 = allocatedMemory0 + 1;
@@ -200015,7 +200015,7 @@ LAB_18078d107:
 
 
 
-undefined8 * FUN_18078d180(undefined8 *uiContext)
+undefined8 * InitializeUIContext(undefined8 *uiContext)
 
 {
   func_0x000180768c10();
@@ -200062,9 +200062,9 @@ undefined8 * FUN_18078d220(undefined8 *uiContext,ulonglong dataSource)
 // WARNING: Type propagation algorithm not settling
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18078d250(longlong uiContext,undefined8 dataSource,uint targetBuffer,undefined4 bufferSize,
-                       longlong *resultPointer,longlong param_6,longlong *param_7,int *param_8,
-                       int *param_9)
+ulonglong ProcessUIDataOperation(longlong uiContext,undefined8 dataSource,uint targetBuffer,undefined4 bufferSize,
+                                 longlong *resultPointer,longlong param_6,longlong *param_7,int *param_8,
+                                 int *param_9)
 
 {
   undefined8 *pfunctionResult;
@@ -200504,7 +200504,7 @@ FUN_18078d9d0(longlong uiContext,undefined8 dataSource,longlong targetBuffer,und
       lVar8 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x238,&UNK_18095b430,0x216,0,0,1
                            );
       if (lVar8 != 0) {
-        puVar9 = (undefined8 *)FUN_18078d180(lVar8);
+        puVar9 = (undefined8 *)InitializeUIContext(lVar8);
       }
       if (puVar9 != (undefined8 *)0x0) {
         if (targetBuffer != 0) {
@@ -200517,7 +200517,7 @@ FUN_18078d9d0(longlong uiContext,undefined8 dataSource,longlong targetBuffer,und
   else {
     lVar8 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x238,&UNK_18095b430,0x207,0,0,1);
     if (lVar8 != 0) {
-      puVar9 = (undefined8 *)FUN_18078d180(lVar8);
+      puVar9 = (undefined8 *)InitializeUIContext(lVar8);
     }
     if (puVar9 != (undefined8 *)0x0) {
       lVar8 = *(longlong *)(targetBuffer + 0xa0);

@@ -29467,10 +29467,10 @@ ValidationContextHandler:
       operationResult = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,auStackX_18,1,1,0);
     }
     else {
-      uStack_84 = 0;
-      operationResult = AllocateMemory(*exceptionHandlerContextPointer,&uStack_84);
+      allocatedMemorySize = 0;
+      operationResult = AllocateMemory(*exceptionHandlerContextPointer,&allocatedMemorySize);
       if (operationResult == 0) {
-        if ((uint64_t)uStack_84 + 1 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointValidationContext;
+        if ((uint64_t)allocatedMemorySize + 1 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointValidationContext;
         operationResult = 0x11;
       }
     }
@@ -29523,10 +29523,10 @@ ValidationRetryHandler:
         operationResult = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,auStackX_18,1,1,0);
       }
       else {
-        uStack_84 = 0;
-        operationResult = AllocateMemory(*exceptionHandlerContextPointer,&uStack_84);
+        allocatedMemorySize = 0;
+        operationResult = AllocateMemory(*exceptionHandlerContextPointer,&allocatedMemorySize);
         if (operationResult == 0) {
-          if ((uint64_t)uStack_84 + 1 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointValidationRetry;
+          if ((uint64_t)allocatedMemorySize + 1 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointValidationRetry;
           operationResult = 0x11;
         }
       }
@@ -29549,7 +29549,7 @@ ValidationRetryHandler:
     operationResult = *(uint *)(dataBuffer + 8);
     if (operationResult < 0x70) {
       *(uint *)(operationBase + 0x34) =
-           (((stackByteBuffer[0] | *(uint *)(operationBase + 0x34)) & ~uStack_88 | statusCounter * 2) & ~(validationOutcome * 2) |
+           (((stackByteBuffer[0] | *(uint *)(operationBase + 0x34)) & ~bitMaskValue | statusCounter * 2) & ~(validationOutcome * 2) |
            securityCheckResult * 4) & ~(operationResult * 4);
       operationResult = *(uint *)(dataBuffer + 8);
     }
@@ -30755,7 +30755,7 @@ uint64_t ProcessDataWithValidation(int64_t inputData,int64_t *dataPointer)
   uint operationResult;
   uint64_t validationStatus;
   int arrayIndex;
-  uint auStackX_18 [2];
+  uint validationBuffer[2];
   uint stackByteBuffer [2];
   ByteFlag systemBufferA [32];
   
@@ -30763,7 +30763,7 @@ uint64_t ProcessDataWithValidation(int64_t inputData,int64_t *dataPointer)
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  auStackX_18[0] = *(uint *)(operationBase + 0x50);
+  validationBuffer[0] = *(uint *)(operationBase + 0x50);
   operationResult = 0x1c;
   if (*(int *)(dataBuffer[1] + 0x18) == 0) {
     exceptionHandlerContextPointer = (int64_t *)*dataBuffer;
@@ -30782,13 +30782,13 @@ uint64_t ProcessDataWithValidation(int64_t inputData,int64_t *dataPointer)
           goto ProcessCheckpointValidationContext2;
         }
       }
-      validationStatus = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,auStackX_18,1,4,0);
+      validationStatus = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,validationBuffer,1,4,0);
     }
 ValidationContextHandler2:
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
-    if (0x3ff < auStackX_18[0]) {
+    if (0x3ff < validationBuffer[0]) {
       return 0xd;
     }
     validationStatus = ValidateSystemContextA0(operationBase + 0x48);
@@ -30802,14 +30802,14 @@ ValidationContextHandler2:
   }
 ValidationStateHandler:
   arrayIndex = 0;
-  if (0 < (int)auStackX_18[0]) {
+  if (0 < (int)validationBuffer[0]) {
     do {
       validationStatus = ProcessDataArrayA0(operationBase,dataBuffer,arrayIndex);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
       arrayIndex = arrayIndex + 1;
-    } while (arrayIndex < (int)auStackX_18[0]);
+    } while (arrayIndex < (int)validationBuffer[0]);
   }
   if (*(uint *)(dataBuffer + 8) < 0x6e) {
     operationResult = 0;
@@ -30983,7 +30983,7 @@ uint64_t GetSystemMemoryBaseAddress(int64_t operationBase,int64_t *dataBuffer)
   uint64_t operationResult;
   uint validationStatus;
   bool validationFlag;
-  uint auStackX_18 [2];
+  uint memoryAllocationBuffer[2];
   uint stackByteBuffer [2];
   ByteFlag ainputDataWord [32];
   
