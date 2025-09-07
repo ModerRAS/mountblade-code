@@ -224102,21 +224102,21 @@ long long * FUN_18019cf00(long long *SystemContextPointer,long long *Utf8BufferS
     if ((void *)SystemContextPointer[0xc0e9] != NULL) {
       TemporaryBuffer = (void *)SystemContextPointer[0xc0e9];
     }
-    ProcessSystemEventQueueData(&UNK_180a0b358,TemporaryBuffer);
+    ProcessSystemEventQueueData(&SystemEventQueueB,TemporaryBuffer);
   }
   if (*(int *)(SystemContextPointer + 0xc0ee) != 0) {
     TemporaryBuffer = &CoreEngineDataTemplate;
     if ((void *)SystemContextPointer[0xc0ed] != NULL) {
       TemporaryBuffer = (void *)SystemContextPointer[0xc0ed];
     }
-    ProcessSystemEventQueueData(&UNK_180a0b348,TemporaryBuffer);
+    ProcessSystemEventQueueData(&SystemEventQueueC,TemporaryBuffer);
   }
   if (*(int *)(SystemContextPointer + 0x606) != 0) {
     TemporaryBuffer = &CoreEngineDataTemplate;
     if ((void *)SystemContextPointer[0x605] != NULL) {
       TemporaryBuffer = (void *)SystemContextPointer[0x605];
     }
-    ProcessSystemEventQueueData(&UNK_180a0b378,TemporaryBuffer);
+    ProcessSystemEventQueueData(&SystemEventQueueD,TemporaryBuffer);
   }
   SystemDataTablePointer = FUN_180149750(*(uint32_t *)((long long)SystemContextPointer + 0x3054));
   TemporaryBuffer = &CoreEngineDataTemplate;
@@ -224244,9 +224244,9 @@ LAB_18019d50f:
                 10);
   ProcessSystemEventQueueData(&SystemEventQueueStatusBufferF,*(uint32_t *)(SystemContextPointer + 0xc0f8));
   ProcessSystemEventQueueData(&SystemEventQueueStatusBufferH,*(uint32_t *)((long long)SystemContextPointer + 0x607c4));
-  ProcessSystemEventQueueData(&UNK_180a0b480,*(uint32_t *)(SystemContextPointer + 0xc0f9));
-  ProcessSystemEventQueueData(&UNK_180a0b4e0,*(uint32_t *)((long long)SystemContextPointer + 0x607cc));
-  ProcessSystemEventQueueData(&UNK_180a0b4b0,(double)*(float *)(SystemContextPointer + 0x87),
+  ProcessSystemEventQueueData(&SystemEventQueueE,*(uint32_t *)(SystemContextPointer + 0xc0f9));
+  ProcessSystemEventQueueData(&SystemEventQueueF,*(uint32_t *)((long long)SystemContextPointer + 0x607cc));
+  ProcessSystemEventQueueData(&SystemEventQueueG,(double)*(float *)(SystemContextPointer + 0x87),
                 (double)*(float *)((long long)SystemContextPointer + 0x43c),(double)*(float *)(SystemContextPointer + 0x88));
   FUN_1801c1720(SystemContextPointer + 0x81,&SystemFlagG);
   SystemContextFloat19 = MatrixElementA * 57.29578;
@@ -224292,7 +224292,7 @@ LAB_18019d50f:
     *(uint32_t *)(SystemDataConfiguration + 0x1c04) = 0x43c80000;
     *(uint32_t *)(SystemDataTablePointer + 0x1c08) = 0x43960000;
     *(uint32_t *)(SystemDataTablePointer + 0x1bd4) = 4;
-    InitializeSystemStatusBuffer(&UNK_180a0b590,&pSystemFlagX8,0);
+    InitializeSystemStatusBuffer(&SystemEventQueueH,&pSystemFlagX8,0);
     uStackX_10 = 0xbf800000bf800000;
     TemporaryBuffer = &CoreEngineDataTemplate;
     if ((void *)SystemContextPointer[0xc0f1] != NULL) {

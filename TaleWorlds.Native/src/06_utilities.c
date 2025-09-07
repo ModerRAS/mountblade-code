@@ -65183,7 +65183,7 @@ void Unwind_180909080(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *validationStatusPointer;
   
   validationStatusPointer = (DataBuffer *)(dataBuffer + 0x88);
-  *validationStatusPointer = &UNK_180a01668;
+  *validationStatusPointer = &SystemValidationStatusTable;
   if ((*(int64_t *)(dataBuffer + 0x108) != 0) && (**(int64_t **)(dataBuffer + 0xa0) == dataBuffer + 0xf8))
   {
     systemDataBuffer = *(DataBuffer *)(dataBuffer + 0x118);
