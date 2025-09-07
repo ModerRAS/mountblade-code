@@ -243299,26 +243299,26 @@ LAB_180214378:
   fStack_6c = 0.0;
   FUN_180846210(*(void *)(CharacterCode + 0x368),&SystemEventQueueDataTableOctonary,&fStack_6c,0);
   fStack_68 = 0.0;
-  FUN_180846210(*(void *)(CharacterCode + 0x368),&UNK_180a10760,&fStack_68,0);
+  FUN_180846210(*(void *)(CharacterCode + 0x368),&SystemEventQueueDataTableNonary,&fStack_68,0);
   fStack_64 = 0.0;
-  FUN_180846210(*(void *)(CharacterCode + 0x368),&UNK_180a10728,&fStack_64,0);
+  FUN_180846210(*(void *)(CharacterCode + 0x368),&SystemEventQueueDataTableDenary,&fStack_64,0);
   fStack_60 = 0.0;
-  FUN_180846210(*(void *)(CharacterCode + 0x368),&UNK_180a10740,&fStack_60,0);
-  ProcessSystemEventQueueData(&UNK_180a10798);
-  ProcessSystemEventQueueData(&UNK_180a107b0);
-  ProcessSystemEventQueueData(&UNK_180a10798);
-  ProcessSystemEventQueueData(&UNK_180a10778,(double)fStack_88);
-  ProcessSystemEventQueueData(&UNK_180a10788,(double)fStack_84);
-  ProcessSystemEventQueueData(&UNK_180a107f8,(double)fStack_80);
-  ProcessSystemEventQueueData(&UNK_180a10810,(double)fStack_7c);
-  ProcessSystemEventQueueData(&UNK_180a107c8,(double)fStack_78);
+  FUN_180846210(*(void *)(CharacterCode + 0x368),&SystemEventQueueDataTableUndenary,&fStack_60,0);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableDuodecenary);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableTerdecenary);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableDuodecenary);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableQuattuordecenary,(double)fStack_88);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableQuindecenary,(double)fStack_84);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableSexdecenary,(double)fStack_80);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableSeptendecenary,(double)fStack_7c);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableOctodecenary,(double)fStack_78);
   ProcessSystemEventQueueData(&UNK_180a107d8,(double)fStack_74);
   ProcessSystemEventQueueData(&UNK_180a10850,(double)fStack_70);
   ProcessSystemEventQueueData(&UNK_180a10860,(double)fStack_6c);
   ProcessSystemEventQueueData(&UNK_180a10820,(double)fStack_68);
   ProcessSystemEventQueueData(&UNK_180a10838,(double)fStack_64);
   ProcessSystemEventQueueData(&UNK_180a10898,(double)fStack_60);
-  ProcessSystemEventQueueData(&UNK_180a10798);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableDuodecenary);
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aCoreEngineValueA8);
 }
