@@ -117104,7 +117104,21 @@ void ValidateSystemDataStructure(long long OutputBuffer,float *OutputBufferSize,
 
 
 
-2503(uint64_t OutputBuffer,float *OutputBufferSize,float *Utf8InputPointervoid FUN_180122503(uint64_t OutputBuffer,float *OutputBufferSize,float *Utf8InputPointer
+/**
+ * @brief 处理系统浮点数计算和编码转换
+ * 
+ * 该函数负责处理系统中的浮点数计算操作，包括数据编码转换
+ * 和浮点数处理流程。用于系统数学计算和数据转换。
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小（浮点数指针）
+ * @param Utf8InputPointer UTF8输入数据指针（浮点数指针）
+ * 
+ * @note 原始函数名：FUN_180122503
+ * @note 包含复杂的浮点数计算和数据处理
+ * @note 用于系统编码转换和数学计算
+ */
+void ProcessSystemFloatCalculationAndEncoding(uint64_t OutputBuffer, float *OutputBufferSize, float *Utf8InputPointer)
 {
   uint64_t *StatusBuffer;
   float SystemContextSecondaryFloat;
