@@ -153557,7 +153557,7 @@ void ConvertUtf8ToUtf16Encoding1EB(long long CharacterCode,uint64_t Utf8BufferSi
     fStack0000000000000028 = ProcessedFloatValue8 + ContextPrimaryFloat0;
     fStack000000000000002c = fStack0000000000000084 + ContextPrimaryFloat1;
     ProcessedFloatValue8 = ProcessedFloatValue8 + NormalizedParameterValue;
-    FUN_180131c60(*(void *)(*(long long *)(SystemRegisterR10 + 2) + 0x398),&stack0x00000020,ProcessedFloatValue8,
+    ProcessSystemDataTableAndFloatValue(*(void *)(*(long long *)(SystemRegisterR10 + 2) + 0x398),&stack0x00000020,ProcessedFloatValue8,
                         fStack0000000000000084 + ContextSecondaryFloat + FilterInputValue,ProcessedFloatValue8);
   }
   *(bool *)(Utf16EndPointer + 0x1b3c) = *(int *)(Utf16EndPointer + 0x1b2c) != 0;
