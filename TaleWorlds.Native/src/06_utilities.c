@@ -3022,9 +3022,6 @@
 
 
 
-// 原始变量名：UNK_180a30778 - 默认异常处理器B
-// 功能：默认异常处理器的第二种状态
-#define DefaultExceptionHandlerB UNK_180a30778
 
 // 原始函数名：FUN_180943090 - 线程本地存储初始化函数A3
 // 功能：初始化线程本地存储A3
@@ -4171,25 +4168,10 @@
 // 异常数据表2地址
 #define ExceptionDataTable2Address 0x180a21690
 
-// 异常处理数据表Tertiary
-// 功能：存储异常处理相关的第三级数据表信息和详细参数
-#define ExceptionDataTableTertiaryAddress UNK_180a21720
 
-// 异常处理配置表
-// 功能：存储异常处理的配置信息和参数设置
-#define ExceptionConfigurationTableAddress UNK_18098bd40
 
-// 异常处理状态表
-// 功能：存储异常处理的当前状态信息和历史记录
-#define ExceptionStatusTableAddress UNK_1809fe100
 
-// 异常处理句柄表Primary
-// 功能：存储异常处理的主句柄信息和回调函数指针
-#define ExceptionHandleTablePrimaryAddress UNK_18098bab0
 
-// 异常处理句柄表Secondary
-// 功能：存储异常处理的备用句柄信息和次级回调函数指针
-#define ExceptionHandleTableSecondaryAddress UNK_18098bac8
 
 // 异常处理数据表Quaternary
 // 功能：存储异常处理的第四级数据表信息和详细参数
