@@ -7620,21 +7620,21 @@ void CleanupUIComponentCache(void)
   *componentContextPointer = 0x2f6e6962;
   *(undefined1 *)(componentContextPointer + 1) = 0;
   uStack_2c8 = 4;
-  lVar6 = MergeUIData(&puStack_270,&puStack_180,&puStack_2d8);
+  contextData = MergeUIData(&puStack_270,&puStack_180,&puStack_2d8);
   puStack_2b8 = &PrimaryUIBuffer;
   uStack_2a0 = 0;
   puStack_2b0 = (undefined1 *)0x0;
   uStack_2a8 = 0;
   uStack_298 = 2;
-  functionResult = *(uint *)(lVar6 + 0x10);
+  functionResult = *(uint *)(contextData + 0x10);
   functionResult1 = (ulonglong)functionResult;
   uVar4 = 0;
-  if (*(longlong *)(lVar6 + 8) == 0) {
+  if (*(longlong *)(contextData + 8) == 0) {
 LAB_UIMemoryCopyStart:
     functionResult0 = uVar4;
     if (functionResult != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(peventTypeCode,*(undefined8 *)(lVar6 + 8),functionResult1);
+      memcpy(peventTypeCode,*(undefined8 *)(contextData + 8),functionResult1);
     }
   }
   else if (functionResult != 0) {
@@ -7652,7 +7652,7 @@ LAB_UIMemoryCopyStart:
   if (peventTypeCode != (undefined1 *)0x0) {
     peventTypeCode[functionResult1] = 0;
   }
-  uStack_2a0 = CONCAT44(*(undefined4 *)(lVar6 + 0x1c),(undefined4)uStack_2a0);
+  uStack_2a0 = CONCAT44(*(undefined4 *)(contextData + 0x1c),(undefined4)uStack_2a0);
   if (functionResult + 0x15 != 0) {
     uVar4 = functionResult + 0x16;
     uStack_2a8 = functionResult;
@@ -8862,7 +8862,7 @@ void ManageUIElements(longlong *uiContext)
   undefined8 *puVar3;
   undefined8 *bufferPtr;
   char cVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong *plVar7;
   byte *pbVar8;
   byte *pbVar9;
@@ -8971,10 +8971,10 @@ void ManageUIElements(longlong *uiContext)
         cVar5 = ValidateUIData(&puStack_98);
         colorBufferPointer1 = plVar7;
         if (cVar5 != '\0') {
-          lVar6 = ManageUIContext(&puStack_98);
+          contextData = ManageUIContext(&puStack_98);
           if (plVar7 < pallocatedMemory5) {
             colorBufferPointer1 = plVar7 + 1;
-            *plVar7 = lVar6;
+            *plVar7 = contextData;
             plStackX_8 = colorBufferPointer1;
             plStack_70 = colorBufferPointer1;
           }
@@ -8995,7 +8995,7 @@ LAB_180656abd:
                     // WARNING: Subroutine does not return
               memmove(plVar7,plStack_78,componentIndex3);
             }
-            *plVar7 = lVar6;
+            *plVar7 = contextData;
             colorBufferPointer1 = plVar7 + 1;
             plStackX_8 = colorBufferPointer1;
             if (plStack_78 != (longlong *)0x0) {
@@ -9054,17 +9054,17 @@ LAB_180656abd:
     do {
       functionResult3 = 0;
       pbVar8 = &UIDefaultResourceBuffer;
-      lVar6 = *colorBufferPointer1;
+      contextData = *colorBufferPointer1;
       puStack_b8 = &PrimaryUIBuffer;
       uStack_a0 = 0;
       pbStack_b0 = (byte *)0x0;
       uStack_a8 = 0;
-      AllocateUIBuffer(&puStack_b8,*(undefined4 *)(lVar6 + 0x10));
-      if (*(int *)(lVar6 + 0x10) != 0) {
+      AllocateUIBuffer(&puStack_b8,*(undefined4 *)(contextData + 0x10));
+      if (*(int *)(contextData + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(pbStack_b0,*(undefined8 *)(lVar6 + 8),*(int *)(lVar6 + 0x10) + 1);
+        memcpy(pbStack_b0,*(undefined8 *)(contextData + 8),*(int *)(contextData + 0x10) + 1);
       }
-      if (*(longlong *)(lVar6 + 8) != 0) {
+      if (*(longlong *)(contextData + 8) != 0) {
         uStack_a8 = 0;
         if (pbStack_b0 != (byte *)0x0) {
           *pbStack_b0 = 0;
@@ -9141,7 +9141,7 @@ LAB_180656df9:
           goto LAB_180656df9;
         }
 LAB_180656e11:
-        *(longlong *)(pbVar9 + 0x40) = lVar6;
+        *(longlong *)(pbVar9 + 0x40) = contextData;
       }
       else {
         do {
@@ -9489,7 +9489,7 @@ undefined8 * FindUIModuleByPath(undefined8 path_length, undefined8 *path_buffer,
   byte *pbVar3;
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   undefined8 *puVar8;
   undefined8 *puVar9;
@@ -9509,9 +9509,9 @@ undefined8 * FindUIModuleByPath(undefined8 path_length, undefined8 *path_buffer,
         }
         else {
           pbVar3 = *(byte **)(targetBuffer + 8);
-          lVar6 = peventTypeCode[5] - (longlong)pbVar3;
+          contextData = peventTypeCode[5] - (longlong)pbVar3;
           do {
-            uVar4 = (uint)pbVar3[lVar6];
+            uVar4 = (uint)pbVar3[contextData];
             iVar5 = *pbVar3 - uVar4;
             if (*pbVar3 != uVar4) break;
             pbVar3 = pbVar3 + 1;
@@ -9540,10 +9540,10 @@ LAB_1806575f7:
       }
       if (*(int *)(targetBuffer + 0x10) != 0) {
         pbVar3 = (byte *)puVar9[5];
-        lVar6 = *(longlong *)(targetBuffer + 8) - (longlong)pbVar3;
+        contextData = *(longlong *)(targetBuffer + 8) - (longlong)pbVar3;
         do {
           isCharacterMatch = *pbVar3;
-          uVar4 = (uint)pbVar3[lVar6];
+          uVar4 = (uint)pbVar3[contextData];
           if (isCharacterMatch != uVar4) break;
           pbVar3 = pbVar3 + 1;
         } while (uVar4 != 0);
@@ -9980,7 +9980,7 @@ void UpdateUILayoutEx(longlong *layout_data, longlong *component_data, longlong 
   undefined8 *puVar3;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   undefined8 *puVar8;
   undefined8 *puVar9;
@@ -10041,18 +10041,18 @@ void UpdateUILayoutEx(longlong *layout_data, longlong *component_data, longlong 
         peventTypeCode = pfunctionResult0;
       }
       else {
-        lVar6 = (longlong)puStack_58 - (longlong)pfunctionResult0 >> 3;
-        if (lVar6 == 0) {
-          lVar6 = 1;
+        contextData = (longlong)puStack_58 - (longlong)pfunctionResult0 >> 3;
+        if (contextData == 0) {
+          contextData = 1;
 LAB_1806588f2:
           peventTypeCode = (undefined8 *)
-                   CreateUIContext(UIContextManager,lVar6 * 8,
+                   CreateUIContext(UIContextManager,contextData * 8,
                                  CONCAT71((int7)((ulonglong)lStackX_8 >> 8),3),targetBuffer,functionResult3);
         }
         else {
-          lVar6 = lVar6 * 2;
+          contextData = contextData * 2;
           peventTypeCode = puVar9;
-          if (lVar6 != 0) goto LAB_1806588f2;
+          if (contextData != 0) goto LAB_1806588f2;
         }
         if (pfunctionResult0 != puVar3) {
                     // WARNING: Subroutine does not return
@@ -10063,7 +10063,7 @@ LAB_1806588f2:
                     // WARNING: Subroutine does not return
           DestroyUIComponent(pfunctionResult0);
         }
-        puVar8 = peventTypeCode + lVar6;
+        puVar8 = peventTypeCode + contextData;
         puStack_60 = peventTypeCode;
         puStack_50 = puVar8;
         puStack_58 = peventTypeCode;
@@ -11756,12 +11756,12 @@ LAB_180659b1a:
       }
       lVar8 = *(longlong *)(bufferData + (longlong)(int)fVar25 * 0x4d6 + -0x26);
       uStack_180 = 0x180659ea7;
-      lVar6 = GetUIComponentHandle(*(undefined8 *)(lVar8 + 8));
+      contextData = GetUIComponentHandle(*(undefined8 *)(lVar8 + 8));
       lVar9 = 0x14;
       if (0.0 <= (fVar21 - ABS(floatResult7)) * floatResult4) {
         lVar9 = 0x18;
       }
-      fVar25 = *(float *)(lVar9 + lVar6);
+      fVar25 = *(float *)(lVar9 + contextData);
       uStack_180 = 0x180659edd;
       GetUIComponentHandle(*(undefined8 *)(lVar8 + 8));
       uiContext[0xe] = fVar25;
@@ -12196,7 +12196,7 @@ void UpdateUIComponentAnimation(longlong uiContext,float dataSource,longlong tar
   undefined8 in_RAX;
   longlong lVar4;
   float *pfVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   undefined8 context;
   float *pfVar8;
@@ -12367,24 +12367,24 @@ LAB_180659a1a:
     unaff_R14[0xb] = floatResult2;
   }
   floatResult2 = unaff_R14[0x18];
-  lVar6 = (longlong)(int)floatResult2;
+  contextData = (longlong)(int)floatResult2;
   if (0 < (int)floatResult2) {
     floatResult5 = unaff_XMM6_Da;
-    if (*(char *)(lVar6 * 0x1358 + 0x4e + (longlong)unaff_R14) != '\0') {
-      floatResult5 = unaff_R14[lVar6 * 0x4d6 + 0x12] * 0.05;
+    if (*(char *)(contextData * 0x1358 + 0x4e + (longlong)unaff_R14) != '\0') {
+      floatResult5 = unaff_R14[contextData * 0x4d6 + 0x12] * 0.05;
     }
-    if ((floatResult5 + unaff_R14[lVar6 * 0x4d6 + 0xe] < unaff_R14[lVar6 * 0x4d6 + 0x11]) ||
-       (*(char *)(unaff_R14 + lVar6 * 0x4d6 + 0x13) != '\0')) {
+    if ((floatResult5 + unaff_R14[contextData * 0x4d6 + 0xe] < unaff_R14[contextData * 0x4d6 + 0x11]) ||
+       (*(char *)(unaff_R14 + contextData * 0x4d6 + 0x13) != '\0')) {
       unaff_R14[0xc] = unaff_R14[0xb];
       floatResult2 = unaff_R14[0x18];
     }
-    lVar6 = (longlong)(int)floatResult2;
+    contextData = (longlong)(int)floatResult2;
     floatResult5 = unaff_XMM6_Da;
-    if (*(char *)(lVar6 * 0x1358 + 0x66 + (longlong)unaff_R14) != '\0') {
-      floatResult5 = unaff_R14[lVar6 * 0x4d6 + 0x18] * 0.05;
+    if (*(char *)(contextData * 0x1358 + 0x66 + (longlong)unaff_R14) != '\0') {
+      floatResult5 = unaff_R14[contextData * 0x4d6 + 0x18] * 0.05;
     }
-    if ((floatResult5 + unaff_R14[lVar6 * 0x4d6 + 0x14] < unaff_R14[lVar6 * 0x4d6 + 0x17]) ||
-       (*(char *)(unaff_R14 + lVar6 * 0x4d6 + 0x19) != '\0')) {
+    if ((floatResult5 + unaff_R14[contextData * 0x4d6 + 0x14] < unaff_R14[contextData * 0x4d6 + 0x17]) ||
+       (*(char *)(unaff_R14 + contextData * 0x4d6 + 0x19) != '\0')) {
       unaff_R14[0xd] = unaff_R14[0xb];
       floatResult2 = unaff_R14[0x18];
     }
@@ -12535,16 +12535,16 @@ LAB_180659b1a:
       if (*(char *)(unaff_R14 + 0x17) != '\0') {
         floatResult2 = -1.0;
       }
-      lVar6 = *(longlong *)(unaff_R14 + (longlong)(int)floatResult8 * 0x4d6 + -0x26);
+      contextData = *(longlong *)(unaff_R14 + (longlong)(int)floatResult8 * 0x4d6 + -0x26);
       uStack_8 = 0x180659ea7;
-      lVar4 = GetUIComponentHandle(*(undefined8 *)(lVar6 + 8));
+      lVar4 = GetUIComponentHandle(*(undefined8 *)(contextData + 8));
       lVar7 = 0x14;
       if (unaff_XMM6_Da <= (fStack000000000000004c - ABS(fStack0000000000000048)) * floatResult2) {
         lVar7 = 0x18;
       }
       floatResult2 = *(float *)(lVar7 + lVar4);
       uStack_8 = 0x180659edd;
-      GetUIComponentHandle(*(undefined8 *)(lVar6 + 8));
+      GetUIComponentHandle(*(undefined8 *)(contextData + 8));
       unaff_R14[0xe] = floatResult2;
     }
   }
@@ -12964,7 +12964,7 @@ void ProcessUIAnimationTransition(float uiContext,float dataSource,longlong targ
   longlong lVar4;
   float *pfVar5;
   longlong in_RCX;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   float *pfVar8;
   longlong unaff_RBP;
@@ -13132,24 +13132,24 @@ LAB_180659a1a:
     unaff_R14[0xb] = floatResult2;
   }
   floatResult2 = unaff_R14[0x18];
-  lVar6 = (longlong)(int)floatResult2;
+  contextData = (longlong)(int)floatResult2;
   if (0 < (int)floatResult2) {
     floatResult5 = unaff_XMM6_Da;
-    if (*(char *)(lVar6 * 0x1358 + 0x4e + (longlong)unaff_R14) != '\0') {
-      floatResult5 = unaff_R14[lVar6 * 0x4d6 + 0x12] * 0.05;
+    if (*(char *)(contextData * 0x1358 + 0x4e + (longlong)unaff_R14) != '\0') {
+      floatResult5 = unaff_R14[contextData * 0x4d6 + 0x12] * 0.05;
     }
-    if ((floatResult5 + unaff_R14[lVar6 * 0x4d6 + 0xe] < unaff_R14[lVar6 * 0x4d6 + 0x11]) ||
-       (*(char *)(unaff_R14 + lVar6 * 0x4d6 + 0x13) != '\0')) {
+    if ((floatResult5 + unaff_R14[contextData * 0x4d6 + 0xe] < unaff_R14[contextData * 0x4d6 + 0x11]) ||
+       (*(char *)(unaff_R14 + contextData * 0x4d6 + 0x13) != '\0')) {
       unaff_R14[0xc] = unaff_R14[0xb];
       floatResult2 = unaff_R14[0x18];
     }
-    lVar6 = (longlong)(int)floatResult2;
+    contextData = (longlong)(int)floatResult2;
     floatResult5 = unaff_XMM6_Da;
-    if (*(char *)(lVar6 * 0x1358 + 0x66 + (longlong)unaff_R14) != '\0') {
-      floatResult5 = unaff_R14[lVar6 * 0x4d6 + 0x18] * 0.05;
+    if (*(char *)(contextData * 0x1358 + 0x66 + (longlong)unaff_R14) != '\0') {
+      floatResult5 = unaff_R14[contextData * 0x4d6 + 0x18] * 0.05;
     }
-    if ((floatResult5 + unaff_R14[lVar6 * 0x4d6 + 0x14] < unaff_R14[lVar6 * 0x4d6 + 0x17]) ||
-       (*(char *)(unaff_R14 + lVar6 * 0x4d6 + 0x19) != '\0')) {
+    if ((floatResult5 + unaff_R14[contextData * 0x4d6 + 0x14] < unaff_R14[contextData * 0x4d6 + 0x17]) ||
+       (*(char *)(unaff_R14 + contextData * 0x4d6 + 0x19) != '\0')) {
       unaff_R14[0xd] = unaff_R14[0xb];
       floatResult2 = unaff_R14[0x18];
     }
@@ -13300,16 +13300,16 @@ LAB_180659b1a:
       if (*(char *)(unaff_R14 + 0x17) != '\0') {
         floatResult2 = -1.0;
       }
-      lVar6 = *(longlong *)(unaff_R14 + (longlong)(int)floatResult8 * 0x4d6 + -0x26);
+      contextData = *(longlong *)(unaff_R14 + (longlong)(int)floatResult8 * 0x4d6 + -0x26);
       uStack_8 = 0x180659ea7;
-      lVar4 = GetUIComponentHandle(*(undefined8 *)(lVar6 + 8));
+      lVar4 = GetUIComponentHandle(*(undefined8 *)(contextData + 8));
       lVar7 = 0x14;
       if (unaff_XMM6_Da <= (fStack000000000000004c - ABS(fStack0000000000000048)) * floatResult2) {
         lVar7 = 0x18;
       }
       floatResult2 = *(float *)(lVar7 + lVar4);
       uStack_8 = 0x180659edd;
-      GetUIComponentHandle(*(undefined8 *)(lVar6 + 8));
+      GetUIComponentHandle(*(undefined8 *)(contextData + 8));
       unaff_R14[0xe] = floatResult2;
     }
   }
@@ -16246,7 +16246,7 @@ void UpdateUIElementTransform(longlong uiContext,longlong dataSource,float *targ
   ulonglong uVar3;
   float *pfVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   float fVar8;
   float fVar9;
@@ -16267,8 +16267,8 @@ void UpdateUIElementTransform(longlong uiContext,longlong dataSource,float *targ
     fVar9 = 1.0;
     if (3 < componentIndex) {
       pfVar4 = (float *)(uiContext + 0x6c);
-      lVar6 = (componentIndex - 4U >> 2) + 1;
-      lVar7 = lVar6 * 4;
+      contextData = (componentIndex - 4U >> 2) + 1;
+      lVar7 = contextData * 4;
       do {
         if (((int)pfVar4[2] - 2U < 2) && (fVar9 = fVar9 - *pfVar4, fVar9 <= 0.0)) {
           fVar9 = 0.0;
@@ -16283,8 +16283,8 @@ void UpdateUIElementTransform(longlong uiContext,longlong dataSource,float *targ
           fVar9 = 0.0;
         }
         pfVar4 = pfVar4 + 0x1358;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        contextData = contextData + -1;
+      } while (contextData != 0);
     }
     if (lVar7 < componentIndex) {
       pfVar4 = (float *)(uiContext + 0x6c + lVar7 * 0x1358);
@@ -16337,7 +16337,7 @@ void ProcessUIElementUpdate(longlong uiContext,longlong dataSource,float *target
   float *pfVar3;
   ulonglong uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   char in_R10B;
   longlong in_R11;
   float fVar7;
@@ -16348,8 +16348,8 @@ void ProcessUIElementUpdate(longlong uiContext,longlong dataSource,float *target
   fVar8 = 1.0;
   if (3 < in_RAX) {
     pfVar3 = (float *)(uiContext + 0x6c);
-    lVar6 = (in_RAX - 4U >> 2) + 1;
-    lVar5 = lVar6 * 4;
+    contextData = (in_RAX - 4U >> 2) + 1;
+    lVar5 = contextData * 4;
     do {
       if (((int)pfVar3[2] - 2U < 2) && (fVar8 = fVar8 - *pfVar3, fVar8 <= 0.0)) {
         fVar8 = 0.0;
@@ -16364,8 +16364,8 @@ void ProcessUIElementUpdate(longlong uiContext,longlong dataSource,float *target
         fVar8 = 0.0;
       }
       pfVar3 = pfVar3 + 0x1358;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      contextData = contextData + -1;
+    } while (contextData != 0);
   }
   if (lVar5 < in_RAX) {
     pfVar3 = (float *)(in_R11 + 0x6c + lVar5 * 0x1358);
@@ -16430,7 +16430,7 @@ void ValidateUIElementState(longlong uiContext)
   longlong stringCompareIndex;
   undefined8 *bufferPtr;
   undefined8 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   
   componentContextPtr = (undefined8 *)(uiContext + 0x1398);
   componentIndex = 4;
@@ -16438,7 +16438,7 @@ void ValidateUIElementState(longlong uiContext)
     *(undefined4 *)(componentContextPtr + -0x266) = 0xffffffff;
     bufferPtr = componentContextPtr + -0x264;
     *(undefined4 *)((longlong)componentContextPtr + -0x132c) = 0x3f800000;
-    lVar6 = 0x12;
+    contextData = 0x12;
     componentContextPtr[-0x265] = 0x3f800000;
     componentContextPtr[-0x1b] = 0;
     do {
@@ -16458,8 +16458,8 @@ void ValidateUIElementState(longlong uiContext)
         pfunctionResult = pfunctionResult + 8;
       } while (stringCompareIndex != 0);
       bufferPtr = (undefined8 *)((longlong)bufferPtr + 0x104);
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      contextData = contextData + -1;
+    } while (contextData != 0);
     componentContextPtr[-0x1a] = 0;
     componentContextPtr[-0x19] = 0;
     *(undefined4 *)(componentContextPtr + -0x17) = 0x7149f2ca;
@@ -24027,7 +24027,7 @@ void UpdateUIComponentRenderState(ulonglong uiContext,longlong dataSource,float 
   float *pfVar3;
   uint uVar4;
   float *pfVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   undefined4 *puVar8;
   longlong lVar9;
@@ -24099,7 +24099,7 @@ void UpdateUIComponentRenderState(ulonglong uiContext,longlong dataSource,float 
       uStack_318 = 0;
       uStack_310 = 0;
       puVar8 = (undefined4 *)0x180d4a0c0;
-      lVar6 = 0;
+      contextData = 0;
       uVar31 = 0;
       uVar32 = 0;
       do {
@@ -24125,32 +24125,32 @@ void UpdateUIComponentRenderState(ulonglong uiContext,longlong dataSource,float 
         puVar8[-2] = 0;
         puVar8[2] = 0;
         puVar8[6] = uVar32;
-        *(undefined4 *)(lVar6 + 0x180d4a2a0) = 0;
-        *(undefined4 *)(lVar6 + 0x180d4a2b0) = 0;
-        *(undefined4 *)(lVar6 + 0x180d4a2c0) = uVar31;
-        *(undefined4 *)(lVar6 + 0x180d4a2d0) = (undefined4)uStack_318;
-        *(undefined4 *)(lVar6 + 0x180d4a2a4) = functionResult1;
-        *(undefined4 *)(lVar6 + 0x180d4a2b4) = functionResult5;
-        *(undefined4 *)(lVar6 + 0x180d4a2c4) = functionResult7;
-        *(undefined4 *)(lVar6 + 0x180d4a2d4) = functionResult9;
-        *(undefined4 *)(lVar6 + 0x180d4a2a8) = functionResult0;
-        *(undefined4 *)(lVar6 + 0x180d4a2b8) = functionResult4;
-        *(undefined4 *)(lVar6 + 0x180d4a2c8) = functionResult6;
-        *(undefined4 *)(lVar6 + 0x180d4a2d8) = functionResult8;
-        *(undefined4 *)(lVar6 + 0x180d4a4a0) = functionResult0;
-        *(undefined4 *)(lVar6 + 0x180d4a4b0) = functionResult4;
-        *(undefined4 *)(lVar6 + 0x180d4a4c0) = functionResult6;
-        *(undefined4 *)(lVar6 + 0x180d4a4d0) = functionResult8;
-        *(undefined4 *)(lVar6 + 0x180d4a4a4) = 0;
-        *(undefined4 *)(lVar6 + 0x180d4a4b4) = 0;
-        *(undefined4 *)(lVar6 + 0x180d4a4c4) = (undefined4)uStack_308;
-        *(undefined4 *)(lVar6 + 0x180d4a4d4) = (undefined4)uStack_318;
-        *(undefined4 *)(lVar6 + 0x180d4a4a8) = functionResult1;
-        *(undefined4 *)(lVar6 + 0x180d4a4b8) = functionResult5;
-        *(undefined4 *)(lVar6 + 0x180d4a4c8) = functionResult7;
-        *(undefined4 *)(lVar6 + 0x180d4a4d8) = functionResult9;
+        *(undefined4 *)(contextData + 0x180d4a2a0) = 0;
+        *(undefined4 *)(contextData + 0x180d4a2b0) = 0;
+        *(undefined4 *)(contextData + 0x180d4a2c0) = uVar31;
+        *(undefined4 *)(contextData + 0x180d4a2d0) = (undefined4)uStack_318;
+        *(undefined4 *)(contextData + 0x180d4a2a4) = functionResult1;
+        *(undefined4 *)(contextData + 0x180d4a2b4) = functionResult5;
+        *(undefined4 *)(contextData + 0x180d4a2c4) = functionResult7;
+        *(undefined4 *)(contextData + 0x180d4a2d4) = functionResult9;
+        *(undefined4 *)(contextData + 0x180d4a2a8) = functionResult0;
+        *(undefined4 *)(contextData + 0x180d4a2b8) = functionResult4;
+        *(undefined4 *)(contextData + 0x180d4a2c8) = functionResult6;
+        *(undefined4 *)(contextData + 0x180d4a2d8) = functionResult8;
+        *(undefined4 *)(contextData + 0x180d4a4a0) = functionResult0;
+        *(undefined4 *)(contextData + 0x180d4a4b0) = functionResult4;
+        *(undefined4 *)(contextData + 0x180d4a4c0) = functionResult6;
+        *(undefined4 *)(contextData + 0x180d4a4d0) = functionResult8;
+        *(undefined4 *)(contextData + 0x180d4a4a4) = 0;
+        *(undefined4 *)(contextData + 0x180d4a4b4) = 0;
+        *(undefined4 *)(contextData + 0x180d4a4c4) = (undefined4)uStack_308;
+        *(undefined4 *)(contextData + 0x180d4a4d4) = (undefined4)uStack_318;
+        *(undefined4 *)(contextData + 0x180d4a4a8) = functionResult1;
+        *(undefined4 *)(contextData + 0x180d4a4b8) = functionResult5;
+        *(undefined4 *)(contextData + 0x180d4a4c8) = functionResult7;
+        *(undefined4 *)(contextData + 0x180d4a4d8) = functionResult9;
         validationResult = validationResult + 4;
-        lVar6 = lVar6 + 0x40;
+        contextData = contextData + 0x40;
         puVar8 = puVar8 + 0x10;
         uVar31 = (undefined4)uStack_308;
         uVar32 = (undefined4)uStack_368;
@@ -24275,7 +24275,7 @@ LAB_18066bb69:
         sourceNode = nextNode;
         if ((targetNode != (longlong *)0x0) && ((char)targetNode[3] != '\x01')) break;
         plVar4 = (longlong *)plVar7[1];
-        if (plVar6 == plVar4) {
+        if (pcontextData == plVar4) {
           plVar4 = (longlong *)*plVar7;
           if ((char)plVar4[3] == '\0') {
             *(undefined1 *)(plVar4 + 3) = 1;
@@ -24372,11 +24372,11 @@ LAB_18066bd4e:
         }
         *(undefined1 *)(plVar4 + 3) = 0;
         plVar4 = (longlong *)plVar7[2];
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       } while (plVar7 != (longlong *)dataSource[2]);
     }
-    if (plVar6 != (longlong *)0x0) {
-      *(undefined1 *)(plVar6 + 3) = 1;
+    if (pcontextData != (longlong *)0x0) {
+      *(undefined1 *)(pcontextData + 3) = 1;
     }
   }
   return;
@@ -24394,7 +24394,7 @@ void ConfigureUIContext(longlong *uiContext,undefined8 *dataSource,undefined8 *t
   undefined8 *puVar3;
   longlong *plVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   longlong *plVar8;
   
@@ -24428,21 +24428,21 @@ LAB_18066be05:
     if ((char)pallocatedMemory[3] != '\0') break;
     plVar8 = (longlong *)pallocatedMemory[2];
     plVar7 = pallocatedMemory + 2;
-    plVar6 = (longlong *)plVar8[1];
-    if (pallocatedMemory == plVar6) {
+    pcontextData = (longlong *)plVar8[1];
+    if (pallocatedMemory == pcontextData) {
       componentIndex = *plVar8;
       if ((componentIndex == 0) || (*(char *)(componentIndex + 0x18) != '\0')) {
-        plVar6 = pallocatedMemory;
+        pcontextData = pallocatedMemory;
         if ((pallocatedMemory != (longlong *)0x0) && (plVar4 = (longlong *)*pallocatedMemory, uiContext == plVar4)) {
           *pallocatedMemory = plVar4[1];
           if (plVar4[1] != 0) {
             *(longlong **)(plVar4[1] + 0x10) = pallocatedMemory;
           }
           plVar4[2] = *plVar7;
-          plVar6 = plVar4;
+          pcontextData = plVar4;
           if (pallocatedMemory != plVar5) {
             puVar3 = (undefined8 *)*plVar7;
-            plVar6 = plVar5;
+            pcontextData = plVar5;
             if (pallocatedMemory == (longlong *)puVar3[1]) {
               puVar3[1] = plVar4;
             }
@@ -24452,11 +24452,11 @@ LAB_18066be05:
           }
           plVar4[1] = (longlong)pallocatedMemory;
           *plVar7 = (longlong)plVar4;
-          targetBuffer[2] = plVar6;
-          plVar6 = (longlong *)*plVar7;
+          targetBuffer[2] = pcontextData;
+          pcontextData = (longlong *)*plVar7;
           uiContext = pallocatedMemory;
         }
-        *(undefined1 *)(plVar6 + 3) = 1;
+        *(undefined1 *)(pcontextData + 3) = 1;
         plVar5 = (longlong *)plVar8[1];
         *(undefined1 *)(plVar8 + 3) = 0;
         plVar7 = (longlong *)targetBuffer[2];
@@ -24492,28 +24492,28 @@ LAB_18066bfd1:
       }
     }
     else {
-      if ((plVar6 == (longlong *)0x0) || ((char)plVar6[3] != '\0')) {
-        plVar6 = (longlong *)pallocatedMemory[1];
+      if ((pcontextData == (longlong *)0x0) || ((char)pcontextData[3] != '\0')) {
+        pcontextData = (longlong *)pallocatedMemory[1];
         plVar4 = pallocatedMemory;
-        if (uiContext == plVar6) {
-          pallocatedMemory[1] = *plVar6;
-          if (*plVar6 != 0) {
-            *(longlong **)(*plVar6 + 0x10) = pallocatedMemory;
+        if (uiContext == pcontextData) {
+          pallocatedMemory[1] = *pcontextData;
+          if (*pcontextData != 0) {
+            *(longlong **)(*pcontextData + 0x10) = pallocatedMemory;
           }
-          plVar6[2] = *plVar7;
-          plVar4 = plVar6;
+          pcontextData[2] = *plVar7;
+          plVar4 = pcontextData;
           if (pallocatedMemory != plVar5) {
             puVar3 = (undefined8 *)*plVar7;
             plVar4 = plVar5;
             if (pallocatedMemory == (longlong *)*puVar3) {
-              *puVar3 = plVar6;
+              *puVar3 = pcontextData;
             }
             else {
-              puVar3[1] = plVar6;
+              puVar3[1] = pcontextData;
             }
           }
-          *plVar6 = (longlong)pallocatedMemory;
-          *plVar7 = (longlong)plVar6;
+          *pcontextData = (longlong)pallocatedMemory;
+          *plVar7 = (longlong)pcontextData;
           targetBuffer[2] = plVar4;
           plVar4 = (longlong *)*plVar7;
           uiContext = pallocatedMemory;
@@ -24542,7 +24542,7 @@ LAB_18066bfd1:
         goto LAB_18066bfd1;
       }
       *(undefined1 *)(pallocatedMemory + 3) = 1;
-      *(undefined1 *)(plVar6 + 3) = 1;
+      *(undefined1 *)(pcontextData + 3) = 1;
       *(undefined1 *)(plVar8 + 3) = 0;
     }
     plVar5 = (longlong *)targetBuffer[2];
@@ -24564,131 +24564,131 @@ void ProcessUIComponentEventQueue(undefined8 uiContext,undefined8 dataSource,lon
   longlong *pstringCompareIndex;
   longlong *plVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   longlong *in_R10;
   longlong *plVar8;
   longlong in_R11;
   
   do {
-    plVar6 = (longlong *)in_R10[2];
-    if ((char)plVar6[3] != '\0') break;
-    plVar8 = (longlong *)plVar6[2];
-    plVar4 = plVar6 + 2;
+    pcontextData = (longlong *)in_R10[2];
+    if ((char)pcontextData[3] != '\0') break;
+    plVar8 = (longlong *)pcontextData[2];
+    plVar4 = pcontextData + 2;
     allocatedMemory = plVar8[1];
-    if (plVar6 == (longlong *)allocatedMemory) {
+    if (pcontextData == (longlong *)allocatedMemory) {
       allocatedMemory = *plVar8;
       if ((allocatedMemory == 0) || (*(char *)(allocatedMemory + 0x18) != '\0')) {
-        plVar7 = plVar6;
-        if ((plVar6 != (longlong *)0x0) && (plVar5 = (longlong *)*plVar6, in_R10 == plVar5)) {
-          *plVar6 = plVar5[1];
+        plVar7 = pcontextData;
+        if ((pcontextData != (longlong *)0x0) && (plVar5 = (longlong *)*pcontextData, in_R10 == plVar5)) {
+          *pcontextData = plVar5[1];
           if (plVar5[1] != 0) {
-            *(longlong **)(plVar5[1] + 0x10) = plVar6;
+            *(longlong **)(plVar5[1] + 0x10) = pcontextData;
           }
           plVar5[2] = *plVar4;
           plVar7 = plVar5;
-          if (plVar6 != targetBuffer) {
+          if (pcontextData != targetBuffer) {
             psemaphoreHandle = (undefined8 *)*plVar4;
             plVar7 = targetBuffer;
-            if (plVar6 == (longlong *)psemaphoreHandle[1]) {
+            if (pcontextData == (longlong *)psemaphoreHandle[1]) {
               psemaphoreHandle[1] = plVar5;
             }
             else {
               *psemaphoreHandle = plVar5;
             }
           }
-          plVar5[1] = (longlong)plVar6;
+          plVar5[1] = (longlong)pcontextData;
           *plVar4 = (longlong)plVar5;
           *(longlong **)(in_R11 + 0x10) = plVar7;
           plVar7 = (longlong *)*plVar4;
-          in_R10 = plVar6;
+          in_R10 = pcontextData;
         }
         *(undefined1 *)((longlong)plVar7 + 0x18) = 1;
-        plVar6 = (longlong *)plVar8[1];
+        pcontextData = (longlong *)plVar8[1];
         *(undefined1 *)(plVar8 + 3) = 0;
         plVar7 = *(longlong **)(in_R11 + 0x10);
-        plVar8[1] = *plVar6;
-        if (*plVar6 != 0) {
-          *(longlong **)(*plVar6 + 0x10) = plVar8;
+        plVar8[1] = *pcontextData;
+        if (*pcontextData != 0) {
+          *(longlong **)(*pcontextData + 0x10) = plVar8;
         }
-        plVar6[2] = plVar8[2];
+        pcontextData[2] = plVar8[2];
         if (plVar8 == plVar7) {
-          *plVar6 = (longlong)plVar8;
-          plVar7 = plVar6;
+          *pcontextData = (longlong)plVar8;
+          plVar7 = pcontextData;
         }
         else {
           psemaphoreHandle = (undefined8 *)plVar8[2];
           if (plVar8 == (longlong *)*psemaphoreHandle) {
-            *psemaphoreHandle = plVar6;
-            *plVar6 = (longlong)plVar8;
+            *psemaphoreHandle = pcontextData;
+            *pcontextData = (longlong)plVar8;
           }
           else {
-            psemaphoreHandle[1] = plVar6;
-            *plVar6 = (longlong)plVar8;
+            psemaphoreHandle[1] = pcontextData;
+            *pcontextData = (longlong)plVar8;
           }
         }
 LAB_18066bfd1:
-        plVar8[2] = (longlong)plVar6;
+        plVar8[2] = (longlong)pcontextData;
         *(longlong **)(in_R11 + 0x10) = plVar7;
         plVar8 = in_R10;
       }
       else {
-        *(undefined1 *)(plVar6 + 3) = 1;
+        *(undefined1 *)(pcontextData + 3) = 1;
         *(undefined1 *)(allocatedMemory + 0x18) = 1;
         *(undefined1 *)(plVar8 + 3) = 0;
       }
     }
     else {
       if ((allocatedMemory == 0) || (*(char *)(allocatedMemory + 0x18) != '\0')) {
-        plVar7 = (longlong *)plVar6[1];
-        plVar5 = plVar6;
+        plVar7 = (longlong *)pcontextData[1];
+        plVar5 = pcontextData;
         if (in_R10 == plVar7) {
-          plVar6[1] = *plVar7;
+          pcontextData[1] = *plVar7;
           if (*plVar7 != 0) {
-            *(longlong **)(*plVar7 + 0x10) = plVar6;
+            *(longlong **)(*plVar7 + 0x10) = pcontextData;
           }
           plVar7[2] = *plVar4;
           plVar5 = plVar7;
-          if (plVar6 != targetBuffer) {
+          if (pcontextData != targetBuffer) {
             pstringCompareIndex = (longlong *)*plVar4;
             plVar5 = targetBuffer;
-            if (plVar6 == (longlong *)*pstringCompareIndex) {
+            if (pcontextData == (longlong *)*pstringCompareIndex) {
               *pstringCompareIndex = (longlong)plVar7;
             }
             else {
               pstringCompareIndex[1] = (longlong)plVar7;
             }
           }
-          *plVar7 = (longlong)plVar6;
+          *plVar7 = (longlong)pcontextData;
           *plVar4 = (longlong)plVar7;
           *(longlong **)(in_R11 + 0x10) = plVar5;
           plVar5 = (longlong *)*plVar4;
-          in_R10 = plVar6;
+          in_R10 = pcontextData;
         }
         *(undefined1 *)((longlong)plVar5 + 0x18) = 1;
-        plVar6 = (longlong *)*plVar8;
+        pcontextData = (longlong *)*plVar8;
         *(undefined1 *)(plVar8 + 3) = 0;
         plVar4 = *(longlong **)(in_R11 + 0x10);
-        *plVar8 = plVar6[1];
-        if (plVar6[1] != 0) {
-          *(longlong **)(plVar6[1] + 0x10) = plVar8;
+        *plVar8 = pcontextData[1];
+        if (pcontextData[1] != 0) {
+          *(longlong **)(pcontextData[1] + 0x10) = plVar8;
         }
-        plVar6[2] = plVar8[2];
-        plVar7 = plVar6;
+        pcontextData[2] = plVar8[2];
+        plVar7 = pcontextData;
         if (plVar8 != plVar4) {
           psemaphoreHandle = (undefined8 *)plVar8[2];
           plVar7 = plVar4;
           if (plVar8 == (longlong *)psemaphoreHandle[1]) {
-            psemaphoreHandle[1] = plVar6;
+            psemaphoreHandle[1] = pcontextData;
           }
           else {
-            *psemaphoreHandle = plVar6;
+            *psemaphoreHandle = pcontextData;
           }
         }
-        plVar6[1] = (longlong)plVar8;
+        pcontextData[1] = (longlong)plVar8;
         goto LAB_18066bfd1;
       }
-      *(undefined1 *)(plVar6 + 3) = 1;
+      *(undefined1 *)(pcontextData + 3) = 1;
       *(undefined1 *)(allocatedMemory + 0x18) = 1;
       *(undefined1 *)(plVar8 + 3) = 0;
     }
@@ -28103,7 +28103,7 @@ void UpdateUISystemState(void)
   longlong stringCompareIndex;
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   char *pcVar7;
   longlong lVar8;
   undefined8 *puVar9;
@@ -28128,13 +28128,13 @@ void UpdateUISystemState(void)
   componentIndex = (longlong)*(int *)(context + 0xe80);
   puVar9 = (undefined8 *)(context + 0x860);
   uVar4 = 0;
-  lVar6 = *(longlong *)(context + 0xea8) - componentIndex;
+  contextData = *(longlong *)(context + 0xea8) - componentIndex;
   lStack0000000000000050 = -0x7c0 - context;
   lVar8 = 0xc;
-  *(undefined4 *)(lVar6 + 0x10 + componentIndex * 4) = *(undefined4 *)(stringCompareIndex + 0x10);
-  *(undefined4 *)(lVar6 + 0x10 + componentIndex * 8) = *(undefined4 *)(stringCompareIndex + 0x10);
+  *(undefined4 *)(contextData + 0x10 + componentIndex * 4) = *(undefined4 *)(stringCompareIndex + 0x10);
+  *(undefined4 *)(contextData + 0x10 + componentIndex * 8) = *(undefined4 *)(stringCompareIndex + 0x10);
   lStack00000000000000b8 = 0;
-  *(undefined4 *)(lVar6 + 0x10 + componentIndex * 0xc) = *(undefined4 *)(stringCompareIndex + 0x10);
+  *(undefined4 *)(contextData + 0x10 + componentIndex * 0xc) = *(undefined4 *)(stringCompareIndex + 0x10);
   do {
     stringCompareIndex = *(longlong *)(context + 0xea8) + (longlong)*(int *)(puVar9 + 4);
     if (((int)uVar4 < 4) && (*(int *)(unaff_R15 + 0x2be0) != 0)) {
@@ -28144,11 +28144,11 @@ void UpdateUISystemState(void)
       componentIndex = stringCompareIndex - operationResult;
     }
     if (((uVar4 & 3) == 0) && (*(int *)(unaff_R15 + 0x2be0) != 0)) {
-      lVar6 = lStack00000000000000b8 + *(longlong *)(context + 0xf30);
+      contextData = lStack00000000000000b8 + *(longlong *)(context + 0xf30);
       iVar5 = 1;
     }
     else {
-      lVar6 = stringCompareIndex + -1;
+      contextData = stringCompareIndex + -1;
       iVar5 = operationResult;
     }
     if ((((uVar4 - 4 & 0xfffffff3) == 0) && (uVar4 != 0x10)) && (*(int *)(unaff_R15 + 0x2be0) != 0))
@@ -28160,7 +28160,7 @@ void UpdateUISystemState(void)
       cStack0000000000000030 = *(char *)(componentIndex + -1);
     }
     allocatedMemory0 = stringCompareIndex;
-    UpdateUIComponentData(componentIndex,lVar6,iVar5,*(undefined4 *)(*(longlong *)(context + 0xf00) + lVar8),stringCompareIndex)
+    UpdateUIComponentData(componentIndex,contextData,iVar5,*(undefined4 *)(*(longlong *)(context + 0xf00) + lVar8),stringCompareIndex)
     ;
     functionResult2 = (undefined4)((ulonglong)allocatedMemory0 >> 0x20);
     if (*pcVar7 != '\0') {
@@ -29750,17 +29750,17 @@ void ConfigureUIBufferData(longlong renderContext, longlong dataSource, longlong
       }
       iVar5 = iVar5 + 1;
       *(undefined4 *)(bufferPtr + -0x39) = functionResult;
-      lVar6 = lVar6 + -1;
+      contextData = contextData + -1;
       bufferPtr = bufferPtr + 0x254;
-    } while (lVar6 != 0);
+    } while (contextData != 0);
   }
   iVar5 = 0;
   if (0 < *(int *)(bufferData + 0x1e74)) {
-    lVar6 = 0;
+    contextData = 0;
     do {
       iVar5 = iVar5 + 1;
-      *(undefined4 *)(lVar6 + *(longlong *)(bufferData + 0x43a8)) = 0xffffffff;
-      lVar6 = lVar6 + 4;
+      *(undefined4 *)(contextData + *(longlong *)(bufferData + 0x43a8)) = 0xffffffff;
+      contextData = contextData + 4;
     } while (iVar5 < *(int *)(bufferData + 0x1e74));
   }
   return;
@@ -39802,7 +39802,7 @@ void InitializeUIRenderer(undefined1 *uiContext,longlong dataSource,undefined8 t
   undefined1 *puVar3;
   undefined1 *bufferPtr;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   
   componentIndex = 0x1f;
   pisCharacterMatch = bufferSize;
@@ -39814,10 +39814,10 @@ void InitializeUIRenderer(undefined1 *uiContext,longlong dataSource,undefined8 t
     pisCharacterMatch = pisCharacterMatch + 1;
   } while (componentIndex != 0);
   bufferPtr = uiContext + 1;
-  lVar6 = dataSource * 0x1f;
+  contextData = dataSource * 0x1f;
   lVar5 = 0x1e;
   componentIndex = 0x1e;
-  uiContext[lVar6] = bufferSize[0x1f];
+  uiContext[contextData] = bufferSize[0x1f];
   pisCharacterMatch = bufferSize + 2;
   puVar3 = bufferPtr;
   do {
@@ -39829,8 +39829,8 @@ void InitializeUIRenderer(undefined1 *uiContext,longlong dataSource,undefined8 t
   bufferPtr[dataSource * 0x1e] =
        (char)((int)(bufferSize[0x1e] + 2 + (uint)bufferSize[0x1f] + (uint)bufferSize[0x1f] * 2) >> 2);
   componentIndex = 0xf;
-  bufferPtr[lVar6] = bufferSize[0x1f];
-  pisCharacterMatch = uiContext + lVar6 + 3;
+  bufferPtr[contextData] = bufferSize[0x1f];
+  pisCharacterMatch = uiContext + contextData + 3;
   do {
     pisCharacterMatch[-1] = bufferSize[0x1f];
     *pisCharacterMatch = bufferSize[0x1f];
@@ -39974,11 +39974,11 @@ void OperateUIBufferInternal(longlong uiContext,longlong dataSource,longlong tar
   undefined1 uVar3;
   byte bVar4;
   byte *pbVar5;
-  longlong lVar6;
+  longlong contextData;
   
   uVar3 = *(undefined1 *)(targetBuffer + 0xf);
   pbVar5 = (byte *)(targetBuffer + 2);
-  lVar6 = 0xf;
+  contextData = 0xf;
   do {
     pisCharacterMatch = pbVar5 + -1;
     pbVar2 = pbVar5 + -2;
@@ -39986,8 +39986,8 @@ void OperateUIBufferInternal(longlong uiContext,longlong dataSource,longlong tar
     pbVar5 = pbVar5 + 1;
     pbVar5[(uiContext - targetBuffer) + -3] =
          (byte)((int)((uint)*pbVar2 + (*pisCharacterMatch + 1) * 2 + (uint)bVar4) >> 2);
-    lVar6 = lVar6 + -1;
-  } while (lVar6 != 0);
+    contextData = contextData + -1;
+  } while (contextData != 0);
   *(undefined1 *)(uiContext + 0xf) = uVar3;
                     // WARNING: Subroutine does not return
   memcpy(uiContext + dataSource,uiContext + 1,0xe);
@@ -40005,11 +40005,11 @@ void ProcessUIRenderPipelineInternal(longlong uiContext,longlong dataSource,long
   undefined1 uVar3;
   byte bVar4;
   byte *pbVar5;
-  longlong lVar6;
+  longlong contextData;
   
   uVar3 = *(undefined1 *)(targetBuffer + 0x1f);
   pbVar5 = (byte *)(targetBuffer + 2);
-  lVar6 = 0x1f;
+  contextData = 0x1f;
   do {
     pisCharacterMatch = pbVar5 + -1;
     pbVar2 = pbVar5 + -2;
@@ -40017,8 +40017,8 @@ void ProcessUIRenderPipelineInternal(longlong uiContext,longlong dataSource,long
     pbVar5 = pbVar5 + 1;
     pbVar5[(uiContext - targetBuffer) + -3] =
          (byte)((int)((uint)*pbVar2 + (*pisCharacterMatch + 1) * 2 + (uint)bVar4) >> 2);
-    lVar6 = lVar6 + -1;
-  } while (lVar6 != 0);
+    contextData = contextData + -1;
+  } while (contextData != 0);
   *(undefined1 *)(uiContext + 0x1f) = uVar3;
                     // WARNING: Subroutine does not return
   memcpy(uiContext + dataSource,uiContext + 1,0x1e);
@@ -45749,23 +45749,23 @@ longlong ProcessUIDataValidation(longlong uiContext,int dataSource,ulonglong tar
   int compareResult;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   int aiStackX_10 [2];
   
   lVar5 = param_8;
-  lVar6 = (longlong)param_6;
+  contextData = (longlong)param_6;
   lVar7 = (longlong)dataSource;
-  operationResult = func_0x000180025ec0(uiContext,lVar7,targetBuffer,bufferSize,resultPointer,lVar6,param_8,0x40,0x20,&param_6
+  operationResult = func_0x000180025ec0(uiContext,lVar7,targetBuffer,bufferSize,resultPointer,contextData,param_8,0x40,0x20,&param_6
                               ,0,0);
   validationResult = func_0x000180025ec0(uiContext + 0x10,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x10,lVar6,lVar5 + 0x10,0x40,0x20,aiStackX_10,0,0);
+                              resultPointer + 0x10,contextData,lVar5 + 0x10,0x40,0x20,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
   compareResult = func_0x000180025ec0(uiContext + 0x20,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x20,lVar6,lVar5 + 0x20,0x40,0x20,aiStackX_10,0,0);
+                              resultPointer + 0x20,contextData,lVar5 + 0x20,0x40,0x20,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
   iVar4 = func_0x000180025ec0(uiContext + 0x30,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x30,lVar6,lVar5 + 0x30,0x40,0x20,aiStackX_10,0,0);
+                              resultPointer + 0x30,contextData,lVar5 + 0x30,0x40,0x20,aiStackX_10,0,0);
   lVar5 = (longlong)(operationResult + validationResult + compareResult + iVar4);
   *param_7 = param_6 + aiStackX_10[0];
   return (ulonglong)(uint)(param_6 + aiStackX_10[0]) - (lVar5 * lVar5 >> 0xb);
@@ -45782,23 +45782,23 @@ longlong ProcessUIDataTransformation(longlong uiContext,int dataSource,ulonglong
   int compareResult;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   int aiStackX_10 [2];
   
   lVar5 = param_8;
-  lVar6 = (longlong)param_6;
+  contextData = (longlong)param_6;
   lVar7 = (longlong)dataSource;
-  operationResult = func_0x000180027b50(uiContext,lVar7,targetBuffer,bufferSize,resultPointer,lVar6,param_8,0x40,0x20,&param_6
+  operationResult = func_0x000180027b50(uiContext,lVar7,targetBuffer,bufferSize,resultPointer,contextData,param_8,0x40,0x20,&param_6
                               ,0,0);
   validationResult = func_0x000180027b50(uiContext + 0x10,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x10,lVar6,lVar5 + 0x10,0x40,0x20,aiStackX_10,0,0);
+                              resultPointer + 0x10,contextData,lVar5 + 0x10,0x40,0x20,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
   compareResult = func_0x000180027b50(uiContext + 0x20,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x20,lVar6,lVar5 + 0x20,0x40,0x20,aiStackX_10,0,0);
+                              resultPointer + 0x20,contextData,lVar5 + 0x20,0x40,0x20,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
   iVar4 = func_0x000180027b50(uiContext + 0x30,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x30,lVar6,lVar5 + 0x30,0x40,0x20,aiStackX_10,0,0);
+                              resultPointer + 0x30,contextData,lVar5 + 0x30,0x40,0x20,aiStackX_10,0,0);
   lVar5 = (longlong)(operationResult + validationResult + compareResult + iVar4);
   *param_7 = param_6 + aiStackX_10[0];
   return (ulonglong)(uint)(param_6 + aiStackX_10[0]) - (lVar5 * lVar5 >> 0xb);
@@ -45815,23 +45815,23 @@ longlong ProcessUIDataConversion(longlong uiContext,int dataSource,ulonglong tar
   int compareResult;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   int aiStackX_10 [2];
   
   lVar5 = param_8;
-  lVar6 = (longlong)param_6;
+  contextData = (longlong)param_6;
   lVar7 = (longlong)dataSource;
-  operationResult = func_0x000180025ec0(uiContext,lVar7,targetBuffer,bufferSize,resultPointer,lVar6,param_8,0x40,0x40,&param_6
+  operationResult = func_0x000180025ec0(uiContext,lVar7,targetBuffer,bufferSize,resultPointer,contextData,param_8,0x40,0x40,&param_6
                               ,0,0);
   validationResult = func_0x000180025ec0(uiContext + 0x10,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x10,lVar6,lVar5 + 0x10,0x40,0x40,aiStackX_10,0,0);
+                              resultPointer + 0x10,contextData,lVar5 + 0x10,0x40,0x40,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
   compareResult = func_0x000180025ec0(uiContext + 0x20,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x20,lVar6,lVar5 + 0x20,0x40,0x40,aiStackX_10,0,0);
+                              resultPointer + 0x20,contextData,lVar5 + 0x20,0x40,0x40,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
   iVar4 = func_0x000180025ec0(uiContext + 0x30,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x30,lVar6,lVar5 + 0x30,0x40,0x40,aiStackX_10,0,0);
+                              resultPointer + 0x30,contextData,lVar5 + 0x30,0x40,0x40,aiStackX_10,0,0);
   lVar5 = (longlong)(operationResult + validationResult + compareResult + iVar4);
   *param_7 = param_6 + aiStackX_10[0];
   return (ulonglong)(uint)(param_6 + aiStackX_10[0]) - (lVar5 * lVar5 >> 0xc);
@@ -45848,23 +45848,23 @@ longlong ProcessUIDataEncoding(longlong uiContext,int dataSource,ulonglong targe
   int compareResult;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   int aiStackX_10 [2];
   
   lVar5 = param_8;
-  lVar6 = (longlong)param_6;
+  contextData = (longlong)param_6;
   lVar7 = (longlong)dataSource;
-  operationResult = func_0x000180027b50(uiContext,lVar7,targetBuffer,bufferSize,resultPointer,lVar6,param_8,0x40,0x40,&param_6
+  operationResult = func_0x000180027b50(uiContext,lVar7,targetBuffer,bufferSize,resultPointer,contextData,param_8,0x40,0x40,&param_6
                               ,0,0);
   validationResult = func_0x000180027b50(uiContext + 0x10,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x10,lVar6,lVar5 + 0x10,0x40,0x40,aiStackX_10,0,0);
+                              resultPointer + 0x10,contextData,lVar5 + 0x10,0x40,0x40,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
   compareResult = func_0x000180027b50(uiContext + 0x20,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x20,lVar6,lVar5 + 0x20,0x40,0x40,aiStackX_10,0,0);
+                              resultPointer + 0x20,contextData,lVar5 + 0x20,0x40,0x40,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
   iVar4 = func_0x000180027b50(uiContext + 0x30,lVar7,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x30,lVar6,lVar5 + 0x30,0x40,0x40,aiStackX_10,0,0);
+                              resultPointer + 0x30,contextData,lVar5 + 0x30,0x40,0x40,aiStackX_10,0,0);
   lVar5 = (longlong)(operationResult + validationResult + compareResult + iVar4);
   *param_7 = param_6 + aiStackX_10[0];
   return (ulonglong)(uint)(param_6 + aiStackX_10[0]) - (lVar5 * lVar5 >> 0xc);
@@ -46538,19 +46538,19 @@ longlong CalculateUIDataDifferenceA7(longlong uiContext,int dataSource,ulonglong
   int compareResult;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int aiStackX_10 [2];
   
   lVar5 = (longlong)param_6;
-  lVar6 = (longlong)dataSource;
-  operationResult = func_0x000180022810(uiContext,lVar6,targetBuffer,bufferSize,resultPointer,lVar5,0x20,&param_6,0,0);
-  validationResult = func_0x000180022810(uiContext + 0x10,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+  contextData = (longlong)dataSource;
+  operationResult = func_0x000180022810(uiContext,contextData,targetBuffer,bufferSize,resultPointer,lVar5,0x20,&param_6,0,0);
+  validationResult = func_0x000180022810(uiContext + 0x10,contextData,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x10,lVar5,0x20,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
-  compareResult = func_0x000180022810(uiContext + 0x20,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+  compareResult = func_0x000180022810(uiContext + 0x20,contextData,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x20,lVar5,0x20,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
-  iVar4 = func_0x000180022810(uiContext + 0x30,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+  iVar4 = func_0x000180022810(uiContext + 0x30,contextData,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x30,lVar5,0x20,aiStackX_10,0,0);
   *param_7 = param_6 + aiStackX_10[0];
   lVar5 = (longlong)(operationResult + validationResult + compareResult + iVar4);
@@ -46584,19 +46584,19 @@ longlong CalculateUIDataDifferenceA8(longlong uiContext,int dataSource,ulonglong
   int compareResult;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int aiStackX_10 [2];
   
   lVar5 = (longlong)param_6;
-  lVar6 = (longlong)dataSource;
-  operationResult = func_0x000180024290(uiContext,lVar6,targetBuffer,bufferSize,resultPointer,lVar5,0x20,&param_6,0,0);
-  validationResult = func_0x000180024290(uiContext + 0x10,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+  contextData = (longlong)dataSource;
+  operationResult = func_0x000180024290(uiContext,contextData,targetBuffer,bufferSize,resultPointer,lVar5,0x20,&param_6,0,0);
+  validationResult = func_0x000180024290(uiContext + 0x10,contextData,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x10,lVar5,0x20,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
-  compareResult = func_0x000180024290(uiContext + 0x20,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+  compareResult = func_0x000180024290(uiContext + 0x20,contextData,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x20,lVar5,0x20,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
-  iVar4 = func_0x000180024290(uiContext + 0x30,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+  iVar4 = func_0x000180024290(uiContext + 0x30,contextData,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x30,lVar5,0x20,aiStackX_10,0,0);
   *param_7 = param_6 + aiStackX_10[0];
   lVar5 = (longlong)(operationResult + validationResult + compareResult + iVar4);
@@ -46630,19 +46630,19 @@ longlong ProcessUIDataValidationOperation(longlong uiContext,int dataSource,ulon
   int compareResult;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int aiStackX_10 [2];
   
   lVar5 = (longlong)param_6;
-  lVar6 = (longlong)dataSource;
-  operationResult = func_0x000180022810(uiContext,lVar6,targetBuffer,bufferSize,resultPointer,lVar5,0x40,&param_6,0,0);
-  validationResult = func_0x000180022810(uiContext + 0x10,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+  contextData = (longlong)dataSource;
+  operationResult = func_0x000180022810(uiContext,contextData,targetBuffer,bufferSize,resultPointer,lVar5,0x40,&param_6,0,0);
+  validationResult = func_0x000180022810(uiContext + 0x10,contextData,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x10,lVar5,0x40,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
-  compareResult = func_0x000180022810(uiContext + 0x20,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+  compareResult = func_0x000180022810(uiContext + 0x20,contextData,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x20,lVar5,0x40,aiStackX_10,0,0);
   param_6 = param_6 + aiStackX_10[0];
-  iVar4 = func_0x000180022810(uiContext + 0x30,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+  iVar4 = func_0x000180022810(uiContext + 0x30,contextData,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x30,lVar5,0x40,aiStackX_10,0,0);
   *param_7 = param_6 + aiStackX_10[0];
   lVar5 = (longlong)(operationResult + validationResult + compareResult + iVar4);
@@ -58583,7 +58583,7 @@ longlong CalculateUIImageDifferenceStatistics(longlong uiContext,int dataSource,
   uint uVar3;
   ulonglong uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   int aiStack_78 [2];
   longlong lStack_70;
@@ -58602,9 +58602,9 @@ longlong CalculateUIImageDifferenceStatistics(longlong uiContext,int dataSource,
   do {
     componentIndex = eventTypeCode + uiContext;
     lVar5 = 2;
-    lVar6 = lStack_70 - eventTypeCode;
+    contextData = lStack_70 - eventTypeCode;
     do {
-      CalculateUIImageSquareDifferenceSumAVX2(componentIndex,dataSource,(lVar6 - uiContext) + targetBuffer + componentIndex,bufferSize,&resultPointer,aiStack_78);
+      CalculateUIImageSquareDifferenceSumAVX2(componentIndex,dataSource,(contextData - uiContext) + targetBuffer + componentIndex,bufferSize,&resultPointer,aiStack_78);
       componentIndex = componentIndex + 0x20;
       *pfunctionResult = *pfunctionResult + (int)resultPointer;
       uVar3 = (int)uVar4 + aiStack_78[0];
@@ -59197,7 +59197,7 @@ void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,und
   short sVar4;
   undefined1 (*in_RAX) [16];
   ushort *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   longlong context;
   longlong lVar7;
   longlong unaff_RDI;
@@ -59469,7 +59469,7 @@ void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,und
        ((short)semaphoreHandle7 < (short)functionResult2) * functionResult2 | ((short)semaphoreHandle7 >= (short)functionResult2) * semaphoreHandle7;
   if (dataSource + 0x10 < 0) {
     lVar7 = context - in_R11;
-    lVar6 = (-(dataSource + 0x10) - 1U >> 4) + 1;
+    contextData = (-(dataSource + 0x10) - 1U >> 4) + 1;
     componentContextPtr = (ushort *)(in_R11 + (dataSource + 0x18) * 2);
     auVar31 = auVar30;
     do {
@@ -59650,10 +59650,10 @@ void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,und
            (sVar43 < (short)semaphoreHandle6) * semaphoreHandle6 | (ushort)(sVar43 >= (short)semaphoreHandle6) * sVar43;
       auVar30._14_2_ =
            (sVar47 < (short)semaphoreHandle8) * semaphoreHandle8 | (ushort)(sVar47 >= (short)semaphoreHandle8) * sVar47;
-      lVar6 = lVar6 + -1;
+      contextData = contextData + -1;
       componentContextPtr = pfunctionResult;
       auVar31 = auVar30;
-    } while (lVar6 != 0);
+    } while (contextData != 0);
   }
   auVar8._0_8_ = auVar30._8_8_;
   auVar8._8_4_ = auVar30._0_4_;
@@ -59799,7 +59799,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
   byte *pbVar3;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   longlong lVar8;
   longlong lVar9;
@@ -59841,7 +59841,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
     do {
       functionResult0 = 0;
       if (1 < operationResult) {
-        lVar6 = 2;
+        contextData = 2;
         functionResult0 = 0x10;
         psemaphoreHandle = (uint *)(lVar9 + 4);
         do {
@@ -59869,26 +59869,26 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
           operationResult8 = afunctionResult4._4_4_ + operationResult8;
           validationResult0 = afunctionResult4._8_4_ + validationResult0;
           validationResult2 = afunctionResult4._12_4_ + validationResult2;
-          lVar6 = lVar6 + -1;
+          contextData = contextData + -1;
           psemaphoreHandle = psemaphoreHandle + 2;
-        } while (lVar6 != 0);
+        } while (contextData != 0);
       }
       operationResult1 = 0;
       operationResult2 = 0;
       if (functionResult0 < 0x10) {
         if (1 < (longlong)(0x10 - functionResult0)) {
           pbVar3 = (byte *)(functionResult0 + lVar9);
-          lVar6 = (0xe - functionResult0 >> 1) + 1;
-          functionResult0 = functionResult0 + lVar6 * 2;
+          contextData = (0xe - functionResult0 >> 1) + 1;
+          functionResult0 = functionResult0 + contextData * 2;
           do {
             uVar4 = (int)((uint)pbVar3[lVar8 - lVar9] - (uint)*pbVar3) >> 0x1f;
             operationResult1 = operationResult1 + (((uint)pbVar3[lVar8 - lVar9] - (uint)*pbVar3 ^ uVar4) - uVar4);
             uVar4 = (uint)(pbVar3 + 2)[(lVar8 - lVar9) + -1] - (uint)pbVar3[1];
             uVar5 = (int)uVar4 >> 0x1f;
             operationResult2 = operationResult2 + ((uVar4 ^ uVar5) - uVar5);
-            lVar6 = lVar6 + -1;
+            contextData = contextData + -1;
             pbVar3 = pbVar3 + 2;
-          } while (lVar6 != 0);
+          } while (contextData != 0);
         }
         if ((longlong)functionResult0 < 0x10) {
           uVar4 = (uint)*(byte *)(functionResult0 + lVar8) - (uint)*(byte *)(functionResult0 + lVar9);
@@ -59936,7 +59936,7 @@ void InitializeUITextureProcessor(longlong uiContext,int dataSource,longlong tar
   byte *pbVar3;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   longlong lVar8;
   longlong lVar9;
@@ -59978,7 +59978,7 @@ void InitializeUITextureProcessor(longlong uiContext,int dataSource,longlong tar
     do {
       functionResult0 = 0;
       if (1 < operationResult) {
-        lVar6 = 2;
+        contextData = 2;
         functionResult0 = 0x10;
         psemaphoreHandle = (uint *)(lVar9 + 4);
         do {
@@ -60006,26 +60006,26 @@ void InitializeUITextureProcessor(longlong uiContext,int dataSource,longlong tar
           operationResult8 = afunctionResult4._4_4_ + operationResult8;
           validationResult0 = afunctionResult4._8_4_ + validationResult0;
           validationResult2 = afunctionResult4._12_4_ + validationResult2;
-          lVar6 = lVar6 + -1;
+          contextData = contextData + -1;
           psemaphoreHandle = psemaphoreHandle + 2;
-        } while (lVar6 != 0);
+        } while (contextData != 0);
       }
       operationResult1 = 0;
       operationResult2 = 0;
       if (functionResult0 < 0x10) {
         if (1 < (longlong)(0x10 - functionResult0)) {
           pbVar3 = (byte *)(functionResult0 + lVar9);
-          lVar6 = (0xe - functionResult0 >> 1) + 1;
-          functionResult0 = functionResult0 + lVar6 * 2;
+          contextData = (0xe - functionResult0 >> 1) + 1;
+          functionResult0 = functionResult0 + contextData * 2;
           do {
             uVar4 = (int)((uint)pbVar3[lVar8 - lVar9] - (uint)*pbVar3) >> 0x1f;
             operationResult1 = operationResult1 + (((uint)pbVar3[lVar8 - lVar9] - (uint)*pbVar3 ^ uVar4) - uVar4);
             uVar4 = (uint)(pbVar3 + 2)[(lVar8 - lVar9) + -1] - (uint)pbVar3[1];
             uVar5 = (int)uVar4 >> 0x1f;
             operationResult2 = operationResult2 + ((uVar4 ^ uVar5) - uVar5);
-            lVar6 = lVar6 + -1;
+            contextData = contextData + -1;
             pbVar3 = pbVar3 + 2;
-          } while (lVar6 != 0);
+          } while (contextData != 0);
         }
         if ((longlong)functionResult0 < 0x10) {
           uVar4 = (uint)*(byte *)(functionResult0 + lVar8) - (uint)*(byte *)(functionResult0 + lVar9);
@@ -60073,7 +60073,7 @@ void ProcessUIPixelData(longlong uiContext,int dataSource,longlong targetBuffer,
   byte *pbVar3;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   longlong lVar8;
   longlong lVar9;
@@ -60115,7 +60115,7 @@ void ProcessUIPixelData(longlong uiContext,int dataSource,longlong targetBuffer,
     do {
       functionResult0 = 0;
       if (1 < operationResult) {
-        lVar6 = 2;
+        contextData = 2;
         functionResult0 = 0x10;
         psemaphoreHandle = (uint *)(lVar9 + 4);
         do {
@@ -60143,26 +60143,26 @@ void ProcessUIPixelData(longlong uiContext,int dataSource,longlong targetBuffer,
           operationResult8 = afunctionResult4._4_4_ + operationResult8;
           validationResult0 = afunctionResult4._8_4_ + validationResult0;
           validationResult2 = afunctionResult4._12_4_ + validationResult2;
-          lVar6 = lVar6 + -1;
+          contextData = contextData + -1;
           psemaphoreHandle = psemaphoreHandle + 2;
-        } while (lVar6 != 0);
+        } while (contextData != 0);
       }
       operationResult1 = 0;
       operationResult2 = 0;
       if (functionResult0 < 0x10) {
         if (1 < (longlong)(0x10 - functionResult0)) {
           pbVar3 = (byte *)(functionResult0 + lVar9);
-          lVar6 = (0xe - functionResult0 >> 1) + 1;
-          functionResult0 = functionResult0 + lVar6 * 2;
+          contextData = (0xe - functionResult0 >> 1) + 1;
+          functionResult0 = functionResult0 + contextData * 2;
           do {
             uVar4 = (int)((uint)pbVar3[lVar8 - lVar9] - (uint)*pbVar3) >> 0x1f;
             operationResult1 = operationResult1 + (((uint)pbVar3[lVar8 - lVar9] - (uint)*pbVar3 ^ uVar4) - uVar4);
             uVar4 = (uint)(pbVar3 + 2)[(lVar8 - lVar9) + -1] - (uint)pbVar3[1];
             uVar5 = (int)uVar4 >> 0x1f;
             operationResult2 = operationResult2 + ((uVar4 ^ uVar5) - uVar5);
-            lVar6 = lVar6 + -1;
+            contextData = contextData + -1;
             pbVar3 = pbVar3 + 2;
-          } while (lVar6 != 0);
+          } while (contextData != 0);
         }
         if ((longlong)functionResult0 < 0x10) {
           uVar4 = (uint)*(byte *)(functionResult0 + lVar8) - (uint)*(byte *)(functionResult0 + lVar9);
@@ -60210,7 +60210,7 @@ void ProcessUIAdvancedPixelData(longlong uiContext,int dataSource,longlong targe
   byte *pbVar3;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   longlong lVar8;
   longlong lVar9;
@@ -60252,7 +60252,7 @@ void ProcessUIAdvancedPixelData(longlong uiContext,int dataSource,longlong targe
     do {
       functionResult0 = 0;
       if (1 < operationResult) {
-        lVar6 = 2;
+        contextData = 2;
         functionResult0 = 0x10;
         psemaphoreHandle = (uint *)(lVar9 + 4);
         do {
@@ -60280,26 +60280,26 @@ void ProcessUIAdvancedPixelData(longlong uiContext,int dataSource,longlong targe
           operationResult8 = afunctionResult4._4_4_ + operationResult8;
           validationResult0 = afunctionResult4._8_4_ + validationResult0;
           validationResult2 = afunctionResult4._12_4_ + validationResult2;
-          lVar6 = lVar6 + -1;
+          contextData = contextData + -1;
           psemaphoreHandle = psemaphoreHandle + 2;
-        } while (lVar6 != 0);
+        } while (contextData != 0);
       }
       operationResult1 = 0;
       operationResult2 = 0;
       if (functionResult0 < 0x10) {
         if (1 < (longlong)(0x10 - functionResult0)) {
           pbVar3 = (byte *)(functionResult0 + lVar9);
-          lVar6 = (0xe - functionResult0 >> 1) + 1;
-          functionResult0 = functionResult0 + lVar6 * 2;
+          contextData = (0xe - functionResult0 >> 1) + 1;
+          functionResult0 = functionResult0 + contextData * 2;
           do {
             uVar4 = (int)((uint)pbVar3[lVar8 - lVar9] - (uint)*pbVar3) >> 0x1f;
             operationResult1 = operationResult1 + (((uint)pbVar3[lVar8 - lVar9] - (uint)*pbVar3 ^ uVar4) - uVar4);
             uVar4 = (uint)(pbVar3 + 2)[(lVar8 - lVar9) + -1] - (uint)pbVar3[1];
             uVar5 = (int)uVar4 >> 0x1f;
             operationResult2 = operationResult2 + ((uVar4 ^ uVar5) - uVar5);
-            lVar6 = lVar6 + -1;
+            contextData = contextData + -1;
             pbVar3 = pbVar3 + 2;
-          } while (lVar6 != 0);
+          } while (contextData != 0);
         }
         if ((longlong)functionResult0 < 0x10) {
           uVar4 = (uint)*(byte *)(functionResult0 + lVar8) - (uint)*(byte *)(functionResult0 + lVar9);
@@ -62521,7 +62521,7 @@ void FUN_1806984f1(void)
   longlong lVar5;
   undefined8 unaff_RBP;
   undefined8 unaff_RSI;
-  longlong lVar6;
+  longlong contextData;
   undefined8 unaff_RDI;
   longlong lVar7;
   longlong in_R9;
@@ -62551,7 +62551,7 @@ void FUN_1806984f1(void)
   *(undefined8 *)(in_RAX + -0x38) = unaff_R13;
   *(undefined8 *)(in_RAX + -0x20) = unaff_RBP;
   lVar5 = in_stack_000000d0;
-  lVar6 = in_stack_000000c8;
+  contextData = in_stack_000000c8;
   lVar7 = in_stack_000000d8;
   lStack0000000000000038 = in_R10;
   do {
@@ -62573,25 +62573,25 @@ void FUN_1806984f1(void)
            ((ulonglong)*(byte *)((in_R10 + 0x32) * 0x40 + uVar4 + in_R9) + 0xc0) * 0x10 + in_R9;
       if (0 < unaff_R15D) {
         puStack0000000000000028 = (undefined1 *)&stack0x00000040;
-        RenderUIButtonInternal(lVar6,lVar5,lVar7,unaff_R12D,uVar3);
+        RenderUIButtonInternal(contextData,lVar5,lVar7,unaff_R12D,uVar3);
       }
       if (!bVar2) {
         puStack0000000000000028 = (undefined1 *)&stack0x00000040;
-        RenderUITextInternal(lVar6,lVar5,lVar7,unaff_R12D,uVar3);
+        RenderUITextInternal(contextData,lVar5,lVar7,unaff_R12D,uVar3);
       }
       if (0 < in_stack_000000b0) {
         puStack0000000000000028 = (undefined1 *)&stack0x00000040;
-        RenderUIImageInternal(lVar6,lVar5,lVar7,unaff_R12D,uVar3);
+        RenderUIImageInternal(contextData,lVar5,lVar7,unaff_R12D,uVar3);
       }
       in_R9 = in_stack_00000030;
       in_R10 = lStack0000000000000038;
       if (!bVar2) {
         puStack0000000000000028 = (undefined1 *)&stack0x00000040;
-        RenderUIPanelInternal(lVar6,lVar5,lVar7,unaff_R12D,uVar3);
+        RenderUIPanelInternal(contextData,lVar5,lVar7,unaff_R12D,uVar3);
         in_R10 = lStack0000000000000038;
       }
     }
-    lVar6 = lVar6 + 0x10;
+    contextData = contextData + 0x10;
     lVar7 = lVar7 + 8;
     lVar5 = lVar5 + 8;
     unaff_R14 = unaff_R14 + 0x4c;
@@ -62755,7 +62755,7 @@ void FUN_1806988d0(int *uiContext,int dataSource,int targetBuffer)
   ulonglong uVar3;
   int *piVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   int iVar8;
   int iVar9;
@@ -62779,7 +62779,7 @@ void FUN_1806988d0(int *uiContext,int dataSource,int targetBuffer)
       iVar7 = 0;
       if (0 < iVar5) {
         pcVar10 = acStack_1b8 + iVar9;
-        for (lVar6 = (longlong)iVar5; iVar7 = iVar5, lVar6 != 0; lVar6 = lVar6 + -1) {
+        for (contextData = (longlong)iVar5; iVar7 = iVar5, contextData != 0; contextData = contextData + -1) {
           *pcVar10 = (char)iVar8;
           pcVar10 = pcVar10 + 1;
         }
@@ -62791,23 +62791,23 @@ void FUN_1806988d0(int *uiContext,int dataSource,int targetBuffer)
   uVar3 = (ulonglong)iVar9;
   while( true ) {
     if (0xff < (longlong)uVar3) {
-      lVar6 = 0xc00;
+      contextData = 0xc00;
       piVar4 = uiContext + 2;
       do {
         bVar2 = rand();
         *(char *)piVar4 = acStack_1b8[bVar2];
-        lVar6 = lVar6 + -1;
+        contextData = contextData + -1;
         piVar4 = (int *)((longlong)piVar4 + 1);
-      } while (lVar6 != 0);
+      } while (contextData != 0);
       piVar4 = uiContext + 0x308;
-      lVar6 = 0x10;
+      contextData = 0x10;
       do {
         *(char *)(piVar4 + -4) = -acStack_1b8[0];
         *(char *)piVar4 = -acStack_1b8[0];
         *(char *)(piVar4 + 4) = acStack_1b8[0] * -2;
         piVar4 = (int *)((longlong)piVar4 + 1);
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        contextData = contextData + -1;
+      } while (contextData != 0);
       *uiContext = dataSource;
       uiContext[1] = targetBuffer;
                     // WARNING: Subroutine does not return
@@ -62835,7 +62835,7 @@ void FUN_1806988f5(int *uiContext,int dataSource,int targetBuffer)
   ulonglong uVar3;
   int *piVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   int iVar8;
   int iVar9;
@@ -62904,7 +62904,7 @@ void FUN_1806988f5(int *uiContext,int dataSource,int targetBuffer)
       iVar7 = 0;
       if (0 < iVar5) {
         pcVar10 = acStackX_20 + iVar9;
-        for (lVar6 = (longlong)iVar5; iVar7 = iVar5, lVar6 != 0; lVar6 = lVar6 + -1) {
+        for (contextData = (longlong)iVar5; iVar7 = iVar5, contextData != 0; contextData = contextData + -1) {
           *pcVar10 = (char)iVar8;
           pcVar10 = pcVar10 + 1;
         }
@@ -62916,23 +62916,23 @@ void FUN_1806988f5(int *uiContext,int dataSource,int targetBuffer)
   uVar3 = (ulonglong)iVar9;
   while( true ) {
     if (0xff < (longlong)uVar3) {
-      lVar6 = 0xc00;
+      contextData = 0xc00;
       piVar4 = uiContext + 2;
       do {
         bVar2 = rand();
         *(char *)piVar4 = acStackX_20[bVar2];
-        lVar6 = lVar6 + -1;
+        contextData = contextData + -1;
         piVar4 = (int *)((longlong)piVar4 + 1);
-      } while (lVar6 != 0);
+      } while (contextData != 0);
       piVar4 = uiContext + 0x308;
-      lVar6 = 0x10;
+      contextData = 0x10;
       do {
         *(char *)(piVar4 + -4) = -acStackX_20[0];
         *(char *)piVar4 = -acStackX_20[0];
         *(char *)(piVar4 + 4) = acStackX_20[0] * -2;
         piVar4 = (int *)((longlong)piVar4 + 1);
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        contextData = contextData + -1;
+      } while (contextData != 0);
       *uiContext = dataSource;
       uiContext[1] = targetBuffer;
                     // WARNING: Subroutine does not return
@@ -63506,7 +63506,7 @@ void ProcessUIDataSource(undefined8 uiContext,longlong dataSource)
   longlong stringCompareIndex;
   longlong lVar4;
   undefined8 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   char *pcVar8;
   longlong lVar9;
@@ -63546,11 +63546,11 @@ void ProcessUIDataSource(undefined8 uiContext,longlong dataSource)
       stringCompareIndex = (longlong)*(int *)(dataSource + 0xe80);
       componentContextPtr = (undefined8 *)(dataSource + 0x860);
       lVar9 = 0xc;
-      lVar6 = *(longlong *)(dataSource + 0xea8) - stringCompareIndex;
+      contextData = *(longlong *)(dataSource + 0xea8) - stringCompareIndex;
       lVar7 = 0x10;
-      *(undefined4 *)(lVar6 + 0x10 + stringCompareIndex * 4) = *(undefined4 *)(lVar4 + 0x10);
-      *(undefined4 *)(lVar6 + 0x10 + stringCompareIndex * 8) = *(undefined4 *)(lVar4 + 0x10);
-      *(undefined4 *)(lVar6 + 0x10 + stringCompareIndex * 0xc) = *(undefined4 *)(lVar4 + 0x10);
+      *(undefined4 *)(contextData + 0x10 + stringCompareIndex * 4) = *(undefined4 *)(lVar4 + 0x10);
+      *(undefined4 *)(contextData + 0x10 + stringCompareIndex * 8) = *(undefined4 *)(lVar4 + 0x10);
+      *(undefined4 *)(contextData + 0x10 + stringCompareIndex * 0xc) = *(undefined4 *)(lVar4 + 0x10);
       do {
         stringCompareIndex = (longlong)*(int *)(componentContextPtr + 4) + *(longlong *)(dataSource + 0xea8);
         lVar4 = stringCompareIndex;
@@ -63633,7 +63633,7 @@ void FUN_1806993a0(void)
   longlong context;
   undefined8 *bufferPtr;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   char *pcVar7;
   longlong lVar8;
   undefined8 uVar9;
@@ -63654,7 +63654,7 @@ void FUN_1806993a0(void)
   bufferPtr = (undefined8 *)(context + 0x860);
   lVar8 = 0xc;
   lVar5 = *(longlong *)(context + 0xea8) - componentIndex;
-  lVar6 = 0x10;
+  contextData = 0x10;
   *(undefined4 *)(lVar5 + 0x10 + componentIndex * 4) = *(undefined4 *)(stringCompareIndex + 0x10);
   *(undefined4 *)(lVar5 + 0x10 + componentIndex * 8) = *(undefined4 *)(stringCompareIndex + 0x10);
   *(undefined4 *)(lVar5 + 0x10 + componentIndex * 0xc) = *(undefined4 *)(stringCompareIndex + 0x10);
@@ -63680,8 +63680,8 @@ void FUN_1806993a0(void)
     lVar8 = lVar8 + 4;
     bufferPtr = bufferPtr + 7;
     pcVar7 = pcVar7 + 1;
-    lVar6 = lVar6 + -1;
-  } while (lVar6 != 0);
+    contextData = contextData + -1;
+  } while (contextData != 0);
   if (*(char *)(*(longlong *)(context + 0xf00) + 9) == '\0') {
     if (in_stack_00000088 != 4) {
       stringCompareIndex = context + 0x7e0;
@@ -67302,7 +67302,7 @@ void FUN_18069d460(longlong uiContext)
   int compareResult;
   longlong lVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   int *piVar8;
   uint uVar9;
@@ -67332,15 +67332,15 @@ void FUN_18069d460(longlong uiContext)
   else {
     lVar7 = 0x10;
     piVar8 = (int *)(uiContext + 0x880);
-    lVar6 = uiContext + 0x890;
+    contextData = uiContext + 0x890;
     allocatedMemory2 = 8;
     do {
       semaphoreHandle = *(undefined4 *)(bufferData + 0xe80);
       piVar8[4] = *(int *)(*(longlong *)(bufferData + 0xf00) + -4 + lVar7);
       piVar8[0x12] = *(int *)(lVar7 + *(longlong *)(bufferData + 0xf00));
       if (*(char *)(*(longlong *)(bufferData + 0xf00) + 10) != '\0') {
-        func_0x00018069db00(lVar6,uiContext);
-        func_0x00018069db00(lVar6 + 0x38);
+        func_0x00018069db00(contextData,uiContext);
+        func_0x00018069db00(contextData + 0x38);
       }
       if (piVar8[4] == piVar8[0x12]) {
         FUN_18069d8a0(uiContext,piVar8 + -8,*piVar8 + lVar4,semaphoreHandle,uVar5,semaphoreHandle);
@@ -67351,7 +67351,7 @@ void FUN_18069d460(longlong uiContext)
         FUN_18069d9e0(piVar8 + 6,piVar8[0xe] + lVar4,semaphoreHandle,uVar5,semaphoreHandle,
                       *(undefined8 *)(uiContext + 0xf98));
       }
-      lVar6 = lVar6 + 0x70;
+      contextData = contextData + 0x70;
       lVar7 = lVar7 + 8;
       piVar8 = piVar8 + 0x1c;
       allocatedMemory2 = allocatedMemory2 + -1;
@@ -67359,7 +67359,7 @@ void FUN_18069d460(longlong uiContext)
   }
   lVar4 = *(longlong *)(bufferData + 0xeb0);
   piVar8 = (int *)(uiContext + 0xc10);
-  lVar6 = *(longlong *)(bufferData + 0xe20);
+  contextData = *(longlong *)(bufferData + 0xe20);
   allocatedMemory2 = 2;
   lVar7 = 2;
   do {
@@ -67369,7 +67369,7 @@ void FUN_18069d460(longlong uiContext)
       functionResult = *(ushort *)((longlong)piVar8 + 2);
       allocatedMemory1 = piVar8[-4] + lVar4;
       allocatedMemory0 = ((longlong)(short)functionResult >> 3) +
-               (longlong)(((int)uVar9 >> 3) * compareResult) + (longlong)piVar8[-4] + lVar6;
+               (longlong)(((int)uVar9 >> 3) * compareResult) + (longlong)piVar8[-4] + contextData;
       if (((uVar9 & 7) == 0) && (((longlong)(short)functionResult & 7U) == 0)) {
         func_0x00018001cd0f(allocatedMemory0,compareResult,allocatedMemory1,compareResult);
       }
@@ -67378,9 +67378,9 @@ void FUN_18069d460(longlong uiContext)
       }
     }
     else {
-      FUN_18069d9e0(piVar8 + -0xc,piVar8[-4] + lVar4,compareResult,lVar6,compareResult,
+      FUN_18069d9e0(piVar8 + -0xc,piVar8[-4] + lVar4,compareResult,contextData,compareResult,
                     *(undefined8 *)(uiContext + 0xf98));
-      FUN_18069d9e0(piVar8 + 2,piVar8[10] + lVar4,compareResult,lVar6,compareResult,*(undefined8 *)(uiContext + 0xf98)
+      FUN_18069d9e0(piVar8 + 2,piVar8[10] + lVar4,compareResult,contextData,compareResult,*(undefined8 *)(uiContext + 0xf98)
                    );
     }
     piVar8 = piVar8 + 0x1c;
@@ -67388,7 +67388,7 @@ void FUN_18069d460(longlong uiContext)
   } while (lVar7 != 0);
   lVar4 = *(longlong *)(bufferData + 0xeb8);
   piVar8 = (int *)(uiContext + 0xcf0);
-  lVar6 = *(longlong *)(bufferData + 0xe28);
+  contextData = *(longlong *)(bufferData + 0xe28);
   do {
     compareResult = *(int *)(bufferData + 0xe94);
     if (*piVar8 == piVar8[0xe]) {
@@ -67396,7 +67396,7 @@ void FUN_18069d460(longlong uiContext)
       functionResult = *(ushort *)((longlong)piVar8 + 2);
       lVar7 = piVar8[-4] + lVar4;
       allocatedMemory1 = ((longlong)(short)functionResult >> 3) +
-               (longlong)(((int)uVar9 >> 3) * compareResult) + (longlong)piVar8[-4] + lVar6;
+               (longlong)(((int)uVar9 >> 3) * compareResult) + (longlong)piVar8[-4] + contextData;
       if (((uVar9 & 7) == 0) && (((longlong)(short)functionResult & 7U) == 0)) {
         func_0x00018001cd0f(allocatedMemory1,compareResult,lVar7,compareResult);
       }
@@ -67405,9 +67405,9 @@ void FUN_18069d460(longlong uiContext)
       }
     }
     else {
-      FUN_18069d9e0(piVar8 + -0xc,piVar8[-4] + lVar4,compareResult,lVar6,compareResult,
+      FUN_18069d9e0(piVar8 + -0xc,piVar8[-4] + lVar4,compareResult,contextData,compareResult,
                     *(undefined8 *)(uiContext + 0xf98));
-      FUN_18069d9e0(piVar8 + 2,piVar8[10] + lVar4,compareResult,lVar6,compareResult,*(undefined8 *)(uiContext + 0xf98)
+      FUN_18069d9e0(piVar8 + 2,piVar8[10] + lVar4,compareResult,contextData,compareResult,*(undefined8 *)(uiContext + 0xf98)
                    );
     }
     piVar8 = piVar8 + 0x1c;
@@ -67467,7 +67467,7 @@ void FUN_18069d940(longlong uiContext,longlong dataSource,undefined8 *targetBuff
   undefined8 uVar3;
   ushort uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   uint uVar8;
   
@@ -67480,20 +67480,20 @@ void FUN_18069d940(longlong uiContext,longlong dataSource,undefined8 *targetBuff
     lVar5 = (longlong)param_6;
     semaphoreHandle = *(undefined8 *)((longlong)peventTypeCode + lVar5);
     uVar3 = *(undefined8 *)((longlong)peventTypeCode + lVar5 * 2);
-    lVar6 = (longlong)bufferSize;
+    contextData = (longlong)bufferSize;
     pfunctionResult = (undefined8 *)((longlong)peventTypeCode + lVar5 * 3);
     *targetBuffer = *peventTypeCode;
-    *(undefined8 *)((longlong)targetBuffer + lVar6) = semaphoreHandle;
-    *(undefined8 *)((longlong)targetBuffer + lVar6 * 2) = uVar3;
-    targetBuffer = (undefined8 *)((longlong)targetBuffer + lVar6 * 3);
+    *(undefined8 *)((longlong)targetBuffer + contextData) = semaphoreHandle;
+    *(undefined8 *)((longlong)targetBuffer + contextData * 2) = uVar3;
+    targetBuffer = (undefined8 *)((longlong)targetBuffer + contextData * 3);
     semaphoreHandle = *(undefined8 *)((longlong)pfunctionResult + lVar5);
     uVar3 = *(undefined8 *)((longlong)pfunctionResult + lVar5 * 2);
     *targetBuffer = *pfunctionResult;
-    *(undefined8 *)((longlong)targetBuffer + lVar6) = semaphoreHandle;
-    *(undefined8 *)((longlong)targetBuffer + lVar6 * 2) = uVar3;
+    *(undefined8 *)((longlong)targetBuffer + contextData) = semaphoreHandle;
+    *(undefined8 *)((longlong)targetBuffer + contextData * 2) = uVar3;
     semaphoreHandle = *(undefined8 *)((longlong)pfunctionResult + lVar5 * 4);
-    *(undefined8 *)((longlong)targetBuffer + lVar6 * 3) = *(undefined8 *)((longlong)pfunctionResult + lVar5 * 3);
-    *(undefined8 *)((longlong)targetBuffer + lVar6 * 4) = semaphoreHandle;
+    *(undefined8 *)((longlong)targetBuffer + contextData * 3) = *(undefined8 *)((longlong)pfunctionResult + lVar5 * 3);
+    *(undefined8 *)((longlong)targetBuffer + contextData * 4) = semaphoreHandle;
     return;
   }
                     // WARNING: Could not recover jumptable at 0x00018069d9d2. Too many branches
@@ -67643,7 +67643,7 @@ void FUN_18069de90(longlong uiContext)
   longlong stringCompareIndex;
   undefined8 uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int *piVar7;
   uint uVar8;
   longlong lVar9;
@@ -67685,7 +67685,7 @@ void FUN_18069de90(longlong uiContext)
     FUN_18069d940(uiContext,uiContext + 0xa90,*(int *)(bufferData + 0xab0) + stringCompareIndex,functionResult3,uVar4,functionResult3);
   }
   else {
-    lVar6 = 0x10;
+    contextData = 0x10;
     piVar7 = (int *)(uiContext + 0x880);
     lVar5 = uiContext + 0x890;
     allocatedMemory1 = 8;
@@ -67693,8 +67693,8 @@ void FUN_18069de90(longlong uiContext)
       functionResult3 = (undefined4)((ulonglong)in_stack_ffffffffffffffc8 >> 0x20);
       functionResult4 = (undefined4)((ulonglong)in_stack_ffffffffffffffd0 >> 0x20);
       functionResult5 = *(undefined4 *)(bufferData + 0xe80);
-      piVar7[4] = *(int *)(*(longlong *)(bufferData + 0xf00) + -4 + lVar6);
-      piVar7[0x12] = *(int *)(lVar6 + *(longlong *)(bufferData + 0xf00));
+      piVar7[4] = *(int *)(*(longlong *)(bufferData + 0xf00) + -4 + contextData);
+      piVar7[0x12] = *(int *)(contextData + *(longlong *)(bufferData + 0xf00));
       if (*(char *)(*(longlong *)(bufferData + 0xf00) + 10) != '\0') {
         func_0x00018069db00(lVar5,uiContext);
         func_0x00018069db00(lVar5 + 0x38);
@@ -67714,7 +67714,7 @@ void FUN_18069de90(longlong uiContext)
                       in_stack_ffffffffffffffd0);
       }
       lVar5 = lVar5 + 0x70;
-      lVar6 = lVar6 + 8;
+      contextData = contextData + 8;
       piVar7 = piVar7 + 0x1c;
       allocatedMemory1 = allocatedMemory1 + -1;
     } while (allocatedMemory1 != 0);
@@ -67723,7 +67723,7 @@ void FUN_18069de90(longlong uiContext)
   piVar7 = (int *)(uiContext + 0xc10);
   lVar5 = *(longlong *)(bufferData + 0xe20);
   allocatedMemory1 = 2;
-  lVar6 = 2;
+  contextData = 2;
   do {
     validationResult = *(int *)(bufferData + 0xe94);
     if (*piVar7 == piVar7[0xe]) {
@@ -67746,8 +67746,8 @@ void FUN_18069de90(longlong uiContext)
                    );
     }
     piVar7 = piVar7 + 0x1c;
-    lVar6 = lVar6 + -1;
-  } while (lVar6 != 0);
+    contextData = contextData + -1;
+  } while (contextData != 0);
   stringCompareIndex = *(longlong *)(bufferData + 0xeb8);
   piVar7 = (int *)(uiContext + 0xcf0);
   lVar5 = *(longlong *)(bufferData + 0xe28);
@@ -67756,14 +67756,14 @@ void FUN_18069de90(longlong uiContext)
     if (*piVar7 == piVar7[0xe]) {
       uVar8 = (uint)(short)*piVar7;
       functionResult = *(ushort *)((longlong)piVar7 + 2);
-      lVar6 = piVar7[-4] + stringCompareIndex;
+      contextData = piVar7[-4] + stringCompareIndex;
       allocatedMemory0 = ((longlong)(short)functionResult >> 3) +
                (longlong)(((int)uVar8 >> 3) * validationResult) + (longlong)piVar7[-4] + lVar5;
       if (((uVar8 & 7) == 0) && (((longlong)(short)functionResult & 7U) == 0)) {
-        func_0x00018001cd0f(allocatedMemory0,validationResult,lVar6,validationResult);
+        func_0x00018001cd0f(allocatedMemory0,validationResult,contextData,validationResult);
       }
       else {
-        (**(code **)(uiContext + 4000))(allocatedMemory0,validationResult,functionResult & 7,uVar8 & 7,lVar6,validationResult);
+        (**(code **)(uiContext + 4000))(allocatedMemory0,validationResult,functionResult & 7,uVar8 & 7,contextData,validationResult);
       }
     }
     else {
@@ -68122,7 +68122,7 @@ void FUN_18069e6e0(longlong uiContext)
   int compareResult;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined4 eventTypeCode;
   int iVar8;
   undefined4 *puVar9;
@@ -68162,13 +68162,13 @@ void FUN_18069e6e0(longlong uiContext)
   ulonglong uStack_30;
   
   uStack_30 = XorEncryptionKey ^ (ulonglong)auStack_118;
-  lVar6 = *(longlong *)(bufferData + 0x778);
+  contextData = *(longlong *)(bufferData + 0x778);
   uStack_60 = *(uint *)(uiContext + 0xba4);
   functionResult4 = (ulonglong)(int)uStack_60;
   lStack_58 = *(longlong *)(bufferData + 0xbf8);
-  lStack_a0 = *(longlong *)(lVar6 + 0x38);
-  lStack_98 = *(longlong *)(lVar6 + 0x40);
-  lStack_90 = *(longlong *)(lVar6 + 0x48);
+  lStack_a0 = *(longlong *)(contextData + 0x38);
+  lStack_98 = *(longlong *)(contextData + 0x40);
+  lStack_90 = *(longlong *)(contextData + 0x48);
   lStack_88 = *(longlong *)(bufferData + 0xaa8);
   lStack_68 = *(longlong *)(bufferData + 0xab0);
   lStack_78 = *(longlong *)(bufferData + 0xab8);
@@ -68177,7 +68177,7 @@ void FUN_18069e6e0(longlong uiContext)
   iStack_6c = 0;
   functionResult6 = functionResult4;
   uStack_a4 = eventTypeCode;
-  lStack_80 = lVar6;
+  lStack_80 = contextData;
   lStack_48 = uiContext;
   if (0 < *(int *)(bufferData + 0xbb4)) {
     do {
@@ -68189,7 +68189,7 @@ void FUN_18069e6e0(longlong uiContext)
           lVar4 = lStack_78;
           if (functionResult4 == 1) {
             compareResult = ProcessUIContextValidation(lStack_58,aiStack_40);
-            lVar6 = lStack_80;
+            contextData = lStack_80;
           }
           else {
             compareResult = 0;
@@ -68198,12 +68198,12 @@ void FUN_18069e6e0(longlong uiContext)
             }
           }
           if (compareResult == 0) {
-            func_0x00018001cb80(lStack_a0,*(undefined4 *)(lVar6 + 0x10),lStack_88,
+            func_0x00018001cb80(lStack_a0,*(undefined4 *)(contextData + 0x10),lStack_88,
                                 *(undefined4 *)(bufferData + 0xa80));
-            lVar6 = lStack_80;
+            contextData = lStack_80;
             func_0x00018001cc90(lStack_98,*(undefined4 *)(lStack_80 + 0x24),allocatedMemory0,
                                 *(undefined4 *)(bufferData + 0xa94));
-            func_0x00018001cc90(lStack_90,*(undefined4 *)(lVar6 + 0x24),lVar4,
+            func_0x00018001cc90(lStack_90,*(undefined4 *)(contextData + 0x24),lVar4,
                                 *(undefined4 *)(bufferData + 0xa94));
             eventTypeCode = uStack_a4;
           }
@@ -68215,14 +68215,14 @@ void FUN_18069e6e0(longlong uiContext)
               lStack_50 = 2;
               do {
                 if (*poperationResult2 == 0) {
-                  lVar5 = (longlong)((*(int *)(lVar6 + 0x24) * compareResult + iVar8) * 4);
+                  lVar5 = (longlong)((*(int *)(contextData + 0x24) * compareResult + iVar8) * 4);
                   puVar9 = (undefined4 *)(lVar5 + lStack_90);
                   pfunctionResult5 = (undefined4 *)(lVar5 + lStack_98);
                   lVar5 = (longlong)((compareResult * *(int *)(bufferData + 0xa94) + iVar8) * 4);
                   pfunctionResult1 = (undefined4 *)(allocatedMemory0 + lVar5);
                   pfunctionResult3 = (undefined4 *)(lVar4 + lVar5);
-                  func_0x00018001cc90((*(int *)(lVar6 + 0x10) * compareResult + iVar8) * 8 + lStack_a0,
-                                      *(int *)(lVar6 + 0x10),
+                  func_0x00018001cc90((*(int *)(contextData + 0x10) * compareResult + iVar8) * 8 + lStack_a0,
+                                      *(int *)(contextData + 0x10),
                                       (*(int *)(bufferData + 0xa80) * compareResult + iVar8) * 8 + lStack_88);
                   *pfunctionResult1 = *pfunctionResult5;
                   *pfunctionResult3 = *puVar9;
@@ -68248,10 +68248,10 @@ void FUN_18069e6e0(longlong uiContext)
                        *(undefined4 *)((longlong)puVar9 + (longlong)operationResult);
                 }
                 else {
-                  iStack_e0 = *(int *)(lVar6 + 0x24);
+                  iStack_e0 = *(int *)(contextData + 0x24);
                   iStack_b8 = *(int *)(bufferData + 0xa94);
                   iStack_c0 = *(int *)(bufferData + 0xa80);
-                  iStack_e8 = *(int *)(lVar6 + 0x10);
+                  iStack_e8 = *(int *)(contextData + 0x10);
                   lStack_d0 = (longlong)((iStack_b8 * compareResult + iVar8) * 4);
                   lStack_c8 = lStack_78 + lStack_d0;
                   lStack_d0 = allocatedMemory0 + lStack_d0;
@@ -68265,7 +68265,7 @@ void FUN_18069e6e0(longlong uiContext)
                 iVar8 = iVar8 + 1;
                 poperationResult2 = poperationResult2 + 1;
                 lStack_50 = lStack_50 + -1;
-                lVar6 = lStack_80;
+                contextData = lStack_80;
                 allocatedMemory0 = lStack_68;
                 lVar4 = lStack_78;
               } while (lStack_50 != 0);
@@ -68279,8 +68279,8 @@ void FUN_18069e6e0(longlong uiContext)
           else {
             iStack_b8 = *(int *)(bufferData + 0xa94);
             iStack_c0 = *(int *)(bufferData + 0xa80);
-            iStack_e0 = *(int *)(lVar6 + 0x24);
-            iStack_e8 = *(int *)(lVar6 + 0x10);
+            iStack_e0 = *(int *)(contextData + 0x24);
+            iStack_e8 = *(int *)(contextData + 0x10);
             lStack_f8 = lStack_98;
             lStack_f0 = lStack_90;
             lStack_d8 = lStack_88;
@@ -68297,14 +68297,14 @@ void FUN_18069e6e0(longlong uiContext)
           lStack_78 = lVar4 + 8;
           lStack_58 = lVar5 + 0x4c;
           functionResult4 = (ulonglong)(int)functionResult6;
-          lVar6 = lStack_80;
+          contextData = lStack_80;
         } while (iStack_70 < *(int *)(bufferData + 3000));
       }
       compareResult = *(int *)(bufferData + 3000);
       lStack_58 = lStack_58 + 0x4c;
       iStack_6c = iStack_6c + 1;
-      lStack_a0 = lStack_a0 + (*(int *)(lVar6 + 0x10) - compareResult) * 0x10;
-      lVar4 = (longlong)((*(int *)(lVar6 + 0x24) - compareResult) * 8);
+      lStack_a0 = lStack_a0 + (*(int *)(contextData + 0x10) - compareResult) * 0x10;
+      lVar4 = (longlong)((*(int *)(contextData + 0x24) - compareResult) * 8);
       lStack_98 = lStack_98 + lVar4;
       lStack_90 = lStack_90 + lVar4;
       lStack_88 = lStack_88 + (*(int *)(bufferData + 0xa80) - compareResult) * 0x10;
@@ -70072,8 +70072,8 @@ void ProcessUITransformData(longlong uiContext, longlong dataSource, int targetB
     lVar9 = (longlong)targetBuffer;
     if (3 < lVar9) {
       pfVar5 = (float *)(dataSource + 8);
-      lVar6 = (lVar9 - 4U >> 2) + 1;
-      allocatedMemory0 = lVar6 * 4;
+      contextData = (lVar9 - 4U >> 2) + 1;
+      allocatedMemory0 = contextData * 4;
       do {
         floatResult4 = pfVar5[-2];
         floatResult3 = pfVar5[-1];
@@ -70084,8 +70084,8 @@ void ProcessUITransformData(longlong uiContext, longlong dataSource, int targetB
         floatResult5 = pfVar5[1] * floatResult;
         pfVar5[1] = pfVar5[1] - fVar2 * floatResult;
         pfVar5 = pfVar5 + 4;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        contextData = contextData + -1;
+      } while (contextData != 0);
     }
     for (; allocatedMemory0 < lVar9; allocatedMemory0 = allocatedMemory0 + 1) {
       floatResult4 = *(float *)(dataSource + allocatedMemory0 * 4);
@@ -70607,7 +70607,7 @@ float FUN_180702f80(longlong uiContext,uint dataSource,int targetBuffer,float bu
   float *pfVar3;
   float *pfVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   longlong lVar8;
   ulonglong uVar9;
@@ -70656,13 +70656,13 @@ float FUN_180702f80(longlong uiContext,uint dataSource,int targetBuffer,float bu
     } while ((longlong)uVar9 < (longlong)(int)(dataSource - uVar5));
     floatResult6 = floatResult8 + floatResult4 + floatResult6 + floatResult2 + floatResult9 + floatResult5 + floatResult7 + floatResult3;
   }
-  lVar6 = (longlong)(int)functionResult0;
+  contextData = (longlong)(int)functionResult0;
   lVar8 = (longlong)(int)dataSource;
-  if (lVar6 < lVar8) {
-    if (3 < lVar8 - lVar6) {
-      pfVar4 = (float *)(uiContext + 8 + lVar6 * 4);
-      lVar7 = ((lVar8 - lVar6) - 4U >> 2) + 1;
-      lVar6 = lVar6 + lVar7 * 4;
+  if (contextData < lVar8) {
+    if (3 < lVar8 - contextData) {
+      pfVar4 = (float *)(uiContext + 8 + contextData * 4);
+      lVar7 = ((lVar8 - contextData) - 4U >> 2) + 1;
+      contextData = contextData + lVar7 * 4;
       do {
         pfloatResult = pfVar4 + -2;
         pfVar2 = pfVar4 + -1;
@@ -70673,8 +70673,8 @@ float FUN_180702f80(longlong uiContext,uint dataSource,int targetBuffer,float bu
         lVar7 = lVar7 + -1;
       } while (lVar7 != 0);
     }
-    for (; lVar6 < lVar8; lVar6 = lVar6 + 1) {
-      floatResult6 = floatResult6 + ABS(*(float *)(uiContext + lVar6 * 4));
+    for (; contextData < lVar8; contextData = contextData + 1) {
+      floatResult6 = floatResult6 + ABS(*(float *)(uiContext + contextData * 4));
     }
   }
   return ((float)targetBuffer * bufferSize + 1.0) * floatResult6;
@@ -70882,7 +70882,7 @@ void FUN_180703510(longlong uiContext,longlong dataSource,int targetBuffer,int b
   float *pfVar3;
   ulonglong uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   int iVar8;
   longlong lVar9;
@@ -70908,8 +70908,8 @@ void FUN_180703510(longlong uiContext,longlong dataSource,int targetBuffer,int b
       if (3 < allocatedMemory2 - lVar9) {
         lVar7 = -dataSource;
         pfVar3 = (float *)(dataSource + 4 + lVar9 * 4);
-        lVar6 = ((allocatedMemory2 - lVar9) - 4U >> 2) + 1;
-        lVar9 = lVar9 + lVar6 * 4;
+        contextData = ((allocatedMemory2 - lVar9) - 4U >> 2) + 1;
+        lVar9 = lVar9 + contextData * 4;
         do {
           floatResult3 = *(float *)((longlong)afStack_b0 + lVar7 + (longlong)pfVar3) - 1.0;
           if (floatResult3 <= pfVar3[-1]) {
@@ -70932,8 +70932,8 @@ void FUN_180703510(longlong uiContext,longlong dataSource,int targetBuffer,int b
           }
           *(float *)((longlong)afStack_b0 + (0x10 - dataSource) + (longlong)pfVar3) = floatResult4;
           pfVar3 = pfVar3 + 4;
-          lVar6 = lVar6 + -1;
-        } while (lVar6 != 0);
+          contextData = contextData + -1;
+        } while (contextData != 0);
       }
       if (lVar9 < allocatedMemory2) {
         pfVar3 = (float *)(dataSource + lVar9 * 4);
@@ -71086,8 +71086,8 @@ void FUN_180703510(longlong uiContext,longlong dataSource,int targetBuffer,int b
       if (3 < allocatedMemory0 - lVar9) {
         lVar5 = (longlong)iVar8;
         lVar7 = uiContext + (lVar5 + lVar9) * 4;
-        lVar6 = ((allocatedMemory0 - lVar9) - 4U >> 2) + 1;
-        allocatedMemory2 = lVar9 + lVar6 * 4;
+        contextData = ((allocatedMemory0 - lVar9) - 4U >> 2) + 1;
+        allocatedMemory2 = lVar9 + contextData * 4;
         do {
           floatResult3 = *(float *)((longlong)afStack_b0 + lVar7 + (lVar5 * -4 - uiContext) + 0x10);
           if (floatResult3 <= 0.0) {
@@ -71114,8 +71114,8 @@ void FUN_180703510(longlong uiContext,longlong dataSource,int targetBuffer,int b
           if (in_XMM2_Da <= 0.0) {
             in_XMM2_Da = 0.0;
           }
-          lVar6 = lVar6 + -1;
-        } while (lVar6 != 0);
+          contextData = contextData + -1;
+        } while (contextData != 0);
       }
       if (allocatedMemory2 < allocatedMemory0) {
         do {
@@ -71299,7 +71299,7 @@ void FUN_1807048a0(int uiContext,int dataSource,int targetBuffer,longlong buffer
   int compareResult;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   int iVar8;
   longlong lVar9;
@@ -71325,31 +71325,31 @@ void FUN_1807048a0(int uiContext,int dataSource,int targetBuffer,longlong buffer
   }
   uVar4 = 0;
   if (allocatedMemory0 < lVar9) {
-    lVar6 = allocatedMemory0;
+    contextData = allocatedMemory0;
     uVar4 = semaphoreHandle;
     do {
       if (uVar5 - functionResult < (uint)(iVar7 + compareResult)) {
-        *(uint *)(bufferSize + lVar6 * 4) = semaphoreHandle;
+        *(uint *)(bufferSize + contextData * 4) = semaphoreHandle;
       }
       else {
-        func_0x000180705150(param_7,semaphoreHandle ^ *(uint *)(bufferSize + lVar6 * 4));
+        func_0x000180705150(param_7,semaphoreHandle ^ *(uint *)(bufferSize + contextData * 4));
         iVar8 = 0x1f;
         if (*(uint *)(param_7 + 0x20) != 0) {
           for (; *(uint *)(param_7 + 0x20) >> iVar8 == 0; iVar8 = iVar8 + -1) {
           }
         }
-        semaphoreHandle = *(uint *)(bufferSize + lVar6 * 4);
+        semaphoreHandle = *(uint *)(bufferSize + contextData * 4);
         compareResult = (*(int *)(param_7 + 0x18) - iVar8) + -1;
         uVar4 = uVar4 | semaphoreHandle;
       }
-      lVar6 = lVar6 + 1;
+      contextData = contextData + 1;
       iVar7 = 5 - (uint)(targetBuffer != 0);
-    } while (lVar6 < lVar9);
+    } while (contextData < lVar9);
   }
   uVar5 = 0;
   if ((functionResult != 0) &&
-     (lVar6 = (longlong)(int)(uVar4 + targetBuffer * 4) + (longlong)resultPointer * 8, uVar5 = 0,
-     (&UiComparisonBuffer1)[lVar6] != (&UiComparisonBuffer2)[lVar6])) {
+     (contextData = (longlong)(int)(uVar4 + targetBuffer * 4) + (longlong)resultPointer * 8, uVar5 = 0,
+     (&UiComparisonBuffer1)[contextData] != (&UiComparisonBuffer2)[contextData])) {
     func_0x000180705150(param_7,param_6,1);
     uVar5 = param_6;
   }
@@ -72986,7 +72986,7 @@ void FUN_1807072c0(longlong uiContext,float *dataSource,longlong targetBuffer,in
   uint uVar3;
   float *pfVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   longlong lVar8;
   longlong lVar9;
@@ -73038,18 +73038,18 @@ void FUN_1807072c0(longlong uiContext,float *dataSource,longlong targetBuffer,in
     if (3 < lVar9 - allocatedMemory1) {
       pfVar4 = (float *)(uiContext + 4 + allocatedMemory1 * 4);
       lVar8 = (longlong)dataSource - uiContext;
-      lVar6 = targetBuffer - uiContext;
+      contextData = targetBuffer - uiContext;
       allocatedMemory0 = ((lVar9 - allocatedMemory1) - 4U >> 2) + 1;
       allocatedMemory1 = allocatedMemory1 + allocatedMemory0 * 4;
       do {
         *resultPointer = *(float *)((longlong)pfVar4 + lVar8 + -4) * pfVar4[-1] + *resultPointer;
-        *param_6 = *(float *)((longlong)pfVar4 + lVar6 + -4) * pfVar4[-1] + *param_6;
+        *param_6 = *(float *)((longlong)pfVar4 + contextData + -4) * pfVar4[-1] + *param_6;
         *resultPointer = *(float *)(lVar8 + (longlong)pfVar4) * *pfVar4 + *resultPointer;
-        *param_6 = *(float *)((longlong)pfVar4 + lVar6) * *pfVar4 + *param_6;
+        *param_6 = *(float *)((longlong)pfVar4 + contextData) * *pfVar4 + *param_6;
         *resultPointer = *(float *)((longlong)pfVar4 + lVar8 + 4) * pfVar4[1] + *resultPointer;
-        *param_6 = *(float *)((longlong)pfVar4 + lVar6 + 4) * pfVar4[1] + *param_6;
+        *param_6 = *(float *)((longlong)pfVar4 + contextData + 4) * pfVar4[1] + *param_6;
         *resultPointer = *(float *)((longlong)pfVar4 + lVar8 + 8) * pfVar4[2] + *resultPointer;
-        pfVar2 = (float *)((longlong)pfVar4 + lVar6 + 8);
+        pfVar2 = (float *)((longlong)pfVar4 + contextData + 8);
         pfloatResult = pfVar4 + 2;
         pfVar4 = pfVar4 + 4;
         *param_6 = *pfVar2 * *pfloatResult + *param_6;
@@ -73086,7 +73086,7 @@ void FUN_18070737d(float *uiContext,float *dataSource,longlong targetBuffer)
   float fVar4;
   float *pfVar5;
   longlong context;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   longlong unaff_RDI;
   longlong lVar8;
@@ -73095,18 +73095,18 @@ void FUN_18070737d(float *uiContext,float *dataSource,longlong targetBuffer)
   
   pfVar5 = (float *)(unaff_RDI + 4 + in_R10 * 4);
   lVar7 = in_R11 - unaff_RDI;
-  lVar6 = context - unaff_RDI;
+  contextData = context - unaff_RDI;
   lVar8 = ((targetBuffer - in_R10) - 4U >> 2) + 1;
   allocatedMemory = in_R10 + lVar8 * 4;
   do {
     *uiContext = *(float *)((longlong)pfVar5 + lVar7 + -4) * pfVar5[-1] + *uiContext;
-    *dataSource = *(float *)((longlong)pfVar5 + lVar6 + -4) * pfVar5[-1] + *dataSource;
+    *dataSource = *(float *)((longlong)pfVar5 + contextData + -4) * pfVar5[-1] + *dataSource;
     *uiContext = *(float *)(lVar7 + (longlong)pfVar5) * *pfVar5 + *uiContext;
-    *dataSource = *(float *)((longlong)pfVar5 + lVar6) * *pfVar5 + *dataSource;
+    *dataSource = *(float *)((longlong)pfVar5 + contextData) * *pfVar5 + *dataSource;
     *uiContext = *(float *)((longlong)pfVar5 + lVar7 + 4) * pfVar5[1] + *uiContext;
-    *dataSource = *(float *)((longlong)pfVar5 + lVar6 + 4) * pfVar5[1] + *dataSource;
+    *dataSource = *(float *)((longlong)pfVar5 + contextData + 4) * pfVar5[1] + *dataSource;
     *uiContext = *(float *)((longlong)pfVar5 + lVar7 + 8) * pfVar5[2] + *uiContext;
-    pfVar3 = (float *)((longlong)pfVar5 + lVar6 + 8);
+    pfVar3 = (float *)((longlong)pfVar5 + contextData + 8);
     pfVar2 = pfVar5 + 2;
     pfVar5 = pfVar5 + 4;
     *dataSource = *pfVar3 * *pfVar2 + *dataSource;
@@ -73308,7 +73308,7 @@ void FUN_180707950(longlong uiContext,undefined8 dataSource,longlong targetBuffe
   undefined8 uVar3;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   ulonglong uVar8;
   int iVar9;
@@ -73432,14 +73432,14 @@ void FUN_180707950(longlong uiContext,undefined8 dataSource,longlong targetBuffe
   lVar5 = (longlong)(100 - operationResult6);
   if (3 < lVar5) {
     pfVar7 = (float *)(uiContext + 0x1eb4);
-    lVar6 = (lVar5 - 4U >> 2) + 1;
-    iVar4 = (int)lVar6 * 4;
-    functionResult3 = lVar6 * 4;
+    contextData = (lVar5 - 4U >> 2) + 1;
+    iVar4 = (int)contextData * 4;
+    functionResult3 = contextData * 4;
     do {
       fVar20 = fVar20 + pfVar7[-1] + *pfVar7 + pfVar7[1] + pfVar7[2];
       pfVar7 = pfVar7 + 4;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      contextData = contextData + -1;
+    } while (contextData != 0);
   }
   if ((longlong)functionResult3 < lVar5) {
     lVar5 = lVar5 - functionResult3;
@@ -73455,22 +73455,22 @@ void FUN_180707950(longlong uiContext,undefined8 dataSource,longlong targetBuffe
   if (lVar5 < 100) {
     if (3 < 100 - lVar5) {
       pfVar7 = (float *)(uiContext + 0x1d24 + lVar5 * 4);
-      lVar6 = (0x60U - lVar5 >> 2) + 1;
-      lVar5 = lVar5 + lVar6 * 4;
+      contextData = (0x60U - lVar5 >> 2) + 1;
+      lVar5 = lVar5 + contextData * 4;
       do {
         fVar20 = fVar20 + pfVar7[-1] + *pfVar7 + pfVar7[1] + pfVar7[2];
         pfVar7 = pfVar7 + 4;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        contextData = contextData + -1;
+      } while (contextData != 0);
     }
     if (lVar5 < 100) {
-      lVar6 = 100 - lVar5;
+      contextData = 100 - lVar5;
       pfVar7 = (float *)(uiContext + 0x1d20 + lVar5 * 4);
       do {
         fVar20 = fVar20 + *pfVar7;
         pfVar7 = pfVar7 + 1;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        contextData = contextData + -1;
+      } while (contextData != 0);
     }
   }
   *(float *)((longlong)uiContext2 + 0x14) =
@@ -73491,7 +73491,7 @@ void FUN_180707988(int uiContext,undefined8 dataSource,undefined8 targetBuffer,i
   int bufferSize;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   ulonglong uVar8;
   int iVar9;
@@ -73636,14 +73636,14 @@ void FUN_180707988(int uiContext,undefined8 dataSource,undefined8 targetBuffer,i
   lVar5 = (longlong)(100 - operationResult1);
   if (3 < lVar5) {
     pfVar7 = (float *)(unaff_RBP + 0x1eb4);
-    lVar6 = (lVar5 - 4U >> 2) + 1;
-    iVar4 = (int)lVar6 * 4;
-    functionResult4 = lVar6 * 4;
+    contextData = (lVar5 - 4U >> 2) + 1;
+    iVar4 = (int)contextData * 4;
+    functionResult4 = contextData * 4;
     do {
       fVar20 = fVar20 + pfVar7[-1] + *pfVar7 + pfVar7[1] + pfVar7[2];
       pfVar7 = pfVar7 + 4;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      contextData = contextData + -1;
+    } while (contextData != 0);
   }
   if ((longlong)functionResult4 < lVar5) {
     lVar5 = lVar5 - functionResult4;
@@ -73659,22 +73659,22 @@ void FUN_180707988(int uiContext,undefined8 dataSource,undefined8 targetBuffer,i
   if (lVar5 < 100) {
     if (3 < 100 - lVar5) {
       pfVar7 = (float *)(unaff_RBP + 0x1d24 + lVar5 * 4);
-      lVar6 = (0x60U - lVar5 >> 2) + 1;
-      lVar5 = lVar5 + lVar6 * 4;
+      contextData = (0x60U - lVar5 >> 2) + 1;
+      lVar5 = lVar5 + contextData * 4;
       do {
         fVar20 = fVar20 + pfVar7[-1] + *pfVar7 + pfVar7[1] + pfVar7[2];
         pfVar7 = pfVar7 + 4;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        contextData = contextData + -1;
+      } while (contextData != 0);
     }
     if (lVar5 < 100) {
-      lVar6 = 100 - lVar5;
+      contextData = 100 - lVar5;
       pfVar7 = (float *)(unaff_RBP + 0x1d20 + lVar5 * 4);
       do {
         fVar20 = fVar20 + *pfVar7;
         pfVar7 = pfVar7 + 1;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        contextData = contextData + -1;
+      } while (contextData != 0);
     }
   }
   *(float *)((longlong)in_stack_000000d8 + 0x14) =
@@ -73694,7 +73694,7 @@ void FUN_1807079df(undefined8 uiContext,int dataSource)
   undefined8 uVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   float *pfVar8;
   int iVar9;
@@ -73755,20 +73755,20 @@ void FUN_1807079df(undefined8 uiContext,int dataSource)
     operationResult3 = 99;
   }
   functionResult0 = (ulonglong)operationResult3;
-  lVar6 = functionResult0 * 0x38;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x206c + unaff_RBP);
+  contextData = functionResult0 * 0x38;
+  psemaphoreHandle = (undefined8 *)(contextData + 0x206c + unaff_RBP);
   uVar3 = psemaphoreHandle[1];
   *in_stack_000000d8 = *psemaphoreHandle;
   in_stack_000000d8[1] = uVar3;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x207c + unaff_RBP);
+  psemaphoreHandle = (undefined8 *)(contextData + 0x207c + unaff_RBP);
   uVar3 = psemaphoreHandle[1];
   in_stack_000000d8[2] = *psemaphoreHandle;
   in_stack_000000d8[3] = uVar3;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x208c + unaff_RBP);
+  psemaphoreHandle = (undefined8 *)(contextData + 0x208c + unaff_RBP);
   uVar3 = psemaphoreHandle[1];
   in_stack_000000d8[4] = *psemaphoreHandle;
   in_stack_000000d8[5] = uVar3;
-  in_stack_000000d8[6] = *(undefined8 *)(lVar6 + 0x209c + unaff_RBP);
+  in_stack_000000d8[6] = *(undefined8 *)(contextData + 0x209c + unaff_RBP);
   fVar20 = *(float *)((longlong)in_stack_000000d8 + 4);
   functionResult6 = functionResult4;
   floatResult8 = fVar20;
@@ -73816,10 +73816,10 @@ void FUN_1807079df(undefined8 uiContext,int dataSource)
   if (operationResult2 + -1 < 1) {
     iVar9 = iVar4;
   }
-  lVar6 = (longlong)(100 - iVar9);
-  if (3 < lVar6) {
+  contextData = (longlong)(100 - iVar9);
+  if (3 < contextData) {
     pfVar8 = (float *)(unaff_RBP + 0x1eb4);
-    lVar7 = (lVar6 - 4U >> 2) + 1;
+    lVar7 = (contextData - 4U >> 2) + 1;
     iVar4 = (int)lVar7 * 4;
     functionResult4 = lVar7 * 4;
     do {
@@ -73828,31 +73828,31 @@ void FUN_1807079df(undefined8 uiContext,int dataSource)
       lVar7 = lVar7 + -1;
     } while (lVar7 != 0);
   }
-  if ((longlong)functionResult4 < lVar6) {
-    lVar6 = lVar6 - functionResult4;
+  if ((longlong)functionResult4 < contextData) {
+    contextData = contextData - functionResult4;
     pfVar8 = (float *)(unaff_RBP + 0x1eb0 + functionResult4 * 4);
-    iVar4 = iVar4 + (int)lVar6;
+    iVar4 = iVar4 + (int)contextData;
     do {
       fVar20 = fVar20 + *pfVar8;
       pfVar8 = pfVar8 + 1;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      contextData = contextData + -1;
+    } while (contextData != 0);
   }
-  lVar6 = (longlong)iVar4;
-  if (lVar6 < 100) {
-    if (3 < 100 - lVar6) {
-      pfVar8 = (float *)(unaff_RBP + 0x1d24 + lVar6 * 4);
-      lVar7 = (0x60U - lVar6 >> 2) + 1;
-      lVar6 = lVar6 + lVar7 * 4;
+  contextData = (longlong)iVar4;
+  if (contextData < 100) {
+    if (3 < 100 - contextData) {
+      pfVar8 = (float *)(unaff_RBP + 0x1d24 + contextData * 4);
+      lVar7 = (0x60U - contextData >> 2) + 1;
+      contextData = contextData + lVar7 * 4;
       do {
         fVar20 = fVar20 + pfVar8[-1] + *pfVar8 + pfVar8[1] + pfVar8[2];
         pfVar8 = pfVar8 + 4;
         lVar7 = lVar7 + -1;
       } while (lVar7 != 0);
     }
-    if (lVar6 < 100) {
-      lVar7 = 100 - lVar6;
-      pfVar8 = (float *)(unaff_RBP + 0x1d20 + lVar6 * 4);
+    if (contextData < 100) {
+      lVar7 = 100 - contextData;
+      pfVar8 = (float *)(unaff_RBP + 0x1d20 + contextData * 4);
       do {
         fVar20 = fVar20 + *pfVar8;
         pfVar8 = pfVar8 + 1;
@@ -73877,7 +73877,7 @@ void FUN_180707a56(void)
   undefined8 uVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   float *pfVar8;
   int iVar9;
@@ -73921,20 +73921,20 @@ void FUN_180707a56(void)
     operationResult3 = 99;
   }
   functionResult0 = (ulonglong)operationResult3;
-  lVar6 = functionResult0 * 0x38;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x206c + unaff_RBP);
+  contextData = functionResult0 * 0x38;
+  psemaphoreHandle = (undefined8 *)(contextData + 0x206c + unaff_RBP);
   uVar3 = psemaphoreHandle[1];
   *in_stack_000000d8 = *psemaphoreHandle;
   in_stack_000000d8[1] = uVar3;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x207c + unaff_RBP);
+  psemaphoreHandle = (undefined8 *)(contextData + 0x207c + unaff_RBP);
   uVar3 = psemaphoreHandle[1];
   in_stack_000000d8[2] = *psemaphoreHandle;
   in_stack_000000d8[3] = uVar3;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x208c + unaff_RBP);
+  psemaphoreHandle = (undefined8 *)(contextData + 0x208c + unaff_RBP);
   uVar3 = psemaphoreHandle[1];
   in_stack_000000d8[4] = *psemaphoreHandle;
   in_stack_000000d8[5] = uVar3;
-  in_stack_000000d8[6] = *(undefined8 *)(lVar6 + 0x209c + unaff_RBP);
+  in_stack_000000d8[6] = *(undefined8 *)(contextData + 0x209c + unaff_RBP);
   fVar20 = *(float *)((longlong)in_stack_000000d8 + 4);
   functionResult6 = functionResult4;
   floatResult8 = fVar20;
@@ -73982,10 +73982,10 @@ void FUN_180707a56(void)
   if (operationResult2 + -1 < 1) {
     iVar9 = iVar4;
   }
-  lVar6 = (longlong)(100 - iVar9);
-  if (3 < lVar6) {
+  contextData = (longlong)(100 - iVar9);
+  if (3 < contextData) {
     pfVar8 = (float *)(unaff_RBP + 0x1eb4);
-    lVar7 = (lVar6 - 4U >> 2) + 1;
+    lVar7 = (contextData - 4U >> 2) + 1;
     iVar4 = (int)lVar7 * 4;
     functionResult4 = lVar7 * 4;
     do {
@@ -73994,31 +73994,31 @@ void FUN_180707a56(void)
       lVar7 = lVar7 + -1;
     } while (lVar7 != 0);
   }
-  if ((longlong)functionResult4 < lVar6) {
-    lVar6 = lVar6 - functionResult4;
+  if ((longlong)functionResult4 < contextData) {
+    contextData = contextData - functionResult4;
     pfVar8 = (float *)(unaff_RBP + 0x1eb0 + functionResult4 * 4);
-    iVar4 = iVar4 + (int)lVar6;
+    iVar4 = iVar4 + (int)contextData;
     do {
       fVar20 = fVar20 + *pfVar8;
       pfVar8 = pfVar8 + 1;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      contextData = contextData + -1;
+    } while (contextData != 0);
   }
-  lVar6 = (longlong)iVar4;
-  if (lVar6 < 100) {
-    if (3 < 100 - lVar6) {
-      pfVar8 = (float *)(unaff_RBP + 0x1d24 + lVar6 * 4);
-      lVar7 = (0x60U - lVar6 >> 2) + 1;
-      lVar6 = lVar6 + lVar7 * 4;
+  contextData = (longlong)iVar4;
+  if (contextData < 100) {
+    if (3 < 100 - contextData) {
+      pfVar8 = (float *)(unaff_RBP + 0x1d24 + contextData * 4);
+      lVar7 = (0x60U - contextData >> 2) + 1;
+      contextData = contextData + lVar7 * 4;
       do {
         fVar20 = fVar20 + pfVar8[-1] + *pfVar8 + pfVar8[1] + pfVar8[2];
         pfVar8 = pfVar8 + 4;
         lVar7 = lVar7 + -1;
       } while (lVar7 != 0);
     }
-    if (lVar6 < 100) {
-      lVar7 = 100 - lVar6;
-      pfVar8 = (float *)(unaff_RBP + 0x1d20 + lVar6 * 4);
+    if (contextData < 100) {
+      lVar7 = 100 - contextData;
+      pfVar8 = (float *)(unaff_RBP + 0x1d20 + contextData * 4);
       do {
         fVar20 = fVar20 + *pfVar8;
         pfVar8 = pfVar8 + 1;
@@ -74043,7 +74043,7 @@ void FUN_180707a74(void)
   undefined8 uVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   float *pfVar8;
   int iVar9;
@@ -74085,20 +74085,20 @@ void FUN_180707a74(void)
     operationResult3 = 99;
   }
   functionResult0 = (ulonglong)operationResult3;
-  lVar6 = functionResult0 * 0x38;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x206c + unaff_RBP);
+  contextData = functionResult0 * 0x38;
+  psemaphoreHandle = (undefined8 *)(contextData + 0x206c + unaff_RBP);
   uVar3 = psemaphoreHandle[1];
   *in_stack_000000d8 = *psemaphoreHandle;
   in_stack_000000d8[1] = uVar3;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x207c + unaff_RBP);
+  psemaphoreHandle = (undefined8 *)(contextData + 0x207c + unaff_RBP);
   uVar3 = psemaphoreHandle[1];
   in_stack_000000d8[2] = *psemaphoreHandle;
   in_stack_000000d8[3] = uVar3;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x208c + unaff_RBP);
+  psemaphoreHandle = (undefined8 *)(contextData + 0x208c + unaff_RBP);
   uVar3 = psemaphoreHandle[1];
   in_stack_000000d8[4] = *psemaphoreHandle;
   in_stack_000000d8[5] = uVar3;
-  in_stack_000000d8[6] = *(undefined8 *)(lVar6 + 0x209c + unaff_RBP);
+  in_stack_000000d8[6] = *(undefined8 *)(contextData + 0x209c + unaff_RBP);
   fVar20 = *(float *)((longlong)in_stack_000000d8 + 4);
   functionResult6 = functionResult4;
   floatResult8 = fVar20;
@@ -74146,10 +74146,10 @@ void FUN_180707a74(void)
   if (operationResult2 + -1 < 1) {
     iVar9 = iVar4;
   }
-  lVar6 = (longlong)(100 - iVar9);
-  if (3 < lVar6) {
+  contextData = (longlong)(100 - iVar9);
+  if (3 < contextData) {
     pfVar8 = (float *)(unaff_RBP + 0x1eb4);
-    lVar7 = (lVar6 - 4U >> 2) + 1;
+    lVar7 = (contextData - 4U >> 2) + 1;
     iVar4 = (int)lVar7 * 4;
     functionResult4 = lVar7 * 4;
     do {
@@ -74158,31 +74158,31 @@ void FUN_180707a74(void)
       lVar7 = lVar7 + -1;
     } while (lVar7 != 0);
   }
-  if ((longlong)functionResult4 < lVar6) {
-    lVar6 = lVar6 - functionResult4;
+  if ((longlong)functionResult4 < contextData) {
+    contextData = contextData - functionResult4;
     pfVar8 = (float *)(unaff_RBP + 0x1eb0 + functionResult4 * 4);
-    iVar4 = iVar4 + (int)lVar6;
+    iVar4 = iVar4 + (int)contextData;
     do {
       fVar20 = fVar20 + *pfVar8;
       pfVar8 = pfVar8 + 1;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      contextData = contextData + -1;
+    } while (contextData != 0);
   }
-  lVar6 = (longlong)iVar4;
-  if (lVar6 < 100) {
-    if (3 < 100 - lVar6) {
-      pfVar8 = (float *)(unaff_RBP + 0x1d24 + lVar6 * 4);
-      lVar7 = (0x60U - lVar6 >> 2) + 1;
-      lVar6 = lVar6 + lVar7 * 4;
+  contextData = (longlong)iVar4;
+  if (contextData < 100) {
+    if (3 < 100 - contextData) {
+      pfVar8 = (float *)(unaff_RBP + 0x1d24 + contextData * 4);
+      lVar7 = (0x60U - contextData >> 2) + 1;
+      contextData = contextData + lVar7 * 4;
       do {
         fVar20 = fVar20 + pfVar8[-1] + *pfVar8 + pfVar8[1] + pfVar8[2];
         pfVar8 = pfVar8 + 4;
         lVar7 = lVar7 + -1;
       } while (lVar7 != 0);
     }
-    if (lVar6 < 100) {
-      lVar7 = 100 - lVar6;
-      pfVar8 = (float *)(unaff_RBP + 0x1d20 + lVar6 * 4);
+    if (contextData < 100) {
+      lVar7 = 100 - contextData;
+      pfVar8 = (float *)(unaff_RBP + 0x1d20 + contextData * 4);
       do {
         fVar20 = fVar20 + *pfVar8;
         pfVar8 = pfVar8 + 1;
@@ -74687,7 +74687,7 @@ void FUN_18070b6a0(longlong uiContext,undefined8 *dataSource,int targetBuffer)
   undefined8 uVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   float *pfVar8;
   int iVar9;
@@ -74725,20 +74725,20 @@ void FUN_18070b6a0(longlong uiContext,undefined8 *dataSource,int targetBuffer)
     operationResult3 = 99;
   }
   functionResult0 = (ulonglong)operationResult3;
-  lVar6 = functionResult0 * 0x38;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x206c + uiContext);
+  contextData = functionResult0 * 0x38;
+  psemaphoreHandle = (undefined8 *)(contextData + 0x206c + uiContext);
   uVar3 = psemaphoreHandle[1];
   *dataSource = *psemaphoreHandle;
   dataSource[1] = uVar3;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x207c + uiContext);
+  psemaphoreHandle = (undefined8 *)(contextData + 0x207c + uiContext);
   uVar3 = psemaphoreHandle[1];
   dataSource[2] = *psemaphoreHandle;
   dataSource[3] = uVar3;
-  psemaphoreHandle = (undefined8 *)(lVar6 + 0x208c + uiContext);
+  psemaphoreHandle = (undefined8 *)(contextData + 0x208c + uiContext);
   uVar3 = psemaphoreHandle[1];
   dataSource[4] = *psemaphoreHandle;
   dataSource[5] = uVar3;
-  dataSource[6] = *(undefined8 *)(lVar6 + 0x209c + uiContext);
+  dataSource[6] = *(undefined8 *)(contextData + 0x209c + uiContext);
   fVar20 = *(float *)((longlong)dataSource + 4);
   functionResult6 = functionResult4;
   floatResult8 = fVar20;
@@ -74785,10 +74785,10 @@ void FUN_18070b6a0(longlong uiContext,undefined8 *dataSource,int targetBuffer)
   if (operationResult2 + -1 < 1) {
     iVar9 = iVar4;
   }
-  lVar6 = (longlong)(100 - iVar9);
-  if (3 < lVar6) {
+  contextData = (longlong)(100 - iVar9);
+  if (3 < contextData) {
     pfVar8 = (float *)(uiContext + 0x1eb4);
-    lVar7 = (lVar6 - 4U >> 2) + 1;
+    lVar7 = (contextData - 4U >> 2) + 1;
     iVar4 = (int)lVar7 * 4;
     functionResult4 = lVar7 * 4;
     do {
@@ -74797,31 +74797,31 @@ void FUN_18070b6a0(longlong uiContext,undefined8 *dataSource,int targetBuffer)
       lVar7 = lVar7 + -1;
     } while (lVar7 != 0);
   }
-  if ((longlong)functionResult4 < lVar6) {
-    lVar6 = lVar6 - functionResult4;
+  if ((longlong)functionResult4 < contextData) {
+    contextData = contextData - functionResult4;
     pfVar8 = (float *)(uiContext + 0x1eb0 + functionResult4 * 4);
-    iVar4 = iVar4 + (int)lVar6;
+    iVar4 = iVar4 + (int)contextData;
     do {
       fVar20 = fVar20 + *pfVar8;
       pfVar8 = pfVar8 + 1;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      contextData = contextData + -1;
+    } while (contextData != 0);
   }
-  lVar6 = (longlong)iVar4;
-  if (lVar6 < 100) {
-    if (3 < 100 - lVar6) {
-      pfVar8 = (float *)(uiContext + 0x1d24 + lVar6 * 4);
-      lVar7 = (0x60U - lVar6 >> 2) + 1;
-      lVar6 = lVar6 + lVar7 * 4;
+  contextData = (longlong)iVar4;
+  if (contextData < 100) {
+    if (3 < 100 - contextData) {
+      pfVar8 = (float *)(uiContext + 0x1d24 + contextData * 4);
+      lVar7 = (0x60U - contextData >> 2) + 1;
+      contextData = contextData + lVar7 * 4;
       do {
         fVar20 = fVar20 + pfVar8[-1] + *pfVar8 + pfVar8[1] + pfVar8[2];
         pfVar8 = pfVar8 + 4;
         lVar7 = lVar7 + -1;
       } while (lVar7 != 0);
     }
-    if (lVar6 < 100) {
-      lVar7 = 100 - lVar6;
-      pfVar8 = (float *)(uiContext + 0x1d20 + lVar6 * 4);
+    if (contextData < 100) {
+      lVar7 = 100 - contextData;
+      pfVar8 = (float *)(uiContext + 0x1d20 + contextData * 4);
       do {
         fVar20 = fVar20 + *pfVar8;
         pfVar8 = pfVar8 + 1;
@@ -79705,7 +79705,7 @@ void FUN_180712340(longlong uiContext,longlong dataSource,uint targetBuffer,uint
   longlong stringCompareIndex;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   float *pfVar8;
   int iVar9;
@@ -79773,9 +79773,9 @@ void FUN_180712340(longlong uiContext,longlong dataSource,uint targetBuffer,uint
       stringCompareIndex = (lVar5 * 4 + 0x10) - dataSource;
       lVar4 = (lVar5 * 4 + 0x14) - dataSource;
       allocatedMemory3 = allocatedMemory3 - dataSource;
-      lVar6 = ((longlong)uiContext1 - 4U >> 2) + 1;
-      iVar9 = (int)lVar6 * 4;
-      lVar7 = lVar6 * 4;
+      contextData = ((longlong)uiContext1 - 4U >> 2) + 1;
+      iVar9 = (int)contextData * 4;
+      lVar7 = contextData * 4;
       floatResult5 = floatResult8;
       floatResult6 = floatResult4;
       fVar20 = floatResult7;
@@ -79818,12 +79818,12 @@ void FUN_180712340(longlong uiContext,longlong dataSource,uint targetBuffer,uint
              floatResult5 * fVar21 * floatResult8 + floatResult5 * fVar22 * (fVar25 + floatResult4) +
              (floatResult7 + fVar20) * floatResult5 * fVar23;
         pfVar8 = pfVar8 + 4;
-        lVar6 = lVar6 + -1;
+        contextData = contextData + -1;
         floatResult5 = floatResult8;
         floatResult6 = floatResult4;
         fVar20 = floatResult7;
         fVar24 = fVar25;
-      } while (lVar6 != 0);
+      } while (contextData != 0);
       functionResult2 = (ulonglong)(int)functionResult1;
     }
     allocatedMemory3 = (longlong)uiContext1;
@@ -79879,7 +79879,7 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
   longlong stringCompareIndex;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   int iVar8;
   longlong lVar9;
@@ -79949,9 +79949,9 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
     componentIndex = (lVar5 * 4 + 0x10) - in_R10;
     stringCompareIndex = (lVar5 * 4 + 0x14) - in_R10;
     lVar4 = lVar4 - in_R10;
-    lVar6 = ((longlong)iStack0000000000000040 - 4U >> 2) + 1;
-    iVar8 = (int)lVar6 * 4;
-    allocatedMemory1 = lVar6 * 4;
+    contextData = ((longlong)iStack0000000000000040 - 4U >> 2) + 1;
+    iVar8 = (int)contextData * 4;
+    allocatedMemory1 = contextData * 4;
     floatResult3 = floatResult6;
     floatResult4 = floatResult2;
     floatResult7 = floatResult5;
@@ -79994,12 +79994,12 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
            (pfVar7[7] + pfVar7[3]) * floatResult4 * fStack00000000000001c8 + floatResult3 * floatResult8 * floatResult6 +
            floatResult3 * floatResult9 * (fVar22 + floatResult2) + (floatResult5 + floatResult7) * floatResult3 * fVar20;
       pfVar7 = pfVar7 + 4;
-      lVar6 = lVar6 + -1;
+      contextData = contextData + -1;
       floatResult3 = floatResult6;
       floatResult4 = floatResult2;
       floatResult7 = floatResult5;
       fVar21 = fVar22;
-    } while (lVar6 != 0);
+    } while (contextData != 0);
     functionResult0 = (ulonglong)(int)uStack0000000000000044;
     in_R10 = in_stack_000001a8;
     in_R11 = in_stack_000001a0;
@@ -80056,7 +80056,7 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
   longlong stringCompareIndex;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong in_RDX;
   float *pfVar7;
   int iVar8;
@@ -80130,9 +80130,9 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
     componentIndex = (lVar5 * 4 + 0x10) - in_R10;
     stringCompareIndex = (lVar5 * 4 + 0x14) - in_R10;
     lVar4 = lVar4 - in_R10;
-    lVar6 = ((longlong)iStack0000000000000040 - 4U >> 2) + 1;
-    iVar8 = (int)lVar6 * 4;
-    allocatedMemory1 = lVar6 * 4;
+    contextData = ((longlong)iStack0000000000000040 - 4U >> 2) + 1;
+    iVar8 = (int)contextData * 4;
+    allocatedMemory1 = contextData * 4;
     floatResult3 = floatResult6;
     floatResult4 = floatResult2;
     floatResult7 = floatResult5;
@@ -80175,12 +80175,12 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
            (pfVar7[7] + pfVar7[3]) * floatResult4 * fStack00000000000001c8 + floatResult3 * floatResult8 * floatResult6 +
            floatResult3 * floatResult9 * (fVar22 + floatResult2) + (floatResult5 + floatResult7) * floatResult3 * fVar20;
       pfVar7 = pfVar7 + 4;
-      lVar6 = lVar6 + -1;
+      contextData = contextData + -1;
       floatResult3 = floatResult6;
       floatResult4 = floatResult2;
       floatResult7 = floatResult5;
       fVar21 = fVar22;
-    } while (lVar6 != 0);
+    } while (contextData != 0);
     functionResult0 = (ulonglong)(int)uStack0000000000000044;
     in_R10 = in_stack_000001a8;
     in_R11 = in_stack_000001a0;
@@ -80236,7 +80236,7 @@ void FUN_180712526(float uiContext,undefined8 dataSource,longlong targetBuffer,l
   longlong stringCompareIndex;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   int unaff_EBX;
   longlong lVar8;
@@ -80281,9 +80281,9 @@ void FUN_180712526(float uiContext,undefined8 dataSource,longlong targetBuffer,l
     componentIndex = (lVar5 * 4 + 0x10) - in_R10;
     stringCompareIndex = (lVar5 * 4 + 0x14) - in_R10;
     lVar4 = lVar4 - in_R10;
-    lVar6 = (bufferSize - 4U >> 2) + 1;
-    unaff_EBX = (int)lVar6 * 4;
-    unaff_R12 = lVar6 * 4;
+    contextData = (bufferSize - 4U >> 2) + 1;
+    unaff_EBX = (int)contextData * 4;
+    unaff_R12 = contextData * 4;
     floatResult3 = unaff_XMM7_Da;
     fVar9 = unaff_XMM8_Da;
     floatResult0 = unaff_XMM9_Da;
@@ -80333,12 +80333,12 @@ void FUN_180712526(float uiContext,undefined8 dataSource,longlong targetBuffer,l
            floatResult3 * unaff_XMM11_Da * (unaff_XMM13_Da + unaff_XMM8_Da) +
            (unaff_XMM9_Da + floatResult0) * floatResult3 * unaff_XMM12_Da;
       pfVar7 = pfVar7 + 4;
-      lVar6 = lVar6 + -1;
+      contextData = contextData + -1;
       floatResult3 = unaff_XMM7_Da;
       fVar9 = unaff_XMM8_Da;
       floatResult0 = unaff_XMM9_Da;
       floatResult2 = unaff_XMM13_Da;
-    } while (lVar6 != 0);
+    } while (contextData != 0);
     targetBuffer = (longlong)iStack0000000000000044;
     bufferSize = (longlong)iStack0000000000000040;
     in_R10 = in_stack_000001a8;
@@ -80404,7 +80404,7 @@ void FUN_180712541(longlong uiContext,longlong dataSource,undefined8 targetBuffe
   float *pfVar4;
   uint uVar5;
   longlong unaff_RBP;
-  longlong lVar6;
+  longlong contextData;
   longlong in_R10;
   longlong in_R11;
   longlong unaff_R14;
@@ -80448,7 +80448,7 @@ void FUN_180712541(longlong uiContext,longlong dataSource,undefined8 targetBuffe
   float in_stack_000001d0;
   longlong in_stack_000001e8;
   
-  lVar6 = unaff_RBP - unaff_R15;
+  contextData = unaff_RBP - unaff_R15;
   lStack0000000000000058 = uiContext * 4 + 0xc;
   allocatedMemory = uiContext * 4 + 8;
   pfVar4 = (float *)(dataSource - allocatedMemory);
@@ -80468,7 +80468,7 @@ void FUN_180712541(longlong uiContext,longlong dataSource,undefined8 targetBuffe
   lStack00000000000000b0 = componentIndex * 4;
   stringCompareIndex = componentIndex;
   do {
-    floatResult3 = pfVar4[lVar6 + 4];
+    floatResult3 = pfVar4[contextData + 4];
     fVar8 = *(float *)((longlong)pfVar4 + lStack0000000000000050) *
             *(float *)((longlong)pfVar4 + lStack0000000000000050);
     in_XMM0_Da = in_XMM0_Da - fVar8;
@@ -80479,7 +80479,7 @@ void FUN_180712541(longlong uiContext,longlong dataSource,undefined8 targetBuffe
          fVar8 * unaff_XMM10_Da * unaff_XMM8_Da +
          fVar8 * unaff_XMM11_Da * (unaff_XMM7_Da + unaff_XMM9_Da) +
          (floatResult3 + unaff_XMM13_Da) * fVar8 * unaff_XMM12_Da;
-    fVar8 = pfVar4[lVar6 + 5];
+    fVar8 = pfVar4[contextData + 5];
     fVar9 = *(float *)((longlong)pfVar4 + lStack0000000000000070) *
             *(float *)((longlong)pfVar4 + lStack0000000000000070);
     fVar7 = 1.0 - fVar9;
@@ -80489,7 +80489,7 @@ void FUN_180712541(longlong uiContext,longlong dataSource,undefined8 targetBuffe
          (pfVar4[1] + pfVar4[5]) * fVar7 * in_stack_000001c8 +
          fVar9 * unaff_XMM10_Da * unaff_XMM9_Da + fVar9 * unaff_XMM11_Da * (unaff_XMM8_Da + floatResult3)
          + (fVar8 + unaff_XMM7_Da) * fVar9 * unaff_XMM12_Da;
-    fVar7 = pfVar4[lVar6 + 6];
+    fVar7 = pfVar4[contextData + 6];
     floatResult0 = *(float *)((longlong)pfVar4 + lStack0000000000000080) *
              *(float *)((longlong)pfVar4 + lStack0000000000000080);
     fVar9 = 1.0 - floatResult0;
@@ -80499,7 +80499,7 @@ void FUN_180712541(longlong uiContext,longlong dataSource,undefined8 targetBuffe
          (pfVar4[6] + pfVar4[2]) * fVar9 * in_stack_000001c8 + floatResult0 * unaff_XMM10_Da * floatResult3 +
          floatResult0 * unaff_XMM11_Da * (unaff_XMM9_Da + fVar8) +
          (fVar7 + unaff_XMM8_Da) * floatResult0 * unaff_XMM12_Da;
-    fVar9 = pfVar4[lVar6 + 7];
+    fVar9 = pfVar4[contextData + 7];
     floatResult1 = *(float *)((longlong)pfVar4 + lStack0000000000000090) *
              *(float *)((longlong)pfVar4 + lStack0000000000000090);
     floatResult0 = 1.0 - floatResult1;
@@ -80519,19 +80519,19 @@ void FUN_180712541(longlong uiContext,longlong dataSource,undefined8 targetBuffe
   } while (stringCompareIndex != 0);
   allocatedMemory = (longlong)iStack0000000000000040;
   if (lStack00000000000000b0 < allocatedMemory) {
-    lVar6 = (longlong)in_stack_00000048;
+    contextData = (longlong)in_stack_00000048;
     componentIndex = allocatedMemory + componentIndex * -4;
-    pfVar4 = (float *)(in_stack_000001a8 + ((lStack00000000000000b0 - lVar6) + -1) * 4);
-    stringCompareIndex = lVar6 * 4 - in_stack_000001a8;
+    pfVar4 = (float *)(in_stack_000001a8 + ((lStack00000000000000b0 - contextData) + -1) * 4);
+    stringCompareIndex = contextData * 4 - in_stack_000001a8;
     uVar5 = uVar5 + (int)componentIndex;
     do {
       floatResult2 = fVar8;
       fVar8 = *(float *)(in_stack_000001e8 + stringCompareIndex + 4 + (longlong)pfVar4);
-      floatResult0 = pfVar4[(lVar6 - iStack0000000000000044) + 3];
+      floatResult0 = pfVar4[(contextData - iStack0000000000000044) + 3];
       fVar8 = fVar8 * fVar8;
       floatResult1 = 1.0 - fVar8;
       *(float *)(stringCompareIndex + in_stack_000001a0 + 4 + (longlong)pfVar4) =
-           floatResult1 * unaff_XMM14_Da * pfVar4[1] + pfVar4[lVar6 + 1] +
+           floatResult1 * unaff_XMM14_Da * pfVar4[1] + pfVar4[contextData + 1] +
            (pfVar4[2] + *pfVar4) * floatResult1 * unaff_XMM15_Da +
            (pfVar4[3] + pfVar4[-1]) * floatResult1 * in_stack_000001c8 + fVar8 * unaff_XMM10_Da * fVar7 +
            fVar8 * unaff_XMM11_Da * (floatResult2 + fVar9) + (floatResult0 + floatResult3) * fVar8 * unaff_XMM12_Da;
@@ -82456,7 +82456,7 @@ void FUN_1807152e3(undefined8 uiContext,longlong dataSource,undefined8 targetBuf
   int iVar4;
   int iVar5;
   longlong in_RAX;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   longlong lVar8;
   undefined8 context;
@@ -82567,9 +82567,9 @@ void FUN_1807152e3(undefined8 uiContext,longlong dataSource,undefined8 targetBuf
       floatResult6 = *(float *)(in_stack_00000160 + lVar8 * 4);
       floatResult5 = floatResult6;
       if (in_stack_00000130 == 1) {
-        lVar6 = (longlong)(*(int *)(in_stack_00000110 + 8) + in_stack_00000140);
-        floatResult = *(float *)(in_stack_00000158 + lVar6 * 4);
-        floatResult5 = *(float *)(in_stack_00000160 + lVar6 * 4);
+        contextData = (longlong)(*(int *)(in_stack_00000110 + 8) + in_stack_00000140);
+        floatResult = *(float *)(in_stack_00000158 + contextData * 4);
+        floatResult5 = *(float *)(in_stack_00000160 + contextData * 4);
         if (floatResult <= floatResult9) {
           floatResult = floatResult9;
         }
@@ -83224,7 +83224,7 @@ void FUN_1807165a0(longlong uiContext,int dataSource,int targetBuffer)
   uint uVar3;
   float *pfVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   int iVar8;
   longlong lVar9;
@@ -83248,7 +83248,7 @@ void FUN_1807165a0(longlong uiContext,int dataSource,int targetBuffer)
         pfVar4 = (float *)(uiContext + lVar5 * 4);
         allocatedMemory4 = (operationResult1 + targetBuffer * 2) - lVar9;
         lVar5 = (targetBuffer * 7 + operationResult1) - lVar5;
-        lVar6 = (operationResult1 + targetBuffer * 6) - lVar9;
+        contextData = (operationResult1 + targetBuffer * 6) - lVar9;
         uVar3 = (dataSource - 4U >> 2) + 1;
         functionResult0 = (ulonglong)uVar3;
         iVar8 = uVar3 * 4;
@@ -83266,8 +83266,8 @@ void FUN_1807165a0(longlong uiContext,int dataSource,int targetBuffer)
           *pfVar7 = floatResult * 0.70710677 + fVar2 * 0.70710677;
           pfVar4[allocatedMemory2] = fVar2 * 0.70710677 - floatResult * 0.70710677;
           floatResult = pfVar4[lVar5];
-          fVar2 = pfVar7[lVar6];
-          pfVar7[lVar6] = floatResult * 0.70710677 + fVar2 * 0.70710677;
+          fVar2 = pfVar7[contextData];
+          pfVar7[contextData] = floatResult * 0.70710677 + fVar2 * 0.70710677;
           pfVar7 = pfVar7 + targetBuffer * 8;
           pfVar4[lVar5] = fVar2 * 0.70710677 - floatResult * 0.70710677;
           pfVar4 = pfVar4 + targetBuffer * 8;
@@ -83307,7 +83307,7 @@ void FUN_1807165be(longlong uiContext,undefined8 dataSource,int targetBuffer,und
   uint uVar3;
   float *pfVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   int unaff_ESI;
   int iVar8;
@@ -83333,7 +83333,7 @@ void FUN_1807165be(longlong uiContext,undefined8 dataSource,int targetBuffer,und
       pfVar4 = (float *)(uiContext + lVar5 * 4);
       allocatedMemory5 = (operationResult2 + targetBuffer * 2) - allocatedMemory0;
       lVar5 = (targetBuffer * 7 + operationResult2) - lVar5;
-      lVar6 = (operationResult2 + targetBuffer * 6) - allocatedMemory0;
+      contextData = (operationResult2 + targetBuffer * 6) - allocatedMemory0;
       uVar3 = (iVar8 - 4U >> 2) + 1;
       functionResult1 = (ulonglong)uVar3;
       iVar9 = uVar3 * 4;
@@ -83351,8 +83351,8 @@ void FUN_1807165be(longlong uiContext,undefined8 dataSource,int targetBuffer,und
         *pfVar7 = floatResult * in_XMM4_Da + fVar2 * in_XMM4_Da;
         pfVar4[allocatedMemory3] = fVar2 * in_XMM4_Da - floatResult * in_XMM4_Da;
         floatResult = pfVar4[lVar5];
-        fVar2 = pfVar7[lVar6];
-        pfVar7[lVar6] = floatResult * in_XMM4_Da + fVar2 * in_XMM4_Da;
+        fVar2 = pfVar7[contextData];
+        pfVar7[contextData] = floatResult * in_XMM4_Da + fVar2 * in_XMM4_Da;
         pfVar7 = pfVar7 + targetBuffer * 8;
         pfVar4[lVar5] = fVar2 * in_XMM4_Da - floatResult * in_XMM4_Da;
         pfVar4 = pfVar4 + targetBuffer * 8;
@@ -87146,7 +87146,7 @@ void FUN_18071ad00(longlong uiContext,int dataSource,int targetBuffer,longlong b
   int compareResult;
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   int iVar8;
   float fVar9;
@@ -87155,14 +87155,14 @@ void FUN_18071ad00(longlong uiContext,int dataSource,int targetBuffer,longlong b
   float floatResult2;
   float afStack_68 [16];
   
-  lVar6 = (longlong)param_8;
+  contextData = (longlong)param_8;
   afStack_68[0] = 0.0;
   afStack_68[1] = 0.0;
-  allocatedMemory = (longlong)resultPointer + lVar6 * 2;
+  allocatedMemory = (longlong)resultPointer + contextData * 2;
   floatResult2 = 0.0;
   if (resultPointer == 0) {
-    floatResult1 = *(float *)(&RenderFloatDataY + lVar6 * 4);
-    floatResult2 = *(float *)(&RenderFloatDataX + lVar6 * 4);
+    floatResult1 = *(float *)(&RenderFloatDataY + contextData * 4);
+    floatResult2 = *(float *)(&RenderFloatDataX + contextData * 4);
   }
   else {
     floatResult1 = 0.1499939;
@@ -87208,15 +87208,15 @@ void FUN_18071ad00(longlong uiContext,int dataSource,int targetBuffer,longlong b
         }
         fVar2 = *pfVar7;
         floatResult0 = (float)(int)uVar4;
-        lVar6 = (longlong)(iVar8 * *(int *)(bufferData + 8) + dataSource);
+        contextData = (longlong)(iVar8 * *(int *)(bufferData + 8) + dataSource);
         iVar5 = iVar8 + 1;
-        fVar9 = *(float *)(bufferSize + lVar6 * 4);
+        fVar9 = *(float *)(bufferSize + contextData * 4);
         if (fVar9 <= -9.0) {
           fVar9 = -9.0;
         }
-        *(float *)(bufferSize + lVar6 * 4) = fVar9;
-        lVar6 = (longlong)(iVar8 * *(int *)(bufferData + 8) + dataSource);
-        *(float *)(bufferSize + lVar6 * 4) = floatResult2 * *(float *)(bufferSize + lVar6 * 4) + fVar2 + floatResult0;
+        *(float *)(bufferSize + contextData * 4) = fVar9;
+        contextData = (longlong)(iVar8 * *(int *)(bufferData + 8) + dataSource);
+        *(float *)(bufferSize + contextData * 4) = floatResult2 * *(float *)(bufferSize + contextData * 4) + fVar2 + floatResult0;
         *pfVar7 = (fVar2 + floatResult0) - floatResult0 * floatResult1;
         pfVar7 = pfVar7 + 1;
         iVar8 = iVar5;
@@ -87428,7 +87428,7 @@ void FUN_18071b0a2(void)
   ulonglong unaff_RSI;
   int iVar5;
   undefined8 unaff_RDI;
-  longlong lVar6;
+  longlong contextData;
   undefined8 unaff_R12;
   undefined8 unaff_R13;
   longlong unaff_R14;
@@ -87466,10 +87466,10 @@ void FUN_18071b0a2(void)
         operationResult = FUN_18070f360(in_stack_00000098,*pcompareResult);
         validationResult = *(int *)(unaff_R15 + 8) * iVar5;
         iVar5 = iVar5 + 1;
-        lVar6 = (longlong)(validationResult + (int)unaff_RSI);
-        *(float *)(unaff_R14 + lVar6 * 4) =
+        contextData = (longlong)(validationResult + (int)unaff_RSI);
+        *(float *)(unaff_R14 + contextData * 4) =
              ((float)(1 << (0xeU - (char)*pcompareResult & 0x1f)) * ((float)operationResult + 0.5) * 6.1035156e-05 +
-             *(float *)(unaff_R14 + lVar6 * 4)) - 0.5;
+             *(float *)(unaff_R14 + contextData * 4)) - 0.5;
       } while (iVar5 < in_stack_000000a0);
     }
     unaff_RSI = (ulonglong)((int)unaff_RSI + 1);
@@ -89014,7 +89014,7 @@ void FUN_18071efcb(longlong uiContext,undefined8 dataSource,longlong targetBuffe
   float *pfVar3;
   float fVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   float *pfVar8;
   float *pfVar9;
@@ -89048,7 +89048,7 @@ void FUN_18071efcb(longlong uiContext,undefined8 dataSource,longlong targetBuffe
     if (0 < iVar5) {
       pfVar7 = unaff_RDI + allocatedMemory3 * 2;
       allocatedMemory1 = iVar5 - allocatedMemory3;
-      lVar6 = iVar5 * 3 - allocatedMemory3;
+      contextData = iVar5 * 3 - allocatedMemory3;
       pfVar8 = unaff_RDI;
       pfloatResult0 = pfVar9;
       pfloatResult2 = pfVar9;
@@ -89072,8 +89072,8 @@ void FUN_18071efcb(longlong uiContext,undefined8 dataSource,longlong targetBuffe
         floatResult5 = *pfVar9;
         pfVar9 = pfVar9 + unaff_R12 * 6;
         fVar4 = pfVar7[allocatedMemory3 * -2 + 1];
-        floatResult8 = pfVar7[lVar6 * 2] * floatResult8 - pfVar7[lVar6 * 2 + 1] * *pfVar3;
-        floatResult9 = pfVar7[lVar6 * 2 + 1] * floatResult5 + pfVar7[lVar6 * 2] * *pfVar2;
+        floatResult8 = pfVar7[contextData * 2] * floatResult8 - pfVar7[contextData * 2 + 1] * *pfVar3;
+        floatResult9 = pfVar7[contextData * 2 + 1] * floatResult5 + pfVar7[contextData * 2] * *pfVar2;
         fVar21 = *pfVar8 - fVar22;
         fVar22 = fVar22 + *pfVar8;
         floatResult6 = floatResult8 + fVar23;
@@ -89091,8 +89091,8 @@ void FUN_18071efcb(longlong uiContext,undefined8 dataSource,longlong targetBuffe
         pfVar7[allocatedMemory1 * 2] = fVar21 + fVar24;
         pfVar8 = pfVar8 + 2;
         pfVar7[allocatedMemory1 * 2 + 1] = floatResult7 - fVar23;
-        pfVar7[lVar6 * 2] = fVar21 - fVar24;
-        pfVar7[lVar6 * 2 + 1] = floatResult7 + fVar23;
+        pfVar7[contextData * 2] = fVar21 - fVar24;
+        pfVar7[contextData * 2 + 1] = floatResult7 + fVar23;
         pfVar7 = pfVar7 + 2;
         allocatedMemory4 = allocatedMemory4 + -1;
         targetBuffer = in_stack_000000b0;
@@ -89127,7 +89127,7 @@ void FUN_18071f270(longlong uiContext,longlong dataSource,longlong targetBuffer,
   float fVar3;
   float fVar4;
   float *pfVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   longlong lVar8;
   longlong lVar9;
@@ -89159,8 +89159,8 @@ void FUN_18071f270(longlong uiContext,longlong dataSource,longlong targetBuffer,
   
   pfVar5 = *(float **)(targetBuffer + 0x38);
   functionResult3 = (ulonglong)resultPointer;
-  lVar6 = (longlong)(int)bufferSize;
-  lVar7 = lVar6 * dataSource;
+  contextData = (longlong)(int)bufferSize;
+  lVar7 = contextData * dataSource;
   floatResult = pfVar5[lVar7 * 2];
   fVar2 = pfVar5[lVar7 * 2 + 1];
   fVar3 = pfVar5[lVar7 * 4];
@@ -89180,8 +89180,8 @@ void FUN_18071f270(longlong uiContext,longlong dataSource,longlong targetBuffer,
         pfloatResult6 = pfVar5;
         pfloatResult7 = pfVar5;
         do {
-          fVar23 = pfloatResult1[lVar6 * 2 + -1] * pfloatResult0[1] + pfloatResult1[lVar6 * 2] * *pfloatResult0;
-          fVar25 = pfloatResult1[lVar6 * 2 + -1] * *pfloatResult0 - pfloatResult1[lVar6 * 2] * pfloatResult0[1];
+          fVar23 = pfloatResult1[contextData * 2 + -1] * pfloatResult0[1] + pfloatResult1[contextData * 2] * *pfloatResult0;
+          fVar25 = pfloatResult1[contextData * 2 + -1] * *pfloatResult0 - pfloatResult1[contextData * 2] * pfloatResult0[1];
           fVar30 = pfloatResult1[-1];
           fVar32 = pfloatResult1[lVar9 * 2] * *pfloatResult6 + pfloatResult1[lVar9 * 2 + -1] * pfloatResult6[1];
           floatResult8 = *pfloatResult1;
@@ -89206,8 +89206,8 @@ void FUN_18071f270(longlong uiContext,longlong dataSource,longlong targetBuffer,
           pfloatResult7 = pfloatResult7 + dataSource * 8;
           fVar21 = fVar2 * fVar23 + fVar4 * fVar32;
           floatResult9 = (fVar31 - fVar33) * fVar4 + (fVar28 - fVar25) * fVar2;
-          pfloatResult1[lVar6 * 2 + -1] = fVar22 - fVar21;
-          pfloatResult1[lVar6 * 2] = fVar20 - floatResult9;
+          pfloatResult1[contextData * 2 + -1] = fVar22 - fVar21;
+          pfloatResult1[contextData * 2] = fVar20 - floatResult9;
           pfloatResult1[lVar8 * 2] = fVar20 + floatResult9;
           pfloatResult1[lVar8 * 2 + -1] = fVar22 + fVar21;
           fVar30 = fVar29 * fVar3 + floatResult * fVar24 + fVar30;
@@ -93051,7 +93051,7 @@ void FUN_180722910(longlong uiContext,undefined8 dataSource,int targetBuffer,int
   short sVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   short *psVar7;
   undefined1 *puVar8;
   char *pcVar9;
@@ -93098,14 +93098,14 @@ void FUN_180722910(longlong uiContext,undefined8 dataSource,int targetBuffer,int
                                 *(longlong *)(*(short **)(uiContext + 0xac0) + 0xc),8);
   *(char *)(uiContext + 0xad0) = cVar2;
   FUN_1807248c0(asStack_68,auStack_78,*(undefined8 *)(uiContext + 0xac0),(int)cVar2);
-  lVar6 = *(longlong *)(bufferData + 0xac0);
+  contextData = *(longlong *)(bufferData + 0xac0);
   operationResult0 = 0;
   iVar4 = 0;
-  if (0 < *(short *)(lVar6 + 2)) {
+  if (0 < *(short *)(contextData + 2)) {
     psVar7 = asStack_68;
     pcVar9 = (char *)(uiContext + 0xad1);
     do {
-      iVar5 = ReadUIData(dataSource,(longlong)*psVar7 + *(longlong *)(lVar6 + 0x30),8);
+      iVar5 = ReadUIData(dataSource,(longlong)*psVar7 + *(longlong *)(contextData + 0x30),8);
       if (iVar5 == 0) {
         iVar5 = ReadUIData(dataSource,&UNK_1809535cc,8);
         iVar5 = -iVar5;
@@ -93117,9 +93117,9 @@ void FUN_180722910(longlong uiContext,undefined8 dataSource,int targetBuffer,int
       iVar4 = iVar4 + 1;
       *pcVar9 = (char)iVar5 + -4;
       psVar7 = psVar7 + 1;
-      lVar6 = *(longlong *)(bufferData + 0xac0);
+      contextData = *(longlong *)(bufferData + 0xac0);
       pcVar9 = pcVar9 + 1;
-    } while (iVar4 < *(short *)(lVar6 + 2));
+    } while (iVar4 < *(short *)(contextData + 2));
   }
   if (*(int *)(bufferData + 0x914) == 4) {
     functionResult = ReadUIData(dataSource,&UNK_180953640,8);
@@ -93184,7 +93184,7 @@ void FUN_18072292c(longlong uiContext,undefined8 dataSource,int targetBuffer,int
   short sVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   short *psVar7;
   undefined1 *puVar8;
   char *pcVar9;
@@ -93229,14 +93229,14 @@ void FUN_18072292c(longlong uiContext,undefined8 dataSource,int targetBuffer,int
                                 *(longlong *)(*(short **)(uiContext + 0xac0) + 0xc),8);
   *(char *)(uiContext + 0xad0) = cVar2;
   FUN_1807248c0(&stack0x00000030,auStackX_20,*(undefined8 *)(uiContext + 0xac0),(int)cVar2);
-  lVar6 = *(longlong *)(bufferData + 0xac0);
+  contextData = *(longlong *)(bufferData + 0xac0);
   operationResult0 = 0;
   iVar4 = 0;
-  if (0 < *(short *)(lVar6 + 2)) {
+  if (0 < *(short *)(contextData + 2)) {
     psVar7 = (short *)&stack0x00000030;
     pcVar9 = (char *)(uiContext + 0xad1);
     do {
-      iVar5 = ReadUIData(dataSource,(longlong)*psVar7 + *(longlong *)(lVar6 + 0x30),8);
+      iVar5 = ReadUIData(dataSource,(longlong)*psVar7 + *(longlong *)(contextData + 0x30),8);
       if (iVar5 == 0) {
         iVar5 = ReadUIData(dataSource,&UNK_1809535cc,8);
         iVar5 = -iVar5;
@@ -93248,9 +93248,9 @@ void FUN_18072292c(longlong uiContext,undefined8 dataSource,int targetBuffer,int
       iVar4 = iVar4 + 1;
       *pcVar9 = (char)iVar5 + -4;
       psVar7 = psVar7 + 1;
-      lVar6 = *(longlong *)(bufferData + 0xac0);
+      contextData = *(longlong *)(bufferData + 0xac0);
       pcVar9 = pcVar9 + 1;
-    } while (iVar4 < *(short *)(lVar6 + 2));
+    } while (iVar4 < *(short *)(contextData + 2));
   }
   if (*(int *)(bufferData + 0x914) == 4) {
     functionResult = ReadUIData(dataSource,&UNK_180953640,8);
@@ -94743,13 +94743,13 @@ void FUN_180724090(undefined8 uiContext,longlong dataSource,int targetBuffer,sho
   uint uVar3;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined1 uStack_28;
   undefined1 uStack_27;
   
   uStack_27 = 0;
-  lVar6 = (longlong)(targetBuffer + 8) >> 4;
-  if (0 < lVar6) {
+  contextData = (longlong)(targetBuffer + 8) >> 4;
+  if (0 < contextData) {
     lVar5 = 0;
     do {
       uVar3 = *(uint *)(param_6 + lVar5 * 4);
@@ -94772,7 +94772,7 @@ void FUN_180724090(undefined8 uiContext,longlong dataSource,int targetBuffer,sho
       }
       dataSource = dataSource + 0x20;
       lVar5 = lVar5 + 1;
-    } while (lVar5 < lVar6);
+    } while (lVar5 < contextData);
   }
   return;
 }
@@ -95176,19 +95176,19 @@ void FUN_1807249d0(longlong uiContext,char *dataSource,char *targetBuffer,int bu
   undefined4 uVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   
   if (0 < (longlong)resultPointer) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      if ((lVar6 == 0) && (bufferSize == 0)) {
+      if ((contextData == 0) && (bufferSize == 0)) {
         cVar1 = (char)(*targetBuffer + -0x10);
         if (*targetBuffer + -0x10 < (int)*dataSource) {
           cVar1 = *dataSource;
         }
       }
       else {
-        semaphoreHandle = (int)dataSource[lVar6] - 4;
+        semaphoreHandle = (int)dataSource[contextData] - 4;
         iVar4 = *targetBuffer + 8;
         if (iVar4 < (int)semaphoreHandle) {
           semaphoreHandle = (uint)(byte)((char)semaphoreHandle * '\x02' - (char)iVar4);
@@ -95210,9 +95210,9 @@ void FUN_1807249d0(longlong uiContext,char *dataSource,char *targetBuffer,int bu
         iVar4 = iVar5;
       }
       uVar3 = func_0x00018070b9e0(iVar4);
-      *(undefined4 *)(bufferData + lVar6 * 4) = uVar3;
-      lVar6 = lVar6 + 1;
-    } while (lVar6 < resultPointer);
+      *(undefined4 *)(bufferData + contextData * 4) = uVar3;
+      contextData = contextData + 1;
+    } while (contextData < resultPointer);
   }
   return;
 }
@@ -95229,23 +95229,23 @@ void FUN_1807249fd(void)
   undefined4 uVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   int unaff_EBP;
   char *unaff_RSI;
   char *unaff_RDI;
   longlong unaff_R14;
   longlong unaff_R15;
   
-  lVar6 = 0;
+  contextData = 0;
   do {
-    if ((lVar6 == 0) && (unaff_EBP == 0)) {
+    if ((contextData == 0) && (unaff_EBP == 0)) {
       cVar1 = (char)(*unaff_RDI + -0x10);
       if (*unaff_RDI + -0x10 < (int)*unaff_RSI) {
         cVar1 = *unaff_RSI;
       }
     }
     else {
-      semaphoreHandle = (int)unaff_RSI[lVar6] - 4;
+      semaphoreHandle = (int)unaff_RSI[contextData] - 4;
       iVar4 = *unaff_RDI + 8;
       if (iVar4 < (int)semaphoreHandle) {
         semaphoreHandle = (uint)(byte)((char)semaphoreHandle * '\x02' - (char)iVar4);
@@ -95267,9 +95267,9 @@ void FUN_1807249fd(void)
       iVar4 = iVar5;
     }
     uVar3 = func_0x00018070b9e0(iVar4);
-    *(undefined4 *)(unaff_R15 + lVar6 * 4) = uVar3;
-    lVar6 = lVar6 + 1;
-  } while (lVar6 < unaff_R14);
+    *(undefined4 *)(unaff_R15 + contextData * 4) = uVar3;
+    contextData = contextData + 1;
+  } while (contextData < unaff_R14);
   return;
 }
 
@@ -98149,7 +98149,7 @@ float FUN_180727db0(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
   ushort uVar3;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   int iVar8;
   uint uVar9;
@@ -98167,14 +98167,14 @@ float FUN_180727db0(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
   iVar4 = (int)dataSource;
   floatResult7 = 0.0;
   if (2 < uiContext) {
-    lVar6 = functionResult3 * 4;
+    contextData = functionResult3 * 4;
     pallocatedMemory4 = (longlong *)(&UNK_180956d30 + functionResult3 * 8);
     do {
       lVar5 = (longlong)(int)functionResult0;
       sVar11 = (short)functionResult0;
       if ((int)functionResult0 < (int)functionResult3) {
-        functionResult2 = *(uint *)(lVar6 + *(longlong *)(&UNK_180956d38 + lVar5 * 8));
-        if ((targetBuffer < *(uint *)(lVar6 + *(longlong *)(&UNK_180956d30 + lVar5 * 8))) ||
+        functionResult2 = *(uint *)(contextData + *(longlong *)(&UNK_180956d38 + lVar5 * 8));
+        if ((targetBuffer < *(uint *)(contextData + *(longlong *)(&UNK_180956d30 + lVar5 * 8))) ||
            (functionResult2 <= targetBuffer)) {
           eventTypeCode = 0;
           if (functionResult2 <= targetBuffer) {
@@ -98184,14 +98184,14 @@ float FUN_180727db0(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
             uVar9 = (int)functionResult0 - 1;
             functionResult0 = (ulonglong)uVar9;
           } while (targetBuffer - eventTypeCode <
-                   *(uint *)(lVar6 + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8)));
+                   *(uint *)(contextData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8)));
           uVar3 = (targetBuffer < functionResult2) - 1;
           sVar2 = uVar3 - (short)uVar9;
           targetBuffer = (targetBuffer - eventTypeCode) -
-                    *(uint *)(lVar6 + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
+                    *(uint *)(contextData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
           goto LAB_180727edb;
         }
-        targetBuffer = targetBuffer - *(uint *)(lVar6 + *(longlong *)(&UNK_180956d30 + lVar5 * 8));
+        targetBuffer = targetBuffer - *(uint *)(contextData + *(longlong *)(&UNK_180956d30 + lVar5 * 8));
         iVar8 = 0;
       }
       else {
@@ -98202,12 +98202,12 @@ float FUN_180727db0(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
           eventTypeCode = functionResult2;
         }
         eventTypeCode = targetBuffer - eventTypeCode;
-        if (eventTypeCode < *(uint *)(lVar6 + allocatedMemory)) {
+        if (eventTypeCode < *(uint *)(contextData + allocatedMemory)) {
           functionResult0 = functionResult3 & 0xffffffff;
           do {
             uVar9 = (int)functionResult0 - 1;
             functionResult0 = (ulonglong)uVar9;
-            uVar9 = *(uint *)(lVar6 + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
+            uVar9 = *(uint *)(contextData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
           } while (eventTypeCode < uVar9);
         }
         else {
@@ -98230,7 +98230,7 @@ LAB_180727edb:
       functionResult3 = (ulonglong)functionResult2;
       bufferSize = bufferSize + 1;
       pallocatedMemory4 = pallocatedMemory4 + -1;
-      lVar6 = lVar6 + -4;
+      contextData = contextData + -4;
     } while (2 < (int)functionResult2);
   }
   eventTypeCode = iVar4 * 2 + 1;
@@ -98264,7 +98264,7 @@ float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
   ushort uVar3;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   int iVar8;
   uint uVar9;
@@ -98282,14 +98282,14 @@ float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
   iVar4 = (int)dataSource;
   floatResult7 = 0.0;
   if (2 < uiContext) {
-    lVar6 = functionResult3 * 4;
+    contextData = functionResult3 * 4;
     pallocatedMemory4 = (longlong *)(&UNK_180956d30 + functionResult3 * 8);
     do {
       lVar5 = (longlong)(int)functionResult0;
       sVar11 = (short)functionResult0;
       if ((int)functionResult0 < (int)functionResult3) {
-        functionResult2 = *(uint *)(lVar6 + *(longlong *)(&UNK_180956d38 + lVar5 * 8));
-        if ((targetBuffer < *(uint *)(lVar6 + *(longlong *)(&UNK_180956d30 + lVar5 * 8))) ||
+        functionResult2 = *(uint *)(contextData + *(longlong *)(&UNK_180956d38 + lVar5 * 8));
+        if ((targetBuffer < *(uint *)(contextData + *(longlong *)(&UNK_180956d30 + lVar5 * 8))) ||
            (functionResult2 <= targetBuffer)) {
           eventTypeCode = 0;
           if (functionResult2 <= targetBuffer) {
@@ -98299,14 +98299,14 @@ float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
             uVar9 = (int)functionResult0 - 1;
             functionResult0 = (ulonglong)uVar9;
           } while (targetBuffer - eventTypeCode <
-                   *(uint *)(lVar6 + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8)));
+                   *(uint *)(contextData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8)));
           uVar3 = (targetBuffer < functionResult2) - 1;
           sVar2 = uVar3 - (short)uVar9;
           targetBuffer = (targetBuffer - eventTypeCode) -
-                    *(uint *)(lVar6 + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
+                    *(uint *)(contextData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
           goto LAB_180727edb;
         }
-        targetBuffer = targetBuffer - *(uint *)(lVar6 + *(longlong *)(&UNK_180956d30 + lVar5 * 8));
+        targetBuffer = targetBuffer - *(uint *)(contextData + *(longlong *)(&UNK_180956d30 + lVar5 * 8));
         iVar8 = 0;
       }
       else {
@@ -98317,12 +98317,12 @@ float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
           eventTypeCode = functionResult2;
         }
         eventTypeCode = targetBuffer - eventTypeCode;
-        if (eventTypeCode < *(uint *)(lVar6 + allocatedMemory)) {
+        if (eventTypeCode < *(uint *)(contextData + allocatedMemory)) {
           functionResult0 = functionResult3 & 0xffffffff;
           do {
             uVar9 = (int)functionResult0 - 1;
             functionResult0 = (ulonglong)uVar9;
-            uVar9 = *(uint *)(lVar6 + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
+            uVar9 = *(uint *)(contextData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
           } while (eventTypeCode < uVar9);
         }
         else {
@@ -98345,7 +98345,7 @@ LAB_180727edb:
       functionResult3 = (ulonglong)functionResult2;
       bufferSize = bufferSize + 1;
       pallocatedMemory4 = pallocatedMemory4 + -1;
-      lVar6 = lVar6 + -4;
+      contextData = contextData + -4;
     } while (2 < (int)functionResult2);
   }
   eventTypeCode = iVar4 * 2 + 1;
@@ -99016,7 +99016,7 @@ void FUN_1807290a0(longlong uiContext,longlong dataSource,int targetBuffer)
   int compareResult;
   ulonglong uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   int iVar8;
   int aiStackX_8 [2];
@@ -99093,15 +99093,15 @@ void FUN_1807290a0(longlong uiContext,longlong dataSource,int targetBuffer)
       }
       semaphoreHandle = compareResult * 0x10;
       if (0 < targetBuffer) {
-        lVar6 = 0;
+        contextData = 0;
         do {
           uVar4 = (ulonglong)semaphoreHandle;
           semaphoreHandle = semaphoreHandle + ((compareResult * -0x10 + 0x10000) / targetBuffer) * 4;
-          *(short *)(dataSource + lVar6 * 2) =
-               (short)((longlong)*(short *)(dataSource + lVar6 * 2) * uVar4 >> 0x10);
+          *(short *)(dataSource + contextData * 2) =
+               (short)((longlong)*(short *)(dataSource + contextData * 2) * uVar4 >> 0x10);
           if (0x10000 < (int)semaphoreHandle) break;
-          lVar6 = lVar6 + 1;
-        } while (lVar6 < targetBuffer);
+          contextData = contextData + 1;
+        } while (contextData < targetBuffer);
       }
     }
   }
@@ -100194,24 +100194,24 @@ void FUN_18072ad65(uint uiContext,undefined8 dataSource,undefined8 targetBuffer,
   longlong unaff_RDI;
   longlong lVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong in_R10;
   longlong in_R11;
   undefined2 *in_stack_00000050;
   
   lVar4 = unaff_RDI - (longlong)in_stack_00000050;
   do {
-    lVar6 = (longlong)*(short *)(lVar4 + (longlong)in_stack_00000050);
-    iVar5 = *context * 4 + (int)((ulonglong)(*unaff_RSI * lVar6) >> 0x10) * 4;
+    contextData = (longlong)*(short *)(lVar4 + (longlong)in_stack_00000050);
+    iVar5 = *context * 4 + (int)((ulonglong)(*unaff_RSI * contextData) >> 0x10) * 4;
     stringCompareIndex = (longlong)iVar5;
     validationResult = (((int)((in_R10 & 0xffffffff) * stringCompareIndex >> 0x10) >> 0xd) + 1 >> 1) +
             (int)((ulonglong)(in_AX * stringCompareIndex) >> 0x10) + context[1];
     *context = validationResult;
-    *context = (int)((ulonglong)(unaff_RSI[1] * lVar6) >> 0x10) + validationResult;
+    *context = (int)((ulonglong)(unaff_RSI[1] * contextData) >> 0x10) + validationResult;
     validationResult = (((int)((ulonglong)uiContext * stringCompareIndex >> 0x10) >> 0xd) + 1 >> 1) +
             (int)((ulonglong)(bufferSize * stringCompareIndex) >> 0x10);
     context[1] = validationResult;
-    context[1] = (int)((ulonglong)(unaff_RSI[2] * lVar6) >> 0x10) + validationResult;
+    context[1] = (int)((ulonglong)(unaff_RSI[2] * contextData) >> 0x10) + validationResult;
     validationResult = iVar5 + 0x3fff >> 0xe;
     if (validationResult < 0x8000) {
       functionResult = (undefined2)validationResult;
@@ -100358,7 +100358,7 @@ void FUN_18072afa1(void)
   double dVar3;
   double *pdVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int unaff_EBX;
   longlong unaff_RSI;
   longlong unaff_RDI;
@@ -100377,13 +100377,13 @@ void FUN_18072afa1(void)
     if (adStackX_8[0] <= in_XMM5_Qa) {
       dVar10 = in_XMM5_Qa;
     }
-    lVar6 = (longlong)unaff_EBX;
+    contextData = (longlong)unaff_EBX;
     pdVar4 = (double *)((longlong)adStackX_8 + eventTypeCode + 0x10);
     lVar9 = 0;
     dVar10 = (-1.0 / dVar10) * *(double *)((longlong)adStackX_8 + eventTypeCode);
     *(float *)(unaff_RSI + in_R11 * 4) = (float)dVar10;
-    if (3 < lVar6) {
-      lVar5 = (lVar6 - 4U >> 2) + 1;
+    if (3 < contextData) {
+      lVar5 = (contextData - 4U >> 2) + 1;
       lVar9 = lVar5 * 4;
       do {
         dVar1 = *(double *)((longlong)pdVar4 + lVar8 + -0x10);
@@ -100406,17 +100406,17 @@ void FUN_18072afa1(void)
         lVar5 = lVar5 + -1;
       } while (lVar5 != 0);
     }
-    if (lVar9 < lVar6) {
+    if (lVar9 < contextData) {
       pdVar4 = adStackX_8 + lVar9 * 2;
-      lVar6 = lVar6 - lVar9;
+      contextData = contextData - lVar9;
       do {
         dVar1 = *pdVar4;
         dVar2 = *(double *)(eventTypeCode + (longlong)pdVar4);
         *(double *)(eventTypeCode + (longlong)pdVar4) = dVar1 * dVar10 + dVar2;
         *pdVar4 = dVar2 * dVar10 + dVar1;
         pdVar4 = pdVar4 + 2;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        contextData = contextData + -1;
+      } while (contextData != 0);
     }
     unaff_EBX = unaff_EBX + -1;
     in_R11 = in_R11 + 1;
@@ -100452,7 +100452,7 @@ void FUN_18072b160(longlong uiContext,float *dataSource,int targetBuffer)
   float fVar3;
   float fVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   longlong lVar8;
   longlong lVar9;
@@ -100467,13 +100467,13 @@ void FUN_18072b160(longlong uiContext,float *dataSource,int targetBuffer)
     do {
       operationResult0 = operationResult0 + 1;
       floatResult = *dataSource;
-      lVar6 = 0;
+      contextData = 0;
       allocatedMemory1 = (longlong)operationResult0 >> 1;
       if (3 < allocatedMemory1) {
         pfloatResult2 = (float *)(lVar9 + -8 + (longlong)dataSource);
         pfVar7 = (float *)(uiContext + 8);
         lVar5 = (allocatedMemory1 - 4U >> 2) + 1;
-        lVar6 = lVar5 * 4;
+        contextData = lVar5 * 4;
         do {
           fVar2 = pfloatResult2[1];
           fVar3 = pfVar7[-2];
@@ -100496,16 +100496,16 @@ void FUN_18072b160(longlong uiContext,float *dataSource,int targetBuffer)
           lVar5 = lVar5 + -1;
         } while (lVar5 != 0);
       }
-      if (lVar6 < allocatedMemory1) {
-        pfVar7 = (float *)(uiContext + ((lVar8 - lVar6) + -1) * 4);
+      if (contextData < allocatedMemory1) {
+        pfVar7 = (float *)(uiContext + ((lVar8 - contextData) + -1) * 4);
         do {
           fVar2 = *pfVar7;
-          fVar3 = *(float *)(uiContext + lVar6 * 4);
-          *(float *)(uiContext + lVar6 * 4) = fVar2 * floatResult + fVar3;
-          lVar6 = lVar6 + 1;
+          fVar3 = *(float *)(uiContext + contextData * 4);
+          *(float *)(uiContext + contextData * 4) = fVar2 * floatResult + fVar3;
+          contextData = contextData + 1;
           *pfVar7 = fVar3 * floatResult + fVar2;
           pfVar7 = pfVar7 + -1;
-        } while (lVar6 < allocatedMemory1);
+        } while (contextData < allocatedMemory1);
       }
       *(float *)(lVar9 + (longlong)dataSource) = -floatResult;
       lVar8 = lVar8 + 1;
@@ -100527,7 +100527,7 @@ void FUN_18072b17c(longlong uiContext,longlong dataSource,undefined8 targetBuffe
   float fVar3;
   float fVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   longlong lVar8;
   longlong unaff_RBP;
@@ -100542,13 +100542,13 @@ void FUN_18072b17c(longlong uiContext,longlong dataSource,undefined8 targetBuffe
   do {
     iVar9 = iVar9 + 1;
     floatResult = *in_R11;
-    lVar6 = 0;
+    contextData = 0;
     allocatedMemory0 = (longlong)iVar9 >> 1;
     if (3 < allocatedMemory0) {
       pfloatResult1 = (float *)((uiContext - dataSource) + -8 + (longlong)in_R11);
       pfVar7 = (float *)(bufferSize + 8);
       lVar5 = (allocatedMemory0 - 4U >> 2) + 1;
-      lVar6 = lVar5 * 4;
+      contextData = lVar5 * 4;
       do {
         fVar2 = pfloatResult1[1];
         fVar3 = pfVar7[-2];
@@ -100571,16 +100571,16 @@ void FUN_18072b17c(longlong uiContext,longlong dataSource,undefined8 targetBuffe
         lVar5 = lVar5 + -1;
       } while (lVar5 != 0);
     }
-    if (lVar6 < allocatedMemory0) {
-      pfVar7 = (float *)(bufferSize + ((lVar8 - lVar6) + -1) * 4);
+    if (contextData < allocatedMemory0) {
+      pfVar7 = (float *)(bufferSize + ((lVar8 - contextData) + -1) * 4);
       do {
         fVar2 = *pfVar7;
-        fVar3 = *(float *)(bufferSize + lVar6 * 4);
-        *(float *)(bufferSize + lVar6 * 4) = fVar2 * floatResult + fVar3;
-        lVar6 = lVar6 + 1;
+        fVar3 = *(float *)(bufferSize + contextData * 4);
+        *(float *)(bufferSize + contextData * 4) = fVar2 * floatResult + fVar3;
+        contextData = contextData + 1;
         *pfVar7 = fVar3 * floatResult + fVar2;
         pfVar7 = pfVar7 + -1;
-      } while (lVar6 < allocatedMemory0);
+      } while (contextData < allocatedMemory0);
     }
     *(uint *)((uiContext - dataSource) + (longlong)in_R11) = (uint)floatResult ^ in_XMM5_Da;
     lVar8 = lVar8 + 1;
@@ -101220,7 +101220,7 @@ void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int b
   float fVar3;
   char cVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   int iVar8;
   longlong lVar9;
@@ -101269,7 +101269,7 @@ void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int b
       allocatedMemory0 = dataSource + (longlong)(*pcVar13 + iStack_e0) * -4;
       dVar20 = (double)FUN_18072b3a0(allocatedMemory0,iStack_e8);
       cVar4 = *pcVar13;
-      lVar6 = 1;
+      contextData = 1;
       dVar20 = dVar20 + 0.001;
       lVar9 = (longlong)(((int)pcVar13[1] - (int)cVar4) + 1);
       allocatedMemory7 = 1;
@@ -101285,25 +101285,25 @@ void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int b
             dVar20 = (dVar20 - (double)pfloatResult6[2] * (double)pfloatResult6[2]) +
                      (double)pfloatResult4[2] * (double)pfloatResult4[2];
             fVar2 = pfloatResult6[1];
-            afStack_c8[lVar6] = (float)dVar20;
+            afStack_c8[contextData] = (float)dVar20;
             fVar3 = *pfloatResult6;
             dVar20 = (dVar20 - (double)fVar2 * (double)fVar2) + (double)floatResult * (double)floatResult;
             floatResult = *pfloatResult4;
-            afStack_c8[lVar6 + 1] = (float)dVar20;
+            afStack_c8[contextData + 1] = (float)dVar20;
             fVar2 = pfloatResult6[-1];
             pfloatResult6 = pfloatResult6 + -4;
             dVar20 = (dVar20 - (double)fVar3 * (double)fVar3) + (double)floatResult * (double)floatResult;
             floatResult = pfloatResult4[-1];
             pfloatResult4 = pfloatResult4 + -4;
-            afStack_c8[lVar6 + 2] = (float)dVar20;
+            afStack_c8[contextData + 2] = (float)dVar20;
             dVar20 = (dVar20 - (double)fVar2 * (double)fVar2) + (double)floatResult * (double)floatResult;
-            afStack_c8[lVar6 + 3] = (float)dVar20;
-            lVar6 = lVar6 + 4;
+            afStack_c8[contextData + 3] = (float)dVar20;
+            contextData = contextData + 4;
             lVar5 = lVar5 + -1;
           } while (lVar5 != 0);
         }
         if (allocatedMemory7 < lVar9) {
-          pfloatResult4 = afStack_c8 + lVar6;
+          pfloatResult4 = afStack_c8 + contextData;
           pfVar7 = (float *)(allocatedMemory0 + allocatedMemory7 * -4);
           lVar9 = lVar9 - allocatedMemory7;
           pfloatResult6 = (float *)(allocatedMemory0 + (iStack_e8 - allocatedMemory7) * 4);
@@ -101324,12 +101324,12 @@ void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int b
       operationResult5 = operationResult1;
       if (0 < (longlong)iVar8) {
         do {
-          lVar6 = (longlong)((int)(char)pfunctionResult2[operationResult5] - (int)cVar4);
-          pfloatResult4[-2] = afStack_c8[lVar6];
-          pfloatResult4[-1] = afStack_c8[lVar6 + 1];
-          *pfloatResult4 = afStack_c8[lVar6 + 2];
-          pfloatResult4[1] = afStack_c8[lVar6 + 3];
-          pfloatResult4[2] = afStack_c8[lVar6 + 4];
+          contextData = (longlong)((int)(char)pfunctionResult2[operationResult5] - (int)cVar4);
+          pfloatResult4[-2] = afStack_c8[contextData];
+          pfloatResult4[-1] = afStack_c8[contextData + 1];
+          *pfloatResult4 = afStack_c8[contextData + 2];
+          pfloatResult4[1] = afStack_c8[contextData + 3];
+          pfloatResult4[2] = afStack_c8[contextData + 4];
           allocatedMemory7 = allocatedMemory7 + -1;
           pfloatResult4 = pfloatResult4 + 5;
           operationResult5 = operationResult5 + 1;
@@ -101405,25 +101405,25 @@ void ProcessUIRenderDataProcessor(undefined8 uiContext,undefined8 dataSource,int
           dVar17 = (dVar17 - (double)pfloatResult4[2] * (double)pfloatResult4[2]) +
                    (double)pfloatResult1[2] * (double)pfloatResult1[2];
           fVar2 = pfloatResult4[1];
-          (&param_8)[lVar6] = (float)dVar17;
+          (&param_8)[contextData] = (float)dVar17;
           fVar3 = *pfloatResult4;
           dVar17 = (dVar17 - (double)fVar2 * (double)fVar2) + (double)floatResult * (double)floatResult;
           floatResult = *pfloatResult1;
-          *(float *)(&stack0x00000044 + lVar6 * 4) = (float)dVar17;
+          *(float *)(&stack0x00000044 + contextData * 4) = (float)dVar17;
           fVar2 = pfloatResult4[-1];
           pfloatResult4 = pfloatResult4 + -4;
           dVar17 = (dVar17 - (double)fVar3 * (double)fVar3) + (double)floatResult * (double)floatResult;
           floatResult = pfloatResult1[-1];
           pfloatResult1 = pfloatResult1 + -4;
-          *(float *)(&stack0x00000048 + lVar6 * 4) = (float)dVar17;
+          *(float *)(&stack0x00000048 + contextData * 4) = (float)dVar17;
           dVar17 = (dVar17 - (double)fVar2 * (double)fVar2) + (double)floatResult * (double)floatResult;
-          *(float *)(&stack0x0000004c + lVar6 * 4) = (float)dVar17;
-          lVar6 = lVar6 + 4;
+          *(float *)(&stack0x0000004c + contextData * 4) = (float)dVar17;
+          contextData = contextData + 4;
           lVar5 = lVar5 + -1;
         } while (lVar5 != 0);
       }
       if (allocatedMemory5 < lVar8) {
-        pfloatResult1 = &param_8 + lVar6;
+        pfloatResult1 = &param_8 + contextData;
         pfVar7 = (float *)(lVar9 + allocatedMemory5 * -4);
         lVar8 = lVar8 - allocatedMemory5;
         pfloatResult4 = (float *)(lVar9 + (iStackX_20 - allocatedMemory5) * 4);
@@ -101444,12 +101444,12 @@ void ProcessUIRenderDataProcessor(undefined8 uiContext,undefined8 dataSource,int
     operationResult3 = operationResult0;
     if (0 < unaff_R13) {
       do {
-        lVar6 = (longlong)((int)*(char *)(operationResult3 + unaff_RSI) - (int)cVar4);
-        pfunctionResult2[-2] = (&param_8)[lVar6];
-        pfunctionResult2[-1] = *(undefined4 *)(&stack0x00000044 + lVar6 * 4);
-        *pfunctionResult2 = *(undefined4 *)(&stack0x00000048 + lVar6 * 4);
-        pfunctionResult2[1] = *(undefined4 *)(&stack0x0000004c + lVar6 * 4);
-        pfunctionResult2[2] = *(undefined4 *)(&stack0x00000050 + lVar6 * 4);
+        contextData = (longlong)((int)*(char *)(operationResult3 + unaff_RSI) - (int)cVar4);
+        pfunctionResult2[-2] = (&param_8)[contextData];
+        pfunctionResult2[-1] = *(undefined4 *)(&stack0x00000044 + contextData * 4);
+        *pfunctionResult2 = *(undefined4 *)(&stack0x00000048 + contextData * 4);
+        pfunctionResult2[1] = *(undefined4 *)(&stack0x0000004c + contextData * 4);
+        pfunctionResult2[2] = *(undefined4 *)(&stack0x00000050 + contextData * 4);
         allocatedMemory5 = allocatedMemory5 + -1;
         pfunctionResult2 = pfunctionResult2 + 5;
         operationResult3 = operationResult3 + 1;
@@ -103756,17 +103756,17 @@ void FUN_18072e5f4(undefined8 uiContext,undefined8 dataSource,float targetBuffer
   int unaff_EBX;
   longlong unaff_RDI;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong in_R10;
   longlong in_R11;
   
-  lVar6 = (longlong)unaff_EBX;
-  if (lVar6 < unaff_RDI) {
-    if (3 < unaff_RDI - lVar6) {
-      stringCompareIndex = lVar6 * 4;
+  contextData = (longlong)unaff_EBX;
+  if (contextData < unaff_RDI) {
+    if (3 < unaff_RDI - contextData) {
+      stringCompareIndex = contextData * 4;
       lVar4 = in_R10 - in_R11;
-      lVar5 = ((unaff_RDI - lVar6) - 4U >> 2) + 1;
-      lVar6 = lVar6 + lVar5 * 4;
+      lVar5 = ((unaff_RDI - contextData) - 4U >> 2) + 1;
+      contextData = contextData + lVar5 * 4;
       pfVar2 = (float *)(in_R11 + 4 + stringCompareIndex);
       do {
         pfloatResult = pfVar2 + 4;
@@ -103778,9 +103778,9 @@ void FUN_18072e5f4(undefined8 uiContext,undefined8 dataSource,float targetBuffer
         pfVar2 = pfloatResult;
       } while (lVar5 != 0);
     }
-    if (lVar6 < unaff_RDI) {
-      stringCompareIndex = unaff_RDI - lVar6;
-      pfVar2 = (float *)(in_R11 + lVar6 * 4);
+    if (contextData < unaff_RDI) {
+      stringCompareIndex = unaff_RDI - contextData;
+      pfVar2 = (float *)(in_R11 + contextData * 4);
       do {
         *pfVar2 = targetBuffer * *(float *)((in_R10 - in_R11) + -4 + (longlong)(pfVar2 + 1));
         stringCompareIndex = stringCompareIndex + -1;
@@ -104389,7 +104389,7 @@ void FUN_18072edd0(short *uiContext,undefined8 dataSource,int targetBuffer)
   uint uVar3;
   int iVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   ulonglong uVar8;
   int *piVar9;
@@ -104453,7 +104453,7 @@ LAB_18072eeb7:
       puStack_d8 = &DAT_180956f70 + lStack_f0 * 2;
       functionResult2 = (ulonglong)*(int *)(lStack_e8 + (longlong)piVar9);
       if (operationResult7 == 8) {
-        lVar6 = (longlong)(operationResult6 << 4);
+        contextData = (longlong)(operationResult6 << 4);
         functionResult2 = (ulonglong)
                  (uint)((int)((ulonglong)
                               (((int)((ulonglong)
@@ -104462,27 +104462,27 @@ LAB_18072eeb7:
                                                       (((int)((ulonglong)
                                                               (((int)((ulonglong)
                                                                       (((int)((ulonglong)
-                                                                              (((int)(functionResult2 * lVar6
+                                                                              (((int)(functionResult2 * contextData
                                                                                      >> 0x10) +
-                                                                               piVar9[7]) * lVar6)
+                                                                               piVar9[7]) * contextData)
                                                                              >> 0x10) + piVar9[6]) *
-                                                                      lVar6) >> 0x10) + piVar9[5]) *
-                                                              lVar6) >> 0x10) + piVar9[4]) * lVar6)
-                                                     >> 0x10) + piVar9[3]) * lVar6) >> 0x10) +
-                                       piVar9[2]) * lVar6) >> 0x10) + piVar9[1]) * lVar6) >> 0x10) +
+                                                                      contextData) >> 0x10) + piVar9[5]) *
+                                                              contextData) >> 0x10) + piVar9[4]) * contextData)
+                                                     >> 0x10) + piVar9[3]) * contextData) >> 0x10) +
+                                       piVar9[2]) * contextData) >> 0x10) + piVar9[1]) * contextData) >> 0x10) +
                        *piVar9);
         semaphoreHandle = uStack_108;
       }
       else {
-        lVar6 = (longlong)operationResult7 + -1;
-        if (-1 < lVar6) {
+        contextData = (longlong)operationResult7 + -1;
+        if (-1 < contextData) {
           do {
             functionResult2 = (ulonglong)
                      (uint)((int)((ulonglong)((longlong)(int)functionResult2 * (longlong)(operationResult6 << 4)) >>
-                                 0x10) + piVar9[lVar6]);
-            lVar6 = lVar6 + -1;
+                                 0x10) + piVar9[contextData]);
+            contextData = contextData + -1;
             semaphoreHandle = uStack_108;
-          } while (-1 < lVar6);
+          } while (-1 < contextData);
         }
       }
       operationResult1 = (int)functionResult2;
@@ -104624,7 +104624,7 @@ void FUN_18072f370(longlong uiContext,int *dataSource,int *targetBuffer,int buff
   int *pcompareResult;
   longlong lVar4;
   int *piVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   bool bVar8;
   bool bVar9;
@@ -104661,7 +104661,7 @@ void FUN_18072f370(longlong uiContext,int *dataSource,int *targetBuffer,int buff
     }
   }
   if (1 < lVar7) {
-    lVar6 = 2;
+    contextData = 2;
     lVar4 = 2;
     bVar9 = SBORROW8(lVar7,2);
     componentIndex = lVar7 + -2;
@@ -104691,20 +104691,20 @@ void FUN_18072f370(longlong uiContext,int *dataSource,int *targetBuffer,int buff
     do {
       if (!bVar8 && bVar9 == componentIndex < 0) {
         poperationResult = targetBuffer + lVar7 + -2;
-        componentIndex = lVar7 - lVar6;
+        componentIndex = lVar7 - contextData;
         do {
           *poperationResult = *poperationResult - poperationResult[2];
           poperationResult = poperationResult + -1;
           componentIndex = componentIndex + -1;
         } while (componentIndex != 0);
       }
-      lVar6 = lVar6 + 1;
+      contextData = contextData + 1;
       *piVar5 = *piVar5 + piVar5[2] * -2;
       piVar5 = piVar5 + 1;
-      bVar9 = SBORROW8(lVar7,lVar6);
-      componentIndex = lVar7 - lVar6;
-      bVar8 = lVar7 == lVar6;
-    } while (lVar6 <= lVar7);
+      bVar9 = SBORROW8(lVar7,contextData);
+      componentIndex = lVar7 - contextData;
+      bVar8 = lVar7 == contextData;
+    } while (contextData <= lVar7);
   }
   return;
 }
@@ -104723,7 +104723,7 @@ void FUN_18072f4d0(undefined1 *uiContext,longlong dataSource,uint targetBuffer)
   undefined8 *puVar3;
   uint uVar4;
   int *piVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   longlong lVar8;
   longlong lVar9;
@@ -104746,7 +104746,7 @@ void FUN_18072f4d0(undefined1 *uiContext,longlong dataSource,uint targetBuffer)
   ulonglong uStack_38;
   
   uStack_38 = XorEncryptionKey ^ (ulonglong)auStack_138;
-  lVar6 = (longlong)(int)targetBuffer;
+  contextData = (longlong)(int)targetBuffer;
   pfunctionResult0 = &UNK_180956df8;
   if (targetBuffer == 0x10) {
     pfunctionResult0 = &UNK_180956de8;
@@ -104763,7 +104763,7 @@ void FUN_18072f4d0(undefined1 *uiContext,longlong dataSource,uint targetBuffer)
             ((int)*(short *)(&UIDataTableA + (longlong)validationResult * 2) -
             (int)*(short *)(&DAT_180956f70 + (longlong)validationResult * 2)) +
             *(short *)(&DAT_180956f70 + (longlong)validationResult * 2) * 0x100 >> 3) + 1 >> 1;
-    } while (lVar9 < lVar6);
+    } while (lVar9 < contextData);
   }
   validationResult = (int)targetBuffer >> 1;
   FUN_18072f7d0(aiStack_a8,&iStack_108,validationResult);
@@ -104771,7 +104771,7 @@ void FUN_18072f4d0(undefined1 *uiContext,longlong dataSource,uint targetBuffer)
   lVar9 = (longlong)validationResult;
   if (0 < validationResult) {
     lVar8 = 0;
-    piVar5 = &iStack_10c + lVar6;
+    piVar5 = &iStack_10c + contextData;
     do {
       iVar7 = *(int *)((longlong)aiStack_a8 + lVar8 + 4) + *(int *)((longlong)aiStack_a8 + lVar8);
       validationResult = *(int *)((longlong)aiStack_70 + lVar8 + 4) - *(int *)((longlong)aiStack_70 + lVar8);
@@ -104833,7 +104833,7 @@ void FUN_18072f4d0(undefined1 *uiContext,longlong dataSource,uint targetBuffer)
         piVar5 = piVar5 + 0x10;
       } while (lVar9 < (int)(targetBuffer - uVar4));
     }
-    for (; lVar9 < lVar6; lVar9 = lVar9 + 1) {
+    for (; lVar9 < contextData; lVar9 = lVar9 + 1) {
       *(short *)(uiContext + lVar9 * 2) =
            (short)((*(int *)(auStack_104 + lVar9 * 4 + -4) >> 4) + 1 >> 1);
     }
@@ -106931,22 +106931,22 @@ void FUN_180733a10(longlong uiContext,int *dataSource,longlong targetBuffer,unde
   undefined2 uVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   longlong lVar8;
   
   if (0 < (longlong)resultPointer >> 1) {
-    lVar6 = 0;
+    contextData = 0;
     targetBuffer = targetBuffer - (longlong)bufferSize;
     lVar7 = (longlong)_DAT_180be12e0;
     lVar8 = (longlong)_DAT_180be12dc;
     do {
-      iVar4 = *(short *)(uiContext + lVar6 * 4) * 0x400;
+      iVar4 = *(short *)(uiContext + contextData * 4) * 0x400;
       operationResult = iVar4 - *dataSource;
       operationResult = (int)((ulonglong)(operationResult * lVar7) >> 0x10) + operationResult;
       validationResult = *dataSource + operationResult;
       *dataSource = operationResult + iVar4;
-      iVar5 = *(short *)(uiContext + 2 + lVar6 * 4) * 0x400;
+      iVar5 = *(short *)(uiContext + 2 + contextData * 4) * 0x400;
       operationResult = (int)((ulonglong)((iVar5 - dataSource[1]) * lVar8) >> 0x10);
       iVar4 = dataSource[1] + operationResult;
       dataSource[1] = operationResult + iVar5;
@@ -106972,9 +106972,9 @@ void FUN_180733a10(longlong uiContext,int *dataSource,longlong targetBuffer,unde
         uVar3 = 0x7fff;
       }
       *bufferSize = uVar3;
-      lVar6 = lVar6 + 1;
+      contextData = contextData + 1;
       bufferSize = bufferSize + 1;
-    } while (lVar6 < (longlong)resultPointer >> 1);
+    } while (contextData < (longlong)resultPointer >> 1);
   }
   return;
 }
@@ -107067,7 +107067,7 @@ void FUN_180733ba0(longlong uiContext,longlong dataSource,short *targetBuffer,in
   undefined2 uVar3;
   ulonglong uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   short *psVar8;
   int iVar9;
@@ -107076,7 +107076,7 @@ void FUN_180733ba0(longlong uiContext,longlong dataSource,short *targetBuffer,in
   lVar5 = (longlong)resultPointer;
   if (lVar5 < bufferSize) {
     psVar10 = (short *)(dataSource + (lVar5 + -6) * 2);
-    lVar6 = bufferSize - lVar5;
+    contextData = bufferSize - lVar5;
     do {
       eventTypeCode = 6;
       iVar9 = (int)psVar10[4] * (int)targetBuffer[1] + (int)psVar10[3] * (int)targetBuffer[2] +
@@ -107106,8 +107106,8 @@ void FUN_180733ba0(longlong uiContext,longlong dataSource,short *targetBuffer,in
       }
       *(undefined2 *)((longlong)psVar10 + (uiContext - dataSource) + 0xc) = uVar3;
       psVar10 = psVar10 + 1;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      contextData = contextData + -1;
+    } while (contextData != 0);
   }
                     // WARNING: Could not recover jumptable at 0x0001808ffc3b. Too many branches
                     // WARNING: Subroutine does not return
@@ -107625,7 +107625,7 @@ void FUN_180734390(longlong uiContext,char *dataSource,longlong targetBuffer)
   int compareResult;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   short *psVar7;
   int iVar8;
   char *pcVar9;
@@ -107642,10 +107642,10 @@ void FUN_180734390(longlong uiContext,char *dataSource,longlong targetBuffer)
   sVar11 = *(short *)(targetBuffer + 2);
   iVar4 = 0;
   iVar8 = sVar11 + -1;
-  lVar6 = (longlong)iVar8;
+  contextData = (longlong)iVar8;
   if (-1 < iVar8) {
     sVar1 = *(short *)(targetBuffer + 4);
-    pcVar9 = dataSource + lVar6 + 1;
+    pcVar9 = dataSource + contextData + 1;
     do {
       pisCharacterMatch0 = (byte *)(pcVar9 + (longlong)(abStack_89 + -(longlong)dataSource));
       compareResult = *pcVar9 * 0x400;
@@ -107661,17 +107661,17 @@ void FUN_180734390(longlong uiContext,char *dataSource,longlong targetBuffer)
       pcVar9 = pcVar9 + -1;
       iVar4 = (int)((ulonglong)((longlong)compareResult * (longlong)sVar1) >> 0x10) +
               ((int)((uint)*pisCharacterMatch0 * (int)(short)iVar4) >> 8);
-      asStack_78[lVar6] = (short)iVar4;
-      lVar6 = lVar6 + -1;
-    } while (-1 < lVar6);
+      asStack_78[contextData] = (short)iVar4;
+      contextData = contextData + -1;
+    } while (-1 < contextData);
   }
   iVar8 = 0;
-  lVar6 = (longlong)((int)*dataSource * (int)sVar11);
-  pisCharacterMatch0 = (byte *)(*(longlong *)(targetBuffer + 8) + lVar6);
-  psVar7 = (short *)(*(longlong *)(targetBuffer + 0x10) + lVar6 * 2);
+  contextData = (longlong)((int)*dataSource * (int)sVar11);
+  pisCharacterMatch0 = (byte *)(*(longlong *)(targetBuffer + 8) + contextData);
+  psVar7 = (short *)(*(longlong *)(targetBuffer + 0x10) + contextData * 2);
   if (0 < sVar11) {
     lVar5 = (longlong)asStack_78 - (longlong)psVar7;
-    lVar6 = uiContext - (longlong)psVar7;
+    contextData = uiContext - (longlong)psVar7;
     do {
       iVar4 = ((int)*(short *)(lVar5 + (longlong)psVar7) << 0xe) / (int)*psVar7 +
               (uint)*pisCharacterMatch0 * 0x80;
@@ -107684,7 +107684,7 @@ void FUN_180734390(longlong uiContext,char *dataSource,longlong targetBuffer)
       else {
         semaphoreHandle = 0x7fff;
       }
-      *(undefined2 *)(lVar6 + (longlong)psVar7) = semaphoreHandle;
+      *(undefined2 *)(contextData + (longlong)psVar7) = semaphoreHandle;
       iVar8 = iVar8 + 1;
       sVar11 = *(short *)(targetBuffer + 2);
       psVar7 = psVar7 + 1;
@@ -107708,7 +107708,7 @@ void FUN_1807343b8(undefined8 uiContext,undefined8 dataSource,longlong targetBuf
   undefined2 uVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   char *unaff_RDI;
   longlong lVar7;
   short *psVar8;
@@ -107752,7 +107752,7 @@ void FUN_1807343b8(undefined8 uiContext,undefined8 dataSource,longlong targetBuf
   psVar8 = (short *)(*(longlong *)(targetBuffer + 0x10) + lVar7 * 2);
   if (0 < sVar1) {
     lVar7 = -(longlong)psVar8;
-    lVar6 = unaff_R14 - (longlong)psVar8;
+    contextData = unaff_R14 - (longlong)psVar8;
     do {
       iVar5 = ((int)*(short *)(&stack0x00000030 + lVar7 + (longlong)psVar8) << 0xe) / (int)*psVar8 +
               (uint)*pisCharacterMatch1 * 0x80;
@@ -107765,7 +107765,7 @@ void FUN_1807343b8(undefined8 uiContext,undefined8 dataSource,longlong targetBuf
       else {
         uVar3 = 0x7fff;
       }
-      *(undefined2 *)(lVar6 + (longlong)psVar8) = uVar3;
+      *(undefined2 *)(contextData + (longlong)psVar8) = uVar3;
       iVar9 = iVar9 + 1;
       psVar8 = psVar8 + 1;
       pisCharacterMatch1 = pisCharacterMatch1 + 1;
@@ -108137,7 +108137,7 @@ void FUN_180734a30(longlong uiContext,longlong dataSource,int targetBuffer,uint 
   uint uVar3;
   ulonglong uVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   float *pfVar8;
   ulonglong uVar9;
@@ -108256,42 +108256,42 @@ LAB_180734c0f:
       if (*pfVar8 <= floatResult && floatResult != *pfVar8) {
         operationResult0 = bufferSize - 2;
         lVar7 = (longlong)(int)bufferSize + -2;
-        lVar6 = lVar7;
+        contextData = lVar7;
         if (-1 < operationResult0) {
           if (3 < (int)(bufferSize - 1)) {
             do {
               fVar2 = *(float *)(uiContext + lVar7 * 4);
-              lVar6 = lVar7;
+              contextData = lVar7;
               if (floatResult <= fVar2) goto LAB_180734d2f;
               *(float *)(uiContext + 4 + lVar7 * 4) = fVar2;
               *(undefined4 *)(dataSource + 4 + lVar7 * 4) = *(undefined4 *)(dataSource + lVar7 * 4);
-              lVar6 = lVar7 + -1;
-              fVar2 = *(float *)(uiContext + lVar6 * 4);
+              contextData = lVar7 + -1;
+              fVar2 = *(float *)(uiContext + contextData * 4);
               if (floatResult <= fVar2) goto LAB_180734d2f;
-              *(float *)(uiContext + 4 + lVar6 * 4) = fVar2;
-              *(undefined4 *)(dataSource + 4 + lVar6 * 4) = *(undefined4 *)(dataSource + lVar6 * 4);
-              lVar6 = lVar7 + -2;
-              fVar2 = *(float *)(uiContext + lVar6 * 4);
+              *(float *)(uiContext + 4 + contextData * 4) = fVar2;
+              *(undefined4 *)(dataSource + 4 + contextData * 4) = *(undefined4 *)(dataSource + contextData * 4);
+              contextData = lVar7 + -2;
+              fVar2 = *(float *)(uiContext + contextData * 4);
               if (floatResult <= fVar2) goto LAB_180734d2f;
-              *(float *)(uiContext + 4 + lVar6 * 4) = fVar2;
-              *(undefined4 *)(dataSource + 4 + lVar6 * 4) = *(undefined4 *)(dataSource + lVar6 * 4);
-              lVar6 = lVar7 + -3;
-              fVar2 = *(float *)(uiContext + lVar6 * 4);
+              *(float *)(uiContext + 4 + contextData * 4) = fVar2;
+              *(undefined4 *)(dataSource + 4 + contextData * 4) = *(undefined4 *)(dataSource + contextData * 4);
+              contextData = lVar7 + -3;
+              fVar2 = *(float *)(uiContext + contextData * 4);
               if (floatResult <= fVar2) goto LAB_180734d2f;
-              *(float *)(uiContext + 4 + lVar6 * 4) = fVar2;
+              *(float *)(uiContext + 4 + contextData * 4) = fVar2;
               operationResult0 = operationResult0 + -4;
-              *(undefined4 *)(dataSource + 4 + lVar6 * 4) = *(undefined4 *)(dataSource + lVar6 * 4);
+              *(undefined4 *)(dataSource + 4 + contextData * 4) = *(undefined4 *)(dataSource + contextData * 4);
               lVar7 = lVar7 + -4;
             } while (2 < operationResult0);
           }
-          lVar6 = lVar7;
+          contextData = lVar7;
           if (-1 < operationResult0) {
             pfunctionResult3 = (undefined4 *)(dataSource + 4 + lVar7 * 4);
             do {
               fVar2 = *(float *)((uiContext - dataSource) + -4 + (longlong)pfunctionResult3);
               if (floatResult <= fVar2) break;
               *(float *)((uiContext - dataSource) + (longlong)pfunctionResult3) = fVar2;
-              lVar6 = lVar6 + -1;
+              contextData = contextData + -1;
               *pfunctionResult3 = pfunctionResult3[-1];
               pfunctionResult3 = pfunctionResult3 + -1;
               operationResult0 = operationResult0 + -1;
@@ -108299,8 +108299,8 @@ LAB_180734c0f:
           }
         }
 LAB_180734d2f:
-        *(float *)(uiContext + 4 + lVar6 * 4) = floatResult;
-        *(uint *)(dataSource + 4 + lVar6 * 4) = uVar3;
+        *(float *)(uiContext + 4 + contextData * 4) = floatResult;
+        *(uint *)(dataSource + 4 + contextData * 4) = uVar3;
       }
       uVar3 = uVar3 + 1;
       pfloatResult1 = pfloatResult1 + 1;
@@ -108380,7 +108380,7 @@ void FUN_180734f59(void)
   longlong stringCompareIndex;
   uint *bufferPtr;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   double *pdVar8;
   double *pdVar9;
@@ -108756,7 +108756,7 @@ void FUN_180734f59(void)
           lVar5 = uVar58 * 8;
           dVar62 = *(double *)(&stack0x00000060 + uVar58 * 8);
           dVar63 = *pdVar47;
-          lVar6 = uVar58 * 8;
+          contextData = uVar58 * 8;
           dVar65 = *(double *)(&stack0x00000068 + uVar58 * 8);
           lVar45 = uVar58 * 8;
           pdVar9 = pdVar47 + -1;
@@ -108768,7 +108768,7 @@ void FUN_180734f59(void)
                    dVar65 * *pdVar9;
           dVar64 = dVar64 + dVar61 * *(double *)(unaff_RBP + 0xe8 + stringCompareIndex) +
                    dVar66 * *(double *)(unaff_RBP + 0xf0 + lVar5) +
-                   dVar62 * *(double *)(unaff_RBP + 0xf8 + lVar6) +
+                   dVar62 * *(double *)(unaff_RBP + 0xf8 + contextData) +
                    dVar65 * *(double *)(unaff_RBP + 0x100 + lVar7);
           dVar60 = dVar60 + dVar61 * *(double *)(unaff_RBP + 0x18 + lVar46) +
                    dVar66 * *(double *)(unaff_RBP + 0x20 + lVar53) +
@@ -110826,7 +110826,7 @@ void FUN_180737100(undefined2 *uiContext,short *dataSource,int targetBuffer)
   undefined2 uVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   longlong lVar8;
   short *psVar9;
@@ -110847,9 +110847,9 @@ void FUN_180737100(undefined2 *uiContext,short *dataSource,int targetBuffer)
   if (iVar5 < 0x7fff) {
     uVar3 = (short)iVar5;
   }
-  lVar6 = (longlong)targetBuffer + -1;
+  contextData = (longlong)targetBuffer + -1;
   *uiContext = uVar3;
-  if (1 < lVar6) {
+  if (1 < contextData) {
     lVar8 = ((longlong)targetBuffer - 3U >> 1) + 1;
     psVar9 = dataSource + 2;
     do {
@@ -110882,15 +110882,15 @@ void FUN_180737100(undefined2 *uiContext,short *dataSource,int targetBuffer)
     } while (lVar8 != 0);
   }
   iVar5 = 1;
-  if (1 < 0x8000 - dataSource[lVar6]) {
-    iVar5 = 0x8000 - dataSource[lVar6];
+  if (1 < 0x8000 - dataSource[contextData]) {
+    iVar5 = 0x8000 - dataSource[contextData];
   }
   iVar4 = (int)(0x20000 / (longlong)iVar5) + iVar4;
   uVar3 = 0x7fff;
   if (iVar4 < 0x7fff) {
     uVar3 = (short)iVar4;
   }
-  uiContext[lVar6] = uVar3;
+  uiContext[contextData] = uVar3;
   return;
 }
 
@@ -111475,7 +111475,7 @@ void FUN_180737bad(void)
   ulonglong context;
   longlong unaff_RSI;
   int *piVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   ulonglong uVar8;
   int unaff_R12D;
@@ -111488,21 +111488,21 @@ void FUN_180737bad(void)
       operationResult = *piVar5;
       if (operationResult < *(int *)(unaff_R14 + -4 + context * 4)) {
         iVar4 = (int)context + -2;
-        lVar6 = context - 2;
+        contextData = context - 2;
         if (-1 < iVar4) {
-          puVar3 = (undefined4 *)(unaff_RSI + 4 + lVar6 * 4);
+          puVar3 = (undefined4 *)(unaff_RSI + 4 + contextData * 4);
           do {
             validationResult = *(int *)((longlong)puVar3 + (unaff_R14 - unaff_RSI) + -4);
             if (validationResult <= operationResult) break;
             *(int *)((longlong)puVar3 + (unaff_R14 - unaff_RSI)) = validationResult;
-            lVar6 = lVar6 + -1;
+            contextData = contextData + -1;
             *puVar3 = puVar3[-1];
             puVar3 = puVar3 + -1;
             iVar4 = iVar4 + -1;
           } while (-1 < iVar4);
         }
-        *(int *)(unaff_R14 + 4 + lVar6 * 4) = operationResult;
-        *(int *)(unaff_RSI + 4 + lVar6 * 4) = (int)uVar8;
+        *(int *)(unaff_R14 + 4 + contextData * 4) = operationResult;
+        *(int *)(unaff_RSI + 4 + contextData * 4) = (int)uVar8;
       }
       eventTypeCode = (int)uVar8 + 1;
       uVar8 = (ulonglong)eventTypeCode;
@@ -126734,7 +126734,7 @@ undefined8 FUN_1807455f0(longlong uiContext)
   int compareResult;
   undefined8 uVar4;
   longlong *plVar5;
-  longlong lVar6;
+  longlong contextData;
   
   colorBufferPointer = (longlong *)(uiContext + 0x12770);
   if (*colorBufferPointer != 0) {
@@ -126770,10 +126770,10 @@ undefined8 FUN_1807455f0(longlong uiContext)
     plVar5[0x12] = 0;
     *(undefined4 *)(plVar5 + 0x13) = 0xffffffff;
     *(undefined4 *)((longlong)plVar5 + 0x9c) = 0;
-    lVar6 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x10020,&UNK_18097d050,0x83,0,0,1)
+    contextData = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x10020,&UNK_18097d050,0x83,0,0,1)
     ;
-    plVar5[5] = lVar6;
-    if (lVar6 == 0) {
+    plVar5[5] = contextData;
+    if (contextData == 0) {
       (**(code **)(*plVar5 + 0x60))(plVar5,0);
                     // WARNING: Subroutine does not return
       FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar5,&UNK_18095b500,0xc6,1);
@@ -126787,7 +126787,7 @@ undefined8 FUN_1807455f0(longlong uiContext)
     compareResult = FUN_1807682e0(plVar5 + 7,0);
     if ((compareResult != 0) || (compareResult = (**(code **)(*colorBufferPointer + 8))(colorBufferPointer,plVar5), compareResult != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar6,&UNK_18095b500,0xb8,1);
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),contextData,&UNK_18095b500,0xb8,1);
     }
   }
   return uVar4;
@@ -127196,7 +127196,7 @@ ulonglong FUN_180745946(undefined4 uiContext,undefined4 dataSource)
   undefined4 uVar3;
   int iVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong *plVar7;
   ulonglong uVar8;
   undefined8 uVar9;
@@ -127248,11 +127248,11 @@ ulonglong FUN_180745946(undefined4 uiContext,undefined4 dataSource)
   if ((unaff_R15D >> 0x10 & 1) != 0) {
     uStack0000000000000040 = 0;
     if ((char)unaff_R15D < '\0') {
-      lVar6 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x198,&UNK_180958000,0xf59,0);
-      if (lVar6 == 0) {
+      contextData = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x198,&UNK_180958000,0xf59,0);
+      if (contextData == 0) {
         return 0x26;
       }
-      plVar7 = (longlong *)FUN_180773a80(lVar6);
+      plVar7 = (longlong *)FUN_180773a80(contextData);
       if (plVar7 == (longlong *)0x0) {
         return 0x26;
       }
@@ -127282,9 +127282,9 @@ ulonglong FUN_180745946(undefined4 uiContext,undefined4 dataSource)
         operationResult1 = operationResult1 + operationResult2;
       }
     }
-    lVar6 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),operationResult1,&UNK_180958000,0xf89,0);
-    plVar7[0x21] = lVar6;
-    if (lVar6 == 0) {
+    contextData = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),operationResult1,&UNK_180958000,0xf89,0);
+    plVar7[0x21] = contextData;
+    if (contextData == 0) {
       return 0x26;
     }
     if ((unaff_R15D & 0x10000800) == 0) {
@@ -127298,7 +127298,7 @@ ulonglong FUN_180745946(undefined4 uiContext,undefined4 dataSource)
       }
     }
     else {
-      *(longlong *)(lVar6 + 0x30) = unaff_R12;
+      *(longlong *)(contextData + 0x30) = unaff_R12;
     }
     *(undefined4 *)(plVar7[0x21] + 8) = *(undefined4 *)(unaff_RBP + 0x11934);
     *(undefined4 *)(plVar7[0x21] + 0xc) = *(undefined4 *)(unaff_RBP + 0x11938);
@@ -127308,109 +127308,109 @@ ulonglong FUN_180745946(undefined4 uiContext,undefined4 dataSource)
     *(undefined4 *)(plVar7 + 0x22) = 1;
     UNLOCK();
     if (unaff_RDI == (undefined8 *)0x0) {
-      lVar6 = 0;
+      contextData = 0;
     }
     else {
-      lVar6 = unaff_RDI[0xd];
+      contextData = unaff_RDI[0xd];
     }
-    plVar7[0x19] = lVar6;
-    lVar6 = plVar7[0x21];
+    plVar7[0x19] = contextData;
+    contextData = plVar7[0x21];
     if (unaff_RDI == (undefined8 *)0x0) {
-      *(undefined1 *)(lVar6 + 0x118) = 0;
+      *(undefined1 *)(contextData + 0x118) = 0;
     }
     else {
       uVar9 = unaff_RDI[1];
-      *(undefined8 *)(lVar6 + 0x38) = *unaff_RDI;
-      *(undefined8 *)(lVar6 + 0x40) = uVar9;
+      *(undefined8 *)(contextData + 0x38) = *unaff_RDI;
+      *(undefined8 *)(contextData + 0x40) = uVar9;
       uVar9 = unaff_RDI[3];
-      *(undefined8 *)(lVar6 + 0x48) = unaff_RDI[2];
-      *(undefined8 *)(lVar6 + 0x50) = uVar9;
+      *(undefined8 *)(contextData + 0x48) = unaff_RDI[2];
+      *(undefined8 *)(contextData + 0x50) = uVar9;
       uVar9 = unaff_RDI[5];
-      *(undefined8 *)(lVar6 + 0x58) = unaff_RDI[4];
-      *(undefined8 *)(lVar6 + 0x60) = uVar9;
+      *(undefined8 *)(contextData + 0x58) = unaff_RDI[4];
+      *(undefined8 *)(contextData + 0x60) = uVar9;
       uVar9 = unaff_RDI[7];
-      *(undefined8 *)(lVar6 + 0x68) = unaff_RDI[6];
-      *(undefined8 *)(lVar6 + 0x70) = uVar9;
+      *(undefined8 *)(contextData + 0x68) = unaff_RDI[6];
+      *(undefined8 *)(contextData + 0x70) = uVar9;
       uVar9 = unaff_RDI[9];
-      *(undefined8 *)(lVar6 + 0x78) = unaff_RDI[8];
-      *(undefined8 *)(lVar6 + 0x80) = uVar9;
+      *(undefined8 *)(contextData + 0x78) = unaff_RDI[8];
+      *(undefined8 *)(contextData + 0x80) = uVar9;
       uVar9 = unaff_RDI[0xb];
-      *(undefined8 *)(lVar6 + 0x88) = unaff_RDI[10];
-      *(undefined8 *)(lVar6 + 0x90) = uVar9;
+      *(undefined8 *)(contextData + 0x88) = unaff_RDI[10];
+      *(undefined8 *)(contextData + 0x90) = uVar9;
       uVar9 = unaff_RDI[0xd];
-      *(undefined8 *)(lVar6 + 0x98) = unaff_RDI[0xc];
-      *(undefined8 *)(lVar6 + 0xa0) = uVar9;
+      *(undefined8 *)(contextData + 0x98) = unaff_RDI[0xc];
+      *(undefined8 *)(contextData + 0xa0) = uVar9;
       uVar9 = unaff_RDI[0xf];
-      *(undefined8 *)(lVar6 + 0xa8) = unaff_RDI[0xe];
-      *(undefined8 *)(lVar6 + 0xb0) = uVar9;
+      *(undefined8 *)(contextData + 0xa8) = unaff_RDI[0xe];
+      *(undefined8 *)(contextData + 0xb0) = uVar9;
       uVar9 = unaff_RDI[0x11];
-      *(undefined8 *)(lVar6 + 0xb8) = unaff_RDI[0x10];
-      *(undefined8 *)(lVar6 + 0xc0) = uVar9;
+      *(undefined8 *)(contextData + 0xb8) = unaff_RDI[0x10];
+      *(undefined8 *)(contextData + 0xc0) = uVar9;
       uVar9 = unaff_RDI[0x13];
-      *(undefined8 *)(lVar6 + 200) = unaff_RDI[0x12];
-      *(undefined8 *)(lVar6 + 0xd0) = uVar9;
+      *(undefined8 *)(contextData + 200) = unaff_RDI[0x12];
+      *(undefined8 *)(contextData + 0xd0) = uVar9;
       uVar9 = unaff_RDI[0x15];
-      *(undefined8 *)(lVar6 + 0xd8) = unaff_RDI[0x14];
-      *(undefined8 *)(lVar6 + 0xe0) = uVar9;
+      *(undefined8 *)(contextData + 0xd8) = unaff_RDI[0x14];
+      *(undefined8 *)(contextData + 0xe0) = uVar9;
       uVar9 = unaff_RDI[0x17];
-      *(undefined8 *)(lVar6 + 0xe8) = unaff_RDI[0x16];
-      *(undefined8 *)(lVar6 + 0xf0) = uVar9;
+      *(undefined8 *)(contextData + 0xe8) = unaff_RDI[0x16];
+      *(undefined8 *)(contextData + 0xf0) = uVar9;
       functionResult = *(undefined4 *)((longlong)unaff_RDI + 0xc4);
       semaphoreHandle = *(undefined4 *)(unaff_RDI + 0x19);
       uVar3 = *(undefined4 *)((longlong)unaff_RDI + 0xcc);
-      *(undefined4 *)(lVar6 + 0xf8) = *(undefined4 *)(unaff_RDI + 0x18);
-      *(undefined4 *)(lVar6 + 0xfc) = functionResult;
-      *(undefined4 *)(lVar6 + 0x100) = semaphoreHandle;
-      *(undefined4 *)(lVar6 + 0x104) = uVar3;
+      *(undefined4 *)(contextData + 0xf8) = *(undefined4 *)(unaff_RDI + 0x18);
+      *(undefined4 *)(contextData + 0xfc) = functionResult;
+      *(undefined4 *)(contextData + 0x100) = semaphoreHandle;
+      *(undefined4 *)(contextData + 0x104) = uVar3;
       functionResult = *(undefined4 *)((longlong)unaff_RDI + 0xd4);
       semaphoreHandle = *(undefined4 *)(unaff_RDI + 0x1b);
       uVar3 = *(undefined4 *)((longlong)unaff_RDI + 0xdc);
-      *(undefined4 *)(lVar6 + 0x108) = *(undefined4 *)(unaff_RDI + 0x1a);
-      *(undefined4 *)(lVar6 + 0x10c) = functionResult;
-      *(undefined4 *)(lVar6 + 0x110) = semaphoreHandle;
-      *(undefined4 *)(lVar6 + 0x114) = uVar3;
+      *(undefined4 *)(contextData + 0x108) = *(undefined4 *)(unaff_RDI + 0x1a);
+      *(undefined4 *)(contextData + 0x10c) = functionResult;
+      *(undefined4 *)(contextData + 0x110) = semaphoreHandle;
+      *(undefined4 *)(contextData + 0x114) = uVar3;
       *(undefined1 *)(plVar7[0x21] + 0x118) = 1;
       if (unaff_RDI[0x17] != 0) {
         (**(code **)(*plVar7 + 0xd8))(plVar7);
       }
       allocatedMemory0 = plVar7[0x21];
       uStack0000000000000040 = *(undefined4 *)((longlong)unaff_RDI + 0xd4);
-      lVar6 = allocatedMemory0 + 0x128;
+      contextData = allocatedMemory0 + 0x128;
       if (*(int *)(allocatedMemory0 + 0x68) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar6,*(undefined8 *)(allocatedMemory0 + 0x60),(longlong)*(int *)(allocatedMemory0 + 0x68) << 2);
+        memcpy(contextData,*(undefined8 *)(allocatedMemory0 + 0x60),(longlong)*(int *)(allocatedMemory0 + 0x68) << 2);
       }
       if (*(longlong *)(allocatedMemory0 + 0x88) != 0) {
-        func_0x00018076b450(lVar6,*(longlong *)(allocatedMemory0 + 0x88),iVar4);
-        *(longlong *)(plVar7[0x21] + 0x88) = lVar6;
+        func_0x00018076b450(contextData,*(longlong *)(allocatedMemory0 + 0x88),iVar4);
+        *(longlong *)(plVar7[0x21] + 0x88) = contextData;
         allocatedMemory0 = plVar7[0x21];
-        lVar6 = lVar6 + iVar4;
+        contextData = contextData + iVar4;
       }
       if (*(longlong *)(allocatedMemory0 + 0x90) != 0) {
-        func_0x00018076b450(lVar6,*(longlong *)(allocatedMemory0 + 0x90),operationResult2);
-        *(longlong *)(plVar7[0x21] + 0x90) = lVar6;
+        func_0x00018076b450(contextData,*(longlong *)(allocatedMemory0 + 0x90),operationResult2);
+        *(longlong *)(plVar7[0x21] + 0x90) = contextData;
       }
     }
     uVar5 = FUN_18076ac40(uStack0000000000000040,plVar7[0x21] + 0x10);
     if (uVar5 == 0) {
-      lVar6 = *(longlong *)(plVar7[0x21] + 0x10);
-      uVar9 = *(undefined8 *)(lVar6 + 0x168);
+      contextData = *(longlong *)(plVar7[0x21] + 0x10);
+      uVar9 = *(undefined8 *)(contextData + 0x168);
       FUN_180768360(uVar9);
       *(longlong **)(plVar7[0x21] + 0x28) = plVar7;
       allocatedMemory0 = plVar7[0x21];
       plVar7 = (longlong *)(allocatedMemory0 + 0x18);
-      *(undefined8 *)(allocatedMemory0 + 0x20) = *(undefined8 *)(lVar6 + 0x158);
-      *plVar7 = lVar6 + 0x150;
-      *(longlong **)(lVar6 + 0x158) = plVar7;
+      *(undefined8 *)(allocatedMemory0 + 0x20) = *(undefined8 *)(contextData + 0x158);
+      *plVar7 = contextData + 0x150;
+      *(longlong **)(contextData + 0x158) = plVar7;
       **(undefined8 **)(allocatedMemory0 + 0x20) = plVar7;
                     // WARNING: Subroutine does not return
       FUN_180768400(uVar9);
     }
     LOCK();
-    lVar6 = plVar7[0x22];
+    contextData = plVar7[0x22];
     *(undefined4 *)(plVar7 + 0x22) = 2;
     UNLOCK();
-    (**(code **)(*plVar7 + 0x18))(plVar7,CONCAT71((uint7)(uint3)((uint)(int)lVar6 >> 8),1));
+    (**(code **)(*plVar7 + 0x18))(plVar7,CONCAT71((uint7)(uint3)((uint)(int)contextData >> 8),1));
     *unaff_R14 = 0;
     return (ulonglong)uVar5;
   }
@@ -127958,7 +127958,7 @@ ulonglong FUN_180746bf0(longlong uiContext,uint dataSource,uint targetBuffer,und
   int compareResult;
   ulonglong uVar4;
   ulonglong uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   undefined8 eventTypeCode;
   undefined8 *puVar8;
   longlong lVar9;
@@ -128030,16 +128030,16 @@ ulonglong FUN_180746bf0(longlong uiContext,uint dataSource,uint targetBuffer,und
   if (uVar5 != 0) {
     *(longlong *)(uVar5 + 0x48) = uiContext;
     *(undefined4 *)(bufferData + 0x10780) = 0;
-    plVar6 = (longlong *)(uiContext + 0x107cfU & 0xfffffffffffffff0);
+    pcontextData = (longlong *)(uiContext + 0x107cfU & 0xfffffffffffffff0);
     in_stack_ffffffffffffff58 = in_stack_ffffffffffffff58 & 0xffffffff00000000;
-    plVar6[1] = 0x400;
-    *(undefined4 *)(plVar6 + 2) = 0x400;
-    plVar6[3] = 0;
-    plVar6[4] = 0;
-    plVar6[6] = 0;
-    plVar6[7] = 0;
-    *(longlong **)(uiContext + 0x107b8) = plVar6;
-    *plVar6 = uiContext;
+    pcontextData[1] = 0x400;
+    *(undefined4 *)(pcontextData + 2) = 0x400;
+    pcontextData[3] = 0;
+    pcontextData[4] = 0;
+    pcontextData[6] = 0;
+    pcontextData[7] = 0;
+    *(longlong **)(uiContext + 0x107b8) = pcontextData;
+    *pcontextData = uiContext;
     *(undefined4 *)(*(longlong *)(bufferData + 0x107b8) + 0x30) = 1;
     *(undefined4 *)(*(longlong *)(bufferData + 0x107b8) + 8) = 0x400;
     *(undefined4 *)(*(longlong *)(bufferData + 0x107b8) + 0xc) = 0;
@@ -128156,14 +128156,14 @@ ulonglong FUN_180746bf0(longlong uiContext,uint dataSource,uint targetBuffer,und
       lVar9 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x80,&UNK_180958000,0x10b9,
                             (ulonglong)poperationResult2 & 0xffffffff00000000);
       if ((lVar9 != 0) &&
-         (plVar6 = (longlong *)func_0x000180754f90(lVar9), plVar6 != (longlong *)0x0)) {
+         (pcontextData = (longlong *)func_0x000180754f90(lVar9), pcontextData != (longlong *)0x0)) {
         FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
         lVar9 = *(longlong *)(bufferData + 0x11740);
-        plVar6[1] = uiContext + 0x11740;
-        *plVar6 = lVar9;
-        *(longlong **)(lVar9 + 8) = plVar6;
-        *(longlong **)plVar6[1] = plVar6;
-        plVar6[3] = uiContext;
+        pcontextData[1] = uiContext + 0x11740;
+        *pcontextData = lVar9;
+        *(longlong **)(lVar9 + 8) = pcontextData;
+        *(longlong **)pcontextData[1] = pcontextData;
+        pcontextData[3] = uiContext;
                     // WARNING: Subroutine does not return
         FUN_180768400(*(undefined8 *)(_DAT_180be12f0 + 0x120));
       }
@@ -128590,7 +128590,7 @@ ulonglong FUN_1807472dd(void)
   int compareResult;
   longlong *plVar4;
   longlong lVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   undefined4 *peventTypeCode;
   longlong *plVar8;
   longlong lVar9;
@@ -128633,7 +128633,7 @@ LAB_1807474ff:
             *(int *)(unaff_RDI + 0x1e0) = unaff_R13D;
             functionResult1 = (ulonglong)unaff_RSI & 0xffffffff;
             if (0 < unaff_R13D) {
-              plVar6 = unaff_RSI;
+              pcontextData = unaff_RSI;
               plVar4 = (longlong *)(unaff_RDI + 0x598);
               if (unaff_RDI == -0x420) {
                 plVar4 = unaff_RSI;
@@ -128643,7 +128643,7 @@ LAB_1807474ff:
                 FUN_1807554e0(*(longlong *)(uiContext + 0x1e8) + lVar9);
                 FUN_180756640(*(longlong *)(uiContext + 0x1e8) + lVar9,functionResult1);
                 lVar5 = *plVar4;
-                plVar8 = (longlong *)(*(longlong *)(uiContext + 0x1e8) + 0x178 + (longlong)plVar6);
+                plVar8 = (longlong *)(*(longlong *)(uiContext + 0x1e8) + 0x178 + (longlong)pcontextData);
                 *plVar8 = lVar5;
                 plVar8[1] = (longlong)plVar4;
                 *(longlong **)(lVar5 + 8) = plVar8;
@@ -128651,7 +128651,7 @@ LAB_1807474ff:
                 FUN_180757000(*(longlong *)(uiContext + 0x1e8) + lVar9,0,0,0);
                 semaphoreHandle = (int)functionResult1 + 1;
                 functionResult1 = (ulonglong)semaphoreHandle;
-                plVar6 = plVar6 + 0x46;
+                pcontextData = pcontextData + 0x46;
               } while ((int)semaphoreHandle < *(int *)(unaff_RDI + 0x1e0));
             }
           }
@@ -128735,13 +128735,13 @@ LAB_1807474ff:
         }
         else {
           lVar5 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x420,&UNK_180958000,0xb60);
-          plVar6 = unaff_RSI;
+          pcontextData = unaff_RSI;
           if (lVar5 != 0) {
-            plVar6 = (longlong *)FUN_1807ab010(lVar5);
+            pcontextData = (longlong *)FUN_1807ab010(lVar5);
           }
-          *(longlong **)(unaff_RDI + 0x6b0) = plVar6;
-          if (plVar6 != (longlong *)0x0) {
-            plVar6[9] = unaff_RDI;
+          *(longlong **)(unaff_RDI + 0x6b0) = pcontextData;
+          if (pcontextData != (longlong *)0x0) {
+            pcontextData[9] = unaff_RDI;
             semaphoreHandle = FUN_1807ab080(*(undefined8 *)(unaff_RDI + 0x6b0),unaff_R13D);
             if (semaphoreHandle != 0) goto LAB_180747287;
             goto LAB_1807474ff;
@@ -128755,16 +128755,16 @@ LAB_180747282:
         if (semaphoreHandle == 0) {
           plVar4 = (longlong *)
                    FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),200,&UNK_180958000,0xb4e);
-          plVar6 = unaff_RSI;
+          pcontextData = unaff_RSI;
           if (plVar4 != (longlong *)0x0) {
-            plVar6 = plVar4 + 4;
+            pcontextData = plVar4 + 4;
             *plVar4 = (longlong)&UNK_180957fe8;
-            plVar4[5] = (longlong)plVar6;
-            *plVar6 = (longlong)plVar6;
+            plVar4[5] = (longlong)pcontextData;
+            *pcontextData = (longlong)pcontextData;
             plVar4[6] = (longlong)unaff_RSI;
-            plVar6 = plVar4 + 7;
-            plVar4[8] = (longlong)plVar6;
-            *plVar6 = (longlong)plVar6;
+            pcontextData = plVar4 + 7;
+            plVar4[8] = (longlong)pcontextData;
+            *pcontextData = (longlong)pcontextData;
             plVar4[9] = (longlong)unaff_RSI;
             plVar4[0xb] = (longlong)unaff_RSI;
             *(undefined4 *)(plVar4 + 10) = functionResult0;
@@ -128775,11 +128775,11 @@ LAB_180747282:
             plVar4[3] = (longlong)unaff_RSI;
             plVar4[0xe] = (longlong)unaff_RSI;
             plVar4[0xf] = (longlong)unaff_RSI;
-            plVar6 = plVar4;
+            pcontextData = plVar4;
           }
-          *(longlong **)(unaff_RDI + 0x10f78) = plVar6;
-          if (plVar6 == (longlong *)0x0) goto LAB_180747282;
-          semaphoreHandle = (**(code **)*plVar6)(plVar6);
+          *(longlong **)(unaff_RDI + 0x10f78) = pcontextData;
+          if (pcontextData == (longlong *)0x0) goto LAB_180747282;
+          semaphoreHandle = (**(code **)*pcontextData)(pcontextData);
           if (semaphoreHandle == 0) goto LAB_180747487;
         }
       }
@@ -129997,7 +129997,7 @@ uint FUN_1807485c0(longlong uiContext,uint dataSource,float *targetBuffer,float 
   uint uVar3;
   longlong lVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   uint uVar8;
   float fVar9;
@@ -130009,7 +130009,7 @@ uint FUN_1807485c0(longlong uiContext,uint dataSource,float *targetBuffer,float 
   float fStack_40;
   float fStack_3c;
   
-  lVar6 = (longlong)(int)dataSource;
+  contextData = (longlong)(int)dataSource;
   if (7 < dataSource) {
     return 0x1f;
   }
@@ -130041,7 +130041,7 @@ uint FUN_1807485c0(longlong uiContext,uint dataSource,float *targetBuffer,float 
     if (1.1 < floatResult0) {
       return 0x24;
     }
-    lVar4 = lVar6 * 0x70;
+    lVar4 = contextData * 0x70;
     if (((fVar9 != *(float *)(lVar4 + 0x110d4 + uiContext)) ||
         (floatResult2 != *(float *)(lVar4 + 0x110d8 + uiContext))) ||
        (floatResult1 != *(float *)(lVar4 + 0x110dc + uiContext))) {
@@ -130079,7 +130079,7 @@ uint FUN_1807485c0(longlong uiContext,uint dataSource,float *targetBuffer,float 
     if (1.1 < floatResult0) {
       return 0x24;
     }
-    lVar4 = lVar6 * 0x70;
+    lVar4 = contextData * 0x70;
     if (((fVar9 != *(float *)(lVar4 + 0x110bc + uiContext)) ||
         (floatResult2 != *(float *)(lVar4 + 0x110c0 + uiContext))) ||
        (floatResult1 != *(float *)(lVar4 + 0x110c4 + uiContext))) {
@@ -130107,9 +130107,9 @@ uint FUN_1807485c0(longlong uiContext,uint dataSource,float *targetBuffer,float 
     if (uVar8 != 0) {
       return uVar8;
     }
-    lVar4 = lVar6 * 0x70;
+    lVar4 = contextData * 0x70;
     if (((*targetBuffer != *(float *)(lVar4 + 0x1108c + uiContext)) ||
-        (targetBuffer[1] != *(float *)((lVar6 + 0x26f) * 0x70 + uiContext))) ||
+        (targetBuffer[1] != *(float *)((contextData + 0x26f) * 0x70 + uiContext))) ||
        (targetBuffer[2] != *(float *)(lVar4 + 0x11094 + uiContext))) {
       *(undefined1 *)(lVar4 + 0x110ec + uiContext) = 1;
     }
@@ -130135,7 +130135,7 @@ uint FUN_1807485c0(longlong uiContext,uint dataSource,float *targetBuffer,float 
     if (uVar8 != 0) {
       return uVar8;
     }
-    lVar4 = lVar6 * 0x70;
+    lVar4 = contextData * 0x70;
     if (((*bufferSize != *(float *)(lVar4 + 0x110a4 + uiContext)) ||
         (bufferSize[1] != *(float *)(lVar4 + 0x110a8 + uiContext))) ||
        (bufferSize[2] != *(float *)(lVar4 + 0x110ac + uiContext))) {
@@ -130146,11 +130146,11 @@ uint FUN_1807485c0(longlong uiContext,uint dataSource,float *targetBuffer,float 
     *(undefined8 *)(lVar4 + 0x11098 + uiContext) = *(undefined8 *)bufferSize;
     *(float *)(lVar4 + 0x110a0 + uiContext) = bufferSize[2];
   }
-  lVar6 = lVar6 * 0x70;
-  functionResult = *(undefined8 *)(lVar6 + 0x110b0 + uiContext);
-  floatResult1 = *(float *)(lVar6 + 0x110b8 + uiContext);
-  floatResult2 = *(float *)(lVar6 + 0x110d0 + uiContext);
-  semaphoreHandle = *(undefined8 *)(lVar6 + 0x110c8 + uiContext);
+  contextData = contextData * 0x70;
+  functionResult = *(undefined8 *)(contextData + 0x110b0 + uiContext);
+  floatResult1 = *(float *)(contextData + 0x110b8 + uiContext);
+  floatResult2 = *(float *)(contextData + 0x110d0 + uiContext);
+  semaphoreHandle = *(undefined8 *)(contextData + 0x110c8 + uiContext);
   if ((*(byte *)(uiContext + 0x78) & 4) != 0) {
     floatResult1 = -floatResult1;
     floatResult2 = -floatResult2;
@@ -130161,9 +130161,9 @@ uint FUN_1807485c0(longlong uiContext,uint dataSource,float *targetBuffer,float 
   fStack_50 = (float)functionResult;
   fVar9 = fStack_3c * fStack_4c + fStack_40 * fStack_50 + floatResult2 * floatResult1;
   if ((-0.01 <= fVar9) && (fVar9 <= 0.01)) {
-    *(float *)(lVar6 + 0x110e0 + uiContext) = fStack_4c * floatResult2 - fStack_3c * floatResult1;
-    *(float *)(lVar6 + 0x110e8 + uiContext) = fStack_3c * fStack_50 - fStack_4c * fStack_40;
-    *(float *)(lVar6 + 0x110e4 + uiContext) = fStack_40 * floatResult1 - fStack_50 * floatResult2;
+    *(float *)(contextData + 0x110e0 + uiContext) = fStack_4c * floatResult2 - fStack_3c * floatResult1;
+    *(float *)(contextData + 0x110e8 + uiContext) = fStack_3c * fStack_50 - fStack_4c * fStack_40;
+    *(float *)(contextData + 0x110e4 + uiContext) = fStack_40 * floatResult1 - fStack_50 * floatResult2;
     return 0;
   }
   return 0x24;
@@ -130887,7 +130887,7 @@ void ThunkUIBufferOperation(longlong uiContext)
   undefined8 *puVar3;
   undefined8 uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   uint uVar8;
   ulonglong uVar9;
@@ -131024,8 +131024,8 @@ void ThunkUIBufferOperation(longlong uiContext)
     functionResult0 = functionResult0 + 0x38;
     if (*(int *)(bufferData + 0x694) <= (int)uVar8) break;
 LAB_18078c440:
-    lVar6 = *(longlong *)(*(longlong *)(bufferData + 0x6a0) + 0x30 + functionResult0);
-    if (((lVar6 != 0) && (*(char *)(lVar6 + 0x31) != '\0')) &&
+    contextData = *(longlong *)(*(longlong *)(bufferData + 0x6a0) + 0x30 + functionResult0);
+    if (((contextData != 0) && (*(char *)(contextData + 0x31) != '\0')) &&
        (iVar5 = FUN_180748290(uiContext,uVar9), iVar5 != 0)) goto FUN_18078c746;
   }
 LAB_18078c477:
@@ -131039,10 +131039,10 @@ LAB_18078c477:
     }
   }
   if (0 < *(int *)(bufferData + 0x11400)) {
-    lVar6 = uiContext + 0x110ed;
+    contextData = uiContext + 0x110ed;
     do {
-      *(undefined2 *)(lVar6 + -1) = 0;
-      lVar6 = lVar6 + 0x70;
+      *(undefined2 *)(contextData + -1) = 0;
+      contextData = contextData + 0x70;
       uVar8 = (int)eventTypeCode + 1;
       eventTypeCode = (ulonglong)uVar8;
     } while ((int)uVar8 < *(int *)(bufferData + 0x11400));
@@ -131051,21 +131051,21 @@ LAB_18078c477:
   if ((*(byte *)(uiContext + 0x78) & 1) != 0) {
     FUN_18078c950(uiContext);
   }
-  lVar6 = *(longlong *)(bufferData + 0x670);
-  if ((lVar6 != 0) && (0 < *(int *)(bufferData + 0x10f70))) {
+  contextData = *(longlong *)(bufferData + 0x670);
+  if ((contextData != 0) && (0 < *(int *)(bufferData + 0x10f70))) {
     if (uiContext != 0) {
       func_0x000180743c20(uiContext,7);
-      lVar6 = *(longlong *)(bufferData + 0x670);
+      contextData = *(longlong *)(bufferData + 0x670);
     }
-    semaphoreHandle = *(undefined4 *)(lVar6 + 0x318);
+    semaphoreHandle = *(undefined4 *)(contextData + 0x318);
     for (pfunctionResult = *(undefined8 **)(uiContext + 0x10f58); pfunctionResult != (undefined8 *)(uiContext + 0x10f58);
         pfunctionResult = (undefined8 *)*pfunctionResult) {
-      lVar6 = pfunctionResult[2];
-      if (*(char *)(lVar6 + 0x212) != '\0') {
-        FUN_18075a370(lVar6,semaphoreHandle);
+      contextData = pfunctionResult[2];
+      if (*(char *)(contextData + 0x212) != '\0') {
+        FUN_18075a370(contextData,semaphoreHandle);
       }
-      if (*(char *)(lVar6 + 0x426) != '\0') {
-        FUN_18075a370(lVar6 + 0x214,semaphoreHandle);
+      if (*(char *)(contextData + 0x426) != '\0') {
+        FUN_18075a370(contextData + 0x214,semaphoreHandle);
       }
     }
     if (uiContext != 0) {
@@ -131080,11 +131080,11 @@ LAB_18078c477:
     }
     pfunctionResult = *(undefined8 **)(uiContext + 0x10ff0);
     while (pfunctionResult != (undefined8 *)(uiContext + 0x10ff0)) {
-      lVar6 = pfunctionResult[2];
+      contextData = pfunctionResult[2];
       pfunctionResult = (undefined8 *)*pfunctionResult;
-      if (((*(longlong *)(lVar6 + 0x120) != 0) && ((*(byte *)(lVar6 + 0x11a) & 0x40) != 0)) &&
-         ((*(uint *)(lVar6 + 100) >> 10 & 1) == 0)) {
-        (**(code **)(lVar6 + 0x120))(lVar6 + 0xb0,0x40,0);
+      if (((*(longlong *)(contextData + 0x120) != 0) && ((*(byte *)(contextData + 0x11a) & 0x40) != 0)) &&
+         ((*(uint *)(contextData + 100) >> 10 & 1) == 0)) {
+        (**(code **)(contextData + 0x120))(contextData + 0xb0,0x40,0);
       }
     }
     if (uiContext != 0) {
@@ -131095,9 +131095,9 @@ LAB_18078c477:
     if ((lRam0000000000012770 == 0) ||
        (iVar5 = FUN_1807d0fe0(), pfunctionResult = puRam0000000000012780, iVar5 == 0)) {
       for (; pfunctionResult != (undefined8 *)0x12780; pfunctionResult = (undefined8 *)*pfunctionResult) {
-        lVar6 = pfunctionResult[2];
-        if ((*(code **)(lVar6 + 0x120) != (code *)0x0) && ((*(byte *)(lVar6 + 0x11a) & 4) != 0)) {
-          (**(code **)(lVar6 + 0x120))(lVar6 + 0xb0,4,0);
+        contextData = pfunctionResult[2];
+        if ((*(code **)(contextData + 0x120) != (code *)0x0) && ((*(byte *)(contextData + 0x11a) & 4) != 0)) {
+          (**(code **)(contextData + 0x120))(contextData + 0xb0,4,0);
         }
       }
       FUN_180772cf0(0x11678,0x5f);
@@ -132485,7 +132485,7 @@ void FUN_18074acbd(undefined4 uiContext)
   uint uVar3;
   undefined8 *bufferPtr;
   char *pcVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong context;
   undefined4 unaff_EBP;
   undefined4 unaff_0000002c;
@@ -132589,17 +132589,17 @@ LAB_18074b06d:
       do {
         floatResult1 = 16.0;
         pcVar5 = (char *)(context + 0x11968);
-        lVar6 = CONCAT44(unaff_0000002c,unaff_EBP);
+        contextData = CONCAT44(unaff_0000002c,unaff_EBP);
         uVar8 = (ulonglong)uVar3;
         do {
           if (((*(int *)(pcVar5 + -0x28) != 3) && (*pcVar5 != (char)unaff_EBP)) &&
              ((fVar2 = *(float *)(pcVar5 + -8), fVar2 < floatResult1 &&
               (*(char *)((longlong)&stack0x00000030 + (longlong)*(int *)(pcVar5 + -0x28)) ==
                (char)unaff_EBP)))) {
-            *plVar7 = context + 72000 + lVar6;
+            *plVar7 = context + 72000 + contextData;
             floatResult1 = fVar2;
           }
-          lVar6 = lVar6 + 0x30;
+          contextData = contextData + 0x30;
           pcVar5 = pcVar5 + 0x30;
           uVar8 = uVar8 - 1;
         } while (uVar8 != 0);
@@ -132631,7 +132631,7 @@ void FUN_18074af10(void)
   uint uVar3;
   undefined8 *bufferPtr;
   char *pcVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong context;
   undefined4 unaff_EBP;
   undefined4 unaff_0000002c;
@@ -132726,17 +132726,17 @@ LAB_18074b06d:
       do {
         floatResult0 = 16.0;
         pcVar5 = (char *)(context + 0x11968);
-        lVar6 = CONCAT44(unaff_0000002c,unaff_EBP);
+        contextData = CONCAT44(unaff_0000002c,unaff_EBP);
         uVar8 = (ulonglong)uVar3;
         do {
           if (((*(int *)(pcVar5 + -0x28) != 3) && (*pcVar5 != (char)unaff_EBP)) &&
              ((fVar2 = *(float *)(pcVar5 + -8), fVar2 < floatResult0 &&
               (*(char *)((longlong)&stack0x00000030 + (longlong)*(int *)(pcVar5 + -0x28)) ==
                (char)unaff_EBP)))) {
-            *plVar7 = context + 72000 + lVar6;
+            *plVar7 = context + 72000 + contextData;
             floatResult0 = fVar2;
           }
-          lVar6 = lVar6 + 0x30;
+          contextData = contextData + 0x30;
           pcVar5 = pcVar5 + 0x30;
           uVar8 = uVar8 - 1;
         } while (uVar8 != 0);
@@ -133951,7 +133951,7 @@ undefined8 FUN_18074c0f3(void)
   int compareResult;
   ulonglong uVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   short sVar8;
   uint uVar9;
@@ -133974,12 +133974,12 @@ undefined8 FUN_18074c0f3(void)
   }
   pallocatedMemory = context + 0x22;
   for (pallocatedMemory0 = (longlong *)*pallocatedMemory; pallocatedMemory0 != pallocatedMemory; pallocatedMemory0 = (longlong *)*pallocatedMemory0) {
-    lVar6 = pallocatedMemory0[2];
-    sVar8 = (short)((ulonglong)lVar6 >> 0x10);
-    _uStack00000000000000a8 = lVar6;
+    contextData = pallocatedMemory0[2];
+    sVar8 = (short)((ulonglong)contextData >> 0x10);
+    _uStack00000000000000a8 = contextData;
     if (in_stack_00000098 <= sVar8) {
-      uStack00000000000000ac = (undefined4)((ulonglong)lVar6 >> 0x20);
-      uStack00000000000000a8 = CONCAT22(sVar8 + 1,(short)lVar6);
+      uStack00000000000000ac = (undefined4)((ulonglong)contextData >> 0x20);
+      uStack00000000000000a8 = CONCAT22(sVar8 + 1,(short)contextData);
       pallocatedMemory0[2] = _uStack00000000000000a8;
     }
   }
@@ -134018,8 +134018,8 @@ undefined8 FUN_18074c0f3(void)
       return uVar5;
     }
   }
-  lVar6 = FUN_180741e10(context[1] + 0x10848,(int)context[3] * 8 + 8,&UIDefaultDataBuffer,0);
-  if (lVar6 == 0) {
+  contextData = FUN_180741e10(context[1] + 0x10848,(int)context[3] * 8 + 8,&UIDefaultDataBuffer,0);
+  if (contextData == 0) {
     uVar5 = 0x26;
   }
   else {
@@ -134036,7 +134036,7 @@ undefined8 FUN_18074c0f3(void)
           }
           functionResult1 = functionResult1 + 8;
         }
-        *(longlong *)(lVar6 + unaff_R12) = lVar7;
+        *(longlong *)(contextData + unaff_R12) = lVar7;
         uVar9 = (int)uVar4 + 1;
         uVar4 = (ulonglong)uVar9;
         unaff_R12 = unaff_R12 + 8;
@@ -134046,7 +134046,7 @@ undefined8 FUN_18074c0f3(void)
                     // WARNING: Subroutine does not return
       FUN_180742250(context[1] + 0x10848,context[2],&UIDefaultDataBuffer,0,1);
     }
-    context[2] = lVar6;
+    context[2] = contextData;
     if (((in_stack_00000098 != 0) && (in_stack_00000098 != (int)context[3] + -1)) ||
        (uVar5 = (**(code **)(*context + 0x1e8))(), (int)uVar5 == 0)) {
       uVar5 = 0;
@@ -134740,7 +134740,7 @@ uint FUN_18074d2f0(longlong uiContext,longlong dataSource,int targetBuffer)
   uint uVar3;
   uint *bufferPtr;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   uint uVar8;
   
@@ -134748,7 +134748,7 @@ uint FUN_18074d2f0(longlong uiContext,longlong dataSource,int targetBuffer)
     return 0x1f;
   }
   if ((dataSource != 0) && (0 < targetBuffer)) {
-    lVar6 = 0;
+    contextData = 0;
     bufferPtr = (uint *)(dataSource + 8);
     uVar5 = 0x1d;
     do {
@@ -134770,7 +134770,7 @@ uint FUN_18074d2f0(longlong uiContext,longlong dataSource,int targetBuffer)
       if (uVar8 != 0) {
         return uVar8;
       }
-      if ((0 < lVar6) && (fVar2 < (float)bufferPtr[-5] || fVar2 == (float)bufferPtr[-5])) {
+      if ((0 < contextData) && (fVar2 < (float)bufferPtr[-5] || fVar2 == (float)bufferPtr[-5])) {
         return 0x1f;
       }
       if (floatResult < 0.0) {
@@ -134779,9 +134779,9 @@ uint FUN_18074d2f0(longlong uiContext,longlong dataSource,int targetBuffer)
       if (1.0 < floatResult) {
         return 0x1f;
       }
-      lVar6 = lVar6 + 1;
+      contextData = contextData + 1;
       bufferPtr = bufferPtr + 3;
-    } while (lVar6 < targetBuffer);
+    } while (contextData < targetBuffer);
   }
   *(uint *)(uiContext + 0x48) = *(uint *)(uiContext + 0x48) | 4;
   *(longlong *)(bufferData + 0xe0) = dataSource;
@@ -134967,7 +134967,7 @@ ulonglong FUN_18074d860(longlong *uiContext,longlong dataSource,int targetBuffer
   uint uVar3;
   ulonglong uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   bool bVar7;
   int aiStackX_18 [2];
   int aiStackX_20 [2];
@@ -135027,35 +135027,35 @@ ulonglong FUN_18074d860(longlong *uiContext,longlong dataSource,int targetBuffer
       lStack_30 = dataSource;
     }
     if (aiStackX_20[0] < aiStackX_18[0]) {
-      lVar6 = (longlong)aiStackX_20[0] * 8;
+      contextData = (longlong)aiStackX_20[0] * 8;
       iVar5 = aiStackX_20[0];
       do {
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
         iVar5 = iVar5 + 1;
-        *(undefined8 *)(uiContext[2] + -8 + lVar6) = *(undefined8 *)(uiContext[2] + lVar6);
+        *(undefined8 *)(uiContext[2] + -8 + contextData) = *(undefined8 *)(uiContext[2] + contextData);
       } while (iVar5 < aiStackX_18[0]);
     }
     else if (aiStackX_18[0] < aiStackX_20[0]) {
-      lVar6 = (longlong)aiStackX_20[0] * 8;
+      contextData = (longlong)aiStackX_20[0] * 8;
       iVar5 = aiStackX_20[0];
       do {
-        lVar6 = lVar6 + -8;
+        contextData = contextData + -8;
         iVar5 = iVar5 + -1;
-        *(undefined8 *)(uiContext[2] + 8 + lVar6) = *(undefined8 *)(uiContext[2] + lVar6);
+        *(undefined8 *)(uiContext[2] + 8 + contextData) = *(undefined8 *)(uiContext[2] + contextData);
       } while (aiStackX_18[0] < iVar5);
     }
     *(longlong *)(uiContext[2] + (longlong)aiStackX_18[0] * 8) = dataSource;
-    lVar6 = uiContext[1];
-    bVar7 = lVar6 != 0;
+    contextData = uiContext[1];
+    bVar7 = contextData != 0;
     if (bVar7) {
-      func_0x000180743c20(lVar6,1);
+      func_0x000180743c20(contextData,1);
     }
     uVar3 = FUN_1807593d0(allocatedMemory,dataSource,aiStackX_20[0],aiStackX_18[0],1,0);
     if ((uVar3 == 0) &&
        ((lStack_38 == 0 || (uVar3 = FUN_18076f4f0(componentIndex,lStack_38 + 8,0), uVar3 == 0)))) {
-      if ((bVar7) && (lVar6 != 0)) {
+      if ((bVar7) && (contextData != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar6,1);
+        FUN_180743d60(contextData,1);
       }
       if (((lStack_38 == 0) && (lStack_30 == 0)) ||
          (uVar4 = (**(code **)(*uiContext + 0x1e8))(uiContext), (int)uVar4 == 0)) {
@@ -135064,9 +135064,9 @@ ulonglong FUN_18074d860(longlong *uiContext,longlong dataSource,int targetBuffer
     }
     else {
       uVar4 = (ulonglong)uVar3;
-      if ((bVar7) && (lVar6 != 0)) {
+      if ((bVar7) && (contextData != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar6,1);
+        FUN_180743d60(contextData,1);
       }
     }
   }
@@ -136464,7 +136464,7 @@ void FUN_18074f95b(undefined4 uiContext)
   short sVar4;
   int iVar5;
   longlong in_RAX;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *context;
   int unaff_ESI;
   char unaff_R12B;
@@ -136479,11 +136479,11 @@ void FUN_18074f95b(undefined4 uiContext)
   (**(code **)(in_RAX + 0x138))(uiContext,in_stack_00000038);
   pallocatedMemory = context + 0x22;
   bVar3 = false;
-  plVar6 = (longlong *)*pallocatedMemory;
-  if ((plVar6 != pallocatedMemory) || (((longlong *)context[0x23] != pallocatedMemory && (plVar6 != pallocatedMemory)))) {
+  pcontextData = (longlong *)*pallocatedMemory;
+  if ((pcontextData != pallocatedMemory) || (((longlong *)context[0x23] != pallocatedMemory && (pcontextData != pallocatedMemory)))) {
     do {
-      colorBufferPointer = (longlong *)*plVar6;
-      sVar4 = (short)((ulonglong)plVar6[2] >> 0x10);
+      colorBufferPointer = (longlong *)*pcontextData;
+      sVar4 = (short)((ulonglong)pcontextData[2] >> 0x10);
       if ((unaff_ESI < in_stack_000000a0) && (in_stack_000000a0 < sVar4)) {
         bVar3 = true;
         fVar7 = *(float *)(in_stack_00000038 + 0x2a0);
@@ -136493,9 +136493,9 @@ void FUN_18074f95b(undefined4 uiContext)
         unaff_XMM7_Da = fVar7 * unaff_XMM7_Da * *(float *)(context + 6);
         unaff_XMM6_Da = fVar7 * unaff_XMM6_Da * *(float *)(context + 6);
       }
-      if ((*plVar6 & 0x100000000) == 0) {
+      if ((*pcontextData & 0x100000000) == 0) {
         in_stack_00000030 = unaff_R13;
-        iVar5 = FUN_18075f090(plVar6 + -0x12,(int)(short)plVar6[2],&stack0x00000030,0);
+        iVar5 = FUN_18075f090(pcontextData + -0x12,(int)(short)pcontextData[2],&stack0x00000030,0);
         if (iVar5 != 0) {
           return;
         }
@@ -136503,7 +136503,7 @@ void FUN_18074f95b(undefined4 uiContext)
         unaff_XMM6_Da = *in_stack_00000030 * unaff_XMM6_Da + in_stack_00000030[1];
       }
       unaff_ESI = (int)sVar4;
-      plVar6 = colorBufferPointer;
+      pcontextData = colorBufferPointer;
     } while (colorBufferPointer != pallocatedMemory);
     if (bVar3) goto LAB_18074faa2;
   }
@@ -137947,7 +137947,7 @@ int FUN_180751800(undefined8 *uiContext)
   char cVar3;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   uint uVar8;
   longlong *plVar9;
@@ -138043,42 +138043,42 @@ int FUN_180751800(undefined8 *uiContext)
           FUN_180743d60(uiContext[0x1b],10);
         }
         iVar4 = *(int *)(bufferData + 0x16);
-        if ((iVar4 != 0) && (lVar6 = uiContext[0x14], lVar6 != 0)) {
+        if ((iVar4 != 0) && (contextData = uiContext[0x14], contextData != 0)) {
           if ((*(int *)((longlong)uiContext + 0xb4) != 0) && (0 < iVar4)) {
             operationResult0 = 1;
             do {
-              componentIndex = *(longlong *)(lVar6 + functionResult1);
+              componentIndex = *(longlong *)(contextData + functionResult1);
               if (componentIndex != 0) {
                 if (*(longlong *)(componentIndex + 0x60) == lVar5) {
                   *(undefined8 *)(componentIndex + 0x60) = 0;
-                  lVar6 = uiContext[0x14];
+                  contextData = uiContext[0x14];
                 }
-                if (*(longlong *)(*(longlong *)(lVar6 + functionResult1) + 0x108) == allocatedMemory) {
-                  *(undefined8 *)(*(longlong *)(lVar6 + functionResult1) + 0x108) = 0;
-                  lVar6 = uiContext[0x14];
+                if (*(longlong *)(*(longlong *)(contextData + functionResult1) + 0x108) == allocatedMemory) {
+                  *(undefined8 *)(*(longlong *)(contextData + functionResult1) + 0x108) = 0;
+                  contextData = uiContext[0x14];
                 }
-                cVar3 = (**(code **)**(undefined8 **)(lVar6 + functionResult1))();
+                cVar3 = (**(code **)**(undefined8 **)(contextData + functionResult1))();
                 if ((cVar3 != '\0') &&
                    (*(longlong *)(*(longlong *)(functionResult1 + uiContext[0x14]) + 0x178) == 0)) {
                   *(undefined8 *)(*(longlong *)(functionResult1 + uiContext[0x14]) + 0x178) = 0;
                 }
-                lVar6 = uiContext[0x14];
-                if ((*(longlong *)(*(longlong *)(lVar6 + functionResult1) + 0xa8) != 0) &&
+                contextData = uiContext[0x14];
+                if ((*(longlong *)(*(longlong *)(contextData + functionResult1) + 0xa8) != 0) &&
                    (functionResult2 = functionResult1, iVar4 = operationResult0, operationResult0 < *(int *)(bufferData + 0x16))) {
                   do {
                     functionResult2 = functionResult2 + 8;
-                    if (*(longlong *)(lVar6 + functionResult2) == *(longlong *)(lVar6 + functionResult1)) {
-                      *(undefined8 *)(lVar6 + functionResult2) = 0;
-                      lVar6 = uiContext[0x14];
+                    if (*(longlong *)(contextData + functionResult2) == *(longlong *)(contextData + functionResult1)) {
+                      *(undefined8 *)(contextData + functionResult2) = 0;
+                      contextData = uiContext[0x14];
                     }
                     iVar4 = iVar4 + 1;
                   } while (iVar4 < *(int *)(bufferData + 0x16));
                 }
-                (**(code **)(**(longlong **)(lVar6 + functionResult1) + 0x18))
-                          (*(longlong **)(lVar6 + functionResult1),CONCAT71((int7)((ulonglong)lVar6 >> 8),1))
+                (**(code **)(**(longlong **)(contextData + functionResult1) + 0x18))
+                          (*(longlong **)(contextData + functionResult1),CONCAT71((int7)((ulonglong)contextData >> 8),1))
                 ;
                 *(undefined8 *)(functionResult1 + uiContext[0x14]) = 0;
-                lVar6 = uiContext[0x14];
+                contextData = uiContext[0x14];
                 iVar4 = *(int *)(bufferData + 0x16);
               }
               operationResult0 = operationResult0 + 1;
@@ -138086,7 +138086,7 @@ int FUN_180751800(undefined8 *uiContext)
             } while (operationResult0 <= iVar4);
           }
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar6,&UNK_1809583d0,0x29a,1);
+          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),contextData,&UNK_1809583d0,0x29a,1);
         }
         lVar5 = uiContext[0xc];
         if ((lVar5 != 0) &&
@@ -138178,7 +138178,7 @@ int FUN_180751811(undefined8 *uiContext)
   char cVar3;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   uint uVar8;
   longlong *plVar9;
@@ -138274,42 +138274,42 @@ int FUN_180751811(undefined8 *uiContext)
           FUN_180743d60(uiContext[0x1b],10);
         }
         iVar4 = *(int *)(bufferData + 0x16);
-        if ((iVar4 != 0) && (lVar6 = uiContext[0x14], lVar6 != 0)) {
+        if ((iVar4 != 0) && (contextData = uiContext[0x14], contextData != 0)) {
           if ((*(int *)((longlong)uiContext + 0xb4) != 0) && (0 < iVar4)) {
             operationResult0 = 1;
             do {
-              componentIndex = *(longlong *)(lVar6 + functionResult1);
+              componentIndex = *(longlong *)(contextData + functionResult1);
               if (componentIndex != 0) {
                 if (*(longlong *)(componentIndex + 0x60) == lVar5) {
                   *(undefined8 *)(componentIndex + 0x60) = 0;
-                  lVar6 = uiContext[0x14];
+                  contextData = uiContext[0x14];
                 }
-                if (*(longlong *)(*(longlong *)(lVar6 + functionResult1) + 0x108) == allocatedMemory) {
-                  *(undefined8 *)(*(longlong *)(lVar6 + functionResult1) + 0x108) = 0;
-                  lVar6 = uiContext[0x14];
+                if (*(longlong *)(*(longlong *)(contextData + functionResult1) + 0x108) == allocatedMemory) {
+                  *(undefined8 *)(*(longlong *)(contextData + functionResult1) + 0x108) = 0;
+                  contextData = uiContext[0x14];
                 }
-                cVar3 = (**(code **)**(undefined8 **)(lVar6 + functionResult1))();
+                cVar3 = (**(code **)**(undefined8 **)(contextData + functionResult1))();
                 if ((cVar3 != '\0') &&
                    (*(longlong *)(*(longlong *)(functionResult1 + uiContext[0x14]) + 0x178) == 0)) {
                   *(undefined8 *)(*(longlong *)(functionResult1 + uiContext[0x14]) + 0x178) = 0;
                 }
-                lVar6 = uiContext[0x14];
-                if ((*(longlong *)(*(longlong *)(lVar6 + functionResult1) + 0xa8) != 0) &&
+                contextData = uiContext[0x14];
+                if ((*(longlong *)(*(longlong *)(contextData + functionResult1) + 0xa8) != 0) &&
                    (functionResult2 = functionResult1, iVar4 = operationResult0, operationResult0 < *(int *)(bufferData + 0x16))) {
                   do {
                     functionResult2 = functionResult2 + 8;
-                    if (*(longlong *)(lVar6 + functionResult2) == *(longlong *)(lVar6 + functionResult1)) {
-                      *(undefined8 *)(lVar6 + functionResult2) = 0;
-                      lVar6 = uiContext[0x14];
+                    if (*(longlong *)(contextData + functionResult2) == *(longlong *)(contextData + functionResult1)) {
+                      *(undefined8 *)(contextData + functionResult2) = 0;
+                      contextData = uiContext[0x14];
                     }
                     iVar4 = iVar4 + 1;
                   } while (iVar4 < *(int *)(bufferData + 0x16));
                 }
-                (**(code **)(**(longlong **)(lVar6 + functionResult1) + 0x18))
-                          (*(longlong **)(lVar6 + functionResult1),CONCAT71((int7)((ulonglong)lVar6 >> 8),1))
+                (**(code **)(**(longlong **)(contextData + functionResult1) + 0x18))
+                          (*(longlong **)(contextData + functionResult1),CONCAT71((int7)((ulonglong)contextData >> 8),1))
                 ;
                 *(undefined8 *)(functionResult1 + uiContext[0x14]) = 0;
-                lVar6 = uiContext[0x14];
+                contextData = uiContext[0x14];
                 iVar4 = *(int *)(bufferData + 0x16);
               }
               operationResult0 = operationResult0 + 1;
@@ -138317,7 +138317,7 @@ int FUN_180751811(undefined8 *uiContext)
             } while (operationResult0 <= iVar4);
           }
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar6,&UNK_1809583d0,0x29a,1);
+          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),contextData,&UNK_1809583d0,0x29a,1);
         }
         lVar5 = uiContext[0xc];
         if ((lVar5 != 0) &&
@@ -138411,7 +138411,7 @@ void FUN_1807519a8(undefined8 uiContext,longlong *dataSource)
   longlong stringCompareIndex;
   longlong *plVar4;
   char cVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   uint uVar8;
   undefined8 *context;
@@ -138469,41 +138469,41 @@ void FUN_1807519a8(undefined8 uiContext,longlong *dataSource)
     FUN_180743d60(context[0x1b],10);
   }
   operationResult2 = *(int *)(context + 0x16);
-  if ((operationResult2 != 0) && (lVar6 = context[0x14], lVar6 != 0)) {
+  if ((operationResult2 != 0) && (contextData = context[0x14], contextData != 0)) {
     if ((*(int *)((longlong)context + 0xb4) != 0) && (0 < operationResult2)) {
       iVar9 = 1;
       do {
-        stringCompareIndex = *(longlong *)(lVar6 + functionResult0);
+        stringCompareIndex = *(longlong *)(contextData + functionResult0);
         if (stringCompareIndex != 0) {
           if (*(longlong *)(stringCompareIndex + 0x60) == allocatedMemory) {
             *(undefined8 *)(stringCompareIndex + 0x60) = 0;
-            lVar6 = context[0x14];
+            contextData = context[0x14];
           }
-          if (*(longlong *)(*(longlong *)(lVar6 + functionResult0) + 0x108) == componentIndex) {
-            *(undefined8 *)(*(longlong *)(lVar6 + functionResult0) + 0x108) = 0;
-            lVar6 = context[0x14];
+          if (*(longlong *)(*(longlong *)(contextData + functionResult0) + 0x108) == componentIndex) {
+            *(undefined8 *)(*(longlong *)(contextData + functionResult0) + 0x108) = 0;
+            contextData = context[0x14];
           }
-          cVar5 = (**(code **)**(undefined8 **)(lVar6 + functionResult0))();
+          cVar5 = (**(code **)**(undefined8 **)(contextData + functionResult0))();
           if ((cVar5 != '\0') &&
              (*(longlong *)(*(longlong *)(functionResult0 + context[0x14]) + 0x178) == 0)) {
             *(undefined8 *)(*(longlong *)(functionResult0 + context[0x14]) + 0x178) = 0;
           }
-          lVar6 = context[0x14];
-          if ((*(longlong *)(*(longlong *)(lVar6 + functionResult0) + 0xa8) != 0) &&
+          contextData = context[0x14];
+          if ((*(longlong *)(*(longlong *)(contextData + functionResult0) + 0xa8) != 0) &&
              (functionResult1 = functionResult0, operationResult2 = iVar9, iVar9 < *(int *)(context + 0x16))) {
             do {
               functionResult1 = functionResult1 + 8;
-              if (*(longlong *)(lVar6 + functionResult1) == *(longlong *)(lVar6 + functionResult0)) {
-                *(undefined8 *)(lVar6 + functionResult1) = 0;
-                lVar6 = context[0x14];
+              if (*(longlong *)(contextData + functionResult1) == *(longlong *)(contextData + functionResult0)) {
+                *(undefined8 *)(contextData + functionResult1) = 0;
+                contextData = context[0x14];
               }
               operationResult2 = operationResult2 + 1;
             } while (operationResult2 < *(int *)(context + 0x16));
           }
-          (**(code **)(**(longlong **)(lVar6 + functionResult0) + 0x18))
-                    (*(longlong **)(lVar6 + functionResult0),CONCAT71((int7)((ulonglong)lVar6 >> 8),1));
+          (**(code **)(**(longlong **)(contextData + functionResult0) + 0x18))
+                    (*(longlong **)(contextData + functionResult0),CONCAT71((int7)((ulonglong)contextData >> 8),1));
           *(undefined8 *)(functionResult0 + context[0x14]) = 0;
-          lVar6 = context[0x14];
+          contextData = context[0x14];
           operationResult2 = *(int *)(context + 0x16);
         }
         iVar9 = iVar9 + 1;
@@ -138511,7 +138511,7 @@ void FUN_1807519a8(undefined8 uiContext,longlong *dataSource)
       } while (iVar9 <= operationResult2);
     }
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar6,&UNK_1809583d0,0x29a,1);
+    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),contextData,&UNK_1809583d0,0x29a,1);
   }
   allocatedMemory = context[0xc];
   if ((allocatedMemory != 0) &&
@@ -141069,7 +141069,7 @@ undefined8 FUN_180754850(longlong uiContext)
   undefined8 uVar3;
   int iVar4;
   float *pfVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   float fVar7;
   float fVar8;
   
@@ -141096,16 +141096,16 @@ undefined8 FUN_180754850(longlong uiContext)
     *(float *)(uiContext + 0x1e8) = fVar7;
     pfVar5 = (float *)(uiContext + 0x13c);
     *(float *)(uiContext + 0x1ec) = fVar8;
-    plVar6 = (longlong *)(uiContext + 0x150);
+    pcontextData = (longlong *)(uiContext + 0x150);
     iVar4 = 0;
     do {
-      if ((*plVar6 != 0) &&
-         (uVar3 = FUN_180765c40(*plVar6,*(float *)(*(longlong *)(bufferData + 0x20) + 0x1ec) * *pfVar5,
+      if ((*pcontextData != 0) &&
+         (uVar3 = FUN_180765c40(*pcontextData,*(float *)(*(longlong *)(bufferData + 0x20) + 0x1ec) * *pfVar5,
                                 0x40,1,0), (int)uVar3 != 0)) {
         return uVar3;
       }
       iVar4 = iVar4 + 1;
-      plVar6 = plVar6 + 1;
+      pcontextData = pcontextData + 1;
       pfVar5 = pfVar5 + 1;
     } while (iVar4 < 4);
     for (psemaphoreHandle = *(undefined8 **)(uiContext + 400); psemaphoreHandle != (undefined8 *)(uiContext + 400);
@@ -142122,7 +142122,7 @@ undefined8 FUN_180755c70(longlong *uiContext,char dataSource)
   int compareResult;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong *plVar7;
   char cVar8;
   undefined8 uVar9;
@@ -142188,7 +142188,7 @@ LAB_180755ce8:
   if ((int)uVar9 != 0) {
     return uVar9;
   }
-  lVar6 = uiContext[4];
+  contextData = uiContext[4];
   cVar8 = (*(code *)**(undefined8 **)uiContext[0x3b])();
   lStack_38 = uiContext[0x3b];
   if (cVar8 != '\0') {
@@ -142210,10 +142210,10 @@ LAB_180755ce8:
   uiContext[0x3b] = lStackX_20;
   if (lVar5 == 0) {
     if (lVar4 == 0) goto LAB_180755ea0;
-    FUN_1807568a0(uiContext,lVar4,lVar6,1,0,0);
+    FUN_1807568a0(uiContext,lVar4,contextData,1,0,0);
   }
   else {
-    FUN_180756aa0(uiContext,lVar5,lVar6,1,0,0);
+    FUN_180756aa0(uiContext,lVar5,contextData,1,0,0);
   }
   FUN_1807571f0(uiContext,auStack_48);
   *(uint *)(uiContext + 9) = *(uint *)(uiContext + 9) & 0xfffbffff;
@@ -143961,7 +143961,7 @@ undefined8 FUN_180757ed0(longlong uiContext,uint dataSource,uint targetBuffer)
   uint uVar3;
   int iVar4;
   undefined8 uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   ulonglong eventTypeCode;
   undefined8 unaff_RSI;
   ulonglong uVar8;
@@ -143977,9 +143977,9 @@ undefined8 FUN_180757ed0(longlong uiContext,uint dataSource,uint targetBuffer)
   if ((targetBuffer & 0x600) != 0) {
     return 0x44;
   }
-  plVar6 = *(longlong **)(*(longlong *)(bufferData + 0x1d8) + 0x28);
-  if ((plVar6 != (longlong *)0x0) && ((targetBuffer & 0x10) == 0)) {
-    uVar5 = (**(code **)(*plVar6 + 0x98))();
+  pcontextData = *(longlong **)(*(longlong *)(bufferData + 0x1d8) + 0x28);
+  if ((pcontextData != (longlong *)0x0) && ((targetBuffer & 0x10) == 0)) {
+    uVar5 = (**(code **)(*pcontextData + 0x98))();
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -143987,20 +143987,20 @@ undefined8 FUN_180757ed0(longlong uiContext,uint dataSource,uint targetBuffer)
       return 0x20;
     }
   }
-  plVar6 = *(longlong **)(uiContext + 0x1d8);
+  pcontextData = *(longlong **)(uiContext + 0x1d8);
   if ((targetBuffer & 7) == 0) {
-    uVar5 = (**(code **)(*plVar6 + 0xd0))(plVar6,uVar8,targetBuffer,0);
+    uVar5 = (**(code **)(*pcontextData + 0xd0))(pcontextData,uVar8,targetBuffer,0);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
   }
   else {
-    allocatedMemory = plVar6[5];
+    allocatedMemory = pcontextData[5];
     if (allocatedMemory == 0) {
-      if (plVar6[6] == 0) {
+      if (pcontextData[6] == 0) {
         return 0x1e;
       }
-      uVar9 = (ulonglong)*(ushort *)(plVar6[6] + 0x118);
+      uVar9 = (ulonglong)*(ushort *)(pcontextData[6] + 0x118);
       iVar4 = 5;
       floatResult0 = (float)*(int *)(*(longlong *)(bufferData + 8) + 0x6d0);
     }
@@ -144041,13 +144041,13 @@ LAB_18075803c:
       uStackX_c = uVar3;
       uStackX_8 = 0;
     }
-    uVar5 = (**(code **)(*plVar6 + 0x78))(plVar6,CONCAT44(uStackX_c,uStackX_8));
+    uVar5 = (**(code **)(*pcontextData + 0x78))(pcontextData,CONCAT44(uStackX_c,uStackX_8));
     if ((int)uVar5 != 0) {
       return uVar5;
     }
   }
-  plVar6 = *(longlong **)(uiContext + 0x1d8);
-  allocatedMemory = plVar6[5];
+  pcontextData = *(longlong **)(uiContext + 0x1d8);
+  allocatedMemory = pcontextData[5];
   if (allocatedMemory == 0) {
     return 0;
   }
@@ -144059,9 +144059,9 @@ LAB_18075803c:
     return 0;
   }
 LAB_180758c38:
-  if ((plVar6 != (longlong *)0x0) &&
-     (((plVar6[5] != 0 || (plVar6[6] != 0)) &&
-      (iVar4 = (**(code **)(*plVar6 + 0x80))(plVar6,&stack0x00000018), iVar4 == 0)))) {
+  if ((pcontextData != (longlong *)0x0) &&
+     (((pcontextData[5] != 0 || (pcontextData[6] != 0)) &&
+      (iVar4 = (**(code **)(*pcontextData + 0x80))(pcontextData,&stack0x00000018), iVar4 == 0)))) {
     uStackX_8 = (uint)((ulonglong)unaff_RSI >> 0x20);
     floatResult0 = *(float *)(uiContext + 0x22c);
     if (floatResult0 <= 0.0) {
@@ -144072,16 +144072,16 @@ LAB_180758c38:
     }
     *(undefined8 *)(uiContext + 0x1f0) = uVar5;
     while (((0.0 < floatResult0 &&
-            (plVar6 = *(longlong **)(uiContext + 0x1f0), *(uint *)(plVar6 + 6) < uStackX_8)) ||
+            (pcontextData = *(longlong **)(uiContext + 0x1f0), *(uint *)(pcontextData + 6) < uStackX_8)) ||
            ((floatResult0 < 0.0 &&
-            (plVar6 = *(longlong **)(uiContext + 0x1f0), uStackX_8 < *(uint *)(plVar6 + 6)))))) {
+            (pcontextData = *(longlong **)(uiContext + 0x1f0), uStackX_8 < *(uint *)(pcontextData + 6)))))) {
       if (floatResult0 <= 0.0) {
-        if ((*(uint *)(plVar6 + 6) <= uStackX_8) ||
-           (componentIndex = plVar6[1], *(longlong *)(bufferData + 0x1f0) = componentIndex,
+        if ((*(uint *)(pcontextData + 6) <= uStackX_8) ||
+           (componentIndex = pcontextData[1], *(longlong *)(bufferData + 0x1f0) = componentIndex,
            componentIndex == *(longlong *)(allocatedMemory + 0xf0))) break;
       }
-      else if ((uStackX_8 <= *(uint *)(plVar6 + 6)) ||
-              (componentIndex = *plVar6, *(longlong *)(bufferData + 0x1f0) = componentIndex,
+      else if ((uStackX_8 <= *(uint *)(pcontextData + 6)) ||
+              (componentIndex = *pcontextData, *(longlong *)(bufferData + 0x1f0) = componentIndex,
               componentIndex == *(longlong *)(allocatedMemory + 0xf8))) break;
     }
   }
@@ -150509,7 +150509,7 @@ undefined8 FUN_18075d7f0(longlong uiContext,char dataSource,char targetBuffer,ch
   short sVar3;
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   undefined8 uVar8;
   longlong *plVar9;
@@ -150537,7 +150537,7 @@ undefined8 FUN_18075d7f0(longlong uiContext,char dataSource,char targetBuffer,ch
     iStackX_10 = 0;
     if (0 < sVar1) {
       do {
-        lVar6 = 0;
+        contextData = 0;
         functionResult1 = 0;
         if (bufferSize == '\0') {
           sVar3 = *(short *)(uiContext + 0x1a8);
@@ -150551,20 +150551,20 @@ undefined8 FUN_18075d7f0(longlong uiContext,char dataSource,char targetBuffer,ch
             functionResult1 = 0x1c;
             goto LAB_18075d910;
           }
-          lVar6 = plVar9[2];
-          uVar4 = *(uint *)(lVar6 + 0x7c) & functionResult0;
+          contextData = plVar9[2];
+          uVar4 = *(uint *)(contextData + 0x7c) & functionResult0;
           validationResult = 0;
           while ((iVar5 = validationResult, iVar5 < iVar7 || (uVar4 != 0))) {
             plVar9 = (longlong *)*plVar9;
-            lVar6 = plVar9[2];
-            uVar4 = *(uint *)(lVar6 + 0x7c) & functionResult0;
+            contextData = plVar9[2];
+            uVar4 = *(uint *)(contextData + 0x7c) & functionResult0;
             validationResult = iVar5 + 1;
             if (uVar4 != 0) {
               validationResult = iVar5;
             }
           }
-          if (lVar6 == 0) goto LAB_18075d910;
-          uVar8 = *(undefined8 *)(lVar6 + 0x58);
+          if (contextData == 0) goto LAB_18075d910;
+          uVar8 = *(undefined8 *)(contextData + 0x58);
         }
         else {
           functionResult1 = 9;
@@ -150574,8 +150574,8 @@ LAB_18075d910:
         if ((int)functionResult1 != 0) {
           return functionResult1;
         }
-        if ((*(uint *)(lVar6 + 0x7c) & functionResult0) == 0) {
-          functionResult1 = FUN_18075dcc0(uiContext,uVar8,lVar6,1,0,4);
+        if ((*(uint *)(contextData + 0x7c) & functionResult0) == 0) {
+          functionResult1 = FUN_18075dcc0(uiContext,uVar8,contextData,1,0,4);
           if ((int)functionResult1 != 0) {
             return functionResult1;
           }
@@ -150607,7 +150607,7 @@ LAB_18075d910:
     iStackX_10 = 0;
     if (0 < sVar1) {
       do {
-        lVar6 = 0;
+        contextData = 0;
         functionResult1 = 0;
         if (bufferSize == '\0') {
           sVar3 = *(short *)(uiContext + 0x1aa);
@@ -150621,20 +150621,20 @@ LAB_18075d910:
             functionResult1 = 0x1c;
             goto LAB_18075db00;
           }
-          lVar6 = plVar9[2];
-          uVar4 = *(uint *)(lVar6 + 0x7c) & functionResult0;
+          contextData = plVar9[2];
+          uVar4 = *(uint *)(contextData + 0x7c) & functionResult0;
           validationResult = 0;
           while ((iVar5 = validationResult, iVar5 < iVar7 || (uVar4 != 0))) {
             plVar9 = (longlong *)*plVar9;
-            lVar6 = plVar9[2];
-            uVar4 = *(uint *)(lVar6 + 0x7c) & functionResult0;
+            contextData = plVar9[2];
+            uVar4 = *(uint *)(contextData + 0x7c) & functionResult0;
             validationResult = iVar5 + 1;
             if (uVar4 != 0) {
               validationResult = iVar5;
             }
           }
-          if (lVar6 == 0) goto LAB_18075db00;
-          uVar8 = *(undefined8 *)(lVar6 + 0x60);
+          if (contextData == 0) goto LAB_18075db00;
+          uVar8 = *(undefined8 *)(contextData + 0x60);
         }
         else {
           functionResult1 = 9;
@@ -150644,8 +150644,8 @@ LAB_18075db00:
         if ((int)functionResult1 != 0) {
           return functionResult1;
         }
-        if ((*(uint *)(lVar6 + 0x7c) & functionResult0) == 0) {
-          functionResult1 = FUN_18075dcc0(uVar8,uiContext,lVar6,1,0,4);
+        if ((*(uint *)(contextData + 0x7c) & functionResult0) == 0) {
+          functionResult1 = FUN_18075dcc0(uVar8,uiContext,contextData,1,0,4);
           if ((int)functionResult1 != 0) {
             return functionResult1;
           }
@@ -152592,7 +152592,7 @@ ulonglong FUN_18075f970(longlong uiContext)
   uint uVar3;
   ulonglong uVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   undefined8 eventTypeCode;
   undefined1 *apuStackX_8 [2];
   
@@ -152625,20 +152625,20 @@ ulonglong FUN_18075f970(longlong uiContext)
            (uVar4 = FUN_18075e410(uiContext), (int)uVar4 == 0)) {
           if (*(int *)(bufferData + 0x100) == 0xf) {
             plVar5 = (longlong *)(*(longlong *)(bufferData + 0xa8) + 0x12780);
-            plVar6 = (longlong *)*plVar5;
-            if (plVar6 != plVar5) goto LAB_18075fba0;
-            colorBufferPointer = plVar6;
+            pcontextData = (longlong *)*plVar5;
+            if (pcontextData != plVar5) goto LAB_18075fba0;
+            colorBufferPointer = pcontextData;
             if (*(longlong **)(*(longlong *)(bufferData + 0xa8) + 0x12788) != plVar5) {
-              while (plVar6 = colorBufferPointer, plVar6 != plVar5) {
+              while (pcontextData = colorBufferPointer, pcontextData != plVar5) {
 LAB_18075fba0:
-                colorBufferPointer = (longlong *)*plVar6;
-                if (plVar6[2] == uiContext) {
-                  *(longlong **)plVar6[1] = (longlong *)*plVar6;
-                  *(longlong *)(*plVar6 + 8) = plVar6[1];
-                  plVar6[1] = (longlong)plVar6;
-                  *plVar6 = (longlong)plVar6;
+                colorBufferPointer = (longlong *)*pcontextData;
+                if (pcontextData[2] == uiContext) {
+                  *(longlong **)pcontextData[1] = (longlong *)*pcontextData;
+                  *(longlong *)(*pcontextData + 8) = pcontextData[1];
+                  pcontextData[1] = (longlong)pcontextData;
+                  *pcontextData = (longlong)pcontextData;
                     // WARNING: Subroutine does not return
-                  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar6,&UNK_1809589a0,0xb73,
+                  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),pcontextData,&UNK_1809589a0,0xb73,
                                 1);
                 }
               }
@@ -152722,7 +152722,7 @@ ulonglong FUN_18075fa80(longlong uiContext)
   uint uVar3;
   ulonglong uVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   undefined8 eventTypeCode;
   longlong lStackX_8;
   
@@ -152738,20 +152738,20 @@ ulonglong FUN_18075fa80(longlong uiContext)
        (uVar4 = FUN_18075e410(uiContext), (int)uVar4 == 0)) {
       if (*(int *)(bufferData + 0x100) == 0xf) {
         plVar5 = (longlong *)(*(longlong *)(bufferData + 0xa8) + 0x12780);
-        plVar6 = (longlong *)*plVar5;
-        if (plVar6 != plVar5) goto LAB_18075fba0;
-        colorBufferPointer = plVar6;
+        pcontextData = (longlong *)*plVar5;
+        if (pcontextData != plVar5) goto LAB_18075fba0;
+        colorBufferPointer = pcontextData;
         if (*(longlong **)(*(longlong *)(bufferData + 0xa8) + 0x12788) != plVar5) {
-          while (plVar6 = colorBufferPointer, plVar6 != plVar5) {
+          while (pcontextData = colorBufferPointer, pcontextData != plVar5) {
 LAB_18075fba0:
-            colorBufferPointer = (longlong *)*plVar6;
-            if (plVar6[2] == uiContext) {
-              *(longlong **)plVar6[1] = (longlong *)*plVar6;
-              *(longlong *)(*plVar6 + 8) = plVar6[1];
-              plVar6[1] = (longlong)plVar6;
-              *plVar6 = (longlong)plVar6;
+            colorBufferPointer = (longlong *)*pcontextData;
+            if (pcontextData[2] == uiContext) {
+              *(longlong **)pcontextData[1] = (longlong *)*pcontextData;
+              *(longlong *)(*pcontextData + 8) = pcontextData[1];
+              pcontextData[1] = (longlong)pcontextData;
+              *pcontextData = (longlong)pcontextData;
                     // WARNING: Subroutine does not return
-              FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar6,&UNK_1809589a0,0xb73,1);
+              FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),pcontextData,&UNK_1809589a0,0xb73,1);
             }
           }
         }
@@ -154864,7 +154864,7 @@ undefined8 FUN_180760c90(longlong uiContext,longlong dataSource,undefined4 targe
   undefined8 uVar3;
   longlong lVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   undefined1 auStackX_18 [16];
   
@@ -154879,7 +154879,7 @@ undefined8 FUN_180760c90(longlong uiContext,longlong dataSource,undefined4 targe
     if (*(int *)(bufferData + 0x3c) < *(int *)(bufferData + 0xc)) {
       iVar7 = 0;
       if (0 < *(int *)(bufferData + 0xc)) {
-        lVar6 = 0;
+        contextData = 0;
         lVar4 = 0;
         do {
           componentIndex = *(longlong *)(lVar4 + *(longlong *)(bufferData + 0x20));
@@ -154892,8 +154892,8 @@ undefined8 FUN_180760c90(longlong uiContext,longlong dataSource,undefined4 targe
           }
           else {
             iVar7 = iVar7 + 1;
-            *(longlong *)(lVar6 + *(longlong *)(bufferData + 0x20)) = componentIndex;
-            lVar6 = lVar6 + 8;
+            *(longlong *)(contextData + *(longlong *)(bufferData + 0x20)) = componentIndex;
+            contextData = contextData + 8;
           }
           iVar5 = iVar5 + 1;
           lVar4 = lVar4 + 8;
@@ -157191,7 +157191,7 @@ int FUN_1807623d0(longlong uiContext,char dataSource,char targetBuffer)
   bool bVar3;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   int iVar8;
   bool bVar9;
@@ -157244,9 +157244,9 @@ LAB_18076259e:
     if (lVar5 != 0) {
       func_0x000180743c20(lVar5,7);
     }
-    lVar6 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x450,&UNK_1809589a0,0x16e5,0);
-    *(longlong *)(bufferData + 0x208) = lVar6;
-    if (lVar6 == 0) {
+    contextData = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x450,&UNK_1809589a0,0x16e5,0);
+    *(longlong *)(bufferData + 0x208) = contextData;
+    if (contextData == 0) {
       if (lVar5 != 0) {
                     // WARNING: Subroutine does not return
         FUN_180743d60(lVar5,7);
@@ -157254,10 +157254,10 @@ LAB_18076259e:
       iVar8 = 0x26;
       goto LAB_1807625b6;
     }
-    eventTypeCode = lVar6 + 0xfU & 0xfffffffffffffff0;
-    lVar6 = eventTypeCode + 0x428;
-    *(longlong *)(eventTypeCode + 0x430) = lVar6;
-    *(longlong *)lVar6 = lVar6;
+    eventTypeCode = contextData + 0xfU & 0xfffffffffffffff0;
+    contextData = eventTypeCode + 0x428;
+    *(longlong *)(eventTypeCode + 0x430) = contextData;
+    *(longlong *)contextData = contextData;
     *(ulonglong *)(eventTypeCode + 0x438) = eventTypeCode;
     *(ulonglong *)(uiContext + 0x210) = eventTypeCode;
     iVar4 = func_0x00018078b810(*(undefined8 *)(uiContext + 0xa8));
@@ -158834,7 +158834,7 @@ FUN_180765da0(longlong *uiContext,undefined1 *dataSource,int targetBuffer,int bu
   undefined8 uVar3;
   undefined8 uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   short sVar7;
   short sVar8;
   undefined8 uVar9;
@@ -158914,8 +158914,8 @@ FUN_180765da0(longlong *uiContext,undefined1 *dataSource,int targetBuffer,int bu
       if (lVar5 == 0) {
         return 0x26;
       }
-      lVar6 = FUN_180741e10(*uiContext + 0x10bd0,operationResult0 * 4,&UIDefaultDataBuffer,0,0,0,1);
-      if (lVar6 == 0) {
+      contextData = FUN_180741e10(*uiContext + 0x10bd0,operationResult0 * 4,&UIDefaultDataBuffer,0,0,0,1);
+      if (contextData == 0) {
         return 0x26;
       }
       *(short *)(uiContext + 7) = sVar7;
@@ -158923,10 +158923,10 @@ FUN_180765da0(longlong *uiContext,undefined1 *dataSource,int targetBuffer,int bu
       uiContext[8] = lVar5;
       *(short *)(uiContext + 9) = sVar7;
       *(short *)((longlong)uiContext + 0x4a) = sVar8;
-      uiContext[10] = lVar6;
+      uiContext[10] = contextData;
       if (param_6 != 0) {
                     // WARNING: Subroutine does not return
-        memset(lVar6,0,(longlong)operationResult0 << 2);
+        memset(contextData,0,(longlong)operationResult0 << 2);
       }
     }
     uVar3 = FUN_18076def0(uiContext + 7,puStackX_10,targetBuffer,bufferSize,resultPointer);
@@ -162866,7 +162866,7 @@ undefined8 FUN_180769220(longlong uiContext,uint dataSource,longlong targetBuffe
   undefined4 uVar3;
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 eventTypeCode;
   longlong *plVar8;
   uint uVar9;
@@ -162893,11 +162893,11 @@ undefined8 FUN_180769220(longlong uiContext,uint dataSource,longlong targetBuffe
   iVar5 = iVar5 * 2;
   *(int *)(bufferData + 0x15c) = iVar5;
   if (targetBuffer == 0) {
-    lVar6 = FUN_180742650(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(undefined8 *)(uiContext + 0x1e8),
+    contextData = FUN_180742650(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(undefined8 *)(uiContext + 0x1e8),
                           iVar5 + 1,&UNK_180958c10,0x720,1);
-    *(longlong *)(bufferData + 0x1e8) = lVar6;
-    if (lVar6 != 0) {
-      *(longlong *)(bufferData + 0x1e0) = lVar6;
+    *(longlong *)(bufferData + 0x1e8) = contextData;
+    if (contextData != 0) {
+      *(longlong *)(bufferData + 0x1e0) = contextData;
       eventTypeCode = FUN_180769860(uiContext);
       if ((int)eventTypeCode != 0) {
         return eventTypeCode;
@@ -162905,21 +162905,21 @@ undefined8 FUN_180769220(longlong uiContext,uint dataSource,longlong targetBuffe
       FUN_180768360(*(undefined8 *)(*(longlong *)(bufferData + 0x188) + 0x198));
       pallocatedMemory = (longlong *)(uiContext + 8);
       plVar8 = (longlong *)(*(longlong *)(bufferData + 0x188) + 0x170);
-      lVar6 = *plVar8;
-      *pallocatedMemory = lVar6;
+      contextData = *plVar8;
+      *pallocatedMemory = contextData;
       *(longlong **)(uiContext + 0x10) = plVar8;
-      *(longlong **)(lVar6 + 8) = pallocatedMemory;
+      *(longlong **)(contextData + 8) = pallocatedMemory;
       **(longlong **)(uiContext + 0x10) = (longlong)pallocatedMemory;
                     // WARNING: Subroutine does not return
       FUN_180768400(*(undefined8 *)(*(longlong *)(bufferData + 0x188) + 0x198));
     }
   }
   else {
-    lVar6 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar5 + 1,&UNK_180958c10,0x717,1);
-    *(longlong *)(bufferData + 0x1e8) = lVar6;
-    if (lVar6 != 0) {
+    contextData = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar5 + 1,&UNK_180958c10,0x717,1);
+    *(longlong *)(bufferData + 0x1e8) = contextData;
+    if (contextData != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(lVar6,targetBuffer,uVar3);
+      memcpy(contextData,targetBuffer,uVar3);
     }
   }
   return 0x26;
@@ -163327,7 +163327,7 @@ int FUN_180769c60(longlong *uiContext,longlong dataSource,int targetBuffer,int b
   undefined4 uVar3;
   int iVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   
   *(uint *)((longlong)uiContext + 0x194) = *(uint *)((longlong)uiContext + 0x194) & 0xfffffffb;
@@ -163346,22 +163346,22 @@ int FUN_180769c60(longlong *uiContext,longlong dataSource,int targetBuffer,int b
   if ((resultPointer != 0) && (uiContext[0x29] == 0)) {
     uVar3 = func_0x00018076b690(resultPointer);
     *(undefined4 *)(bufferData + 0x2a) = uVar3;
-    lVar6 = FUN_18076b520(resultPointer);
-    uiContext[0x29] = lVar6;
+    contextData = FUN_18076b520(resultPointer);
+    uiContext[0x29] = contextData;
   }
   iVar4 = *(int *)((longlong)uiContext + 0x164);
   *(int *)((longlong)uiContext + 0x15c) = iVar4;
   if ((iVar4 != 0) && (uiContext[0x3c] == 0)) {
-    lVar6 = uiContext[0x3d];
+    contextData = uiContext[0x3d];
     lVar7 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar4 + 1,&UNK_180958c10,0x6d0,0);
     uiContext[0x3d] = lVar7;
     if (lVar7 == 0) {
       return 0x26;
     }
     uiContext[0x3c] = lVar7;
-    if (lVar6 != 0) {
+    if (contextData != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar6,&UNK_180958c10,0x6df,1);
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),contextData,&UNK_180958c10,0x6df,1);
     }
   }
   iVar4 = (**(code **)(*uiContext + 0x20))(uiContext,dataSource,(longlong)uiContext + 0x24);
@@ -167761,7 +167761,7 @@ void FUN_18076c743(undefined8 uiContext,ulonglong dataSource,longlong targetBuff
   ulonglong uVar3;
   ulonglong uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   uint uVar8;
   longlong lVar9;
@@ -167815,9 +167815,9 @@ void FUN_18076c743(undefined8 uiContext,ulonglong dataSource,longlong targetBuff
       }
       return;
     }
-    lVar6 = 4 - (lVar9 >> 0x3f);
-    pfunctionResult = (ulonglong *)(uVar4 + lVar6 * 8);
-    uVar3 = *(ulonglong *)(uVar4 + lVar6 * 8);
+    contextData = 4 - (lVar9 >> 0x3f);
+    pfunctionResult = (ulonglong *)(uVar4 + contextData * 8);
+    uVar3 = *(ulonglong *)(uVar4 + contextData * 8);
     if (uVar3 == 0) break;
     semaphoreHandle = *(ulonglong *)(uVar3 + 8);
     uVar4 = uVar3;
@@ -167845,17 +167845,17 @@ void FUN_18076c7fd(uint uiContext,longlong dataSource,longlong targetBuffer,ulon
   ulonglong uVar3;
   ulonglong uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong unaff_RBP;
   ulonglong *in_R10;
   
-  lVar6 = unaff_RBP;
+  contextData = unaff_RBP;
   if (uiContext != 0x1f) {
-    lVar6 = 0x3f - (ulonglong)((uiContext >> 1) + 6);
+    contextData = 0x3f - (ulonglong)((uiContext >> 1) + 6);
   }
   semaphoreHandle = *(ulonglong *)(*in_R10 + 8);
   uVar4 = *in_R10;
-  lVar6 = bufferSize << ((byte)lVar6 & 0x3f);
+  contextData = bufferSize << ((byte)contextData & 0x3f);
   while( true ) {
     if ((semaphoreHandle & 0xfffffffffffffffc) == bufferSize) {
       if ((*(ulonglong *)(targetBuffer + 0x18) <= uVar4) &&
@@ -167868,13 +167868,13 @@ void FUN_18076c7fd(uint uiContext,longlong dataSource,longlong targetBuffer,ulon
       }
       return;
     }
-    lVar5 = 4 - (lVar6 >> 0x3f);
+    lVar5 = 4 - (contextData >> 0x3f);
     pallocatedMemory = (longlong *)(uVar4 + lVar5 * 8);
     uVar3 = *(ulonglong *)(uVar4 + lVar5 * 8);
     if (uVar3 == 0) break;
     semaphoreHandle = *(ulonglong *)(uVar3 + 8);
     uVar4 = uVar3;
-    lVar6 = lVar6 * 2;
+    contextData = contextData * 2;
   }
   if (pallocatedMemory < *(longlong **)(targetBuffer + 0x18)) {
     return;
@@ -168509,7 +168509,7 @@ longlong FUN_18076ccf0(undefined8 uiContext,ulonglong dataSource,ulonglong targe
   uint *puVar3;
   ulonglong uVar4;
   ulonglong uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   uint eventTypeCode;
   longlong lVar8;
   uint uVar9;
@@ -168546,22 +168546,22 @@ longlong FUN_18076ccf0(undefined8 uiContext,ulonglong dataSource,ulonglong targe
     uVar5 = *(ulonglong *)(targetBuffer + 0x30);
     if (functionResult1 == targetBuffer) {
       uVar4 = *(ulonglong *)(targetBuffer + 0x28);
-      plVar6 = (longlong *)(targetBuffer + 0x28);
+      pcontextData = (longlong *)(targetBuffer + 0x28);
       if (*(ulonglong *)(targetBuffer + 0x28) == 0) {
         functionResult1 = *(ulonglong *)(targetBuffer + 0x20);
         uVar4 = functionResult1;
-        plVar6 = (longlong *)(targetBuffer + 0x20);
+        pcontextData = (longlong *)(targetBuffer + 0x20);
         if (functionResult1 == 0) goto LAB_18076cddb;
       }
       do {
         do {
-          pallocatedMemory4 = plVar6;
+          pallocatedMemory4 = pcontextData;
           functionResult1 = uVar4;
           uVar4 = *(ulonglong *)(functionResult1 + 0x28);
-          plVar6 = (longlong *)(functionResult1 + 0x28);
+          pcontextData = (longlong *)(functionResult1 + 0x28);
         } while (*(ulonglong *)(functionResult1 + 0x28) != 0);
         uVar4 = *(ulonglong *)(functionResult1 + 0x20);
-        plVar6 = (longlong *)(functionResult1 + 0x20);
+        pcontextData = (longlong *)(functionResult1 + 0x20);
       } while (*(ulonglong *)(functionResult1 + 0x20) != 0);
       if (*(longlong **)(in_R10 + 6) <= pallocatedMemory4) {
         *pallocatedMemory4 = unaff_RBP;
@@ -168710,7 +168710,7 @@ longlong FUN_18076cd07(undefined8 uiContext,ulonglong dataSource,ulonglong targe
   ulonglong uVar3;
   ulonglong uVar4;
   ulonglong uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   uint eventTypeCode;
   longlong lVar8;
   uint uVar9;
@@ -168746,22 +168746,22 @@ longlong FUN_18076cd07(undefined8 uiContext,ulonglong dataSource,ulonglong targe
   uVar4 = *(ulonglong *)(targetBuffer + 0x30);
   if (functionResult5 == targetBuffer) {
     uVar3 = *(ulonglong *)(targetBuffer + 0x28);
-    plVar6 = (longlong *)(targetBuffer + 0x28);
+    pcontextData = (longlong *)(targetBuffer + 0x28);
     if (*(ulonglong *)(targetBuffer + 0x28) == 0) {
       functionResult5 = *(ulonglong *)(targetBuffer + 0x20);
       uVar3 = functionResult5;
-      plVar6 = (longlong *)(targetBuffer + 0x20);
+      pcontextData = (longlong *)(targetBuffer + 0x20);
       if (functionResult5 == 0) goto LAB_18076cddb;
     }
     do {
       do {
-        pallocatedMemory3 = plVar6;
+        pallocatedMemory3 = pcontextData;
         functionResult5 = uVar3;
         uVar3 = *(ulonglong *)(functionResult5 + 0x28);
-        plVar6 = (longlong *)(functionResult5 + 0x28);
+        pcontextData = (longlong *)(functionResult5 + 0x28);
       } while (*(ulonglong *)(functionResult5 + 0x28) != 0);
       uVar3 = *(ulonglong *)(functionResult5 + 0x20);
-      plVar6 = (longlong *)(functionResult5 + 0x20);
+      pcontextData = (longlong *)(functionResult5 + 0x20);
     } while (*(ulonglong *)(functionResult5 + 0x20) != 0);
     if (*(longlong **)(in_R10 + 6) <= pallocatedMemory3) {
       *pallocatedMemory3 = unaff_RBP;
@@ -168907,7 +168907,7 @@ longlong FUN_18076cd6e(ulonglong uiContext,ulonglong dataSource,ulonglong target
   ulonglong uVar3;
   ulonglong uVar4;
   ulonglong uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   uint eventTypeCode;
   longlong lVar8;
   uint uVar9;
@@ -168926,22 +168926,22 @@ longlong FUN_18076cd6e(ulonglong uiContext,ulonglong dataSource,ulonglong target
   functionResult5 = *(ulonglong *)(targetBuffer + 0x30);
   if (uiContext == targetBuffer) {
     uVar3 = *(ulonglong *)(targetBuffer + 0x28);
-    plVar6 = (longlong *)(targetBuffer + 0x28);
+    pcontextData = (longlong *)(targetBuffer + 0x28);
     if (*(ulonglong *)(targetBuffer + 0x28) == 0) {
       uiContext = *(ulonglong *)(targetBuffer + 0x20);
       uVar3 = uiContext;
-      plVar6 = (longlong *)(targetBuffer + 0x20);
+      pcontextData = (longlong *)(targetBuffer + 0x20);
       if (uiContext == 0) goto LAB_18076cddb;
     }
     do {
       do {
-        pallocatedMemory3 = plVar6;
+        pallocatedMemory3 = pcontextData;
         uiContext = uVar3;
         uVar3 = *(ulonglong *)(uiContext + 0x28);
-        plVar6 = (longlong *)(uiContext + 0x28);
+        pcontextData = (longlong *)(uiContext + 0x28);
       } while (*(ulonglong *)(uiContext + 0x28) != 0);
       uVar3 = *(ulonglong *)(uiContext + 0x20);
-      plVar6 = (longlong *)(uiContext + 0x20);
+      pcontextData = (longlong *)(uiContext + 0x20);
     } while (*(ulonglong *)(uiContext + 0x20) != 0);
     if (*(longlong **)(in_R10 + 6) <= pallocatedMemory3) {
       *pallocatedMemory3 = unaff_RBP;
@@ -170707,7 +170707,7 @@ int FUN_18076e380(longlong uiContext,ulonglong dataSource,float targetBuffer)
   int compareResult;
   longlong *plVar4;
   longlong lVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   float fVar8;
   undefined4 uStackX_c;
@@ -170745,17 +170745,17 @@ int FUN_18076e380(longlong uiContext,ulonglong dataSource,float targetBuffer)
     *plVar7 = (longlong)plVar7;
     plVar7[3] = -1;
     plVar7[2] = 0;
-    plVar6 = (longlong *)*plVar4;
+    pcontextData = (longlong *)*plVar4;
     do {
-      if (dataSource < (ulonglong)plVar6[3]) {
+      if (dataSource < (ulonglong)pcontextData[3]) {
         plVar7[3] = dataSource;
-        plVar7[1] = plVar6[1];
-        *plVar7 = (longlong)plVar6;
-        plVar6[1] = (longlong)plVar7;
+        plVar7[1] = pcontextData[1];
+        *plVar7 = (longlong)pcontextData;
+        pcontextData[1] = (longlong)plVar7;
         goto LAB_18076e4a9;
       }
-      plVar6 = (longlong *)*plVar6;
-    } while ((longlong *)plVar6[1] != plVar4);
+      pcontextData = (longlong *)*pcontextData;
+    } while ((longlong *)pcontextData[1] != plVar4);
     plVar7[3] = dataSource;
     plVar7[1] = *(longlong *)(bufferData + 0x240);
     *plVar7 = (longlong)plVar4;
@@ -170795,7 +170795,7 @@ int FUN_18076e38d(undefined4 uiContext,ulonglong dataSource,float targetBuffer)
   longlong in_RCX;
   longlong lVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong unaff_R14;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
@@ -170807,14 +170807,14 @@ int FUN_18076e38d(undefined4 uiContext,ulonglong dataSource,float targetBuffer)
     func_0x000180743c20(uiContext,5);
     lVar4 = *(longlong *)(in_RCX + 0xa8);
   }
-  plVar6 = *(longlong **)(lVar4 + 0x10810);
-  if (plVar6 == (longlong *)(lVar4 + 0x10810)) {
+  pcontextData = *(longlong **)(lVar4 + 0x10810);
+  if (pcontextData == (longlong *)(lVar4 + 0x10810)) {
     validationResult = FUN_180743010();
     fVar7 = extraout_XMM0_Da;
     if (validationResult != 0) goto LAB_18076e4f2;
     pstringCompareIndex = (longlong *)(*(longlong *)(in_RCX + 0xa8) + 0x10810);
-    plVar6 = (longlong *)*pstringCompareIndex;
-    if (plVar6 == pstringCompareIndex) {
+    pcontextData = (longlong *)*pstringCompareIndex;
+    if (pcontextData == pstringCompareIndex) {
       validationResult = 0x1c;
       goto LAB_18076e4f2;
     }
@@ -170830,30 +170830,30 @@ int FUN_18076e38d(undefined4 uiContext,ulonglong dataSource,float targetBuffer)
       isCharacterMatch = false;
     }
     validationResult = 0;
-    *(longlong *)plVar6[1] = *plVar6;
-    *(longlong *)(*plVar6 + 8) = plVar6[1];
-    plVar6[1] = (longlong)plVar6;
-    *plVar6 = (longlong)plVar6;
-    plVar6[3] = -1;
-    plVar6[2] = 0;
+    *(longlong *)pcontextData[1] = *pcontextData;
+    *(longlong *)(*pcontextData + 8) = pcontextData[1];
+    pcontextData[1] = (longlong)pcontextData;
+    *pcontextData = (longlong)pcontextData;
+    pcontextData[3] = -1;
+    pcontextData[2] = 0;
     plVar5 = (longlong *)*pstringCompareIndex;
     do {
       if (dataSource < (ulonglong)plVar5[3]) {
-        plVar6[3] = dataSource;
-        plVar6[1] = plVar5[1];
-        *plVar6 = (longlong)plVar5;
-        plVar5[1] = (longlong)plVar6;
+        pcontextData[3] = dataSource;
+        pcontextData[1] = plVar5[1];
+        *pcontextData = (longlong)plVar5;
+        plVar5[1] = (longlong)pcontextData;
         goto LAB_18076e4a9;
       }
       plVar5 = (longlong *)*plVar5;
     } while ((longlong *)plVar5[1] != pstringCompareIndex);
-    plVar6[3] = dataSource;
-    plVar6[1] = *(longlong *)(in_RCX + 0x240);
-    *plVar6 = (longlong)pstringCompareIndex;
-    *(longlong **)(in_RCX + 0x240) = plVar6;
+    pcontextData[3] = dataSource;
+    pcontextData[1] = *(longlong *)(in_RCX + 0x240);
+    *pcontextData = (longlong)pstringCompareIndex;
+    *(longlong **)(in_RCX + 0x240) = pcontextData;
 LAB_18076e4a9:
-    *(longlong **)plVar6[1] = plVar6;
-    plVar6[2] = CONCAT44(in_stack_00000050._4_4_,targetBuffer);
+    *(longlong **)pcontextData[1] = pcontextData;
+    pcontextData[2] = CONCAT44(in_stack_00000050._4_4_,targetBuffer);
     if (isCharacterMatch) {
       *(float *)(in_RCX + 0x2a0) = targetBuffer;
     }
@@ -172116,7 +172116,7 @@ int FUN_18076f6db(float uiContext,undefined8 dataSource,longlong *targetBuffer,l
   ulonglong *puVar3;
   uint uVar4;
   int iVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   ulonglong eventTypeCode;
   ulonglong uVar8;
   undefined4 *puVar9;
@@ -172136,11 +172136,11 @@ int FUN_18076f6db(float uiContext,undefined8 dataSource,longlong *targetBuffer,l
   pfloatResult1 = (float *)(context + 0x260);
   do {
     pallocatedMemory = (longlong *)*targetBuffer;
-    plVar6 = pallocatedMemory;
+    pcontextData = pallocatedMemory;
     if (pallocatedMemory == bufferSize) {
-      plVar6 = targetBuffer;
+      pcontextData = targetBuffer;
     }
-    uVar8 = plVar6[3];
+    uVar8 = pcontextData[3];
     uVar4 = *(uint *)((longlong)*(ulonglong **)(context + 0x228) + 0x24);
     semaphoreHandle = **(ulonglong **)(context + 0x228);
     if (uVar4 == 0) {
@@ -172253,7 +172253,7 @@ ulonglong FUN_18076f7ef(float uiContext,undefined8 dataSource,float targetBuffer
   uint uVar3;
   uint uVar4;
   undefined4 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   longlong context;
   ulonglong uVar8;
@@ -172293,16 +172293,16 @@ ulonglong FUN_18076f7ef(float uiContext,undefined8 dataSource,float targetBuffer
       }
     }
   }
-  lVar6 = (longlong)unaff_R14D;
-  if (lVar6 < 4) {
-    componentContextPtr = (undefined4 *)((lVar6 + 0x26) * 0x10 + context);
-    lVar6 = 4 - lVar6;
+  contextData = (longlong)unaff_R14D;
+  if (contextData < 4) {
+    componentContextPtr = (undefined4 *)((contextData + 0x26) * 0x10 + context);
+    contextData = 4 - contextData;
     do {
       *(ulonglong *)(componentContextPtr + -2) = in_R10;
       *componentContextPtr = uVar9;
       componentContextPtr = componentContextPtr + 4;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      contextData = contextData + -1;
+    } while (contextData != 0);
   }
   if ((unaff_R14D == 0) && (unaff_R15B != '\0')) {
     if ((targetBuffer == *(float *)(context + 0x230)) && (targetBuffer != unaff_XMM6_Da)) {
@@ -172536,7 +172536,7 @@ undefined8 FUN_18076fc90(longlong uiContext,int dataSource)
   int compareResult;
   undefined8 uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   int *piVar8;
   int aiStackX_10 [6];
@@ -172594,24 +172594,24 @@ undefined8 FUN_18076fc90(longlong uiContext,int dataSource)
     }
     else {
       uVar4 = 0;
-      lVar6 = (longlong)(int)(*(int *)(lVar5 + 0x127b0) - 1U & *(uint *)(uiContext + 0x270));
-      piVar8 = (int *)(*(longlong *)(lVar5 + 0x127a8) + lVar6 * 4);
-      compareResult = *(int *)(*(longlong *)(lVar5 + 0x127a8) + lVar6 * 4);
+      contextData = (longlong)(int)(*(int *)(lVar5 + 0x127b0) - 1U & *(uint *)(uiContext + 0x270));
+      piVar8 = (int *)(*(longlong *)(lVar5 + 0x127a8) + contextData * 4);
+      compareResult = *(int *)(*(longlong *)(lVar5 + 0x127a8) + contextData * 4);
       if (compareResult != -1) {
-        lVar6 = *(longlong *)(lVar5 + 0x127b8);
+        contextData = *(longlong *)(lVar5 + 0x127b8);
         do {
-          if (*(uint *)(lVar6 + (longlong)compareResult * 0x10) == *(uint *)(uiContext + 0x270)) {
+          if (*(uint *)(contextData + (longlong)compareResult * 0x10) == *(uint *)(uiContext + 0x270)) {
             compareResult = *piVar8;
             lVar7 = (longlong)compareResult;
-            *(undefined8 *)(lVar6 + 8 + lVar7 * 0x10) = 0;
-            *piVar8 = *(int *)(lVar6 + 4 + lVar7 * 0x10);
-            *(undefined4 *)(lVar6 + 4 + lVar7 * 0x10) = *(undefined4 *)(lVar5 + 0x127c8);
+            *(undefined8 *)(contextData + 8 + lVar7 * 0x10) = 0;
+            *piVar8 = *(int *)(contextData + 4 + lVar7 * 0x10);
+            *(undefined4 *)(contextData + 4 + lVar7 * 0x10) = *(undefined4 *)(lVar5 + 0x127c8);
             *(int *)(lVar5 + 0x127cc) = *(int *)(lVar5 + 0x127cc) + -1;
             *(int *)(lVar5 + 0x127c8) = compareResult;
             uVar4 = 0;
             break;
           }
-          piVar8 = (int *)(lVar6 + 4 + (longlong)compareResult * 0x10);
+          piVar8 = (int *)(contextData + 4 + (longlong)compareResult * 0x10);
           compareResult = *piVar8;
         } while (compareResult != -1);
       }
@@ -173898,7 +173898,7 @@ undefined8 FUN_180770ce0(longlong *uiContext)
   longlong stringCompareIndex;
   undefined8 uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   
   allocatedMemory = *uiContext;
   *(undefined4 *)(allocatedMemory + 0x22c) = 0x3f800000;
@@ -173913,9 +173913,9 @@ undefined8 FUN_180770ce0(longlong *uiContext)
   stringCompareIndex = *(longlong *)(allocatedMemory + 0xe8);
   iVar5 = 0;
   if (0 < *(int *)(stringCompareIndex + 0x60)) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      pvalidationResult = *(int **)(lVar6 + *(longlong *)(stringCompareIndex + 0x68));
+      pvalidationResult = *(int **)(contextData + *(longlong *)(stringCompareIndex + 0x68));
       if (*pvalidationResult == 1) {
         uVar4 = func_0x000180762af0(allocatedMemory,iVar5,pvalidationResult[0xe]);
 LAB_180770d72:
@@ -173929,7 +173929,7 @@ LAB_180770d72:
       }
       stringCompareIndex = *(longlong *)(allocatedMemory + 0xe8);
       iVar5 = iVar5 + 1;
-      lVar6 = lVar6 + 8;
+      contextData = contextData + 8;
     } while (iVar5 < *(int *)(stringCompareIndex + 0x60));
   }
   return 0;
@@ -174091,7 +174091,7 @@ FUN_180771250(longlong uiContext,int dataSource,longlong targetBuffer,longlong b
   longlong stringCompareIndex;
   undefined8 uVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 eventTypeCode;
   char cVar8;
   undefined8 uStack_d8;
@@ -174155,9 +174155,9 @@ FUN_180771250(longlong uiContext,int dataSource,longlong targetBuffer,longlong b
       *(undefined8 *)(stringCompareIndex + 0x228) = eventTypeCode;
       *(longlong *)(stringCompareIndex + 0x240) = *(longlong *)(stringCompareIndex + 8);
     }
-    lVar6 = *(longlong *)(stringCompareIndex + 0x228);
+    contextData = *(longlong *)(stringCompareIndex + 0x228);
     *(undefined1 *)(stringCompareIndex + 0x249) = 1;
-    if (lVar6 != 0) {
+    if (contextData != 0) {
       validationResult = *(int *)(stringCompareIndex + 0x234);
       if (*(uint *)(stringCompareIndex + 0x238) < (uint)(validationResult * dataSource)) {
         eventTypeCode = 0x1c;
@@ -174173,7 +174173,7 @@ FUN_180771250(longlong uiContext,int dataSource,longlong targetBuffer,longlong b
                               *(undefined4 *)(bufferData + 0x220));
         }
         *(undefined4 *)(bufferData + 0x218) = *(undefined4 *)(bufferData + 0x220);
-        eventTypeCode = FUN_1807636f0(&uStack_d8,lVar6,uVar4,0,validationResult,operationResult,dataSource,cVar8 == '\0');
+        eventTypeCode = FUN_1807636f0(&uStack_d8,contextData,uVar4,0,validationResult,operationResult,dataSource,cVar8 == '\0');
         if ((int)eventTypeCode == 0) goto LAB_180771466;
       }
       return eventTypeCode;
@@ -175305,7 +175305,7 @@ undefined8 FUN_180772950(longlong uiContext,int dataSource,char targetBuffer)
   bool bVar3;
   longlong *plVar4;
   undefined8 uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   
   for (plVar7 = *(longlong **)(uiContext + 0x288); plVar7 != (longlong *)(uiContext + 0x288);
@@ -175338,15 +175338,15 @@ undefined8 FUN_180772950(longlong uiContext,int dataSource,char targetBuffer)
       goto LAB_180772bcd;
     }
   }
-  plVar6 = (longlong *)(uiContext + 0x148);
-  plVar4 = (longlong *)*plVar6;
-  if (plVar4 == plVar6) {
+  pcontextData = (longlong *)(uiContext + 0x148);
+  plVar4 = (longlong *)*pcontextData;
+  if (plVar4 == pcontextData) {
     uVar5 = 0;
   }
   else {
     while (plVar7 = (longlong *)plVar4[2], *(int *)((longlong)plVar7 + 0x14) != dataSource) {
       plVar4 = (longlong *)*plVar4;
-      if (plVar4 == plVar6) {
+      if (plVar4 == pcontextData) {
         return 0;
       }
     }
@@ -175826,7 +175826,7 @@ ulonglong FUN_1807730d0(longlong uiContext,longlong dataSource,uint targetBuffer
   uint uVar3;
   uint uVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   ulonglong uVar8;
   int iVar9;
@@ -175956,28 +175956,28 @@ LAB_1807732d8:
       uStack_88 = 0;
       if ((pallocatedMemory != (longlong *)0x0) &&
          (operationResult0 = (**(code **)(*pallocatedMemory + 8))(pallocatedMemory,&pppppuStack_c8), operationResult0 == 0)) {
-        lVar6 = *(longlong *)(bufferData + 0x168);
+        contextData = *(longlong *)(bufferData + 0x168);
         if (*(longlong *)(bufferData + 0x168) == 0) {
-          lVar6 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x48,&UNK_180959140,0xfe,0,0
+          contextData = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x48,&UNK_180959140,0xfe,0,0
                                 ,1);
-          if (lVar6 != 0) {
-            *(longlong *)(lVar6 + 8) = lVar6;
-            *(longlong *)lVar6 = lVar6;
-            *(undefined8 *)(lVar6 + 0x10) = 0;
-            *(undefined8 *)(lVar6 + 0x18) = 0;
-            *(undefined8 *)(lVar6 + 0x20) = 0;
-            *(undefined8 *)(lVar6 + 0x30) = 0;
-            *(undefined8 *)(lVar6 + 0x28) = 0;
-            *(undefined4 *)(lVar6 + 0x38) = 0;
-            *(undefined2 *)(lVar6 + 0x3c) = 1;
-            *(undefined4 *)(lVar6 + 0x40) = 0;
-            lVar7 = lVar6;
+          if (contextData != 0) {
+            *(longlong *)(contextData + 8) = contextData;
+            *(longlong *)contextData = contextData;
+            *(undefined8 *)(contextData + 0x10) = 0;
+            *(undefined8 *)(contextData + 0x18) = 0;
+            *(undefined8 *)(contextData + 0x20) = 0;
+            *(undefined8 *)(contextData + 0x30) = 0;
+            *(undefined8 *)(contextData + 0x28) = 0;
+            *(undefined4 *)(contextData + 0x38) = 0;
+            *(undefined2 *)(contextData + 0x3c) = 1;
+            *(undefined4 *)(contextData + 0x40) = 0;
+            lVar7 = contextData;
           }
           *(longlong *)(bufferData + 0x168) = lVar7;
-          lVar6 = lVar7;
+          contextData = lVar7;
           if (lVar7 == 0) goto LAB_1807733e2;
         }
-        FUN_1807d83f0(lVar6,&pppppuStack_c8);
+        FUN_1807d83f0(contextData,&pppppuStack_c8);
       }
     }
   }
@@ -176001,7 +176001,7 @@ ulonglong FUN_180773143(int uiContext)
   uint uVar3;
   uint uVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   int iVar8;
   longlong context;
@@ -176109,27 +176109,27 @@ LAB_1807732d4:
     *(undefined4 *)(unaff_RBP + -0x29) = 0;
     if ((pallocatedMemory != (longlong *)0x0) &&
        (iVar8 = (**(code **)(*pallocatedMemory + 8))(pallocatedMemory,unaff_RBP + -0x69), iVar8 == 0)) {
-      lVar6 = *(longlong *)(context + 0x168);
+      contextData = *(longlong *)(context + 0x168);
       if (*(longlong *)(context + 0x168) == 0) {
-        lVar6 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x48,&UNK_180959140,0xfe,0);
-        if (lVar6 != 0) {
-          *(longlong *)(lVar6 + 8) = lVar6;
-          *(longlong *)lVar6 = lVar6;
-          *(undefined8 *)(lVar6 + 0x10) = 0;
-          *(undefined8 *)(lVar6 + 0x18) = 0;
-          *(undefined8 *)(lVar6 + 0x20) = 0;
-          *(undefined8 *)(lVar6 + 0x30) = 0;
-          *(undefined8 *)(lVar6 + 0x28) = 0;
-          *(undefined4 *)(lVar6 + 0x38) = 0;
-          *(undefined2 *)(lVar6 + 0x3c) = 1;
-          *(undefined4 *)(lVar6 + 0x40) = 0;
-          lVar7 = lVar6;
+        contextData = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x48,&UNK_180959140,0xfe,0);
+        if (contextData != 0) {
+          *(longlong *)(contextData + 8) = contextData;
+          *(longlong *)contextData = contextData;
+          *(undefined8 *)(contextData + 0x10) = 0;
+          *(undefined8 *)(contextData + 0x18) = 0;
+          *(undefined8 *)(contextData + 0x20) = 0;
+          *(undefined8 *)(contextData + 0x30) = 0;
+          *(undefined8 *)(contextData + 0x28) = 0;
+          *(undefined4 *)(contextData + 0x38) = 0;
+          *(undefined2 *)(contextData + 0x3c) = 1;
+          *(undefined4 *)(contextData + 0x40) = 0;
+          lVar7 = contextData;
         }
         *(longlong *)(context + 0x168) = lVar7;
-        lVar6 = lVar7;
+        contextData = lVar7;
         if (lVar7 == 0) goto LAB_1807733df;
       }
-      FUN_1807d83f0(lVar6,unaff_RBP + -0x69);
+      FUN_1807d83f0(contextData,unaff_RBP + -0x69);
     }
   }
 LAB_1807733df:
@@ -176637,7 +176637,7 @@ ulonglong FUN_1807736bf(longlong uiContext)
   undefined8 *puVar3;
   undefined8 uVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
   uint allocationFlags;
@@ -176674,12 +176674,12 @@ ulonglong FUN_1807736bf(longlong uiContext)
     puVar3[4] = in_stack_00000060;
     puVar3[5] = in_stack_00000068;
     puVar3[6] = in_stack_00000070;
-    lVar6 = *(longlong *)(unaff_RBP + 0x120);
+    contextData = *(longlong *)(unaff_RBP + 0x120);
     in_R10D = uStack00000000000000b0;
-    if (*(code **)(lVar6 + 0x100) != (code *)0x0) {
-      uVar5 = (**(code **)(lVar6 + 0x100))
-                        (lVar6,uStack000000000000004c,iStack0000000000000050,unaff_R13D,
-                         *(undefined8 *)(lVar6 + 0x128));
+    if (*(code **)(contextData + 0x100) != (code *)0x0) {
+      uVar5 = (**(code **)(contextData + 0x100))
+                        (contextData,uStack000000000000004c,iStack0000000000000050,unaff_R13D,
+                         *(undefined8 *)(contextData + 0x128));
       if ((int)uVar5 != 0) {
         return uVar5;
       }
@@ -176695,13 +176695,13 @@ ulonglong FUN_1807736bf(longlong uiContext)
         if ((allocationFlags & 1) == 0) goto LAB_1807739b7;
         uVar5 = (ulonglong)((float)(longlong)unaff_RSI * 0.001 * (float)iStack0000000000000050);
         if (iStack0000000000000048 == 1) {
-          lVar6 = 8;
+          contextData = 8;
         }
         else if (iStack0000000000000048 == 2) {
-          lVar6 = 0x10;
+          contextData = 0x10;
         }
         else if (iStack0000000000000048 == 3) {
-          lVar6 = 0x18;
+          contextData = 0x18;
         }
         else {
           if ((iStack0000000000000048 != 4) && (iStack0000000000000048 != 5)) {
@@ -176709,27 +176709,27 @@ ulonglong FUN_1807736bf(longlong uiContext)
             unaff_RSI = (ulonglong)((int)uVar5 * uStack000000000000004c);
             goto LAB_1807739b7;
           }
-          lVar6 = 0x20;
+          contextData = 0x20;
         }
         unaff_RSI = uVar5 & 0xffffffff;
 LAB_180773906:
-        unaff_RSI = unaff_RSI * lVar6 >> 3;
+        unaff_RSI = unaff_RSI * contextData >> 3;
       }
       else {
         if (iStack0000000000000048 == 1) {
-          lVar6 = 8;
+          contextData = 8;
           goto LAB_180773906;
         }
         if (iStack0000000000000048 == 2) {
-          lVar6 = 0x10;
+          contextData = 0x10;
           goto LAB_180773906;
         }
         if (iStack0000000000000048 == 3) {
-          lVar6 = 0x18;
+          contextData = 0x18;
           goto LAB_180773906;
         }
         if ((iStack0000000000000048 == 4) || (iStack0000000000000048 == 5)) {
-          lVar6 = 0x20;
+          contextData = 0x20;
           goto LAB_180773906;
         }
       }
@@ -177383,7 +177383,7 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
   uint uVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   ulonglong uVar8;
   uint uVar9;
@@ -177417,13 +177417,13 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
     *(uint *)(uiContext + 0x248) = uVar9 * resultPointer;
     operationResult5 = uVar9 * resultPointer * *(int *)(bufferData + 0x260) * 2;
     *(int *)(bufferData + 0x24c) = operationResult5;
-    lVar6 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),operationResult5 + 0x10,&UNK_180959410,0xf0,
+    contextData = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),operationResult5 + 0x10,&UNK_180959410,0xf0,
                           0);
-    *(longlong *)(bufferData + 0x240) = lVar6;
-    if (lVar6 == 0) {
+    *(longlong *)(bufferData + 0x240) = contextData;
+    if (contextData == 0) {
       return 0x26;
     }
-    *(ulonglong *)(uiContext + 0x238) = lVar6 + 0xfU & 0xfffffffffffffff0;
+    *(ulonglong *)(uiContext + 0x238) = contextData + 0xfU & 0xfffffffffffffff0;
     FUN_180774eb0(uiContext);
   }
   fVar2 = (float)((int)(float)*(uint *)(uiContext + 0x248) + -1);
@@ -177527,7 +177527,7 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
           do {
             floatResult8 = *(float *)(uiContext + 0x264);
             floatResult7 = *(float *)(uiContext + 0x268);
-            lVar6 = 0;
+            contextData = 0;
             if (floatResult8 - 0.03125 <= floatResult7) {
               if (floatResult8 + 0.03125 < floatResult7) {
                 floatResult8 = floatResult7 - 0.03125;
@@ -177541,7 +177541,7 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
             if (0 < (int)uVar3) {
               pfloatResult2 = (float *)(lStackX_18 + (longlong)operationResult5 * 4);
               do {
-                eventTypeCode = (uint)((*(float *)(uiContext + 0x26c + lVar6 * 4) +
+                eventTypeCode = (uint)((*(float *)(uiContext + 0x26c + contextData * 4) +
                                *(float *)(uiContext + 0x254)) * 32768.0);
                 if ((int)eventTypeCode < 0) {
                   eventTypeCode = -eventTypeCode;
@@ -177578,19 +177578,19 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
                 iVar4 = operationResult1 * uVar3 + operationResult3;
                 iVar5 = operationResult3 + ((operationResult1 + 1U) % *(uint *)(uiContext + 0x248)) * uVar3;
                 operationResult3 = operationResult3 + 1;
-                allocatedMemory = lVar6 + 1;
+                allocatedMemory = contextData + 1;
                 *pfloatResult2 = ((float)(int)*(short *)(*(longlong *)(bufferData + 0x238) +
                                                   (longlong)iVar4 * 2) * 6.1035156e-05 *
                             (1.0 - (floatResult9 - (float)operationResult1)) +
                            (float)(int)*(short *)(*(longlong *)(bufferData + 0x238) +
                                                  (longlong)iVar5 * 2) * 6.1035156e-05 *
-                           (floatResult9 - (float)operationResult1)) * *(float *)(uiContext + 0x224 + lVar6 * 4) +
+                           (floatResult9 - (float)operationResult1)) * *(float *)(uiContext + 0x224 + contextData * 4) +
                            *(float *)((lStackX_10 - lStackX_18) + (longlong)pfloatResult2) *
                            *(float *)(uiContext + 0x220);
                 pfloatResult2 = pfloatResult2 + 1;
-                lVar6 = 0;
+                contextData = 0;
                 if (allocatedMemory < 3) {
-                  lVar6 = allocatedMemory;
+                  contextData = allocatedMemory;
                 }
               } while (operationResult3 < (int)uVar3);
               floatResult9 = *(float *)(uiContext + 0x254);
@@ -183709,7 +183709,7 @@ undefined8 FUN_18077a8d0(undefined8 uiContext,uint dataSource,float targetBuffer
   float fVar3;
   int iVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   longlong context;
   uint unaff_ESI;
@@ -183854,15 +183854,15 @@ undefined8 FUN_18077a8d0(undefined8 uiContext,uint dataSource,float targetBuffer
           }
           else {
             fVar20 = 1.0 - floatResult9;
-            lVar6 = (longlong)(int)(functionResult0 * iVar9);
-            lVar8 = lVar6 * 2;
-            lVar6 = operationResult5 * iVar9 - lVar6;
+            contextData = (longlong)(int)(functionResult0 * iVar9);
+            lVar8 = contextData * 2;
+            contextData = operationResult5 * iVar9 - contextData;
             allocatedMemory8 = (unaff_RDI - 4U >> 2) + 1;
             iVar4 = (int)allocatedMemory8 * 4;
             allocatedMemory6 = allocatedMemory8 * 4;
             operationResult7 = iStack00000000000000f0;
             do {
-              allocatedMemory2 = lVar8 + lVar6 * 2;
+              allocatedMemory2 = lVar8 + contextData * 2;
               allocatedMemory1 = (longlong)operationResult7;
               operationResult7 = operationResult7 + 4;
               *(float *)(unaff_R12 + allocatedMemory1 * 4) =
@@ -183878,7 +183878,7 @@ undefined8 FUN_18077a8d0(undefined8 uiContext,uint dataSource,float targetBuffer
                    6.1035156e-05 * fVar20) * *(float *)(context + 0x220) +
                    *(float *)(unaff_R15 + 4 + allocatedMemory1 * 4) * *(float *)(context + 0x224);
               *(float *)(unaff_R12 + 8 + allocatedMemory1 * 4) =
-                   ((float)(int)*(short *)(lVar8 + *(longlong *)(context + 0x238) + 4 + lVar6 * 2)
+                   ((float)(int)*(short *)(lVar8 + *(longlong *)(context + 0x238) + 4 + contextData * 2)
                     * 6.1035156e-05 * fVar20 +
                    (float)(int)*(short *)(*(longlong *)(context + 0x238) + 4 + lVar8) *
                    6.1035156e-05 * floatResult9) * *(float *)(context + 0x220) +
@@ -183887,7 +183887,7 @@ undefined8 FUN_18077a8d0(undefined8 uiContext,uint dataSource,float targetBuffer
               psVar1 = (short *)(*(longlong *)(context + 0x238) + 6 + lVar8);
               lVar8 = lVar8 + 8;
               *(float *)(unaff_R12 + 0xc + allocatedMemory1 * 4) =
-                   ((float)(int)*(short *)(allocatedMemory2 + 6 + lVar6 * 2) * 6.1035156e-05 * fVar20 +
+                   ((float)(int)*(short *)(allocatedMemory2 + 6 + contextData * 2) * 6.1035156e-05 * fVar20 +
                    (float)(int)*psVar1 * 6.1035156e-05 * floatResult9) * *(float *)(context + 0x220) +
                    *(float *)(unaff_R15 + 0xc + allocatedMemory1 * 4) * *(float *)(context + 0x224);
               allocatedMemory8 = allocatedMemory8 + -1;
@@ -183895,8 +183895,8 @@ undefined8 FUN_18077a8d0(undefined8 uiContext,uint dataSource,float targetBuffer
           }
           if (allocatedMemory6 < unaff_RDI) {
             iVar4 = iVar4 + iStack00000000000000f0;
-            lVar6 = (longlong)(int)(functionResult0 * iVar9);
-            lVar8 = (lVar6 + allocatedMemory6) * 2;
+            contextData = (longlong)(int)(functionResult0 * iVar9);
+            lVar8 = (contextData + allocatedMemory6) * 2;
             allocatedMemory6 = unaff_RDI - allocatedMemory6;
             do {
               allocatedMemory2 = (longlong)iVar4;
@@ -183905,7 +183905,7 @@ undefined8 FUN_18077a8d0(undefined8 uiContext,uint dataSource,float targetBuffer
               psVar1 = (short *)(*(longlong *)(context + 0x238) + lVar8);
               lVar8 = lVar8 + 2;
               *(float *)(unaff_R12 + allocatedMemory2 * 4) =
-                   ((float)(int)*(short *)(allocatedMemory8 + (operationResult5 * iVar9 - lVar6) * 2) * 6.1035156e-05 *
+                   ((float)(int)*(short *)(allocatedMemory8 + (operationResult5 * iVar9 - contextData) * 2) * 6.1035156e-05 *
                     (1.0 - floatResult9) + (float)(int)*psVar1 * 6.1035156e-05 * floatResult9) *
                    *(float *)(context + 0x220) +
                    *(float *)(unaff_R15 + allocatedMemory2 * 4) * *(float *)(context + 0x224);
@@ -183949,7 +183949,7 @@ undefined8 FUN_18077a9d3(uint uiContext,uint dataSource,undefined8 targetBuffer,
   float fVar3;
   int iVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   longlong context;
   uint unaff_ESI;
@@ -184077,15 +184077,15 @@ undefined8 FUN_18077a9d3(uint uiContext,uint dataSource,undefined8 targetBuffer,
         }
         else {
           fVar20 = unaff_XMM7_Da - floatResult9;
-          lVar6 = (longlong)(int)(functionResult0 * iVar9);
-          lVar8 = lVar6 * 2;
-          lVar6 = operationResult5 * iVar9 - lVar6;
+          contextData = (longlong)(int)(functionResult0 * iVar9);
+          lVar8 = contextData * 2;
+          contextData = operationResult5 * iVar9 - contextData;
           allocatedMemory8 = (unaff_RDI - 4U >> 2) + 1;
           iVar4 = (int)allocatedMemory8 * 4;
           allocatedMemory6 = allocatedMemory8 * 4;
           operationResult7 = iStack00000000000000f0;
           do {
-            allocatedMemory2 = lVar8 + lVar6 * 2;
+            allocatedMemory2 = lVar8 + contextData * 2;
             allocatedMemory1 = (longlong)operationResult7;
             operationResult7 = operationResult7 + 4;
             *(float *)(unaff_R12 + allocatedMemory1 * 4) =
@@ -184099,7 +184099,7 @@ undefined8 FUN_18077a9d3(uint uiContext,uint dataSource,undefined8 targetBuffer,
                            bufferSize * fVar20) * *(float *)(context + 0x220) +
                  *(float *)(unaff_R15 + 4 + allocatedMemory1 * 4) * *(float *)(context + 0x224);
             *(float *)(unaff_R12 + 8 + allocatedMemory1 * 4) =
-                 ((float)(int)*(short *)(lVar8 + *(longlong *)(context + 0x238) + 4 + lVar6 * 2) *
+                 ((float)(int)*(short *)(lVar8 + *(longlong *)(context + 0x238) + 4 + contextData * 2) *
                   bufferSize * fVar20 +
                  (float)(int)*(short *)(*(longlong *)(context + 0x238) + 4 + lVar8) * bufferSize *
                  floatResult9) * *(float *)(context + 0x220) +
@@ -184108,7 +184108,7 @@ undefined8 FUN_18077a9d3(uint uiContext,uint dataSource,undefined8 targetBuffer,
             psVar1 = (short *)(*(longlong *)(context + 0x238) + 6 + lVar8);
             lVar8 = lVar8 + 8;
             *(float *)(unaff_R12 + 0xc + allocatedMemory1 * 4) =
-                 ((float)(int)*(short *)(allocatedMemory2 + 6 + lVar6 * 2) * bufferSize * fVar20 +
+                 ((float)(int)*(short *)(allocatedMemory2 + 6 + contextData * 2) * bufferSize * fVar20 +
                  (float)(int)*psVar1 * bufferSize * floatResult9) * *(float *)(context + 0x220) +
                  *(float *)(unaff_R15 + 0xc + allocatedMemory1 * 4) * *(float *)(context + 0x224);
             allocatedMemory8 = allocatedMemory8 + -1;
@@ -184116,8 +184116,8 @@ undefined8 FUN_18077a9d3(uint uiContext,uint dataSource,undefined8 targetBuffer,
         }
         if (allocatedMemory6 < unaff_RDI) {
           iVar4 = iVar4 + iStack00000000000000f0;
-          lVar6 = (longlong)(int)(functionResult0 * iVar9);
-          lVar8 = (lVar6 + allocatedMemory6) * 2;
+          contextData = (longlong)(int)(functionResult0 * iVar9);
+          lVar8 = (contextData + allocatedMemory6) * 2;
           allocatedMemory6 = unaff_RDI - allocatedMemory6;
           do {
             allocatedMemory2 = (longlong)iVar4;
@@ -184126,7 +184126,7 @@ undefined8 FUN_18077a9d3(uint uiContext,uint dataSource,undefined8 targetBuffer,
             psVar1 = (short *)(*(longlong *)(context + 0x238) + lVar8);
             lVar8 = lVar8 + 2;
             *(float *)(unaff_R12 + allocatedMemory2 * 4) =
-                 ((float)(int)*(short *)(allocatedMemory8 + (operationResult5 * iVar9 - lVar6) * 2) * bufferSize *
+                 ((float)(int)*(short *)(allocatedMemory8 + (operationResult5 * iVar9 - contextData) * 2) * bufferSize *
                   (unaff_XMM7_Da - floatResult9) + (float)(int)*psVar1 * bufferSize * floatResult9) *
                  *(float *)(context + 0x220) +
                  *(float *)(unaff_R15 + allocatedMemory2 * 4) * *(float *)(context + 0x224);
@@ -185947,7 +185947,7 @@ undefined8 FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffe
   float *pfVar3;
   float *pfVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   ulonglong uVar8;
   ulonglong uVar9;
@@ -185993,10 +185993,10 @@ undefined8 FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffe
       floatResult6 = *(float *)(uiContext + 0x21c);
       floatResult2 = *(float *)(uiContext + 0x29c);
       if (bufferSize != 0) {
-        lVar6 = (longlong)dataSource - (longlong)targetBuffer;
+        contextData = (longlong)dataSource - (longlong)targetBuffer;
         floatResult7 = floatResult6;
         do {
-          floatResult6 = *(float *)((longlong)targetBuffer + lVar6);
+          floatResult6 = *(float *)((longlong)targetBuffer + contextData);
           floatResult2 = floatResult6 + floatResult2 + _DAT_180be2288;
           _DAT_180be2288 = -_DAT_180be2288;
           floatResult2 = (floatResult2 - floatResult7) * *(float *)(uiContext + 0x31c);
@@ -186199,7 +186199,7 @@ undefined8 FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffe
     }
     else if (0 < (int)resultPointer) {
       pfVar4 = (float *)(uiContext + 0x29c);
-      lVar6 = (longlong)targetBuffer - (longlong)dataSource;
+      contextData = (longlong)targetBuffer - (longlong)dataSource;
       uVar9 = (ulonglong)resultPointer;
       floatResult6 = _DAT_180be2288;
       do {
@@ -186214,7 +186214,7 @@ undefined8 FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffe
             floatResult7 = floatResult9 + floatResult7 + floatResult6;
             floatResult6 = -floatResult6;
             floatResult7 = (floatResult7 - floatResult2) * *(float *)(uiContext + 0x31c);
-            *(float *)(lVar6 + (longlong)pfVar3) = floatResult7;
+            *(float *)(contextData + (longlong)pfVar3) = floatResult7;
             eventTypeCode = (int)uVar5 - 1;
             pfVar3 = pfVar3 + (int)resultPointer;
             uVar5 = (ulonglong)eventTypeCode;
@@ -186249,7 +186249,7 @@ undefined8 FUN_18077d60f(void)
   float *unaff_RBP;
   int unaff_ESI;
   float *unaff_RDI;
-  longlong lVar6;
+  longlong contextData;
   ulonglong in_R9;
   ulonglong eventTypeCode;
   float fVar8;
@@ -186464,7 +186464,7 @@ undefined8 FUN_18077d60f(void)
   }
   else if (0 < iVar5) {
     pfVar4 = (float *)(context + 0x29c);
-    lVar6 = (longlong)unaff_RDI - (longlong)unaff_RBP;
+    contextData = (longlong)unaff_RDI - (longlong)unaff_RBP;
     eventTypeCode = in_R9 & 0xffffffff;
     floatResult4 = _DAT_180be2288;
     do {
@@ -186479,7 +186479,7 @@ undefined8 FUN_18077d60f(void)
           floatResult5 = floatResult7 + floatResult5 + floatResult4;
           floatResult4 = -floatResult4;
           floatResult5 = (floatResult5 - floatResult2) * *(float *)(context + 0x31c);
-          *(float *)(lVar6 + (longlong)pfVar3) = floatResult5;
+          *(float *)(contextData + (longlong)pfVar3) = floatResult5;
           iVar5 = iVar5 + -1;
           pfVar3 = pfVar3 + in_R9;
           floatResult2 = floatResult7;
@@ -186512,7 +186512,7 @@ undefined8 FUN_18077d6ff(void)
   float *unaff_RBP;
   int unaff_ESI;
   longlong unaff_RDI;
-  longlong lVar6;
+  longlong contextData;
   ulonglong in_R9;
   ulonglong eventTypeCode;
   float fVar8;
@@ -186697,7 +186697,7 @@ undefined8 FUN_18077d6ff(void)
   }
   else if (0 < iVar5) {
     pfVar4 = (float *)(context + 0x29c);
-    lVar6 = unaff_RDI - (longlong)unaff_RBP;
+    contextData = unaff_RDI - (longlong)unaff_RBP;
     eventTypeCode = in_R9 & 0xffffffff;
     floatResult5 = _DAT_180be2288;
     do {
@@ -186712,7 +186712,7 @@ undefined8 FUN_18077d6ff(void)
           floatResult2 = floatResult7 + floatResult2 + floatResult5;
           floatResult5 = -floatResult5;
           floatResult2 = (floatResult2 - floatResult3) * *(float *)(context + 0x31c);
-          *(float *)(lVar6 + (longlong)pfVar3) = floatResult2;
+          *(float *)(contextData + (longlong)pfVar3) = floatResult2;
           iVar5 = iVar5 + -1;
           pfVar3 = pfVar3 + in_R9;
           floatResult3 = floatResult7;
@@ -191887,7 +191887,7 @@ void FUN_180784ebd(undefined8 uiContext,ulonglong dataSource,char targetBuffer)
   int compareResult;
   uint uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   ulonglong uVar8;
   uint uVar9;
@@ -192003,14 +192003,14 @@ LAB_180784edc:
     goto LAB_180785945;
     lVar5 = *(longlong *)(context + 600);
     if (*(int *)(lVar5 + 0x10) != 0) {
-      lVar6 = *(longlong *)(context + 0x268);
-      if (lVar6 == 0) {
-        lVar6 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0xc0,&UNK_18095aaa0,0x60c,0);
-        *(longlong *)(context + 0x268) = lVar6;
-        if (lVar6 == 0) goto LAB_180785945;
+      contextData = *(longlong *)(context + 0x268);
+      if (contextData == 0) {
+        contextData = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0xc0,&UNK_18095aaa0,0x60c,0);
+        *(longlong *)(context + 0x268) = contextData;
+        if (contextData == 0) goto LAB_180785945;
         lVar5 = *(longlong *)(context + 600);
       }
-      compareResult = FUN_1807d4f50(lVar6,lVar5,uVar4);
+      compareResult = FUN_1807d4f50(contextData,lVar5,uVar4);
       if (compareResult != 0) goto LAB_180785945;
     }
   }
@@ -192091,16 +192091,16 @@ LAB_180784edc:
             if (floatResult9 != 0.0) {
               if (0 < *(int *)(context + 0x2c8)) {
                 pfloatResult0 = (float *)&stack0x00000070;
-                lVar6 = context + 0x2d4;
+                contextData = context + 0x2d4;
                 do {
                   if (*pfloatResult0 != 0.0) {
-                    func_0x000180782f80(afunctionResult8._0_8_,*(undefined4 *)(lVar6 + 8));
+                    func_0x000180782f80(afunctionResult8._0_8_,*(undefined4 *)(contextData + 8));
                     afunctionResult8._0_8_ = FUN_180784b00();
                     afunctionResult8._8_8_ = extraout_XMM0_Qb_01;
                   }
                   compareResult = compareResult + 1;
                   pfloatResult0 = pfloatResult0 + 1;
-                  lVar6 = lVar6 + 0x14;
+                  contextData = contextData + 0x14;
                 } while (compareResult < *(int *)(context + 0x2c8));
               }
               uVar4 = *(uint *)(context + 0x248);
@@ -193268,7 +193268,7 @@ int FUN_1807866d0(longlong uiContext,int dataSource,ulonglong targetBuffer,int b
   undefined8 *puVar3;
   longlong *plVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   undefined4 auStackX_8 [2];
   uint in_stack_ffffffffffffffa0;
@@ -193286,14 +193286,14 @@ int FUN_1807866d0(longlong uiContext,int dataSource,ulonglong targetBuffer,int b
   if (puVar3 == (undefined8 *)0x0) {
     return 0x1e;
   }
-  lVar6 = 0;
+  contextData = 0;
   operationResult = *(int *)((longlong)puVar3 + 0x2c);
   uStack_38 = 0;
   eventTypeCode = targetBuffer;
   if (operationResult != 5) {
-    lVar6 = FUN_180741e10(componentIndex + 0x10bd0,*(int *)(puVar3 + 6) * bufferSize * 4 + 0x20,&UIDefaultDataBuffer,0
+    contextData = FUN_180741e10(componentIndex + 0x10bd0,*(int *)(puVar3 + 6) * bufferSize * 4 + 0x20,&UIDefaultDataBuffer,0
                           ,0,in_stack_ffffffffffffffa0 & 0xffffff00,1);
-    eventTypeCode = lVar6 + 0x1fU & 0xffffffffffffffe0;
+    eventTypeCode = contextData + 0x1fU & 0xffffffffffffffe0;
     uStack_38 = eventTypeCode;
     if (eventTypeCode == 0) {
       iVar5 = 0x26;
@@ -193326,7 +193326,7 @@ int FUN_1807866d0(longlong uiContext,int dataSource,ulonglong targetBuffer,int b
 LAB_180786862:
   if (uStack_38 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(componentIndex + 0x10bd0,lVar6,&UIDefaultDataBuffer,0,1);
+    FUN_180742250(componentIndex + 0x10bd0,contextData,&UIDefaultDataBuffer,0,1);
   }
   return iVar5;
 }
@@ -193513,7 +193513,7 @@ int FUN_180786a50(longlong uiContext,ulonglong dataSource,int targetBuffer)
   longlong stringCompareIndex;
   bool bVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   longlong *plVar8;
   ulonglong uVar9;
@@ -193538,13 +193538,13 @@ int FUN_180786a50(longlong uiContext,ulonglong dataSource,int targetBuffer)
     FUN_180772cd0(*(longlong *)(bufferData + 0x48) + 0x6e0);
   }
   stringCompareIndex = *(longlong *)(bufferData + 0x48);
-  lVar6 = 0;
+  contextData = 0;
   uStack_48 = 0;
   uVar9 = dataSource;
   if (bVar4) {
-    lVar6 = FUN_180741e10(stringCompareIndex + 0x10bd0,aiStackX_8[0] * targetBuffer * 4 + 0x20,&UIDefaultDataBuffer,0,0,
+    contextData = FUN_180741e10(stringCompareIndex + 0x10bd0,aiStackX_8[0] * targetBuffer * 4 + 0x20,&UIDefaultDataBuffer,0,0,
                           in_stack_ffffffffffffff90 & 0xffffff00,1);
-    uVar9 = lVar6 + 0x1fU & 0xffffffffffffffe0;
+    uVar9 = contextData + 0x1fU & 0xffffffffffffffe0;
     uStack_48 = uVar9;
     if (uVar9 == 0) {
       iVar5 = 0x26;
@@ -193584,7 +193584,7 @@ int FUN_180786a50(longlong uiContext,ulonglong dataSource,int targetBuffer)
 LAB_180786c1b:
   if (uStack_48 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(stringCompareIndex + 0x10bd0,lVar6,&UIDefaultDataBuffer,0,1);
+    FUN_180742250(stringCompareIndex + 0x10bd0,contextData,&UIDefaultDataBuffer,0,1);
   }
   func_0x0001807688a0(auStackX_20[0]);
   return iVar5;
@@ -193702,7 +193702,7 @@ int FUN_180786cc3(longlong uiContext,ulonglong dataSource,int targetBuffer)
   undefined8 unaff_RBP;
   undefined8 unaff_RSI;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong in_R11;
   undefined8 unaff_R12;
   undefined8 unaff_R13;
@@ -193737,9 +193737,9 @@ int FUN_180786cc3(longlong uiContext,ulonglong dataSource,int targetBuffer)
       goto LAB_180786fc2;
     }
   }
-  lVar6 = *(longlong *)(bufferData + 0x48);
-  if (*(longlong *)(lVar6 + 0x10f88) != 0) {
-    pallocatedMemory = (longlong *)(lVar6 + 0x6c0);
+  contextData = *(longlong *)(bufferData + 0x48);
+  if (*(longlong *)(contextData + 0x10f88) != 0) {
+    pallocatedMemory = (longlong *)(contextData + 0x6c0);
     plVar4 = (longlong *)*pallocatedMemory;
     if (plVar4 != pallocatedMemory) {
       do {
@@ -193751,9 +193751,9 @@ int FUN_180786cc3(longlong uiContext,ulonglong dataSource,int targetBuffer)
         }
         plVar4 = (longlong *)*plVar4;
       } while (plVar4 != pallocatedMemory);
-      lVar6 = *(longlong *)(bufferData + 0x48);
+      contextData = *(longlong *)(bufferData + 0x48);
     }
-    pallocatedMemory = *(longlong **)(lVar6 + 0x10f88);
+    pallocatedMemory = *(longlong **)(contextData + 0x10f88);
     targetBuffer = (int)pallocatedMemory[3] * targetBuffer;
     if (*(int *)((longlong)pallocatedMemory + 0x14) < targetBuffer) {
                     // WARNING: Subroutine does not return
@@ -193793,9 +193793,9 @@ int FUN_180786cc3(longlong uiContext,ulonglong dataSource,int targetBuffer)
     if ((pallocatedMemory == (longlong *)0x0) ||
        (iVar5 = (**(code **)(*pallocatedMemory + 0x10))(pallocatedMemory,dataSource,in_stack_00000098,targetBuffer), iVar5 == 0)
        ) {
-      lVar6 = *(longlong *)(*(longlong *)(bufferData + 0x48) + 0x670);
-      iVar5 = func_0x0001807eed30(in_stack_00000098,targetBuffer,*(undefined4 *)(lVar6 + 0x58),
-                                  *(undefined4 *)(lVar6 + 0x5c));
+      contextData = *(longlong *)(*(longlong *)(bufferData + 0x48) + 0x670);
+      iVar5 = func_0x0001807eed30(in_stack_00000098,targetBuffer,*(undefined4 *)(contextData + 0x58),
+                                  *(undefined4 *)(contextData + 0x5c));
     }
   }
 LAB_180786fc2:
@@ -193988,7 +193988,7 @@ void FUN_1807872c0(longlong uiContext,undefined8 dataSource,undefined4 targetBuf
   longlong *pstringCompareIndex;
   int iVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   ulonglong uVar8;
   ulonglong uVar9;
@@ -194029,7 +194029,7 @@ void FUN_1807872c0(longlong uiContext,undefined8 dataSource,undefined4 targetBuf
   allocatedMemory1 = *(longlong *)(bufferData + 0x48);
   iStack_d8 = resultPointer;
   cStack_108 = 0;
-  lVar6 = allocatedMemory1;
+  contextData = allocatedMemory1;
   lStack_e8 = uiContext;
   iStack_dc = bufferSize;
   uStack_d4 = targetBuffer;
@@ -194037,12 +194037,12 @@ void FUN_1807872c0(longlong uiContext,undefined8 dataSource,undefined4 targetBuf
   uStack_a8 = dataSource;
   if (allocatedMemory1 != 0) {
     func_0x000180743c20(allocatedMemory1,0x11);
-    lVar6 = *(longlong *)(bufferData + 0x48);
+    contextData = *(longlong *)(bufferData + 0x48);
   }
   iStack_fc = 0;
   uStack_100 = 0;
   cStack_108 = allocatedMemory1 != 0;
-  func_0x000180746360(lVar6,&uStack_100,&iStack_fc);
+  func_0x000180746360(contextData,&uStack_100,&iStack_fc);
   uVar8 = 0;
   uStack_e0 = 0;
   uVar9 = 0;
@@ -194060,20 +194060,20 @@ void FUN_1807872c0(longlong uiContext,undefined8 dataSource,undefined4 targetBuf
   }
   allocatedMemory1 = *(longlong *)(bufferData + 0x48);
   iVar4 = *(int *)(allocatedMemory1 + 0x127e8);
-  lVar6 = (longlong)iVar4;
+  contextData = (longlong)iVar4;
   iVar7 = (int)uVar9;
   if (iVar4 < (int)uVar9) {
     iVar7 = iVar4;
   }
   iVar4 = iVar4 - iVar7;
   uStack_f0 = CONCAT44(uStack_f0._4_4_,iVar4);
-  lStack_c0 = lVar6;
+  lStack_c0 = contextData;
   if ((iVar7 != 0) && (iVar4 != 0)) {
     semaphoreHandle = *(ushort *)(allocatedMemory1 + 0x127f4);
     uStack_104 = *(ushort *)(allocatedMemory1 + 0x127f2);
     allocatedMemory1 = *(longlong *)(allocatedMemory1 + 0x127e0);
     uStack_f8 = CONCAT22(uStack_f8._2_2_,semaphoreHandle);
-    if (0 < lVar6) {
+    if (0 < contextData) {
       allocatedMemory0 = 0;
       do {
         pstringCompareIndex = *(longlong **)(allocatedMemory1 + allocatedMemory0 * 8);
@@ -194103,9 +194103,9 @@ void FUN_1807872c0(longlong uiContext,undefined8 dataSource,undefined4 targetBuf
         allocatedMemory0 = allocatedMemory0 + 1;
         uiContext = lStack_e8;
         bufferSize = iStack_dc;
-      } while (allocatedMemory0 < lVar6);
+      } while (allocatedMemory0 < contextData);
     }
-    qsort(allocatedMemory1,lVar6,8,&UNK_1807880a0);
+    qsort(allocatedMemory1,contextData,8,&UNK_1807880a0);
     iVar4 = (int)uStack_f0;
   }
   lStack_88 = *(longlong *)(bufferData + 0x48) + 0x10bd0;
@@ -194117,7 +194117,7 @@ void FUN_1807872c0(longlong uiContext,undefined8 dataSource,undefined4 targetBuf
   if (uStack_d0 != 0) {
     uStack_f0 = 0;
     uStack_f8 = 0;
-    if (0 < lVar6) {
+    if (0 < contextData) {
       lStack_b0 = (longlong)iVar4;
       lStack_98 = uStack_d0 + (longlong)resultPointer * 4;
       uStack_c8 = 0;
@@ -194954,7 +194954,7 @@ int FUN_180787e40(longlong uiContext,undefined4 dataSource,longlong *targetBuffe
   longlong *pstringCompareIndex;
   code *pcVar4;
   byte bVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   undefined1 *puVar8;
   int iVar9;
@@ -195056,9 +195056,9 @@ LAB_180787ed7:
     }
 LAB_180787edb:
     if (cVar11 == '\0') {
-      lVar6 = context[1];
+      contextData = context[1];
       *(undefined8 *)((longlong)register0x00000020 + -8) = 0x180787ee5;
-      func_0x000180743c20(uiContext,(int)lVar6);
+      func_0x000180743c20(uiContext,(int)contextData);
       *(undefined1 *)((longlong)context + 0xc) = 1;
     }
   }
@@ -195073,22 +195073,22 @@ LAB_180787ee9:
   *(undefined8 *)((longlong)register0x00000020 + -8) = 0x180787f0e;
   iVar9 = FUN_180743160(semaphoreHandle,0);
   if (iVar9 == 0) {
-    lVar6 = *unaff_R14;
-    if ((lVar6 != 0) && (*(char *)((longlong)unaff_R14 + 0xc) == '\0')) {
+    contextData = *unaff_R14;
+    if ((contextData != 0) && (*(char *)((longlong)unaff_R14 + 0xc) == '\0')) {
       lVar7 = unaff_R14[1];
       *(undefined8 *)((longlong)register0x00000020 + -8) = 0x180787f2f;
-      func_0x000180743c20(lVar6,(int)lVar7);
+      func_0x000180743c20(contextData,(int)lVar7);
       *(undefined1 *)((longlong)unaff_R14 + 0xc) = 1;
     }
     *(undefined8 *)((longlong)register0x00000020 + -8) = 0x180787f3e;
     FUN_1807864f0(allocatedMemory6,0);
     *(undefined4 *)(*(longlong *)(allocatedMemory6 + 0x48) + 0x116e8) = *(undefined4 *)(allocatedMemory6 + 0x318);
-    lVar6 = *(longlong *)(*(longlong *)(allocatedMemory6 + 0x48) + 0x107b8);
-    if (*(int *)(lVar6 + 0x30) == 0) {
+    contextData = *(longlong *)(*(longlong *)(allocatedMemory6 + 0x48) + 0x107b8);
+    if (*(int *)(contextData + 0x30) == 0) {
       *(int *)(allocatedMemory6 + 0x318) = *(int *)(allocatedMemory6 + 0x318) + 1;
       *(undefined8 *)((longlong)register0x00000020 + -8) = 0x180787fd1;
-      iVar9 = FUN_180760790(lVar6,unaff_R12D);
-      *(undefined4 *)(lVar6 + 0x34) = 0;
+      iVar9 = FUN_180760790(contextData,unaff_R12D);
+      *(undefined4 *)(contextData + 0x34) = 0;
     }
     else {
       pstringCompareIndex = *(longlong **)(*(longlong *)(allocatedMemory6 + 0x48) + 0x116e0);
@@ -195097,12 +195097,12 @@ LAB_180787ee9:
       iVar9 = (*pcVar4)(pstringCompareIndex,0,(undefined1 *)((longlong)register0x00000020 + 0x60));
       if (iVar9 != 0) goto LAB_180788061;
       semaphoreHandle = *(undefined8 *)((longlong)register0x00000020 + 0x60);
-      *(undefined4 *)(lVar6 + 0xc) = 0;
-      *(undefined4 *)(lVar6 + 0x30) = 0;
-      *(undefined4 *)(lVar6 + 0x34) = 1;
+      *(undefined4 *)(contextData + 0xc) = 0;
+      *(undefined4 *)(contextData + 0x30) = 0;
+      *(undefined4 *)(contextData + 0x34) = 1;
       *(int *)(allocatedMemory6 + 0x318) = *(int *)(allocatedMemory6 + 0x318) + 1;
       *(undefined8 *)((longlong)register0x00000020 + -8) = 0x180787fb3;
-      iVar9 = FUN_180760c90(lVar6,semaphoreHandle,unaff_R12D);
+      iVar9 = FUN_180760c90(contextData,semaphoreHandle,unaff_R12D);
     }
     if ((unaff_RSI != 0) && (unaff_R15B != '\0')) {
                     // WARNING: Subroutine does not return
@@ -195117,12 +195117,12 @@ LAB_180787ee9:
         semaphoreHandle = *(undefined8 *)(allocatedMemory6 + 0x48);
         *(undefined8 *)((longlong)register0x00000020 + -8) = 0x18078801b;
         FUN_180744ae0(semaphoreHandle,0x100001,0,0);
-        lVar6 = *(longlong *)(allocatedMemory6 + 0x48);
-        pcVar4 = *(code **)(lVar6 + 0x11838);
-        if ((pcVar4 != (code *)0x0) && ((*(uint *)(lVar6 + 0x11840) & 0x100) != 0)) {
-          *(undefined8 *)((longlong)register0x00000020 + 0x20) = *(undefined8 *)(lVar6 + 0x11670);
+        contextData = *(longlong *)(allocatedMemory6 + 0x48);
+        pcVar4 = *(code **)(contextData + 0x11838);
+        if ((pcVar4 != (code *)0x0) && ((*(uint *)(contextData + 0x11840) & 0x100) != 0)) {
+          *(undefined8 *)((longlong)register0x00000020 + 0x20) = *(undefined8 *)(contextData + 0x11670);
           *(undefined8 *)((longlong)register0x00000020 + -8) = 0x180788051;
-          (*pcVar4)(lVar6,0x100,0,0);
+          (*pcVar4)(contextData,0x100,0,0);
         }
         *(undefined8 *)((longlong)register0x00000020 + -8) = 0x18078805e;
         FUN_1807864f0(allocatedMemory6,2);
@@ -195538,7 +195538,7 @@ undefined8 FUN_180788231(int uiContext,int dataSource)
   int iVar4;
   longlong unaff_RDI;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   int iVar8;
   uint uVar9;
@@ -195663,19 +195663,19 @@ LAB_18078835d:
       lVar7 = *(longlong *)(unaff_RBP + 7);
       allocatedMemory = allocatedMemory + (ulonglong)((functionResult1 / uVar9) * *(int *)(unaff_RBP + 0x6f)) * 4;
     }
-    lVar6 = *(longlong *)(unaff_RBP + 0xf);
+    contextData = *(longlong *)(unaff_RBP + 0xf);
     uVar5 = *(uint *)(unaff_RBP + -9);
-    if ((lVar6 != 0) && (uVar5 != 0)) {
+    if ((contextData != 0) && (uVar5 != 0)) {
       semaphoreHandle = CONCAT44(functionResult3,(uVar5 / uVar9) * *(int *)(unaff_RBP + 0x6f));
-      FUN_1807edf30(lVar6,allocatedMemory,*(undefined4 *)(unaff_RBP + -5),5,semaphoreHandle);
+      FUN_1807edf30(contextData,allocatedMemory,*(undefined4 *)(unaff_RBP + -5),5,semaphoreHandle);
       functionResult3 = (undefined4)((ulonglong)semaphoreHandle >> 0x20);
       lVar7 = *(longlong *)(unaff_RBP + 7);
-      lVar6 = *(longlong *)(unaff_RBP + 0xf);
+      contextData = *(longlong *)(unaff_RBP + 0xf);
       functionResult1 = *(uint *)(unaff_RBP + 0x7f);
       uVar5 = *(uint *)(unaff_RBP + -9);
     }
     semaphoreHandle = (**(code **)(**(longlong **)(context + 0x40) + 0x30))
-                      (*(longlong **)(context + 0x40),lVar7,lVar6,functionResult1,CONCAT44(functionResult3,uVar5));
+                      (*(longlong **)(context + 0x40),lVar7,contextData,functionResult1,CONCAT44(functionResult3,uVar5));
     if ((int)semaphoreHandle != 0) {
       return semaphoreHandle;
     }
@@ -196500,14 +196500,14 @@ undefined8 FUN_1807891d0(longlong uiContext)
   undefined8 uVar3;
   undefined8 *bufferPtr;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   
   uVar3 = FUN_180767ad0(uiContext + 0x1c0);
   if ((((int)uVar3 == 0) && (uVar3 = FUN_180767ad0(uiContext + 0x70), (int)uVar3 == 0)) &&
      ((*(code **)(uiContext + 0x360) == (code *)0x0 ||
       (uVar3 = (**(code **)(uiContext + 0x360))(uiContext + 8), (int)uVar3 == 0)))) {
-    lVar6 = (longlong)*(int *)(*(longlong *)(bufferData + 0x48) + 0x127e8);
-    if (0 < lVar6) {
+    contextData = (longlong)*(int *)(*(longlong *)(bufferData + 0x48) + 0x127e8);
+    if (0 < contextData) {
       lVar5 = 0;
       do {
         allocatedMemory = *(longlong *)(*(longlong *)(*(longlong *)(bufferData + 0x48) + 0x127e0) + lVar5 * 8);
@@ -196516,7 +196516,7 @@ undefined8 FUN_1807891d0(longlong uiContext)
           *(undefined8 *)(allocatedMemory + 0x18) = 0;
         }
         lVar5 = lVar5 + 1;
-      } while (lVar5 < lVar6);
+      } while (lVar5 < contextData);
     }
     if (*(longlong *)(bufferData + 0x3b0) != 0) {
       bufferPtr = (undefined8 *)(*(longlong *)(bufferData + 0x48) + 0x6c0);
@@ -196541,11 +196541,11 @@ undefined8 FUN_180789205(void)
   longlong context;
   undefined8 *bufferPtr;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   
   if ((in_RAX == (code *)0x0) || (uVar3 = (*in_RAX)(context + 8), (int)uVar3 == 0)) {
-    lVar6 = (longlong)*(int *)(*(longlong *)(context + 0x48) + 0x127e8);
-    if (0 < lVar6) {
+    contextData = (longlong)*(int *)(*(longlong *)(context + 0x48) + 0x127e8);
+    if (0 < contextData) {
       lVar5 = 0;
       do {
         allocatedMemory = *(longlong *)(*(longlong *)(*(longlong *)(context + 0x48) + 0x127e0) + lVar5 * 8);
@@ -196554,7 +196554,7 @@ undefined8 FUN_180789205(void)
           *(undefined8 *)(allocatedMemory + 0x18) = 0;
         }
         lVar5 = lVar5 + 1;
-      } while (lVar5 < lVar6);
+      } while (lVar5 < contextData);
     }
     if (*(longlong *)(context + 0x3b0) != 0) {
       bufferPtr = (undefined8 *)(*(longlong *)(context + 0x48) + 0x6c0);
@@ -197708,7 +197708,7 @@ undefined4 FUN_180789e60(undefined8 *uiContext)
   uint uVar3;
   longlong lVar4;
   uint uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   uint uVar8;
   ulonglong uVar9;
@@ -197763,11 +197763,11 @@ undefined4 FUN_180789e60(undefined8 *uiContext)
                   ((ulonglong)((int)uVar9 * functionResult2) + (ulonglong)uVar5 + (ulonglong)functionResult3 +
                    (ulonglong)uVar8 + (longlong)plVar7);
         *(undefined8 **)(lStackX_8 + plVar7[6]) = pfunctionResult1;
-        plVar6 = (longlong *)(plVar7[5] + functionResult4);
-        plVar6[1] = uiContext[7];
-        *plVar6 = (longlong)(uiContext + 6);
-        uiContext[7] = plVar6;
-        *(longlong **)plVar6[1] = plVar6;
+        pcontextData = (longlong *)(plVar7[5] + functionResult4);
+        pcontextData[1] = uiContext[7];
+        *pcontextData = (longlong)(uiContext + 6);
+        uiContext[7] = pcontextData;
+        *(longlong **)pcontextData[1] = pcontextData;
         *(undefined8 **)(plVar7[5] + 0x10 + functionResult4) = pfunctionResult1;
         pfunctionResult = pfunctionResult1 + 1;
         pfunctionResult1[2] = pfunctionResult;
@@ -198280,7 +198280,7 @@ int FUN_18078a353(longlong uiContext,ulonglong dataSource,char targetBuffer)
   bool bVar3;
   int iVar4;
   char cVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   uint eventTypeCode;
   longlong unaff_R15;
   
@@ -198298,18 +198298,18 @@ int FUN_18078a353(longlong uiContext,ulonglong dataSource,char targetBuffer)
       bVar3 = true;
     }
     eventTypeCode = *(int *)(bufferData + 0x1c) + 0xa7U & -*(int *)(bufferData + 0x1c);
-    plVar6 = *(longlong **)(uiContext + 8);
+    pcontextData = *(longlong **)(uiContext + 8);
     do {
-      semaphoreHandle = *(ulonglong *)plVar6[6];
-      if ((semaphoreHandle <= dataSource) && (dataSource < (int)plVar6[4] * eventTypeCode + semaphoreHandle)) {
+      semaphoreHandle = *(ulonglong *)pcontextData[6];
+      if ((semaphoreHandle <= dataSource) && (dataSource < (int)pcontextData[4] * eventTypeCode + semaphoreHandle)) {
         iVar4 = (int)((dataSource - semaphoreHandle) / (ulonglong)eventTypeCode);
         if ((iVar4 != -1) &&
-           (pallocatedMemory = (longlong *)(plVar6[5] + (longlong)iVar4 * 0x18),
-           *(longlong *)(plVar6[5] + 0x10 + (longlong)iVar4 * 0x18) != 0)) {
+           (pallocatedMemory = (longlong *)(pcontextData[5] + (longlong)iVar4 * 0x18),
+           *(longlong *)(pcontextData[5] + 0x10 + (longlong)iVar4 * 0x18) != 0)) {
           iVar4 = FUN_180763220(dataSource,(dataSource - semaphoreHandle) % (ulonglong)eventTypeCode);
           if (iVar4 == 0) {
             *(int *)(bufferData + 0x14) = *(int *)(bufferData + 0x14) + -1;
-            *(int *)((longlong)plVar6 + 0x24) = *(int *)((longlong)plVar6 + 0x24) + -1;
+            *(int *)((longlong)pcontextData + 0x24) = *(int *)((longlong)pcontextData + 0x24) + -1;
             *(longlong *)pallocatedMemory[1] = *pallocatedMemory;
             *(longlong *)(*pallocatedMemory + 8) = pallocatedMemory[1];
             pallocatedMemory[1] = (longlong)pallocatedMemory;
@@ -198320,8 +198320,8 @@ int FUN_18078a353(longlong uiContext,ulonglong dataSource,char targetBuffer)
             *(longlong **)(uiContext + 0x38) = pallocatedMemory;
             *(longlong **)pallocatedMemory[1] = pallocatedMemory;
             iVar4 = 0;
-            if ((*(int *)((longlong)plVar6 + 0x24) == 0) && (*(char *)(uiContext + 0x28) != '\0')) {
-              FUN_18078a540(uiContext,plVar6);
+            if ((*(int *)((longlong)pcontextData + 0x24) == 0) && (*(char *)(uiContext + 0x28) != '\0')) {
+              FUN_18078a540(uiContext,pcontextData);
               iVar4 = 0;
             }
           }
@@ -198329,8 +198329,8 @@ int FUN_18078a353(longlong uiContext,ulonglong dataSource,char targetBuffer)
         }
         break;
       }
-      plVar6 = (longlong *)*plVar6;
-    } while (plVar6 != *(longlong **)(uiContext + 8));
+      pcontextData = (longlong *)*pcontextData;
+    } while (pcontextData != *(longlong **)(uiContext + 8));
     iVar4 = 0x1e;
   }
 LAB_18078a3ed:
@@ -200275,7 +200275,7 @@ void FUN_18078c0a0(longlong uiContext,char dataSource)
   undefined8 *puVar3;
   undefined8 uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   uint uVar8;
   ulonglong uVar9;
@@ -200411,8 +200411,8 @@ void FUN_18078c0a0(longlong uiContext,char dataSource)
     functionResult0 = functionResult0 + 0x38;
     if (*(int *)(bufferData + 0x694) <= (int)uVar8) break;
 LAB_18078c440:
-    lVar6 = *(longlong *)(*(longlong *)(bufferData + 0x6a0) + 0x30 + functionResult0);
-    if (((lVar6 != 0) && (*(char *)(lVar6 + 0x31) != '\0')) &&
+    contextData = *(longlong *)(*(longlong *)(bufferData + 0x6a0) + 0x30 + functionResult0);
+    if (((contextData != 0) && (*(char *)(contextData + 0x31) != '\0')) &&
        (iVar5 = FUN_180748290(uiContext,uVar9), iVar5 != 0)) goto FUN_18078c746;
   }
 LAB_18078c477:
@@ -200427,10 +200427,10 @@ LAB_18078c477:
     }
   }
   if (0 < *(int *)(bufferData + 0x11400)) {
-    lVar6 = uiContext + 0x110ed;
+    contextData = uiContext + 0x110ed;
     do {
-      *(undefined2 *)(lVar6 + -1) = 0;
-      lVar6 = lVar6 + 0x70;
+      *(undefined2 *)(contextData + -1) = 0;
+      contextData = contextData + 0x70;
       uVar8 = (int)eventTypeCode + 1;
       eventTypeCode = (ulonglong)uVar8;
     } while ((int)uVar8 < *(int *)(bufferData + 0x11400));
@@ -200439,21 +200439,21 @@ LAB_18078c477:
   if ((*(byte *)(uiContext + 0x78) & 1) != 0) {
     FUN_18078c950(uiContext);
   }
-  lVar6 = *(longlong *)(bufferData + 0x670);
-  if ((lVar6 != 0) && (0 < *(int *)(bufferData + 0x10f70))) {
+  contextData = *(longlong *)(bufferData + 0x670);
+  if ((contextData != 0) && (0 < *(int *)(bufferData + 0x10f70))) {
     if (uiContext != 0) {
       func_0x000180743c20(uiContext,7);
-      lVar6 = *(longlong *)(bufferData + 0x670);
+      contextData = *(longlong *)(bufferData + 0x670);
     }
-    semaphoreHandle = *(undefined4 *)(lVar6 + 0x318);
+    semaphoreHandle = *(undefined4 *)(contextData + 0x318);
     for (pfunctionResult = *(undefined8 **)(uiContext + 0x10f58); pfunctionResult != (undefined8 *)(uiContext + 0x10f58);
         pfunctionResult = (undefined8 *)*pfunctionResult) {
-      lVar6 = pfunctionResult[2];
-      if (*(char *)(lVar6 + 0x212) != '\0') {
-        FUN_18075a370(lVar6,semaphoreHandle);
+      contextData = pfunctionResult[2];
+      if (*(char *)(contextData + 0x212) != '\0') {
+        FUN_18075a370(contextData,semaphoreHandle);
       }
-      if (*(char *)(lVar6 + 0x426) != '\0') {
-        FUN_18075a370(lVar6 + 0x214,semaphoreHandle);
+      if (*(char *)(contextData + 0x426) != '\0') {
+        FUN_18075a370(contextData + 0x214,semaphoreHandle);
       }
     }
     if (uiContext != 0) {
@@ -200468,11 +200468,11 @@ LAB_18078c477:
     }
     pfunctionResult = *(undefined8 **)(uiContext + 0x10ff0);
     while (pfunctionResult != (undefined8 *)(uiContext + 0x10ff0)) {
-      lVar6 = pfunctionResult[2];
+      contextData = pfunctionResult[2];
       pfunctionResult = (undefined8 *)*pfunctionResult;
-      if (((*(longlong *)(lVar6 + 0x120) != 0) && ((*(byte *)(lVar6 + 0x11a) & 0x40) != 0)) &&
-         ((*(uint *)(lVar6 + 100) >> 10 & 1) == 0)) {
-        (**(code **)(lVar6 + 0x120))(lVar6 + 0xb0,0x40,0);
+      if (((*(longlong *)(contextData + 0x120) != 0) && ((*(byte *)(contextData + 0x11a) & 0x40) != 0)) &&
+         ((*(uint *)(contextData + 100) >> 10 & 1) == 0)) {
+        (**(code **)(contextData + 0x120))(contextData + 0xb0,0x40,0);
       }
     }
     if (uiContext != 0) {
@@ -200483,9 +200483,9 @@ LAB_18078c477:
     if ((lRam0000000000012770 == 0) ||
        (iVar5 = FUN_1807d0fe0(), pfunctionResult = puRam0000000000012780, iVar5 == 0)) {
       for (; pfunctionResult != (undefined8 *)0x12780; pfunctionResult = (undefined8 *)*pfunctionResult) {
-        lVar6 = pfunctionResult[2];
-        if ((*(code **)(lVar6 + 0x120) != (code *)0x0) && ((*(byte *)(lVar6 + 0x11a) & 4) != 0)) {
-          (**(code **)(lVar6 + 0x120))(lVar6 + 0xb0,4,0);
+        contextData = pfunctionResult[2];
+        if ((*(code **)(contextData + 0x120) != (code *)0x0) && ((*(byte *)(contextData + 0x11a) & 4) != 0)) {
+          (**(code **)(contextData + 0x120))(contextData + 0xb0,4,0);
         }
       }
       FUN_180772cf0(0x11678,0x5f);
@@ -200514,7 +200514,7 @@ void FUN_18078c0dd(longlong uiContext)
   undefined8 *puVar3;
   undefined8 uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong context;
   longlong unaff_RBP;
   ulonglong eventTypeCode;
@@ -200673,8 +200673,8 @@ void FUN_18078c0dd(longlong uiContext)
     functionResult0 = functionResult0 + 0x38;
     if (*(int *)(context + 0x694) <= (int)uVar8) break;
 LAB_18078c440:
-    lVar6 = *(longlong *)(*(longlong *)(context + 0x6a0) + 0x30 + functionResult0);
-    if (((lVar6 != 0) && (*(char *)(lVar6 + 0x31) != '\0')) &&
+    contextData = *(longlong *)(*(longlong *)(context + 0x6a0) + 0x30 + functionResult0);
+    if (((contextData != 0) && (*(char *)(contextData + 0x31) != '\0')) &&
        (iVar5 = FUN_180748290(functionResult2,uVar9), functionResult2 = extraout_XMM0_Da_04, iVar5 != 0))
     goto FUN_18078c72e;
   }
@@ -200690,10 +200690,10 @@ LAB_18078c477:
     }
   }
   if (0 < *(int *)(context + 0x11400)) {
-    lVar6 = context + 0x110ed;
+    contextData = context + 0x110ed;
     do {
-      *(undefined2 *)(lVar6 + -1) = 0;
-      lVar6 = lVar6 + 0x70;
+      *(undefined2 *)(contextData + -1) = 0;
+      contextData = contextData + 0x70;
       uVar8 = (int)eventTypeCode + 1;
       eventTypeCode = (ulonglong)uVar8;
     } while ((int)uVar8 < *(int *)(context + 0x11400));
@@ -200702,21 +200702,21 @@ LAB_18078c477:
   if ((*(byte *)(context + 0x78) & 1) != 0) {
     functionResult2 = FUN_18078c950();
   }
-  lVar6 = *(longlong *)(context + 0x670);
-  if ((lVar6 != 0) && (0 < *(int *)(context + 0x10f70))) {
+  contextData = *(longlong *)(context + 0x670);
+  if ((contextData != 0) && (0 < *(int *)(context + 0x10f70))) {
     if (context != 0) {
       functionResult2 = func_0x000180743c20(functionResult2,7);
-      lVar6 = *(longlong *)(context + 0x670);
+      contextData = *(longlong *)(context + 0x670);
     }
-    semaphoreHandle = *(undefined4 *)(lVar6 + 0x318);
+    semaphoreHandle = *(undefined4 *)(contextData + 0x318);
     for (pfunctionResult = *(undefined8 **)(context + 0x10f58);
         pfunctionResult != (undefined8 *)(context + 0x10f58); pfunctionResult = (undefined8 *)*pfunctionResult) {
-      lVar6 = pfunctionResult[2];
-      if (*(char *)(lVar6 + 0x212) != '\0') {
-        functionResult2 = FUN_18075a370(lVar6,semaphoreHandle);
+      contextData = pfunctionResult[2];
+      if (*(char *)(contextData + 0x212) != '\0') {
+        functionResult2 = FUN_18075a370(contextData,semaphoreHandle);
       }
-      if (*(char *)(lVar6 + 0x426) != '\0') {
-        functionResult2 = FUN_18075a370(lVar6 + 0x214,semaphoreHandle);
+      if (*(char *)(contextData + 0x426) != '\0') {
+        functionResult2 = FUN_18075a370(contextData + 0x214,semaphoreHandle);
       }
     }
     if (context != 0) {
@@ -200732,11 +200732,11 @@ LAB_18078c477:
     }
     pfunctionResult = *(undefined8 **)(context + 0x10ff0);
     while (pfunctionResult != (undefined8 *)(context + 0x10ff0)) {
-      lVar6 = pfunctionResult[2];
+      contextData = pfunctionResult[2];
       pfunctionResult = (undefined8 *)*pfunctionResult;
-      if (((*(longlong *)(lVar6 + 0x120) != 0) && ((*(byte *)(lVar6 + 0x11a) & 0x40) != 0)) &&
-         ((*(uint *)(lVar6 + 100) >> 10 & 1) == 0)) {
-        functionResult2 = (**(code **)(lVar6 + 0x120))(lVar6 + 0xb0,0x40,0);
+      if (((*(longlong *)(contextData + 0x120) != 0) && ((*(byte *)(contextData + 0x11a) & 0x40) != 0)) &&
+         ((*(uint *)(contextData + 100) >> 10 & 1) == 0)) {
+        functionResult2 = (**(code **)(contextData + 0x120))(contextData + 0xb0,0x40,0);
       }
     }
     if (context != 0) {
@@ -200747,9 +200747,9 @@ LAB_18078c477:
     if ((lRam0000000000012770 == 0) ||
        (iVar5 = FUN_1807d0fe0(), pfunctionResult = puRam0000000000012780, iVar5 == 0)) {
       for (; pfunctionResult != (undefined8 *)0x12780; pfunctionResult = (undefined8 *)*pfunctionResult) {
-        lVar6 = pfunctionResult[2];
-        if ((*(code **)(lVar6 + 0x120) != (code *)0x0) && ((*(byte *)(lVar6 + 0x11a) & 4) != 0)) {
-          (**(code **)(lVar6 + 0x120))(lVar6 + 0xb0,4,0);
+        contextData = pfunctionResult[2];
+        if ((*(code **)(contextData + 0x120) != (code *)0x0) && ((*(byte *)(contextData + 0x11a) & 4) != 0)) {
+          (**(code **)(contextData + 0x120))(contextData + 0xb0,4,0);
         }
       }
       functionResult2 = FUN_180772cf0(0x11678,0x5f);
@@ -200777,7 +200777,7 @@ void FUN_18078c188(float uiContext)
   undefined8 *puVar3;
   undefined8 *bufferPtr;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong context;
   longlong unaff_RBP;
   ulonglong eventTypeCode;
@@ -200807,12 +200807,12 @@ void FUN_18078c188(float uiContext)
   floatResult3 = 0.0;
   if (plVar9 != pallocatedMemory) {
     do {
-      lVar6 = plVar9[2];
-      uiContext = (float)func_0x0001807673f0(lVar6,&stack0x00000030);
+      contextData = plVar9[2];
+      uiContext = (float)func_0x0001807673f0(contextData,&stack0x00000030);
       if (cStack0000000000000030 != '\0') {
-        FUN_1807671a0(lVar6,context + 0x11080,&stack0x00000038,(longlong)&stack0x00000030 + 4);
+        FUN_1807671a0(contextData,context + 0x11080,&stack0x00000038,(longlong)&stack0x00000030 + 4);
         if (0.0 < in_stack_00000038) {
-          func_0x0001807673c0(lVar6,&stack0x00000078,0,0);
+          func_0x0001807673c0(contextData,&stack0x00000078,0,0);
           iVar5 = FUN_180785c10(context + 0x12438,context + 0x11080,&stack0x00000078,0,
                                 &stack0x00000040);
           if (iVar5 != 0) goto LAB_18078c6fc;
@@ -200827,7 +200827,7 @@ void FUN_18078c188(float uiContext)
           *(undefined8 *)(unaff_RBP + -0x60) = 0;
           *(undefined8 *)(unaff_RBP + -0x58) = 0;
           *(undefined8 *)(unaff_RBP + -0x50) = 0;
-          func_0x000180767410(lVar6,unaff_RBP + -0x78);
+          func_0x000180767410(contextData,unaff_RBP + -0x78);
           uiContext = (float)FUN_180767800(&stack0x00000048,unaff_RBP + -0x78,fStack0000000000000034);
           floatResult3 = floatResult3 + fStack0000000000000034;
         }
@@ -200887,8 +200887,8 @@ void FUN_18078c188(float uiContext)
     functionResult1 = functionResult1 + 0x38;
     if (*(int *)(context + 0x694) <= (int)uVar8) break;
 LAB_18078c440:
-    lVar6 = *(longlong *)(*(longlong *)(context + 0x6a0) + 0x30 + functionResult1);
-    if (((lVar6 != 0) && (*(char *)(lVar6 + 0x31) != '\0')) &&
+    contextData = *(longlong *)(*(longlong *)(context + 0x6a0) + 0x30 + functionResult1);
+    if (((contextData != 0) && (*(char *)(contextData + 0x31) != '\0')) &&
        (iVar5 = FUN_180748290(functionResult2,functionResult0), functionResult2 = extraout_XMM0_Da_03, iVar5 != 0))
     goto LAB_18078c6fc;
   }
@@ -200904,10 +200904,10 @@ LAB_18078c477:
     }
   }
   if (0 < *(int *)(context + 0x11400)) {
-    lVar6 = context + 0x110ed;
+    contextData = context + 0x110ed;
     do {
-      *(undefined2 *)(lVar6 + -1) = 0;
-      lVar6 = lVar6 + 0x70;
+      *(undefined2 *)(contextData + -1) = 0;
+      contextData = contextData + 0x70;
       uVar8 = (int)eventTypeCode + 1;
       eventTypeCode = (ulonglong)uVar8;
     } while ((int)uVar8 < *(int *)(context + 0x11400));
@@ -200916,21 +200916,21 @@ LAB_18078c477:
   if ((*(byte *)(context + 0x78) & 1) != 0) {
     functionResult2 = FUN_18078c950();
   }
-  lVar6 = *(longlong *)(context + 0x670);
-  if ((lVar6 != 0) && (0 < *(int *)(context + 0x10f70))) {
+  contextData = *(longlong *)(context + 0x670);
+  if ((contextData != 0) && (0 < *(int *)(context + 0x10f70))) {
     if (context != 0) {
       functionResult2 = func_0x000180743c20(functionResult2,7);
-      lVar6 = *(longlong *)(context + 0x670);
+      contextData = *(longlong *)(context + 0x670);
     }
-    semaphoreHandle = *(undefined4 *)(lVar6 + 0x318);
+    semaphoreHandle = *(undefined4 *)(contextData + 0x318);
     for (bufferPtr = *(undefined8 **)(context + 0x10f58);
         bufferPtr != (undefined8 *)(context + 0x10f58); bufferPtr = (undefined8 *)*bufferPtr) {
-      lVar6 = bufferPtr[2];
-      if (*(char *)(lVar6 + 0x212) != '\0') {
-        functionResult2 = FUN_18075a370(lVar6,semaphoreHandle);
+      contextData = bufferPtr[2];
+      if (*(char *)(contextData + 0x212) != '\0') {
+        functionResult2 = FUN_18075a370(contextData,semaphoreHandle);
       }
-      if (*(char *)(lVar6 + 0x426) != '\0') {
-        functionResult2 = FUN_18075a370(lVar6 + 0x214,semaphoreHandle);
+      if (*(char *)(contextData + 0x426) != '\0') {
+        functionResult2 = FUN_18075a370(contextData + 0x214,semaphoreHandle);
       }
     }
     if (context != 0) {
@@ -200946,11 +200946,11 @@ LAB_18078c477:
     }
     bufferPtr = *(undefined8 **)(context + 0x10ff0);
     while (bufferPtr != (undefined8 *)(context + 0x10ff0)) {
-      lVar6 = bufferPtr[2];
+      contextData = bufferPtr[2];
       bufferPtr = (undefined8 *)*bufferPtr;
-      if (((*(longlong *)(lVar6 + 0x120) != 0) && ((*(byte *)(lVar6 + 0x11a) & 0x40) != 0)) &&
-         ((*(uint *)(lVar6 + 100) >> 10 & 1) == 0)) {
-        functionResult2 = (**(code **)(lVar6 + 0x120))(lVar6 + 0xb0,0x40,0);
+      if (((*(longlong *)(contextData + 0x120) != 0) && ((*(byte *)(contextData + 0x11a) & 0x40) != 0)) &&
+         ((*(uint *)(contextData + 100) >> 10 & 1) == 0)) {
+        functionResult2 = (**(code **)(contextData + 0x120))(contextData + 0xb0,0x40,0);
       }
     }
     if (context != 0) {
@@ -200961,9 +200961,9 @@ LAB_18078c477:
     if ((lRam0000000000012770 == 0) ||
        (iVar5 = FUN_1807d0fe0(), bufferPtr = puRam0000000000012780, iVar5 == 0)) {
       for (; bufferPtr != (undefined8 *)0x12780; bufferPtr = (undefined8 *)*bufferPtr) {
-        lVar6 = bufferPtr[2];
-        if ((*(code **)(lVar6 + 0x120) != (code *)0x0) && ((*(byte *)(lVar6 + 0x11a) & 4) != 0)) {
-          (**(code **)(lVar6 + 0x120))(lVar6 + 0xb0,4,0);
+        contextData = bufferPtr[2];
+        if ((*(code **)(contextData + 0x120) != (code *)0x0) && ((*(byte *)(contextData + 0x11a) & 4) != 0)) {
+          (**(code **)(contextData + 0x120))(contextData + 0xb0,4,0);
         }
       }
       functionResult2 = FUN_180772cf0(0x11678,0x5f);
@@ -201017,7 +201017,7 @@ void FUN_18078c760(longlong uiContext,int dataSource)
   longlong *pstringCompareIndex;
   longlong *plVar4;
   longlong lVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   bool bVar7;
   float fVar8;
   int aiStackX_8 [2];
@@ -201026,35 +201026,35 @@ void FUN_18078c760(longlong uiContext,int dataSource)
   colorBufferPointer = *(longlong **)(uiContext + 0x11728);
   do {
     while( true ) {
-      plVar6 = colorBufferPointer;
-      if (plVar6 == (longlong *)(uiContext + 0x11728)) {
+      pcontextData = colorBufferPointer;
+      if (pcontextData == (longlong *)(uiContext + 0x11728)) {
                     // WARNING: Subroutine does not return
         FUN_180768400(*(undefined8 *)(_DAT_180be12f0 + 0x120));
       }
       aiStackX_8[0] = 0;
-      colorBufferPointer = (longlong *)*plVar6;
-      *(undefined4 *)(plVar6 + 0xe) = 0;
-      if (*(int *)((longlong)plVar6 + 0x6c) == 1) {
-        FUN_180754fe0(plVar6,aiStackX_8);
+      colorBufferPointer = (longlong *)*pcontextData;
+      *(undefined4 *)(pcontextData + 0xe) = 0;
+      if (*(int *)((longlong)pcontextData + 0x6c) == 1) {
+        FUN_180754fe0(pcontextData,aiStackX_8);
       }
       if (aiStackX_8[0] != 0) break;
-      *(longlong *)plVar6[1] = *plVar6;
-      *(longlong *)(*plVar6 + 8) = plVar6[1];
-      plVar6[1] = (longlong)plVar6;
-      *plVar6 = (longlong)plVar6;
+      *(longlong *)pcontextData[1] = *pcontextData;
+      *(longlong *)(*pcontextData + 8) = pcontextData[1];
+      pcontextData[1] = (longlong)pcontextData;
+      *pcontextData = (longlong)pcontextData;
       lVar5 = *(longlong *)(bufferData + 0x11740);
-      plVar6[1] = uiContext + 0x11740;
-      *plVar6 = lVar5;
-      *(longlong **)(lVar5 + 8) = plVar6;
-      *(longlong **)plVar6[1] = plVar6;
+      pcontextData[1] = uiContext + 0x11740;
+      *pcontextData = lVar5;
+      *(longlong **)(lVar5 + 8) = pcontextData;
+      *(longlong **)pcontextData[1] = pcontextData;
     }
-    pstringCompareIndex = (longlong *)plVar6[8];
-    while (pstringCompareIndex != plVar6 + 8) {
+    pstringCompareIndex = (longlong *)pcontextData[8];
+    while (pstringCompareIndex != pcontextData + 8) {
       plVar4 = (longlong *)pstringCompareIndex[2];
       pstringCompareIndex = (longlong *)*pstringCompareIndex;
-      if ((*(int *)((longlong)plVar6 + 0x6c) == 1) && (-1 < (int)plVar6[0xd])) {
-        *(int *)(plVar6 + 0xe) = (int)plVar6[0xe] + 1;
-        if ((int)plVar6[0xd] < (int)plVar6[0xe]) {
+      if ((*(int *)((longlong)pcontextData + 0x6c) == 1) && (-1 < (int)pcontextData[0xd])) {
+        *(int *)(pcontextData + 0xe) = (int)pcontextData[0xe] + 1;
+        if ((int)pcontextData[0xd] < (int)pcontextData[0xe]) {
           *(undefined4 *)((longlong)plVar4 + 0x21c) = 0;
         }
         else {
@@ -201064,14 +201064,14 @@ void FUN_18078c760(longlong uiContext,int dataSource)
       fVar8 = *(float *)(plVar4 + 0x43);
       floatResult = *(float *)((longlong)plVar4 + 0x21c);
       if (fVar8 != floatResult) {
-        if (*(float *)((longlong)plVar6 + 0x74) < 0.001) {
+        if (*(float *)((longlong)pcontextData + 0x74) < 0.001) {
 LAB_18078c8ad:
           *(float *)(plVar4 + 0x43) = floatResult;
         }
         else {
           bVar7 = fVar8 < floatResult;
           if (bVar7) {
-            fVar8 = (0.001 / *(float *)((longlong)plVar6 + 0x74)) * (float)dataSource + fVar8;
+            fVar8 = (0.001 / *(float *)((longlong)pcontextData + 0x74)) * (float)dataSource + fVar8;
             *(float *)(plVar4 + 0x43) = fVar8;
             if (floatResult < fVar8) {
               *(float *)(plVar4 + 0x43) = floatResult;
@@ -201080,7 +201080,7 @@ LAB_18078c8ad:
             bVar7 = fVar8 < floatResult;
           }
           if ((!bVar7 && fVar8 != floatResult) &&
-             (fVar8 = fVar8 - (0.001 / *(float *)((longlong)plVar6 + 0x74)) * (float)dataSource,
+             (fVar8 = fVar8 - (0.001 / *(float *)((longlong)pcontextData + 0x74)) * (float)dataSource,
              *(float *)(plVar4 + 0x43) = fVar8, fVar8 < floatResult)) goto LAB_18078c8ad;
         }
         (**(code **)(*plVar4 + 0x20))(plVar4,(int)plVar4[6],1);
@@ -201321,7 +201321,7 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,undefined8 *targetBuff
   longlong stringCompareIndex;
   longlong *plVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   undefined1 auStack_1a8 [32];
   undefined4 uStack_188;
   longlong alStack_178 [2];
@@ -201371,8 +201371,8 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,undefined8 *targetBuff
   ulonglong uStack_48;
   
   uStack_48 = XorEncryptionKey ^ (ulonglong)auStack_1a8;
-  plVar6 = (longlong *)0x0;
-  plVar5 = plVar6;
+  pcontextData = (longlong *)0x0;
+  plVar5 = pcontextData;
   if (targetBuffer != (undefined8 *)0x0) {
     uStack_188 = 0;
     stringCompareIndex = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x250,&UNK_18095aeb0,0x123);
@@ -201408,7 +201408,7 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,undefined8 *targetBuff
       if (targetBuffer == (undefined8 *)(uiContext + 0x116e0)) {
         functionResult = (ulonglong)uStack_158 >> 0x20;
         uStack_158 = CONCAT44((int)functionResult,0x2b8);
-        plVar6 = &lStack_128;
+        pcontextData = &lStack_128;
         lStack_128 = *plStack_168;
         lStack_120 = plStack_168[1];
         lStack_118 = plStack_168[2];
@@ -201443,7 +201443,7 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,undefined8 *targetBuff
       }
       uStack_188 = CONCAT31(uStack_188._1_3_,1);
       puStack_160 = &UNK_18095af28;
-      validationResult = FUN_180742e00(uiContext,&plStack_168,plVar6,alStack_178);
+      validationResult = FUN_180742e00(uiContext,&plStack_168,pcontextData,alStack_178);
       plVar5 = plVar4;
       if (validationResult == 0) {
         plVar4[0xe] = alStack_178[0];
@@ -201473,9 +201473,9 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,undefined8 *targetBuff
             if (validationResult != 0) goto LAB_18078cd2a;
           }
         }
-        plVar6 = *(longlong **)(uiContext + 0x116e0);
-        if (((plVar6 == (longlong *)0x0) || (plVar6 == plVar4)) ||
-           (validationResult = FUN_180752f00(plVar6,plVar4,1,0), validationResult == 0)) {
+        pcontextData = *(longlong **)(uiContext + 0x116e0);
+        if (((pcontextData == (longlong *)0x0) || (pcontextData == plVar4)) ||
+           (validationResult = FUN_180752f00(pcontextData,plVar4,1,0), validationResult == 0)) {
           *targetBuffer = plVar4;
           goto LAB_18078cd39;
         }
@@ -203547,7 +203547,7 @@ void FUN_18078ea55(void)
   longlong stringCompareIndex;
   int iVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong *plVar7;
   longlong lVar8;
   longlong lVar9;
@@ -203591,10 +203591,10 @@ void FUN_18078ea55(void)
   if (in_ZF) {
     if ((in_R11D >> 0x10 & 1) == 0) {
       semaphoreHandle2 = CONCAT44(uVar5,(int)unaff_R14);
-      lVar6 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x160,&UNK_18095b430,0x445,
+      contextData = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x160,&UNK_18095b430,0x445,
                             semaphoreHandle2);
       uVar5 = (uint)((ulonglong)semaphoreHandle2 >> 0x20);
-      if ((lVar6 == 0) || (lVar6 = FUN_1807f7c50(lVar6), lVar6 == 0)) {
+      if ((contextData == 0) || (contextData = FUN_1807f7c50(contextData), contextData == 0)) {
         plVar7 = (longlong *)unaff_RBP[-0xe];
         goto LAB_1807901f2;
       }
@@ -203602,52 +203602,52 @@ void FUN_18078ea55(void)
     }
     else {
       plVar7 = (longlong *)unaff_RBP[-9];
-      lVar6 = *plVar7;
+      contextData = *plVar7;
     }
     lVar9 = unaff_RBP[-0xd];
     unaff_R12 = (longlong *)0x0;
-    *(longlong *)(lVar6 + 0xd8) = in_stack_00000070;
+    *(longlong *)(contextData + 0xd8) = in_stack_00000070;
     pallocatedMemory0 = unaff_R12;
     if (lVar9 != 0) {
       pallocatedMemory0 = *(longlong **)(lVar9 + 0x38);
     }
-    *(longlong **)(lVar6 + 0x148) = pallocatedMemory0;
+    *(longlong **)(contextData + 0x148) = pallocatedMemory0;
     pallocatedMemory0 = unaff_R12;
     if (lVar9 != 0) {
       pallocatedMemory0 = *(longlong **)(lVar9 + 0x40);
     }
-    *(longlong **)(lVar6 + 0x150) = pallocatedMemory0;
-    *(longlong *)(lVar6 + 0x158) = lVar6;
+    *(longlong **)(contextData + 0x150) = pallocatedMemory0;
+    *(longlong *)(contextData + 0x158) = contextData;
     functionResult8 = *(undefined4 *)(context + 0x28);
-    *(longlong *)(lVar6 + 0x60) = context;
-    *(undefined4 *)(lVar6 + 0x24) = functionResult8;
-    *(undefined4 *)(lVar6 + 0x78) = *(undefined4 *)(in_stack_00000070 + 0x11404);
+    *(longlong *)(contextData + 0x60) = context;
+    *(undefined4 *)(contextData + 0x24) = functionResult8;
+    *(undefined4 *)(contextData + 0x78) = *(undefined4 *)(in_stack_00000070 + 0x11404);
     fVar2 = *(float *)(in_stack_00000070 + 0x11404);
-    *(undefined8 *)(lVar6 + 0xa0) = 0;
-    *(undefined4 *)(lVar6 + 0xb0) = 0;
-    *(undefined4 *)(lVar6 + 0xc0) = 0xffffffff;
-    *(float *)(lVar6 + 0x7c) = fVar2 * 10000.0;
+    *(undefined8 *)(contextData + 0xa0) = 0;
+    *(undefined4 *)(contextData + 0xb0) = 0;
+    *(undefined4 *)(contextData + 0xc0) = 0xffffffff;
+    *(float *)(contextData + 0x7c) = fVar2 * 10000.0;
     pallocatedMemory0 = unaff_R12;
     if (lVar9 != 0) {
       pallocatedMemory0 = *(longlong **)(lVar9 + 0x68);
     }
-    *(longlong **)(lVar6 + 200) = pallocatedMemory0;
-    FUN_180744ae0(in_stack_00000070,0x100008,lVar6,0);
-    *plVar7 = lVar6;
+    *(longlong **)(contextData + 200) = pallocatedMemory0;
+    FUN_180744ae0(in_stack_00000070,0x100008,contextData,0);
+    *plVar7 = contextData;
     plVar7 = (longlong *)unaff_RBP[-0xe];
   }
   else {
-    lVar6 = (longlong)iStack0000000000000064;
-    unaff_RBP[-0xf] = lVar6;
+    contextData = (longlong)iStack0000000000000064;
+    unaff_RBP[-0xf] = contextData;
     if ((char)in_R11D < '\0') {
       unaff_RBP[-5] = unaff_R14;
       if ((in_R11D >> 0x10 & 1) == 0) {
         semaphoreHandle2 = CONCAT44(uVar5,(int)unaff_R14);
-        lVar6 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x198,&UNK_18095b430,0x47a,
+        contextData = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x198,&UNK_18095b430,0x47a,
                               semaphoreHandle2);
         uVar5 = (uint)((ulonglong)semaphoreHandle2 >> 0x20);
-        if (lVar6 != 0) {
-          plVar7 = (longlong *)FUN_180773a80(lVar6);
+        if (contextData != 0) {
+          plVar7 = (longlong *)FUN_180773a80(contextData);
           unaff_RBP[-0xb] = plVar7;
           pallocatedMemory0 = plVar7;
           in_R11D = uStack000000000000005c;
@@ -203724,23 +203724,23 @@ LAB_18078ec15:
         unaff_R12 = unaff_R14;
         plVar7 = unaff_R14;
         if (iVar4 == 0) {
-          lVar6 = unaff_RBP[-0xd];
+          contextData = unaff_RBP[-0xd];
           lVar9 = 0;
           lVar8 = lVar9;
-          if (lVar6 != 0) {
-            lVar8 = *(longlong *)(lVar6 + 0x38);
+          if (contextData != 0) {
+            lVar8 = *(longlong *)(contextData + 0x38);
           }
           stringCompareIndex = unaff_RBP[-5];
           unaff_RBP[-5] = stringCompareIndex;
           *(longlong *)(stringCompareIndex + 0x148) = lVar8;
           lVar8 = lVar9;
-          if (lVar6 != 0) {
-            lVar8 = *(longlong *)(lVar6 + 0x40);
+          if (contextData != 0) {
+            lVar8 = *(longlong *)(contextData + 0x40);
           }
           *(longlong *)(stringCompareIndex + 0x150) = lVar8;
           lVar8 = lVar9;
-          if (lVar6 != 0) {
-            lVar8 = *(longlong *)(lVar6 + 0x68);
+          if (contextData != 0) {
+            lVar8 = *(longlong *)(contextData + 0x68);
           }
           colorBufferPointer3 = (longlong *)unaff_RBP[-0xb];
           *(longlong *)(stringCompareIndex + 200) = lVar8;
@@ -203751,11 +203751,11 @@ LAB_18078ec15:
           *(undefined4 *)((longlong)colorBufferPointer3 + 0x44) = *(undefined4 *)(unaff_RBP + 2);
           *(undefined4 *)(colorBufferPointer3 + 9) = *(undefined4 *)((longlong)unaff_RBP + 0xc);
           *(float *)((longlong)colorBufferPointer3 + 0x6c) = (float)*(int *)(unaff_RBP + 1);
-          if (lVar6 == 0) {
+          if (contextData == 0) {
             functionResult8 = *(undefined4 *)(unaff_RBP + 5);
           }
           else {
-            functionResult8 = *(undefined4 *)(lVar6 + 0xb4);
+            functionResult8 = *(undefined4 *)(contextData + 0xb4);
           }
           functionResult6 = *(uint *)(unaff_RBP + -0x10);
           *(undefined4 *)((longlong)colorBufferPointer3 + 0x74) = functionResult8;
@@ -203766,13 +203766,13 @@ LAB_18078ec15:
           *(int *)(colorBufferPointer3 + 0xd) = iStack0000000000000060;
           colorBufferPointer3[0x1b] = in_stack_00000070;
           lVar8 = lVar9;
-          if (lVar6 != 0) {
-            lVar8 = *(longlong *)(lVar6 + 0x38);
+          if (contextData != 0) {
+            lVar8 = *(longlong *)(contextData + 0x38);
           }
           colorBufferPointer3[0x29] = lVar8;
           lVar8 = lVar9;
-          if (lVar6 != 0) {
-            lVar8 = *(longlong *)(lVar6 + 0x40);
+          if (contextData != 0) {
+            lVar8 = *(longlong *)(contextData + 0x40);
           }
           colorBufferPointer3[0x2a] = lVar8;
           *(uint *)((longlong)colorBufferPointer3 + 0x18c) = uStack0000000000000058;
@@ -203780,16 +203780,16 @@ LAB_18078ec15:
           *(undefined4 *)((longlong)colorBufferPointer3 + 0x24) = *(undefined4 *)(in_stack_00000068 + 0x28);
           *(undefined4 *)(colorBufferPointer3 + 0xf) = *(undefined4 *)(in_stack_00000070 + 0x11404);
           *(float *)((longlong)colorBufferPointer3 + 0x7c) = *(float *)(in_stack_00000070 + 0x11404) * 10000.0;
-          if (lVar6 != 0) {
-            lVar9 = *(longlong *)(lVar6 + 0x68);
+          if (contextData != 0) {
+            lVar9 = *(longlong *)(contextData + 0x68);
           }
           colorBufferPointer3[0x19] = lVar9;
           functionResult6 = functionResult6 & 0xffffffe5 | 0x20080;
           *(undefined4 *)(colorBufferPointer3 + 10) = *(undefined4 *)((longlong)colorBufferPointer3 + 0x44);
           *(undefined4 *)((longlong)colorBufferPointer3 + 0x4c) = 0;
-          lVar6 = unaff_RBP[-1];
+          contextData = unaff_RBP[-1];
           *(uint *)((longlong)colorBufferPointer3 + 0x2c) = functionResult6;
-          colorBufferPointer3[6] = lVar6;
+          colorBufferPointer3[6] = contextData;
           functionResult6 = *(uint *)(stringCompareIndex + 0x2c) & 0x18 | functionResult6;
           *(uint *)((longlong)colorBufferPointer3 + 0x2c) = functionResult6;
           if ((((unaff_RBP[4] & 1) == 0) && ((functionResult5 & 0x100000000) == 0)) &&
@@ -203810,14 +203810,14 @@ LAB_18078ec15:
             if (iVar4 != 0) goto LAB_18078f72d;
             colorBufferPointer3 = (longlong *)unaff_RBP[-0xb];
           }
-          lVar6 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),200,&UNK_18095b430,0x516,
+          contextData = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),200,&UNK_18095b430,0x516,
                                 functionResult5 & 0xffffffff00000000);
-          if (lVar6 != 0) {
-            lVar6 = FUN_1807f3070(lVar6);
+          if (contextData != 0) {
+            contextData = FUN_1807f3070(contextData);
           }
-          colorBufferPointer3[0x2f] = lVar6;
-          if (lVar6 != 0) {
-            *(longlong *)(lVar6 + 8) = in_stack_00000070;
+          colorBufferPointer3[0x2f] = contextData;
+          if (contextData != 0) {
+            *(longlong *)(contextData + 8) = in_stack_00000070;
             func_0x000180743c20(in_stack_00000070,10);
             plVar7 = colorBufferPointer3 + 0x2c;
             colorBufferPointer3[0x2e] = (longlong)colorBufferPointer3;
@@ -203842,10 +203842,10 @@ LAB_18078f72d:
     if (0 < iStack0000000000000064) {
       if ((in_R11D >> 0x10 & 1) == 0) {
         in_stack_00000020 = (ulonglong)uVar5 << 0x20;
-        lVar6 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x160,&UNK_18095b430,0x63b,
+        contextData = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x160,&UNK_18095b430,0x63b,
                               in_stack_00000020);
-        if (lVar6 != 0) {
-          pallocatedMemory0 = (longlong *)FUN_1807f7c50(lVar6);
+        if (contextData != 0) {
+          pallocatedMemory0 = (longlong *)FUN_1807f7c50(contextData);
           unaff_RBP[-10] = pallocatedMemory0;
           colorBufferPointer3 = pallocatedMemory0;
           in_R11D = uStack000000000000005c;
@@ -203860,17 +203860,17 @@ LAB_18078fe1a:
       colorBufferPointer3 = *(longlong **)unaff_RBP[-9];
       unaff_RBP[-10] = colorBufferPointer3;
 LAB_18078f7d7:
-      lVar6 = unaff_RBP[-0xd];
+      contextData = unaff_RBP[-0xd];
       unaff_R12 = (longlong *)0x0;
       colorBufferPointer3[0x1b] = in_stack_00000070;
       plVar7 = unaff_R12;
-      if (lVar6 != 0) {
-        plVar7 = *(longlong **)(lVar6 + 0x38);
+      if (contextData != 0) {
+        plVar7 = *(longlong **)(contextData + 0x38);
       }
       colorBufferPointer3[0x29] = (longlong)plVar7;
       plVar7 = unaff_R12;
-      if (lVar6 != 0) {
-        plVar7 = *(longlong **)(lVar6 + 0x40);
+      if (contextData != 0) {
+        plVar7 = *(longlong **)(contextData + 0x40);
       }
       colorBufferPointer3[0x2a] = (longlong)plVar7;
       colorBufferPointer3[0x2b] = (longlong)colorBufferPointer3;
@@ -203883,14 +203883,14 @@ LAB_18078f7d7:
       *(float *)((longlong)colorBufferPointer3 + 0x7c) = fVar2 * 10000.0;
       *(undefined4 *)(colorBufferPointer3 + 0x18) = 0xffffffff;
       plVar7 = unaff_R12;
-      if (lVar6 != 0) {
-        plVar7 = *(longlong **)(lVar6 + 0x68);
+      if (contextData != 0) {
+        plVar7 = *(longlong **)(contextData + 0x68);
       }
       colorBufferPointer3[0x19] = (longlong)plVar7;
       *(uint *)((longlong)colorBufferPointer3 + 0x2c) = in_R11D;
       *(float *)((longlong)colorBufferPointer3 + 0x6c) = (float)*(int *)(unaff_RBP + 1);
       FUN_180744ae0(in_stack_00000070,0x100008);
-      lVar6 = unaff_RBP[-0xf];
+      contextData = unaff_RBP[-0xf];
       plVar7 = unaff_R12;
       in_R11D = uStack000000000000005c;
     }
@@ -203907,7 +203907,7 @@ LAB_18078f7d7:
       do {
         uVar5 = (uint)((ulonglong)in_stack_00000020 >> 0x20);
         iVar4 = 1;
-        if (lVar6 != 0) {
+        if (contextData != 0) {
           iVar4 = *(int *)(context + 0x18);
         }
         if (iVar4 <= iStack0000000000000060) break;
@@ -203921,8 +203921,8 @@ LAB_18078f7d7:
         iVar4 = (**(code **)(context + 0x88))(context,iStack0000000000000060,unaff_RBP + 0x14);
         unaff_R14 = pallocatedMemory0;
         if (iVar4 != 0) goto LAB_18078fe1a;
-        lVar6 = unaff_RBP[-0xf];
-        if ((lVar6 == 0) && ((uStack000000000000005c >> 0x10 & 1) != 0)) {
+        contextData = unaff_RBP[-0xf];
+        if ((contextData == 0) && ((uStack000000000000005c >> 0x10 & 1) != 0)) {
           unaff_RBP[-3] = *(undefined8 *)unaff_RBP[-9];
 LAB_18078f958:
           lVar9 = unaff_RBP[-0xd];
@@ -203959,18 +203959,18 @@ LAB_18078fa18:
           if (iVar4 != 0) goto LAB_18078fe1a;
           colorBufferPointer3 = (longlong *)unaff_RBP[-3];
           pallocatedMemory7 = (longlong *)0x0;
-          lVar6 = unaff_RBP[-10];
+          contextData = unaff_RBP[-10];
           colorBufferPointer0 = (longlong *)0x0;
           *(int *)(colorBufferPointer3 + 0x18) = iStack0000000000000060;
-          colorBufferPointer3[0x17] = lVar6;
+          colorBufferPointer3[0x17] = contextData;
           *(undefined4 *)((longlong)colorBufferPointer3 + 0x24) = *(undefined4 *)(in_stack_00000068 + 0x28);
           colorBufferPointer3[0xc] = in_stack_00000068;
           *(undefined4 *)(colorBufferPointer3 + 0xf) = *(undefined4 *)(in_stack_00000070 + 0x11404);
-          lVar6 = unaff_RBP[-0xd];
+          contextData = unaff_RBP[-0xd];
           *(float *)((longlong)colorBufferPointer3 + 0x7c) = *(float *)(in_stack_00000070 + 0x11404) * 10000.0;
           pallocatedMemory3 = pallocatedMemory7;
-          if (lVar6 != 0) {
-            pallocatedMemory3 = *(longlong **)(lVar6 + 0x68);
+          if (contextData != 0) {
+            pallocatedMemory3 = *(longlong **)(contextData + 0x68);
           }
           colorBufferPointer3[0x19] = (longlong)pallocatedMemory3;
           if ((colorBufferPointer3[0x26] == 0) &&
@@ -203979,15 +203979,15 @@ LAB_18078fa18:
              unaff_R12 = pallocatedMemory7, iVar4 != 0)) goto LAB_18078fe1a;
           if ((unaff_RBP[-0xf] == 0) && (iStack0000000000000060 == 0)) {
             FUN_180744ae0(in_stack_00000070,0x100008,colorBufferPointer3,0);
-            lVar6 = unaff_RBP[-0xd];
+            contextData = unaff_RBP[-0xd];
             lVar9 = 0;
             lVar8 = lVar9;
-            if (lVar6 != 0) {
-              lVar8 = *(longlong *)(lVar6 + 0x38);
+            if (contextData != 0) {
+              lVar8 = *(longlong *)(contextData + 0x38);
             }
             colorBufferPointer3[0x29] = lVar8;
-            if (lVar6 != 0) {
-              lVar9 = *(longlong *)(lVar6 + 0x40);
+            if (contextData != 0) {
+              lVar9 = *(longlong *)(contextData + 0x40);
             }
             colorBufferPointer3[0x2a] = lVar9;
             colorBufferPointer3[0x2b] = (longlong)colorBufferPointer3;
@@ -203998,16 +203998,16 @@ LAB_18078fa18:
                                 (in_stack_00000068,iStack0000000000000060), iVar4 != 0))
           goto LAB_18078fe1a;
           if ((iStack0000000000000060 == 0) && ((uStack0000000000000058 & 0x200) == 0)) {
-            lVar6 = in_stack_00000068;
+            contextData = in_stack_00000068;
             if (*(longlong *)(in_stack_00000068 + 0x120) != 0) {
-              lVar6 = *(longlong *)(in_stack_00000068 + 0x120);
+              contextData = *(longlong *)(in_stack_00000068 + 0x120);
             }
-            unaff_RBP[-7] = lVar6;
-            *(uint *)(lVar6 + 0x160) = *(uint *)(lVar6 + 0x160) & 0xfffffdff;
-            if (*(code **)(lVar6 + 0x100) != (code *)0x0) {
-              in_stack_00000020 = *(longlong *)(lVar6 + 0x128);
-              iVar4 = (**(code **)(lVar6 + 0x100))
-                                (lVar6,(int)colorBufferPointer3[0xd],(int)*(float *)((longlong)colorBufferPointer3 + 0x6c),0
+            unaff_RBP[-7] = contextData;
+            *(uint *)(contextData + 0x160) = *(uint *)(contextData + 0x160) & 0xfffffdff;
+            if (*(code **)(contextData + 0x100) != (code *)0x0) {
+              in_stack_00000020 = *(longlong *)(contextData + 0x128);
+              iVar4 = (**(code **)(contextData + 0x100))
+                                (contextData,(int)colorBufferPointer3[0xd],(int)*(float *)((longlong)colorBufferPointer3 + 0x6c),0
                                  ,in_stack_00000020);
               if (iVar4 != 0) goto LAB_18078fe1a;
               *(uint *)(unaff_RBP[-7] + 0x2c) = *(uint *)(unaff_RBP[-7] + 0x2c) | 0x200;
@@ -204084,9 +204084,9 @@ LAB_18078fd4b:
               goto LAB_18078fe1a;
             }
           }
-          lVar6 = unaff_RBP[-0xf];
+          contextData = unaff_RBP[-0xf];
           unaff_R12 = pallocatedMemory7;
-          if (0 < lVar6) {
+          if (0 < contextData) {
             *(longlong **)unaff_RBP[-0xe] = colorBufferPointer3;
             *(int *)(unaff_RBP[-10] + 0xb4) = *(int *)(unaff_RBP[-10] + 0xb4) + 1;
             unaff_R12 = colorBufferPointer0;
@@ -204096,7 +204096,7 @@ LAB_18078fd4b:
           iVar4 = 0;
           colorBufferPointer3 = (longlong *)0x0;
           unaff_RBP[-3] = 0;
-          if (lVar6 < 1) goto LAB_18078f958;
+          if (contextData < 1) goto LAB_18078f958;
           lVar9 = unaff_RBP[-0xd];
           if (lVar9 == 0) goto LAB_18078f978;
           poperationResult1 = *(int **)(lVar9 + 0x28);
@@ -204108,7 +204108,7 @@ LAB_18078fd4b:
               iVar4 = iVar4 + 1;
               poperationResult1 = poperationResult1 + 1;
             } while (iVar4 < *(int *)(lVar9 + 0x30));
-            lVar6 = unaff_RBP[-0xf];
+            contextData = unaff_RBP[-0xf];
           }
         }
         uVar5 = (uint)((ulonglong)in_stack_00000020 >> 0x20);
@@ -204150,10 +204150,10 @@ LAB_18078fd4b:
     if (in_stack_00000070 == -0x80) {
       colorBufferPointer3 = unaff_R13;
     }
-    lVar6 = *colorBufferPointer3;
-    *plVar7 = lVar6;
+    contextData = *colorBufferPointer3;
+    *plVar7 = contextData;
     pallocatedMemory0[2] = (longlong)colorBufferPointer3;
-    *(longlong **)(lVar6 + 8) = plVar7;
+    *(longlong **)(contextData + 8) = plVar7;
     *(longlong **)pallocatedMemory0[2] = plVar7;
                     // WARNING: Subroutine does not return
     FUN_180768400(*(undefined8 *)(_DAT_180be12f0 + 0x120));
@@ -204487,7 +204487,7 @@ undefined8 FUN_18079033d(void)
   undefined8 uVar4;
   longlong *plVar5;
   longlong *context;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong unaff_RSI;
   longlong *plVar7;
   longlong *unaff_R12;
@@ -204499,14 +204499,14 @@ undefined8 FUN_18079033d(void)
   if (cVar2 == '\0') {
     if ((*(uint *)(context + 0xb) & 4) != 0) {
       if (((int)context[0x27] != (int)unaff_R12) && (unaff_R15B == '\0')) {
-        plVar6 = (longlong *)(*(longlong *)(unaff_RSI + 0x368) + -0x178);
+        pcontextData = (longlong *)(*(longlong *)(unaff_RSI + 0x368) + -0x178);
         if (*(longlong *)(unaff_RSI + 0x368) == 0) {
-          plVar6 = unaff_R12;
+          pcontextData = unaff_R12;
         }
-        while (plVar7 = plVar6, plVar7 != (longlong *)(unaff_RSI + 0x1f0)) {
-          plVar6 = (longlong *)(plVar7[0x2f] + -0x178);
+        while (plVar7 = pcontextData, plVar7 != (longlong *)(unaff_RSI + 0x1f0)) {
+          pcontextData = (longlong *)(plVar7[0x2f] + -0x178);
           if (plVar7[0x2f] == 0) {
-            plVar6 = unaff_R12;
+            pcontextData = unaff_R12;
           }
           if (((longlong *)plVar7[0x3b] != unaff_R12) &&
              (in_stack_00000070 = unaff_R12, func_0x000180756200(plVar7,&stack0x00000070),
@@ -204529,10 +204529,10 @@ undefined8 FUN_18079033d(void)
     return 0;
   }
   func_0x000180743c20();
-  plVar6 = (longlong *)(unaff_RSI + 0x121e0);
-  plVar7 = (longlong *)*plVar6;
-  if (plVar7 != plVar6) goto LAB_180790380;
-  if (*(longlong **)(unaff_RSI + 0x121e8) == plVar6) {
+  pcontextData = (longlong *)(unaff_RSI + 0x121e0);
+  plVar7 = (longlong *)*pcontextData;
+  if (plVar7 != pcontextData) goto LAB_180790380;
+  if (*(longlong **)(unaff_RSI + 0x121e8) == pcontextData) {
 LAB_180790406:
                     // WARNING: Subroutine does not return
     FUN_180743d60();
@@ -204540,7 +204540,7 @@ LAB_180790406:
   do {
     while( true ) {
       do {
-        if (plVar7 == plVar6) goto LAB_180790406;
+        if (plVar7 == pcontextData) goto LAB_180790406;
 LAB_180790380:
         pallocatedMemory = plVar7 + 2;
         plVar7 = (longlong *)*plVar7;
@@ -205472,16 +205472,16 @@ longlong * FUN_180790ba0(longlong uiContext,int dataSource,short *targetBuffer,u
   char cVar3;
   uint uVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   uint auStackX_10 [2];
   
   pallocatedMemory = *(longlong **)(uiContext + 8);
   if (dataSource == 0) {
-    plVar6 = (longlong *)0x0;
+    pcontextData = (longlong *)0x0;
     semaphoreHandle = *(undefined8 *)(_DAT_180be12f0 + 0x160 + (longlong)*(int *)(bufferData + 0x30) * 8);
     FUN_180743e10(semaphoreHandle);
     cVar3 = (**(code **)(*pallocatedMemory + 0x18))(pallocatedMemory);
-    plVar5 = plVar6;
+    plVar5 = pcontextData;
     if (cVar3 != '\0') {
       plVar5 = pallocatedMemory;
     }
@@ -205492,14 +205492,14 @@ longlong * FUN_180790ba0(longlong uiContext,int dataSource,short *targetBuffer,u
         uVar4 = FUN_180791210(pallocatedMemory,targetBuffer + 1,2,(longlong)*targetBuffer,
                               (int)(((bufferSize & 0xffffffff) - 2) /
                                    (ulonglong)((longlong)*targetBuffer * 2)));
-        plVar6 = (longlong *)(ulonglong)uVar4;
+        pcontextData = (longlong *)(ulonglong)uVar4;
       }
     }
     if (plVar5 != (longlong *)0x0) {
       (**(code **)(*plVar5 + 0x20))(plVar5);
     }
     FUN_180743e50(semaphoreHandle);
-    return plVar6;
+    return pcontextData;
   }
   return (longlong *)0x1f;
 }
@@ -206423,7 +206423,7 @@ void FUN_180791770(longlong *uiContext,undefined8 dataSource,undefined8 targetBu
   longlong *pstringCompareIndex;
   float fVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 eventTypeCode;
   int iVar8;
   float fVar9;
@@ -206486,8 +206486,8 @@ void FUN_180791770(longlong *uiContext,undefined8 dataSource,undefined8 targetBu
   else {
     do {
       operationResult0 = (int)uiContext[2];
-      lVar6 = func_0x00018075e4e0(&uStack_2a0);
-      alStack_278[functionResult2] = lVar6 + (longlong)(operationResult0 * (int)functionResult7) * 4;
+      contextData = func_0x00018075e4e0(&uStack_2a0);
+      alStack_278[functionResult2] = contextData + (longlong)(operationResult0 * (int)functionResult7) * 4;
       functionResult2 = functionResult2 + 1;
       functionResult7 = (ulonglong)((int)functionResult7 + 1);
     } while ((longlong)functionResult2 < (longlong)iVar5);
@@ -206497,10 +206497,10 @@ void FUN_180791770(longlong *uiContext,undefined8 dataSource,undefined8 targetBu
     pallocatedMemory3 = alStack_178;
     do {
       operationResult0 = (int)uiContext[2];
-      lVar6 = func_0x00018075e4e0(&uStack_2c0);
+      contextData = func_0x00018075e4e0(&uStack_2c0);
       iVar8 = operationResult0 * operationResult1;
       operationResult1 = operationResult1 + 1;
-      *pallocatedMemory3 = lVar6 + (longlong)iVar8 * 4;
+      *pallocatedMemory3 = contextData + (longlong)iVar8 * 4;
       pallocatedMemory3 = pallocatedMemory3 + 1;
     } while (operationResult1 < (int)uiContext[3]);
   }
@@ -206508,7 +206508,7 @@ void FUN_180791770(longlong *uiContext,undefined8 dataSource,undefined8 targetBu
   FUN_18075d5e0(uStack_2d0,alStack_278,uStack_2d8,iVar5);
   floatResult8 = *(float *)((longlong)uiContext + 0x24);
   floatResult6 = 0.0;
-  lVar6 = 0;
+  contextData = 0;
   uStack_2d8 = 0;
   allocatedMemory5 = 0;
   floatResult = *(float *)(uiContext + 4);
@@ -206527,11 +206527,11 @@ void FUN_180791770(longlong *uiContext,undefined8 dataSource,undefined8 targetBu
     fVar20 = (*(float *)(uiContext + 5) - floatResult) * 0.0078125;
   }
   if ((floatResult4 == 0.0) && (floatResult8 <= 0.0)) {
-    lVar6 = uiContext[2];
+    contextData = uiContext[2];
     allocatedMemory5 = uiContext[3];
     eventTypeCode = func_0x00018075e4e0(&uStack_2c0);
                     // WARNING: Subroutine does not return
-    memset(eventTypeCode,0,(longlong)(int)lVar6 * (longlong)(int)allocatedMemory5 * 4);
+    memset(eventTypeCode,0,(longlong)(int)contextData * (longlong)(int)allocatedMemory5 * 4);
   }
   floatResult4 = floatResult6;
   if (allocatedMemory5 != 0) {
@@ -206546,17 +206546,17 @@ void FUN_180791770(longlong *uiContext,undefined8 dataSource,undefined8 targetBu
             fVar4 = 0.0;
           }
           fVar9 = (float)((int)fVar9 + 1);
-          *(float *)(*pallocatedMemory3 + lVar6 * 4) =
-               floatResult8 * *(float *)(alStack_278[(int)fVar4] + lVar6 * 4);
+          *(float *)(*pallocatedMemory3 + contextData * 4) =
+               floatResult8 * *(float *)(alStack_278[(int)fVar4] + contextData * 4);
           pallocatedMemory3 = pallocatedMemory3 + 1;
         } while ((int)fVar9 < (int)uiContext[3]);
       }
-      lVar6 = lVar6 + 1;
+      contextData = contextData + 1;
       floatResult8 = floatResult8 + floatResult9;
-    } while (lVar6 < allocatedMemory5);
+    } while (contextData < allocatedMemory5);
   }
   if ((int)floatResult4 < (int)uiContext[2]) {
-    lVar6 = (longlong)(int)floatResult4 * 4;
+    contextData = (longlong)(int)floatResult4 * 4;
     do {
       if (0 < (int)uiContext[3]) {
         pallocatedMemory3 = alStack_178;
@@ -206567,12 +206567,12 @@ void FUN_180791770(longlong *uiContext,undefined8 dataSource,undefined8 targetBu
             fVar9 = 0.0;
           }
           floatResult9 = (float)((int)floatResult9 + 1);
-          *(float *)(lVar6 + *pallocatedMemory3) = floatResult8 * *(float *)(alStack_278[(int)fVar9] + lVar6);
+          *(float *)(contextData + *pallocatedMemory3) = floatResult8 * *(float *)(alStack_278[(int)fVar9] + contextData);
           pallocatedMemory3 = pallocatedMemory3 + 1;
         } while ((int)floatResult9 < (int)uiContext[3]);
       }
       floatResult4 = (float)((int)floatResult4 + 1);
-      lVar6 = lVar6 + 4;
+      contextData = contextData + 4;
     } while ((int)floatResult4 < (int)uiContext[2]);
   }
   fStack_2f8 = fVar20;
@@ -210991,7 +210991,7 @@ void FUN_180796c70(longlong *uiContext)
   int compareResult;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   
   allocatedMemory = *uiContext;
   *(undefined4 *)(allocatedMemory + 0x21c) = 0;
@@ -211004,9 +211004,9 @@ void FUN_180796c70(longlong *uiContext)
     lVar5 = *(longlong *)(allocatedMemory + 0xe8);
     compareResult = 0;
     if (0 < *(int *)(lVar5 + 0x60)) {
-      lVar6 = 0;
+      contextData = 0;
       do {
-        pvalidationResult = *(int **)(lVar6 + *(longlong *)(lVar5 + 0x68));
+        pvalidationResult = *(int **)(contextData + *(longlong *)(lVar5 + 0x68));
         iVar4 = *pvalidationResult;
         if (iVar4 == 0) {
           iVar4 = func_0x000180762a70(allocatedMemory,compareResult,pvalidationResult[0xe]);
@@ -211027,7 +211027,7 @@ LAB_180796d1b:
         }
         lVar5 = *(longlong *)(allocatedMemory + 0xe8);
         compareResult = compareResult + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       } while (compareResult < *(int *)(lVar5 + 0x60));
     }
     *(undefined8 *)(allocatedMemory + 0x278) = 0;
@@ -211857,7 +211857,7 @@ void FUN_180797358(longlong uiContext,undefined8 dataSource,float *targetBuffer,
   uint *puVar3;
   uint uVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   ulonglong uVar8;
   uint uVar9;
@@ -212031,46 +212031,46 @@ void FUN_180797358(longlong uiContext,undefined8 dataSource,float *targetBuffer,
     in_XMM5._4_12_ = asemaphoreHandle6._4_12_;
     in_XMM5._0_4_ = asemaphoreHandle6._0_4_ + asemaphoreHandle6._4_4_;
   }
-  lVar6 = (longlong)(int)floatResult5;
-  if (lVar6 < in_R10) {
-    if (3 < in_R10 - lVar6) {
+  contextData = (longlong)(int)floatResult5;
+  if (contextData < in_R10) {
+    if (3 < in_R10 - contextData) {
       floatResult5 = fVar27 - in_XMM4_Da;
       do {
         fVar24 = unaff_XMM8_Da;
-        if (afStackX_20[lVar6] < fVar27) {
-          fVar24 = 1.0 - (afStackX_20[lVar6] - in_XMM4_Da) / floatResult5;
+        if (afStackX_20[contextData] < fVar27) {
+          fVar24 = 1.0 - (afStackX_20[contextData] - in_XMM4_Da) / floatResult5;
           fVar24 = fVar24 * fVar24;
         }
-        afStackX_20[lVar6 + -8] = fVar24;
+        afStackX_20[contextData + -8] = fVar24;
         floatResult6 = unaff_XMM8_Da;
-        if (afStackX_20[lVar6 + 1] < fVar27) {
-          floatResult6 = 1.0 - (afStackX_20[lVar6 + 1] - in_XMM4_Da) / floatResult5;
+        if (afStackX_20[contextData + 1] < fVar27) {
+          floatResult6 = 1.0 - (afStackX_20[contextData + 1] - in_XMM4_Da) / floatResult5;
           floatResult6 = floatResult6 * floatResult6;
         }
-        afStackX_20[lVar6 + -7] = floatResult6;
+        afStackX_20[contextData + -7] = floatResult6;
         floatResult7 = unaff_XMM8_Da;
-        if (*(float *)(&stack0x00000028 + lVar6 * 4) < fVar27) {
-          floatResult7 = 1.0 - (*(float *)(&stack0x00000028 + lVar6 * 4) - in_XMM4_Da) / floatResult5;
+        if (*(float *)(&stack0x00000028 + contextData * 4) < fVar27) {
+          floatResult7 = 1.0 - (*(float *)(&stack0x00000028 + contextData * 4) - in_XMM4_Da) / floatResult5;
           floatResult7 = floatResult7 * floatResult7;
         }
-        afStackX_8[lVar6] = floatResult7;
+        afStackX_8[contextData] = floatResult7;
         floatResult8 = unaff_XMM8_Da;
-        if (*(float *)(&stack0x0000002c + lVar6 * 4) < fVar27) {
-          floatResult8 = 1.0 - (*(float *)(&stack0x0000002c + lVar6 * 4) - in_XMM4_Da) / floatResult5;
+        if (*(float *)(&stack0x0000002c + contextData * 4) < fVar27) {
+          floatResult8 = 1.0 - (*(float *)(&stack0x0000002c + contextData * 4) - in_XMM4_Da) / floatResult5;
           floatResult8 = floatResult8 * floatResult8;
         }
-        afStackX_8[lVar6 + 1] = floatResult8;
+        afStackX_8[contextData + 1] = floatResult8;
         in_XMM5._0_4_ = in_XMM5._0_4_ + fVar24 + floatResult6 + floatResult7 + floatResult8;
-        lVar6 = lVar6 + 4;
-      } while (lVar6 < in_R10 + -3);
+        contextData = contextData + 4;
+      } while (contextData < in_R10 + -3);
     }
-    for (; lVar6 < in_R10; lVar6 = lVar6 + 1) {
+    for (; contextData < in_R10; contextData = contextData + 1) {
       floatResult5 = unaff_XMM8_Da;
-      if (afStackX_20[lVar6] < fVar27) {
-        floatResult5 = 1.0 - (afStackX_20[lVar6] - in_XMM4_Da) / (fVar27 - in_XMM4_Da);
+      if (afStackX_20[contextData] < fVar27) {
+        floatResult5 = 1.0 - (afStackX_20[contextData] - in_XMM4_Da) / (fVar27 - in_XMM4_Da);
         floatResult5 = floatResult5 * floatResult5;
       }
-      afStackX_20[lVar6 + -8] = floatResult5;
+      afStackX_20[contextData + -8] = floatResult5;
       in_XMM5._0_4_ = in_XMM5._0_4_ + floatResult5;
     }
   }
@@ -217829,7 +217829,7 @@ undefined8 FUN_18079df60(longlong *uiContext)
   undefined8 uVar3;
   int iVar4;
   undefined4 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   undefined4 eventTypeCode;
   
   allocatedMemory = *uiContext;
@@ -217847,17 +217847,17 @@ undefined8 FUN_18079df60(longlong *uiContext)
   *(undefined8 *)(allocatedMemory + 0xc228) = 0;
   *(undefined4 *)(allocatedMemory + 0xc218) = 0x3f800000;
   if (0 < *(int *)(componentIndex + 0x60)) {
-    lVar6 = 0;
+    contextData = 0;
     do {
       uVar3 = func_0x000180762a70(allocatedMemory,iVar4,
                                   *(undefined4 *)
-                                   (*(longlong *)(*(longlong *)(componentIndex + 0x68) + lVar6) + 0x38));
+                                   (*(longlong *)(*(longlong *)(componentIndex + 0x68) + contextData) + 0x38));
       if ((int)uVar3 != 0) {
         return uVar3;
       }
       componentIndex = *(longlong *)(allocatedMemory + 0xe8);
       iVar4 = iVar4 + 1;
-      lVar6 = lVar6 + 8;
+      contextData = contextData + 8;
     } while (iVar4 < *(int *)(componentIndex + 0x60));
   }
   return 0;
@@ -218204,7 +218204,7 @@ void FUN_18079e450(undefined8 uiContext,longlong dataSource,int targetBuffer)
   undefined4 uVar3;
   int iVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   int *piVar8;
   int iVar9;
@@ -218331,77 +218331,77 @@ void FUN_18079e450(undefined8 uiContext,longlong dataSource,int targetBuffer)
         do {
           operationResult1 = *poperationResult4;
           operationResult3 = *(int *)(&DAT_180c1b958 + allocatedMemory2 * 4);
-          lVar6 = (longlong)(operationResult1 + operationResult0);
+          contextData = (longlong)(operationResult1 + operationResult0);
           lVar5 = (longlong)(operationResult3 + operationResult6);
-          functionResult = *(undefined4 *)(dataSource + lVar6 * 4);
-          semaphoreHandle = *(undefined4 *)(dataSource + 4 + lVar6 * 4);
+          functionResult = *(undefined4 *)(dataSource + contextData * 4);
+          semaphoreHandle = *(undefined4 *)(dataSource + 4 + contextData * 4);
           uVar3 = *(undefined4 *)(dataSource + 4 + lVar5 * 4);
-          *(undefined4 *)(dataSource + lVar6 * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
-          *(undefined4 *)(dataSource + 4 + lVar6 * 4) = uVar3;
+          *(undefined4 *)(dataSource + contextData * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
+          *(undefined4 *)(dataSource + 4 + contextData * 4) = uVar3;
           *(undefined4 *)(dataSource + lVar5 * 4) = functionResult;
           *(undefined4 *)(dataSource + 4 + lVar5 * 4) = semaphoreHandle;
-          lVar6 = (longlong)(operationResult1 + operationResult0 + iVar9);
+          contextData = (longlong)(operationResult1 + operationResult0 + iVar9);
           lVar5 = (longlong)(operationResult3 + operationResult6 + iVar9);
-          functionResult = *(undefined4 *)(dataSource + lVar6 * 4);
+          functionResult = *(undefined4 *)(dataSource + contextData * 4);
           semaphoreHandle = *(undefined4 *)(dataSource + 4 + lVar5 * 4);
-          uVar3 = *(undefined4 *)(dataSource + 4 + lVar6 * 4);
-          *(undefined4 *)(dataSource + lVar6 * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
-          *(undefined4 *)(dataSource + 4 + lVar6 * 4) = semaphoreHandle;
+          uVar3 = *(undefined4 *)(dataSource + 4 + contextData * 4);
+          *(undefined4 *)(dataSource + contextData * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
+          *(undefined4 *)(dataSource + 4 + contextData * 4) = semaphoreHandle;
           *(undefined4 *)(dataSource + lVar5 * 4) = functionResult;
           *(undefined4 *)(dataSource + 4 + lVar5 * 4) = uVar3;
           operationResult1 = *poperationResult4;
-          lVar6 = (longlong)(operationResult1 + operationResult0);
+          contextData = (longlong)(operationResult1 + operationResult0);
           operationResult3 = *(int *)(allocatedMemory2 * 4 + 0x180c1b95c) + operationResult6;
           lVar5 = (longlong)operationResult3;
-          functionResult = *(undefined4 *)(dataSource + 8 + lVar6 * 4);
-          semaphoreHandle = *(undefined4 *)(dataSource + 0xc + lVar6 * 4);
+          functionResult = *(undefined4 *)(dataSource + 8 + contextData * 4);
+          semaphoreHandle = *(undefined4 *)(dataSource + 0xc + contextData * 4);
           uVar3 = *(undefined4 *)(dataSource + 4 + lVar5 * 4);
-          *(undefined4 *)(dataSource + 8 + lVar6 * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
-          *(undefined4 *)(dataSource + 0xc + lVar6 * 4) = uVar3;
+          *(undefined4 *)(dataSource + 8 + contextData * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
+          *(undefined4 *)(dataSource + 0xc + contextData * 4) = uVar3;
           *(undefined4 *)(dataSource + lVar5 * 4) = functionResult;
           *(undefined4 *)(dataSource + 4 + lVar5 * 4) = semaphoreHandle;
-          lVar6 = (longlong)(operationResult1 + operationResult0 + iVar9);
+          contextData = (longlong)(operationResult1 + operationResult0 + iVar9);
           lVar5 = (longlong)(operationResult3 + iVar9);
-          functionResult = *(undefined4 *)(dataSource + 8 + lVar6 * 4);
+          functionResult = *(undefined4 *)(dataSource + 8 + contextData * 4);
           semaphoreHandle = *(undefined4 *)(dataSource + 4 + lVar5 * 4);
-          uVar3 = *(undefined4 *)(dataSource + 0xc + lVar6 * 4);
-          *(undefined4 *)(dataSource + 8 + lVar6 * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
-          *(undefined4 *)(dataSource + 0xc + lVar6 * 4) = semaphoreHandle;
+          uVar3 = *(undefined4 *)(dataSource + 0xc + contextData * 4);
+          *(undefined4 *)(dataSource + 8 + contextData * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
+          *(undefined4 *)(dataSource + 0xc + contextData * 4) = semaphoreHandle;
           *(undefined4 *)(dataSource + lVar5 * 4) = functionResult;
           *(undefined4 *)(dataSource + 4 + lVar5 * 4) = uVar3;
           operationResult1 = *poperationResult4 + operationResult0 + 6;
-          lVar6 = (longlong)operationResult1;
+          contextData = (longlong)operationResult1;
           operationResult3 = *(int *)(allocatedMemory2 * 4 + 0x180c1b960) + operationResult6;
           lVar5 = (longlong)operationResult3;
-          functionResult = *(undefined4 *)(dataSource + -8 + lVar6 * 4);
-          semaphoreHandle = *(undefined4 *)(dataSource + -4 + lVar6 * 4);
+          functionResult = *(undefined4 *)(dataSource + -8 + contextData * 4);
+          semaphoreHandle = *(undefined4 *)(dataSource + -4 + contextData * 4);
           uVar3 = *(undefined4 *)(dataSource + 4 + lVar5 * 4);
-          *(undefined4 *)(dataSource + -8 + lVar6 * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
-          *(undefined4 *)(dataSource + -4 + lVar6 * 4) = uVar3;
+          *(undefined4 *)(dataSource + -8 + contextData * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
+          *(undefined4 *)(dataSource + -4 + contextData * 4) = uVar3;
           *(undefined4 *)(dataSource + lVar5 * 4) = functionResult;
           *(undefined4 *)(dataSource + 4 + lVar5 * 4) = semaphoreHandle;
-          lVar6 = (longlong)(iVar9 + operationResult1);
+          contextData = (longlong)(iVar9 + operationResult1);
           lVar5 = (longlong)(operationResult3 + iVar9);
-          functionResult = *(undefined4 *)(dataSource + -8 + lVar6 * 4);
+          functionResult = *(undefined4 *)(dataSource + -8 + contextData * 4);
           semaphoreHandle = *(undefined4 *)(dataSource + 4 + lVar5 * 4);
-          uVar3 = *(undefined4 *)(dataSource + -4 + lVar6 * 4);
-          *(undefined4 *)(dataSource + -8 + lVar6 * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
-          *(undefined4 *)(dataSource + -4 + lVar6 * 4) = semaphoreHandle;
+          uVar3 = *(undefined4 *)(dataSource + -4 + contextData * 4);
+          *(undefined4 *)(dataSource + -8 + contextData * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
+          *(undefined4 *)(dataSource + -4 + contextData * 4) = semaphoreHandle;
           *(undefined4 *)(dataSource + lVar5 * 4) = functionResult;
           *(undefined4 *)(dataSource + 4 + lVar5 * 4) = uVar3;
           operationResult1 = *poperationResult4 + operationResult0 + 6;
           operationResult0 = operationResult0 + 8;
-          lVar6 = (longlong)operationResult1;
+          contextData = (longlong)operationResult1;
           operationResult3 = *(int *)(allocatedMemory2 * 4 + 0x180c1b964) + operationResult6;
           lVar5 = (longlong)operationResult3;
           operationResult1 = operationResult1 + iVar9;
           operationResult3 = operationResult3 + iVar9;
           allocatedMemory2 = allocatedMemory2 + 4;
-          functionResult = *(undefined4 *)(dataSource + lVar6 * 4);
+          functionResult = *(undefined4 *)(dataSource + contextData * 4);
           semaphoreHandle = *(undefined4 *)(dataSource + 4 + lVar5 * 4);
-          uVar3 = *(undefined4 *)(dataSource + 4 + lVar6 * 4);
-          *(undefined4 *)(dataSource + lVar6 * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
-          *(undefined4 *)(dataSource + 4 + lVar6 * 4) = semaphoreHandle;
+          uVar3 = *(undefined4 *)(dataSource + 4 + contextData * 4);
+          *(undefined4 *)(dataSource + contextData * 4) = *(undefined4 *)(dataSource + lVar5 * 4);
+          *(undefined4 *)(dataSource + 4 + contextData * 4) = semaphoreHandle;
           *(undefined4 *)(dataSource + lVar5 * 4) = functionResult;
           *(undefined4 *)(dataSource + 4 + lVar5 * 4) = uVar3;
           functionResult = *(undefined4 *)(dataSource + (longlong)operationResult1 * 4);
@@ -218468,7 +218468,7 @@ void FUN_18079ea10(undefined8 uiContext,longlong dataSource,int targetBuffer)
   uint uVar3;
   undefined4 uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   ulonglong uVar8;
   int *piVar9;
@@ -218494,10 +218494,10 @@ void FUN_18079ea10(undefined8 uiContext,longlong dataSource,int targetBuffer)
       allocatedMemory3 = 0;
       if (0 < operationResult0) {
         do {
-          lVar6 = allocatedMemory3 * 4;
+          contextData = allocatedMemory3 * 4;
           allocatedMemory3 = allocatedMemory3 + 1;
-          *(int *)(&DAT_180c1b958 + lVar6 + (longlong)operationResult0 * 4) =
-               *(int *)(&DAT_180c1b958 + lVar6) + targetBuffer;
+          *(int *)(&DAT_180c1b958 + contextData + (longlong)operationResult0 * 4) =
+               *(int *)(&DAT_180c1b958 + contextData) + targetBuffer;
         } while (allocatedMemory3 < operationResult0);
       }
       operationResult8 = operationResult0 * 2;
@@ -218522,43 +218522,43 @@ void FUN_18079ea10(undefined8 uiContext,longlong dataSource,int targetBuffer)
             piVar9 = piVar9 + 1;
             allocatedMemory3 = (longlong)(operationResult4 + iVar5);
             operationResult2 = *poperationResult6 + operationResult1;
-            lVar6 = (longlong)operationResult2;
+            contextData = (longlong)operationResult2;
             operationResult4 = operationResult4 + iVar5 + operationResult8 * 4;
             operationResult1 = operationResult1 + 2;
-            functionResult = *(uint *)(dataSource + 4 + lVar6 * 4);
-            semaphoreHandle = *(undefined4 *)(dataSource + lVar6 * 4);
+            functionResult = *(uint *)(dataSource + 4 + contextData * 4);
+            semaphoreHandle = *(undefined4 *)(dataSource + contextData * 4);
             uVar4 = *(undefined4 *)(dataSource + allocatedMemory3 * 4);
-            *(uint *)(dataSource + 4 + lVar6 * 4) = *(uint *)(dataSource + 4 + allocatedMemory3 * 4) ^ 0x80000000;
-            *(undefined4 *)(dataSource + lVar6 * 4) = uVar4;
+            *(uint *)(dataSource + 4 + contextData * 4) = *(uint *)(dataSource + 4 + allocatedMemory3 * 4) ^ 0x80000000;
+            *(undefined4 *)(dataSource + contextData * 4) = uVar4;
             *(uint *)(dataSource + 4 + allocatedMemory3 * 4) = functionResult ^ 0x80000000;
             *(undefined4 *)(dataSource + allocatedMemory3 * 4) = semaphoreHandle;
             allocatedMemory3 = (longlong)operationResult4;
             operationResult4 = operationResult4 + operationResult8 * -2;
-            lVar6 = (longlong)(operationResult2 + operationResult0);
+            contextData = (longlong)(operationResult2 + operationResult0);
             operationResult2 = operationResult2 + operationResult8 * 4;
-            functionResult = *(uint *)(dataSource + 4 + lVar6 * 4);
-            semaphoreHandle = *(undefined4 *)(dataSource + lVar6 * 4);
+            functionResult = *(uint *)(dataSource + 4 + contextData * 4);
+            semaphoreHandle = *(undefined4 *)(dataSource + contextData * 4);
             uVar4 = *(undefined4 *)(dataSource + allocatedMemory3 * 4);
-            *(uint *)(dataSource + 4 + lVar6 * 4) = *(uint *)(dataSource + 4 + allocatedMemory3 * 4) ^ 0x80000000;
-            *(undefined4 *)(dataSource + lVar6 * 4) = uVar4;
+            *(uint *)(dataSource + 4 + contextData * 4) = *(uint *)(dataSource + 4 + allocatedMemory3 * 4) ^ 0x80000000;
+            *(undefined4 *)(dataSource + contextData * 4) = uVar4;
             *(uint *)(dataSource + 4 + allocatedMemory3 * 4) = functionResult ^ 0x80000000;
             *(undefined4 *)(dataSource + allocatedMemory3 * 4) = semaphoreHandle;
             allocatedMemory3 = (longlong)operationResult4;
-            lVar6 = (longlong)operationResult2;
+            contextData = (longlong)operationResult2;
             functionResult = *(uint *)(dataSource + 4 + allocatedMemory3 * 4);
-            uVar3 = *(uint *)(dataSource + 4 + lVar6 * 4);
-            semaphoreHandle = *(undefined4 *)(dataSource + lVar6 * 4);
-            *(undefined4 *)(dataSource + lVar6 * 4) = *(undefined4 *)(dataSource + allocatedMemory3 * 4);
-            *(uint *)(dataSource + 4 + lVar6 * 4) = functionResult ^ 0x80000000;
+            uVar3 = *(uint *)(dataSource + 4 + contextData * 4);
+            semaphoreHandle = *(undefined4 *)(dataSource + contextData * 4);
+            *(undefined4 *)(dataSource + contextData * 4) = *(undefined4 *)(dataSource + allocatedMemory3 * 4);
+            *(uint *)(dataSource + 4 + contextData * 4) = functionResult ^ 0x80000000;
             *(uint *)(dataSource + 4 + allocatedMemory3 * 4) = uVar3 ^ 0x80000000;
             *(undefined4 *)(dataSource + allocatedMemory3 * 4) = semaphoreHandle;
-            lVar6 = (longlong)(operationResult2 + operationResult0);
+            contextData = (longlong)(operationResult2 + operationResult0);
             allocatedMemory3 = (longlong)(operationResult8 * 4 + operationResult4);
-            functionResult = *(uint *)(dataSource + 4 + lVar6 * 4);
-            semaphoreHandle = *(undefined4 *)(dataSource + lVar6 * 4);
+            functionResult = *(uint *)(dataSource + 4 + contextData * 4);
+            semaphoreHandle = *(undefined4 *)(dataSource + contextData * 4);
             uVar4 = *(undefined4 *)(dataSource + allocatedMemory3 * 4);
-            *(uint *)(dataSource + 4 + lVar6 * 4) = *(uint *)(dataSource + 4 + allocatedMemory3 * 4) ^ 0x80000000;
-            *(undefined4 *)(dataSource + lVar6 * 4) = uVar4;
+            *(uint *)(dataSource + 4 + contextData * 4) = *(uint *)(dataSource + 4 + allocatedMemory3 * 4) ^ 0x80000000;
+            *(undefined4 *)(dataSource + contextData * 4) = uVar4;
             *(undefined4 *)(dataSource + allocatedMemory3 * 4) = semaphoreHandle;
             *(uint *)(dataSource + 4 + allocatedMemory3 * 4) = functionResult ^ 0x80000000;
             uVar8 = uVar8 - 1;
@@ -218572,13 +218572,13 @@ void FUN_18079ea10(undefined8 uiContext,longlong dataSource,int targetBuffer)
         operationResult1 = operationResult2 + operationResult8 * 4;
         *(uint *)(dataSource + 4 + (longlong)operationResult2 * 4) =
              *(uint *)(dataSource + 4 + (longlong)operationResult2 * 4) ^ 0x80000000;
-        lVar6 = (longlong)(operationResult2 + operationResult0);
+        contextData = (longlong)(operationResult2 + operationResult0);
         allocatedMemory3 = (longlong)operationResult1;
-        functionResult = *(uint *)(dataSource + 4 + lVar6 * 4);
+        functionResult = *(uint *)(dataSource + 4 + contextData * 4);
         uVar3 = *(uint *)(dataSource + 4 + allocatedMemory3 * 4);
-        semaphoreHandle = *(undefined4 *)(dataSource + lVar6 * 4);
-        *(undefined4 *)(dataSource + lVar6 * 4) = *(undefined4 *)(dataSource + allocatedMemory3 * 4);
-        *(uint *)(dataSource + 4 + lVar6 * 4) = uVar3 ^ 0x80000000;
+        semaphoreHandle = *(undefined4 *)(dataSource + contextData * 4);
+        *(undefined4 *)(dataSource + contextData * 4) = *(undefined4 *)(dataSource + allocatedMemory3 * 4);
+        *(uint *)(dataSource + 4 + contextData * 4) = uVar3 ^ 0x80000000;
         *(undefined4 *)(dataSource + allocatedMemory3 * 4) = semaphoreHandle;
         *(uint *)(dataSource + 4 + allocatedMemory3 * 4) = functionResult ^ 0x80000000;
         allocatedMemory3 = (longlong)(operationResult1 + operationResult0);
@@ -218606,79 +218606,79 @@ void FUN_18079ea10(undefined8 uiContext,longlong dataSource,int targetBuffer)
             operationResult2 = *(int *)(&DAT_180c1b958 + allocatedMemory3 * 4);
             operationResult5 = operationResult1 + 6;
             operationResult4 = *poperationResult6;
-            lVar6 = (longlong)(operationResult2 + operationResult8);
+            contextData = (longlong)(operationResult2 + operationResult8);
             lVar7 = (longlong)(operationResult4 + operationResult1);
-            functionResult7 = *(uint *)(dataSource + 4 + lVar6 * 4);
+            functionResult7 = *(uint *)(dataSource + 4 + contextData * 4);
             functionResult = *(uint *)(dataSource + 4 + lVar7 * 4);
             semaphoreHandle = *(undefined4 *)(dataSource + lVar7 * 4);
-            *(undefined4 *)(dataSource + lVar7 * 4) = *(undefined4 *)(dataSource + lVar6 * 4);
+            *(undefined4 *)(dataSource + lVar7 * 4) = *(undefined4 *)(dataSource + contextData * 4);
             *(uint *)(dataSource + 4 + lVar7 * 4) = functionResult7 ^ 0x80000000;
-            *(undefined4 *)(dataSource + lVar6 * 4) = semaphoreHandle;
-            *(uint *)(dataSource + 4 + lVar6 * 4) = functionResult ^ 0x80000000;
+            *(undefined4 *)(dataSource + contextData * 4) = semaphoreHandle;
+            *(uint *)(dataSource + 4 + contextData * 4) = functionResult ^ 0x80000000;
             lVar7 = (longlong)(operationResult4 + operationResult1 + operationResult0);
-            lVar6 = (longlong)(operationResult2 + operationResult8 + operationResult0);
+            contextData = (longlong)(operationResult2 + operationResult8 + operationResult0);
             functionResult7 = *(uint *)(dataSource + 4 + lVar7 * 4);
-            functionResult = *(uint *)(dataSource + 4 + lVar6 * 4);
+            functionResult = *(uint *)(dataSource + 4 + contextData * 4);
             semaphoreHandle = *(undefined4 *)(dataSource + lVar7 * 4);
-            *(undefined4 *)(dataSource + lVar7 * 4) = *(undefined4 *)(dataSource + lVar6 * 4);
+            *(undefined4 *)(dataSource + lVar7 * 4) = *(undefined4 *)(dataSource + contextData * 4);
             *(uint *)(dataSource + 4 + lVar7 * 4) = functionResult ^ 0x80000000;
-            *(undefined4 *)(dataSource + lVar6 * 4) = semaphoreHandle;
-            *(uint *)(dataSource + 4 + lVar6 * 4) = functionResult7 ^ 0x80000000;
+            *(undefined4 *)(dataSource + contextData * 4) = semaphoreHandle;
+            *(uint *)(dataSource + 4 + contextData * 4) = functionResult7 ^ 0x80000000;
             operationResult2 = *poperationResult6;
             operationResult4 = *(int *)(allocatedMemory3 * 4 + 0x180c1b95c) + operationResult8;
-            lVar6 = (longlong)operationResult4;
+            contextData = (longlong)operationResult4;
             lVar7 = (longlong)(operationResult2 + operationResult1);
-            functionResult7 = *(uint *)(dataSource + 4 + lVar6 * 4);
+            functionResult7 = *(uint *)(dataSource + 4 + contextData * 4);
             functionResult = *(uint *)(dataSource + 0xc + lVar7 * 4);
             semaphoreHandle = *(undefined4 *)(dataSource + 8 + lVar7 * 4);
-            *(undefined4 *)(dataSource + 8 + lVar7 * 4) = *(undefined4 *)(dataSource + lVar6 * 4);
+            *(undefined4 *)(dataSource + 8 + lVar7 * 4) = *(undefined4 *)(dataSource + contextData * 4);
             *(uint *)(dataSource + 0xc + lVar7 * 4) = functionResult7 ^ 0x80000000;
-            *(undefined4 *)(dataSource + lVar6 * 4) = semaphoreHandle;
-            *(uint *)(dataSource + 4 + lVar6 * 4) = functionResult ^ 0x80000000;
+            *(undefined4 *)(dataSource + contextData * 4) = semaphoreHandle;
+            *(uint *)(dataSource + 4 + contextData * 4) = functionResult ^ 0x80000000;
             lVar7 = (longlong)(operationResult0 + operationResult2 + operationResult1);
-            lVar6 = (longlong)(operationResult4 + operationResult0);
+            contextData = (longlong)(operationResult4 + operationResult0);
             functionResult7 = *(uint *)(dataSource + 0xc + lVar7 * 4);
-            functionResult = *(uint *)(dataSource + 4 + lVar6 * 4);
+            functionResult = *(uint *)(dataSource + 4 + contextData * 4);
             semaphoreHandle = *(undefined4 *)(dataSource + 8 + lVar7 * 4);
-            *(undefined4 *)(dataSource + 8 + lVar7 * 4) = *(undefined4 *)(dataSource + lVar6 * 4);
+            *(undefined4 *)(dataSource + 8 + lVar7 * 4) = *(undefined4 *)(dataSource + contextData * 4);
             *(uint *)(dataSource + 0xc + lVar7 * 4) = functionResult ^ 0x80000000;
-            *(undefined4 *)(dataSource + lVar6 * 4) = semaphoreHandle;
-            *(uint *)(dataSource + 4 + lVar6 * 4) = functionResult7 ^ 0x80000000;
+            *(undefined4 *)(dataSource + contextData * 4) = semaphoreHandle;
+            *(uint *)(dataSource + 4 + contextData * 4) = functionResult7 ^ 0x80000000;
             operationResult2 = *poperationResult6 + operationResult5;
             lVar7 = (longlong)operationResult2;
             operationResult4 = *(int *)(allocatedMemory3 * 4 + 0x180c1b960) + operationResult8;
-            lVar6 = (longlong)operationResult4;
+            contextData = (longlong)operationResult4;
             functionResult7 = *(uint *)(dataSource + -4 + lVar7 * 4);
             semaphoreHandle = *(undefined4 *)(dataSource + -8 + lVar7 * 4);
-            functionResult = *(uint *)(dataSource + 4 + lVar6 * 4);
-            *(undefined4 *)(dataSource + -8 + lVar7 * 4) = *(undefined4 *)(dataSource + lVar6 * 4);
+            functionResult = *(uint *)(dataSource + 4 + contextData * 4);
+            *(undefined4 *)(dataSource + -8 + lVar7 * 4) = *(undefined4 *)(dataSource + contextData * 4);
             *(uint *)(dataSource + -4 + lVar7 * 4) = functionResult ^ 0x80000000;
-            *(undefined4 *)(dataSource + lVar6 * 4) = semaphoreHandle;
+            *(undefined4 *)(dataSource + contextData * 4) = semaphoreHandle;
             lVar7 = (longlong)(operationResult0 + operationResult2);
-            *(uint *)(dataSource + 4 + lVar6 * 4) = functionResult7 ^ 0x80000000;
+            *(uint *)(dataSource + 4 + contextData * 4) = functionResult7 ^ 0x80000000;
             semaphoreHandle = *(undefined4 *)(dataSource + -8 + lVar7 * 4);
             functionResult7 = *(uint *)(dataSource + -4 + lVar7 * 4);
-            lVar6 = (longlong)(operationResult4 + operationResult0);
+            contextData = (longlong)(operationResult4 + operationResult0);
             operationResult1 = operationResult1 + 8;
-            functionResult = *(uint *)(dataSource + 4 + lVar6 * 4);
-            *(undefined4 *)(dataSource + -8 + lVar7 * 4) = *(undefined4 *)(dataSource + lVar6 * 4);
+            functionResult = *(uint *)(dataSource + 4 + contextData * 4);
+            *(undefined4 *)(dataSource + -8 + lVar7 * 4) = *(undefined4 *)(dataSource + contextData * 4);
             *(uint *)(dataSource + -4 + lVar7 * 4) = functionResult ^ 0x80000000;
-            *(undefined4 *)(dataSource + lVar6 * 4) = semaphoreHandle;
-            *(uint *)(dataSource + 4 + lVar6 * 4) = functionResult7 ^ 0x80000000;
+            *(undefined4 *)(dataSource + contextData * 4) = semaphoreHandle;
+            *(uint *)(dataSource + 4 + contextData * 4) = functionResult7 ^ 0x80000000;
             operationResult5 = *poperationResult6 + operationResult5;
             lVar7 = (longlong)operationResult5;
             operationResult2 = *(int *)(allocatedMemory3 * 4 + 0x180c1b964) + operationResult8;
-            lVar6 = (longlong)operationResult2;
+            contextData = (longlong)operationResult2;
             operationResult5 = operationResult5 + operationResult0;
             operationResult2 = operationResult2 + operationResult0;
             allocatedMemory3 = allocatedMemory3 + 4;
             functionResult7 = *(uint *)(dataSource + 4 + lVar7 * 4);
-            functionResult = *(uint *)(dataSource + 4 + lVar6 * 4);
+            functionResult = *(uint *)(dataSource + 4 + contextData * 4);
             semaphoreHandle = *(undefined4 *)(dataSource + lVar7 * 4);
-            *(undefined4 *)(dataSource + lVar7 * 4) = *(undefined4 *)(dataSource + lVar6 * 4);
+            *(undefined4 *)(dataSource + lVar7 * 4) = *(undefined4 *)(dataSource + contextData * 4);
             *(uint *)(dataSource + 4 + lVar7 * 4) = functionResult ^ 0x80000000;
-            *(undefined4 *)(dataSource + lVar6 * 4) = semaphoreHandle;
-            *(uint *)(dataSource + 4 + lVar6 * 4) = functionResult7 ^ 0x80000000;
+            *(undefined4 *)(dataSource + contextData * 4) = semaphoreHandle;
+            *(uint *)(dataSource + 4 + contextData * 4) = functionResult7 ^ 0x80000000;
             functionResult7 = *(uint *)(dataSource + 4 + (longlong)operationResult5 * 4);
             semaphoreHandle = *(undefined4 *)(dataSource + (longlong)operationResult5 * 4);
             functionResult = *(uint *)(dataSource + 4 + (longlong)operationResult2 * 4);
@@ -218699,22 +218699,22 @@ void FUN_18079ea10(undefined8 uiContext,longlong dataSource,int targetBuffer)
             piVar9 = piVar9 + 1;
             allocatedMemory3 = (longlong)(iVar5 + operationResult8);
             operationResult2 = *poperationResult6 + operationResult1;
-            lVar6 = (longlong)operationResult2;
+            contextData = (longlong)operationResult2;
             operationResult1 = operationResult1 + 2;
             functionResult7 = *(uint *)(dataSource + 4 + allocatedMemory3 * 4);
-            functionResult = *(uint *)(dataSource + 4 + lVar6 * 4);
-            semaphoreHandle = *(undefined4 *)(dataSource + lVar6 * 4);
-            *(undefined4 *)(dataSource + lVar6 * 4) = *(undefined4 *)(dataSource + allocatedMemory3 * 4);
-            *(uint *)(dataSource + 4 + lVar6 * 4) = functionResult7 ^ 0x80000000;
+            functionResult = *(uint *)(dataSource + 4 + contextData * 4);
+            semaphoreHandle = *(undefined4 *)(dataSource + contextData * 4);
+            *(undefined4 *)(dataSource + contextData * 4) = *(undefined4 *)(dataSource + allocatedMemory3 * 4);
+            *(uint *)(dataSource + 4 + contextData * 4) = functionResult7 ^ 0x80000000;
             *(uint *)(dataSource + 4 + allocatedMemory3 * 4) = functionResult ^ 0x80000000;
             *(undefined4 *)(dataSource + allocatedMemory3 * 4) = semaphoreHandle;
-            lVar6 = (longlong)(operationResult2 + operationResult0);
+            contextData = (longlong)(operationResult2 + operationResult0);
             allocatedMemory3 = (longlong)(iVar5 + operationResult8 + operationResult0);
-            functionResult7 = *(uint *)(dataSource + 4 + lVar6 * 4);
-            semaphoreHandle = *(undefined4 *)(dataSource + lVar6 * 4);
+            functionResult7 = *(uint *)(dataSource + 4 + contextData * 4);
+            semaphoreHandle = *(undefined4 *)(dataSource + contextData * 4);
             uVar4 = *(undefined4 *)(dataSource + allocatedMemory3 * 4);
-            *(uint *)(dataSource + 4 + lVar6 * 4) = *(uint *)(dataSource + 4 + allocatedMemory3 * 4) ^ 0x80000000;
-            *(undefined4 *)(dataSource + lVar6 * 4) = uVar4;
+            *(uint *)(dataSource + 4 + contextData * 4) = *(uint *)(dataSource + 4 + allocatedMemory3 * 4) ^ 0x80000000;
+            *(undefined4 *)(dataSource + contextData * 4) = uVar4;
             *(undefined4 *)(dataSource + allocatedMemory3 * 4) = semaphoreHandle;
             *(uint *)(dataSource + 4 + allocatedMemory3 * 4) = functionResult7 ^ 0x80000000;
             uVar8 = uVar8 - 1;
@@ -219071,7 +219071,7 @@ void FUN_18079f5d0(longlong uiContext,undefined8 dataSource,undefined8 targetBuf
   longlong unaff_RSI;
   int iVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   float fVar7;
   float fVar8;
   float fVar9;
@@ -219096,28 +219096,28 @@ void FUN_18079f5d0(longlong uiContext,undefined8 dataSource,undefined8 targetBuf
       } while (iVar4 * 4 < (int)(bufferSize * 2));
     }
   }
-  lVar6 = (longlong)iVar4;
+  contextData = (longlong)iVar4;
   if (((iVar4 * 2 ^ bufferSize) & 0x7fffffff) == 0) {
     if (0 < iVar4) {
-      pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+      pfVar3 = (float *)(unaff_RSI + 4 + contextData * 4);
       uVar5 = (ulonglong)((iVar4 - 1U >> 1) + 1);
       do {
-        floatResult1 = -pfVar3[-lVar6] - *pfVar3;
-        floatResult3 = *pfVar3 - pfVar3[-lVar6];
-        fVar8 = pfVar3[lVar6 * 2 + -1] + pfVar3[lVar6 + -1];
-        floatResult0 = pfVar3[lVar6 + -1] - pfVar3[lVar6 * 2 + -1];
-        fVar7 = pfVar3[lVar6 * 2] + pfVar3[lVar6];
-        floatResult2 = pfVar3[-1 - lVar6] + pfVar3[-1];
-        floatResult4 = pfVar3[-1 - lVar6] - pfVar3[-1];
-        fVar9 = pfVar3[lVar6] - pfVar3[lVar6 * 2];
-        pfVar3[-lVar6] = floatResult1 - fVar7;
-        pfVar3[-1 - lVar6] = fVar8 + floatResult2;
-        pfVar3[lVar6 + -1] = floatResult2 - fVar8;
-        pfVar3[lVar6] = fVar7 + floatResult1;
+        floatResult1 = -pfVar3[-contextData] - *pfVar3;
+        floatResult3 = *pfVar3 - pfVar3[-contextData];
+        fVar8 = pfVar3[contextData * 2 + -1] + pfVar3[contextData + -1];
+        floatResult0 = pfVar3[contextData + -1] - pfVar3[contextData * 2 + -1];
+        fVar7 = pfVar3[contextData * 2] + pfVar3[contextData];
+        floatResult2 = pfVar3[-1 - contextData] + pfVar3[-1];
+        floatResult4 = pfVar3[-1 - contextData] - pfVar3[-1];
+        fVar9 = pfVar3[contextData] - pfVar3[contextData * 2];
+        pfVar3[-contextData] = floatResult1 - fVar7;
+        pfVar3[-1 - contextData] = fVar8 + floatResult2;
+        pfVar3[contextData + -1] = floatResult2 - fVar8;
+        pfVar3[contextData] = fVar7 + floatResult1;
         *pfVar3 = floatResult3 - floatResult0;
         pfVar3[-1] = floatResult4 - fVar9;
-        pfVar3[lVar6 * 2 + -1] = fVar9 + floatResult4;
-        pfVar3[lVar6 * 2] = floatResult0 + floatResult3;
+        pfVar3[contextData * 2 + -1] = fVar9 + floatResult4;
+        pfVar3[contextData * 2] = floatResult0 + floatResult3;
         pfVar3 = pfVar3 + 2;
         uVar5 = uVar5 - 1;
       } while (uVar5 != 0);
@@ -219125,15 +219125,15 @@ void FUN_18079f5d0(longlong uiContext,undefined8 dataSource,undefined8 targetBuf
     }
   }
   else if (0 < iVar4) {
-    pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
-    componentIndex = (lVar6 - 1U >> 1) + 1;
+    pfVar3 = (float *)(unaff_RSI + 4 + contextData * 4);
+    componentIndex = (contextData - 1U >> 1) + 1;
     do {
-      fVar7 = pfVar3[-1 - lVar6];
+      fVar7 = pfVar3[-1 - contextData];
       fVar8 = pfVar3[-1];
-      fVar9 = pfVar3[-lVar6];
+      fVar9 = pfVar3[-contextData];
       floatResult0 = *pfVar3;
-      pfVar3[-1 - lVar6] = fVar7 + fVar8;
-      pfVar3[-lVar6] = -fVar9 - *pfVar3;
+      pfVar3[-1 - contextData] = fVar7 + fVar8;
+      pfVar3[-contextData] = -fVar9 - *pfVar3;
       pfVar3[-1] = fVar7 - fVar8;
       *pfVar3 = floatResult0 - fVar9;
       pfVar3 = pfVar3 + 2;
@@ -219157,7 +219157,7 @@ void FUN_18079f605(undefined8 uiContext,undefined8 dataSource,int targetBuffer)
   longlong unaff_RSI;
   longlong unaff_RDI;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   float fVar7;
   float fVar8;
   float fVar9;
@@ -219173,28 +219173,28 @@ void FUN_18079f605(undefined8 uiContext,undefined8 dataSource,int targetBuffer)
     FUN_18079fa70();
     operationResult = iVar4 * 4;
   } while (iVar4 * 4 < (int)(*(uint *)(unaff_RDI + 0x14030) * 2));
-  lVar6 = (longlong)iVar4;
+  contextData = (longlong)iVar4;
   if (((iVar4 * 2 ^ *(uint *)(unaff_RDI + 0x14030)) & 0x7fffffff) == 0) {
     if (0 < iVar4) {
-      pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+      pfVar3 = (float *)(unaff_RSI + 4 + contextData * 4);
       uVar5 = (ulonglong)((iVar4 - 1U >> 1) + 1);
       do {
-        floatResult1 = -pfVar3[-lVar6] - *pfVar3;
-        floatResult3 = *pfVar3 - pfVar3[-lVar6];
-        fVar8 = pfVar3[lVar6 * 2 + -1] + pfVar3[lVar6 + -1];
-        floatResult0 = pfVar3[lVar6 + -1] - pfVar3[lVar6 * 2 + -1];
-        fVar7 = pfVar3[lVar6 * 2] + pfVar3[lVar6];
-        floatResult2 = pfVar3[-1 - lVar6] + pfVar3[-1];
-        floatResult4 = pfVar3[-1 - lVar6] - pfVar3[-1];
-        fVar9 = pfVar3[lVar6] - pfVar3[lVar6 * 2];
-        pfVar3[-lVar6] = floatResult1 - fVar7;
-        pfVar3[-1 - lVar6] = fVar8 + floatResult2;
-        pfVar3[lVar6 + -1] = floatResult2 - fVar8;
-        pfVar3[lVar6] = fVar7 + floatResult1;
+        floatResult1 = -pfVar3[-contextData] - *pfVar3;
+        floatResult3 = *pfVar3 - pfVar3[-contextData];
+        fVar8 = pfVar3[contextData * 2 + -1] + pfVar3[contextData + -1];
+        floatResult0 = pfVar3[contextData + -1] - pfVar3[contextData * 2 + -1];
+        fVar7 = pfVar3[contextData * 2] + pfVar3[contextData];
+        floatResult2 = pfVar3[-1 - contextData] + pfVar3[-1];
+        floatResult4 = pfVar3[-1 - contextData] - pfVar3[-1];
+        fVar9 = pfVar3[contextData] - pfVar3[contextData * 2];
+        pfVar3[-contextData] = floatResult1 - fVar7;
+        pfVar3[-1 - contextData] = fVar8 + floatResult2;
+        pfVar3[contextData + -1] = floatResult2 - fVar8;
+        pfVar3[contextData] = fVar7 + floatResult1;
         *pfVar3 = floatResult3 - floatResult0;
         pfVar3[-1] = floatResult4 - fVar9;
-        pfVar3[lVar6 * 2 + -1] = fVar9 + floatResult4;
-        pfVar3[lVar6 * 2] = floatResult0 + floatResult3;
+        pfVar3[contextData * 2 + -1] = fVar9 + floatResult4;
+        pfVar3[contextData * 2] = floatResult0 + floatResult3;
         pfVar3 = pfVar3 + 2;
         uVar5 = uVar5 - 1;
       } while (uVar5 != 0);
@@ -219202,15 +219202,15 @@ void FUN_18079f605(undefined8 uiContext,undefined8 dataSource,int targetBuffer)
     }
   }
   else if (0 < iVar4) {
-    pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
-    componentIndex = (lVar6 - 1U >> 1) + 1;
+    pfVar3 = (float *)(unaff_RSI + 4 + contextData * 4);
+    componentIndex = (contextData - 1U >> 1) + 1;
     do {
-      fVar7 = pfVar3[-1 - lVar6];
+      fVar7 = pfVar3[-1 - contextData];
       fVar8 = pfVar3[-1];
-      fVar9 = pfVar3[-lVar6];
+      fVar9 = pfVar3[-contextData];
       floatResult0 = *pfVar3;
-      pfVar3[-1 - lVar6] = fVar7 + fVar8;
-      pfVar3[-lVar6] = -fVar9 - *pfVar3;
+      pfVar3[-1 - contextData] = fVar7 + fVar8;
+      pfVar3[-contextData] = -fVar9 - *pfVar3;
       pfVar3[-1] = fVar7 - fVar8;
       *pfVar3 = floatResult0 - fVar9;
       pfVar3 = pfVar3 + 2;
@@ -219515,7 +219515,7 @@ void FUN_18079f840(longlong uiContext,undefined8 dataSource,undefined8 targetBuf
   longlong unaff_RSI;
   int iVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   float fVar7;
   float fVar8;
   float fVar9;
@@ -219540,28 +219540,28 @@ void FUN_18079f840(longlong uiContext,undefined8 dataSource,undefined8 targetBuf
       } while (iVar4 * 4 < (int)(bufferSize * 2));
     }
   }
-  lVar6 = (longlong)iVar4;
+  contextData = (longlong)iVar4;
   if (((iVar4 * 2 ^ bufferSize) & 0x7fffffff) == 0) {
     if (0 < iVar4) {
-      pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+      pfVar3 = (float *)(unaff_RSI + 4 + contextData * 4);
       uVar5 = (ulonglong)((iVar4 - 1U >> 1) + 1);
       do {
-        fVar8 = pfVar3[lVar6 * 2 + -1] + pfVar3[lVar6 + -1];
-        floatResult0 = pfVar3[lVar6 + -1] - pfVar3[lVar6 * 2 + -1];
-        floatResult2 = pfVar3[-1 - lVar6] + pfVar3[-1];
-        floatResult4 = pfVar3[-1 - lVar6] - pfVar3[-1];
-        fVar7 = pfVar3[lVar6 * 2] + pfVar3[lVar6];
-        floatResult1 = pfVar3[-lVar6] + *pfVar3;
-        floatResult3 = pfVar3[-lVar6] - *pfVar3;
-        fVar9 = pfVar3[lVar6] - pfVar3[lVar6 * 2];
-        pfVar3[-1 - lVar6] = fVar8 + floatResult2;
-        pfVar3[-lVar6] = fVar7 + floatResult1;
-        pfVar3[lVar6 + -1] = floatResult2 - fVar8;
-        pfVar3[lVar6] = floatResult1 - fVar7;
+        fVar8 = pfVar3[contextData * 2 + -1] + pfVar3[contextData + -1];
+        floatResult0 = pfVar3[contextData + -1] - pfVar3[contextData * 2 + -1];
+        floatResult2 = pfVar3[-1 - contextData] + pfVar3[-1];
+        floatResult4 = pfVar3[-1 - contextData] - pfVar3[-1];
+        fVar7 = pfVar3[contextData * 2] + pfVar3[contextData];
+        floatResult1 = pfVar3[-contextData] + *pfVar3;
+        floatResult3 = pfVar3[-contextData] - *pfVar3;
+        fVar9 = pfVar3[contextData] - pfVar3[contextData * 2];
+        pfVar3[-1 - contextData] = fVar8 + floatResult2;
+        pfVar3[-contextData] = fVar7 + floatResult1;
+        pfVar3[contextData + -1] = floatResult2 - fVar8;
+        pfVar3[contextData] = floatResult1 - fVar7;
         pfVar3[-1] = floatResult4 - fVar9;
         *pfVar3 = floatResult0 + floatResult3;
-        pfVar3[lVar6 * 2 + -1] = fVar9 + floatResult4;
-        pfVar3[lVar6 * 2] = floatResult3 - floatResult0;
+        pfVar3[contextData * 2 + -1] = fVar9 + floatResult4;
+        pfVar3[contextData * 2] = floatResult3 - floatResult0;
         pfVar3 = pfVar3 + 2;
         uVar5 = uVar5 - 1;
       } while (uVar5 != 0);
@@ -219569,15 +219569,15 @@ void FUN_18079f840(longlong uiContext,undefined8 dataSource,undefined8 targetBuf
     }
   }
   else if (0 < iVar4) {
-    pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
-    componentIndex = (lVar6 - 1U >> 1) + 1;
+    pfVar3 = (float *)(unaff_RSI + 4 + contextData * 4);
+    componentIndex = (contextData - 1U >> 1) + 1;
     do {
-      fVar7 = pfVar3[-1 - lVar6];
+      fVar7 = pfVar3[-1 - contextData];
       fVar8 = pfVar3[-1];
-      fVar9 = pfVar3[-lVar6];
+      fVar9 = pfVar3[-contextData];
       floatResult0 = *pfVar3;
-      pfVar3[-1 - lVar6] = fVar7 + fVar8;
-      pfVar3[-lVar6] = fVar9 + *pfVar3;
+      pfVar3[-1 - contextData] = fVar7 + fVar8;
+      pfVar3[-contextData] = fVar9 + *pfVar3;
       pfVar3[-1] = fVar7 - fVar8;
       *pfVar3 = fVar9 - floatResult0;
       pfVar3 = pfVar3 + 2;
@@ -219601,7 +219601,7 @@ void FUN_18079f872(undefined8 uiContext,undefined8 dataSource,int targetBuffer)
   longlong unaff_RSI;
   longlong unaff_RDI;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   float fVar7;
   float fVar8;
   float fVar9;
@@ -219617,28 +219617,28 @@ void FUN_18079f872(undefined8 uiContext,undefined8 dataSource,int targetBuffer)
     FUN_18079fa70();
     operationResult = iVar4 * 4;
   } while (iVar4 * 4 < (int)(*(uint *)(unaff_RDI + 0x14030) * 2));
-  lVar6 = (longlong)iVar4;
+  contextData = (longlong)iVar4;
   if (((iVar4 * 2 ^ *(uint *)(unaff_RDI + 0x14030)) & 0x7fffffff) == 0) {
     if (0 < iVar4) {
-      pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
+      pfVar3 = (float *)(unaff_RSI + 4 + contextData * 4);
       uVar5 = (ulonglong)((iVar4 - 1U >> 1) + 1);
       do {
-        fVar8 = pfVar3[lVar6 * 2 + -1] + pfVar3[lVar6 + -1];
-        floatResult0 = pfVar3[lVar6 + -1] - pfVar3[lVar6 * 2 + -1];
-        floatResult2 = pfVar3[-1 - lVar6] + pfVar3[-1];
-        floatResult4 = pfVar3[-1 - lVar6] - pfVar3[-1];
-        fVar7 = pfVar3[lVar6 * 2] + pfVar3[lVar6];
-        floatResult1 = pfVar3[-lVar6] + *pfVar3;
-        floatResult3 = pfVar3[-lVar6] - *pfVar3;
-        fVar9 = pfVar3[lVar6] - pfVar3[lVar6 * 2];
-        pfVar3[-1 - lVar6] = fVar8 + floatResult2;
-        pfVar3[-lVar6] = fVar7 + floatResult1;
-        pfVar3[lVar6 + -1] = floatResult2 - fVar8;
-        pfVar3[lVar6] = floatResult1 - fVar7;
+        fVar8 = pfVar3[contextData * 2 + -1] + pfVar3[contextData + -1];
+        floatResult0 = pfVar3[contextData + -1] - pfVar3[contextData * 2 + -1];
+        floatResult2 = pfVar3[-1 - contextData] + pfVar3[-1];
+        floatResult4 = pfVar3[-1 - contextData] - pfVar3[-1];
+        fVar7 = pfVar3[contextData * 2] + pfVar3[contextData];
+        floatResult1 = pfVar3[-contextData] + *pfVar3;
+        floatResult3 = pfVar3[-contextData] - *pfVar3;
+        fVar9 = pfVar3[contextData] - pfVar3[contextData * 2];
+        pfVar3[-1 - contextData] = fVar8 + floatResult2;
+        pfVar3[-contextData] = fVar7 + floatResult1;
+        pfVar3[contextData + -1] = floatResult2 - fVar8;
+        pfVar3[contextData] = floatResult1 - fVar7;
         pfVar3[-1] = floatResult4 - fVar9;
         *pfVar3 = floatResult0 + floatResult3;
-        pfVar3[lVar6 * 2 + -1] = fVar9 + floatResult4;
-        pfVar3[lVar6 * 2] = floatResult3 - floatResult0;
+        pfVar3[contextData * 2 + -1] = fVar9 + floatResult4;
+        pfVar3[contextData * 2] = floatResult3 - floatResult0;
         pfVar3 = pfVar3 + 2;
         uVar5 = uVar5 - 1;
       } while (uVar5 != 0);
@@ -219646,15 +219646,15 @@ void FUN_18079f872(undefined8 uiContext,undefined8 dataSource,int targetBuffer)
     }
   }
   else if (0 < iVar4) {
-    pfVar3 = (float *)(unaff_RSI + 4 + lVar6 * 4);
-    componentIndex = (lVar6 - 1U >> 1) + 1;
+    pfVar3 = (float *)(unaff_RSI + 4 + contextData * 4);
+    componentIndex = (contextData - 1U >> 1) + 1;
     do {
-      fVar7 = pfVar3[-1 - lVar6];
+      fVar7 = pfVar3[-1 - contextData];
       fVar8 = pfVar3[-1];
-      fVar9 = pfVar3[-lVar6];
+      fVar9 = pfVar3[-contextData];
       floatResult0 = *pfVar3;
-      pfVar3[-1 - lVar6] = fVar7 + fVar8;
-      pfVar3[-lVar6] = fVar9 + *pfVar3;
+      pfVar3[-1 - contextData] = fVar7 + fVar8;
+      pfVar3[-contextData] = fVar9 + *pfVar3;
       pfVar3[-1] = fVar7 - fVar8;
       *pfVar3 = fVar9 - floatResult0;
       pfVar3 = pfVar3 + 2;
@@ -219874,7 +219874,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
   float *pfVar3;
   int iVar4;
   float *pfVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   float *pfVar8;
   int iVar9;
@@ -219956,7 +219956,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
   if (validationResult < *(int *)(bufferData + 0x14030) * 2) {
     iVar4 = targetBuffer * 9;
     pfVar8 = (float *)&DAT_180c19950;
-    lVar6 = (longlong)validationResult;
+    contextData = (longlong)validationResult;
     pfVar5 = (float *)&DAT_180c19958;
     do {
       floatResult1 = pfVar8[3];
@@ -219968,7 +219968,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
       floatResult9 = (floatResult1 + floatResult1) * floatResult2 - floatResult3;
       fVar21 = floatResult2 - (floatResult1 + floatResult1) * floatResult3;
       if (operationResult0 < iVar4) {
-        pfVar3 = (float *)(dataSource + (lVar6 + lVar7 * 2) * 4);
+        pfVar3 = (float *)(dataSource + (contextData + lVar7 * 2) * 4);
         functionResult = (ulonglong)(((iVar4 - operationResult0) - 1U >> 1) + 1);
         do {
           fVar25 = pfVar3[lVar7] + *pfVar3;
@@ -220003,7 +220003,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
       floatResult9 = (floatResult6 + floatResult6) * floatResult2 - floatResult3;
       fVar21 = floatResult2 - (floatResult6 + floatResult6) * floatResult3;
       if (operationResult0 < iVar4 + iVar9) {
-        pfVar3 = (float *)(dataSource + (iVar9 + lVar6 + lVar7 * 2) * 4);
+        pfVar3 = (float *)(dataSource + (iVar9 + contextData + lVar7 * 2) * 4);
         functionResult = (ulonglong)((((iVar4 + iVar9) - operationResult0) - 1U >> 1) + 1);
         do {
           fVar25 = *pfVar3 + pfVar3[lVar7];
@@ -220033,7 +220033,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
         } while (functionResult != 0);
       }
       iVar4 = iVar4 + targetBuffer * 8;
-      lVar6 = lVar6 + validationResult;
+      contextData = contextData + validationResult;
       pfVar5 = pfVar5 + 4;
     } while (-targetBuffer + iVar4 < *(int *)(bufferData + 0x14030) * 2);
   }
@@ -221776,7 +221776,7 @@ undefined8 FUN_180801660(longlong uiContext)
   longlong stringCompareIndex;
   int iVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   
   operationResult = *(int *)(bufferData + 0x28);
   if (4 < operationResult - 1U) {
@@ -221786,7 +221786,7 @@ undefined8 FUN_180801660(longlong uiContext)
   if (stringCompareIndex == 0) {
     return 0;
   }
-  lVar6 = 0x20;
+  contextData = 0x20;
   if (operationResult == 1) {
     iVar4 = 8;
   }
@@ -221805,16 +221805,16 @@ undefined8 FUN_180801660(longlong uiContext)
   iVar4 = *(int *)(bufferData + 0x68) * iVar4;
   uVar5 = *(int *)(bufferData + 0x50) + *(int *)(bufferData + 0x4c);
   if (operationResult == 1) {
-    lVar6 = 8;
+    contextData = 8;
   }
   else if (operationResult == 2) {
-    lVar6 = 0x10;
+    contextData = 0x10;
   }
   else if (operationResult == 3) {
-    lVar6 = 0x18;
+    contextData = 0x18;
   }
   else if ((operationResult != 4) && (operationResult != 5)) goto LAB_18080177e;
-  uVar5 = (uint)((ulonglong)uVar5 * lVar6 >> 3);
+  uVar5 = (uint)((ulonglong)uVar5 * contextData >> 3);
 LAB_18080177e:
   semaphoreHandle = *(uint *)(uiContext + 0x2c);
   uVar5 = uVar5 * *(int *)(bufferData + 0x68);
@@ -223844,7 +223844,7 @@ undefined8 FUN_180803801(longlong uiContext)
   uint uVar3;
   ulonglong uVar4;
   uint uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   uint in_stack_00000060;
   longlong *in_stack_00000068;
   longlong *in_stack_00000070;
@@ -223853,37 +223853,37 @@ undefined8 FUN_180803801(longlong uiContext)
   uVar5 = (uint)unaff_RBP;
   uVar4 = (ulonglong)unaff_RBP & 0xffffffff;
   if ((int)uVar5 < *(int *)(bufferData + 0x418)) {
-    plVar6 = (longlong *)(uiContext + 0x428);
+    pcontextData = (longlong *)(uiContext + 0x428);
     do {
-      CoTaskMemFree(plVar6[-1]);
-      plVar6[-1] = (longlong)unaff_RBP;
-      if (*plVar6 != 0) {
+      CoTaskMemFree(pcontextData[-1]);
+      pcontextData[-1] = (longlong)unaff_RBP;
+      if (*pcontextData != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*plVar6,&UNK_18097ed60,0x10f,1);
+        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*pcontextData,&UNK_18097ed60,0x10f,1);
       }
-      plVar6[1] = (longlong)unaff_RBP;
+      pcontextData[1] = (longlong)unaff_RBP;
       uVar3 = (int)uVar4 + 1;
       uVar4 = (ulonglong)uVar3;
-      plVar6 = plVar6 + 3;
+      pcontextData = pcontextData + 3;
     } while ((int)uVar3 < *(int *)(context + 0x418));
   }
-  plVar6 = (longlong *)(context + 0x720);
+  pcontextData = (longlong *)(context + 0x720);
   *(uint *)(context + 0x418) = uVar5;
-  if ((longlong *)*plVar6 == unaff_RBP) {
-    operationResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,plVar6);
+  if ((longlong *)*pcontextData == unaff_RBP) {
+    operationResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,pcontextData);
     if (operationResult == -0x7ffbfe10) {
       operationResult = CoInitializeEx(0,2);
       if (operationResult < 0) {
         return 0x33;
       }
-      operationResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,plVar6);
+      operationResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,pcontextData);
     }
     if (operationResult < 0) {
       return 0x33;
     }
   }
   in_stack_00000068 = unaff_RBP;
-  operationResult = (**(code **)(*(longlong *)*plVar6 + 0x20))((longlong *)*plVar6,0,0,&stack0x00000068);
+  operationResult = (**(code **)(*(longlong *)*pcontextData + 0x20))((longlong *)*pcontextData,0,0,&stack0x00000068);
   if (operationResult != -0x7ff8fb70) {
     if (operationResult < 0) {
       return 0x33;
@@ -223896,7 +223896,7 @@ undefined8 FUN_180803801(longlong uiContext)
     (**(code **)(*in_stack_00000068 + 0x10))();
   }
   in_stack_00000078 = unaff_RBP;
-  operationResult = (**(code **)(*(longlong *)*plVar6 + 0x18))((longlong *)*plVar6,0,1,&stack0x00000078);
+  operationResult = (**(code **)(*(longlong *)*pcontextData + 0x18))((longlong *)*pcontextData,0,1,&stack0x00000078);
   if ((operationResult < 0) ||
      (in_stack_00000060 = uVar5,
      operationResult = (**(code **)(*in_stack_00000078 + 0x18))(in_stack_00000078,&stack0x00000060), operationResult < 0
@@ -224971,7 +224971,7 @@ undefined8 FUN_18080450a(longlong uiContext)
   longlong *unaff_RBP;
   uint uVar4;
   ulonglong uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *in_stack_00000030;
   int in_stack_00000070;
   longlong *in_stack_00000078;
@@ -224981,18 +224981,18 @@ undefined8 FUN_18080450a(longlong uiContext)
   validationResult = (int)unaff_RBP;
   uVar5 = (ulonglong)unaff_RBP & 0xffffffff;
   if (validationResult < *(int *)(bufferData + 0x760)) {
-    plVar6 = (longlong *)(uiContext + 0x770);
+    pcontextData = (longlong *)(uiContext + 0x770);
     do {
-      CoTaskMemFree(plVar6[-1]);
-      plVar6[-1] = (longlong)unaff_RBP;
-      if (*plVar6 != 0) {
+      CoTaskMemFree(pcontextData[-1]);
+      pcontextData[-1] = (longlong)unaff_RBP;
+      if (*pcontextData != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*plVar6,&UNK_18097ed60,0x10f,1);
+        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*pcontextData,&UNK_18097ed60,0x10f,1);
       }
-      plVar6[1] = (longlong)unaff_RBP;
+      pcontextData[1] = (longlong)unaff_RBP;
       uVar4 = (int)uVar5 + 1;
       uVar5 = (ulonglong)uVar4;
-      plVar6 = plVar6 + 3;
+      pcontextData = pcontextData + 3;
     } while ((int)uVar4 < *(int *)(bufferData + 0x760));
   }
   *(int *)(bufferData + 0x760) = validationResult;
@@ -225797,7 +225797,7 @@ undefined8 FUN_1808051c0(longlong *uiContext)
   undefined8 uVar3;
   longlong lVar4;
   undefined *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   longlong *plVar9;
   uint auStackX_8 [2];
@@ -225865,8 +225865,8 @@ undefined8 FUN_1808051c0(longlong *uiContext)
               return 0x31;
             }
             lVar4 = FUN_1807f7db0(uStackX_20);
-            lVar6 = uVar8 * 0x10 + allocatedMemory;
-            *(longlong *)(lVar6 + 0xb8) = lVar4;
+            contextData = uVar8 * 0x10 + allocatedMemory;
+            *(longlong *)(contextData + 0xb8) = lVar4;
             if (lVar4 == 0) {
               return 0x26;
             }
@@ -225896,14 +225896,14 @@ undefined8 FUN_1808051c0(longlong *uiContext)
             }
             (**(code **)(*plStackX_10 + 0x10))();
             if (((lStack_60 != 0) && ((int)uVar8 != 0)) &&
-               (validationResult = func_0x0001807f7d80(lStack_60,*(undefined8 *)(lVar6 + 0xb8)), validationResult == 0)) {
+               (validationResult = func_0x0001807f7d80(lStack_60,*(undefined8 *)(contextData + 0xb8)), validationResult == 0)) {
               uVar3 = *(undefined8 *)(allocatedMemory + 0xb8);
-              *(undefined8 *)(allocatedMemory + 0xb8) = *(undefined8 *)(lVar6 + 0xb8);
+              *(undefined8 *)(allocatedMemory + 0xb8) = *(undefined8 *)(contextData + 0xb8);
               lVar4 = *plVar9;
-              *(undefined8 *)(lVar6 + 0xb8) = uVar3;
-              lVar6 = *(longlong *)(allocatedMemory + 0xc0);
+              *(undefined8 *)(contextData + 0xb8) = uVar3;
+              contextData = *(longlong *)(allocatedMemory + 0xc0);
               *(longlong *)(allocatedMemory + 0xc0) = lVar4;
-              *plVar9 = lVar6;
+              *plVar9 = contextData;
             }
             *(int *)(allocatedMemory + 0x2b8) = *(int *)(allocatedMemory + 0x2b8) + 1;
             eventTypeCode = (int)uVar8 + 1;
@@ -226446,7 +226446,7 @@ void FUN_180805689(longlong *uiContext,int dataSource,undefined4 *targetBuffer,u
   undefined8 uVar4;
   int iVar5;
   undefined4 *in_RAX;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   undefined8 *puVar8;
   undefined8 *puVar9;
@@ -226468,25 +226468,25 @@ void FUN_180805689(longlong *uiContext,int dataSource,undefined4 *targetBuffer,u
     puVar9 = (undefined8 *)0x0;
     lVar7 = uiContext[(longlong)dataSource * 2 + 0x17];
     uiContext[4] = 0;
-    lVar6 = CoTaskMemAlloc(0x30);
-    if (lVar6 != 0) {
+    contextData = CoTaskMemAlloc(0x30);
+    if (contextData != 0) {
       *(undefined4 *)(unaff_RBP + -0x69) = 0xb7b4e913;
       *(undefined4 *)(unaff_RBP + -0x65) = 0x474002f7;
       *(undefined4 *)(unaff_RBP + -0x61) = 0xacfb8da3;
       *(undefined4 *)(unaff_RBP + -0x5d) = 0x84de0b3b;
-      CoCreateGuid(lVar6);
+      CoCreateGuid(contextData);
       uVar3 = *(undefined8 *)(unaff_RBP + -0x69);
       uVar4 = *(undefined8 *)(unaff_RBP + -0x61);
-      *(undefined4 *)(lVar6 + 0x20) = 2;
-      *(undefined4 *)(lVar6 + 0x24) = 2;
-      *(undefined8 *)(lVar6 + 0x10) = uVar3;
-      *(undefined8 *)(lVar6 + 0x18) = uVar4;
-      *(undefined4 *)(lVar6 + 0x28) = 0xe;
-      *(undefined4 *)(lVar6 + 0x2c) = 0x209aa;
+      *(undefined4 *)(contextData + 0x20) = 2;
+      *(undefined4 *)(contextData + 0x24) = 2;
+      *(undefined8 *)(contextData + 0x10) = uVar3;
+      *(undefined8 *)(contextData + 0x18) = uVar4;
+      *(undefined4 *)(contextData + 0x28) = 0xe;
+      *(undefined4 *)(contextData + 0x2c) = 0x209aa;
       allocatedMemory = *unaff_R12;
       in_stack_00000048 = 0x41;
       in_stack_00000050 = 0x30;
-      *(longlong *)(unaff_RBP + -0x79) = lVar6;
+      *(longlong *)(unaff_RBP + -0x79) = contextData;
       *(undefined8 *)(unaff_RBP + -0x71) = 0;
       _uStack0000000000000040 = (longlong *)0x0;
       iVar5 = (**(code **)(**(longlong **)(allocatedMemory + 0x2c0) + 0x28))
@@ -232434,7 +232434,7 @@ undefined8 FUN_18080d690(longlong uiContext)
   longlong *pstringCompareIndex;
   longlong *plVar4;
   int iVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   char acStackX_8 [8];
   
@@ -232448,9 +232448,9 @@ undefined8 FUN_18080d690(longlong uiContext)
     plVar7 = (longlong *)(uiContext + 0x3d0);
     do {
       componentIndex = *plVar7;
-      if ((componentIndex != 0) && (plVar6 = (longlong *)(componentIndex + 8), *plVar6 != 0)) {
-        while ((pstringCompareIndex = (longlong *)*plVar6, pstringCompareIndex != plVar6 ||
-               (*(longlong **)(componentIndex + 0x10) != plVar6))) {
+      if ((componentIndex != 0) && (pcontextData = (longlong *)(componentIndex + 8), *pcontextData != 0)) {
+        while ((pstringCompareIndex = (longlong *)*pcontextData, pstringCompareIndex != pcontextData ||
+               (*(longlong **)(componentIndex + 0x10) != pcontextData))) {
           plVar4 = (longlong *)pstringCompareIndex[4];
           if (plVar4 != (longlong *)0x0) {
             if (*(longlong *)(bufferData + 0x5f0) != 0) {
@@ -232508,7 +232508,7 @@ undefined8 FUN_18080d69a(longlong uiContext)
   longlong *pstringCompareIndex;
   int iVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong unaff_R15;
   char in_stack_00000050;
   
@@ -232518,9 +232518,9 @@ undefined8 FUN_18080d69a(longlong uiContext)
   iVar4 = 0;
   *(undefined2 *)(uiContext + 0xbe8) = 0x100;
   if (0 < *(int *)(bufferData + 0x3c8)) {
-    plVar6 = (longlong *)(uiContext + 0x3d0);
+    pcontextData = (longlong *)(uiContext + 0x3d0);
     do {
-      allocatedMemory = *plVar6;
+      allocatedMemory = *pcontextData;
       if ((allocatedMemory != 0) && (plVar5 = (longlong *)(allocatedMemory + 8), *plVar5 != 0)) {
         while ((colorBufferPointer = (longlong *)*plVar5, colorBufferPointer != plVar5 ||
                (*(longlong **)(allocatedMemory + 0x10) != plVar5))) {
@@ -232561,7 +232561,7 @@ undefined8 FUN_18080d69a(longlong uiContext)
         }
       }
       iVar4 = iVar4 + 1;
-      plVar6 = plVar6 + 1;
+      pcontextData = pcontextData + 1;
     } while (iVar4 < *(int *)(bufferData + 0x3c8));
   }
   if ((unaff_R15 != 0) && (unaff_R15 != 0)) {
@@ -239395,7 +239395,7 @@ FUN_180815ca0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
   longlong stringCompareIndex;
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   longlong lVar8;
   uint uVar9;
@@ -239413,7 +239413,7 @@ FUN_180815ca0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
   if (0 < (int)bufferSize) {
     lVar7 = 0;
     uStackX_8 = (ulonglong)bufferSize;
-    lVar6 = dataSource;
+    contextData = dataSource;
     allocatedMemory0 = targetBuffer;
     do {
       lVar8 = *(longlong *)(bufferData + 0x178);
@@ -239430,11 +239430,11 @@ FUN_180815ca0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
                       lVar7 + targetBuffer);
       }
       if (dataSource != 0) {
-        FUN_180815ea0(uiContext,stringCompareIndex,iVar5,resultPointer,lVar6);
+        FUN_180815ea0(uiContext,stringCompareIndex,iVar5,resultPointer,contextData);
       }
       lVar7 = lVar7 + 0x900;
       allocatedMemory0 = allocatedMemory0 + 0x200;
-      lVar6 = lVar6 + 2;
+      contextData = contextData + 2;
       uStackX_8 = uStackX_8 - 1;
     } while (uStackX_8 != 0);
   }
@@ -239455,7 +239455,7 @@ undefined8 FUN_180815d01(int uiContext,longlong dataSource,undefined8 targetBuff
   longlong in_R11;
   int unaff_R12D;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lStack0000000000000030;
   longlong lStack0000000000000038;
   ulonglong uStack0000000000000090;
@@ -239470,18 +239470,18 @@ undefined8 FUN_180815d01(int uiContext,longlong dataSource,undefined8 targetBuff
   lVar5 = in_R11;
   do {
     lVar4 = *(longlong *)(unaff_RBP + 0x178);
-    lVar6 = *(longlong *)(lVar4 + 0x2440) + stringCompareIndex;
-    allocatedMemory = lStack0000000000000038 + lVar6;
+    contextData = *(longlong *)(lVar4 + 0x2440) + stringCompareIndex;
+    allocatedMemory = lStack0000000000000038 + contextData;
     if (*(int *)(lVar4 + 0x4868) == 2) {
       componentIndex = lStack0000000000000030 * 4;
-      FUN_180814240(lVar6 + ((ulonglong)(*(int *)(lVar4 + 0x48a4) + unaff_R12D & 0xf) +
+      FUN_180814240(contextData + ((ulonglong)(*(int *)(lVar4 + 0x48a4) + unaff_R12D & 0xf) +
                             (ulonglong)(uint)(unaff_R12D * 0x120)) * 4,componentIndex + allocatedMemory,lVar5);
       lVar4 = *(longlong *)(unaff_RBP + 0x178);
       dataSource = in_stack_00000098;
       in_R11 = in_stack_000000a0;
     }
     if (*(int *)(lVar4 + 0x4868) == 3) {
-      FUN_180814240(lVar6 + ((ulonglong)(*(int *)(lVar4 + 0x48a4) + unaff_R12D & 0xf) +
+      FUN_180814240(contextData + ((ulonglong)(*(int *)(lVar4 + 0x48a4) + unaff_R12D & 0xf) +
                             (ulonglong)(uint)(unaff_R12D * 0x120)) * 4,componentIndex + allocatedMemory,stringCompareIndex + in_R11)
       ;
       dataSource = in_stack_00000098;
@@ -241527,7 +241527,7 @@ ulonglong FUN_180817f70(undefined8 uiContext,undefined8 *dataSource)
   int compareResult;
   uint uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   undefined4 auStackX_10 [2];
   undefined8 auStackX_18 [2];
@@ -241540,7 +241540,7 @@ ulonglong FUN_180817f70(undefined8 uiContext,undefined8 *dataSource)
     *(undefined4 *)(dataSource + 0x10) = 3;
     return 0;
   }
-  lVar6 = -1;
+  contextData = -1;
   functionResult = *(undefined4 *)(dataSource + 0x3f);
   semaphoreHandle = *(undefined8 *)dataSource[10];
   auStackX_18[0] = 0xffffffffffffffff;
@@ -241549,10 +241549,10 @@ ulonglong FUN_180817f70(undefined8 uiContext,undefined8 *dataSource)
   if (((code *)dataSource[99] != (code *)0x0) && (dataSource[0x65] != 0)) {
     (*(code *)dataSource[99])(*dataSource,0,2);
     compareResult = (*(code *)dataSource[0x65])(*dataSource);
-    lVar6 = (longlong)compareResult;
+    contextData = (longlong)compareResult;
   }
-  dataSource[3] = lVar6;
-  dataSource[2] = lVar6;
+  dataSource[3] = contextData;
+  dataSource[2] = contextData;
   if (dataSource[3] == -1) {
     eventTypeCode = 0xffffff7d;
   }
@@ -241803,7 +241803,7 @@ undefined8 FUN_1808181ef(void)
   uint uVar3;
   undefined4 uVar4;
   undefined8 uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   ulonglong eventTypeCode;
   int *piVar8;
   uint uVar9;
@@ -241866,10 +241866,10 @@ LAB_18081843e:
             functionResult0 = unaff_R13;
           }
           if (0 < (int)uVar3) {
-            plVar6 = (longlong *)(*(longlong *)(unaff_RSI + 0x60) + 8);
+            pcontextData = (longlong *)(*(longlong *)(unaff_RSI + 0x60) + 8);
             do {
-              functionResult0 = functionResult0 + *plVar6;
-              plVar6 = plVar6 + 2;
+              functionResult0 = functionResult0 + *pcontextData;
+              pcontextData = pcontextData + 2;
               *(ulonglong *)(unaff_RSI + 0x78) = functionResult0;
               eventTypeCode = eventTypeCode - 1;
             } while (eventTypeCode != 0);
@@ -241941,7 +241941,7 @@ ulonglong FUN_1808184f0(undefined8 uiContext,longlong *dataSource,longlong targe
   int compareResult;
   longlong lVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   int iVar8;
   ulonglong uVar9;
@@ -241963,9 +241963,9 @@ ulonglong FUN_1808184f0(undefined8 uiContext,longlong *dataSource,longlong targe
   undefined1 auStack_60 [24];
   longlong lStack_48;
   
-  lVar6 = dataSource[0x10];
+  contextData = dataSource[0x10];
   functionResult1 = 0;
-  if ((((int)lVar6 < 2) || ((int)dataSource[1] == 0)) || (iVar8 = (int)dataSource[8], iVar8 < 0)) {
+  if ((((int)contextData < 2) || ((int)dataSource[1] == 0)) || (iVar8 = (int)dataSource[8], iVar8 < 0)) {
     functionResult4 = 0xffffffffffffff7d;
   }
   else {
@@ -241979,29 +241979,29 @@ ulonglong FUN_1808184f0(undefined8 uiContext,longlong *dataSource,longlong targe
       } while ((int)functionResult2 < iVar8);
     }
   }
-  if (1 < (int)lVar6) {
+  if (1 < (int)contextData) {
     if ((int)dataSource[1] == 0) {
       return 0xffffff76;
     }
     if ((-1 < targetBuffer) && (targetBuffer <= (longlong)functionResult4)) {
       iVar8 = (int)dataSource[8] + -1;
       if (-1 < iVar8) {
-        lVar6 = (longlong)iVar8;
-        pallocatedMemory3 = (longlong *)(dataSource[0xc] + 8 + lVar6 * 0x10);
+        contextData = (longlong)iVar8;
+        pallocatedMemory3 = (longlong *)(dataSource[0xc] + 8 + contextData * 0x10);
         do {
           functionResult4 = functionResult4 - *pallocatedMemory3;
           if ((longlong)functionResult4 <= targetBuffer) break;
           iVar8 = iVar8 + -1;
           pallocatedMemory3 = pallocatedMemory3 + -2;
-          lVar6 = lVar6 + -1;
-        } while (-1 < lVar6);
+          contextData = contextData + -1;
+        } while (-1 < contextData);
       }
       lStack_88 = (longlong)iVar8;
       functionResult1 = *(ulonglong *)(dataSource[9] + lStack_88 * 8);
       eventTypeCode = *(ulonglong *)(dataSource[9] + 8 + lStack_88 * 8);
       lStackX_20 = *(longlong *)(dataSource[0xc] + (longlong)(iVar8 * 2) * 8);
       lStack_b8 = *(longlong *)(dataSource[0xc] + 8 + (longlong)(iVar8 * 2) * 8) + lStackX_20;
-      lVar6 = (lStackX_20 - functionResult4) + targetBuffer;
+      contextData = (lStackX_20 - functionResult4) + targetBuffer;
       uStack_b0 = functionResult1;
       if ((longlong)functionResult1 < (longlong)eventTypeCode) {
         do {
@@ -242009,7 +242009,7 @@ ulonglong FUN_1808184f0(undefined8 uiContext,longlong *dataSource,longlong targe
           uVar9 = functionResult1;
           if ((0x2133 < (longlong)(eventTypeCode - functionResult1)) &&
              (uVar9 = (longlong)
-                      (((float)(lVar6 - lStackX_20) * (float)(longlong)(eventTypeCode - functionResult1)) /
+                      (((float)(contextData - lStackX_20) * (float)(longlong)(eventTypeCode - functionResult1)) /
                       (float)(lStack_b8 - lStackX_20)) + -0x2134 + functionResult1,
              (longlong)uVar9 <= (longlong)functionResult1)) {
             uVar9 = functionResult1 + 1;
@@ -242058,13 +242058,13 @@ LAB_180818807:
           compareResult = func_0x00018082f880(auStack_80);
           if ((compareResult != *(int *)(dataSource[0xb] + lStack_88 * 4)) ||
              (lVar4 = func_0x00018082f820(auStack_80), lVar4 == -1)) goto LAB_180818807;
-          if (lVar4 < lVar6) {
+          if (lVar4 < contextData) {
             functionResult1 = dataSource[2];
             uVar9 = functionResult1;
             lStackX_20 = lVar4;
             componentIndex = lStack_b8;
             uStack_b0 = uVar5;
-            if (0xac44 < lVar6 - lVar4) goto LAB_1808188ac;
+            if (0xac44 < contextData - lVar4) goto LAB_1808188ac;
             goto LAB_180818807;
           }
           if ((longlong)uVar9 <= (longlong)(functionResult1 + 1)) break;
@@ -242119,7 +242119,7 @@ LAB_1808188ac:
             }
             dataSource[0xf] = lStack_48 + functionResult4;
             if (((longlong)(lStack_48 + functionResult4) <= targetBuffer) &&
-               (lVar6 = FUN_180818bd0(dataSource,0xffffffff), targetBuffer <= lVar6)) {
+               (contextData = FUN_180818bd0(dataSource,0xffffffff), targetBuffer <= contextData)) {
               *(undefined8 *)((longlong)dataSource + 0x8c) = 0;
               return 0;
             }
@@ -242149,13 +242149,13 @@ LAB_1808188ac:
               }
               dataSource[2] = eventTypeCode;
               func_0x0001808301d0();
-              lVar6 = dataSource[2];
-              while (lVar6 < (longlong)uVar5) {
+              contextData = dataSource[2];
+              while (contextData < (longlong)uVar5) {
                 uStack_a8 = 0;
                 uStack_a0 = 0;
                 uStack_98 = 0;
                 uStack_90 = 0;
-                functionResult4 = FUN_18081a120(uiContext,dataSource,&uStack_a8,uVar5 - lVar6);
+                functionResult4 = FUN_18081a120(uiContext,dataSource,&uStack_a8,uVar5 - contextData);
                 if (functionResult4 == 0xffffffffffffff80) goto LAB_180818b6f;
                 if (functionResult4 == 0xffffffffffffff75) {
                   uVar5 = 0xffffffffffffff75;
@@ -242163,7 +242163,7 @@ LAB_1808188ac:
                 }
                 if ((longlong)functionResult4 < 0) break;
                 functionResult1 = functionResult4;
-                lVar6 = dataSource[2];
+                contextData = dataSource[2];
               }
               functionResult4 = eventTypeCode;
             } while (functionResult1 == 0xffffffffffffffff);
@@ -242172,8 +242172,8 @@ LAB_1808188ac:
               iVar8 = FUN_18081a6e0(dataSource,functionResult1);
               uVar5 = (longlong)iVar8;
               if ((iVar8 == 0) &&
-                 (lVar6 = FUN_18081a120(uiContext,dataSource,&uStack_a8,0x2134), uVar5 = functionResult1,
-                 lVar6 < 0)) goto LAB_180818b53;
+                 (contextData = FUN_18081a120(uiContext,dataSource,&uStack_a8,0x2134), uVar5 = functionResult1,
+                 contextData < 0)) goto LAB_180818b53;
             }
 LAB_180818b0c:
             if ((longlong)uVar5 < 0) goto LAB_180818b76;
@@ -242592,7 +242592,7 @@ void FUN_180818c50(undefined8 uiContext,longlong dataSource,longlong targetBuffe
   int compareResult;
   int iVar4;
   int iVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   undefined8 eventTypeCode;
   int *piVar8;
   longlong lVar9;
@@ -242722,13 +242722,13 @@ LAB_180818ed4:
         lVar9 = 0;
         allocatedMemory6 = 0;
         if (1 < allocatedMemory1) {
-          plVar6 = (longlong *)(allocatedMemory + 0x18);
+          pcontextData = (longlong *)(allocatedMemory + 0x18);
           allocatedMemory2 = (allocatedMemory1 - 2U >> 1) + 1;
           allocatedMemory6 = allocatedMemory2 * 2;
           do {
-            allocatedMemory5 = allocatedMemory5 + plVar6[-2];
-            lVar9 = lVar9 + *plVar6;
-            plVar6 = plVar6 + 4;
+            allocatedMemory5 = allocatedMemory5 + pcontextData[-2];
+            lVar9 = lVar9 + *pcontextData;
+            pcontextData = pcontextData + 4;
             allocatedMemory2 = allocatedMemory2 + -1;
           } while (allocatedMemory2 != 0);
         }
@@ -242933,7 +242933,7 @@ void FUN_180818d15(void)
   int compareResult;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong *plVar7;
   undefined8 uVar8;
   int *piVar9;
@@ -242969,8 +242969,8 @@ LAB_180818e5f:
           *(undefined8 *)(context + 0x78) = 0xffffffffffffffff;
           goto LAB_180819016;
         }
-        lVar6 = FUN_18081a120();
-        if (lVar6 < 0) {
+        contextData = FUN_18081a120();
+        if (contextData < 0) {
           uVar8 = FUN_180818bd0();
           *(undefined8 *)(context + 0x78) = uVar8;
           goto LAB_180819016;
@@ -242998,7 +242998,7 @@ LAB_180818ed4:
           func_0x00018082fe60();
           func_0x00018082fe60(&stack0x00000070,iVar5);
           *(undefined4 *)(context + 0x80) = 3;
-          isCharacterMatch = lVar6 <= *(longlong *)(*(longlong *)(context + 0x50) + allocatedMemory7 * 8);
+          isCharacterMatch = contextData <= *(longlong *)(*(longlong *)(context + 0x50) + allocatedMemory7 * 8);
         }
         else {
           iVar4 = func_0x00018082f880(&stack0x00000028);
@@ -243039,9 +243039,9 @@ LAB_180818ed4:
       operationResult4 = compareResult;
     } while (in_stack_00000060 == -1);
     allocatedMemory2 = (longlong)*(int *)(context + 0x88);
-    lVar6 = *(longlong *)(context + 0x60);
+    contextData = *(longlong *)(context + 0x60);
     allocatedMemory5 = in_stack_00000060 -
-             *(longlong *)(lVar6 + (longlong)(*(int *)(context + 0x88) * 2) * 8);
+             *(longlong *)(contextData + (longlong)(*(int *)(context + 0x88) * 2) * 8);
     allocatedMemory7 = 0;
     if (-1 < allocatedMemory5) {
       allocatedMemory7 = allocatedMemory5;
@@ -243050,7 +243050,7 @@ LAB_180818ed4:
     allocatedMemory0 = 0;
     allocatedMemory5 = 0;
     if (1 < allocatedMemory2) {
-      plVar7 = (longlong *)(lVar6 + 0x18);
+      plVar7 = (longlong *)(contextData + 0x18);
       allocatedMemory3 = (allocatedMemory2 - 2U >> 1) + 1;
       allocatedMemory5 = allocatedMemory3 * 2;
       do {
@@ -243061,7 +243061,7 @@ LAB_180818ed4:
       } while (allocatedMemory3 != 0);
     }
     if (allocatedMemory5 < allocatedMemory2) {
-      allocatedMemory7 = allocatedMemory7 + *(longlong *)(lVar6 + 8 + allocatedMemory5 * 0x10);
+      allocatedMemory7 = allocatedMemory7 + *(longlong *)(contextData + 8 + allocatedMemory5 * 0x10);
     }
     allocatedMemory7 = allocatedMemory6 + (allocatedMemory0 - validationResult) + allocatedMemory7;
     *(longlong *)(context + 0x78) = allocatedMemory7;
@@ -244062,7 +244062,7 @@ longlong FUN_18081a260(undefined8 uiContext,longlong *dataSource,int *targetBuff
   int compareResult;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int *piVar7;
   longlong lVar8;
   longlong lVar9;
@@ -244093,22 +244093,22 @@ longlong FUN_18081a260(undefined8 uiContext,longlong *dataSource,int *targetBuff
     dataSource[2] = lVar4;
     func_0x0001808301d0(dataSource + 4);
     lVar5 = dataSource[2];
-    lVar6 = lVar8;
-    while (lVar8 = lVar6, lVar5 < allocatedMemory) {
-      lVar6 = FUN_18081a120(uiContext,dataSource,auStack_58,allocatedMemory - lVar5);
-      if (lVar6 == -0x80) {
+    contextData = lVar8;
+    while (lVar8 = contextData, lVar5 < allocatedMemory) {
+      contextData = FUN_18081a120(uiContext,dataSource,auStack_58,allocatedMemory - lVar5);
+      if (contextData == -0x80) {
         return -0x80;
       }
-      if (lVar6 == -0x8b) {
+      if (contextData == -0x8b) {
         return -0x8b;
       }
       lVar8 = lStackX_10;
-      if (lVar6 < 0) break;
+      if (contextData < 0) break;
       compareResult = func_0x00018082f880(auStack_58);
       functionResult0 = func_0x00018082f820(auStack_58);
       if (compareResult == *resultPointer) {
         *param_6 = functionResult0;
-        lVar9 = lVar6;
+        lVar9 = contextData;
       }
       if ((targetBuffer != (int *)0x0) && (piVar7 = targetBuffer, validationResult = bufferSize, bufferSize != 0)) {
         do {
@@ -244119,7 +244119,7 @@ longlong FUN_18081a260(undefined8 uiContext,longlong *dataSource,int *targetBuff
       }
       lVar9 = -1;
 LAB_18081a3a5:
-      lStackX_10 = lVar6;
+      lStackX_10 = contextData;
       lVar5 = dataSource[2];
     }
     if (lVar8 != -1) {
@@ -251287,7 +251287,7 @@ void FUN_180824050(undefined2 *uiContext,uint *dataSource,int targetBuffer,int b
   undefined1 auVar3 [32];
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   undefined1 auVar8 [32];
   undefined1 auVar9 [32];
@@ -251312,7 +251312,7 @@ void FUN_180824050(undefined2 *uiContext,uint *dataSource,int targetBuffer,int b
   afunctionResult7 = in_ZMM0._28_36_;
   iVar5 = 0;
   if (0 < targetBuffer + -7) {
-    lVar6 = (longlong)bufferSize;
+    contextData = (longlong)bufferSize;
     uVar4 = (targetBuffer - 8U >> 3) + 1;
     eventTypeCode = (ulonglong)uVar4;
     iVar5 = uVar4 * 8;
@@ -251410,14 +251410,14 @@ void FUN_180824050(undefined2 *uiContext,uint *dataSource,int targetBuffer,int b
       afunctionResult7 = (undefined1  [36])0x0;
       *uiContext = afunctionResult._0_2_;
       dataSource = dataSource + resultPointer * 8;
-      uiContext[lVar6] = afunctionResult._2_2_;
-      uiContext[lVar6 * 2] = afunctionResult._4_2_;
-      uiContext[lVar6 * 3] = afunctionResult._6_2_;
+      uiContext[contextData] = afunctionResult._2_2_;
+      uiContext[contextData * 2] = afunctionResult._4_2_;
+      uiContext[contextData * 3] = afunctionResult._6_2_;
       afunctionResult = vpackssdw_avx(auVar8._16_16_,auVar8._16_16_);
-      uiContext[lVar6 * 4] = afunctionResult._0_2_;
-      uiContext[lVar6 * 5] = afunctionResult._2_2_;
-      uiContext[lVar6 * 6] = afunctionResult._4_2_;
-      uiContext[lVar6 * 7] = afunctionResult._6_2_;
+      uiContext[contextData * 4] = afunctionResult._0_2_;
+      uiContext[contextData * 5] = afunctionResult._2_2_;
+      uiContext[contextData * 6] = afunctionResult._4_2_;
+      uiContext[contextData * 7] = afunctionResult._6_2_;
       uiContext = uiContext + bufferSize * 8;
       eventTypeCode = eventTypeCode - 1;
     } while (eventTypeCode != 0);
@@ -254179,7 +254179,7 @@ undefined8 FUN_180825a20(undefined8 uiContext,longlong *dataSource)
   int compareResult;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   ulonglong uStackX_10;
   
@@ -254195,25 +254195,25 @@ undefined8 FUN_180825a20(undefined8 uiContext,longlong *dataSource)
   uStackX_10 = (ulonglong)semaphoreHandle;
   if (semaphoreHandle != 0) {
     allocatedMemory = *dataSource;
-    lVar6 = (ulonglong)uVar5 * 4;
+    contextData = (ulonglong)uVar5 * 4;
     if (uVar4 != 0) {
-      uVar5 = *(uint *)(lVar6 + allocatedMemory);
+      uVar5 = *(uint *)(contextData + allocatedMemory);
       uVar5 = (uVar5 >> 8 ^ uVar5 << 8) & 0xff00ff ^ uVar5 << 8;
-      *(uint *)(lVar6 + allocatedMemory) = uVar5 << 0x10 | uVar5 >> 0x10;
+      *(uint *)(contextData + allocatedMemory) = uVar5 << 0x10 | uVar5 >> 0x10;
     }
-    compareResult = (*(code *)dataSource[5])(uiContext,lVar6 + (ulonglong)uVar4 + allocatedMemory,&uStackX_10,dataSource[6]);
+    compareResult = (*(code *)dataSource[5])(uiContext,contextData + (ulonglong)uVar4 + allocatedMemory,&uStackX_10,dataSource[6]);
     if (compareResult != 0) {
       uVar4 = *(uint *)((longlong)dataSource + 0xc);
       compareResult = (int)dataSource[2];
       uVar5 = (int)uStackX_10 + 3 + compareResult + uVar4 * 4 >> 2;
       if (uVar4 < uVar5) {
-        lVar6 = (ulonglong)uVar4 * 4;
+        contextData = (ulonglong)uVar4 * 4;
         eventTypeCode = (ulonglong)(uVar5 - uVar4);
         do {
-          lVar6 = lVar6 + 4;
-          uVar4 = *(uint *)(*dataSource + -4 + lVar6);
+          contextData = contextData + 4;
+          uVar4 = *(uint *)(*dataSource + -4 + contextData);
           uVar4 = (uVar4 >> 8 ^ uVar4 << 8) & 0xff00ff ^ uVar4 << 8;
-          *(uint *)(*dataSource + -4 + lVar6) = uVar4 << 0x10 | uVar4 >> 0x10;
+          *(uint *)(*dataSource + -4 + contextData) = uVar4 << 0x10 | uVar4 >> 0x10;
           eventTypeCode = eventTypeCode - 1;
         } while (eventTypeCode != 0);
         uVar4 = *(uint *)((longlong)dataSource + 0xc);
@@ -264085,7 +264085,7 @@ void FUN_18082d566(undefined1 (*uiContext) [32],longlong dataSource,float *targe
   int unaff_EBX;
   int iVar5;
   longlong in_R10;
-  longlong lVar6;
+  longlong contextData;
   uint *in_R11;
   undefined1 auVar8 [64];
   undefined1 auVar9 [64];
@@ -264096,7 +264096,7 @@ void FUN_18082d566(undefined1 (*uiContext) [32],longlong dataSource,float *targe
   undefined1 afunctionResult0 [32];
   
   bufferSize = bufferSize - (longlong)targetBuffer;
-  lVar6 = in_R10 - (longlong)targetBuffer;
+  contextData = in_R10 - (longlong)targetBuffer;
   do {
     pfloatResult = (float *)(dataSource + -4);
     dataSource = dataSource + -4;
@@ -264106,7 +264106,7 @@ void FUN_18082d566(undefined1 (*uiContext) [32],longlong dataSource,float *targe
     *(int *)*uiContext = auVar3._0_4_;
     auVar8 = ZEXT464((uint)((float)in_RAX[-1] * *targetBuffer));
     auVar3 = vfmsub132ss_fma(ZEXT416(*in_R11),ZEXT416((uint)((float)in_RAX[-1] * *targetBuffer)),
-                             ZEXT416(*(uint *)(lVar6 + (longlong)targetBuffer)));
+                             ZEXT416(*(uint *)(contextData + (longlong)targetBuffer)));
     in_RAX = in_RAX + -1;
     targetBuffer = targetBuffer + 1;
     *(int *)(*uiContext + 4) = auVar3._0_4_;
@@ -264427,7 +264427,7 @@ void FUN_18082d9e0(undefined8 uiContext,undefined8 *dataSource,undefined4 *targe
   ulonglong uVar3;
   ulonglong uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   ulonglong uVar8;
   uint uVar9;
@@ -264487,16 +264487,16 @@ void FUN_18082d9e0(undefined8 uiContext,undefined8 *dataSource,undefined4 *targe
     uVar8 = (ulonglong)(uVar9 + functionResult3 + functionResult1 + functionResult5 + functionResult0 + functionResult4 + functionResult2 + functionResult6);
   }
   uVar5 = (uint)uVar8;
-  lVar6 = (longlong)(int)eventTypeCode;
-  if (lVar6 < (int)semaphoreHandle) {
+  contextData = (longlong)(int)eventTypeCode;
+  if (contextData < (int)semaphoreHandle) {
     do {
       uVar5 = (uint)uVar8 + 1;
-      if (*(int *)(*(longlong *)(targetBuffer + 2) + lVar6 * 4) < 1) {
+      if (*(int *)(*(longlong *)(targetBuffer + 2) + contextData * 4) < 1) {
         uVar5 = (uint)uVar8;
       }
-      lVar6 = lVar6 + 1;
+      contextData = contextData + 1;
       uVar8 = (ulonglong)uVar5;
-    } while (lVar6 < (int)semaphoreHandle);
+    } while (contextData < (int)semaphoreHandle);
   }
   *(uint *)((longlong)dataSource + 4) = semaphoreHandle;
   *(uint *)(dataSource + 1) = uVar5;
@@ -264633,7 +264633,7 @@ longlong FUN_18082e290(undefined8 uiContext,uint *dataSource,int targetBuffer,in
   undefined4 uVar3;
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   ulonglong uVar8;
   ulonglong uVar9;
@@ -264657,8 +264657,8 @@ longlong FUN_18082e290(undefined8 uiContext,uint *dataSource,int targetBuffer,in
   }
   dVar17 = (double)ldexp(dataSource[5],((int)dataSource[5] >> 0x15 & 0x3ffU) - 0x314);
   dVar18 = (double)ldexp(dataSource[6],((int)dataSource[6] >> 0x15 & 0x3ffU) - 0x314);
-  lVar6 = FUN_1807c4170(uiContext,*dataSource * targetBuffer);
-  if (lVar6 != 0) {
+  contextData = FUN_1807c4170(uiContext,*dataSource * targetBuffer);
+  if (contextData != 0) {
     if (dataSource[4] == 1) {
       eventTypeCode = *dataSource;
       uVar9 = (ulonglong)eventTypeCode;
@@ -264725,7 +264725,7 @@ longlong FUN_18082e290(undefined8 uiContext,uint *dataSource,int targetBuffer,in
                 iVar5 = validationResult + (int)uVar9 * iVar5;
                 operationResult3 = operationResult3 * operationResult2;
                 validationResult = validationResult + 1;
-                *(float *)(lVar6 + (longlong)iVar5 * 4) = floatResult6;
+                *(float *)(contextData + (longlong)iVar5 * 4) = floatResult6;
                 uVar9 = (ulonglong)*dataSource;
               } while (validationResult < (int)*dataSource);
             }
@@ -264759,7 +264759,7 @@ longlong FUN_18082e290(undefined8 uiContext,uint *dataSource,int targetBuffer,in
               }
               validationResult = validationResult * eventTypeCode + operationResult1;
               operationResult1 = operationResult1 + 1;
-              *(float *)(lVar6 + (longlong)validationResult * 4) = floatResult6;
+              *(float *)(contextData + (longlong)validationResult * 4) = floatResult6;
               eventTypeCode = *dataSource;
             } while (operationResult1 < (int)eventTypeCode);
           }
@@ -264771,7 +264771,7 @@ longlong FUN_18082e290(undefined8 uiContext,uint *dataSource,int targetBuffer,in
       } while (operationResult2 < (int)dataSource[1]);
     }
   }
-  return lVar6;
+  return contextData;
 }
 
 
@@ -265367,7 +265367,7 @@ undefined4 FUN_18082f330(undefined8 uiContext,undefined8 dataSource,int *targetB
   undefined4 uVar3;
   undefined4 uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   ulonglong uVar9;
   ulonglong functionResult0;
@@ -265508,9 +265508,9 @@ LAB_18082f55b:
       else if (targetBuffer[4] == 2) {
         operationResult = *targetBuffer * targetBuffer[1];
       }
-      lVar6 = FUN_1807c4200(uiContext,operationResult * 4);
-      *(longlong *)(targetBuffer + 10) = lVar6;
-      if (lVar6 != 0) {
+      contextData = FUN_1807c4200(uiContext,operationResult * 4);
+      *(longlong *)(targetBuffer + 10) = contextData;
+      if (contextData != 0) {
         if (0 < operationResult) {
           do {
             uVar4 = FUN_18082d7f0(dataSource,targetBuffer[7]);
@@ -267728,7 +267728,7 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
   byte bVar4;
   longlong in_RAX;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   undefined4 *puVar8;
   float *pfVar9;
@@ -267793,7 +267793,7 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
       allocatedMemory = lStack0000000000000058;
       operationResult0 = *(int *)(context + 0x30);
       if (*(int *)(context + 0x2c) == 0) {
-        lVar6 = func_0x00018081a750(*in_R10 - bufferSize);
+        contextData = func_0x00018081a750(*in_R10 - bufferSize);
         allocatedMemory = *(longlong *)(*(longlong *)(context + 8) + functionResult2) + allocatedMemory * 4;
         if (operationResult0 == 0) {
           lVar5 = *(longlong *)(*unaff_RSI + functionResult2);
@@ -267801,14 +267801,14 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
           if (3 < allocatedMemory9) {
             pfVar9 = (float *)(allocatedMemory + 4);
             allocatedMemory4 = lVar5 - allocatedMemory;
-            pfloatResult1 = (float *)(lVar6 + (allocatedMemory9 + -2) * 4);
-            allocatedMemory5 = lVar6 - allocatedMemory;
+            pfloatResult1 = (float *)(contextData + (allocatedMemory9 + -2) * 4);
+            allocatedMemory5 = contextData - allocatedMemory;
             allocatedMemory7 = (allocatedMemory9 - 4U >> 2) + 1;
             functionResult3 = allocatedMemory7 * 4;
             do {
               pfVar9[-1] = *(float *)(allocatedMemory5 + -4 + (longlong)pfVar9) *
                            *(float *)(allocatedMemory4 + -4 + (longlong)pfVar9) + pfloatResult1[1] * pfVar9[-1];
-              *pfVar9 = *(float *)(allocatedMemory5 + (longlong)pfVar9 + (lVar5 - lVar6)) *
+              *pfVar9 = *(float *)(allocatedMemory5 + (longlong)pfVar9 + (lVar5 - contextData)) *
                         *(float *)(allocatedMemory5 + (longlong)pfVar9) + *pfloatResult1 * *pfVar9;
               pfVar9[1] = *(float *)(allocatedMemory5 + 4 + (longlong)pfVar9) *
                           *(float *)(allocatedMemory4 + 4 + (longlong)pfVar9) + pfloatResult1[-1] * pfVar9[1];
@@ -267824,13 +267824,13 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
           unaff_RSI = in_stack_000000c8;
           if ((longlong)functionResult3 < allocatedMemory9) {
             pfVar9 = (float *)(allocatedMemory + functionResult3 * 4);
-            pfloatResult1 = (float *)(lVar6 + ((allocatedMemory9 - functionResult3) + -1) * 4);
+            pfloatResult1 = (float *)(contextData + ((allocatedMemory9 - functionResult3) + -1) * 4);
             allocatedMemory4 = allocatedMemory9 - functionResult3;
             do {
               fVar3 = *pfloatResult1;
-              pfVar2 = (float *)((longlong)pfVar9 + (lVar6 - allocatedMemory));
+              pfVar2 = (float *)((longlong)pfVar9 + (contextData - allocatedMemory));
               pfloatResult1 = pfloatResult1 + -1;
-              *pfVar9 = *(float *)((longlong)pfVar2 + (lVar5 - lVar6)) * *pfVar2 + fVar3 * *pfVar9;
+              *pfVar9 = *(float *)((longlong)pfVar2 + (lVar5 - contextData)) * *pfVar2 + fVar3 * *pfVar9;
               pfVar9 = pfVar9 + 1;
               allocatedMemory4 = allocatedMemory4 + -1;
             } while (allocatedMemory4 != 0);
@@ -267844,14 +267844,14 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
           if (3 < allocatedMemory9) {
             pfVar9 = (float *)(allocatedMemory + 4);
             allocatedMemory5 = allocatedMemory8 - allocatedMemory;
-            pfloatResult1 = (float *)(lVar6 + (allocatedMemory9 + -2) * 4);
-            allocatedMemory7 = lVar6 - allocatedMemory;
+            pfloatResult1 = (float *)(contextData + (allocatedMemory9 + -2) * 4);
+            allocatedMemory7 = contextData - allocatedMemory;
             allocatedMemory4 = (allocatedMemory9 - 4U >> 2) + 1;
             lVar5 = allocatedMemory4 * 4;
             do {
               pfVar9[-1] = *(float *)(allocatedMemory7 + -4 + (longlong)pfVar9) *
                            *(float *)(allocatedMemory5 + -4 + (longlong)pfVar9) + pfloatResult1[1] * pfVar9[-1];
-              *pfVar9 = *(float *)(allocatedMemory7 + (longlong)pfVar9 + (allocatedMemory8 - lVar6)) *
+              *pfVar9 = *(float *)(allocatedMemory7 + (longlong)pfVar9 + (allocatedMemory8 - contextData)) *
                         *(float *)(allocatedMemory7 + (longlong)pfVar9) + *pfloatResult1 * *pfVar9;
               pfVar9[1] = *(float *)(allocatedMemory7 + 4 + (longlong)pfVar9) *
                           *(float *)(allocatedMemory5 + 4 + (longlong)pfVar9) + pfloatResult1[-1] * pfVar9[1];
@@ -267867,24 +267867,24 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
           }
           if (lVar5 < allocatedMemory9) {
             pfVar9 = (float *)(allocatedMemory + lVar5 * 4);
-            pfloatResult1 = (float *)(lVar6 + ((allocatedMemory9 - lVar5) + -1) * 4);
+            pfloatResult1 = (float *)(contextData + ((allocatedMemory9 - lVar5) + -1) * 4);
             allocatedMemory4 = allocatedMemory9 - lVar5;
             do {
-              pfVar2 = (float *)((lVar6 - allocatedMemory) + (longlong)pfVar9);
+              pfVar2 = (float *)((contextData - allocatedMemory) + (longlong)pfVar9);
               fVar3 = *pfloatResult1;
               pfloatResult1 = pfloatResult1 + -1;
-              *pfVar9 = *(float *)((allocatedMemory8 - lVar6) + (longlong)pfVar2) * *pfVar2 + *pfVar9 * fVar3;
+              *pfVar9 = *(float *)((allocatedMemory8 - contextData) + (longlong)pfVar2) * *pfVar2 + *pfVar9 * fVar3;
               pfVar9 = pfVar9 + 1;
               allocatedMemory4 = allocatedMemory4 + -1;
               lVar5 = allocatedMemory9;
             } while (allocatedMemory4 != 0);
           }
-          lVar6 = (longlong)(iStack00000000000000d0 / 2 + (int)uStack00000000000000c0 / 2);
-          if (lVar5 < lVar6) {
-            if (3 < lVar6 - lVar5) {
+          contextData = (longlong)(iStack00000000000000d0 / 2 + (int)uStack00000000000000c0 / 2);
+          if (lVar5 < contextData) {
+            if (3 < contextData - lVar5) {
               puVar8 = (undefined4 *)(allocatedMemory + (lVar5 + 1) * 4);
               allocatedMemory4 = allocatedMemory8 - allocatedMemory;
-              allocatedMemory5 = ((lVar6 - lVar5) - 4U >> 2) + 1;
+              allocatedMemory5 = ((contextData - lVar5) - 4U >> 2) + 1;
               lVar5 = lVar5 + allocatedMemory5 * 4;
               do {
                 puVar8[-1] = *(undefined4 *)(allocatedMemory4 + -4 + (longlong)puVar8);
@@ -267895,14 +267895,14 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
                 allocatedMemory5 = allocatedMemory5 + -1;
               } while (allocatedMemory5 != 0);
             }
-            if (lVar5 < lVar6) {
+            if (lVar5 < contextData) {
               puVar8 = (undefined4 *)(allocatedMemory + lVar5 * 4);
-              lVar6 = lVar6 - lVar5;
+              contextData = contextData - lVar5;
               do {
                 *puVar8 = *(undefined4 *)((allocatedMemory8 - allocatedMemory) + (longlong)puVar8);
                 puVar8 = puVar8 + 1;
-                lVar6 = lVar6 + -1;
-              } while (lVar6 != 0);
+                contextData = contextData + -1;
+              } while (contextData != 0);
             }
           }
           unaff_R15 = 0;
@@ -267914,11 +267914,11 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
         allocatedMemory = *(longlong *)(*(longlong *)(context + 8) + functionResult2) +
                 (((longlong)((int)uStack00000000000000c0 / 2) -
                  (longlong)(iStack00000000000000d0 / 2)) + allocatedMemory) * 4;
-        lVar6 = *(longlong *)(*unaff_RSI + functionResult2);
+        contextData = *(longlong *)(*unaff_RSI + functionResult2);
         functionResult3 = unaff_R15;
         if (3 < allocatedMemory9) {
           pfVar9 = (float *)(allocatedMemory + 4);
-          allocatedMemory4 = lVar6 - allocatedMemory;
+          allocatedMemory4 = contextData - allocatedMemory;
           pfloatResult1 = (float *)(lVar5 + (allocatedMemory9 + -2) * 4);
           allocatedMemory5 = lVar5 - allocatedMemory;
           allocatedMemory7 = (allocatedMemory9 - 4U >> 2) + 1;
@@ -267926,7 +267926,7 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
           do {
             pfVar9[-1] = *(float *)(allocatedMemory5 + -4 + (longlong)pfVar9) *
                          *(float *)(allocatedMemory4 + -4 + (longlong)pfVar9) + pfloatResult1[1] * pfVar9[-1];
-            *pfVar9 = *(float *)(allocatedMemory5 + (longlong)pfVar9 + (lVar6 - lVar5)) *
+            *pfVar9 = *(float *)(allocatedMemory5 + (longlong)pfVar9 + (contextData - lVar5)) *
                       *(float *)(allocatedMemory5 + (longlong)pfVar9) + *pfloatResult1 * *pfVar9;
             pfVar9[1] = *(float *)(allocatedMemory5 + 4 + (longlong)pfVar9) *
                         *(float *)(allocatedMemory4 + 4 + (longlong)pfVar9) + pfloatResult1[-1] * pfVar9[1];
@@ -267948,7 +267948,7 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
             fVar3 = *pfloatResult1;
             pfVar2 = (float *)((longlong)pfVar9 + (lVar5 - allocatedMemory));
             pfloatResult1 = pfloatResult1 + -1;
-            *pfVar9 = *(float *)((lVar6 - lVar5) + (longlong)pfVar2) * *pfVar2 + fVar3 * *pfVar9;
+            *pfVar9 = *(float *)((contextData - lVar5) + (longlong)pfVar2) * *pfVar2 + fVar3 * *pfVar9;
             pfVar9 = pfVar9 + 1;
             allocatedMemory4 = allocatedMemory4 + -1;
           } while (allocatedMemory4 != 0);
@@ -267957,11 +267957,11 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
       else {
         lVar5 = func_0x00018081a750(in_R10[1] - bufferSize);
         allocatedMemory = *(longlong *)(*(longlong *)(context + 8) + functionResult2) + allocatedMemory * 4;
-        lVar6 = *(longlong *)(*unaff_RSI + functionResult2);
+        contextData = *(longlong *)(*unaff_RSI + functionResult2);
         functionResult3 = unaff_R15;
         if (3 < allocatedMemory8) {
           pfVar9 = (float *)(allocatedMemory + 4);
-          allocatedMemory4 = lVar6 - allocatedMemory;
+          allocatedMemory4 = contextData - allocatedMemory;
           pfloatResult1 = (float *)(lVar5 + (allocatedMemory8 + -2) * 4);
           allocatedMemory5 = lVar5 - allocatedMemory;
           allocatedMemory7 = (allocatedMemory8 - 4U >> 2) + 1;
@@ -267969,7 +267969,7 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
           do {
             pfVar9[-1] = *(float *)((longlong)pfVar9 + allocatedMemory5 + -4) *
                          *(float *)((longlong)pfVar9 + allocatedMemory4 + -4) + pfloatResult1[1] * pfVar9[-1];
-            *pfVar9 = *(float *)(allocatedMemory5 + (longlong)pfVar9 + (lVar6 - lVar5)) *
+            *pfVar9 = *(float *)(allocatedMemory5 + (longlong)pfVar9 + (contextData - lVar5)) *
                       *(float *)(allocatedMemory5 + (longlong)pfVar9) + *pfloatResult1 * *pfVar9;
             pfVar9[1] = *(float *)(allocatedMemory5 + 4 + (longlong)pfVar9) *
                         *(float *)(allocatedMemory4 + 4 + (longlong)pfVar9) + pfloatResult1[-1] * pfVar9[1];
@@ -267991,17 +267991,17 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
             pfVar2 = (float *)((lVar5 - allocatedMemory) + (longlong)pfVar9);
             fVar3 = *pfloatResult1;
             pfloatResult1 = pfloatResult1 + -1;
-            *pfVar9 = *(float *)((lVar6 - lVar5) + (longlong)pfVar2) * *pfVar2 + *pfVar9 * fVar3;
+            *pfVar9 = *(float *)((contextData - lVar5) + (longlong)pfVar2) * *pfVar2 + *pfVar9 * fVar3;
             pfVar9 = pfVar9 + 1;
             allocatedMemory4 = allocatedMemory4 + -1;
           } while (allocatedMemory4 != 0);
         }
       }
       allocatedMemory = *(longlong *)(*(longlong *)(context + 8) + functionResult2) + (longlong)(int)semaphoreHandle0 * 4;
-      lVar6 = *(longlong *)(*unaff_RSI + functionResult2) + lStack0000000000000048 * 4;
+      contextData = *(longlong *)(*unaff_RSI + functionResult2) + lStack0000000000000048 * 4;
       functionResult6 = unaff_R15;
       if (3 < lStack0000000000000048) {
-        lVar5 = lVar6 - allocatedMemory;
+        lVar5 = contextData - allocatedMemory;
         allocatedMemory4 = (lStack0000000000000048 - 4U >> 2) + 1;
         puVar8 = (undefined4 *)(allocatedMemory + 4);
         functionResult6 = allocatedMemory4 * 4;
@@ -268018,7 +268018,7 @@ undefined8 FUN_180830733(byte uiContext,undefined8 dataSource,ulonglong targetBu
         puVar8 = (undefined4 *)(allocatedMemory + functionResult6 * 4);
         lVar5 = lStack0000000000000048 - functionResult6;
         do {
-          *puVar8 = *(undefined4 *)((longlong)puVar8 + (lVar6 - allocatedMemory));
+          *puVar8 = *(undefined4 *)((longlong)puVar8 + (contextData - allocatedMemory));
           puVar8 = puVar8 + 1;
           lVar5 = lVar5 + -1;
         } while (lVar5 != 0);
@@ -268952,14 +268952,14 @@ undefined8 FUN_180831820(undefined8 uiContext,longlong *dataSource,undefined8 *t
   undefined4 uVar3;
   int iVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   uint uVar8;
   ulonglong uVar9;
   longlong allocatedMemory0;
   
   allocatedMemory0 = *(longlong *)dataSource[10];
-  lVar6 = ((longlong *)dataSource[10])[0xe];
+  contextData = ((longlong *)dataSource[10])[0xe];
   allocatedMemory = *(longlong *)(allocatedMemory0 + 0x20);
   uVar5 = FUN_180831300();
   if ((int)uVar5 != 0) {
@@ -268970,7 +268970,7 @@ undefined8 FUN_180831820(undefined8 uiContext,longlong *dataSource,undefined8 *t
   if (validationResult != 0) {
     return 0xffffff79;
   }
-  validationResult = FUN_18082d7f0(dataSource + 1,*(undefined4 *)(lVar6 + 0x18));
+  validationResult = FUN_18082d7f0(dataSource + 1,*(undefined4 *)(contextData + 0x18));
   if (validationResult == -1) {
 LAB_180831995:
     uVar5 = 0xffffff78;
@@ -268997,9 +268997,9 @@ LAB_180831995:
     dataSource[9] = targetBuffer[4];
     *(undefined4 *)((longlong)dataSource + 0x3c) = *(undefined4 *)(targetBuffer + 2);
     *(undefined4 *)((longlong)dataSource + 0x34) = *(undefined4 *)(allocatedMemory + (longlong)iVar4 * 4);
-    lVar6 = FUN_180831260(uiContext,dataSource,*(int *)(allocatedMemory0 + 4) << 3);
-    *dataSource = lVar6;
-    if (lVar6 == 0) {
+    contextData = FUN_180831260(uiContext,dataSource,*(int *)(allocatedMemory0 + 4) << 3);
+    *dataSource = contextData;
+    if (contextData == 0) {
 LAB_18083198e:
       uVar5 = 0xffffff75;
     }
@@ -269471,7 +269471,7 @@ void FUN_180831de0(float *uiContext,int dataSource,longlong targetBuffer,longlon
   short sVar3;
   short sVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   undefined4 uVar8;
   ulonglong uVar9;
@@ -269489,7 +269489,7 @@ void FUN_180831de0(float *uiContext,int dataSource,longlong targetBuffer,longlon
   afunctionResult1._0_8_ = *bufferSize;
   lVar5 = *resultPointer;
   allocatedMemory = lVar5 * 4;
-  lVar6 = lVar5 * 3;
+  contextData = lVar5 * 3;
   afunctionResult3._4_4_ = uVar8;
   afunctionResult3._0_4_ = uVar8;
   afunctionResult3._8_4_ = uVar8;
@@ -269500,9 +269500,9 @@ void FUN_180831de0(float *uiContext,int dataSource,longlong targetBuffer,longlon
   afunctionResult4._12_4_ = (int)((ulonglong)lVar5 >> 0x20);
   afunctionResult5._8_8_ = afunctionResult4._8_8_ + afunctionResult3._8_8_;
   afunctionResult5._0_8_ = afunctionResult1._0_8_;
-  afunctionResult6._0_8_ = lVar6 << 0x20;
-  afunctionResult6._8_4_ = (int)lVar6;
-  afunctionResult6._12_4_ = (int)((ulonglong)lVar6 >> 0x20);
+  afunctionResult6._0_8_ = contextData << 0x20;
+  afunctionResult6._8_4_ = (int)contextData;
+  afunctionResult6._12_4_ = (int)((ulonglong)contextData >> 0x20);
   afunctionResult7._0_8_ = lVar5 * 2 + afunctionResult1._0_8_;
   afunctionResult7._8_8_ = afunctionResult6._8_8_ + afunctionResult3._8_8_;
   uVar8 = (undefined4)allocatedMemory;
@@ -272057,7 +272057,7 @@ void FUN_180834570(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   longlong stringCompareIndex;
   float fVar4;
   float fVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   float fVar8;
   float fVar9;
@@ -272113,15 +272113,15 @@ void FUN_180834570(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   validationResult2 = (int)dataSource >> 2;
   if (validationResult2 != 0) {
     stringCompareIndex0 = *resultPointer;
-    lVar6 = *(longlong *)bufferSize;
+    contextData = *(longlong *)bufferSize;
     stringCompareIndex = stringCompareIndex0 * 4;
     validationResult9 = (int)stringCompareIndex0;
     operationResult9 = validationResult9 * 4;
-    semaphoreHandle0 = (uint)lVar6;
-    asemaphoreHandle8._8_8_ = stringCompareIndex0 + lVar6;
-    asemaphoreHandle8._0_8_ = lVar6;
-    auVar35._0_8_ = stringCompareIndex0 * 2 + lVar6;
-    auVar35._8_8_ = stringCompareIndex0 * 3 + lVar6;
+    semaphoreHandle0 = (uint)contextData;
+    asemaphoreHandle8._8_8_ = stringCompareIndex0 + contextData;
+    asemaphoreHandle8._0_8_ = contextData;
+    auVar35._0_8_ = stringCompareIndex0 * 2 + contextData;
+    auVar35._8_8_ = stringCompareIndex0 * 3 + contextData;
     psemaphoreHandle1 = (ulonglong *)auStack_c8;
     uVar32 = validationResult9 + semaphoreHandle0;
     uVar33 = validationResult9 * 2 + semaphoreHandle0;
@@ -272591,7 +272591,7 @@ void FUN_180834fc0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   float fVar63;
   float fVar64;
   undefined1 auVar65 [16];
-  longlong lVar66;
+  longlong contextData6;
   undefined1 auVar67 [16];
   int iVar68;
   undefined1 auStack_c8 [8];
@@ -272690,19 +272690,19 @@ void FUN_180834fc0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   }
   operationResult8 = (int)dataSource >> 2;
   if (operationResult8 != 0) {
-    lVar66 = *resultPointer;
+    contextData6 = *resultPointer;
     componentIndex = *(longlong *)bufferSize;
-    allocatedMemory = lVar66 * 4;
-    iVar68 = (int)lVar66;
+    allocatedMemory = contextData6 * 4;
+    iVar68 = (int)contextData6;
     operationResult5 = iVar68 * 4;
     functionResult9 = (uint)componentIndex;
     uVar56 = iVar68 + functionResult9;
     uVar57 = iVar68 * 2 + functionResult9;
     uVar58 = iVar68 * 3 + functionResult9;
-    auVar65._8_8_ = lVar66 + componentIndex;
+    auVar65._8_8_ = contextData6 + componentIndex;
     auVar65._0_8_ = componentIndex;
-    auVar67._0_8_ = lVar66 * 2 + componentIndex;
-    auVar67._8_8_ = lVar66 * 3 + componentIndex;
+    auVar67._0_8_ = contextData6 * 2 + componentIndex;
+    auVar67._8_8_ = contextData6 * 3 + componentIndex;
     pfunctionResult7 = (ulonglong *)auStack_c8;
     do {
       iVar68 = auVar67._12_4_;
@@ -272827,12 +272827,12 @@ void FUN_180834fc0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       afunctionResult0._4_8_ = auVar41._8_8_;
       afunctionResult0._2_2_ = asemaphoreHandle1._2_2_;
       afunctionResult0._0_2_ = asemaphoreHandle1._2_2_;
-      lVar66 = auVar65._8_8_;
+      contextData6 = auVar65._8_8_;
       auVar65._0_8_ = auVar65._0_8_ + allocatedMemory;
-      auVar65._8_8_ = lVar66 + allocatedMemory;
-      lVar66 = auVar67._8_8_;
+      auVar65._8_8_ = contextData6 + allocatedMemory;
+      contextData6 = auVar67._8_8_;
       auVar67._0_8_ = auVar67._0_8_ + allocatedMemory;
-      auVar67._8_8_ = lVar66 + allocatedMemory;
+      auVar67._8_8_ = contextData6 + allocatedMemory;
       functionResult9 = functionResult9 + operationResult5;
       uVar56 = uVar56 + operationResult5;
       uVar57 = uVar57 + operationResult5;
@@ -273170,7 +273170,7 @@ void FUN_180835800(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   short sVar3;
   short sVar4;
   short sVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   undefined1 auVar8 [12];
   undefined1 auVar9 [12];
@@ -273238,15 +273238,15 @@ void FUN_180835800(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   operationResult5 = (int)dataSource >> 2;
   if (operationResult5 != 0) {
     stringCompareIndex7 = *resultPointer;
-    lVar6 = *(longlong *)bufferSize;
+    contextData = *(longlong *)bufferSize;
     allocatedMemory = stringCompareIndex7 * 4;
     compareResult6 = (int)stringCompareIndex7;
     operationResult2 = compareResult6 * 4;
-    functionResult3 = (uint)lVar6;
-    auVar35._8_8_ = stringCompareIndex7 + lVar6;
-    auVar35._0_8_ = lVar6;
-    auVar40._0_8_ = stringCompareIndex7 * 2 + lVar6;
-    auVar40._8_8_ = stringCompareIndex7 * 3 + lVar6;
+    functionResult3 = (uint)contextData;
+    auVar35._8_8_ = stringCompareIndex7 + contextData;
+    auVar35._0_8_ = contextData;
+    auVar40._0_8_ = stringCompareIndex7 * 2 + contextData;
+    auVar40._8_8_ = stringCompareIndex7 * 3 + contextData;
     pfunctionResult4 = (ulonglong *)auStack_c8;
     uVar31 = compareResult6 + functionResult3;
     uVar32 = compareResult6 * 2 + functionResult3;
@@ -273403,7 +273403,7 @@ void FUN_180835d30(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   undefined1 auVar3 [16];
   undefined1 auVar4 [16];
   short sVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   undefined1 auVar8 [12];
   undefined1 auVar9 [12];
@@ -273463,15 +273463,15 @@ void FUN_180835d30(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   operationResult7 = (int)dataSource >> 2;
   if (operationResult7 != 0) {
     stringCompareIndex4 = *resultPointer;
-    lVar6 = *(longlong *)bufferSize;
+    contextData = *(longlong *)bufferSize;
     allocatedMemory = stringCompareIndex4 * 4;
     compareResult3 = (int)stringCompareIndex4;
     operationResult4 = compareResult3 * 4;
-    functionResult5 = (uint)lVar6;
-    auVar32._8_8_ = stringCompareIndex4 + lVar6;
-    auVar32._0_8_ = lVar6;
-    auVar39._0_8_ = stringCompareIndex4 * 2 + lVar6;
-    auVar39._8_8_ = stringCompareIndex4 * 3 + lVar6;
+    functionResult5 = (uint)contextData;
+    auVar32._8_8_ = stringCompareIndex4 + contextData;
+    auVar32._0_8_ = contextData;
+    auVar39._0_8_ = stringCompareIndex4 * 2 + contextData;
+    auVar39._8_8_ = stringCompareIndex4 * 3 + contextData;
     pfunctionResult6 = (ulonglong *)auStack_e8;
     uVar36 = compareResult3 + functionResult5;
     uVar37 = compareResult3 * 2 + functionResult5;
@@ -277688,7 +277688,7 @@ undefined8 FUN_180839883(void)
   float fVar4;
   float fVar5;
   int bufferSize;
-  longlong lVar6;
+  longlong contextData;
   float *context;
   int unaff_EBP;
   uint unaff_R15D;
@@ -277710,7 +277710,7 @@ undefined8 FUN_180839883(void)
   float unaff_XMM8_Dc;
   float unaff_XMM8_Dd;
   
-  lVar6 = (longlong)((int)(bufferSize + (bufferSize >> 0x1f & 3U)) >> 2);
+  contextData = (longlong)((int)(bufferSize + (bufferSize >> 0x1f & 3U)) >> 2);
   do {
     FUN_180838f80();
     aeventTypeCode = ZEXT416(unaff_R15D);
@@ -277722,11 +277722,11 @@ undefined8 FUN_180839883(void)
                    context[2];
     context[3] = (float)(int)(extraout_XMM0_Dd & unaff_XMM6_Dd) * unaff_XMM8_Dd + unaff_XMM7_Dd +
                    context[3];
-    pfloatResult = context + lVar6 * 4;
+    pfloatResult = context + contextData * 4;
     fVar3 = pfloatResult[1];
     fVar4 = pfloatResult[2];
     fVar5 = pfloatResult[3];
-    pfVar2 = context + lVar6 * 4;
+    pfVar2 = context + contextData * 4;
     *pfVar2 = (float)(int)((int)extraout_XMM0_Da >> aeventTypeCode & unaff_XMM6_Da) * unaff_XMM8_Da +
               unaff_XMM7_Da + *pfloatResult;
     pfVar2[1] = (float)(int)((int)extraout_XMM0_Db >> aeventTypeCode & unaff_XMM6_Db) * unaff_XMM8_Db +
@@ -277736,11 +277736,11 @@ undefined8 FUN_180839883(void)
     pfVar2[3] = (float)(int)((int)extraout_XMM0_Dd >> aeventTypeCode & unaff_XMM6_Dd) * unaff_XMM8_Dd +
                 unaff_XMM7_Dd + fVar5;
     aeventTypeCode = ZEXT416(unaff_R15D * 2);
-    pfloatResult = context + lVar6 * 8;
+    pfloatResult = context + contextData * 8;
     fVar3 = pfloatResult[1];
     fVar4 = pfloatResult[2];
     fVar5 = pfloatResult[3];
-    pfVar2 = context + lVar6 * 8;
+    pfVar2 = context + contextData * 8;
     *pfVar2 = (float)(int)((int)extraout_XMM0_Da >> aeventTypeCode & unaff_XMM6_Da) * unaff_XMM8_Da +
               unaff_XMM7_Da + *pfloatResult;
     pfVar2[1] = (float)(int)((int)extraout_XMM0_Db >> aeventTypeCode & unaff_XMM6_Db) * unaff_XMM8_Db +
@@ -277750,11 +277750,11 @@ undefined8 FUN_180839883(void)
     pfVar2[3] = (float)(int)((int)extraout_XMM0_Dd >> aeventTypeCode & unaff_XMM6_Dd) * unaff_XMM8_Dd +
                 unaff_XMM7_Dd + fVar5;
     aeventTypeCode = ZEXT416(unaff_R15D * 3);
-    pfloatResult = context + lVar6 * 0xc;
+    pfloatResult = context + contextData * 0xc;
     fVar3 = pfloatResult[1];
     fVar4 = pfloatResult[2];
     fVar5 = pfloatResult[3];
-    pfVar2 = context + lVar6 * 0xc;
+    pfVar2 = context + contextData * 0xc;
     *pfVar2 = (float)(int)((int)extraout_XMM0_Da >> aeventTypeCode & unaff_XMM6_Da) * unaff_XMM8_Da +
               unaff_XMM7_Da + *pfloatResult;
     pfVar2[1] = (float)(int)((int)extraout_XMM0_Db >> aeventTypeCode & unaff_XMM6_Db) * unaff_XMM8_Db +
@@ -278540,19 +278540,19 @@ undefined8 FUN_18083a016(void)
   longlong lVar4;
   int unaff_ESI;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int in_R10D;
   longlong in_R11;
   int unaff_R12D;
   longlong unaff_R14;
   
   stringCompareIndex = (longlong)unaff_R12D;
-  lVar6 = (longlong)in_R10D;
-  if (stringCompareIndex < lVar6) {
-    if (3 < lVar6 - stringCompareIndex) {
+  contextData = (longlong)in_R10D;
+  if (stringCompareIndex < contextData) {
+    if (3 < contextData - stringCompareIndex) {
       lVar5 = (longlong)unaff_ESI;
       allocatedMemory = stringCompareIndex * 4;
-      lVar4 = ((lVar6 - stringCompareIndex) - 4U >> 2) + 1;
+      lVar4 = ((contextData - stringCompareIndex) - 4U >> 2) + 1;
       stringCompareIndex = stringCompareIndex + lVar4 * 4;
       pfVar2 = (float *)(unaff_R14 + 8 + allocatedMemory);
       do {
@@ -278564,12 +278564,12 @@ undefined8 FUN_18083a016(void)
         pfVar2 = pfVar2 + 4;
       } while (lVar4 != 0);
     }
-    if (stringCompareIndex < lVar6) {
+    if (stringCompareIndex < contextData) {
       do {
         *(float *)(unaff_R14 + stringCompareIndex * 4) =
              *(float *)(unaff_R14 + stringCompareIndex * 4) * *(float *)(in_R11 + (longlong)unaff_ESI * 4);
         stringCompareIndex = stringCompareIndex + 1;
-      } while (stringCompareIndex < lVar6);
+      } while (stringCompareIndex < contextData);
     }
   }
   return 1;
@@ -279576,18 +279576,18 @@ undefined8 FUN_18083ac31(undefined8 uiContext,int dataSource)
   longlong stringCompareIndex;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int in_R10D;
   longlong in_R11;
   longlong unaff_R14;
   
   stringCompareIndex = (longlong)dataSource;
-  lVar6 = (longlong)bufferSize;
-  if (stringCompareIndex < lVar6) {
-    if (3 < lVar6 - stringCompareIndex) {
+  contextData = (longlong)bufferSize;
+  if (stringCompareIndex < contextData) {
+    if (3 < contextData - stringCompareIndex) {
       lVar5 = (longlong)in_R10D;
       allocatedMemory = stringCompareIndex * 4;
-      lVar4 = ((lVar6 - stringCompareIndex) - 4U >> 2) + 1;
+      lVar4 = ((contextData - stringCompareIndex) - 4U >> 2) + 1;
       stringCompareIndex = stringCompareIndex + lVar4 * 4;
       pfVar2 = (float *)(unaff_R14 + 8 + allocatedMemory);
       do {
@@ -279599,12 +279599,12 @@ undefined8 FUN_18083ac31(undefined8 uiContext,int dataSource)
         pfVar2 = pfVar2 + 4;
       } while (lVar4 != 0);
     }
-    if (stringCompareIndex < lVar6) {
+    if (stringCompareIndex < contextData) {
       do {
         *(float *)(unaff_R14 + stringCompareIndex * 4) =
              *(float *)(in_R11 + (longlong)in_R10D * 4) * *(float *)(unaff_R14 + stringCompareIndex * 4);
         stringCompareIndex = stringCompareIndex + 1;
-      } while (stringCompareIndex < lVar6);
+      } while (stringCompareIndex < contextData);
     }
   }
   return 1;
@@ -280970,7 +280970,7 @@ void FUN_18083bb80(undefined8 uiContext,undefined8 dataSource,int *targetBuffer)
   longlong stringCompareIndex;
   int iVar4;
   int *piVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   undefined1 (*pauVar8) [16];
   int *piVar9;
@@ -281079,9 +281079,9 @@ void FUN_18083bb80(undefined8 uiContext,undefined8 dataSource,int *targetBuffer)
     }
     lVar7 = (longlong)(int)functionResult5;
     for (allocatedMemory1 = (longlong)operationResult6; allocatedMemory1 < lVar7; allocatedMemory1 = allocatedMemory1 + 1) {
-      lVar6 = (longlong)operationResult6;
+      contextData = (longlong)operationResult6;
       operationResult6 = operationResult6 + 1;
-      alStack_258[allocatedMemory1] = (longlong)(targetBuffer + lVar6 + 0xd1);
+      alStack_258[allocatedMemory1] = (longlong)(targetBuffer + contextData + 0xd1);
     }
     qsort(alStack_258,lVar7,8,&UNK_18083c4f0);
     if (0 < lVar7) {
@@ -281096,9 +281096,9 @@ void FUN_18083bb80(undefined8 uiContext,undefined8 dataSource,int *targetBuffer)
     if (0 < lVar7) {
       allocatedMemory1 = 0;
       do {
-        lVar6 = allocatedMemory1 * 4;
+        contextData = allocatedMemory1 * 4;
         allocatedMemory1 = allocatedMemory1 + 1;
-        *(int *)(stringCompareIndex + 0x104 + (longlong)*(int *)(stringCompareIndex + lVar6) * 4) = operationResult6;
+        *(int *)(stringCompareIndex + 0x104 + (longlong)*(int *)(stringCompareIndex + contextData) * 4) = operationResult6;
         operationResult6 = operationResult6 + 1;
       } while (allocatedMemory1 < lVar7);
     }
@@ -281168,7 +281168,7 @@ void FUN_18083bbcf(void)
   longlong in_RAX;
   int iVar4;
   int *piVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   undefined1 (*pauVar8) [16];
   int *piVar9;
@@ -281273,9 +281273,9 @@ void FUN_18083bbcf(void)
   }
   lVar7 = (longlong)(int)functionResult4;
   for (allocatedMemory0 = (longlong)operationResult5; allocatedMemory0 < lVar7; allocatedMemory0 = allocatedMemory0 + 1) {
-    lVar6 = (longlong)operationResult5;
+    contextData = (longlong)operationResult5;
     operationResult5 = operationResult5 + 1;
-    (&lStackX_20)[allocatedMemory0] = (longlong)(context + lVar6 + 0xd1);
+    (&lStackX_20)[allocatedMemory0] = (longlong)(context + contextData + 0xd1);
   }
   qsort(&lStackX_20,lVar7,8,&UNK_18083c4f0);
   if (0 < lVar7) {
@@ -281290,9 +281290,9 @@ void FUN_18083bbcf(void)
   if (0 < lVar7) {
     allocatedMemory0 = 0;
     do {
-      lVar6 = allocatedMemory0 * 4;
+      contextData = allocatedMemory0 * 4;
       allocatedMemory0 = allocatedMemory0 + 1;
-      *(int *)(unaff_RSI + 0x104 + (longlong)*(int *)(unaff_RSI + lVar6) * 4) = operationResult5;
+      *(int *)(unaff_RSI + 0x104 + (longlong)*(int *)(unaff_RSI + contextData) * 4) = operationResult5;
       operationResult5 = operationResult5 + 1;
     } while (allocatedMemory0 < lVar7);
   }
@@ -281570,7 +281570,7 @@ undefined8 FUN_18083c2c0(longlong uiContext,longlong dataSource,int *targetBuffe
   float *pfVar3;
   uint uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   longlong lVar8;
   int iVar9;
@@ -281641,18 +281641,18 @@ undefined8 FUN_18083c2c0(longlong uiContext,longlong dataSource,int *targetBuffe
   if (lVar8 < allocatedMemory4) {
     if (3 < allocatedMemory4 - lVar8) {
       floatResult = *(float *)(&UIDataTableD + (longlong)operationResult2 * 4);
-      lVar6 = ((allocatedMemory4 - lVar8) - 4U >> 2) + 1;
+      contextData = ((allocatedMemory4 - lVar8) - 4U >> 2) + 1;
       lVar5 = lVar8 * 4;
-      lVar8 = lVar8 + lVar6 * 4;
+      lVar8 = lVar8 + contextData * 4;
       pfVar3 = (float *)(bufferSize + 8 + lVar5);
       do {
         pfVar3[-2] = pfVar3[-2] * floatResult;
         pfVar3[-1] = pfVar3[-1] * floatResult;
         *pfVar3 = *pfVar3 * floatResult;
         pfVar3[1] = pfVar3[1] * floatResult;
-        lVar6 = lVar6 + -1;
+        contextData = contextData + -1;
         pfVar3 = pfVar3 + 4;
-      } while (lVar6 != 0);
+      } while (contextData != 0);
     }
     if (lVar8 < allocatedMemory4) {
       floatResult = *(float *)(&UIDataTableD + (longlong)operationResult2 * 4);
@@ -281875,7 +281875,7 @@ undefined8 FUN_18083c39b(void)
   float *pfVar3;
   uint uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong unaff_RSI;
   int allocationFlags;
   int in_R9D;
@@ -281884,16 +281884,16 @@ undefined8 FUN_18083c39b(void)
   
   iVar7 = (int)unaff_R15;
   if ((allocationFlags < iVar7) && (0xf < (uint)(iVar7 - allocationFlags))) {
-    lVar6 = (longlong)allocationFlags;
+    contextData = (longlong)allocationFlags;
     fVar2 = *(float *)(&UIDataTableD + (longlong)in_R9D * 4);
     uVar4 = iVar7 - allocationFlags & 0x8000000f;
     if ((int)uVar4 < 0) {
       uVar4 = (uVar4 - 1 | 0xfffffff0) + 1;
     }
-    pfVar3 = (float *)(unaff_RSI + 0x20 + lVar6 * 4);
+    pfVar3 = (float *)(unaff_RSI + 0x20 + contextData * 4);
     do {
       allocationFlags = allocationFlags + 0x10;
-      lVar6 = lVar6 + 0x10;
+      contextData = contextData + 0x10;
       pfVar3[-8] = pfVar3[-8] * fVar2;
       pfVar3[-7] = pfVar3[-7] * fVar2;
       pfVar3[-6] = pfVar3[-6] * fVar2;
@@ -281911,15 +281911,15 @@ undefined8 FUN_18083c39b(void)
       pfVar3[6] = pfVar3[6] * fVar2;
       pfVar3[7] = pfVar3[7] * fVar2;
       pfVar3 = pfVar3 + 0x10;
-    } while (lVar6 < (int)(iVar7 - uVar4));
+    } while (contextData < (int)(iVar7 - uVar4));
   }
-  lVar6 = (longlong)allocationFlags;
-  if (lVar6 < unaff_R15) {
-    if (3 < unaff_R15 - lVar6) {
+  contextData = (longlong)allocationFlags;
+  if (contextData < unaff_R15) {
+    if (3 < unaff_R15 - contextData) {
       fVar2 = *(float *)(&UIDataTableD + (longlong)in_R9D * 4);
-      lVar5 = ((unaff_R15 - lVar6) - 4U >> 2) + 1;
-      allocatedMemory = lVar6 * 4;
-      lVar6 = lVar6 + lVar5 * 4;
+      lVar5 = ((unaff_R15 - contextData) - 4U >> 2) + 1;
+      allocatedMemory = contextData * 4;
+      contextData = contextData + lVar5 * 4;
       pfVar3 = (float *)(unaff_RSI + 8 + allocatedMemory);
       do {
         pfVar3[-2] = pfVar3[-2] * fVar2;
@@ -281930,12 +281930,12 @@ undefined8 FUN_18083c39b(void)
         pfVar3 = pfVar3 + 4;
       } while (lVar5 != 0);
     }
-    if (lVar6 < unaff_R15) {
+    if (contextData < unaff_R15) {
       fVar2 = *(float *)(&UIDataTableD + (longlong)in_R9D * 4);
       do {
-        *(float *)(unaff_RSI + lVar6 * 4) = fVar2 * *(float *)(unaff_RSI + lVar6 * 4);
-        lVar6 = lVar6 + 1;
-      } while (lVar6 < unaff_R15);
+        *(float *)(unaff_RSI + contextData * 4) = fVar2 * *(float *)(unaff_RSI + contextData * 4);
+        contextData = contextData + 1;
+      } while (contextData < unaff_R15);
     }
   }
   return 1;
@@ -282064,7 +282064,7 @@ void FUN_18083c500(int uiContext,int dataSource,int targetBuffer,uint bufferSize
   int compareResult;
   longlong lVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   uint uVar8;
   int iVar9;
@@ -282126,25 +282126,25 @@ void FUN_18083c500(int uiContext,int dataSource,int targetBuffer,uint bufferSize
         }
         compareResult = compareResult + validationResult3;
         pfloatResult6[-2] = *(float *)(&UIDataTableD + (lVar4 + functionResult1) * 4) * pfloatResult6[-2];
-        lVar6 = allocatedMemory4;
+        contextData = allocatedMemory4;
         operationResult0 = operationResult;
         if (iVar9 <= compareResult) {
           compareResult = compareResult - iVar9;
-          lVar6 = componentIndex1;
+          contextData = componentIndex1;
           operationResult0 = operationResult3;
         }
-        lVar6 = lVar6 + lVar4 + functionResult1;
+        contextData = contextData + lVar4 + functionResult1;
         compareResult = compareResult + validationResult3;
         lVar4 = componentIndex1;
         if (compareResult < iVar9) {
           lVar4 = allocatedMemory4;
         }
-        lVar4 = lVar4 + lVar6;
+        lVar4 = lVar4 + contextData;
         iVar5 = operationResult3;
         if (compareResult < iVar9) {
           iVar5 = operationResult;
         }
-        pfloatResult6[-1] = *(float *)(&UIDataTableD + lVar6 * 4) * pfloatResult6[-1];
+        pfloatResult6[-1] = *(float *)(&UIDataTableD + contextData * 4) * pfloatResult6[-1];
         operationResult5 = compareResult - iVar9;
         if (compareResult < iVar9) {
           operationResult5 = compareResult;
@@ -282202,7 +282202,7 @@ void FUN_18083c5c3(longlong uiContext,longlong dataSource,int targetBuffer)
   int unaff_ESI;
   int iVar5;
   longlong unaff_RDI;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   longlong in_R10;
   longlong lVar8;
@@ -282220,9 +282220,9 @@ void FUN_18083c5c3(longlong uiContext,longlong dataSource,int targetBuffer)
   lVar8 = in_R10 + lVar9 * 4;
   do {
     targetBuffer = targetBuffer + unaff_R15D;
-    lVar6 = allocatedMemory0;
+    contextData = allocatedMemory0;
     if (targetBuffer < unaff_EBX) {
-      lVar6 = unaff_RDI;
+      contextData = unaff_RDI;
     }
     iVar5 = (int)unaff_RDI;
     operationResult1 = unaff_ESI;
@@ -282234,7 +282234,7 @@ void FUN_18083c5c3(longlong uiContext,longlong dataSource,int targetBuffer)
       operationResult = targetBuffer;
     }
     operationResult = operationResult + unaff_R15D;
-    pfVar7[-2] = *(float *)(&UIDataTableD + (lVar6 + dataSource) * 4) * pfVar7[-2];
+    pfVar7[-2] = *(float *)(&UIDataTableD + (contextData + dataSource) * 4) * pfVar7[-2];
     stringCompareIndex = unaff_RDI;
     iVar4 = iVar5;
     if (unaff_EBX <= operationResult) {
@@ -282242,7 +282242,7 @@ void FUN_18083c5c3(longlong uiContext,longlong dataSource,int targetBuffer)
       stringCompareIndex = allocatedMemory0;
       iVar4 = unaff_ESI;
     }
-    stringCompareIndex = stringCompareIndex + lVar6 + dataSource;
+    stringCompareIndex = stringCompareIndex + contextData + dataSource;
     operationResult = operationResult + unaff_R15D;
     dataSource = allocatedMemory0;
     if (operationResult < unaff_EBX) {
@@ -282563,7 +282563,7 @@ longlong * FUN_18083ca60(undefined8 uiContext,longlong *dataSource,longlong targ
   uint uVar3;
   uint uVar4;
   int iVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong lVar7;
   undefined8 uVar8;
   longlong lVar9;
@@ -282579,22 +282579,22 @@ longlong * FUN_18083ca60(undefined8 uiContext,longlong *dataSource,longlong targ
   int operationResult9;
   longlong componentIndex0;
   
-  plVar6 = (longlong *)FUN_1807c4170(uiContext,1,0x48);
+  pcontextData = (longlong *)FUN_1807c4170(uiContext,1,0x48);
   functionResult8 = 0;
   lVar9 = *(longlong *)(*dataSource + 0x20);
-  if (plVar6 != (longlong *)0x0) {
-    *plVar6 = targetBuffer;
+  if (pcontextData != (longlong *)0x0) {
+    *pcontextData = targetBuffer;
     functionResult = *(undefined4 *)(targetBuffer + 0xc);
-    *(undefined4 *)(plVar6 + 1) = functionResult;
-    plVar6[2] = *(longlong *)(lVar9 + 0x1320);
+    *(undefined4 *)(pcontextData + 1) = functionResult;
+    pcontextData[2] = *(longlong *)(lVar9 + 0x1320);
     pfunctionResult3 = (uint *)(*(longlong *)(lVar9 + 0x1320) + (longlong)*(int *)(targetBuffer + 0x10) * 0x48);
-    plVar6[3] = (longlong)pfunctionResult3;
+    pcontextData[3] = (longlong)pfunctionResult3;
     semaphoreHandle = *pfunctionResult3;
     lVar7 = FUN_1807c4170(uiContext,functionResult,8);
-    plVar6[4] = lVar7;
+    pcontextData[4] = lVar7;
     if (lVar7 != 0) {
       operationResult7 = 0;
-      if (0 < (int)plVar6[1]) {
+      if (0 < (int)pcontextData[1]) {
         componentIndex0 = 0;
         lVar7 = 0;
         pfunctionResult3 = (uint *)(targetBuffer + 0x14);
@@ -282614,8 +282614,8 @@ longlong * FUN_18083ca60(undefined8 uiContext,longlong *dataSource,longlong targ
               }
               functionResult8 = uVar3;
               uVar8 = FUN_1807c4170(uiContext,functionResult1,8);
-              *(undefined8 *)(lVar7 + plVar6[4]) = uVar8;
-              if (*(longlong *)(lVar7 + plVar6[4]) == 0) {
+              *(undefined8 *)(lVar7 + pcontextData[4]) = uVar8;
+              if (*(longlong *)(lVar7 + pcontextData[4]) == 0) {
                 return (longlong *)0x0;
               }
               if (0 < (int)functionResult1) {
@@ -282627,7 +282627,7 @@ longlong * FUN_18083ca60(undefined8 uiContext,longlong *dataSource,longlong targ
                     operationResult9 = *poperationResult6;
                     componentIndex0 = componentIndex0 + 1;
                     poperationResult6 = poperationResult6 + 1;
-                    *(longlong *)(allocatedMemory4 + *(longlong *)(lVar7 + plVar6[4])) =
+                    *(longlong *)(allocatedMemory4 + *(longlong *)(lVar7 + pcontextData[4])) =
                          *(longlong *)(lVar9 + 0x1320) + (longlong)operationResult9 * 0x48;
                   }
                   uVar4 = uVar4 << 1 | (uint)((int)uVar4 < 0);
@@ -282640,50 +282640,50 @@ longlong * FUN_18083ca60(undefined8 uiContext,longlong *dataSource,longlong targ
           operationResult7 = operationResult7 + 1;
           pfunctionResult3 = pfunctionResult3 + 1;
           lVar7 = lVar7 + 8;
-        } while (operationResult7 < (int)plVar6[1]);
+        } while (operationResult7 < (int)pcontextData[1]);
       }
       operationResult7 = 1;
-      *(undefined4 *)(plVar6 + 5) = 1;
+      *(undefined4 *)(pcontextData + 5) = 1;
       if (0 < (int)semaphoreHandle) {
         functionResult5 = (ulonglong)semaphoreHandle;
         do {
-          operationResult7 = operationResult7 * (int)plVar6[1];
+          operationResult7 = operationResult7 * (int)pcontextData[1];
           functionResult5 = functionResult5 - 1;
         } while (functionResult5 != 0);
-        *(int *)(plVar6 + 5) = operationResult7;
+        *(int *)(pcontextData + 5) = operationResult7;
       }
-      *(uint *)((longlong)plVar6 + 0xc) = functionResult8;
+      *(uint *)((longlong)pcontextData + 0xc) = functionResult8;
       lVar9 = FUN_1807c4200(uiContext,operationResult7 * 8);
-      plVar6[6] = lVar9;
+      pcontextData[6] = lVar9;
       if (lVar9 != 0) {
-        operationResult7 = (int)plVar6[5];
+        operationResult7 = (int)pcontextData[5];
         operationResult9 = 0;
         if (operationResult7 < 1) {
-          return plVar6;
+          return pcontextData;
         }
         lVar9 = 0;
         while( true ) {
-          operationResult7 = operationResult7 / (int)plVar6[1];
+          operationResult7 = operationResult7 / (int)pcontextData[1];
           uVar8 = FUN_1807c4200(uiContext,semaphoreHandle * 4);
-          *(undefined8 *)(lVar9 + plVar6[6]) = uVar8;
-          if (*(longlong *)(lVar9 + plVar6[6]) == 0) break;
+          *(undefined8 *)(lVar9 + pcontextData[6]) = uVar8;
+          if (*(longlong *)(lVar9 + pcontextData[6]) == 0) break;
           lVar7 = 0;
           operationResult2 = operationResult9;
           if (0 < (longlong)(int)semaphoreHandle) {
             do {
               iVar5 = operationResult2 / operationResult7;
               operationResult0 = iVar5 * operationResult7;
-              operationResult7 = operationResult7 / (int)plVar6[1];
+              operationResult7 = operationResult7 / (int)pcontextData[1];
               operationResult2 = operationResult2 - operationResult0;
-              *(int *)(*(longlong *)(lVar9 + plVar6[6]) + lVar7 * 4) = iVar5;
+              *(int *)(*(longlong *)(lVar9 + pcontextData[6]) + lVar7 * 4) = iVar5;
               lVar7 = lVar7 + 1;
             } while (lVar7 < (int)semaphoreHandle);
           }
-          operationResult7 = (int)plVar6[5];
+          operationResult7 = (int)pcontextData[5];
           operationResult9 = operationResult9 + 1;
           lVar9 = lVar9 + 8;
           if (operationResult7 <= operationResult9) {
-            return plVar6;
+            return pcontextData;
           }
         }
       }
@@ -282990,7 +282990,7 @@ FUN_18083cdf0(undefined8 uiContext,longlong dataSource,undefined8 *targetBuffer,
   int *pcompareResult;
   int iVar4;
   int iVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong lVar7;
   uint uVar8;
   longlong lVar9;
@@ -283010,8 +283010,8 @@ FUN_18083cdf0(undefined8 uiContext,longlong dataSource,undefined8 *targetBuffer,
   }
   if (0 < operationResult3 - *pcompareResult) {
     operationResult3 = (operationResult3 - *pcompareResult) / operationResult;
-    plVar6 = (longlong *)FUN_180831260(uiContext,dataSource,(validationResult + -1 + operationResult3) / validationResult << 3);
-    if (plVar6 == (longlong *)0x0) {
+    pcontextData = (longlong *)FUN_180831260(uiContext,dataSource,(validationResult + -1 + operationResult3) / validationResult << 3);
+    if (pcontextData == (longlong *)0x0) {
       return 0xffffffff;
     }
     functionResult0 = (ulonglong)(int)param_6;
@@ -283028,7 +283028,7 @@ FUN_18083cdf0(undefined8 uiContext,longlong dataSource,undefined8 *targetBuffer,
       lStackX_18 = 0;
       do {
         operationResult1 = 0;
-        pallocatedMemory2 = plVar6;
+        pallocatedMemory2 = pcontextData;
         if (0 < operationResult3) {
           do {
             if (uVar8 == 0) {
@@ -283581,7 +283581,7 @@ void FUN_18083e340(int *uiContext,longlong dataSource)
   float *pfVar3;
   float *pfVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   float *pfVar7;
   float *pfVar8;
   int *piVar9;
@@ -283600,35 +283600,35 @@ void FUN_18083e340(int *uiContext,longlong dataSource)
   pfloatResult0 = (float *)(*(longlong *)(bufferData + 2) + (longlong)*uiContext * 4);
   pfVar8 = (float *)(lVar5 + 0xc);
   do {
-    lVar6 = (longlong)piVar9[1];
-    floatResult3 = *(float *)(lVar5 + 4 + lVar6 * 4);
+    contextData = (longlong)piVar9[1];
+    floatResult3 = *(float *)(lVar5 + 4 + contextData * 4);
     floatResult4 = *(float *)(lVar5 + 4 + (longlong)*piVar9 * 4);
     floatResult6 = *(float *)(lVar5 + (longlong)*piVar9 * 4);
     floatResult2 = floatResult4 - floatResult3;
-    floatResult1 = floatResult6 + *(float *)(lVar5 + lVar6 * 4);
+    floatResult1 = floatResult6 + *(float *)(lVar5 + contextData * 4);
     floatResult5 = (floatResult3 + floatResult4) * 0.5;
     floatResult3 = *pfloatResult0 * floatResult1 + pfloatResult0[1] * floatResult2;
-    floatResult6 = (floatResult6 - *(float *)(lVar5 + lVar6 * 4)) * 0.5;
+    floatResult6 = (floatResult6 - *(float *)(lVar5 + contextData * 4)) * 0.5;
     floatResult4 = pfloatResult0[1] * floatResult1 - *pfloatResult0 * floatResult2;
     *(float *)(dataSource + (longlong)piVar9) = floatResult3 + floatResult5;
     pfVar8[-5] = floatResult5 - floatResult3;
     pfVar7[-1] = floatResult4 + floatResult6;
     pfVar8[-4] = floatResult4 - floatResult6;
-    lVar6 = (longlong)piVar9[3];
+    contextData = (longlong)piVar9[3];
     poperationResult = piVar9 + 2;
     piVar9 = piVar9 + 4;
     pfVar2 = pfloatResult0 + 3;
     pfVar3 = pfloatResult0 + 2;
-    floatResult3 = *(float *)(lVar5 + 4 + lVar6 * 4);
+    floatResult3 = *(float *)(lVar5 + 4 + contextData * 4);
     floatResult4 = *(float *)(lVar5 + 4 + (longlong)*poperationResult * 4);
     pfloatResult0 = pfloatResult0 + 4;
     floatResult6 = *(float *)(lVar5 + (longlong)*poperationResult * 4);
     floatResult2 = floatResult4 - floatResult3;
-    floatResult1 = floatResult6 + *(float *)(lVar5 + lVar6 * 4);
+    floatResult1 = floatResult6 + *(float *)(lVar5 + contextData * 4);
     pfVar4 = pfVar8 + -7;
     floatResult5 = *pfVar2 * floatResult2 + *pfVar3 * floatResult1;
     floatResult4 = (floatResult3 + floatResult4) * 0.5;
-    floatResult6 = (floatResult6 - *(float *)(lVar5 + lVar6 * 4)) * 0.5;
+    floatResult6 = (floatResult6 - *(float *)(lVar5 + contextData * 4)) * 0.5;
     floatResult3 = *pfVar2 * floatResult1 - *pfVar3 * floatResult2;
     *pfVar7 = floatResult5 + floatResult4;
     *pfVar4 = floatResult4 - floatResult5;
@@ -283751,7 +283751,7 @@ void FUN_18083e528(longlong uiContext,float *dataSource)
   float *pfVar4;
   float *pfVar5;
   int unaff_EBX;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   longlong lVar8;
   longlong lVar9;
@@ -283782,7 +283782,7 @@ void FUN_18083e528(longlong uiContext,float *dataSource)
         lVar9 = (longlong)unaff_EBX >> (isCharacterMatch3 & 0x3f);
         validationResult = 4 << (isCharacterMatch3 & 0x1f);
         lVar8 = lVar9 >> 1;
-        lVar6 = (longlong)unaff_EBX;
+        contextData = (longlong)unaff_EBX;
         allocatedMemory = lVar8 + -8;
         functionResult2 = (ulonglong)eventTypeCode;
         do {
@@ -283821,7 +283821,7 @@ void FUN_18083e528(longlong uiContext,float *dataSource)
             pfVar5[1] = floatResult5 * *pfVar4 - floatResult6 * pfVar4[1];
             pfVar5 = pfVar5 + -8;
           } while (pfloatResult1 <= pfVar5);
-          pfloatResult1 = pfloatResult1 + (lVar6 >> (isCharacterMatch3 & 0x3f));
+          pfloatResult1 = pfloatResult1 + (contextData >> (isCharacterMatch3 & 0x3f));
           functionResult2 = functionResult2 - 1;
           dataSource = in_stack_00000068;
           unaff_EBX = in_stack_00000070;
@@ -283857,7 +283857,7 @@ void FUN_18083e561(void)
   float *pfVar4;
   float *pfVar5;
   int unaff_EBX;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   longlong lVar8;
   longlong lVar9;
@@ -283879,7 +283879,7 @@ void FUN_18083e561(void)
       lVar9 = (longlong)unaff_EBX >> (unaff_R12B & 0x3f);
       validationResult = 4 << (unaff_R12B & 0x1f);
       lVar8 = lVar9 >> 1;
-      lVar6 = (longlong)unaff_EBX;
+      contextData = (longlong)unaff_EBX;
       allocatedMemory = lVar8 + -8;
       functionResult1 = (ulonglong)eventTypeCode;
       do {
@@ -283918,7 +283918,7 @@ void FUN_18083e561(void)
           pfVar5[1] = floatResult2 * *pfVar4 - floatResult3 * pfVar4[1];
           pfVar5 = pfVar5 + -8;
         } while (unaff_R13 <= pfVar5);
-        unaff_R13 = unaff_R13 + (lVar6 >> (unaff_R12B & 0x3f));
+        unaff_R13 = unaff_R13 + (contextData >> (unaff_R12B & 0x3f));
         functionResult1 = functionResult1 - 1;
         pfVar5 = in_stack_00000068;
         unaff_EBX = in_stack_00000070;
@@ -290210,7 +290210,7 @@ void FUN_180847c60(longlong uiContext,longlong *dataSource,byte *targetBuffer)
   uint uVar3;
   longlong lVar4;
   longlong *plVar5;
-  longlong lVar6;
+  longlong contextData;
   byte bVar7;
   undefined1 auStack_98 [32];
   undefined *puStack_78;
@@ -290242,9 +290242,9 @@ void FUN_180847c60(longlong uiContext,longlong *dataSource,byte *targetBuffer)
               pfunctionResult = (undefined8 *)*pfunctionResult) {
             if ((((*(int *)(pfunctionResult + 4) != 0) || (*(int *)((longlong)pfunctionResult + 0x24) != 0)) ||
                 (*(int *)(pfunctionResult + 5) != 0)) || (*(int *)((longlong)pfunctionResult + 0x2c) != 0)) {
-              lVar6 = func_0x00018084d0b0(lVar4);
-              if (lVar6 == 0) goto LAB_180847dc9;
-              if (*(uint *)(lVar6 + 0x20) < *(uint *)((longlong)pfunctionResult + 0x34)) goto LAB_180847d83;
+              contextData = func_0x00018084d0b0(lVar4);
+              if (contextData == 0) goto LAB_180847dc9;
+              if (*(uint *)(contextData + 0x20) < *(uint *)((longlong)pfunctionResult + 0x34)) goto LAB_180847d83;
             }
             if (pfunctionResult == (undefined8 *)(lVar4 + 0x68)) break;
           }
@@ -294014,7 +294014,7 @@ void FUN_18084c5a0(longlong *uiContext)
   undefined4 uVar3;
   undefined4 uVar4;
   undefined4 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   uint uVar8;
   
@@ -294035,19 +294035,19 @@ void FUN_18084c5a0(longlong *uiContext)
   if (operationResult < 0) {
     lVar7 = (longlong)-operationResult;
     if (operationResult < 0) {
-      lVar6 = *uiContext + 0x14 + (longlong)operationResult * 0x18;
+      contextData = *uiContext + 0x14 + (longlong)operationResult * 0x18;
       do {
         componentContextPtr = (undefined4 *)FUN_180847820();
         semaphoreHandle = componentContextPtr[1];
         uVar3 = componentContextPtr[2];
         uVar4 = componentContextPtr[3];
-        *(undefined4 *)(lVar6 + -0x14) = *componentContextPtr;
-        *(undefined4 *)(lVar6 + -0x10) = semaphoreHandle;
-        *(undefined4 *)(lVar6 + -0xc) = uVar3;
-        *(undefined4 *)(lVar6 + -8) = uVar4;
-        *(undefined8 *)(lVar6 + -4) = 0;
+        *(undefined4 *)(contextData + -0x14) = *componentContextPtr;
+        *(undefined4 *)(contextData + -0x10) = semaphoreHandle;
+        *(undefined4 *)(contextData + -0xc) = uVar3;
+        *(undefined4 *)(contextData + -8) = uVar4;
+        *(undefined8 *)(contextData + -4) = 0;
         lVar7 = lVar7 + -1;
-        lVar6 = lVar6 + 0x18;
+        contextData = contextData + 0x18;
       } while (lVar7 != 0);
       uVar8 = *(uint *)((longlong)uiContext + 0xc);
     }
@@ -294074,10 +294074,10 @@ void FUN_18084c612(undefined4 uiContext,int dataSource,uint targetBuffer)
   longlong in_RCX;
   longlong lVar5;
   undefined8 unaff_RBP;
-  longlong lVar6;
+  longlong contextData;
   longlong unaff_RDI;
   
-  lVar6 = (longlong)dataSource;
+  contextData = (longlong)dataSource;
   if (0 < dataSource) {
     lVar5 = in_RAX + 0x14 + in_RCX * 8;
     do {
@@ -294091,9 +294091,9 @@ void FUN_18084c612(undefined4 uiContext,int dataSource,uint targetBuffer)
       *(undefined4 *)(lVar5 + -0xc) = semaphoreHandle;
       *(undefined4 *)(lVar5 + -8) = uVar3;
       *(undefined8 *)(lVar5 + -4) = unaff_RBP;
-      lVar6 = lVar6 + -1;
+      contextData = contextData + -1;
       lVar5 = lVar5 + 0x18;
-    } while (lVar6 != 0);
+    } while (contextData != 0);
     targetBuffer = *(uint *)(unaff_RDI + 0xc);
   }
   *(int *)(unaff_RDI + 8) = (int)unaff_RBP;
@@ -297510,7 +297510,7 @@ undefined8 FUN_18084e710(undefined8 *uiContext,undefined8 dataSource,char target
   undefined8 uVar3;
   int iVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   int iVar8;
   
@@ -297527,17 +297527,17 @@ undefined8 FUN_18084e710(undefined8 *uiContext,undefined8 dataSource,char target
         operationResult = 0;
         iVar7 = 0;
         if (0 < *(int *)(bufferData + 0x20)) {
-          lVar6 = 0;
+          contextData = 0;
           componentIndex = 0;
           do {
-            iVar4 = func_0x00018085f4a0(*(undefined8 *)(lVar6 + uiContext[0x1f]),
+            iVar4 = func_0x00018085f4a0(*(undefined8 *)(contextData + uiContext[0x1f]),
                                         *(undefined8 *)(componentIndex + uiContext[0x1f]));
             if (iVar4 < 0) {
-              componentIndex = lVar6;
+              componentIndex = contextData;
               operationResult = iVar7;
             }
             iVar7 = iVar7 + 1;
-            lVar6 = lVar6 + 8;
+            contextData = contextData + 8;
           } while (iVar7 < *(int *)(bufferData + 0x20));
         }
       }
@@ -297546,17 +297546,17 @@ undefined8 FUN_18084e710(undefined8 *uiContext,undefined8 dataSource,char target
         operationResult = 0;
         iVar7 = 1;
         if (1 < *(int *)(bufferData + 0x20)) {
-          lVar6 = 8;
+          contextData = 8;
           componentIndex = 0;
           do {
-            iVar4 = FUN_18085f500(*(undefined8 *)(lVar6 + uiContext[0x1f]),
+            iVar4 = FUN_18085f500(*(undefined8 *)(contextData + uiContext[0x1f]),
                                   *(undefined8 *)(componentIndex + uiContext[0x1f]));
             if (0 < iVar4) {
-              componentIndex = lVar6;
+              componentIndex = contextData;
               operationResult = iVar7;
             }
             iVar7 = iVar7 + 1;
-            lVar6 = lVar6 + 8;
+            contextData = contextData + 8;
           } while (iVar7 < *(int *)(bufferData + 0x20));
         }
       }
@@ -298950,7 +298950,7 @@ int FUN_18084f7f0(longlong *uiContext)
   longlong stringCompareIndex;
   uint uVar4;
   uint uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   int *piVar7;
   longlong lVar8;
   longlong lVar9;
@@ -299034,12 +299034,12 @@ LAB_18084f88c:
                          (int)((uStack_68 ^ uStack_64 ^ uStack_60 ^ uStack_5c) &
                               (int)uiContext[1] - 1U) * 4), operationResult2 != -1)) {
       do {
-        plVar6 = (longlong *)((longlong)operationResult2 * 0x20 + uiContext[2]);
-        if ((*plVar6 == stringCompareIndex) && (plVar6[1] == allocatedMemory0)) {
-          lVar9 = plVar6[3];
+        pcontextData = (longlong *)((longlong)operationResult2 * 0x20 + uiContext[2]);
+        if ((*pcontextData == stringCompareIndex) && (pcontextData[1] == allocatedMemory0)) {
+          lVar9 = pcontextData[3];
           goto LAB_18084f933;
         }
-        operationResult2 = (int)plVar6[2];
+        operationResult2 = (int)pcontextData[2];
       } while (operationResult2 != -1);
     }
     lVar9 = 0;
@@ -299049,11 +299049,11 @@ LAB_18084f933:
       FUN_180768400(lVar8);
     }
     if (lVar9 != 0) {
-      plVar6 = *(longlong **)((longlong)operationResult1 * 0x20 + 0x18 + uiContext[8]);
-      if ((int)plVar6[1] == 0) goto LAB_18084f987;
+      pcontextData = *(longlong **)((longlong)operationResult1 * 0x20 + 0x18 + uiContext[8]);
+      if ((int)pcontextData[1] == 0) goto LAB_18084f987;
       operationResult1 = 0;
       lVar8 = 0;
-      piVar7 = (int *)*plVar6;
+      piVar7 = (int *)*pcontextData;
       goto LAB_18084f970;
     }
     lVar8 = uiContext[0xb];
@@ -299062,7 +299062,7 @@ LAB_18084f933:
     }
     if ((int)uiContext[7] != 0) {
       lVar9 = (longlong)(int)((functionResult ^ uStack_64 ^ uVar5 ^ uVar4) & (int)uiContext[7] - 1U);
-      plVar6 = (longlong *)(uiContext[6] + lVar9 * 4);
+      pcontextData = (longlong *)(uiContext[6] + lVar9 * 4);
       operationResult1 = *(int *)(uiContext[6] + lVar9 * 4);
       if (operationResult1 != -1) {
         do {
@@ -299070,10 +299070,10 @@ LAB_18084f933:
           if ((*pallocatedMemory6 == stringCompareIndex) && (pallocatedMemory6[1] == allocatedMemory0)) {
             operationResult1 = FUN_180852b00(uiContext,&uStack_68,pallocatedMemory6 + 3);
             if (operationResult1 == 0) {
-              stringCompareIndex = *plVar6;
+              stringCompareIndex = *pcontextData;
               allocatedMemory0 = (longlong)(int)stringCompareIndex * 0x20 + uiContext[8];
               *(undefined8 *)(allocatedMemory0 + 0x18) = 0;
-              *(int *)plVar6 = *(int *)(allocatedMemory0 + 0x10);
+              *(int *)pcontextData = *(int *)(allocatedMemory0 + 0x10);
               *(int *)(allocatedMemory0 + 0x10) = (int)uiContext[10];
               *(int *)((longlong)uiContext + 0x54) = *(int *)((longlong)uiContext + 0x54) + -1;
               *(int *)(bufferData + 10) = (int)stringCompareIndex;
@@ -299081,7 +299081,7 @@ LAB_18084f933:
             goto LAB_18084fc27;
           }
           operationResult1 = (int)pallocatedMemory6[2];
-          plVar6 = pallocatedMemory6 + 2;
+          pcontextData = pallocatedMemory6 + 2;
         } while (operationResult1 != -1);
       }
     }
@@ -299101,18 +299101,18 @@ LAB_18084fc83:
 joined_r0x00018084fa4e:
   uStack_58 = pallocatedMemory6;
   if (operationResult1 == -1) goto LAB_18084f987;
-  pfunctionResult3 = (uint *)((longlong)operationResult1 * 0x10 + plVar6[2]);
-  if ((int)plVar6[1] == 0) {
+  pfunctionResult3 = (uint *)((longlong)operationResult1 * 0x10 + pcontextData[2]);
+  if ((int)pcontextData[1] == 0) {
 LAB_18084faac:
     operationResult1 = 0x1c;
     goto LAB_18084fc83;
   }
   functionResult = *pfunctionResult3;
-  lVar8 = (longlong)(int)((int)plVar6[1] - 1U & functionResult);
-  pfunctionResult4 = (uint *)(*plVar6 + lVar8 * 4);
-  uVar5 = *(uint *)(*plVar6 + lVar8 * 4);
+  lVar8 = (longlong)(int)((int)pcontextData[1] - 1U & functionResult);
+  pfunctionResult4 = (uint *)(*pcontextData + lVar8 * 4);
+  uVar5 = *(uint *)(*pcontextData + lVar8 * 4);
   if (uVar5 == 0xffffffff) goto LAB_18084faac;
-  while (pfunctionResult5 = (uint *)((longlong)(int)uVar5 * 0x10 + plVar6[2]), *pfunctionResult5 != functionResult) {
+  while (pfunctionResult5 = (uint *)((longlong)(int)uVar5 * 0x10 + pcontextData[2]), *pfunctionResult5 != functionResult) {
     uVar5 = pfunctionResult5[1];
     pfunctionResult4 = pfunctionResult5 + 1;
     if (uVar5 == 0xffffffff) goto LAB_18084faac;
@@ -299120,35 +299120,35 @@ LAB_18084faac:
   operationResult1 = FUN_1807d28c0(lVar9,pfunctionResult3,pfunctionResult5 + 2);
   if (operationResult1 != 0) goto LAB_18084fc83;
   functionResult = *pfunctionResult4;
-  lVar8 = (longlong)(int)functionResult * 0x10 + plVar6[2];
+  lVar8 = (longlong)(int)functionResult * 0x10 + pcontextData[2];
   uStack_4c = 0xffffffff;
   *(undefined8 *)(lVar8 + 8) = 0;
   *pfunctionResult4 = *(uint *)(lVar8 + 4);
-  *(int *)(lVar8 + 4) = (int)plVar6[4];
-  *(int *)((longlong)plVar6 + 0x24) = *(int *)((longlong)plVar6 + 0x24) + -1;
-  *(uint *)(plVar6 + 4) = functionResult;
-  if ((int)plVar6[1] != 0) {
+  *(int *)(lVar8 + 4) = (int)pcontextData[4];
+  *(int *)((longlong)pcontextData + 0x24) = *(int *)((longlong)pcontextData + 0x24) + -1;
+  *(uint *)(pcontextData + 4) = functionResult;
+  if ((int)pcontextData[1] != 0) {
     iStack_50 = 0;
     lVar8 = 0;
-    piVar7 = (int *)*plVar6;
+    piVar7 = (int *)*pcontextData;
     do {
       if (*piVar7 != -1) {
-        operationResult1 = ((int *)*plVar6)[iStack_50];
+        operationResult1 = ((int *)*pcontextData)[iStack_50];
         goto LAB_18084fb35;
       }
       iStack_50 = iStack_50 + 1;
       lVar8 = lVar8 + 1;
       piVar7 = piVar7 + 1;
-    } while (lVar8 != (int)plVar6[1]);
+    } while (lVar8 != (int)pcontextData[1]);
   }
   iStack_50 = -1;
   operationResult1 = -1;
 LAB_18084fb35:
   uStack_30 = CONCAT44(uStack_44,operationResult1);
-  uStack_58._0_4_ = SUB84(plVar6,0);
-  uStack_58._4_4_ = (undefined4)((ulonglong)plVar6 >> 0x20);
+  uStack_58._0_4_ = SUB84(pcontextData,0);
+  uStack_58._4_4_ = (undefined4)((ulonglong)pcontextData >> 0x20);
   uStack_34 = 0xffffffff;
-  pallocatedMemory6 = plVar6;
+  pallocatedMemory6 = pcontextData;
   iStack_48 = operationResult1;
   uStack_40 = (undefined4)uStack_58;
   uStack_3c = uStack_58._4_4_;
@@ -299158,18 +299158,18 @@ LAB_18084fb35:
     operationResult1 = operationResult1 + 1;
     lVar8 = lVar8 + 1;
     piVar7 = piVar7 + 1;
-    if (lVar8 == (int)plVar6[1]) break;
+    if (lVar8 == (int)pcontextData[1]) break;
 LAB_18084f970:
     if (*piVar7 != -1) {
-      operationResult1 = ((int *)*plVar6)[operationResult1];
+      operationResult1 = ((int *)*pcontextData)[operationResult1];
       pallocatedMemory6 = uStack_58;
       goto joined_r0x00018084fa4e;
     }
   }
 LAB_18084f987:
-  FUN_1808bb9a0(plVar6);
+  FUN_1808bb9a0(pcontextData);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),pcontextData,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -299442,7 +299442,7 @@ int FUN_18084fcd0(longlong *uiContext)
   longlong stringCompareIndex;
   uint uVar4;
   uint uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   int *piVar7;
   longlong lVar8;
   longlong lVar9;
@@ -299526,12 +299526,12 @@ LAB_18084fd6c:
                          (int)((uStack_68 ^ uStack_64 ^ uStack_60 ^ uStack_5c) &
                               (int)uiContext[1] - 1U) * 4), operationResult2 != -1)) {
       do {
-        plVar6 = (longlong *)((longlong)operationResult2 * 0x20 + uiContext[2]);
-        if ((*plVar6 == stringCompareIndex) && (plVar6[1] == allocatedMemory0)) {
-          lVar9 = plVar6[3];
+        pcontextData = (longlong *)((longlong)operationResult2 * 0x20 + uiContext[2]);
+        if ((*pcontextData == stringCompareIndex) && (pcontextData[1] == allocatedMemory0)) {
+          lVar9 = pcontextData[3];
           goto LAB_18084fe13;
         }
-        operationResult2 = (int)plVar6[2];
+        operationResult2 = (int)pcontextData[2];
       } while (operationResult2 != -1);
     }
     lVar9 = 0;
@@ -299541,11 +299541,11 @@ LAB_18084fe13:
       FUN_180768400(lVar8);
     }
     if (lVar9 != 0) {
-      plVar6 = *(longlong **)((longlong)operationResult1 * 0x20 + 0x18 + uiContext[8]);
-      if ((int)plVar6[1] == 0) goto LAB_18084fe67;
+      pcontextData = *(longlong **)((longlong)operationResult1 * 0x20 + 0x18 + uiContext[8]);
+      if ((int)pcontextData[1] == 0) goto LAB_18084fe67;
       operationResult1 = 0;
       lVar8 = 0;
-      piVar7 = (int *)*plVar6;
+      piVar7 = (int *)*pcontextData;
       goto LAB_18084fe50;
     }
     lVar8 = uiContext[0xb];
@@ -299554,7 +299554,7 @@ LAB_18084fe13:
     }
     if ((int)uiContext[7] != 0) {
       lVar9 = (longlong)(int)((functionResult ^ uStack_64 ^ uVar5 ^ uVar4) & (int)uiContext[7] - 1U);
-      plVar6 = (longlong *)(uiContext[6] + lVar9 * 4);
+      pcontextData = (longlong *)(uiContext[6] + lVar9 * 4);
       operationResult1 = *(int *)(uiContext[6] + lVar9 * 4);
       if (operationResult1 != -1) {
         do {
@@ -299562,10 +299562,10 @@ LAB_18084fe13:
           if ((*pallocatedMemory6 == stringCompareIndex) && (pallocatedMemory6[1] == allocatedMemory0)) {
             operationResult1 = FUN_180852bb0(uiContext,&uStack_68,pallocatedMemory6 + 3);
             if (operationResult1 == 0) {
-              stringCompareIndex = *plVar6;
+              stringCompareIndex = *pcontextData;
               allocatedMemory0 = (longlong)(int)stringCompareIndex * 0x20 + uiContext[8];
               *(undefined8 *)(allocatedMemory0 + 0x18) = 0;
-              *(int *)plVar6 = *(int *)(allocatedMemory0 + 0x10);
+              *(int *)pcontextData = *(int *)(allocatedMemory0 + 0x10);
               *(int *)(allocatedMemory0 + 0x10) = (int)uiContext[10];
               *(int *)((longlong)uiContext + 0x54) = *(int *)((longlong)uiContext + 0x54) + -1;
               *(int *)(bufferData + 10) = (int)stringCompareIndex;
@@ -299573,7 +299573,7 @@ LAB_18084fe13:
             goto LAB_180850107;
           }
           operationResult1 = (int)pallocatedMemory6[2];
-          plVar6 = pallocatedMemory6 + 2;
+          pcontextData = pallocatedMemory6 + 2;
         } while (operationResult1 != -1);
       }
     }
@@ -299593,18 +299593,18 @@ LAB_180850163:
 joined_r0x00018084ff2e:
   uStack_58 = pallocatedMemory6;
   if (operationResult1 == -1) goto LAB_18084fe67;
-  pfunctionResult3 = (uint *)((longlong)operationResult1 * 0x10 + plVar6[2]);
-  if ((int)plVar6[1] == 0) {
+  pfunctionResult3 = (uint *)((longlong)operationResult1 * 0x10 + pcontextData[2]);
+  if ((int)pcontextData[1] == 0) {
 LAB_18084ff8c:
     operationResult1 = 0x1c;
     goto LAB_180850163;
   }
   functionResult = *pfunctionResult3;
-  lVar8 = (longlong)(int)((int)plVar6[1] - 1U & functionResult);
-  pfunctionResult4 = (uint *)(*plVar6 + lVar8 * 4);
-  uVar5 = *(uint *)(*plVar6 + lVar8 * 4);
+  lVar8 = (longlong)(int)((int)pcontextData[1] - 1U & functionResult);
+  pfunctionResult4 = (uint *)(*pcontextData + lVar8 * 4);
+  uVar5 = *(uint *)(*pcontextData + lVar8 * 4);
   if (uVar5 == 0xffffffff) goto LAB_18084ff8c;
-  while (pfunctionResult5 = (uint *)((longlong)(int)uVar5 * 0x10 + plVar6[2]), *pfunctionResult5 != functionResult) {
+  while (pfunctionResult5 = (uint *)((longlong)(int)uVar5 * 0x10 + pcontextData[2]), *pfunctionResult5 != functionResult) {
     uVar5 = pfunctionResult5[1];
     pfunctionResult4 = pfunctionResult5 + 1;
     if (uVar5 == 0xffffffff) goto LAB_18084ff8c;
@@ -299612,35 +299612,35 @@ LAB_18084ff8c:
   operationResult1 = FUN_1807d28c0(lVar9,pfunctionResult3,pfunctionResult5 + 2);
   if (operationResult1 != 0) goto LAB_180850163;
   functionResult = *pfunctionResult4;
-  lVar8 = (longlong)(int)functionResult * 0x10 + plVar6[2];
+  lVar8 = (longlong)(int)functionResult * 0x10 + pcontextData[2];
   uStack_4c = 0xffffffff;
   *(undefined8 *)(lVar8 + 8) = 0;
   *pfunctionResult4 = *(uint *)(lVar8 + 4);
-  *(int *)(lVar8 + 4) = (int)plVar6[4];
-  *(int *)((longlong)plVar6 + 0x24) = *(int *)((longlong)plVar6 + 0x24) + -1;
-  *(uint *)(plVar6 + 4) = functionResult;
-  if ((int)plVar6[1] != 0) {
+  *(int *)(lVar8 + 4) = (int)pcontextData[4];
+  *(int *)((longlong)pcontextData + 0x24) = *(int *)((longlong)pcontextData + 0x24) + -1;
+  *(uint *)(pcontextData + 4) = functionResult;
+  if ((int)pcontextData[1] != 0) {
     iStack_50 = 0;
     lVar8 = 0;
-    piVar7 = (int *)*plVar6;
+    piVar7 = (int *)*pcontextData;
     do {
       if (*piVar7 != -1) {
-        operationResult1 = ((int *)*plVar6)[iStack_50];
+        operationResult1 = ((int *)*pcontextData)[iStack_50];
         goto LAB_180850015;
       }
       iStack_50 = iStack_50 + 1;
       lVar8 = lVar8 + 1;
       piVar7 = piVar7 + 1;
-    } while (lVar8 != (int)plVar6[1]);
+    } while (lVar8 != (int)pcontextData[1]);
   }
   iStack_50 = -1;
   operationResult1 = -1;
 LAB_180850015:
   uStack_30 = CONCAT44(uStack_44,operationResult1);
-  uStack_58._0_4_ = SUB84(plVar6,0);
-  uStack_58._4_4_ = (undefined4)((ulonglong)plVar6 >> 0x20);
+  uStack_58._0_4_ = SUB84(pcontextData,0);
+  uStack_58._4_4_ = (undefined4)((ulonglong)pcontextData >> 0x20);
   uStack_34 = 0xffffffff;
-  pallocatedMemory6 = plVar6;
+  pallocatedMemory6 = pcontextData;
   iStack_48 = operationResult1;
   uStack_40 = (undefined4)uStack_58;
   uStack_3c = uStack_58._4_4_;
@@ -299650,18 +299650,18 @@ LAB_180850015:
     operationResult1 = operationResult1 + 1;
     lVar8 = lVar8 + 1;
     piVar7 = piVar7 + 1;
-    if (lVar8 == (int)plVar6[1]) break;
+    if (lVar8 == (int)pcontextData[1]) break;
 LAB_18084fe50:
     if (*piVar7 != -1) {
-      operationResult1 = ((int *)*plVar6)[operationResult1];
+      operationResult1 = ((int *)*pcontextData)[operationResult1];
       pallocatedMemory6 = uStack_58;
       goto joined_r0x00018084ff2e;
     }
   }
 LAB_18084fe67:
-  FUN_1808bb9a0(plVar6);
+  FUN_1808bb9a0(pcontextData);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),pcontextData,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -299934,7 +299934,7 @@ int FUN_1808501b0(longlong *uiContext)
   longlong stringCompareIndex;
   uint uVar4;
   uint uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   int *piVar7;
   longlong lVar8;
   longlong lVar9;
@@ -300018,12 +300018,12 @@ LAB_18085024c:
                          (int)((uStack_68 ^ uStack_64 ^ uStack_60 ^ uStack_5c) &
                               (int)uiContext[1] - 1U) * 4), operationResult2 != -1)) {
       do {
-        plVar6 = (longlong *)((longlong)operationResult2 * 0x20 + uiContext[2]);
-        if ((*plVar6 == stringCompareIndex) && (plVar6[1] == allocatedMemory0)) {
-          lVar9 = plVar6[3];
+        pcontextData = (longlong *)((longlong)operationResult2 * 0x20 + uiContext[2]);
+        if ((*pcontextData == stringCompareIndex) && (pcontextData[1] == allocatedMemory0)) {
+          lVar9 = pcontextData[3];
           goto LAB_1808502f3;
         }
-        operationResult2 = (int)plVar6[2];
+        operationResult2 = (int)pcontextData[2];
       } while (operationResult2 != -1);
     }
     lVar9 = 0;
@@ -300033,11 +300033,11 @@ LAB_1808502f3:
       FUN_180768400(lVar8);
     }
     if (lVar9 != 0) {
-      plVar6 = *(longlong **)((longlong)operationResult1 * 0x20 + 0x18 + uiContext[8]);
-      if ((int)plVar6[1] == 0) goto LAB_180850347;
+      pcontextData = *(longlong **)((longlong)operationResult1 * 0x20 + 0x18 + uiContext[8]);
+      if ((int)pcontextData[1] == 0) goto LAB_180850347;
       operationResult1 = 0;
       lVar8 = 0;
-      piVar7 = (int *)*plVar6;
+      piVar7 = (int *)*pcontextData;
       goto LAB_180850330;
     }
     lVar8 = uiContext[0xb];
@@ -300046,7 +300046,7 @@ LAB_1808502f3:
     }
     if ((int)uiContext[7] != 0) {
       lVar9 = (longlong)(int)((functionResult ^ uStack_64 ^ uVar5 ^ uVar4) & (int)uiContext[7] - 1U);
-      plVar6 = (longlong *)(uiContext[6] + lVar9 * 4);
+      pcontextData = (longlong *)(uiContext[6] + lVar9 * 4);
       operationResult1 = *(int *)(uiContext[6] + lVar9 * 4);
       if (operationResult1 != -1) {
         do {
@@ -300054,10 +300054,10 @@ LAB_1808502f3:
           if ((*pallocatedMemory6 == stringCompareIndex) && (pallocatedMemory6[1] == allocatedMemory0)) {
             operationResult1 = FUN_180852bb0(uiContext,&uStack_68,pallocatedMemory6 + 3);
             if (operationResult1 == 0) {
-              stringCompareIndex = *plVar6;
+              stringCompareIndex = *pcontextData;
               allocatedMemory0 = (longlong)(int)stringCompareIndex * 0x20 + uiContext[8];
               *(undefined8 *)(allocatedMemory0 + 0x18) = 0;
-              *(int *)plVar6 = *(int *)(allocatedMemory0 + 0x10);
+              *(int *)pcontextData = *(int *)(allocatedMemory0 + 0x10);
               *(int *)(allocatedMemory0 + 0x10) = (int)uiContext[10];
               *(int *)((longlong)uiContext + 0x54) = *(int *)((longlong)uiContext + 0x54) + -1;
               *(int *)(bufferData + 10) = (int)stringCompareIndex;
@@ -300065,7 +300065,7 @@ LAB_1808502f3:
             goto LAB_1808505e7;
           }
           operationResult1 = (int)pallocatedMemory6[2];
-          plVar6 = pallocatedMemory6 + 2;
+          pcontextData = pallocatedMemory6 + 2;
         } while (operationResult1 != -1);
       }
     }
@@ -300085,18 +300085,18 @@ LAB_180850643:
 joined_r0x00018085040e:
   uStack_58 = pallocatedMemory6;
   if (operationResult1 == -1) goto LAB_180850347;
-  pfunctionResult3 = (uint *)((longlong)operationResult1 * 0x10 + plVar6[2]);
-  if ((int)plVar6[1] == 0) {
+  pfunctionResult3 = (uint *)((longlong)operationResult1 * 0x10 + pcontextData[2]);
+  if ((int)pcontextData[1] == 0) {
 LAB_18085046c:
     operationResult1 = 0x1c;
     goto LAB_180850643;
   }
   functionResult = *pfunctionResult3;
-  lVar8 = (longlong)(int)((int)plVar6[1] - 1U & functionResult);
-  pfunctionResult4 = (uint *)(*plVar6 + lVar8 * 4);
-  uVar5 = *(uint *)(*plVar6 + lVar8 * 4);
+  lVar8 = (longlong)(int)((int)pcontextData[1] - 1U & functionResult);
+  pfunctionResult4 = (uint *)(*pcontextData + lVar8 * 4);
+  uVar5 = *(uint *)(*pcontextData + lVar8 * 4);
   if (uVar5 == 0xffffffff) goto LAB_18085046c;
-  while (pfunctionResult5 = (uint *)((longlong)(int)uVar5 * 0x10 + plVar6[2]), *pfunctionResult5 != functionResult) {
+  while (pfunctionResult5 = (uint *)((longlong)(int)uVar5 * 0x10 + pcontextData[2]), *pfunctionResult5 != functionResult) {
     uVar5 = pfunctionResult5[1];
     pfunctionResult4 = pfunctionResult5 + 1;
     if (uVar5 == 0xffffffff) goto LAB_18085046c;
@@ -300104,35 +300104,35 @@ LAB_18085046c:
   operationResult1 = FUN_1807d28c0(lVar9,pfunctionResult3,pfunctionResult5 + 2);
   if (operationResult1 != 0) goto LAB_180850643;
   functionResult = *pfunctionResult4;
-  lVar8 = (longlong)(int)functionResult * 0x10 + plVar6[2];
+  lVar8 = (longlong)(int)functionResult * 0x10 + pcontextData[2];
   uStack_4c = 0xffffffff;
   *(undefined8 *)(lVar8 + 8) = 0;
   *pfunctionResult4 = *(uint *)(lVar8 + 4);
-  *(int *)(lVar8 + 4) = (int)plVar6[4];
-  *(int *)((longlong)plVar6 + 0x24) = *(int *)((longlong)plVar6 + 0x24) + -1;
-  *(uint *)(plVar6 + 4) = functionResult;
-  if ((int)plVar6[1] != 0) {
+  *(int *)(lVar8 + 4) = (int)pcontextData[4];
+  *(int *)((longlong)pcontextData + 0x24) = *(int *)((longlong)pcontextData + 0x24) + -1;
+  *(uint *)(pcontextData + 4) = functionResult;
+  if ((int)pcontextData[1] != 0) {
     iStack_50 = 0;
     lVar8 = 0;
-    piVar7 = (int *)*plVar6;
+    piVar7 = (int *)*pcontextData;
     do {
       if (*piVar7 != -1) {
-        operationResult1 = ((int *)*plVar6)[iStack_50];
+        operationResult1 = ((int *)*pcontextData)[iStack_50];
         goto LAB_1808504f5;
       }
       iStack_50 = iStack_50 + 1;
       lVar8 = lVar8 + 1;
       piVar7 = piVar7 + 1;
-    } while (lVar8 != (int)plVar6[1]);
+    } while (lVar8 != (int)pcontextData[1]);
   }
   iStack_50 = -1;
   operationResult1 = -1;
 LAB_1808504f5:
   uStack_30 = CONCAT44(uStack_44,operationResult1);
-  uStack_58._0_4_ = SUB84(plVar6,0);
-  uStack_58._4_4_ = (undefined4)((ulonglong)plVar6 >> 0x20);
+  uStack_58._0_4_ = SUB84(pcontextData,0);
+  uStack_58._4_4_ = (undefined4)((ulonglong)pcontextData >> 0x20);
   uStack_34 = 0xffffffff;
-  pallocatedMemory6 = plVar6;
+  pallocatedMemory6 = pcontextData;
   iStack_48 = operationResult1;
   uStack_40 = (undefined4)uStack_58;
   uStack_3c = uStack_58._4_4_;
@@ -300142,18 +300142,18 @@ LAB_1808504f5:
     operationResult1 = operationResult1 + 1;
     lVar8 = lVar8 + 1;
     piVar7 = piVar7 + 1;
-    if (lVar8 == (int)plVar6[1]) break;
+    if (lVar8 == (int)pcontextData[1]) break;
 LAB_180850330:
     if (*piVar7 != -1) {
-      operationResult1 = ((int *)*plVar6)[operationResult1];
+      operationResult1 = ((int *)*pcontextData)[operationResult1];
       pallocatedMemory6 = uStack_58;
       goto joined_r0x00018085040e;
     }
   }
 LAB_180850347:
-  FUN_1808bb9e0(plVar6);
+  FUN_1808bb9e0(pcontextData);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),pcontextData,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -300426,7 +300426,7 @@ int FUN_180850690(longlong *uiContext)
   longlong stringCompareIndex;
   uint uVar4;
   uint uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   int *piVar7;
   longlong lVar8;
   longlong lVar9;
@@ -300510,12 +300510,12 @@ LAB_18085072c:
                          (int)((uStack_68 ^ uStack_64 ^ uStack_60 ^ uStack_5c) &
                               (int)uiContext[1] - 1U) * 4), operationResult2 != -1)) {
       do {
-        plVar6 = (longlong *)((longlong)operationResult2 * 0x20 + uiContext[2]);
-        if ((*plVar6 == stringCompareIndex) && (plVar6[1] == allocatedMemory0)) {
-          lVar9 = plVar6[3];
+        pcontextData = (longlong *)((longlong)operationResult2 * 0x20 + uiContext[2]);
+        if ((*pcontextData == stringCompareIndex) && (pcontextData[1] == allocatedMemory0)) {
+          lVar9 = pcontextData[3];
           goto LAB_1808507d3;
         }
-        operationResult2 = (int)plVar6[2];
+        operationResult2 = (int)pcontextData[2];
       } while (operationResult2 != -1);
     }
     lVar9 = 0;
@@ -300525,11 +300525,11 @@ LAB_1808507d3:
       FUN_180768400(lVar8);
     }
     if (lVar9 != 0) {
-      plVar6 = *(longlong **)((longlong)operationResult1 * 0x20 + 0x18 + uiContext[8]);
-      if ((int)plVar6[1] == 0) goto LAB_180850827;
+      pcontextData = *(longlong **)((longlong)operationResult1 * 0x20 + 0x18 + uiContext[8]);
+      if ((int)pcontextData[1] == 0) goto LAB_180850827;
       operationResult1 = 0;
       lVar8 = 0;
-      piVar7 = (int *)*plVar6;
+      piVar7 = (int *)*pcontextData;
       goto LAB_180850810;
     }
     lVar8 = uiContext[0xb];
@@ -300538,7 +300538,7 @@ LAB_1808507d3:
     }
     if ((int)uiContext[7] != 0) {
       lVar9 = (longlong)(int)((functionResult ^ uStack_64 ^ uVar5 ^ uVar4) & (int)uiContext[7] - 1U);
-      plVar6 = (longlong *)(uiContext[6] + lVar9 * 4);
+      pcontextData = (longlong *)(uiContext[6] + lVar9 * 4);
       operationResult1 = *(int *)(uiContext[6] + lVar9 * 4);
       if (operationResult1 != -1) {
         do {
@@ -300546,10 +300546,10 @@ LAB_1808507d3:
           if ((*pallocatedMemory6 == stringCompareIndex) && (pallocatedMemory6[1] == allocatedMemory0)) {
             operationResult1 = FUN_180852bb0(uiContext,&uStack_68,pallocatedMemory6 + 3);
             if (operationResult1 == 0) {
-              stringCompareIndex = *plVar6;
+              stringCompareIndex = *pcontextData;
               allocatedMemory0 = (longlong)(int)stringCompareIndex * 0x20 + uiContext[8];
               *(undefined8 *)(allocatedMemory0 + 0x18) = 0;
-              *(int *)plVar6 = *(int *)(allocatedMemory0 + 0x10);
+              *(int *)pcontextData = *(int *)(allocatedMemory0 + 0x10);
               *(int *)(allocatedMemory0 + 0x10) = (int)uiContext[10];
               *(int *)((longlong)uiContext + 0x54) = *(int *)((longlong)uiContext + 0x54) + -1;
               *(int *)(bufferData + 10) = (int)stringCompareIndex;
@@ -300557,7 +300557,7 @@ LAB_1808507d3:
             goto LAB_180850ac7;
           }
           operationResult1 = (int)pallocatedMemory6[2];
-          plVar6 = pallocatedMemory6 + 2;
+          pcontextData = pallocatedMemory6 + 2;
         } while (operationResult1 != -1);
       }
     }
@@ -300577,18 +300577,18 @@ LAB_180850b23:
 joined_r0x0001808508ee:
   uStack_58 = pallocatedMemory6;
   if (operationResult1 == -1) goto LAB_180850827;
-  pfunctionResult3 = (uint *)((longlong)operationResult1 * 0x10 + plVar6[2]);
-  if ((int)plVar6[1] == 0) {
+  pfunctionResult3 = (uint *)((longlong)operationResult1 * 0x10 + pcontextData[2]);
+  if ((int)pcontextData[1] == 0) {
 LAB_18085094c:
     operationResult1 = 0x1c;
     goto LAB_180850b23;
   }
   functionResult = *pfunctionResult3;
-  lVar8 = (longlong)(int)((int)plVar6[1] - 1U & functionResult);
-  pfunctionResult4 = (uint *)(*plVar6 + lVar8 * 4);
-  uVar5 = *(uint *)(*plVar6 + lVar8 * 4);
+  lVar8 = (longlong)(int)((int)pcontextData[1] - 1U & functionResult);
+  pfunctionResult4 = (uint *)(*pcontextData + lVar8 * 4);
+  uVar5 = *(uint *)(*pcontextData + lVar8 * 4);
   if (uVar5 == 0xffffffff) goto LAB_18085094c;
-  while (pfunctionResult5 = (uint *)((longlong)(int)uVar5 * 0x10 + plVar6[2]), *pfunctionResult5 != functionResult) {
+  while (pfunctionResult5 = (uint *)((longlong)(int)uVar5 * 0x10 + pcontextData[2]), *pfunctionResult5 != functionResult) {
     uVar5 = pfunctionResult5[1];
     pfunctionResult4 = pfunctionResult5 + 1;
     if (uVar5 == 0xffffffff) goto LAB_18085094c;
@@ -300596,35 +300596,35 @@ LAB_18085094c:
   operationResult1 = FUN_1807d28c0(lVar9,pfunctionResult3,pfunctionResult5 + 2);
   if (operationResult1 != 0) goto LAB_180850b23;
   functionResult = *pfunctionResult4;
-  lVar8 = (longlong)(int)functionResult * 0x10 + plVar6[2];
+  lVar8 = (longlong)(int)functionResult * 0x10 + pcontextData[2];
   uStack_4c = 0xffffffff;
   *(undefined8 *)(lVar8 + 8) = 0;
   *pfunctionResult4 = *(uint *)(lVar8 + 4);
-  *(int *)(lVar8 + 4) = (int)plVar6[4];
-  *(int *)((longlong)plVar6 + 0x24) = *(int *)((longlong)plVar6 + 0x24) + -1;
-  *(uint *)(plVar6 + 4) = functionResult;
-  if ((int)plVar6[1] != 0) {
+  *(int *)(lVar8 + 4) = (int)pcontextData[4];
+  *(int *)((longlong)pcontextData + 0x24) = *(int *)((longlong)pcontextData + 0x24) + -1;
+  *(uint *)(pcontextData + 4) = functionResult;
+  if ((int)pcontextData[1] != 0) {
     iStack_50 = 0;
     lVar8 = 0;
-    piVar7 = (int *)*plVar6;
+    piVar7 = (int *)*pcontextData;
     do {
       if (*piVar7 != -1) {
-        operationResult1 = ((int *)*plVar6)[iStack_50];
+        operationResult1 = ((int *)*pcontextData)[iStack_50];
         goto LAB_1808509d5;
       }
       iStack_50 = iStack_50 + 1;
       lVar8 = lVar8 + 1;
       piVar7 = piVar7 + 1;
-    } while (lVar8 != (int)plVar6[1]);
+    } while (lVar8 != (int)pcontextData[1]);
   }
   iStack_50 = -1;
   operationResult1 = -1;
 LAB_1808509d5:
   uStack_30 = CONCAT44(uStack_44,operationResult1);
-  uStack_58._0_4_ = SUB84(plVar6,0);
-  uStack_58._4_4_ = (undefined4)((ulonglong)plVar6 >> 0x20);
+  uStack_58._0_4_ = SUB84(pcontextData,0);
+  uStack_58._4_4_ = (undefined4)((ulonglong)pcontextData >> 0x20);
   uStack_34 = 0xffffffff;
-  pallocatedMemory6 = plVar6;
+  pallocatedMemory6 = pcontextData;
   iStack_48 = operationResult1;
   uStack_40 = (undefined4)uStack_58;
   uStack_3c = uStack_58._4_4_;
@@ -300634,18 +300634,18 @@ LAB_1808509d5:
     operationResult1 = operationResult1 + 1;
     lVar8 = lVar8 + 1;
     piVar7 = piVar7 + 1;
-    if (lVar8 == (int)plVar6[1]) break;
+    if (lVar8 == (int)pcontextData[1]) break;
 LAB_180850810:
     if (*piVar7 != -1) {
-      operationResult1 = ((int *)*plVar6)[operationResult1];
+      operationResult1 = ((int *)*pcontextData)[operationResult1];
       pallocatedMemory6 = uStack_58;
       goto joined_r0x0001808508ee;
     }
   }
 LAB_180850827:
-  FUN_1808bbe80(plVar6);
+  FUN_1808bbe80(pcontextData);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
+  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),pcontextData,&UNK_180984cd0,0x193,1);
 }
 
 
@@ -302173,7 +302173,7 @@ undefined8 FUN_180851a40(longlong *uiContext)
   longlong stringCompareIndex;
   undefined8 uVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   int *piVar8;
   int iVar9;
@@ -302219,12 +302219,12 @@ undefined8 FUN_180851a40(longlong *uiContext)
           return 0x1c;
         }
         componentIndex = uiContext[2];
-        lVar6 = (longlong)
+        contextData = (longlong)
                 (int)((*(uint *)(uVar5 + 0xc + componentIndex) ^ *(uint *)(uVar5 + 8 + componentIndex) ^
                        *(uint *)(uVar5 + 4 + componentIndex) ^ *(uint *)(uVar5 + componentIndex)) &
                      (int)uiContext[1] - 1U);
-        piVar8 = (int *)(*uiContext + lVar6 * 4);
-        iVar9 = *(int *)(*uiContext + lVar6 * 4);
+        piVar8 = (int *)(*uiContext + contextData * 4);
+        iVar9 = *(int *)(*uiContext + contextData * 4);
         while (iVar9 != -1) {
           piVar8 = (int *)(componentIndex + 0x10 + (longlong)iVar9 * 0x20);
           iVar9 = *piVar8;
@@ -302589,7 +302589,7 @@ void FUN_180852090(undefined8 *uiContext,undefined8 *dataSource)
   char cVar3;
   short sVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   undefined8 *puVar8;
   undefined8 *puVar9;
@@ -302633,13 +302633,13 @@ void FUN_180852090(undefined8 *uiContext,undefined8 *dataSource)
   ulonglong uStack_50;
   
   uStack_50 = XorEncryptionKey ^ (ulonglong)auStack_338;
-  lVar6 = uiContext[8];
+  contextData = uiContext[8];
   puStack_2b0 = dataSource;
-  if (lVar6 != 0) {
-    uStack_2c8 = *(undefined8 **)(lVar6 + 0x10);
-    uStack_2c0 = *(ulonglong *)(lVar6 + 0x18);
-    lVar6 = (**(code **)(*(longlong *)*dataSource + 0x150))((longlong *)*dataSource,&uStack_2c8);
-    if (lVar6 == 0) {
+  if (contextData != 0) {
+    uStack_2c8 = *(undefined8 **)(contextData + 0x10);
+    uStack_2c0 = *(ulonglong *)(contextData + 0x18);
+    contextData = (**(code **)(*(longlong *)*dataSource + 0x150))((longlong *)*dataSource,&uStack_2c8);
+    if (contextData == 0) {
       uStack_2d0 = (uint)uStack_2c0._7_1_;
       uStack_2d8 = (uint)uStack_2c0._6_1_;
       uStack_2e0 = (uint)uStack_2c0._5_1_;
@@ -302653,7 +302653,7 @@ void FUN_180852090(undefined8 *uiContext,undefined8 *dataSource)
                     // WARNING: Subroutine does not return
       FUN_18076b390(auStack_78,0x27,&UNK_180958180,(ulonglong)uStack_2c8 & 0xffffffff);
     }
-    uiContext[8] = lVar6;
+    uiContext[8] = contextData;
   }
   iVar5 = FUN_1808b2950(uiContext,dataSource);
   if (iVar5 != 0) goto FUN_180852aaa;
@@ -302664,8 +302664,8 @@ void FUN_180852090(undefined8 *uiContext,undefined8 *dataSource)
     iVar5 = FUN_180744d60(uiContext + 0x1f);
     pfunctionResult1 = (undefined8 *)0x0;
     if (iVar5 == 0) {
-      lVar6 = (**(code **)*uiContext)(uiContext);
-      if (*(int *)(lVar6 + 0xcc) != 0x7fffffff) {
+      contextData = (**(code **)*uiContext)(uiContext);
+      if (*(int *)(contextData + 0xcc) != 0x7fffffff) {
         puStack_288 = auStack_278;
         iStack_280 = 0;
         uStack_27c = 0xffffffc0;
@@ -302677,14 +302677,14 @@ LAB_1808522f9:
           FUN_180744d60(&puStack_288);
           goto LAB_180852302;
         }
-        lVar6 = (longlong)iStack_280;
+        contextData = (longlong)iStack_280;
         if (iStack_280 != 0) {
           lVar7 = (**(code **)*uiContext)(uiContext);
           iVar5 = *(int *)(lVar7 + 0xd0);
           if (iVar5 == 2) {
             threadLocalStorageFlag1 = (code *)&UNK_180863400;
 LAB_180852282:
-            qsort(psemaphoreHandle,lVar6,8,threadLocalStorageFlag1);
+            qsort(psemaphoreHandle,contextData,8,threadLocalStorageFlag1);
           }
           else {
             if (iVar5 == 3) {
@@ -302696,13 +302696,13 @@ LAB_180852282:
               goto LAB_180852282;
             }
           }
-          lVar6 = (longlong)(operationResult8 + -1);
+          contextData = (longlong)(operationResult8 + -1);
           if (-1 < operationResult8 + -1) {
             do {
-              if (((*(uint *)(*(longlong *)(puStack_288 + lVar6 * 8) + 0x2d8) >> 6 & 1) != 0) &&
+              if (((*(uint *)(*(longlong *)(puStack_288 + contextData * 8) + 0x2d8) >> 6 & 1) != 0) &&
                  (iVar5 = FUN_18084e710(uiContext), iVar5 != 0)) goto LAB_1808522f9;
-              lVar6 = lVar6 + -1;
-            } while (-1 < lVar6);
+              contextData = contextData + -1;
+            } while (-1 < contextData);
           }
         }
         FUN_180744d60(&puStack_288);
@@ -302720,47 +302720,47 @@ LAB_180852302:
       uStack_2c0 = puVar8[1];
     }
     else {
-      lVar6 = (*(code *)**(undefined8 **)uiContext[0xc])();
-      uStack_2c8 = *(undefined8 **)(lVar6 + 0x10);
-      uStack_2c0 = *(ulonglong *)(lVar6 + 0x18);
+      contextData = (*(code *)**(undefined8 **)uiContext[0xc])();
+      uStack_2c8 = *(undefined8 **)(contextData + 0x10);
+      uStack_2c0 = *(ulonglong *)(contextData + 0x18);
     }
-    lVar6 = uiContext[8];
-    if ((*(undefined8 **)(lVar6 + 0x58) != uStack_2c8) ||
-       (*(ulonglong *)(lVar6 + 0x60) != uStack_2c0)) {
-      if ((*(int *)(lVar6 + 0x58) == 0) &&
-         (((*(int *)(lVar6 + 0x5c) == 0 && (*(int *)(lVar6 + 0x60) == 0)) &&
-          (*(int *)(lVar6 + 100) == 0)))) goto FUN_180852aaa;
+    contextData = uiContext[8];
+    if ((*(undefined8 **)(contextData + 0x58) != uStack_2c8) ||
+       (*(ulonglong *)(contextData + 0x60) != uStack_2c0)) {
+      if ((*(int *)(contextData + 0x58) == 0) &&
+         (((*(int *)(contextData + 0x5c) == 0 && (*(int *)(contextData + 0x60) == 0)) &&
+          (*(int *)(contextData + 100) == 0)))) goto FUN_180852aaa;
       functionResult = uiContext[0xe];
       iVar5 = FUN_180853470(uiContext);
       if (iVar5 != 0) goto FUN_180852aaa;
       uiContext[0xe] = functionResult;
       FUN_18084e4b0(uiContext);
-      lVar6 = uiContext[8];
+      contextData = uiContext[8];
     }
-    sVar4 = func_0x00018084c3d0(lVar6);
+    sVar4 = func_0x00018084c3d0(contextData);
     if ((sVar4 != 4) || (iVar5 = FUN_18084edf0(uiContext), iVar5 == 0)) {
       puVar8 = uiContext + 0x16;
       pfunctionResult2 = (undefined8 *)*puVar8;
 joined_r0x0001808523af:
       do {
         if (pfunctionResult2 == puVar8) {
-          lVar6 = uiContext[8];
-          pfunctionResult2 = *(undefined8 **)(lVar6 + 0x38);
+          contextData = uiContext[8];
+          pfunctionResult2 = *(undefined8 **)(contextData + 0x38);
           goto LAB_18085243e;
         }
         puVar9 = (undefined8 *)pfunctionResult2[2];
         if (pfunctionResult2 != puVar8) {
           pfunctionResult2 = (undefined8 *)*pfunctionResult2;
         }
-        lVar6 = (**(code **)*puVar9)(puVar9);
+        contextData = (**(code **)*puVar9)(puVar9);
         iVar5 = *(int *)(uiContext[8] + 0x40);
         if (0 < iVar5) {
           lVar7 = *(longlong *)(uiContext[8] + 0x38);
           psemaphoreHandle0 = pfunctionResult1;
           do {
             operationResult8 = (int)psemaphoreHandle0;
-            if ((*(longlong *)(lVar7 + (longlong)operationResult8 * 0x10) == *(longlong *)(lVar6 + 0x10)) &&
-               (*(longlong *)(lVar7 + 8 + (longlong)operationResult8 * 0x10) == *(longlong *)(lVar6 + 0x18)))
+            if ((*(longlong *)(lVar7 + (longlong)operationResult8 * 0x10) == *(longlong *)(contextData + 0x10)) &&
+               (*(longlong *)(lVar7 + 8 + (longlong)operationResult8 * 0x10) == *(longlong *)(contextData + 0x18)))
             goto joined_r0x0001808523af;
             psemaphoreHandle0 = (undefined8 *)(ulonglong)(operationResult8 + 1U);
           } while ((int)(operationResult8 + 1U) < iVar5);
@@ -302787,8 +302787,8 @@ FUN_180852aaa:
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_50 ^ (ulonglong)auStack_338);
 LAB_18085243e:
-  if ((pfunctionResult2 < *(undefined8 **)(lVar6 + 0x38)) ||
-     (*(undefined8 **)(lVar6 + 0x38) + (longlong)*(int *)(lVar6 + 0x40) * 2 <= pfunctionResult2))
+  if ((pfunctionResult2 < *(undefined8 **)(contextData + 0x38)) ||
+     (*(undefined8 **)(contextData + 0x38) + (longlong)*(int *)(contextData + 0x40) * 2 <= pfunctionResult2))
   goto LAB_180852518;
   uStack_2c8 = (undefined8 *)*pfunctionResult2;
   uStack_2c0 = pfunctionResult2[1];
@@ -303045,7 +303045,7 @@ void FUN_18085219c(void)
   int compareResult;
   longlong lVar4;
   undefined8 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   int iVar8;
   ulonglong uVar9;
@@ -303177,12 +303177,12 @@ joined_r0x0001808523af:
         lVar4 = (**(code **)*peventTypeCode)(peventTypeCode);
         compareResult = *(int *)(unaff_R15[8] + 0x40);
         if (0 < compareResult) {
-          lVar6 = *(longlong *)(unaff_R15[8] + 0x38);
+          contextData = *(longlong *)(unaff_R15[8] + 0x38);
           pfunctionResult9 = pfunctionResult0;
           do {
             operationResult7 = (int)pfunctionResult9;
-            if ((*(longlong *)(lVar6 + (longlong)operationResult7 * 0x10) == *(longlong *)(lVar4 + 0x10)) &&
-               (*(longlong *)(lVar6 + 8 + (longlong)operationResult7 * 0x10) == *(longlong *)(lVar4 + 0x18)))
+            if ((*(longlong *)(contextData + (longlong)operationResult7 * 0x10) == *(longlong *)(lVar4 + 0x10)) &&
+               (*(longlong *)(contextData + 8 + (longlong)operationResult7 * 0x10) == *(longlong *)(lVar4 + 0x18)))
             goto joined_r0x0001808523af;
             pfunctionResult9 = (undefined8 *)(ulonglong)(operationResult7 + 1U);
           } while ((int)(operationResult7 + 1U) < compareResult);
@@ -303201,9 +303201,9 @@ LAB_18085243e:
   _iStack0000000000000078 = pfunctionResult1[1];
   peventTypeCode = (undefined8 *)*componentContextPtr;
   if (peventTypeCode != componentContextPtr) {
-    while ((lVar6 = (*(code *)**(undefined8 **)peventTypeCode[2])(),
-           in_stack_00000070 != *(undefined8 **)(lVar6 + 0x10) ||
-           (_iStack0000000000000078 != *(ulonglong *)(lVar6 + 0x18)))) {
+    while ((contextData = (*(code *)**(undefined8 **)peventTypeCode[2])(),
+           in_stack_00000070 != *(undefined8 **)(contextData + 0x10) ||
+           (_iStack0000000000000078 != *(ulonglong *)(contextData + 0x18)))) {
       if ((peventTypeCode == componentContextPtr) || (peventTypeCode = (undefined8 *)*peventTypeCode, peventTypeCode == componentContextPtr))
       goto LAB_1808524b7;
     }
@@ -304393,7 +304393,7 @@ longlong * FUN_180853560(longlong *uiContext,undefined8 *dataSource)
   bool bVar3;
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong *plVar7;
   longlong *plVar8;
   longlong lVar9;
@@ -304406,16 +304406,16 @@ longlong * FUN_180853560(longlong *uiContext,undefined8 *dataSource)
   if (allocatedMemory != 0) {
     FUN_180768360(allocatedMemory);
   }
-  lVar6 = (**(code **)*dataSource)(dataSource);
+  contextData = (**(code **)*dataSource)(dataSource);
   pallocatedMemory2 = (longlong *)0x0;
-  uVar4 = *(uint *)(lVar6 + 0x10);
-  allocatedMemory1 = *(longlong *)(lVar6 + 0x10);
-  semaphoreHandle = *(uint *)(lVar6 + 0x18);
-  lVar9 = *(longlong *)(lVar6 + 0x18);
+  uVar4 = *(uint *)(contextData + 0x10);
+  allocatedMemory1 = *(longlong *)(contextData + 0x10);
+  semaphoreHandle = *(uint *)(contextData + 0x18);
+  lVar9 = *(longlong *)(contextData + 0x18);
   if (((*(int *)((longlong)uiContext + 0x54) != 0) && ((int)uiContext[7] != 0)) &&
      (operationResult0 = *(int *)(uiContext[6] +
                        (longlong)
-                       (int)((*(uint *)(lVar6 + 0x14) ^ *(uint *)(lVar6 + 0x1c) ^ uVar4 ^ semaphoreHandle) &
+                       (int)((*(uint *)(contextData + 0x14) ^ *(uint *)(contextData + 0x1c) ^ uVar4 ^ semaphoreHandle) &
                             (int)uiContext[7] - 1U) * 4), operationResult0 != -1)) {
     do {
       plVar7 = (longlong *)((longlong)operationResult0 * 0x20 + uiContext[8]);
@@ -304434,7 +304434,7 @@ longlong * FUN_180853560(longlong *uiContext,undefined8 *dataSource)
   if (((*(int *)((longlong)uiContext + 0x24) != 0) && ((int)uiContext[1] != 0)) &&
      (operationResult0 = *(int *)(*uiContext +
                        (longlong)
-                       (int)((uVar4 ^ *(uint *)(lVar6 + 0x14) ^ semaphoreHandle ^ *(uint *)(lVar6 + 0x1c)) &
+                       (int)((uVar4 ^ *(uint *)(contextData + 0x14) ^ semaphoreHandle ^ *(uint *)(contextData + 0x1c)) &
                             (int)uiContext[1] - 1U) * 4), operationResult0 != -1)) {
     do {
       plVar8 = (longlong *)((longlong)operationResult0 * 0x20 + uiContext[2]);
@@ -305654,7 +305654,7 @@ int FUN_180854810(longlong uiContext,ulonglong dataSource,undefined4 targetBuffe
   int compareResult;
   ulonglong uVar4;
   ulonglong *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   undefined4 eventTypeCode;
   longlong lStackX_8;
   ulonglong uStack_48;
@@ -305665,14 +305665,14 @@ int FUN_180854810(longlong uiContext,ulonglong dataSource,undefined4 targetBuffe
   pallocatedMemory = (longlong *)(uiContext + 0x70);
   if (((longlong *)*pallocatedMemory == pallocatedMemory) && (*(longlong **)(uiContext + 0x78) == pallocatedMemory)) {
     uVar4 = *(ulonglong *)(uiContext + 0x28);
-    lVar6 = *(longlong *)(bufferData + 0x38);
+    contextData = *(longlong *)(bufferData + 0x38);
   }
   else {
     uVar4 = *(ulonglong *)(*(longlong *)(bufferData + 0x78) + 0x10);
-    lVar6 = *(longlong *)(*(longlong *)(bufferData + 0x78) + 0x20);
+    contextData = *(longlong *)(*(longlong *)(bufferData + 0x78) + 0x20);
   }
-  if (lVar6 != 0) {
-    *(int *)(lVar6 + 0x10) = *(int *)(lVar6 + 0x10) + 1;
+  if (contextData != 0) {
+    *(int *)(contextData + 0x10) = *(int *)(contextData + 0x10) + 1;
   }
   if (dataSource < uVar4) {
     compareResult = 0x1c;
@@ -305712,12 +305712,12 @@ LAB_180854920:
     }
   }
 LAB_180854958:
-  if (lVar6 != 0) {
-    pvalidationResult = (int *)(lVar6 + 0x10);
+  if (contextData != 0) {
+    pvalidationResult = (int *)(contextData + 0x10);
     *pvalidationResult = *pvalidationResult + -1;
     if (*pvalidationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar6,&UNK_180984d50,0x76,1);
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),contextData,&UNK_180984d50,0x76,1);
     }
   }
   return compareResult;
@@ -305739,7 +305739,7 @@ int FUN_180854818(longlong uiContext,ulonglong dataSource,undefined4 targetBuffe
   ulonglong *componentContextPtr;
   undefined8 context;
   undefined8 unaff_RBP;
-  longlong lVar6;
+  longlong contextData;
   undefined8 unaff_RDI;
   undefined4 eventTypeCode;
   undefined8 unaff_R15;
@@ -305752,14 +305752,14 @@ int FUN_180854818(longlong uiContext,ulonglong dataSource,undefined4 targetBuffe
   *(undefined8 *)(in_RAX + -0x28) = unaff_R15;
   if (((longlong *)*pallocatedMemory == pallocatedMemory) && (*(longlong **)(uiContext + 0x78) == pallocatedMemory)) {
     uVar4 = *(ulonglong *)(uiContext + 0x28);
-    lVar6 = *(longlong *)(bufferData + 0x38);
+    contextData = *(longlong *)(bufferData + 0x38);
   }
   else {
     uVar4 = *(ulonglong *)(*(longlong *)(bufferData + 0x78) + 0x10);
-    lVar6 = *(longlong *)(*(longlong *)(bufferData + 0x78) + 0x20);
+    contextData = *(longlong *)(*(longlong *)(bufferData + 0x78) + 0x20);
   }
-  if (lVar6 != 0) {
-    *(int *)(lVar6 + 0x10) = *(int *)(lVar6 + 0x10) + 1;
+  if (contextData != 0) {
+    *(int *)(contextData + 0x10) = *(int *)(contextData + 0x10) + 1;
   }
   if (dataSource < uVar4) {
     compareResult = 0x1c;
@@ -305799,12 +305799,12 @@ LAB_180854920:
     }
   }
 LAB_180854958:
-  if (lVar6 != 0) {
-    pvalidationResult = (int *)(lVar6 + 0x10);
+  if (contextData != 0) {
+    pvalidationResult = (int *)(contextData + 0x10);
     *pvalidationResult = *pvalidationResult + -1;
     if (*pvalidationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar6,&UNK_180984d50,0x76,1);
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),contextData,&UNK_180984d50,0x76,1);
     }
   }
   return compareResult;
@@ -305878,7 +305878,7 @@ FUN_180854af0(undefined8 uiContext,longlong *dataSource,longlong targetBuffer,lo
   longlong stringCompareIndex;
   undefined8 uVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong lVar7;
   longlong *plVar8;
   undefined4 uVar9;
@@ -305911,12 +305911,12 @@ LAB_180854c5f:
         stringCompareIndex = (**(code **)*plVar5)(plVar5);
         pallocatedMemory = (longlong *)(componentIndex + 0xc0);
         lVar7 = 0;
-        plVar6 = (longlong *)*pallocatedMemory;
-        if (plVar6 != pallocatedMemory) {
-          while ((plVar6[2] != *(longlong *)(stringCompareIndex + 0x40) ||
-                 (plVar6[3] != *(longlong *)(stringCompareIndex + 0x48)))) {
+        pcontextData = (longlong *)*pallocatedMemory;
+        if (pcontextData != pallocatedMemory) {
+          while ((pcontextData[2] != *(longlong *)(stringCompareIndex + 0x40) ||
+                 (pcontextData[3] != *(longlong *)(stringCompareIndex + 0x48)))) {
             lVar7 = lVar7 + 1;
-            if ((plVar6 == pallocatedMemory) || (plVar6 = (longlong *)*plVar6, plVar6 == pallocatedMemory))
+            if ((pcontextData == pallocatedMemory) || (pcontextData = (longlong *)*pcontextData, pcontextData == pallocatedMemory))
             goto LAB_180854bea;
           }
           if (-1 < lVar7) {
@@ -305929,12 +305929,12 @@ LAB_180854c5f:
         stringCompareIndex = (**(code **)*plVar5)(plVar5);
         pallocatedMemory = (longlong *)(componentIndex + 0xb0);
         lVar7 = 0;
-        plVar6 = (longlong *)*pallocatedMemory;
-        if (plVar6 != pallocatedMemory) {
-          while ((plVar6[2] != *(longlong *)(stringCompareIndex + 0x40) ||
-                 (plVar6[3] != *(longlong *)(stringCompareIndex + 0x48)))) {
+        pcontextData = (longlong *)*pallocatedMemory;
+        if (pcontextData != pallocatedMemory) {
+          while ((pcontextData[2] != *(longlong *)(stringCompareIndex + 0x40) ||
+                 (pcontextData[3] != *(longlong *)(stringCompareIndex + 0x48)))) {
             lVar7 = lVar7 + 1;
-            if ((plVar6 == pallocatedMemory) || (plVar6 = (longlong *)*plVar6, plVar6 == pallocatedMemory))
+            if ((pcontextData == pallocatedMemory) || (pcontextData = (longlong *)*pcontextData, pcontextData == pallocatedMemory))
             goto LAB_180854bea;
           }
           if (-1 < lVar7) {
@@ -307480,7 +307480,7 @@ undefined8 FUN_180855ba6(void)
   int bufferSize;
   undefined8 uVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   longlong *context;
   int allocationFlags;
@@ -307522,16 +307522,16 @@ undefined8 FUN_180855ba6(void)
           return 0x1c;
         }
         componentIndex = context[2];
-        lVar6 = (longlong)
+        contextData = (longlong)
                 (int)((*(uint *)(uVar5 + 0xc + componentIndex) ^ *(uint *)(uVar5 + 8 + componentIndex) ^
                        *(uint *)(uVar5 + 4 + componentIndex) ^ *(uint *)(uVar5 + componentIndex)) &
                      (int)context[1] - 1U);
-        poperationResult = (int *)(*context + lVar6 * 4);
-        iVar8 = *(int *)(*context + lVar6 * 4);
+        poperationResult = (int *)(*context + contextData * 4);
+        iVar8 = *(int *)(*context + contextData * 4);
         while (iVar8 != -1) {
-          lVar6 = (longlong)iVar8 * 3 + 2;
-          poperationResult = (int *)(componentIndex + lVar6 * 8);
-          iVar8 = *(int *)(componentIndex + lVar6 * 8);
+          contextData = (longlong)iVar8 * 3 + 2;
+          poperationResult = (int *)(componentIndex + contextData * 8);
+          iVar8 = *(int *)(componentIndex + contextData * 8);
         }
         *poperationResult = (int)uVar9;
         functionResult0 = functionResult0 + 1;
@@ -307641,7 +307641,7 @@ undefined8 FUN_180855d06(void)
   int bufferSize;
   undefined8 uVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   longlong *context;
   int allocationFlags;
@@ -307683,16 +307683,16 @@ undefined8 FUN_180855d06(void)
           return 0x1c;
         }
         componentIndex = context[2];
-        lVar6 = (longlong)
+        contextData = (longlong)
                 (int)((*(uint *)(uVar5 + 0xc + componentIndex) ^ *(uint *)(uVar5 + 8 + componentIndex) ^
                        *(uint *)(uVar5 + 4 + componentIndex) ^ *(uint *)(uVar5 + componentIndex)) &
                      (int)context[1] - 1U);
-        poperationResult = (int *)(*context + lVar6 * 4);
-        iVar8 = *(int *)(*context + lVar6 * 4);
+        poperationResult = (int *)(*context + contextData * 4);
+        iVar8 = *(int *)(*context + contextData * 4);
         while (iVar8 != -1) {
-          lVar6 = (longlong)iVar8 * 3 + 2;
-          poperationResult = (int *)(componentIndex + lVar6 * 8);
-          iVar8 = *(int *)(componentIndex + lVar6 * 8);
+          contextData = (longlong)iVar8 * 3 + 2;
+          poperationResult = (int *)(componentIndex + contextData * 8);
+          iVar8 = *(int *)(componentIndex + contextData * 8);
         }
         *poperationResult = (int)uVar9;
         functionResult0 = functionResult0 + 1;
@@ -307789,7 +307789,7 @@ undefined8 FUN_180855e6b(longlong uiContext)
   longlong *pstringCompareIndex;
   undefined8 uVar4;
   int iVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   longlong *unaff_R14;
   longlong unaff_R15;
@@ -307798,21 +307798,21 @@ undefined8 FUN_180855e6b(longlong uiContext)
   if (!in_ZF) {
     plVar7 = (longlong *)0x0;
     pallocatedMemory = (longlong *)(uiContext + 0x118);
-    plVar6 = (longlong *)(*pallocatedMemory + -0x18);
+    pcontextData = (longlong *)(*pallocatedMemory + -0x18);
     if (*pallocatedMemory == 0) {
-      plVar6 = plVar7;
+      pcontextData = plVar7;
     }
     pstringCompareIndex = plVar7;
-    if (plVar6 != (longlong *)0x0) {
-      pstringCompareIndex = plVar6 + 3;
+    if (pcontextData != (longlong *)0x0) {
+      pstringCompareIndex = pcontextData + 3;
     }
     while (pstringCompareIndex != pallocatedMemory) {
       componentIndex = *unaff_R14;
-      plVar6 = pstringCompareIndex + -3;
+      pcontextData = pstringCompareIndex + -3;
       if (pstringCompareIndex == (longlong *)0x0) {
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       }
-      uVar4 = FUN_1808c6cd0(plVar6,*(undefined4 *)(unaff_R15 + 8));
+      uVar4 = FUN_1808c6cd0(pcontextData,*(undefined4 *)(unaff_R15 + 8));
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -307823,20 +307823,20 @@ undefined8 FUN_180855e6b(longlong uiContext)
       else {
         iVar5 = -1;
       }
-      uVar4 = FUN_1808c6c20(plVar6,iVar5);
+      uVar4 = FUN_1808c6c20(pcontextData,iVar5);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
       if (pstringCompareIndex == pallocatedMemory) {
         return 0;
       }
-      plVar6 = (longlong *)(*pstringCompareIndex + -0x18);
+      pcontextData = (longlong *)(*pstringCompareIndex + -0x18);
       if (*pstringCompareIndex == 0) {
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       }
       pstringCompareIndex = plVar7;
-      if (plVar6 != (longlong *)0x0) {
-        pstringCompareIndex = plVar6 + 3;
+      if (pcontextData != (longlong *)0x0) {
+        pstringCompareIndex = pcontextData + 3;
       }
     }
   }
@@ -308084,7 +308084,7 @@ undefined8 FUN_1808560c0(longlong uiContext)
   longlong stringCompareIndex;
   undefined8 uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   
   if (*(longlong *)(bufferData + 0x140) == 0) {
     return 0;
@@ -308129,24 +308129,24 @@ undefined8 FUN_1808560c0(longlong uiContext)
     stringCompareIndex = func_0x00018084d0b0(*(undefined8 *)(uiContext + 0x110),stringCompareIndex + 0x20);
     pallocatedMemory = (longlong *)(uiContext + 0x70);
     if (((longlong *)*pallocatedMemory == pallocatedMemory) && (*(longlong **)(uiContext + 0x78) == pallocatedMemory)) {
-      lVar6 = *(longlong *)(bufferData + 0x38);
+      contextData = *(longlong *)(bufferData + 0x38);
     }
     else {
-      lVar6 = *(longlong *)(*(longlong *)(bufferData + 0x78) + 0x20);
+      contextData = *(longlong *)(*(longlong *)(bufferData + 0x78) + 0x20);
     }
-    if ((lVar6 != 0) && (*(int *)(lVar6 + 0x10) = *(int *)(lVar6 + 0x10) + 1, lVar6 != 0)) {
-      pvalidationResult = (int *)(lVar6 + 0x10);
+    if ((contextData != 0) && (*(int *)(contextData + 0x10) = *(int *)(contextData + 0x10) + 1, contextData != 0)) {
+      pvalidationResult = (int *)(contextData + 0x10);
       *pvalidationResult = *pvalidationResult + -1;
       if (*pvalidationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar6,&UNK_180984d50,0x76,1);
+        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),contextData,&UNK_180984d50,0x76,1);
       }
     }
-    if (*(int *)(stringCompareIndex + 0x20) == *(int *)(lVar6 + 0xc)) {
+    if (*(int *)(stringCompareIndex + 0x20) == *(int *)(contextData + 0xc)) {
       return 0;
     }
     if ((*(byte *)(uiContext + 0x128) & 4) == 0) {
-      *(int *)(lVar6 + 0xc) = *(int *)(stringCompareIndex + 0x20);
+      *(int *)(contextData + 0xc) = *(int *)(stringCompareIndex + 0x20);
       return 0;
     }
   }
@@ -308510,7 +308510,7 @@ FUN_180856570(longlong uiContext,uint *dataSource,undefined4 targetBuffer,uint *
   uint *puVar3;
   undefined8 uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   uint uVar8;
   longlong *plVar9;
@@ -308615,13 +308615,13 @@ LAB_180856636:
         FUN_1808549c0(resultPointer,&uStack_80,&uStack_78);
         lVar5 = uStack_88;
         while ((uint)uStack_78 != -1) {
-          lVar6 = (longlong)(int)(uint)uStack_78;
+          contextData = (longlong)(int)(uint)uStack_78;
           uStack_88 = lVar5;
           lVar7 = func_0x00018084d100(*(undefined8 *)(uiContext + 0x110),
-                                      *(longlong *)(lVar5 + 0x10) + lVar6 * 0x18);
+                                      *(longlong *)(lVar5 + 0x10) + contextData * 0x18);
           if ((((functionResult < *(uint *)(lVar7 + 0x30)) || (*(uint *)(lVar7 + 0x34) < functionResult)) ||
               (uVar8 < *(uint *)(lVar7 + 0x30))) || (*(uint *)(lVar7 + 0x34) < uVar8)) {
-            func_0x000180859da0(resultPointer,*(longlong *)(lVar5 + 0x10) + lVar6 * 0x18);
+            func_0x000180859da0(resultPointer,*(longlong *)(lVar5 + 0x10) + contextData * 0x18);
           }
           func_0x000180854a60(&uStack_88);
           lVar5 = uStack_88;
@@ -308657,7 +308657,7 @@ FUN_180856830(longlong uiContext,uint *dataSource,undefined4 targetBuffer,char b
   char cVar3;
   int iVar4;
   uint *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   longlong lVar8;
   undefined8 uVar9;
@@ -308706,13 +308706,13 @@ FUN_180856830(longlong uiContext,uint *dataSource,undefined4 targetBuffer,char b
           if (operationResult0 != -1) {
             lVar7 = param_7[2];
             do {
-              lVar6 = (longlong)operationResult0;
-              if ((*(longlong *)(lVar7 + lVar6 * 0x18) == pallocatedMemory4[2]) &&
-                 (*(longlong *)(lVar7 + 8 + lVar6 * 0x18) == pallocatedMemory4[3])) {
+              contextData = (longlong)operationResult0;
+              if ((*(longlong *)(lVar7 + contextData * 0x18) == pallocatedMemory4[2]) &&
+                 (*(longlong *)(lVar7 + 8 + contextData * 0x18) == pallocatedMemory4[3])) {
                 operationResult0 = 0;
                 goto LAB_18085691e;
               }
-              operationResult0 = *(int *)(lVar7 + 0x10 + lVar6 * 0x18);
+              operationResult0 = *(int *)(lVar7 + 0x10 + contextData * 0x18);
             } while (operationResult0 != -1);
           }
           operationResult0 = 0x4a;
@@ -311694,7 +311694,7 @@ void FUN_1808596d0(longlong uiContext,longlong dataSource)
   uint uVar3;
   uint *bufferPtr;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong *plVar7;
   longlong *plVar8;
   undefined8 uVar9;
@@ -311718,20 +311718,20 @@ void FUN_1808596d0(longlong uiContext,longlong dataSource)
   ulonglong uStack_40;
   
   uStack_40 = XorEncryptionKey ^ (ulonglong)auStack_e8;
-  lVar6 = **(longlong **)(uiContext + 0x38);
-  plVar8 = (longlong *)(lVar6 + 0x60);
+  contextData = **(longlong **)(uiContext + 0x38);
+  plVar8 = (longlong *)(contextData + 0x60);
   plVar7 = (longlong *)*plVar8;
-  functionResult = *(uint *)(lVar6 + 0xa0);
+  functionResult = *(uint *)(contextData + 0xa0);
   uStack_78 = functionResult;
   lStack_70 = uiContext;
   if (plVar7 != plVar8) {
     do {
       if ((*(longlong *)(*(longlong *)(dataSource + 0x28) + 0x10) == plVar7[2]) &&
          (*(longlong *)(*(longlong *)(dataSource + 0x28) + 0x18) == plVar7[3])) {
-        lVar6 = (**(code **)(**(longlong **)(uiContext + 0x170) + 0x268))
+        contextData = (**(code **)(**(longlong **)(uiContext + 0x170) + 0x268))
                           (*(longlong **)(uiContext + 0x170),plVar7 + 4,
                            CONCAT71((int7)((ulonglong)plVar8 >> 8),1));
-        if (lVar6 == 0) {
+        if (contextData == 0) {
           uStack_80 = (uint)*(byte *)((longlong)plVar7 + 0x2f);
           uStack_88 = (uint)*(byte *)((longlong)plVar7 + 0x2e);
           uStack_90 = (uint)*(byte *)((longlong)plVar7 + 0x2d);
@@ -311745,7 +311745,7 @@ void FUN_1808596d0(longlong uiContext,longlong dataSource)
                     // WARNING: Subroutine does not return
           FUN_18076b390(auStack_68,0x27,&UNK_180958180,(int)plVar7[4]);
         }
-        bufferPtr = *(uint **)(lVar6 + 0x30);
+        bufferPtr = *(uint **)(contextData + 0x30);
         semaphoreHandle = *(uint *)(uiContext + 0x24);
         if (semaphoreHandle < *bufferPtr) {
           floatResult1 = (float)semaphoreHandle / (float)*bufferPtr;
@@ -311760,7 +311760,7 @@ void FUN_1808596d0(longlong uiContext,longlong dataSource)
           uVar9 = 1;
         }
         else {
-          uVar3 = bufferPtr[(longlong)*(int *)(lVar6 + 0x38) * 6 + -6];
+          uVar3 = bufferPtr[(longlong)*(int *)(contextData + 0x38) * 6 + -6];
           if (semaphoreHandle <= uVar3) {
             uVar9 = 1;
             goto LAB_180859953;
@@ -311779,16 +311779,16 @@ void FUN_1808596d0(longlong uiContext,longlong dataSource)
       }
     } while ((plVar7 != plVar8) && (plVar7 = (longlong *)*plVar7, plVar7 != plVar8));
   }
-  plVar8 = (longlong *)(lVar6 + 0x70);
-  if (*(longlong **)(lVar6 + 0x70) != plVar8) {
-    plVar7 = *(longlong **)(lVar6 + 0x70);
+  plVar8 = (longlong *)(contextData + 0x70);
+  if (*(longlong **)(contextData + 0x70) != plVar8) {
+    plVar7 = *(longlong **)(contextData + 0x70);
     do {
       if ((*(longlong *)(*(longlong *)(dataSource + 0x28) + 0x10) == plVar7[2]) &&
          (*(longlong *)(*(longlong *)(dataSource + 0x28) + 0x18) == plVar7[3])) {
-        lVar6 = (**(code **)(**(longlong **)(uiContext + 0x170) + 0x268))
+        contextData = (**(code **)(**(longlong **)(uiContext + 0x170) + 0x268))
                           (*(longlong **)(uiContext + 0x170),plVar7 + 4,
                            CONCAT71((int7)((ulonglong)plVar8 >> 8),1));
-        if (lVar6 == 0) {
+        if (contextData == 0) {
           uStack_80 = (uint)*(byte *)((longlong)plVar7 + 0x2f);
           uStack_88 = (uint)*(byte *)((longlong)plVar7 + 0x2e);
           uStack_90 = (uint)*(byte *)((longlong)plVar7 + 0x2d);
@@ -311807,7 +311807,7 @@ LAB_180859953:
         iVar5 = func_0x0001808c6c40(dataSource,0x3f800000,uVar9);
         if (iVar5 == 0) {
 LAB_18085996b:
-          functionResult0 = FUN_1808c6120(lVar6,*(undefined4 *)(bufferData + 0x24));
+          functionResult0 = FUN_1808c6120(contextData,*(undefined4 *)(bufferData + 0x24));
           func_0x0001808c6c50(dataSource,functionResult0);
         }
         goto LAB_1808597c2;
@@ -311832,27 +311832,27 @@ undefined8 FUN_180859a50(longlong uiContext)
   undefined8 uVar3;
   longlong *plVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   
   if (*(int *)(bufferData + 0x34) - 4U < 2) {
     if (*(longlong **)(uiContext + 0x38) == (longlong *)0x0) {
       return 0x1c;
     }
     if (**(longlong **)(uiContext + 0x38) != 0) {
-      plVar6 = (longlong *)0x0;
+      pcontextData = (longlong *)0x0;
       plVar4 = (longlong *)(uiContext + 0x118);
       plVar5 = (longlong *)(*plVar4 + -0x18);
       if (*plVar4 == 0) {
-        plVar5 = plVar6;
+        plVar5 = pcontextData;
       }
-      colorBufferPointer = plVar6;
+      colorBufferPointer = pcontextData;
       if (plVar5 != (longlong *)0x0) {
         colorBufferPointer = plVar5 + 3;
       }
       while (colorBufferPointer != plVar4) {
         plVar5 = colorBufferPointer + -3;
         if (colorBufferPointer == (longlong *)0x0) {
-          plVar5 = plVar6;
+          plVar5 = pcontextData;
         }
         uVar3 = FUN_1808596d0(uiContext,plVar5);
         if ((int)uVar3 != 0) {
@@ -311863,9 +311863,9 @@ undefined8 FUN_180859a50(longlong uiContext)
         }
         plVar5 = (longlong *)(*colorBufferPointer + -0x18);
         if (*colorBufferPointer == 0) {
-          plVar5 = plVar6;
+          plVar5 = pcontextData;
         }
-        colorBufferPointer = plVar6;
+        colorBufferPointer = pcontextData;
         if (plVar5 != (longlong *)0x0) {
           colorBufferPointer = plVar5 + 3;
         }
@@ -311874,17 +311874,17 @@ undefined8 FUN_180859a50(longlong uiContext)
   }
   else {
     functionResult = *(undefined4 *)(bufferData + 0x20);
-    plVar6 = (longlong *)(uiContext + 0x118);
+    pcontextData = (longlong *)(uiContext + 0x118);
     plVar5 = (longlong *)0x0;
-    plVar4 = (longlong *)(*plVar6 + -0x18);
-    if (*plVar6 == 0) {
+    plVar4 = (longlong *)(*pcontextData + -0x18);
+    if (*pcontextData == 0) {
       plVar4 = plVar5;
     }
     colorBufferPointer = plVar5;
     if (plVar4 != (longlong *)0x0) {
       colorBufferPointer = plVar4 + 3;
     }
-    while (colorBufferPointer != plVar6) {
+    while (colorBufferPointer != pcontextData) {
       plVar4 = colorBufferPointer + -3;
       if (colorBufferPointer == (longlong *)0x0) {
         plVar4 = plVar5;
@@ -311893,7 +311893,7 @@ undefined8 FUN_180859a50(longlong uiContext)
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      if (colorBufferPointer == plVar6) {
+      if (colorBufferPointer == pcontextData) {
         return 0;
       }
       plVar4 = (longlong *)(*colorBufferPointer + -0x18);
@@ -313931,7 +313931,7 @@ FUN_18085b050(longlong uiContext,undefined8 dataSource,uint *targetBuffer,uint *
   undefined1 uVar3;
   int iVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   ulonglong uVar8;
   
@@ -313961,17 +313961,17 @@ FUN_18085b050(longlong uiContext,undefined8 dataSource,uint *targetBuffer,uint *
     }
     *pfunctionResult = eventTypeCode;
     if (param_6 != 0) {
-      lVar6 = func_0x00018084d0b0(*(undefined8 *)(uiContext + 0x110),param_6 + 0x20);
-      if (lVar6 == 0) {
+      contextData = func_0x00018084d0b0(*(undefined8 *)(uiContext + 0x110),param_6 + 0x20);
+      if (contextData == 0) {
         return 0x1c;
       }
       func_0x00018085c9a0(uiContext,&resultPointer,resultPointer._4_4_,dataSource);
-      uVar5 = FUN_18085c5b0(uiContext,CONCAT44(resultPointer._4_4_,(int)resultPointer),lVar6 + 0x20,semaphoreHandle);
+      uVar5 = FUN_18085c5b0(uiContext,CONCAT44(resultPointer._4_4_,(int)resultPointer),contextData + 0x20,semaphoreHandle);
       if ((int)uVar5 != 0) {
         return uVar5;
       }
       *pfunctionResult = 0;
-      *bufferSize = *(uint *)(lVar6 + 0x20);
+      *bufferSize = *(uint *)(contextData + 0x20);
     }
     uVar5 = 0;
   }
@@ -314257,7 +314257,7 @@ int FUN_18085b595(longlong uiContext,uint dataSource,longlong targetBuffer,longl
   int compareResult;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   int iVar8;
   longlong in_RAX;
@@ -314357,7 +314357,7 @@ int FUN_18085b595(longlong uiContext,uint dataSource,longlong targetBuffer,longl
     *(uint *)(uiContext + 0x128) = *(uint *)(uiContext + 0x128) | 4;
     *(bool *)(uiContext + 0x13e) = in_stack_000000b8 != 0;
   }
-  lVar6 = lStack0000000000000040;
+  contextData = lStack0000000000000040;
   iStack0000000000000050 = *(int *)(allocatedMemory3 + 8);
   iStack00000000000000a4 = -1;
   if (uVar4 + functionResult0 < 0x100000000) {
@@ -314371,7 +314371,7 @@ int FUN_18085b595(longlong uiContext,uint dataSource,longlong targetBuffer,longl
                         uVar9);
   if (iVar7 == 0) {
     uStack0000000000000030 = 0;
-    iVar7 = FUN_18085acd0(uiContext,&stack0x00000048,&stack0x000000a0,lVar6 + 0x90,
+    iVar7 = FUN_18085acd0(uiContext,&stack0x00000048,&stack0x000000a0,contextData + 0x90,
                           uVar9 & 0xffffffffffffff00);
     if (iVar7 != 0) goto LAB_18085b88c;
   }
@@ -314420,19 +314420,19 @@ longlong * FUN_18085b920(longlong uiContext,longlong *dataSource)
   uint uVar3;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   longlong lVar8;
   
   pallocatedMemory = (longlong *)(uiContext + 0x70);
   if (((longlong *)*pallocatedMemory == pallocatedMemory) && (*(longlong **)(uiContext + 0x78) == pallocatedMemory)) {
-    lVar6 = *(longlong *)(bufferData + 0x28);
+    contextData = *(longlong *)(bufferData + 0x28);
     uVar5 = *(uint *)(uiContext + 0x30);
     lVar8 = *(longlong *)(bufferData + 0x38);
   }
   else {
     lVar8 = *(longlong *)(bufferData + 0x78);
-    lVar6 = *(longlong *)(lVar8 + 0x10);
+    contextData = *(longlong *)(lVar8 + 0x10);
     uVar5 = *(uint *)(lVar8 + 0x18);
     lVar8 = *(longlong *)(lVar8 + 0x20);
   }
@@ -314455,7 +314455,7 @@ longlong * FUN_18085b920(longlong uiContext,longlong *dataSource)
     }
     eventTypeCode = eventTypeCode & 0xffffffff;
   }
-  *dataSource = eventTypeCode + lVar6;
+  *dataSource = eventTypeCode + contextData;
   if (lVar8 != 0) {
     pvalidationResult = (int *)(lVar8 + 0x10);
     *pvalidationResult = *pvalidationResult + -1;
@@ -314479,7 +314479,7 @@ longlong * FUN_18085ba10(longlong uiContext,longlong *dataSource)
   undefined4 uVar3;
   longlong lVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined4 *peventTypeCode;
   undefined4 uVar8;
   longlong lVar9;
@@ -314503,7 +314503,7 @@ longlong * FUN_18085ba10(longlong uiContext,longlong *dataSource)
   if (lVar9 != 0) {
     *(int *)(lVar9 + 0x10) = *(int *)(lVar9 + 0x10) + 1;
   }
-  lVar6 = (**(code **)(*(longlong *)(*(longlong *)(bufferData + 0x160) + 8) + 0x30))();
+  contextData = (**(code **)(*(longlong *)(*(longlong *)(bufferData + 0x160) + 8) + 0x30))();
   peventTypeCode = (undefined4 *)FUN_18084da10();
   uStack_28 = (undefined4)uVar5;
   uStack_24 = (undefined4)((ulonglong)uVar5 >> 0x20);
@@ -314514,7 +314514,7 @@ longlong * FUN_18085ba10(longlong uiContext,longlong *dataSource)
   *(undefined4 *)((longlong)dataSource + 0xc) = uVar3;
   dataSource[5] = lVar4 + 0x3f8;
   dataSource[6] = 0;
-  dataSource[7] = lVar6;
+  dataSource[7] = contextData;
   *(undefined4 *)(dataSource + 2) = uStack_28;
   *(undefined4 *)((longlong)dataSource + 0x14) = uStack_24;
   *(undefined4 *)(dataSource + 3) = uVar8;
@@ -315192,19 +315192,19 @@ longlong * FUN_18085c8a0(longlong uiContext,longlong *dataSource)
   uint uVar3;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   longlong lVar8;
   
   pallocatedMemory = (longlong *)(uiContext + 0x70);
   if (((longlong *)*pallocatedMemory == pallocatedMemory) && (*(longlong **)(uiContext + 0x78) == pallocatedMemory)) {
-    lVar6 = *(longlong *)(bufferData + 0x28);
+    contextData = *(longlong *)(bufferData + 0x28);
     uVar5 = *(uint *)(uiContext + 0x30);
     lVar8 = *(longlong *)(bufferData + 0x38);
   }
   else {
     lVar8 = *(longlong *)(bufferData + 0x78);
-    lVar6 = *(longlong *)(lVar8 + 0x10);
+    contextData = *(longlong *)(lVar8 + 0x10);
     uVar5 = *(uint *)(lVar8 + 0x18);
     lVar8 = *(longlong *)(lVar8 + 0x20);
   }
@@ -315227,7 +315227,7 @@ longlong * FUN_18085c8a0(longlong uiContext,longlong *dataSource)
     }
     eventTypeCode = eventTypeCode & 0xffffffff;
   }
-  *dataSource = eventTypeCode + lVar6;
+  *dataSource = eventTypeCode + contextData;
   if (lVar8 != 0) {
     pvalidationResult = (int *)(lVar8 + 0x10);
     *pvalidationResult = *pvalidationResult + -1;
@@ -316173,7 +316173,7 @@ void FUN_18085dff0(undefined8 *uiContext)
   uint uVar3;
   int iVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong lVar7;
   uint uVar8;
   longlong *plVar9;
@@ -316187,34 +316187,34 @@ void FUN_18085dff0(undefined8 *uiContext)
   if (*pallocatedMemory == 0) {
     plVar5 = plVar9;
   }
-  plVar6 = plVar9;
+  pcontextData = plVar9;
   if (plVar5 != (longlong *)0x0) {
-    plVar6 = plVar5 + 0xe;
+    pcontextData = plVar5 + 0xe;
   }
-  while (plVar6 != pallocatedMemory) {
-    plVar5 = plVar6 + 0x82;
-    if (plVar6 == (longlong *)0x0) {
+  while (pcontextData != pallocatedMemory) {
+    plVar5 = pcontextData + 0x82;
+    if (pcontextData == (longlong *)0x0) {
       plVar5 = (longlong *)0x480;
     }
     *plVar5 = 0;
-    if (plVar6 == pallocatedMemory) break;
-    plVar5 = (longlong *)(*plVar6 + -0x70);
-    if (*plVar6 == 0) {
+    if (pcontextData == pallocatedMemory) break;
+    plVar5 = (longlong *)(*pcontextData + -0x70);
+    if (*pcontextData == 0) {
       plVar5 = plVar9;
     }
-    plVar6 = plVar9;
+    pcontextData = plVar9;
     if (plVar5 != (longlong *)0x0) {
-      plVar6 = plVar5 + 0xe;
+      pcontextData = plVar5 + 0xe;
     }
   }
   plVar5 = uiContext + 0x92;
-  plVar6 = (longlong *)*plVar5;
-  if ((plVar6 != plVar5) || ((longlong *)uiContext[0x93] != plVar5)) {
-    if (plVar6 == plVar5) {
-      plVar6 = plVar9;
+  pcontextData = (longlong *)*plVar5;
+  if ((pcontextData != plVar5) || ((longlong *)uiContext[0x93] != plVar5)) {
+    if (pcontextData == plVar5) {
+      pcontextData = plVar9;
     }
-    if (plVar6 != (longlong *)0x0) {
-      plVar5 = plVar6;
+    if (pcontextData != (longlong *)0x0) {
+      plVar5 = pcontextData;
     }
     *(longlong *)plVar5[1] = *plVar5;
     *(longlong *)(*plVar5 + 8) = plVar5[1];
@@ -316337,7 +316337,7 @@ void FUN_18085e003(undefined8 *uiContext)
   int compareResult;
   longlong *plVar4;
   longlong *plVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   longlong *unaff_RBP;
   longlong *plVar8;
@@ -316468,9 +316468,9 @@ void FUN_18085e003(undefined8 *uiContext)
   compareResult = *(int *)(allocatedMemory + 0x10);
   if (compareResult < 0) {
     puVar9 = (undefined4 *)(*(longlong *)(allocatedMemory + 8) + (longlong)compareResult * 4);
-    lVar6 = (longlong)-compareResult;
+    contextData = (longlong)-compareResult;
     if (compareResult < 0) {
-      for (; lVar6 != 0; lVar6 = lVar6 + -1) {
+      for (; contextData != 0; contextData = contextData + -1) {
         *puVar9 = 0;
         puVar9 = puVar9 + 1;
       }
@@ -316633,18 +316633,18 @@ void FUN_18085e4a0(longlong uiContext)
   longlong *pstringCompareIndex;
   longlong *plVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   longlong lVar8;
   
-  plVar6 = (longlong *)0x0;
+  pcontextData = (longlong *)0x0;
   plVar7 = (longlong *)(uiContext + 0x118);
   lVar8 = *plVar7;
   plVar4 = (longlong *)(lVar8 + -0x18);
   if (lVar8 == 0) {
-    plVar4 = plVar6;
+    plVar4 = pcontextData;
   }
-  pstringCompareIndex = plVar6;
+  pstringCompareIndex = pcontextData;
   if (plVar4 != (longlong *)0x0) {
     pstringCompareIndex = plVar4 + 3;
   }
@@ -316654,9 +316654,9 @@ void FUN_18085e4a0(longlong uiContext)
       lVar8 = *pstringCompareIndex;
       plVar4 = (longlong *)(lVar8 + -0x18);
       if (lVar8 == 0) {
-        plVar4 = plVar6;
+        plVar4 = pcontextData;
       }
-      plVar5 = plVar6;
+      plVar5 = pcontextData;
       if (plVar4 != (longlong *)0x0) {
         plVar5 = plVar4 + 3;
       }
@@ -316714,14 +316714,14 @@ void FUN_18085e4a0(longlong uiContext)
     }
     plVar4 = (longlong *)*plVar7;
   }
-  plVar6 = (longlong *)(uiContext + 0x70);
+  pcontextData = (longlong *)(uiContext + 0x70);
   **(longlong **)(uiContext + 0x88) = (longlong)plVar4;
   *(undefined8 *)(*plVar7 + 8) = *(undefined8 *)(uiContext + 0x88);
   *(longlong **)(uiContext + 0x88) = plVar7;
   *plVar7 = (longlong)plVar7;
-  plVar7 = (longlong *)*plVar6;
-  if (plVar7 != plVar6) {
-    if (plVar7 != plVar6) {
+  plVar7 = (longlong *)*pcontextData;
+  if (plVar7 != pcontextData) {
+    if (plVar7 != pcontextData) {
       *(longlong *)plVar7[1] = *plVar7;
       *(longlong *)(*plVar7 + 8) = plVar7[1];
       plVar7[1] = (longlong)plVar7;
@@ -316742,12 +316742,12 @@ void FUN_18085e4a0(longlong uiContext)
                     // WARNING: Subroutine does not return
       FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar7,&UNK_180984b50,0xe1,1);
     }
-    plVar7 = (longlong *)*plVar6;
+    plVar7 = (longlong *)*pcontextData;
   }
   **(longlong **)(uiContext + 0x78) = (longlong)plVar7;
-  *(undefined8 *)(*plVar6 + 8) = *(undefined8 *)(uiContext + 0x78);
-  *(longlong **)(uiContext + 0x78) = plVar6;
-  *plVar6 = (longlong)plVar6;
+  *(undefined8 *)(*pcontextData + 8) = *(undefined8 *)(uiContext + 0x78);
+  *(longlong **)(uiContext + 0x78) = pcontextData;
+  *pcontextData = (longlong)pcontextData;
   lVar8 = *(longlong *)(bufferData + 0x50);
   if (lVar8 != 0) {
     poperationResult = (int *)(lVar8 + 0x10);
@@ -316848,14 +316848,14 @@ undefined8 FUN_18085e990(longlong uiContext,longlong dataSource)
   longlong *pstringCompareIndex;
   undefined8 uVar4;
   uint uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   longlong alStackX_10 [3];
   
-  plVar6 = (longlong *)0x0;
+  pcontextData = (longlong *)0x0;
   plVar7 = (longlong *)(dataSource + 8);
   if (dataSource == 0) {
-    plVar7 = plVar6;
+    plVar7 = pcontextData;
   }
   if (plVar7 == (longlong *)0x0) {
 LAB_18085ea6d:
@@ -316866,8 +316866,8 @@ LAB_18085ea6d:
     if (pstringCompareIndex != plVar7) {
       do {
         pstringCompareIndex = (longlong *)*pstringCompareIndex;
-        uVar5 = (int)plVar6 + 1;
-        plVar6 = (longlong *)(ulonglong)uVar5;
+        uVar5 = (int)pcontextData + 1;
+        pcontextData = (longlong *)(ulonglong)uVar5;
       } while (pstringCompareIndex != plVar7);
       if (uVar5 != 0) goto LAB_18085ea6d;
     }
@@ -316900,7 +316900,7 @@ undefined8 FUN_18085ea80(longlong uiContext,uint dataSource,undefined8 targetBuf
   longlong *pstringCompareIndex;
   longlong *plVar4;
   uint uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   longlong *plVar8;
   uint uVar9;
@@ -316919,31 +316919,31 @@ undefined8 FUN_18085ea80(longlong uiContext,uint dataSource,undefined8 targetBuf
     return semaphoreHandle;
   }
   if (dataSource == 0xffffffff) {
-    plVar6 = (longlong *)(lStackX_8 + 0x18);
+    pcontextData = (longlong *)(lStackX_8 + 0x18);
     if (lStackX_8 == 0) {
-      plVar6 = pallocatedMemory0;
+      pcontextData = pallocatedMemory0;
     }
-    if (plVar6 == (longlong *)0x0) {
+    if (pcontextData == (longlong *)0x0) {
       return 0x1c;
     }
-    pstringCompareIndex = (longlong *)*plVar6;
-    if (pstringCompareIndex != plVar6) {
+    pstringCompareIndex = (longlong *)*pcontextData;
+    if (pstringCompareIndex != pcontextData) {
       do {
         pstringCompareIndex = (longlong *)*pstringCompareIndex;
         uVar9 = (int)pallocatedMemory0 + 1;
         pallocatedMemory0 = (longlong *)(ulonglong)uVar9;
-      } while (pstringCompareIndex != plVar6);
+      } while (pstringCompareIndex != pcontextData);
       if (uVar9 != 0) {
         return 0x1c;
       }
     }
-    plVar6[1] = *(longlong *)(bufferData + 0x248);
-    *plVar6 = uiContext + 0x240;
-    *(longlong **)(uiContext + 0x248) = plVar6;
-    *(longlong **)plVar6[1] = plVar6;
+    pcontextData[1] = *(longlong *)(bufferData + 0x248);
+    *pcontextData = uiContext + 0x240;
+    *(longlong **)(uiContext + 0x248) = pcontextData;
+    *(longlong **)pcontextData[1] = pcontextData;
   }
   else {
-    plVar6 = (longlong *)(uiContext + 0x240);
+    pcontextData = (longlong *)(uiContext + 0x240);
     if ((int)dataSource < 0) {
       return 0x1f;
     }
@@ -316966,15 +316966,15 @@ undefined8 FUN_18085ea80(longlong uiContext,uint dataSource,undefined8 targetBuf
         return 0x1c;
       }
     }
-    plVar4 = (longlong *)*plVar6;
+    plVar4 = (longlong *)*pcontextData;
     plVar8 = pallocatedMemory0;
-    if (plVar4 != plVar6) {
+    if (plVar4 != pcontextData) {
       plVar7 = plVar4;
       uVar5 = dataSource;
       if (0 < (int)dataSource) {
         do {
           plVar7 = (longlong *)*plVar7;
-          if (plVar7 == plVar6) goto LAB_18085ebc2;
+          if (plVar7 == pcontextData) goto LAB_18085ebc2;
           uVar5 = uVar5 - 1;
         } while (0 < (int)uVar5);
       }
@@ -316988,7 +316988,7 @@ LAB_18085ebc2:
       plVar7 = pallocatedMemory0;
     }
     if (plVar7 == (longlong *)0x0) {
-      for (; plVar4 != plVar6; plVar4 = (longlong *)*plVar4) {
+      for (; plVar4 != pcontextData; plVar4 = (longlong *)*plVar4) {
         uVar9 = (int)pallocatedMemory0 + 1;
         pallocatedMemory0 = (longlong *)(ulonglong)uVar9;
       }
@@ -316996,7 +316996,7 @@ LAB_18085ebc2:
         return 0x1f;
       }
       pstringCompareIndex[1] = *(longlong *)(bufferData + 0x248);
-      *pstringCompareIndex = (longlong)plVar6;
+      *pstringCompareIndex = (longlong)pcontextData;
       *(longlong **)(uiContext + 0x248) = pstringCompareIndex;
     }
     else {
@@ -317298,7 +317298,7 @@ undefined8 FUN_18085ef10(longlong uiContext)
   int compareResult;
   undefined8 uVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   
   compareResult = FUN_1808605e0();
   if (compareResult != 2) {
@@ -317308,20 +317308,20 @@ undefined8 FUN_18085ef10(longlong uiContext)
     }
     func_0x0001808cf130(uiContext + 0x378,*(undefined8 *)(*(longlong *)(bufferData + 0x2b0) + 0x30));
     func_0x0001808cf130(uiContext + 0x3f8,*(undefined8 *)(*(longlong *)(bufferData + 0x2b0) + 0x30));
-    plVar6 = (longlong *)0x0;
+    pcontextData = (longlong *)0x0;
     pallocatedMemory = (longlong *)(uiContext + 0x380);
     plVar5 = (longlong *)(*pallocatedMemory + -0x20);
     if (*pallocatedMemory == 0) {
-      plVar5 = plVar6;
+      plVar5 = pcontextData;
     }
-    colorBufferPointer = plVar6;
+    colorBufferPointer = pcontextData;
     if (plVar5 != (longlong *)0x0) {
       colorBufferPointer = plVar5 + 4;
     }
     while (colorBufferPointer != pallocatedMemory) {
       plVar5 = colorBufferPointer + -4;
       if (colorBufferPointer == (longlong *)0x0) {
-        plVar5 = plVar6;
+        plVar5 = pcontextData;
       }
       uVar4 = (**(code **)(*plVar5 + 0x80))();
       if ((int)uVar4 != 0) {
@@ -317330,9 +317330,9 @@ undefined8 FUN_18085ef10(longlong uiContext)
       if (colorBufferPointer == pallocatedMemory) break;
       plVar5 = (longlong *)(*colorBufferPointer + -0x20);
       if (*colorBufferPointer == 0) {
-        plVar5 = plVar6;
+        plVar5 = pcontextData;
       }
-      colorBufferPointer = plVar6;
+      colorBufferPointer = pcontextData;
       if (plVar5 != (longlong *)0x0) {
         colorBufferPointer = plVar5 + 4;
       }
@@ -317340,16 +317340,16 @@ undefined8 FUN_18085ef10(longlong uiContext)
     pallocatedMemory = (longlong *)(uiContext + 0x400);
     plVar5 = (longlong *)(*pallocatedMemory + -0x20);
     if (*pallocatedMemory == 0) {
-      plVar5 = plVar6;
+      plVar5 = pcontextData;
     }
-    colorBufferPointer = plVar6;
+    colorBufferPointer = pcontextData;
     if (plVar5 != (longlong *)0x0) {
       colorBufferPointer = plVar5 + 4;
     }
     while (colorBufferPointer != pallocatedMemory) {
       plVar5 = colorBufferPointer + -4;
       if (colorBufferPointer == (longlong *)0x0) {
-        plVar5 = plVar6;
+        plVar5 = pcontextData;
       }
       uVar4 = (**(code **)(*plVar5 + 0x80))();
       if ((int)uVar4 != 0) {
@@ -317360,9 +317360,9 @@ undefined8 FUN_18085ef10(longlong uiContext)
       }
       plVar5 = (longlong *)(*colorBufferPointer + -0x20);
       if (*colorBufferPointer == 0) {
-        plVar5 = plVar6;
+        plVar5 = pcontextData;
       }
-      colorBufferPointer = plVar6;
+      colorBufferPointer = pcontextData;
       if (plVar5 != (longlong *)0x0) {
         colorBufferPointer = plVar5 + 4;
       }
@@ -319768,7 +319768,7 @@ void FUN_180860737(void)
   char cVar3;
   char cVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong *plVar7;
   longlong lVar8;
   undefined8 uVar9;
@@ -319815,11 +319815,11 @@ void FUN_180860737(void)
                                (int)pallocatedMemory8[1] - 1U) * 4), iVar5 != -1)) {
         allocatedMemory4 = pallocatedMemory8[2];
         do {
-          lVar6 = (longlong)iVar5;
-          if ((*(longlong *)(allocatedMemory4 + lVar6 * 0x18) == *(longlong *)(in_R9 + 0x10)) &&
-             (*(longlong *)(allocatedMemory4 + 8 + lVar6 * 0x18) == *(longlong *)(in_R9 + 0x18)))
+          contextData = (longlong)iVar5;
+          if ((*(longlong *)(allocatedMemory4 + contextData * 0x18) == *(longlong *)(in_R9 + 0x10)) &&
+             (*(longlong *)(allocatedMemory4 + 8 + contextData * 0x18) == *(longlong *)(in_R9 + 0x18)))
           goto LAB_1808607eb;
-          iVar5 = *(int *)(allocatedMemory4 + 0x10 + lVar6 * 0x18);
+          iVar5 = *(int *)(allocatedMemory4 + 0x10 + contextData * 0x18);
         } while (iVar5 != -1);
       }
       iVar5 = -1;
@@ -319860,18 +319860,18 @@ LAB_1808607eb:
           }
           allocatedMemory4 = *(longlong *)(unaff_R12 + 0x2c8);
           functionResult7 = *(uint *)(unaff_R12 + 0x2dc);
-          lVar6 = *(longlong *)(allocatedMemory4 + 0x130);
-          if (lVar6 != 0) {
-            FUN_180768360(lVar6);
+          contextData = *(longlong *)(allocatedMemory4 + 0x130);
+          if (contextData != 0) {
+            FUN_180768360(contextData);
           }
           plVar7 = (longlong *)func_0x000180851be0(allocatedMemory4 + 0x138,pallocatedMemory8);
           if (plVar7 == (longlong *)0x0) {
             plVar7 = (longlong *)func_0x000180851be0(allocatedMemory4 + 0x108,pallocatedMemory8);
           }
           if (plVar7 == (longlong *)0x0) {
-            if (lVar6 != 0) {
+            if (contextData != 0) {
                     // WARNING: Subroutine does not return
-              FUN_180768400(lVar6);
+              FUN_180768400(contextData);
             }
             goto LAB_180861693;
           }
@@ -319890,9 +319890,9 @@ LAB_1808607eb:
           }
           allocatedMemory4 = 0;
 LAB_180860998:
-          if (lVar6 != 0) {
+          if (contextData != 0) {
                     // WARNING: Subroutine does not return
-            FUN_180768400(lVar6);
+            FUN_180768400(contextData);
           }
           if ((allocatedMemory4 == 0) ||
              (iVar5 = FUN_1808c19d0(*(undefined8 *)(unaff_R12 + 0x2c8)), uVar9 = extraout_XMM0_Qa_02
@@ -320115,13 +320115,13 @@ LAB_180860c58:
                                       (int)((*(uint *)(allocatedMemory4 + 0x1c) ^ *(uint *)(allocatedMemory4 + 0x18) ^
                                              *(uint *)(allocatedMemory4 + 0x14) ^ *(uint *)(allocatedMemory4 + 0x10)) &
                                            (int)colorBufferPointer2[1] - 1U) * 4), iVar5 != -1)) {
-                    lVar6 = colorBufferPointer2[2];
+                    contextData = colorBufferPointer2[2];
                     do {
                       lVar8 = (longlong)iVar5;
-                      if ((*(longlong *)(lVar6 + lVar8 * 0x18) == *(longlong *)(allocatedMemory4 + 0x10)) &&
-                         (*(longlong *)(lVar6 + (lVar8 * 3 + 1) * 8) == *(longlong *)(allocatedMemory4 + 0x18)
+                      if ((*(longlong *)(contextData + lVar8 * 0x18) == *(longlong *)(allocatedMemory4 + 0x10)) &&
+                         (*(longlong *)(contextData + (lVar8 * 3 + 1) * 8) == *(longlong *)(allocatedMemory4 + 0x18)
                          )) goto LAB_180860f7b;
-                      iVar5 = *(int *)(lVar6 + (lVar8 * 3 + 2) * 8);
+                      iVar5 = *(int *)(contextData + (lVar8 * 3 + 2) * 8);
                     } while (iVar5 != -1);
                   }
                   iVar5 = -1;
@@ -320290,13 +320290,13 @@ LAB_180860f7b:
               allocatedMemory4 = *(longlong *)(in_stack_00000070 + 0x88);
               iVar5 = 0;
               if (0 < *(int *)(allocatedMemory4 + 0xa8)) {
-                lVar6 = *(longlong *)(unaff_RBP + -0x70);
+                contextData = *(longlong *)(unaff_RBP + -0x70);
                 do {
                   validationResult1 = 0;
-                  operationResult6 = *(int *)(lVar6 + 0xa8);
+                  operationResult6 = *(int *)(contextData + 0xa8);
                   plVar7 = (longlong *)((longlong)iVar5 * 0x10 + *(longlong *)(allocatedMemory4 + 0xa0));
                   if (0 < operationResult6) {
-                    allocatedMemory4 = *(longlong *)(lVar6 + 0xa0);
+                    allocatedMemory4 = *(longlong *)(contextData + 0xa0);
                     do {
                       if ((*(longlong *)(allocatedMemory4 + (longlong)validationResult1 * 0x10) == *plVar7) &&
                          (*(longlong *)(allocatedMemory4 + 8 + (longlong)validationResult1 * 0x10) == plVar7[1]))
@@ -320340,8 +320340,8 @@ joined_r0x000180861496:
                 if (colorBufferPointer0 != pallocatedMemory8) {
                   plVar7 = (longlong *)*colorBufferPointer0;
                 }
-                lVar6 = *colorBufferPointer2;
-                cVar3 = func_0x0001808c57f0(*(undefined8 *)(unaff_RBP + -0x78),lVar6);
+                contextData = *colorBufferPointer2;
+                cVar3 = func_0x0001808c57f0(*(undefined8 *)(unaff_RBP + -0x78),contextData);
                 if (cVar3 == '\0') {
                   if ((*(byte *)((longlong)colorBufferPointer0 + 0x1c) & 1) == 0) {
                     colorBufferPointer3 = (longlong *)0x0;
@@ -320379,7 +320379,7 @@ joined_r0x000180861496:
                             if ((*(longlong **)(lVar8 + (longlong)iVar5 * 0x10) == in_stack_00000078
                                 ) && (*(longlong *)(lVar8 + 8 + (longlong)iVar5 * 0x10) ==
                                       *(longlong *)(unaff_RBP + -0x80))) {
-                              FUN_180862080(in_stack_00000070,lVar6,allocatedMemory4 + 0x40);
+                              FUN_180862080(in_stack_00000070,contextData,allocatedMemory4 + 0x40);
                               goto joined_r0x000180861496;
                             }
                             iVar5 = iVar5 + 1;
@@ -320840,7 +320840,7 @@ undefined8 FUN_180861a70(longlong uiContext,undefined8 dataSource)
   longlong *pstringCompareIndex;
   undefined8 uVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   
   *(undefined4 *)(bufferData + 0x2e4) = 1;
@@ -320857,46 +320857,46 @@ undefined8 FUN_180861a70(longlong uiContext,undefined8 dataSource)
     if ((int)uVar4 == 0) {
       pallocatedMemory = (longlong *)(uiContext + 0x240);
       plVar7 = (longlong *)0x0;
-      plVar6 = (longlong *)(*pallocatedMemory + -0x18);
+      pcontextData = (longlong *)(*pallocatedMemory + -0x18);
       if (*pallocatedMemory == 0) {
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       }
       plVar5 = plVar7;
-      if (plVar6 != (longlong *)0x0) {
-        plVar5 = plVar6 + 3;
+      if (pcontextData != (longlong *)0x0) {
+        plVar5 = pcontextData + 3;
       }
       while (plVar5 != pallocatedMemory) {
-        plVar6 = plVar5 + -3;
+        pcontextData = plVar5 + -3;
         if (plVar5 == (longlong *)0x0) {
-          plVar6 = plVar7;
+          pcontextData = plVar7;
         }
-        uVar4 = FUN_1808d5bd0(plVar6);
+        uVar4 = FUN_1808d5bd0(pcontextData);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
         if (plVar5 == pallocatedMemory) break;
-        plVar6 = (longlong *)(*plVar5 + -0x18);
+        pcontextData = (longlong *)(*plVar5 + -0x18);
         if (*plVar5 == 0) {
-          plVar6 = plVar7;
+          pcontextData = plVar7;
         }
         plVar5 = plVar7;
-        if (plVar6 != (longlong *)0x0) {
-          plVar5 = plVar6 + 3;
+        if (pcontextData != (longlong *)0x0) {
+          plVar5 = pcontextData + 3;
         }
       }
       uVar4 = FUN_18085c230(uiContext + 200,semaphoreHandle);
       if ((((int)uVar4 == 0) && (uVar4 = FUN_1808d52a0(uiContext + 0x280,semaphoreHandle), (int)uVar4 == 0)) &&
          (uVar4 = FUN_1808b2f30(uiContext + 8,10), (int)uVar4 == 0)) {
-        plVar6 = (longlong *)(uiContext + 0x250);
-        plVar5 = (longlong *)(*plVar6 + -8);
-        if (*plVar6 == 0) {
+        pcontextData = (longlong *)(uiContext + 0x250);
+        plVar5 = (longlong *)(*pcontextData + -8);
+        if (*pcontextData == 0) {
           plVar5 = plVar7;
         }
         pstringCompareIndex = plVar7;
         if (plVar5 != (longlong *)0x0) {
           pstringCompareIndex = plVar5 + 1;
         }
-        while (pstringCompareIndex != plVar6) {
+        while (pstringCompareIndex != pcontextData) {
           plVar5 = pstringCompareIndex + -1;
           if (pstringCompareIndex == (longlong *)0x0) {
             plVar5 = plVar7;
@@ -320905,7 +320905,7 @@ undefined8 FUN_180861a70(longlong uiContext,undefined8 dataSource)
           if ((int)uVar4 != 0) {
             return uVar4;
           }
-          if (pstringCompareIndex == plVar6) break;
+          if (pstringCompareIndex == pcontextData) break;
           plVar5 = (longlong *)(*pstringCompareIndex + -8);
           if (*pstringCompareIndex == 0) {
             plVar5 = plVar7;
@@ -320915,31 +320915,31 @@ undefined8 FUN_180861a70(longlong uiContext,undefined8 dataSource)
             pstringCompareIndex = plVar5 + 1;
           }
         }
-        plVar6 = (longlong *)(*pallocatedMemory + -0x18);
+        pcontextData = (longlong *)(*pallocatedMemory + -0x18);
         if (*pallocatedMemory == 0) {
-          plVar6 = plVar7;
+          pcontextData = plVar7;
         }
         plVar5 = plVar7;
-        if (plVar6 != (longlong *)0x0) {
-          plVar5 = plVar6 + 3;
+        if (pcontextData != (longlong *)0x0) {
+          plVar5 = pcontextData + 3;
         }
         while (plVar5 != pallocatedMemory) {
-          plVar6 = plVar5 + -3;
+          pcontextData = plVar5 + -3;
           if (plVar5 == (longlong *)0x0) {
-            plVar6 = plVar7;
+            pcontextData = plVar7;
           }
-          uVar4 = FUN_1808d5da0(plVar6);
+          uVar4 = FUN_1808d5da0(pcontextData);
           if ((int)uVar4 != 0) {
             return uVar4;
           }
           if (plVar5 == pallocatedMemory) break;
-          plVar6 = (longlong *)(*plVar5 + -0x18);
+          pcontextData = (longlong *)(*plVar5 + -0x18);
           if (*plVar5 == 0) {
-            plVar6 = plVar7;
+            pcontextData = plVar7;
           }
           plVar5 = plVar7;
-          if (plVar6 != (longlong *)0x0) {
-            plVar5 = plVar6 + 3;
+          if (pcontextData != (longlong *)0x0) {
+            plVar5 = pcontextData + 3;
           }
         }
         uVar4 = 0;
@@ -320959,7 +320959,7 @@ undefined8 FUN_180861aa8(void)
   longlong *pstringCompareIndex;
   undefined8 uVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong unaff_RBP;
   longlong *plVar7;
   
@@ -320973,46 +320973,46 @@ undefined8 FUN_180861aa8(void)
     if ((int)uVar4 == 0) {
       pallocatedMemory = (longlong *)(unaff_RBP + 0x240);
       plVar7 = (longlong *)0x0;
-      plVar6 = (longlong *)(*pallocatedMemory + -0x18);
+      pcontextData = (longlong *)(*pallocatedMemory + -0x18);
       if (*pallocatedMemory == 0) {
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       }
       plVar5 = plVar7;
-      if (plVar6 != (longlong *)0x0) {
-        plVar5 = plVar6 + 3;
+      if (pcontextData != (longlong *)0x0) {
+        plVar5 = pcontextData + 3;
       }
       while (plVar5 != pallocatedMemory) {
-        plVar6 = plVar5 + -3;
+        pcontextData = plVar5 + -3;
         if (plVar5 == (longlong *)0x0) {
-          plVar6 = plVar7;
+          pcontextData = plVar7;
         }
-        uVar4 = FUN_1808d5bd0(plVar6);
+        uVar4 = FUN_1808d5bd0(pcontextData);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
         if (plVar5 == pallocatedMemory) break;
-        plVar6 = (longlong *)(*plVar5 + -0x18);
+        pcontextData = (longlong *)(*plVar5 + -0x18);
         if (*plVar5 == 0) {
-          plVar6 = plVar7;
+          pcontextData = plVar7;
         }
         plVar5 = plVar7;
-        if (plVar6 != (longlong *)0x0) {
-          plVar5 = plVar6 + 3;
+        if (pcontextData != (longlong *)0x0) {
+          plVar5 = pcontextData + 3;
         }
       }
       uVar4 = FUN_18085c230(unaff_RBP + 200,semaphoreHandle);
       if ((((int)uVar4 == 0) && (uVar4 = FUN_1808d52a0(unaff_RBP + 0x280,semaphoreHandle), (int)uVar4 == 0))
          && (uVar4 = FUN_1808b2f30(unaff_RBP + 8,10), (int)uVar4 == 0)) {
-        plVar6 = (longlong *)(unaff_RBP + 0x250);
-        plVar5 = (longlong *)(*plVar6 + -8);
-        if (*plVar6 == 0) {
+        pcontextData = (longlong *)(unaff_RBP + 0x250);
+        plVar5 = (longlong *)(*pcontextData + -8);
+        if (*pcontextData == 0) {
           plVar5 = plVar7;
         }
         pstringCompareIndex = plVar7;
         if (plVar5 != (longlong *)0x0) {
           pstringCompareIndex = plVar5 + 1;
         }
-        while (pstringCompareIndex != plVar6) {
+        while (pstringCompareIndex != pcontextData) {
           plVar5 = pstringCompareIndex + -1;
           if (pstringCompareIndex == (longlong *)0x0) {
             plVar5 = plVar7;
@@ -321021,7 +321021,7 @@ undefined8 FUN_180861aa8(void)
           if ((int)uVar4 != 0) {
             return uVar4;
           }
-          if (pstringCompareIndex == plVar6) break;
+          if (pstringCompareIndex == pcontextData) break;
           plVar5 = (longlong *)(*pstringCompareIndex + -8);
           if (*pstringCompareIndex == 0) {
             plVar5 = plVar7;
@@ -321031,31 +321031,31 @@ undefined8 FUN_180861aa8(void)
             pstringCompareIndex = plVar5 + 1;
           }
         }
-        plVar6 = (longlong *)(*pallocatedMemory + -0x18);
+        pcontextData = (longlong *)(*pallocatedMemory + -0x18);
         if (*pallocatedMemory == 0) {
-          plVar6 = plVar7;
+          pcontextData = plVar7;
         }
         plVar5 = plVar7;
-        if (plVar6 != (longlong *)0x0) {
-          plVar5 = plVar6 + 3;
+        if (pcontextData != (longlong *)0x0) {
+          plVar5 = pcontextData + 3;
         }
         while (plVar5 != pallocatedMemory) {
-          plVar6 = plVar5 + -3;
+          pcontextData = plVar5 + -3;
           if (plVar5 == (longlong *)0x0) {
-            plVar6 = plVar7;
+            pcontextData = plVar7;
           }
-          uVar4 = FUN_1808d5da0(plVar6);
+          uVar4 = FUN_1808d5da0(pcontextData);
           if ((int)uVar4 != 0) {
             return uVar4;
           }
           if (plVar5 == pallocatedMemory) break;
-          plVar6 = (longlong *)(*plVar5 + -0x18);
+          pcontextData = (longlong *)(*plVar5 + -0x18);
           if (*plVar5 == 0) {
-            plVar6 = plVar7;
+            pcontextData = plVar7;
           }
           plVar5 = plVar7;
-          if (plVar6 != (longlong *)0x0) {
-            plVar5 = plVar6 + 3;
+          if (pcontextData != (longlong *)0x0) {
+            plVar5 = pcontextData + 3;
           }
         }
         uVar4 = 0;
@@ -321075,7 +321075,7 @@ undefined8 FUN_180861b0c(longlong uiContext)
   undefined8 uVar3;
   undefined8 uVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong unaff_RBP;
   longlong *plVar7;
   
@@ -321085,46 +321085,46 @@ undefined8 FUN_180861b0c(longlong uiContext)
   if ((int)uVar3 == 0) {
     pallocatedMemory = (longlong *)(unaff_RBP + 0x240);
     plVar7 = (longlong *)0x0;
-    plVar6 = (longlong *)(*pallocatedMemory + -0x18);
+    pcontextData = (longlong *)(*pallocatedMemory + -0x18);
     if (*pallocatedMemory == 0) {
-      plVar6 = plVar7;
+      pcontextData = plVar7;
     }
     plVar5 = plVar7;
-    if (plVar6 != (longlong *)0x0) {
-      plVar5 = plVar6 + 3;
+    if (pcontextData != (longlong *)0x0) {
+      plVar5 = pcontextData + 3;
     }
     while (plVar5 != pallocatedMemory) {
-      plVar6 = plVar5 + -3;
+      pcontextData = plVar5 + -3;
       if (plVar5 == (longlong *)0x0) {
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       }
-      uVar3 = FUN_1808d5bd0(plVar6);
+      uVar3 = FUN_1808d5bd0(pcontextData);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
       if (plVar5 == pallocatedMemory) break;
-      plVar6 = (longlong *)(*plVar5 + -0x18);
+      pcontextData = (longlong *)(*plVar5 + -0x18);
       if (*plVar5 == 0) {
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       }
       plVar5 = plVar7;
-      if (plVar6 != (longlong *)0x0) {
-        plVar5 = plVar6 + 3;
+      if (pcontextData != (longlong *)0x0) {
+        plVar5 = pcontextData + 3;
       }
     }
     uVar3 = FUN_18085c230(unaff_RBP + 200,uVar4);
     if ((((int)uVar3 == 0) && (uVar3 = FUN_1808d52a0(unaff_RBP + 0x280,uVar4), (int)uVar3 == 0)) &&
        (uVar3 = FUN_1808b2f30(unaff_RBP + 8,10), (int)uVar3 == 0)) {
-      plVar6 = (longlong *)(unaff_RBP + 0x250);
-      plVar5 = (longlong *)(*plVar6 + -8);
-      if (*plVar6 == 0) {
+      pcontextData = (longlong *)(unaff_RBP + 0x250);
+      plVar5 = (longlong *)(*pcontextData + -8);
+      if (*pcontextData == 0) {
         plVar5 = plVar7;
       }
       colorBufferPointer = plVar7;
       if (plVar5 != (longlong *)0x0) {
         colorBufferPointer = plVar5 + 1;
       }
-      while (colorBufferPointer != plVar6) {
+      while (colorBufferPointer != pcontextData) {
         plVar5 = colorBufferPointer + -1;
         if (colorBufferPointer == (longlong *)0x0) {
           plVar5 = plVar7;
@@ -321133,7 +321133,7 @@ undefined8 FUN_180861b0c(longlong uiContext)
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        if (colorBufferPointer == plVar6) break;
+        if (colorBufferPointer == pcontextData) break;
         plVar5 = (longlong *)(*colorBufferPointer + -8);
         if (*colorBufferPointer == 0) {
           plVar5 = plVar7;
@@ -321143,31 +321143,31 @@ undefined8 FUN_180861b0c(longlong uiContext)
           colorBufferPointer = plVar5 + 1;
         }
       }
-      plVar6 = (longlong *)(*pallocatedMemory + -0x18);
+      pcontextData = (longlong *)(*pallocatedMemory + -0x18);
       if (*pallocatedMemory == 0) {
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       }
       plVar5 = plVar7;
-      if (plVar6 != (longlong *)0x0) {
-        plVar5 = plVar6 + 3;
+      if (pcontextData != (longlong *)0x0) {
+        plVar5 = pcontextData + 3;
       }
       while (plVar5 != pallocatedMemory) {
-        plVar6 = plVar5 + -3;
+        pcontextData = plVar5 + -3;
         if (plVar5 == (longlong *)0x0) {
-          plVar6 = plVar7;
+          pcontextData = plVar7;
         }
-        uVar4 = FUN_1808d5da0(plVar6);
+        uVar4 = FUN_1808d5da0(pcontextData);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
         if (plVar5 == pallocatedMemory) break;
-        plVar6 = (longlong *)(*plVar5 + -0x18);
+        pcontextData = (longlong *)(*plVar5 + -0x18);
         if (*plVar5 == 0) {
-          plVar6 = plVar7;
+          pcontextData = plVar7;
         }
         plVar5 = plVar7;
-        if (plVar6 != (longlong *)0x0) {
-          plVar5 = plVar6 + 3;
+        if (pcontextData != (longlong *)0x0) {
+          plVar5 = pcontextData + 3;
         }
       }
       uVar3 = 0;
@@ -321187,22 +321187,22 @@ undefined8 FUN_180861b29(void)
   longlong *plVar4;
   longlong *plVar5;
   longlong unaff_RBP;
-  longlong *plVar6;
+  longlong *pcontextData;
   
   pallocatedMemory = (longlong *)(unaff_RBP + 0x240);
-  plVar6 = (longlong *)0x0;
+  pcontextData = (longlong *)0x0;
   plVar5 = (longlong *)(*pallocatedMemory + -0x18);
   if (*pallocatedMemory == 0) {
-    plVar5 = plVar6;
+    plVar5 = pcontextData;
   }
-  plVar4 = plVar6;
+  plVar4 = pcontextData;
   if (plVar5 != (longlong *)0x0) {
     plVar4 = plVar5 + 3;
   }
   while (plVar4 != pallocatedMemory) {
     plVar5 = plVar4 + -3;
     if (plVar4 == (longlong *)0x0) {
-      plVar5 = plVar6;
+      plVar5 = pcontextData;
     }
     uVar3 = FUN_1808d5bd0(plVar5);
     if ((int)uVar3 != 0) {
@@ -321211,9 +321211,9 @@ undefined8 FUN_180861b29(void)
     if (plVar4 == pallocatedMemory) break;
     plVar5 = (longlong *)(*plVar4 + -0x18);
     if (*plVar4 == 0) {
-      plVar5 = plVar6;
+      plVar5 = pcontextData;
     }
-    plVar4 = plVar6;
+    plVar4 = pcontextData;
     if (plVar5 != (longlong *)0x0) {
       plVar4 = plVar5 + 3;
     }
@@ -321224,16 +321224,16 @@ undefined8 FUN_180861b29(void)
     plVar5 = (longlong *)(unaff_RBP + 0x250);
     plVar4 = (longlong *)(*plVar5 + -8);
     if (*plVar5 == 0) {
-      plVar4 = plVar6;
+      plVar4 = pcontextData;
     }
-    colorBufferPointer = plVar6;
+    colorBufferPointer = pcontextData;
     if (plVar4 != (longlong *)0x0) {
       colorBufferPointer = plVar4 + 1;
     }
     while (colorBufferPointer != plVar5) {
       plVar4 = colorBufferPointer + -1;
       if (colorBufferPointer == (longlong *)0x0) {
-        plVar4 = plVar6;
+        plVar4 = pcontextData;
       }
       uVar3 = FUN_1808d71b0(plVar4,1);
       if ((int)uVar3 != 0) {
@@ -321242,25 +321242,25 @@ undefined8 FUN_180861b29(void)
       if (colorBufferPointer == plVar5) break;
       plVar4 = (longlong *)(*colorBufferPointer + -8);
       if (*colorBufferPointer == 0) {
-        plVar4 = plVar6;
+        plVar4 = pcontextData;
       }
-      colorBufferPointer = plVar6;
+      colorBufferPointer = pcontextData;
       if (plVar4 != (longlong *)0x0) {
         colorBufferPointer = plVar4 + 1;
       }
     }
     plVar5 = (longlong *)(*pallocatedMemory + -0x18);
     if (*pallocatedMemory == 0) {
-      plVar5 = plVar6;
+      plVar5 = pcontextData;
     }
-    plVar4 = plVar6;
+    plVar4 = pcontextData;
     if (plVar5 != (longlong *)0x0) {
       plVar4 = plVar5 + 3;
     }
     while (plVar4 != pallocatedMemory) {
       plVar5 = plVar4 + -3;
       if (plVar4 == (longlong *)0x0) {
-        plVar5 = plVar6;
+        plVar5 = pcontextData;
       }
       uVar3 = FUN_1808d5da0(plVar5);
       if ((int)uVar3 != 0) {
@@ -321269,9 +321269,9 @@ undefined8 FUN_180861b29(void)
       if (plVar4 == pallocatedMemory) break;
       plVar5 = (longlong *)(*plVar4 + -0x18);
       if (*plVar4 == 0) {
-        plVar5 = plVar6;
+        plVar5 = pcontextData;
       }
-      plVar4 = plVar6;
+      plVar4 = pcontextData;
       if (plVar5 != (longlong *)0x0) {
         plVar4 = plVar5 + 3;
       }
@@ -321479,7 +321479,7 @@ undefined8 FUN_180861d76(longlong uiContext)
   undefined4 uVar4;
   undefined4 uVar5;
   longlong in_RAX;
-  longlong lVar6;
+  longlong contextData;
   undefined *peventTypeCode;
   longlong lVar8;
   longlong unaff_RBP;
@@ -321494,12 +321494,12 @@ undefined8 FUN_180861d76(longlong uiContext)
   componentIndex = *unaff_RDI;
   if (0 < (int)uiContext) {
     lVar8 = in_RAX + 0x1c;
-    lVar6 = componentIndex - unaff_RBP;
+    contextData = componentIndex - unaff_RBP;
     do {
       *(undefined8 *)(lVar8 + -0xc) = 0;
       *(undefined8 *)(lVar8 + -4) = 0;
-      *(undefined8 *)(lVar8 + 0x14) = *(undefined8 *)(lVar6 + 0x14 + lVar8);
-      pfunctionResult = (undefined4 *)(lVar8 + lVar6 + -0x1c);
+      *(undefined8 *)(lVar8 + 0x14) = *(undefined8 *)(contextData + 0x14 + lVar8);
+      pfunctionResult = (undefined4 *)(lVar8 + contextData + -0x1c);
       uVar3 = pfunctionResult[1];
       uVar4 = pfunctionResult[2];
       uVar5 = pfunctionResult[3];
@@ -321507,15 +321507,15 @@ undefined8 FUN_180861d76(longlong uiContext)
       *(undefined4 *)(lVar8 + -0x18) = uVar3;
       *(undefined4 *)(lVar8 + -0x14) = uVar4;
       *(undefined4 *)(lVar8 + -0x10) = uVar5;
-      if (*(int *)(lVar6 + -4 + lVar8) < 1) {
+      if (*(int *)(contextData + -4 + lVar8) < 1) {
         peventTypeCode = &UIDefaultDataBuffer;
       }
       else {
-        peventTypeCode = *(undefined **)(lVar6 + -0xc + lVar8);
+        peventTypeCode = *(undefined **)(contextData + -0xc + lVar8);
       }
       FUN_18084e110(lVar8 + -0xc,peventTypeCode);
-      *(undefined8 *)(lVar8 + 4) = *(undefined8 *)(lVar6 + 4 + lVar8);
-      *(undefined4 *)(lVar8 + 0xc) = *(undefined4 *)(lVar6 + 0xc + lVar8);
+      *(undefined8 *)(lVar8 + 4) = *(undefined8 *)(contextData + 4 + lVar8);
+      *(undefined4 *)(lVar8 + 0xc) = *(undefined4 *)(contextData + 0xc + lVar8);
       FUN_180840270((longlong)iVar9 * 0x38 + 0x10 + componentIndex);
       iVar9 = iVar9 + 1;
       lVar8 = lVar8 + 0x38;
@@ -321791,7 +321791,7 @@ void FUN_180862080(longlong uiContext,longlong *dataSource,undefined8 targetBuff
   uint uVar3;
   bool bVar4;
   char cVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong *plVar7;
   longlong *plVar8;
   byte bVar9;
@@ -321859,9 +321859,9 @@ void FUN_180862080(longlong uiContext,longlong *dataSource,undefined8 targetBuff
       plVar7 = plVar8;
     }
   }
-  lVar6 = (**(code **)(**(longlong **)(uiContext + 0x458) + 0x128))
+  contextData = (**(code **)(**(longlong **)(uiContext + 0x458) + 0x128))
                     (*(longlong **)(uiContext + 0x458),&uStack_f8,1);
-  if (lVar6 == 0) {
+  if (contextData == 0) {
     uStack_100 = (uint)bStack_e9;
     uStack_108 = (uint)bStack_ea;
     uStack_110 = (uint)bStack_eb;
@@ -321885,7 +321885,7 @@ void FUN_180862080(longlong uiContext,longlong *dataSource,undefined8 targetBuff
   if (plVar7 == (longlong *)0x0) goto FUN_18086247a;
   *plVar7 = (longlong)plVar7;
   plVar7[1] = (longlong)plVar7;
-  plVar7[2] = lVar6;
+  plVar7[2] = contextData;
   plVar7[3] = 0;
   plVar7[4] = 0;
   plVar7[5] = 0;
@@ -321994,7 +321994,7 @@ void FUN_18086226d(longlong uiContext,uint dataSource,char targetBuffer)
   byte bVar5;
   longlong unaff_RBP;
   longlong unaff_RDI;
-  longlong lVar6;
+  longlong contextData;
   byte bVar7;
   longlong unaff_R15;
   
@@ -322030,8 +322030,8 @@ void FUN_18086226d(longlong uiContext,uint dataSource,char targetBuffer)
   else {
     bVar2 = true;
   }
-  lVar6 = *(longlong *)(unaff_RBP + -0x80);
-  if (*(int *)(lVar6 + 0x2e4) < 3) {
+  contextData = *(longlong *)(unaff_RBP + -0x80);
+  if (*(int *)(contextData + 0x2e4) < 3) {
     if ((bufferSize >> 6 & 1) == 0) goto LAB_18086246a;
   }
   else if ((bufferSize >> 6 & 1) == 0) {
@@ -322039,7 +322039,7 @@ void FUN_18086226d(longlong uiContext,uint dataSource,char targetBuffer)
         ((*(uint *)(unaff_RDI + 0x1c) = functionResult | 0x40, (bufferSize >> 5 & 1) != 0 || (bVar5 == 0)))) &&
        ((bVar2 || ((functionResult >> 3 & 1) != 0)))) {
       *(undefined8 *)(unaff_RBP + -0x70) = *(undefined8 *)(*(longlong *)(uiContext + 0x10) + 0x88);
-      FUN_18085bb20(lVar6 + 200,unaff_RBP + -0x58,unaff_RBP + -0x70);
+      FUN_18085bb20(contextData + 200,unaff_RBP + -0x58,unaff_RBP + -0x70);
       FUN_1808c7260(unaff_RBP + -0x58);
     }
     goto LAB_18086246a;
@@ -322047,13 +322047,13 @@ void FUN_18086226d(longlong uiContext,uint dataSource,char targetBuffer)
   if (((char)dataSource == '\0') && (targetBuffer != '\0')) {
     *(uint *)(unaff_RDI + 0x1c) = functionResult & 0xffffffbf;
     if (bVar2) {
-      iVar4 = FUN_180863930(lVar6);
+      iVar4 = FUN_180863930(contextData);
       if (iVar4 != 0) goto LAB_18086246a;
-      lVar6 = *(longlong *)(unaff_RBP + -0x80);
+      contextData = *(longlong *)(unaff_RBP + -0x80);
       *(uint *)(unaff_RDI + 0x1c) =
            ~((bVar7 ^ 1) << 8) & ((uint)bVar7 << 8 | *(uint *)(unaff_RDI + 0x1c));
     }
-    if (((functionResult >> 3 & 1) != 0) && (iVar4 = FUN_180863930(lVar6), iVar4 == 0)) {
+    if (((functionResult >> 3 & 1) != 0) && (iVar4 = FUN_180863930(contextData), iVar4 == 0)) {
       *(uint *)(unaff_RDI + 0x1c) = *(uint *)(unaff_RDI + 0x1c) | 0x200;
     }
   }
@@ -322932,7 +322932,7 @@ undefined8 FUN_180862e90(longlong uiContext,byte dataSource)
   int compareResult;
   undefined8 uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 uStackX_8;
   
   if (((byte)(*(uint *)(uiContext + 0x2d8) >> 1) & 1) != dataSource) {
@@ -323000,7 +323000,7 @@ undefined8 FUN_180862e90(longlong uiContext,byte dataSource)
         uVar4 = FUN_18073d3c0(*(undefined8 *)(*(longlong *)(bufferData + 0x2b0) + 0x78),lVar5 + 0x40,
                               0x3f800000);
         validationResult = (int)uVar4;
-        lVar6 = 0;
+        contextData = 0;
       }
       else {
         validationResult = FUN_18085ab70(uiContext + 200);
@@ -323010,15 +323010,15 @@ undefined8 FUN_180862e90(longlong uiContext,byte dataSource)
         else {
           validationResult = FUN_18085ab70(uiContext + 200);
         }
-        lVar6 = (longlong)validationResult + *(longlong *)(bufferData + 0x338);
-        uVar4 = FUN_18073d3c0(*(undefined8 *)(*(longlong *)(bufferData + 0x2b0) + 0x78),lVar6,0);
+        contextData = (longlong)validationResult + *(longlong *)(bufferData + 0x338);
+        uVar4 = FUN_18073d3c0(*(undefined8 *)(*(longlong *)(bufferData + 0x2b0) + 0x78),contextData,0);
         validationResult = (int)uVar4;
         lVar5 = 0;
       }
       if (validationResult != 0) {
         return uVar4;
       }
-      uVar4 = FUN_18073d230(*(undefined8 *)(*(longlong *)(bufferData + 0x2b0) + 0x78),lVar5,lVar6,0);
+      uVar4 = FUN_18073d230(*(undefined8 *)(*(longlong *)(bufferData + 0x2b0) + 0x78),lVar5,contextData,0);
       validationResult = (int)uVar4;
     }
     if (validationResult != 0) {
@@ -324881,7 +324881,7 @@ void FUN_180864850(longlong uiContext)
   int compareResult;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   undefined8 *puVar8;
   longlong lVar9;
@@ -325039,16 +325039,16 @@ void FUN_180864850(longlong uiContext)
           }
         }
         lVar5 = allocatedMemory0 + 2;
-        lVar6 = 0xf0;
+        contextData = 0xf0;
         if (*(char *)(puVar8 + 0x20) == '\0') {
-          lVar6 = 0xc0;
+          contextData = 0xc0;
         }
         semaphoreHandle = *(undefined8 *)((longlong)puVar8 + 0xcc);
-        fStack_130 = *(float *)(lVar6 + 8 + (longlong)puVar8);
-        floatResult6 = fStack_120 - (float)*(undefined8 *)(lVar6 + (longlong)puVar8);
+        fStack_130 = *(float *)(contextData + 8 + (longlong)puVar8);
+        floatResult6 = fStack_120 - (float)*(undefined8 *)(contextData + (longlong)puVar8);
         floatResult4 = fStack_118 - fStack_130;
         fStack_140 = *(float *)((longlong)puVar8 + 0xd4);
-        floatResult8 = fStack_11c - (float)((ulonglong)*(undefined8 *)(lVar6 + (longlong)puVar8) >> 0x20);
+        floatResult8 = fStack_11c - (float)((ulonglong)*(undefined8 *)(contextData + (longlong)puVar8) >> 0x20);
         floatResult1 = SQRT(floatResult8 * floatResult8 + floatResult6 * floatResult6 + floatResult4 * floatResult4);
         if (0.0 < floatResult1) {
           floatResult1 = 1.0 / floatResult1;
@@ -325072,11 +325072,11 @@ void FUN_180864850(longlong uiContext)
             floatResult4 = 0.0;
           }
         }
-        lVar6 = allocatedMemory0 + 3;
+        contextData = allocatedMemory0 + 3;
         puVar8 = puVar8 + 0x22;
         allocatedMemory0 = allocatedMemory0 + 4;
         floatResult9 = floatResult9 + fVar20 * *pfloatResult + floatResult2 * afStack_e8[lVar4] + floatResult3 * afStack_e8[lVar5]
-                 + floatResult4 * afStack_e8[lVar6];
+                 + floatResult4 * afStack_e8[contextData];
         uStack_148 = semaphoreHandle;
       } while (allocatedMemory0 < lVar9 + -3);
     }
@@ -325151,7 +325151,7 @@ void FUN_18086490d(float uiContext,longlong dataSource,undefined8 targetBuffer,l
   longlong stringCompareIndex;
   int iVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   longlong context;
   longlong unaff_RBP;
@@ -325192,13 +325192,13 @@ void FUN_18086490d(float uiContext,longlong dataSource,undefined8 targetBuffer,l
     peventTypeCode = (undefined8 *)(bufferSize + 0x560);
     floatResult5 = (fStack0000000000000040 / uiContext) * *(float *)(unaff_RDI + 0x300);
     do {
-      lVar6 = 0x24;
+      contextData = 0x24;
       if (*(char *)((longlong)peventTypeCode + 0x34) == '\0') {
-        lVar6 = in_R10;
+        contextData = in_R10;
       }
-      floatResult2 = fStack0000000000000048 - (float)*(undefined8 *)(lVar6 + (longlong)peventTypeCode);
-      floatResult7 = in_XMM2_Dc - *(float *)(lVar6 + 8 + (longlong)peventTypeCode);
-      floatResult6 = floatResult0 - (float)((ulonglong)*(undefined8 *)(lVar6 + (longlong)peventTypeCode) >> 0x20);
+      floatResult2 = fStack0000000000000048 - (float)*(undefined8 *)(contextData + (longlong)peventTypeCode);
+      floatResult7 = in_XMM2_Dc - *(float *)(contextData + 8 + (longlong)peventTypeCode);
+      floatResult6 = floatResult0 - (float)((ulonglong)*(undefined8 *)(contextData + (longlong)peventTypeCode) >> 0x20);
       fVar8 = SQRT(floatResult6 * floatResult6 + floatResult2 * floatResult2 + floatResult7 * floatResult7);
       floatResult1 = unaff_XMM6_Da;
       floatResult3 = unaff_XMM6_Da;
@@ -325221,7 +325221,7 @@ void FUN_18086490d(float uiContext,longlong dataSource,undefined8 targetBuffer,l
           fVar8 = unaff_XMM6_Da;
         }
       }
-      lVar6 = context * 4;
+      contextData = context * 4;
       uVar5 = 0x68;
       if (*(char *)(peventTypeCode + 0xf) == '\0') {
         uVar5 = (ulonglong)(iVar4 + 0x38);
@@ -325315,7 +325315,7 @@ void FUN_18086490d(float uiContext,longlong dataSource,undefined8 targetBuffer,l
       peventTypeCode = peventTypeCode + 0x22;
       context = context + 4;
       unaff_XMM10_Da =
-           unaff_XMM10_Da + fVar8 * *(float *)(unaff_RBP + -0x80 + lVar6) +
+           unaff_XMM10_Da + fVar8 * *(float *)(unaff_RBP + -0x80 + contextData) +
            floatResult2 * *(float *)(unaff_RBP + -0x7c + allocatedMemory) +
            floatResult6 * *(float *)(unaff_RBP + -0x78 + componentIndex) +
            floatResult7 * *(float *)(unaff_RBP + -0x74 + stringCompareIndex);
@@ -325326,13 +325326,13 @@ void FUN_18086490d(float uiContext,longlong dataSource,undefined8 targetBuffer,l
     floatResult5 = (fStack0000000000000040 / uiContext) * *(float *)(unaff_RDI + 0x300);
     peventTypeCode = (undefined8 *)(bufferSize + 0x560 + context * 0x44);
     do {
-      lVar6 = 0x24;
+      contextData = 0x24;
       if (*(char *)((longlong)peventTypeCode + 0x34) == '\0') {
-        lVar6 = in_R10;
+        contextData = in_R10;
       }
-      floatResult2 = fStack0000000000000048 - (float)*(undefined8 *)(lVar6 + (longlong)peventTypeCode);
-      floatResult7 = in_XMM2_Dc - *(float *)(lVar6 + 8 + (longlong)peventTypeCode);
-      floatResult6 = floatResult0 - (float)((ulonglong)*(undefined8 *)(lVar6 + (longlong)peventTypeCode) >> 0x20);
+      floatResult2 = fStack0000000000000048 - (float)*(undefined8 *)(contextData + (longlong)peventTypeCode);
+      floatResult7 = in_XMM2_Dc - *(float *)(contextData + 8 + (longlong)peventTypeCode);
+      floatResult6 = floatResult0 - (float)((ulonglong)*(undefined8 *)(contextData + (longlong)peventTypeCode) >> 0x20);
       fVar8 = SQRT(floatResult6 * floatResult6 + floatResult2 * floatResult2 + floatResult7 * floatResult7);
       floatResult1 = unaff_XMM6_Da;
       floatResult3 = unaff_XMM6_Da;
@@ -325355,10 +325355,10 @@ void FUN_18086490d(float uiContext,longlong dataSource,undefined8 targetBuffer,l
           fVar8 = unaff_XMM6_Da;
         }
       }
-      lVar6 = context * 4;
+      contextData = context * 4;
       peventTypeCode = (undefined8 *)((longlong)peventTypeCode + 0x44);
       context = context + 1;
-      unaff_XMM10_Da = unaff_XMM10_Da + fVar8 * *(float *)(unaff_RBP + -0x80 + lVar6);
+      unaff_XMM10_Da = unaff_XMM10_Da + fVar8 * *(float *)(unaff_RBP + -0x80 + contextData);
     } while (context < dataSource);
   }
   *(float *)(unaff_RDI + 0x2fc) = unaff_XMM10_Da;
@@ -325385,7 +325385,7 @@ void FUN_1808649b0(float uiContext,longlong dataSource,float targetBuffer,float 
   longlong stringCompareIndex;
   int iVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   longlong context;
   longlong unaff_RBP;
@@ -325428,13 +325428,13 @@ void FUN_1808649b0(float uiContext,longlong dataSource,float targetBuffer,float 
   peventTypeCode = (undefined8 *)(in_R9 + 0x560);
   floatResult4 = (unaff_XMM7_Da / uiContext) * *(float *)(unaff_RDI + 0x300);
   do {
-    lVar6 = 0x24;
+    contextData = 0x24;
     if (*(char *)((longlong)peventTypeCode + 0x34) == '\0') {
-      lVar6 = in_R10;
+      contextData = in_R10;
     }
-    floatResult0 = in_XMM4_Da - (float)*(undefined8 *)(lVar6 + (longlong)peventTypeCode);
-    targetBuffer = targetBuffer - *(float *)(lVar6 + 8 + (longlong)peventTypeCode);
-    bufferSize = bufferSize - (float)((ulonglong)*(undefined8 *)(lVar6 + (longlong)peventTypeCode) >> 0x20);
+    floatResult0 = in_XMM4_Da - (float)*(undefined8 *)(contextData + (longlong)peventTypeCode);
+    targetBuffer = targetBuffer - *(float *)(contextData + 8 + (longlong)peventTypeCode);
+    bufferSize = bufferSize - (float)((ulonglong)*(undefined8 *)(contextData + (longlong)peventTypeCode) >> 0x20);
     fVar8 = SQRT(bufferSize * bufferSize + floatResult0 * floatResult0 + targetBuffer * targetBuffer);
     fVar9 = unaff_XMM6_Da;
     floatResult2 = unaff_XMM6_Da;
@@ -325457,7 +325457,7 @@ void FUN_1808649b0(float uiContext,longlong dataSource,float targetBuffer,float 
         fVar8 = unaff_XMM6_Da;
       }
     }
-    lVar6 = context * 4;
+    contextData = context * 4;
     uVar5 = 0x68;
     if (*(char *)(peventTypeCode + 0xf) == '\0') {
       uVar5 = (ulonglong)(iVar4 + 0x38);
@@ -325556,7 +325556,7 @@ void FUN_1808649b0(float uiContext,longlong dataSource,float targetBuffer,float 
     peventTypeCode = peventTypeCode + 0x22;
     context = context + 4;
     unaff_XMM10_Da =
-         unaff_XMM10_Da + fVar8 * *(float *)(unaff_RBP + -0x80 + lVar6) +
+         unaff_XMM10_Da + fVar8 * *(float *)(unaff_RBP + -0x80 + contextData) +
          floatResult0 * *(float *)(unaff_RBP + -0x7c + allocatedMemory) +
          floatResult1 * *(float *)(unaff_RBP + -0x78 + componentIndex) +
          floatResult5 * *(float *)(unaff_RBP + -0x74 + stringCompareIndex);
@@ -325568,16 +325568,16 @@ void FUN_1808649b0(float uiContext,longlong dataSource,float targetBuffer,float 
     floatResult4 = (fStack0000000000000040 / fStack0000000000000044) * *(float *)(unaff_RDI + 0x300);
     peventTypeCode = (undefined8 *)(in_R9 + 0x560 + context * 0x44);
     do {
-      lVar6 = 0x24;
+      contextData = 0x24;
       if (*(char *)((longlong)peventTypeCode + 0x34) == '\0') {
-        lVar6 = in_R10;
+        contextData = in_R10;
       }
-      fStack0000000000000038 = *(float *)(lVar6 + 8 + (longlong)peventTypeCode);
-      floatResult0 = fStack0000000000000048 - (float)*(undefined8 *)(lVar6 + (longlong)peventTypeCode);
+      fStack0000000000000038 = *(float *)(contextData + 8 + (longlong)peventTypeCode);
+      floatResult0 = fStack0000000000000048 - (float)*(undefined8 *)(contextData + (longlong)peventTypeCode);
       floatResult5 = in_stack_00000050 - fStack0000000000000038;
       fStack0000000000000028 = *(float *)(peventTypeCode + 1);
       floatResult1 = fStack000000000000004c -
-               (float)((ulonglong)*(undefined8 *)(lVar6 + (longlong)peventTypeCode) >> 0x20);
+               (float)((ulonglong)*(undefined8 *)(contextData + (longlong)peventTypeCode) >> 0x20);
       fVar8 = SQRT(floatResult1 * floatResult1 + floatResult0 * floatResult0 + floatResult5 * floatResult5);
       fVar9 = unaff_XMM6_Da;
       floatResult2 = unaff_XMM6_Da;
@@ -325600,10 +325600,10 @@ void FUN_1808649b0(float uiContext,longlong dataSource,float targetBuffer,float 
           fVar8 = unaff_XMM6_Da;
         }
       }
-      lVar6 = context * 4;
+      contextData = context * 4;
       peventTypeCode = (undefined8 *)((longlong)peventTypeCode + 0x44);
       context = context + 1;
-      unaff_XMM10_Da = unaff_XMM10_Da + fVar8 * *(float *)(unaff_RBP + -0x80 + lVar6);
+      unaff_XMM10_Da = unaff_XMM10_Da + fVar8 * *(float *)(unaff_RBP + -0x80 + contextData);
     } while (context < dataSource);
   }
   *(float *)(unaff_RDI + 0x2fc) = unaff_XMM10_Da;
@@ -326459,7 +326459,7 @@ undefined8 FUN_180865800(longlong uiContext,undefined1 *dataSource)
   char cVar3;
   undefined8 uVar4;
   float *pfVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong *plVar7;
   longlong *plVar8;
   longlong *plVar9;
@@ -326535,9 +326535,9 @@ LAB_1808659de:
         if (plVar8 == (longlong *)0x0) {
           plVar9 = pallocatedMemory0;
         }
-        lVar6 = (**(code **)*plVar9)(plVar9);
-        if ((((*(int *)(lVar6 + 0x60) == 0) && (*(int *)(lVar6 + 100) == 0)) &&
-            (*(int *)(lVar6 + 0x68) == 0)) && (*(int *)(lVar6 + 0x6c) == 0)) {
+        contextData = (**(code **)*plVar9)(plVar9);
+        if ((((*(int *)(contextData + 0x60) == 0) && (*(int *)(contextData + 100) == 0)) &&
+            (*(int *)(contextData + 0x68) == 0)) && (*(int *)(contextData + 0x6c) == 0)) {
           acStackX_18[0] = '\0';
           uVar4 = (**(code **)(*plVar9 + 0x50))(plVar9,acStackX_18);
           if ((int)uVar4 != 0) {
@@ -327400,11 +327400,11 @@ undefined8 FUN_1808669b0(longlong uiContext,longlong *dataSource,undefined8 targ
   undefined8 uVar3;
   longlong lVar4;
   longlong *plVar5;
-  longlong lVar6;
+  longlong contextData;
   
   colorBufferPointer = (longlong *)FUN_180847820();
-  lVar6 = *colorBufferPointer;
-  lVar4 = *dataSource - lVar6;
+  contextData = *colorBufferPointer;
+  lVar4 = *dataSource - contextData;
   if (lVar4 == 0) {
     lVar4 = dataSource[1] - colorBufferPointer[1];
   }
@@ -327425,7 +327425,7 @@ undefined8 FUN_1808669b0(longlong uiContext,longlong *dataSource,undefined8 targ
     if (pallocatedMemory == (longlong *)0x0) {
       colorBufferPointer = plVar5;
     }
-    uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer,dataSource,targetBuffer,lVar4 == 0,lVar6);
+    uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer,dataSource,targetBuffer,lVar4 == 0,contextData);
     if ((int)uVar3 != 0) break;
     if (pallocatedMemory == (longlong *)(uiContext + 0x50)) {
       return 0;
@@ -327578,7 +327578,7 @@ undefined8 FUN_180866d00(longlong uiContext,int dataSource,char targetBuffer,cha
   char cVar3;
   int iVar4;
   undefined8 uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   
   iVar4 = *(int *)(bufferData + 0x38);
@@ -327587,60 +327587,60 @@ undefined8 FUN_180866d00(longlong uiContext,int dataSource,char targetBuffer,cha
   *(undefined4 *)(bufferData + 0x38) = 0;
   *(int *)(bufferData + 0x6c) = dataSource;
   if (iVar4 == 2) {
-    plVar6 = (longlong *)(*(longlong *)(bufferData + 0x50) + -8);
+    pcontextData = (longlong *)(*(longlong *)(bufferData + 0x50) + -8);
     if (*(longlong *)(bufferData + 0x50) == 0) {
-      plVar6 = plVar7;
+      pcontextData = plVar7;
     }
     colorBufferPointer = plVar7;
-    if (plVar6 != (longlong *)0x0) {
-      colorBufferPointer = plVar6 + 1;
+    if (pcontextData != (longlong *)0x0) {
+      colorBufferPointer = pcontextData + 1;
     }
     while (colorBufferPointer != (longlong *)(uiContext + 0x50)) {
-      plVar6 = colorBufferPointer + -1;
+      pcontextData = colorBufferPointer + -1;
       if (colorBufferPointer == (longlong *)0x0) {
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       }
-      uVar5 = (**(code **)(*plVar6 + 0x10))(plVar6,allocatedMemory);
+      uVar5 = (**(code **)(*pcontextData + 0x10))(pcontextData,allocatedMemory);
       if ((int)uVar5 != 0) {
         return uVar5;
       }
       if (colorBufferPointer == (longlong *)(uiContext + 0x50)) break;
-      plVar6 = (longlong *)(*colorBufferPointer + -8);
+      pcontextData = (longlong *)(*colorBufferPointer + -8);
       if (*colorBufferPointer == 0) {
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       }
       colorBufferPointer = plVar7;
-      if (plVar6 != (longlong *)0x0) {
-        colorBufferPointer = plVar6 + 1;
+      if (pcontextData != (longlong *)0x0) {
+        colorBufferPointer = pcontextData + 1;
       }
     }
   }
   else if (1 < dataSource - 1U) {
-    plVar6 = (longlong *)(*(longlong *)(bufferData + 0x50) + -8);
+    pcontextData = (longlong *)(*(longlong *)(bufferData + 0x50) + -8);
     if (*(longlong *)(bufferData + 0x50) == 0) {
-      plVar6 = plVar7;
+      pcontextData = plVar7;
     }
     colorBufferPointer = plVar7;
-    if (plVar6 != (longlong *)0x0) {
-      colorBufferPointer = plVar6 + 1;
+    if (pcontextData != (longlong *)0x0) {
+      colorBufferPointer = pcontextData + 1;
     }
     while (colorBufferPointer != (longlong *)(uiContext + 0x50)) {
-      plVar6 = colorBufferPointer + -1;
+      pcontextData = colorBufferPointer + -1;
       if (colorBufferPointer == (longlong *)0x0) {
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       }
-      uVar5 = (**(code **)(*plVar6 + 8))(plVar6,allocatedMemory);
+      uVar5 = (**(code **)(*pcontextData + 8))(pcontextData,allocatedMemory);
       if ((int)uVar5 != 0) {
         return uVar5;
       }
       if (colorBufferPointer == (longlong *)(uiContext + 0x50)) break;
-      plVar6 = (longlong *)(*colorBufferPointer + -8);
+      pcontextData = (longlong *)(*colorBufferPointer + -8);
       if (*colorBufferPointer == 0) {
-        plVar6 = plVar7;
+        pcontextData = plVar7;
       }
       colorBufferPointer = plVar7;
-      if (plVar6 != (longlong *)0x0) {
-        colorBufferPointer = plVar6 + 1;
+      if (pcontextData != (longlong *)0x0) {
+        colorBufferPointer = pcontextData + 1;
       }
     }
   }
@@ -328368,7 +328368,7 @@ void FUN_180867810(longlong *uiContext,longlong dataSource)
   longlong *colorBufferPointer;
   undefined4 *puVar3;
   uint uVar4;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   ulonglong uVar8;
   undefined8 uStackX_8;
@@ -328395,7 +328395,7 @@ void FUN_180867810(longlong *uiContext,longlong dataSource)
     if ((-1 < (int)uVar4) && ((int)uVar4 < operationResult)) {
       iVar7 = (operationResult - uVar4) + -1;
       if (0 < iVar7) {
-        lVar6 = (longlong)iVar7;
+        contextData = (longlong)iVar7;
         puVar3 = (undefined4 *)(*uiContext + (longlong)(int)uVar4 * 0x18);
         do {
           *puVar3 = puVar3[6];
@@ -328403,9 +328403,9 @@ void FUN_180867810(longlong *uiContext,longlong dataSource)
           puVar3[2] = puVar3[8];
           puVar3[3] = puVar3[9];
           *(undefined8 *)(puVar3 + 4) = *(undefined8 *)(puVar3 + 10);
-          lVar6 = lVar6 + -1;
+          contextData = contextData + -1;
           puVar3 = puVar3 + 6;
-        } while (lVar6 != 0);
+        } while (contextData != 0);
         operationResult = (int)uiContext[1];
       }
       *(int *)(bufferData + 1) = operationResult + -1;
@@ -328995,7 +328995,7 @@ void FUN_180868330(longlong uiContext,undefined8 *dataSource)
   longlong stringCompareIndex;
   longlong lVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong *plVar7;
   uint uVar8;
   longlong *plVar9;
@@ -329005,11 +329005,11 @@ void FUN_180868330(longlong uiContext,undefined8 *dataSource)
   
   uStack_30 = XorEncryptionKey ^ (ulonglong)auStack_78;
   plVar7 = (longlong *)0x0;
-  plVar6 = plVar7;
+  pcontextData = plVar7;
   plVar9 = plVar7;
   if (0 < *(int *)(bufferData + 0x28)) {
     do {
-      allocatedMemory = *(longlong *)((longlong)plVar6 + *(longlong *)(bufferData + 0x20) + 0x10);
+      allocatedMemory = *(longlong *)((longlong)pcontextData + *(longlong *)(bufferData + 0x20) + 0x10);
       if (allocatedMemory != 0) {
         plVar5 = dataSource + 0x97;
         if (dataSource == (undefined8 *)0xffffffffffffff08) {
@@ -329040,12 +329040,12 @@ LAB_1808683fc:
                     // WARNING: Subroutine does not return
               FUN_18084b240(allocatedMemory + 0x10,auStack_58);
             }
-            *(longlong *)((longlong)plVar6 + *(longlong *)(bufferData + 0x20) + 0x10) = stringCompareIndex;
+            *(longlong *)((longlong)pcontextData + *(longlong *)(bufferData + 0x20) + 0x10) = stringCompareIndex;
           }
         }
       }
       uVar8 = (int)plVar9 + 1;
-      plVar6 = plVar6 + 3;
+      pcontextData = pcontextData + 3;
       plVar9 = (longlong *)(ulonglong)uVar8;
     } while ((int)uVar8 < *(int *)(bufferData + 0x28));
   }
@@ -329578,7 +329578,7 @@ void FUN_180868a80(char uiContext,undefined8 dataSource,longlong *targetBuffer,l
   longlong stringCompareIndex;
   longlong lVar4;
   ulonglong *componentContextPtr;
-  longlong *plVar6;
+  longlong *pcontextData;
   ulonglong eventTypeCode;
   char cVar8;
   char cVar9;
@@ -329610,24 +329610,24 @@ LAB_180868ceb:
     cVar8 = '\0';
     cVar9 = '\0';
     lStack_90 = *(longlong *)(*plStack_80 + (longlong)operationResult0 * 8);
-    plVar6 = *(longlong **)(lStack_90 + 0x20);
+    pcontextData = *(longlong **)(lStack_90 + 0x20);
     floatResult = *(float *)(lStack_90 + 0x90);
     pallocatedMemory1 = (longlong *)(lStack_90 + 0x20);
-    if (plVar6 != pallocatedMemory1) {
+    if (pcontextData != pallocatedMemory1) {
 LAB_180868b10:
-      if ((int)plVar6[8] != 0) break;
-      if (plVar6 != (longlong *)0x0) {
-        cStack_98 = (int)plVar6[5] != 0;
-        cStack_97 = (int)plVar6[3] != 0;
+      if ((int)pcontextData[8] != 0) break;
+      if (pcontextData != (longlong *)0x0) {
+        cStack_98 = (int)pcontextData[5] != 0;
+        cStack_97 = (int)pcontextData[3] != 0;
         cVar9 = cStack_97;
         cVar8 = cStack_98;
-        if ((int)plVar6[5] != 0) {
-          componentIndex = (**(code **)(*bufferSize + 0x260))(bufferSize,plVar6 + 6,1);
+        if ((int)pcontextData[5] != 0) {
+          componentIndex = (**(code **)(*bufferSize + 0x260))(bufferSize,pcontextData + 6,1);
           if (allocatedMemoryPtr == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(plVar6 + 6,auStack_78);
+            FUN_18084b240(pcontextData + 6,auStack_78);
           }
-          lVar4 = plVar6[4];
+          lVar4 = pcontextData[4];
           stringCompareIndex = (**(code **)(*bufferSize + 0x298))(bufferSize,lVar4,1);
           if (stringCompareIndex == 0) {
                     // WARNING: Subroutine does not return
@@ -329643,7 +329643,7 @@ LAB_180868b10:
               functionResult3 = func_0x0001808c6500(componentIndex,floatResult2 + floatResult);
               *(undefined4 *)(eventTypeCode + 4) = functionResult3;
             }
-            componentContextPtr = (ulonglong *)func_0x000180851be0(dataSource,plVar6[4]);
+            componentContextPtr = (ulonglong *)func_0x000180851be0(dataSource,pcontextData[4]);
             cVar9 = cStack_97;
             cVar8 = cStack_98;
             if (componentContextPtr != (ulonglong *)0x0) {
@@ -329674,7 +329674,7 @@ LAB_180868c96:
     }
     operationResult0 = operationResult0 + 1;
   } while( true );
-  if ((plVar6 == pallocatedMemory1) || (plVar6 = (longlong *)*plVar6, plVar6 == pallocatedMemory1)) goto LAB_180868c96;
+  if ((pcontextData == pallocatedMemory1) || (pcontextData = (longlong *)*pcontextData, pcontextData == pallocatedMemory1)) goto LAB_180868c96;
   goto LAB_180868b10;
 }
 
@@ -330411,24 +330411,24 @@ void FUN_180869b4f(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x148);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x140));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x140));
       if (allocatedMemory == 0) {
 LAB_180869c7a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x140) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x140) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x148) = iVar5;
@@ -330445,20 +330445,20 @@ LAB_180869c7a:
         if (stringCompareIndex == 0) goto LAB_180869c7a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x140)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x140)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x140));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x140));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_180869c72;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x140)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x140)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x148);
         }
 LAB_180869c72:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -330666,24 +330666,24 @@ void FUN_180869d52(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x88);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x80));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x80));
       if (allocatedMemory == 0) {
 LAB_180869e7a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x80) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x80) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x88) = iVar5;
@@ -330700,20 +330700,20 @@ LAB_180869e7a:
         if (stringCompareIndex == 0) goto LAB_180869e7a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x80)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x80)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x80));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x80));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_180869e72;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x80)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x80)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x88);
         }
 LAB_180869e72:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -330921,24 +330921,24 @@ void FUN_180869f52(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x118);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x110));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x110));
       if (allocatedMemory == 0) {
 LAB_18086a07a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x110) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x110) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x118) = iVar5;
@@ -330955,20 +330955,20 @@ LAB_18086a07a:
         if (stringCompareIndex == 0) goto LAB_18086a07a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x110)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x110)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x110));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x110));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086a072;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x110)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x110)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x118);
         }
 LAB_18086a072:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -331176,24 +331176,24 @@ void FUN_18086a14f(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x188);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x180));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x180));
       if (allocatedMemory == 0) {
 LAB_18086a27a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x180) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x180) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x188) = iVar5;
@@ -331210,20 +331210,20 @@ LAB_18086a27a:
         if (stringCompareIndex == 0) goto LAB_18086a27a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x180)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x180)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x180));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x180));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086a272;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x180)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x180)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x188);
         }
 LAB_18086a272:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -331431,24 +331431,24 @@ void FUN_18086a34f(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x1d8);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1d0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1d0));
       if (allocatedMemory == 0) {
 LAB_18086a47a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x1d0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x1d0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x1d8) = iVar5;
@@ -331465,20 +331465,20 @@ LAB_18086a47a:
         if (stringCompareIndex == 0) goto LAB_18086a47a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1d0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x1d0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1d0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x1d0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086a472;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1d0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1d0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x1d8);
         }
 LAB_18086a472:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -331686,24 +331686,24 @@ void FUN_18086a552(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x108);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x100));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x100));
       if (allocatedMemory == 0) {
 LAB_18086a67a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x100) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x100) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x108) = iVar5;
@@ -331720,20 +331720,20 @@ LAB_18086a67a:
         if (stringCompareIndex == 0) goto LAB_18086a67a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x100)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x100)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x100));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x100));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086a672;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x100)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x100)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x108);
         }
 LAB_18086a672:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -331941,24 +331941,24 @@ void FUN_18086a752(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0xe8);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xe0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xe0));
       if (allocatedMemory == 0) {
 LAB_18086a87a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0xe0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0xe0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0xe8) = iVar5;
@@ -331975,20 +331975,20 @@ LAB_18086a87a:
         if (stringCompareIndex == 0) goto LAB_18086a87a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xe0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0xe0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xe0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0xe0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086a872;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xe0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xe0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0xe8);
         }
 LAB_18086a872:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -332196,24 +332196,24 @@ void FUN_18086a94f(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x1a8);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1a0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1a0));
       if (allocatedMemory == 0) {
 LAB_18086aa7a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x1a0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x1a0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x1a8) = iVar5;
@@ -332230,20 +332230,20 @@ LAB_18086aa7a:
         if (stringCompareIndex == 0) goto LAB_18086aa7a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1a0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x1a0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1a0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x1a0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086aa72;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1a0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1a0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x1a8);
         }
 LAB_18086aa72:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -332451,24 +332451,24 @@ void FUN_18086ab52(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x48);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x40));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x40));
       if (allocatedMemory == 0) {
 LAB_18086ac60:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x40) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x40) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x48) = iVar5;
@@ -332485,20 +332485,20 @@ LAB_18086ac60:
         if (stringCompareIndex == 0) goto LAB_18086ac60;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x40)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x40)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x40));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x40));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086ac58;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x40)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x40)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x48);
         }
 LAB_18086ac58:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -332706,24 +332706,24 @@ void FUN_18086ad32(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x38);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x30));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x30));
       if (allocatedMemory == 0) {
 LAB_18086ae40:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x30) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x30) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x38) = iVar5;
@@ -332740,20 +332740,20 @@ LAB_18086ae40:
         if (stringCompareIndex == 0) goto LAB_18086ae40;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x30)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x30)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x30));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x30));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086ae38;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x30)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x30)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x38);
         }
 LAB_18086ae38:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -332961,24 +332961,24 @@ void FUN_18086af12(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x138);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x130));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x130));
       if (allocatedMemory == 0) {
 LAB_18086b03a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x130) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x130) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x138) = iVar5;
@@ -332995,20 +332995,20 @@ LAB_18086b03a:
         if (stringCompareIndex == 0) goto LAB_18086b03a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x130)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x130)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x130));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x130));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086b032;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x130)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x130)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x138);
         }
 LAB_18086b032:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -333216,24 +333216,24 @@ void FUN_18086b10f(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x1e8);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1e0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1e0));
       if (allocatedMemory == 0) {
 LAB_18086b23a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x1e0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x1e0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x1e8) = iVar5;
@@ -333250,20 +333250,20 @@ LAB_18086b23a:
         if (stringCompareIndex == 0) goto LAB_18086b23a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1e0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x1e0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1e0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x1e0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086b232;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1e0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1e0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x1e8);
         }
 LAB_18086b232:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -333471,24 +333471,24 @@ void FUN_18086b312(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x68);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x60));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x60));
       if (allocatedMemory == 0) {
 LAB_18086b420:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x60) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x60) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x68) = iVar5;
@@ -333505,20 +333505,20 @@ LAB_18086b420:
         if (stringCompareIndex == 0) goto LAB_18086b420;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x60)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x60)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x60));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x60));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086b418;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x60)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x60)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x68);
         }
 LAB_18086b418:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -333726,24 +333726,24 @@ void FUN_18086b4ef(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x198);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 400));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 400));
       if (allocatedMemory == 0) {
 LAB_18086b61a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 400) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 400) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x198) = iVar5;
@@ -333760,20 +333760,20 @@ LAB_18086b61a:
         if (stringCompareIndex == 0) goto LAB_18086b61a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 400)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 400)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 400));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 400));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086b612;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 400)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 400)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x198);
         }
 LAB_18086b612:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -333981,24 +333981,24 @@ void FUN_18086b6f2(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x158);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x150));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x150));
       if (allocatedMemory == 0) {
 LAB_18086b81a:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x150) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x150) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x158) = iVar5;
@@ -334015,20 +334015,20 @@ LAB_18086b81a:
         if (stringCompareIndex == 0) goto LAB_18086b81a;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x150)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x150)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x150));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x150));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086b812;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x150)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x150)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x158);
         }
 LAB_18086b812:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -334236,24 +334236,24 @@ void FUN_18086b8f2(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x78);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x70));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x70));
       if (allocatedMemory == 0) {
 LAB_18086ba00:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x70) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x70) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x78) = iVar5;
@@ -334270,20 +334270,20 @@ LAB_18086ba00:
         if (stringCompareIndex == 0) goto LAB_18086ba00;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x70)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x70)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x70));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x70));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086b9f8;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x70)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x70)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x78);
         }
 LAB_18086b9f8:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -334491,24 +334491,24 @@ void FUN_18086bacf(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x1c8);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1c0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1c0));
       if (allocatedMemory == 0) {
 LAB_18086bbfa:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x1c0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x1c0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x1c8) = iVar5;
@@ -334525,20 +334525,20 @@ LAB_18086bbfa:
         if (stringCompareIndex == 0) goto LAB_18086bbfa;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1c0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x1c0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1c0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x1c0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086bbf2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1c0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1c0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x1c8);
         }
 LAB_18086bbf2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -334746,24 +334746,24 @@ void FUN_18086bccf(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x1b8);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1b0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1b0));
       if (allocatedMemory == 0) {
 LAB_18086bdfa:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x1b0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x1b0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x1b8) = iVar5;
@@ -334780,20 +334780,20 @@ LAB_18086bdfa:
         if (stringCompareIndex == 0) goto LAB_18086bdfa;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1b0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x1b0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1b0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x1b0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086bdf2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1b0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1b0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x1b8);
         }
 LAB_18086bdf2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -335001,24 +335001,24 @@ void FUN_18086bed2(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x98);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x90));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x90));
       if (allocatedMemory == 0) {
 LAB_18086bffa:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x90) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x90) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x98) = iVar5;
@@ -335035,20 +335035,20 @@ LAB_18086bffa:
         if (stringCompareIndex == 0) goto LAB_18086bffa;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x90)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x90)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x90));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x90));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086bff2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x90)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x90)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x98);
         }
 LAB_18086bff2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -335256,24 +335256,24 @@ void FUN_18086c0d2(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x178);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x170));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x170));
       if (allocatedMemory == 0) {
 LAB_18086c1fa:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x170) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x170) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x178) = iVar5;
@@ -335290,20 +335290,20 @@ LAB_18086c1fa:
         if (stringCompareIndex == 0) goto LAB_18086c1fa;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x170)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x170)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x170));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x170));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086c1f2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x170)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x170)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x178);
         }
 LAB_18086c1f2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -335511,24 +335511,24 @@ void FUN_18086c2d2(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x58);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x50));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x50));
       if (allocatedMemory == 0) {
 LAB_18086c3e0:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x50) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x50) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x58) = iVar5;
@@ -335545,20 +335545,20 @@ LAB_18086c3e0:
         if (stringCompareIndex == 0) goto LAB_18086c3e0;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x50)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x50)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x50));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x50));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086c3d8;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x50)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x50)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x58);
         }
 LAB_18086c3d8:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -335766,24 +335766,24 @@ void FUN_18086c4b2(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x168);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x160));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x160));
       if (allocatedMemory == 0) {
 LAB_18086c5da:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x160) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x160) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x168) = iVar5;
@@ -335800,20 +335800,20 @@ LAB_18086c5da:
         if (stringCompareIndex == 0) goto LAB_18086c5da;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x160)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x160)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x160));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x160));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086c5d2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x160)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x160)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x168);
         }
 LAB_18086c5d2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -336021,24 +336021,24 @@ void FUN_18086c6b2(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0xa8);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xa0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xa0));
       if (allocatedMemory == 0) {
 LAB_18086c7da:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0xa0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0xa0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0xa8) = iVar5;
@@ -336055,20 +336055,20 @@ LAB_18086c7da:
         if (stringCompareIndex == 0) goto LAB_18086c7da;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xa0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0xa0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xa0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0xa0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086c7d2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xa0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xa0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0xa8);
         }
 LAB_18086c7d2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -336276,24 +336276,24 @@ void FUN_18086c8b2(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0xb8);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xb0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xb0));
       if (allocatedMemory == 0) {
 LAB_18086c9da:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0xb0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0xb0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0xb8) = iVar5;
@@ -336310,20 +336310,20 @@ LAB_18086c9da:
         if (stringCompareIndex == 0) goto LAB_18086c9da;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xb0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0xb0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xb0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0xb0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086c9d2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xb0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xb0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0xb8);
         }
 LAB_18086c9d2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -336531,24 +336531,24 @@ void FUN_18086cab2(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x128);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x120));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x120));
       if (allocatedMemory == 0) {
 LAB_18086cbda:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x120) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x120) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x128) = iVar5;
@@ -336565,20 +336565,20 @@ LAB_18086cbda:
         if (stringCompareIndex == 0) goto LAB_18086cbda;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x120)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x120)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x120));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x120));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086cbd2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x120)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x120)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x128);
         }
 LAB_18086cbd2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -336786,24 +336786,24 @@ void FUN_18086ccaf(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0x1f8);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1f0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1f0));
       if (allocatedMemory == 0) {
 LAB_18086cdda:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0x1f0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0x1f0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0x1f8) = iVar5;
@@ -336820,20 +336820,20 @@ LAB_18086cdda:
         if (stringCompareIndex == 0) goto LAB_18086cdda;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0x1f0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0x1f0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0x1f0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0x1f0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086cdd2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0x1f0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0x1f0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0x1f8);
         }
 LAB_18086cdd2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -337041,24 +337041,24 @@ void FUN_18086ceaf(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0xd8);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xd0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xd0));
       if (allocatedMemory == 0) {
 LAB_18086cfda:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0xd0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0xd0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0xd8) = iVar5;
@@ -337075,20 +337075,20 @@ LAB_18086cfda:
         if (stringCompareIndex == 0) goto LAB_18086cfda;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xd0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0xd0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xd0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0xd0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086cfd2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xd0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xd0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0xd8);
         }
 LAB_18086cfd2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -337296,24 +337296,24 @@ void FUN_18086d0b2(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 200);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xc0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xc0));
       if (allocatedMemory == 0) {
 LAB_18086d1da:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0xc0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0xc0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 200) = iVar5;
@@ -337330,20 +337330,20 @@ LAB_18086d1da:
         if (stringCompareIndex == 0) goto LAB_18086d1da;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xc0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0xc0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xc0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0xc0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086d1d2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xc0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xc0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 200);
         }
 LAB_18086d1d2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -337551,24 +337551,24 @@ void FUN_18086d2af(void)
   int iVar4;
   int iVar5;
   undefined8 *unaff_R14;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *puStackX_20;
   ulonglong in_stack_00000050;
   
   iVar4 = 0;
   iVar5 = *(int *)(unaff_RBP + 0xf8);
   if (0 < iVar5) {
-    lVar6 = 0;
+    contextData = 0;
     do {
-      allocatedMemory = *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xf0));
+      allocatedMemory = *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xf0));
       if (allocatedMemory == 0) {
 LAB_18086d3da:
         if ((-1 < iVar4) && (iVar4 < iVar5)) {
           validationResult = (iVar5 - iVar4) + -1;
           if (0 < validationResult) {
-            lVar6 = *(longlong *)(unaff_RBP + 0xf0) + (longlong)iVar4 * 8;
+            contextData = *(longlong *)(unaff_RBP + 0xf0) + (longlong)iVar4 * 8;
                     // WARNING: Subroutine does not return
-            memmove(lVar6,lVar6 + 8,(longlong)validationResult << 3);
+            memmove(contextData,contextData + 8,(longlong)validationResult << 3);
           }
           iVar5 = iVar5 + -1;
           *(int *)(unaff_RBP + 0xf8) = iVar5;
@@ -337585,20 +337585,20 @@ LAB_18086d3da:
         if (stringCompareIndex == 0) goto LAB_18086d3da;
         if (((-1 < iVar4) && (iVar4 < iVar5)) &&
            ((iVar4 == 0 ||
-            (validationResult = memcmp(*(longlong *)(lVar6 + -8 + *(longlong *)(unaff_RBP + 0xf0)) + 0x10,
+            (validationResult = memcmp(*(longlong *)(contextData + -8 + *(longlong *)(unaff_RBP + 0xf0)) + 0x10,
                             stringCompareIndex + 0x10,0x10), validationResult < 0)))) {
           if (iVar4 != iVar5 + -1) {
-            allocatedMemory = *(longlong *)(lVar6 + 8 + *(longlong *)(unaff_RBP + 0xf0));
+            allocatedMemory = *(longlong *)(contextData + 8 + *(longlong *)(unaff_RBP + 0xf0));
             validationResult = memcmp(allocatedMemory + 0x10,stringCompareIndex + 0x10,0x10);
             if ((validationResult < 0) || (validationResult = memcmp(stringCompareIndex + 0x10,allocatedMemory + 0x10,0x10), -1 < validationResult))
             goto LAB_18086d3d2;
           }
-          *(longlong *)(lVar6 + *(longlong *)(unaff_RBP + 0xf0)) = stringCompareIndex;
+          *(longlong *)(contextData + *(longlong *)(unaff_RBP + 0xf0)) = stringCompareIndex;
           iVar5 = *(int *)(unaff_RBP + 0xf8);
         }
 LAB_18086d3d2:
         iVar4 = iVar4 + 1;
-        lVar6 = lVar6 + 8;
+        contextData = contextData + 8;
       }
       unaff_R14 = puStackX_20;
     } while (iVar4 < iVar5);
@@ -337720,7 +337720,7 @@ FUN_18086d470(longlong uiContext,longlong dataSource,longlong targetBuffer,longl
   undefined8 uVar3;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined1 auStackX_20 [8];
   longlong lStack_48;
   longlong lStack_40;
@@ -337732,10 +337732,10 @@ FUN_18086d470(longlong uiContext,longlong dataSource,longlong targetBuffer,longl
   }
   operationResult = *(int *)(bufferData + 0x1e8);
   if (0 < (longlong)operationResult) {
-    lVar6 = 0;
+    contextData = 0;
     do {
       lStack_48 = 0;
-      componentIndex = *(longlong *)(*(longlong *)(bufferData + 0x1e0) + lVar6 * 8);
+      componentIndex = *(longlong *)(*(longlong *)(bufferData + 0x1e0) + contextData * 8);
       lStack_40 = componentIndex;
       uVar3 = FUN_180885d80(lStack_38,componentIndex,resultPointer,&lStack_48);
       if ((int)uVar3 != 0) {
@@ -337769,8 +337769,8 @@ FUN_18086d470(longlong uiContext,longlong dataSource,longlong targetBuffer,longl
       if ((lVar4 != 0) && (uVar3 = FUN_18087dc70(targetBuffer + 0x1e0), (int)uVar3 != 0)) {
         return uVar3;
       }
-      lVar6 = lVar6 + 1;
-    } while (lVar6 < operationResult);
+      contextData = contextData + 1;
+    } while (contextData < operationResult);
   }
   return 0;
 }
@@ -337787,7 +337787,7 @@ FUN_18086d620(longlong uiContext,longlong dataSource,longlong targetBuffer,longl
   undefined8 uVar3;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   undefined1 auStackX_20 [8];
   longlong lStack_48;
   longlong lStack_40;
@@ -337799,10 +337799,10 @@ FUN_18086d620(longlong uiContext,longlong dataSource,longlong targetBuffer,longl
   }
   operationResult = *(int *)(bufferData + 0x1f8);
   if (0 < (longlong)operationResult) {
-    lVar6 = 0;
+    contextData = 0;
     do {
       lStack_48 = 0;
-      componentIndex = *(longlong *)(*(longlong *)(bufferData + 0x1f0) + lVar6 * 8);
+      componentIndex = *(longlong *)(*(longlong *)(bufferData + 0x1f0) + contextData * 8);
       lStack_40 = componentIndex;
       uVar3 = FUN_180888e80(lStack_38,componentIndex,resultPointer,&lStack_48);
       if ((int)uVar3 != 0) {
@@ -337836,8 +337836,8 @@ FUN_18086d620(longlong uiContext,longlong dataSource,longlong targetBuffer,longl
       if ((lVar4 != 0) && (uVar3 = FUN_18087dc70(targetBuffer + 0x1f0), (int)uVar3 != 0)) {
         return uVar3;
       }
-      lVar6 = lVar6 + 1;
-    } while (lVar6 < operationResult);
+      contextData = contextData + 1;
+    } while (contextData < operationResult);
   }
   return 0;
 }
@@ -337854,7 +337854,7 @@ undefined8 FUN_18086d7d0(longlong uiContext,longlong *dataSource)
   longlong stringCompareIndex;
   longlong *plVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lStackX_10;
   undefined4 uStack_38;
   undefined4 uStack_34;
@@ -337865,12 +337865,12 @@ undefined8 FUN_18086d7d0(longlong uiContext,longlong *dataSource)
   if (plVar4 == (longlong *)0x0) {
     return 0x1c;
   }
-  lVar6 = 0;
+  contextData = 0;
   operationResult = *(int *)(bufferData + 0x1a8);
   if (0 < (longlong)operationResult) {
     do {
       lStackX_10 = 0;
-      psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x1a0) + lVar6 * 8);
+      psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x1a0) + contextData * 8);
       uStack_38 = *(undefined4 *)(psemaphoreHandle + 2);
       uStack_34 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
       uStack_30 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -337900,8 +337900,8 @@ LAB_18086d8a4:
           FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),psemaphoreHandle,&UNK_180985b90,0x55d,1);
         }
       }
-      lVar6 = lVar6 + 1;
-    } while (lVar6 < operationResult);
+      contextData = contextData + 1;
+    } while (contextData < operationResult);
   }
   return 0;
 }
@@ -337918,7 +337918,7 @@ undefined8 FUN_18086d930(longlong uiContext,longlong *dataSource)
   longlong stringCompareIndex;
   longlong *plVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lStackX_10;
   undefined4 uStack_38;
   undefined4 uStack_34;
@@ -337929,12 +337929,12 @@ undefined8 FUN_18086d930(longlong uiContext,longlong *dataSource)
   if (plVar4 == (longlong *)0x0) {
     return 0x1c;
   }
-  lVar6 = 0;
+  contextData = 0;
   operationResult = *(int *)(bufferData + 0x1f8);
   if (0 < (longlong)operationResult) {
     do {
       lStackX_10 = 0;
-      psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x1f0) + lVar6 * 8);
+      psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x1f0) + contextData * 8);
       uStack_38 = *(undefined4 *)(psemaphoreHandle + 2);
       uStack_34 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
       uStack_30 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -337964,8 +337964,8 @@ LAB_18086da04:
           FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),psemaphoreHandle,&UNK_180985b90,0x55d,1);
         }
       }
-      lVar6 = lVar6 + 1;
-    } while (lVar6 < operationResult);
+      contextData = contextData + 1;
+    } while (contextData < operationResult);
   }
   return 0;
 }
@@ -338304,7 +338304,7 @@ undefined8 FUN_18086dc50(longlong uiContext,longlong *dataSource,undefined8 *tar
   longlong stringCompareIndex;
   longlong lVar4;
   int iVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   undefined8 eventTypeCode;
   longlong lVar8;
   int iVar9;
@@ -338355,11 +338355,11 @@ LAB_18086dd0b:
       validationResult = operationResult0;
     }
     operationResult0 = validationResult;
-    plVar6 = (longlong *)(**(code **)(*(longlong *)*targetBuffer + 0x60))((longlong *)*targetBuffer,stringCompareIndex);
-    if (plVar6 == (longlong *)0x0) {
+    pcontextData = (longlong *)(**(code **)(*(longlong *)*targetBuffer + 0x60))((longlong *)*targetBuffer,stringCompareIndex);
+    if (pcontextData == (longlong *)0x0) {
       return 0x1c;
     }
-    eventTypeCode = (**(code **)(*plVar6 + 0x20))(plVar6,stringCompareIndex,0);
+    eventTypeCode = (**(code **)(*pcontextData + 0x20))(pcontextData,stringCompareIndex,0);
     if ((int)eventTypeCode != 0) {
       return eventTypeCode;
     }
@@ -338899,7 +338899,7 @@ undefined8 FUN_18086e710(longlong uiContext,undefined8 dataSource,undefined8 *ta
   longlong *pstringCompareIndex;
   undefined8 uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   int iVar8;
   
@@ -338909,7 +338909,7 @@ undefined8 FUN_18086e710(longlong uiContext,undefined8 dataSource,undefined8 *ta
       if ((iVar8 < 0) || (*(int *)(bufferData + 0x78) <= iVar8)) {
         return 0;
       }
-      lVar6 = *(longlong *)((longlong)iVar8 * 8 + *(longlong *)(bufferData + 0x70));
+      contextData = *(longlong *)((longlong)iVar8 * 8 + *(longlong *)(bufferData + 0x70));
       pstringCompareIndex = (longlong *)func_0x00018086dc30(dataSource);
       if (pstringCompareIndex != (longlong *)0x0) break;
 LAB_18086e82b:
@@ -338918,14 +338918,14 @@ LAB_18086e82b:
     if (((*(int *)((longlong)pstringCompareIndex + 0x24) != 0) && ((int)pstringCompareIndex[1] != 0)) &&
        (validationResult = *(int *)(*pstringCompareIndex +
                         (longlong)
-                        (int)((*(uint *)(lVar6 + 0x1c) ^ *(uint *)(lVar6 + 0x18) ^
-                               *(uint *)(lVar6 + 0x14) ^ *(uint *)(lVar6 + 0x10)) &
+                        (int)((*(uint *)(contextData + 0x1c) ^ *(uint *)(contextData + 0x18) ^
+                               *(uint *)(contextData + 0x14) ^ *(uint *)(contextData + 0x10)) &
                              (int)pstringCompareIndex[1] - 1U) * 4), validationResult != -1)) {
       allocatedMemory = pstringCompareIndex[2];
       do {
         lVar5 = (longlong)validationResult;
-        if ((*(longlong *)(allocatedMemory + lVar5 * 0x18) == *(longlong *)(lVar6 + 0x10)) &&
-           (*(longlong *)(allocatedMemory + 8 + lVar5 * 0x18) == *(longlong *)(lVar6 + 0x18)))
+        if ((*(longlong *)(allocatedMemory + lVar5 * 0x18) == *(longlong *)(contextData + 0x10)) &&
+           (*(longlong *)(allocatedMemory + 8 + lVar5 * 0x18) == *(longlong *)(contextData + 0x18)))
         goto LAB_18086e7cb;
         validationResult = *(int *)(allocatedMemory + 0x10 + lVar5 * 0x18);
       } while (validationResult != -1);
@@ -338937,17 +338937,17 @@ LAB_18086e7cb:
     if (iVar8 < validationResult) {
       iVar7 = (validationResult - iVar8) + -1;
       if (0 < iVar7) {
-        lVar6 = *(longlong *)(bufferData + 0x70) + (longlong)iVar8 * 8;
+        contextData = *(longlong *)(bufferData + 0x70) + (longlong)iVar8 * 8;
                     // WARNING: Subroutine does not return
-        memmove(lVar6,lVar6 + 8,(longlong)iVar7 << 3);
+        memmove(contextData,contextData + 8,(longlong)iVar7 << 3);
       }
       *(int *)(bufferData + 0x78) = validationResult + -1;
     }
-    pstringCompareIndex = (longlong *)(**(code **)(*(longlong *)*targetBuffer + 0xf0))((longlong *)*targetBuffer,lVar6);
+    pstringCompareIndex = (longlong *)(**(code **)(*(longlong *)*targetBuffer + 0xf0))((longlong *)*targetBuffer,contextData);
     if (pstringCompareIndex == (longlong *)0x0) {
       return 0x1c;
     }
-    uVar4 = (**(code **)(*pstringCompareIndex + 0x20))(pstringCompareIndex,lVar6);
+    uVar4 = (**(code **)(*pstringCompareIndex + 0x20))(pstringCompareIndex,contextData);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -339617,7 +339617,7 @@ undefined8 FUN_18086f4ed(void)
   longlong stringCompareIndex;
   char cVar4;
   int iVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   undefined8 eventTypeCode;
   ulonglong uVar8;
   ulonglong uVar9;
@@ -339656,10 +339656,10 @@ undefined8 FUN_18086f4ed(void)
       memmove(allocatedMemory,allocatedMemory + 8,(longlong)iVar5 << 3);
     }
     *(int *)(unaff_RDI + 0x68) = validationResult + -1;
-    plVar6 = (longlong *)(**(code **)(*(longlong *)*unaff_R14 + 0xf8))((longlong *)*unaff_R14,stringCompareIndex)
+    pcontextData = (longlong *)(**(code **)(*(longlong *)*unaff_R14 + 0xf8))((longlong *)*unaff_R14,stringCompareIndex)
     ;
-    if (plVar6 == (longlong *)0x0) break;
-    eventTypeCode = (**(code **)(*plVar6 + 0x28))(plVar6,stringCompareIndex);
+    if (pcontextData == (longlong *)0x0) break;
+    eventTypeCode = (**(code **)(*pcontextData + 0x28))(pcontextData,stringCompareIndex);
     if ((int)eventTypeCode != 0) {
       return eventTypeCode;
     }
@@ -343305,28 +343305,28 @@ undefined8 FUN_1808746d5(undefined4 uiContext,longlong dataSource)
   undefined4 *bufferPtr;
   undefined8 uVar5;
   uint in_ECX;
-  longlong lVar6;
+  longlong contextData;
   undefined8 unaff_RBP;
   longlong lVar7;
   longlong *unaff_RDI;
   
   lVar7 = (longlong)-(int)dataSource;
   if ((int)dataSource < 0) {
-    lVar6 = dataSource * 0x1c + 0x14 + *unaff_RDI;
+    contextData = dataSource * 0x1c + 0x14 + *unaff_RDI;
     do {
       bufferPtr = (undefined4 *)FUN_180847820();
       uiContext = *bufferPtr;
       functionResult = bufferPtr[1];
       semaphoreHandle = bufferPtr[2];
       uVar3 = bufferPtr[3];
-      *(undefined4 *)(lVar6 + -0x14) = uiContext;
-      *(undefined4 *)(lVar6 + -0x10) = functionResult;
-      *(undefined4 *)(lVar6 + -0xc) = semaphoreHandle;
-      *(undefined4 *)(lVar6 + -8) = uVar3;
-      *(undefined8 *)(lVar6 + -4) = unaff_RBP;
-      *(char *)(lVar6 + 4) = (char)unaff_RBP;
+      *(undefined4 *)(contextData + -0x14) = uiContext;
+      *(undefined4 *)(contextData + -0x10) = functionResult;
+      *(undefined4 *)(contextData + -0xc) = semaphoreHandle;
+      *(undefined4 *)(contextData + -8) = uVar3;
+      *(undefined8 *)(contextData + -4) = unaff_RBP;
+      *(char *)(contextData + 4) = (char)unaff_RBP;
       lVar7 = lVar7 + -1;
-      lVar6 = lVar6 + 0x1c;
+      contextData = contextData + 0x1c;
     } while (lVar7 != 0);
     in_ECX = *(uint *)((longlong)unaff_RDI + 0xc);
   }
@@ -343456,14 +343456,14 @@ undefined8 FUN_180874940(longlong *uiContext)
   int compareResult;
   longlong lVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   int *piVar7;
   longlong lStack_30;
   int aiStack_28 [4];
   
-  lVar6 = uiContext[5];
-  if (lVar6 != 0) {
-    FUN_180768360(lVar6);
+  contextData = uiContext[5];
+  if (contextData != 0) {
+    FUN_180768360(contextData);
   }
   compareResult = *(int *)((longlong)uiContext + 0x24);
   if (compareResult == 0) {
@@ -343480,10 +343480,10 @@ undefined8 FUN_180874940(longlong *uiContext)
                     // WARNING: Subroutine does not return
       FUN_180768400(lVar4);
     }
-    if (lVar6 == 0) {
+    if (contextData == 0) {
       return uVar5;
     }
-    if (lVar6 != 0) {
+    if (contextData != 0) {
       lStack_30 = 0x180768417;
       LeaveCriticalSection();
       return 0;
@@ -343497,25 +343497,25 @@ undefined8 FUN_180874940(longlong *uiContext)
   pfunctionResult = (uint *)((longlong)aiStack_28[0] * 0x20 + uiContext[2]);
   lStack_30 = *(longlong *)(pfunctionResult + 2);
   if ((compareResult != 0) && ((int)uiContext[1] != 0)) {
-    lVar6 = (longlong)(int)((pfunctionResult[3] ^ pfunctionResult[1] ^ *pfunctionResult ^ pfunctionResult[2]) & (int)uiContext[1] - 1U);
-    piVar7 = (int *)(*uiContext + lVar6 * 4);
-    compareResult = *(int *)(*uiContext + lVar6 * 4);
+    contextData = (longlong)(int)((pfunctionResult[3] ^ pfunctionResult[1] ^ *pfunctionResult ^ pfunctionResult[2]) & (int)uiContext[1] - 1U);
+    piVar7 = (int *)(*uiContext + contextData * 4);
+    compareResult = *(int *)(*uiContext + contextData * 4);
     if (compareResult != -1) {
-      lVar6 = uiContext[2];
+      contextData = uiContext[2];
       do {
         lVar4 = (longlong)compareResult * 0x20;
-        if ((*(longlong *)(lVar4 + lVar6) == *(longlong *)pfunctionResult) &&
-           (*(longlong *)(lVar4 + 8 + lVar6) == lStack_30)) {
+        if ((*(longlong *)(lVar4 + contextData) == *(longlong *)pfunctionResult) &&
+           (*(longlong *)(lVar4 + 8 + contextData) == lStack_30)) {
           compareResult = *piVar7;
           lVar4 = (longlong)compareResult * 0x20;
-          *(undefined8 *)(lVar4 + 0x18 + lVar6) = 0;
-          *piVar7 = *(int *)(lVar4 + 0x10 + lVar6);
-          *(int *)(lVar4 + 0x10 + lVar6) = (int)uiContext[4];
+          *(undefined8 *)(lVar4 + 0x18 + contextData) = 0;
+          *piVar7 = *(int *)(lVar4 + 0x10 + contextData);
+          *(int *)(lVar4 + 0x10 + contextData) = (int)uiContext[4];
           *(int *)((longlong)uiContext + 0x24) = *(int *)((longlong)uiContext + 0x24) + -1;
           *(int *)(bufferData + 4) = compareResult;
           break;
         }
-        piVar7 = (int *)(lVar6 + 0x10 + lVar4);
+        piVar7 = (int *)(contextData + 0x10 + lVar4);
         compareResult = *piVar7;
       } while (compareResult != -1);
     }
@@ -343538,7 +343538,7 @@ undefined8 FUN_18087494c(longlong *uiContext)
   longlong in_RAX;
   longlong lVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   int *piVar7;
   undefined8 context;
   longlong unaff_RBP;
@@ -343557,18 +343557,18 @@ undefined8 FUN_18087494c(longlong *uiContext)
   }
   compareResult = *(int *)((longlong)uiContext + 0x24);
   if (compareResult == 0) {
-    lVar6 = uiContext[5];
-    if (lVar6 != 0) {
-      FUN_180768360(lVar6);
+    contextData = uiContext[5];
+    if (contextData != 0) {
+      FUN_180768360(contextData);
     }
     uVar5 = FUN_180744cc0(uiContext);
     if (((int)uVar5 == 0) && (uVar5 = FUN_1808744f0(uiContext + 2), (int)uVar5 == 0)) {
       *(undefined4 *)(bufferData + 4) = 0xffffffff;
       *(undefined4 *)((longlong)uiContext + 0x24) = 0;
     }
-    if (lVar6 != 0) {
+    if (contextData != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180768400(lVar6);
+      FUN_180768400(contextData);
     }
     if (unaff_RBP == 0) {
       return uVar5;
@@ -343587,25 +343587,25 @@ undefined8 FUN_18087494c(longlong *uiContext)
   pfunctionResult = (uint *)((longlong)in_stack_00000040 * 0x20 + uiContext[2]);
   in_stack_00000038 = *(longlong *)(pfunctionResult + 2);
   if ((compareResult != 0) && ((int)uiContext[1] != 0)) {
-    lVar6 = (longlong)(int)((pfunctionResult[3] ^ pfunctionResult[1] ^ *pfunctionResult ^ pfunctionResult[2]) & (int)uiContext[1] - 1U);
-    piVar7 = (int *)(*uiContext + lVar6 * 4);
-    compareResult = *(int *)(*uiContext + lVar6 * 4);
+    contextData = (longlong)(int)((pfunctionResult[3] ^ pfunctionResult[1] ^ *pfunctionResult ^ pfunctionResult[2]) & (int)uiContext[1] - 1U);
+    piVar7 = (int *)(*uiContext + contextData * 4);
+    compareResult = *(int *)(*uiContext + contextData * 4);
     if (compareResult != -1) {
-      lVar6 = uiContext[2];
+      contextData = uiContext[2];
       do {
         lVar4 = (longlong)compareResult * 0x20;
-        if ((*(longlong *)(lVar4 + lVar6) == *(longlong *)pfunctionResult) &&
-           (*(longlong *)(lVar4 + 8 + lVar6) == in_stack_00000038)) {
+        if ((*(longlong *)(lVar4 + contextData) == *(longlong *)pfunctionResult) &&
+           (*(longlong *)(lVar4 + 8 + contextData) == in_stack_00000038)) {
           compareResult = *piVar7;
           lVar4 = (longlong)compareResult * 0x20;
-          *(undefined8 *)(lVar4 + 0x18 + lVar6) = 0;
-          *piVar7 = *(int *)(lVar4 + 0x10 + lVar6);
-          *(int *)(lVar4 + 0x10 + lVar6) = (int)uiContext[4];
+          *(undefined8 *)(lVar4 + 0x18 + contextData) = 0;
+          *piVar7 = *(int *)(lVar4 + 0x10 + contextData);
+          *(int *)(lVar4 + 0x10 + contextData) = (int)uiContext[4];
           *(int *)((longlong)uiContext + 0x24) = *(int *)((longlong)uiContext + 0x24) + -1;
           *(int *)(bufferData + 4) = compareResult;
           break;
         }
-        piVar7 = (int *)(lVar6 + 0x10 + lVar4);
+        piVar7 = (int *)(contextData + 0x10 + lVar4);
         compareResult = *piVar7;
       } while (compareResult != -1);
     }
@@ -345047,7 +345047,7 @@ undefined8 FUN_180876026(void)
   int bufferSize;
   undefined8 uVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   longlong *context;
   int allocationFlags;
@@ -345089,16 +345089,16 @@ undefined8 FUN_180876026(void)
           return 0x1c;
         }
         componentIndex = context[2];
-        lVar6 = (longlong)
+        contextData = (longlong)
                 (int)((*(uint *)(uVar5 + 0xc + componentIndex) ^ *(uint *)(uVar5 + 8 + componentIndex) ^
                        *(uint *)(uVar5 + 4 + componentIndex) ^ *(uint *)(uVar5 + componentIndex)) &
                      (int)context[1] - 1U);
-        poperationResult = (int *)(*context + lVar6 * 4);
-        iVar8 = *(int *)(*context + lVar6 * 4);
+        poperationResult = (int *)(*context + contextData * 4);
+        iVar8 = *(int *)(*context + contextData * 4);
         while (iVar8 != -1) {
-          lVar6 = (longlong)iVar8 * 9 + 4;
-          poperationResult = (int *)(componentIndex + lVar6 * 4);
-          iVar8 = *(int *)(componentIndex + lVar6 * 4);
+          contextData = (longlong)iVar8 * 9 + 4;
+          poperationResult = (int *)(componentIndex + contextData * 4);
+          iVar8 = *(int *)(componentIndex + contextData * 4);
         }
         *poperationResult = (int)uVar9;
         functionResult0 = functionResult0 + 1;
@@ -346435,7 +346435,7 @@ void FUN_1808775bf(longlong *uiContext,undefined8 dataSource,undefined8 targetBu
   uint uVar4;
   int iVar5;
   longlong context;
-  longlong lVar6;
+  longlong contextData;
   undefined4 *peventTypeCode;
   longlong lVar8;
   longlong *unaff_R15;
@@ -346445,10 +346445,10 @@ void FUN_1808775bf(longlong *uiContext,undefined8 dataSource,undefined8 targetBu
   ulonglong in_stack_000000c0;
   
   if (0 < (int)context) {
-    lVar6 = 0;
-    lVar8 = lVar6;
+    contextData = 0;
+    lVar8 = contextData;
     do {
-      peventTypeCode = (undefined4 *)(*uiContext + lVar6);
+      peventTypeCode = (undefined4 *)(*uiContext + contextData);
       componentIndex = (**(code **)(*bufferSize + 0x140))(bufferSize,peventTypeCode,1);
       if (allocatedMemoryPtr == 0) {
                     // WARNING: Subroutine does not return
@@ -346473,7 +346473,7 @@ void FUN_1808775bf(longlong *uiContext,undefined8 dataSource,undefined8 targetBu
         operationResult = FUN_18084c470(fVar9,iVar5);
         if (operationResult != 0) break;
       }
-      lVar6 = lVar6 + 0x10;
+      contextData = contextData + 0x10;
       lVar8 = lVar8 + 1;
       *(undefined4 *)(*unaff_R15 + (longlong)(int)unaff_R15[1] * 4) = *(undefined4 *)(componentIndex + 0x44);
       *(int *)(unaff_R15 + 1) = (int)unaff_R15[1] + 1;
@@ -346596,7 +346596,7 @@ void FUN_180877970(longlong uiContext,longlong *dataSource)
   longlong *pstringCompareIndex;
   int iVar4;
   uint uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong lVar7;
   int iVar8;
   longlong *plVar9;
@@ -346645,17 +346645,17 @@ void FUN_180877970(longlong uiContext,longlong *dataSource)
   for (iStack_e8 = 0;
       (lVar7 = lStack_88, -1 < iStack_e8 && (iStack_e8 < *(int *)(lStack_88 + 0xd8)));
       iStack_e8 = iStack_e8 + 1) {
-    plVar6 = (longlong *)
+    pcontextData = (longlong *)
              (*(longlong *)(*(longlong *)(lStack_88 + 0xd0) + (longlong)iStack_e8 * 8) + 0x68);
-    plStack_a0 = (longlong *)*plVar6;
-    plStack_a8 = plVar6;
-    if (plStack_a0 != plVar6) {
+    plStack_a0 = (longlong *)*pcontextData;
+    plStack_a8 = pcontextData;
+    if (plStack_a0 != pcontextData) {
       do {
         pallocatedMemory = plStack_a0 + 0xc;
         plStack_98 = pallocatedMemory;
         for (pstringCompareIndex = (longlong *)plStack_a0[0xc]; plStack_b8 = pstringCompareIndex, pstringCompareIndex != pallocatedMemory;
             pstringCompareIndex = (longlong *)*pstringCompareIndex) {
-          plVar6 = (longlong *)0x0;
+          pcontextData = (longlong *)0x0;
           psemaphoreHandle = (uint *)(pstringCompareIndex + 2);
           lVar7 = (**(code **)(*dataSource + 0x268))(dataSource,pstringCompareIndex + 4,1);
           if (lVar7 == 0) {
@@ -346681,24 +346681,24 @@ void FUN_180877970(longlong uiContext,longlong *dataSource)
             while (iVar4 != -1) {
               plVar9 = (longlong *)((longlong)iVar4 * 0x20 + lStack_d0);
               if ((*plVar9 == *(longlong *)psemaphoreHandle) && (plVar9[1] == pstringCompareIndex[3])) {
-                plVar6 = (longlong *)plVar9[3];
+                pcontextData = (longlong *)plVar9[3];
                 break;
               }
               iVar4 = (int)plVar9[2];
             }
           }
           lStack_90 = lVar7;
-          if (plVar6 == (longlong *)0x0) {
+          if (pcontextData == (longlong *)0x0) {
             uStack_128 = CONCAT31(uStack_128._1_3_,1);
             uStack_130 = uStack_130 & 0xffffff00;
             uStack_138 = 0;
-            plVar6 = (longlong *)
+            pcontextData = (longlong *)
                      FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x10,&UNK_180985b90,0xa0d
                                   );
-            if (plVar6 == (longlong *)0x0) goto LAB_180877e87;
-            *plVar6 = 0;
-            plVar6[1] = 0;
-            plStack_b8 = plVar6;
+            if (pcontextData == (longlong *)0x0) goto LAB_180877e87;
+            *pcontextData = 0;
+            pcontextData[1] = 0;
+            plStack_b8 = pcontextData;
             iVar4 = FUN_180852bb0(&lStack_e0,psemaphoreHandle,&plStack_b8);
             if (iVar4 == 0) goto LAB_180877bb2;
 LAB_180877c01:
@@ -346706,9 +346706,9 @@ LAB_180877c01:
           }
           else {
 LAB_180877bb2:
-            functionResult0 = (int)*(uint *)((longlong)plVar6 + 0xc) >> 0x1f;
-            iVar8 = (int)plVar6[1] + 1;
-            iVar4 = (*(uint *)((longlong)plVar6 + 0xc) ^ functionResult0) - functionResult0;
+            functionResult0 = (int)*(uint *)((longlong)pcontextData + 0xc) >> 0x1f;
+            iVar8 = (int)pcontextData[1] + 1;
+            iVar4 = (*(uint *)((longlong)pcontextData + 0xc) ^ functionResult0) - functionResult0;
             if (iVar4 < iVar8) {
               operationResult1 = (int)((float)iVar4 * 1.5);
               iVar4 = iVar8;
@@ -346721,18 +346721,18 @@ LAB_180877bb2:
               else if (operationResult1 < iVar8) {
                 operationResult1 = iVar8;
               }
-              iVar4 = FUN_180747f10(plVar6,operationResult1);
+              iVar4 = FUN_180747f10(pcontextData,operationResult1);
               if (iVar4 != 0) goto LAB_180877c01;
             }
-            *(longlong *)(*plVar6 + (longlong)(int)plVar6[1] * 8) = lStack_90;
-            *(int *)(plVar6 + 1) = (int)plVar6[1] + 1;
+            *(longlong *)(*pcontextData + (longlong)(int)pcontextData[1] * 8) = lStack_90;
+            *(int *)(pcontextData + 1) = (int)pcontextData[1] + 1;
           }
-          plVar6 = plStack_a8;
+          pcontextData = plStack_a8;
           dataSource = plStack_b0;
           if (pstringCompareIndex == pallocatedMemory) break;
         }
-      } while ((plStack_a0 != plVar6) &&
-              (plStack_a0 = (longlong *)*plStack_a0, plStack_a0 != plVar6));
+      } while ((plStack_a0 != pcontextData) &&
+              (plStack_a0 = (longlong *)*plStack_a0, plStack_a0 != pcontextData));
     }
   }
   isCharacterMatch2 = 0x37 < *(uint *)(lStack_88 + 0x218);
@@ -346757,36 +346757,36 @@ LAB_180877e87:
   aiStack_70[0] = -1;
   FUN_1808741f0(&lStack_e0,&uStack_78,aiStack_70);
   if (aiStack_70[0] == -1) goto LAB_180877e87;
-  plVar6 = *(longlong **)(plStack_80[2] + 0x18 + (longlong)aiStack_70[0] * 0x20);
-  functionResult0 = *(uint *)((longlong)plVar6 + 0xc);
+  pcontextData = *(longlong **)(plStack_80[2] + 0x18 + (longlong)aiStack_70[0] * 0x20);
+  functionResult0 = *(uint *)((longlong)pcontextData + 0xc);
   uVar5 = -functionResult0;
   if (-1 < (int)functionResult0) {
     uVar5 = functionResult0;
   }
   if ((int)uVar5 < 0) {
-    if (0 < (int)plVar6[1]) goto LAB_180877dfe;
-    if ((0 < (int)functionResult0) && (*plVar6 != 0)) {
+    if (0 < (int)pcontextData[1]) goto LAB_180877dfe;
+    if ((0 < (int)functionResult0) && (*pcontextData != 0)) {
       uStack_138 = CONCAT31(uStack_138._1_3_,1);
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*plVar6,&UNK_180957f70,0x100);
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*pcontextData,&UNK_180957f70,0x100);
     }
-    *plVar6 = 0;
-    *(undefined4 *)((longlong)plVar6 + 0xc) = 0;
+    *pcontextData = 0;
+    *(undefined4 *)((longlong)pcontextData + 0xc) = 0;
     functionResult0 = 0;
   }
-  iVar4 = (int)plVar6[1];
+  iVar4 = (int)pcontextData[1];
   if (iVar4 < 0) {
                     // WARNING: Subroutine does not return
-    memset(*plVar6 + (longlong)iVar4 * 8,0,(longlong)-iVar4 << 3);
+    memset(*pcontextData + (longlong)iVar4 * 8,0,(longlong)-iVar4 << 3);
   }
-  *(undefined4 *)(plVar6 + 1) = 0;
+  *(undefined4 *)(pcontextData + 1) = 0;
   if (0 < (int)((functionResult0 ^ (int)functionResult0 >> 0x1f) - ((int)functionResult0 >> 0x1f))) {
-    FUN_180747f10(plVar6,0);
+    FUN_180747f10(pcontextData,0);
   }
 LAB_180877dfe:
   uStack_138 = CONCAT31(uStack_138._1_3_,1);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar6,&UNK_180985b90,0xa71);
+  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),pcontextData,&UNK_180985b90,0xa71);
 }
 
 
@@ -347451,7 +347451,7 @@ void FUN_1808787b5(longlong uiContext,undefined8 dataSource,undefined8 targetBuf
   undefined8 uVar3;
   int iVar4;
   int iVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   undefined8 *puVar8;
   longlong lVar9;
@@ -347496,9 +347496,9 @@ LAB_1808784e0:
                       (int)(*(int *)(unaff_RBP + -0x39) - 1U &
                            (pfunctionResult2[3] ^ pfunctionResult2[2] ^ pfunctionResult2[1] ^ *pfunctionResult2)) * 4);
       while (iVar5 != -1) {
-        lVar6 = (longlong)iVar5;
-        if ((*(longlong *)(unaff_R15 + lVar6 * 0x24) == *(longlong *)pfunctionResult2) &&
-           (*(longlong *)(unaff_R15 + 8 + lVar6 * 0x24) == *(longlong *)(pfunctionResult2 + 2))) {
+        contextData = (longlong)iVar5;
+        if ((*(longlong *)(unaff_R15 + contextData * 0x24) == *(longlong *)pfunctionResult2) &&
+           (*(longlong *)(unaff_R15 + 8 + contextData * 0x24) == *(longlong *)(pfunctionResult2 + 2))) {
           if (iVar5 != -1) {
             iVar5 = (int)((longlong)pfunctionResult2 - (longlong)psemaphoreHandle >> 4);
             if ((iVar5 < 0) || (iVar4 = *(int *)(lVar9 + 0x50), iVar4 <= iVar5)) goto LAB_180878734;
@@ -347543,7 +347543,7 @@ LAB_1808784e0:
               *(longlong *)(lVar9 + 0x58) = lVar7;
               *(int *)(lVar9 + 100) = operationResult0;
             }
-            pfunctionResult = (undefined8 *)(unaff_R15 + 0x14 + lVar6 * 0x24);
+            pfunctionResult = (undefined8 *)(unaff_R15 + 0x14 + contextData * 0x24);
             uVar3 = pfunctionResult[1];
             puVar8 = (undefined8 *)
                      ((longlong)*(int *)(lVar9 + 0x60) * 0x10 + *(longlong *)(lVar9 + 0x58));
@@ -347554,7 +347554,7 @@ LAB_1808784e0:
           }
           break;
         }
-        iVar5 = *(int *)(unaff_R15 + 0x10 + lVar6 * 0x24);
+        iVar5 = *(int *)(unaff_R15 + 0x10 + contextData * 0x24);
       }
     }
     pfunctionResult2 = pfunctionResult2 + 4;
@@ -348792,21 +348792,21 @@ undefined8 FUN_180879647(uint uiContext)
   longlong *unaff_RSI;
   int *poperationResult3;
   undefined1 *unaff_R15;
-  longlong lVar6;
+  longlong contextData;
   
   poperationResult3 = (int *)(*unaff_RSI + (longlong)(int)(uiContext & bufferSize) * 4);
   iVar4 = *(int *)(*unaff_RSI + (longlong)(int)(uiContext & bufferSize) * 4);
   if (iVar4 != -1) {
     allocatedMemory2 = unaff_RSI[2];
     do {
-      lVar6 = (longlong)iVar4;
-      if ((*(longlong *)(allocatedMemory2 + lVar6 * 0x18) == *context) &&
-         (*(longlong *)(allocatedMemory2 + 8 + lVar6 * 0x18) == context[1])) {
-        *(undefined1 *)(allocatedMemory2 + 0x14 + lVar6 * 0x18) = *unaff_R15;
+      contextData = (longlong)iVar4;
+      if ((*(longlong *)(allocatedMemory2 + contextData * 0x18) == *context) &&
+         (*(longlong *)(allocatedMemory2 + 8 + contextData * 0x18) == context[1])) {
+        *(undefined1 *)(allocatedMemory2 + 0x14 + contextData * 0x18) = *unaff_R15;
         return 0;
       }
-      iVar4 = *(int *)(allocatedMemory2 + 0x10 + lVar6 * 0x18);
-      poperationResult3 = (int *)(allocatedMemory2 + 0x10 + lVar6 * 0x18);
+      iVar4 = *(int *)(allocatedMemory2 + 0x10 + contextData * 0x18);
+      poperationResult3 = (int *)(allocatedMemory2 + 0x10 + contextData * 0x18);
     } while (iVar4 != -1);
   }
   iVar4 = (int)unaff_RSI[4];
@@ -348815,7 +348815,7 @@ undefined8 FUN_180879647(uint uiContext)
     iVar4 = (int)unaff_RSI[3];
     functionResult0 = (int)*(uint *)((longlong)unaff_RSI + 0x1c) >> 0x1f;
     allocatedMemory2 = *context;
-    lVar6 = context[1];
+    contextData = context[1];
     semaphoreHandle = *unaff_R15;
     iVar5 = (*(uint *)((longlong)unaff_RSI + 0x1c) ^ functionResult0) - functionResult0;
     iVar9 = iVar4 + 1;
@@ -348840,20 +348840,20 @@ undefined8 FUN_180879647(uint uiContext)
     stringCompareIndex = unaff_RSI[2];
     pallocatedMemory = (longlong *)(stringCompareIndex + lVar8 * 0x18);
     *pallocatedMemory = allocatedMemory2;
-    pallocatedMemory[1] = lVar6;
+    pallocatedMemory[1] = contextData;
     *(undefined4 *)(stringCompareIndex + 0x10 + lVar8 * 0x18) = 0xffffffff;
     *(undefined1 *)(stringCompareIndex + 0x14 + lVar8 * 0x18) = semaphoreHandle;
     *(int *)(unaff_RSI + 3) = (int)unaff_RSI[3] + 1;
   }
   else {
-    lVar6 = unaff_RSI[2];
-    *(undefined4 *)(unaff_RSI + 4) = *(undefined4 *)(lVar6 + 0x10 + allocatedMemory2 * 0x18);
-    *(undefined4 *)(lVar6 + 0x10 + allocatedMemory2 * 0x18) = 0xffffffff;
+    contextData = unaff_RSI[2];
+    *(undefined4 *)(unaff_RSI + 4) = *(undefined4 *)(contextData + 0x10 + allocatedMemory2 * 0x18);
+    *(undefined4 *)(contextData + 0x10 + allocatedMemory2 * 0x18) = 0xffffffff;
     stringCompareIndex = context[1];
-    pallocatedMemory = (longlong *)(lVar6 + allocatedMemory2 * 0x18);
+    pallocatedMemory = (longlong *)(contextData + allocatedMemory2 * 0x18);
     *pallocatedMemory = *context;
     pallocatedMemory[1] = stringCompareIndex;
-    *(undefined1 *)(lVar6 + 0x14 + allocatedMemory2 * 0x18) = *unaff_R15;
+    *(undefined1 *)(contextData + 0x14 + allocatedMemory2 * 0x18) = *unaff_R15;
   }
   *poperationResult3 = iVar4;
   *(int *)((longlong)unaff_RSI + 0x24) = *(int *)((longlong)unaff_RSI + 0x24) + 1;
@@ -353796,7 +353796,7 @@ int FUN_18087cbd0(longlong uiContext,undefined4 dataSource,ulonglong targetBuffe
   undefined8 uVar3;
   int iVar4;
   undefined8 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   undefined8 eventTypeCode;
   longlong lVar8;
   uint uVar9;
@@ -354178,22 +354178,22 @@ LAB_18087d6e3:
       iVar4 = 0x1c;
       goto LAB_18087dbb3;
     }
-    lVar6 = *(longlong *)(alStack_38[0] + 0x12770);
-    *(longlong *)(bufferData + 0x88) = lVar6;
-    if (lVar6 == 0) {
+    contextData = *(longlong *)(alStack_38[0] + 0x12770);
+    *(longlong *)(bufferData + 0x88) = contextData;
+    if (contextData == 0) {
       iVar4 = 0x1c;
       goto LAB_18087dbb3;
     }
   }
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  lVar6 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x538,&UNK_180985b90,0x2b3,
+  contextData = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x538,&UNK_180985b90,0x2b3,
                         in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0 & 0xffffffffffffff00,1);
   functionResult7 = (undefined4)(in_stack_ffffffffffffff98 >> 0x20);
-  if (lVar6 == 0) {
+  if (contextData == 0) {
     iVar4 = 0x26;
   }
   else {
-    eventTypeCode = FUN_18088cbf0(lVar6);
+    eventTypeCode = FUN_18088cbf0(contextData);
     *(undefined8 *)(uiContext + 0x98) = eventTypeCode;
     iVar4 = FUN_18088e480(eventTypeCode,uiContext,isCharacterMatch4,(float)*(int *)(bufferData + 0x2cc) * 0.001);
     if (iVar4 == 0) {
@@ -354212,13 +354212,13 @@ LAB_18087d6e3:
                                 *(undefined8 *)(uiContext + 800),functionResult0,functionResult6,uiContext + 0x60,functionResult1,
                                 *(undefined4 *)(bufferData + 0x2d0),*(undefined4 *)(bufferData + 0x2d4));
           if (iVar4 == 0) {
-            lVar6 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x70,&UNK_180985b90,0x2c6,
+            contextData = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x70,&UNK_180985b90,0x2c6,
                                   functionResult6 & 0xffffffff00000000,0,1);
-            if (lVar6 == 0) {
+            if (contextData == 0) {
               iVar4 = 0x26;
             }
             else {
-              eventTypeCode = func_0x0001808e2ff0(lVar6);
+              eventTypeCode = func_0x0001808e2ff0(contextData);
               *(undefined8 *)(uiContext + 0xa8) = eventTypeCode;
               iVar4 = FUN_1808e3620(eventTypeCode,*(undefined8 *)(uiContext + 0x88));
               if ((((iVar4 == 0) &&
@@ -354298,14 +354298,14 @@ LAB_18087d6e3:
                   *(undefined8 *)(uiContext + 600) = *(undefined8 *)(uiContext + 0x108);
                   *(undefined8 *)(uiContext + 0x2b4) = *(undefined8 *)(uiContext + 0x260);
                   *(undefined4 *)(bufferData + 700) = *(undefined4 *)(bufferData + 0x268);
-                  lVar6 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x1a8,&UNK_180985b90
+                  contextData = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x1a8,&UNK_180985b90
                                         ,0x2e5,functionResult6 & 0xffffffff00000000,
                                         functionResult0 & 0xffffffffffffff00,1);
-                  if (lVar6 == 0) {
+                  if (contextData == 0) {
                     iVar4 = 0x26;
                   }
                   else {
-                    eventTypeCode = FUN_1808dfa10(lVar6);
+                    eventTypeCode = FUN_1808dfa10(contextData);
                     *(undefined8 *)(uiContext + 0xac8) = eventTypeCode;
                     iVar4 = FUN_1808dfeb0(eventTypeCode,*(undefined8 *)(uiContext + 0x78),
                                           ~(byte)(uVar9 >> 4) & 1);
@@ -354423,7 +354423,7 @@ undefined8 FUN_18087dd70(longlong *uiContext,uint *dataSource,undefined8 *target
   undefined4 uStack_40;
   undefined4 uStack_3c;
   undefined4 uStack_38;
-  longlong lVar6;
+  longlong contextData;
   
   uVar5 = FUN_180876000();
   if ((int)uVar5 == 0) {
@@ -354437,13 +354437,13 @@ undefined8 FUN_18087dd70(longlong *uiContext,uint *dataSource,undefined8 *target
     if (compareResult != -1) {
       lVar9 = uiContext[2];
       do {
-        lVar6 = (longlong)compareResult;
-        if ((*(longlong *)(lVar9 + lVar6 * 0x24) == *(longlong *)dataSource) &&
-           (*(longlong *)(lVar9 + 8 + lVar6 * 0x24) == *(longlong *)(dataSource + 2))) {
+        contextData = (longlong)compareResult;
+        if ((*(longlong *)(lVar9 + contextData * 0x24) == *(longlong *)dataSource) &&
+           (*(longlong *)(lVar9 + 8 + contextData * 0x24) == *(longlong *)(dataSource + 2))) {
           return 0x1c;
         }
-        compareResult = *(int *)(lVar9 + 0x10 + lVar6 * 0x24);
-        poperationResult2 = (int *)(lVar9 + 0x10 + lVar6 * 0x24);
+        compareResult = *(int *)(lVar9 + 0x10 + contextData * 0x24);
+        poperationResult2 = (int *)(lVar9 + 0x10 + contextData * 0x24);
       } while (compareResult != -1);
     }
     compareResult = (int)uiContext[4];
@@ -354476,27 +354476,27 @@ undefined8 FUN_18087dd70(longlong *uiContext,uint *dataSource,undefined8 *target
           return eventTypeCode;
         }
       }
-      lVar6 = (longlong)(int)uiContext[3];
+      contextData = (longlong)(int)uiContext[3];
       lVar9 = uiContext[2];
-      pfunctionResult = (undefined8 *)(lVar9 + lVar6 * 0x24);
+      pfunctionResult = (undefined8 *)(lVar9 + contextData * 0x24);
       *pfunctionResult = uVar5;
       pfunctionResult[1] = semaphoreHandle;
-      pfunctionResult = (undefined8 *)(lVar9 + 0x10 + lVar6 * 0x24);
+      pfunctionResult = (undefined8 *)(lVar9 + 0x10 + contextData * 0x24);
       *pfunctionResult = CONCAT44(uStack_44,0xffffffff);
       pfunctionResult[1] = CONCAT44(uStack_3c,uStack_40);
-      *(undefined4 *)(lVar9 + 0x20 + lVar6 * 0x24) = uStack_38;
+      *(undefined4 *)(lVar9 + 0x20 + contextData * 0x24) = uStack_38;
       *(int *)(bufferData + 3) = (int)uiContext[3] + 1;
     }
     else {
-      lVar6 = uiContext[2];
-      *(undefined4 *)(bufferData + 4) = *(undefined4 *)(lVar6 + 0x10 + lVar9 * 0x24);
-      *(undefined4 *)(lVar6 + 0x10 + lVar9 * 0x24) = 0xffffffff;
+      contextData = uiContext[2];
+      *(undefined4 *)(bufferData + 4) = *(undefined4 *)(contextData + 0x10 + lVar9 * 0x24);
+      *(undefined4 *)(contextData + 0x10 + lVar9 * 0x24) = 0xffffffff;
       uVar5 = *(undefined8 *)(dataSource + 2);
-      pfunctionResult = (undefined8 *)(lVar6 + lVar9 * 0x24);
+      pfunctionResult = (undefined8 *)(contextData + lVar9 * 0x24);
       *pfunctionResult = *(undefined8 *)dataSource;
       pfunctionResult[1] = uVar5;
       uVar5 = targetBuffer[1];
-      pfunctionResult = (undefined8 *)(lVar6 + 0x14 + lVar9 * 0x24);
+      pfunctionResult = (undefined8 *)(contextData + 0x14 + lVar9 * 0x24);
       *pfunctionResult = *targetBuffer;
       pfunctionResult[1] = uVar5;
     }
@@ -354532,7 +354532,7 @@ undefined8 FUN_18087dd92(void)
   undefined4 uStack0000000000000038;
   undefined4 uStack000000000000003c;
   undefined4 uStack0000000000000040;
-  longlong lVar6;
+  longlong contextData;
   
   if (bufferSize == 0) {
     return 0x1c;
@@ -354543,13 +354543,13 @@ undefined8 FUN_18087dd92(void)
   if (iVar4 != -1) {
     lVar9 = unaff_RSI[2];
     do {
-      lVar6 = (longlong)iVar4;
-      if ((*(longlong *)(lVar9 + lVar6 * 0x24) == *(longlong *)context) &&
-         (*(longlong *)(lVar9 + 8 + lVar6 * 0x24) == *(longlong *)(context + 2))) {
+      contextData = (longlong)iVar4;
+      if ((*(longlong *)(lVar9 + contextData * 0x24) == *(longlong *)context) &&
+         (*(longlong *)(lVar9 + 8 + contextData * 0x24) == *(longlong *)(context + 2))) {
         return 0x1c;
       }
-      iVar4 = *(int *)(lVar9 + 0x10 + lVar6 * 0x24);
-      poperationResult2 = (int *)(lVar9 + 0x10 + lVar6 * 0x24);
+      iVar4 = *(int *)(lVar9 + 0x10 + contextData * 0x24);
+      poperationResult2 = (int *)(lVar9 + 0x10 + contextData * 0x24);
     } while (iVar4 != -1);
   }
   iVar4 = (int)unaff_RSI[4];
@@ -354583,27 +354583,27 @@ undefined8 FUN_18087dd92(void)
         return eventTypeCode;
       }
     }
-    lVar6 = (longlong)(int)unaff_RSI[3];
+    contextData = (longlong)(int)unaff_RSI[3];
     lVar9 = unaff_RSI[2];
-    pfunctionResult = (undefined8 *)(lVar9 + lVar6 * 0x24);
+    pfunctionResult = (undefined8 *)(lVar9 + contextData * 0x24);
     *pfunctionResult = semaphoreHandle;
     pfunctionResult[1] = uVar3;
-    pfunctionResult = (undefined8 *)(lVar9 + 0x10 + lVar6 * 0x24);
+    pfunctionResult = (undefined8 *)(lVar9 + 0x10 + contextData * 0x24);
     *pfunctionResult = CONCAT44(uStack0000000000000034,uStack0000000000000030);
     pfunctionResult[1] = CONCAT44(uStack000000000000003c,uStack0000000000000038);
-    *(undefined4 *)(lVar9 + 0x20 + lVar6 * 0x24) = uStack0000000000000040;
+    *(undefined4 *)(lVar9 + 0x20 + contextData * 0x24) = uStack0000000000000040;
     *(int *)(unaff_RSI + 3) = (int)unaff_RSI[3] + 1;
   }
   else {
-    lVar6 = unaff_RSI[2];
-    *(undefined4 *)(unaff_RSI + 4) = *(undefined4 *)(lVar6 + 0x10 + lVar9 * 0x24);
-    *(undefined4 *)(lVar6 + 0x10 + lVar9 * 0x24) = 0xffffffff;
+    contextData = unaff_RSI[2];
+    *(undefined4 *)(unaff_RSI + 4) = *(undefined4 *)(contextData + 0x10 + lVar9 * 0x24);
+    *(undefined4 *)(contextData + 0x10 + lVar9 * 0x24) = 0xffffffff;
     semaphoreHandle = *(undefined8 *)(context + 2);
-    pfunctionResult = (undefined8 *)(lVar6 + lVar9 * 0x24);
+    pfunctionResult = (undefined8 *)(contextData + lVar9 * 0x24);
     *pfunctionResult = *(undefined8 *)context;
     pfunctionResult[1] = semaphoreHandle;
     semaphoreHandle = unaff_R15[1];
-    pfunctionResult = (undefined8 *)(lVar6 + 0x14 + lVar9 * 0x24);
+    pfunctionResult = (undefined8 *)(contextData + 0x14 + lVar9 * 0x24);
     *pfunctionResult = *unaff_R15;
     pfunctionResult[1] = semaphoreHandle;
   }
@@ -354818,7 +354818,7 @@ int FUN_18087e0b0(longlong uiContext,longlong dataSource,longlong targetBuffer,l
   int compareResult;
   longlong lVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   undefined1 auStack_88 [8];
   longlong lStack_80;
@@ -354871,7 +354871,7 @@ LAB_18087e283:
           break;
         }
         FUN_1808c5380(resultPointer,componentIndex);
-        lVar6 = lStack_80;
+        contextData = lStack_80;
         if (componentIndex != lStack_80) {
           if ((componentIndex != 0) && (resultPointer + 0xf8 != 0)) {
             auStack_88[0] = 1;
@@ -354884,7 +354884,7 @@ LAB_18087e283:
             if (compareResult != 0) goto LAB_18087e283;
           }
         }
-        if ((lVar6 != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x30,&lStack_80), compareResult != 0))
+        if ((contextData != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x30,&lStack_80), compareResult != 0))
         goto LAB_18087e283;
         lVar7 = lVar7 + 1;
       } while (lVar7 < operationResult);
@@ -354905,7 +354905,7 @@ LAB_18087e3a2:
             break;
           }
           FUN_1808c5380(resultPointer,componentIndex);
-          lVar6 = lStack_80;
+          contextData = lStack_80;
           if (componentIndex != lStack_80) {
             if (componentIndex != 0) {
               lVar5 = resultPointer + 0x120;
@@ -354924,7 +354924,7 @@ LAB_18087e3a2:
               if (compareResult != 0) goto LAB_18087e3a2;
             }
           }
-          if ((lVar6 != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x40,&lStack_80), compareResult != 0))
+          if ((contextData != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x40,&lStack_80), compareResult != 0))
           goto LAB_18087e3a2;
           lVar4 = lVar4 + 1;
         } while (lVar4 < operationResult);
@@ -354945,7 +354945,7 @@ LAB_18087e4c2:
               break;
             }
             FUN_1808c5380(resultPointer,componentIndex);
-            lVar6 = lStack_80;
+            contextData = lStack_80;
             if (componentIndex != lStack_80) {
               if (componentIndex != 0) {
                 lVar5 = resultPointer + 0x170;
@@ -354964,7 +354964,7 @@ LAB_18087e4c2:
                 if (compareResult != 0) goto LAB_18087e4c2;
               }
             }
-            if ((lVar6 != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x50,&lStack_80), compareResult != 0))
+            if ((contextData != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x50,&lStack_80), compareResult != 0))
             goto LAB_18087e4c2;
             lVar4 = lVar4 + 1;
           } while (lVar4 < operationResult);
@@ -354985,7 +354985,7 @@ LAB_18087e5e2:
                 break;
               }
               FUN_1808c5380(resultPointer,componentIndex);
-              lVar6 = lStack_80;
+              contextData = lStack_80;
               if (componentIndex != lStack_80) {
                 if (componentIndex != 0) {
                   lVar5 = resultPointer + 0x148;
@@ -355004,7 +355004,7 @@ LAB_18087e5e2:
                   if (compareResult != 0) goto LAB_18087e5e2;
                 }
               }
-              if ((lVar6 != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x60,&lStack_80), compareResult != 0))
+              if ((contextData != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x60,&lStack_80), compareResult != 0))
               goto LAB_18087e5e2;
               lVar4 = lVar4 + 1;
             } while (lVar4 < operationResult);
@@ -355025,7 +355025,7 @@ LAB_18087e705:
                   break;
                 }
                 FUN_1808c5380(resultPointer,componentIndex);
-                lVar6 = lStack_80;
+                contextData = lStack_80;
                 if (componentIndex != lStack_80) {
                   if (componentIndex != 0) {
                     lVar5 = resultPointer + 0x198;
@@ -355044,7 +355044,7 @@ LAB_18087e705:
                     if (compareResult != 0) goto LAB_18087e705;
                   }
                 }
-                if ((lVar6 != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x70,&lStack_80), compareResult != 0))
+                if ((contextData != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x70,&lStack_80), compareResult != 0))
                 goto LAB_18087e705;
                 lVar4 = lVar4 + 1;
               } while (lVar4 < operationResult);
@@ -355064,11 +355064,11 @@ LAB_18087e844:
                     if (compareResult != 0) goto LAB_1808801be;
                     break;
                   }
-                  if ((componentIndex != 0) && (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                  if ((componentIndex != 0) && (contextData = func_0x00018086dc30(), contextData != 0)) {
                     auStack_88[0] = 1;
-                    FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                    FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                   }
-                  lVar6 = lStack_80;
+                  contextData = lStack_80;
                   if (componentIndex != lStack_80) {
                     if (componentIndex != 0) {
                       lVar5 = resultPointer + 0x1c0;
@@ -355087,7 +355087,7 @@ LAB_18087e844:
                       if (compareResult != 0) goto LAB_18087e844;
                     }
                   }
-                  if ((lVar6 != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x80,&lStack_80), compareResult != 0)
+                  if ((contextData != 0) && (compareResult = FUN_18087dc70(targetBuffer + 0x80,&lStack_80), compareResult != 0)
                      ) goto LAB_18087e844;
                   lVar4 = lVar4 + 1;
                 } while (lVar4 < operationResult);
@@ -355107,11 +355107,11 @@ LAB_18087e987:
                       if (compareResult != 0) goto LAB_1808801be;
                       break;
                     }
-                    if ((componentIndex != 0) && (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                    if ((componentIndex != 0) && (contextData = func_0x00018086dc30(), contextData != 0)) {
                       auStack_88[0] = 1;
-                      FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                      FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                     }
-                    lVar6 = lStack_80;
+                    contextData = lStack_80;
                     if (componentIndex != lStack_80) {
                       if (componentIndex != 0) {
                         lVar5 = resultPointer + 0x1e8;
@@ -355130,7 +355130,7 @@ LAB_18087e987:
                         if (compareResult != 0) goto LAB_18087e987;
                       }
                     }
-                    if ((lVar6 != 0) &&
+                    if ((contextData != 0) &&
                        (compareResult = FUN_18087dc70(targetBuffer + 0x90,&lStack_80), compareResult != 0))
                     goto LAB_18087e987;
                     lVar4 = lVar4 + 1;
@@ -355151,11 +355151,11 @@ LAB_18087eac7:
                         if (compareResult != 0) goto LAB_1808801be;
                         break;
                       }
-                      if ((componentIndex != 0) && (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                      if ((componentIndex != 0) && (contextData = func_0x00018086dc30(), contextData != 0)) {
                         auStack_88[0] = 1;
-                        FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                        FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                       }
-                      lVar6 = lStack_80;
+                      contextData = lStack_80;
                       if (componentIndex != lStack_80) {
                         if (componentIndex != 0) {
                           lVar5 = resultPointer + 0x210;
@@ -355174,7 +355174,7 @@ LAB_18087eac7:
                           if (compareResult != 0) goto LAB_18087eac7;
                         }
                       }
-                      if ((lVar6 != 0) &&
+                      if ((contextData != 0) &&
                          (compareResult = FUN_18087dc70(targetBuffer + 0xa0,&lStack_80), compareResult != 0))
                       goto LAB_18087eac7;
                       lVar4 = lVar4 + 1;
@@ -355195,11 +355195,11 @@ LAB_18087ec07:
                           if (compareResult != 0) goto LAB_1808801be;
                           break;
                         }
-                        if ((componentIndex != 0) && (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                        if ((componentIndex != 0) && (contextData = func_0x00018086dc30(), contextData != 0)) {
                           auStack_88[0] = 1;
-                          FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                          FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                         }
-                        lVar6 = lStack_80;
+                        contextData = lStack_80;
                         if (componentIndex != lStack_80) {
                           if (componentIndex != 0) {
                             lVar5 = resultPointer + 0x238;
@@ -355218,7 +355218,7 @@ LAB_18087ec07:
                             if (compareResult != 0) goto LAB_18087ec07;
                           }
                         }
-                        if ((lVar6 != 0) &&
+                        if ((contextData != 0) &&
                            (compareResult = FUN_18087dc70(targetBuffer + 0xb0,&lStack_80), compareResult != 0))
                         goto LAB_18087ec07;
                         lVar4 = lVar4 + 1;
@@ -355240,16 +355240,16 @@ LAB_18087ed4e:
                             break;
                           }
                           if (componentIndex != 0) {
-                            lVar6 = resultPointer + 0x80;
+                            contextData = resultPointer + 0x80;
                             if (resultPointer == -8) {
-                              lVar6 = 0;
+                              contextData = 0;
                             }
-                            if (lVar6 != 0) {
+                            if (contextData != 0) {
                               auStack_88[0] = 1;
-                              FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                              FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                             }
                           }
-                          lVar6 = lStack_80;
+                          contextData = lStack_80;
                           if (componentIndex != lStack_80) {
                             if (componentIndex != 0) {
                               lVar5 = resultPointer + 0x260;
@@ -355268,7 +355268,7 @@ LAB_18087ed4e:
                               if (compareResult != 0) goto LAB_18087ed4e;
                             }
                           }
-                          if ((lVar6 != 0) &&
+                          if ((contextData != 0) &&
                              (compareResult = FUN_18087dc70(targetBuffer + 0xc0,&lStack_80), compareResult != 0))
                           goto LAB_18087ed4e;
                           lVar4 = lVar4 + 1;
@@ -355289,11 +355289,11 @@ LAB_18087ee97:
                               if (compareResult != 0) goto LAB_1808801be;
                               break;
                             }
-                            if ((componentIndex != 0) && (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                            if ((componentIndex != 0) && (contextData = func_0x00018086dc30(), contextData != 0)) {
                               auStack_88[0] = 1;
-                              FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                              FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                             }
-                            lVar6 = lStack_80;
+                            contextData = lStack_80;
                             if (componentIndex != lStack_80) {
                               if (componentIndex != 0) {
                                 lVar5 = resultPointer + 0x288;
@@ -355312,7 +355312,7 @@ LAB_18087ee97:
                                 if (compareResult != 0) goto LAB_18087ee97;
                               }
                             }
-                            if ((lVar6 != 0) &&
+                            if ((contextData != 0) &&
                                (compareResult = FUN_18087dc70(targetBuffer + 0xd0,&lStack_80), compareResult != 0))
                             goto LAB_18087ee97;
                             lVar4 = lVar4 + 1;
@@ -355333,11 +355333,11 @@ LAB_18087efd7:
                                 if (compareResult != 0) goto LAB_1808801be;
                                 break;
                               }
-                              if ((componentIndex != 0) && (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                              if ((componentIndex != 0) && (contextData = func_0x00018086dc30(), contextData != 0)) {
                                 auStack_88[0] = 1;
-                                FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                                FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                               }
-                              lVar6 = lStack_80;
+                              contextData = lStack_80;
                               if (componentIndex != lStack_80) {
                                 if (componentIndex != 0) {
                                   lVar5 = resultPointer + 0x2b0;
@@ -355356,7 +355356,7 @@ LAB_18087efd7:
                                   if (compareResult != 0) goto LAB_18087efd7;
                                 }
                               }
-                              if ((lVar6 != 0) &&
+                              if ((contextData != 0) &&
                                  (compareResult = FUN_18087dc70(targetBuffer + 0xe0,&lStack_80), compareResult != 0))
                               goto LAB_18087efd7;
                               lVar4 = lVar4 + 1;
@@ -355377,11 +355377,11 @@ LAB_18087f117:
                                   if (compareResult != 0) goto LAB_1808801be;
                                   break;
                                 }
-                                if ((componentIndex != 0) && (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                                if ((componentIndex != 0) && (contextData = func_0x00018086dc30(), contextData != 0)) {
                                   auStack_88[0] = 1;
-                                  FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                                  FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                                 }
-                                lVar6 = lStack_80;
+                                contextData = lStack_80;
                                 if (componentIndex != lStack_80) {
                                   if (componentIndex != 0) {
                                     lVar5 = resultPointer + 0x350;
@@ -355400,7 +355400,7 @@ LAB_18087f117:
                                     if (compareResult != 0) goto LAB_18087f117;
                                   }
                                 }
-                                if ((lVar6 != 0) &&
+                                if ((contextData != 0) &&
                                    (compareResult = FUN_18087dc70(targetBuffer + 0xf0,&lStack_80), compareResult != 0))
                                 goto LAB_18087f117;
                                 lVar4 = lVar4 + 1;
@@ -355421,11 +355421,11 @@ LAB_18087f257:
                                     if (compareResult != 0) goto LAB_1808801be;
                                     break;
                                   }
-                                  if ((componentIndex != 0) && (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                                  if ((componentIndex != 0) && (contextData = func_0x00018086dc30(), contextData != 0)) {
                                     auStack_88[0] = 1;
-                                    FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                                    FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                                   }
-                                  lVar6 = lStack_80;
+                                  contextData = lStack_80;
                                   if (componentIndex != lStack_80) {
                                     if (componentIndex != 0) {
                                       lVar5 = resultPointer + 0x2d8;
@@ -355444,7 +355444,7 @@ LAB_18087f257:
                                       if (compareResult != 0) goto LAB_18087f257;
                                     }
                                   }
-                                  if ((lVar6 != 0) &&
+                                  if ((contextData != 0) &&
                                      (compareResult = FUN_18087dc70(targetBuffer + 0x100,&lStack_80), compareResult != 0)
                                      ) goto LAB_18087f257;
                                   lVar4 = lVar4 + 1;
@@ -355466,12 +355466,12 @@ LAB_18087f397:
                                       if (compareResult != 0) goto LAB_1808801be;
                                       break;
                                     }
-                                    if ((componentIndex != 0) && (lVar6 = func_0x00018086dc30(), lVar6 != 0))
+                                    if ((componentIndex != 0) && (contextData = func_0x00018086dc30(), contextData != 0))
                                     {
                                       auStack_88[0] = 1;
-                                      FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                                      FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                                     }
-                                    lVar6 = lStack_80;
+                                    contextData = lStack_80;
                                     if (componentIndex != lStack_80) {
                                       if (componentIndex != 0) {
                                         lVar5 = resultPointer + 0x300;
@@ -355491,7 +355491,7 @@ LAB_18087f397:
                                         if (compareResult != 0) goto LAB_18087f397;
                                       }
                                     }
-                                    if ((lVar6 != 0) &&
+                                    if ((contextData != 0) &&
                                        (compareResult = FUN_18087dc70(targetBuffer + 0x110,&lStack_80),
                                        compareResult != 0)) goto LAB_18087f397;
                                     lVar4 = lVar4 + 1;
@@ -355514,11 +355514,11 @@ LAB_18087f4d7:
                                         break;
                                       }
                                       if ((componentIndex != 0) &&
-                                         (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                                         (contextData = func_0x00018086dc30(), contextData != 0)) {
                                         auStack_88[0] = 1;
-                                        FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                                        FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                                       }
-                                      lVar6 = lStack_80;
+                                      contextData = lStack_80;
                                       if (componentIndex != lStack_80) {
                                         if (componentIndex != 0) {
                                           lVar5 = resultPointer + 0x328;
@@ -355538,7 +355538,7 @@ LAB_18087f4d7:
                                           if (compareResult != 0) goto LAB_18087f4d7;
                                         }
                                       }
-                                      if ((lVar6 != 0) &&
+                                      if ((contextData != 0) &&
                                          (compareResult = FUN_18087dc70(targetBuffer + 0x120,&lStack_80),
                                          compareResult != 0)) goto LAB_18087f4d7;
                                       lVar4 = lVar4 + 1;
@@ -355561,11 +355561,11 @@ LAB_18087f617:
                                           break;
                                         }
                                         if ((componentIndex != 0) &&
-                                           (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                                           (contextData = func_0x00018086dc30(), contextData != 0)) {
                                           auStack_88[0] = 1;
-                                          FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                                          FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                                         }
-                                        lVar6 = lStack_80;
+                                        contextData = lStack_80;
                                         if (componentIndex != lStack_80) {
                                           if (componentIndex != 0) {
                                             lVar5 = resultPointer + 0x3f0;
@@ -355585,7 +355585,7 @@ LAB_18087f617:
                                             if (compareResult != 0) goto LAB_18087f617;
                                           }
                                         }
-                                        if ((lVar6 != 0) &&
+                                        if ((contextData != 0) &&
                                            (compareResult = FUN_18087dc70(targetBuffer + 0x130,&lStack_80),
                                            compareResult != 0)) goto LAB_18087f617;
                                         lVar4 = lVar4 + 1;
@@ -355608,7 +355608,7 @@ LAB_18087f73b:
                                             break;
                                           }
                                           FUN_1808c54a0(resultPointer,componentIndex);
-                                          lVar6 = lStack_80;
+                                          contextData = lStack_80;
                                           if (componentIndex != lStack_80) {
                                             if (componentIndex != 0) {
                                               lVar5 = resultPointer + 0x378;
@@ -355628,7 +355628,7 @@ LAB_18087f73b:
                                               if (compareResult != 0) goto LAB_18087f73b;
                                             }
                                           }
-                                          if ((lVar6 != 0) &&
+                                          if ((contextData != 0) &&
                                              (compareResult = FUN_18087dc70(targetBuffer + 0x150,&lStack_80),
                                              compareResult != 0)) goto LAB_18087f73b;
                                           lVar4 = lVar4 + 1;
@@ -355652,7 +355652,7 @@ LAB_18087f85c:
                                               break;
                                             }
                                             FUN_1808c54a0(resultPointer,componentIndex);
-                                            lVar6 = lStack_80;
+                                            contextData = lStack_80;
                                             if (componentIndex != lStack_80) {
                                               if (componentIndex != 0) {
                                                 lVar5 = resultPointer + 0x3a0;
@@ -355672,7 +355672,7 @@ LAB_18087f85c:
                                                 if (compareResult != 0) goto LAB_18087f85c;
                                               }
                                             }
-                                            if ((lVar6 != 0) &&
+                                            if ((contextData != 0) &&
                                                (compareResult = FUN_18087dc70(targetBuffer + 0x160,&lStack_80),
                                                compareResult != 0)) goto LAB_18087f85c;
                                             lVar4 = lVar4 + 1;
@@ -355696,11 +355696,11 @@ LAB_18087f9a7:
                                                 break;
                                               }
                                               if ((componentIndex != 0) &&
-                                                 (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                                                 (contextData = func_0x00018086dc30(), contextData != 0)) {
                                                 auStack_88[0] = 1;
-                                                FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                                                FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                                               }
-                                              lVar6 = lStack_80;
+                                              contextData = lStack_80;
                                               if (componentIndex != lStack_80) {
                                                 if (componentIndex != 0) {
                                                   lVar5 = resultPointer + 0x3c8;
@@ -355720,7 +355720,7 @@ LAB_18087f9a7:
                                                   if (compareResult != 0) goto LAB_18087f9a7;
                                                 }
                                               }
-                                              if ((lVar6 != 0) &&
+                                              if ((contextData != 0) &&
                                                  (compareResult = FUN_18087dc70(targetBuffer + 0x170,&lStack_80),
                                                  compareResult != 0)) goto LAB_18087f9a7;
                                               lVar4 = lVar4 + 1;
@@ -355745,11 +355745,11 @@ LAB_18087fae7:
                                                   break;
                                                 }
                                                 if ((componentIndex != 0) &&
-                                                   (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                                                   (contextData = func_0x00018086dc30(), contextData != 0)) {
                                                   auStack_88[0] = 1;
-                                                  FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                                                  FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                                                 }
-                                                lVar6 = lStack_80;
+                                                contextData = lStack_80;
                                                 if (componentIndex != lStack_80) {
                                                   if (componentIndex != 0) {
                                                     lVar5 = resultPointer + 0x418;
@@ -355771,7 +355771,7 @@ LAB_18087fae7:
                                                     if (compareResult != 0) goto LAB_18087fae7;
                                                   }
                                                 }
-                                                if ((lVar6 != 0) &&
+                                                if ((contextData != 0) &&
                                                    (compareResult = FUN_18087dc70(targetBuffer + 0x180,&lStack_80
                                                                          ), compareResult != 0))
                                                 goto LAB_18087fae7;
@@ -355797,11 +355797,11 @@ LAB_18087fc27:
                                                     break;
                                                   }
                                                   if ((componentIndex != 0) &&
-                                                     (lVar6 = func_0x00018086dc30(), lVar6 != 0)) {
+                                                     (contextData = func_0x00018086dc30(), contextData != 0)) {
                                                     auStack_88[0] = 1;
-                                                    FUN_180879610(lVar6,componentIndex + 0x10,auStack_88);
+                                                    FUN_180879610(contextData,componentIndex + 0x10,auStack_88);
                                                   }
-                                                  lVar6 = lStack_80;
+                                                  contextData = lStack_80;
                                                   if (componentIndex != lStack_80) {
                                                     if (componentIndex != 0) {
                                                       lVar5 = resultPointer + 0x440;
@@ -355824,7 +355824,7 @@ LAB_18087fc27:
                                                       if (compareResult != 0) goto LAB_18087fc27;
                                                     }
                                                   }
-                                                  if ((lVar6 != 0) &&
+                                                  if ((contextData != 0) &&
                                                      (compareResult = FUN_18087dc70(targetBuffer + 400,&lStack_80
                                                                            ), compareResult != 0))
                                                   goto LAB_18087fc27;
@@ -355850,17 +355850,17 @@ LAB_18087fd6e:
                                                       break;
                                                     }
                                                     if (componentIndex != 0) {
-                                                      lVar6 = resultPointer + 0x58;
+                                                      contextData = resultPointer + 0x58;
                                                       if (resultPointer == -8) {
-                                                        lVar6 = 0;
+                                                        contextData = 0;
                                                       }
-                                                      if (lVar6 != 0) {
+                                                      if (contextData != 0) {
                                                         auStack_88[0] = 1;
-                                                        FUN_180879610(lVar6,componentIndex + 0x10,auStack_88)
+                                                        FUN_180879610(contextData,componentIndex + 0x10,auStack_88)
                                                         ;
                                                       }
                                                     }
-                                                    lVar6 = lStack_80;
+                                                    contextData = lStack_80;
                                                     if (componentIndex != lStack_80) {
                                                       if (componentIndex != 0) {
                                                         lVar5 = resultPointer + 0x468;
@@ -355883,7 +355883,7 @@ LAB_18087fd6e:
                                                         if (compareResult != 0) goto LAB_18087fd6e;
                                                       }
                                                     }
-                                                    if ((lVar6 != 0) &&
+                                                    if ((contextData != 0) &&
                                                        (compareResult = FUN_18087dc70(targetBuffer + 0x1a0,
                                                                               &lStack_80),
                                                        compareResult != 0)) goto LAB_18087fd6e;
@@ -355909,17 +355909,17 @@ LAB_18087fec1:
                                                         break;
                                                       }
                                                       if (componentIndex != 0) {
-                                                        lVar6 = resultPointer + 0xa8;
+                                                        contextData = resultPointer + 0xa8;
                                                         if (resultPointer == -8) {
-                                                          lVar6 = 0;
+                                                          contextData = 0;
                                                         }
-                                                        if (lVar6 != 0) {
+                                                        if (contextData != 0) {
                                                           auStack_88[0] = 1;
-                                                          FUN_180879610(lVar6,componentIndex + 0x10,
+                                                          FUN_180879610(contextData,componentIndex + 0x10,
                                                                         auStack_88);
                                                         }
                                                       }
-                                                      lVar6 = lStack_80;
+                                                      contextData = lStack_80;
                                                       if (componentIndex != lStack_80) {
                                                         if (componentIndex != 0) {
                                                           lVar5 = resultPointer + 0x4b8;
@@ -355942,7 +355942,7 @@ LAB_18087fec1:
                                                           if (compareResult != 0) goto LAB_18087fec1;
                                                         }
                                                       }
-                                                      if ((lVar6 != 0) &&
+                                                      if ((contextData != 0) &&
                                                          (compareResult = FUN_18087dc70(targetBuffer + 0x1b0,
                                                                                 &lStack_80),
                                                          compareResult != 0)) goto LAB_18087fec1;
@@ -355968,17 +355968,17 @@ LAB_180880011:
                                                           break;
                                                         }
                                                         if (componentIndex != 0) {
-                                                          lVar6 = resultPointer + 0xd0;
+                                                          contextData = resultPointer + 0xd0;
                                                           if (resultPointer == -8) {
-                                                            lVar6 = 0;
+                                                            contextData = 0;
                                                           }
-                                                          if (lVar6 != 0) {
+                                                          if (contextData != 0) {
                                                             auStack_88[0] = 1;
-                                                            FUN_180879610(lVar6,componentIndex + 0x10,
+                                                            FUN_180879610(contextData,componentIndex + 0x10,
                                                                           auStack_88);
                                                           }
                                                         }
-                                                        lVar6 = lStack_80;
+                                                        contextData = lStack_80;
                                                         if (componentIndex != lStack_80) {
                                                           if (componentIndex != 0) {
                                                             lVar5 = resultPointer + 0x4e0;
@@ -356001,7 +356001,7 @@ LAB_180880011:
                                                             if (compareResult != 0) goto LAB_180880011;
                                                           }
                                                         }
-                                                        if ((lVar6 != 0) &&
+                                                        if ((contextData != 0) &&
                                                            (compareResult = FUN_18087dc70(targetBuffer + 0x1c0,
                                                                                   &lStack_80),
                                                            compareResult != 0)) goto LAB_180880011;
@@ -356029,13 +356029,13 @@ LAB_180880157:
                                                             break;
                                                           }
                                                           if ((componentIndex != 0) &&
-                                                             (lVar6 = func_0x00018086dc30(),
-                                                             lVar6 != 0)) {
+                                                             (contextData = func_0x00018086dc30(),
+                                                             contextData != 0)) {
                                                             auStack_88[0] = 1;
-                                                            FUN_180879610(lVar6,componentIndex + 0x10,
+                                                            FUN_180879610(contextData,componentIndex + 0x10,
                                                                           auStack_88);
                                                           }
-                                                          lVar6 = lStack_80;
+                                                          contextData = lStack_80;
                                                           if (componentIndex != lStack_80) {
                                                             if (componentIndex != 0) {
                                                               lVar5 = resultPointer + 0x508;
@@ -356059,7 +356059,7 @@ LAB_180880157:
                                                               if (compareResult != 0) goto LAB_180880157;
                                                             }
                                                           }
-                                                          if ((lVar6 != 0) &&
+                                                          if ((contextData != 0) &&
                                                              (compareResult = FUN_18087dc70(targetBuffer + 0x1d0,
                                                                                     &lStack_80),
                                                              compareResult != 0)) goto LAB_180880157;
@@ -356199,7 +356199,7 @@ undefined8 FUN_180880350(longlong uiContext,longlong *dataSource)
   longlong stringCompareIndex;
   longlong *plVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lStackX_18;
   undefined4 uStack_48;
   undefined4 uStack_44;
@@ -356210,10 +356210,10 @@ undefined8 FUN_180880350(longlong uiContext,longlong *dataSource)
   if (plVar4 != (longlong *)0x0) {
     operationResult = *(int *)(bufferData + 0x38);
     if (0 < (longlong)operationResult) {
-      lVar6 = 0;
+      contextData = 0;
       do {
         lStackX_18 = 0;
-        psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x30) + lVar6 * 8);
+        psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x30) + contextData * 8);
         uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
         uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
         uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356243,17 +356243,17 @@ LAB_180880413:
             FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),psemaphoreHandle,&UNK_180985b90,0x55d,1);
           }
         }
-        lVar6 = lVar6 + 1;
-      } while (lVar6 < operationResult);
+        contextData = contextData + 1;
+      } while (contextData < operationResult);
     }
     plVar4 = (longlong *)(**(code **)(*dataSource + 0x100))(dataSource,0);
     if (plVar4 != (longlong *)0x0) {
       operationResult = *(int *)(bufferData + 0x48);
       if (0 < (longlong)operationResult) {
-        lVar6 = 0;
+        contextData = 0;
         do {
           lStackX_18 = 0;
-          psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x40) + lVar6 * 8);
+          psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x40) + contextData * 8);
           uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
           uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
           uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356283,17 +356283,17 @@ LAB_180880513:
               FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),psemaphoreHandle,&UNK_180985b90,0x55d,1);
             }
           }
-          lVar6 = lVar6 + 1;
-        } while (lVar6 < operationResult);
+          contextData = contextData + 1;
+        } while (contextData < operationResult);
       }
       plVar4 = (longlong *)(**(code **)(*dataSource + 0xe8))(dataSource,0);
       if (plVar4 != (longlong *)0x0) {
         operationResult = *(int *)(bufferData + 0x58);
         if (0 < (longlong)operationResult) {
-          lVar6 = 0;
+          contextData = 0;
           do {
             lStackX_18 = 0;
-            psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x50) + lVar6 * 8);
+            psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x50) + contextData * 8);
             uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
             uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
             uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356324,17 +356324,17 @@ LAB_180880613:
                 ;
               }
             }
-            lVar6 = lVar6 + 1;
-          } while (lVar6 < operationResult);
+            contextData = contextData + 1;
+          } while (contextData < operationResult);
         }
         plVar4 = (longlong *)(**(code **)(*dataSource + 0xf8))(dataSource,0);
         if (plVar4 != (longlong *)0x0) {
           operationResult = *(int *)(bufferData + 0x68);
           if (0 < (longlong)operationResult) {
-            lVar6 = 0;
+            contextData = 0;
             do {
               lStackX_18 = 0;
-              psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x60) + lVar6 * 8);
+              psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x60) + contextData * 8);
               uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
               uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
               uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356365,17 +356365,17 @@ LAB_180880713:
                                 1);
                 }
               }
-              lVar6 = lVar6 + 1;
-            } while (lVar6 < operationResult);
+              contextData = contextData + 1;
+            } while (contextData < operationResult);
           }
           plVar4 = (longlong *)(**(code **)(*dataSource + 0xf0))(dataSource,0);
           if (plVar4 != (longlong *)0x0) {
             operationResult = *(int *)(bufferData + 0x78);
             if (0 < (longlong)operationResult) {
-              lVar6 = 0;
+              contextData = 0;
               do {
                 lStackX_18 = 0;
-                psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x70) + lVar6 * 8);
+                psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x70) + contextData * 8);
                 uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                 uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                 uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356406,17 +356406,17 @@ LAB_180880813:
                                   0x55d,1);
                   }
                 }
-                lVar6 = lVar6 + 1;
-              } while (lVar6 < operationResult);
+                contextData = contextData + 1;
+              } while (contextData < operationResult);
             }
             plVar4 = (longlong *)(**(code **)(*dataSource + 0xe0))(dataSource,0);
             if (plVar4 != (longlong *)0x0) {
               operationResult = *(int *)(bufferData + 0x88);
               if (0 < (longlong)operationResult) {
-                lVar6 = 0;
+                contextData = 0;
                 do {
                   lStackX_18 = 0;
-                  psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x80) + lVar6 * 8);
+                  psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x80) + contextData * 8);
                   uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                   uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                   uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356447,17 +356447,17 @@ LAB_180880913:
                                     0x55d,1);
                     }
                   }
-                  lVar6 = lVar6 + 1;
-                } while (lVar6 < operationResult);
+                  contextData = contextData + 1;
+                } while (contextData < operationResult);
               }
               plVar4 = (longlong *)(**(code **)(*dataSource + 0xd8))(dataSource,0);
               if (plVar4 != (longlong *)0x0) {
                 operationResult = *(int *)(bufferData + 0x98);
                 if (0 < (longlong)operationResult) {
-                  lVar6 = 0;
+                  contextData = 0;
                   do {
                     lStackX_18 = 0;
-                    psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x90) + lVar6 * 8);
+                    psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0x90) + contextData * 8);
                     uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                     uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                     uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356488,17 +356488,17 @@ LAB_180880a13:
                                       0x55d,1);
                       }
                     }
-                    lVar6 = lVar6 + 1;
-                  } while (lVar6 < operationResult);
+                    contextData = contextData + 1;
+                  } while (contextData < operationResult);
                 }
                 plVar4 = (longlong *)(**(code **)(*dataSource + 0xd0))(dataSource,0);
                 if (plVar4 != (longlong *)0x0) {
                   operationResult = *(int *)(bufferData + 0xa8);
                   if (0 < (longlong)operationResult) {
-                    lVar6 = 0;
+                    contextData = 0;
                     do {
                       lStackX_18 = 0;
-                      psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xa0) + lVar6 * 8);
+                      psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xa0) + contextData * 8);
                       uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                       uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                       uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356529,17 +356529,17 @@ LAB_180880b13:
                                         &UNK_180985b90,0x55d,1);
                         }
                       }
-                      lVar6 = lVar6 + 1;
-                    } while (lVar6 < operationResult);
+                      contextData = contextData + 1;
+                    } while (contextData < operationResult);
                   }
                   plVar4 = (longlong *)(**(code **)(*dataSource + 200))(dataSource,0);
                   if (plVar4 != (longlong *)0x0) {
                     operationResult = *(int *)(bufferData + 0xb8);
                     if (0 < (longlong)operationResult) {
-                      lVar6 = 0;
+                      contextData = 0;
                       do {
                         lStackX_18 = 0;
-                        psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xb0) + lVar6 * 8);
+                        psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xb0) + contextData * 8);
                         uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                         uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                         uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356571,17 +356571,17 @@ LAB_180880c13:
                                           &UNK_180985b90,0x55d,1);
                           }
                         }
-                        lVar6 = lVar6 + 1;
-                      } while (lVar6 < operationResult);
+                        contextData = contextData + 1;
+                      } while (contextData < operationResult);
                     }
                     plVar4 = (longlong *)(**(code **)(*dataSource + 0xc0))(dataSource,0);
                     if (plVar4 != (longlong *)0x0) {
                       operationResult = *(int *)(bufferData + 200);
                       if (0 < (longlong)operationResult) {
-                        lVar6 = 0;
+                        contextData = 0;
                         do {
                           lStackX_18 = 0;
-                          psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xc0) + lVar6 * 8);
+                          psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xc0) + contextData * 8);
                           uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                           uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                           uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356613,17 +356613,17 @@ LAB_180880d13:
                                             &UNK_180985b90,0x55d,1);
                             }
                           }
-                          lVar6 = lVar6 + 1;
-                        } while (lVar6 < operationResult);
+                          contextData = contextData + 1;
+                        } while (contextData < operationResult);
                       }
                       plVar4 = (longlong *)(**(code **)(*dataSource + 0x50))(dataSource,0);
                       if (plVar4 != (longlong *)0x0) {
                         operationResult = *(int *)(bufferData + 0xd8);
                         if (0 < (longlong)operationResult) {
-                          lVar6 = 0;
+                          contextData = 0;
                           do {
                             lStackX_18 = 0;
-                            psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xd0) + lVar6 * 8);
+                            psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xd0) + contextData * 8);
                             uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                             uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                             uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356655,17 +356655,17 @@ LAB_180880e13:
                                               &UNK_180985b90,0x55d,1);
                               }
                             }
-                            lVar6 = lVar6 + 1;
-                          } while (lVar6 < operationResult);
+                            contextData = contextData + 1;
+                          } while (contextData < operationResult);
                         }
                         plVar4 = (longlong *)(**(code **)(*dataSource + 0xb0))(dataSource,0);
                         if (plVar4 != (longlong *)0x0) {
                           operationResult = *(int *)(bufferData + 0xe8);
                           if (0 < (longlong)operationResult) {
-                            lVar6 = 0;
+                            contextData = 0;
                             do {
                               lStackX_18 = 0;
-                              psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xe0) + lVar6 * 8);
+                              psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xe0) + contextData * 8);
                               uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                               uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                               uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356697,17 +356697,17 @@ LAB_180880f13:
                                                 &UNK_180985b90,0x55d,1);
                                 }
                               }
-                              lVar6 = lVar6 + 1;
-                            } while (lVar6 < operationResult);
+                              contextData = contextData + 1;
+                            } while (contextData < operationResult);
                           }
                           plVar4 = (longlong *)(**(code **)(*dataSource + 0x78))(dataSource,0);
                           if (plVar4 != (longlong *)0x0) {
                             operationResult = *(int *)(bufferData + 0xf8);
                             if (0 < (longlong)operationResult) {
-                              lVar6 = 0;
+                              contextData = 0;
                               do {
                                 lStackX_18 = 0;
-                                psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xf0) + lVar6 * 8)
+                                psemaphoreHandle = *(undefined8 **)(*(longlong *)(bufferData + 0xf0) + contextData * 8)
                                 ;
                                 uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                 uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
@@ -356740,18 +356740,18 @@ LAB_180881013:
                                                   &UNK_180985b90,0x55d,1);
                                   }
                                 }
-                                lVar6 = lVar6 + 1;
-                              } while (lVar6 < operationResult);
+                                contextData = contextData + 1;
+                              } while (contextData < operationResult);
                             }
                             plVar4 = (longlong *)(**(code **)(*dataSource + 0xa8))(dataSource,0);
                             if (plVar4 != (longlong *)0x0) {
                               operationResult = *(int *)(bufferData + 0x108);
                               if (0 < (longlong)operationResult) {
-                                lVar6 = 0;
+                                contextData = 0;
                                 do {
                                   lStackX_18 = 0;
                                   psemaphoreHandle = *(undefined8 **)
-                                            (*(longlong *)(bufferData + 0x100) + lVar6 * 8);
+                                            (*(longlong *)(bufferData + 0x100) + contextData * 8);
                                   uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                   uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                                   uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356783,18 +356783,18 @@ LAB_180881113:
                                                     &UNK_180985b90,0x55d,1);
                                     }
                                   }
-                                  lVar6 = lVar6 + 1;
-                                } while (lVar6 < operationResult);
+                                  contextData = contextData + 1;
+                                } while (contextData < operationResult);
                               }
                               plVar4 = (longlong *)(**(code **)(*dataSource + 0xa0))(dataSource,0);
                               if (plVar4 != (longlong *)0x0) {
                                 operationResult = *(int *)(bufferData + 0x118);
                                 if (0 < (longlong)operationResult) {
-                                  lVar6 = 0;
+                                  contextData = 0;
                                   do {
                                     lStackX_18 = 0;
                                     psemaphoreHandle = *(undefined8 **)
-                                              (*(longlong *)(bufferData + 0x110) + lVar6 * 8);
+                                              (*(longlong *)(bufferData + 0x110) + contextData * 8);
                                     uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                     uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                                     uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356827,18 +356827,18 @@ LAB_180881213:
                                                       ,&UNK_180985b90,0x55d,1);
                                       }
                                     }
-                                    lVar6 = lVar6 + 1;
-                                  } while (lVar6 < operationResult);
+                                    contextData = contextData + 1;
+                                  } while (contextData < operationResult);
                                 }
                                 plVar4 = (longlong *)(**(code **)(*dataSource + 0x98))(dataSource,0);
                                 if (plVar4 != (longlong *)0x0) {
                                   operationResult = *(int *)(bufferData + 0x128);
                                   if (0 < (longlong)operationResult) {
-                                    lVar6 = 0;
+                                    contextData = 0;
                                     do {
                                       lStackX_18 = 0;
                                       psemaphoreHandle = *(undefined8 **)
-                                                (*(longlong *)(bufferData + 0x120) + lVar6 * 8);
+                                                (*(longlong *)(bufferData + 0x120) + contextData * 8);
                                       uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                       uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                                       uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356873,18 +356873,18 @@ LAB_180881313:
                                                         psemaphoreHandle,&UNK_180985b90,0x55d,1);
                                         }
                                       }
-                                      lVar6 = lVar6 + 1;
-                                    } while (lVar6 < operationResult);
+                                      contextData = contextData + 1;
+                                    } while (contextData < operationResult);
                                   }
                                   plVar4 = (longlong *)(**(code **)(*dataSource + 0x90))(dataSource,0);
                                   if (plVar4 != (longlong *)0x0) {
                                     operationResult = *(int *)(bufferData + 0x138);
                                     if (0 < (longlong)operationResult) {
-                                      lVar6 = 0;
+                                      contextData = 0;
                                       do {
                                         lStackX_18 = 0;
                                         psemaphoreHandle = *(undefined8 **)
-                                                  (*(longlong *)(bufferData + 0x130) + lVar6 * 8);
+                                                  (*(longlong *)(bufferData + 0x130) + contextData * 8);
                                         uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                         uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                                         uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356919,18 +356919,18 @@ LAB_180881413:
                                                           psemaphoreHandle,&UNK_180985b90,0x55d,1);
                                           }
                                         }
-                                        lVar6 = lVar6 + 1;
-                                      } while (lVar6 < operationResult);
+                                        contextData = contextData + 1;
+                                      } while (contextData < operationResult);
                                     }
                                     plVar4 = (longlong *)(**(code **)(*dataSource + 0x70))(dataSource,0);
                                     if (plVar4 != (longlong *)0x0) {
                                       operationResult = *(int *)(bufferData + 0x148);
                                       if (0 < (longlong)operationResult) {
-                                        lVar6 = 0;
+                                        contextData = 0;
                                         do {
                                           lStackX_18 = 0;
                                           psemaphoreHandle = *(undefined8 **)
-                                                    (*(longlong *)(bufferData + 0x140) + lVar6 * 8);
+                                                    (*(longlong *)(bufferData + 0x140) + contextData * 8);
                                           uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                           uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                                           uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -356965,19 +356965,19 @@ LAB_180881513:
                                                             psemaphoreHandle,&UNK_180985b90,0x55d,1);
                                             }
                                           }
-                                          lVar6 = lVar6 + 1;
-                                        } while (lVar6 < operationResult);
+                                          contextData = contextData + 1;
+                                        } while (contextData < operationResult);
                                       }
                                       plVar4 = (longlong *)(**(code **)(*dataSource + 0x88))(dataSource,0)
                                       ;
                                       if (plVar4 != (longlong *)0x0) {
                                         operationResult = *(int *)(bufferData + 0x158);
                                         if (0 < (longlong)operationResult) {
-                                          lVar6 = 0;
+                                          contextData = 0;
                                           do {
                                             lStackX_18 = 0;
                                             psemaphoreHandle = *(undefined8 **)
-                                                      (*(longlong *)(bufferData + 0x150) + lVar6 * 8);
+                                                      (*(longlong *)(bufferData + 0x150) + contextData * 8);
                                             uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                             uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
                                             uStack_40 = *(undefined4 *)(psemaphoreHandle + 3);
@@ -357013,19 +357013,19 @@ LAB_180881613:
                                                               &UNK_180985b90,0x55d,1);
                                               }
                                             }
-                                            lVar6 = lVar6 + 1;
-                                          } while (lVar6 < operationResult);
+                                            contextData = contextData + 1;
+                                          } while (contextData < operationResult);
                                         }
                                         plVar4 = (longlong *)
                                                  (**(code **)(*dataSource + 0x80))(dataSource,0);
                                         if (plVar4 != (longlong *)0x0) {
                                           operationResult = *(int *)(bufferData + 0x168);
                                           if (0 < (longlong)operationResult) {
-                                            lVar6 = 0;
+                                            contextData = 0;
                                             do {
                                               lStackX_18 = 0;
                                               psemaphoreHandle = *(undefined8 **)
-                                                        (*(longlong *)(bufferData + 0x160) + lVar6 * 8)
+                                                        (*(longlong *)(bufferData + 0x160) + contextData * 8)
                                               ;
                                               uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                               uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14);
@@ -357062,20 +357062,20 @@ LAB_180881713:
                                                                 &UNK_180985b90,0x55d,1);
                                                 }
                                               }
-                                              lVar6 = lVar6 + 1;
-                                            } while (lVar6 < operationResult);
+                                              contextData = contextData + 1;
+                                            } while (contextData < operationResult);
                                           }
                                           plVar4 = (longlong *)
                                                    (**(code **)(*dataSource + 0xb8))(dataSource,0);
                                           if (plVar4 != (longlong *)0x0) {
                                             operationResult = *(int *)(bufferData + 0x178);
                                             if (0 < (longlong)operationResult) {
-                                              lVar6 = 0;
+                                              contextData = 0;
                                               do {
                                                 lStackX_18 = 0;
                                                 psemaphoreHandle = *(undefined8 **)
                                                           (*(longlong *)(bufferData + 0x170) +
-                                                          lVar6 * 8);
+                                                          contextData * 8);
                                                 uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                                 uStack_44 = *(undefined4 *)((longlong)psemaphoreHandle + 0x14)
                                                 ;
@@ -357113,20 +357113,20 @@ LAB_180881813:
                                                                   &UNK_180985b90,0x55d,1);
                                                   }
                                                 }
-                                                lVar6 = lVar6 + 1;
-                                              } while (lVar6 < operationResult);
+                                                contextData = contextData + 1;
+                                              } while (contextData < operationResult);
                                             }
                                             plVar4 = (longlong *)
                                                      (**(code **)(*dataSource + 0x68))(dataSource,0);
                                             if (plVar4 != (longlong *)0x0) {
                                               operationResult = *(int *)(bufferData + 0x188);
                                               if (0 < (longlong)operationResult) {
-                                                lVar6 = 0;
+                                                contextData = 0;
                                                 do {
                                                   lStackX_18 = 0;
                                                   psemaphoreHandle = *(undefined8 **)
                                                             (*(longlong *)(bufferData + 0x180) +
-                                                            lVar6 * 8);
+                                                            contextData * 8);
                                                   uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                                   uStack_44 = *(undefined4 *)
                                                                ((longlong)psemaphoreHandle + 0x14);
@@ -357164,20 +357164,20 @@ LAB_180881913:
                                                                     ,&UNK_180985b90,0x55d,1);
                                                     }
                                                   }
-                                                  lVar6 = lVar6 + 1;
-                                                } while (lVar6 < operationResult);
+                                                  contextData = contextData + 1;
+                                                } while (contextData < operationResult);
                                               }
                                               plVar4 = (longlong *)
                                                        (**(code **)(*dataSource + 0x28))(dataSource,0);
                                               if (plVar4 != (longlong *)0x0) {
                                                 operationResult = *(int *)(bufferData + 0x198);
                                                 if (0 < (longlong)operationResult) {
-                                                  lVar6 = 0;
+                                                  contextData = 0;
                                                   do {
                                                     lStackX_18 = 0;
                                                     psemaphoreHandle = *(undefined8 **)
                                                               (*(longlong *)(bufferData + 400) +
-                                                              lVar6 * 8);
+                                                              contextData * 8);
                                                     uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                                     uStack_44 = *(undefined4 *)
                                                                  ((longlong)psemaphoreHandle + 0x14);
@@ -357216,20 +357216,20 @@ LAB_180881a13:
                                                         ;
                                                       }
                                                     }
-                                                    lVar6 = lVar6 + 1;
-                                                  } while (lVar6 < operationResult);
+                                                    contextData = contextData + 1;
+                                                  } while (contextData < operationResult);
                                                 }
                                                 plVar4 = (longlong *)
                                                          (**(code **)(*dataSource + 0x48))(dataSource,0);
                                                 if (plVar4 != (longlong *)0x0) {
                                                   operationResult = *(int *)(bufferData + 0x1b8);
                                                   if (0 < (longlong)operationResult) {
-                                                    lVar6 = 0;
+                                                    contextData = 0;
                                                     do {
                                                       lStackX_18 = 0;
                                                       psemaphoreHandle = *(undefined8 **)
                                                                 (*(longlong *)(bufferData + 0x1b0) +
-                                                                lVar6 * 8);
+                                                                contextData * 8);
                                                       uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                                       uStack_44 = *(undefined4 *)
                                                                    ((longlong)psemaphoreHandle + 0x14);
@@ -357269,8 +357269,8 @@ LAB_180881b13:
                                                                         1);
                                                         }
                                                       }
-                                                      lVar6 = lVar6 + 1;
-                                                    } while (lVar6 < operationResult);
+                                                      contextData = contextData + 1;
+                                                    } while (contextData < operationResult);
                                                   }
                                                   plVar4 = (longlong *)
                                                            (**(code **)(*dataSource + 0x40))(dataSource,0)
@@ -357278,12 +357278,12 @@ LAB_180881b13:
                                                   if (plVar4 != (longlong *)0x0) {
                                                     operationResult = *(int *)(bufferData + 0x1c8);
                                                     if (0 < (longlong)operationResult) {
-                                                      lVar6 = 0;
+                                                      contextData = 0;
                                                       do {
                                                         lStackX_18 = 0;
                                                         psemaphoreHandle = *(undefined8 **)
                                                                   (*(longlong *)(bufferData + 0x1c0) +
-                                                                  lVar6 * 8);
+                                                                  contextData * 8);
                                                         uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                                         uStack_44 = *(undefined4 *)
                                                                      ((longlong)psemaphoreHandle + 0x14);
@@ -357325,8 +357325,8 @@ LAB_180881c13:
                                                                           0x55d,1);
                                                           }
                                                         }
-                                                        lVar6 = lVar6 + 1;
-                                                      } while (lVar6 < operationResult);
+                                                        contextData = contextData + 1;
+                                                      } while (contextData < operationResult);
                                                     }
                                                     plVar4 = (longlong *)
                                                              (**(code **)(*dataSource + 0x38))
@@ -357334,12 +357334,12 @@ LAB_180881c13:
                                                     if (plVar4 != (longlong *)0x0) {
                                                       operationResult = *(int *)(bufferData + 0x1d8);
                                                       if (0 < (longlong)operationResult) {
-                                                        lVar6 = 0;
+                                                        contextData = 0;
                                                         do {
                                                           lStackX_18 = 0;
                                                           psemaphoreHandle = *(undefined8 **)
                                                                     (*(longlong *)(bufferData + 0x1d0)
-                                                                    + lVar6 * 8);
+                                                                    + contextData * 8);
                                                           uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                                           uStack_44 = *(undefined4 *)
                                                                        ((longlong)psemaphoreHandle + 0x14);
@@ -357382,8 +357382,8 @@ LAB_180881d13:
                                                                             ,0x55d,1);
                                                             }
                                                           }
-                                                          lVar6 = lVar6 + 1;
-                                                        } while (lVar6 < operationResult);
+                                                          contextData = contextData + 1;
+                                                        } while (contextData < operationResult);
                                                       }
                                                       plVar4 = (longlong *)
                                                                (**(code **)(*dataSource + 0x30))
@@ -357391,13 +357391,13 @@ LAB_180881d13:
                                                       if (plVar4 != (longlong *)0x0) {
                                                         operationResult = *(int *)(bufferData + 0x1e8);
                                                         if (0 < (longlong)operationResult) {
-                                                          lVar6 = 0;
+                                                          contextData = 0;
                                                           do {
                                                             lStackX_18 = 0;
                                                             psemaphoreHandle = *(undefined8 **)
                                                                       (*(longlong *)
                                                                         (uiContext + 0x1e0) +
-                                                                      lVar6 * 8);
+                                                                      contextData * 8);
                                                             uStack_48 = *(undefined4 *)(psemaphoreHandle + 2);
                                                             uStack_44 = *(undefined4 *)
                                                                          ((longlong)psemaphoreHandle + 0x14);
@@ -357442,8 +357442,8 @@ LAB_180881e13:
                                                                              );
                                                               }
                                                             }
-                                                            lVar6 = lVar6 + 1;
-                                                          } while (lVar6 < operationResult);
+                                                            contextData = contextData + 1;
+                                                          } while (contextData < operationResult);
                                                         }
                                                         uVar5 = FUN_18086d930(uiContext,dataSource);
                                                         if ((int)uVar5 != 0) {
@@ -358304,7 +358304,7 @@ undefined8 FUN_180882610(longlong uiContext,ulonglong *dataSource)
   undefined8 uVar3;
   longlong lVar4;
   undefined4 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   undefined1 auStackX_8 [8];
   undefined4 uStack_38;
   undefined4 uStack_34;
@@ -358317,7 +358317,7 @@ undefined8 FUN_180882610(longlong uiContext,ulonglong *dataSource)
     FUN_180768360(uVar3);
   }
   componentContextPtr = (undefined4 *)*dataSource;
-  lVar6 = 0;
+  contextData = 0;
   do {
     if ((componentContextPtr < (undefined4 *)*dataSource) ||
        ((undefined4 *)*dataSource + (longlong)(int)dataSource[1] * 5 <= componentContextPtr)) {
@@ -358335,7 +358335,7 @@ undefined8 FUN_180882610(longlong uiContext,ulonglong *dataSource)
       uStack_2c = componentContextPtr[3];
       lVar4 = uiContext + 0xb00;
       if (uiContext == -0xad8) {
-        lVar4 = lVar6;
+        lVar4 = contextData;
       }
       if (lVar4 != 0) {
         auStackX_8[0] = 1;
@@ -358369,7 +358369,7 @@ LAB_180882a0d:
         uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xb28;
         if (uiContext == -0xad8) {
-          lVar4 = lVar6;
+          lVar4 = contextData;
         }
         if (lVar4 != 0) {
           auStackX_8[0] = 1;
@@ -358386,7 +358386,7 @@ LAB_180882a0d:
         uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xb50;
         if (uiContext == -0xad8) {
-          lVar4 = lVar6;
+          lVar4 = contextData;
         }
         if (lVar4 != 0) {
           auStackX_8[0] = 1;
@@ -358403,7 +358403,7 @@ LAB_180882a0d:
         uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xb78;
         if (uiContext == -0xad8) {
-          lVar4 = lVar6;
+          lVar4 = contextData;
         }
         if (lVar4 != 0) {
           auStackX_8[0] = 1;
@@ -358420,7 +358420,7 @@ LAB_180882a0d:
         uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xba0;
         if (uiContext == -0xad8) {
-          lVar4 = lVar6;
+          lVar4 = contextData;
         }
         if (lVar4 != 0) {
           auStackX_8[0] = 1;
@@ -358437,7 +358437,7 @@ LAB_180882a0d:
         uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xbc8;
         if (uiContext == -0xad8) {
-          lVar4 = lVar6;
+          lVar4 = contextData;
         }
         if (lVar4 != 0) {
           auStackX_8[0] = 1;
@@ -358468,7 +358468,7 @@ LAB_180882a0d:
         uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xbf0;
         if (uiContext == -0xad8) {
-          lVar4 = lVar6;
+          lVar4 = contextData;
         }
         if (lVar4 != 0) {
           auStackX_8[0] = 1;
@@ -358485,7 +358485,7 @@ LAB_180882a0d:
         uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xc18;
         if (uiContext == -0xad8) {
-          lVar4 = lVar6;
+          lVar4 = contextData;
         }
         if (lVar4 != 0) {
           auStackX_8[0] = 1;
@@ -358674,7 +358674,7 @@ undefined8 FUN_180882c70(longlong *uiContext,int dataSource)
   int compareResult;
   undefined8 uVar4;
   undefined8 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   longlong lVar8;
   
@@ -358689,7 +358689,7 @@ undefined8 FUN_180882c70(longlong *uiContext,int dataSource)
                              0xf4,0,0,1);
       if (componentContextPtr != (undefined8 *)0x0) {
         compareResult = (int)uiContext[1];
-        lVar6 = (longlong)compareResult;
+        contextData = (longlong)compareResult;
         if ((compareResult != 0) && (0 < compareResult)) {
           lVar8 = *uiContext - (longlong)componentContextPtr;
           peventTypeCode = componentContextPtr;
@@ -358720,9 +358720,9 @@ undefined8 FUN_180882c70(longlong *uiContext,int dataSource)
             peventTypeCode[0xb] = uVar4;
             peventTypeCode[0xc] = *(undefined8 *)(lVar8 + -0xc + (longlong)pfunctionResult);
             *(undefined4 *)(peventTypeCode + 0xd) = *(undefined4 *)(lVar8 + -4 + (longlong)pfunctionResult);
-            lVar6 = lVar6 + -1;
+            contextData = contextData + -1;
             peventTypeCode = pfunctionResult;
-          } while (lVar6 != 0);
+          } while (contextData != 0);
         }
         goto LAB_180882d69;
       }
@@ -358751,7 +358751,7 @@ undefined8 FUN_180882c94(void)
   int compareResult;
   undefined8 uVar4;
   undefined8 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   longlong *context;
   int unaff_ESI;
@@ -358774,7 +358774,7 @@ LAB_180882d69:
                            0xf4,0);
     if (componentContextPtr != (undefined8 *)0x0) {
       compareResult = (int)context[1];
-      lVar6 = (longlong)compareResult;
+      contextData = (longlong)compareResult;
       if ((compareResult != 0) && (0 < compareResult)) {
         lVar8 = *context - (longlong)componentContextPtr;
         peventTypeCode = componentContextPtr;
@@ -358805,9 +358805,9 @@ LAB_180882d69:
           peventTypeCode[0xb] = uVar4;
           peventTypeCode[0xc] = *(undefined8 *)(lVar8 + -0xc + (longlong)pfunctionResult);
           *(undefined4 *)(peventTypeCode + 0xd) = *(undefined4 *)(lVar8 + -4 + (longlong)pfunctionResult);
-          lVar6 = lVar6 + -1;
+          contextData = contextData + -1;
           peventTypeCode = pfunctionResult;
-        } while (lVar6 != 0);
+        } while (contextData != 0);
       }
       goto LAB_180882d69;
     }
@@ -358835,7 +358835,7 @@ undefined8 FUN_180882dd0(longlong *uiContext,int dataSource)
   int compareResult;
   undefined8 uVar4;
   undefined8 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   longlong lVar8;
   
@@ -358850,7 +358850,7 @@ undefined8 FUN_180882dd0(longlong *uiContext,int dataSource)
                              0xf4,0,0,1);
       if (componentContextPtr != (undefined8 *)0x0) {
         compareResult = (int)uiContext[1];
-        lVar6 = (longlong)compareResult;
+        contextData = (longlong)compareResult;
         if ((compareResult != 0) && (0 < compareResult)) {
           lVar8 = *uiContext - (longlong)componentContextPtr;
           peventTypeCode = componentContextPtr;
@@ -358864,9 +358864,9 @@ undefined8 FUN_180882dd0(longlong *uiContext,int dataSource)
             peventTypeCode[2] = *psemaphoreHandle;
             peventTypeCode[3] = uVar4;
             peventTypeCode[4] = *(undefined8 *)(lVar8 + -8 + (longlong)pfunctionResult);
-            lVar6 = lVar6 + -1;
+            contextData = contextData + -1;
             peventTypeCode = pfunctionResult;
-          } while (lVar6 != 0);
+          } while (contextData != 0);
         }
         goto LAB_180882e99;
       }
@@ -358895,7 +358895,7 @@ undefined8 FUN_180882df4(undefined8 uiContext,int dataSource)
   int compareResult;
   undefined8 uVar4;
   undefined8 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   undefined8 *peventTypeCode;
   longlong *context;
   int allocationFlags;
@@ -358918,7 +358918,7 @@ LAB_180882e99:
                            0xf4,0);
     if (componentContextPtr != (undefined8 *)0x0) {
       compareResult = (int)context[1];
-      lVar6 = (longlong)compareResult;
+      contextData = (longlong)compareResult;
       if ((compareResult != 0) && (0 < compareResult)) {
         lVar8 = *context - (longlong)componentContextPtr;
         peventTypeCode = componentContextPtr;
@@ -358932,9 +358932,9 @@ LAB_180882e99:
           peventTypeCode[2] = *psemaphoreHandle;
           peventTypeCode[3] = uVar4;
           peventTypeCode[4] = *(undefined8 *)(lVar8 + -8 + (longlong)pfunctionResult);
-          lVar6 = lVar6 + -1;
+          contextData = contextData + -1;
           peventTypeCode = pfunctionResult;
-        } while (lVar6 != 0);
+        } while (contextData != 0);
       }
       goto LAB_180882e99;
     }
@@ -366101,7 +366101,7 @@ undefined4 FUN_180889ce0(longlong uiContext)
   undefined8 uVar3;
   int iVar4;
   undefined4 uVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   int iVar8;
   int iVar9;
@@ -366132,12 +366132,12 @@ undefined4 FUN_180889ce0(longlong uiContext)
     iVar9 = (int)uStack_60;
     do {
       do {
-        lVar6 = *(longlong *)(plStack_68[2] + 0x18 + (longlong)operationResult0 * 0x20);
-        for (pfunctionResult1 = *(undefined8 **)(lVar6 + 0x288);
-            (*(undefined8 **)(lVar6 + 0x288) <= pfunctionResult1 &&
+        contextData = *(longlong *)(plStack_68[2] + 0x18 + (longlong)operationResult0 * 0x20);
+        for (pfunctionResult1 = *(undefined8 **)(contextData + 0x288);
+            (*(undefined8 **)(contextData + 0x288) <= pfunctionResult1 &&
             (pfunctionResult1 < (undefined8 *)
-                       ((longlong)*(undefined8 **)(lVar6 + 0x288) +
-                       (longlong)*(int *)(lVar6 + 0x290) * 0x14)));
+                       ((longlong)*(undefined8 **)(contextData + 0x288) +
+                       (longlong)*(int *)(contextData + 0x290) * 0x14)));
             pfunctionResult1 = (undefined8 *)((longlong)pfunctionResult1 + 0x14)) {
           iVar7 = iStack_70 + 1;
           iVar4 = iVar8;
@@ -366183,15 +366183,15 @@ LAB_180889e09:
         iVar9 = operationResult0;
       }
       if (iVar9 != (int)plStack_68[1]) {
-        lVar6 = (longlong)iVar9;
+        contextData = (longlong)iVar9;
         do {
-          if (*(int *)(*plStack_68 + lVar6 * 4) != -1) {
+          if (*(int *)(*plStack_68 + contextData * 4) != -1) {
             operationResult0 = *(int *)(*plStack_68 + (longlong)iVar9 * 4);
             goto LAB_180889e8c;
           }
           iVar9 = iVar9 + 1;
-          lVar6 = lVar6 + 1;
-        } while (lVar6 != (int)plStack_68[1]);
+          contextData = contextData + 1;
+        } while (contextData != (int)plStack_68[1]);
       }
       operationResult0 = -1;
       iVar9 = operationResult0;
@@ -367813,7 +367813,7 @@ undefined8 FUN_18088b520(longlong uiContext,longlong dataSource)
   longlong stringCompareIndex;
   longlong *plVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int iVar7;
   int *piVar8;
   longlong *plVar9;
@@ -367821,7 +367821,7 @@ undefined8 FUN_18088b520(longlong uiContext,longlong dataSource)
   plVar9 = (longlong *)0x0;
   plVar4 = plVar9;
   while ((iVar7 = (int)plVar4, plVar4 = plVar9, -1 < iVar7 && (iVar7 < *(int *)(dataSource + 200)))) {
-    lVar6 = *(longlong *)(*(longlong *)(dataSource + 0xc0) + (longlong)iVar7 * 8);
+    contextData = *(longlong *)(*(longlong *)(dataSource + 0xc0) + (longlong)iVar7 * 8);
     plVar4 = (longlong *)(uiContext + 0xb00);
     if (uiContext == -0xad8) {
       plVar4 = plVar9;
@@ -367833,21 +367833,21 @@ LAB_18088b629:
     }
     else {
       lVar5 = (longlong)
-              (int)((*(uint *)(lVar6 + 0x1c) ^ *(uint *)(lVar6 + 0x18) ^ *(uint *)(lVar6 + 0x14) ^
-                    *(uint *)(lVar6 + 0x10)) & (int)plVar4[1] - 1U);
+              (int)((*(uint *)(contextData + 0x1c) ^ *(uint *)(contextData + 0x18) ^ *(uint *)(contextData + 0x14) ^
+                    *(uint *)(contextData + 0x10)) & (int)plVar4[1] - 1U);
       piVar8 = (int *)(*plVar4 + lVar5 * 4);
       validationResult = *(int *)(*plVar4 + lVar5 * 4);
       if (validationResult == -1) goto LAB_18088b629;
       lVar5 = plVar4[2];
       do {
         stringCompareIndex = (longlong)validationResult;
-        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x10)) &&
-           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x18))) {
+        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x10)) &&
+           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x18))) {
           validationResult = *piVar8;
-          lVar6 = (longlong)validationResult;
-          *(undefined1 *)(lVar5 + 0x14 + lVar6 * 0x18) = 0;
-          *piVar8 = *(int *)(lVar5 + 0x10 + lVar6 * 0x18);
-          *(int *)(lVar5 + 0x10 + lVar6 * 0x18) = (int)plVar4[4];
+          contextData = (longlong)validationResult;
+          *(undefined1 *)(lVar5 + 0x14 + contextData * 0x18) = 0;
+          *piVar8 = *(int *)(lVar5 + 0x10 + contextData * 0x18);
+          *(int *)(lVar5 + 0x10 + contextData * 0x18) = (int)plVar4[4];
           *(int *)((longlong)plVar4 + 0x24) = *(int *)((longlong)plVar4 + 0x24) + -1;
           *(int *)(plVar4 + 4) = validationResult;
           goto LAB_18088b629;
@@ -367860,7 +367860,7 @@ LAB_18088b629:
   }
   while ((iVar7 = (int)plVar4, plVar4 = plVar9, -1 < iVar7 && (iVar7 < *(int *)(dataSource + 0x1a8))))
   {
-    lVar6 = *(longlong *)(*(longlong *)(dataSource + 0x1a0) + (longlong)iVar7 * 8);
+    contextData = *(longlong *)(*(longlong *)(dataSource + 0x1a0) + (longlong)iVar7 * 8);
     if ((((longlong *)(uiContext + 0xad8) == (longlong *)0x0) || (*(int *)(bufferData + 0xafc) == 0)) ||
        (*(int *)(bufferData + 0xae0) == 0)) {
 LAB_18088b709:
@@ -367869,21 +367869,21 @@ LAB_18088b709:
     else {
       lVar5 = *(longlong *)(bufferData + 0xad8);
       stringCompareIndex = (longlong)
-              (int)((*(uint *)(lVar6 + 0x1c) ^ *(uint *)(lVar6 + 0x18) ^ *(uint *)(lVar6 + 0x14) ^
-                    *(uint *)(lVar6 + 0x10)) & *(int *)(bufferData + 0xae0) - 1U);
+              (int)((*(uint *)(contextData + 0x1c) ^ *(uint *)(contextData + 0x18) ^ *(uint *)(contextData + 0x14) ^
+                    *(uint *)(contextData + 0x10)) & *(int *)(bufferData + 0xae0) - 1U);
       piVar8 = (int *)(lVar5 + stringCompareIndex * 4);
       validationResult = *(int *)(lVar5 + stringCompareIndex * 4);
       if (validationResult == -1) goto LAB_18088b709;
       lVar5 = *(longlong *)(bufferData + 0xae8);
       do {
         stringCompareIndex = (longlong)validationResult;
-        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x10)) &&
-           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x18))) {
+        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x10)) &&
+           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x18))) {
           validationResult = *piVar8;
-          lVar6 = (longlong)validationResult;
-          *(undefined1 *)(lVar5 + 0x14 + lVar6 * 0x18) = 0;
-          *piVar8 = *(int *)(lVar5 + 0x10 + lVar6 * 0x18);
-          *(undefined4 *)(lVar5 + 0x10 + lVar6 * 0x18) = *(undefined4 *)(bufferData + 0xaf8);
+          contextData = (longlong)validationResult;
+          *(undefined1 *)(lVar5 + 0x14 + contextData * 0x18) = 0;
+          *piVar8 = *(int *)(lVar5 + 0x10 + contextData * 0x18);
+          *(undefined4 *)(lVar5 + 0x10 + contextData * 0x18) = *(undefined4 *)(bufferData + 0xaf8);
           *(int *)(bufferData + 0xafc) = *(int *)(bufferData + 0xafc) + -1;
           *(int *)(bufferData + 0xaf8) = validationResult;
           goto LAB_18088b709;
@@ -367896,7 +367896,7 @@ LAB_18088b709:
   }
   while ((iVar7 = (int)plVar4, plVar4 = plVar9, -1 < iVar7 && (iVar7 < *(int *)(dataSource + 0x1f8))))
   {
-    lVar6 = *(longlong *)(*(longlong *)(dataSource + 0x1f0) + (longlong)iVar7 * 8);
+    contextData = *(longlong *)(*(longlong *)(dataSource + 0x1f0) + (longlong)iVar7 * 8);
     plVar4 = (longlong *)(uiContext + 0xb28);
     if (uiContext == -0xad8) {
       plVar4 = plVar9;
@@ -367908,21 +367908,21 @@ LAB_18088b7e9:
     }
     else {
       lVar5 = (longlong)
-              (int)((*(uint *)(lVar6 + 0x1c) ^ *(uint *)(lVar6 + 0x18) ^ *(uint *)(lVar6 + 0x14) ^
-                    *(uint *)(lVar6 + 0x10)) & (int)plVar4[1] - 1U);
+              (int)((*(uint *)(contextData + 0x1c) ^ *(uint *)(contextData + 0x18) ^ *(uint *)(contextData + 0x14) ^
+                    *(uint *)(contextData + 0x10)) & (int)plVar4[1] - 1U);
       piVar8 = (int *)(*plVar4 + lVar5 * 4);
       validationResult = *(int *)(*plVar4 + lVar5 * 4);
       if (validationResult == -1) goto LAB_18088b7e9;
       lVar5 = plVar4[2];
       do {
         stringCompareIndex = (longlong)validationResult;
-        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x10)) &&
-           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x18))) {
+        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x10)) &&
+           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x18))) {
           validationResult = *piVar8;
-          lVar6 = (longlong)validationResult;
-          *(undefined1 *)(lVar5 + 0x14 + lVar6 * 0x18) = 0;
-          *piVar8 = *(int *)(lVar5 + 0x10 + lVar6 * 0x18);
-          *(int *)(lVar5 + 0x10 + lVar6 * 0x18) = (int)plVar4[4];
+          contextData = (longlong)validationResult;
+          *(undefined1 *)(lVar5 + 0x14 + contextData * 0x18) = 0;
+          *piVar8 = *(int *)(lVar5 + 0x10 + contextData * 0x18);
+          *(int *)(lVar5 + 0x10 + contextData * 0x18) = (int)plVar4[4];
           *(int *)((longlong)plVar4 + 0x24) = *(int *)((longlong)plVar4 + 0x24) + -1;
           *(int *)(plVar4 + 4) = validationResult;
           goto LAB_18088b7e9;
@@ -367934,7 +367934,7 @@ LAB_18088b7e9:
     }
   }
   while ((iVar7 = (int)plVar4, plVar4 = plVar9, -1 < iVar7 && (iVar7 < *(int *)(dataSource + 0x38)))) {
-    lVar6 = *(longlong *)(*(longlong *)(dataSource + 0x30) + (longlong)iVar7 * 8);
+    contextData = *(longlong *)(*(longlong *)(dataSource + 0x30) + (longlong)iVar7 * 8);
     plVar4 = (longlong *)(uiContext + 0xb50);
     if (uiContext == -0xad8) {
       plVar4 = plVar9;
@@ -367946,21 +367946,21 @@ LAB_18088b8c9:
     }
     else {
       lVar5 = (longlong)
-              (int)((*(uint *)(lVar6 + 0x1c) ^ *(uint *)(lVar6 + 0x18) ^ *(uint *)(lVar6 + 0x14) ^
-                    *(uint *)(lVar6 + 0x10)) & (int)plVar4[1] - 1U);
+              (int)((*(uint *)(contextData + 0x1c) ^ *(uint *)(contextData + 0x18) ^ *(uint *)(contextData + 0x14) ^
+                    *(uint *)(contextData + 0x10)) & (int)plVar4[1] - 1U);
       piVar8 = (int *)(*plVar4 + lVar5 * 4);
       validationResult = *(int *)(*plVar4 + lVar5 * 4);
       if (validationResult == -1) goto LAB_18088b8c9;
       lVar5 = plVar4[2];
       do {
         stringCompareIndex = (longlong)validationResult;
-        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x10)) &&
-           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x18))) {
+        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x10)) &&
+           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x18))) {
           validationResult = *piVar8;
-          lVar6 = (longlong)validationResult;
-          *(undefined1 *)(lVar5 + 0x14 + lVar6 * 0x18) = 0;
-          *piVar8 = *(int *)(lVar5 + 0x10 + lVar6 * 0x18);
-          *(int *)(lVar5 + 0x10 + lVar6 * 0x18) = (int)plVar4[4];
+          contextData = (longlong)validationResult;
+          *(undefined1 *)(lVar5 + 0x14 + contextData * 0x18) = 0;
+          *piVar8 = *(int *)(lVar5 + 0x10 + contextData * 0x18);
+          *(int *)(lVar5 + 0x10 + contextData * 0x18) = (int)plVar4[4];
           *(int *)((longlong)plVar4 + 0x24) = *(int *)((longlong)plVar4 + 0x24) + -1;
           *(int *)(plVar4 + 4) = validationResult;
           goto LAB_18088b8c9;
@@ -367972,7 +367972,7 @@ LAB_18088b8c9:
     }
   }
   while ((iVar7 = (int)plVar4, plVar4 = plVar9, -1 < iVar7 && (iVar7 < *(int *)(dataSource + 0x48)))) {
-    lVar6 = *(longlong *)(*(longlong *)(dataSource + 0x40) + (longlong)iVar7 * 8);
+    contextData = *(longlong *)(*(longlong *)(dataSource + 0x40) + (longlong)iVar7 * 8);
     plVar4 = (longlong *)(uiContext + 0xb78);
     if (uiContext == -0xad8) {
       plVar4 = plVar9;
@@ -367984,21 +367984,21 @@ LAB_18088b9a9:
     }
     else {
       lVar5 = (longlong)
-              (int)((*(uint *)(lVar6 + 0x1c) ^ *(uint *)(lVar6 + 0x18) ^ *(uint *)(lVar6 + 0x14) ^
-                    *(uint *)(lVar6 + 0x10)) & (int)plVar4[1] - 1U);
+              (int)((*(uint *)(contextData + 0x1c) ^ *(uint *)(contextData + 0x18) ^ *(uint *)(contextData + 0x14) ^
+                    *(uint *)(contextData + 0x10)) & (int)plVar4[1] - 1U);
       piVar8 = (int *)(*plVar4 + lVar5 * 4);
       validationResult = *(int *)(*plVar4 + lVar5 * 4);
       if (validationResult == -1) goto LAB_18088b9a9;
       lVar5 = plVar4[2];
       do {
         stringCompareIndex = (longlong)validationResult;
-        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x10)) &&
-           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x18))) {
+        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x10)) &&
+           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x18))) {
           validationResult = *piVar8;
-          lVar6 = (longlong)validationResult;
-          *(undefined1 *)(lVar5 + 0x14 + lVar6 * 0x18) = 0;
-          *piVar8 = *(int *)(lVar5 + 0x10 + lVar6 * 0x18);
-          *(int *)(lVar5 + 0x10 + lVar6 * 0x18) = (int)plVar4[4];
+          contextData = (longlong)validationResult;
+          *(undefined1 *)(lVar5 + 0x14 + contextData * 0x18) = 0;
+          *piVar8 = *(int *)(lVar5 + 0x10 + contextData * 0x18);
+          *(int *)(lVar5 + 0x10 + contextData * 0x18) = (int)plVar4[4];
           *(int *)((longlong)plVar4 + 0x24) = *(int *)((longlong)plVar4 + 0x24) + -1;
           *(int *)(plVar4 + 4) = validationResult;
           goto LAB_18088b9a9;
@@ -368010,7 +368010,7 @@ LAB_18088b9a9:
     }
   }
   while ((iVar7 = (int)plVar4, plVar4 = plVar9, -1 < iVar7 && (iVar7 < *(int *)(dataSource + 0x58)))) {
-    lVar6 = *(longlong *)(*(longlong *)(dataSource + 0x50) + (longlong)iVar7 * 8);
+    contextData = *(longlong *)(*(longlong *)(dataSource + 0x50) + (longlong)iVar7 * 8);
     plVar4 = (longlong *)(uiContext + 0xba0);
     if (uiContext == -0xad8) {
       plVar4 = plVar9;
@@ -368022,21 +368022,21 @@ LAB_18088ba89:
     }
     else {
       lVar5 = (longlong)
-              (int)((*(uint *)(lVar6 + 0x1c) ^ *(uint *)(lVar6 + 0x18) ^ *(uint *)(lVar6 + 0x14) ^
-                    *(uint *)(lVar6 + 0x10)) & (int)plVar4[1] - 1U);
+              (int)((*(uint *)(contextData + 0x1c) ^ *(uint *)(contextData + 0x18) ^ *(uint *)(contextData + 0x14) ^
+                    *(uint *)(contextData + 0x10)) & (int)plVar4[1] - 1U);
       piVar8 = (int *)(*plVar4 + lVar5 * 4);
       validationResult = *(int *)(*plVar4 + lVar5 * 4);
       if (validationResult == -1) goto LAB_18088ba89;
       lVar5 = plVar4[2];
       do {
         stringCompareIndex = (longlong)validationResult;
-        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x10)) &&
-           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x18))) {
+        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x10)) &&
+           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x18))) {
           validationResult = *piVar8;
-          lVar6 = (longlong)validationResult;
-          *(undefined1 *)(lVar5 + 0x14 + lVar6 * 0x18) = 0;
-          *piVar8 = *(int *)(lVar5 + 0x10 + lVar6 * 0x18);
-          *(int *)(lVar5 + 0x10 + lVar6 * 0x18) = (int)plVar4[4];
+          contextData = (longlong)validationResult;
+          *(undefined1 *)(lVar5 + 0x14 + contextData * 0x18) = 0;
+          *piVar8 = *(int *)(lVar5 + 0x10 + contextData * 0x18);
+          *(int *)(lVar5 + 0x10 + contextData * 0x18) = (int)plVar4[4];
           *(int *)((longlong)plVar4 + 0x24) = *(int *)((longlong)plVar4 + 0x24) + -1;
           *(int *)(plVar4 + 4) = validationResult;
           goto LAB_18088ba89;
@@ -368048,7 +368048,7 @@ LAB_18088ba89:
     }
   }
   while ((iVar7 = (int)plVar4, plVar4 = plVar9, -1 < iVar7 && (iVar7 < *(int *)(dataSource + 0x68)))) {
-    lVar6 = *(longlong *)(*(longlong *)(dataSource + 0x60) + (longlong)iVar7 * 8);
+    contextData = *(longlong *)(*(longlong *)(dataSource + 0x60) + (longlong)iVar7 * 8);
     plVar4 = (longlong *)(uiContext + 0xbc8);
     if (uiContext == -0xad8) {
       plVar4 = plVar9;
@@ -368060,21 +368060,21 @@ LAB_18088bb69:
     }
     else {
       lVar5 = (longlong)
-              (int)((*(uint *)(lVar6 + 0x1c) ^ *(uint *)(lVar6 + 0x18) ^ *(uint *)(lVar6 + 0x14) ^
-                    *(uint *)(lVar6 + 0x10)) & (int)plVar4[1] - 1U);
+              (int)((*(uint *)(contextData + 0x1c) ^ *(uint *)(contextData + 0x18) ^ *(uint *)(contextData + 0x14) ^
+                    *(uint *)(contextData + 0x10)) & (int)plVar4[1] - 1U);
       piVar8 = (int *)(*plVar4 + lVar5 * 4);
       validationResult = *(int *)(*plVar4 + lVar5 * 4);
       if (validationResult == -1) goto LAB_18088bb69;
       lVar5 = plVar4[2];
       do {
         stringCompareIndex = (longlong)validationResult;
-        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x10)) &&
-           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x18))) {
+        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x10)) &&
+           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x18))) {
           validationResult = *piVar8;
-          lVar6 = (longlong)validationResult;
-          *(undefined1 *)(lVar5 + 0x14 + lVar6 * 0x18) = 0;
-          *piVar8 = *(int *)(lVar5 + 0x10 + lVar6 * 0x18);
-          *(int *)(lVar5 + 0x10 + lVar6 * 0x18) = (int)plVar4[4];
+          contextData = (longlong)validationResult;
+          *(undefined1 *)(lVar5 + 0x14 + contextData * 0x18) = 0;
+          *piVar8 = *(int *)(lVar5 + 0x10 + contextData * 0x18);
+          *(int *)(lVar5 + 0x10 + contextData * 0x18) = (int)plVar4[4];
           *(int *)((longlong)plVar4 + 0x24) = *(int *)((longlong)plVar4 + 0x24) + -1;
           *(int *)(plVar4 + 4) = validationResult;
           goto LAB_18088bb69;
@@ -368086,7 +368086,7 @@ LAB_18088bb69:
     }
   }
   while ((iVar7 = (int)plVar4, plVar4 = plVar9, -1 < iVar7 && (iVar7 < *(int *)(dataSource + 0x78)))) {
-    lVar6 = *(longlong *)(*(longlong *)(dataSource + 0x70) + (longlong)iVar7 * 8);
+    contextData = *(longlong *)(*(longlong *)(dataSource + 0x70) + (longlong)iVar7 * 8);
     plVar4 = (longlong *)func_0x00018086dc30(uiContext + 0xad8);
     if (((plVar4 == (longlong *)0x0) || (validationResult = *(int *)((longlong)plVar4 + 0x24), validationResult == 0)) ||
        ((int)plVar4[1] == 0)) {
@@ -368095,21 +368095,21 @@ LAB_18088bc4c:
     }
     else {
       lVar5 = (longlong)
-              (int)((*(uint *)(lVar6 + 0x1c) ^ *(uint *)(lVar6 + 0x18) ^ *(uint *)(lVar6 + 0x14) ^
-                    *(uint *)(lVar6 + 0x10)) & (int)plVar4[1] - 1U);
+              (int)((*(uint *)(contextData + 0x1c) ^ *(uint *)(contextData + 0x18) ^ *(uint *)(contextData + 0x14) ^
+                    *(uint *)(contextData + 0x10)) & (int)plVar4[1] - 1U);
       piVar8 = (int *)(*plVar4 + lVar5 * 4);
       operationResult = *(int *)(*plVar4 + lVar5 * 4);
       if (operationResult == -1) goto LAB_18088bc4c;
       lVar5 = plVar4[2];
       do {
         stringCompareIndex = (longlong)operationResult;
-        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x10)) &&
-           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x18))) {
+        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x10)) &&
+           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x18))) {
           operationResult = *piVar8;
-          lVar6 = (longlong)operationResult;
-          *(undefined1 *)(lVar5 + 0x14 + lVar6 * 0x18) = 0;
-          *piVar8 = *(int *)(lVar5 + 0x10 + lVar6 * 0x18);
-          *(int *)(lVar5 + 0x10 + lVar6 * 0x18) = (int)plVar4[4];
+          contextData = (longlong)operationResult;
+          *(undefined1 *)(lVar5 + 0x14 + contextData * 0x18) = 0;
+          *piVar8 = *(int *)(lVar5 + 0x10 + contextData * 0x18);
+          *(int *)(lVar5 + 0x10 + contextData * 0x18) = (int)plVar4[4];
           *(int *)((longlong)plVar4 + 0x24) = validationResult + -1;
           *(int *)(plVar4 + 4) = operationResult;
           goto LAB_18088bc4c;
@@ -368121,7 +368121,7 @@ LAB_18088bc4c:
     }
   }
   while ((iVar7 = (int)plVar4, plVar4 = plVar9, -1 < iVar7 && (iVar7 < *(int *)(dataSource + 0xe8)))) {
-    lVar6 = *(longlong *)(*(longlong *)(dataSource + 0xe0) + (longlong)iVar7 * 8);
+    contextData = *(longlong *)(*(longlong *)(dataSource + 0xe0) + (longlong)iVar7 * 8);
     plVar4 = (longlong *)(uiContext + 0xbf0);
     if (uiContext == -0xad8) {
       plVar4 = plVar9;
@@ -368133,21 +368133,21 @@ LAB_18088bd29:
     }
     else {
       lVar5 = (longlong)
-              (int)((*(uint *)(lVar6 + 0x1c) ^ *(uint *)(lVar6 + 0x18) ^ *(uint *)(lVar6 + 0x14) ^
-                    *(uint *)(lVar6 + 0x10)) & (int)plVar4[1] - 1U);
+              (int)((*(uint *)(contextData + 0x1c) ^ *(uint *)(contextData + 0x18) ^ *(uint *)(contextData + 0x14) ^
+                    *(uint *)(contextData + 0x10)) & (int)plVar4[1] - 1U);
       piVar8 = (int *)(*plVar4 + lVar5 * 4);
       validationResult = *(int *)(*plVar4 + lVar5 * 4);
       if (validationResult == -1) goto LAB_18088bd29;
       lVar5 = plVar4[2];
       do {
         stringCompareIndex = (longlong)validationResult;
-        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x10)) &&
-           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x18))) {
+        if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x10)) &&
+           (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x18))) {
           validationResult = *piVar8;
-          lVar6 = (longlong)validationResult;
-          *(undefined1 *)(lVar5 + 0x14 + lVar6 * 0x18) = 0;
-          *piVar8 = *(int *)(lVar5 + 0x10 + lVar6 * 0x18);
-          *(int *)(lVar5 + 0x10 + lVar6 * 0x18) = (int)plVar4[4];
+          contextData = (longlong)validationResult;
+          *(undefined1 *)(lVar5 + 0x14 + contextData * 0x18) = 0;
+          *piVar8 = *(int *)(lVar5 + 0x10 + contextData * 0x18);
+          *(int *)(lVar5 + 0x10 + contextData * 0x18) = (int)plVar4[4];
           *(int *)((longlong)plVar4 + 0x24) = *(int *)((longlong)plVar4 + 0x24) + -1;
           *(int *)(plVar4 + 4) = validationResult;
           goto LAB_18088bd29;
@@ -368164,7 +368164,7 @@ LAB_18088bd29:
       if ((iVar7 < 0) || (*(int *)(dataSource + 0x1c8) <= iVar7)) {
         return 0;
       }
-      lVar6 = *(longlong *)(*(longlong *)(dataSource + 0x1c0) + (longlong)iVar7 * 8);
+      contextData = *(longlong *)(*(longlong *)(dataSource + 0x1c0) + (longlong)iVar7 * 8);
       plVar4 = (longlong *)(uiContext + 0xc18);
       if (uiContext == -0xad8) {
         plVar4 = plVar9;
@@ -368175,21 +368175,21 @@ LAB_18088be19:
       plVar4 = (longlong *)(ulonglong)(iVar7 + 1);
     }
     lVar5 = (longlong)
-            (int)((*(uint *)(lVar6 + 0x1c) ^ *(uint *)(lVar6 + 0x18) ^ *(uint *)(lVar6 + 0x14) ^
-                  *(uint *)(lVar6 + 0x10)) & (int)plVar4[1] - 1U);
+            (int)((*(uint *)(contextData + 0x1c) ^ *(uint *)(contextData + 0x18) ^ *(uint *)(contextData + 0x14) ^
+                  *(uint *)(contextData + 0x10)) & (int)plVar4[1] - 1U);
     piVar8 = (int *)(*plVar4 + lVar5 * 4);
     validationResult = *(int *)(*plVar4 + lVar5 * 4);
     if (validationResult == -1) goto LAB_18088be19;
     lVar5 = plVar4[2];
     do {
       stringCompareIndex = (longlong)validationResult;
-      if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x10)) &&
-         (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(lVar6 + 0x18))) {
+      if ((*(longlong *)(lVar5 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x10)) &&
+         (*(longlong *)(lVar5 + 8 + stringCompareIndex * 0x18) == *(longlong *)(contextData + 0x18))) {
         validationResult = *piVar8;
-        lVar6 = (longlong)validationResult;
-        *(undefined1 *)(lVar5 + 0x14 + lVar6 * 0x18) = 0;
-        *piVar8 = *(int *)(lVar5 + 0x10 + lVar6 * 0x18);
-        *(int *)(lVar5 + 0x10 + lVar6 * 0x18) = (int)plVar4[4];
+        contextData = (longlong)validationResult;
+        *(undefined1 *)(lVar5 + 0x14 + contextData * 0x18) = 0;
+        *piVar8 = *(int *)(lVar5 + 0x10 + contextData * 0x18);
+        *(int *)(lVar5 + 0x10 + contextData * 0x18) = (int)plVar4[4];
         *(int *)((longlong)plVar4 + 0x24) = *(int *)((longlong)plVar4 + 0x24) + -1;
         *(int *)(plVar4 + 4) = validationResult;
         goto LAB_18088be19;
@@ -370947,7 +370947,7 @@ undefined8 FUN_18088eea0(undefined8 uiContext,float *dataSource)
   char *pcVar3;
   float fVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   float fVar7;
   undefined4 uStackX_18;
   undefined4 uStackX_1c;
@@ -370965,16 +370965,16 @@ undefined8 FUN_18088eea0(undefined8 uiContext,float *dataSource)
     }
     else if (*pcStackX_20 != '\0') {
       cVar1 = *pcVar3;
-      lVar6 = FUN_18076b7c0(pcVar3,&UNK_180986240);
-      if (lVar6 == 0) {
-        lVar6 = FUN_18076b7c0(pcVar3,&UNK_180986244);
-        if (lVar6 == 0) {
-          lVar6 = FUN_18076b7c0(pcVar3,&UNK_180986248);
-          if (lVar6 == 0) {
-            lVar6 = FUN_18076b7c0(pcVar3,&UNK_18098624c);
-            if (lVar6 == 0) {
-              lVar6 = FUN_18076b7c0(pcVar3,&UNK_180986250);
-              if (lVar6 == 0) {
+      contextData = FUN_18076b7c0(pcVar3,&UNK_180986240);
+      if (contextData == 0) {
+        contextData = FUN_18076b7c0(pcVar3,&UNK_180986244);
+        if (contextData == 0) {
+          contextData = FUN_18076b7c0(pcVar3,&UNK_180986248);
+          if (contextData == 0) {
+            contextData = FUN_18076b7c0(pcVar3,&UNK_18098624c);
+            if (contextData == 0) {
+              contextData = FUN_18076b7c0(pcVar3,&UNK_180986250);
+              if (contextData == 0) {
                 return 0x13;
               }
             }
@@ -371987,7 +371987,7 @@ longlong * FUN_18088f832(void)
   uint uVar3;
   uint uVar4;
   longlong *plVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   longlong lVar7;
   int iVar8;
   longlong context;
@@ -372030,13 +372030,13 @@ longlong * FUN_18088f832(void)
                       (int)((uVar3 ^ uVar4 ^ uStack0000000000000028 ^ uStack000000000000002c) &
                            *(int *)(context + 0x110) - 1U) * 4), iVar8 != -1)) {
     do {
-      plVar6 = (longlong *)((longlong)iVar8 * 0x20 + *(longlong *)(context + 0x118));
-      if ((*plVar6 == lVar7) &&
-         (plVar6[1] == CONCAT44(uStack000000000000002c,uStack0000000000000028))) {
-        plVar5 = (longlong *)plVar6[3];
+      pcontextData = (longlong *)((longlong)iVar8 * 0x20 + *(longlong *)(context + 0x118));
+      if ((*pcontextData == lVar7) &&
+         (pcontextData[1] == CONCAT44(uStack000000000000002c,uStack0000000000000028))) {
+        plVar5 = (longlong *)pcontextData[3];
         break;
       }
-      iVar8 = (int)plVar6[2];
+      iVar8 = (int)pcontextData[2];
     } while (iVar8 != -1);
   }
   if (plVar5 == (longlong *)0x0) {
@@ -372047,14 +372047,14 @@ longlong * FUN_18088f832(void)
   }
   else {
 LAB_18088f951:
-    plVar6 = plVar9;
+    pcontextData = plVar9;
     if (((*(int *)((longlong)plVar5 + 0x24) != 0) && ((int)plVar5[1] != 0)) &&
        (iVar8 = *(int *)(*plVar5 + -4 + (longlong)(int)plVar5[1] * 4), iVar8 != -1)) {
       componentIndex = plVar5[2];
       do {
         lVar7 = (longlong)iVar8;
         if (*(int *)(componentIndex + lVar7 * 0x10) == -1) {
-          plVar6 = *(longlong **)(componentIndex + 8 + lVar7 * 0x10);
+          pcontextData = *(longlong **)(componentIndex + 8 + lVar7 * 0x10);
           break;
         }
         iVar8 = *(int *)(componentIndex + 4 + lVar7 * 0x10);
@@ -372064,15 +372064,15 @@ LAB_18088f951:
                     // WARNING: Subroutine does not return
       FUN_180768400(allocatedMemory);
     }
-    if (plVar6 != (longlong *)0x0) {
+    if (pcontextData != (longlong *)0x0) {
       if (*(longlong **)(in_stack_00000050 + 8) == (longlong *)0x0) {
-        if (plVar6[9] == 0) {
-          FUN_18088c9b0(in_stack_00000050,plVar6);
-          plVar6[9] = in_stack_00000050;
+        if (pcontextData[9] == 0) {
+          FUN_18088c9b0(in_stack_00000050,pcontextData);
+          pcontextData[9] = in_stack_00000050;
           return (longlong *)0x0;
         }
       }
-      else if ((plVar6[9] == in_stack_00000050) && (*(longlong **)(in_stack_00000050 + 8) == plVar6)
+      else if ((pcontextData[9] == in_stack_00000050) && (*(longlong **)(in_stack_00000050 + 8) == pcontextData)
               ) {
         return (longlong *)0x0;
       }
@@ -372175,7 +372175,7 @@ longlong FUN_18088fa22(void)
   longlong lVar4;
   int iVar5;
   longlong context;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   longlong in_stack_00000040;
   
@@ -372196,14 +372196,14 @@ longlong FUN_18088fa22(void)
     }
   }
   else {
-    lVar6 = lVar7;
+    contextData = lVar7;
     if (((*(int *)((longlong)pstringCompareIndex + 0x24) != 0) && ((int)pstringCompareIndex[1] != 0)) &&
        (iVar5 = *(int *)(*pstringCompareIndex + -4 + (longlong)(int)pstringCompareIndex[1] * 4), iVar5 != -1)) {
       componentIndex = pstringCompareIndex[2];
       do {
         lVar4 = (longlong)iVar5;
         if (*(int *)(componentIndex + lVar4 * 0x10) == -1) {
-          lVar6 = *(longlong *)(componentIndex + 8 + lVar4 * 0x10);
+          contextData = *(longlong *)(componentIndex + 8 + lVar4 * 0x10);
           break;
         }
         iVar5 = *(int *)(componentIndex + 4 + lVar4 * 0x10);
@@ -372213,16 +372213,16 @@ longlong FUN_18088fa22(void)
                     // WARNING: Subroutine does not return
       FUN_180768400(allocatedMemory);
     }
-    if (lVar6 != 0) {
+    if (contextData != 0) {
       if (*(longlong *)(in_stack_00000040 + 8) == 0) {
-        if (*(longlong *)(lVar6 + 0x60) == 0) {
-          *(longlong *)(in_stack_00000040 + 8) = lVar6;
-          *(longlong *)(lVar6 + 0x60) = in_stack_00000040;
+        if (*(longlong *)(contextData + 0x60) == 0) {
+          *(longlong *)(in_stack_00000040 + 8) = contextData;
+          *(longlong *)(contextData + 0x60) = in_stack_00000040;
           return 0;
         }
       }
-      else if ((*(longlong *)(lVar6 + 0x60) == in_stack_00000040) &&
-              (*(longlong *)(in_stack_00000040 + 8) == lVar6)) {
+      else if ((*(longlong *)(contextData + 0x60) == in_stack_00000040) &&
+              (*(longlong *)(in_stack_00000040 + 8) == contextData)) {
         return 0;
       }
       lVar7 = 0x1c;
@@ -373210,7 +373210,7 @@ undefined8 FUN_180890270(longlong uiContext)
   int compareResult;
   undefined8 uVar4;
   undefined8 uVar5;
-  longlong *plVar6;
+  longlong *pcontextData;
   int iVar7;
   ulonglong uVar8;
   int iVar9;
@@ -373246,10 +373246,10 @@ undefined8 FUN_180890270(longlong uiContext)
         uVar8 = 0;
         iVar7 = *(int *)(allocatedMemory + 0x4e4);
         if (0 < iVar7) {
-          plVar6 = (longlong *)*pallocatedMemory1;
+          pcontextData = (longlong *)*pallocatedMemory1;
           functionResult0 = uVar8;
           do {
-            if (*plVar6 == componentIndex) {
+            if (*pcontextData == componentIndex) {
               if (-1 < (int)functionResult0) {
                 return 0;
               }
@@ -373257,7 +373257,7 @@ undefined8 FUN_180890270(longlong uiContext)
             }
             functionResult0 = (ulonglong)((int)functionResult0 + 1);
             uVar8 = uVar8 + 1;
-            plVar6 = plVar6 + 1;
+            pcontextData = pcontextData + 1;
           } while ((longlong)uVar8 < (longlong)iVar7);
         }
         iVar7 = iVar7 + 1;
@@ -376527,7 +376527,7 @@ undefined8 FUN_180892ac0(longlong uiContext,longlong dataSource)
   longlong stringCompareIndex;
   undefined8 uVar4;
   longlong lVar5;
-  longlong lVar6;
+  longlong contextData;
   int aiStackX_8 [2];
   longlong lStackX_18;
   
@@ -376536,22 +376536,22 @@ undefined8 FUN_180892ac0(longlong uiContext,longlong dataSource)
     if ((int)uVar4 != 0) {
       return uVar4;
     }
-    lVar6 = lStackX_18;
+    contextData = lStackX_18;
     if (lStackX_18 != 0) {
-      lVar6 = lStackX_18 + -8;
+      contextData = lStackX_18 + -8;
     }
-    componentIndex = *(longlong *)(lVar6 + 0x18);
+    componentIndex = *(longlong *)(contextData + 0x18);
     if (allocatedMemoryPtr == 0) {
       return 0x1e;
     }
     aiStackX_8[0] = 0;
-    uVar4 = FUN_180840950(dataSource,lVar6,uiContext + 0x28,aiStackX_8);
+    uVar4 = FUN_180840950(dataSource,contextData,uiContext + 0x28,aiStackX_8);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
     lVar5 = (longlong)aiStackX_8[0];
-    lVar6 = *(longlong *)(lVar6 + 0x20);
-    stringCompareIndex = *(longlong *)(lVar6 + 0x10 + lVar5 * 0x18);
+    contextData = *(longlong *)(contextData + 0x20);
+    stringCompareIndex = *(longlong *)(contextData + 0x10 + lVar5 * 0x18);
     if ((*(byte *)(stringCompareIndex + 0x34) & 0x11) == 0) {
       uVar4 = FUN_18084de40(stringCompareIndex,uiContext + 0xa8,uiContext + 0x18);
       if ((int)uVar4 != 0) {
@@ -376561,7 +376561,7 @@ undefined8 FUN_180892ac0(longlong uiContext,longlong dataSource)
       if ((*(float *)(stringCompareIndex + 0x38) <= floatResult) &&
          (floatResult < *(float *)(stringCompareIndex + 0x3c) || floatResult == *(float *)(stringCompareIndex + 0x3c))) {
         componentIndex = *(longlong *)(componentIndex + 0x90);
-        *(float *)(lVar6 + 4 + lVar5 * 0x18) = floatResult;
+        *(float *)(contextData + 4 + lVar5 * 0x18) = floatResult;
         *(undefined8 *)(uiContext + 0x20) = *(undefined8 *)(componentIndex + (longlong)aiStackX_8[0] * 8);
                     // WARNING: Subroutine does not return
         FUN_18088d720(*(undefined8 *)(dataSource + 0x98),uiContext);
@@ -378956,7 +378956,7 @@ void FUN_180895360(longlong uiContext,undefined1 *dataSource,int *targetBuffer)
   char cVar3;
   int iVar4;
   undefined8 uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   int iVar8;
   longlong lVar9;
@@ -379001,15 +379001,15 @@ void FUN_180895360(longlong uiContext,undefined1 *dataSource,int *targetBuffer)
         lVar7 = -0x8000000000000000;
       }
       componentIndex = *(longlong *)(bufferData + 0xa0);
-      lVar6 = *(longlong *)(bufferData + 0x98);
-      if (lVar6 == 0) {
+      contextData = *(longlong *)(bufferData + 0x98);
+      if (contextData == 0) {
         floatResult1 = (float)*(uint *)(uiContext + 0x68) * floatResult1;
-        lVar6 = 0;
+        contextData = 0;
         if ((9.223372e+18 <= floatResult1) && (floatResult1 = floatResult1 - 9.223372e+18, floatResult1 < 9.223372e+18)) {
-          lVar6 = -0x8000000000000000;
+          contextData = -0x8000000000000000;
         }
-        lVar6 = componentIndex - ((longlong)floatResult1 + lVar6);
-        *(longlong *)(bufferData + 0x98) = lVar6;
+        contextData = componentIndex - ((longlong)floatResult1 + contextData);
+        *(longlong *)(bufferData + 0x98) = contextData;
       }
       isCharacterMatch = *(byte *)(uiContext + 0x6c);
       if (*(longlong *)(bufferData + 0xc0) != 0) {
@@ -379019,7 +379019,7 @@ void FUN_180895360(longlong uiContext,undefined1 *dataSource,int *targetBuffer)
                           );
         if (iVar4 != 0) goto FUN_180895b89;
       }
-      if (((((isCharacterMatch & 2) != 0 || (longlong)floatResult0 + lVar7 < componentIndex - lVar6) &&
+      if (((((isCharacterMatch & 2) != 0 || (longlong)floatResult0 + lVar7 < componentIndex - contextData) &&
            (iVar4 = *piStack_6f0, *piStack_6f0 = iVar4 + 1, iVar4 < 10)) &&
           ((*(uint *)(uiContext + 0x6c) >> 0x18 & 1) == 0)) &&
          (((*(uint *)(uiContext + 0x6c) >> 0x19 & 1) != 0 && (iVar8 == *(int *)(bufferData + 0xb0))))) {
@@ -384224,7 +384224,7 @@ void FUN_1808999c1(undefined8 *uiContext,undefined8 dataSource)
   longlong unaff_RBP;
   uint uVar4;
   ulonglong uVar5;
-  longlong lVar6;
+  longlong contextData;
   ulonglong eventTypeCode;
   longlong unaff_R14;
   ulonglong uVar8;
@@ -384302,12 +384302,12 @@ void FUN_1808999c1(undefined8 *uiContext,undefined8 dataSource)
           uVar9 = extraout_XMM0_Da_03;
           if (0 < compareResult) {
             do {
-              lVar6 = *(longlong *)(unaff_R14 + 0x50) + uVar5;
-              validationResult = FUN_180899ef0(uVar9,lVar6);
+              contextData = *(longlong *)(unaff_R14 + 0x50) + uVar5;
+              validationResult = FUN_180899ef0(uVar9,contextData);
               if (validationResult != 0) {
                 return;
               }
-              uVar4 = *(uint *)(lVar6 + 0x10);
+              uVar4 = *(uint *)(contextData + 0x10);
               pfunctionResult = *(undefined8 **)(context + 8);
               if (uVar4 < 0x8000) {
                 *(short *)(unaff_RBP + 0x20) = (short)uVar4;
@@ -384321,7 +384321,7 @@ void FUN_1808999c1(undefined8 *uiContext,undefined8 dataSource)
               if (validationResult != 0) {
                 return;
               }
-              validationResult = FUN_1808affb0(extraout_XMM0_Da_04,lVar6 + 0x14);
+              validationResult = FUN_1808affb0(extraout_XMM0_Da_04,contextData + 0x14);
               if (validationResult != 0) {
                 return;
               }
@@ -384339,15 +384339,15 @@ void FUN_1808999c1(undefined8 *uiContext,undefined8 dataSource)
             if (validationResult == 0) {
               if (0 < compareResult) {
                 do {
-                  lVar6 = *(longlong *)(unaff_R14 + 0x70);
+                  contextData = *(longlong *)(unaff_R14 + 0x70);
                   pfunctionResult = *(undefined8 **)(context + 8);
-                  *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(lVar6 + eventTypeCode * 8);
+                  *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(contextData + eventTypeCode * 8);
                   validationResult = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + 0x20,4);
                   if (validationResult != 0) {
                     return;
                   }
                   pfunctionResult = *(undefined8 **)(context + 8);
-                  *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(lVar6 + 4 + eventTypeCode * 8);
+                  *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(contextData + 4 + eventTypeCode * 8);
                   validationResult = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + 0x20,4);
                   if (validationResult != 0) {
                     return;
@@ -384383,7 +384383,7 @@ void FUN_180899ae6(undefined8 *uiContext)
   longlong unaff_RSI;
   longlong lVar5;
   longlong unaff_RDI;
-  longlong lVar6;
+  longlong contextData;
   longlong unaff_R14;
   longlong lVar7;
   undefined4 extraout_XMM0_Da;
@@ -384393,12 +384393,12 @@ void FUN_180899ae6(undefined8 *uiContext)
   
   compareResult = (**(code **)*uiContext)();
   if (compareResult == 0) {
-    lVar6 = unaff_RDI;
+    contextData = unaff_RDI;
     lVar7 = unaff_RDI;
     uVar8 = extraout_XMM0_Da;
     if (0 < (int)unaff_RSI) {
       do {
-        lVar5 = *(longlong *)(unaff_R14 + 0x50) + lVar6;
+        lVar5 = *(longlong *)(unaff_R14 + 0x50) + contextData;
         compareResult = FUN_180899ef0(uVar8,lVar5);
         if (compareResult != 0) {
           return;
@@ -384422,7 +384422,7 @@ void FUN_180899ae6(undefined8 *uiContext)
           return;
         }
         lVar7 = lVar7 + 1;
-        lVar6 = lVar6 + 0x18;
+        contextData = contextData + 0x18;
         uVar8 = extraout_XMM0_Da_01;
       } while (lVar7 < unaff_RSI);
     }
@@ -384435,15 +384435,15 @@ void FUN_180899ae6(undefined8 *uiContext)
       if (iVar4 == 0) {
         if (0 < compareResult) {
           do {
-            lVar6 = *(longlong *)(unaff_R14 + 0x70);
+            contextData = *(longlong *)(unaff_R14 + 0x70);
             psemaphoreHandle = *(undefined8 **)(context + 8);
-            *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(lVar6 + unaff_RDI * 8);
+            *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(contextData + unaff_RDI * 8);
             iVar4 = (**(code **)*psemaphoreHandle)(psemaphoreHandle,unaff_RBP + 0x20,4);
             if (iVar4 != 0) {
               return;
             }
             psemaphoreHandle = *(undefined8 **)(context + 8);
-            *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(lVar6 + 4 + unaff_RDI * 8);
+            *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(contextData + 4 + unaff_RDI * 8);
             iVar4 = (**(code **)*psemaphoreHandle)(psemaphoreHandle,unaff_RBP + 0x20,4);
             if (iVar4 != 0) {
               return;
@@ -385031,7 +385031,7 @@ undefined8 FUN_18089a370(longlong uiContext,longlong dataSource)
   ushort uVar3;
   undefined8 uVar4;
   ushort uVar5;
-  longlong lVar6;
+  longlong contextData;
   longlong lVar7;
   longlong lVar8;
   int aiStack_48 [4];
@@ -385101,9 +385101,9 @@ undefined8 FUN_18089a370(longlong uiContext,longlong dataSource)
             lVar8 = lVar7;
             if (0 < validationResult) {
               do {
-                lVar6 = *(longlong *)(dataSource + 600) + lVar7;
-                sVar1 = *(short *)(lVar6 + 0x114);
-                uVar4 = FUN_180899ef0(uiContext,lVar6);
+                contextData = *(longlong *)(dataSource + 600) + lVar7;
+                sVar1 = *(short *)(contextData + 0x114);
+                uVar4 = FUN_180899ef0(uiContext,contextData);
                 if ((int)uVar4 != 0) {
                   return uVar4;
                 }
@@ -385113,7 +385113,7 @@ undefined8 FUN_18089a370(longlong uiContext,longlong dataSource)
                 if ((int)uVar4 != 0) {
                   return uVar4;
                 }
-                if ((sVar1 != 0) && (uVar4 = FUN_180899d90(uiContext,lVar6 + 0x10), (int)uVar4 != 0))
+                if ((sVar1 != 0) && (uVar4 = FUN_180899d90(uiContext,contextData + 0x10), (int)uVar4 != 0))
                 {
                   return uVar4;
                 }
@@ -387601,7 +387601,7 @@ void FUN_18089be10(longlong uiContext,undefined8 *dataSource,int targetBuffer)
   int compareResult;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  longlong contextData;
   uint eventTypeCode;
   uint auStackX_8 [2];
   uint auStackX_20 [2];
@@ -387660,7 +387660,7 @@ void FUN_18089be10(longlong uiContext,undefined8 *dataSource,int targetBuffer)
   if (validationResult != 0) {
     return;
   }
-  lVar6 = (longlong)(int)auStackX_8[0];
+  contextData = (longlong)(int)auStackX_8[0];
   uVar4 = (int)*(uint *)(uiContext + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(uiContext + 0x2c) ^ uVar4) - uVar4) < (int)auStackX_8[0]) &&
      (validationResult = FUN_180849030(uiContext + 0x20,auStackX_8[0]), validationResult != 0)) {
@@ -387674,7 +387674,7 @@ void FUN_18089be10(longlong uiContext,undefined8 *dataSource,int targetBuffer)
   *(uint *)(uiContext + 0x28) = functionResult;
   if (functionResult != 0) {
     if (*(int *)(dataSource[1] + 0x18) == 0) {
-      validationResult = FUN_1808aed00(*dataSource,*(undefined8 *)(uiContext + 0x20),lVar6);
+      validationResult = FUN_1808aed00(*dataSource,*(undefined8 *)(uiContext + 0x20),contextData);
       if (validationResult == 0) goto LAB_18089bfc7;
     }
     else {
@@ -392457,7 +392457,7 @@ ulonglong FUN_18089e4f0(longlong uiContext,undefined8 *dataSource)
   uint uVar3;
   ulonglong uVar4;
   undefined4 *componentContextPtr;
-  longlong lVar6;
+  longlong contextData;
   undefined4 *puStack_88;
   undefined8 uStack_80;
   undefined4 uStack_78;
@@ -392514,19 +392514,19 @@ LAB_18089e70b:
         if ((int)uStack_80 != 0) {
           for (; (puStack_88 <= componentContextPtr && (componentContextPtr < puStack_88 + (int)uStack_80));
               componentContextPtr = componentContextPtr + 1) {
-            lVar6 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,
+            contextData = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,
                                   0,0,1);
-            if (lVar6 == 0) {
+            if (contextData == 0) {
               uVar4 = 0x26;
               goto LAB_18089e70b;
             }
             functionResult = *componentContextPtr;
-            *(longlong *)lVar6 = lVar6;
-            *(longlong *)(lVar6 + 8) = lVar6;
-            *(undefined4 *)(lVar6 + 0x10) = functionResult;
-            *(undefined8 *)(lVar6 + 0x18) = 0;
-            *(undefined4 *)(lVar6 + 0x20) = 0;
-            uVar3 = func_0x0001808aec10(uiContext + 0x58,lVar6);
+            *(longlong *)contextData = contextData;
+            *(longlong *)(contextData + 8) = contextData;
+            *(undefined4 *)(contextData + 0x10) = functionResult;
+            *(undefined8 *)(contextData + 0x18) = 0;
+            *(undefined4 *)(contextData + 0x20) = 0;
+            uVar3 = func_0x0001808aec10(uiContext + 0x58,contextData);
             uVar4 = (ulonglong)uVar3;
             if (uVar3 != 0) goto LAB_18089e70b;
           }
