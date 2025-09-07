@@ -108,6 +108,7 @@
 #define SystemMemoryManagerOffset 0x1a0
 #define OperationDataContextOffset 0x30
 #define OperationContextBufferOffset 0x98
+#define SYSTEM_CONTEXT_OFFSET 0x8              // 系统上下文偏移量
 
 // 操作结果常量定义
 #define OperationSuccess 0

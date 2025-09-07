@@ -114910,7 +114910,7 @@ uint64_t * GetAllocatedMemorySize(uint64_t *CharacterCode,uint64_t CharacterCode
   CharacterCode[0x14] = 0;
   CharacterCode[7] = CharacterCodeSize;
   CharacterCode[8] = 0;
-  FUN_180291500();
+  InitializeSystemResources();
   return CharacterCode;
 }
 
@@ -114924,7 +114924,7 @@ fab0(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointe
   uint64_t MemoryAllocationIndex;
   
   MemoryAllocationIndex = 0xfffffffffffffffe;
-  FUN_180291610();
+  CleanupSystemResourcesEx();
   loopCounter = *(long long *)(CharacterCode + 0xa0);
   if (loopCounter != 0) {
     if (SystemDataConfiguration != 0) {
@@ -115354,13 +115354,13 @@ void CleanupSystemContextMemory(long long CharacterCode, uint64_t CharacterCodeS
   BufferStatus = 5;
   loopCounter = 5;
   do {
-    FUN_18005d390(MemoryBlockIndex);
+    ManageSystemResources(MemoryBlockIndex);
     MemoryBlockIndex = MemoryBlockIndex + 8;
     loopCounter = loopCounter + -1;
   } while (loopCounter != 0);
   MemoryBlockIndex = CharacterCode + 0x444;
   do {
-    FUN_18005d390(MemoryBlockIndex);
+    ManageSystemResources(MemoryBlockIndex);
     MemoryBlockIndex = MemoryBlockIndex + 8;
     BufferStatus = BufferStatus + -1;
   } while (BufferStatus != 0);
@@ -116649,7 +116649,19 @@ void UpdateSystemDataTable(int *CharacterCode,uint CharacterCodeSize,uint Utf8In
 
 
 
-2160(int *CharacterCode,uint CharacterCodeSize,uint64_t Utf8InputPointervoid FUN_180122160(int *CharacterCode,uint CharacterCodeSize,uint64_t Utf8InputPointer
+/**
+ * @brief 处理系统验证操作
+ * 
+ * 该函数负责处理系统验证操作，包括字符编码验证和内存地址验证。
+ * 它会检查字符编码的有效性，并确保内存地址的正确性。
+ * 
+ * @param CharacterCode 字符编码指针
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * 
+ * @note 原始函数名：FUN_180122160
+ */
+void ProcessSystemValidation(int *CharacterCode,uint CharacterCodeSize,uint64_t Utf8InputPointer
 {
   int LockResult;
   uint *PrimaryProcessingStatusFlag;
@@ -116686,7 +116698,20 @@ void UpdateSystemDataTable(int *CharacterCode,uint CharacterCodeSize,uint Utf8In
 
 
 
-2210(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180122210(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 执行系统内存操作
+ * 
+ * 该函数负责执行系统内存操作，包括内存分配和数据处理。
+ * 它会处理内存地址，并确保数据正确传输。
+ * 
+ * @param CharacterCode 字符编码标识符
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180122210
+ */
+void ExecuteSystemMemoryOperation(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
 {
   uint64_t ReservedStackSpace;
   uint64_t uStackX_20;
@@ -116700,7 +116725,19 @@ void UpdateSystemDataTable(int *CharacterCode,uint CharacterCodeSize,uint Utf8In
 
 
 
-2240(int *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointervoid FUN_180122240(int *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer
+/**
+ * @brief 验证系统状态
+ * 
+ * 该函数负责验证系统状态，包括字符编码验证和内存边界检查。
+ * 它会确保系统数据的完整性和正确性。
+ * 
+ * @param CharacterCode 字符编码指针
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * 
+ * @note 原始函数名：FUN_180122240
+ */
+void ValidateSystemStatus(int *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer
 {
   int LockResult;
   int CharacterByteCount;
