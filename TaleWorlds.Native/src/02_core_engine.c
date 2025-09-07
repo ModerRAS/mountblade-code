@@ -129532,7 +129532,7 @@ LAB_18012b82d:
     }
     if ((MemoryAllocationIndex9 >> 10 & 1) != 0) {
       FUN_18010e7f0(pSystemMemoryOffset238,&fStack_198);
-      QuaternaryReturnCode = FUN_18010e720(pSystemMemoryOffset238,&uStack_1d8);
+      QuaternaryReturnCode = GetSystemFloatArray(pSystemMemoryOffset238,&uStack_1d8);
       ProcessFloatCalculation(&fStack_198,QuaternaryReturnCode);
       SystemContextValue = pSystemMemoryOffset238[0x5d];
       FloatValue38 = FloatValue34;
