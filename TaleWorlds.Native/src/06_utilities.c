@@ -17075,7 +17075,7 @@ RangeValidationSuccess:
   *(DataWord *)(memoryBlockOffset + 0xa4 + (int64_t)*(int *)(operationBase + 0x18) * 4) =
        *(DataWord *)(resourceDescriptor + ResourceDescriptorValidationOffset);
   memoryBlockOffset = *(int64_t *)(dataBuffer + 0x98);
-  if ((*(int *)(memoryBlockOffset + 0x180) != 0) || (*(int *)(memoryBlockOffset + 0x184) != 0)) {
+  if ((*(int *)(memoryBlockOffset + SystemConfigPrimaryOffset) != 0) || (*(int *)(memoryBlockOffset + SystemConfigSecondaryOffset) != 0)) {
     LocalStackOffset = 0;
     InitializeSystemContextA0(&LocalStackOffset);
     if (LocalStackOffset == *(int64_t *)((int64_t)*(int *)(memoryBlockOffset + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
@@ -17087,7 +17087,7 @@ RangeValidationSuccess:
     }
   }
   *(uint *)(operationBase + OperationBaseOffset8) = *(int *)(operationBase + OperationBaseOffset8) + 0xfU & 0xfffffff0;
-  operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(memoryBlockOffset + 0x1e0));
+  operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(memoryBlockOffset + SystemConfigTertiaryOffset));
   if ((int)operationResult == 0) {
     return 0;
   }
@@ -17124,7 +17124,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
   *(DataWord *)(dataContext + 0x94 + (int64_t)*(int *)(dataDescriptor + 0x18) * 4) =
        *(DataWord *)(resourceDescriptor + ResourceDescriptorValidationOffset);
   dataContext = *(int64_t *)(systemContext + 0x98);
-  if ((*(int *)(dataContext + 0x180) != 0) || (*(int *)(dataContext + 0x184) != 0)) {
+  if ((*(int *)(dataContext + SystemConfigPrimaryOffset) != 0) || (*(int *)(dataContext + SystemConfigSecondaryOffset) != 0)) {
     transferSize = 0;
     InitializeSystemContextA0(&transferSize);
     if (transferSize == *(int64_t *)((int64_t)*(int *)(dataContext + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
@@ -17136,7 +17136,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
     }
   }
   *(uint *)(dataDescriptor + DataDescriptorOffset8) = *(int *)(dataDescriptor + DataDescriptorOffset8) + 0xfU & 0xfffffff0;
-  operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(dataContext + 0x1e0));
+  operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(dataContext + SystemConfigTertiaryOffset));
   if ((int)operationResult == 0) {
     return 0;
   }
@@ -17290,11 +17290,11 @@ DataBuffer ProcessMemoryReleaseA0(int64_t memoryDescriptor,int64_t systemContext
   MemoryFlags = *(DataWord *)(memoryDescriptor + 0x1c);
   ValidationContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
                     (*(int64_t **)(systemContext + 800),&MemoryOffsetPrimary,1);
-  if ((ValidationContext == 0) || (*(int64_t *)(ValidationContext + 0x2e8) == 0)) {
+  if ((ValidationContext == 0) || (*(int64_t *)(ValidationContext + ValidationContextResourceOffset) == 0)) {
     OperationResult = 0x4a;
   }
   else {
-    OperationResult = ValidateAndProcessSystemResourceA0(*(int64_t *)(ValidationContext + 0x2e8),memoryDescriptor + 0x20);
+    OperationResult = ValidateAndProcessSystemResourceA0(*(int64_t *)(ValidationContext + ValidationContextResourceOffset),memoryDescriptor + 0x20);
     if ((int)OperationResult == 0) {
       OperationResult = ProcessSystemEventB0(*(DataBuffer *)(systemContext + 0x98),memoryDescriptor);
       return OperationResult;
@@ -17322,20 +17322,20 @@ DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
   memoryFlags = *(DataWord *)(memoryDescriptor + 0x1c);
   exceptionHandlerContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
                     (*(int64_t **)(systemContext + 800),&memoryOffsetPrimary,1);
-  if ((exceptionHandlerContext == 0) || (*(int64_t *)(exceptionHandlerContext + 0x2e8) == 0)) {
+  if ((exceptionHandlerContext == 0) || (*(int64_t *)(exceptionHandlerContext + ValidationContextResourceOffset) == 0)) {
     return OperationSuccessCode;
   }
-  operationResult = ValidateAndProcessSystemResourceA0(*(int64_t *)(exceptionHandlerContext + 0x2e8),memoryDescriptor + 0x20);
+  operationResult = ValidateAndProcessSystemResourceA0(*(int64_t *)(exceptionHandlerContext + ValidationContextResourceOffset),memoryDescriptor + 0x20);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   exceptionHandlerContext = *(int64_t *)(systemContext + 0x98);
   if (*(int *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset0) != 0) {
-    if (((*(int *)(exceptionHandlerContext + 0x180) == 0) && (*(int *)(exceptionHandlerContext + 0x184) == 0)) ||
+    if (((*(int *)(exceptionHandlerContext + SystemConfigPrimaryOffset) == 0) && (*(int *)(exceptionHandlerContext + SystemConfigSecondaryOffset) == 0)) ||
        (InitializeSystemContextA0(&stackBufferSmall),
        *(int64_t *)((int64_t)*(int *)(exceptionHandlerContext + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress) != 0)) {
       *(uint *)(memoryDescriptor + 8) = *(int *)(memoryDescriptor + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
-      operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(exceptionHandlerContext + 0x1e0));
+      operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(exceptionHandlerContext + SystemConfigTertiaryOffset));
     }
     else {
       operationResult = ProcessSystemDataEC0(exceptionHandlerContext,memoryDescriptor);
@@ -18571,7 +18571,7 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
     redGreenComponents = dataBuffer[1];
     blueAlphaComponents = dataBuffer[2];
     colorPackedData = dataBuffer[3];
-    memoryBlockOffset = (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x150))(exceptionHandlerContextPointer,&colorDataWord,1);
+    memoryBlockOffset = (**(FunctionPointer**)(*exceptionHandlerContextPointer + FunctionPointerTableOffset))(exceptionHandlerContextPointer,&colorDataWord,1);
     if (memoryBlockOffset == 0) {
       colorComponentRedHighByte = blueAlphaComponents >> 0x18;
       colorComponentAlphaHighByte = colorPackedData >> 0x18;
@@ -18691,7 +18691,7 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
     inputRedComponent = operationFlags[1];
     inputGreenComponent = operationFlags[2];
     inputBlueComponent = operationFlags[3];
-    memoryBlockOffset = (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x288))(exceptionHandlerContextPointer, &inputDataWord, 1);
+    memoryBlockOffset = (**(FunctionPointer**)(*exceptionHandlerContextPointer + FunctionPointerSecondaryOffset))(exceptionHandlerContextPointer, &inputDataWord, 1);
     if (memoryBlockOffset == 0) {
       // 颜色分量提取和处理
       stackRedComponentHigh = inputGreenComponent >> 0x18;
@@ -18733,7 +18733,7 @@ void ExecuteSecurityValidationOperation(uint64_t securityContext)
   uint64_t stackGuard;
   
   contextValue = securityContext;
-  securityContextHandle = (**(FunctionPointer**)(systemHandler + 0x288))();
+  securityContextHandle = (**(FunctionPointer**)(systemHandler + FunctionPointerSecondaryOffset))();
   if (securityContextHandle == 0) {
       InitializeSystemBufferA0(&stackBufferHighAddress,0x27,&SystemBufferConfiguration,contextValue & SystemCleanupFlag,
                   contextValue._4_2_);
