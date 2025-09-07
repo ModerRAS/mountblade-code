@@ -24046,14 +24046,14 @@ void CoreEngineExecuteConditionVariableTimedWait(uint64_t CharacterCode, uint64_
   int TimeoutNanoseconds;
   unsigned long long EncodedTimeoutValue;
   
-  EncodedTimeoutValue = EncodingDecodingKey ^ (unsigned long long)aBufferOffset;
+  EncodedTimeoutValue = EncodingDecodingKey ^ (unsigned long long)StackBufferOffset;
   if (*Utf8SourcePointer < 1) {
     TimeoutSeconds = 0;
     TimeoutNanoseconds = 0;
   }
   else {
-    MemoryBlockIndex = _Xtime_get_ticks();
-    MemoryBlockIndex = (MemoryBlockIndex + *Utf8SourcePointer * 10) * 100;
+    SystemTicks = _Xtime_get_ticks();
+    SystemTicks = (SystemTicks + *Utf8SourcePointer * 10) * 100;
     TimeoutSeconds = MemoryBlockIndex / 1000000000;
     TimeoutNanoseconds = (int)MemoryBlockIndex + (int)TimeoutSeconds * -1000000000;
   }
@@ -24066,7 +24066,7 @@ void CoreEngineExecuteConditionVariableTimedWait(uint64_t CharacterCode, uint64_
     __Throw_C_error_std__YAXH_Z(MemoryAllocationIndex);
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(EncodedTimeoutValue ^ (unsigned long long)aBufferOffset);
+  CoreEngineExecuteUtilityFunction(EncodedTimeoutValue ^ (unsigned long long)StackBufferOffset);
 }
 
 
