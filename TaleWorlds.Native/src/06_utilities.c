@@ -59718,7 +59718,17 @@ void ExecuteValidationContextCallbackA7(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180907590(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常数据表A8
+ * 
+ * 初始化异常数据表A8，设置异常处理所需的数据表指针。
+ * 这个函数负责配置异常处理系统的数据表引用。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void InitializeExceptionDataTableA8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -59731,7 +59741,17 @@ void Unwind_180907590(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809075a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行验证上下文回调A9
+ * 
+ * 执行验证上下文回调A9，调用验证上下文相关的回调函数。
+ * 当验证上下文指针不为空时，执行相应的回调操作。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void ExecuteValidationContextCallbackA9(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -59745,7 +59765,17 @@ void Unwind_1809075a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809075b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行验证上下文回调B0
+ * 
+ * 执行验证上下文回调B0，调用验证上下文相关的回调函数。
+ * 当验证上下文指针不为空时，执行相应的回调操作。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void ExecuteValidationContextCallbackB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -59759,7 +59789,17 @@ void Unwind_1809075b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809075c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行验证上下文回调B1
+ * 
+ * 执行验证上下文回调B1，调用验证上下文相关的回调函数。
+ * 当验证上下文指针不为空时，执行相应的回调操作。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void ExecuteValidationContextCallbackB1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -59773,7 +59813,17 @@ void Unwind_1809075c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809075d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行验证上下文回调B2
+ * 
+ * 执行验证上下文回调B2，调用验证上下文相关的回调函数。
+ * 当验证上下文指针不为空时，执行相应的回调操作。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void ExecuteValidationContextCallbackB2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -74065,7 +74115,7 @@ void Unwind_18090c490(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x150)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -74328,7 +74378,7 @@ void Unwind_18090c540(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x180)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -74374,7 +74424,7 @@ void Unwind_18090c550(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x240)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -74450,7 +74500,7 @@ void Unwind_18090c590(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x1e0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -74517,7 +74567,7 @@ void Unwind_18090c5c0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x120)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -74563,7 +74613,7 @@ void Unwind_18090c5d0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x2a0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -74621,7 +74671,7 @@ void Unwind_18090c5f0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x300)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -74667,7 +74717,7 @@ void Unwind_18090c600(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x360)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -75356,7 +75406,7 @@ void Unwind_18090ca20(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0xd0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -75414,7 +75464,7 @@ void Unwind_18090ca40(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x130)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -75484,7 +75534,7 @@ void Unwind_18090ca70(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 400)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -75551,7 +75601,7 @@ void Unwind_18090caa0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x1f0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -75618,7 +75668,7 @@ void Unwind_18090cad0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x250)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -75685,7 +75735,7 @@ void Unwind_18090cb00(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x2b0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -75740,7 +75790,7 @@ void Unwind_18090cb20(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x310)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -75795,7 +75845,7 @@ void Unwind_18090cb40(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x4f0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -75853,7 +75903,7 @@ void Unwind_18090cb60(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x370)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -75908,7 +75958,7 @@ void Unwind_18090cb80(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x3d0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -75999,7 +76049,7 @@ void Unwind_18090cbd0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x430)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -76066,7 +76116,7 @@ void Unwind_18090cc00(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x490)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -76232,7 +76282,7 @@ void Unwind_18090cce0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x50)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -81561,7 +81611,7 @@ void Unwind_18090e760(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x70)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -81619,7 +81669,7 @@ void Unwind_18090e7a0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x1a0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -81665,7 +81715,7 @@ void Unwind_18090e7b0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0xa0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -81711,7 +81761,7 @@ void Unwind_18090e7c0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x100)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -81757,7 +81807,7 @@ void Unwind_18090e7d0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x60)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -81803,7 +81853,7 @@ void Unwind_18090e7e0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x90)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -81849,7 +81899,7 @@ void Unwind_18090e7f0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0xf0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -81895,7 +81945,7 @@ void Unwind_18090e800(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x1b0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -81953,7 +82003,7 @@ void Unwind_18090e820(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x210)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -82011,7 +82061,7 @@ void Unwind_18090e840(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x270)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -82069,7 +82119,7 @@ void Unwind_18090e860(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x2d0)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
@@ -82508,7 +82558,7 @@ void Unwind_18090eb00(DataBuffer operationBase,int64_t dataBuffer)
   int64_t resourceIterator;
   
   if (0 < *(int *)(dataBuffer + 0x140)) {
-    resourceIterator = *(int64_t *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
