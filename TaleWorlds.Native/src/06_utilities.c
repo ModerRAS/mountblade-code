@@ -25007,9 +25007,9 @@ uint64_t GetSystemValidationContext(void)
   uint registerValueEDI;
   uint dataFlags;
   uint validationOutcome;
-  char cStack0000000000000030;
-  uint uStack0000000000000034;
-  DataWord InputParam38;
+  char stackValidationFlag;
+  uint stackAllocationCounter;
+  DataWord inputParameter38;
   
   operationResult = 0;
   dataFlags = 0;
@@ -25026,7 +25026,7 @@ DataCheckpointB:
         validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&ValidationDataBuffer,registerValueESI,registerValueESI,0);
       }
       else {
-        uStack0000000000000034 = 0;
+        stackAllocationCounter = 0;
         validationStatus = AllocateMemory(*validationContextPointer,(int64_t)&ValidationDataBuffer + 4);
         if (validationStatus == 0) {
           if ((uint64_t)uStack0000000000000034 + 1 <= (uint64_t)validationContextPointer[2]) goto ProcessCheckpointContextValidation;
