@@ -99,9 +99,9 @@
  * 
  * 该函数负责获取系统浮点值，包括数值读取和类型转换
  * 
- * @note 原始函数名：FUN_18011feb0
+ * @note 原始函数名：GetSystemFloatValue2
  */
-#define GetSystemFloatValue2 FUN_18011feb0
+#define GetSystemFloatValue2 GetSystemFloatValue2
 
 /**
  * @brief 系统数据处理器
@@ -2496,8 +2496,8 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 原始函数名：FUN_180121200 - 缓冲区操作和参数设置函数
 #define OperateBufferAndSetParameters FUN_180121200
 
-// 原始函数名：FUN_18013c760 - 事件清理和系统维护函数
-#define CleanupEventAndSystemMaintenance FUN_18013c760
+// 原始函数名：CleanupEventAndSystemMaintenance - 事件清理和系统维护函数
+#define CleanupEventAndSystemMaintenance CleanupEventAndSystemMaintenance
 
 // 原始函数名：FUN_180121fa0 - 系统数据查找函数
 #define FindSystemData FUN_180121fa0
@@ -2827,8 +2827,8 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_180121200 - 缓冲区操作和参数设置函数
 #define OperateBufferAndSetParameters FUN_180121200
 
-// 原始函数名：FUN_18013c760 - 事件清理和系统维护函数
-#define CleanupEventAndSystemMaintenance FUN_18013c760
+// 原始函数名：CleanupEventAndSystemMaintenance - 事件清理和系统维护函数
+#define CleanupEventAndSystemMaintenance CleanupEventAndSystemMaintenance
 
 // 原始函数名：FUN_180126ab0 - 比较和排序函数
 #define CompareAndSortData FUN_180126ab0
@@ -4754,7 +4754,7 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ValidateSystemMemory FUN_180120c80
 #define ProcessSystemStatus FUN_18011fc20
 #define ProcessSystemConfigurationData FUN_18011fc50
-#define ProcessSystemFloatData FUN_18011feb0
+#define ProcessSystemFloatData GetSystemFloatValue2
 #define ProcessSystemFloatBuffer FUN_18011e720
 #define ProcessSystemFloatOperation FUN_180129830
 #define ProcessSystemFloatDataWithValidation FUN_180122c80
@@ -4766,20 +4766,20 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ProcessSystemResourceCleanup FUN_180130a80
 #define ValidateSystemDataStructure FUN_18004ba20
 #define ProcessSystemDataStructure FUN_18011fbf0
-#define CalculateSystemFloatValue FUN_1801293c0
+#define CalculateSystemFloatValue CalculateSystemFloatValue
 #define ProcessSystemArrayData FUN_18011a9d0
 #define ProcessSystemSpecialData FUN_18013e9f0
 #define ProcessSystemFloatCalculation FUN_18013e5a0
 #define ProcessSystemFloatInitialization FUN_18013e590
 #define FinalizeSystemFloatOperation FUN_18013e900
-#define CalculateFloatValue FUN_1801293c0
+#define CalculateFloatValue CalculateSystemFloatValue
 #define ProcessMemoryOperation ProcessSystemParameterHandler
 #define InitializeSystemMemory FUN_18012d6a0
 #define ProcessMemoryCleanup FUN_18012d640
 #define FinalizeMemoryOperation FUN_18012d640
 #define ProcessCharacterData FUN_18011a9d0
 #define ValidateCharacterEncoding FUN_18011a9d0
-#define GetFloatValue FUN_1801293c0
+#define GetFloatValue CalculateSystemFloatValue
 #define ProcessStringData FUN_18011a9d0
 #define CalculateDistance FUN_18012ddc0
 #define TransformObjectData FUN_18012ddc0
@@ -7342,8 +7342,8 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 // 原始函数名：FUN_180119960 - 系统数据验证和检查状态函数
 #define ValidateSystemDataAndCheckStatus FUN_180119960
 
-// 原始函数名：FUN_18013c760 - 事件清理和系统维护函数
-#define CleanupEventAndSystemMaintenance FUN_18013c760
+// 原始函数名：CleanupEventAndSystemMaintenance - 事件清理和系统维护函数
+#define CleanupEventAndSystemMaintenance CleanupEventAndSystemMaintenance
 
 // 原始函数名：ValidateSystemDataTablePointer - 系统循环处理函数
 #define ProcessSystemLoop ValidateSystemDataTablePointer
@@ -139829,7 +139829,7 @@ LAB_18012aa45:
     }
     *(uint *)(*(long long *)(SystemParameter2 + 0x28) + 4) = MemoryAllocationCounter | 0x10;
   }
-  FUN_18011feb0(*(void *)(SystemParameter2 + 0x28),RegisterFramePointer + 4);
+  GetSystemFloatValue2(*(void *)(SystemParameter2 + 0x28),RegisterFramePointer + 4);
   if ((((CharacterValidationResult == '\0') && (ContextSecondaryFloat5 == 0.0)) && (*(int *)(SystemParameter2 + 0xc4) < 1)) &&
      (*(int *)(SystemParameter2 + 200) < 1)) {
     ProcessSystemBuffer(&DataTransferStackBuffer,RegisterSourceIndex + 0x16ac,RegisterSourceIndex + 0x16b4);
@@ -140145,7 +140145,7 @@ LAB_18012b510:
       *(void *)(*(long long *)(SystemParameter2 + 0x28) + 0x10) =
            *(void *)(SystemParameter2 + 0x48);
     }
-    StatusBuffer5 = (void *)FUN_18011feb0(*(void *)(SystemParameter2 + 0x28));
+    StatusBuffer5 = (void *)GetSystemFloatValue2(*(void *)(SystemParameter2 + 0x28));
     SystemStatusCode = StatusBuffer5[1];
     *(void *)(RegisterFramePointer + 4) = *StatusBuffer5;
     *(void *)(RegisterFramePointer + 6) = SystemStatusCode;
@@ -141214,7 +141214,7 @@ LAB_18012b510:
       *(void *)(*(long long *)(GeneralRegister14 + 0x28) + 0x10) = *(void *)(GeneralRegister14 + 0x48);
       GeneralRegister14 = SystemParameter2;
     }
-    StatusBuffer2 = (void *)FUN_18011feb0(*(void *)(GeneralRegister14 + 0x28));
+    StatusBuffer2 = (void *)GetSystemFloatValue2(*(void *)(GeneralRegister14 + 0x28));
     MemoryAllocationOffset = StatusBuffer2[1];
     *(void *)(RegisterFramePointer + 4) = *StatusBuffer2;
     *(void *)(RegisterFramePointer + 6) = MemoryAllocationOffset;
@@ -142069,7 +142069,7 @@ void ExecuteSystemCoreDataProcessing(void)
     *(void *)(*(long long *)(GeneralRegister14 + 0x28) + 0x10) = *(void *)(GeneralRegister14 + 0x48);
     GeneralRegister14 = SystemParameter2;
   }
-  StatusBuffer = (void *)FUN_18011feb0(*(void *)(GeneralRegister14 + 0x28));
+  StatusBuffer = (void *)GetSystemFloatValue2(*(void *)(GeneralRegister14 + 0x28));
   ValidationResult = StatusBuffer[1];
   *(void *)(RegisterFramePointer + 4) = *StatusBuffer;
   *(void *)(RegisterFramePointer + 6) = ValidationResult;
@@ -142932,7 +142932,7 @@ void ProcessSystemStatusValidationAndInitialization(void)
   *(uint32_t *)(eventDataStructurePointer + 0x134) = PrimaryReturnCode;
   *(uint32_t *)(eventDataStructurePointer + 0x128) = PrimaryReturnCode;
   *(uint8_t *)(SystemParameter2 + 0x17c) = 0;
-  ContextPrimaryFloat9 = (float)FUN_1801293c0(SystemParameter2);
+  ContextPrimaryFloat9 = (float)CalculateSystemFloatValue(SystemParameter2);
   *(bool *)(SystemParameter2 + 0x17d) = AuxiliaryFloat13 < ContextPrimaryFloat9;
   *(uint32_t *)(eventDataStructurePointer + 0x174) = *(uint32_t *)(eventDataStructurePointer + 0x178);
   *(uint32_t *)(eventDataStructurePointer + 0x178) = PrimaryReturnCode;
@@ -143936,7 +143936,7 @@ void InitializeSystemContextManager(void)
   uint8_t *RegisterR15Value;
   float FloatVariable5;
   
-  FUN_18013c760();
+  CleanupEventAndSystemMaintenance();
   if (*(long long *)(SystemContext + 0x2e40) != RegisterSourceIndex) {
     SystemDataStructureRegistry = __acrt_iob_func((int)RegisterSourceIndex + 1);
     if (*(long long *)(SystemContext + 0x2e40) == SystemDataStructureRegistry) {
@@ -166268,7 +166268,7 @@ LAB_18013c174:
 
 
 
-3c760(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18013c760(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+3c760(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid CleanupEventAndSystemMaintenance(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   long long PrimaryDataSize;
   void *SystemContext;
@@ -166382,10 +166382,10 @@ LAB_18013c174:
     if ((StringDataPointer != Utf8SourcePointer) || (pSystemStatusChar != StringDataPointer)) {
       SystemOperationResult = (int)StringDataPointer - (int)pSystemStatusChar;
       if ((HighByte) || (pSystemStatusChar != Utf8BufferSize)) {
-        FUN_18013c760(&SystemDataNodeIndexTable,(ValidationResult - validationResult) * 4,&CoreEngineDataTemplate,IntegerValue9,pSystemStatusChar);
+        CleanupEventAndSystemMaintenance(&SystemDataNodeIndexTable,(ValidationResult - validationResult) * 4,&CoreEngineDataTemplate,IntegerValue9,pSystemStatusChar);
       }
       else {
-        FUN_18013c760(&SystemDataTablePrimary,IntegerValue9,pSystemStatusChar);
+        CleanupEventAndSystemMaintenance(&SystemDataTablePrimary,IntegerValue9,pSystemStatusChar);
       }
     }
     if (StringDataPointer == Utf8SourcePointer) break;
@@ -275213,9 +275213,9 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * 该函数负责清理系统事件和维护系统状态，确保系统稳定运行。
  * 在核心引擎中用于事件清理和系统维护。
  * 
- * @note 原始函数名：FUN_18013c760
+ * @note 原始函数名：CleanupEventAndSystemMaintenance
  */
-#define CleanupEventAndSystemMaintenance FUN_18013c760
+#define CleanupEventAndSystemMaintenance CleanupEventAndSystemMaintenance
 
 /**
  * @brief 处理系统数据库操作
