@@ -204726,7 +204726,7 @@ LAB_180184411:
 
 uint64_t * FUN_1801846d0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize
 {
-  *SystemContextPointer = &UNK_180a0ac88;
+  *SystemContextPointer = &SystemMemoryAddressTertiary;
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,8);
   }
@@ -204738,7 +204738,7 @@ uint64_t * FUN_1801846d0(uint64_t *SystemContextPointer,unsigned long long Utf8B
 uint64_t *
 FUN_180184700(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
-  *SystemContextPointer = &UNK_180a0ac88;
+  *SystemContextPointer = &SystemMemoryAddressTertiary;
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,0x10,Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
   }
@@ -205053,7 +205053,7 @@ LAB_180184aa5:
   }
 LAB_180184d09:
   *(void *)(MemoryBlockIndex + 0x40) = SystemStackFlag;
-  NVGSDK_Highlights_GetUserSettingsAsync(*(void *)(SystemContextPointer + 8),&UNK_180185030,MemoryBlockIndex);
+  NVGSDK_Highlights_GetUserSettingsAsync(*(void *)(SystemContextPointer + 8),&SystemAsyncOperationDataSecondary,MemoryBlockIndex);
   MemoryOffsetValue = 1;
   plStack_b0 = alStack_88;
   if (plStack_50 != (long long *)0x0) {
@@ -205967,7 +205967,7 @@ LAB_180185b78:
   if (SystemMemoryPointer != NULL) {
     systemEventTemplatePointer = SystemMemoryPointer;
   }
-  bufferAllocationStatus = strstr(systemEventTemplatePointer,&UNK_180a0a7b8);
+  bufferAllocationStatus = strstr(systemEventTemplatePointer,&SystemStringTemplatePrimary);
   if (bufferAllocationStatus != 0) {
     DataContentStatus = 0;
     SystemUnsignedValue160 = 0xf;
@@ -205992,7 +205992,7 @@ LAB_180185b78:
     pStackVariable = (void *)0x100000000;
     uStack_190 = 2;
     FUN_180189600(&uStack_158,&pStackVariable,auStack_18c);
-    pStackVariable = (void *)&UNK_180186550;
+    pStackVariable = (void *)&SystemBufferPrimary;
     ProcessingStatus = Utf16Char;
     FUN_180188620(auStack_138,&pStackVariable);
     StackVariable1B8 = 0;
@@ -206006,11 +206006,11 @@ LAB_180185b78:
     if (-1 < aiStack_1d0[0]) {
       Utf16Char = FUN_1801836e0();
                     // WARNING: Subroutine does not return
-      ValidateSystemConfiguration(SystemConfigurationPointer,&UNK_180a0a800,Utf16Char);
+      ValidateSystemConfiguration(SystemConfigurationPointer,&SystemStringTemplateSecondary,Utf16Char);
     }
     Utf16Char = FUN_1801836e0();
                     // WARNING: Subroutine does not return
-    ValidateSystemConfiguration(SystemConfigurationPointer,&UNK_180a0a890,Utf16Char);
+    ValidateSystemConfiguration(SystemConfigurationPointer,&SystemStringTemplateTertiary,Utf16Char);
   }
   SystemStatusBufferPointer = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
@@ -206186,7 +206186,7 @@ LAB_180185b78:
     SystemKeyPointer = 0;
     SystemStackFlag = 0xf;
     CoreEnginePointerBuffer60 = (void *)((unsigned long long)CoreEnginePointerBuffer60 & 0xffffffffffffff00);
-    ReallocateSystemContextPointer(&CoreEnginePointerBuffer60,&UNK_180a0aa34,5);
+    ReallocateSystemContextPointer(&CoreEnginePointerBuffer60,&SystemBufferSecondary,5);
     UnicodeCodePoint = FUN_180187f00(&pCoreEngineSignedValue70,&CoreEnginePointerBuffer60);
     do {
       MemoryBoundaryEnd = MemoryBoundaryEnd + 1;
