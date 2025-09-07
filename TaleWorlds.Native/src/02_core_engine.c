@@ -42865,7 +42865,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t CharacterCode,uint64_t *
     pSystemFlagG = &ThreadLocalStorageTemplate;
     OperationStatus = &SystemNullTemplate;
     if (pErrorCode == (uint16_t *)0x0) {
-      return cStackX_10 != '\0';
+      return SystemCharacterDelimiter != '\0';
     }
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
