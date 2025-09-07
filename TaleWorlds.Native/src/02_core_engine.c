@@ -101952,7 +101952,7 @@ LAB_180116f58:
           aSystemUintBuffer258[0] = (uint)*(ushort *)(MemoryAllocationIndex7 + *(long long *)(MemoryBlockIndex9 + 0x1538));
           StringBuffer7 = ValidateSystemParametersAndCheckStatus(aSystemUintBuffer258,AdditionalParameter1,AdditionalParameter2,AdditionalParameter3);
           if (StringBuffer7 != '\0') {
-            FUN_180115640(bufferAllocationStatus8,MemoryBlockIndex9 + 0x1ef0,aSystemUintBuffer258[0]);
+            ProcessSystemDataEx(bufferAllocationStatus8,MemoryBlockIndex9 + 0x1ef0,aSystemUintBuffer258[0]);
             *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 1;
             *(uint32_t *)(MemoryBlockIndex9 + 0x2d14) = 0xbe99999a;
           }

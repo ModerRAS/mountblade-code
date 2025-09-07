@@ -57672,7 +57672,7 @@ void Unwind_180907230(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x20);
-  FUN_180085530(*(DataBuffer *)(validationContext + 0xb0));
+  ValidateSystemStatusA0(*(DataBuffer *)(validationContext + 0xb0));
   *(DataBuffer *)(validationContext + 0xb0) = 0;
   if (*(int64_t *)(validationContext + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
@@ -57750,7 +57750,7 @@ void Unwind_1809072c0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
-  FUN_180085530(*(DataBuffer *)(validationContext + 0xb0));
+  ValidateSystemStatusA0(*(DataBuffer *)(validationContext + 0xb0));
   *(DataBuffer *)(validationContext + 0xb0) = 0;
   if (*(int64_t *)(validationContext + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
