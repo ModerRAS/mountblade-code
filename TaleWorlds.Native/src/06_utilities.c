@@ -78625,7 +78625,19 @@ void CleanupDataBufferValidation(DataBuffer operationBase,int64_t dataBuffer,Dat
 
 
 
-void Unwind_18090c050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区验证处理器A0
+ * 
+ * 该函数负责验证数据缓冲区的内容，确保数据的有效性和完整性
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090c050
+ */
+void ValidateDataBufferProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateDataBufferA1(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + ExceptionHandlerCallbackOffset10),
@@ -78635,7 +78647,17 @@ void Unwind_18090c050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090c060(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理上下文清理器A0
+ * 
+ * 该函数负责清理异常处理上下文，遍历并执行异常处理回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c060
+ */
+void CleanupExceptionHandlerContextA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -78657,7 +78679,19 @@ void Unwind_18090c060(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理器A0
+ * 
+ * 该函数负责处理数据缓冲区，执行数据验证和处理操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090c070
+ */
+void ProcessDataBufferHandlerA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -78667,7 +78701,19 @@ void Unwind_18090c070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090c080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理器A1
+ * 
+ * 该函数负责处理数据缓冲区，执行数据验证和处理操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090c080
+ */
+void ProcessDataBufferHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -78677,7 +78723,19 @@ void Unwind_18090c080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090c090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区验证处理器A1
+ * 
+ * 该函数负责验证数据缓冲区的内容，确保数据的有效性和完整性
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090c090
+ */
+void ValidateDataBufferProcessorA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateDataBufferA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -78687,7 +78745,19 @@ void Unwind_18090c090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090c0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区验证处理器A2
+ * 
+ * 该函数负责验证数据缓冲区的内容，确保数据的有效性和完整性
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090c0a0
+ */
+void ValidateDataBufferProcessorA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateDataBufferA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -78697,7 +78767,17 @@ void Unwind_18090c0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090c0b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置器A0
+ * 
+ * 该函数负责在指定位置设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c0b0
+ */
+void SetDefaultExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x88) = &DefaultExceptionHandlerB;
@@ -78706,7 +78786,17 @@ void Unwind_18090c0b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c0c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置器A1
+ * 
+ * 该函数负责在指定位置设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c0c0
+ */
+void SetDefaultExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x120) = &DefaultExceptionHandlerB;
@@ -78715,7 +78805,17 @@ void Unwind_18090c0c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c0d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置器A2
+ * 
+ * 该函数负责在指定位置设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c0d0
+ */
+void SetDefaultExceptionHandlerA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x2a0) = &DefaultExceptionHandlerB;
@@ -108963,4 +109063,5 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  * 
  * @note 原始函数名：Unwind_18090f140
  */
+#define ConfigureExceptionHandlerA0 Unwind_18090f140
 #define ConfigureExceptionHandlerA0 Unwind_18090f140
