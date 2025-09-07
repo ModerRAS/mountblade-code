@@ -113605,7 +113605,7 @@ uint8_t ProcessEngineDataInterpolation(float *SystemContextPointer,int Utf8Buffe
     }
     if ((float)AdditionalParameter2 == 0.0) goto LAB_18011e808;
     SystemContextPrimaryFloat0 = (float)AdditionalParameter2;
-    FUN_18011f880(ProcessingStatusFlag,*Utf16EndPointer,AdditionalParameter1,bufferAllocationStatus);
+    ProcessSystemMemoryConfiguration(ProcessingStatusFlag,*Utf16EndPointer,AdditionalParameter1,bufferAllocationStatus);
     ValidationCode = ProcessValidationCheck(AdditionalParameter3);
     if (ValidationCode < 1) {
       NormalizedParameter = (float)AllocatedMemorySize;
@@ -113632,7 +113632,7 @@ uint8_t ProcessEngineDataInterpolation(float *SystemContextPointer,int Utf8Buffe
     }
     if (((1.0 <= VectorRegisterDa) && (0.0 < NormalizedParameter)) || ((VectorRegisterDa <= 0.0 && (NormalizedParameter < 0.0))       ) goto LAB_18011e808;
   }
-  DataStructureCounter = FUN_18011f520(AdditionalParameter3);
+  DataStructureCounter = ProcessSystemMemoryStructure(AdditionalParameter3);
   if (*Utf16EndPointer != DataStructureCounter) {
     *Utf16EndPointer = DataStructureCounter;
     DataSize = 1;
@@ -113762,7 +113762,7 @@ LAB_18011eba2:
   }
   else {
     if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto LAB_18011ec19;
-    ProcessStringBuffer = FUN_180131aa0(&AdditionalParameter2,3,5,0,0);
+    ProcessStringBuffer = AllocateSystemMemoryBuffer(&AdditionalParameter2,3,5,0,0);
     if ((*(int *)(DataStructureCounter + 0x1cac) == Utf8BufferSize) && (*(char *)(DataStructureCounter + 0x1b3c) == '\0')) {
       *(bool *)(DataStructureCounter + 0x1b3c) = *(int *)(DataStructureCounter + 0x1b2c) != 0;
       if (*(int *)(DataStructureCounter + 0x1b2c) != 0) {
@@ -113818,7 +113818,7 @@ LAB_18011eba2:
   if ((9.223372e+18 <= SystemContextPrimaryFloat6) && (SystemContextPrimaryFloat6 = SystemContextPrimaryFloat6 - 9.223372e+18, SystemContextPrimaryFloat6 < 9.223372e+18)) {
     DataStructureCounter = -0x8000000000000000;
   }
-  CalculatedCodePoint = FUN_18011f5c0(AdditionalParameter3,0x5f000000,(long long)SystemContextPrimaryFloat6 + DataStructureCounter);
+  CalculatedCodePoint = ProcessSystemCodePointCalculation(AdditionalParameter3,0x5f000000,(long long)SystemContextPrimaryFloat6 + DataStructureCounter);
   if (*Utf16EndPointer != CalculatedCodePoint) {
     *Utf16EndPointer = CalculatedCodePoint;
     SystemByteValue = 1;
@@ -115959,8 +115959,24 @@ LAB_18012195c:
 
 
 
-unsigned long long FUN_180121761(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,byte *Utf16InputPointer,uint64_t Utf16EndPointer,
-                       uint64_t AdditionalParameter1,uint64_t *AdditionalParameter2
+/**
+ * @brief UTF-8字符解码为Unicode码点
+ * 
+ * 该函数负责将UTF-8编码的字节序列解码为Unicode码点
+ * 支持多字节UTF-8字符的处理，包括错误检测和替换字符处理
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针（实际是UTF-8数据）
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2指针
+ * @return unsigned long long 处理状态和结果
+ * 
+ * @note 原始函数名：FUN_180121761
+ */
+unsigned long long DecodeUtf8ToUnicodeCodePoint(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,byte *Utf16InputPointer,uint64_t Utf16EndPointer,
+                       uint64_t AdditionalParameter1,uint64_t *AdditionalParameter2)
 {
   byte CurrentByteValue;
   int CharacterByteCount;
@@ -116081,8 +116097,23 @@ LAB_18012195c:
 
 
 
-unsigned long long FUN_18012198e(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer,
-                       uint64_t AdditionalParameter1,uint64_t *AdditionalParameter2
+/**
+ * @brief UTF-8字符串终止处理
+ * 
+ * 该函数负责处理UTF-8字符串的终止操作，包括设置终止符和更新指针位置
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2指针
+ * @return unsigned long long 处理结果
+ * 
+ * @note 原始函数名：FUN_18012198e
+ */
+unsigned long long HandleUtf8StringTermination(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer,
+                       uint64_t AdditionalParameter1,uint64_t *AdditionalParameter2)
 {
   long long RegisterFramePointer;
   uint16_t *in_R10;
@@ -116096,7 +116127,19 @@ unsigned long long FUN_18012198e(uint64_t SystemContextPointer,uint64_t Utf8Buff
 
 
 
-unsigned long long FUN_1801219a3(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer
+/**
+ * @brief UTF-16输入指针设置
+ * 
+ * 该函数负责设置UTF-16输入指针的值并返回计算结果
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @return unsigned long long 处理结果
+ * 
+ * @note 原始函数名：FUN_1801219a3
+ */
+unsigned long long SetUtf16InputPointer(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer)
 {
   uint64_t *in_RAX;
   long long RegisterFramePointer;
