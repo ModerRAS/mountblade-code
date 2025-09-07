@@ -169299,13 +169299,26 @@ void InitializeSystemCharacterProcessing(void)
 
 
 
-3c78b(long long CharacterCodevoid FUN_18013c78b(long long CharacterCode
+/**
+ * @brief 字符代码处理器和系统上下文管理器
+ * 
+ * 该函数处理字符代码并管理系统上下文，包括：
+ * - 处理字符编码和模式匹配
+ * - 管理系统数据节点和指针
+ * - 执行系统内存操作
+ * 
+ * @param CharacterCode 输入的字符代码
+ * 
+ * @note 函数会根据字符代码查找对应的处理表
+ * @warning 涉及系统级内存操作，调用时需确保参数有效性
+ */
+void CharacterCodeProcessorAndSystemContextManager(long long CharacterCode)
 {
-  long long PrimaryDataSize;
-  long long ProcessingResult;
-  void *SystemContext;
-  uint64_t PatternIndex;
-  uint64_t DataNodePointer;
+  SystemLong PrimaryDataSize;
+  SystemLong ProcessingResult;
+  SystemPointer SystemContext;
+  SystemQword PatternIndex;
+  SystemQword DataNodePointer;
   
   *(void *)(ProcessingResult + -0x10) = PatternIndex;
   *(void *)(ProcessingResult + -0x18) = DataNodePointer;
