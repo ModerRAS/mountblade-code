@@ -122718,7 +122718,7 @@ void ProcessCharacterEncodingBatch(void)
 
 
 
-6cfb(voidvoid FUN_180126cfb(void
+void EmptySystemFunction2(void)
 {
   return;
 }
