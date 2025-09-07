@@ -4372,22 +4372,22 @@ undefined8 GetUIStatusFlag(void)
   processedPixels = 0;
   pixelIndex = 0;
   remainingPixels = processedPixels;
-  if (((0 < (int)bufferSize) && (RemainingPixels = PixelIndex, 0xf < bufferSize)) && (1 < SystemStatusFlag)) {
-    SourceOffset = (longlong)(int)(bufferSize - 1);
-    if ((((ulonglong)(SourceOffset + (longlong)srcBuffer2) < destBuffer) ||
-        ((uint *)(SourceOffset + destBuffer) < srcBuffer2)) &&
-       (((ulonglong)(SourceOffset + (longlong)srcBuffer1) < destBuffer || ((uint *)(SourceOffset + destBuffer) < srcBuffer1)
+  if (((0 < (int)bufferSize) && (remainingPixels = pixelIndex, 0xf < bufferSize)) && (1 < SystemStatusFlag)) {
+    sourceOffset = (longlong)(int)(bufferSize - 1);
+    if ((((ulonglong)(sourceOffset + (longlong)srcBuffer2) < destBuffer) ||
+        ((uint *)(sourceOffset + destBuffer) < srcBuffer2)) &&
+       (((ulonglong)(sourceOffset + (longlong)srcBuffer1) < destBuffer || ((uint *)(sourceOffset + destBuffer) < srcBuffer1)
         ))) {
-      AlignedBufferSize = bufferSize & 0x8000000f;
-      if ((int)AlignedBufferSize < 0) {
-        AlignedBufferSize = (AlignedBufferSize - 1 | 0xfffffff0) + 1;
+      alignedBufferSize = bufferSize & 0x8000000f;
+      if ((int)alignedBufferSize < 0) {
+        alignedBufferSize = (alignedBufferSize - 1 | 0xfffffff0) + 1;
       }
-      SourceOffset = (longlong)srcBuffer1 - (longlong)srcBuffer2;
-      DestinationOffset = destBuffer - (longlong)srcBuffer2;
-      ShiftVector = ZEXT416(2);
-      SourcePointer = srcBuffer2;
+      sourceOffset = (longlong)srcBuffer1 - (longlong)srcBuffer2;
+      destinationOffset = destBuffer - (longlong)srcBuffer2;
+      shiftVector = ZEXT416(2);
+      sourcePointer = srcBuffer2;
       do {
-        ProcessedPixels = ProcessedPixels + 0x10;
+        processedPixels = processedPixels + 0x10;
         SourceVector2 = pmovzxbd(XmmRegister2,ZEXT416(*(uint *)(SourceOffset + (longlong)SourcePointer)));
         SourceVector2 = pmulld(SourceVector2,BlendFactorVector);
         SourceVector1 = pmovzxbd(XmmRegister1,ZEXT416(*SourcePointer));

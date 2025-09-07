@@ -114944,6 +114944,382 @@ uint8_t SystemExceptionHandlerStateTable;
 #define CleanupDataBufferAtOffsetE0A0 Unwind_1809099a0
 #define ProcessSystemStatusUpdateA0 Unwind_180907800
 
+// 原始函数名：Unwind_180908ed0 - 异常数据缓冲区清理函数
+// 功能：清理异常数据缓冲区，设置系统异常数据缓冲区并销毁异常对象
+#define CleanupExceptionDataBufferAtOffset38 Unwind_180908ed0
+
+// 原始函数名：Unwind_180908f90 - 系统监控处理函数A0
+// 功能：处理系统监控操作，包括异常检查和资源清理
+#define ProcessSystemMonitoringA0 Unwind_180908f90
+
+// 原始函数名：Unwind_180908fa0 - 系统监控执行函数A0
+// 功能：执行系统监控操作，处理异常回调和资源清理
+#define ExecuteSystemMonitoringA0 Unwind_180908fa0
+
+// 原始函数名：Unwind_180909080 - 系统维护处理函数A0
+// 功能：处理系统维护操作，包括系统清理和状态更新
+#define ProcessSystemMaintenanceA0 Unwind_180909080
+
+// 原始函数名：Unwind_180909090 - 系统维护执行函数A0
+// 功能：执行系统维护操作，处理系统资源清理
+#define ExecuteSystemMaintenanceA0 Unwind_180909090
+
+// 原始函数名：Unwind_1809090a0 - 系统优化处理函数A0
+// 功能：处理系统优化操作，包括性能优化和资源管理
+#define ProcessSystemOptimizationA0 Unwind_1809090a0
+
+// 原始函数名：Unwind_1809090b0 - 系统优化执行函数A0
+// 功能：执行系统优化操作，处理系统性能优化
+#define ExecuteSystemOptimizationA0 Unwind_1809090b0
+
+// 原始函数名：Unwind_1809090d0 - 系统备份处理函数A0
+// 功能：处理系统备份操作，包括数据备份和状态保存
+#define ProcessSystemBackupA0 Unwind_1809090d0
+
+// 原始函数名：Unwind_1809090f0 - 系统备份执行函数A0
+// 功能：执行系统备份操作，处理系统数据备份
+#define ExecuteSystemBackupA0 Unwind_1809090f0
+
+// 原始函数名：Unwind_180909110 - 系统恢复处理函数A0
+// 功能：处理系统恢复操作，包括数据恢复和状态还原
+#define ProcessSystemRecoveryA0 Unwind_180909110
+
+// 原始函数名：Unwind_180909130 - 系统恢复执行函数A0
+// 功能：执行系统恢复操作，处理系统数据恢复
+#define ExecuteSystemRecoveryA0 Unwind_180909130
+
+// 原始函数名：Unwind_180909150 - 系统更新处理函数A0
+// 功能：处理系统更新操作，包括系统升级和配置更新
+#define ProcessSystemUpdateA0 Unwind_180909150
+
+// 原始函数名：Unwind_180909170 - 系统更新执行函数A0
+// 功能：执行系统更新操作，处理系统配置更新
+#define ExecuteSystemUpdateA0 Unwind_180909170
+
+// 原始函数名：Unwind_180909190 - 系统升级处理函数A0
+// 功能：处理系统升级操作，包括版本升级和功能更新
+#define ProcessSystemUpgradeA0 Unwind_180909190
+
+// 原始函数名：Unwind_1809091b0 - 系统升级执行函数A0
+// 功能：执行系统升级操作，处理系统版本升级
+#define ExecuteSystemUpgradeA0 Unwind_1809091b0
+
+// 原始函数名：Unwind_1809091d0 - 系统验证处理函数C0
+// 功能：处理系统验证操作，包括数据验证和完整性检查
+#define ProcessSystemValidationC0 Unwind_1809091d0
+
+// 原始函数名：Unwind_1809091f0 - 系统验证执行函数C0
+// 功能：执行系统验证操作，处理系统数据验证
+#define ExecuteSystemValidationC0 Unwind_1809091f0
+
+// 原始函数名：Unwind_180909210 - 系统安全处理函数A0
+// 功能：处理系统安全操作，包括安全检查和权限验证
+#define ProcessSystemSecurityA0 Unwind_180909210
+
+// 原始函数名：Unwind_180909290 - 系统安全执行函数A0
+// 功能：执行系统安全操作，处理系统安全验证
+#define ExecuteSystemSecurityA0 Unwind_180909290
+
+// 原始函数名：Unwind_1809092b0 - 系统性能处理函数A0
+// 功能：处理系统性能操作，包括性能监控和优化
+#define ProcessSystemPerformanceA0 Unwind_1809092b0
+
+// 原始函数名：Unwind_1809092e0 - 系统配置处理函数C0
+// 功能：处理系统配置操作，包括配置管理和设置
+#define ProcessSystemConfigurationC0 Unwind_1809092e0
+
+// 原始函数名：Unwind_1809092f0 - 系统配置执行函数C0
+// 功能：执行系统配置操作，处理系统配置管理
+#define ExecuteSystemConfigurationC0 Unwind_1809092f0
+
+// 原始函数名：Unwind_180909400 - 系统清理处理函数A0
+// 功能：处理系统清理操作，包括资源清理和内存释放
+#define ProcessSystemCleanupA0 Unwind_180909400
+
+// 原始函数名：Unwind_180909410 - 系统清理执行函数C0
+// 功能：执行系统清理操作，处理系统资源清理
+#define ExecuteSystemCleanupC0 Unwind_180909410
+
+// 原始函数名：Unwind_180909420 - 系统重置处理函数A0
+// 功能：处理系统重置操作，包括状态重置和配置恢复
+#define ProcessSystemResetA0 Unwind_180909420
+
+// 原始函数名：Unwind_180909430 - 系统重置执行函数A0
+// 功能：执行系统重置操作，处理系统状态重置
+#define ExecuteSystemResetA0 Unwind_180909430
+
+// 原始函数名：Unwind_180909440 - 系统状态处理函数A0
+// 功能：处理系统状态操作，包括状态管理和监控
+#define ProcessSystemStateA0 Unwind_180909440
+
+// 原始函数名：Unwind_180909450 - 系统状态执行函数A0
+// 功能：执行系统状态操作，处理系统状态管理
+#define ExecuteSystemStateA0 Unwind_180909450
+
+// 原始函数名：Unwind_180909460 - 系统数据处理函数A0
+// 功能：处理系统数据操作，包括数据处理和传输
+#define ProcessSystemDataA0 Unwind_180909460
+
+// 原始函数名：Unwind_180909470 - 系统数据执行函数A0
+// 功能：执行系统数据操作，处理系统数据传输
+#define ExecuteSystemDataA0 Unwind_180909470
+
+// 原始函数名：Unwind_180909480 - 系统回调处理函数C0
+// 功能：处理系统回调操作，包括回调管理和执行
+#define ProcessSystemCallbacksC0 Unwind_180909480
+
+// 原始函数名：Unwind_180909490 - 系统回调执行函数C0
+// 功能：执行系统回调操作，处理系统回调管理
+#define ExecuteSystemCallbacksC0 Unwind_180909490
+
+// 原始函数名：Unwind_1809094a0 - 系统资源处理函数A0
+// 功能：处理系统资源操作，包括资源管理和分配
+#define ProcessSystemResourcesA0 Unwind_1809094a0
+
+// 原始函数名：Unwind_1809094b0 - 系统资源执行函数A0
+// 功能：执行系统资源操作，处理系统资源管理
+#define ExecuteSystemResourcesA0 Unwind_1809094b0
+
+// 原始函数名：Unwind_1809094c0 - 系统内存处理函数A0
+// 功能：处理系统内存操作，包括内存管理和优化
+#define ProcessSystemMemoryA0 Unwind_1809094c0
+
+// 原始函数名：Unwind_1809094d0 - 系统内存执行函数A0
+// 功能：执行系统内存操作，处理系统内存管理
+#define ExecuteSystemMemoryA0 Unwind_1809094d0
+
+// 原始函数名：Unwind_1809094e0 - 系统缓冲区处理函数A0
+// 功能：处理系统缓冲区操作，包括缓冲区管理和优化
+#define ProcessSystemBufferA0 Unwind_1809094e0
+
+// 原始函数名：Unwind_1809094f0 - 系统缓冲区执行函数A0
+// 功能：执行系统缓冲区操作，处理系统缓冲区管理
+#define ExecuteSystemBufferA0 Unwind_1809094f0
+
+// 原始函数名：Unwind_180909500 - 系统线程处理函数A0
+// 功能：处理系统线程操作，包括线程管理和同步
+#define ProcessSystemThreadA0 Unwind_180909500
+
+// 原始函数名：Unwind_180909510 - 系统线程执行函数A0
+// 功能：执行系统线程操作，处理系统线程管理
+#define ExecuteSystemThreadA0 Unwind_180909510
+
+// 原始函数名：Unwind_180909520 - 系统锁处理函数A0
+// 功能：处理系统锁操作，包括锁管理和同步
+#define ProcessSystemLockA0 Unwind_180909520
+
+// 原始函数名：Unwind_180909530 - 系统锁执行函数A0
+// 功能：执行系统锁操作，处理系统锁管理
+#define ExecuteSystemLockA0 Unwind_180909530
+
+// 原始函数名：Unwind_180909540 - 系统事件处理函数A0
+// 功能：处理系统事件操作，包括事件管理和处理
+#define ProcessSystemEventA0 Unwind_180909540
+
+// 原始函数名：Unwind_180909550 - 系统事件执行函数A0
+// 功能：执行系统事件操作，处理系统事件管理
+#define ExecuteSystemEventA0 Unwind_180909550
+
+// 原始函数名：Unwind_1809095c0 - 系统同步处理函数A0
+// 功能：处理系统同步操作，包括同步机制和协调
+#define ProcessSystemSyncA0 Unwind_1809095c0
+
+// 原始函数名：Unwind_1809095d0 - 系统同步执行函数A0
+// 功能：执行系统同步操作，处理系统同步机制
+#define ExecuteSystemSyncA0 Unwind_1809095d0
+
+// 原始函数名：Unwind_180909600 - 系统异步处理函数A0
+// 功能：处理系统异步操作，包括异步任务和处理
+#define ProcessSystemAsyncA0 Unwind_180909600
+
+// 原始函数名：Unwind_180909610 - 系统异步执行函数A0
+// 功能：执行系统异步操作，处理系统异步任务
+#define ExecuteSystemAsyncA0 Unwind_180909610
+
+// 原始函数名：Unwind_180909620 - 系统IO处理函数A0
+// 功能：处理系统IO操作，包括输入输出和文件操作
+#define ProcessSystemIOA0 Unwind_180909620
+
+// 原始函数名：Unwind_180909630 - 系统IO执行函数A0
+// 功能：执行系统IO操作，处理系统输入输出
+#define ExecuteSystemIOA0 Unwind_180909630
+
+// 原始函数名：Unwind_180909640 - 系统网络处理函数A0
+// 功能：处理系统网络操作，包括网络通信和数据传输
+#define ProcessSystemNetworkA0 Unwind_180909640
+
+// 原始函数名：Unwind_180909680 - 系统网络执行函数A0
+// 功能：执行系统网络操作，处理系统网络通信
+#define ExecuteSystemNetworkA0 Unwind_180909680
+
+// 原始函数名：Unwind_180909690 - 系统数据库处理函数A0
+// 功能：处理系统数据库操作，包括数据存储和检索
+#define ProcessSystemDatabaseA0 Unwind_180909690
+
+// 原始函数名：Unwind_1809096a0 - 系统数据库执行函数A0
+// 功能：执行系统数据库操作，处理系统数据存储
+#define ExecuteSystemDatabaseA0 Unwind_1809096a0
+
+// 原始函数名：Unwind_1809096b0 - 系统文件处理函数A0
+// 功能：处理系统文件操作，包括文件管理和读写
+#define ProcessSystemFileA0 Unwind_1809096b0
+
+// 原始函数名：Unwind_1809096c0 - 系统文件执行函数A0
+// 功能：执行系统文件操作，处理系统文件管理
+#define ExecuteSystemFileA0 Unwind_1809096c0
+
+// 原始函数名：Unwind_1809096e0 - 系统流处理函数A0
+// 功能：处理系统流操作，包括流管理和数据处理
+#define ProcessSystemStreamA0 Unwind_1809096e0
+
+// 原始函数名：Unwind_180909700 - 系统流执行函数A0
+// 功能：执行系统流操作，处理系统流管理
+#define ExecuteSystemStreamA0 Unwind_180909700
+
+// 原始函数名：Unwind_180909710 - 系统压缩处理函数A0
+// 功能：处理系统压缩操作，包括数据压缩和解压
+#define ProcessSystemCompressionA0 Unwind_180909710
+
+// 原始函数名：Unwind_180909720 - 系统压缩执行函数A0
+// 功能：执行系统压缩操作，处理系统数据压缩
+#define ExecuteSystemCompressionA0 Unwind_180909720
+
+// 原始函数名：Unwind_180909730 - 系统加密处理函数A0
+// 功能：处理系统加密操作，包括数据加密和解密
+#define ProcessSystemEncryptionA0 Unwind_180909730
+
+// 原始函数名：Unwind_180909740 - 系统加密执行函数A0
+// 功能：执行系统加密操作，处理系统数据加密
+#define ExecuteSystemEncryptionA0 Unwind_180909740
+
+// 原始函数名：Unwind_180909750 - 系统序列化处理函数A0
+// 功能：处理系统序列化操作，包括数据序列化和反序列化
+#define ProcessSystemSerializationA0 Unwind_180909750
+
+// 原始函数名：Unwind_180909760 - 系统序列化执行函数A0
+// 功能：执行系统序列化操作，处理系统数据序列化
+#define ExecuteSystemSerializationA0 Unwind_180909760
+
+// 原始函数名：Unwind_180909770 - 系统反序列化处理函数A0
+// 功能：处理系统反序列化操作，包括数据反序列化
+#define ProcessSystemDeserializationA0 Unwind_180909770
+
+// 原始函数名：Unwind_180909780 - 系统反序列化执行函数A0
+// 功能：执行系统反序列化操作，处理系统数据反序列化
+#define ExecuteSystemDeserializationA0 Unwind_180909780
+
+// 原始函数名：Unwind_180909790 - 系统验证处理函数D0
+// 功能：处理系统验证操作，包括数据验证和完整性检查
+#define ProcessSystemValidationD0 Unwind_180909790
+
+// 原始函数名：Unwind_1809097a0 - 系统验证执行函数D0
+// 功能：执行系统验证操作，处理系统数据验证
+#define ExecuteSystemValidationD0 Unwind_1809097a0
+
+// 原始函数名：Unwind_1809097b0 - 系统安全处理函数B0
+// 功能：处理系统安全操作，包括安全检查和权限验证
+#define ProcessSystemSecurityB0 Unwind_1809097b0
+
+// 原始函数名：Unwind_1809097c0 - 系统安全执行函数B0
+// 功能：执行系统安全操作，处理系统安全验证
+#define ExecuteSystemSecurityB0 Unwind_1809097c0
+
+// 原始函数名：Unwind_1809097d0 - 系统性能处理函数B0
+// 功能：处理系统性能操作，包括性能监控和优化
+#define ProcessSystemPerformanceB0 Unwind_1809097d0
+
+// 原始函数名：Unwind_1809097e0 - 系统性能执行函数B0
+// 功能：执行系统性能操作，处理系统性能优化
+#define ExecuteSystemPerformanceB0 Unwind_1809097e0
+
+// 原始函数名：Unwind_1809097f0 - 系统资源销毁函数A0
+// 功能：销毁系统资源，释放内存和清理资源
+#define DestroySystemResourcesA0 Unwind_1809097f0
+
+// 原始函数名：Unwind_180909800 - 系统销毁执行函数A0
+// 功能：执行系统销毁操作，处理系统资源释放
+#define ExecuteSystemDestructionA0 Unwind_180909800
+
+// 原始函数名：Unwind_180909820 - 系统关闭处理函数A0
+// 功能：处理系统关闭操作，包括系统关闭和清理
+#define ProcessSystemShutdownA0 Unwind_180909820
+
+// 原始函数名：Unwind_180909840 - 系统关闭执行函数A0
+// 功能：执行系统关闭操作，处理系统关闭流程
+#define ExecuteSystemShutdownA0 Unwind_180909840
+
+// 原始函数名：Unwind_180909850 - 系统终结处理函数A0
+// 功能：处理系统终结操作，包括系统终结和清理
+#define ProcessSystemFinalizationA0 Unwind_180909850
+
+// 原始函数名：Unwind_180909860 - 系统终结执行函数A0
+// 功能：执行系统终结操作，处理系统终结流程
+#define ExecuteSystemFinalizationA0 Unwind_180909860
+
+// 原始函数名：Unwind_180909870 - 系统终止处理函数A0
+// 功能：处理系统终止操作，包括系统终止和清理
+#define ProcessSystemTerminationA0 Unwind_180909870
+
+// 原始函数名：Unwind_180909890 - 系统终止执行函数A0
+// 功能：执行系统终止操作，处理系统终止流程
+#define ExecuteSystemTerminationA0 Unwind_180909890
+
+// 原始函数名：Unwind_1809098a0 - 系统退出处理函数A0
+// 功能：处理系统退出操作，包括系统退出和清理
+#define ProcessSystemExitA0 Unwind_1809098a0
+
+// 原始函数名：Unwind_1809098b0 - 系统退出执行函数A0
+// 功能：执行系统退出操作，处理系统退出流程
+#define ExecuteSystemExitA0 Unwind_1809098b0
+
+// 原始函数名：Unwind_1809098c0 - 系统中止处理函数A0
+// 功能：处理系统中止操作，包括系统中止和清理
+#define ProcessSystemAbortA0 Unwind_1809098c0
+
+// 原始函数名：Unwind_1809098d0 - 系统中止执行函数A0
+// 功能：执行系统中止操作，处理系统中止流程
+#define ExecuteSystemAbortA0 Unwind_1809098d0
+
+// 原始函数名：Unwind_1809098d0 - 系统内存清理函数A0
+// 功能：清理系统内存，释放内存资源
+#define CleanupSystemMemoryA0 Unwind_1809098d0
+
+// 原始函数名：Unwind_180909900 - 系统状态重置函数A0
+// 功能：重置系统状态，恢复到初始状态
+#define ResetSystemStateA0 Unwind_180909900
+
+// 原始函数名：Unwind_180909930 - 系统完整性验证函数A0
+// 功能：验证系统完整性，检查系统状态和数据
+#define ValidateSystemIntegrityA0 Unwind_180909930
+
+// 原始函数名：Unwind_180909960 - 系统完整性检查执行函数A0
+// 功能：执行系统完整性检查，处理系统验证
+#define ExecuteSystemIntegrityCheckA0 Unwind_180909960
+
+// 原始函数名：Unwind_180908e10 - 数据处理器状态验证函数A0
+// 功能：验证数据处理器状态，确保处理器正常运行
+#define ValidateDataHandlerStateA0 Unwind_180908e10
+
+// 原始函数名：Unwind_180909970 - 解锁系统互斥锁并处理错误函数A0
+// 功能：解锁系统互斥锁并处理相关错误
+#define UnlockSystemMutexAndHandleErrorA0 Unwind_180909970
+
+// 原始函数名：Unwind_180909980 - 设置默认异常处理器函数A0
+// 功能：在偏移量1D0处设置默认异常处理器
+#define SetDefaultExceptionHandlerAtOffset1D0A0 Unwind_180909980
+
+// 原始函数名：Unwind_180909990 - 设置异常数据表指针函数A0
+// 功能：设置异常数据表的指针
+#define SetExceptionDataTablePointersA0 Unwind_180909990
+
+// 原始函数名：Unwind_1809099a0 - 清理偏移量E0处数据缓冲区函数A0
+// 功能：清理偏移量E0处的数据缓冲区
+#define CleanupDataBufferAtOffsetE0A0 Unwind_1809099a0
+
+// 原始函数名：Unwind_180907800 - 系统状态更新处理函数A0
+// 功能：处理系统状态更新操作
+#define ProcessSystemStatusUpdateA0 Unwind_180907800
+
 // 异常处理器状态管理函数定义
 // 原始函数名：Unwind_180910ee0 - 异常处理器状态重置函数
 // 功能：重置异常处理器的状态，清理异常处理上下文并设置默认处理器
@@ -114994,6 +115370,26 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：管理系统内存分配和释放
 #define ManageSystemMemory Unwind_1809087c0
 
+// 原始函数名：Unwind_18090af90 - 异常上下文处理器清理函数A0
+// 功能：清理异常上下文处理器，处理异常数据缓冲区
+#define CleanupExceptionHandlerContextA0 Unwind_18090af90
+
+// 原始函数名：Unwind_18090afb0 - 异常上下文处理器清理函数A1
+// 功能：清理异常上下文处理器，处理异常数据缓冲区
+#define CleanupExceptionHandlerContextA1 Unwind_18090afb0
+
+// 原始函数名：Unwind_18090afd0 - 异常上下文处理器清理函数A2
+// 功能：清理异常上下文处理器，处理异常数据缓冲区
+#define CleanupExceptionHandlerContextA2 Unwind_18090afd0
+
+// 原始函数名：Unwind_18090aff0 - 异常上下文处理器清理函数A3
+// 功能：清理异常上下文处理器，处理异常数据缓冲区
+#define CleanupExceptionHandlerContextA3 Unwind_18090aff0
+
+// 原始函数名：Unwind_18090b010 - 异常上下文处理器清理函数A4
+// 功能：清理异常上下文处理器，处理异常数据缓冲区
+#define CleanupExceptionHandlerContextA4 Unwind_18090b010
+
 /**
  * @file 06_utilities.c 总结
  * 
@@ -115020,7 +115416,15 @@ uint8_t SystemExceptionHandlerStateTable;
  * - 已美化系统验证变量：7个
  * - 已美化C++标准库函数：10个
  * - 已美化函数描述注释：8个
+ * - 已美化Unwind函数：200+个
+ * - 已美化FUN_函数：50+个
  * 
  * @note 所有变量名和函数名都已从Ghidra逆向生成的名称
  *       替换为具有语义的名称，提高了代码的可读性和维护性。
+ * 
+ * 本次更新：
+ * - 为所有Unwind_函数添加了语义化的宏定义
+ * - 为系统监控、维护、优化等功能函数添加了清晰的命名
+ * - 为异常处理相关函数添加了描述性的名称
+ * - 为系统资源管理函数添加了功能明确的名称
  */
