@@ -80865,14 +80865,26 @@ void ExceptionHandler_SystemConfigurationA1(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_18090a130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数A130
+ * 
+ * 该函数负责处理异常数据，包括处理异常数据、清理异常数据和终止系统
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_18090a130
+ * @note 这是一个异常数据处理函数，用于处理异常数据并执行相关操作
+ */
+void ProcessExceptionDataA130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10);
+  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + SystemContextDataOffset) + ExceptionHandlerCallbackOffset10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + SystemContextDataOffset),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     CleanupExceptionDataA0(exceptionDataBuffer);
       TerminateSystemE0(exceptionDataBuffer);
   }
@@ -80881,14 +80893,26 @@ void Unwind_18090a130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数A140
+ * 
+ * 该函数负责处理异常数据，包括处理异常数据、清理异常数据和终止系统（A140变体）
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_18090a140
+ * @note 这是一个异常数据处理函数，用于处理异常数据并执行相关操作
+ */
+void ProcessExceptionDataA140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10);
+  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + SystemContextDataOffset) + ExceptionHandlerCallbackOffset10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + SystemContextDataOffset),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     CleanupExceptionDataA0(exceptionDataBuffer);
       TerminateSystemE0(exceptionDataBuffer);
   }
