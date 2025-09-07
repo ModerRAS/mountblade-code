@@ -62672,8 +62672,17 @@ void ExecuteSystemCallbackG(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906ec0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器回调执行函数C0
+ * 
+ * 该函数负责执行异常处理器回调，通过调用异常处理上下文中的回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180906ec0
+ */
+void ExecuteExceptionHandlerCallbackC0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
@@ -62686,8 +62695,18 @@ void Unwind_180906ec0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906ed0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器回调执行函数D0
+ * 
+ * 该函数负责执行异常处理器回调，通过调用异常处理上下文中的回调函数
+ * 使用固定的偏移量0x18来获取异常处理上下文
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180906ed0
+ */
+void ExecuteExceptionHandlerCallbackD0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
@@ -62700,8 +62719,18 @@ void Unwind_180906ed0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906ee0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 双重异常处理器回调执行函数E0
+ * 
+ * 该函数负责执行两个异常处理器回调，分别通过不同的偏移量获取异常处理上下文
+ * 首先使用偏移量0x18，然后使用ExceptionHandlerCallbackOffset10
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180906ee0
+ */
+void ExecuteDualExceptionHandlerCallbacksE0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   int64_t dataContext;
@@ -62720,22 +62749,43 @@ void Unwind_180906ee0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 异常处理器回调执行函数F0
+ * 
+ * 该函数负责执行异常处理器回调，使用偏移量0x170获取异常处理上下文
+ * 并传入多个参数调用回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180906ef0
+ */
+void ExecuteExceptionHandlerCallbackF0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x170) + ExceptionHandlerCallbackOffset10);
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x170),0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x170), 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-void Unwind_180906f00(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器回调执行函数G0
+ * 
+ * 该函数负责执行异常处理器回调，使用偏移量0x30获取异常处理上下文
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180906f00
+ */
+void ExecuteExceptionHandlerCallbackG0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
@@ -62748,8 +62798,17 @@ void Unwind_180906f00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906f10(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器回调执行函数H0
+ * 
+ * 该函数负责执行异常处理器回调，使用偏移量0x30和0x18获取异常处理上下文
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180906f10
+ */
+void ExecuteExceptionHandlerCallbackH0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
@@ -62762,8 +62821,18 @@ void Unwind_180906f10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906f20(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 双重异常处理器回调执行函数I0
+ * 
+ * 该函数负责执行两个异常处理器回调，使用偏移量0x30获取数据上下文
+ * 然后分别使用偏移量0x18和ExceptionHandlerCallbackOffset10获取异常处理上下文
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180906f20
+ */
+void ExecuteDualExceptionHandlerCallbacksI0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   int64_t dataContext;
