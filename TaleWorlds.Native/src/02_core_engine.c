@@ -245315,7 +245315,7 @@ unsigned long long ProcessCharacterEncodingAndBuffer(long long CharacterCode,lon
     if (*(void **)(CharacterCodeSize + 8) != NULL) {
       pMemoryAddressMask = *(void **)(CharacterCodeSize + 8);
     }
-    UnicodeCodePoint = ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10938,pMemoryAddressMask);
+    UnicodeCodePoint = ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemUnicodeValidationConfig,pMemoryAddressMask);
     return UnicodeCodePoint & 0xffffffffffffff00;
   }
   return ProcessingResult & 0xffffffffffffff00;
@@ -245345,7 +245345,7 @@ unsigned long long ProcessSystemUnicodeValidation(void
       return UnicodeCodePoint;
     }
   }
-  UnicodeCodePoint = ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10938);
+  UnicodeCodePoint = ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemUnicodeValidationConfig);
   return UnicodeCodePoint & 0xffffffffffffff00;
 }
 
@@ -245363,7 +245363,7 @@ unsigned long long ValidateSystemUnicodeConversion(void
   if (*(long long *)(DataNodeIndex + 8) != 0) {
     lStack0000000000000028 = *(long long *)(DataNodeIndex + 8);
   }
-  Utf16Char = ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10938);
+  Utf16Char = ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemUnicodeValidationConfig);
   return Utf16Char & 0xffffffffffffff00;
 }
 
@@ -245620,7 +245620,7 @@ LAB_180406929:
   pSystemPriorityLevel = &ThreadLocalStorageTemplate;
 LAB_18040698e:
   validationResult = FUN_18084acb0(BufferStatus);
-  FUN_180211a30(validationResult,&UNK_180a27158);
+  FUN_180211a30(validationResult,&SystemCharacterEncodingBuffer);
   return validationResult == 0;
 }
 
@@ -245643,7 +245643,7 @@ bool FUN_180216391(void
   FUN_1802164f0(VectorRegisterDa,MemoryBlockIndex);
   if (MemoryBlockIndex == 0) {
     puStack_8 = (void *)0x180216404;
-    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10960);
+    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemUtf16ConversionConfig);
     return false;
   }
   if (*(int *)(SystemConfigData + 0x9a0) == 0) goto LAB_18040698e;
@@ -245685,7 +245685,7 @@ LAB_180406921:
   puStack_8 = &ThreadLocalStorageTemplate;
 LAB_18040698e:
   CharacterByteCount = FUN_18084acb0(MemoryBlockIndex);
-  FUN_180211a30(CharacterByteCount,&UNK_180a27158);
+  FUN_180211a30(CharacterByteCount,&SystemCharacterEncodingBuffer);
   return CharacterByteCount == 0;
 }
 
@@ -245702,7 +245702,7 @@ unsigned long long GetSystemUtf16Char(void
   if (*(void **)(DataNodeIndex + 8) != NULL) {
     puStack0000000000000028 = *(void **)(DataNodeIndex + 8);
   }
-  Utf16Char = ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10960);
+  Utf16Char = ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemUtf16ConversionConfig);
   return Utf16Char & 0xffffffffffffff00;
 }
 
@@ -245795,7 +245795,7 @@ LAB_180406929:
   pSystemPriorityLevel = &ThreadLocalStorageTemplate;
 LAB_18040698e:
   validationResult = FUN_18084acb0(BufferStatus);
-  FUN_180211a30(validationResult,&UNK_180a27158);
+  FUN_180211a30(validationResult,&SystemCharacterEncodingBuffer);
   return validationResult == 0;
 }
 
@@ -245860,14 +245860,14 @@ LAB_180406921:
   puStack_8 = &ThreadLocalStorageTemplate;
 LAB_18040698e:
   CharacterByteCount = FUN_18084acb0(MemoryBlockIndex);
-  FUN_180211a30(CharacterByteCount,&UNK_180a27158);
+  FUN_180211a30(CharacterByteCount,&SystemCharacterEncodingBuffer);
   return CharacterByteCount == 0;
 }
 
 
 
 
-unsigned long long FUN_180216498(void
+unsigned long long ValidateSystemUtf16Configuration(void
 {
   unsigned long long Utf16Char;
   
