@@ -32516,7 +32516,7 @@ ProcessCheckpointValidationState4:
           validationStatus = 0x11;
         }
       }
-      bVar9 = validationStatus == 0 && acStack_a8[0] != '\0';
+      hasValidData = validationStatus == 0 && acStack_a8[0] != '\0';
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
         memoryBaseAddress = 0;
