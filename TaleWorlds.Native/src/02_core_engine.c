@@ -47469,12 +47469,12 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   fStack0000000000000060 = Utf8SourcePointer * in_XMM4_Da + ContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7 + DataNodeIndex[0xc];
   TemporaryFloatStack64 = Utf8SourcePointer * in_XMM4_Db + ContextSecondaryFloat * FloatVariable5 + SystemContextPrimaryFloat * ProcessedFloatValue8 + DataNodeIndex[0xd];
   TemporaryFloatStack68 = Utf8SourcePointer * in_XMM4_Dc + ContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue + DataNodeIndex[0xe];
-  StackParameterE8 = in_stack_000000e8;
+  StackParameterE8 = StackParameterE8;
   StackUintValue6c = 0x3f800000;
   TemporaryStackValue5c = 0;
   StackParameter4C = 0;
   StackParameter3C = 0;
-  CalculateFloatValue(0x3f800000,SystemContextPrimaryFloat * FloatVariable7,CharacterLimitD,&SystemStackBuffer,in_stack_000000e0);
+  CalculateFloatValue(0x3f800000,SystemContextPrimaryFloat * FloatVariable7,CharacterLimitD,&SystemStackBuffer,StackParameterE0);
   return;
 }
 
@@ -92538,7 +92538,7 @@ void ProcessSystemDataValidation(long long CharacterCode, long long Utf8BufferSi
   *(void *)(in_R11 + -0x30) = XMMRegister6_Qb;
   *(uint32_t *)(in_R11 + -0x58) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -0x54) = XMMRegister8_Db;
-  *(uint32_t *)(in_R11 + -0x50) = unaff_XMM8_Dc;
+  *(uint32_t *)(in_R11 + -0x50) = XMM8RegisterC;
   *(uint32_t *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
   *(uint32_t *)(in_R11 + -0xa8) = AuxiliaryFloat13;
   *(uint32_t *)(in_R11 + -0xa4) = unaff_XMM13_Db;
@@ -92603,8 +92603,8 @@ void ProcessSystemDataValidation(long long CharacterCode, long long Utf8BufferSi
           StackParameter0 = unaff_XMM15_Dc;
           StackParameter3 = AuxiliaryFloat12;
           StackParameter6 = unaff_XMM12_Dc;
-          in_stack_000000c0 = AuxiliaryFloat9;
-          in_stack_000000c8 = unaff_XMM9_Dc;
+          StackParameterC0 = AuxiliaryFloat9;
+          StackParameterC8 = unaff_XMM9_Dc;
           do {
             ContextSecondaryFloat0 = ContextSecondaryFloat0 + ContextPrimaryFloat9;
             EncodingConversionResult = *(long long *)(SourceIndex + 0x1af8);
@@ -92849,7 +92849,7 @@ void ValidateSystemDataStructureIntegrity(uint64_t CharacterCode
   uint32_t StackParameter3;
   uint32_t StackParameter6;
   uint32_t InputParameter1;
-  uint32_t in_stack_000000c8;
+  uint32_t StackParameterC8;
   
   StackFloat50 = (float)CharacterCode;
   SystemContextPrimaryFloat3 = 0.0;
@@ -92893,8 +92893,8 @@ void ValidateSystemDataStructureIntegrity(uint64_t CharacterCode
       StackParameter0 = unaff_XMM15_Dc;
       StackParameter3 = AuxiliaryFloat12;
       StackParameter6 = unaff_XMM12_Dc;
-      in_stack_000000c0 = AuxiliaryFloat9;
-      in_stack_000000c8 = unaff_XMM9_Dc;
+      StackParameterC0 = AuxiliaryFloat9;
+      StackParameterC8 = unaff_XMM9_Dc;
       do {
         SystemFloatValue = SystemFloatValue + SystemContextPrimaryFloat;
         SystemDataTablePointer = *(long long *)(SourceIndex + 0x1af8);
@@ -93014,7 +93014,7 @@ void ResetSystemDataStatus(void
   uint32_t StackParameter3;
   uint32_t StackParameter6;
   uint32_t InputParameter1;
-  uint32_t in_stack_000000c8;
+  uint32_t StackParameterC8;
   
   OperationStatus = (char)RegisterR12Value;
   SystemMemoryAllocationResult = (uint)RegisterR12Value;
@@ -93048,8 +93048,8 @@ void ResetSystemDataStatus(void
     StackParameter0 = unaff_XMM15_Dc;
     StackParameter3 = AuxiliaryFloat12;
     StackParameter6 = unaff_XMM12_Dc;
-    in_stack_000000c0 = AuxiliaryFloat9;
-    in_stack_000000c8 = unaff_XMM9_Dc;
+    StackParameterC0 = AuxiliaryFloat9;
+    StackParameterC8 = unaff_XMM9_Dc;
     do {
       SystemContextPrimaryFloat3 = SystemContextPrimaryFloat3 + AuxiliaryFloat10;
       MemoryPoolBlockSize = *(long long *)(SourceIndex + 0x1af8);
@@ -94653,7 +94653,7 @@ unsigned long long ProcessDataStructureAndFloatCalculation(uint32_t CharacterCod
   uint32_t SecondaryFloatValue;
   float SystemFloatValue;
   uint32_t XMMRegister8_Db;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint32_t unaff_XMM8_Dd;
   uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Db;
@@ -94670,7 +94670,7 @@ unsigned long long ProcessDataStructureAndFloatCalculation(uint32_t CharacterCod
   *(uint32_t *)(in_R11 + -0x3c) = unaff_XMM7_Dd;
   *(uint32_t *)(in_R11 + -0x58) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -0x54) = XMMRegister8_Db;
-  *(uint32_t *)(in_R11 + -0x50) = unaff_XMM8_Dc;
+  *(uint32_t *)(in_R11 + -0x50) = XMM8RegisterC;
   *(uint32_t *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
   *(uint32_t *)(in_R11 + -0x68) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -100) = unaff_XMM9_Db;
@@ -94998,12 +94998,12 @@ uint8_t InitializeSystemMemoryAllocationStatus(void)
   float FloatParameter2;
   float TemporaryFloat1;
   float FloatParameter1;
-  uint64_t in_stack_00000058;
+  uint64_t StackParameter58;
   char CharacterBuffer;
   
   MemoryAllocationIndex = ProcessSystemParameters(&TertiaryDataBuffer,RegisterValueEDI,&ParameterConfigurationStackBuffer,SystemParameterB,5);
-  if ((SystemStringBuffer30 == '\0') || (in_stack_000000c8 == '\0')) {
-    SystemDataStructureRegistry = (unsigned long long)(in_stack_000000c8 != '\0') + 0x15;
+  if ((SystemStringBuffer30 == '\0') || (StackParameterC8 == '\0')) {
+    SystemDataStructureRegistry = (unsigned long long)(StackParameterC8 != '\0') + 0x15;
   }
   else {
     SystemDataStructureRegistry = 0x17;
@@ -95017,7 +95017,7 @@ uint8_t InitializeSystemMemoryAllocationStatus(void)
   if (RegisterValueEDI == *(int *)(SystemContext + 0x1ca0)) {
     ProcessMemoryLock(&TertiaryDataBuffer,1);
   }
-  ProcessSystemDataConcatenation(CONCAT44(StackFloat54,StackFloat50),in_stack_00000058,UnicodeCodePoint,1,
+  ProcessSystemDataConcatenation(CONCAT44(StackFloat54,StackFloat50),StackParameter58,UnicodeCodePoint,1,
                 *(uint32_t *)(SystemContext + 0x1664));
   CalculatedDistance = (BaseFloatValue - *(float *)(SystemContext + 0x19f8)) * 0.5;
   FloatVariable5 = (FloatingPointRegisterA - *(float *)(SystemContext + 0x19f8)) * 0.5;
@@ -95496,7 +95496,7 @@ uint8_t ProcessDataStructureWithMemory(uint32_t CharacterCode,float *Utf8InputBu
   uint32_t SecondaryFloatValue;
   float ContextSecondaryFloat3;
   uint32_t XMMRegister8_Db;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint32_t unaff_XMM8_Dd;
   uint32_t AuxiliaryFloat9;
   float ContextSecondaryFloat4;
@@ -95515,7 +95515,7 @@ uint8_t ProcessDataStructureWithMemory(uint32_t CharacterCode,float *Utf8InputBu
   MemoryPoolBlockSize = SystemConfigurationHandle;
   *(uint32_t *)(ProcessingResult + -0x68) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -100) = XMMRegister8_Db;
-  *(uint32_t *)(ProcessingResult + -0x60) = unaff_XMM8_Dc;
+  *(uint32_t *)(ProcessingResult + -0x60) = XMM8RegisterC;
   *(uint32_t *)(ProcessingResult + -0x5c) = unaff_XMM8_Dd;
   *(uint32_t *)(ProcessingResult + -0x78) = AuxiliaryFloat9;
   *(uint32_t *)(ProcessingResult + -0x74) = unaff_XMM9_Db;
@@ -96792,7 +96792,7 @@ unsigned long long ProcessSystemContextAndMemoryManagement(void
   uint32_t unaff_XMM7_Dd;
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint32_t unaff_XMM8_Dd;
   uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Db;
@@ -96813,7 +96813,7 @@ unsigned long long ProcessSystemContextAndMemoryManagement(void
   *(uint32_t *)(in_R11 + -0x4c) = unaff_XMM7_Dd;
   *(uint32_t *)(in_R11 + -0x68) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -100) = XMMRegister8_Db;
-  *(uint32_t *)(in_R11 + -0x60) = unaff_XMM8_Dc;
+  *(uint32_t *)(in_R11 + -0x60) = XMM8RegisterC;
   *(uint32_t *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
   *(uint32_t *)(in_R11 + -0x78) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -0x74) = unaff_XMM9_Db;
@@ -98162,7 +98162,7 @@ void ProcessSystemCoreDataAndFloatOperations(void
   uint32_t StackParameter4;
   uint32_t TemporaryValue1;
   uint32_t InputParameter1;
-  uint32_t in_stack_000000c8;
+  uint32_t StackParameterC8;
   
   UnicodeCodePoint = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
   *(void *)(in_R11 + 0x18) = CharacterLimit;
@@ -98212,8 +98212,8 @@ void ProcessSystemCoreDataAndFloatOperations(void
         (SecondaryFloatValue < *(float *)(CharacterTablePointer + 0x234))) &&
        (*(float *)(CharacterTablePointer + 0x228) <= NormalizedParameterValue && NormalizedParameterValue != *(float *)(CharacterTablePointer + 0x228))) &&
       (PrimaryFloatValue < *(float *)(CharacterTablePointer + 0x230))) || (*(char *)(SystemContext + 0x2e38) != '\0')) {
-    in_stack_000000c0 = AuxiliaryFloat10;
-    in_stack_000000c8 = unaff_XMM10_Dc;
+    StackParameterC0 = AuxiliaryFloat10;
+    StackParameterC8 = unaff_XMM10_Dc;
     SystemCheckResult = ValidateAndProcessSystemFlags(&SecondaryDataBuffer,&TertiaryDataBuffer,1);
     if (SystemCheckResult != '\0') {
       *(uint *)(MemoryBoundaryEnd + 0x148) = *(uint *)(MemoryBoundaryEnd + 0x148) | 1;
@@ -98396,12 +98396,12 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
   }
   CalculationBuffer = TemporaryFloatStack44;
   InputDataBuffer = (float)(int)(CalculatedDistance + 0.95);
-  if (0.0 < in_stack_00000058) {
+  if (0.0 < StackParameter58) {
     FloatVariable7 = (ProcessedFloatValue8 - NormalizedParameterValue) * SecondaryFloatValue + NormalizedParameterValue + *(float *)(SystemContext + 0x166c);
     StackUintValue6c = 0x3f000000;
     fStack0000000000000040 = NormalizedParameterValue;
     if ((NormalizedParameterValue <= FloatVariable7) &&
-       (fStack0000000000000040 = (ProcessedFloatValue8 - in_stack_00000058) - *(float *)(SystemContext + 0x1674),
+       (fStack0000000000000040 = (ProcessedFloatValue8 - StackParameter58) - *(float *)(SystemContext + 0x1674),
        FloatVariable7 <= fStack0000000000000040)) {
       fStack0000000000000040 = FloatVariable7;
     }
@@ -98817,7 +98817,7 @@ void SystemDataValidationAndProcessing(void)
   *(uint32_t *)(in_R11 + -0x1c) = unaff_XMM7_Dd;
   *(uint32_t *)(in_R11 + -0x38) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -0x34) = XMMRegister8_Db;
-  *(uint32_t *)(in_R11 + -0x30) = unaff_XMM8_Dc;
+  *(uint32_t *)(in_R11 + -0x30) = XMM8RegisterC;
   *(uint32_t *)(in_R11 + -0x2c) = unaff_XMM8_Dd;
   *(uint32_t *)(in_R11 + -0x48) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -0x44) = unaff_XMM9_Db;
@@ -99953,7 +99953,7 @@ void ProcessSystemDataComparison(uint64_t CharacterCode,char *Utf8InputBufferSiz
   float PrimaryDataStorage;
   float TemporaryFloat1;
   float FloatParameter1;
-  uint64_t in_stack_00000058;
+  uint64_t StackParameter58;
   uint32_t StackParameter4;
   uint32_t TemporaryValue1;
   float StackFloat1;
@@ -105819,7 +105819,7 @@ LAB_180116f4a:
     if (0 < *ReferenceCountPointer) {
       if ((((*(char *)(SourceIndex + 0x134) == '\0') || (*(char *)(SourceIndex + 0x136) != '\0')) &&
           ((StringBuffer8 == '\0' || (*(char *)(SourceIndex + 0x137) == '\0')))) &&
-         (((in_stack_00000058 != '\0' && (!ValidationByteFlag3)) && (CalculatedCodePoint3 = 0, 0 < *ReferenceCountPointer)))) {
+         (((StackParameter58 != '\0' && (!ValidationByteFlag3)) && (CalculatedCodePoint3 = 0, 0 < *ReferenceCountPointer)))) {
         CalculatedCodePoint2 = *(void *)(StackFramePointer + 0x7c);
         UnicodeCodePoint9 = CalculatedCodePoint3;
         do {
@@ -105905,7 +105905,7 @@ LAB_18011713b:
           (StringBuffer7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x84),1), StringBuffer7 != '\0')) ||
          (((CurrentByteValue2 && (-1 < *(int *)(SystemConfigurationHandle + 100))) &&
           (StringBuffer7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 100),1), StringBuffer7 != '\0')))) &&
-        ((in_stack_00000058 != '\0' && (*(char *)(StackFramePointer + -0x1a) == '\0')))) &&
+        ((StackParameter58 != '\0' && (*(char *)(StackFramePointer + -0x1a) == '\0')))) &&
        ((bStack0000000000000054 == 0 ||
         (*(int *)(SourceIndex + 0x1ef4) != *(int *)(SourceIndex + 0x1ef8))))) {
       ProcessingByte4 = true;
@@ -105929,7 +105929,7 @@ LAB_18011713b:
          (StringBuffer7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x80),1), StringBuffer7 != '\0')) ||
         (((CurrentByteValue2 && (-1 < *(int *)(SystemConfigurationHandle + 0x60))) &&
          (StringBuffer7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x60),1), StringBuffer7 != '\0')))) &&
-       (in_stack_00000058 != '\0')) {
+       (StackParameter58 != '\0')) {
       CurrentByteValue2 = true;
     }
     else {
@@ -105937,7 +105937,7 @@ LAB_18011713b:
     }
     if (((CurrentByteValue0) && (-1 < *(int *)(SystemConfigurationHandle + 0x8c))) &&
        ((StringBuffer7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x8c),1), StringBuffer7 != '\0' &&
-        ((in_stack_00000058 != '\0' && (*(char *)(StackFramePointer + -0x12) != '\0')))))) {
+        ((StackParameter58 != '\0' && (*(char *)(StackFramePointer + -0x12) != '\0')))))) {
       LowByte7 = 1;
     }
     else {
@@ -105947,7 +105947,7 @@ LAB_18011713b:
          (StringBuffer7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x88),1), StringBuffer7 != '\0')) ||
         (((IsMemoryBlockEqual && (-1 < *(int *)(SystemConfigurationHandle + 0x8c))) &&
          (StringBuffer7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x8c),1), StringBuffer7 != '\0')))) &&
-       ((in_stack_00000058 != '\0' && (*(char *)(StackFramePointer + -0x12) != '\0')))) {
+       ((StackParameter58 != '\0' && (*(char *)(StackFramePointer + -0x12) != '\0')))) {
       IsMemoryBlockEqual = true;
     }
     else {
@@ -106044,7 +106044,7 @@ LAB_180117593:
     if (-1 < *(int *)(SystemConfigurationHandle + 100)) {
       StringBuffer7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 100),1);
       MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
-      if ((StringBuffer7 != '\0') && (in_stack_00000058 != '\0')) {
+      if ((StringBuffer7 != '\0') && (StackParameter58 != '\0')) {
         FloatVariable43 = (float)(UnicodeCodePoint3 | 0x10008);
         goto LAB_180117375;
       }
@@ -106052,7 +106052,7 @@ LAB_180117593:
     if (-1 < *(int *)(SystemConfigurationHandle + 0x68)) {
       StringBuffer7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x68),1);
       MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
-      if ((StringBuffer7 != '\0') && (in_stack_00000058 != '\0')) {
+      if ((StringBuffer7 != '\0') && (StackParameter58 != '\0')) {
         if (*(int *)(SourceIndex + 0x1ef4) == *(int *)(SourceIndex + 0x1ef8)) {
           if (cStack0000000000000050 == '\0') {
             if ((((systemStringBuffer70 == '\0') || (*(char *)(SourceIndex + 0x137) == '\0')) ||
@@ -106082,7 +106082,7 @@ LAB_1801177f4:
         MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
         if ((((StringBuffer7 != '\0') &&
              ((*(char *)(SourceIndex + 0x134) == '\0' && (*(char *)(SourceIndex + 0x135) == '\0')))) &&
-            (*(char *)(SourceIndex + 0x136) == '\0')) && (in_stack_00000058 != '\0')) {
+            (*(char *)(SourceIndex + 0x136) == '\0')) && (StackParameter58 != '\0')) {
           _uStack0000000000000060 = 1.26117e-44;
           StringBuffer7 = ValidateSystemParametersAndCheckStatus(&DataTransferStackBuffer,FloatVariable43,*(void *)(StackFramePointer + 0x7a),
                                  *(void *)(StackFramePointer + 0x7c));
@@ -106221,7 +106221,7 @@ LAB_180117443:
       }
       else if (*(char *)(SourceIndex + 0x134) != '\0') {
 LAB_1801177b9:
-        if (in_stack_00000058 != '\0') {
+        if (StackParameter58 != '\0') {
           StackFramePointer[-0x12] = 1.4013e-44;
           StringBuffer7 = ValidateSystemParametersAndCheckStatus(StackFramePointer + -0x12,StackFramePointer[0x78],*(void *)(StackFramePointer + 0x7a                                 ,*(void *)(StackFramePointer + 0x7c));
           if (StringBuffer7 != '\0') {
@@ -106244,7 +106244,7 @@ LAB_1801177b9:
     FloatVariable43 = 0.0;
     if (CurrentByteValue0) {
       FloatVariable43 = 0.0;
-      if (in_stack_00000058 != '\0') {
+      if (StackParameter58 != '\0') {
         pSystemCheckResult5 = *(char **)(StackFramePointer + 0x72);
         BufferStatus4 = (long long)*(char **)(SourceIndex + 0x1ec8) - (long long)pSystemCheckResult5;
         do {
@@ -106267,7 +106267,7 @@ LAB_1801177b9:
     else {
       FloatVariable51 = StackFramePointer[0x78];
 LAB_180117b4d:
-      if (in_stack_00000058 != '\0') {
+      if (StackParameter58 != '\0') {
         SetSystemDataStatus(SourceIndex + 0x1ed0,*(int *)(SourceIndex + 0x1eb0) * 4 + 1);
         ConvertUtf16Character(*(void *)(SourceIndex + 0x1ed8),*(uint32_t *)(SourceIndex + 0x1ed0),
                       *(void *)(SourceIndex + 0x1eb8),0);
@@ -106356,7 +106356,7 @@ LAB_180117c0c:
         }
       }
       BufferStatus4 = *(long long *)(StackFramePointer + 0x72);
-      if (in_stack_00000058 != '\0') {
+      if (StackParameter58 != '\0') {
         StringDataPointer = *(char **)(SourceIndex + 0x1ed8);
         pSystemCheckResult7 = StringDataPointer;
         do {
@@ -106777,7 +106777,7 @@ LAB_1801180e1:
       }
     }
     SecondaryFloatValue = 0.0;
-    if (in_stack_00000058 != '\0') {
+    if (StackParameter58 != '\0') {
       MemoryBlockIndex4 = *(long long *)(StackFramePointer + -4);
       *(float *)(SourceIndex + 0x2de4) = FloatVariable49 - *(float *)(SourceIndex + 0x19f8);
       *(float *)(SourceIndex + 0x2de0) = FloatVariable46 - 1.0;
@@ -107360,7 +107360,7 @@ char ProcessSystemConfigurationAndStatusCheck(void)
   long long StackFramePointer;
   long long SourceIndex;
   float SecondaryFloatValue;
-  uint64_t in_stack_00000058;
+  uint64_t StackParameter58;
   
   SynchronizeSystemData();
   if ((*(char *)(SourceIndex + 0x2e38) != '\0') && ((char)*(uint32_t *)(StackFramePointer + -0x68) == '\0')  {
@@ -107371,16 +107371,16 @@ char ProcessSystemConfigurationAndStatusCheck(void)
                            *(float *)(StackFramePointer + -0x58) + *(float *)(SourceIndex + 0x1674)),
                   *(void *)(StackFramePointer + 0x1c0),0,1);
   }
-  if (in_stack_00000058._6_1_ != '\0') {
+  if (StackParameter58._6_1_ != '\0') {
     CharacterCode = (long long *)(SystemConfigurationHandle + 0x1af8);
     *(uint8_t *)(SystemConfigurationHandle + 0x1b3e) = 1;
     PrimaryProcessingStatusFlag = (uint *)(*Utf8InputBuffer + 0x148);
     *PrimaryProcessingStatusFlag = *PrimaryProcessingStatusFlag | 4;
   }
   if ((*(byte *)(StackFramePointer + 0x1e0) & 0x20) != 0) {
-    in_stack_00000058._6_1_ = in_stack_00000058._7_1_;
+    StackParameter58._6_1_ = StackParameter58._7_1_;
   }
-  return in_stack_00000058._6_1_;
+  return StackParameter58._6_1_;
 }
 
 
@@ -109099,7 +109099,7 @@ unsigned long long ProcessSystemContextWithUint32Parameters(uint32_t CharacterCo
   InputDataBuffer =
        ((ContextSecondaryFloat5 + *(float *)(SourceIndex + 0x40)) - *(float *)(SourceIndex + 0x70)) -
        *(float *)(SourceIndex + 0x100);
-  if (in_stack_00000058 <= ContextSecondaryFloat4) {
+  if (StackParameter58 <= ContextSecondaryFloat4) {
     InputDataBuffer = ContextSecondaryFloat4;
   }
   ContextSecondaryFloat4 = pSystemContextPrimaryFloat3[1];
@@ -109111,14 +109111,14 @@ unsigned long long ProcessSystemContextWithUint32Parameters(uint32_t CharacterCo
   if ((ContextSecondaryFloat2 != 0.0) && ((MemoryAddressMask & 0x2000) == 0)) {
     InputDataBuffer = ContextSecondaryFloat2;
   }
-  InputDataBuffer = FilterInputValue + in_stack_00000058;
+  InputDataBuffer = FilterInputValue + StackParameter58;
   if ((ContextSecondaryFloat2 == 0.0) || ((MemoryAddressMask & 0x2000) != 0)) {
-    InputDataBuffer = *(float *)(SourceIndex + 0x70) + in_stack_00000058;
+    InputDataBuffer = *(float *)(SourceIndex + 0x70) + StackParameter58;
   }
   ContextSecondaryFloat3 = (float)(int)(*(float *)(SystemContext + 0x166c) * 0.5);
   DataStorageValue = FilterInputValue - ContextSecondaryFloat3;
   ContextSecondaryFloat2 = (float)(int)(*(float *)(SystemContext + 0x1670) * 0.5);
-  InputDataBuffer = in_stack_00000058 + (*(float *)(SystemContext + 0x166c) - ContextSecondaryFloat3);
+  InputDataBuffer = StackParameter58 + (*(float *)(SystemContext + 0x166c) - ContextSecondaryFloat3);
   StackFloat54 = ContextSecondaryFloat6 - ContextSecondaryFloat2;
   *(float *)(StackFramePointer + -0x7d) = (*(float *)(SystemContext + 0x1670) - ContextSecondaryFloat2) + ContextSecondaryFloat6 + ContextSecondaryFloat4;
   ProcessStringBuffer = ValidateSystemData(&TertiaryDataBuffer,IntegerValue9,0);
@@ -109149,7 +109149,7 @@ unsigned long long ProcessSystemContextWithUint32Parameters(uint32_t CharacterCo
   StringBuffer7 = (char *)CONCAT44(MemoryAllocationIndex,PrimaryReturnCode);
   IsSystemContextValid = ProcessSystemParameters(&TertiaryDataBuffer,IntegerValue9,&DataStackBuffer,(long long)&DataStackBuffer + 1,
                         StringBuffer7);
-  ContextSecondaryFloat2 = in_stack_00000058;
+  ContextSecondaryFloat2 = StackParameter58;
   SystemCheckResult0 = '\0';
   if (fStack0000000000000048 == 0.0) {
     SystemCheckResult0 = *(char *)(StackFramePointer + 0x6f);
@@ -109181,7 +109181,7 @@ LAB_180119e1f:
     SystemContextValue = 0x1a;
   }
   CharacterTablePointer = *(long long *)(DataNodeIndex + 0x1af8);
-  *(float *)(StackFramePointer + -0x69) = in_stack_00000058;
+  *(float *)(StackFramePointer + -0x69) = StackParameter58;
   *(float *)(StackFramePointer + -0x79) = DataStorageValue;
   PrimaryProcessingStatusFlag = (uint32_t *)(DataNodeIndex + 0x1628 + (SystemContextValue + 10) * 0x10);
   MemoryAllocationIndex = PrimaryProcessingStatusFlag[1];
@@ -109679,7 +109679,7 @@ void SetupIntegerDataNetwork(uint64_t CharacterCode,char *Utf8InputBufferSize,ui
   uint32_t SecondaryFloatValue;
   float ContextSecondaryFloat4;
   uint32_t XMMRegister8_Db;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint32_t unaff_XMM8_Dd;
   uint32_t AuxiliaryFloat10;
   uint32_t unaff_XMM10_Db;
@@ -109735,7 +109735,7 @@ void SetupIntegerDataNetwork(uint64_t CharacterCode,char *Utf8InputBufferSize,ui
   *(uint32_t *)(in_R11 + -0x5c) = unaff_XMM7_Dd;
   *(uint32_t *)(in_R11 + -0x78) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -0x74) = XMMRegister8_Db;
-  *(uint32_t *)(in_R11 + -0x70) = unaff_XMM8_Dc;
+  *(uint32_t *)(in_R11 + -0x70) = XMM8RegisterC;
   *(uint32_t *)(in_R11 + -0x6c) = unaff_XMM8_Dd;
   *(uint32_t *)(in_R11 + -0x98) = AuxiliaryFloat10;
   *(uint32_t *)(in_R11 + -0x94) = unaff_XMM10_Db;
@@ -110794,7 +110794,7 @@ uint64_t ManageDataStructureMemory(long long CharacterCode
   uint32_t SystemParameter2;
   float TemporaryFloatStack44;
   uint32_t DataStorageValue;
-  uint32_t in_stack_00000058;
+  uint32_t StackParameter58;
   
   if ((CharacterLimitD >> 0x14 & 1) == 0) {
     ProcessSystemDataStructure(SourceIndex + 0x218,CharacterCode + 0x10);
@@ -110922,7 +110922,7 @@ uint64_t ProcessUtf16CharacterConversion(void)
   uint32_t SystemParameter2;
   float TemporaryFloatStack44;
   uint32_t DataStorageValue;
-  uint32_t in_stack_00000058;
+  uint32_t StackParameter58;
   
   if (ProcessingResult != 0) {
     *(int *)(ProcessingResult + 0x3a8) = *(int *)(ProcessingResult + 0x3a8) + 1;
@@ -113056,7 +113056,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t CharacterCode
   uint32_t BufferStorageValue;
   uint32_t in_stack_000000b8;
   uint32_t InputParameter1;
-  uint32_t in_stack_000000c8;
+  uint32_t StackParameterC8;
   uint32_t SystemStringBufferE0;
   uint32_t stackParameterE8;  // 栈参数E8，用于存储参数数据
   uint32_t stackParameterF0;  // 栈参数F0，用于存储参数数据
@@ -113494,7 +113494,7 @@ char CoreEngineValidateSystemStatus(void
   float TemporaryFloatStack44;
   byte PrimaryDataStorage;
   long long DataStorageValue;
-  int in_stack_00000058;
+  int StackParameter58;
   float fStack0000000000000060;
   float TemporaryFloat2;
   uint32_t StackParameter0;
@@ -113584,7 +113584,7 @@ char CoreEngineValidateSystemStatus(void
   if (((!ValidationByteFlag3) || (*(char *)(RegisterR13Value + 0x120) == '\0')) ||
      (*(float *)(RegisterR13Value + 0x474) <= AuxiliaryFloat10 &&
       AuxiliaryFloat10 != *(float *)(RegisterR13Value + 0x474))) {
-    if (((in_stack_00000058 < RegisterR12ValueD) || (*(char *)(RegisterR13Value + 0x120) == '\0')) ||
+    if (((StackParameter58 < RegisterR12ValueD) || (*(char *)(RegisterR13Value + 0x120) == '\0')) ||
        (ContextSecondaryFloat6 = *(float *)(RegisterR13Value + 0x38) * *(float *)(RegisterR13Value + 0x38),
        *(float *)(RegisterR13Value + 0x474) <= ContextSecondaryFloat6 && ContextSecondaryFloat6 != *(float *)(RegisterR13Value + 0x474))    goto LAB_18011cbeb;
     ContextSecondaryFloat6 = 0.0;
@@ -113829,7 +113829,7 @@ char ManageSystemResourceAndRelease(void)
   float TemporaryFloatStack44;
   byte PrimaryDataStorage;
   long long DataStorageValue;
-  int in_stack_00000058;
+  int StackParameter58;
   float fStack0000000000000060;
   float TemporaryFloat2;
   uint32_t StackParameter0;
@@ -113919,7 +113919,7 @@ char ManageSystemResourceAndRelease(void)
   if (((!ValidationByteFlag3) || (*(char *)(RegisterR13Value + 0x120) == '\0')) ||
      (*(float *)(RegisterR13Value + 0x474) <= AuxiliaryFloat10 &&
       AuxiliaryFloat10 != *(float *)(RegisterR13Value + 0x474))) {
-    if (((in_stack_00000058 < RegisterR12ValueD) || (*(char *)(RegisterR13Value + 0x120) == '\0')) ||
+    if (((StackParameter58 < RegisterR12ValueD) || (*(char *)(RegisterR13Value + 0x120) == '\0')) ||
        (ContextSecondaryFloat6 = *(float *)(RegisterR13Value + 0x38) * *(float *)(RegisterR13Value + 0x38),
        *(float *)(RegisterR13Value + 0x474) <= ContextSecondaryFloat6 && ContextSecondaryFloat6 != *(float *)(RegisterR13Value + 0x474))    goto LAB_18011cbeb;
     ContextSecondaryFloat6 = 0.0;
@@ -114602,7 +114602,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float CharacterCode,float Utf8BufferSi
   float FloatParameter2;
   uint32_t DataStorageValue;
   uint32_t uStack0000000000000054;
-  uint32_t in_stack_00000058;
+  uint32_t StackParameter58;
   float CalculationBuffer;
   float fStack0000000000000060;
   float TemporaryFloat2;
@@ -127742,7 +127742,7 @@ void ProcessSystemFloatDataAndMemoryAllocation(void)
   *(uint32_t *)(ProcessingResult + -0x2c) = unaff_XMM7_Dd;
   *(uint32_t *)(ProcessingResult + -0x48) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -0x44) = XMMRegister8_Db;
-  *(uint32_t *)(ProcessingResult + -0x40) = unaff_XMM8_Dc;
+  *(uint32_t *)(ProcessingResult + -0x40) = XMM8RegisterC;
   *(uint32_t *)(ProcessingResult + -0x3c) = unaff_XMM8_Dd;
   *(uint32_t *)(ProcessingResult + -0x58) = AuxiliaryFloat9;
   *(uint32_t *)(ProcessingResult + -0x54) = unaff_XMM9_Db;
@@ -127878,7 +127878,7 @@ void FindAndFilterSystemMemoryBlocks(void)
   uint32_t unaff_XMM7_Dd;
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint32_t unaff_XMM8_Dd;
   uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Db;
@@ -127901,7 +127901,7 @@ void FindAndFilterSystemMemoryBlocks(void)
   *(uint32_t *)(ProcessingResult + -0x2c) = unaff_XMM7_Dd;
   *(uint32_t *)(ProcessingResult + -0x48) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -0x44) = XMMRegister8_Db;
-  *(uint32_t *)(ProcessingResult + -0x40) = unaff_XMM8_Dc;
+  *(uint32_t *)(ProcessingResult + -0x40) = XMM8RegisterC;
   *(uint32_t *)(ProcessingResult + -0x3c) = unaff_XMM8_Dd;
   *(uint32_t *)(ProcessingResult + -0x58) = AuxiliaryFloat9;
   *(uint32_t *)(ProcessingResult + -0x54) = unaff_XMM9_Db;
@@ -131248,7 +131248,7 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
   float FilterInputValue8;
   float FilterInputValue9;
   uint32_t SecondaryFloatValue;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint64_t unaff_XMM9_Qa;
   uint64_t unaff_XMM9_Qb;
   uint32_t AuxiliaryFloat10;
@@ -131489,7 +131489,7 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
   in_stack_000001f0 = AuxiliaryFloat10;
   in_stack_000001f8 = unaff_XMM10_Dc;
   in_stack_00000210 = SecondaryFloatValue;
-  in_stack_00000218 = unaff_XMM8_Dc;
+  in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,FilterInputValue4,*(void *)(StackFramePointer + 8));
   CharacterTablePointer5 = *(long long *)(StackFramePointer + 10);
   StackFramePointer[0x20] = -3.4028235e+38;
@@ -133088,7 +133088,7 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
   float FilterInputValue7;
   float FilterInputValue8;
   uint32_t SecondaryFloatValue;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint64_t unaff_XMM9_Qa;
   uint64_t unaff_XMM9_Qb;
   uint32_t AuxiliaryFloat10;
@@ -133327,7 +133327,7 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
   in_stack_000001f0 = AuxiliaryFloat10;
   in_stack_000001f8 = unaff_XMM10_Dc;
   in_stack_00000210 = SecondaryFloatValue;
-  in_stack_00000218 = unaff_XMM8_Dc;
+  in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,ScalingFactor,*(void *)(StackFramePointer + 8));
   LoopIndex = *(long long *)(StackFramePointer + 10);
   StackFramePointer[0x20] = -3.4028235e+38;
@@ -134929,7 +134929,7 @@ void InitializeSystemStringProcessing(void)
   float FilterInputValue4;
   float FilterInputValue5;
   uint32_t SecondaryFloatValue;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint64_t unaff_XMM9_Qa;
   uint64_t unaff_XMM9_Qb;
   uint32_t AuxiliaryFloat10;
@@ -135024,7 +135024,7 @@ void InitializeSystemStringProcessing(void)
   in_stack_000001f0 = AuxiliaryFloat10;
   in_stack_000001f8 = unaff_XMM10_Dc;
   in_stack_00000210 = SecondaryFloatValue;
-  in_stack_00000218 = unaff_XMM8_Dc;
+  in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,NullPointerD,*(void *)(StackFramePointer + 8));
   SystemContextValue = *(long long *)(StackFramePointer + 10);
   StackFramePointer[0x20] = -3.4028235e+38;
@@ -138241,7 +138241,7 @@ void ProcessSystemStatusAndValidation(void
   float FilterInputValue4;
   float FilterInputValue5;
   uint32_t SecondaryFloatValue;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint64_t unaff_XMM9_Qa;
   uint64_t unaff_XMM9_Qb;
   uint32_t AuxiliaryFloat10;
@@ -138324,7 +138324,7 @@ void ProcessSystemStatusAndValidation(void
   in_stack_000001f0 = AuxiliaryFloat10;
   in_stack_000001f8 = unaff_XMM10_Dc;
   in_stack_00000210 = SecondaryFloatValue;
-  in_stack_00000218 = unaff_XMM8_Dc;
+  in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,NullPointerD,*(void *)(StackFramePointer + 8));
   SystemContextValue = *(long long *)(StackFramePointer + 10);
   StackFramePointer[0x20] = -3.4028235e+38;
@@ -148455,7 +148455,7 @@ void ProcessSystemBufferStatus(void)
   uint32_t unaff_XMM7_Dc;
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint32_t unaff_XMM8_Dd;
   uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Dc;
@@ -148479,7 +148479,7 @@ void ProcessSystemBufferStatus(void)
   Utf16ConversionContext = SourceIndex & 0xffffffff;
   *(uint32_t *)(ProcessingResult + -0x58) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -0x54) = XMMRegister8_Db;
-  *(uint32_t *)(ProcessingResult + -0x50) = unaff_XMM8_Dc;
+  *(uint32_t *)(ProcessingResult + -0x50) = XMM8RegisterC;
   *(uint32_t *)(ProcessingResult + -0x4c) = unaff_XMM8_Dd;
   StringBuffer = (char)SourceIndex;
   if (CharacterByteCount0 < *(int *)(SystemContext + 0x1c68)) {
@@ -156868,7 +156868,7 @@ int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,u
   uint32_t unaff_XMM7_Dd;
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint32_t unaff_XMM8_Dd;
   
   *(void *)(ProcessingResult + 8) = SystemContext;
@@ -156890,7 +156890,7 @@ int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,u
   *(uint32_t *)(ProcessingResult + -0x2c) = unaff_XMM7_Dd;
   *(uint32_t *)(ProcessingResult + -0x48) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -0x44) = XMMRegister8_Db;
-  *(uint32_t *)(ProcessingResult + -0x40) = unaff_XMM8_Dc;
+  *(uint32_t *)(ProcessingResult + -0x40) = XMM8RegisterC;
   *(uint32_t *)(ProcessingResult + -0x3c) = unaff_XMM8_Dd;
   *(uint8_t *)(*(long long *)(MemoryBoundaryEnd + 0x1af8) + 0xb1) = 1;
   long long AllocatedMemorySize = *(long long *)(MemoryBoundaryEnd + 0x1af8);
@@ -165751,7 +165751,7 @@ LAB_18013b83c:
   byte ProcessingByte4;
   long long CharacterLimit;
   uint64_t extraout_XMM0_Qa;
-  uint8_t *in_stack_00000058;
+  uint8_t *StackParameter58;
   char FunctionReturnValue;
   
   MemoryPoolBlockSize = SystemContext[0x81];
@@ -165863,7 +165863,7 @@ LAB_18013b999:
           }
           if ((((*(byte *)(MemoryPoolBlockSize + 0xa1) & 2) != 0) ||
               (*(int *)(MemoryPoolBlockSize + 0x9c) == *(int *)(SystemContext + 1))) &&
-             (in_stack_00000058 != (uint8_t *)0x0)) {
+             (StackParameter58 != (uint8_t *)0x0)) {
             *InputDataBuffer = 0;
           }
           DataSize = AllocateSystemMemory(*(void *)(SystemContext[0x81] + 0x68),*SystemContext);
@@ -165915,7 +165915,7 @@ LAB_18013b83c:
   byte ProcessingByte4;
   long long CharacterLimit;
   uint64_t extraout_XMM0_Qa;
-  uint8_t *in_stack_00000058;
+  uint8_t *StackParameter58;
   char cStack0000000000000060;
   
   hasComparisonResult = (byte)(*(uint *)(CharacterCode + 0xc) >> 0x15) & 1;
@@ -166050,7 +166050,7 @@ LAB_18013b999:
           }
           if ((((*(byte *)(MemoryPoolBlockSize + 0xa1) & 2) != 0) ||
               (*(int *)(MemoryPoolBlockSize + 0x9c) == *(int *)(SystemContext + 1))) &&
-             (in_stack_00000058 != (uint8_t *)0x0)) {
+             (StackParameter58 != (uint8_t *)0x0)) {
             *InputDataBuffer = 0;
           }
           DataSize = AllocateSystemMemory(*(void *)(SystemContext[0x81] + 0x68),*SystemContext);
@@ -166119,7 +166119,7 @@ LAB_18013b83c:
   long long DataNodeIndex;
   byte IsMemoryBlockEqual;
   long long CharacterLimit;
-  uint8_t *in_stack_00000058;
+  uint8_t *StackParameter58;
   
   SystemDataTablePointer = *(long long *)(SourceIndex + 0x68);
   if (SystemDataTablePointer != 0) {
@@ -166193,7 +166193,7 @@ LAB_18013b999:
         }
         if ((((*(byte *)(SourceIndex + 0xa1) & 2) != 0) ||
             (*(int *)(SourceIndex + 0x9c) == *(int *)(SystemContext + 1))) &&
-           (in_stack_00000058 != (uint8_t *)0x0)) {
+           (StackParameter58 != (uint8_t *)0x0)) {
           *InputDataBuffer = 0;
         }
         CalculatedCodePoint = AllocateSystemMemory(*(void *)(SystemContext[0x81] + 0x68),*SystemContext);
@@ -166228,7 +166228,7 @@ LAB_18013b872:
   long long DataNodeIndex;
   byte IsMemoryBlockEqual;
   long long CharacterLimit;
-  uint8_t *in_stack_00000058;
+  uint8_t *StackParameter58;
   
   if (CharacterCode == 0) {
     *(byte *)((long long)SystemContext + 0x432) = *(byte *)((long long)SystemContext + 0x432) & 0xfd;
@@ -166286,7 +166286,7 @@ LAB_18013b999:
     }
     if ((((*(byte *)(SourceIndex + 0xa1) & 2) != 0) ||
         (*(int *)(SourceIndex + 0x9c) == *(int *)(SystemContext + 1))) &&
-       (in_stack_00000058 != (uint8_t *)0x0)) {
+       (StackParameter58 != (uint8_t *)0x0)) {
       *InputDataBuffer = 0;
     }
     CalculatedCodePoint = AllocateSystemMemory(*(void *)(SystemContext[0x81] + 0x68),*SystemContext);
@@ -166316,7 +166316,7 @@ LAB_18013b999:
   long long DataNodeIndex;
   byte IsMemoryBlockEqual;
   long long CharacterLimit;
-  uint8_t *in_stack_00000058;
+  uint8_t *StackParameter58;
   
   *(void *)(DataNodeIndex + 0x1bf4) = *(void *)(SourceIndex + 0x38);
   *(unsigned long long *)(DataNodeIndex + 0x1bfc) = StackFramePointer;
@@ -166370,7 +166370,7 @@ LAB_18013b999:
     }
     if ((((*(byte *)(SourceIndex + 0xa1) & 2) != 0) ||
         (*(int *)(SourceIndex + 0x9c) == *(int *)(SystemContext + 1))) &&
-       (in_stack_00000058 != (uint8_t *)0x0)) {
+       (StackParameter58 != (uint8_t *)0x0)) {
       *InputDataBuffer = 0;
     }
     CalculatedCodePoint = AllocateSystemMemory(*(void *)(SystemContext[0x81] + 0x68),*SystemContext);
@@ -166398,7 +166398,7 @@ LAB_18013b999:
   int RegisterEBPValue;
   long long SourceIndex;
   long long SystemParameter;
-  uint8_t *in_stack_00000058;
+  uint8_t *StackParameter58;
   
   if ((long long)RegisterEBPValue * 0x28 + SystemParameter == 0) {
     Utf16Char = 0xffff;
@@ -166409,7 +166409,7 @@ LAB_18013b999:
   *(uint16_t *)(SystemContext + 0x86) = Utf16Char;
   if ((((*(byte *)(SourceIndex + 0xa1) & 2) != 0) ||
       (*(int *)(SourceIndex + 0x9c) == *(int *)(SystemContext + 1))) &&
-     (in_stack_00000058 != (uint8_t *)0x0)) {
+     (StackParameter58 != (uint8_t *)0x0)) {
     *InputDataBuffer = 0;
   }
   MemoryAllocationIndex = AllocateSystemMemory(*(void *)(SystemContext[0x81] + 0x68),*SystemContext);
@@ -167777,7 +167777,7 @@ uint64_t * FUN_18013ca47(int CharacterCode
   char *DataNodeIndex;
   byte *pCurrentByteValue0;
   char *RegisterR12Value;
-  long long in_stack_00000058;
+  long long StackParameter58;
   
   do {
     for (; (*DataNodeIndex == '\n' || (FunctionPointer = DataNodeIndex, *DataNodeIndex == '\r'));
@@ -167835,11 +167835,11 @@ LAB_18013ccf1:
 LAB_18013cd32:
     DataNodeIndex = FunctionPointer + 1;
     if (RegisterR12Value <= DataNodeIndex) {
-      if ((in_stack_00000058 != 0) && (SystemConfigurationHandle != 0)) {
+      if ((StackParameter58 != 0) && (SystemConfigurationHandle != 0)) {
         *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      InitializeSystemMemoryPool(in_stack_00000058,SystemMemoryPoolBase);
+      InitializeSystemMemoryPool(StackParameter58,SystemMemoryPoolBase);
     }
   } while( true );
 }
@@ -167892,7 +167892,7 @@ LAB_18013cd32:
   char *DataNodeIndex;
   byte *pCurrentByteValue0;
   char *RegisterR12Value;
-  long long in_stack_00000058;
+  long long StackParameter58;
   
   do {
     DataNodeIndex = DataNodeIndex + 1;
@@ -167950,11 +167950,11 @@ LAB_18013ccf1:
 LAB_18013cd32:
       DataNodeIndex = FunctionPointer + 1;
       if (RegisterR12Value <= DataNodeIndex) {
-        if ((in_stack_00000058 != 0) && (SystemConfigurationHandle != 0)) {
+        if ((StackParameter58 != 0) && (SystemConfigurationHandle != 0)) {
           *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        InitializeSystemMemoryPool(in_stack_00000058,SystemMemoryPoolBase);
+        InitializeSystemMemoryPool(StackParameter58,SystemMemoryPoolBase);
       }
     }
   } while( true );
@@ -200434,7 +200434,7 @@ void ProcessCharacterEncodingAndMemoryManagement(void)
                MatchCounter,DataStorageValue - iStack0000000000000048);
   *CharacterLimit = MemoryAllocationSize;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00000058 ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(StackParameter58 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -200459,7 +200459,7 @@ void ConfigureWindowPositionAndSizeA0(void)
   uint64_t SystemParameter2;
   int PrimaryDataStorage;
   int DataStorageValue;
-  unsigned long long in_stack_00000058;
+  unsigned long long StackParameter58;
   
   SetWindowLongPtrW(*(void *)(RegisterR13Value + 8),0xfffffff0,(long long)CharacterTablePointer);
   SetWindowPos(*(void *)(RegisterR13Value + 8),0,0,0,0);
@@ -200469,7 +200469,7 @@ void ConfigureWindowPositionAndSizeA0(void)
                RegisterR12ValueD,DataStorageValue - PrimaryDataStorage);
   *CharacterLimit = MemoryAllocationSize;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00000058 ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(StackParameter58 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -200488,11 +200488,11 @@ void SetCharacterLimitA0(void)
 {
   uint32_t MemoryAllocationSize;
   uint32_t *CharacterLimit;
-  unsigned long long in_stack_00000058;
+  unsigned long long StackParameter58;
   
   *CharacterLimit = MemoryAllocationSize;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00000058 ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(StackParameter58 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -201881,7 +201881,7 @@ uint64_t * FUN_1801754b0(uint64_t *Utf8InputBuffer
   long long CharacterLimit;
   long long NullPointerValue;
   void *DataStorageValue;
-  uint32_t in_stack_00000058;
+  uint32_t StackParameter58;
   void *FunctionReturnValue;
   
   long long AllocatedMemorySize = *(long long *)(ProcessingResult + 0x1cd8);
@@ -201893,7 +201893,7 @@ uint64_t * FUN_1801754b0(uint64_t *Utf8InputBuffer
   }
   MemoryAllocationSize = (**(code **)(**(long long **)(SourceIndex + 0x50) + 0xa8)                    (*(long long **)(SourceIndex + 0x50),DataStorageValue,
                      *(uint16_t *)(*(long long *)(CharacterLimit + 0x28) + 0x32c),
-                     *(uint16_t *)(*(long long *)(CharacterLimit + 0x28) + 0x32e),in_stack_00000058);
+                     *(uint16_t *)(*(long long *)(CharacterLimit + 0x28) + 0x32e),StackParameter58);
   if (MemoryAllocationSize != 0) {
     DataStorageValue = SystemFunctionPointerPrimary;
     FunctionReturnValue = SystemStackParameterPointer;
@@ -231354,7 +231354,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   float FilterInputValue7;
   uint32_t XMMRegister8_Db;
   float FilterInputValue8;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   float FilterInputValue9;
   uint32_t unaff_XMM8_Dd;
   float FloatVariable40;
@@ -231398,7 +231398,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   uint32_t unaff_XMM15_Dd;
   int StackOffset50;
   char cStack0000000000000055;
-  int in_stack_00000058;
+  int StackParameter58;
   long long FunctionReturnValue;
   long long StackParameter0;
   float StackFloat1;
@@ -231421,7 +231421,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   *(uint32_t *)(in_R11 + -0x5c) = unaff_XMM7_Dd;
   *(uint32_t *)(in_R11 + -0x78) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -0x74) = XMMRegister8_Db;
-  *(uint32_t *)(in_R11 + -0x70) = unaff_XMM8_Dc;
+  *(uint32_t *)(in_R11 + -0x70) = XMM8RegisterC;
   *(uint32_t *)(in_R11 + -0x6c) = unaff_XMM8_Dd;
   *(uint32_t *)(in_R11 + -0x88) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -0x84) = unaff_XMM9_Db;
@@ -231850,10 +231850,10 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
       }
     }
     _StackFloat1 = BufferStatus8 + 8;
-    InputDataBuffer = in_stack_00000058 + 1;
+    InputDataBuffer = StackParameter58 + 1;
     Utf8BufferSize = **(long long **)(StackFramePointer + 0x2c);
     CharacterCode = FunctionReturnValue;
-  } while ((unsigned long long)(long long)in_stack_00000058 <
+  } while ((unsigned long long)(long long)StackParameter58 <
            (unsigned long long)((*(long long **)(StackFramePointer + 0x2c))[1] - Utf8BufferSize >> 3));
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0xa8) ^ (unsigned long long)&StackBaseAddress);
@@ -233411,7 +233411,7 @@ LAB_180201f5b:
   double TimeDifferenceInSeconds9;
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
-  uint32_t unaff_XMM8_Dc;
+  uint32_t XMM8RegisterC;
   uint32_t unaff_XMM8_Dd;
   double CalculatedDifference0;
   double CalculatedDifference1;
@@ -233419,7 +233419,7 @@ LAB_180201f5b:
   *(void *)(ProcessingResult + 8) = StackFramePointer;
   *(uint32_t *)(ProcessingResult + -0x38) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -0x34) = XMMRegister8_Db;
-  *(uint32_t *)(ProcessingResult + -0x30) = unaff_XMM8_Dc;
+  *(uint32_t *)(ProcessingResult + -0x30) = XMM8RegisterC;
   *(uint32_t *)(ProcessingResult + -0x2c) = unaff_XMM8_Dd;
   Utf16Char4 = (uint)SourceIndex;
   if (DataNodeIndex != SystemContext) {

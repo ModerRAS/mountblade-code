@@ -3704,6 +3704,10 @@
 // 功能：清理异常处理器资源，调用回调函数并终止系统
 #define CleanupExceptionHandlerA1 Unwind_1809115e0
 
+// 原始函数名：Unwind_180911600 - 异常处理器清理函数A2
+// 功能：清理异常处理器资源，调用回调函数并终止系统
+#define CleanupExceptionHandlerA2 Unwind_180911600
+
 // 原始函数名：GetSystemParameter - 系统参数获取函数
 // 功能：获取系统参数并返回参数值
 #define GetSystemParameter GetSystemParameter
@@ -102052,7 +102056,24 @@ void CleanupExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer,DataB
 
 
 
-void Unwind_1809115e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器清理函数A1
+ * 
+ * 该函数负责清理异常处理器资源，包括：
+ * - 调用异常处理回调函数（如果存在）
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809115e0
+ */
+void CleanupExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
