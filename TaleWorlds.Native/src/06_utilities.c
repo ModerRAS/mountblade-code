@@ -7673,15 +7673,15 @@ uint8_t SystemStatusByteA13;
 uint8_t SystemStatusByteA14;
 uint8_t ExceptionHandlerStatusByteA0;
 uint8_t ExceptionHandlerStatusByteA1;
-uint8_t UNK_180a38c08;
-uint8_t UNK_180a38c28;
-uint8_t UNK_180a38c40;
-uint8_t UNK_180a38c58;
-uint8_t UNK_180a38c78;
-uint8_t UNK_180a38c98;
-uint8_t UNK_180a38ca8;
-uint8_t UNK_180a38cc0;
-uint8_t UNK_180a38ce8;
+uint8_t SystemStatusBufferA;
+uint8_t SystemStatusBufferB;
+uint8_t SystemStatusBufferC;
+uint8_t SystemStatusBufferD;
+uint8_t SystemStatusBufferE;
+uint8_t SystemStatusBufferF;
+uint8_t SystemStatusBufferG;
+uint8_t SystemStatusBufferH;
+uint8_t SystemStatusBufferI;
 uint8_t UNK_180a38d10;
 uint8_t UNK_180a38d20;
 uint8_t UNK_180a38d38;
@@ -34362,7 +34362,7 @@ void ExceptionUnwindHandlerA1(DataBuffer exceptionContext, int64_t unwindParam)
 void SetExceptionHandlerPointer(DataBuffer exceptionContext, int64_t handlerPointer)
 
 {
-  **(DataBuffer **)(handlerPointer + 0x48) = &UNK_180a21690;
+  **(DataBuffer **)(handlerPointer + 0x48) = &ExceptionDataTable6;
   return;
 }
 
@@ -40611,7 +40611,7 @@ void ConfigureExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x78);
-  FUN_18004b730();
+  InitializeSystemValidation();
   *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -41126,7 +41126,7 @@ void Unwind_1809034f0(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x40);
-  FUN_18005a050();
+  CleanupSystemDataA0();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
     memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
@@ -41164,7 +41164,7 @@ void Unwind_180903500(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x40);
-  FUN_18005a050();
+  CleanupSystemDataA0();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
     memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
@@ -41315,7 +41315,7 @@ void Unwind_180903560(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x70);
-  FUN_18005a050();
+  CleanupSystemDataA0();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x340)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 0x338), resourcePointer != (DataBuffer *)0x0)) {
     memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
@@ -41473,7 +41473,7 @@ void ReleaseResourceWithCondition(DataBuffer contextHandle,int64_t contextOffset
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(contextOffset + 0x80);
-  FUN_18005a050();
+  CleanupSystemDataA0();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
     memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
@@ -41521,7 +41521,7 @@ void ReleaseResourceWithMutex(DataBuffer contextHandle,int64_t contextOffset)
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(contextOffset + 0x80);
-  FUN_18005a050();
+  CleanupSystemDataA0();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
     memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
@@ -44999,6 +44999,21 @@ void Unwind_1809041d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 在多个偏移量清理异常处理器
+ * 
+ * 该函数负责在多个偏移量位置清理和设置异常处理器，包括：
+ * - 偏移量0x220、0x200、0x1e0、0x1c0、0x1a0等位置
+ * - 设置临时异常处理器然后替换为默认异常处理器B
+ * - 执行安全检查和清理操作
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809041f0
+ */
 void CleanupExceptionHandlersAtMultipleOffsets(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -46476,9 +46491,9 @@ void Unwind_180904680(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x50);
-  *exceptionDataBuffer = &UNK_18098bdc8;
+  *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -46505,7 +46520,7 @@ void Unwind_1809046a0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x50);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -46514,7 +46529,7 @@ void Unwind_1809046a0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809046b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x50) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0x50) = &ExceptionDataTable6;
   return;
 }
 
@@ -46856,9 +46871,9 @@ void Unwind_1809048a0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x20);
-  *exceptionDataBuffer = &UNK_18098bdc8;
+  *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -47674,7 +47689,7 @@ void Unwind_180904ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x160);
   validationStatus = SystemCleanupFlagfffffffe;
-  *exceptionDataBuffer = &UNK_180a10098;
+  *exceptionDataBuffer = &ExceptionDataTable7;
   characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
     characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
@@ -47742,7 +47757,7 @@ void Unwind_180904af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x50);
   validationStatus = SystemCleanupFlagfffffffe;
-  *exceptionDataBuffer = &UNK_180a10098;
+  *exceptionDataBuffer = &ExceptionDataTable7;
   characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
     characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
@@ -48090,7 +48105,7 @@ void Unwind_180904e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x30);
   validationStatus = SystemCleanupFlagfffffffe;
-  *exceptionDataBuffer = &UNK_180a10098;
+  *exceptionDataBuffer = &ExceptionDataTable7;
   characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
     characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
@@ -52808,12 +52823,12 @@ void Unwind_180905f90(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x70);
-  *exceptionDataBuffer = &UNK_1809fcb90;
+  *exceptionDataBuffer = &ExceptionDataTable5;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
-  *exceptionDataBuffer = &UNK_18098bdc8;
+  *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -54179,7 +54194,7 @@ void Unwind_180906530(DataBuffer operationBase,int64_t dataBuffer)
   *exceptionDataBuffer = &UNK_180a02e68;
   exceptionDataBuffer[2] = &DefaultExceptionHandlerB;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -54606,7 +54621,7 @@ void Unwind_180906780(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xa0);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -54624,7 +54639,7 @@ void Unwind_180906790(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809067a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0xa0) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0xa0) = &ExceptionDataTable6;
   return;
 }
 
@@ -54658,7 +54673,7 @@ void Unwind_1809067c0(DataBuffer operationBase,int64_t dataBuffer)
   *exceptionDataBuffer = &UNK_180a02e68;
   exceptionDataBuffer[2] = &DefaultExceptionHandlerB;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -56565,7 +56580,7 @@ void Unwind_180906e70(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x178);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -56574,7 +56589,7 @@ void Unwind_180906e70(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180906e80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x178) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0x178) = &ExceptionDataTable6;
   return;
 }
 
@@ -58017,7 +58032,7 @@ void Unwind_180907530(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x30);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -58030,7 +58045,7 @@ void Unwind_180907540(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x30);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -58039,7 +58054,7 @@ void Unwind_180907540(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180907550(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x30) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0x30) = &ExceptionDataTable6;
   return;
 }
 
@@ -58091,7 +58106,7 @@ void Unwind_180907590(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x40);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -58262,7 +58277,7 @@ void Unwind_1809076a0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x38);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -58271,7 +58286,7 @@ void Unwind_1809076a0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809076b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x38) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0x38) = &ExceptionDataTable6;
   return;
 }
 
@@ -60849,7 +60864,7 @@ void Unwind_180908160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   dataContext = *(int64_t *)(dataBuffer + 0x80);
   validationStatus = SystemCleanupFlagfffffffe;
-  FUN_18004b730();
+  InitializeSystemValidation();
   ProcessSystemParametersWithValidation(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),operationFlagA,operationFlagB,validationStatus);
   exceptionDataBuffer = *(DataBuffer **)(dataContext + 0x20);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
@@ -60934,7 +60949,7 @@ void Unwind_1809081c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   dataContext = *(int64_t *)(dataBuffer + 0x40);
   validationStatus = SystemCleanupFlagfffffffe;
-  FUN_18004b730();
+  InitializeSystemValidation();
   ProcessSystemParametersWithValidation(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),operationFlagA,operationFlagB,validationStatus);
   exceptionDataBuffer = *(DataBuffer **)(dataContext + 0x20);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
@@ -61890,9 +61905,9 @@ void Unwind_1809088d0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x28);
-  *exceptionDataBuffer = &UNK_18098bdc8;
+  *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -61905,7 +61920,7 @@ void Unwind_1809088e0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x28);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -61914,7 +61929,7 @@ void Unwind_1809088e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809088f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x28) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0x28) = &ExceptionDataTable6;
   return;
 }
 
@@ -65910,7 +65925,7 @@ void Unwind_180909990(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xe0);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -65937,7 +65952,7 @@ void Unwind_1809099b0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809099c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0xe0) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0xe0) = &ExceptionDataTable6;
   return;
 }
 
@@ -66244,12 +66259,12 @@ void Unwind_180909b70(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x28);
-  *exceptionDataBuffer = &UNK_1809fcb90;
+  *exceptionDataBuffer = &ExceptionDataTable5;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
-  *exceptionDataBuffer = &UNK_18098bdc8;
+  *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -81170,7 +81185,7 @@ void Unwind_18090edb0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -81179,7 +81194,7 @@ void Unwind_18090edb0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090edc0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x150) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0x150) = &ExceptionDataTable6;
   return;
 }
 
@@ -81191,9 +81206,9 @@ void Unwind_18090edd0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x88);
-  *exceptionDataBuffer = &UNK_18098bdc8;
+  *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -81234,7 +81249,7 @@ void Unwind_18090ee00(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x88);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -81243,7 +81258,7 @@ void Unwind_18090ee00(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ee10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x88) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0x88) = &ExceptionDataTable6;
   return;
 }
 
@@ -81269,9 +81284,9 @@ void Unwind_18090ee30(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x98);
-  *exceptionDataBuffer = &UNK_18098bdc8;
+  *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -81312,7 +81327,7 @@ void Unwind_18090ee60(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x98);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -81321,7 +81336,7 @@ void Unwind_18090ee60(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ee70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x98) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0x98) = &ExceptionDataTable6;
   return;
 }
 
@@ -83540,12 +83555,12 @@ void Unwind_18090fa20(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x130);
-  *exceptionDataBuffer = &UNK_1809fcb90;
+  *exceptionDataBuffer = &ExceptionDataTable5;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
-  *exceptionDataBuffer = &UNK_18098bdc8;
+  *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -84228,7 +84243,7 @@ void Unwind_18090ff00(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x100);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -84290,7 +84305,7 @@ void Unwind_18090ff50(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ff70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x100) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0x100) = &ExceptionDataTable6;
   return;
 }
 
@@ -85422,9 +85437,9 @@ void Unwind_180910400(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x60);
-  *exceptionDataBuffer = &UNK_18098bdc8;
+  *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -85437,7 +85452,7 @@ void Unwind_180910410(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x60);
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -85446,7 +85461,7 @@ void Unwind_180910410(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910420(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x60) = &UNK_180a21690;
+  **(DataBuffer **)(dataBuffer + 0x60) = &ExceptionDataTable6;
   return;
 }
 
