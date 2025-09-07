@@ -20116,7 +20116,7 @@ ProcessDataSecurityValidation:
           register_R13D = 0.0;
           operationResult3 = operationResult3 + 1;
           operationResult0 = operationResult0 + 0x18;
-          systemContext = in_stack_00000068;
+          systemContext = StackInputParameterA;
         } while ((int64_t)operationResult3 < StackParameter60);
       }
       systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
@@ -20159,10 +20159,10 @@ ProcessDataSecurityValidation:
         }
         inputParameter3 = ConvertDataFormatA2(operationResult4,(int64_t)&StackBuffer48 + 4,0);
         if (inputParameter3 == 0) {
-          in_stack_000001a0 = register_XMM6_Da;
-          in_stack_000001a8 = register_XMM6_Dc;
-          if (fStack000000000000004c != 1.0) {
-            fStack0000000000000040 = fStack000000000000004c;
+          StackFloatValueA = register_XMM6_Da;
+          StackFloatValueB = register_XMM6_Dc;
+          if (StackFloatRegisterD != 1.0) {
+            StackFloatRegisterB = StackFloatRegisterD;
             in_stack_00000028 = &FloatingPointValidationErrorA;
             StackParameter38 = SystemOperationResult;
             ValidationDataBuffer = register_R13D;
@@ -20363,7 +20363,7 @@ ValidateDataSecurity:
       register_R13D = 0.0;
       operationResult2 = operationResult2 + 1;
       operationResult0 = operationResult0 + 0x18;
-      systemContext = in_stack_00000068;
+      systemContext = StackInputParameterA;
     } while ((int64_t)operationResult2 < lStack0000000000000060);
   }
   systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
@@ -20406,8 +20406,8 @@ ValidateDataSecurity:
     }
     inputParameter3 = ConvertDataFormatA2(operationResult3,(int64_t)&StackBuffer48 + 4,0);
     if (inputParameter3 == 0) {
-      in_stack_000001a0 = register_XMM6_Da;
-      in_stack_000001a8 = register_XMM6_Dc;
+      StackFloatValueA = register_XMM6_Da;
+      StackFloatValueB = register_XMM6_Dc;
       if (ProcessedFloatValue._4_4_ != 1.0) {
         fStack0000000000000040 = ProcessedFloatValue._4_4_;
         in_stack_00000028 = &FloatingPointValidationErrorA;
