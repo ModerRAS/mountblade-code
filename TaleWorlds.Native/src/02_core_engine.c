@@ -2158,6 +2158,33 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 原始函数名：FUN_180129220 - 系统浮点数处理函数
 #define ProcessSystemFloat FUN_180129220
 
+// 原始函数名：FUN_180131148 - 处理系统浮点数计算函数
+#define ProcessSystemFloatCalculation FUN_180131148
+
+// 原始函数名：FUN_180131331 - 处理系统数据配置和参数函数
+#define ProcessSystemDataConfigurationAndParameters FUN_180131331
+
+// 原始函数名：FUN_180131aac - UTF-8输入缓冲区处理和转换函数
+#define ProcessUtf8InputBufferAndConvert FUN_180131aac
+
+// 原始函数名：FUN_180131be4 - UTF-8字符编码处理函数
+#define ProcessUtf8CharacterEncoding FUN_180131be4
+
+// 原始函数名：FUN_180131c21 - UTF-8到UTF-16转换函数
+#define ConvertUtf8ToUtf16 FUN_180131c21
+
+// 原始函数名：FUN_180135160 - 系统组件验证和初始化函数
+#define ValidateSystemComponentsAndInitialize FUN_180135160
+
+// 原始函数名：FUN_18013aed0 - 字符代码遍历函数
+#define TraverseCharacterCodes FUN_18013aed0
+
+// 原始函数名：FUN_18013af10 - 字符代码处理函数
+#define ProcessCharacterCode FUN_18013af10
+
+// 原始函数名：FUN_18013ce40 - UTF-8输入缓冲区处理和验证函数
+#define ProcessUtf8InputBufferAndValidate FUN_18013ce40
+
 // 原始函数名：FUN_180128fd0 - 系统内存分配和数据管理函数
 #define AllocateSystemMemoryAndManageData FUN_180128fd0
 
