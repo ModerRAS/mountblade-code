@@ -321,7 +321,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  * 
  * 表示数据包验证的魔数值，ASCII码为"EVIT"，用于数据包完整性验证
  */
-#define NetworkMagicValidation 0x54495645                // "TIVE" - 表示数据包验证魔数
+#define NetworkMagicValidationIdentifier 0x54495645                // "TIVE" - 表示数据包验证魔数
 /**
  * @brief 二进制数据魔数
  * 
@@ -377,7 +377,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  * 
  * 用于调试和内存检查的魔数值，帮助识别内存损坏问题
  */
-#define NetworkMemoryValidationMagic 0xCAFEBABE            // 内存验证魔数，用于调试内存检查
+#define NetworkMemoryValidationMagicValue 0xCAFEBABE            // 内存验证魔数，用于调试内存检查
 
 // 魔数别名定义，用于保持代码一致性
 #define NetworkMagicLiveConnectionAlias NetworkMagicLiveConnection     // 活跃连接魔数别名
