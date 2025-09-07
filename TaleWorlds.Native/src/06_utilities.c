@@ -78019,7 +78019,17 @@ void SetTemporaryExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909750(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置临时异常处理器A0
+ * 
+ * 该函数负责设置临时异常处理器，并清理异常处理状态
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_180909750
+ */
+void SetTemporaryExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 8) = &TemporaryExceptionHandler;
@@ -78034,7 +78044,17 @@ void Unwind_180909750(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909760(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B0
+ * 
+ * 该函数负责设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_180909760
+ */
+void SetDefaultExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 8) = &DefaultExceptionHandlerB;
