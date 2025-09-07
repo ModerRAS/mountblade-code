@@ -6,6 +6,26 @@
 #define SecondaryProcessingStatusOffset 0x370
 #define MemoryBlockValidationOffset 0x328
 
+// 核心引擎数据访问常量
+#define CharacterByteCountOffset 0x200                    // 字符字节计数偏移量
+#define Utf16ConversionContextOffset 0x24                  // UTF16转换上下文偏移量
+#define UnicodeCharacterValueOffset 0x20                   // Unicode字符值偏移量
+#define StringBuffer6Offset 0xd                           // 字符串缓冲区6偏移量
+#define CharacterTablePrimaryOffset 0x48                    // 字符表主偏移量
+#define CharacterTableSecondaryOffset 0x50                  // 字符表次偏移量
+#define CharacterTableTertiaryOffset 0x4c                  // 字符表第三偏移量
+#define Utf16ConversionContextTableOffset 0x44             // UTF16转换上下文表偏移量
+#define UnicodeCharacterTableOffset 0x2c                   // Unicode字符表偏移量
+#define CharacterTableBaseOffset 0xc30                     // 字符表基偏移量
+#define CoreEngineSystemContextOffset 0xe78                 // 核心引擎系统上下文偏移量
+#define CharacterTableRowSize 0x128                        // 字符表行大小
+#define CharacterDataBlockSize 0x40                        // 字符数据块大小
+#define CharacterCodeTablePointerOffset 0x10               // 字符代码表指针偏移量
+#define CharacterCodeTableTertiaryOffset 0x30              // 字符代码表第三偏移量
+#define CalculatedDistanceOffset 0x374                     // 计算距离偏移量
+#define ProcessedFloatValueOffset 0x378                    // 处理浮点值偏移量
+#define NormalizedParameterOffset 900                       // 归一化参数偏移量
+
 // 变量名语义化宏定义
 #define Utf16CharacterValue Utf16Char4                    // UTF-16字符值
 
