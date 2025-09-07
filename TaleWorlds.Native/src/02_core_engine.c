@@ -37844,7 +37844,7 @@ SystemEventMemoryAllocationLabel:
   else if (MemoryAllocationIndex < 0x13) {
     FunctionAddress80 = 0x11;
     SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,0x13,0x10,0x13);
-    goto LAB_180071af3;
+    goto SystemEventMemoryAllocationComplete;
   }
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   FunctionAddress80 = 0x12;
@@ -115424,7 +115424,24 @@ uint ValidateSystemDataAndProcessOperation(byte *CharacterCode,long long Charact
 
 
 
-1300(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180121300(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief UTF8到UTF16字符转换函数
+ * 
+ * 该函数负责将UTF8编码的字符转换为UTF16编码格式，处理字符编码转换
+ * 和内存分配操作。它会验证输入字符的有效性，分配必要的内存缓冲区，
+ * 并执行转换操作。
+ * 
+ * @param CharacterCode 输入的UTF8字符代码
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF8输入数据指针
+ * @param Utf16EndPointer UTF16输出缓冲区结束指针
+ * 
+ * @note 原始函数名：FUN_180121300
+ * @warning 包含内存分配和系统调用，需要正确处理内存管理
+ * 
+ * @see ValidateAndParseUtf8Character, SystemCallMemoryAccess, AllocateSystemMemoryAndManage
+ */
+void ConvertUtf8ToUtf16Character(uint64_t CharacterCode, uint64_t CharacterCodeSize, uint64_t Utf8InputPointer, uint64_t Utf16EndPointer
 {
   long long PrimaryDataSize;
   int CharacterByteCount;

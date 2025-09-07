@@ -424,21 +424,21 @@
 #define DeviceStatusActiveFlag                0xffffffff
 
 // 显示上下文地址常量
-#define DisplayContextPrimaryAddress         0x180be14a8
-#define DisplayContextSecondaryAddress       0x180be14c0
-#define DisplayContextTertiaryAddress        0x180be15c0
-#define DisplayContextQuaternaryAddress      0x180be14e0
-#define DisplayContextQuinaryAddress         0x180be1550
+#define DisplayRendererContextAddress        0x180be14a8
+#define DisplayShaderContextAddress          0x180be14c0
+#define DisplayTextureContextAddress         0x180be15c0
+#define DisplayBufferContextAddress         0x180be14e0
+#define DisplayPipelineContextAddress        0x180be1550
 
 // 音频系统地址常量
-#define SystemAudioContextPrimaryAddress       0x180be1c00
-#define SystemAudioContextSecondaryAddress     0x180be1c08
-#define SystemAudioContextTertiaryAddress      0x180be23a0
-#define SystemAudioContextQuaternaryAddress    0x180be23c0
+#define AudioMixerContextAddress              0x180be1c00
+#define AudioBufferContextAddress              0x180be1c08
+#define AudioEffectContextAddress              0x180be23a0
+#define AudioStreamContextAddress              0x180be23c0
 
 // 输入系统地址常量
-#define SystemInputContextPrimaryAddress        0x180be2ad8
-#define SystemInputContextSecondaryAddress      0x180be2af8
+#define InputControllerContextAddress           0x180be2ad8
+#define InputKeyboardContextAddress              0x180be2af8
 
 // 物理系统地址常量
 #define PhysicsSystemPrimaryAddress            0x180be4710

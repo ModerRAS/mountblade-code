@@ -23039,17 +23039,17 @@ DataBuffer ReturnFixedStatusCodeA0(void)
 
 
 
-DataBuffer ValidateDataBlockStatusA0(int64_t *dataHandle,DataWord *validationData)
+DataBuffer ValidateDataBlockStatusA0(int64_t *operationBase,DataWord *dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
-  DataWord auStackX_8 [8];
+  DataWord parameterBuffer [8];
   
   if (*(int *)(operationBase[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_8[0] = *dataBuffer;
-  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + 8))(*(DataBuffer **)(*operationBase + 8),auStackX_8,4);
+  parameterBuffer[0] = *dataBuffer;
+  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + 8))(*(DataBuffer **)(*operationBase + 8),parameterBuffer,4);
   return systemDataBuffer;
 }
 
