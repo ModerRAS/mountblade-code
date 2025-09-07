@@ -112114,7 +112114,15 @@ void ProcessSystemDataStructureEx(int *SystemContextPointer,uint64_t *Utf8Buffer
 
 
 
-da00(int *SystemContextPointer,int Utf8BufferSizevoid FUN_18011da00(int *SystemContextPointer,int Utf8BufferSize
+/**
+ * @brief 管理系统数据访问
+ * 
+ * 该函数负责管理系统数据的访问，包括内存分配、数据复制和缓冲区管理。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ */
+void ManageSystemDataAccess(int *SystemContextPointer,int Utf8BufferSize)
 {
   uint64_t Utf16Char;
   
@@ -217520,7 +217528,7 @@ LAB_180194acf:
 uint64_t *
 FUN_180194b60(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
-  *SystemContextPointer = &UNK_180a0c9a0;
+  *SystemContextPointer = &SystemPhysicsFunctionPointerA;
   *SystemContextPointer = &UNK_180a0cb40;
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,8,Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
