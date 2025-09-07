@@ -190963,7 +190963,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx2(uint64_t CharacterCode,uint64_t *Utf8Inpu
 
 
 uint64_t *
-FUN_180168840(uint64_t CharacterCode,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingEx3(uint64_t CharacterCode,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
 {
   uint32_t *StatusBuffer;
   void *SystemContext;
@@ -191013,7 +191013,7 @@ FUN_180168840(uint64_t CharacterCode,uint64_t *Utf8InputBufferSize,uint64_t Utf8
 
 
 uint64_t *
-FUN_180168960(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingEx4(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t *StatusBuffer;
   int CharacterByteCount;
