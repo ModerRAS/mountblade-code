@@ -12175,16 +12175,31 @@ void SystemReturnEmptyFunctionSecondary(void)
 
 
 
-// 函数: DataBuffer ValidateAndTerminateProcess(int64_t contextHandle)
-// 
-// 验证并终止进程函数
-// 验证上下文句柄并在特定条件下终止进程
-// 
-// 参数:
-//   contextHandle - 上下文句柄，包含验证信息
-// 
-// 返回值:
-//   DataBuffer - 返回操作结果或错误代码
+/**
+ * @brief 验证系统上下文并在条件满足时终止进程
+ * 
+ * 该函数负责验证系统上下文的有效性，并在检测到特定条件时触发进程终止。
+ * 函数首先查询系统数据以获取上下文信息，然后进行一系列验证检查，
+ * 最后根据验证结果决定是否终止进程执行。
+ * 
+ * 函数执行流程：
+ * 1. 查询系统数据获取上下文缓冲区
+ * 2. 计算调整后的指针地址
+ * 3. 验证系统寄存器值和指针有效性
+ * 4. 在特定条件下调用进程终止函数
+ * 
+ * @param contextHandle 上下文句柄，包含系统验证和进程管理所需的参数
+ * 
+ * @return DataBuffer 验证状态码
+ *         - 成功：返回0表示验证通过但不需要终止进程
+ *         - 失败：返回非0错误码，表示验证失败或进程已终止
+ * 
+ * @note 该函数在某些条件下不会返回，会调用TerminateProcessWithSecurityError函数
+ * @note 使用系统寄存器值进行地址计算，确保操作的安全性
+ * @note 原始函数名：FUN_180890b20
+ * 
+ * @see QueryAndRetrieveSystemDataA0, TerminateProcessWithSecurityError
+ */
 DataBuffer ValidateAndTerminateProcess(int64_t contextHandle)
 
 {
@@ -12208,16 +12223,29 @@ DataBuffer ValidateAndTerminateProcess(int64_t contextHandle)
 
 
 
-// 函数: DataWord ValidateRegisterAndTerminate(void)
-// 
-// 验证寄存器并终止进程函数
-// 从寄存器读取值并进行验证，在特定条件下终止进程
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   DataWord - 返回操作结果或错误代码
+/**
+ * @brief 验证系统寄存器并执行资源释放操作
+ * 
+ * 该函数负责验证系统寄存器的有效性，并在验证通过后执行资源释放操作。
+ * 函数通过系统寄存器值计算调整后的指针地址，然后验证异常处理器回调指针的有效性，
+ * 最后调用资源释放函数来清理相关资源。
+ * 
+ * 函数执行流程：
+ * 1. 获取系统寄存器值
+ * 2. 计算调整后的指针地址
+ * 3. 验证异常处理器回调指针的有效性
+ * 4. 释放相关资源
+ * 
+ * @return DataWord 操作结果状态码
+ *         - 成功：返回0表示验证通过并成功释放资源
+ *         - 失败：返回ResourceInvalidErrorCode，表示资源无效
+ * 
+ * @note 该函数使用系统寄存器值进行地址计算，确保操作的安全性
+ * @note 该函数不会返回，最后会调用ReleaseResource函数
+ * @note 原始函数名：FUN_180890b30
+ * 
+ * @see ReleaseResource
+ */
 DataWord ValidateRegisterAndTerminate(void)
 
 {
@@ -74920,14 +74948,18 @@ void ExecuteSystemMonitoringA0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180909190(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_180909190 - 异常处理函数B0
+// 功能：在指定偏移量处调用异常处理器
+void UnwindExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionHandlerContextPointer;   // 异常处理上下文指针
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x1c98);
+  // 获取异常处理上下文指针
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + 0x98);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    // 执行异常处理回调函数
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + SystemComponentContextOffset))();
   }
   return;
 }
