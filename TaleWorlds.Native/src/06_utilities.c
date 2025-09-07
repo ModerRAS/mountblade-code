@@ -42595,6 +42595,18 @@ void InitializeMemoryPoolExceptionHandler(DataBuffer exceptionContext,int64_t me
 
 
 
+/**
+ * @brief 异常数据清理函数A0
+ * 
+ * 该函数负责清理异常数据和资源，设置异常处理器，
+ * 并在必要时终止系统运行
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180903760
+ */
 void Unwind_180903760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -42632,6 +42644,18 @@ void Unwind_180903760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 异常数据清理函数A1
+ * 
+ * 该函数负责清理异常数据和验证上下文，处理异常处理器的设置，
+ * 并在必要时终止系统运行
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180903770
+ */
 void Unwind_180903770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -85700,7 +85724,18 @@ void Unwind_18090fff0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910000(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行验证上下文处理器A0
+ * 
+ * 该函数用于执行验证上下文处理器，调用特定的函数指针进行验证操作。
+ * 从数据缓冲区的指定偏移量获取验证上下文指针，如果指针有效，
+ * 则调用该指针指向的函数进行验证处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180910000
+ */
+void ExecuteValidationContextProcessorA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -85714,7 +85749,18 @@ void Unwind_180910000(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910010(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统操作循环A0
+ * 
+ * 该函数用于处理系统操作的循环，遍历验证上下文并调用系统操作函数。
+ * 从数据缓冲区获取处理上下文和验证上下文，然后循环处理系统操作，
+ * 每次循环递增偏移量0x128，直到达到验证上下文的值。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180910010
+ */
+void ProcessSystemOperationLoopA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -85735,7 +85781,18 @@ void Unwind_180910010(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910020(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统操作循环A1
+ * 
+ * 该函数用于处理系统操作的循环，遍历验证上下文并调用系统操作函数。
+ * 从数据缓冲区获取处理上下文和验证上下文，然后循环处理系统操作，
+ * 每次循环递增偏移量0x128，直到达到验证上下文的值。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180910020
+ */
+void ProcessSystemOperationLoopA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
