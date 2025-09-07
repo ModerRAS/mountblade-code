@@ -263838,9 +263838,9 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == ((char*)SystemStringConstantL8)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 8) {
-        return (int)BufferStatus + 0x24;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 8) {
+        return (int)PatternMatchStatus + 0x24;
       }
     }
   }
@@ -263848,9 +263848,9 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStringConstantL4)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 9;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 9;
       }
     }
   }
@@ -263862,49 +263862,49 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&CharacterComparisonStringB)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 9;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 9;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueVigintenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNovemdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xb;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xb;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctodecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xc;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xc;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xd;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xd;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xe;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xe;
       }
     }
   }
@@ -263912,33 +263912,33 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuindecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x11;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x11;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -263946,17 +263946,17 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -263964,25 +263964,25 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -264002,9 +264002,9 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -264012,9 +264012,9 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -264030,33 +264030,33 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -264072,9 +264072,9 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -264127,9 +264127,9 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStringConstantL4)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 9;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 9;
       }
     }
   }
@@ -264141,49 +264141,49 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&CharacterComparisonStringB)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 9;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 9;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueVigintenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNovemdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xb;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xb;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctodecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xc;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xc;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xd;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xd;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xe;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xe;
       }
     }
   }
@@ -264191,33 +264191,33 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuindecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x11;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x11;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -264225,17 +264225,17 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -264243,25 +264243,25 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -264281,9 +264281,9 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -264291,9 +264291,9 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -264309,33 +264309,33 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -264351,9 +264351,9 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -264430,49 +264430,49 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&CharacterComparisonStringB)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 9;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 9;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueVigintenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNovemdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xb;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xb;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctodecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xc;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xc;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xd;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xd;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xe;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xe;
       }
     }
   }
@@ -264480,33 +264480,33 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuindecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x11;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x11;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -264514,17 +264514,17 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -264532,25 +264532,25 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -264570,9 +264570,9 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -264580,9 +264580,9 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -264598,33 +264598,33 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -264640,9 +264640,9 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -264707,49 +264707,49 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&CharacterComparisonStringB)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 9;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 9;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueVigintenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 10;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNovemdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xb;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xb;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctodecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xc;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xc;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xd;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xd;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xe;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xe;
       }
     }
   }
@@ -264757,33 +264757,33 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuindecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x10;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x11;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x11;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -264791,17 +264791,17 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -264809,25 +264809,25 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -264847,9 +264847,9 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -264857,9 +264857,9 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -264875,33 +264875,33 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -264917,9 +264917,9 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
     MemoryBlockIndex = SearchIndex;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -264972,41 +264972,41 @@ int FUN_1802255e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueVigintenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNovemdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xb;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xb;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctodecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xc;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xc;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xd;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xd;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xe;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xe;
       }
     }
   }
@@ -265014,33 +265014,33 @@ int FUN_1802255e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuindecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x11;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x11;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -265048,17 +265048,17 @@ int FUN_1802255e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -265066,25 +265066,25 @@ int FUN_1802255e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -265104,9 +265104,9 @@ int FUN_1802255e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -265114,9 +265114,9 @@ int FUN_1802255e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -265132,33 +265132,33 @@ int FUN_1802255e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -265174,9 +265174,9 @@ int FUN_1802255e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -265229,33 +265229,33 @@ int FUN_180225627(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNovemdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xb;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xb;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctodecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xc;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xc;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xd;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xd;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xe;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xe;
       }
     }
   }
@@ -265263,33 +265263,33 @@ int FUN_180225627(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuindecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x11;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x11;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -265297,17 +265297,17 @@ int FUN_180225627(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -265315,25 +265315,25 @@ int FUN_180225627(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -265353,9 +265353,9 @@ int FUN_180225627(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -265363,9 +265363,9 @@ int FUN_180225627(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -265381,33 +265381,33 @@ int FUN_180225627(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -265423,9 +265423,9 @@ int FUN_180225627(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -265478,25 +265478,25 @@ int FUN_180225667(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctodecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xc;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xc;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xd;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xd;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xe;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xe;
       }
     }
   }
@@ -265504,33 +265504,33 @@ int FUN_180225667(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuindecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x11;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x11;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -265538,17 +265538,17 @@ int FUN_180225667(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -265556,25 +265556,25 @@ int FUN_180225667(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -265594,9 +265594,9 @@ int FUN_180225667(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -265604,9 +265604,9 @@ int FUN_180225667(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -265622,33 +265622,33 @@ int FUN_180225667(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -265664,9 +265664,9 @@ int FUN_180225667(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -265719,17 +265719,17 @@ int FUN_1802256a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xd;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xd;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xe;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xe;
       }
     }
   }
@@ -265737,33 +265737,33 @@ int FUN_1802256a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuindecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x11;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x11;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -265771,17 +265771,17 @@ int FUN_1802256a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -265789,25 +265789,25 @@ int FUN_1802256a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -265827,9 +265827,9 @@ int FUN_1802256a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -265837,9 +265837,9 @@ int FUN_1802256a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -265855,33 +265855,33 @@ int FUN_1802256a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -265897,9 +265897,9 @@ int FUN_1802256a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -265952,9 +265952,9 @@ int FUN_1802256e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0xe;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0xe;
       }
     }
   }
@@ -265962,33 +265962,33 @@ int FUN_1802256e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuindecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x11;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x11;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -265996,17 +265996,17 @@ int FUN_1802256e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -266014,25 +266014,25 @@ int FUN_1802256e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -266052,9 +266052,9 @@ int FUN_1802256e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -266062,9 +266062,9 @@ int FUN_1802256e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -266080,33 +266080,33 @@ int FUN_1802256e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -266122,9 +266122,9 @@ int FUN_1802256e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -266177,33 +266177,33 @@ int FUN_180225727(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuindecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x10;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x10;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x11;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x11;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -266211,17 +266211,17 @@ int FUN_180225727(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -266229,25 +266229,25 @@ int FUN_180225727(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -266267,9 +266267,9 @@ int FUN_180225727(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -266277,9 +266277,9 @@ int FUN_180225727(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -266295,33 +266295,33 @@ int FUN_180225727(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -266337,9 +266337,9 @@ int FUN_180225727(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -266392,25 +266392,25 @@ int FUN_180225767(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x11;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x11;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -266418,17 +266418,17 @@ int FUN_180225767(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -266436,25 +266436,25 @@ int FUN_180225767(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -266474,9 +266474,9 @@ int FUN_180225767(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -266484,9 +266484,9 @@ int FUN_180225767(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -266502,33 +266502,33 @@ int FUN_180225767(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -266544,9 +266544,9 @@ int FUN_180225767(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -266599,17 +266599,17 @@ int FUN_1802257a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -266617,17 +266617,17 @@ int FUN_1802257a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -266635,25 +266635,25 @@ int FUN_1802257a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -266673,9 +266673,9 @@ int FUN_1802257a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -266683,9 +266683,9 @@ int FUN_1802257a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -266701,33 +266701,33 @@ int FUN_1802257a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -266743,9 +266743,9 @@ int FUN_1802257a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -266798,9 +266798,9 @@ int FUN_1802257e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -266808,17 +266808,17 @@ int FUN_1802257e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -266826,25 +266826,25 @@ int FUN_1802257e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -266864,9 +266864,9 @@ int FUN_1802257e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -266874,9 +266874,9 @@ int FUN_1802257e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -266892,33 +266892,33 @@ int FUN_1802257e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -266934,9 +266934,9 @@ int FUN_1802257e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -266989,17 +266989,17 @@ int FUN_180225827(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x12;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x12;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -267007,25 +267007,25 @@ int FUN_180225827(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -267045,9 +267045,9 @@ int FUN_180225827(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -267055,9 +267055,9 @@ int FUN_180225827(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -267073,33 +267073,33 @@ int FUN_180225827(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -267115,9 +267115,9 @@ int FUN_180225827(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -267170,9 +267170,9 @@ int FUN_180225867(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x13;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x13;
       }
     }
   }
@@ -267180,25 +267180,25 @@ int FUN_180225867(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -267218,9 +267218,9 @@ int FUN_180225867(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -267228,9 +267228,9 @@ int FUN_180225867(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -267246,33 +267246,33 @@ int FUN_180225867(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -267288,9 +267288,9 @@ int FUN_180225867(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -267343,25 +267343,25 @@ int FUN_1802258a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x16;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x16;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -267381,9 +267381,9 @@ int FUN_1802258a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -267391,9 +267391,9 @@ int FUN_1802258a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -267409,33 +267409,33 @@ int FUN_1802258a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -267451,9 +267451,9 @@ int FUN_1802258a7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -267506,17 +267506,17 @@ int FUN_1802258e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x17;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x17;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -267536,9 +267536,9 @@ int FUN_1802258e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -267546,9 +267546,9 @@ int FUN_1802258e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -267564,33 +267564,33 @@ int FUN_1802258e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -267606,9 +267606,9 @@ int FUN_1802258e7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -267661,9 +267661,9 @@ int FUN_180225927(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 4) {
-        return (int)BufferStatus + 0x18;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 4) {
+        return (int)PatternMatchStatus + 0x18;
       }
     }
   }
@@ -267683,9 +267683,9 @@ int FUN_180225927(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -267693,9 +267693,9 @@ int FUN_180225927(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -267711,33 +267711,33 @@ int FUN_180225927(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -267753,9 +267753,9 @@ int FUN_180225927(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -267820,9 +267820,9 @@ int FUN_180225967(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -267830,9 +267830,9 @@ int FUN_180225967(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -267848,33 +267848,33 @@ int FUN_180225967(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -267890,9 +267890,9 @@ int FUN_180225967(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -267953,9 +267953,9 @@ int FUN_180225993(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -267963,9 +267963,9 @@ int FUN_180225993(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -267981,33 +267981,33 @@ int FUN_180225993(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -268023,9 +268023,9 @@ int FUN_180225993(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -268082,9 +268082,9 @@ int FUN_1802259bf(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -268092,9 +268092,9 @@ int FUN_1802259bf(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -268110,33 +268110,33 @@ int FUN_1802259bf(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -268152,9 +268152,9 @@ int FUN_1802259bf(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -268207,9 +268207,9 @@ int FUN_1802259eb(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1b;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1b;
       }
     }
   }
@@ -268217,9 +268217,9 @@ int FUN_1802259eb(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -268235,33 +268235,33 @@ int FUN_1802259eb(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -268277,9 +268277,9 @@ int FUN_1802259eb(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -268332,9 +268332,9 @@ int FUN_180225a27(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 6) {
-        return (int)BufferStatus + 0x28;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 6) {
+        return (int)PatternMatchStatus + 0x28;
       }
     }
   }
@@ -268350,33 +268350,33 @@ int FUN_180225a27(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -268392,9 +268392,9 @@ int FUN_180225a27(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -268455,33 +268455,33 @@ int FUN_180225a67(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -268497,9 +268497,9 @@ int FUN_180225a67(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -268556,33 +268556,33 @@ int FUN_180225a93(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -268598,9 +268598,9 @@ int FUN_180225a93(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -268653,33 +268653,33 @@ int FUN_180225abf(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1e;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1e;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -268695,9 +268695,9 @@ int FUN_180225abf(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -268750,25 +268750,25 @@ int FUN_180225b07(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x1f;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x1f;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -268784,9 +268784,9 @@ int FUN_180225b07(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -268839,17 +268839,17 @@ int FUN_180225b47(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x20;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x20;
       }
     }
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -268865,9 +268865,9 @@ int FUN_180225b47(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -268920,9 +268920,9 @@ int FUN_180225b87(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 5) {
-        return (int)BufferStatus + 0x21;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 5) {
+        return (int)PatternMatchStatus + 0x21;
       }
     }
   }
@@ -268938,9 +268938,9 @@ int FUN_180225b87(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -269001,9 +269001,9 @@ int FUN_180225bc7(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -269060,9 +269060,9 @@ int FUN_180225bf3(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -269115,9 +269115,9 @@ int FUN_180225c1f(void
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
-      MemoryBlockIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x22;
+      SearchStartIndex = PatternMatchStatus + 1;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x22;
       }
     }
   }
@@ -269173,8 +269173,8 @@ int FUN_180225c59(void
     while (BufferStatus = PatternIndex,
           *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordQuinary)[BufferStatus]) {
       PatternIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x23;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x23;
       }
     }
   }
@@ -269213,8 +269213,8 @@ int FUN_180225c85(void
     while (BufferStatus = PatternIndex,
           *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordQuinary)[BufferStatus]) {
       PatternIndex = BufferStatus + 1;
-      if (BufferStatus + 1 == 7) {
-        return (int)BufferStatus + 0x23;
+      if (PatternMatchStatus + 1 == 7) {
+        return (int)PatternMatchStatus + 0x23;
       }
     }
   }
