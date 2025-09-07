@@ -48358,27 +48358,48 @@ int CalculateUIImageAdvancedDifferenceAVX2(undefined1 (*uiContext) [32],int data
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180691080(undefined1 (*uiContext) [32],int dataSource,int targetBuffer,int bufferSize,
+/**
+ * @brief 计算UI图像块差异值
+ * 
+ * 该函数使用AVX2指令集计算两个UI图像块之间的差异值，支持多种像素处理模式。
+ * 主要用于UI渲染系统中的图像比较和质量评估。
+ * 
+ * @param uiContext UI上下文指针数组，包含源图像数据
+ * @param dataSource 数据源步长，控制图像数据访问间隔
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小，指定处理模式
+ * @param resultPointer 结果指针数组，包含目标图像数据
+ * @param param_6 目标数据步长，控制目标图像数据访问间隔
+ * @param param_7 处理像素数量
+ * @param param_8 最终结果指针，返回计算出的差异值
+ * @return int 返回计算出的差异值
+ * 
+ * @note 该函数使用AVX2指令集进行高性能像素处理
+ * @note 支持多种缓冲区大小和处理模式
+ * @note 原始函数名: FUN_180691080
+ */
+int CalculateUIImageBlockDifference(undefined1 (*uiContext) [32],int dataSource,int targetBuffer,int bufferSize,
                  undefined1 (*resultPointer) [32],int param_6,uint param_7,int *param_8)
 
 {
-  ulonglong functionResult;
-  undefined1 asemaphoreHandle [32];
-  undefined1 auVar3 [32];
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  undefined1 auVar6 [32];
-  undefined1 auVar7 [32];
-  undefined1 auVar8 [32];
-  undefined1 auVar9 [32];
-  undefined1 afunctionResult0 [64];
-  undefined1 afunctionResult1 [64];
+  ulonglong pixelCount;
+  undefined1 tempVector1 [32];
+  undefined1 zeroVector [32];
+  undefined1 tempVector3 [32];
+  undefined1 tempVector4 [32];
+  undefined1 tempVector5 [32];
+  undefined1 tempVector6 [32];
+  undefined1 tempVector7 [32];
+  undefined1 tempVector8 [32];
+  undefined1 tempVector9 [32];
+  undefined1 sumResult0 [64];
+  undefined1 sumResult1 [64];
   
-  auVar3 = ZEXT832(0) << 0x40;
-  afunctionResult0 = ZEXT3264(auVar3);
-  afunctionResult1 = ZEXT3264(auVar3);
-  auVar9 = auVar3;
-  auVar5 = auVar3;
+  zeroVector = ZEXT832(0) << 0x40;
+  sumResult0 = ZEXT3264(zeroVector);
+  sumResult1 = ZEXT3264(zeroVector);
+  tempVector9 = zeroVector;
+  tempVector5 = zeroVector;
   if (targetBuffer == 0) {
     if (bufferSize == 0) {
       if (0 < (int)param_7) {
