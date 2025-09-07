@@ -39140,7 +39140,7 @@ void Unwind_CleanupClassMemory(DataBuffer operationBase,int64_t dataBuffer)
   dataContext = *(int64_t *)(dataBuffer + 0x40);
   validationStatus = SystemCleanupFlagfffffffe;
   *(int64_t *)(dataContext + 0x15d8) =
-       *(int64_t *)(&DAT_180c8ed30 + (int64_t)*(int *)(dataContext + 0x15e0) * 8) + -100000;
+       *(int64_t *)(&SystemConfigurationTable + (int64_t)*(int *)(dataContext + 0x15e0) * 8) + -100000;
   ValidateSystemConfigurationA0((int64_t *)(dataContext + 0x8b0));
   *(DataWord *)(dataContext + 0x15e8) = 0;
   validationContextPointer = *(int64_t **)(dataContext + 0x15d0);
@@ -55181,10 +55181,16 @@ void InvokeOffset178Callback(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809069d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统清理和资源验证函数
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809069d0
+ */
+void PerformSystemCleanupAndResourceValidation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *validationContextPointer;
+  int64_t *systemContextPointer;
   
   if (*(int64_t *)(dataBuffer + 0x68) != 0) {
     PerformSystemCleanup();
@@ -55196,16 +55202,22 @@ void Unwind_1809069d0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0x70) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x70) + 0x38))();
   }
-  validationContextPointer = *(int64_t **)(dataBuffer + 0x68);
-  if (validationContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*validationContextPointer + 0x38))();
+  systemContextPointer = *(int64_t **)(dataBuffer + 0x68);
+  if (systemContextPointer != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*systemContextPointer + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_1809069e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据缓冲区A2函数
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809069e0
+ */
+void ProcessDataBufferOffset50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataBufferA0(dataBuffer + 0x50);
@@ -57511,7 +57523,7 @@ void Unwind_180907130(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  uRam0000000180d49150 = 0;
+  SystemStatusFlag = 0;
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
@@ -60847,7 +60859,7 @@ void Unwind_180908050(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer 
   int64_t *validationContextPointer;
   
   validationContextPointer = ValidationContextPointerArray;
-  FUN_18008d1f0(&DAT_180d49200,ValidationContextPointerArray[1],operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  FUN_18008d1f0(&SystemValidationDataTable,ValidationContextPointerArray[1],operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   ValidationContextPointerArray[1] = (int64_t)validationContextPointer;
   *ValidationContextPointerArray = (int64_t)validationContextPointer;
   ValidationContextPointerArray[2] = (int64_t)validationContextPointer;
@@ -95915,21 +95927,21 @@ void CleanupSystemMemoryBufferA(void)
   int64_t memoryPointer;
   
   // 调用内存管理函数进行预处理
-  CleanupResourceA0(&DAT_180bfc140);
+  CleanupResourceA0(&ResourceCleanupTable);
   
   // 检查缓冲区大小是否超过阈值
-  if (0xf < uRam0000000180bfc138) {
+  if (0xf < BufferSizeIndicator) {
     memoryContext = CONCAT71(uRam0000000180bfc121, uRam0000000180bfc120);
     memoryPointer = memoryContext;
     
     // 检查内存块大小是否过大
-    if (0xfff < uRam0000000180bfc138 + 1) {
+    if (0xfff < BufferSizeIndicator + 1) {
       memoryPointer = *(int64_t *)(memoryContext + -8);
       
       // 验证内存块偏移量的有效性
       if (0x1f < (memoryContext - memoryPointer) - 8U) {
         // 如果偏移量无效，触发参数验证错误
-        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer, uRam0000000180bfc138 + 0x28);
+        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer, BufferSizeIndicator + 0x28);
       }
     }
     
@@ -95939,7 +95951,7 @@ void CleanupSystemMemoryBufferA(void)
   
   // 重置缓冲区状态
   uRam0000000180bfc130 = 0;
-  uRam0000000180bfc138 = 0xf;
+  BufferSizeIndicator = 0xf;
   uRam0000000180bfc120 = 0;
   return;
 }
@@ -96099,9 +96111,9 @@ void InitializeExceptionHandlerTableA0(DataBuffer operationBase,DataBuffer dataB
   DataBuffer *exceptionTableEnd;
   DataBuffer *exceptionTableIterator;
   
-  ProcessExceptionData(&DAT_180bfaec0,_DAT_180bfaed0,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-  exceptionTableEnd = _DAT_180bfaea8;
-  for (exceptionTableIterator = _DAT_180bfaea0; exceptionTableIterator != exceptionTableEnd; exceptionTableIterator = exceptionTableIterator + 7) {
+  ProcessExceptionData(&ExceptionDataTable,ExceptionDataSecondaryTable,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionTableEnd = ExceptionTableEndPointer;
+  for (exceptionTableIterator = ExceptionTableStartPointer; exceptionTableIterator != exceptionTableEnd; exceptionTableIterator = exceptionTableIterator + 7) {
     *exceptionTableIterator = &TemporaryExceptionHandler;
     if (exceptionTableIterator[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -96111,7 +96123,7 @@ void InitializeExceptionHandlerTableA0(DataBuffer operationBase,DataBuffer dataB
     *(DataWord *)(exceptionTableIterator + 3) = 0;
     *exceptionTableIterator = &DefaultExceptionHandlerB;
   }
-  if (_DAT_180bfaea0 != (DataBuffer *)0x0) {
+  if (ExceptionTableStartPointer != (DataBuffer *)0x0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
