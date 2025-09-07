@@ -25476,17 +25476,27 @@ void ProcessMultiSegmentDataA0(DataBuffer SystemContext,int64_t DataBuffer)
  * @warning 如果数据处理失败，函数会尝试下一个偏移量
  * @see ProcessDataBlockOperationA1, ValidateSystemDataD0
  */
-void ProcessDataBlockOperationA0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据块操作A0
+ * 
+ * 该函数负责处理数据块操作，通过系统数据验证来确保数据完整性
+ * 
+ * @param systemContext 系统上下文，包含系统状态和配置信息
+ * @param dataBufferPtr 数据缓冲区指针，指向待处理的数据块
+ * 
+ * @note 原始函数名：Unwind_18090f9a0
+ */
+void ProcessDataBlockOperationA0(DataBuffer systemContext,int64_t dataBufferPtr)
 {
-  int ProcessingResult;
+  int validationResult;
   
-  ProcessingResult = ValidateSystemDataD0();
-  if (ProcessingResult == 0) {
-    ProcessingResult = ValidateSystemDataD0(operationBase,dataBuffer + 0xc);
-    if (ProcessingResult == 0) {
-      ProcessingResult = ValidateSystemDataD0(operationBase,dataBuffer + FloatValueOffset);
-      if (ProcessingResult == 0) {
-        ValidateSystemDataD0(operationBase,dataBuffer + 0x24);
+  validationResult = ValidateSystemDataD0();
+  if (validationResult == 0) {
+    validationResult = ValidateSystemDataD0(systemContext,dataBufferPtr + 0xc);
+    if (validationResult == 0) {
+      validationResult = ValidateSystemDataD0(systemContext,dataBufferPtr + FloatValueOffset);
+      if (validationResult == 0) {
+        ValidateSystemDataD0(systemContext,dataBufferPtr + 0x24);
       }
     }
   }
@@ -37927,31 +37937,44 @@ DataBuffer ProcessDataCacheA1(int64_t operationBase,DataBuffer *dataBuffer)
 
 
 
-DataBuffer CleanupDataCacheA1(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理数据缓存A1
+ * 
+ * 该函数负责清理数据缓存，执行安全验证和内存访问验证
+ * 根据不同的条件执行不同的清理操作
+ * 
+ * @param systemContext 系统上下文，包含系统状态和配置信息
+ * @param cacheBufferPtr 缓存缓冲区指针，指向待清理的数据缓存
+ * 
+ * @return DataBuffer 返回清理后的数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180911440
+ */
+DataBuffer CleanupDataCacheA1(DataBuffer systemContext,int64_t cacheBufferPtr)
 
 {
-  DataBuffer systemDataBuffer;
-  ByteFlag SecurityValidationBufferA [32];
+  DataBuffer resultBuffer;
+  ByteFlag securityValidationBuffer [32];
   
-  if (*(uint *)(dataBuffer + 0x40) < 0x31) {
-    systemDataBuffer = ProcessDataConversionOperation(operationBase,dataBuffer,0x544e5645);
-    if ((int)systemDataBuffer == 0) {
-      systemDataBuffer = 0;
+  if (*(uint *)(cacheBufferPtr + 0x40) < 0x31) {
+    resultBuffer = ProcessDataConversionOperation(systemContext,cacheBufferPtr,0x544e5645);
+    if ((int)resultBuffer == 0) {
+      resultBuffer = 0;
     }
   }
   else {
-    systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,0x5453494c,0x544e5645);
-    if ((int)systemDataBuffer == 0) {
-      systemDataBuffer = ProcessDataConversionOperation(operationBase,dataBuffer,0x42545645);
-      if ((int)systemDataBuffer == 0) {
-        systemDataBuffer = ValidateSystemMemoryAccess(operationBase,dataBuffer);
-        if ((int)systemDataBuffer == 0) {
-            ExecuteSystemCleanupRoutine(dataBuffer,SecurityValidationBufferA);
+    resultBuffer = ExecuteDataBufferOperation(cacheBufferPtr,securityValidationBuffer,1,0x5453494c,0x544e5645);
+    if ((int)resultBuffer == 0) {
+      resultBuffer = ProcessDataConversionOperation(systemContext,cacheBufferPtr,0x42545645);
+      if ((int)resultBuffer == 0) {
+        resultBuffer = ValidateSystemMemoryAccess(systemContext,cacheBufferPtr);
+        if ((int)resultBuffer == 0) {
+            ExecuteSystemCleanupRoutine(cacheBufferPtr,securityValidationBuffer);
         }
       }
     }
   }
-  return systemDataBuffer;
+  return resultBuffer;
 }
 
 
@@ -40220,14 +40243,24 @@ void ProcessAndValidateHandlers(DataBuffer handlerParam,int64_t processParam)
 
 
 
-void CleanupValidationContext(DataBuffer cleanupParam,int64_t contextParam)
+/**
+ * @brief 清理验证上下文
+ * 
+ * 该函数负责清理验证上下文，遍历上下文列表并清理每个条目
+ * 
+ * @param cleanupContext 清理上下文，包含清理相关的状态信息
+ * @param validationContextPtr 验证上下文指针，指向待清理的验证上下文
+ * 
+ * @note 原始函数名：Unwind_18090f6e0
+ */
+void CleanupValidationContext(DataBuffer cleanupContext,int64_t validationContextPtr)
 
 {
   int64_t exceptionHandlerContext;
   int64_t *contextList;
   int64_t contextEntry;
   
-  contextList = *(int64_t **)(contextParam + 0x78);
+  contextList = *(int64_t **)(validationContextPtr + 0x78);
   exceptionHandlerContext = contextList[1];
   for (contextEntry = *contextList; contextEntry != exceptionHandlerContext; contextEntry = contextEntry + 0x48) {
     CleanupHandlerEntry(contextEntry);
@@ -40240,15 +40273,25 @@ void CleanupValidationContext(DataBuffer cleanupParam,int64_t contextParam)
 
 
 
-void ExecuteCleanupCallbacks(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行清理回调函数
+ * 
+ * 该函数负责执行清理回调函数，遍历回调列表并执行每个回调
+ * 
+ * @param systemContext 系统上下文，包含系统状态和配置信息
+ * @param callbackBufferPtr 回调缓冲区指针，指向包含回调函数的缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090f700
+ */
+void ExecuteCleanupCallbacks(DataBuffer systemContext,int64_t callbackBufferPtr)
 
 {
   int64_t *exceptionHandlerContext;
   int64_t *callbackList;
   int64_t *callbackEntry;
   
-  callbackList = (int64_t *)(*(int64_t *)(dataBuffer + 0x70) + 0x50);
-  exceptionHandlerContext = *(int64_t **)(*(int64_t *)(dataBuffer + 0x70) + 0x58);
+  callbackList = (int64_t *)(*(int64_t *)(callbackBufferPtr + 0x70) + 0x50);
+  exceptionHandlerContext = *(int64_t **)(*(int64_t *)(callbackBufferPtr + 0x70) + 0x58);
   for (callbackEntry = (int64_t *)*callbackList; callbackEntry != exceptionHandlerContext; callbackEntry = callbackEntry + 3) {
     if ((int64_t *)callbackEntry[1] != (int64_t *)0x0) {
       (**(FunctionPointer**)(*(int64_t *)callbackEntry[1] + 0x38))();
