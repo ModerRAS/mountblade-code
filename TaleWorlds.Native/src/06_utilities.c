@@ -79864,7 +79864,18 @@ void ExecuteMemoryOperationWithValidationA0(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_18090a1a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统操作执行函数A0
+ * 
+ * 该函数负责执行系统操作，调用系统操作处理程序。
+ * 主要用于系统级别的操作处理和管理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a1a0
+ */
+void ExecuteSystemOperationsA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 8,0x98,9,ProcessSystemOperationsA0);
@@ -79873,7 +79884,18 @@ void Unwind_18090a1a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a1d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器管理函数A0
+ * 
+ * 该函数负责管理异常处理器，包括设置临时异常处理器和默认异常处理器。
+ * 主要用于系统异常处理机制的管理和维护。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a1d0
+ */
+void ManageExceptionHandlersA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -79891,7 +79913,18 @@ void Unwind_18090a1d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a1f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器迭代函数A0
+ * 
+ * 该函数负责迭代处理异常上下文，执行相关的回调函数。
+ * 主要用于系统异常处理中的批量操作和清理工作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a1f0
+ */
+void IterateExceptionContextHandlersA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
