@@ -25128,32 +25128,32 @@ ProcessStatusBufferLoop:
                 StringProcessingIndex = -1;
 PathSeparatorFound: // 原始标签：LAB_180054d57
 ProcessCharacterDataComplete:
-                CoreEngineProcessSystemContext(systemEventTemplatePointer + (long long)ArrayIterationIndex * 4,&pSystemOperationFlag98,IterationCounter + 1,0xffffffff);
-                UnicodeCharacterCode = ProcessCharacterData(BufferAllocationStatus,&pSystemOperationFlag98);
+                CoreEngineProcessSystemContext(systemEventTemplatePointer + (long long)ArrayIterationIndex * 4,&SystemOperationFlag,IterationCounter + 1,0xffffffff);
+                UnicodeCharacterCode = ProcessCharacterData(BufferAllocationStatus,&SystemOperationFlag);
                 if (SystemStatusVariable != 0) {
-                  ValidateCharacterData(UnicodeCharacterCode,&CoreEnginePointerBuffer78);
+                  ValidateCharacterData(UnicodeCharacterCode,&SystemDataBuffer);
                   OperationStatus = &SystemNullTemplate;
                   SystemFlagF = 0;
                   pErrorCode = (uint8_t *)0x0;
                   SystemFlagE = 0;
-                  CoreEngineProcessSystemEvent(&OperationStatus,CoreEngineIntegerValueC0);
-                  if (CoreEngineIntegerValueC0 != 0) {
+                  CoreEngineProcessSystemEvent(&OperationStatus,SystemErrorCode);
+                  if (SystemErrorCode != 0) {
                     // WARNING: Subroutine does not return
-                    memcpy(pErrorCode,CoreEngineSignedValueC8,CoreEngineIntegerValueC0 + 1);
+                    memcpy(pErrorCode,SystemErrorData,SystemErrorCode + 1);
                   }
-                  if (CoreEngineSignedValueC8 != 0) {
+                  if (SystemErrorData != 0) {
                     SystemFlagE = 0;
                     if (pErrorCode != (uint8_t *)0x0) {
                       *pErrorCode = 0;
                     }
                     SystemFlagF = SystemFlagF & 0xffffffff;
                   }
-                  StatusBuffer6 = &CoreEngineDataTemplate;
-                  if (pSystemOperationFlag90 != NULL) {
-                    StatusBuffer6 = pSystemOperationFlag90;
+                  SystemProcessingBuffer = &CoreEngineDataTemplate;
+                  if (SystemOperationFlagPointer != NULL) {
+                    SystemProcessingBuffer = SystemOperationFlagPointer;
                   }
-                  CoreEngineProcessStringData(&OperationStatus,&CoreEngineStringTemplateC,StatusBuffer6);
-                  ProcessSystemBuffer(&OperationStatus,&CoreEnginePointerBuffer78);
+                  CoreEngineProcessStringData(&OperationStatus,&CoreEngineStringTemplateC,SystemProcessingBuffer);
+                  ProcessSystemBuffer(&OperationStatus,&SystemDataBuffer);
                   SystemStatusVariable = 0;
                   OperationStatus = &SystemNullTemplate;
                   if (pErrorCode != (uint8_t *)0x0) {
@@ -25201,7 +25201,7 @@ StringValidationComplete:
             CharacterDataBuffer = (uint8_t *)0x0;
             CoreEnginePointerBuffer158 = &ThreadLocalStorageTemplate;
             CharacterTablePointer = CharacterTablePointer + 1;
-            StatusBuffer5 = StatusBuffer5 + 8;
+            StringProcessingBuffer = StringProcessingBuffer + 8;
             EncodingConversionResult = EncodingConversionResult + -1;
             LoopIndex = CoreEngineSignedValueA0;
             CharacterCodePointer = SystemValidationPointer;
@@ -29846,7 +29846,7 @@ void ProcessCharacterCode(long long *Utf8InputBuffer
           SystemChecksumValue = GetMemoryAllocationInfo(SystemStatusBuffer);
           StackConcatenatedValue = CONCAT44(StackConcatenatedValue.HighPart,SystemChecksumValue);
                     // WARNING: Subroutine does not return
-          memcpy(SystemStatusBuffer,StatusBuffer3,CharacterByteCount0);
+          memcpy(SystemStatusBuffer,SymbolSearchPath,CharacterByteCount0);
         }
       }
       SystemBufferStatus388 = 0;
@@ -187335,7 +187335,7 @@ LAB_1801604e5:
 
 
 
-char FUN_180160500(uint32_t CharacterCode,int Utf8BufferSize
+char ValidateCharacterEncodingAndCheckStatus(uint32_t CharacterCode,int Utf8BufferSize
 {
   float *pSystemContextPrimaryFloat;
   uint MemoryAllocationIndex;
@@ -187469,7 +187469,7 @@ LAB_1801606a8:
 
 
 
-char FUN_18016055e(uint32_t CharacterCode
+char ProcessCharacterEncodingConversionAndBufferManagement(uint32_t CharacterCode
 {
   float *pSystemContextPrimaryFloat;
   uint MemoryAllocationIndex;
@@ -236930,7 +236930,7 @@ LAB_180206c6d:
 
 
 
-void FUN_180206da0(uint64_t CharacterCode,long long Utf8BufferSize,char *Utf8SourcePointer,long long Utf16EndPointer,
+void ProcessUtf8ToUtf16CharacterEncodingExtended(uint64_t CharacterCode,long long Utf8BufferSize,char *Utf8SourcePointer,long long Utf16EndPointer,
                   uint64_t AdditionalParameter1,long long AdditionalParameter2)
 {
   long long PrimaryDataSize;
@@ -243373,7 +243373,7 @@ uint64_t FUN_18020e370(uint64_t CharacterCode,unsigned long long Utf8BufferSize
 
 
 0e410(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint32_t Utf16EndPointer,
-void FUN_18020e410(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint32_t Utf16EndPointer,
+void ProcessUtf8InputBufferAndCharacterEncodingConversion(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint32_t Utf16EndPointer,
                   long long AdditionalParameter1,uint64_t *AdditionalParameter2
 {
   int *ReferenceCountPointer;
@@ -275561,5 +275561,145 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_18011b190
  */
 #define ProcessSystemErrorRecovery FUN_18011b190
+
+/**
+ * @brief 处理字符编码验证和状态检查
+ * 
+ * 该函数负责处理字符编码的验证和状态检查操作，包括字符编码的验证和状态管理。
+ * 用于系统字符编码的状态验证。
+ * 
+ * @note 原始函数名：FUN_180160500
+ */
+#define ValidateCharacterEncodingAndCheckStatus FUN_180160500
+
+/**
+ * @brief 处理字符编码转换和缓冲区管理
+ * 
+ * 该函数负责处理字符编码的转换和缓冲区管理操作，包括字符编码的转换和缓冲区的管理。
+ * 用于系统字符编码的转换和缓冲区管理。
+ * 
+ * @note 原始函数名：FUN_18016055e
+ */
+#define ProcessCharacterEncodingConversionAndBufferManagement FUN_18016055e
+
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换（扩展版本）
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换操作（扩展版本），包括字符编码的转换和缓冲区的管理。
+ * 用于系统UTF-8到UTF-16的字符编码转换。
+ * 
+ * @note 原始函数名：FUN_180206da0
+ */
+#define ProcessUtf8ToUtf16CharacterEncodingExtended FUN_180206da0
+
+/**
+ * @brief 处理UTF-8输入缓冲区和字符编码转换
+ * 
+ * 该函数负责处理UTF-8输入缓冲区的字符编码转换操作，包括UTF-8输入缓冲区的处理和字符编码的转换。
+ * 用于系统UTF-8输入缓冲区的字符编码转换。
+ * 
+ * @note 原始函数名：FUN_18020e410
+ */
+#define ProcessUtf8InputBufferAndCharacterEncodingConversion FUN_18020e410
+
+/**
+ * @brief 验证字符编码状态和处理缓冲区
+ * 
+ * 该函数负责验证字符编码的状态和处理缓冲区操作，包括字符编码状态的验证和缓冲区的处理。
+ * 用于系统字符编码状态的验证和缓冲区的处理。
+ * 
+ * @note 原始函数名：FUN_180214340
+ */
+#define ValidateCharacterEncodingStatusAndProcessBuffer FUN_180214340
+
+/**
+ * @brief 处理字符编码数据转换和内存管理
+ * 
+ * 该函数负责处理字符编码数据的转换和内存管理操作，包括字符编码数据的转换和内存的管理。
+ * 用于系统字符编码数据的转换和内存管理。
+ * 
+ * @note 原始函数名：FUN_180215b90
+ */
+#define ProcessCharacterEncodingDataConversionAndMemoryManagement FUN_180215b90
+
+/**
+ * @brief 处理字符编码缓冲区和数据同步
+ * 
+ * 该函数负责处理字符编码缓冲区的数据同步操作，包括字符编码缓冲区的处理和数据的同步。
+ * 用于系统字符编码缓冲区的数据同步。
+ * 
+ * @note 原始函数名：FUN_180215d00
+ */
+#define ProcessCharacterEncodingBufferAndDataSynchronization FUN_180215d00
+
+/**
+ * @brief 验证字符编码数据和处理缓冲区
+ * 
+ * 该函数负责验证字符编码数据的处理缓冲区操作，包括字符编码数据的验证和缓冲区的处理。
+ * 用于系统字符编码数据的验证和缓冲区的处理。
+ * 
+ * @note 原始函数名：FUN_180216360
+ */
+#define ValidateCharacterEncodingDataAndProcessBuffer FUN_180216360
+
+/**
+ * @brief 检查字符编码系统状态
+ * 
+ * 该函数负责检查字符编码系统的状态，包括字符编码系统状态的检查和管理。
+ * 用于系统字符编码系统状态的检查。
+ * 
+ * @note 原始函数名：FUN_180216391
+ */
+#define CheckCharacterEncodingSystemStatus FUN_180216391
+
+/**
+ * @brief 处理字符编码输入和验证
+ * 
+ * 该函数负责处理字符编码的输入和验证操作，包括字符编码的输入和验证。
+ * 用于系统字符编码的输入和验证。
+ * 
+ * @note 原始函数名：FUN_180216430
+ */
+#define ProcessCharacterEncodingInputAndValidation FUN_180216430
+
+/**
+ * @brief 验证字符编码缓冲区状态
+ * 
+ * 该函数负责验证字符编码缓冲区的状态，包括字符编码缓冲区状态的验证和管理。
+ * 用于系统字符编码缓冲区状态的验证。
+ * 
+ * @note 原始函数名：FUN_180216464
+ */
+#define ValidateCharacterEncodingBufferStatus FUN_180216464
+
+/**
+ * @brief 处理字符编码数据转换和内存分配
+ * 
+ * 该函数负责处理字符编码数据的转换和内存分配操作，包括字符编码数据的转换和内存的分配。
+ * 用于系统字符编码数据的转换和内存分配。
+ * 
+ * @note 原始函数名：FUN_18021ade0
+ */
+#define ProcessCharacterEncodingDataConversionAndMemoryAllocation FUN_18021ade0
+
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换和缓冲区管理
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换和缓冲区管理操作，包括字符编码的转换和缓冲区的管理。
+ * 用于系统UTF-8到UTF-16的字符编码转换和缓冲区管理。
+ * 
+ * @note 原始函数名：FUN_18021ae2a
+ */
+#define ProcessUtf8ToUtf16CharacterEncodingConversionAndBufferManagement FUN_18021ae2a
+
+/**
+ * @brief 处理字符编码内存管理
+ * 
+ * 该函数负责处理字符编码的内存管理操作，包括字符编码内存的管理和分配。
+ * 用于系统字符编码的内存管理。
+ * 
+ * @note 原始函数名：FUN_18021af10
+ */
+#define ProcessCharacterEncodingMemoryManagement FUN_18021af10
 
 
