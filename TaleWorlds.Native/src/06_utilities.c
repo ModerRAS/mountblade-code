@@ -106525,7 +106525,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 栈验证缓冲区定义
 #define StackValidationBuffer stack_0000000000000010
 
-// 异常处理器资源释放函数宏定义补充
+// 异常处理器资源释放函数定义
 /**
  * @brief 释放异常处理器资源A0
  * 

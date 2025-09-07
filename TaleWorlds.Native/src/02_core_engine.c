@@ -46776,7 +46776,7 @@ void ProcessCharacterCode(uint64_t *CharacterCode,long long CharacterCodeSize
     MatrixRotationY = MatrixRotationX * MatrixScaleX - CharacterFloatValueA * SystemContextFloatC;
     MatrixTransformX = SecondaryFloatMultiplier * MatrixScaleX - CharacterFloatValueA * MatrixTransformZ;
     *(float *)(CharacterCode + 0x18) = MatrixRotationY;
-    ContextPrimaryFloat9 = SecondaryFloatValue * SystemContextPrimaryFloat8 - ContextSecondaryFloat8 * ContextSecondaryFloat3;
+    ContextFloatResultA = SecondaryFloatMultiplier * SystemContextFloatC - MatrixRotationX * MatrixTransformZ;
     FloatValue30 = ContextSecondaryFloat3 * pFloatVariable5[9] - ContextSecondaryFloat5 * pFloatVariable5[1];
     *(float *)((long long)CharacterCode + 0xc4) = FloatValue30;
     SystemContextPrimaryFloat6 = pFloatVariable5[5];
