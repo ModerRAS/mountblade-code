@@ -58561,7 +58561,23 @@ void CleanupExceptionAtOffset160(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809063f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数链
+ * 
+ * 该函数负责遍历异常处理回调函数链，依次执行每个回调函数。
+ * 它会从指定的资源指针开始，直到遇到异常数据缓冲区为止，
+ * 对每个回调函数传入相应的参数并执行。如果资源指针为空，
+ * 则直接返回，否则在执行完所有回调后终止系统。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文和回调函数信息
+ * @param operationFlagA 操作标志A，传递给回调函数的参数
+ * @param operationFlagB 操作标志B，传递给回调函数的参数
+ * 
+ * @note 原始函数名：Unwind_1809063f0
+ * @note 这是一个异常展开（unwind）处理函数，用于执行回调函数链
+ */
+void ExecuteExceptionCallbackChain(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;

@@ -6589,14 +6589,14 @@ void ProcessUIComponentData(undefined8 uiContext,longlong *dataSource)
   if ((int)(elementCount >> 2) != (int)(elementCount >> 0x3f)) {
     ProcessUIConfiguration(configBuffer);
                     // WARNING: Subroutine does not return
-    memset(renderBuffer,0,0x800);
+    memset(renderWorkspace,0,0x800);
   }
   operationResult = _Mtx_unlock(UI_SYSTEM_MUTEX_ID);
   if (operationResult != 0) {
     __Throw_C_error_std__YAXH_Z(operationResult);
   }
                     // WARNING: Subroutine does not return
-  ExecuteUIRenderTask(encryptedValue ^ (ulonglong)buffer1);
+  ExecuteUIRenderTask(encryptedValue ^ (ulonglong)processingBuffer);
 }
 
 
