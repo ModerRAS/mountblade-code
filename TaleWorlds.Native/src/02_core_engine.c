@@ -181207,7 +181207,18 @@ void ProcessSystemBufferAndUtf8SourceManagement(long long *CharacterCode,unsigne
 
 
 
-4e067(long long CharacterCode,long long SystemBufferSizevoid FUN_18014e067(long long CharacterCode,long long SystemBufferSize
+/**
+ * @brief 处理字符代码和系统缓冲区大小管理
+ * 
+ * 该函数负责处理字符代码和系统缓冲区大小管理，包括内存分配、
+ * 数据移动和系统事件处理。
+ *
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18014e067
+ */
+void ProcessCharacterCodeAndSystemBufferSize(long long CharacterCode,long long SystemBufferSize)
 {
   uint32_t Utf16Char;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -181259,7 +181270,19 @@ void ProcessSystemBufferAndUtf8SourceManagement(long long *CharacterCode,unsigne
 
 
 
-4e11f(uint64_t CharacterCode,uint64_t SystemBufferSize,uint32_t *Utf8SourcePointervoid FUN_18014e11f(uint64_t CharacterCode,uint64_t SystemBufferSize,uint32_t *Utf8SourcePointer
+/**
+ * @brief 处理字符代码、系统缓冲区和UTF-8源数据
+ * 
+ * 该函数负责处理字符代码、系统缓冲区和UTF-8源数据的管理，
+ * 包括数据填充和缓冲区状态管理。
+ *
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_18014e11f
+ */
+void ProcessCharacterCodeSystemBufferAndUtf8Source(uint64_t CharacterCode,uint64_t SystemBufferSize,uint32_t *Utf8SourcePointer)
 {
   uint32_t Utf16Char;
   long long BufferStatus;
@@ -181282,7 +181305,19 @@ void ProcessSystemBufferAndUtf8SourceManagement(long long *CharacterCode,unsigne
 
 
 
-long long * FUN_18014e160(long long *CharacterCode,long long *CharacterCodeSize
+/**
+ * @brief 处理字符代码和字符代码大小管理
+ * 
+ * 该函数负责处理字符代码和字符代码大小的管理，包括内存分配、
+ * 数据移动和缓冲区状态管理。
+ *
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @return 处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_18014e160
+ */
+long long * ProcessCharacterCodeAndSizeManagement(long long *CharacterCode,long long *CharacterCodeSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
