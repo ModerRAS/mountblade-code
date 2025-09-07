@@ -523,7 +523,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkStandardPacketProcessingSize 0x100                 // 标准数据包处理大小256字节
 #define NetworkValidationBufferSize 0x27                   // 验证缓冲区大小39字节
 #define NetworkErrorCodeInvalidPacket 0x1c                     // 无效数据包错误码
-#define NetworkConnectionCompletionHandleValue 0x7d                   // 连接完成状态句柄值 (125)
+#define NetworkConnectionCompletionHandle 0x7d                   // 连接完成状态句柄值 (125)
 #define NetworkConnectionBasicValidationMode 0x01           // 基本验证模式
 #define NetworkConnectionStrictValidationMode 0x02           // 严格验证模式
 #define NetworkValidationSuccessMask 0x01                     // 验证成功掩码
@@ -1905,7 +1905,7 @@ uint32_t NetworkValidationBufferPool;
 /**
  * @brief 网络数据包加密缓冲区
  */
-uint32_t NetworkPacketEncryptionBuffer;
+uint32_t PacketEncryptionBuffer;
 
 /**
  * @brief 网络数据包压缩缓冲区
@@ -2817,8 +2817,8 @@ void InitializeNetworkPacketSecurityValidation(void)
   NetworkPacketEncryptionKeyLength = NetworkEncryptionKeyLength256Bit;                   // 设置加密密钥长度为256位
   
   // 初始化验证缓冲区
-  NetworkPacketValidationBufferPool = NetworkBufferInitialized;                   // 初始化验证缓冲池
-  NetworkPacketValidationBufferSize = NetworkValidationBufferSize;                   // 设置验证缓冲区大小为39字节
+  PacketValidationBufferPool = NetworkBufferInitialized;                   // 初始化验证缓冲池
+  PacketValidationBufferSize = NetworkValidationBufferSize;                   // 设置验证缓冲区大小为39字节
   
   // 初始化安全验证
   NetworkPacketSecurityValidationData = NetworkSecurityEnabled;                 // 初始化安全验证数据
@@ -2830,7 +2830,7 @@ void InitializeNetworkPacketSecurityValidation(void)
   NetworkPacketSecurityCertificateData = NetworkSecurityEnabled;                 // 初始化安全证书数据
   
   // 初始化加密缓冲区
-  NetworkPacketEncryptionBuffer = NetworkBufferInitialized;                 // 初始化数据包加密缓冲区
+  PacketEncryptionBuffer = NetworkBufferInitialized;                 // 初始化数据包加密缓冲区
   NetworkPacketCompressionBuffer = NetworkBufferInitialized;                // 初始化数据包压缩缓冲区
   
   // 初始化压缩参数
@@ -3037,8 +3037,8 @@ uint32_t NetworkPacketTrailerSize;                       // 网络数据包尾�
 uint32_t NetworkPacketHashAlgorithm;                            // 数据包哈希算法
 uint32_t NetworkPacketSignatureMethod;                         // 数据包签名方法
 uint32_t NetworkPacketEncryptionKeyLength;                     // 数据包加密密钥长度
-uint32_t NetworkPacketValidationBufferPool;                     // 数据包验证缓冲池
-uint32_t NetworkPacketValidationBufferSize;                     // 数据包验证缓冲区大小
+uint32_t PacketValidationBufferPool;                     // 数据包验证缓冲池
+uint32_t PacketValidationBufferSize;                     // 数据包验证缓冲区大小
 uint32_t NetworkPacketSecurityValidationData;                   // 数据包安全验证数据
 uint32_t NetworkPacketSecurityValidationInfo;                   // 数据包安全验证信息
 uint32_t NetworkPacketSecurityEncryptionData;                   // 数据包安全加密数据
@@ -3131,9 +3131,9 @@ uint32_t NetworkConnectionValidationData;                // 连接验证数据
 uint32_t NetworkConnectionValidationDataSize;                // 连接验证数据大小
 uint32_t NetworkConnectionValidationCode;                // 连接验证码
 uint32_t ConnectionBaseAddress;                  // 连接基地址
-uint32_t NetworkConnectionContextDataArray;                     // 连接上下文数据数组
-uint32_t NetworkConnectionContextDataArraySize;                 // 连接上下文数据数组大小
-uint32_t NetworkConnectionContextDataIndex;                     // 连接上下文数据索引
+uint32_t ConnectionContextDataArray;                     // 连接上下文数据数组
+uint32_t ConnectionContextDataArraySize;                 // 连接上下文数据数组大小
+uint32_t ConnectionContextDataIndex;                     // 连接上下文数据索引
 uint32_t NetworkConnectionCompletionHandle;                        // 网络连接完成句柄
 
 /**
@@ -3291,7 +3291,7 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle NetworkConnectionCont
     return NetworkOperationSuccess;
   }
   if ((int)NetworkPacketData - 1U < NetworkMaximumSignedInt32Value) {
-    NetworkRequestResult = HandleNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), NetworkPacketData, &SecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
+    NetworkRequestResult = HandleNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), NetworkPacketData, &SecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
     if (NetworkRequestResult != 0) {
       if (NetworkValidationData && (int)NetworkValidationData[ConnectionDataSizeIndex] != 0) {
           memcpy((void *)NetworkRequestResult, *NetworkValidationData, (int64_t)(int)NetworkValidationData[ConnectionDataSizeIndex]);
@@ -3387,13 +3387,13 @@ NetworkHandle ProcessConnectionPacketData(int64_t *NetworkConnectionContext, int
       // 处理连接请求并获取状态缓冲区
       NetworkConnectionStatusBuffer = (NetworkConnectionStatus *)
                ProcessNetworkConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), NetworkPacketData * ConnectionEntrySize, &SecurityValidationBuffer,
-                             NetworkConnectionCompletionHandleValue, 0, 0, 1);
+                             NetworkConnectionCompletionHandle, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
       if (NetworkConnectionStatusBuffer != NULL) {
         int32_t ActiveConnectionCount = (int)NetworkConnectionContext[ConnectionContextActiveCountIndex];
         int64_t ConnectionProcessingCounter = (int64_t)ActiveConnectionCount;
-        int64_t NetworkConnectionBaseAddress = 0;  // 连接上下文基地址
+        int64_t ConnectionBaseAddress = 0;  // 连接上下文基地址
         NetworkConnectionStatus *NetworkConnectionStatusIterator = NetworkConnectionStatusBuffer;
         int64_t CurrentConnectionAddress = NetworkConnectionBaseAddress;  // 连接上下文地址
           
@@ -3749,7 +3749,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
         return NetworkValidationStepResult;
       }
     }
-    NetworkValidationStepResult = FinalizePacketProcessing(PacketData, ConnectionContext + NetworkConnectionCompletionOffset, NetworkConnectionCompletionHandleValue);
+    NetworkValidationStepResult = FinalizePacketProcessing(PacketData, ConnectionContext + NetworkConnectionCompletionOffset, NetworkConnectionCompletionHandle);
     return NetworkValidationStepResult;
   }
   return NetworkValidationStepResult;
