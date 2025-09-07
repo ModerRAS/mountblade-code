@@ -14154,45 +14154,45 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
  */
 #define ValidateSystemDataA0 FUN_1808987e0
 
-// 原始变量名：UNK_1809864e0 - 数据配置表A0
+// 数据配置表A0
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA0 DataConfigurationTablePrimary
+#define DataConfigurationTableA0 UNK_1809864e0
 
-// 原始变量名：UNK_180986508 - 数据配置表A1
+// 数据配置表A1
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA1 DataConfigurationTableSecondary
+#define DataConfigurationTableA1 UNK_180986508
 
-// 原始变量名：UNK_180986550 - 数据配置表A2
+// 数据配置表A2
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA2 DataConfigurationTableTertiary
+#define DataConfigurationTableA2 UNK_180986550
 
-// 原始变量名：UNK_180986590 - 数据配置表A3
+// 数据配置表A3
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA3 DataConfigurationTableQuaternary
+#define DataConfigurationTableA3 UNK_180986590
 
-// 原始变量名：UNK_1809865f0 - 数据配置表A4
+// 数据配置表A4
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA4 DataConfigurationTableQuinary
+#define DataConfigurationTableA4 UNK_1809865f0
 
-// 原始变量名：UNK_1809866c0 - 数据配置表A5
+// 数据配置表A5
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA5 DataConfigurationTableSenary
+#define DataConfigurationTableA5 UNK_1809866c0
 
-// 原始变量名：UNK_180986730 - 数据配置表A6
+// 数据配置表A6
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA6 DataConfigurationTableSeptenary
+#define DataConfigurationTableA6 UNK_180986730
 
-// 原始变量名：UNK_1809867b0 - 数据配置表A7
+// 数据配置表A7
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA7 DataConfigurationTableOctonary
+#define DataConfigurationTableA7 UNK_1809867b0
 
-// 原始变量名：UNK_180986850 - 数据配置表A8
+// 数据配置表A8
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA8 DataConfigurationTableNonary
+#define DataConfigurationTableA8 UNK_180986850
 
-// 原始函数名：FUN_180897d20 - 数据处理函数A0
+// 数据处理函数A0
 // 功能：处理数据块和配置信息
-#define ProcessDataBlockWithConfigurationA0 ProcessDataBlockWithSecurityCheck
+#define ProcessDataBlockWithConfigurationA0 FUN_180897d20
 
 // 原始函数名：FUN_180898040 - 浮点数据处理函数A0
 // 功能：处理浮点数据和信息
