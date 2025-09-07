@@ -25535,8 +25535,8 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
 {
   int64_t validationContext;
   DataBuffer operationResult;
-  char register_BPL;
-  char in_stack_00000008;
+  char registerBPL;
+  char stackValidationParameter;
   
   if (*(uint *)(dataBuffer + 8) < 0x55) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
@@ -86852,7 +86852,7 @@ void Unwind_180910390(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809103a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x48) = &UNK_1809fcca0;
+  **(DataBuffer **)(dataBuffer + 0x48) = &SystemMemoryPoolPointerB;
   return;
 }
 
@@ -86924,7 +86924,7 @@ void Unwind_1809103e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809103f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x90) = &UNK_180a05068;
+  **(DataBuffer **)(dataBuffer + 0x90) = &DataBufferPointerA1;
   return;
 }
 

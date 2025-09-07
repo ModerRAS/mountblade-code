@@ -200155,7 +200155,7 @@ uint64_t * ProcessSecondarySystemContextBuffer(uint64_t *SystemContextPointer,un
 
 
 
-7a240(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer// UTF-16编码处理和系统事件函数
+// UTF-16编码处理和系统事件函数
 // 处理UTF-16编码和系统事件的协调操作，管理编码过程中的事件触发
 void ProcessUtf16EncodingAndSystemEvent(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
