@@ -14419,7 +14419,7 @@ LAB_18065a2e9:
     fVar8 = fVar8 * fVar7;
   }
   pfVar3 = (float *)(unaff_R14 + 0x6154);
-  iVar5 = 1;
+  uiElementCounter = 1;
   fVar7 = unaff_XMM6_Da;
   do {
     floatResult0 = *(float *)(((longlong)afStack_60e8 - unaff_R14) + (longlong)pfVar3);
@@ -14445,20 +14445,20 @@ LAB_18065a2e9:
     }
     pfVar3[-10] = floatResult0;
     *pfVar3 = floatResult0;
-    if (2 < iVar5) {
-      if (iVar5 < 7) {
+    if (2 < uiElementCounter) {
+      if (uiElementCounter < 7) {
         fVar9 = unaff_XMM8_Da - fVar8;
       }
       else {
         fVar9 = unaff_XMM6_Da;
-        if (iVar5 == 7) {
+        if (uiElementCounter == 7) {
           if (*(char *)(unaff_R14 + 0x5d) == cVar6) {
 LAB_18065a5b3:
             fVar9 = fVar8;
           }
         }
         else {
-          if (iVar5 != 8) goto LAB_18065a5d3;
+          if (uiElementCounter != 8) goto LAB_18065a5d3;
           if (*(char *)(unaff_R14 + 0x5d) != cVar6) goto LAB_18065a5b3;
         }
       }
@@ -14487,7 +14487,7 @@ LAB_18065a5d3:
         fVar9 = pfVar3[-9] + floatResult3;
       }
     }
-    iVar4 = iVar5 + 1;
+    iVar4 = uiElementCounter + 1;
     pfVar3[-9] = fVar9;
     pfVar3[1] = fVar9;
     if (2 < iVar4) {
@@ -14532,7 +14532,7 @@ LAB_18065a69c:
         floatResult2 = pfVar3[-8] + floatResult4;
       }
     }
-    iVar4 = iVar5 + 2;
+    iVar4 = uiElementCounter + 2;
     pfVar3[-8] = floatResult2;
     pfVar3[2] = floatResult2;
     if (2 < iVar4) {
@@ -14556,10 +14556,10 @@ LAB_18065a744:
       pfVar3[2] = floatResult2;
     }
 LAB_18065a765:
-    iVar5 = iVar5 + 3;
+    uiElementCounter = uiElementCounter + 3;
     fVar7 = fVar7 + floatResult0 + fVar9 + floatResult2;
     pfVar3 = pfVar3 + 3;
-    if (9 < iVar5) {
+    if (9 < uiElementCounter) {
       fVar8 = *(float *)(unaff_R14 + 0x6150);
       fVar8 = unaff_XMM8_Da - ((fVar8 * 6.0 - 15.0) * fVar8 + 10.0) * fVar8 * fVar8 * fVar8;
       if (fVar7 != fVar8) {
@@ -70535,36 +70535,35 @@ void FUN_180704a20(undefined8 uiContext,int dataSource,undefined4 targetBuffer,u
 
 
 
- void FUN_180705180(longlong *uiContext,int dataSource,int targetBuffer)
-void FUN_180705180(longlong *uiContext,int dataSource,int targetBuffer)
+ void ProcessUIDataWrite(longlong *uiContext,int dataSource,int targetBuffer)
 
 {
   int operationResult;
-  uint semaphoreHandle;
+  uint writeStatus;
   int compareResult;
-  uint uVar4;
+  uint dataByte;
   
   compareResult = *(int *)((longlong)uiContext + 0x14);
-  uVar4 = *(uint *)(uiContext + 2);
+  dataByte = *(uint *)(uiContext + 2);
   if (0x20 < (uint)(compareResult + targetBuffer)) {
     do {
       if ((uint)(*(int *)((longlong)uiContext + 0x1c) + *(int *)((longlong)uiContext + 0xc)) <
           *(uint *)(uiContext + 1)) {
         operationResult = *(int *)((longlong)uiContext + 0xc) + 1;
         *(int *)((longlong)uiContext + 0xc) = operationResult;
-        *(char *)((ulonglong)(*(uint *)(uiContext + 1) - operationResult) + *uiContext) = (char)uVar4;
-        semaphoreHandle = 0;
+        *(char *)((ulonglong)(*(uint *)(uiContext + 1) - operationResult) + *uiContext) = (char)dataByte;
+        writeStatus = 0;
       }
       else {
-        semaphoreHandle = 0xffffffff;
+        writeStatus = 0xffffffff;
       }
-      *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | semaphoreHandle;
+      *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | writeStatus;
       compareResult = compareResult + -8;
-      uVar4 = uVar4 >> 8;
+      dataByte = dataByte >> 8;
     } while (7 < compareResult);
   }
   *(int *)(bufferData + 3) = (int)uiContext[3] + targetBuffer;
-  *(uint *)(uiContext + 2) = dataSource << ((byte)compareResult & 0x1f) | uVar4;
+  *(uint *)(uiContext + 2) = dataSource << ((byte)compareResult & 0x1f) | dataByte;
   *(int *)((longlong)uiContext + 0x14) = compareResult + targetBuffer;
   return;
 }
@@ -70573,85 +70572,85 @@ void FUN_180705180(longlong *uiContext,int dataSource,int targetBuffer)
 
 
  void FUN_180705210(longlong *uiContext)
-void FUN_180705210(longlong *uiContext)
+void InitializeUIContext(longlong *uiContext)
 
 {
-  longlong *pallocatedMemory;
+  longlong *allocatedMemory;
   int validationResult;
-  int compareResult;
-  char cVar4;
-  ulonglong uVar5;
-  uint uVar6;
+  int bitPosition;
+  char overflowFlag;
+  ulonglong allocationSize;
+  uint contextFlags;
   uint eventTypeCode;
-  uint uVar8;
-  int iVar9;
+  uint statusMask;
+  int bitCount;
   
-  uVar6 = *(uint *)(uiContext + 4);
-  compareResult = 0x1f;
-  if (uVar6 != 0) {
-    for (; uVar6 >> compareResult == 0; compareResult = compareResult + -1) {
+  contextFlags = *(uint *)(uiContext + 4);
+  bitPosition = 0x1f;
+  if (contextFlags != 0) {
+    for (; contextFlags >> bitPosition == 0; bitPosition = bitPosition + -1) {
     }
   }
   validationResult = *(int *)((longlong)uiContext + 0x24);
-  iVar9 = -compareResult + 0x1f;
-  eventTypeCode = 0x7fffffff >> ((byte)iVar9 & 0x1f);
-  uVar8 = validationResult + eventTypeCode & ~eventTypeCode;
-  if (validationResult + uVar6 <= (uVar8 | eventTypeCode)) {
-    iVar9 = -compareResult + 0x20;
-    uVar8 = validationResult + (eventTypeCode >> 1) & ~(eventTypeCode >> 1);
+  bitCount = -bitPosition + 0x1f;
+  eventTypeCode = 0x7fffffff >> ((byte)bitCount & 0x1f);
+  statusMask = validationResult + eventTypeCode & ~eventTypeCode;
+  if (validationResult + contextFlags <= (statusMask | eventTypeCode)) {
+    bitCount = -bitPosition + 0x20;
+    statusMask = validationResult + (eventTypeCode >> 1) & ~(eventTypeCode >> 1);
   }
-  if (iVar9 < 1) {
-    uVar6 = *(uint *)((longlong)uiContext + 0x2c);
+  if (bitCount < 1) {
+    contextFlags = *(uint *)((longlong)uiContext + 0x2c);
   }
   else {
-    uVar5 = (ulonglong)((iVar9 - 1U >> 3) + 1);
+    allocationSize = (ulonglong)((bitCount - 1U >> 3) + 1);
     do {
-      if (uVar8 >> 0x17 == 0xff) {
+      if (statusMask >> 0x17 == 0xff) {
         *(int *)(bufferData + 5) = (int)uiContext[5] + 1;
-        uVar6 = *(uint *)((longlong)uiContext + 0x2c);
+        contextFlags = *(uint *)((longlong)uiContext + 0x2c);
       }
       else {
-        cVar4 = -(char)((int)uVar8 >> 0x1f);
+        overflowFlag = -(char)((int)statusMask >> 0x1f);
         if (-1 < *(int *)((longlong)uiContext + 0x2c)) {
           if (*(int *)((longlong)uiContext + 0xc) + *(uint *)((longlong)uiContext + 0x1c) <
               *(uint *)(uiContext + 1)) {
             *(char *)((ulonglong)*(uint *)((longlong)uiContext + 0x1c) + *uiContext) =
-                 (char)*(int *)((longlong)uiContext + 0x2c) + cVar4;
+                 (char)*(int *)((longlong)uiContext + 0x2c) + overflowFlag;
             *(int *)((longlong)uiContext + 0x1c) = *(int *)((longlong)uiContext + 0x1c) + 1;
-            uVar6 = 0;
+            contextFlags = 0;
           }
           else {
-            uVar6 = 0xffffffff;
+            contextFlags = 0xffffffff;
           }
-          *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | uVar6;
+          *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | contextFlags;
         }
         if ((int)uiContext[5] != 0) {
-          uVar6 = *(uint *)((longlong)uiContext + 0x1c);
+          uint bufferIndex = *(uint *)((longlong)uiContext + 0x1c);
           do {
-            if (*(int *)((longlong)uiContext + 0xc) + uVar6 < *(uint *)(uiContext + 1)) {
-              *(char *)((ulonglong)uVar6 + *uiContext) = cVar4 + -1;
+            if (*(int *)((longlong)uiContext + 0xc) + bufferIndex < *(uint *)(uiContext + 1)) {
+              *(char *)((ulonglong)bufferIndex + *uiContext) = overflowFlag + -1;
               *(int *)((longlong)uiContext + 0x1c) = *(int *)((longlong)uiContext + 0x1c) + 1;
-              uVar6 = *(uint *)((longlong)uiContext + 0x1c);
+              bufferIndex = *(uint *)((longlong)uiContext + 0x1c);
               eventTypeCode = 0;
             }
             else {
               eventTypeCode = 0xffffffff;
             }
             *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | eventTypeCode;
-            pallocatedMemory = uiContext + 5;
-            *(int *)pallocatedMemory = (int)*pallocatedMemory + -1;
-          } while ((int)*pallocatedMemory != 0);
+            allocatedMemory = uiContext + 5;
+            *(int *)allocatedMemory = (int)*allocatedMemory + -1;
+          } while ((int)*allocatedMemory != 0);
         }
-        uVar6 = uVar8 >> 0x17 & 0xff;
-        *(uint *)((longlong)uiContext + 0x2c) = uVar6;
+        contextFlags = statusMask >> 0x17 & 0xff;
+        *(uint *)((longlong)uiContext + 0x2c) = contextFlags;
       }
-      uVar8 = (uVar8 & 0x7fffff) << 8;
-      uVar5 = uVar5 - 1;
-    } while (uVar5 != 0);
+      statusMask = (statusMask & 0x7fffff) << 8;
+      allocationSize = allocationSize - 1;
+    } while (allocationSize != 0);
   }
-  if ((int)uVar6 < 0) {
-    compareResult = (int)uiContext[5];
-    if (compareResult == 0) goto LAB_1807053b0;
+  if ((int)contextFlags < 0) {
+    bitPosition = (int)uiContext[5];
+    if (bitPosition == 0) goto LAB_1807053b0;
   }
   else {
     if (*(int *)((longlong)uiContext + 0xc) + *(uint *)((longlong)uiContext + 0x1c) <
