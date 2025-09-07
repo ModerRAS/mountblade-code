@@ -147,10 +147,11 @@
 #define SetBitFlag(mask, condition) ((mask) | ((condition) ? 1 : 0))
 
 // 联合体成员访问宏定义
-#define DataBufferHighWord(dataBuffer) ((dataBuffer)._4_4_)
-#define DataBufferLowWord(dataBuffer) ((dataBuffer)._0_4_)
-#define DataBufferHighByte(dataBuffer) ((dataBuffer)._1_7_)
-#define DataBufferLowByte(dataBuffer) ((dataBuffer)._7_1_)
+// 数据缓冲区位域访问宏定义
+#define DataBufferHighWord(dataBuffer) ((dataBuffer).HighWord)
+#define DataBufferLowWord(dataBuffer) ((dataBuffer).LowWord)
+#define DataBufferHighByte(dataBuffer) ((dataBuffer).HighByte)
+#define DataBufferLowByte(dataBuffer) ((dataBuffer).LowByte)
 
 // 组件偏移量常量定义
 #define COMPONENT_DATA_OFFSET 3                 // 组件数据偏移量
@@ -162,11 +163,11 @@
 #define COMPONENT_COMMAND_OFFSET 0x368           // 组件命令偏移量
 
 // 模块偏移量常量定义
-#define MODULE_CONFIG_OFFSET_1 0x18             // 模块配置偏移量1
-#define MODULE_CONFIG_OFFSET_2 0x10             // 模块配置偏移量2
-#define MODULE_DATA_OFFSET_1 0x90               // 模块数据偏移量1
-#define MODULE_DATA_OFFSET_2 0xf8               // 模块数据偏移量2
-#define MODULE_DATA_OFFSET_3 0x10               // 模块数据偏移量3
+#define MODULE_PRIMARY_CONFIG_OFFSET 0x18       // 模块主配置偏移量
+#define MODULE_SECONDARY_CONFIG_OFFSET 0x10     // 模块次配置偏移量
+#define MODULE_PRIMARY_DATA_OFFSET 0x90         // 模块主数据偏移量
+#define MODULE_SECONDARY_DATA_OFFSET 0xf8       // 模块次数据偏移量
+#define MODULE_TERTIARY_DATA_OFFSET 0x10        // 模块第三数据偏移量
 #define MODULE_CONTEXT_OFFSET 0x240             // 模块上下文偏移量
 #define MODULE_RESOURCE_OFFSET -0x18            // 模块资源偏移量
 #define MODULE_COMPONENT_OFFSET 0x80             // 模块组件偏移量
@@ -177,9 +178,9 @@
 #define RESOURCE_DATA_OFFSET 4                   // 资源数据偏移量
 
 // 上下文偏移量常量定义
-#define CONTEXT_DATA_OFFSET_90 0x90              // 上下文数据偏移量90
-#define CONTEXT_POINTER_OFFSET_50 0x50           // 上下文指针偏移量50
-#define DATA_STRUCTURE_OFFSET_EXCEPTION_HANDLER 0x10  // 数据结构异常处理器偏移量
+#define CONTEXT_PRIMARY_DATA_OFFSET 0x90        // 上下文主数据偏移量
+#define CONTEXT_POINTER_STORAGE_OFFSET 0x50      // 上下文指针存储偏移量
+#define DATA_STRUCTURE_EXCEPTION_HANDLER_OFFSET 0x10  // 数据结构异常处理器偏移量
 
 // 系统内存地址常量定义
 #define FloatValidationDataAddress 0x180985054          // 浮点数验证数据地址
@@ -194,16 +195,16 @@
 #define SystemContextPointerOffset 0x50                // 系统上下文指针偏移量
 
 // 数据处理偏移量常量定义
-#define DATA_CONTEXT_OFFSET_18 0x18              // 数据上下文偏移量18
-#define DATA_BUFFER_OFFSET_24 0x24               // 数据缓冲区偏移量24
-#define SYSTEM_CONTEXT_OFFSET_98 0x98            // 系统上下文偏移量98
+#define DATA_PROCESSING_CONTEXT_OFFSET 0x18      // 数据处理上下文偏移量
+#define DATA_STORAGE_BUFFER_OFFSET 0x24          // 数据存储缓冲区偏移量
+#define SYSTEM_MANAGEMENT_CONTEXT_OFFSET 0x98    // 系统管理上下文偏移量
 
 // 队列操作偏移量常量定义
 #define QUEUE_DATA_POINTER_OFFSET 0x20           // 队列数据指针偏移量
 #define QUEUE_SIZE_OFFSET 0x28                   // 队列大小偏移量
 #define QUEUE_CAPACITY_OFFSET 0x2c                // 队列容量偏移量
-#define QUEUE_INFO_OFFSET_8 0x8                  // 队列信息偏移量8
-#define EVENT_HANDLE_OFFSET_8 0x8                // 事件句柄偏移量8
+#define QUEUE_INFORMATION_OFFSET 0x8             // 队列信息偏移量
+#define EVENT_HANDLER_OFFSET 0x8                 // 事件处理器偏移量
 
 // 异常处理相关常量定义
 #define ExceptionCallbackOffset 0xb0
@@ -15288,7 +15289,7 @@ void ProcessSystemEventQueueWithBufferManagement(int64_t eventContext,int64_t sy
   
   eventStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventContext + ExceptionHandlerCallbackOffset10),&queueInfo);
   if (((eventStatus != 0) || (eventStatus = InitializeSystemEventA0(&eventHandle), eventStatus != 0)) ||
-     (eventStatus = ProcessSystemEventDataA0(eventHandle,systemContext,*(DataBuffer *)(queueInfo + QUEUE_INFO_OFFSET_8)), eventStatus != 0)) {
+     (eventStatus = ProcessSystemEventDataA0(eventHandle,systemContext,*(DataBuffer *)(queueInfo + QUEUE_INFORMATION_OFFSET)), eventStatus != 0)) {
     return;
   }
   newBuffer = 0;
