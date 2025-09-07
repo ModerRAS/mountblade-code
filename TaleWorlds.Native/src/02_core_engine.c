@@ -2877,6 +2877,14 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
  * @return 处理结果状态码
  */
 #define ProcessSystemNetworkAndConfigureData FUN_180630b20
+/**
+ * @brief 处理系统网络数据并配置次要网络参数
+ * 
+ * 该函数负责系统网络数据的次要配置操作，作为主要网络配置的补充。
+ * 确保网络系统的完整配置。
+ * 
+ * @return 处理结果状态码
+ */
 #define ProcessSystemNetworkAndConfigureSecondary FUN_180630e10
 #define ProcessSystemNetworkAndProcessData FUN_1806298d0
 #define ProcessSystemReferenceCountAndValidate FUN_18011dd10
