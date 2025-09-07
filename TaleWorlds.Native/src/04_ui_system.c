@@ -64319,7 +64319,7 @@ LAB_18069a35d:
         if (uVar6 != 0) {
           pallocatedMemory0 = (longlong *)(uiContext + 0x4310 + uVar7 * 8);
           while( true ) {
-            functionResult1 = FUN_18069a100(uiContext,dataSource,*pallocatedMemory0,(ulonglong)functionResult3 + lVar8,functionResult2 + lVar2
+            functionResult1 = ProcessUIDataAndBufferManager(uiContext,dataSource,*pallocatedMemory0,(ulonglong)functionResult3 + lVar8,functionResult2 + lVar2
                                    ,(int)uVar7 + -1,iVar9);
             *(uint *)(uiContext + 0x4358 + uVar7 * 4) = functionResult1;
             uVar6 = uVar6 - functionResult1;
@@ -72144,7 +72144,7 @@ void FUN_180706ba7(void)
   ulonglong in_stack_00000230;
   
   uStack0000000000000030 = 1;
-  FUN_180706d00(&stack0x00000040,0,in_stack_00000040._4_4_);
+  ProcessUIBufferCopyOperation(&stack0x00000040,0,in_stack_00000040._4_4_);
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000230 ^ (ulonglong)&stack0x00000000);
 }
