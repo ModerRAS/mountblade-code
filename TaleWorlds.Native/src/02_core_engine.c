@@ -129793,7 +129793,7 @@ LAB_18012b82d:
       ConfigureRenderParameters(pSystemMemoryOffset238[0x5d],&OperationStatus,&CoreEngineUnsignedValue208,&fStack_140);
     }
     if (*(char *)((long long)pSystemMemoryOffset238 + 0xac) != '\0') {
-      FUN_180110540(0);
+      ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)pSystemMemoryOffset238 + 0xad) != '\0') {
       FUN_180110540(1);
@@ -131580,7 +131580,7 @@ LAB_18012b465:
       ConfigureRenderParameters(CharacterTablePointer5,&TertiaryDataBuffer,&MemoryAllocationStackBuffer,FrameRegisterPointer + 0xe,StackParameter1);
     }
     if (*(char *)((long long)StackParameter2 + 0xac) != '\0') {
-      FUN_180110540(0);
+      ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)StackParameter2 + 0xad) != '\0') {
       FUN_180110540(1);
@@ -133423,7 +133423,7 @@ LAB_18012b465:
       ConfigureRenderParameters(LoopIndex,&TertiaryDataBuffer,&MemoryAllocationStackBuffer,FrameRegisterPointer + 0xe,StackParameter1);
     }
     if (*(char *)((long long)StackParameter2 + 0xac) != '\0') {
-      FUN_180110540(0);
+      ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)StackParameter2 + 0xad) != '\0') {
       FUN_180110540(1);
@@ -135114,7 +135114,7 @@ LAB_18012b465:
       ConfigureRenderParameters(SystemContextValue,&TertiaryDataBuffer,&MemoryAllocationStackBuffer,FrameRegisterPointer + 0xe,StackParameter1);
     }
     if (*(char *)((long long)StackParameter2 + 0xac) != '\0') {
-      FUN_180110540(0);
+      ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)StackParameter2 + 0xad) != '\0') {
       FUN_180110540(1);
@@ -136725,7 +136725,7 @@ LAB_18012b510:
       ConfigureRenderParameters(SystemContextValue,&TertiaryDataBuffer,&MemoryAllocationStackBuffer,FrameRegisterPointer + 0xe,StackParameter1);
     }
     if (*(char *)((long long)StackParameter2 + 0xac) != '\0') {
-      FUN_180110540(0);
+      ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)StackParameter2 + 0xad) != '\0') {
       FUN_180110540(1);
@@ -138414,7 +138414,7 @@ LAB_18012b465:
       ConfigureRenderParameters(SystemContextValue,&TertiaryDataBuffer,&MemoryAllocationStackBuffer,FrameRegisterPointer + 0xe,StackParameter1);
     }
     if (*(char *)((long long)StackParameter2 + 0xac) != '\0') {
-      FUN_180110540(0);
+      ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)StackParameter2 + 0xad) != '\0') {
       FUN_180110540(1);
@@ -139989,7 +139989,7 @@ LAB_18012b510:
       ConfigureRenderParameters(SystemStatusCode,&TertiaryDataBuffer,&MemoryAllocationStackBuffer,FrameRegisterPointer + 0xe,StackParameter1);
     }
     if (*(char *)(StackParameter2 + 0xac) != '\0') {
-      FUN_180110540(0);
+      ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)(StackParameter2 + 0xad) != '\0') {
       FUN_180110540(1);
@@ -141059,7 +141059,7 @@ LAB_18012b510:
       ConfigureRenderParameters(MemoryAllocationOffset,&TertiaryDataBuffer,&MemoryAllocationStackBuffer,FrameRegisterPointer + 0xe,StackParameter1);
     }
     if (*(char *)(StackParameter2 + 0xac) != '\0') {
-      FUN_180110540(0);
+      ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)(StackParameter2 + 0xad) != '\0') {
       FUN_180110540(1);
@@ -141911,7 +141911,7 @@ void ExecuteSystemCoreDataProcessing(void)
       ConfigureRenderParameters(QuaternaryReturnCode,&TertiaryDataBuffer,&MemoryAllocationStackBuffer,FrameRegisterPointer + 0xe,StackParameter1);
     }
     if (*(char *)(StackParameter2 + 0xac) != '\0') {
-      FUN_180110540(0);
+      ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)(StackParameter2 + 0xad) != '\0') {
       FUN_180110540(1);
