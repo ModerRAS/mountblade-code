@@ -205,10 +205,15 @@
 #define ResourceValidationCheckOffset 0xe                // 资源验证检查偏移量
 #define ResourceDataPointerOffset 0x20                 // 资源数据指针偏移量
 #define ReferenceCountOffset 0x18                      // 引用计数偏移量
-#define DataContextOffset14 0x14                  // 数据上下文偏移量14
-#define DataContextOffset20 0x20                  // 数据上下文偏移量20
-#define DataContextOffset2c 0x2c                  // 数据上下文偏移量2c
-#define DataContextOffset38 0x38                  // 数据上下文偏移量38
+#define ExceptionHandlerContextOffset48 0x48        // 异常处理上下文偏移量48
+#define SystemExceptionDataTableOffset 0x0            // 系统异常数据表偏移量
+#define DefaultExceptionHandlerBOffset 0x1            // 默认异常处理程序B偏移量
+#define ExceptionDataTable3Offset 0x2                 // 异常数据表3偏移量
+#define ExceptionDataTable6Offset 0x3                 // 异常数据表6偏移量
+#define DataContextOffset14 0x14                       // 数据上下文偏移量14
+#define DataContextOffset20 0x20                       // 数据上下文偏移量20
+#define DataContextOffset2c 0x2c                       // 数据上下文偏移量2c
+#define DataContextOffset38 0x38                       // 数据上下文偏移量38
 #define DataContextOffset44 0x44                  // 数据上下文偏移量44
 #define DataContextOffset50 0x50                  // 数据上下文偏移量50
 
