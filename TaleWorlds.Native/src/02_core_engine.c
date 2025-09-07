@@ -182106,7 +182106,21 @@ void SystemPlaceholderFunction(void)
 
 
 
-4e8b0(long long *CharacterCode,unsigned long long SystemBufferSizevoid FUN_18014e8b0(long long *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 处理系统状态更新
+ * 
+ * 该函数负责更新系统状态，包括：
+ * - 重新分配系统缓冲区
+ * - 移动现有数据到新缓冲区
+ * - 清理旧的内存分配
+ * - 更新系统指针
+ * 
+ * @param CharacterCode 字符代码指针数组
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18014e8b0
+ */
+void ProcessSystemStatusUpdate(long long *CharacterCode, unsigned long long SystemBufferSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;

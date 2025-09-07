@@ -1,5 +1,52 @@
 #include "TaleWorlds.Native.Split.h"
 
+// UI系统基本类型定义
+typedef uint8_t UIByte;
+typedef uint16_t UIWord;
+typedef uint32_t UIDword;
+typedef uint64_t UIQword;
+typedef uint8_t UIBool;
+typedef uint32_t UIStatus;
+typedef uint64_t UIHandle;
+typedef void* UIPointer;
+typedef uint8_t UIFlag;
+typedef uint32_t UISize;
+typedef uint64_t UICounter;
+
+// UI系统数据类型定义
+typedef UIByte UIDataByte;
+typedef UIWord UIDataWord;
+typedef UIDword UIDataDword;
+typedef UIQword UIDataQword;
+typedef UIByte UIValue8;
+typedef uint16_t UIValue16;
+typedef uint32_t UIValue32;
+typedef uint64_t UIValue64;
+
+// UI系统渲染数据类型
+typedef float UIFloat;
+typedef double UIDouble;
+typedef uint32_t UIColor;
+typedef uint32_t UIPixel;
+
+// UI系统组件类型
+typedef UIHandle UIComponentHandle;
+typedef UIHandle UIResourceHandle;
+typedef UIHandle UIRenderHandle;
+typedef UIHandle UIEventHandle;
+
+// UI系统状态枚举
+typedef enum {
+    UIStatusInactive = 0,
+    UIStatusActive = 1,
+    UIStatusVisible = 2,
+    UIStatusEnabled = 4,
+    UIStatusFocused = 8,
+    UIStatusHovered = 16,
+    UIStatusSelected = 32,
+    UIStatusDisabled = 64
+} UIComponentStatus;
+
 #define UIEventDispatchFallbackPtr (code *)&UIEventDispatchFallbackFunction
 #define UIStateUpdateFallbackPtr (code *)&UIStateUpdateFallbackFunction
 #define UIComponentSyncFallbackPtr (code *)&UIComponentSyncFallbackFunction
@@ -3819,11 +3866,11 @@ void* UIRendererStateDuodenary;
 void* UIRendererStateTerdenary;
 void* UIRendererStateQuattuordenary;
 void* UIRendererStateQuindenary;
-undefined UIRendererStateSexagenary;
-undefined UIRendererStateSeptuagenary;
-undefined UIRendererStateOctogenary;
-undefined UIRendererStateNonagenary;
-undefined UIRendererStateCentenary;
+UIHandle UIRendererStateSexagenary;
+UIHandle UIRendererStateSeptuagenary;
+UIHandle UIRendererStateOctogenary;
+UIHandle UIRendererStateNonagenary;
+UIHandle UIRendererStateCentenary;
  UI系统全局配置数据
 void* UIGlobalConfigData;
  UI系统渲染状态数据
