@@ -48381,7 +48381,7 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   uint32_t StackUnsigned200;
   int *piStack_1f8;
   int *piStack_1f0;
-  int iStack_1e8;
+  int StackOffset1E8;
   uint8_t (*pauStack_1e0) [16];
   unsigned long long uStack_1d8;
   long long lStack_1d0;
@@ -111628,7 +111628,7 @@ uint8_t CleanupSystemDataAndInitialize(void
 
 
 
-cdf8(voidvoid CoreEngineInitializeRendering(void)
+void CoreEngineInitializeRendering(void)
 {
   return;
 }
@@ -111636,7 +111636,7 @@ cdf8(voidvoid CoreEngineInitializeRendering(void)
 
 
 
-ce11(voidvoid CoreEngineInitializeAudio(void
+void CoreEngineInitializeAudio(void)
 {
   return;
 }
@@ -237999,7 +237999,7 @@ LAB_18020c9db:
   uint64_t RegisterValueR15;
   long long StackParameterReturn;
   int StackOffset70;
-  int iStack0000000000000078;
+  int StackOffset78;
   
   *(void *)(in_RAX + 0x10) = RegisterFramePointer;
   *(void *)(in_RAX + -0x18) = RegisterSourceIndex;
