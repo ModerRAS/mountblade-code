@@ -55064,7 +55064,13 @@ void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906960(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化系统资源并调用回调函数
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180906960
+ */
+void InitializeSystemAndInvokeCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemResourcesI0();
@@ -55147,7 +55153,7 @@ void Unwind_1809069d0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x68) != 0) {
     PerformSystemCleanup();
   }
-  FUN_18007f6a0(dataBuffer + 0x78);
+  ValidateResourceContext(dataBuffer + 0x78);
   if (*(int64_t **)(dataBuffer + 0x90) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x90) + 0x38))();
   }
@@ -55191,7 +55197,7 @@ void Unwind_180906a00(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0xa0) != 0) {
     PerformSystemCleanup();
   }
-  FUN_18007f6a0(dataBuffer + 0xb0);
+  ValidateResourceContext(dataBuffer + 0xb0);
   if (*(int64_t **)(dataBuffer + 200) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 200) + 0x38))();
   }
@@ -55320,7 +55326,7 @@ void Unwind_180906ac0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x28) != 0) {
     PerformSystemCleanup();
   }
-  FUN_18007f6a0(dataBuffer + 0x38);
+  ValidateResourceContext(dataBuffer + 0x38);
   if (*(int64_t **)(dataBuffer + 0x50) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x50) + 0x38))();
   }
@@ -55530,7 +55536,7 @@ void Unwind_180906b70(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x30) != 0) {
     PerformSystemCleanup();
   }
-  FUN_18007f6a0(dataBuffer + 0x40);
+  ValidateResourceContext(dataBuffer + 0x40);
   if (*(int64_t **)(dataBuffer + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x58) + 0x38))();
   }
@@ -71090,7 +71096,7 @@ void Unwind_18090bd80(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x58) != 0) {
     PerformSystemCleanup();
   }
-  FUN_18007f6a0(dataBuffer + 0x68);
+  ValidateResourceContext(dataBuffer + 0x68);
   if (*(int64_t **)(dataBuffer + 0x80) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x80) + 0x38))();
   }
@@ -71163,7 +71169,7 @@ void Unwind_18090bdf0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x60) != 0) {
     PerformSystemCleanup();
   }
-  FUN_18007f6a0(dataBuffer + 0x70);
+  ValidateResourceContext(dataBuffer + 0x70);
   if (*(int64_t **)(dataBuffer + 0x88) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x88) + 0x38))();
   }
@@ -71319,7 +71325,7 @@ void Unwind_18090bf70(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x38) != 0) {
     PerformSystemCleanup();
   }
-  FUN_18007f6a0(dataBuffer + 0x48);
+  ValidateResourceContext(dataBuffer + 0x48);
   if (*(int64_t **)(dataBuffer + 0x60) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x60) + 0x38))();
   }
