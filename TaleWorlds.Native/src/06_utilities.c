@@ -189,37 +189,37 @@
  * @brief 数据验证处理函数
  * @note 原始函数名：ValidateData
  */
-#define ValidateData FUN_180058370
+#define ValidateData ValidateDataIntegrity
 
 /**
  * @brief 内存分配处理函数
  * @note 原始函数名：AllocateMemory
  */
-#define AllocateMemoryPool FUN_18004b790
+#define AllocateMemoryPool AllocateMemoryPoolForSystem
 
 /**
  * @brief 内存初始化函数
  * @note 原始函数名：func_0x00018076b450
  */
-#define InitializeMemoryPool FUN_18064e900
+#define InitializeMemoryPool InitializeMemoryPoolForSystem
 
 /**
  * @brief 数据处理函数
  * @note 原始函数名：ProcessData
  */
-#define ProcessDataBuffer FUN_180069530
+#define ProcessDataBuffer ProcessDataBufferWithValidation
 
 /**
  * @brief 系统状态检查函数
  * @note 原始函数名：CheckSystemStatus
  */
-#define ValidateSystemStatus FUN_180074a80
+#define ValidateSystemStatus ValidateSystemStatusAndHealth
 
 /**
  * @brief 系统初始化函数
  * @note 原始函数名：InitializeSystem
  */
-#define InitializeSystemCore FUN_180080060
+#define InitializeSystemCore InitializeSystemCoreComponents
 
 /**
  * @brief 参数验证函数
@@ -227,7 +227,7 @@
  * 
  * @note 原始函数名：ValidateParameters
  */
-#define ValidateSystemParameters FUN_1800809a0
+#define ValidateSystemParameters ValidateSystemParametersAndConfig
 
 /**
  * @brief 上下文验证函数
@@ -236,7 +236,7 @@
  * 
  * @note 原始函数名：ValidateContext
  */
-#define ValidateSystemContext FUN_180080870
+#define ValidateSystemContext ValidateSystemContextAndState
 
 /**
  * @brief 系统验证初始化函数
@@ -18757,10 +18757,10 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
   bool isValid;
   int validationResult;
   
-  if (((!in_ZF) && (*(int *)(operationBase + 0x78) != 0)) &&
-     (arrayIndex = *(int *)(*(int64_t *)(in_R10 + 0x70) +
+  if (((!zeroFlag) && (*(int *)(operationBase + 0x78) != 0)) &&
+     (arrayIndex = *(int *)(*(int64_t *)(inputRegisterR10 + 0x70) +
                       (int64_t)(int)(*(int *)(operationBase + 0x78) - 1U & operationFlagB) * 4), arrayIndex != -1)) {
-    exceptionHandlerContext = *(int64_t *)(in_R10 + 0x80);
+    exceptionHandlerContext = *(int64_t *)(inputRegisterR10 + 0x80);
     do {
       dataContext = (int64_t)arrayIndex;
       if (*(uint *)(exceptionHandlerContext + dataContext * 0x10) == operationFlagB) {
@@ -18778,8 +18778,8 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
   ValidationContextIndex = 0;
 ValidationCompleteLabel:
   validationStatusPointer = (DataBuffer *)
-           ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + operationFlagA * 0xc) +
-           *(int64_t *)(in_R10 + 8));
+           ((int64_t)*(int *)(*(int64_t *)(inputRegisterR10 + 0x18) + operationFlagA * 0xc) +
+           *(int64_t *)(inputRegisterR10 + 8));
   if (validationStatusPointer != (DataBuffer *)0x0) {
     (**(FunctionPointer**)*validationStatusPointer)();
   }
@@ -18796,7 +18796,7 @@ DataBuffer ValidateDataIntegrityA2(int64_t DataDescriptor,DataBuffer ValidationC
   int64_t inputAccumulatorRegister;
   DataBuffer *resourcePointer;
   int *destinationIndexRegister;
-  int64_t in_R10;
+  int64_t inputRegisterR10;
   DataBuffer systemDataStorage;
   
   systemDataBuffer = *(DataBuffer *)(operationBase + 8 + inputAccumulatorRegister * 8);
@@ -18806,8 +18806,8 @@ DataBuffer ValidateDataIntegrityA2(int64_t DataDescriptor,DataBuffer ValidationC
     return 0;
   }
   resourcePointer = (DataBuffer *)
-           ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + operationFlagA * 0xc) +
-           *(int64_t *)(in_R10 + 8));
+           ((int64_t)*(int *)(*(int64_t *)(inputRegisterR10 + 0x18) + operationFlagA * 0xc) +
+           *(int64_t *)(inputRegisterR10 + 8));
   if (resourcePointer != (DataBuffer *)0x0) {
     systemDataStorage = systemDataBuffer;
     (**(FunctionPointer**)*resourcePointer)();
