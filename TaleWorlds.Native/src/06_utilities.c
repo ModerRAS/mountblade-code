@@ -11756,7 +11756,7 @@ DataBuffer ValidateUtilitySystemState(void)
   int *operationPointer;
   int64_t basePointer;
   DataWord *DataValidationContext;
-  uint CounterValue;
+  uint SystemCounterValue;
   uint64_t adjustedValue;
   int64_t SystemDataProcessingBuffer;
   uint64_t loopCounter;
@@ -71504,7 +71504,17 @@ void ProcessExceptionContextAtOffsetD0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180908800(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据缓冲区回调执行函数
+ * 
+ * 该函数负责从数据缓冲区的特定偏移量获取回调函数指针并执行
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908800
+ */
+void ExecuteDataBufferCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xd8) != (int64_t *)0x0) {
@@ -71515,7 +71525,17 @@ void Unwind_180908800(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908810(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数
+ * 
+ * 该函数负责在数据缓冲区的特定偏移量设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908810
+ */
+void SetDefaultExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1e0) = &DefaultExceptionHandlerB;
@@ -80002,7 +80022,19 @@ void Unwind_18090b530(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b550(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0x550处理异常上下文指针
+ * 
+ * 此函数负责处理异常上下文指针，执行以下操作：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 如果指针有效，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b550
+ */
+void ProcessExceptionContextAtOffset550(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80042,7 +80074,19 @@ void ProcessExceptionContextAtOffsetA0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090b590(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0x590处理异常上下文指针
+ * 
+ * 此函数负责处理异常上下文指针，执行以下操作：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 如果指针有效，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b590
+ */
+void ProcessExceptionContextAtOffset590(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100067,7 +100111,24 @@ void DualExceptionContextCleanupHandlerD(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180910de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 双重异常上下文清理处理器E
+ * 
+ * 该函数负责处理两个异常上下文的清理操作，包括：
+ * - 执行异常处理回调函数
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910de0
+ */
+void DualExceptionContextCleanupHandlerE(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
