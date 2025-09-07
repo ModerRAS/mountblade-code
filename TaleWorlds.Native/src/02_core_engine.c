@@ -108450,7 +108450,15 @@ uint64_t ProcessUtf16CharacterConversion(void)
 
 
 
-uint64_t FUN_18011afbf(void
+/**
+ * 处理系统数据并配置内存分配
+ * 
+ * 该函数负责处理系统数据，包括内存分配、数据排序、状态标志设置等操作。
+ * 它会检查系统状态，处理数据索引，并根据需要调用系统排序函数。
+ * 
+ * @return uint64_t 操作结果，成功返回1
+ */
+uint64_t ProcessSystemDataAndConfigureMemory(void
 {
   uint64_t Utf16Char;
   uint64_t MemoryAllocationIndex;
@@ -108538,7 +108546,15 @@ uint64_t FUN_18011afbf(void
 
 
 
-uint64_t FUN_18011afee(void
+/**
+ * 处理系统缓冲区并执行排序操作
+ * 
+ * 该函数处理系统缓冲区数据，包括UTF-16字符处理、内存分配索引管理、
+ * 状态标志设置以及必要时的数据排序操作。
+ * 
+ * @return uint64_t 操作结果，成功返回1
+ */
+uint64_t ProcessSystemBufferAndSort(void
 {
   uint64_t Utf16Char;
   uint64_t MemoryAllocationIndex;
@@ -111531,7 +111547,15 @@ LAB_18011cbeb:
 
 
 
-uint8_t FUN_18011c7f4(void
+/**
+ * 清理系统数据并初始化系统状态
+ * 
+ * 该函数负责清理系统数据，设置辅助浮点数值，并返回系统状态。
+ * 它会检查系统字符串缓冲区状态，并在需要时调用清理函数。
+ * 
+ * @return uint8_t 系统状态标志
+ */
+uint8_t CleanupSystemDataAndInitialize(void
 {
   char in_AL;
   uint8_t RegisterGeneral14B;
