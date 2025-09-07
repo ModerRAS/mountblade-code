@@ -129056,10 +129056,10 @@ LAB_18012aa45:
     }
     *(uint *)(pSystemMemoryOffset238[5] + 4) = MemoryAllocationOffset | 0x10;
   }
-  FUN_18011feb0(pSystemMemoryOffset238[5],&DataContentStatus);
+  ProcessSystemFloatData(pSystemMemoryOffset238[5],&DataContentStatus);
   if ((((CharacterStatus1 == '\0') && (MemoryAllocationIndex9 == 0)) && (*(int *)((long long)pSystemMemoryOffset238 + 0xc4) < 1)) &&
      ((int)pSystemMemoryOffset238[0x19] < 1)) {
-    FUN_18011fc50(&fStack_218,DataStructureCounter + 0x16ac,DataStructureCounter + 0x16b4);
+    ProcessSystemConfigurationData(&fStack_218,DataStructureCounter + 0x16ac,DataStructureCounter + 0x16b4);
     if (*(char *)((long long)pSystemMemoryOffset238 + 0xae) == '\0') {
       if (0.0 < (float)SystemUnsignedValue160 - (float)DataContentStatus) {
         if (0.0 < SystemUnsignedValue160.HighPart - DataContentStatus.HighPart) {
@@ -273734,5 +273734,25 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_1801661b0
  */
 #define ProcessAdvancedCharacterEncodingConversion FUN_1801661b0
+
+/**
+ * @brief 分配系统处理状态缓冲区
+ * 
+ * 该函数负责分配系统处理状态缓冲区，用于存储系统处理过程中的状态信息。
+ * 支持多种状态数据的存储和管理，确保系统状态的正确维护。
+ * 
+ * @note 原始函数名：FUN_1801293e0
+ */
+#define AllocateSystemProcessingStatusBuffer FUN_1801293e0
+
+/**
+ * @brief 处理字符代码和浮点数据
+ * 
+ * 该函数负责处理字符代码和浮点数据的操作，包括字符代码的转换和浮点数据的计算。
+ * 支持多种数据类型的处理和转换。
+ * 
+ * @note 原始函数名：FUN_1801295b0
+ */
+#define ProcessCharacterCodeAndFloatData FUN_1801295b0
 
 
