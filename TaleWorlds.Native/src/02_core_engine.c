@@ -182988,7 +182988,7 @@ long long * FUN_18014fe60(long long CharacterCode,long long SystemBufferSize,lon
         }
       }
       MemoryPoolBlockSizePointer[-6] = CharacterCodeTablePointer[-10];
-      FUN_180150240(MemoryPoolBlockSizePointer + -5,CharacterCodeTablePointer + -9);
+      InitializeUtf8System(MemoryPoolBlockSizePointer + -5,CharacterCodeTablePointer + -9);
       CharacterCode = MemoryPoolBlockSizePointer + -1;
       if (CharacterCode != CharacterCodeTablePointer + -5) {
         MemoryBoundaryEnd = CharacterCodeTablePointer[-4];
@@ -183174,7 +183174,7 @@ long long * FUN_18014fe9c(long long CharacterCode,uint64_t SystemBufferSize,long
       }
     }
     MemoryPoolBlockSizePointer[-6] = CharacterCodeTablePointer[-10];
-    FUN_180150240(MemoryPoolBlockSizePointer + -5,CharacterCodeTablePointer + -9);
+    InitializeUtf8System(MemoryPoolBlockSizePointer + -5,CharacterCodeTablePointer + -9);
     CharacterCode = MemoryPoolBlockSizePointer + -1;
     if (CharacterCode != CharacterCodeTablePointer + -5) {
       MemoryBoundaryEnd = CharacterCodeTablePointer[-4];
