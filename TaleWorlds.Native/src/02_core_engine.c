@@ -174450,15 +174450,14 @@ void ProcessCharacterEncodingDataConversion(long long CharacterCode)
 
 
 
-3f940(voidvoid FUN_18013f940(void
+void ProcessCharacterSystemOperation(void)
 {
-                    // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();
 }
 
 
 
-uint64_t * ProcessUtf8InputBufferAllocation(uint64_t *Utf8InputBuffer
+uint64_t * ProcessUtf8InputBufferAllocation(uint64_t *Utf8InputBuffer)
 {
   uint64_t *CharacterStatusBuffer;
   
@@ -175003,7 +175002,7 @@ uint32_t ProcessUtf16CharAndSystemBuffer(long long CharacterCode,uint64_t *Utf8I
  * 
  1801426a0，ProcessSystemData
  */
-uint32_t ProcessSystemData(long long CharacterCode,long long Utf8BufferSize
+uint32_t ProcessSystemData(long long CharacterCode,long long Utf8BufferSize)
 {
   uint64_t *CharacterStatusBuffer;
   byte SystemHighByte;
@@ -180014,7 +180013,7 @@ LAB_18014ccc0:
 
 
 
-4ce90(long long *Utf8InputBuffer,long long Utf8BufferSizevoid FUN_18014ce90(long long *Utf8InputBuffer,long long Utf8BufferSize
+void ProcessSystemCharacterEncoding(long long *Utf8InputBuffer,long long Utf8BufferSize)
 {
   long long *Utf8InputBuffer;
   uint *PrimaryProcessingStatusFlag;

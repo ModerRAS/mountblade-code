@@ -101102,8 +101102,19 @@ void ProcessSystemOperationsIteratively(DataBuffer operationBase, int64_t dataBu
 
 
 
-void Unwind_18090ff90(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 内存资源引用计数管理函数
+ * 
+ * 该函数负责管理内存资源的引用计数，包括资源的释放和清理。
+ * 它会检查内存资源指针的有效性，计算内存块偏移量，并根据引用计数进行相应的处理。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ff90
+ * @note 这是一个内存资源引用计数管理函数，用于处理内存资源的生命周期
+ */
+void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
@@ -101138,8 +101149,19 @@ void Unwind_18090ff90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ffa0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 默认异常处理器设置函数A0
+ * 
+ * 该函数负责设置默认异常处理器（A0变体），配置异常处理机制。
+ * 它会将默认异常处理器B设置到指定的数据缓冲区位置。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ffa0
+ * @note 这是一个默认异常处理器设置函数，用于配置异常处理机制（A0变体）
+ */
+void SetDefaultExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 {
   **(DataBuffer **)(dataBuffer + 0x168) = &DefaultExceptionHandlerB;
   return;
@@ -101147,8 +101169,19 @@ void Unwind_18090ffa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ffb0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 资源清理标志管理函数B0
+ * 
+ * 该函数负责管理资源清理标志，根据标志状态执行相应的资源清理操作。
+ * 当第4位标志被设置时，会清除该标志并调用资源清理处理函数。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ffb0
+ * @note 这是一个资源清理标志管理函数，用于处理资源清理标志和清理操作
+ */
+void ManageResourceCleanupFlagB0(DataBuffer operationBase, int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 4) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffb;
@@ -101159,8 +101192,19 @@ void Unwind_18090ffb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ffe0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常上下文系统操作处理函数E0
+ * 
+ * 该函数负责处理异常上下文中的系统操作，遍历内存块并执行相应的系统操作。
+ * 它会从异常上下文中获取数据上下文，然后迭代处理内存块中的系统操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ffe0
+ * @note 这是一个异常上下文系统操作处理函数，用于处理异常上下文中的系统操作
+ */
+void ProcessExceptionContextSystemOperationsE0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t exceptionHandlerContext;
   int64_t *dataContext;
@@ -101179,8 +101223,19 @@ void Unwind_18090ffe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fff0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 数据缓冲区系统操作处理函数F0
+ * 
+ * 该函数负责处理数据缓冲区中的系统操作，遍历内存块并执行相应的系统操作。
+ * 它会从数据缓冲区中获取数据上下文，然后迭代处理内存块中的系统操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090fff0
+ * @note 这是一个数据缓冲区系统操作处理函数，用于处理数据缓冲区中的系统操作
+ */
+void ProcessDataBufferSystemOperationsF0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t exceptionHandlerContext;
   int64_t *dataContext;
