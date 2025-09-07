@@ -13344,28 +13344,43 @@ uint32_t SystemProcessAudioData(byte AudioFormatParameter,byte *AudioDataPointer
   }
   return CONCAT31((int3)(~StringProcessingResult >> 8),*pMemoryAddress != ~StringProcessingResult);
 }
+/**
+ * @brief 处理音频缓冲区数据
+ * 
+ * 该函数处理音频缓冲区中的采样数据，执行音频信号处理操作。
+ * 函数从输入缓冲区读取音频采样，进行矩阵变换计算，然后将结果写入输出缓冲区。
+ * 
+ * @param InputBufferPointer 输入音频缓冲区指针，指向源音频数据
+ * @param OutputBufferPointer 输出音频缓冲区指针，指向处理后的音频数据
+ * @param AudioProcessingParameter 音频处理参数，包含处理配置信息
+ * 
+ * @return float* 返回处理后的音频缓冲区指针
+ * 
+ * @note 这是一个音频信号处理函数，执行矩阵运算来变换音频数据
+ * @warning 确保输入缓冲区和输出缓冲区有足够的空间容纳音频数据
+ */
 float * SystemProcessAudioBuffer(float *InputBufferPointer,float *OutputBufferPointer,float *AudioProcessingParameter)
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  fVar1 = *SystemTertiaryParameter;
-  fVar2 = SystemParameterPointer[3];
-  fVar3 = SystemParameterPointer[1];
-  fVar4 = *SystemParameterPointer;
-  fVar5 = SystemTertiaryParameter[1];
-  fVar6 = SystemParameterPointer[2];
-  fVar7 = SystemTertiaryParameter[2];
-  fVar8 = SystemTertiaryParameter[3];
-  *SystemSecondaryParameter = (fVar4 * fVar8 + fVar1 * fVar2 + fVar3 * fVar7) - fVar6 * fVar5;
-  SystemSecondaryParameter[1] = (fVar3 * fVar8 + fVar5 * fVar2 + fVar6 * fVar1) - fVar7 * fVar4;
-  SystemSecondaryParameter[3] = ((fVar8 * fVar2 - fVar4 * fVar1) - fVar5 * fVar3) - fVar6 * fVar7;
-  SystemSecondaryParameter[2] = (fVar6 * fVar8 + fVar7 * fVar2 + fVar5 * fVar4) - fVar3 * fVar1;
+  float InputSample1;
+  float InputSample2;
+  float InputSample3;
+  float InputSample4;
+  float InputSample5;
+  float InputSample6;
+  float InputSample7;
+  float InputSample8;
+  InputSample1 = *SystemTertiaryParameter;
+  InputSample2 = SystemParameterPointer[3];
+  InputSample3 = SystemParameterPointer[1];
+  InputSample4 = *SystemParameterPointer;
+  InputSample5 = SystemTertiaryParameter[1];
+  InputSample6 = SystemParameterPointer[2];
+  InputSample7 = SystemTertiaryParameter[2];
+  InputSample8 = SystemTertiaryParameter[3];
+  *SystemSecondaryParameter = (InputSample4 * InputSample8 + InputSample1 * InputSample2 + InputSample3 * InputSample7) - InputSample6 * InputSample5;
+  SystemSecondaryParameter[1] = (InputSample3 * InputSample8 + InputSample5 * InputSample2 + InputSample6 * InputSample1) - InputSample7 * InputSample4;
+  SystemSecondaryParameter[3] = ((InputSample8 * InputSample2 - InputSample4 * InputSample1) - InputSample5 * InputSample3) - InputSample6 * InputSample7;
+  SystemSecondaryParameter[2] = (InputSample6 * InputSample8 + InputSample7 * InputSample2 + InputSample5 * InputSample4) - InputSample3 * InputSample1;
   return SystemSecondaryParameter;
 }
 uint64_t SystemAudioGetFormat(uint64_t AudioContextPointer,uint32_t *FormatParameterPointer)
@@ -13943,4 +13958,4 @@ int RegisterSystemAudioModule(void);
  */
 int RegisterSystemNetworkModule(void);
 
-#endif /* DATA_DEFINITIONS_H */
+#endif // DATA_DEFINITIONS_H

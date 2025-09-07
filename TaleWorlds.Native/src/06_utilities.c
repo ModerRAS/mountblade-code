@@ -1254,7 +1254,7 @@
  * 
  * @note 原始函数名：FUN_18004b790
  */
-#define ValidateSystemDataBuffer FUN_18004b790
+#define ValidateSystemDataBufferAndCheckIntegrity FUN_18004b790
 
 /**
  * @brief 系统数据指针清理函数
@@ -1266,7 +1266,7 @@
  * 
  * @note 原始函数名：FUN_18064e900
  */
-#define CleanupSystemDataPointer FUN_18064e900
+#define CleanupSystemDataPointerAndReleaseMemory FUN_18064e900
 
 /**
  * @brief 系统上下文处理函数
@@ -1280,7 +1280,7 @@
  * 
  * @note 原始函数名：FUN_18007f840
  */
-#define ProcessSystemContext FUN_18007f840
+#define ProcessSystemContextAndValidateState FUN_18007f840
 
 /**
  * @brief 数据类型转换函数
@@ -1295,7 +1295,7 @@
  * 
  * @note 原始函数名：FUN_18007f6a0
  */
-#define ConvertDataType FUN_18007f6a0
+#define ConvertDataTypeWithValidation FUN_18007f6a0
 
 /**
  * @brief 系统内存管理函数
@@ -1469,13 +1469,13 @@
  * 
  * @note 原始函数名：FUN_1808fc074
  */
-#define ValidateSystemStateAndResources FUN_1808fc074
+#define ValidateSystemStateAndCheckResources FUN_1808fc074
 
 /**
  * @brief 内存访问处理函数
  * @note 原始函数名：FUN_1803f33b0
  */
-#define ProcessMemoryAccess FUN_1803f33b0
+#define ProcessMemoryAccessAndValidate FUN_1803f33b0
 
 /**
  * @brief 系统状态验证函数A0
@@ -1484,7 +1484,7 @@
  * 
  * @note 原始函数名：FUN_180085530
  */
-#define ValidateSystemStatusA0 FUN_180085530
+#define ValidateSystemStatusAndCheckHealth FUN_180085530
 
 /**
  * @brief 系统状态更新函数A0
@@ -1493,7 +1493,7 @@
  * 
  * @note 原始函数名：FUN_180089640
  */
-#define UpdateSystemStatusA0 FUN_180089640
+#define UpdateSystemStatusAndState FUN_180089640
 
 /**
  * @brief 系统值计算函数
@@ -1502,7 +1502,7 @@
  * 
  * @note 原始函数名：FUN_1800ba100
  */
-#define CalculateSystemValue FUN_1800ba100
+#define CalculateSystemValueAndMetrics FUN_1800ba100
 
 /**
  * @brief 系统参数验证函数A0
@@ -1511,7 +1511,7 @@
  * 
  * @note 原始函数名：FUN_180047e40
  */
-#define ValidateSystemParametersA0 FUN_180047e40
+#define ValidateSystemParametersAndConfig FUN_180047e40
 
 // 原始函数名：ProcessSystemDataA0 - 系统数据处理函数A0
 #define ProcessSystemDataA0 ProcessSystemDataPrimary
@@ -1785,7 +1785,7 @@
  * 
  * @note 原始函数名：FUN_18004c030
  */
-#define InitializeSystemMemoryPoolA1 FUN_18004c030
+#define InitializeSystemMemoryPoolAndConfigureCache FUN_18004c030
 
 /**
  * @brief 系统内存初始化函数A2
@@ -1794,7 +1794,7 @@
  * 
  * @note 原始函数名：FUN_18004c090
  */
-#define InitializeSystemMemoryA2 FUN_18004c090
+#define InitializeSystemMemoryAndSetupA2 FUN_18004c090
 
 /**
  * @brief 系统值计算函数
@@ -1803,7 +1803,7 @@
  * 
  * @note 原始函数名：FUN_18062b420
  */
-#define CalculateSystemValue FUN_18062b420
+#define CalculateSystemValueAndMetrics FUN_18062b420
 
 /**
  * @brief 系统上下文值获取函数
@@ -1812,7 +1812,7 @@
  * 
  * @note 原始函数名：FUN_1807d3e20
  */
-#define GetSystemContextValue FUN_1807d3e20
+#define GetSystemContextValueAndState FUN_1807d3e20
 
 // 异常处理器设置函数组 - 6B0-6E0系列
 // 原始函数名：Unwind_180906b80 - 异常处理器调用函数B80
@@ -115082,7 +115082,7 @@ void DestroyMutexLockA0(void)
 
 
 
-942a60(void)
+void FUN_180942a60(void)
 /**
  * @brief 设置默认异常处理器函数C0
  * 
