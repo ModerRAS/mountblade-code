@@ -167658,7 +167658,14 @@ LAB_18013b872:
 
 
 
-3b86d(long long CharacterCodevoid FUN_18013b86d(long long CharacterCode
+/**
+ * @brief 处理字符代码的UTF-16转换
+ * 
+ * 处理字符代码的UTF-16编码转换，包括字符映射和数据转换
+ * 
+ * @param CharacterCode 字符代码，包含字符的编码信息
+ */
+void ProcessCharacterCodeUtf16Conversion(long long CharacterCode)
 {
   uint Utf16Char;
   int *pCharacterByteCount;
@@ -200031,29 +200038,37 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
 
 
 
-712c0(long long CharacterCodevoid FUN_1801712c0(long long CharacterCode
+/**
+ * @brief 处理字符窗口消息和系统状态的函数
+ * 
+ * 该函数负责处理字符窗口消息、系统状态和相关的内存操作。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @note 原始函数名：FUN_1801712c0
+ */
+void ProcessCharacterWindowMessageAndSystemStatus(long long CharacterCode)
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
   long long MemoryOffset;
   unsigned long long MemoryOffsetValue;
   uint8_t SystemOperationBuffer [32];
-  uint64_t StackProcessingUnsignedValue78;
-  uint64_t StackProcessingVariable70;
-  uint32_t StackProcessingUnsignedValue68;
-  uint32_t SystemUnsignedValue64;
-  uint32_t StackProcessingUnsignedValue60;
-  uint32_t SystemUnsignedValue5C;
+  uint64_t WindowAreaWidth;
+  uint64_t WindowAreaHeight;
+  uint32_t WindowPositionX;
+  uint32_t CursorPositionX;
+  uint32_t WindowPositionY;
+  uint32_t CursorPositionY;
   uint64_t BufferOffset;
   uint64_t SystemKeyPointer;
-  uint64_t SystemStackOffset48;
+  uint64_t ConsoleWindowRect;
   uint64_t SystemPriorityLevel;
   uint64_t FunctionAddress;
-  uint32_t uStack_28;
-  uint32_t uStack_24;
+  uint32_t MappedPointX;
+  uint32_t MappedPointYHigh;
   uint32_t ProcessingCounter;
-  uint32_t uStack_1c;
-  unsigned long long uStack_18;
+  uint32_t MappedPointYLow;
+  unsigned long long EncodedBufferPointer;
   
   uStack_18 = EncodingDecodingKey ^ (unsigned long long)SystemOperationBuffer;
   StackProcessingUnsignedValue78 = 0;

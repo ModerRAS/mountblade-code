@@ -77411,7 +77411,23 @@ void CleanupMemoryResourceWithReferenceCountA0(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_1809096a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源指针清理函数
+ * 
+ * 该函数负责清理内存资源指针，包括：
+ * - 获取内存资源指针的引用
+ * - 计算内存区域的基地址
+ * - 验证内存区域的有效性
+ * - 减少资源引用计数
+ * - 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区，包含内存资源指针信息
+ * 
+ * @note 原始函数名：Unwind_1809096a0
+ * @warning 如果内存区域无效或引用计数为0，会调用HandleExceptionE0处理异常
+ */
+void CleanupMemoryResourcePointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
