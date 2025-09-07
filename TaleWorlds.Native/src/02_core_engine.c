@@ -114348,7 +114348,7 @@ LAB_18011f6c5:
 
 
 
-f740(char *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointervoid FUN_18011f740(char *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer
+f740(char *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointervoid CalculateRenderCoordinates(char *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer
 {
   char StringBuffer;
   char *pSystemCheckResult;
@@ -114421,7 +114421,7 @@ uint64_t * GetMemoryAllocationSize(uint64_t *SystemContextPointer,uint64_t Utf8B
 
 
 
-fab0(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_18011fab0(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+fab0(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid ProcessRenderPipeline(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
@@ -168022,7 +168022,7 @@ LAB_18014293a:
       }
     }
 LAB_18014293f:
-    MemoryBlockListHead = (long long *)FUN_1800590b0(SystemContextPointer,&cStackX_8,Utf8BufferSize);
+    MemoryBlockListHead = (long long *)ProcessSystemMemoryBlockList(SystemContextPointer,&cStackX_8,Utf8BufferSize);
     if (cStackX_8 == '\0') goto LAB_180142973;
     Utf16EndPointer = 0;
   }
@@ -168041,7 +168041,7 @@ LAB_180142973:
   
   StatusBuffer = *(uint64_t **)(SystemContextPointer + 0x10);
   if (StatusBuffer != NULL) {
-    FUN_1800587d0(SystemContextPointer,*StatusBuffer);
+    ProcessSystemMemoryStatusCleanup(SystemContextPointer,*StatusBuffer);
     CoreEngineTerminateStatusBuffer(StatusBuffer);
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(StatusBuffer);
@@ -168059,7 +168059,7 @@ LAB_180142973:
 
 429a6(voidvoid FUN_1801429a6(void
 {
-  FUN_1800587d0();
+  ProcessSystemMemoryStatusCleanup();
   CoreEngineInitializeSystemServices();
                     // WARNING: Subroutine does not return
   CoreEngineProcessSystemEvent();
