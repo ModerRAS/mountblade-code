@@ -44999,7 +44999,7 @@ void Unwind_1809041d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809041f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionHandlersAtMultipleOffsets(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -50067,19 +50067,41 @@ void SetSystemUnknownDataBufferPointer(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180905740(DataBuffer operationBase,uint *dataBuffer)
+/**
+ * @brief 处理数据缓冲区标志位
+ * 
+ * 该函数用于处理数据缓冲区的标志位，当标志位被设置时，
+ * 清除标志位并调用相应的处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180905740
+ */
+void ProcessDataBufferFlag(DataBuffer operationBase,uint *dataBuffer)
 
 {
   if ((*dataBuffer & 1) != 0) {
     *dataBuffer = *dataBuffer & 0xfffffffe;
-    FUN_18006b760(*(DataBuffer *)(dataBuffer + 10));
+    ProcessDataBufferCleanup(*(DataBuffer *)(dataBuffer + 10));
   }
   return;
 }
 
 
 
-void Unwind_180905770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理和系统终止
+ * 
+ * 该函数用于执行异常处理操作，遍历验证状态指针数组，
+ * 调用相应的处理函数，并在必要时终止系统
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180905770
+ */
+void ExecuteExceptionHandling(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50088,7 +50110,7 @@ void Unwind_180905770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   DataBuffer memoryBaseAddress;
   
   pdataContext = *(int64_t **)(dataBuffer + 0x28);
-  memoryBaseAddress = SystemCleanupFlagfffffffe;
+  memoryBaseAddress = SystemCleanupFlagAlternative;
   exceptionDataBuffer = (DataBuffer *)pdataContext[1];
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 0x13) {
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
@@ -50102,7 +50124,17 @@ void Unwind_180905770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905780(DataBuffer operationBase,uint *dataBuffer)
+/**
+ * @brief 处理数据验证标志位
+ * 
+ * 该函数用于处理数据验证的标志位，当标志位被设置时，
+ * 清除标志位并调用数据验证处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180905780
+ */
+void ProcessDataValidationFlag(DataBuffer operationBase,uint *dataBuffer)
 
 {
   if ((*dataBuffer & 1) != 0) {
@@ -50116,7 +50148,17 @@ void Unwind_180905780(DataBuffer operationBase,uint *dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809057b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统数据处理和验证
+ * 
+ * 该函数用于执行复杂的数据处理和验证操作，包括线程锁定、
+ * 数据遍历、内存分配和系统状态更新
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_1809057b0
+ */
+void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
