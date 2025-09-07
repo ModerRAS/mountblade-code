@@ -50061,7 +50061,7 @@ void ProcessFloatDataNormalization(long long CharacterCode
   float CrossProductResultZ;
   
   pSourceMatrixData = (float *)(CharacterCode + 0x80);
-  *(void *)pSystemContextPrimaryFloat = *(void *)(CharacterCode + 0x40);
+  *(void *)pSourceMatrixData = *(void *)(CharacterCode + 0x40);
   *(void *)(CharacterCode + 0x88) = *(void *)(CharacterCode + 0x48);
   *(void *)(CharacterCode + 0x90) = *(void *)(CharacterCode + 0x50);
   *(void *)(CharacterCode + 0x98) = *(void *)(CharacterCode + 0x58);
@@ -50125,23 +50125,23 @@ void ProcessFloatDataNormalization(long long CharacterCode
   VectorComponentX = (CrossProductZ * pSourceMatrixData[4] - CrossProductY * *pSourceMatrixData) - VectorDotProduct * pSourceMatrixData[0xc];
   *(float *)(CharacterCode + 0xf8) = VectorComponentX;
   VectorLengthX = (CrossProductResultX * *pSourceMatrixData - NormalizationFactor * pSourceMatrixData[4]) + VectorDotProduct * pSourceMatrixData[8];
-  *(float *)(CharacterCode + 0xfc) = CalculatedDistance;
+  *(float *)(CharacterCode + 0xfc) = VectorLengthX;
   FloatVariable7 = ContextPrimaryFloat9 * pSystemContextPrimaryFloat[4] + SystemContextPrimaryFloat8 * *pSystemContextPrimaryFloat + ContextSecondaryFloat0 * pSystemContextPrimaryFloat[8];
-  if (FloatVariable7 != 1.0) {
-    FloatVariable7 = 1.0 / FloatVariable7;
-    *(float *)(CharacterCode + 0xd0) = FilterInputValue * FloatVariable7;
-    *(float *)(CharacterCode + 0xe0) = MatrixTransformMultiplier1 * FloatVariable7;
-    *(float *)(CharacterCode + 0xc0) = SystemContextPrimaryFloat8 * FloatVariable7;
-    *(float *)(CharacterCode + 0xc4) = ContextPrimaryFloat9 * FloatVariable7;
-    *(float *)(CharacterCode + 200) = ContextSecondaryFloat0 * FloatVariable7;
-    *(float *)(CharacterCode + 0xd4) = SystemContextPrimaryFloat6 * FloatVariable7;
-    *(float *)(CharacterCode + 0xd8) = SystemFloatValue * FloatVariable7;
-    *(float *)(CharacterCode + 0xe4) = ContextSecondaryFloat * FloatVariable7;
-    *(float *)(CharacterCode + 0xe8) = SecondaryFloatValue * FloatVariable7;
-    *(float *)(CharacterCode + 0xf0) = MatrixTransformMultiplier2 * FloatVariable7;
-    *(float *)(CharacterCode + 0xf4) = SystemContextPrimaryFloat4 * FloatVariable7;
-    *(float *)(CharacterCode + 0xf8) = SystemContextPrimaryFloat2 * FloatVariable7;
-    *(float *)(CharacterCode + 0xfc) = CalculatedDistance * FloatVariable7;
+  if (MatrixElementW != 1.0) {
+    MatrixElementW = 1.0 / MatrixElementW;
+    *(float *)(CharacterCode + 0xd0) = 0.0f * MatrixElementW;
+    *(float *)(CharacterCode + 0xe0) = MatrixMultiplier1 * MatrixElementW;
+    *(float *)(CharacterCode + 0xc0) = CrossProductResultX * MatrixElementW;
+    *(float *)(CharacterCode + 0xc4) = CrossProductResultY * MatrixElementW;
+    *(float *)(CharacterCode + 200) = CrossProductResultZ * MatrixElementW;
+    *(float *)(CharacterCode + 0xd4) = VectorComponentW * MatrixElementW;
+    *(float *)(CharacterCode + 0xd8) = VectorComponentW * MatrixElementW;
+    *(float *)(CharacterCode + 0xe4) = MatrixElementY * MatrixElementW;
+    *(float *)(CharacterCode + 0xe8) = CrossProductZ * MatrixElementW;
+    *(float *)(CharacterCode + 0xf0) = MatrixMultiplier2 * MatrixElementW;
+    *(float *)(CharacterCode + 0xf4) = VectorComponentZ * MatrixElementW;
+    *(float *)(CharacterCode + 0xf8) = VectorComponentX * MatrixElementW;
+    *(float *)(CharacterCode + 0xfc) = VectorLengthX * MatrixElementW;
   }
   return;
 }
