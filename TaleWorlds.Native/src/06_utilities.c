@@ -13029,7 +13029,7 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
           return 0x1e;
         }
         if (*(int *)(resourcePointer + 0x58) < 1) {
-          resourceData = &DAT_18098bc73;
+          resourceData = &SystemResourceDataBuffer;
         }
         else {
           resourceData = *(uint8_t **)(resourcePointer + 0x50);
@@ -13095,7 +13095,7 @@ DataBuffer ProcessSystemResourceValidationWithStack(void)
         return 0x1e;
       }
       if (*(int *)(validationContext + 0x58) < 1) {
-        pmemoryBaseAddress = &DAT_18098bc73;
+        pmemoryBaseAddress = &SystemResourceDataBuffer;
       }
       else {
         pmemoryBaseAddress = *(uint8_t **)(validationContext + 0x50);
@@ -19378,7 +19378,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               uStack_e8 = *(DataBuffer *)(*(int64_t *)(dataPointer + 0x90) + bufferPointer * 8);
               uStack_ec = 0;
               if (*(int *)(calculatedOffset + 0x58) < 1) {
-                exceptionDataBuffer2 = &DAT_18098bc73;
+                exceptionDataBuffer2 = &SystemResourceDataBuffer;
               }
               else {
                 exceptionDataBuffer2 = *(uint8_t **)(calculatedOffset + 0x50);
@@ -19620,7 +19620,7 @@ ProcessDataSecurityValidation:
             *stackFramePointer = *(DataBuffer *)(*(int64_t *)(validationContext5 + 0x90) + operationResult3 * 8);
             *(ByteFlag *)((int64_t)stackFramePointer + -4) = 0;
             if (*(int *)(dataContext + 0x58) < 1) {
-              exceptionDataBuffer8 = &DAT_18098bc73;
+              exceptionDataBuffer8 = &SystemResourceDataBuffer;
             }
             else {
               exceptionDataBuffer8 = *(uint8_t **)(dataContext + 0x50);
@@ -19867,7 +19867,7 @@ ValidateDataSecurity:
         *stackFramePointer = *(DataBuffer *)(*(int64_t *)(validationContext5 + 0x90) + operationResult2 * 8);
         *(ByteFlag *)((int64_t)stackFramePointer + -4) = 0;
         if (*(int *)(dataContext + 0x58) < 1) {
-          exceptionDataBuffer8 = &DAT_18098bc73;
+          exceptionDataBuffer8 = &SystemResourceDataBuffer;
         }
         else {
           exceptionDataBuffer8 = *(uint8_t **)(dataContext + 0x50);
@@ -20716,7 +20716,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             puStack_2d8 = &UNK_180982260;
             uStack_2c4 = uStack_2c4 & 0xffffff00;
             if (*(int *)(validationContext1 + 0x58) < 1) {
-              exceptionDataBuffer2 = &DAT_18098bc73;
+              exceptionDataBuffer2 = &SystemResourceDataBuffer;
             }
             else {
               exceptionDataBuffer2 = *(uint8_t **)(validationContext1 + 0x50);
