@@ -6223,14 +6223,19 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define ExceptionHandlerPointerBB _DAT_180bf9ed0         // 异常处理器指针BB
 
 // 内存验证相关变量宏定义
-#define MemoryValidationStartPointer _DAT_180c91f18     // 内存验证起始指针
-#define MemoryValidationEndPointer _DAT_180c91f28       // 内存验证结束指针
-#define MemoryValidationStatus MemoryValidationStatus    // 内存验证状态
+// 原始变量名：_DAT_180c91f18 - 内存验证起始指针
+#define MemoryValidationStartPointer GlobalMemoryValidationStartPointer     // 内存验证起始指针
+// 原始变量名：_DAT_180c91f28 - 内存验证结束指针
+#define MemoryValidationEndPointer GlobalMemoryValidationEndPointer       // 内存验证结束指针
+#define MemoryValidationStatus GlobalMemoryValidationStatus    // 内存验证状态
 
 // 系统资源数据管理相关变量宏定义
-#define SystemResourceDataManager _DAT_180c967a0     // 系统资源数据管理器
-#define SystemResourceDataTable DAT_180c96790         // 系统资源数据表
-#define SystemResourceDataBuffer DAT_18098bc73         // 系统资源数据缓冲区
+// 原始变量名：_DAT_180c967a0 - 系统资源数据管理器
+#define SystemResourceDataManager GlobalSystemResourceDataManager     // 系统资源数据管理器
+// 原始变量名：DAT_180c96790 - 系统资源数据表
+#define SystemResourceDataTable GlobalSystemResourceDataTable         // 系统资源数据表
+// 原始变量名：DAT_18098bc73 - 系统资源数据缓冲区
+#define SystemResourceDataBuffer GlobalSystemResourceDataBuffer         // 系统资源数据缓冲区
 #define SystemCalculationBaseAddress SystemCalculationBaseAddress    // 系统计算基础地址
 
 // 系统初始化和重置函数宏定义
@@ -50583,7 +50588,7 @@ void CleanupExceptionResourceReferenceCount950(DataBuffer operationBase,int64_t 
  * @note 这是一个异常展开（unwind）处理函数，用于复杂的资源清理场景
  * @note 函数会验证多个偏移量处的资源状态，并执行相应的清理操作
  */
-void Unwind_180904960(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionResourceReferenceCount960(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -50707,7 +50712,7 @@ void Unwind_180904970(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904990(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionResourceReferenceCount990(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -100104,7 +100109,18 @@ void Unwind_180912810(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180912830(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源清理函数B8
+ * 
+ * 该函数负责清理位于偏移量0xb8处的内存资源，调用系统资源管理函数
+ * 来执行资源清理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要清理的资源信息
+ * 
+ * @note 原始函数名：Unwind_180912830
+ */
+void CleanupMemoryResourcesAtOffsetB8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xb8,0x10,2,ManageSystemResourcesA0,SystemCleanupFlagAlternative);
@@ -100113,7 +100129,18 @@ void Unwind_180912830(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180912850(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源清理函数48
+ * 
+ * 该函数负责清理位于偏移量0x48处的内存资源，调用系统资源管理函数
+ * 来执行资源清理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要清理的资源信息
+ * 
+ * @note 原始函数名：Unwind_180912850
+ */
+void CleanupMemoryResourcesAtOffset48(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x10,2,ManageSystemResourcesA0);
@@ -100122,7 +100149,18 @@ void Unwind_180912850(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180912880(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据数组处理函数120
+ * 
+ * 该函数负责处理位于偏移量0x120处的数据数组，调用数据数组处理函数
+ * 来执行数据处理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要处理的数据数组信息
+ * 
+ * @note 原始函数名：Unwind_180912880
+ */
+void ProcessDataArrayAtOffset120(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + 0x120);
@@ -103997,6 +104035,19 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始函数名：FUN_18088c740 - 缓冲区分配函数EN0
 // 功能：分配缓冲区EN0，管理内存缓冲区
 #define AllocateBufferEN0 FUN_18088c740
+
+/**
+ * @brief 分配缓冲区EN0
+ * 
+ * 该函数负责分配内存缓冲区，管理缓冲区的生命周期
+ * 
+ * @param bufferParams 缓冲区参数
+ * @param allocationSize 分配大小
+ * @return 分配的缓冲区指针，失败时返回NULL
+ * 
+ * @note 原始函数名：FUN_18088c740
+ */
+void *AllocateBufferEN0(void *bufferParams, size_t allocationSize);
 
 // 原始函数名：FUN_18088c790 - 资源清理函数EO0
 // 功能：清理资源EO0，释放资源占用
