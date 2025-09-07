@@ -8973,7 +8973,7 @@ void CoreEngineInitializeConnectionPoolManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
@@ -9034,7 +9034,7 @@ void CoreEngineInitializeNetworkResourceManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
@@ -9339,7 +9339,7 @@ void InitializeNetworkConnectionPool(void)
   SystemContext = (uint64_t *)*EngineSystemContext;
   ConnectionStringBuffer = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
   NetworkAuthenticationHandler = CoreEngineProcessNetworkAuthentication;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataNonary,0x10);
@@ -9467,7 +9467,7 @@ void NetworkStatusManagerInitializer(void
   statusSystemContext = (uint64_t *)*statusSystemContext;
   statusMonitorFlag = *(char *)((long long)statusSystemContext[1] + SystemNodeStatusOffset);
   statusProcessHandler = CoreEngineProcessNetworkStatus;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
@@ -9520,7 +9520,7 @@ void CoreEngineInitializeConnectionManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
@@ -9574,7 +9574,7 @@ void CoreEngineInitializeCacheManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
@@ -9627,7 +9627,7 @@ void CoreEngineInitializeQueueManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
@@ -9681,7 +9681,7 @@ void CoreEngineInitializeThreadPoolManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
@@ -9742,7 +9742,7 @@ void CoreEngineInitializeGameSystem(void)
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
@@ -9918,7 +9918,7 @@ void InitializeNetworkConfigurationNode(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkConfiguration;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
@@ -9972,7 +9972,7 @@ void InitializeNetworkAuthenticationNode(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkAuthentication;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataNonary,0x10);
@@ -10026,7 +10026,7 @@ void InitializeNetworkValidationNode(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkValidation;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataDenary,0x10);
@@ -10262,7 +10262,7 @@ void InitializeNetworkProtocolNode(void)
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
@@ -10316,7 +10316,7 @@ void InitializeNetworkSecurityNode(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
@@ -10371,7 +10371,7 @@ void InitializeNetworkBufferNode(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
@@ -10426,7 +10426,7 @@ void InitializeNetworkEventHandlerNode(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
@@ -10480,7 +10480,7 @@ void SystemConnectionManagerInitialize(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
@@ -10627,7 +10627,7 @@ void NetworkStatusProcessorInitialize(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
@@ -10680,7 +10680,7 @@ void ConnectionManagerInitialize(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
@@ -10734,7 +10734,7 @@ void SystemConnectionTemplateAInitialize(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
@@ -10787,7 +10787,7 @@ void NetworkSecurityProcessorInitialize(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
@@ -10841,7 +10841,7 @@ void SystemConnectionTemplateCInitialize(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
@@ -10895,7 +10895,7 @@ void FileSystemProcessorInitialize(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
@@ -11683,7 +11683,7 @@ void CoreEngineInitializeSystemNodeTemplateK(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkConfiguration;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
@@ -11975,7 +11975,7 @@ void CoreEngineInitializeNetworkStatusProcessor(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
@@ -12028,7 +12028,7 @@ void CoreEngineInitializeConnectionInitializer(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
@@ -12412,7 +12412,7 @@ void CoreEngineInitializeSystemDataTemplateO(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
@@ -12473,7 +12473,7 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
@@ -12535,7 +12535,7 @@ void CoreEngineInitializeSystemConnectionTemplateB(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
@@ -12589,7 +12589,7 @@ void CoreEngineInitializeSystemManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
@@ -12643,7 +12643,7 @@ void CoreEngineInitializeSystemConnectionTemplateG(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
@@ -12697,7 +12697,7 @@ void CoreEngineInitializeConfigurationManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
@@ -12750,7 +12750,7 @@ void CoreEngineInitializeResourceManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
@@ -12803,7 +12803,7 @@ void CoreEngineInitializeMemoryAllocator(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
@@ -12857,7 +12857,7 @@ void CoreEngineInitializeThreadScheduler(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
@@ -12910,7 +12910,7 @@ void CoreEngineInitializeEventManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
@@ -12964,7 +12964,7 @@ void CoreEngineInitializeRenderManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
@@ -13018,7 +13018,7 @@ void CoreEngineInitializePhysicsManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
@@ -13072,7 +13072,7 @@ void CoreEngineInitializeAudioManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
@@ -13125,7 +13125,7 @@ void CoreEngineInitializeNetworkManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
@@ -13178,7 +13178,7 @@ void CoreEngineInitializeInputManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
@@ -13232,7 +13232,7 @@ void CoreEngineInitializeFileSystemManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
@@ -13285,7 +13285,7 @@ void CoreEngineInitializeSecurityManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
@@ -13339,7 +13339,7 @@ void CoreEngineInitializeDatabaseManager(void)
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
@@ -13587,7 +13587,7 @@ void CoreEngineInitializeNetworkConnectionMonitor(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigTemplateSecondary,0x10);
@@ -13650,7 +13650,7 @@ void CoreEngineInitializeMemoryNodeA(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemDataTemplateTertiary,0x10);
@@ -13713,7 +13713,7 @@ void CoreEngineInitializeMemoryNodeB(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   FunctionCallback = ThreadManagementCallback;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplatePrimary,0x10);
@@ -13767,7 +13767,7 @@ void CoreEngineInitializeThreadSystem(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplateSecondary,0x10);
@@ -13821,7 +13821,7 @@ void CoreEngineProcessThreadQueue(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureA,0x10);
@@ -13875,7 +13875,7 @@ void CoreEngineManageThreadResources(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
@@ -13922,7 +13922,7 @@ void CoreEngineManageThreadResources(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkConfiguration;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
@@ -13975,7 +13975,7 @@ void CoreEngineInitializeThreadSynchronization(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = ResourceManagementCallback;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataUndenary,0x10);
@@ -14028,7 +14028,7 @@ void CoreEngineSetupThreadPriorities(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkEvent;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMonitorComparisonData,0x10);
@@ -14075,7 +14075,7 @@ void CoreEngineSetupThreadPriorities(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkConnection;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConnectionComparisonData,0x10);
@@ -14128,7 +14128,7 @@ void CoreEngineInitializeSystemDataTemplateA(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
@@ -14175,7 +14175,7 @@ void CoreEngineInitializeSystemDataTemplateA(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
@@ -14223,7 +14223,7 @@ void CoreEngineInitializeSystemDataTemplateA(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
@@ -14270,7 +14270,7 @@ void CoreEngineInitializeSystemDataTemplateA(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
@@ -14432,7 +14432,7 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
@@ -14486,7 +14486,7 @@ void CoreEngineInitializeSystemDataTemplateC(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemFileSystemComparisonData,0x10);
@@ -14534,7 +14534,7 @@ void CoreEngineInitializeSystemDataTemplateC(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureA,0x10);
@@ -14582,7 +14582,7 @@ void CoreEngineInitializeSystemDataTemplateC(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
@@ -15063,7 +15063,7 @@ void CoreEngineInitializeDataStreamManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
@@ -15110,7 +15110,7 @@ void CoreEngineInitializeDataStreamManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkEvent;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMonitorComparisonData,0x10);
@@ -15157,7 +15157,7 @@ void CoreEngineInitializeDataStreamManager(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkConnection;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConnectionComparisonData,0x10);
@@ -15523,7 +15523,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
@@ -15570,7 +15570,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = ConfigurationManagementCallback;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigurationTemplatePrimary,0x10);
@@ -15618,7 +15618,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigurationTemplateSecondary,0x10);
@@ -15666,7 +15666,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemStateTemplatePrimary,0x10);
@@ -15714,7 +15714,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMemoryTemplatePrimary,0x10);
@@ -15762,7 +15762,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMemoryTemplateSecondary,0x10);
@@ -15810,7 +15810,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigTemplatePrimary,0x10);
@@ -16058,7 +16058,7 @@ void CoreEngineInitializeSystemThreadNodeJ(void
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplateSecondary,0x10);
@@ -60206,7 +60206,7 @@ void SynchronizeSystemDataStructure(long long SystemContextPointer,long long *Ut
       TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
     }
   }
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   if (CurrentByteValue2) {
     if (PrimaryProcessingStatusFlag == (void *)ValidationValuePointer[7]) goto LAB_18008c531;
     TertiaryProcessingStatusFlag = (void *)GetPreviousMemoryBlockIndex(PrimaryProcessingStatusFlag);
@@ -80155,7 +80155,7 @@ void ProcessSystemDataConversion(long long *SystemContextPointer,long long *Utf8
   }
   else {
     StringProcessingIndex = Utf16InputPointer[2];
-    TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+    TertiaryNode = PrimaryStatusBlock;
   }
   StatusBuffer = (uint8_t *)0x180d48d24;
   StackVariable68 = MemoryBlockIndex;
@@ -80310,7 +80310,7 @@ LAB_18009fe7d:
   }
   else {
     SystemDataTablePointer = Utf16InputPointer[2];
-    TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+    TertiaryNode = PrimaryStatusBlock;
   }
   StatusBuffer = (uint8_t *)0x180d48d24;
   StackVariable68 = StringProcessingIndex;
@@ -188699,7 +188699,7 @@ long long FUN_180168af0(long long SystemContextPointer,long long Utf8BufferSize
       PrimaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 8 + (long long)SecondaryProcessingStatusFlag);
       TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (PrimaryProcessingStatusFlag != NULL) {
-        TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+        TertiaryNode = PrimaryStatusBlock;
       }
       strcpy_s(SecondaryProcessingStatusFlag[1],0x80,TertiaryProcessingStatusFlag);
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0x13;
@@ -188738,7 +188738,7 @@ long long FUN_180168af0(long long SystemContextPointer,long long Utf8BufferSize
       PrimaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 8 + (long long)SecondaryProcessingStatusFlag);
       TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (PrimaryProcessingStatusFlag != NULL) {
-        TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+        TertiaryNode = PrimaryStatusBlock;
       }
       strcpy_s(SecondaryProcessingStatusFlag[1],0x80,TertiaryProcessingStatusFlag);
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0x13;
@@ -188774,7 +188774,7 @@ long long FUN_180168af0(long long SystemContextPointer,long long Utf8BufferSize
       PrimaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 8 + (long long)SecondaryProcessingStatusFlag);
       TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (PrimaryProcessingStatusFlag != NULL) {
-        TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+        TertiaryNode = PrimaryStatusBlock;
       }
       strcpy_s(SecondaryProcessingStatusFlag[1],0x80,TertiaryProcessingStatusFlag);
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0x13;
@@ -188812,7 +188812,7 @@ long long FUN_180168af0(long long SystemContextPointer,long long Utf8BufferSize
       PrimaryProcessingStatusFlag = *(void **)(MemoryBlockIndex + 8 + (long long)SecondaryProcessingStatusFlag);
       TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (PrimaryProcessingStatusFlag != NULL) {
-        TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+        TertiaryNode = PrimaryStatusBlock;
       }
       strcpy_s(SecondaryProcessingStatusFlag[1],0x80,TertiaryProcessingStatusFlag);
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0x13;
@@ -207777,7 +207777,7 @@ LAB_18018728e:
               SecondaryProcessingStatusFlag = pMemoryAddressMask + 4;
               TertiaryProcessingStatusFlag = &SystemOperationFlag98;
               if (0xf < Utf16Char4) {
-                TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+                TertiaryNode = PrimaryStatusBlock;
               }
               Utf16Char = pMemoryAddressMask[6];
               if (0xf < (unsigned long long)pMemoryAddressMask[7]) {
@@ -207809,7 +207809,7 @@ LAB_180187642:
             }
             TertiaryProcessingStatusFlag = &SystemOperationFlag98;
             if (0xf < Utf16Char4) {
-              TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+              TertiaryNode = PrimaryStatusBlock;
             }
             Utf16Char4 = ProcessingStatusFlag;
             if (Utf16Char < ProcessingStatusFlag) {
@@ -216593,7 +216593,7 @@ uint32_t ProcessNetworkConnection(long long SystemContextPointer
   PrimaryProcessingStatusFlag = *(uint64_t **)(SystemContextPointer + 0x30);
   CoreEngineFinalizeSystemEvent(&LocalProcessingStatusFlag);
   StatusBuffer = (void *)PrimaryProcessingStatusFlag[2];
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+  TertiaryNode = PrimaryStatusBlock;
   if (StatusBuffer != NULL) {
     do {
       if (CoreEngineIntegerValue20 == 0) {
@@ -245229,7 +245229,7 @@ LAB_180216e0c:
         PrimaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 8 + (long long)pMemoryAddressMask);
         TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
         if (PrimaryProcessingStatusFlag != NULL) {
-          TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
+          TertiaryNode = PrimaryStatusBlock;
         }
         strcpy_s(pMemoryAddressMask[1],0x80,TertiaryProcessingStatusFlag);
         pMemoryAddressMask = pMemoryAddressMask + 0x13;
