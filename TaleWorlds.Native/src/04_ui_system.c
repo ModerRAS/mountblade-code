@@ -862,122 +862,65 @@ void* UIGestureCoordinates;
 #define UIFunctionTablePointer6 _DAT_180d4a830
 #define UIFunctionTablePointer7 _DAT_180d4a7e8
 
-// UI系统全局变量宏定义
-// 原始变量名：_DAT_180d4a788 - UI系统全局状态标志1
+// UI系统全局状态标志宏定义
 #define UIGlobalStatusFlag1 _DAT_180d4a788
-// 原始变量名：_DAT_180d4a740 - UI系统全局状态标志2
 #define UIGlobalStatusFlag2 _DAT_180d4a740
-// 原始变量名：_DAT_180d4a700 - UI系统全局状态标志3
 #define UIGlobalStatusFlag3 _DAT_180d4a700
-// 原始变量名：_DAT_180d4a6e0 - UI系统全局状态标志4
 #define UIGlobalStatusFlag4 _DAT_180d4a6e0
-// 原始变量名：_DAT_180d4a6b8 - UI系统全局状态标志5
 #define UIGlobalStatusFlag5 _DAT_180d4a6b8
-// 原始变量名：_DAT_180d4a968 - UI系统全局状态标志6
 #define UIGlobalStatusFlag6 _DAT_180d4a968
-// 原始变量名：_DAT_180d4a948 - UI系统全局状态标志7
 #define UIGlobalStatusFlag7 _DAT_180d4a948
-// 原始变量名：_DAT_180d4a920 - UI系统全局状态标志8
 #define UIGlobalStatusFlag8 _DAT_180d4a920
-// 原始变量名：_DAT_180d4a8f0 - UI系统全局状态标志9
 #define UIGlobalStatusFlag9 _DAT_180d4a8f0
-// 原始变量名：_DAT_180d4a8d0 - UI系统全局状态标志10
 #define UIGlobalStatusFlag10 _DAT_180d4a8d0
-// 原始变量名：_DAT_180d4a898 - UI系统全局状态标志11
 #define UIGlobalStatusFlag11 _DAT_180d4a898
-// 原始变量名：_DAT_180d4a858 - UI系统全局状态标志12
 #define UIGlobalStatusFlag12 _DAT_180d4a858
-// 原始变量名：_DAT_180d4a820 - UI系统全局状态标志13
 #define UIGlobalStatusFlag13 _DAT_180d4a820
-// 原始变量名：_DAT_180d4a7e0 - UI系统全局状态标志14
 #define UIGlobalStatusFlag14 _DAT_180d4a7e0
-// 原始变量名：_DAT_180d4a7b0 - UI系统全局状态标志15
 #define UIGlobalStatusFlag15 _DAT_180d4a7b0
-// 原始变量名：_DAT_180d4a778 - UI系统全局状态标志16
 #define UIGlobalStatusFlag16 _DAT_180d4a778
-// 原始变量名：_DAT_180d4a750 - UI系统全局状态标志17
 #define UIGlobalStatusFlag17 _DAT_180d4a750
-// 原始变量名：_DAT_180d4a708 - UI系统全局状态标志18
 #define UIGlobalStatusFlag18 _DAT_180d4a708
-// 原始变量名：_DAT_180d4a958 - UI系统全局状态标志19
 #define UIGlobalStatusFlag19 _DAT_180d4a958
-// 原始变量名：_DAT_180d4a928 - UI系统全局状态标志20
 #define UIGlobalStatusFlag20 _DAT_180d4a928
-// 原始变量名：_DAT_180d4a910 - UI系统全局状态标志21
 #define UIGlobalStatusFlag21 _DAT_180d4a910
-// 原始变量名：_DAT_180d4a8c0 - UI系统全局状态标志22
 #define UIGlobalStatusFlag22 _DAT_180d4a8c0
-// 原始变量名：_DAT_180d4a8a8 - UI系统全局状态标志23
 #define UIGlobalStatusFlag23 _DAT_180d4a8a8
 
 // UI系统向量操作掩码和常数定义
-// 原始变量名：_DAT_180946ec0 - UI向量操作掩码0
 #define UIVectorOperationMask0 _DAT_180946ec0
-// 原始变量名：_DAT_180946ed0 - UI向量操作掩码1
 #define UIVectorOperationMask1 _DAT_180946ed0
-// 原始变量名：_DAT_180946ee0 - UI向量操作掩码2
 #define UIVectorOperationMask2 _DAT_180946ee0
-// 原始变量名：_DAT_180946ef0 - UI向量操作掩码3
 #define UIVectorOperationMask3 _DAT_180946ef0
-// 原始变量名：_DAT_180946f00 - UI向量操作掩码4
 #define UIVectorOperationMask4 _DAT_180946f00
-// 原始变量名：_DAT_180946f10 - UI向量操作掩码5
 #define UIVectorOperationMask5 _DAT_180946f10
-// 原始变量名：_DAT_180946f20 - UI向量操作掩码6
 #define UIVectorOperationMask6 _DAT_180946f20
-// 原始变量名：_DAT_180946f50 - UI向量洗牌掩码0
 #define UIVectorShuffleMask0 _DAT_180946f50
-// 原始变量名：_DAT_180946f60 - UI向量洗牌掩码1
 #define UIVectorShuffleMask1 _DAT_180946f60
-// 原始变量名：_DAT_180946f80 - UI向量洗牌掩码2
 #define UIVectorShuffleMask2 _DAT_180946f80
-// 原始变量名：_DAT_180946fc0 - UI向量操作掩码7
 #define UIVectorOperationMask7 _DAT_180946fc0
-// 原始变量名：_DAT_180946fe0 - UI向量操作掩码8
 #define UIVectorOperationMask8 _DAT_180946fe0
-// 原始变量名：_DAT_180947000 - UI向量操作掩码9
 #define UIVectorOperationMask9 _DAT_180947000
-// 原始变量名：_DAT_180947040 - UI向量操作掩码10
 #define UIVectorOperationMask10 _DAT_180947040
-// 原始变量名：_DAT_180947060 - UI向量洗牌掩码3
 #define UIVectorShuffleMask3 _DAT_180947060
-// 原始变量名：_DAT_180947080 - UI向量洗牌掩码4
 #define UIVectorShuffleMask4 _DAT_180947080
-// 原始变量名：_DAT_1809470a0 - UI向量洗牌掩码5
 #define UIVectorShuffleMask5 _DAT_1809470a0
-// 原始变量名：_DAT_1809470c0 - UI向量洗牌掩码6
 #define UIVectorShuffleMask6 _DAT_1809470c0
-// 原始变量名：_DAT_1809472f0 - UI像素数据转换表
 #define UIPixelDataConversionTable _DAT_1809472f0
-// 原始变量名：_DAT_180947310 - UI渲染常数0
 #define UIRenderingConstant0 _DAT_180947310
-// 原始变量名：_DAT_180947320 - UI渲染常数1
 #define UIRenderingConstant1 _DAT_180947320
-// 原始变量名：_DAT_180947330 - UI向量乘法掩码0
 #define UIVectorMultiplyMask0 _DAT_180947330
-// 原始变量名：_DAT_180947340 - UI向量乘法掩码1
 #define UIVectorMultiplyMask1 _DAT_180947340
-// 原始变量名：_DAT_180947350 - UI向量乘法掩码2
 #define UIVectorMultiplyMask2 _DAT_180947350
-// 原始变量名：_DAT_180947360 - UI向量乘法掩码3
 #define UIVectorMultiplyMask3 _DAT_180947360
-// 原始变量名：_DAT_180947370 - UI向量乘法掩码4
 #define UIVectorMultiplyMask4 _DAT_180947370
-// 原始变量名：_DAT_180947380 - UI向量乘法掩码5
 #define UIVectorMultiplyMask5 _DAT_180947380
-// 原始变量名：_DAT_180947390 - UI向量乘法掩码6
 #define UIVectorMultiplyMask6 _DAT_180947390
-// 原始变量名：_DAT_1809473a0 - UI向量乘法掩码7
 #define UIVectorMultiplyMask7 _DAT_1809473a0
-// 原始变量名：_DAT_1809473b0 - UI向量乘法掩码8
 #define UIVectorMultiplyMask8 _DAT_1809473b0
-// 原始变量名：_DAT_1809473c0 - UI向量乘法掩码9
 #define UIVectorMultiplyMask9 _DAT_1809473c0
-// 原始变量名：_DAT_1809473d0 - UI向量乘法掩码10
 #define UIVectorMultiplyMask10 _DAT_1809473d0
-// 原始变量名：_DAT_1809473e0 - UI向量乘法掩码11
 #define UIVectorMultiplyMask11 _DAT_1809473e0
-// 原始变量名：_DAT_1809473f0 - UI向量乘法掩码12
 #define UIVectorMultiplyMask12 _DAT_1809473f0
 // 原始变量名：_DAT_180947400 - UI向量乘法掩码13
 #define UIVectorMultiplyMask13 _DAT_180947400
