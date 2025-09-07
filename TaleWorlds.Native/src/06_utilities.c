@@ -119087,15 +119087,15 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：清除数据缓冲区的辅助标志位
 #define ClearDataBufferSecondaryFlag Unwind_180910720
 
-// 原始函数名：Unwind_180910750 - 内存资源释放副本函数
+// 内存资源释放副本函数
 // 功能：释放内存资源的副本实现
 #define ReleaseMemoryResourceCopy Unwind_180910750
 
-// 原始函数名：Unwind_180910760 - 异常处理上下文验证函数
+// 异常处理上下文验证函数
 // 功能：验证异常处理上下文并终止系统
 #define ValidateExceptionHandlerContextAndTerminateSystem Unwind_180910760
 
-// 原始函数名：Unwind_180910770 - 偏移量30处内存资源释放函数
+// 偏移量30处内存资源释放函数
 // 功能：释放偏移量30处的内存资源并管理引用计数
 #define ReleaseMemoryResourceAtOffset30 Unwind_180910770
 
