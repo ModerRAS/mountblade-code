@@ -60250,7 +60250,7 @@ void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 void ResetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0xd0) = &DefaultExceptionHandlerB;
+  **(DataBuffer **)(dataBuffer + DefaultExceptionHandlerBReferenceOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -110528,38 +110528,32 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 原始函数名：FUN_180074a80 - 系统操作处理函数
 #define ProcessSystemOperationA0 FUN_180074a80
 
-// 原始函数名：FUN_180080060 - 系统内存初始化函数A0
-#define InitializeSystemMemoryA0 FUN_180080060
+// 系统内存管理函数
+#define InitializeSystemMemoryManager FUN_180080060
+#define InitializeSystemMemoryAllocator FUN_1800809a0
+#define InitializeSystemMemoryPool FUN_180080870
 
-// 原始函数名：FUN_1800809a0 - 系统内存初始化函数A1
-#define InitializeSystemMemoryA1 FUN_1800809a0
+// 数据缓冲区处理函数
+#define ProcessSystemDataBuffer FUN_18007f840
+#define ProcessApplicationDataBuffer FUN_18007f6a0
 
-// 原始函数名：FUN_180080870 - 系统内存初始化函数A2
-#define InitializeSystemMemoryA2 FUN_180080870
+// 数据操作处理函数
+#define ExecuteDataOperation FUN_18022f390
 
-// 原始函数名：FUN_18007f840 - 数据缓冲区处理函数A0
-#define ProcessDataBufferA0 FUN_18007f840
+// 系统状态验证函数
+#define ValidateSystemOperatingStatus FUN_180085530
 
-// 原始函数名：FUN_18007f6a0 - 数据缓冲区处理函数A1
-#define ProcessDataBufferA1 FUN_18007f6a0
+// 资源处理函数
+#define ManageSystemResource FUN_180179f00
 
-// 原始函数名：FUN_18022f390 - 数据操作处理函数A0
-#define ProcessDataOperationA0 FUN_18022f390
+// 系统状态更新函数
+#define UpdateSystemOperatingState FUN_180089640
 
-// 原始函数名：FUN_180085530 - 系统状态验证函数A0
-#define ValidateSystemStatusA0 FUN_180085530
+// 系统计算函数
+#define CalculateSystemParameterValue FUN_1800ba100
 
-// 原始函数名：FUN_180179f00 - 资源处理函数A0
-#define ProcessResourceA0 FUN_180179f00
-
-// 原始函数名：FUN_180089640 - 系统状态更新函数A0
-#define UpdateSystemStatusA0 FUN_180089640
-
-// 原始函数名：FUN_1800ba100 - 系统值计算函数
-#define CalculateSystemValue FUN_1800ba100
-
-// 原始函数名：FUN_180047e40 - 系统参数验证函数A0
-#define ValidateSystemParametersA0 FUN_180047e40
+// 系统参数验证函数
+#define ValidateSystemConfigurationParameters FUN_180047e40
 
 // 原始函数名：ProcessSystemDataA0 - 系统数据处理函数A0
 #define ProcessSystemDataA0 ProcessSystemDataPrimary
@@ -110594,20 +110588,17 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 原始函数名：FUN_1800f74f0
 #define ValidateAndProcessData FUN_1800f74f0
 
-// 原始函数名：FUN_180152b00 - 数据块处理函数
-#define ProcessDataBlocks FUN_180152b00
+// 数据块处理函数
+#define ProcessSystemDataBlocks FUN_180152b00
 
-// 原始函数名：FUN_1800ae2c0 - 数据处理函数A0
-// 功能：处理数据缓冲区和操作标志
-#define ProcessDataBufferA0 FUN_1800ae2c0
+// 数据处理函数
+#define ProcessBufferDataWithFlags FUN_1800ae2c0
 
-// 原始函数名：FUN_1802a07c0 - 数据清理函数A0
-// 功能：清理数据缓冲区和资源
-#define CleanupDataBufferA0 FUN_1802a07c0
+// 数据清理函数
+#define ReleaseDataBufferResources FUN_1802a07c0
 
-// 原始函数名：FUN_1802ab380 - 系统状态更新函数A0
-// 功能：更新系统状态和标志位
-#define UpdateSystemStatusA2 FUN_1802ab380
+// 系统状态更新函数
+#define UpdateSystemStateFlags FUN_1802ab380
 
 // 验证和执行操作函数A1
 // 功能：验证操作参数的有效性并执行相应的系统操作
