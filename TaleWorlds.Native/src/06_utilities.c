@@ -85,6 +85,7 @@
 #define SystemOperationValidationOffset 0x1c
 #define SystemResourceOffset 0xd0
 #define SystemDataCountOffset 0x18
+#define SystemOperationDataOffset98 0x98
 
 // 操作限制常量
 #define MaxCopyOperationSize 0x38
@@ -139,6 +140,16 @@
 #define SystemComponentContextOffset 0x48
 #define SystemComponentDataOffset 0x38
 #define SystemComponentStatusOffset 0xe4
+
+// 异常处理上下文常量
+#define ExceptionHandlerPointerOffset 0x2b8
+#define ExceptionMemoryRegionOffset 0x80
+#define ExceptionMemoryBlockMultiplier 0x50
+#define ExceptionHandlerPointerOffset4 0x4
+#define ExceptionHandlerPointerOffsetE 0xe
+#define ExceptionHandlerPointerOffset18 0x18
+#define ExceptionHandlerPointerOffset20 0x20
+#define ExceptionMemoryRegionOffset70 0x70
 
 // 系统操作处理常量
 #define SystemContextDataOffset 0x80
@@ -14214,7 +14225,7 @@ void ExecuteUtilitySystemCleanup(int64_t systemHandle, int64_t cleanupContext)
   
   cleanupStatus = CleanupSystemResourceA1(*(DataBuffer *)(cleanupContext + SystemContextValidationOffset),*(DataWord *)(systemHandle + ExceptionHandlerCallbackOffset10));
   if (cleanupStatus == 0) {
-    ExecuteCleanupOperation(*(DataBuffer *)(cleanupContext + 0x90),*(DataWord *)(systemHandle + ExceptionHandlerCallbackOffset10));
+    ExecuteCleanupOperation(*(DataBuffer *)(cleanupContext + SystemCleanupContextOffset),*(DataWord *)(systemHandle + SystemExceptionHandlerOffset10));
   }
   return;
 }
@@ -14437,16 +14448,16 @@ void ValidateUtilityOperation(int64_t operationPointer,int64_t contextPointer)
   int operationValidationResult;
   DataBuffer securityValidationToken;
   
-  if (*(int *)(operationPointer + 0x2c) == 0) {
-    operationValidationResult = ValidateOperationContext(contextPointer,operationPointer + 0x1c,&securityValidationToken);
+  if (*(int *)(operationPointer + SystemOperationRequestOffset) == 0) {
+    operationValidationResult = ValidateOperationContext(contextPointer,operationPointer + SystemOperationValidationOffset,&securityValidationToken);
     if (operationValidationResult == 0) {
-      operationValidationResult = ValidateAndProcessSystemResourceA0(securityValidationToken,operationPointer + 0x2c);
+      operationValidationResult = ValidateAndProcessSystemResourceA0(securityValidationToken,operationPointer + SystemOperationRequestOffset);
       if (operationValidationResult == 0) goto ValidationFailed;
     }
     return;
   }
 ValidationFailed:
-    ExecuteSystemResourceOperationCB0(*(DataBuffer *)(contextPointer + 0x98),operationPointer);
+    ExecuteSystemResourceOperationCB0(*(DataBuffer *)(contextPointer + SystemOperationDataOffset98),operationPointer);
 }
 
 
