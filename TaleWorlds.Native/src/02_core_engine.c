@@ -117608,7 +117608,7 @@ void ProcessFloatDataEncodingConversion(uint64_t CharacterCode, float *Character
 
 
 
-2537(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointervoid FUN_180122537(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer
+2537(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointervoid ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer
 {
   uint64_t *StatusBuffer;
   float SystemContextSecondaryFloat;
@@ -117763,7 +117763,7 @@ void ProcessFloatDataEncodingConversion(uint64_t CharacterCode, float *Character
 
 
 
-25c7(voidvoid FUN_1801225c7(void
+25c7(voidvoid InitializeSystemDataValidation(void
 {
   uint32_t *StatusBuffer;
   float SystemContextSecondaryFloat;
@@ -118218,7 +118218,7 @@ void ProcessSystemDataTransfer(uint64_t CharacterCode,uint64_t CharacterCodeSize
 
 
 
-2906(voidvoid FUN_180122906(void
+2906(voidvoid ProcessSystemConfigurationValidation(void
 {
   long long PrimaryDataSize;
   
@@ -145368,6 +145368,18 @@ faae(uint64_t *CharacterCode,long long CharacterCodeSizevoid FUN_18012faae(uint6
 
 
 
+/**
+ * @brief 验证系统字符代码和处理数据
+ * 
+ * 该函数负责验证系统字符代码的有效性，并处理相关的数据操作
+ * 包括字符计数、内存分配和数据结构验证
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @return 返回处理结果的状态码
+ * 
+ * @note 原始函数名：FUN_18012fbd0
+ */
 uint64_t FUN_18012fbd0(long long CharacterCode,uint32_t *CharacterCodeSize
 {
   float SystemContextPrimaryFloat;
