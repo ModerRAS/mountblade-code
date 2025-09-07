@@ -167326,7 +167326,14 @@ LAB_18013b83c:
 
 
 
-3b670(long long CharacterCodevoid FUN_18013b670(long long CharacterCode
+/**
+ * @brief 处理字符代码的UTF-8编码
+ * 
+ * 处理字符代码的UTF-8编码转换，包括编码验证和数据处理
+ * 
+ * @param CharacterCode 字符代码，包含字符的编码信息
+ */
+void ProcessCharacterCodeUtf8Encoding(long long CharacterCode)
 {
   uint Utf16Char;
   int *pCharacterByteCount;
@@ -167512,7 +167519,12 @@ LAB_18013b83c:
 
 
 
-3b704(voidvoid FUN_18013b704(void
+/**
+ * @brief 重置字符编码处理系统
+ * 
+ * 重置字符编码处理系统的状态和配置，清理临时数据
+ */
+void ResetCharacterEncodingProcessingSystem(void)
 {
   long long SystemContext;
   uint32_t RegisterEBPValue;
