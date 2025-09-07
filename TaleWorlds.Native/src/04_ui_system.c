@@ -62836,15 +62836,15 @@ void InitializeUIMemoryBuffer(longlong uiContext,int dataSource)
 {
   int bufferSize;
   
-  operationResult = (0 >> (0 < dataSource)) >> (4 < dataSource);
-  if ((0 < dataSource) && (9 - dataSource < operationResult)) {
-    operationResult = 9 - dataSource;
+  bufferSize = (0 >> (0 < dataSource)) >> (4 < dataSource);
+  if ((0 < dataSource) && (9 - dataSource < bufferSize)) {
+    bufferSize = 9 - dataSource;
   }
-  if (operationResult < 1) {
-    operationResult = 1;
+  if (bufferSize < 1) {
+    bufferSize = 1;
   }
                     // WARNING: Subroutine does not return
-  memset(uiContext + 0x800,operationResult,0x10);
+  memset(uiContext + 0x800,bufferSize,0x10);
 }
 
 
