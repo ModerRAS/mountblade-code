@@ -125,6 +125,7 @@
 #define ProcessSystemDataBufferAllocation FUN_18014a1b0        // 处理系统数据缓冲区分配
 #define ProcessSystemMemoryBufferSetup FUN_18014a900          // 处理系统内存缓冲区设置
 #define ProcessCharacterCodeMemoryAllocation FUN_18014acf0   // 处理字符代码内存分配
+#define ProcessCharacterCodeValidationAndMemoryManagement FUN_18013d22f // 处理字符代码验证和内存管理
 #define ProcessUtf8ToUtf16BufferConversion FUN_18014c570      // 处理UTF-8到UTF-16缓冲区转换
 #define ProcessSystemDataBufferManagement FUN_18014c850       // 处理系统数据缓冲区管理
 #define ProcessSystemMemoryDataAllocation FUN_18014e160       // 处理系统内存数据分配
