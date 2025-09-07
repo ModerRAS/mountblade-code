@@ -4987,7 +4987,7 @@
 uint8_t SystemResetFlag;           // 系统重置标志
 
 // 系统数据字变量声明
-uint32_t SystemDataWord;
+uint32_t SystemDataWord;              // 系统数据字，用于存储系统运行时的关键数据
 
 // 异常状态标志变量声明
 uint8_t ExceptionStatusFlagPrimary;       // 异常状态标志Primary
