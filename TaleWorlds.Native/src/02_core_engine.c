@@ -2596,6 +2596,9 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 原始函数名：FUN_180130155 - 系统缓冲区状态处理和字符编码管理函数
 #define ProcessSystemBufferStatusAndCharacterEncoding FUN_180130155
 
+// 原始函数名：FUN_1801306c9 - 系统上下文和Unicode代码点处理函数
+#define ProcessSystemContextAndUnicodeCodePoint FUN_1801306c9
+
 // 已定义：CalculateSystemFloatAndProcess
 
 
@@ -148676,7 +148679,7 @@ LAB_180130808:
 
 
 
-void FUN_1801306c9(void)
+void ProcessSystemContextAndUnicodeCodePoint(void)
 {
   unsigned long long Utf16Char;
   void *SystemContext;
