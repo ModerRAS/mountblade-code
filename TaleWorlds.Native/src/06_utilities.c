@@ -6350,14 +6350,14 @@ uint8_t SystemCriticalSectionFlag;       // 系统临界区标志
 
 // 系统资源清理相关变量宏定义
 // 系统资源清理标志变量声明
-uint8_t SystemResourceCleanupFlagA0;      // DAT_180c95ef0 - 系统资源清理标志A0
-uint8_t SystemResourceCleanupFlagA1;      // DAT_180c96008 - 系统资源清理标志A1
-uint8_t SystemResourceCleanupFlagA2;      // DAT_180c96028 - 系统资源清理标志A2
-uint8_t SystemResourceCleanupFlagA3;      // DAT_180c96048 - 系统资源清理标志A3
-uint8_t SystemResourceCleanupFlagA4;      // DAT_180c96068 - 系统资源清理标志A4
-uint8_t SystemResourceCleanupFlagA5;      // DAT_180c96098 - 系统资源清理标志A5
-uint8_t SystemResourceCleanupFlagA6;      // DAT_180c960b8 - 系统资源清理标志A6
-uint8_t SystemResourceCleanupFlagA7;      // DAT_180c96100 - 系统资源清理标志A7
+uint8_t SystemResourceCleanupFlagA0;      // 系统资源清理标志A0
+uint8_t SystemResourceCleanupFlagA1;      // 系统资源清理标志A1
+uint8_t SystemResourceCleanupFlagA2;      // 系统资源清理标志A2
+uint8_t SystemResourceCleanupFlagA3;      // 系统资源清理标志A3
+uint8_t SystemResourceCleanupFlagA4;      // 系统资源清理标志A4
+uint8_t SystemResourceCleanupFlagA5;      // 系统资源清理标志A5
+uint8_t SystemResourceCleanupFlagA6;      // 系统资源清理标志A6
+uint8_t SystemResourceCleanupFlagA7;      // 系统资源清理标志A7
 
 // 系统资源指针变量声明
 void* SystemResourcePointerA0;          // 系统资源指针A0
@@ -6368,7 +6368,7 @@ void* SystemResourcePointerA4;          // 系统资源指针A4
 void* SystemResourcePointerA5;          // 系统资源指针A5
 
 // 系统资源数据缓冲区变量声明
-void* SystemResourceDataBufferA0;         // DAT_180c960c0 - 系统资源数据缓冲区A0
+void* SystemResourceDataBufferA0;         // 系统资源数据缓冲区A0
 
 // 系统验证相关变量声明
 void* SystemValidationContextPointerA0;   // 系统验证上下文指针A0
@@ -9326,8 +9326,8 @@ uint8_t ExceptionHandlerDataP;
 uint8_t ExceptionHandlerDataQ;
 uint8_t ExceptionHandlerDataR;
 // 系统安全验证标志位A0 - 用于验证系统安全状态
-uint8_t SystemSecurityValidationFlagA0;     // UNK_180a395c0
-uint8_t SystemSecurityValidationFlagA1;     // UNK_180a395e0
+uint8_t SystemSecurityValidationFlagA0;     // 系统安全验证标志A0
+uint8_t SystemSecurityValidationFlagA1;     // 系统安全验证标志A1
 uint8_t SystemSecurityValidationFlagA2;     // UNK_180a39600
 uint8_t SystemSecurityValidationFlagA3;     // UNK_180a39628
 uint8_t SystemSecurityValidationFlagA4;     // UNK_180a39640
@@ -60295,7 +60295,7 @@ void ProcessExceptionRecoveryAtOffsetA10(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180906a20(DataBuffer operationBase,int64_t dataBuffer)
+void HandleExceptionStateAtOffsetA20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x170) != (int64_t *)0x0) {
@@ -60306,7 +60306,7 @@ void Unwind_180906a20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906a30(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionResourcesAtOffsetA30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x70) != (int64_t *)0x0) {
@@ -60317,7 +60317,7 @@ void Unwind_180906a30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906a40(DataBuffer operationBase,int64_t dataBuffer)
+void ResetExceptionSystemAtOffsetA40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemResourcesI0();
@@ -60329,7 +60329,7 @@ void Unwind_180906a40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906a50(DataBuffer operationBase,int64_t dataBuffer)
+void FinalizeExceptionCleanupAtOffsetA50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -60343,7 +60343,7 @@ void Unwind_180906a50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906a60(DataBuffer operationBase,int64_t dataBuffer)
+void RestoreSystemStateAtOffsetA60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xa0) != (int64_t *)0x0) {
@@ -60354,7 +60354,7 @@ void Unwind_180906a60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906a70(DataBuffer operationBase,int64_t dataBuffer)
+void ClearExceptionFlagsAtOffsetA70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xa8) != (int64_t *)0x0) {
@@ -60365,7 +60365,7 @@ void Unwind_180906a70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906a80(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionFinalizeAtOffsetA80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemResourcesI0();
