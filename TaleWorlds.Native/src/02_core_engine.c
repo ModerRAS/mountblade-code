@@ -10999,8 +10999,7 @@ void CoreEngineInitializenetworkConnectionPoolStateRecoveryManager(void
  * 该函数负责初始化网络连接池的状态处理器，用于处理网络连接的状态变化。
  * 通过遍历连接池中的节点，检查连接状态，并根据需要创建新的连接。
  */
-void InitializeNetworkConnectionPoolStatusHandler(void
-{
+void InitializeNetworkConnectionPoolStatusHandler(void) {
   char ConnectionPoolInputStringBuffer;
   void *NetworkConnectionPool;
   int ConnectionComparisonResult;
@@ -11038,7 +11037,7 @@ void InitializeNetworkConnectionPoolStatusHandler(void
   }
   CurrentNetworkConnection[6] = SystemNodeIdentifierQuinary;
   CurrentNetworkConnection[7] = SystemNodeIdentifierSenary;
-  CurrentNetworkConnection[8] = &SystemDataTemplateInputetworkConnectionPool;
+  CurrentNetworkConnection[8] = &SystemDataTemplateNetworkConnectionPool;
   CurrentNetworkConnection[9] = 4;
   CurrentNetworkConnection[10] = ConnectionStatusHandlerFunction;
   return;
@@ -12017,14 +12016,13 @@ void CoreEngineInitializeEventSystem(void
 
 
 
- void CoreEngineInitializeResourceLoader(void/**
+ /**
  * @brief 初始化核心引擎资源加载器
  * 
  * 该函数负责初始化核心引擎的资源加载系统，设置资源加载、缓存和释放机制。
  * 用于管理引擎的资源加载系统。
  */
-void CoreEngineInitializeResourceLoader(void
-{
+void CoreEngineInitializeResourceLoader(void) {
   char NodeInputStringBuffer;
   void *Utf8InputBuffer;
   int MemoryMatchResult;
@@ -12037,10 +12035,10 @@ void CoreEngineInitializeResourceLoader(void
   code *ResourceProcessor;
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
-  CharacterCode = (void *)*SystemContext;
+  Utf8InputBuffer = (void *)*SystemContext;
   NodeInputStringBuffer = *(char *)((long long)Utf8InputBuffer[1] + SystemNodeStatusOffset);
   ResourceProcessor = CoreEngineProcessNetworkStatus;
-  PreviousNode = CharacterCode;
+  PreviousNode = Utf8InputBuffer;
   CurrentNode = (void *)Utf8InputBuffer[1];
   while (NodeInputStringBuffer == '\0') {
     MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataSecondary,0x10);
@@ -50126,7 +50124,7 @@ void ProcessFloatDataNormalization(long long CharacterCode
   *(float *)(CharacterCode + 0xf8) = VectorComponentX;
   VectorLengthX = (CrossProductResultX * *pSourceMatrixData - NormalizationFactor * pSourceMatrixData[4]) + VectorDotProduct * pSourceMatrixData[8];
   *(float *)(CharacterCode + 0xfc) = VectorLengthX;
-  FloatVariable7 = ContextPrimaryFloat9 * pSystemContextPrimaryFloat[4] + SystemContextPrimaryFloat8 * *pSystemContextPrimaryFloat + ContextSecondaryFloat0 * pSystemContextPrimaryFloat[8];
+  MatrixElementW = CrossProductResultY * pSourceMatrixData[4] + CrossProductResultX * *pSourceMatrixData + CrossProductResultZ * pSourceMatrixData[8];
   if (MatrixElementW != 1.0) {
     MatrixElementW = 1.0 / MatrixElementW;
     *(float *)(CharacterCode + 0xd0) = 0.0f * MatrixElementW;
@@ -171108,7 +171106,7 @@ void ProcessUtf8InputBufferSize(long long CharacterCode, uint64_t *Utf8InputBuff
 
 
 
-3d22f(uint64_t CharacterCodevoid FUN_18013d22f(uint64_t CharacterCode
+void FUN_18013d22f(uint64_t CharacterCode)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -173005,7 +173003,11 @@ long long FUN_18013e4c0(int *Utf8InputBuffer,long long Utf8BufferSize,uint64_t *
 
 
 
-3e63c(voidvoid FUN_18013e63c(void
+/**
+ * @brief 处理系统内存分配和数据复制
+ * @note 原始函数名：FUN_18013e63c
+ */
+void ProcessSystemMemoryAllocationAndCopy(void)
 {
   long long ProcessingResult;
   uint64_t Utf16Char;
@@ -173028,7 +173030,11 @@ long long FUN_18013e4c0(int *Utf8InputBuffer,long long Utf8BufferSize,uint64_t *
 
 
 
-3e6ad(voidvoid FUN_18013e6ad(void
+/**
+ * @brief 空函数，可能用于系统状态检查
+ * @note 原始函数名：FUN_18013e6ad
+ */
+void ProcessSystemStatusCheck(void)
 {
   return;
 }
@@ -173037,7 +173043,13 @@ long long FUN_18013e4c0(int *Utf8InputBuffer,long long Utf8BufferSize,uint64_t *
 
 
 
-3e6c0(int *Utf8InputBuffer,int Utf8BufferSizevoid ValidateMemoryAddressMask(int *Utf8InputBuffer,int Utf8BufferSize
+/**
+ * @brief 验证内存地址掩码并处理缓冲区
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @note 原始函数名：FUN_18013e6c0
+ */
+void ValidateMemoryAddressMask(int *Utf8InputBuffer, int Utf8BufferSize)
 {
   uint64_t Utf16Char;
   
@@ -173060,7 +173072,11 @@ long long FUN_18013e4c0(int *Utf8InputBuffer,long long Utf8BufferSize,uint64_t *
 
 
 
-3e6dc(voidvoid FUN_18013e6dc(void
+/**
+ * @brief 处理系统内存分配和数据复制（64位版本）
+ * @note 原始函数名：FUN_18013e6dc
+ */
+void ProcessSystemMemoryAllocationAndCopy64(void)
 {
   long long ProcessingResult;
   uint64_t Utf16Char;
