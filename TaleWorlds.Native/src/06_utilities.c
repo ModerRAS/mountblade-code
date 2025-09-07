@@ -103997,6 +103997,10 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储长整型数据的栈变量
 #define StackLongIntegerB StackLongIntegerB
 
+// 原始变量名：lStack_320 - 栈长整型数C
+// 功能：存储长整型数的栈变量
+#define StackLongIntegerC lStack_320
+
 // 原始变量名：StackPointerBufferC - 栈指针缓冲区C
 // 功能：存储指针数据的栈缓冲区
 #define StackPointerBufferC StackPointerBufferC
