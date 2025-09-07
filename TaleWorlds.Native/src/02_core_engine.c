@@ -39208,14 +39208,14 @@ void ManageBufferIndexllocation(long long *CharacterCode
     SystemErrorAddress = 0x180068815;
     __Throw_C_error_std__YAXH_Z(IntegerValue9);
   }
-  SystemPriorityLevel = 0x18006881f;
+  SystemErrorAddress = 0x18006881f;
   ExtractMemoryBlockInfo(StringProcessingStatus + 4);
   *StringProcessingStatus = *(void *)(SystemDataRegistry + 0x200378);
   *(uint64_t **)(SystemDataRegistry + 0x200378) = StringProcessingStatus;
-  SystemPriorityLevel = 0x18006883a;
+  SystemErrorAddress = 0x18006883a;
   SystemOperationResult = _Mtx_unlock(MemoryBlockIndex);
   if (IntegerValue9 != 0) {
-    SystemPriorityLevel = 0x180068847;
+    SystemErrorAddress = 0x180068847;
     __Throw_C_error_std__YAXH_Z(IntegerValue9);
   }
   return;
