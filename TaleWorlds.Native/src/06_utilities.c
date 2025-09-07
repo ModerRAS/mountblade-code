@@ -101006,7 +101006,19 @@ void Unwind_180911a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911a90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常回调处理器B8
+ * 
+ * 该函数负责处理异常回调操作，检查函数指针是否有效，如果有效则执行回调函数。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionCallbackHandlerB8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911a90
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x30) != (code *)0x0) {
@@ -101017,7 +101029,17 @@ void Unwind_180911a90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911aa0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文清理器C1
+ * 
+ * 该函数负责清理异常上下文，处理异常上下文指针和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @return void
+ */
+void Unwind_ExceptionContextCleanupC1(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名: Unwind_180911aa0
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
@@ -101029,7 +101051,17 @@ void Unwind_180911aa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180911ad0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文清理器C2
+ * 
+ * 该函数负责清理异常上下文，处理异常上下文指针和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @return void
+ */
+void Unwind_ExceptionContextCleanupC2(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名: Unwind_180911ad0
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
@@ -101042,7 +101074,19 @@ void Unwind_180911ad0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180911b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文清理器C3
+ * 
+ * 该函数负责清理异常上下文，处理异常上下文指针和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionContextCleanupC3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911b00
 
 {
   int64_t exceptionHandlerContext;
@@ -101060,7 +101104,19 @@ void Unwind_180911b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911b10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文清理器C4
+ * 
+ * 该函数负责清理异常上下文，处理异常上下文指针和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionContextCleanupC4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911b10
 
 {
   int64_t exceptionHandlerContext;
@@ -101078,7 +101134,19 @@ void Unwind_180911b10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文清理器C5
+ * 
+ * 该函数负责清理异常上下文，处理异常上下文指针和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionContextCleanupC5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911b20
 
 {
   int64_t exceptionHandlerContext;
@@ -101096,7 +101164,19 @@ void Unwind_180911b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文清理器C6
+ * 
+ * 该函数负责清理异常上下文，处理异常上下文指针和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionContextCleanupC6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911b30
 
 {
   int64_t exceptionHandlerContext;
@@ -101114,7 +101194,19 @@ void Unwind_180911b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文清理器C7
+ * 
+ * 该函数负责清理异常上下文，处理异常上下文指针和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionContextCleanupC7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911b40
 
 {
   int64_t exceptionHandlerContext;
@@ -101132,7 +101224,19 @@ void Unwind_180911b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文清理器C8
+ * 
+ * 该函数负责清理异常上下文，处理异常上下文指针和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionContextCleanupC8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911b50
 
 {
   int64_t exceptionHandlerContext;
@@ -101150,7 +101254,19 @@ void Unwind_180911b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911b70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文清理器C9
+ * 
+ * 该函数负责清理异常上下文，处理异常上下文指针和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionContextCleanupC9(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911b70
 
 {
   int64_t exceptionHandlerContext;
@@ -101167,7 +101283,17 @@ void Unwind_180911b70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911b90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常状态清理器D1
+ * 
+ * 该函数负责清理异常状态，处理异常状态标志和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @return void
+ */
+void Unwind_ExceptionStatusCleanupD1(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名: Unwind_180911b90
 
 {
   int64_t exceptionHandlerContext;
@@ -101184,7 +101310,17 @@ void Unwind_180911b90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180911bb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常状态清理器D2
+ * 
+ * 该函数负责清理异常状态，处理异常状态标志和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @return void
+ */
+void Unwind_ExceptionStatusCleanupD2(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名: Unwind_180911bb0
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0xb8,0x10,2,ManageSystemResourcesA0,SystemCleanupFlagAlternative);
@@ -101193,7 +101329,17 @@ void Unwind_180911bb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180911bd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常状态清理器D3
+ * 
+ * 该函数负责清理异常状态，处理异常状态标志和相关数据。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @return void
+ */
+void Unwind_ExceptionStatusCleanupD3(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名: Unwind_180911bd0
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x58),0x10,2,ManageSystemResourcesA0);
