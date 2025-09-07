@@ -21463,13 +21463,13 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   if (iterationCount == 0) {
     exceptionDataBuffer6 = (DataBuffer *)(dataBuffer + 8);
     TemporaryDataWordD = 0;
-    StackPointerBufferB = exceptionDataBuffer6;
+    TemporaryPointerBufferB = exceptionDataBuffer6;
     bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + 8))(exceptionDataBuffer6);
     iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&TemporaryDataWordD);
     if (iterationCount == 0) {
       StackDataWordE = 0;
       StackPointerBufferC = &DataValidationErrorBase;
-      StackDataWordG = StackDataWordA;
+      TemporaryDataWordG = StackDataWordA;
       StackDataWordF = TemporaryDataWordD;
       iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferC);
       if (iterationCount == 0) {
@@ -21481,13 +21481,13 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
             calculatedOffset = *(int64_t *)(exceptionHandlerContext4 + 0x10 + dataPointer);
             calculatedIndex = *(int64_t *)(exceptionHandlerContext4 + 8 + dataPointer);
             statusFlag = CheckSystemStatus(calculatedOffset,1);
-            exceptionDataBuffer6 = StackPointerBufferB;
+            exceptionDataBuffer6 = TemporaryPointerBufferB;
             if ((statusFlag == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(calculatedIndex + 0x28))) {
               SecurityValidationDataS = *(DataWord *)(exceptionHandlerContext4 + 4 + dataPointer);
               SecurityValidationBuffer = &SystemMemoryInitializationReference;
-              SecurityValidationDataR = StackDataWordA;
+              SecurityValidationResultB = StackDataWordA;
               SecurityCheckValue = 0;
-              dataPointer = (**(FunctionPointer**)*StackPointerBufferB)(StackPointerBufferB);
+              dataPointer = (**(FunctionPointer**)*TemporaryPointerBufferB)(TemporaryPointerBufferB);
               StackDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + 0x90) + bufferPointer * 8);
               StackByteFlagA = 0;
               if (*(int *)(calculatedOffset + 0x58) < 1) {
@@ -110197,9 +110197,9 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：存储浮点数组的栈数据
 #define StackFloatArrayA StackFloatArrayA
 
-// 原始变量名：StackPointerBufferB - 栈指针缓冲区B
+// 原始变量名：TemporaryPointerBufferB - 栈指针缓冲区B
 // 功能：存储指针数据的栈缓冲区
-#define StackPointerBufferB StackPointerBufferB
+#define TemporaryPointerBufferB TemporaryPointerBufferB
 
 // 原始变量名：StackLongIntegerA - 栈长整型A
 // 功能：存储长整型数据的栈变量
@@ -110295,7 +110295,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 原始变量名：uStack_f0 - 安全验证数据字R
 // 功能：存储安全验证的主要数据字
-#define SecurityValidationDataR uStack_f0
+#define SecurityValidationResultB uStack_f0
 
 // 原始变量名：uStack_ec - 安全验证数据字S
 // 功能：存储异常处理上下文中的安全验证数据
