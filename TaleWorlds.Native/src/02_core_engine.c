@@ -50009,74 +50009,75 @@ void ProcessDataStructureParametersAndFloatCalculations(long long CharacterCode,
  */
 void CleanupSystemBuffer(void)
 {
-  long long *Utf8InputBuffer;
-  long long *BufferAllocationStatus;
-  byte *pLowByte;
-  char OperationStatus;
-  long long AllocatedMemorySize;
-  uint32_t DataSize;
+  long long *Utf8InputBufferPointer;
+  long long *BufferAllocationStatusPointer;
+  byte *LowBytePointer;
+  char BufferOperationStatus;
+  long long AllocatedMemoryBlockSize;
+  uint32_t CalculatedDataSize;
   uint SystemChecksumValue;
-  long long *pSystemDataTablePointer;
-  long long systemLoopCounter;
-  int IntegerValue0;
-  int MatchCounter;
-  long long SystemContext;
-  long long SystemContextValue;
+  long long *SystemDataTablePointer;
+  long long SystemLoopCounter;
+  int DataBlockOffset;
+  int DataMatchCounter;
+  long long SystemContext = CoreEngineSystemContext;
+  long long SystemContextOffset;
   unsigned long long ValidationResult;
-  char *SystemStringStringBuffer;
-  uint *StatusBuffer5;
-  int IntegerValue6;
-  uint UnicodeCharacterCode;
+  char *SystemStringBuffer;
+  uint *SystemStatusBuffer;
+  int BufferElementCount;
+  uint UnicodeCharacterValue;
   int SystemStatusValue;
-  int IntegerValue9;
-  int IntegerValue8;
-  int IterationCounter;
-  uint32_t *PrimaryProcessingStatusFlag0;
+  int TableIterationIndex;
+  int ArrayElementIndex;
+  int ProcessingIterationCounter;
+  uint32_t *PrimaryProcessingStatusFlag;
   uint *ProcessingStatusPointer;
-  unsigned long long MemoryAllocationOffset;
-  unsigned long long MemoryAllocationSize;
-  bool HighByte4;
+  unsigned long long MemoryBlockOffset;
+  unsigned long long MemoryBlockSize;
+  bool IsMemoryBlockAvailable;
   uint64_t StackParameterStorage;
-  long long *CharacterCode;
+  long long *CharacterCodePointer;
+  long long *CurrentMemoryBlockAddress;
   
-  long long AllocatedMemorySize = *(long long *)(SystemContext + 600);
-  if (*(int *)(AllocatedMemorySize + 0x28) != *(int *)(CoreEngineSystemContext + 0x224)) {
-    IntegerValue6 = *(int *)(AllocatedMemorySize + 0x1c) + *(int *)(AllocatedMemorySize + 0x18);
-    *(int *)(AllocatedMemorySize + 0x28) = *(int *)(CoreEngineSystemContext + 0x224);
-    if (0 < IntegerValue6) {
-      StackParameterStorage = InputDataBuffer;
-      SystemContextValue = (long long)*(int *)(CoreEngineSystemContext + 0xe78) * 0x128 + CoreEngineSystemContext + 0xc28;
-      DataSize = CalculateAllocatedMemorySize(SystemContextValue,IntegerValue6);
-      *(uint32_t *)(AllocatedMemorySize + 0x30) = DataSize;
-      ValidateDataStructureTransfer(SystemContextValue,DataSize);
-      if (*(long long *)(AllocatedMemorySize + 0x10) == 0) {
-        if (*(int *)(AllocatedMemorySize + 0x18) != 0) {
-          *(uint32_t *)(AllocatedMemorySize + 0x2c) = *(uint32_t *)(AllocatedMemorySize + 0x30);
+  long long AllocatedMemoryBlockSize = *(long long *)(SystemContext + 600);
+  if (*(int *)(AllocatedMemoryBlockSize + 0x28) != *(int *)(CoreEngineSystemContext + 0x224)) {
+    BufferElementCount = *(int *)(AllocatedMemoryBlockSize + 0x1c) + *(int *)(AllocatedMemoryBlockSize + 0x18);
+    *(int *)(AllocatedMemoryBlockSize + 0x28) = *(int *)(CoreEngineSystemContext + 0x224);
+    if (0 < BufferElementCount) {
+      StackParameterStorage = StackParameterStorage;
+      SystemContextOffset = (long long)*(int *)(CoreEngineSystemContext + 0xe78) * 0x128 + CoreEngineSystemContext + 0xc28;
+      CalculatedDataSize = CalculateAllocatedMemorySize(SystemContextOffset,BufferElementCount);
+      *(uint32_t *)(AllocatedMemoryBlockSize + 0x30) = CalculatedDataSize;
+      ValidateDataStructureTransfer(SystemContextOffset,CalculatedDataSize);
+      if (*(long long *)(AllocatedMemoryBlockSize + 0x10) == 0) {
+        if (*(int *)(AllocatedMemoryBlockSize + 0x18) != 0) {
+          *(uint32_t *)(AllocatedMemoryBlockSize + 0x2c) = *(uint32_t *)(AllocatedMemoryBlockSize + 0x30);
           return;
         }
       }
       else {
-        OperationStatus = *(char *)(AllocatedMemorySize + 0x44);
-        ValidationResult = (unsigned long long)OperationStatus;
-        CharacterCode = (long long *)(AllocatedMemorySize + 0x38);
-        IntegerValue6 = (int)OperationStatus;
-        if (*(int *)(AllocatedMemorySize + 0x40) == (int)OperationStatus) {
-          pSystemDataTablePointer = (long long *)*Utf8InputBuffer;
+        BufferOperationStatus = *(char *)(AllocatedMemoryBlockSize + 0x44);
+        ValidationResult = (unsigned long long)BufferOperationStatus;
+        CharacterCodePointer = (long long *)(AllocatedMemoryBlockSize + 0x38);
+        BufferElementCount = (int)BufferOperationStatus;
+        if (*(int *)(AllocatedMemoryBlockSize + 0x40) == (int)BufferOperationStatus) {
+          SystemDataTablePointer = (long long *)*Utf8InputBufferPointer;
         }
         else {
-          *(int *)(AllocatedMemorySize + 0x40) = IntegerValue6;
-          if (*Utf8InputBuffer != 0) {
+          *(int *)(AllocatedMemoryBlockSize + 0x40) = BufferElementCount;
+          if (*Utf8InputBufferPointer != 0) {
                     // WARNING: Subroutine does not return
             CoreEngineProcessSystemEvent();
           }
-          *Utf8InputBuffer = 0;
-          if (OperationStatus == '\0') {
-            pSystemDataTablePointer = (long long *)0x0;
-            *Utf8InputBuffer = 0;
+          *Utf8InputBufferPointer = 0;
+          if (BufferOperationStatus == '\0') {
+            SystemDataTablePointer = (long long *)0x0;
+            *Utf8InputBufferPointer = 0;
           }
           else {
-            pSystemDataTablePointer = (long long *)MemoryAllocate(MemoryPoolManager,(long long)OperationStatus * 4);
-            *Utf8InputBuffer = (long long)pSystemDataTablePointer;
+            SystemDataTablePointer = (long long *)MemoryAllocate(MemoryPoolManager,(long long)BufferOperationStatus * 4);
+            *Utf8InputBufferPointer = (long long)SystemDataTablePointer;
           }
         }
         if (pSystemDataTablePointer != (long long *)0x0) {
