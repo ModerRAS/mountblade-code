@@ -39123,7 +39123,7 @@ MemoryCopyOperationStart:
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
-LAB_180071eb0:
+SystemMemoryCleanupLabel:
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   FunctionAddress80 = MemoryAllocationIndex + 0xe;
   ConfigureSystemMemory(SystemConfigurationPointer,5,0xffffffff00000000,&SystemMemoryBufferPrimaryData);
