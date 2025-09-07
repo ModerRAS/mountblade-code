@@ -151764,7 +151764,7 @@ LAB_1801327bd:
   }
   ContextSecondaryFloat5 = 0.0;
   if (CurrentByteValue8 != 0) {
-    ContextSecondaryFloat5 = (float)FUN_1801333d0(UnicodeCharacterCode & 0xffffffff);
+    ContextSecondaryFloat5 = (float)CalculateCharacterCodeFloatValue(UnicodeCharacterCode & 0xffffffff);
   }
   if (*(int *)(MemoryPoolBlockSize + 0x1d2c) == -1) {
     if (*(char *)(MemoryPoolBlockSize + 0x1d21) != '\0') goto LAB_180132ba2;
