@@ -37478,7 +37478,7 @@ BufferProcessingStart: // 原始标签：LAB_180070db8，BufferProcessingStart
         }
         else {
           CalculatedCodePoint = TemporaryFlag;
-          if (Utf16Char4 <= (uint)BufferInitializationFlag) goto LAB_180070e64;
+          if (Utf16Char4 <= (uint)BufferInitializationFlag) goto BufferValidationComplete;
           pDataContentStatus = (uint8_t *)CONCAT71(pDataContentStatus.FullPart,0x13);
           TemporaryFlag = DataSize;
           memoryAllocationBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,memoryAllocationBuffer,Utf16Char4,0x10);
@@ -37503,7 +37503,7 @@ SystemMemoryProcessingStart:
   }
   else if ((uint)BufferInitializationFlag < 4) {
     MemoryAllocationBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,memoryAllocationBuffer,4,0x10);
-    goto LAB_180070ee8;
+    goto SystemMemoryProcessingStart;
   }
   *(uint16_t *)(memoryAllocationBuffer + BufferOffset) = 0x3a;
   BufferOffset = 3;

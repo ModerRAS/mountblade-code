@@ -9737,7 +9737,6 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
         *(int32_t *)(componentData + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentData + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
-        #define COMPONENT_COMMAND_OFFSET 0x368    // 组件命令偏移量
         queryResult = ExecuteComponentCommand(componentData + COMPONENT_COMMAND_OFFSET,dataValidationBuffer);
         if ((int32_t)queryResult != 0) {
           return queryResult;
@@ -9770,22 +9769,6 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
 uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
 
 {
-  // 模块结构体偏移量定义
-  #define MODULE_CONFIG_OFFSET_1 0x18       // 模块配置偏移量1
-  #define MODULE_CONFIG_OFFSET_2 0x10       // 模块配置偏移量2
-  #define MODULE_DATA_OFFSET_1 0x90         // 模块数据偏移量1
-  #define MODULE_DATA_OFFSET_2 0xf8         // 模块数据偏移量2
-  #define MODULE_DATA_OFFSET_3 0x10         // 模块数据偏移量3
-  #define MODULE_CONTEXT_OFFSET 0x240      // 模块上下文偏移量
-  #define MODULE_RESOURCE_OFFSET -0x18     // 模块资源偏移量
-  #define MODULE_COMPONENT_OFFSET 0x80      // 模块组件偏移量
-  #define MODULE_VALIDATION_OFFSET 0x38    // 模块验证偏移量
-  
-  // 资源和上下文指针偏移量
-  #define RESOURCE_CONTEXT_OFFSET 3         // 资源上下文偏移量
-  #define RESOURCE_DATA_OFFSET 4            // 资源数据偏移量
-  #define COMPONENT_DATA_OFFSET 3           // 组件数据偏移量
-  
   int64_t *exceptionHandlerContextPtr;
   int64_t *componentDataPtr;
   int64_t *componentInfoPtr;
