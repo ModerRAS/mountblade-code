@@ -38540,18 +38540,18 @@ void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
   int64_t handlerAddress;
   uint64_t memoryRegion;
   
-  exceptionHandler = *(DataBuffer **)(unwindParam + 0x2b8);
+  exceptionHandler = *(DataBuffer **)(unwindParam + ExceptionHandlerPointerOffset);
   if (exceptionHandler == (DataBuffer *)0x0) {
     return;
   }
   memoryRegion = (uint64_t)exceptionHandler & MemoryRegionMask;
   if (memoryRegion != 0) {
-    handlerAddress = memoryRegion + 0x80 + ((int64_t)exceptionHandler - memoryRegion >> 0x10) * 0x50;
-    handlerAddress = handlerAddress - (uint64_t)*(uint *)(handlerAddress + 4);
-    if ((*(void ***)(memoryRegion + 0x70) == &ExceptionList) && (*(char *)(handlerAddress + 0xe) == '\0')) {
-      *exceptionHandler = *(DataBuffer *)(handlerAddress + 0x20);
-      *(DataBuffer **)(handlerAddress + 0x20) = exceptionHandler;
-      referenceCounter = (int *)(handlerAddress + 0x18);
+    handlerAddress = memoryRegion + ExceptionMemoryRegionOffset + ((int64_t)exceptionHandler - memoryRegion >> 0x10) * ExceptionMemoryBlockMultiplier;
+    handlerAddress = handlerAddress - (uint64_t)*(uint *)(handlerAddress + ExceptionHandlerPointerOffset4);
+    if ((*(void ***)(memoryRegion + ExceptionMemoryRegionOffset70) == &ExceptionList) && (*(char *)(handlerAddress + ExceptionHandlerPointerOffsetE) == '\0')) {
+      *exceptionHandler = *(DataBuffer *)(handlerAddress + ExceptionHandlerPointerOffset20);
+      *(DataBuffer **)(handlerAddress + ExceptionHandlerPointerOffset20) = exceptionHandler;
+      referenceCounter = (int *)(handlerAddress + ExceptionHandlerPointerOffset18);
       *referenceCounter = *referenceCounter + -1;
       if (*referenceCounter == 0) {
         HandleExceptionE0();
@@ -38559,7 +38559,7 @@ void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
       }
     }
     else {
-      ManageMemory(memoryRegion,SetBitFlag(0xff000000,*(void ***)(memoryRegion + 0x70) == &ExceptionList),
+      ManageMemory(memoryRegion,SetBitFlag(0xff000000,*(void ***)(memoryRegion + ExceptionMemoryRegionOffset70) == &ExceptionList),
                           exceptionHandler,memoryRegion,SystemCleanupFlagAlternative);
     }
   }
