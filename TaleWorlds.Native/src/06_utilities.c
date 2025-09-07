@@ -100935,8 +100935,7 @@ void ReleaseMutexAndCondition(void)
 
 {
   _Mtx_destroy_in_situ();
-                     0x000180941700. Too many branches
-                      _Cnd_destroy_in_situ();
+                            _Cnd_destroy_in_situ();
   return;
 }
 
@@ -101214,8 +101213,7 @@ void SetDefaultExceptionHandlerA1(void)
 void DestroyMutexA0(void)
 
 {
-   0x0001809419d8. Too many branches
-    _Mtx_destroy_in_situ(0x180c91970);
+       _Mtx_destroy_in_situ(0x180c91970);
   return;
 }
 
@@ -101493,8 +101491,7 @@ void InitializeExceptionHandlingSystem(void)
 void DestroyMutexResource(void)
 
 {
-                     0x000180941db8. Too many branches
-                      _Mtx_destroy_in_situ(MutexResourceAddress);
+                                 _Mtx_destroy_in_situ(MutexResourceAddress);
   return;
 }
 
@@ -102831,8 +102828,7 @@ void SetDefaultExceptionHandlerA0(void)
 
 {
   DefaultExceptionHandlerPointerA0 = &DefaultExceptionHandlerB;
-                     0x0001809427c7. Too many branches
-                      _Mtx_destroy_in_situ();
+                                _Mtx_destroy_in_situ();
   return;
 }
 
@@ -103349,8 +103345,7 @@ void CleanupUtilityMemoryA0(void)
 void DestroyMutexLockA0(void)
 
 {
-                     0x000180942a58. Too many branches
-                      _Mtx_destroy_in_situ(SystemMutexAddress);
+                                    _Mtx_destroy_in_situ(SystemMutexAddress);
   return;
 }
 
@@ -103738,8 +103733,7 @@ void InitializeExceptionHandlerA(void)
 void DestroyMutexA(void)
 
 {
-                     0x000180943038. Too many branches
-                      _Mtx_destroy_in_situ(0x180d49e70);
+                                   _Mtx_destroy_in_situ(0x180d49e70);
   return;
 }
 
@@ -103761,8 +103755,7 @@ void DestroyMutexA(void)
 void DestroyMutexB(void)
 
 {
-                     0x000180943058. Too many branches
-                      _Mtx_destroy_in_situ(0x180d49f10);
+                                      _Mtx_destroy_in_situ(0x180d49f10);
   return;
 }
 
@@ -103784,8 +103777,7 @@ void DestroyMutexB(void)
 void DestroyMutexC(void)
 
 {
-                     0x000180943088. Too many branches
-                      _Mtx_destroy_in_situ(0x180c96690);
+                                           _Mtx_destroy_in_situ(0x180c96690);
   return;
 }
 
@@ -103844,8 +103836,7 @@ void InitializeUtilitySystem(void)
 void DestroyMutexInPlace(void)
 
 {
-                     0x000180943158. Too many branches
-                      _Mtx_destroy_in_situ(0x180c966f0);
+                                          _Mtx_destroy_in_situ(0x180c966f0);
   return;
 }
 
@@ -103858,8 +103849,7 @@ void DestroyMutexInPlace(void)
 void CleanupThreadMutex(void)
 
 {
-                     0x000180943178. Too many branches
-                      _Mtx_destroy_in_situ(0x180c96740);
+                                           _Mtx_destroy_in_situ(0x180c96740);
   return;
 }
 
