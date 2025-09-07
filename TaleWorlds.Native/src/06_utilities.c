@@ -16092,9 +16092,9 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
     colorPackedData = dataBuffer[3];
     calculatedOffset = (**(FunctionPointer**)(*validationContextPointer + 0x2f8))(validationContextPointer,&colorDataWord,1);
     if (calculatedOffset == 0) {
-      uStack_80 = blueAlphaComponents >> 0x18;
+      blueComponent = blueAlphaComponents >> 0x18;
       alphaComponent = colorPackedData >> 0x18;
-      uStack_a0 = redGreenComponents >> 0x10;
+      redGreenHigh = redGreenComponents >> 0x10;
       uStack_68 = colorPackedData >> 0x10 & 0xff;
       uStack_70 = colorPackedData >> 8 & 0xff;
       uStack_78 = colorPackedData & 0xff;
@@ -33799,7 +33799,7 @@ uint64_t ExecuteSystemMemoryOperations(void)
  * 
  * @return uint64_t 返回操作状态码，0表示成功，非0表示错误
  */
-uint64_t FUN_18089fad8(void)
+uint64_t ValidateAndProcessSystemData(void)
 
 {
   uint systemDataBuffer;
