@@ -103570,7 +103570,7 @@ void FinalizeFloatDataTexture(void)
   uint32_t SystemChecksum;
   uint64_t SystemParameter2;
   unsigned long long StackProcessingParameter3;
-  uint64_t in_stack_00000110;
+  uint64_t StackProcessingParameter4;
   
   SystemChecksum = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
   CalculatedDistance = *(float *)(ProcessingResult + 0x1660) + *(float *)(ProcessingResult + 0x1660) + *(float *)(ProcessingResult + 0x19f8);
@@ -118316,6 +118316,7 @@ char ProcessDataFilteringAndVectorCalculation(double CharacterCode, uint64_t Utf
   float SystemParameter1;
   uint64_t SystemParameter2;
   float *OutputParameters;
+  float StackFloatParameter;
   
   if (in_EAX == 1) {
     if (*(char *)(SystemContext + 0x120) == NullPointerValueB) {
@@ -118339,13 +118340,13 @@ LAB_18011f1e4:
   }
   else {
     if (in_EAX != 2) goto LAB_18011f326;
-    CharacterCode = (double)AllocateSystemMemoryBuffer(&stack0x000000f0,3,5,0,0);
+    CharacterCode = (double)AllocateSystemMemoryBuffer(&StackFloatParameter,3,5,0,0);
     if ((*(int *)(SystemContext + 0x1cac) == RegisterValueEDI) && (*(char *)(SystemContext + 0x1b3c) == '\0')) {
       in_ECX = *(int *)(SystemContext + 0x1b2c);
       goto LAB_18011f1e4;
     }
-    if (in_stack_000000f0 == 0.0) goto LAB_18011f326;
-    ContextSecondaryFloat = in_stack_000000f0;
+    if (StackFloatParameter == 0.0) goto LAB_18011f326;
+    ContextSecondaryFloat = StackFloatParameter;
     MatrixTransformMultiplier1 = (float)ProcessSystemFloatEx(CharacterCode,*PatternIndex);
     IntegerValue = ProcessValidationCheck(ValidationResultFlag2);
     Utf8BufferSize = 0x3f800000;
@@ -133143,20 +133144,20 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
   float StackFloat1;
   float StackFloatVariable2;
   float SystemParameter2;
-  uint32_t in_stack_000001a0;
-  uint32_t in_stack_000001a8;
-  uint32_t in_stack_000001b0;
-  uint32_t in_stack_000001b8;
-  uint64_t in_stack_000001d0;
-  uint64_t in_stack_000001d8;
-  uint32_t in_stack_000001e0;
-  uint32_t in_stack_000001e8;
-  uint32_t in_stack_000001f0;
-  uint32_t in_stack_000001f8;
-  uint64_t in_stack_00000200;
-  uint64_t in_stack_00000208;
-  uint32_t in_stack_00000210;
-  uint32_t in_stack_00000218;
+  uint32_t StackRegisterXMM15A;
+  uint32_t StackRegisterXMM15B;
+  uint32_t StackRegisterXMM15C;
+  uint32_t StackRegisterXMM15D;
+  uint64_t StackRegisterParameter1;
+  uint64_t StackRegisterParameter2;
+  uint32_t StackRegisterParameter3;
+  uint32_t StackRegisterParameter4;
+  uint32_t StackRegisterParameter5;
+  uint32_t StackRegisterParameter6;
+  uint64_t StackRegisterParameter7;
+  uint64_t StackRegisterParameter8;
+  uint32_t StackRegisterParameter9;
+  uint32_t StackRegisterParameter10;
   
   *(void *)(in_R11 + 0x20) = SystemContext;
   *(void *)(in_R11 + -0x10) = PatternIndex;
@@ -133340,11 +133341,11 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
     goto LAB_18012ce0f;
   }
   StackFrameAddressPointer[-4] = (float)((uint)FilterInputValue4 & 0x3000000);
-  in_stack_000001a0 = XMM15RegisterA;
-  in_stack_000001a8 = XMM15RegisterC;
-  in_stack_000001b0 = unaff_XMM14_Da;
-  in_stack_000001b8 = unaff_XMM14_Dc;
-  in_stack_000001d0 = unaff_XMM12_Qa;
+  StackRegisterXMM15A = XMM15RegisterA;
+  StackRegisterXMM15B = XMM15RegisterC;
+  StackRegisterXMM15C = unaff_XMM14_Da;
+  StackRegisterXMM15D = unaff_XMM14_Dc;
+  StackRegisterParameter1 = unaff_XMM12_Qa;
   in_stack_000001d8 = unaff_XMM12_Qb;
   in_stack_000001e0 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;
@@ -134983,11 +134984,11 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
   float StackFloat1;
   float StackFloatVariable2;
   float SystemParameter2;
-  uint32_t in_stack_000001a0;
-  uint32_t in_stack_000001a8;
-  uint32_t in_stack_000001b0;
-  uint32_t in_stack_000001b8;
-  uint64_t in_stack_000001d0;
+  uint32_t StackRegisterXMM15A;
+  uint32_t StackRegisterXMM15B;
+  uint32_t StackRegisterXMM15C;
+  uint32_t StackRegisterXMM15D;
+  uint64_t StackRegisterParameter1;
   uint64_t in_stack_000001d8;
   uint32_t in_stack_000001e0;
   uint32_t in_stack_000001e8;
@@ -135178,11 +135179,11 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
     goto LAB_18012ce0f;
   }
   StackFrameAddressPointer[-4] = (float)((uint)ScalingFactor & 0x3000000);
-  in_stack_000001a0 = XMM15RegisterA;
-  in_stack_000001a8 = XMM15RegisterC;
-  in_stack_000001b0 = unaff_XMM14_Da;
-  in_stack_000001b8 = unaff_XMM14_Dc;
-  in_stack_000001d0 = unaff_XMM12_Qa;
+  StackRegisterXMM15A = XMM15RegisterA;
+  StackRegisterXMM15B = XMM15RegisterC;
+  StackRegisterXMM15C = unaff_XMM14_Da;
+  StackRegisterXMM15D = unaff_XMM14_Dc;
+  StackRegisterParameter1 = unaff_XMM12_Qa;
   in_stack_000001d8 = unaff_XMM12_Qb;
   in_stack_000001e0 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;
@@ -136820,11 +136821,11 @@ void InitializeSystemStringProcessing(void)
   float StackFloat1;
   float StackFloatVariable2;
   float SystemParameter2;
-  uint32_t in_stack_000001a0;
-  uint32_t in_stack_000001a8;
-  uint32_t in_stack_000001b0;
-  uint32_t in_stack_000001b8;
-  uint64_t in_stack_000001d0;
+  uint32_t StackRegisterXMM15A;
+  uint32_t StackRegisterXMM15B;
+  uint32_t StackRegisterXMM15C;
+  uint32_t StackRegisterXMM15D;
+  uint64_t StackRegisterParameter1;
   uint64_t in_stack_000001d8;
   uint32_t in_stack_000001e0;
   uint32_t in_stack_000001e8;
@@ -136875,11 +136876,11 @@ void InitializeSystemStringProcessing(void)
     goto LAB_18012ce0f;
   }
   StackFrameAddressPointer[-4] = (float)((uint)NullPointerD & 0x3000000);
-  in_stack_000001a0 = XMM15RegisterA;
-  in_stack_000001a8 = XMM15RegisterC;
-  in_stack_000001b0 = unaff_XMM14_Da;
-  in_stack_000001b8 = unaff_XMM14_Dc;
-  in_stack_000001d0 = unaff_XMM12_Qa;
+  StackRegisterXMM15A = XMM15RegisterA;
+  StackRegisterXMM15B = XMM15RegisterC;
+  StackRegisterXMM15C = unaff_XMM14_Da;
+  StackRegisterXMM15D = unaff_XMM14_Dc;
+  StackRegisterParameter1 = unaff_XMM12_Qa;
   in_stack_000001d8 = unaff_XMM12_Qb;
   in_stack_000001e0 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;
@@ -140132,11 +140133,11 @@ void ProcessSystemStatusAndValidation(void
   float StackFloat1;
   float StackFloatVariable2;
   float SystemParameter2;
-  uint32_t in_stack_000001a0;
-  uint32_t in_stack_000001a8;
-  uint32_t in_stack_000001b0;
-  uint32_t in_stack_000001b8;
-  uint64_t in_stack_000001d0;
+  uint32_t StackRegisterXMM15A;
+  uint32_t StackRegisterXMM15B;
+  uint32_t StackRegisterXMM15C;
+  uint32_t StackRegisterXMM15D;
+  uint64_t StackRegisterParameter1;
   uint64_t in_stack_000001d8;
   uint32_t in_stack_000001e0;
   uint32_t in_stack_000001e8;
@@ -140175,11 +140176,11 @@ void ProcessSystemStatusAndValidation(void
     goto LAB_18012ce0f;
   }
   StackFrameAddressPointer[-4] = (float)((uint)NullPointerD & 0x3000000);
-  in_stack_000001a0 = XMM15RegisterA;
-  in_stack_000001a8 = XMM15RegisterC;
-  in_stack_000001b0 = unaff_XMM14_Da;
-  in_stack_000001b8 = unaff_XMM14_Dc;
-  in_stack_000001d0 = unaff_XMM12_Qa;
+  StackRegisterXMM15A = XMM15RegisterA;
+  StackRegisterXMM15B = XMM15RegisterC;
+  StackRegisterXMM15C = unaff_XMM14_Da;
+  StackRegisterXMM15D = unaff_XMM14_Dc;
+  StackRegisterParameter1 = unaff_XMM12_Qa;
   in_stack_000001d8 = unaff_XMM12_Qb;
   in_stack_000001e0 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;

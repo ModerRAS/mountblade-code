@@ -236,6 +236,9 @@
 #define SystemConfigPrimaryOffset 0x180             // 系统配置主偏移量
 #define SystemConfigSecondaryOffset 0x184           // 系统配置次偏移量
 #define SystemConfigTertiaryOffset 0x1e0            // 系统配置第三偏移量
+#define SystemOperationSecondaryDataOffset 0x28     // 系统操作次数据偏移量
+#define DataBlockMultiplier                  0x10  // 数据块乘数
+#define DataBlockShiftBits                   4     // 数据块位移位数
 #define ValidationContextResourceOffset 0x2e8      // 验证上下文资源偏移量
 #define ExceptionHandlerTableOffset 0x2b0           // 异常处理表偏移量
 #define ExceptionHandlerDataOffset 0x78             // 异常处理数据偏移量
@@ -29997,14 +30000,14 @@ void ValidateAndProcessDataWithSecurity(int64_t dataContext,DataBuffer *dataPoin
   if (operationResult < (int)systemDataBuffer) {
       memset((int64_t)operationResult + *(int64_t *)(operationBase + 0x20),0,(int64_t)(int)(systemDataBuffer - operationResult));
   }
-  *(uint *)(operationBase + 0x28) = systemDataBuffer;
+  *(uint *)(operationBase + SystemConfigurationSecondaryOffset) = systemDataBuffer;
   if (systemDataBuffer != 0) {
-    if (*(int *)(dataBuffer[1] + 0x18) == 0) {
-      operationResult = OperateDataO0(*dataBuffer,*(DataBuffer *)(operationBase + 0x20),memoryPointer);
+    if (*(int *)(dataBuffer[1] + ResourceReferenceCountOffset) == 0) {
+      operationResult = OperateDataO0(*dataBuffer,*(DataBuffer *)(operationBase + SystemContextDataOffset),memoryPointer);
       if (operationResult == 0) goto ProcessCheckpointOperationCheck;
     }
     else {
-      operationResult = 0x1c;
+      operationResult = ResourceInvalidErrorCode;
     }
     if (operationResult != 0) {
       return;
