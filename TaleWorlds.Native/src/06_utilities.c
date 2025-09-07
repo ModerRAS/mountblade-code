@@ -96772,7 +96772,7 @@ void SetDefaultExceptionHandler07(void)
 void SetDefaultExceptionHandler08(void)
 
 {
-  _DAT_180bf9e70 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerAA = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -96793,7 +96793,7 @@ void SetDefaultExceptionHandler08(void)
 void SetDefaultExceptionHandler09(void)
 
 {
-  _DAT_180bf9ed0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerBB = &DefaultExceptionHandlerB;
   return;
 }
 
