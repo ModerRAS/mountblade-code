@@ -5984,46 +5984,24 @@ void InitializeCoreEngineDataStructure(void) {
 
 
 /**
- * @brief 初始化引擎渲染系统
+ * @brief 初始化核心引擎渲染系统
  * 
- * 该函数负责初始化核心引擎的渲染系统组件。它会创建渲染系统所需的数据结构，
- * 设置渲染节点，并配置相关的初始化函数。此函数是引擎启动过程中的关键步骤。
+ * 该函数负责初始化核心引擎的渲染系统组件，包括渲染节点创建、内存分配和渲染参数设置。
+ * 函数会遍历现有的节点结构，查找合适的位置插入新的渲染系统节点。
+ * 
+ * @details 函数执行流程：
+ * 1. 获取引擎系统上下文和渲染系统根节点
+ * 2. 检查渲染节点的初始化状态
+ * 3. 遍历节点链表，查找合适的插入位置
+ * 4. 分配内存并创建新的渲染节点
+ * 5. 设置节点标识符和物理系统数据模板
+ * 6. 配置渲染系统初始化回调函数
+ * 
+ * @note 此函数是引擎渲染系统初始化的核心组件
+ * @note 渲染节点使用特定的标识符进行验证
+ * @note 内存分配由系统内存管理器自动处理
  * 
  * @return void 无返回值
- */
-/**
- * @brief 初始化核心引擎渲染系统
- * 
- * 该函数负责初始化核心引擎的渲染系统组件，包括渲染节点创建、内存分配和渲染参数设置。
- * 函数会遍历现有的节点结构，查找合适的位置插入新的渲染系统节点。
- * 
- * @details 函数执行流程：
- * 1. 获取引擎系统上下文句柄
- * 2. 检查渲染系统根节点的初始化状态
- * 3. 遍历节点链表，查找合适的插入位置
- * 4. 如果需要，分配内存并创建新的渲染节点
- * 5. 设置渲染节点的标识符和初始化函数
- * 
- * @note 此函数是引擎渲染系统初始化的关键步骤
- * @note 使用 SystemComparisonDataSecondary 进行渲染数据比较
- * @note 渲染节点使用 SystemNodeIdentifierTertiary 和 SystemNodeIdentifierQuaternary 作为标识符
- */
-/**
- * @brief 初始化核心引擎渲染系统
- * 
- * 该函数负责初始化核心引擎的渲染系统组件，包括渲染节点创建、内存分配和渲染参数设置。
- * 函数会遍历现有的节点结构，查找合适的位置插入新的渲染系统节点。
- * 
- * @details 函数执行流程：
- * 1. 获取引擎系统上下文句柄
- * 2. 检查渲染系统根节点的初始化状态
- * 3. 遍历节点链表，查找合适的插入位置
- * 4. 如果需要，分配内存并创建新的渲染节点
- * 5. 设置渲染节点的标识符和初始化函数
- * 
- * @note 此函数是引擎渲染系统初始化的关键步骤
- * @note 使用 SystemComparisonDataSecondary 进行渲染数据比较
- * @note 渲染节点使用 SystemNodeIdentifierTertiary 和 SystemNodeIdentifierQuaternary 作为标识符
  */
 void InitializeCoreEngineRenderingSystem(void) {
   char RenderingNodeInitializedFlag;
@@ -110351,7 +110329,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *SystemContextPointer,c
   }
   Utf16Char4 = 0x44;
   if (*(char *)(MemoryPoolBlockSize + 0x1dd0) != '\0') {
-    StringBuffer0 = FUN_18010e4b0(MemoryPoolBlockSize + 0x1de0);
+    StringBuffer0 = ValidateSystemStringTemplate(MemoryPoolBlockSize + 0x1de0);
     Utf16Char4 = 0x44;
     if (StringBuffer0 == '\0') {
       Utf16Char4 = 0x1044;
@@ -110668,7 +110646,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t SystemContext
         Utf16Char5 = Utf16Char4;
       }
       MemoryAllocationIndex8 = (unsigned long long)Utf16Char5;
-      FUN_18011db30(UnicodeCharacterValue,MemoryAllocationIndex8);
+      ValidateSystemParameters(UnicodeCharacterValue,MemoryAllocationIndex8);
       StringComparisonResult2 = *SystemContext;
       RegisterValueR13 = SystemDataConfiguration;
     }
