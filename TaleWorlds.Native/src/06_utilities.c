@@ -4310,6 +4310,30 @@
 // 功能：在指定偏移处设置默认异常处理器B
 #define SetDefaultExceptionHandlerG Unwind_18090fcc0
 
+// 原始函数名：Unwind_18090fcd0 - 默认异常处理器设置函数H
+// 功能：在指定偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerH Unwind_18090fcd0
+
+// 原始函数名：Unwind_180909aa0 - 默认异常处理器设置函数I
+// 功能：在MemoryPointerOffset0偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerI Unwind_180909aa0
+
+// 原始函数名：Unwind_180909ab0 - 默认异常处理器设置函数J
+// 功能：在0x2e0偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerJ Unwind_180909ab0
+
+// 原始函数名：Unwind_180909ac0 - 默认异常处理器设置函数K
+// 功能：在ExceptionHandlerContextOffset58偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerK Unwind_180909ac0
+
+// 原始函数名：Unwind_180909ad0 - 默认异常处理器设置函数L
+// 功能：在MemoryPointerOffset0偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerL Unwind_180909ad0
+
+// 原始函数名：Unwind_180909ae0 - 默认异常处理器设置函数M
+// 功能：在0x2e0偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerM Unwind_180909ae0
+
 // 原始函数名：FUN_180942460 - 全局指针设置函数A39
 // 功能：设置全局数据指针A39到指定地址
 #define SetGlobalDataPointerA39 FUN_180942460
@@ -79321,7 +79345,18 @@ void ValidateDataAndClearFlag(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909aa0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器I的Unwind函数
+ * 
+ * 该函数负责在数据缓冲区的MemoryPointerOffset0偏移处设置默认异常处理器B，
+ * 用于异常处理时的处理器配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_180909aa0
+ */
+void SetDefaultExceptionHandlerI(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + MemoryPointerOffset0) = &DefaultExceptionHandlerB;
@@ -79330,7 +79365,18 @@ void Unwind_180909aa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909ab0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器J的Unwind函数
+ * 
+ * 该函数负责在数据缓冲区的0x2e0偏移处设置默认异常处理器B，
+ * 用于异常处理时的处理器配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_180909ab0
+ */
+void SetDefaultExceptionHandlerJ(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x2e0) = &DefaultExceptionHandlerB;
@@ -100091,7 +100137,18 @@ void ClearDataValidationFlag(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fc50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理数据验证标志B的Unwind函数
+ * 
+ * 该函数负责清理数据缓冲区中的第二种验证标志，当第二位标志被设置时，
+ * 清除该标志并调用数据验证处理器进行后续处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含验证标志信息
+ * 
+ * @note 原始函数名：Unwind_18090fc50
+ */
+void ClearDataValidationFlagB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x60) & 2) != 0) {
@@ -100103,7 +100160,18 @@ void Unwind_18090fc50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fc80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放SRW排他锁C的Unwind函数
+ * 
+ * 该函数负责在数据缓冲区的0x90偏移处释放SRW排他锁，
+ * 用于异常处理时的资源清理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁的状态信息
+ * 
+ * @note 原始函数名：Unwind_18090fc80
+ */
+void ReleaseSrwLockExclusiveC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x90) != '\0') {
@@ -100114,7 +100182,18 @@ void Unwind_18090fc80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fc90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放SRW排他锁D的Unwind函数
+ * 
+ * 该函数负责在数据缓冲区的0x90偏移处释放SRW排他锁，
+ * 用于异常处理时的资源清理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁的状态信息
+ * 
+ * @note 原始函数名：Unwind_18090fc90
+ */
+void ReleaseSrwLockExclusiveD(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x90) != '\0') {
@@ -100125,7 +100204,18 @@ void Unwind_18090fc90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fca0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放SRW排他锁E的Unwind函数
+ * 
+ * 该函数负责在数据缓冲区的0xc0偏移处释放SRW排他锁，
+ * 用于异常处理时的资源清理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁的状态信息
+ * 
+ * @note 原始函数名：Unwind_18090fca0
+ */
+void ReleaseSrwLockExclusiveE(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0xc0) != '\0') {
@@ -100136,7 +100226,18 @@ void Unwind_18090fca0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fcb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器F的Unwind函数
+ * 
+ * 该函数负责在数据缓冲区的0x1c0偏移处设置默认异常处理器B，
+ * 用于异常处理时的处理器配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090fcb0
+ */
+void SetDefaultExceptionHandlerF(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1c0) = &DefaultExceptionHandlerB;
@@ -100145,7 +100246,18 @@ void Unwind_18090fcb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fcc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器G的Unwind函数
+ * 
+ * 该函数负责在数据缓冲区的0x1f8偏移处设置默认异常处理器B，
+ * 用于异常处理时的处理器配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090fcc0
+ */
+void SetDefaultExceptionHandlerG(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1f8) = &DefaultExceptionHandlerB;
@@ -100154,7 +100266,18 @@ void Unwind_18090fcc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fcd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器H的Unwind函数
+ * 
+ * 该函数负责在数据缓冲区的0xe0偏移处设置默认异常处理器B，
+ * 用于异常处理时的处理器配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090fcd0
+ */
+void SetDefaultExceptionHandlerH(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0xe0) = &DefaultExceptionHandlerB;
