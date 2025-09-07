@@ -166767,7 +166767,11 @@ void FinalizeCharacterEncoding(uint32_t *Utf8InputBuffer)
 
 
 
-long long FUN_18013aed0(long long CharacterCode
+// 原始函数名：FUN_18013aed0 - 字符代码遍历函数
+// 功能：遍历字符代码表，查找匹配的字符代码
+#define TraverseCharacterCodes FUN_18013aed0
+
+long long TraverseCharacterCodes(long long CharacterCode
 {
   long long PrimaryDataSize;
   
@@ -262220,6 +262224,16 @@ int FUN_180225472(void
 
 
 
+/**
+ * @brief 系统标识符识别和分类函数（变体J）
+ * 
+ * 根据输入的数据字符串模式和长度，识别并返回对应的系统标识符。
+ * 该函数是IdentifySystemIdentifierByPattern的变体版本，用于处理
+ * 不同类型的系统组件识别和分类。
+ * 
+ * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
+ * @note 原始函数名：FUN_1802254b1
+ */
 int FUN_1802254b1(void
 {
   char *InputStringBuffer;
