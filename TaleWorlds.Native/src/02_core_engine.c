@@ -50266,7 +50266,7 @@ UnicodeBufferAllocation:
                   }
                   else {
                     uStackX_20 = BufferStatus1 * 2;
-                    if (uStackX_20 != 0) goto LAB_18007ac04;
+                    if (uStackX_20 != 0) goto UnicodeBufferAllocation;
                   }
                   pauStack_1e0 = paMemoryAddressMask2;
                   if (paUnicodeCodePoint5 != paUnicodeCodePoint7) {
