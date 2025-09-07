@@ -20024,8 +20024,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   uint8_t *StackPointerBufferA;
   DataWord StackDataWordB;
   DataWord StackDataWordC;
-  float fStack_1a8;
-  float fStack_1a4;
+  float StackFloatValueA;
+  float StackFloatValueB;
   DataWord StackDataWordD;
   float fStack_19c;
   float afStack_198 [2];
@@ -20141,7 +20141,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
           iterationCount = ConvertDataFormatA2(dataContext,&fStack_19c,0);
           if (iterationCount == 0) {
             if (fStack_19c != 1.0) {
-              fStack_1a8 = fStack_19c;
+              StackFloatValueA = fStack_19c;
               puStack_1c0 = &FloatingPointValidationErrorA;
               StackDataWordC = StackDataWordA;
               StackDataWordB = 0;
@@ -20151,7 +20151,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
             iterationCount = ValidateDataA3(dataContext,afStack_198,0);
             if (iterationCount == 0) {
               if (afStack_198[0] != 1.0) {
-                fStack_1a8 = afStack_198[0];
+                StackFloatValueA = afStack_198[0];
                 puStack_1c0 = &FloatingPointValidationErrorB;
                 StackDataWordC = StackDataWordA;
                 StackDataWordB = 0;
@@ -20165,8 +20165,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                   StackDataWordC = StackDataWordA;
                   StackDataWordB = 0;
                   puStack_1c0 = &DataProcessingValidationError;
-                  fStack_1a8 = loopCounter;
-                  fStack_1a4 = *floatArrayPointer;
+                  StackFloatValueA = loopCounter;
+                  StackFloatValueB = *floatArrayPointer;
                   iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
                   if (iterationCount != 0) GOTO_SecurityTerminationA3;
                 }
@@ -20181,8 +20181,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                   StackDataWordC = StackDataWordA;
                   StackDataWordB = 0;
                   puStack_1c0 = &SystemStatusValidationError;
-                  fStack_1a8 = loopCounter;
-                  fStack_1a4 = floatValue;
+                  StackFloatValueA = loopCounter;
+                  StackFloatValueB = floatValue;
                   iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
                   if (iterationCount != 0) GOTO_SecurityTerminationA3;
                 }
@@ -20194,7 +20194,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 puStack_1c0 = &DataIntegrityValidationErrorA;
                 StackDataWordC = StackDataWordA;
                 StackDataWordB = 0;
-                fStack_1a8 = (float)(validationOutcome / 0x30);
+                StackFloatValueA = (float)(validationOutcome / 0x30);
                 iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
@@ -20202,7 +20202,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 StackDataWordB = 0;
                 puStack_1c0 = &DataIntegrityValidationErrorB;
                 StackDataWordC = StackDataWordA;
-                fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
+                StackFloatValueA = (float)CONCAT31(StackFloatValueA._1_3_,1);
                 iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
@@ -20219,7 +20219,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 StackDataWordB = 0;
                 puStack_1c0 = &DataIntegrityValidationErrorD;
                 StackDataWordC = StackDataWordA;
-                fStack_1a8 = 0.0;
+                StackFloatValueA = 0.0;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
@@ -101095,13 +101095,13 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordC uStack_1b0
 
-// 原始变量名：fStack_1a8 - 栈浮点值A
+// 原始变量名：StackFloatValueA - 栈浮点值A
 // 功能：存储浮点运算的栈值
-#define StackFloatValueA fStack_1a8
+#define StackFloatValueA StackFloatValueA
 
-// 原始变量名：fStack_1a4 - 栈浮点值B
+// 原始变量名：StackFloatValueB - 栈浮点值B
 // 功能：存储浮点运算的栈值
-#define StackFloatValueB fStack_1a4
+#define StackFloatValueB StackFloatValueB
 
 // 原始变量名：uStack_1a0 - 栈数据字D
 // 功能：存储数据处理过程中的临时数据字
