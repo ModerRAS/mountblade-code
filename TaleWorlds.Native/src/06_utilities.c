@@ -7437,8 +7437,12 @@ uint8_t SystemCommunicationBufferA7;
 // 系统通信缓冲区A8
 // 功能：用于系统间通信的数据缓冲区
 uint8_t SystemCommunicationBufferA8;
-uint8_t UNK_180a338e0;
-uint8_t UNK_180a33930;
+// 系统通信缓冲区A9
+// 功能：用于系统间通信的数据缓冲区
+uint8_t SystemCommunicationBufferA9;
+// 系统状态缓冲区A0
+// 功能：用于存储系统状态信息的缓冲区
+uint8_t SystemStatusBufferA0;
 uint8_t UNK_180a2c968;
 uint8_t UNK_180a33988;
 uint8_t UNK_180a339b0;
