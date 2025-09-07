@@ -126765,38 +126765,38 @@ void ProcessUtf8ToUtf16CharacterEncodingConversion(long long CharacterCode, int 
 {
   uint32_t Utf16Char;
   uint MemoryAllocationIndex;
-  uint64_t *systemEventTemplatePointer;
+  uint64_t *SystemEventTemplatePointer;
   long long DataStructureCounter;
-  bool shouldReturnSource;
+  bool ShouldReturnSource;
   long long MemoryBoundaryEnd;
   uint SystemChecksumValue;
-  float ProcessedFloatValue8;
+  float ProcessedFloatValue;
   float NormalizedParameterValue;
-  uint8_t aProcessingStatus [32];
-  long long lStack_168;
-  int iStack_160;
-  float fStack_158;
-  float fStack_154;
-  uint8_t aCoreEngineUnsignedValue [256];
+  uint8_t ProcessingStatusBuffer[32];
+  long long StackBuffer168;
+  int StackBuffer160;
+  float StackBuffer158;
+  float StackBuffer154;
+  uint8_t CoreEngineBuffer[256];
   unsigned long long SystemStackFlag;
   
   MemoryBoundaryEnd = SystemConfigurationHandle;
-  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)aProcessingStatus;
-  systemEventTemplatePointer = *(uint64_t **)(SystemConfigurationHandle + 0x1af8);
-  MemoryAllocationIndex = *(uint *)((long long)systemEventTemplatePointer + 0xc);
-  SystemCallMemoryAllocation(&fStack_158);
+  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)ProcessingStatusBuffer;
+  SystemEventTemplatePointer = *(uint64_t **)(SystemConfigurationHandle + 0x1af8);
+  MemoryAllocationIndex = *(uint *)((long long)SystemEventTemplatePointer + 0xc);
+  SystemCallMemoryAllocation(&StackBuffer158);
   SystemChecksumValue = 0;
-  ProcessedFloatValue8 = (float)(int)Utf8SourcePointer[1];
+  ProcessedFloatValue = (float)(int)Utf8SourcePointer[1];
   NormalizedParameterValue = (float)(int)*Utf8SourcePointer;
-  shouldReturnSource = NormalizedParameterValue == 0.0;
-  if (ProcessedFloatValue8 == 0.0) {
+  ShouldReturnSource = NormalizedParameterValue == 0.0;
+  if (ProcessedFloatValue == 0.0) {
     SystemChecksumValue = 2;
   }
-  if ((NormalizedParameterValue <= 0.0) && (NormalizedParameterValue = NormalizedParameterValue + fStack_158, NormalizedParameterValue <= 4.0)) {
+  if ((NormalizedParameterValue <= 0.0) && (NormalizedParameterValue = NormalizedParameterValue + StackBuffer158, NormalizedParameterValue <= 4.0)) {
     NormalizedParameterValue = 4.0;
   }
-  if ((ProcessedFloatValue8 <= 0.0) && (ProcessedFloatValue8 = ProcessedFloatValue8 + fStack_154, ProcessedFloatValue8 <= 4.0)) {
-    ProcessedFloatValue8 = 4.0;
+  if ((ProcessedFloatValue <= 0.0) && (ProcessedFloatValue = ProcessedFloatValue + StackBuffer154, ProcessedFloatValue <= 4.0)) {
+    ProcessedFloatValue = 4.0;
   }
   *(float *)(MemoryBoundaryEnd + 0x1c04) = NormalizedParameterValue;
   *(float *)(MemoryBoundaryEnd + 0x1c08) = ProcessedFloatValue8;
