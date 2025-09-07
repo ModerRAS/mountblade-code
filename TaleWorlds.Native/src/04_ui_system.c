@@ -4388,14 +4388,14 @@ undefined8 GetUIStatusFlag(void)
       sourcePointer = srcBuffer2;
       do {
         processedPixels = processedPixels + 0x10;
-        SourceVector2 = pmovzxbd(XmmRegister2,ZEXT416(*(uint *)(SourceOffset + (longlong)SourcePointer)));
-        SourceVector2 = pmulld(SourceVector2,BlendFactorVector);
-        SourceVector1 = pmovzxbd(XmmRegister1,ZEXT416(*SourcePointer));
-        BlendedVector1._0_4_ = SourceVector2._0_4_ + SourceVector1._0_4_ + 2 >> ShiftVector;
-        BlendedVector1._4_4_ = SourceVector2._4_4_ + SourceVector1._4_4_ + 2 >> ShiftVector;
-        BlendedVector1._8_4_ = SourceVector2._8_4_ + SourceVector1._8_4_ + 2 >> ShiftVector;
-        BlendedVector1._12_4_ = SourceVector2._12_4_ + SourceVector1._12_4_ + 2 >> ShiftVector;
-        BlendedVector2 = pshuflw(ZEXT416(*sourcePointer),BlendedVector1,0xd8);
+        sourceVector2 = pmovzxbd(xmmRegister2,ZEXT416(*(uint *)(sourceOffset + (longlong)sourcePointer)));
+        sourceVector2 = pmulld(sourceVector2,blendFactorVector);
+        sourceVector1 = pmovzxbd(xmmRegister1,ZEXT416(*sourcePointer));
+        blendedVector1._0_4_ = sourceVector2._0_4_ + sourceVector1._0_4_ + 2 >> shiftVector;
+        blendedVector1._4_4_ = sourceVector2._4_4_ + sourceVector1._4_4_ + 2 >> shiftVector;
+        blendedVector1._8_4_ = sourceVector2._8_4_ + sourceVector1._8_4_ + 2 >> shiftVector;
+        blendedVector1._12_4_ = sourceVector2._12_4_ + sourceVector1._12_4_ + 2 >> shiftVector;
+        blendedVector2 = pshuflw(ZEXT416(*sourcePointer),blendedVector1,0xd8);
         BlendedVector2 = pshufhw(SourceVector1,BlendedVector2,0xd8);
         pixelValue = *(uint *)(sourceOffset + 4 + (longlong)sourcePointer);
         BlendResult._4_4_ = SourceVector._8_4_;
