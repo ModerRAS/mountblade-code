@@ -817,7 +817,7 @@
 
 // 线程本地存储相关常量
 #define ThreadLocalStorageOffset 0x17c
-#define ThreadLocalStorageBaseAddressAddress 0x180c4f450
+#define ThreadLocalStorageBaseAddress 0x180c4f450
 
 // 异常处理上下文状态常量
 #define ExceptionHandlerContextStateOffset 0x58                    // 异常处理上下文状态偏移量
@@ -839,18 +839,22 @@
 #define TertiaryExceptionHandlerAddress 0x0001808d74b1
 
 // 系统函数地址常量
-#define ResourceDataValidationFunctionPtr 0x00018076b630
-#define SystemStatusRetrievalFunctionPtr 0x0001808e64d0
-#define RangeValidationFunctionPtr 0x000180867960
-#define DataProcessingFunctionPtr 0x000180867660
-#define ExceptionHandlerFunctionPtr 0x00018008d310
-#define OperationResultCheckFunctionPtr 0x0001808fd8d4
-#define CallbackExecutionFunctionPtr 0x0001808fd024
+#define ResourceDataValidationFunctionAddress 0x00018076b630
+#define SystemStatusRetrievalFunctionAddress 0x0001808e64d0
+#define RangeValidationFunctionAddress 0x000180867960
+#define DataProcessingFunctionAddress 0x000180867660
+#define ExceptionHandlerFunctionAddress 0x00018008d310
+#define OperationResultCheckFunctionAddress 0x0001808fd8d4
+#define CallbackExecutionFunctionAddress 0x0001808fd024
 
-// 系统对象指针地址常量
-#define MutexObjectPtr 0x180c91910
-#define ExceptionCriticalSectionPtr 0x180c82210
-#define ExceptionHandlerParameterStoragePtr 0x180c82238
+// 系统对象地址常量
+#define SystemMutexObjectSecondaryAddress 0x180c91f70
+#define SystemExceptionInitializerAddressA 0x180d49e70
+#define SystemExceptionInitializerAddressB 0x180d49f10
+#define SystemMutexCleanupAddressA 0x180c96690
+#define SystemMutexCleanupAddressB 0x180c966f0
+#define SystemMutexCleanupAddressC 0x180c96740
+
 
 // Goto 标签宏定义 - 用于美化代码
 #define GOTO_ValidationFailed goto ExecuteSecurityValidation
@@ -5436,17 +5440,6 @@ extern void* SystemPrimaryResourceTable;
 // 功能：处理异常数据缓冲区并设置异常处理器（备用实现）
 #define ProcessExceptionDataBufferA1 Unwind_180906b40
 
-// 互斥锁对象指针
-// 功能：存储互斥锁对象的指针，用于线程同步
-#define SystemMutexObjectPtr 0x180c91910
-
-// 异常临界区指针
-// 功能：异常处理的临界区对象，确保线程安全
-#define ExceptionCriticalSectionPtr 0x180c82210
-
-// 异常处理参数存储指针
-// 功能：存储异常处理的函数参数，用于异常处理流程
-#define ExceptionHandlerParameterStoragePtr 0x180c82238
 
 // 系统数据变量语义化宏定义
 // 数据配置表A0
@@ -90321,7 +90314,7 @@ void Unwind_18090cfd0(DataBuffer operationBase,int64_t dataBuffer)
   int inputParameter;
   
   ExceptionContextPtr = *(DataBuffer *)(dataBuffer + ValidationResultOffset);
-  inputParameter = _Mtx_unlock(0x180c91970);
+  inputParameter = _Mtx_unlock(SystemMutexObjectAddress + 0x60);
   if (inputParameter != 0) {
     __Throw_C_error_std__YAXH_Z(inputParameter);
   }
@@ -90337,7 +90330,7 @@ void Unwind_18090cfe0(DataBuffer operationBase,int64_t dataBuffer)
   int inputParameter;
   
   ExceptionContextPtr = *(DataBuffer *)(dataBuffer + 0x90);
-  inputParameter = _Mtx_unlock(0x180c91970);
+  inputParameter = _Mtx_unlock(SystemMutexObjectAddress + 0x60);
   if (inputParameter != 0) {
     __Throw_C_error_std__YAXH_Z(inputParameter);
   }
