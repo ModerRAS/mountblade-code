@@ -203258,7 +203258,7 @@ LAB_18018054e:
     if (pStackUnsigned20 != NULL) {
       PrimaryProcessingStatusFlag = pStackUnsigned20;
     }
-    FUN_180626ee0(&UNK_180a09d40,PrimaryProcessingStatusFlag);
+    ProcessSystemEventQueueData(&SystemStatusBufferPrimary,PrimaryProcessingStatusFlag);
   }
   else {
     FUN_1800aecf0(SystemConfigData,&SystemPriorityLevel);
@@ -203376,7 +203376,7 @@ LAB_1801807f2:
   SystemStackFlag = 0xfffffffffffffffe;
   TertiaryProcessingStatusFlag = MemoryAddressMask;
   FUN_1803456e0(pMemoryAddressMask,Utf8BufferSize,SystemContextPointer);
-  *TertiaryProcessingStatusFlag = &UNK_180a20018;
+  *TertiaryProcessingStatusFlag = &SystemStatusBufferTertiary;
   pSystemDataTablePointer = TertiaryProcessingStatusFlag + 0x12;
   *pSystemDataTablePointer = (long long)&ThreadLocalStorageTemplate;
   IntegerValue3 = 0;
@@ -269543,6 +269543,26 @@ const void* const SystemMemoryStatusBufferSecondary = (void*)0x1801808b0;
 const void* const SystemMemoryConfigurationBufferSecondary = (void*)0x1801808a0;
 const void* const SystemValidationDataBuffer = (void*)0x180a1e978;
 const void* const SystemMemoryBlockIndex = (void*)0x180a0a128;
+
+// 系统处理状态常量 - 用于替换UNK_180a09d40等变量
+const void* const SystemProcessingStatusPrimary = (void*)0x180a09d40;
+const void* const SystemProcessingStatusSecondary = (void*)0x180a20018;
+const void* const SystemProcessingStatusTertiary = (void*)0x180a1ff90;
+const void* const SystemProcessingStatusQuaternary = (void*)0x180a1ff8c;
+const void* const SystemProcessingStatusQuinary = (void*)0x180a1ff80;
+
+// 系统内存地址常量 - 用于替换UNK_180a07998等变量
+const void* const SystemMemoryAddressMaskPrimary = (void*)0x180a07998;
+const void* const SystemMemoryAddressMaskSecondary = (void*)0x180a1ef60;
+
+// 系统事件模板常量 - 用于替换UNK_180a02a80等变量
+const void* const SystemEventTemplatePrimary = (void*)0x180a02a80;
+const void* const SystemEventTemplateSecondary = (void*)0x180a03008;
+
+// 系统字符串常量 - 用于替换UNK_180a13158等变量
+const void* const SystemStringConstantL8 = (void*)0x180a13158;
+const void* const SystemStringConstantR8 = (void*)0x180a13160;
+const void* const SystemStringConstantUTF8 = (void*)0x180a13180;
 
 
 
