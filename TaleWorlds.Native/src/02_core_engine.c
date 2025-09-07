@@ -117918,7 +117918,21 @@ void CheckSystemStatusAndValidation(void)
 
 
 
-26e4(uint64_t OutputBuffer,float *OutputBufferSize,long long Utf8InputPointervoid FUN_1801226e4(uint64_t OutputBuffer,float *OutputBufferSize,long long Utf8InputPointer
+/**
+ * @brief 处理系统浮点数距离计算和验证
+ * 
+ * 该函数负责处理系统浮点数的距离计算和数据验证，包括浮点数
+ * 运算和数据检查。用于系统数学计算和数据处理。
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小（浮点数指针）
+ * @param Utf8InputPointer UTF8输入数据指针（长整型）
+ * 
+ * @note 原始函数名：FUN_1801226e4
+ * @note 包含浮点数距离计算和验证操作
+ * @note 用于系统数学计算和数据处理流程
+ */
+void ProcessSystemFloatDistanceAndValidation(uint64_t OutputBuffer, float *OutputBufferSize, long long Utf8InputPointer)
 {
   float *pSystemContextPrimaryFloat;
   float SystemContextSecondaryFloat;
