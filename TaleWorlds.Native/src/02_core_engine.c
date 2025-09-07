@@ -37245,8 +37245,8 @@ void ProcessCoreEngineSystemInitialization(uint64_t systemContext, uint64_t conf
   unsigned long long StackProcessingValue;
   unsigned long long SystemStackFlag;
   
-  SystemStackRegisterFlagB0 = 0xfffffffffffffffe;
-  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)CoreSystemStatusContext1F8;
+  SystemStackRegisterFlag = 0xfffffffffffffffe;
+  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)CoreSystemStatusContext;
   StringBuffer = (**(code **)**(uint64_t **)(SystemCallbackTable + 0x18))();
   EncodingValidationResult = 0;
   if (StringBuffer != '\0') {
