@@ -1757,14 +1757,8 @@
 // 原始函数名：FUN_1809420a0 - 模块2异常处理器配置
 #define ConfigureModuleExceptionHandler2 FUN_1809420a0
 
-/**
- * @brief 设置默认异常处理器A8
- * 
- * 该函数负责设置默认的异常处理器，用于处理系统异常
- * 
- * @note 原始函数名：FUN_1809420c0
- */
-#define SetDefaultExceptionHandlerA8 FUN_1809420c0
+// 原始函数名：FUN_1809420c0 - 模块3异常处理器配置
+#define ConfigureModuleExceptionHandler3 FUN_1809420c0
 
 /**
  * @brief 设置默认异常处理器A9
@@ -6073,15 +6067,15 @@ uint32_t UtilityPrimaryModuleConfig;
 uint32_t UtilitySecondaryModuleConfig;
 uint32_t UtilityTertiaryModuleConfig;
 uint32_t UtilityQuaternaryModuleConfig;
-uint32_t UtilityQuinaryModuleConfig;
-uint32_t UtilitySenaryModuleConfig;
+uint32_t UtilityFifthModuleConfig;
+uint32_t UtilitySixthModuleConfig;
 
 /**
  * @brief 工具模块激活状态
  */
 bool UtilityModulePrimaryActiveState;
-uint32_t UtilityModuleSeptenaryConfig;
-uint32_t UtilityModuleOctonaryConfig;
+uint32_t UtilityModuleSeventhConfig;
+uint32_t UtilityModuleEighthConfig;
 bool UtilityModuleSecondaryActiveState;
 
 /**
@@ -6090,10 +6084,10 @@ bool UtilityModuleSecondaryActiveState;
 void* UtilityModulePrimaryResourcePtr;
 void* UtilityModulePrimaryMemoryPtr;
 void* UtilityModuleSecondaryMemoryPtr;
-uint32_t UtilityModuleNonaryConfig;
-uint32_t UtilityModuleDenaryConfig;
-uint32_t UtilityModuleUndenaryConfig;
-uint32_t UtilityModuleDuodenaryConfig;
+uint32_t UtilityModuleNinthConfig;
+uint32_t UtilityModuleTenthConfig;
+uint32_t UtilityModuleEleventhConfig;
+uint32_t UtilityModuleTwelfthConfig;
 void* UtilityModuleSecondaryResourcePtr;
 
 /**
@@ -8432,48 +8426,48 @@ uint8_t SystemMemoryManagementBlockC2;
 uint8_t SystemMemoryManagementBlockC3;
 uint8_t SystemMemoryManagementBlockC4;
 // 系统状态标志变量
-uint8_t utilitySystemStatusFlag1;
-uint8_t utilitySystemStatusFlag2;
-uint8_t utilitySystemStatusFlag3;
-uint8_t utilitySystemStatusFlag4;
-uint8_t utilitySystemStatusFlag5;
-uint8_t utilitySystemStatusFlag6;
-uint8_t utilitySystemStatusFlag7;
-uint8_t utilitySystemStatusFlag8;
+uint8_t UtilitySystemStatusFlagPrimary;
+uint8_t UtilitySystemStatusFlagSecondary;
+uint8_t UtilitySystemStatusFlagTertiary;
+uint8_t UtilitySystemStatusFlagQuaternary;
+uint8_t UtilitySystemStatusFlagFifth;
+uint8_t UtilitySystemStatusFlagSixth;
+uint8_t UtilitySystemStatusFlagSeventh;
+uint8_t UtilitySystemStatusFlagEighth;
 // 系统资源管理数据块
-uint8_t SystemResourceManagementBlock1;
-uint8_t SystemResourceManagementBlock2;
-uint8_t SystemResourceManagementBlock3;
-uint8_t SystemResourceManagementBlock4;
-uint8_t SystemResourceManagementBlock5;
-uint8_t SystemResourceManagementBlock6;
-uint8_t SystemResourceManagementBlock7;
-uint8_t SystemResourceManagementBlock8;
-uint8_t SystemResourceManagementBlock9;
-uint8_t SystemResourceManagementBlock10;
-uint8_t SystemResourceManagementBlock11;
-uint8_t SystemResourceManagementBlock12;
-uint8_t SystemResourceManagementBlock13;
-uint8_t SystemResourceManagementBlock14;
-uint8_t SystemResourceManagementBlock15;
-uint8_t SystemResourceManagementBlock16;
-uint8_t SystemResourceManagementBlock17;
-uint8_t SystemResourceManagementBlock18;
-uint8_t SystemResourceManagementBlock19;
+uint8_t SystemResourceManagementBlockPrimary;
+uint8_t SystemResourceManagementBlockSecondary;
+uint8_t SystemResourceManagementBlockTertiary;
+uint8_t SystemResourceManagementBlockQuaternary;
+uint8_t SystemResourceManagementBlockFifth;
+uint8_t SystemResourceManagementBlockSixth;
+uint8_t SystemResourceManagementBlockSeventh;
+uint8_t SystemResourceManagementBlockEighth;
+uint8_t SystemResourceManagementBlockNinth;
+uint8_t SystemResourceManagementBlockTenth;
+uint8_t SystemResourceManagementBlockEleventh;
+uint8_t SystemResourceManagementBlockTwelfth;
+uint8_t SystemResourceManagementBlockThirteenth;
+uint8_t SystemResourceManagementBlockFourteenth;
+uint8_t SystemResourceManagementBlockFifteenth;
+uint8_t SystemResourceManagementBlockSixteenth;
+uint8_t SystemResourceManagementBlockSeventeenth;
+uint8_t SystemResourceManagementBlockEighteenth;
+uint8_t SystemResourceManagementBlockNineteenth;
 // 系统异常处理数据块
-uint8_t SystemExceptionHandlerBlock1;
-uint8_t SystemExceptionHandlerBlock2;
-uint8_t SystemExceptionHandlerBlock3;
-uint8_t SystemExceptionHandlerBlock4;
+uint8_t SystemExceptionHandlerBlockPrimary;
+uint8_t SystemExceptionHandlerBlockSecondary;
+uint8_t SystemExceptionHandlerBlockTertiary;
+uint8_t SystemExceptionHandlerBlockQuaternary;
 // 系统临时异常处理器
 uint8_t SystemTemporaryExceptionHandler;
 // 系统调试数据块
-uint8_t SystemDebugDataBlock1;
-uint8_t SystemDebugDataBlock2;
-uint8_t SystemDebugDataBlock3;
+uint8_t SystemDebugDataBlockPrimary;
+uint8_t SystemDebugDataBlockSecondary;
+uint8_t SystemDebugDataBlockTertiary;
 // 系统调试数据块
-uint8_t SystemDebugDataBlock4;
-uint8_t SystemDebugDataBlock5;
+uint8_t SystemDebugDataBlockQuaternary;
+uint8_t SystemDebugDataBlockFifth;
 
 // 函数: uint8_t UtilityHandleEvent1;
 uint8_t UtilityHandleEvent1;
