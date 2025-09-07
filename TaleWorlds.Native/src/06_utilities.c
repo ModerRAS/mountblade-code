@@ -66006,15 +66006,15 @@ void SetDefaultExceptionHandlerA4(void)
 
 
 /**
- * @brief 初始化异常处理器指针A5
+ * @brief 设置默认异常处理器A5
  * 
- * 初始化异常处理器指针A5，将其设置为默认异常处理器B。
- * 这个函数在系统初始化期间调用，确保异常处理系统的正常运行。
+ * 该函数将异常处理器指针A5设置为默认异常处理器B。
+ * 这是一个简单的异常处理器重置函数。
  * 
- * @param void 无参数
- * @return void 无返回值
+ * @note 原始函数名：Unwind_1809077c0
+ * @note 简化实现：设置默认异常处理器
  */
-void Unwind_1809077c0(void)
+void SetDefaultExceptionHandlerA5(void)
 
 {
   ExceptionHandlerPointerA5 = &DefaultExceptionHandlerB;
@@ -66025,15 +66025,15 @@ void Unwind_1809077c0(void)
 
 
 /**
- * @brief 初始化异常处理器指针A6
+ * @brief 设置默认异常处理器A6
  * 
- * 初始化异常处理器指针A6，将其设置为默认异常处理器B。
- * 这个函数在系统初始化期间调用，确保异常处理系统的正常运行。
+ * 该函数将异常处理器指针A6设置为默认异常处理器B。
+ * 这是一个简单的异常处理器重置函数。
  * 
- * @param void 无参数
- * @return void 无返回值
+ * @note 原始函数名：Unwind_1809077d0
+ * @note 简化实现：设置默认异常处理器
  */
-void Unwind_1809077d0(void)
+void SetDefaultExceptionHandlerA6(void)
 
 {
   ExceptionHandlerPointerA6 = &DefaultExceptionHandlerB;
@@ -66044,15 +66044,15 @@ void Unwind_1809077d0(void)
 
 
 /**
- * @brief 初始化异常处理器指针A7
+ * @brief 设置默认异常处理器A7
  * 
- * 初始化异常处理器指针A7，将其设置为默认异常处理器B。
- * 这个函数在系统初始化期间调用，确保异常处理系统的正常运行。
+ * 该函数将异常处理器指针A7设置为默认异常处理器B。
+ * 这是一个简单的异常处理器重置函数。
  * 
- * @param void 无参数
- * @return void 无返回值
+ * @note 原始函数名：Unwind_1809077e0
+ * @note 简化实现：设置默认异常处理器
  */
-void Unwind_1809077e0(void)
+void SetDefaultExceptionHandlerA7(void)
 
 {
   ExceptionHandlerPointerA7 = &DefaultExceptionHandlerB;
@@ -66063,15 +66063,15 @@ void Unwind_1809077e0(void)
 
 
 /**
- * @brief 初始化异常处理器指针A8
+ * @brief 设置默认异常处理器A8
  * 
- * 初始化异常处理器指针A8，将其设置为默认异常处理器B。
- * 这个函数在系统初始化期间调用，确保异常处理系统的正常运行。
+ * 该函数将异常处理器指针A8设置为默认异常处理器B。
+ * 这是一个简单的异常处理器重置函数。
  * 
- * @param void 无参数
- * @return void 无返回值
+ * @note 原始函数名：Unwind_1809077f0
+ * @note 简化实现：设置默认异常处理器
  */
-void Unwind_1809077f0(void)
+void SetDefaultExceptionHandlerA8(void)
 
 {
   ExceptionHandlerPointerA8 = &DefaultExceptionHandlerB;
@@ -66110,7 +66110,19 @@ void ProcessSystemStatusUpdateA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 验证数据处理A0
+ * 
+ * 该函数负责验证数据缓冲区，遍历验证状态指针并执行验证操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907810
+ */
+void ValidateDataProcessingA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -66132,7 +66144,20 @@ void Unwind_180907810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据A0
+ * 
+ * 该函数处理异常数据，从数据缓冲区中提取异常信息并调用ProcessExceptionData函数。
+ * 确保异常数据的正确处理和系统状态的维护。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常数据信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907820
+ */
+void ProcessExceptionDataA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(*(int64_t *)(dataBuffer + 0x20) + 0x48,
