@@ -45011,7 +45011,7 @@ void ProcessSystemMemoryAllocation(long long *Utf8InputBuffer
       FinalizeSystemFlag(&pBufferOffset);
     }
   }
-LAB_18007738d:
+SystemCleanupCompletionPoint:
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(StackUnsigned20 ^ (unsigned long long)aStackValidationData);
 }
@@ -45342,7 +45342,7 @@ unsigned long long ProcessSystemEventAndDataStructure(long long CharacterCode,ui
     BufferStatusPrimary = GetMemoryBlockData(*(void *)(CharacterCode + 0x1b0));
   }
   if (*(int *)(BufferStatusPrimary + 0x200) == 0) {
-LAB_180077847:
+SystemBufferValidationStart:
     if ((*(byte *)(CharacterCode + 0x100) & 4) != 0) goto LAB_180077879;
     BufferStatusPrimary = *(long long *)(CharacterCode + 0x1b8);
     ProcessingResult = 0;
@@ -45360,7 +45360,7 @@ ProcessCoreEngineDataStructureExit:
       BufferStatusPrimary = GetMemoryBlockData(*(void *)(CharacterCode + 0x1b0));
     }
     if (*(int *)(BufferStatusPrimary + 0x1fc) * 3 == 0) goto LAB_180077847;
-LAB_180077879:
+SystemBufferValidationError:
     SystemValidationResult = ValidateSystemConfiguration(CharacterCode);
     if ((SystemValidationResult == '\0') || (Utf16EndPointer == 0)) {
       ProcessCharacterCodeWithFlag(CharacterCode,0);
