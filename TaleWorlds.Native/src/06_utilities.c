@@ -20591,7 +20591,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   int64_t offsetStack294;
   uint indexStack28c;
   ByteFlag flagStack288;
-  ByteFlag workingBuffer238 [512];
+  ByteFlag DataTransferBufferA [512];
   uint64_t securityStack38;
   
   securityStack38 = ExceptionEncryptionKey ^ (uint64_t)securityBuffer;
@@ -38922,7 +38922,7 @@ void CleanupStackMemory(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupBufferMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(*(int64_t *)(dataBuffer + 0x20) + 0x60);
+  InitializeSystemComponentsA0(*(int64_t )(dataBuffer + 0x20) + 0x60);
   return;
 }
 
@@ -38931,7 +38931,7 @@ void CleanupBufferMemory(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupArrayMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(*(int64_t *)(dataBuffer + 0x20) + 0x60);
+  InitializeSystemComponentsA0(*(int64_t )(dataBuffer + 0x20) + 0x60);
   return;
 }
 
@@ -38975,7 +38975,7 @@ void CleanupObjectMemory(DataBuffer operationBase,int64_t dataBuffer)
   operationResult = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
   ExecuteMemoryOperation(validationContext + 0x3e0,0x20,0x20,CleanupResourceHandler,operationResult);
-  FUN_18005d580();
+  CleanupSystemResourcesA2();
   ExecuteMemoryOperation(validationContext + 0x138,8,0x20,ValidateDataHandler);
   ExecuteMemoryOperation(validationContext + 0x38,8,0x20,ValidateDataHandler);
   return;
@@ -38994,7 +38994,7 @@ void Unwind_CleanupClassMemory(DataBuffer operationBase,int64_t dataBuffer)
   validationStatus = SystemCleanupFlagfffffffe;
   *(int64_t *)(dataContext + 0x15d8) =
        *(int64_t *)(&DAT_180c8ed30 + (int64_t)*(int *)(dataContext + 0x15e0) * 8) + -100000;
-  FUN_180090b80((int64_t *)(dataContext + 0x8b0));
+  ValidateSystemConfigurationA0((int64_t *)(dataContext + 0x8b0));
   *(DataWord *)(dataContext + 0x15e8) = 0;
   validationContextPointer = *(int64_t **)(dataContext + 0x15d0);
   *(DataBuffer *)(dataContext + 0x15d0) = 0;
@@ -61233,7 +61233,7 @@ void Unwind_180908660(DataBuffer operationBase,int64_t dataBuffer)
   operationResult = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
   ExecuteMemoryOperation(validationContext + 0x3e0,0x20,0x20,CleanupResourceHandler,operationResult);
-  FUN_18005d580();
+  CleanupSystemResourcesA2();
   ExecuteMemoryOperation(validationContext + 0x138,8,0x20,ValidateDataHandler);
   ExecuteMemoryOperation(validationContext + 0x38,8,0x20,ValidateDataHandler);
   return;
