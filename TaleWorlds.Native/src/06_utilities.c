@@ -21273,8 +21273,8 @@ ProcessDataSecurityValidation:
   DataWord transformedFloatValue;
   DataWord floatResultA_07;
   DataWord floatResultA_08;
-  DataWord register_XMM6_Da;
-  DataWord register_XMM6_Dc;
+  DataWord FloatRegisterA;
+  DataWord FloatRegisterB;
   DataWord SystemOperationResult;
   char systemNameBufferX [4];
   uint8_t *InputParam28;
@@ -21381,8 +21381,8 @@ ProcessDataSecurityValidation:
         }
         inputParameter3 = ConvertDataFormatA2(operationResult4,(int64_t)&validationBuffer + 4,0);
         if (inputParameter3 == 0) {
-          StackFloatValueA = register_XMM6_Da;
-          StackFloatValueB = register_XMM6_Dc;
+          StackFloatValueA = FloatRegisterA;
+          StackFloatValueB = FloatRegisterB;
           if (StackFloatRegisterD != 1.0) {
             StackFloatRegisterB = StackFloatRegisterD;
             StackInputParameterC = &FloatingPointValidationErrorA;
@@ -21534,8 +21534,8 @@ ValidateDataSecurity:
   DataWord processedFloatValue;
   DataWord transformedFloatValue;
   DataWord floatResultA_07;
-  DataWord register_XMM6_Da;
-  DataWord register_XMM6_Dc;
+  DataWord FloatRegisterA;
+  DataWord FloatRegisterB;
   DataWord SystemOperationResult;
   char systemNameBufferX [4];
   uint8_t *InputParam28;
@@ -21627,8 +21627,8 @@ ValidateDataSecurity:
     }
     inputParameter3 = ConvertDataFormatA2(operationResult3,(int64_t)&validationBuffer + 4,0);
     if (inputParameter3 == 0) {
-      StackFloatValueA = register_XMM6_Da;
-      StackFloatValueB = register_XMM6_Dc;
+      StackFloatValueA = FloatRegisterA;
+      StackFloatValueB = FloatRegisterB;
       if (ProcessedFloatValue._4_4_ != 1.0) {
         StackFloatRegisterB = ProcessedFloatValue._4_4_;
         StackInputParameterC = &FloatingPointValidationErrorA;
@@ -25880,7 +25880,7 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
   DataWord inputAccumulatorRegisterEAX;
   ByteTriple dataFlags;
   int LoopCounter;
-  DataWord in_register_00000004;
+  DataWord AddressRegister;
   uint register_EBP;
   char carryFlag;
   int *StackIntegerPointerD;
@@ -25889,18 +25889,18 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
   dataFlags = (ByteTriple)((uint)inputAccumulatorRegisterEAX >> 8);
   validationResult = (char)inputAccumulatorRegisterEAX + -0x57 + carryFlag;
   memoryBaseAddress = CONCAT31(dataFlags,validationResult);
-  *(DataWord *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
+  *(DataWord *)CONCAT44(AddressRegister,memoryBaseAddress) = memoryBaseAddress;
   *(uint *)(operationBase + -0x565dff77) = *(uint *)(operationBase + -0x565dff77) & register_EBP;
-  *(DataWord *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
+  *(DataWord *)CONCAT44(AddressRegister,memoryBaseAddress) = memoryBaseAddress;
   StackIntegerPointerD = dataBuffer;
-  *(DataWord *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
-  *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) =
-       *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + validationResult;
-  *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) =
-       *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + validationResult;
+  *(DataWord *)CONCAT44(AddressRegister,memoryBaseAddress) = memoryBaseAddress;
+  *(char *)CONCAT44(AddressRegister,memoryBaseAddress) =
+       *(char *)CONCAT44(AddressRegister,memoryBaseAddress) + validationResult;
+  *(char *)CONCAT44(AddressRegister,memoryBaseAddress) =
+       *(char *)CONCAT44(AddressRegister,memoryBaseAddress) + validationResult;
   LoopCounter = CONCAT31(dataFlags,validationResult + '\x18');
   *dataBuffer = *dataBuffer + LoopCounter;
-  exceptionHandlerCallback = (char *)((int64_t)&StackIntegerPointerD + CONCAT44(in_register_00000004,LoopCounter));
+  exceptionHandlerCallback = (char *)((int64_t)&StackIntegerPointerD + CONCAT44(AddressRegister,LoopCounter));
   *exceptionHandlerCallback = *sourceCharacterPointer + validationResult + '\x18';
   validationFlag = (code *)swi(3);
   (*validationFlag)();
