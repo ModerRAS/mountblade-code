@@ -75415,13 +75415,30 @@ void ExecuteExceptionHandlerContextCallbackDuplicate(DataBuffer operationBase,in
 
 
 
-void Unwind_180909460(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器状态和资源
+ * 
+ * 该函数检查数据缓冲区的状态标志，如果满足条件则执行系统终止操作，
+ * 并清理相关的异常处理器状态和资源。这是一个异常处理的清理函数，
+ * 确保在异常处理完成后正确释放资源。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器状态信息
+ * 
+ * @note 原始函数名：Unwind_180909460
+ * @note 该函数检查0xb1和0xb0位置的标志，决定是否执行清理操作
+ * @note 如果异常处理器上下文存在且标志为空，则终止系统并重置状态
+ */
+void CleanupExceptionHandlerStateAndResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
+  // 检查状态标志是否为空
   if (*(char *)(dataBuffer + 0xb1) == '\0') {
+    // 如果异常处理器上下文存在且另一个标志为空，则终止系统
     if ((*(char *)(dataBuffer + 0xb0) == '\0') && (*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) != 0)) {
         TerminateSystemE0();
     }
+    // 重置异常处理器状态和资源
     *(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) = 0;
     *(DataBuffer *)(dataBuffer + 0xa8) = 0;
     *(ByteFlag *)(dataBuffer + 0xb0) = 0;
@@ -75431,13 +75448,31 @@ void Unwind_180909460(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调函数
+ * 
+ * 该函数从数据缓冲区的指定位置获取异常处理器回调函数指针，
+ * 并执行该回调函数。这是异常处理机制中的核心函数，
+ * 负责在异常发生时调用相应的处理函数。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器回调信息
+ * @param operationFlagA 操作标志A（当前未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180909470
+ * @note 该函数通过0x70偏移量获取异常处理器回调函数指针
+ * @note 回调函数接收多个参数，包括操作标志和系统清理标志
+ */
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
   
+  // 获取异常处理器回调函数指针
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + ExceptionHandlerCallbackOffset10);
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    // 执行异常处理器回调函数
     (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x70),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
