@@ -5993,6 +5993,16 @@ void ProcessUIComponentList(undefined8 uiContext,undefined8 *dataSource,undefine
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 处理UI系统消息
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小指针
+ * @param resultPointer 结果指针
+ * @return undefined8* 返回处理结果
+ * @note 该函数负责处理UI系统中的各种消息，包括组件创建、更新和销毁
+ */
 undefined8 *
 ProcessUIMessage(undefined8 uiContext,undefined8 *dataSource,undefined8 targetBuffer,longlong *bufferSize,
              ulonglong *resultPointer)
