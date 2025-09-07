@@ -107976,7 +107976,7 @@ unsigned long long ProcessSystemContextWithFullParameters(char *SystemContextPoi
       *(float *)(AllocatedMemorySize + 0x166c) = SystemContextPrimaryFloat + SystemContextPrimaryFloat;
       *(float *)(AllocatedMemorySize + 0x1670) = SystemContextSecondaryFloat + SystemContextSecondaryFloat;
       uStackX_10 = (unsigned long long)(uint)SystemContextPrimaryFloat2;
-      hasMemoryBoundaryChanged = FUN_180119960(SystemContextPointer,0,0x1000,&uStackX_10);
+      hasMemoryBoundaryChanged = ValidateSystemDataAndCheckStatus(SystemContextPointer,0,0x1000,&uStackX_10);
       UpdateSystemStatusEx(1);
       *(float *)(DataStructureCounter + 0x100) =
            *(float *)(DataStructureCounter + 0x100) - (float)(int)(*(float *)(AllocatedMemorySize + 0x166c) * 0.5);
@@ -107989,7 +107989,7 @@ unsigned long long ProcessSystemContextWithFullParameters(char *SystemContextPoi
       if (SystemContextPrimaryFloat2 <= 0.0) {
         SystemContextPrimaryFloat2 = 0.0;
       }
-      hasMemoryBoundaryChanged = FUN_180119960(SystemContextPointer,0,0x3000,&uStackX_10);
+      hasMemoryBoundaryChanged = ValidateSystemDataAndCheckStatus(SystemContextPointer,0,0x3000,&uStackX_10);
       if (Utf16InputPointer != '\0') {
         SystemContextPrimaryFloat1 = *(float *)(AllocatedMemorySize + 0x19f8);
         CalculatedFilterValue = *(float *)(DataStructureCounter + 0x2a0);
@@ -108078,7 +108078,7 @@ uint8_t ProcessFloatDataAndSystemConfiguration(void)
     secondaryFloatValue = *(float *)(systemContext + 0x1670);
     stackParameter3 = *(uint32_t *)(systemContext + 0x166c);
     primaryDataStorage = *(uint32_t *)(systemContext + 0x1670);
-    systemVariable = FUN_18013e000(systemContext + 0x1b90,&DataStackBuffer);
+    systemVariable = AllocateSystemMemoryEx(systemContext + 0x1b90,&DataStackBuffer);
     *(float *)(systemContext + 0x166c) = primaryFloatValue + primaryFloatValue;
     *(float *)(systemContext + 0x1670) = secondaryFloatValue + secondaryFloatValue;
     localStatusFlag = 0;
