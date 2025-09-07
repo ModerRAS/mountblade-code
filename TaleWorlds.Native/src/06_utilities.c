@@ -57,6 +57,16 @@
 #define ResourceDescriptorQuaternaryOffset 0x1c
 #define SystemContextBufferOffset 8
 
+// 数据配置和内存管理常量定义
+#define DataConfigurationOffset 0x90
+#define MemoryRegionIteratorOffset 0x20
+#define MemoryRegionBoundOffset 0x28
+#define MemoryRegionDataReferenceOffset 8
+#define MemoryRegionPointerFieldOffset 0x10
+#define MemoryRegionDataBaseOffset 0x18
+#define SystemStateFlagsExtendedOffset 0x2d8
+#define ResourceConfigurationPrimaryOffset 0x10
+
 // Goto 标签宏定义 - 用于美化代码
 #define GOTO_ValidationFailed goto ExecuteSecurityValidation
 #define GOTO_SecurityCheckFailed goto ExecuteSystemSecurityCheck
@@ -8632,7 +8642,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
     ProcessingFlags = ProcessingFlagMask;
     
     // 执行核心功能
-    OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + 0x90), *(int64_t *)(SystemContextArray[0] + SystemContextOffset),
+    OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + DataConfigurationOffset), *(int64_t *)(SystemContextArray[0] + SystemContextOffset),
                           &DataProcessingBuffer);
     
     // 处理执行结果
@@ -8703,7 +8713,7 @@ void ProcessResourceCleanup(void)
     CleanupCounter = 0;
     ResourceCount = 0;
     CleanupFlags = ProcessingFlagMask;
-    OperationResult = ExecuteCoreFunction(*(uint64_t *)(SystemRegistry + 0x90),*(int64_t *)(SystemContext + SystemContextOffset),
+    OperationResult = ExecuteCoreFunction(*(uint64_t *)(SystemRegistry + DataConfigurationOffset),*(int64_t *)(SystemContext + SystemContextOffset),
                           &FunctionCallBuffer);
     if (OperationResult == 0) {
       if (0 < ResourceCount) {
@@ -8794,7 +8804,7 @@ void ValidateSystemState(void)
   uint64_t systemSecurityBuffer;          // 系统安全缓冲区
   
   // 检查系统上下文中的状态标志位（第7位）
-  if ((*(uint32_t *)(systemContextPointer + 0x2d8) >> 7 & 1) != 0) {
+  if ((*(uint32_t *)(systemContextPointer + SystemStateFlagsExtendedOffset) >> 7 & 1) != 0) {
     ReleaseResource();
   }
   
@@ -96636,7 +96646,7 @@ void SetDefaultExceptionHandler01(void)
 void SetDefaultExceptionHandler02(void)
 
 {
-  _DAT_180bf9c30 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerU = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -96657,7 +96667,7 @@ void SetDefaultExceptionHandler02(void)
 void SetDefaultExceptionHandler03(void)
 
 {
-  _DAT_180bf9c90 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerV = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -96678,7 +96688,7 @@ void SetDefaultExceptionHandler03(void)
 void SetDefaultExceptionHandler04(void)
 
 {
-  _DAT_180bf9cf0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerW = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -96699,7 +96709,7 @@ void SetDefaultExceptionHandler04(void)
 void SetDefaultExceptionHandler05(void)
 
 {
-  _DAT_180bf9d50 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerX = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -96720,7 +96730,7 @@ void SetDefaultExceptionHandler05(void)
 void SetDefaultExceptionHandler06(void)
 
 {
-  _DAT_180bf9db0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerY = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -96741,7 +96751,7 @@ void SetDefaultExceptionHandler06(void)
 void SetDefaultExceptionHandler07(void)
 
 {
-  _DAT_180bf9e10 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerZ = &DefaultExceptionHandlerB;
   return;
 }
 

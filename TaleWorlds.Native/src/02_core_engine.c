@@ -111982,7 +111982,19 @@ unsigned long long ProcessSystemContextWithMixedParameters(long long SystemConte
 
 
 
-uint8_t FUN_18011d36f(float SystemContextPointer,float Utf8BufferSize,unsigned long long Utf16InputPointer,uint64_t Utf16EndPointer
+/**
+ * 处理UTF-16字符编码和转换
+ * 
+ * 该函数处理UTF-16字符的编码转换，包括计算过滤值、
+ * 处理内存块大小、管理字符串缓冲区等操作。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint8_t 处理结果状态
+ */
+uint8_t ProcessUtf16EncodingAndConversion(float SystemContextPointer,float Utf8BufferSize,unsigned long long Utf16InputPointer,uint64_t Utf16EndPointer
 {
   float SystemContextFloat1;
   float SystemContextFloat2;
@@ -113390,36 +113402,44 @@ CoordinateTransformationExit:
  * 该函数根据不同的模式处理浮点数据，进行过滤计算和范围限制。
  * 主要用于系统数据的浮点运算和参数调整。
  * 
- * @param SystemContextPointer 系统上下文指针
- * @param Utf8BufferSize 缓冲区大小参数
+ * @param ContextValue 系统上下文值
+ * @param BufferSize 缓冲区大小参数
  * @return 处理结果状态
  */
-char ProcessFloatingPointDataAndCalculate(float SystemContextPointer, float Utf8BufferSize)
+ * 
+ * 该函数根据不同的模式处理浮点数据，进行过滤计算和范围限制。
+ * 主要用于系统数据的浮点运算和参数调整。
+ * 
+ * @param ContextValue 系统上下文值
+ * @param BufferSize 缓冲区大小参数
+ * @return 处理结果状态
+ */
+char ProcessFloatingPointDataAndCalculate(float ContextValue, float BufferSize)
 {
-  int OperationMode;
-  int LockResult;
-  int FlagValue;
+  int ProcessingMode;
+  int LockStatus;
+  int ConfigurationFlag;
   long long SystemContext;
-  float *ProcessingStatusFlag;
-  int RegisterValueEDI;
-  long long RegisterGeneral14;
-  char StatusFlag;
+  float *StatusFlagPointer;
+  int RegisterValue;
+  long long DataRegister;
+  char ResultStatus;
   float NormalizedValue;
   float FilterCoefficient;
-  float CalculatedFilterValue;
+  float CalculatedResult;
   float ScaledValue;
-  float BaseFloatValue;
-  float SecondaryFloatValue;
-  float VectorRegisterX9;
-  float VectorRegisterX10;
-  float VectorRegisterX11;
-  float VectorRegisterX12;
-  float VectorRegisterX13;
+  float BaseValue;
+  float SecondaryValue;
+  float VectorValue1;
+  float VectorValue2;
+  float VectorValue3;
+  float VectorValue4;
+  float VectorValue5;
   float StackParameter1;
   uint64_t StackParameter2;
   float *OutputBuffer;
   
-  if (OperationMode == 1) {
+  if (ProcessingMode == 1) {
     if (*(char *)(SystemContext + 0x120) == StatusFlag) {
 LAB_18011ee7f:
       *(bool *)(SystemContext + 0x1b3c) = FlagValue != 0;
@@ -114854,7 +114874,19 @@ uint64_t ProcessByteDataValidation(uint *SystemContextPointer,byte *Utf8BufferSi
 
 
 
-uint64_t FUN_18012167b(uint64_t SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,byte Utf16EndPointer
+/**
+ * 转换UTF-8四字节序列到UTF-16（F0模式）
+ * 
+ * 该函数处理UTF-8编码的四字节序列转换，特别是以F0开头的序列。
+ * 它会验证字节格式并转换为对应的UTF-16字符。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针（字节值）
+ * @return uint64_t 转换结果，成功返回4
+ */
+uint64_t ConvertUtf8FourByteSequenceF0(uint64_t SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,byte Utf16EndPointer
 {
   uint Utf16Char;
   uint *in_R10;
@@ -114881,7 +114913,19 @@ uint64_t FUN_18012167b(uint64_t SystemContextPointer,long long Utf8BufferSize,ui
 
 
 
-uint64_t FUN_1801216a7(uint64_t SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,byte Utf16EndPointer
+/**
+ * 转换UTF-8四字节序列到UTF-16（F4模式）
+ * 
+ * 该函数处理UTF-8编码的四字节序列转换，特别是以F4开头的序列。
+ * 它会验证字节格式并转换为对应的UTF-16字符。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针（字节值）
+ * @return uint64_t 转换结果，成功返回4
+ */
+uint64_t ConvertUtf8FourByteSequenceF4(uint64_t SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,byte Utf16EndPointer
 {
   uint Utf16Char;
   uint *in_R10;
