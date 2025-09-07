@@ -219319,7 +219319,25 @@ ProcessCharacterCodeBufferData(uint64_t CharacterCode,uint64_t *CharacterCodeSiz
 
 
 uint64_t *
-FUN_180189aa0(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16的字符编码转换
+ * 
+ * 该函数负责将UTF-8编码的字符数据转换为UTF-16编码格式，
+ * 主要功能包括：
+ * - 解析UTF-8字符序列
+ * - 转换为UTF-16编码
+ * - 管理字符编码状态
+ * - 处理字符数据的内存分配
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 转换后的UTF-16数据指针
+ * 
+ * @note 原始函数名：FUN_180189aa0
+ */
+uint64_t * ConvertUtf8ToUtf16Encoding(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -219377,7 +219395,23 @@ uint64_t * ProcessCharacterCodeTripleData(uint64_t *CharacterCode,uint64_t *Char
 
 
 
-uint64_t * FUN_180189bc0(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer
+/**
+ * @brief 处理系统事件模板数据转换
+ * 
+ * 该函数负责处理系统事件模板数据的转换工作，主要功能包括：
+ * - 解析系统事件模板数据
+ * - 转换数据格式
+ * - 管理内存分配和数据复制
+ * - 处理事件模板的状态更新
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return uint64_t* 转换后的数据指针
+ * 
+ * @note 原始函数名：FUN_180189bc0
+ */
+uint64_t * ProcessSystemEventTemplateData(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t MemoryAllocationIndex;
@@ -219409,7 +219443,22 @@ uint64_t * FUN_180189bc0(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uin
 
 
 
-long long * FUN_180189c50(long long *CharacterCode,long long *CharacterCodeSize
+/**
+ * @brief 分配和初始化字符代码缓冲区
+ * 
+ * 该函数负责为字符代码处理分配和初始化缓冲区，主要功能包括：
+ * - 分配内存缓冲区
+ * - 初始化字符代码数据结构
+ * - 设置缓冲区参数
+ * - 管理内存分配状态
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @return long long* 分配的缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180189c50
+ */
+long long * AllocateAndInitializeCharacterCodeBuffer(long long *CharacterCode,long long *CharacterCodeSize)
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
@@ -220006,7 +220055,21 @@ FUN_18018a8c0(long long *CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8
 
 
 
-8a960(uint64_t *CharacterCodevoid FUN_18018a960(uint64_t *CharacterCode
+/**
+ * @brief 初始化字符状态缓冲区
+ * 
+ * 该函数负责初始化字符状态缓冲区，主要功能包括：
+ * - 分配字符状态缓冲区内存
+ * - 初始化缓冲区数据
+ * - 设置字符状态参数
+ * - 准备字符处理环境
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18018a960
+ */
+void InitializeCharacterStatusBuffer(uint64_t *CharacterCode)
 {
   uint64_t *CharacterStatusBuffer;
   
@@ -220020,7 +220083,22 @@ FUN_18018a8c0(long long *CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8
 
 
 
-8a9a0(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_18018a9a0(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * @brief 清理系统栈数据
+ * 
+ * 该函数负责清理系统栈数据，主要功能包括：
+ * - 清理系统栈的指定区域
+ * - 释放相关内存资源
+ * - 处理栈数据的清理工作
+ * - 维护系统栈的完整性
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18018a9a0
+ */
+void CleanupSystemStackData(uint64_t CharacterCode,long long SystemBufferSize)
 {
   ProcessSystemStackData(SystemBufferSize + 0x40);
   ProcessSystemStackData(SystemBufferSize + 0x20);
