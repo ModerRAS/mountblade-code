@@ -72675,36 +72675,36 @@ void ProcessUIDataTransformation(float *uiContext,int64_t dataSource,float *targ
       batchIterations = batchIterations - 1;
     } while (batchIterations != 0);
   }
-  if (uiOperationResult1 < bufferSize) {
-    uiOperationResult0 = uiOperationResult1 + 1;
-    localFloat3 = uiContext[uiOperationResult1];
-    pfloatResult3 = (float *)(dataSource + (longlong)uiOperationResult1 * 4);
-    vectorComponentX = vectorComponentX + localFloat3 * *pfloatResult3;
-    floatResult5 = floatResult5 + localFloat3 * pfloatResult3[1];
-    floatResult6 = floatResult6 + localFloat3 * pfloatResult3[2];
-    floatResult7 = floatResult7 + localFloat3 * pfloatResult3[3];
-    if (uiOperationResult0 < bufferSize) {
-      uiOperationResult1 = uiOperationResult1 + 2;
-      localFloat3 = uiContext[uiOperationResult0];
-      pfloatResult3 = (float *)(dataSource + (longlong)uiOperationResult0 * 4);
-      floatResult8 = floatResult8 + localFloat3 * *pfloatResult3;
-      floatResult9 = floatResult9 + localFloat3 * pfloatResult3[1];
-      localFloat20 = localFloat20 + localFloat3 * pfloatResult3[2];
-      localFloat21 = localFloat21 + localFloat3 * pfloatResult3[3];
-      if (uiOperationResult1 < bufferSize) {
-        localFloat3 = uiContext[uiOperationResult1];
-        pfloatResult3 = (float *)(dataSource + (longlong)uiOperationResult1 * 4);
-        vectorComponentX = vectorComponentX + localFloat3 * *pfloatResult3;
-        floatResult5 = floatResult5 + localFloat3 * pfloatResult3[1];
-        floatResult6 = floatResult6 + localFloat3 * pfloatResult3[2];
-        floatResult7 = floatResult7 + localFloat3 * pfloatResult3[3];
+  if (matrixOperationCount < bufferSize) {
+    remainingOperations1 = matrixOperationCount + 1;
+    matrixValue1 = uiContext[matrixOperationCount];
+    pTransformData1 = (float *)(dataSource + (longlong)matrixOperationCount * 4);
+    vectorComponentX = vectorComponentX + matrixValue1 * *pTransformData1;
+    vectorComponentY = vectorComponentY + matrixValue1 * pTransformData1[1];
+    vectorComponentZ = vectorComponentZ + matrixValue1 * pTransformData1[2];
+    vectorComponentW = vectorComponentW + matrixValue1 * pTransformData1[3];
+    if (remainingOperations1 < bufferSize) {
+      matrixOperationCount = matrixOperationCount + 2;
+      matrixValue1 = uiContext[remainingOperations1];
+      pTransformData1 = (float *)(dataSource + (longlong)remainingOperations1 * 4);
+      transformAccumulatorX = transformAccumulatorX + matrixValue1 * *pTransformData1;
+      transformAccumulatorY = transformAccumulatorY + matrixValue1 * pTransformData1[1];
+      transformAccumulatorZ = transformAccumulatorZ + matrixValue1 * pTransformData1[2];
+      transformAccumulatorW = transformAccumulatorW + matrixValue1 * pTransformData1[3];
+      if (matrixOperationCount < bufferSize) {
+        matrixValue1 = uiContext[matrixOperationCount];
+        pTransformData1 = (float *)(dataSource + (longlong)matrixOperationCount * 4);
+        vectorComponentX = vectorComponentX + matrixValue1 * *pTransformData1;
+        vectorComponentY = vectorComponentY + matrixValue1 * pTransformData1[1];
+        vectorComponentZ = vectorComponentZ + matrixValue1 * pTransformData1[2];
+        vectorComponentW = vectorComponentW + matrixValue1 * pTransformData1[3];
       }
     }
   }
-  *targetBuffer = floatResult8 + vectorComponentX;
-  targetBuffer[1] = floatResult9 + floatResult5;
-  targetBuffer[2] = localFloat20 + floatResult6;
-  targetBuffer[3] = localFloat21 + floatResult7;
+  *targetBuffer = transformAccumulatorX + vectorComponentX;
+  targetBuffer[1] = transformAccumulatorY + vectorComponentY;
+  targetBuffer[2] = transformAccumulatorZ + vectorComponentZ;
+  targetBuffer[3] = transformAccumulatorW + vectorComponentW;
   return;
 }
 

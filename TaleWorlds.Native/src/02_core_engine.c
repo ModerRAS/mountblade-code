@@ -177181,7 +177181,7 @@ void ProcessCharacterCodeSystemCheckAndDataRegistry(long long CharacterCode, cha
         (**(code **)(SystemDataRegistry + 0x18))(SystemDataRegistry + 8,0,0);
       }
       UnicodeCodePoint = ProcessCharacterWithSystemData(aBufferOffset,&lStack_100);
-      FUN_18014e700(aSystemFlagF,UnicodeCodePoint);
+      ProcessCharacterWithSystemFlag(aSystemFlagF,UnicodeCodePoint);
       (*CharacterPointer)(CharacterCode,&SystemComparisonDataPrimary,*(long long *)(CharacterCode + 0xa8) + 0xc,0,aSystemFlagF,aDataProcessingFlags);
       if (pcStack_c8 != (code *)0x0) {
         (*pcStack_c8)(aSystemFlagF,0,0);
@@ -177194,7 +177194,7 @@ void ProcessCharacterCodeSystemCheckAndDataRegistry(long long CharacterCode, cha
       CharacterCode = *(long long **)(*(long long *)(CharacterCode + 0xa8) + 0x88);
       CharacterPointer = *(code **)(*CharacterCode + 0x60);
       UnicodeCodePoint = ProcessCharacterWithSystemData(aSystemFlagF,&lStack_100);
-      FUN_18014e700(aDataProcessingFlags,UnicodeCodePoint);
+      ProcessCharacterWithSystemFlag(aDataProcessingFlags,UnicodeCodePoint);
       SystemCheckResult = (*CharacterPointer)(CharacterCode,&SystemComparisonDataPrimary,*(long long *)(CharacterCode + 0xa8) + 0xc,0,aDataProcessingFlags);
       if (pcStack_110 != (code *)0x0) {
         (*pcStack_110)(aDataProcessingFlags,0,0);
@@ -177270,8 +177270,8 @@ uint64_t * ProcessSystemMemoryBufferSetup(uint64_t *CharacterCode
 
 4a9d0(uint64_t *CharacterCodevoid FUN_18014a9d0(uint64_t *CharacterCode
 {
-  FUN_18014e570();
-  FUN_18014e4d0();
+  ProcessCharacterWithSystemOperations();
+  ProcessCharacterWithMemoryOperations();
   FUN_18014e470();
   *CharacterCode = &SystemNullTemplate;
   if (CharacterCode[1] != 0) {
