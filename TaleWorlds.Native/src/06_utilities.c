@@ -168,15 +168,19 @@
 #define ExceptionDataTable3Offset 0x18                 // 异常数据表3偏移量
 #define ExceptionDataTable6Offset 0x20                 // 异常数据表6偏移量
 #define SystemContextDataOffset 0x20                   // 系统上下文数据偏移量
-#define ExceptionStatusOffset 0x30                    // 异常状态寄存器偏移量
-#define ExceptionHandlerCallbackOffset10 0xd0         // 异常处理器回调偏移量10
-#define ExceptionDataPtrOffset 0x40                   // 异常数据指针偏移量
-#define ExceptionDataPtrSecondaryOffset 0x68          // 异常数据指针二级偏移量
 
 // 数据集合处理常量定义
 #define DataCollectionItemSize 0x14               // 数据集合中每个项目的大小
 #define DataCollectionContextOffset 8             // 数据集合上下文偏移量
 #define DataProcessingBufferSize 4                 // 数据处理缓冲区大小
+
+// 数据处理偏移量常量定义
+#define DataArrayCountOffset 0x18                  // 数据数组计数偏移量
+#define DataArrayBaseOffset 0x20                   // 数据数组基础偏移量
+#define FloatValueStorageOffset 0x20               // 浮点值存储偏移量
+#define FloatStatusFlagOffset 0x35                 // 浮点状态标志偏移量
+#define DataPointerMultiplier 4                    // 数据指针乘数
+#define DataPointerMultiplierSecondary 8           // 数据指针次级乘数
 #define ExceptionHandlerCallbackOffset10 0x10     // 异常处理回调偏移量10
 #define ExceptionHandlerDataOffsetA8 0xa8
 #define ExceptionHandlerCallbackOffset38 0x38
