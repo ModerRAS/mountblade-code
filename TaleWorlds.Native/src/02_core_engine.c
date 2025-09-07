@@ -168050,7 +168050,7 @@ LAB_18014293f:
     if (cStackX_8 == '\0') goto LAB_180142973;
     Utf16EndPointer = 0;
   }
-  FUN_180142a00(SystemContextPointer,&cStackX_8,MemoryBlockListHead,Utf16EndPointer,Utf8BufferSize);
+  ProcessSystemEncodingAndData(SystemContextPointer,&cStackX_8,MemoryBlockListHead,Utf16EndPointer,Utf8BufferSize);
   MemoryBlockListHead = (long long *)CONCAT71(uStackX_9,cStackX_8);
 LAB_180142973:
   return MemoryBlockListHead + 8;
@@ -212321,7 +212321,7 @@ LAB_18018ce62:
     }
   }
 LAB_18018cfa6:
-  FUN_180142b20(aFunctionAddress8);
+  ProcessSystemFunctionCall(aFunctionAddress8);
   SystemTimeoutCounter = *(uint *)(Utf16InputPointer + 0x10);
   Utf16Char9 = (unsigned long long)SystemTimeoutCounter;
   if (*(long long *)(Utf16InputPointer + 8) != 0) {
@@ -219014,7 +219014,7 @@ uint64_t * InitializeSystemContext(uint64_t *SystemContextPointer,long long Utf8
   FUN_18038a910(SystemContextPointer + 0x54d);
   *(void *)((long long)SystemContextPointer + 0x3004) = 0;
   *(void *)((long long)SystemContextPointer + 0x300c) = 0;
-  FUN_180142b20(SystemContextPointer + 0x603);
+  ProcessSystemFunctionCall(SystemContextPointer + 0x603);
   FUN_180142b20(SystemContextPointer + 0x66d);
   FUN_180397660(SystemContextPointer + 0x6d6);
   SystemContextPointer[0x7ce] = 0;

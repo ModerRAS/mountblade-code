@@ -43266,26 +43266,46 @@ void InitializeBasicExceptionHandler(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_1809038c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化辅助异常处理器
+ * 
+ * 该函数负责初始化辅助的异常处理器，设置临时异常处理器，
+ * 清理状态标志，然后设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809038c0
+ */
+void InitializeAuxiliaryExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t validationContext;
+  int64_t auxiliaryHandlerContext;
   
-  validationContext = *(int64_t *)(dataBuffer + 0x88);
-  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x30) != 0) {
+  auxiliaryHandlerContext = *(int64_t *)(dataBuffer + 0x88);
+  *(DataBuffer *)(auxiliaryHandlerContext + 0x28) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(auxiliaryHandlerContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x30) = 0;
-  *(DataWord *)(validationContext + 0x40) = 0;
-  *(DataBuffer *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(auxiliaryHandlerContext + 0x30) = 0;
+  *(DataWord *)(auxiliaryHandlerContext + 0x40) = 0;
+  *(DataBuffer *)(auxiliaryHandlerContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_1809038d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 调用异常处理器回调函数
+ * @details 从数据缓冲区获取异常处理器回调函数指针并调用，用于系统异常处理
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理器信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名: Unwind_1809038d0
+ */
+void InvokeExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -43299,7 +43319,16 @@ void Unwind_1809038d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809038e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 调用异常处理器回调函数（偏移0x90）
+ * @details 从数据缓冲区获取异常处理器回调函数指针并调用，用于系统异常处理
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理器信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名: Unwind_1809038e0
+ */
+void InvokeExceptionHandlerCallback90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -43313,31 +43342,40 @@ void Unwind_1809038e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809038f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 配置异常处理器上下文
+ * @details 从数据缓冲区获取验证上下文，设置多个异常处理器并调用相关回调函数
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含验证上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名: Unwind_1809038f0
+ */
+void ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t validationContext;
+  int64_t exceptionHandlerContext;
   
-  validationContext = *(int64_t *)(dataBuffer + 0x40);
-  if (*(FunctionPointer**)(validationContext + 0x4c0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x4c0))(validationContext + 0x4b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
+  if (*(FunctionPointer**)(exceptionHandlerContext + 0x4c0) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + 0x4c0))(exceptionHandlerContext + 0x4b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(validationContext + 0x488) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x490) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + 0x488) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x490) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x490) = 0;
-  *(DataWord *)(validationContext + 0x4a0) = 0;
-  *(DataBuffer *)(validationContext + 0x488) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x468) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x470) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + 0x490) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x4a0) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x488) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x468) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x470) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x470) = 0;
-  *(DataWord *)(validationContext + 0x480) = 0;
-  *(DataBuffer *)(validationContext + 0x468) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x470) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x480) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x468) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -65915,7 +65953,7 @@ void SetSystemExceptionHandlerB(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180909320(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -65996,7 +66034,7 @@ void Unwind_180909320(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909330(void)
+void DestroyGlobalMutexA(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -66005,7 +66043,7 @@ void Unwind_180909330(void)
 
 
 
-void Unwind_180909340(void)
+void DestroyGlobalMutexB(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -66014,7 +66052,7 @@ void Unwind_180909340(void)
 
 
 
-void Unwind_180909350(DataBuffer operationBase,int64_t dataBuffer)
+void DestroyDataBufferMutex(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x128));
@@ -66023,7 +66061,7 @@ void Unwind_180909350(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909360(DataBuffer operationBase,uint *dataBuffer)
+void ReleaseDataBufferWithValidation(DataBuffer operationBase,uint *dataBuffer)
 
 {
   if ((*dataBuffer & 1) != 0) {
