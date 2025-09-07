@@ -13751,7 +13751,7 @@ void RenderUIElement(undefined8 uiContext,uint dataSource,uint targetBuffer,unde
 {
   float *pfloatResult;
   char localChar2;
-  bool bVar3;
+  bool IsGeometryValid;
   longlong contextData;
   float *psecondaryValue;
   int localInt6;
