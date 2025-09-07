@@ -6253,8 +6253,8 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 // 异常处理系统全局变量宏定义
 #define ExceptionHandlerTablePointer GlobalExceptionHandlerPointerA2     // 异常处理器表指针
 // 系统异常处理状态变量声明
-uint8_t SystemExceptionHandlerState;      // _DAT_180d49248 - 系统异常处理状态
-uint8_t SystemExceptionCleanupFlag;       // _DAT_180d49258 - 系统异常清理标志
+uint8_t SystemExceptionHandlerState;      // 系统异常处理状态
+uint8_t SystemExceptionCleanupFlag;       // 系统异常清理标志
 uint8_t SystemTerminationFlag;           // _DAT_180d49220 - 系统终止标志
 uint8_t SystemResetInProgressFlag;        // _DAT_180d49230 - 系统重置进行中标志
 uint8_t SystemCriticalSectionFlag;       // _DAT_180d49270 - 系统临界区标志
@@ -58914,7 +58914,20 @@ void CleanupExceptionHandlerContext4D0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_1809064e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理上下文验证函数4E0
+ * 
+ * 该函数负责验证异常处理上下文的有效性，检查特定偏移量处的数据状态。
+ * 如果发现异常状态，会调用相应的系统终止函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809064e0
+ */
+#define ValidateExceptionHandlerContext4E0 Unwind_1809064e0
+
+void ValidateExceptionHandlerContext4E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -58933,7 +58946,20 @@ void Unwind_1809064e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809064f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理上下文重置函数4F0
+ * 
+ * 该函数负责重置异常处理上下文，清理特定偏移量处的数据。
+ * 确保异常处理上下文处于已知的清洁状态。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809064f0
+ */
+#define ResetExceptionHandlerContext4F0 Unwind_1809064f0
+
+void ResetExceptionHandlerContext4F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
