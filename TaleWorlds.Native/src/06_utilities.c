@@ -9771,9 +9771,9 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   }
   componentData = *(int64_t *)(systemHandle + COMPONENT_DATA_OFFSET);
   if (systemHandle == 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
-  if (*(int32_t *)(systemHandle + COMPONENT_STATUS_OFFSET) == -1) {
+  if (*(int32_t *)(systemHandle + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
     queryResult = ProcessInputData(systemHandle,dataValidationBuffer);
     if ((int32_t)queryResult != 0) {
       return queryResult;
@@ -9792,7 +9792,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
           loopIndex = componentSearchIndex;
           do {
             if (*componentPointer == dataValidationBuffer) {
-              if (-1 < (int32_t)loopIndex) {
+              if (ComponentInactiveStatus < (int32_t)loopIndex) {
                 return 0;
               }
               break;
@@ -9804,7 +9804,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
         }
         componentCount = componentCount + 1;
         if (*(int32_t *)(componentData + COMPONENT_CAPACITY_OFFSET) < componentCount) {
-          componentCapacity = (int32_t)((float)*(int32_t *)(componentData + COMPONENT_CAPACITY_OFFSET) * 1.5);
+          componentCapacity = (int32_t)((float)*(int32_t *)(componentData + COMPONENT_CAPACITY_OFFSET) * ComponentCapacityGrowthFactor);
           bufferSize = componentCount;
           if (componentCount <= componentCapacity) {
             bufferSize = componentCapacity;
@@ -9915,7 +9915,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
           return systemOperationResult;
         }
         if ((int32_t)moduleDataPtr[5] <= (int32_t)componentInfoPtr) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         resourceInfoPtr = contextDataPtr + RESOURCE_DATA_OFFSET;
         if (contextDataPtr == (int64_t *)0x0) {
@@ -9934,7 +9934,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
         componentDataPtr = componentDataPtr + COMPONENT_DATA_OFFSET;
         componentInfoPtr = (int64_t *)(uint64_t)((int32_t)componentInfoPtr + 1);
       }
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
   }
   if (initializationStatus == 0x1e) {
@@ -10076,7 +10076,7 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
     return resourceDecrementStatus;
   }
   if (*(int *)(localResourceDecrementBuffer[0] + 0x4c) < 1) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   decrementOperationResult = *(int *)(localResourceDecrementBuffer[0] + 0x4c) + -1;
   *(int *)(localResourceDecrementBuffer[0] + 0x4c) = decrementOperationResult;
@@ -10367,7 +10367,7 @@ DataWord ReleaseStackResource(void)
   // 检查栈数据指针
   stackDataPointer = (int64_t *)(stackResourcePointer + 0x10);
   if (*stackDataPointer == 0) {
-    return 0x1c;  // 返回资源无效错误代码
+    return ResourceInvalidErrorCode;  // 返回资源无效错误代码
   }
   
   // 释放栈资源（注意：此函数不会返回）
@@ -10445,7 +10445,7 @@ DataBuffer ValidateMemoryAccess(int64_t memoryContext)
     MemoryAccessPointer = MemoryAccessPointer + -8;
   }
   if (*(int64_t *)(MemoryAccessPointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(MemoryAccessPointer + 0x10),1);
@@ -10482,7 +10482,7 @@ DataWord GetSystemStatus(void)
     resourcePointer = systemContext + -8;
   }
   if (*(int64_t *)(resourcePointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(resourcePointer + 0x10),1);
@@ -10589,7 +10589,7 @@ DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
     if ((int)validationStatus == 0) {
       if (contextData[0] != 0) {
         if (*(int64_t *)(contextData[0] + 8) == 0) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         validationStatus = ProcessResourceData(*(int64_t *)(contextData[0] + 8),*(DataWord *)(resourceDescriptor + 0x20),
                                        *(ByteFlag *)(resourceDescriptor + 0x24));
@@ -10629,7 +10629,7 @@ DataBuffer ValidateResourcePointerAccess(int64_t resourceDescriptor)
     if ((int)validationStatus == 0) {
       if (accessInfo[0] != 0) {
         if (*(int64_t *)(accessInfo[0] + 8) == 0) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         validationStatus = ProcessResourceData(*(int64_t *)(accessInfo[0] + 8),*(DataWord *)(resourceDescriptor + 0x18),
                               *(ByteFlag *)(resourceDescriptor + 0x1c));
@@ -10741,7 +10741,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
     }
     return 0;
   }
-  return 0x1c;
+  return ResourceInvalidErrorCode;
 }
 
 
@@ -10798,7 +10798,7 @@ uint64_t ProcessBatchDataOperations(int64_t batchDataDescriptor)
         if (operationResult != -1) {
           exceptionHandlerContext = *(int64_t *)(contextPointer + 0x20) + (int64_t)operationResult * 0x18;
           if ((exceptionHandlerContext == 0) || (exceptionHandlerContext = *(int64_t *)(exceptionHandlerContext + 8), exceptionHandlerContext == 0)) {
-            return 0x1c;
+            return ResourceInvalidErrorCode;
           }
           queryStatus = ProcessFloatingPointDataValidationA0(exceptionHandlerContext, *dataPointerArray, 0);
           if ((int32_t)queryStatus != 0) {
@@ -10859,7 +10859,7 @@ uint64_t ProcessUtilitySystemInitialization(void)
       if (entryIndex != -1) {
         resourceHandle = *(int64_t *)(baseAddress + 0x20) + (int64_t)entryIndex * 0x18;
         if ((resourceHandle == 0) || (resourceHandle = *(int64_t *)(resourceHandle + 8), resourceHandle == 0)) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         operationResult = ProcessFloatingPointDataValidationA0(resourceHandle,*dataPointer,0);
         if ((int)operationResult != 0) {
@@ -10915,7 +10915,7 @@ void InitializeMemoryPool(void)
 DataBuffer ReturnErrorStatus(void)
 
 {
-  return 0x1c;
+  return ResourceInvalidErrorCode;
 }
 
 
@@ -10963,7 +10963,7 @@ uint64_t ValidateDataArray(int64_t arrayDescriptor)
             return validationStatus;
           }
           if (*(int64_t *)(dataBuffer + 8) == 0) {
-            return 0x1c;
+            return ResourceInvalidErrorCode;
           }
           validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(dataBuffer + 8),*validationDataPointer,*(uint8_t *)(arrayDescriptor + 0x1c)
                                );
@@ -11032,7 +11032,7 @@ DataBuffer ValidateUtilitySystemState(void)
           return validationStatus;
         }
         if (*(int64_t *)(localDataBuffer + 8) == 0) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(localDataBuffer + 8),*dataValidationPointer,
                               *(ByteFlag *)(stackFramePointer + 0x1c));
@@ -11081,7 +11081,7 @@ void ExecuteNoOperationFunctionA0(void)
  */
 uint64_t ReturnConstantValueA0(void)
 {
-  return 0x1c;
+  return ResourceInvalidErrorCode;
 }
 
 
@@ -11109,7 +11109,7 @@ DataBuffer ValidateMemoryStructureA0(int64_t memoryContext)
     memoryHandle = memoryHandle + -8;
   }
   if (*(int64_t *)(memoryHandle + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(memoryHandle + 0x10),1);
@@ -11136,7 +11136,7 @@ DataWord CheckMemoryStructureA0(void)
     adjustedPointer = contextPointer + -8;
   }
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
@@ -11211,7 +11211,7 @@ DataBuffer ValidateResourceAccessChain(int64_t resourceHandle)
     accessChain = accessChain + -8;
   }
   if (*(int64_t *)(accessChain + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(accessChain + 0x10),1);
@@ -11244,7 +11244,7 @@ DataWord ValidateResourceHandleAndRelease(void)
     resourcePointer = resourceHandle + -8;
   }
   if (*(int64_t *)(resourcePointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(resourcePointer + 0x10),1);
@@ -11322,7 +11322,7 @@ DataBuffer ValidateAndTerminateProcess(int64_t contextHandle)
     adjustedPointer = 0;
   }
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
@@ -11351,7 +11351,7 @@ DataWord ValidateRegisterAndTerminate(void)
     adjustedPointer = 0;
   }
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
@@ -11425,7 +11425,7 @@ DataBuffer ValidateContextAndTerminate(int64_t contextHandle)
     systemContextBuffer = systemContextBuffer + -8;
   }
   if (*(int64_t *)(systemContextBuffer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(systemContextBuffer + 0x10),1);
@@ -11456,7 +11456,7 @@ DataWord ValidateRegisterAndTerminateB(void)
     adjustedPointer = systemRegisterValue + -8;
   }
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
@@ -11528,7 +11528,7 @@ DataBuffer ProcessResourceDescriptorValidation(int64_t resourceDescriptor)
     stackPointer = stackPointer + -8;
   }
   if (*(int64_t *)(stackPointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(stackPointer + 0x10),1);
@@ -11560,7 +11560,7 @@ DataWord ValidateResourceHandleAndReleaseAlternate(void)
     resourcePointer = resourceHandle + -8;
   }
   if (*(int64_t *)(resourcePointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(resourcePointer + 0x10),1);
@@ -11618,7 +11618,7 @@ DataBuffer ValidateResourceAndTerminate(int64_t resourceHandle)
     stackPointer = stackPointer + -8;
   }
   if (*(int64_t *)(stackPointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(stackPointer + 0x10),1);
@@ -11644,7 +11644,7 @@ DataWord ValidateRegisterResource(void)
     adjustedPointer = systemRegisterValue + -8;
   }
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
@@ -11706,7 +11706,7 @@ DataBuffer ValidateResourceAndTerminateB(int64_t resourceHandle)
     stackPointer = stackPointer + -8;
   }
   if (*(int64_t *)(stackPointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(stackPointer + 0x10),1);
@@ -11727,7 +11727,7 @@ DataWord NoOperationC(void)
     ResourceHandlePointer = ResourceHandlePointer + -8;
   }
   if (*(int64_t *)(ResourceHandlePointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(ResourceHandlePointer + 0x10),1);
@@ -11814,7 +11814,7 @@ DataBuffer ValidateResourceAndReleaseA(int64_t resourceParam)
     resourceContext = resourceContext + -8;
   }
   if (*(int64_t *)(resourceContext + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(resourceContext + 0x10),1);
@@ -11835,7 +11835,7 @@ DataWord NoOperationH(void)
     ResourceHandlePointer = ResourceHandlePointer + -8;
   }
   if (*(int64_t *)(ResourceHandlePointer + 0x10) == 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
   ReleaseResource(*(int64_t *)(ResourceHandlePointer + 0x10),1);
@@ -12009,7 +12009,7 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
     }
     return 0;
   }
-  return 0x1c;
+  return ResourceInvalidErrorCode;
 }
 
 
@@ -13632,7 +13632,7 @@ DataBuffer ManageResourceState(int64_t resourceManager,int64_t systemParams)
     }
     resourceCounter = *(int *)(resourceContext + 0x28);
     if (resourceCounter < 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     if (resourceCounter == 0) {
       return 0x4c;
@@ -15234,7 +15234,7 @@ DataBuffer ValidateParametersE1(DataWord validationFlags)
 DataBuffer CleanupSystemE0(void)
 
 {
-  return 0x1c;
+  return ResourceInvalidErrorCode;
 }
 
 
@@ -15363,7 +15363,7 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(DataBuffer *)(contextParameter + 0x98),dataParameter);
       }
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
   }
   return 0x1f;
@@ -15519,7 +15519,7 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
         }
         dataRecordIndex = *(int64_t *)(systemDataFlags + 0x20) + (int64_t)arrayIndex * 0x18;
         if (dataRecordIndex == 0) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         dataRecordIndex = *(int64_t *)(dataRecordIndex + 0x10);
         if (dataRecordIndex == 0) {
@@ -15610,7 +15610,7 @@ DataBuffer GetSystemStatusA0(void)
         }
         dataNodePointer = *(int64_t *)(systemFlags + 0x20) + (int64_t)arrayIndex * 0x18;
         if (dataNodePointer == 0) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         dataNodePointer = *(int64_t *)(dataNodePointer + 0x10);
         if (dataNodePointer == 0) {
@@ -17985,7 +17985,7 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
   
   // 检查组件数据状态
   if (0 < (int)componentContext[1]) {
-    return 0x1c; // 返回组件状态错误码
+    return ResourceInvalidErrorCode; // 返回组件状态错误码
   }
   
   // 最终安全检查和清理
@@ -18065,7 +18065,7 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
   // 验证数据完整性
   if ((int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f)) < 0) {
     if (0 < *(int *)(systemContext + 0x10)) {
-      return 0x1c; // 返回系统状态错误码
+      return ResourceInvalidErrorCode; // 返回系统状态错误码
     }
     if ((0 < (int)validationCounter) && (*exceptionHandlerContext != 0)) {
       // 调用安全清理函数
@@ -18121,7 +18121,7 @@ DataBuffer ConfigureSystemParameterDK0(int64_t *parameterContext)
   // 验证数据完整性
   if ((int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f)) < 0) {
     if (0 < (int)parameterContext[1]) {
-      return 0x1c; // 返回参数错误码
+      return ResourceInvalidErrorCode; // 返回参数错误码
     }
     if ((0 < (int)validationCounter) && (*parameterContext != 0)) {
       // 调用安全清理函数
@@ -18181,7 +18181,7 @@ uint64_t CleanupAndResetParameterContext(int64_t *parameterContext)
   parameterFlags = *(uint *)((int64_t)parameterContext + 0xc);
   if ((int)((parameterFlags ^ (int)parameterFlags >> 0x1f) - ((int)parameterFlags >> 0x1f)) < 0) {
     if (0 < (int)parameterContext[1]) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     if ((0 < (int)parameterFlags) && (*parameterContext != 0)) {
                     // WARNING: Subroutine does not return
@@ -18232,7 +18232,7 @@ DataBuffer InitializeSystemDataStructure(int64_t *systemContext)
   
   configurationValue = *(int *)((int64_t)systemContext + 0x24);
   if (configurationValue == -1) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   inputParameter = (int)systemContext[1];
   if (calculatedSize == inputParameter) {
@@ -18241,7 +18241,7 @@ DataBuffer InitializeSystemDataStructure(int64_t *systemContext)
       calculatedSize = 4;
     }
     if (((calculatedSize <= inputParameter) || ((int)systemContext[3] != inputParameter)) || ((int)systemContext[4] != -1)) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     dataFlags = (int)*(uint *)((int64_t)systemContext + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)systemContext + 0x1c) ^ dataFlags) - dataFlags) < calculatedSize) &&
@@ -18266,7 +18266,7 @@ DataBuffer InitializeSystemDataStructure(int64_t *systemContext)
     if (0 < (int)dataContext) {
       do {
         if ((int)operationBase[1] == 0) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         resourceIterator = (int64_t)(int)(*(uint *)(memoryBaseAddress + operationBase[2]) & (int)operationBase[1] - 1U);
         pcalculatedValue = (int *)(*operationBase + resourceIterator * 4);
@@ -18310,7 +18310,7 @@ DataBuffer UtilityNoOperationK(void)
       calculatedValue = 4;
     }
     if (((calculatedValue <= inputAccumulatorRegisterEAX) || ((int)registerContext[3] != inputAccumulatorRegisterEAX)) || ((int)registerContext[4] != -1)) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = (int)*(uint *)((int64_t)registerContext + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)registerContext + 0x1c) ^ operationResult) - operationResult) < calculatedValue) &&
@@ -18335,7 +18335,7 @@ DataBuffer UtilityNoOperationK(void)
     if (0 < (int)exceptionHandlerContext) {
       do {
         if ((int)registerContext[1] == 0) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         calculatedIndex = (int64_t)(int)(*(uint *)(validationStatus + registerContext[2]) & (int)registerContext[1] - 1U);
         operationResultPointer = (int *)(*registerContext + calculatedIndex * 4);
@@ -18363,7 +18363,7 @@ DataBuffer UtilityNoOperationK(void)
 DataBuffer GetSystemConfigurationSize(void)
 
 {
-  return 0x1c;
+  return ResourceInvalidErrorCode;
 }
 
 
@@ -18862,7 +18862,7 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
   memoryBaseAddress = InitializeSystemA1();
   if ((int)memoryBaseAddress == 0) {
     if ((int)operationBase[1] == 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = *dataBuffer;
     bufferPointer = (int64_t)(int)((int)operationBase[1] - 1U & systemDataBuffer);
@@ -19165,7 +19165,7 @@ DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
   DataBuffer *destinationPointer;
   
   if (bufferSize < (int)bufferPointer[1]) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   newBuffer = (DataBuffer *)0x0;
   if (bufferSize != 0) {
@@ -19288,7 +19288,7 @@ DataBuffer ValidateParameters(int64_t *contextPointer,int validationCount)
   int64_t exceptionHandlerContext;
   
   if (dataBuffer < (int)operationBase[1]) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContext = 0;
   if (dataBuffer != 0) {
@@ -22537,7 +22537,7 @@ SystemCheckpointB:
       return 0;
     }
   }
-  return 0x1c;
+  return ResourceInvalidErrorCode;
 }
 
 
@@ -23083,7 +23083,7 @@ DataBuffer ProcessDataA3(int64_t *DataHandle,int DataSize)
   BytePair *ResultBuffer;
   
   if (DataSize < (int)DataHandle[1]) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   ValidationBuffer = (BytePair *)0x0;
   if (DataSize != 0) {
@@ -23199,7 +23199,7 @@ DataBuffer ValidateDataBlockStatusA0(int64_t *operationBase,DataWord *dataBuffer
   DataWord parameterBuffer [8];
   
   if (*(int *)(operationBase[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   parameterBuffer[0] = *dataBuffer;
   systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + 8))(*(DataBuffer **)(*operationBase + 8),parameterBuffer,4);
@@ -23215,7 +23215,7 @@ DataBuffer ValidateDataBlockStatusA1(int64_t *operationBase,DataWord *dataBuffer
   DataWord parameterBuffer [8];
   
   if (*(int *)(operationBase[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   parameterBuffer[0] = *dataBuffer;
   systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + 8))(*(DataBuffer **)(*operationBase + 8),parameterBuffer,4);
@@ -23231,7 +23231,7 @@ DataBuffer ProcessDataBlockOperationA0(DataBuffer *SystemContext,int64_t DataBuf
   DataBuffer ValidationStatus;
   
   if (*(int *)(SystemContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   SystemHandle = *SystemContext;
   ValidationStatus = ValidateDataWithSecurityCheckA2(SystemHandle);
@@ -23253,7 +23253,7 @@ DataBuffer ProcessDataBlockOperationA1(int64_t *systemContext,DataWord *dataBuff
   DataWord secondaryParameterBuffer [4];
   
   if (*(int *)(systemContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   primaryParameterBuffer[0] = *dataBuffer;
   exceptionHandlerContext = *systemContext;
@@ -23460,7 +23460,7 @@ DataBuffer InitializeSystemComponentD0(DataBuffer *SystemComponentPtr,int64_t In
   DataBuffer InitializationResult;
   
   if (*(int *)(SystemComponentPtr[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   ComponentHandle = *SystemComponentPtr;
   InitializationResult = ProcessDataChunk(ComponentHandle,InitializationOffset,4);
@@ -23493,7 +23493,7 @@ DataBuffer ValidateDataSequenceA0(int64_t *operationBase,uint *dataBuffer)
   unsigned int validationParameterBuffer [4];
   
   if (*(int *)(operationBase[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationBase = (int64_t *)*operationBase;
   if (*operationBase == 0) {
@@ -23599,7 +23599,7 @@ DataBuffer ValidateAndExecuteOperations(int64_t *contextHandle,DataWord *dataBuf
   DataWord secondDataChunk [4];
   
   if (*(int *)(contextHandle[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   firstDataChunk[0] = *dataBuffer;
   exceptionHandlerContext = *contextHandle;
@@ -23622,7 +23622,7 @@ DataBuffer ProcessDataWithMultipleAttempts(DataBuffer *contextHandle,int64_t dat
   uint64_t operationResult;
   
   if (*(int *)(contextHandle[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   contextValue = *contextHandle;
   operationResult = OperateDataO0(contextValue,dataOffset,4);
@@ -23720,7 +23720,7 @@ SecurityCheckpointA:
     }
     if (stackIntBuffer[0] != 0) {
 SecurityCheckpointB:
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = 0;
   }
@@ -25449,7 +25449,7 @@ uint64_t ExecuteDataSynchronizationA0(int64_t operationBase,DataBuffer *dataBuff
         operationStatus = -4;
         break;
       default:
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       case 0x10:
         synchronizationParameterBuffer[0] = poperationResult[1];
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
@@ -25527,7 +25527,7 @@ uint64_t ProcessBinaryDataA0(void)
         operationStatus = -4;
         break;
       default:
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       case 0x10:
         errorHandlingBuffer = destinationIndexRegister[1];
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
@@ -25584,7 +25584,7 @@ void UtilitySystemNoOperation(void)
 DataBuffer ValidateDataSynchronizationA0(void)
 
 {
-  return 0x1c;
+  return ResourceInvalidErrorCode;
 }
 
 
@@ -25642,52 +25642,52 @@ DataBuffer ValidateSystemStatus(int64_t SystemContext, DataBuffer *ParameterArra
   DataBuffer StatusResult;
   
   if (*(int *)(ParameterArray[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   StatusResult = ProcessSystemDataD2(*ParameterArray, SystemContext + 0x50);
   if ((int)StatusResult == 0) {
     if (*(int *)(ParameterArray[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x54);
     if ((int)systemDataBuffer == 0) {
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       }
       systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x58);
       if ((int)systemDataBuffer == 0) {
         if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x60);
         if ((int)systemDataBuffer == 0) {
           if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-            return 0x1c;
+            return ResourceInvalidErrorCode;
           }
           systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 100);
           if ((int)systemDataBuffer == 0) {
             if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-              return 0x1c;
+              return ResourceInvalidErrorCode;
             }
             systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x68);
             if ((int)systemDataBuffer == 0) {
               if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-                return 0x1c;
+                return ResourceInvalidErrorCode;
               }
               systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x6c);
               if ((int)systemDataBuffer == 0) {
                 if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-                  return 0x1c;
+                  return ResourceInvalidErrorCode;
                 }
                 systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x70);
                 if ((int)systemDataBuffer == 0) {
                   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-                    return 0x1c;
+                    return ResourceInvalidErrorCode;
                   }
                   systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x74);
                   if ((int)systemDataBuffer == 0) {
                     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-                      return 0x1c;
+                      return ResourceInvalidErrorCode;
                     }
                     systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x78);
                     if ((int)systemDataBuffer == 0) {
@@ -26536,14 +26536,14 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
   
   if (*(uint *)(dataBuffer + 8) < 0x55) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x50);
     if ((int)operationResult != 0) {
       return operationResult;
     }
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x54);
     if ((int)operationResult != 0) {
@@ -26552,7 +26552,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
   }
   else {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x78);
     if ((int)operationResult != 0) {
@@ -26560,14 +26560,14 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
     }
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x58);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x5c);
   if ((int)operationResult != 0) {
@@ -26575,7 +26575,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
   }
   if (*(uint *)(dataBuffer + 8) < 0x53) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     exceptionHandlerContext = *dataBuffer;
     operationResult = OperateDataO0(exceptionHandlerContext,operationBase + 0x60,4);
@@ -26590,14 +26590,14 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
   }
   else {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x70);
     if ((int)operationResult != 0) {
       return operationResult;
     }
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x74);
     if ((int)operationResult != 0) {
@@ -26608,7 +26608,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
     return 0;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   dataBuffer = (int64_t *)*dataBuffer;
   if (*dataBuffer == 0) {
@@ -26662,7 +26662,7 @@ DataBuffer CleanupDataResourcesA0(void)
   
   if (carryFlag) {
     if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     exceptionHandlerContext = *registerContext;
     stackCharBuffer = stackFramePointer;
@@ -26677,14 +26677,14 @@ DataBuffer CleanupDataResourcesA0(void)
   }
   else {
     if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x70);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
     if (*(int *)(registerContext[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x74);
     if ((int)validationStatus != 0) {
@@ -26695,7 +26695,7 @@ DataBuffer CleanupDataResourcesA0(void)
     return 0;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   pdataContext = (int64_t *)*registerContext;
   if (*pdataContext == 0) {
@@ -26758,7 +26758,7 @@ DataBuffer ResetDataProcessorA1(void)
     return 0;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   pdataContext = (int64_t *)*registerContext;
   if (*pdataContext == 0) {
@@ -26817,14 +26817,14 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   DataWord stackParameter38;
   
   if (validationFlag != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationResult = ValidateDataWithSecurityCheckA2(*systemContext,dataContext + 0x70);
   if ((int)validationResult != 0) {
     return validationResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x74);
   if ((int)operationResult != 0) {
@@ -26834,7 +26834,7 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
     return 0;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
   stackParameter38 = CONCAT44(stackHighValue,stackLowValue);
@@ -26969,7 +26969,7 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
       (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + 0x10), (int)systemDataBuffer == 0)) &&
      (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + 0xd8), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0xf8);
     if ((int)systemDataBuffer == 0) {
@@ -27094,21 +27094,21 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionHandle
     return operationResult;
   }
   if (*(int *)(exceptionHandlerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*exceptionHandlerContext,dataBlock + 0x90);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
   if (*(int *)(exceptionHandlerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*exceptionHandlerContext,dataBlock + 0xa4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
   if (*(int *)(exceptionHandlerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = OperateDataO0(*exceptionHandlerContext,dataBlock + 0xb0,4);
   if (validationStatus != 0) {
@@ -27118,7 +27118,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionHandle
   operationResult = 0;
   if (*(uint *)(exceptionHandlerContext + 8) < 0x82) {
     if (*(int *)(exceptionHandlerContext[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     exceptionHandlerContextPointer = (int64_t *)*exceptionHandlerContext;
     validationStatus = 1;
@@ -27150,7 +27150,7 @@ DataProcessLabelA:
   }
   else {
     if (*(int *)(exceptionHandlerContext[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     dataFlags = OperateDataO0(*exceptionHandlerContext,dataBlock + 0xb8,4);
     if ((int)dataFlags != 0) {
@@ -27258,21 +27258,21 @@ uint64_t ProcessUtilityDataValidation(void)
   uint stackDataSize;
   
   if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x90);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = OperateDataO0(*registerContext,systemContext + 0xb0,4);
   if (validationStatus != 0) {
@@ -27282,7 +27282,7 @@ uint64_t ProcessUtilityDataValidation(void)
   validationOutcome = 0;
   if (*(uint *)(registerContext + 8) < 0x82) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
     validationStatus = 1;
@@ -27314,7 +27314,7 @@ DataProcessLabelA:
   }
   else {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
     if ((int)operationResult != 0) {
@@ -27436,7 +27436,7 @@ uint64_t ValidateAndProcessSystemDataB0(void)
   operationResult = 0;
   if (*(uint *)(registerContext + 8) < 0x82) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
     validationStatus = 1;
@@ -27468,7 +27468,7 @@ DataProcessSectionA:
   }
   else {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
     if ((int)operationResult != 0) {
@@ -27586,7 +27586,7 @@ uint64_t ExecuteUtilityDataCheck(void)
   validationOutcome = 0;
   if (*(uint *)(registerContext + 8) < 0x82) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
     memoryBaseAddress = 1;
@@ -27618,7 +27618,7 @@ DataProcessLabelA:
   }
   else {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
     if ((int)operationResult != 0) {
@@ -27902,12 +27902,12 @@ DataBuffer ProcessDataSequenceA1(int64_t operationBase,DataBuffer *dataBuffer)
   systemDataBuffer = ExecuteSystemInitializationOperation(dataBuffer,0);
   if ((int)systemDataBuffer == 0) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x30);
     if ((int)systemDataBuffer == 0) {
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       }
       systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x34);
       if (((int)systemDataBuffer == 0) && (systemDataBuffer = FinalizeDataProcessing(dataBuffer,0), (int)systemDataBuffer == 0)) {
@@ -28177,7 +28177,7 @@ uint64_t ValidateAndAllocateMemory(int64_t MemoryContext, DataBuffer *Allocation
   int stackValidationArray [2];
   
   if (*(int *)(AllocationParams[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   allocatedAddress = OperateDataO0(*AllocationParams,MemoryContext,4);
   if ((int)allocatedAddress != 0) {
@@ -28297,7 +28297,7 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
     return validationResult;
   }
   if (*(int *)(SecurityParams[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationResult = ProcessDataBlocksA1(*SecurityParams,ValidationContext + 0x38);
   if ((int)validationResult != 0) {
@@ -29427,7 +29427,7 @@ OperationLabelB:
     return (uint64_t)dataFlags1;
   }
   if (*(int *)(exceptionHandlerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*exceptionHandlerContext;
   if (*exceptionHandlerContextPointer == 0) {
@@ -29492,42 +29492,42 @@ OperationLabelD:
     return validationStatus;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ProcessSystemDataA0(*dataBuffer,operationBase + 0x50);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x38);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x3c);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x4c);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x40);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x44);
   if ((int)validationStatus != 0) {
@@ -29786,7 +29786,7 @@ OperationLabelB:
     return (uint64_t)securityCheckResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
   dataContext = *exceptionHandlerContextPointer;
@@ -29852,42 +29852,42 @@ OperationLabelD:
     return memoryBaseAddress;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   memoryBaseAddress = ProcessSystemDataA0(*registerContext,dataPointer + 0x50);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   memoryBaseAddress = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x38);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   memoryBaseAddress = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x3c);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   memoryBaseAddress = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x4c);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   memoryBaseAddress = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x40);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   memoryBaseAddress = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x44);
   if ((int)memoryBaseAddress != 0) {
@@ -30106,42 +30106,42 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
     return destinationIndexRegister & SystemCleanupFlag;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ProcessSystemDataA0(*registerContext,dataPointer + 0x50);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x38);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x3c);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x4c);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x40);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x44);
   if ((int)operationResult != 0) {
@@ -30364,42 +30364,42 @@ uint64_t ValidateSystemDataIntegrity(void)
     return destinationIndexRegister & SystemCleanupFlag;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ProcessSystemDataA0(*registerContext,dataPointer + 0x50);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x38);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x3c);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x4c);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x40);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x44);
   if ((int)operationResult != 0) {
@@ -31073,7 +31073,7 @@ uint64_t GetSystemMemoryBaseAddress(int64_t operationBase,int64_t *dataBuffer)
     return operationResult;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*dataBuffer;
   validationStatus = 0x1c;
@@ -31107,7 +31107,7 @@ ValidationContextCleanup:
     return operationResult;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*dataBuffer;
   if (*exceptionHandlerContextPointer == 0) {
@@ -31201,7 +31201,7 @@ uint64_t GetGlobalResourcePointer(void)
   uint stackDataSize;
   
   if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*destinationIndexRegister;
   validationStatus = 0x1c;
@@ -31235,7 +31235,7 @@ ValidationContextCleanup:
     return operationResult;
   }
   if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*destinationIndexRegister;
   if (*exceptionHandlerContextPointer == 0) {
@@ -31431,7 +31431,7 @@ uint64_t QuerySystemDataD(int64_t operationBase,DataBuffer *dataBuffer)
     return operationResult;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   systemDataBuffer = ProcessSystemDataWithValidation(*dataBuffer,operationBase + 0x60);
   operationResult = (uint64_t)systemDataBuffer;
@@ -31486,7 +31486,7 @@ uint64_t ValidateSystemResourceStatus(void)
   uint64_t validationStatusCode;
   
   if (*(int *)(resourceContextRegister + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   resourceDataValue = ProcessSystemDataWithValidation(*resourceBufferContext,systemOperationContext + 0x60);
   validationStatusCode = (uint64_t)resourceDataValue;
@@ -31636,7 +31636,7 @@ ValidationDataHandler:
   }
   DataProcessingBuffer[0] = 0;
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*dataBuffer;
   if (*exceptionHandlerContextPointer == 0) {
@@ -31742,7 +31742,7 @@ ValidationDataHandler:
   }
   operationResult = 0;
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
   if (*exceptionHandlerContextPointer == 0) {
@@ -31824,7 +31824,7 @@ void UtilityNoOperationW(void)
 DataBuffer ProcessDataBufferA1(void)
 
 {
-  return 0x1c;
+  return ResourceInvalidErrorCode;
 }
 
 
@@ -31837,12 +31837,12 @@ DataBuffer ValidateDataIntegrityA1(int64_t operationBase,DataBuffer *dataBuffer)
   systemDataBuffer = ExecuteSystemInitializationOperation(dataBuffer,0);
   if ((int)systemDataBuffer == 0) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = ProcessDataBlocksA1(*dataBuffer,operationBase + 0x10);
     if (((int)systemDataBuffer == 0) && (systemDataBuffer = GetContextData(dataBuffer,operationBase + 8), (int)systemDataBuffer == 0)) {
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       }
       systemDataBuffer = OperateDataO0(*dataBuffer,operationBase + 0xc,4);
       if ((int)systemDataBuffer == 0) {
@@ -32023,7 +32023,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t operationBase,DataBuffer 
       (validationStatus = ExecuteSecurityValidation(dataBuffer,colorDataBuffer,0,0x42495053), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + 0x10), (int)validationStatus == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     validationStatus = OperateDataO0(*dataBuffer,operationBase + 0xf0,4);
     if ((int)validationStatus != 0) {
@@ -32113,7 +32113,7 @@ uint64_t ProcessDataAndValidationA(void)
   uint64_t errorCode;
   
   if (*(int *)(inputDataRegister + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = OperateDataO0(*contextRegister,systemContext + 0xf0,4);
   if ((int)validationStatus == 0) {
@@ -32512,7 +32512,7 @@ DataBuffer ExecuteSystemSecurityCheck(int64_t systemParameter,DataBuffer *dataBu
      ((0x5a < *(uint *)(dataBuffer + 8) ||
       (validationStatus = GetContextData(dataBuffer,systemParameter + 0x44), (int)validationStatus == 0)))) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     validationData = *dataBuffer;
     validationStatus = OperateDataO0(validationData,systemParameter + 0x4c,4);
@@ -32522,7 +32522,7 @@ DataBuffer ExecuteSystemSecurityCheck(int64_t systemParameter,DataBuffer *dataBu
     }
     if ((int)validationStatus == 0) {
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       }
       validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,systemParameter + 0x48);
       if ((int)validationStatus == 0) {
@@ -32557,7 +32557,7 @@ DataBuffer ReturnFixedStatusCodeA1(void)
   int64_t destinationIndexRegister;
   
   if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   systemDataBuffer = *registerContext;
   operationResult = OperateDataO0(systemDataBuffer,destinationIndexRegister + 0x4c,4);
@@ -32567,7 +32567,7 @@ DataBuffer ReturnFixedStatusCodeA1(void)
   }
   if ((int)operationResult == 0) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x48);
     if ((int)operationResult == 0) {
@@ -32612,7 +32612,7 @@ DataBuffer ValidateSystemStatusA0(void)
   }
   if ((int)operationResult == 0) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x48);
     if ((int)operationResult == 0) {
@@ -32644,7 +32644,7 @@ DataBuffer ExecuteDataSynchronizationA1(void)
   int64_t destinationIndexRegister;
   
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   systemDataBuffer = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x48);
   if ((int)systemDataBuffer == 0) {
@@ -32690,7 +32690,7 @@ DataBuffer ProcessDataStreamA1(int64_t operationBase,DataBuffer *dataBuffer)
   systemDataBuffer = ExecuteSecurityValidation(dataBuffer,ainputDataWord,0,0x46454353);
   if (((int)systemDataBuffer == 0) && (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + 0x10), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = GetMemoryAddressA0(*dataBuffer,operationBase + 0x6c);
     if (((int)systemDataBuffer == 0) && (systemDataBuffer = ValidateMemoryAllocation(dataBuffer,operationBase + 0x48,0), (int)systemDataBuffer == 0)) {
@@ -32759,7 +32759,7 @@ uint64_t ValidatePortControlOperation(int64_t operationBase,int64_t *dataBuffer)
     return operationResult;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = OperateDataO0(*dataBuffer,operationBase + 0x44,4);
   if ((int)operationResult != 0) {
@@ -32797,14 +32797,14 @@ uint64_t ValidatePortControlOperation(int64_t operationBase,int64_t *dataBuffer)
     } while ((int)memoryBaseAddress < (int)dataFlags);
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = GetMemoryAddressA0(*dataBuffer,operationBase + 0x48);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*dataBuffer;
   if (*exceptionHandlerContextPointer == 0) {
@@ -32872,7 +32872,7 @@ uint64_t ProcessSystemValidation(void)
   unsigned int stackSystemStatus;
   
   if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = OperateDataO0(*registerContext,systemContext + 0x44,4);
   if ((int)operationResult != 0) {
@@ -32908,14 +32908,14 @@ uint64_t ProcessSystemValidation(void)
     } while ((int)operationResult < (int)dataFlags);
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   memoryBaseAddress = GetMemoryAddressA0(*registerContext,systemContext + 0x48);
   if (memoryBaseAddress != 0) {
     return (uint64_t)memoryBaseAddress;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
   if (*exceptionHandlerContextPointer == 0) {
@@ -33015,14 +33015,14 @@ uint64_t ValidateSystemIntegrity(void)
     } while ((int)operationResult < (int)dataFlags);
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   memoryBaseAddress = GetMemoryAddressA0(*registerContext,systemContext + 0x48);
   if (memoryBaseAddress != 0) {
     return (uint64_t)memoryBaseAddress;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
   if (*exceptionHandlerContextPointer == 0) {
@@ -33111,14 +33111,14 @@ uint64_t ProcessSystemBuffer(void)
     } while ((int)operationResult < (int)dataFlags);
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   memoryBaseAddress = GetMemoryAddressA0(*registerContext,systemContext + 0x48);
   if (memoryBaseAddress != 0) {
     return (uint64_t)memoryBaseAddress;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
   if (*exceptionHandlerContextPointer == 0) {
@@ -33518,7 +33518,7 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t exceptionHandlerContex
     return memoryBaseAddress;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContext = *dataBuffer;
   validationStatus = OperateDataO0(exceptionHandlerContext,operationBase + 0x10,4);
@@ -33543,14 +33543,14 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t exceptionHandlerContex
     return memoryBaseAddress;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = OperateDataO0(*dataBuffer,operationBase + 0x30,4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = OperateDataO0(*dataBuffer,operationBase + 0x34);
   if (validationStatus != 0) {
@@ -33565,7 +33565,7 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t exceptionHandlerContex
     return memoryBaseAddress;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x58);
   if (validationStatus != 0) {
@@ -33574,7 +33574,7 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t exceptionHandlerContex
   validationStatus = *(uint *)(dataBuffer + 8);
   if (0x7e < validationStatus) goto ProcessCheckpointValidationExit2;
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   pdataContext = (int64_t *)*dataBuffer;
   if (*pdataContext == 0) {
@@ -33820,7 +33820,7 @@ uint64_t ProcessSystemDataValidation(void)
   bool isThirdValidation;
   
   if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContext = *destinationIndexRegister;
   validationStatus = OperateDataO0(exceptionHandlerContext,contextPointer + 0x10,loopCounter + 3);
@@ -33845,14 +33845,14 @@ uint64_t ProcessSystemDataValidation(void)
     return memoryBaseAddress;
   }
   if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = OperateDataO0(*destinationIndexRegister,contextPointer + 0x30,4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
   if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = OperateDataO0(*destinationIndexRegister,contextPointer + 0x34);
   if (validationStatus != 0) {
@@ -33867,7 +33867,7 @@ uint64_t ProcessSystemDataValidation(void)
     return memoryBaseAddress;
   }
   if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*destinationIndexRegister,contextPointer + 0x58);
   if (validationStatus != 0) {
@@ -33876,7 +33876,7 @@ uint64_t ProcessSystemDataValidation(void)
   validationStatus = *(uint *)(destinationIndexRegister + 8);
   if (0x7e < validationStatus) goto ProcessCheckpointValidationExit2;
   if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   pdataContext = (int64_t *)*destinationIndexRegister;
   exceptionHandlerContext = *pdataContext;
@@ -34140,7 +34140,7 @@ uint64_t ValidateDataBufferWithParameters(DataBuffer bufferA,DataBuffer bufferB,
   operationResult = 0x1c;
   if (0x7e < inputAccumulatorRegisterEAX) goto ProcessCheckpointValidationExit2;
   if (*(int *)(destinationIndexRegister[1] + 0x18) != (int)operationFlagA) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*destinationIndexRegister;
   dataContext = *exceptionHandlerContextPointer;
@@ -34446,7 +34446,7 @@ DataBuffer ProcessDataCollectionA1(int64_t operationBase,DataBuffer *dataBuffer)
      ((0x45 < *(uint *)(dataBuffer + 8) ||
       (operationResult = ValidateSystemDataStructure(dataBuffer,operationBase + 0xd8), (int)operationResult == 0)))) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = *dataBuffer;
     operationResult = OperateDataO0(systemDataBuffer,operationBase + 0xdc,4);
@@ -34474,7 +34474,7 @@ DataBuffer ReturnFixedStatusCodeA2(void)
   int64_t destinationIndexRegister;
   
   if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   systemDataBuffer = *registerContext;
   operationResult = OperateDataO0(systemDataBuffer,destinationIndexRegister + 0xdc,4);
@@ -34551,28 +34551,28 @@ DataBuffer ExecuteDataValidationA2(int64_t operationBase,int64_t *dataBuffer)
   DataWord stackUIntBuffer [6];
   
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x50);
   systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4)
   ;
   if ((int)systemDataBuffer == 0) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x54);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                       (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
     if ((int)systemDataBuffer == 0) {
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       }
       stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x58);
       systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                         (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
       if ((int)systemDataBuffer == 0) {
         if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x60);
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
@@ -35080,19 +35080,19 @@ DataBuffer ProcessDataConversionA1(int64_t operationBase,int64_t *dataBuffer)
   if (((int)systemDataBuffer == 0) &&
      (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,0x42444d43,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0x10);
     if ((int)systemDataBuffer == 0) {
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       }
       systemStatusUnion[0] = *(DataWord *)(operationBase + 0xd8);
       systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                         (*(DataBuffer **)(*dataBuffer + 8),systemStatusUnion,4);
       if ((int)systemDataBuffer == 0) {
         if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-          return 0x1c;
+          return ResourceInvalidErrorCode;
         }
         systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0xdc);
         if (((int)systemDataBuffer == 0) &&
@@ -35152,7 +35152,7 @@ uint64_t ProcessDataWithPointerOperation(int64_t operationBase,int64_t *dataBuff
     memoryBaseAddress = (uint64_t)operationResult;
     if (operationResult == 0) {
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       }
       operationResult = ProcessDataPointerA0(*dataBuffer,operationBase + 0x20);
       memoryBaseAddress = (uint64_t)operationResult;
@@ -35198,7 +35198,7 @@ uint64_t ProcessDataWithPointerOperation(int64_t operationBase,int64_t *dataBuff
     }
     return memoryBaseAddress;
   }
-  return 0x1c;
+  return ResourceInvalidErrorCode;
 }
 
 
@@ -35229,13 +35229,13 @@ uint64_t ValidateSystemContextAndProcessData(void)
   BytePair StackDataBufferG;
   
   if (*(uint *)(inputAccumulatorRegister + 0x18) != registerValueESI) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   operationResult = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x10);
   validationStatus = (uint64_t)operationResult;
   if (operationResult == 0) {
     if (*(uint *)(destinationIndexRegister[1] + 0x18) != registerValueESI) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     operationResult = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x20);
     validationStatus = (uint64_t)operationResult;
@@ -35557,12 +35557,12 @@ DataBuffer ValidateDataSynchronizationA1(int64_t operationBase,DataBuffer *dataB
   systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,0,0x56525543,0);
   if ((int)systemDataBuffer == 0) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0x10);
     if ((int)systemDataBuffer == 0) {
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       }
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0x20);
       if (((int)systemDataBuffer == 0) && (systemDataBuffer = ProcessDataValidationWithFlags(dataBuffer,operationBase + 0x30,1,0), (int)systemDataBuffer == 0))
@@ -35588,12 +35588,12 @@ DataBuffer ExecuteDataCleanupA1(int64_t operationBase,DataBuffer *dataBuffer)
   if (((int)systemDataBuffer == 0) &&
      (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,0x42494645,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0x10);
     if ((int)systemDataBuffer == 0) {
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       }
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0xd8);
       if ((int)systemDataBuffer == 0) {
@@ -35615,7 +35615,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
   
   if (*(uint *)(dataBuffer + 8) < 0x55) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x50);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
@@ -35624,7 +35624,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
       return systemDataBuffer;
     }
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x54);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
@@ -35635,7 +35635,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
   }
   else {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x78);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
@@ -35645,7 +35645,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
     }
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x58);
   systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4)
@@ -35654,7 +35654,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
     return systemDataBuffer;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-    return 0x1c;
+    return ResourceInvalidErrorCode;
   }
   stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x5c);
   systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4)
@@ -35662,7 +35662,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
   if ((int)systemDataBuffer == 0) {
     if (*(uint *)(dataBuffer + 8) < 0x53) {
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       }
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0x60);
       if ((int)systemDataBuffer != 0) {
@@ -35698,12 +35698,12 @@ DataBuffer ProcessDataCacheA1(int64_t operationBase,DataBuffer *dataBuffer)
   if (((int)systemDataBuffer == 0) &&
      (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,0x42495645,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      return 0x1c;
+      return ResourceInvalidErrorCode;
     }
     systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0x10);
     if ((int)systemDataBuffer == 0) {
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-        return 0x1c;
+        return ResourceInvalidErrorCode;
       }
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0xd8);
       if ((((int)systemDataBuffer == 0) && (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 0xf8), (int)systemDataBuffer == 0)) &&
