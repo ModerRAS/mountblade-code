@@ -689,6 +689,25 @@
 #define ResetSystemStatusFlag Unwind_180907130
 #define ValidateAndProcessDataBuffer Unwind_180907140
 
+// 系统终止条件检查函数宏定义
+#define CheckSystemTerminationConditionAtOffset8 Unwind_1809076c0
+#define CheckSystemTerminationConditionAtOffset30 Unwind_1809076d0
+#define CheckSystemTerminationConditionAtOffset40_8 Unwind_1809076e0
+#define CheckSystemTerminationConditionAtOffset40_30 Unwind_1809076f0
+
+// 异常处理器初始化函数宏定义
+#define InitializeExceptionHandlerWithDefaults Unwind_180907700
+#define InitializeSystemResourcePointer Unwind_180907710
+
+// 异常处理器指针设置函数宏定义
+#define SetExceptionHandlerPointerA2 Unwind_180907790
+#define SetExceptionHandlerPointerA3 Unwind_1809077a0
+#define SetExceptionHandlerPointerA4 Unwind_1809077b0
+#define SetExceptionHandlerPointerA5 Unwind_1809077c0
+#define SetExceptionHandlerPointerA6 Unwind_1809077d0
+#define SetExceptionHandlerPointerA7 Unwind_1809077e0
+#define SetExceptionHandlerPointerA8 Unwind_1809077f0
+
 // 异常上下文处理函数宏定义
 #define ProcessExceptionHandlerAtOffset0 Unwind_18090f8e0
 #define ProcessExceptionHandlerAtOffset8 Unwind_18090f8f0
@@ -65543,7 +65562,15 @@ void SetExceptionDataTable6(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_1809076c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统终止条件检查函数 - 检查偏移量8处的终止条件
+ * 
+ * 该函数负责检查系统数据缓冲区偏移量0x60+8处是否存在终止条件，
+ * 如果检测到终止条件，则调用系统终止函数来安全地关闭系统。
+ * 
+ * @note 原始函数名：Unwind_1809076c0
+ */
+void CheckSystemTerminationConditionAtOffset8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x60) + 8) != 0) {
@@ -65554,7 +65581,15 @@ void Unwind_1809076c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809076d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统终止条件检查函数 - 检查偏移量30处的终止条件
+ * 
+ * 该函数负责检查系统数据缓冲区偏移量0x60+0x30处是否存在终止条件，
+ * 如果检测到终止条件，则调用系统终止函数来安全地关闭系统。
+ * 
+ * @note 原始函数名：Unwind_1809076d0
+ */
+void CheckSystemTerminationConditionAtOffset30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x60) + 0x30) != 0) {
@@ -65565,7 +65600,15 @@ void Unwind_1809076d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809076e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统终止条件检查函数 - 检查偏移量40+8处的终止条件
+ * 
+ * 该函数负责检查系统数据缓冲区偏移量0x40+8处是否存在终止条件，
+ * 如果检测到终止条件，则调用系统终止函数来安全地关闭系统。
+ * 
+ * @note 原始函数名：Unwind_1809076e0
+ */
+void CheckSystemTerminationConditionAtOffset40_8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 8) != 0) {
@@ -65576,7 +65619,15 @@ void Unwind_1809076e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809076f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统终止条件检查函数 - 检查偏移量40+30处的终止条件
+ * 
+ * 该函数负责检查系统数据缓冲区偏移量0x40+0x30处是否存在终止条件，
+ * 如果检测到终止条件，则调用系统终止函数来安全地关闭系统。
+ * 
+ * @note 原始函数名：Unwind_1809076f0
+ */
+void CheckSystemTerminationConditionAtOffset40_30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x30) != 0) {
