@@ -130699,7 +130699,7 @@ LAB_18012ce0f:
     _StackFloatVariable1 = *(void *)(CharacterTablePointer5 + 0x163c);
     if ((*(uint *)((long long)StackParameter2 + 0xc) & 0x14000000) != 0) {
       _TemporaryFloatStack50 = 0x4080000040800000;
-      StatusBuffer9 = (void *                FUN_18011fc20(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
+      StatusBuffer9 = (void *                CreateSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
       _StackFloatVariable1 = *StatusBuffer9;
     }
     FloatValue32 = *(float *)(pBufferIndex[5] + 0x10);
@@ -130716,7 +130716,7 @@ LAB_18012ce0f:
     _TemporaryFloatStack50 =
          CONCAT44(FloatValue33 - (*(float *)(CharacterTablePointer5 + 0x16b8) + *(float *)(CharacterTablePointer5 + 0x16b8)),
                   FloatValue32 - (*(float *)(CharacterTablePointer5 + 0x16b4) + *(float *)(CharacterTablePointer5 + 0x16b4)));
-    StatusBuffer9 = (void *)FUN_18011fc50(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
+    StatusBuffer9 = (void *)ProcessSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     FUN_18011fc80(&DataTransferStackBuffer,pBufferIndex + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer9);
     FUN_180128fd0(FrameRegisterPointer + 2,pBufferIndex,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
     if (((FrameRegisterPointer[2] < *(float *)(pBufferIndex + 0xc)) &&
@@ -132538,7 +132538,7 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
     _StackFloatVariable1 = *(void *)(LoopIndex + 0x163c);
     if ((*(uint *)((long long)StackParameter2 + 0xc) & 0x14000000) != 0) {
       _TemporaryFloatStack50 = 0x4080000040800000;
-      StatusBuffer8 = (void *                FUN_18011fc20(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
+      StatusBuffer8 = (void *                CreateSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
       _StackFloatVariable1 = *StatusBuffer8;
     }
     FloatValue31 = *(float *)(CharacterCode9[5] + 0x10);
@@ -132555,7 +132555,7 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
     _TemporaryFloatStack50 =
          CONCAT44(FloatValue32 - (*(float *)(LoopIndex + 0x16b8) + *(float *)(LoopIndex + 0x16b8)),
                   FloatValue31 - (*(float *)(LoopIndex + 0x16b4) + *(float *)(LoopIndex + 0x16b4)));
-    StatusBuffer8 = (void *)FUN_18011fc50(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
+    StatusBuffer8 = (void *)ProcessSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     FUN_18011fc80(&DataTransferStackBuffer,CharacterCode9 + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer8);
     FUN_180128fd0(FrameRegisterPointer + 2,CharacterCode9,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
     if (((FrameRegisterPointer[2] < *(float *)(CharacterCode9 + 0xc)) &&
@@ -134236,7 +134236,7 @@ void InitializeSystemStringProcessing(void)
     _StackFloatVariable1 = *(void *)(SystemContextValue + 0x163c);
     if ((*(uint *)((long long)StackParameter2 + 0xc) & 0x14000000) != 0) {
       _TemporaryFloatStack50 = 0x4080000040800000;
-      StatusBuffer7 = (void *                FUN_18011fc20(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
+      StatusBuffer7 = (void *                CreateSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
       _StackFloatVariable1 = *StatusBuffer7;
     }
     ContextSecondaryFloat9 = *(float *)(CharacterCode8[5] + 0x10);
@@ -134253,7 +134253,7 @@ void InitializeSystemStringProcessing(void)
     _TemporaryFloatStack50 =
          CONCAT44(FloatValue30 - (*(float *)(SystemContextValue + 0x16b8) + *(float *)(SystemContextValue + 0x16b8)),
                   ContextSecondaryFloat9 - (*(float *)(SystemContextValue + 0x16b4) + *(float *)(SystemContextValue + 0x16b4)));
-    StatusBuffer7 = (void *)FUN_18011fc50(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
+    StatusBuffer7 = (void *)ProcessSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     FUN_18011fc80(&DataTransferStackBuffer,CharacterCode8 + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer7);
     FUN_180128fd0(FrameRegisterPointer + 2,CharacterCode8,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
     if (((FrameRegisterPointer[2] < *(float *)(CharacterCode8 + 0xc)) &&
@@ -135850,7 +135850,7 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode)
     _StackFloatVariable1 = *(void *)(SystemContextValue + 0x163c);
     if ((*(uint *)((long long)StackParameter2 + 0xc) & 0x14000000) != 0) {
       _TemporaryFloatStack50 = 0x4080000040800000;
-      StatusBuffer7 = (void *                FUN_18011fc20(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
+      StatusBuffer7 = (void *                CreateSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
       _StackFloatVariable1 = *StatusBuffer7;
     }
     ContextSecondaryFloat7 = *(float *)(CharacterCode8[5] + 0x10);
@@ -135867,7 +135867,7 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode)
     _TemporaryFloatStack50 =
          CONCAT44(FloatValue31 - (*(float *)(SystemContextValue + 0x16b8) + *(float *)(SystemContextValue + 0x16b8)),
                   ContextSecondaryFloat7 - (*(float *)(SystemContextValue + 0x16b4) + *(float *)(SystemContextValue + 0x16b4)));
-    StatusBuffer7 = (void *)FUN_18011fc50(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
+    StatusBuffer7 = (void *)ProcessSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     FUN_18011fc80(&DataTransferStackBuffer,CharacterCode8 + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer7);
     FUN_180128fd0(FrameRegisterPointer + 2,CharacterCode8,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
     if (((FrameRegisterPointer[2] < *(float *)(CharacterCode8 + 0xc)) &&
@@ -137536,7 +137536,7 @@ void ProcessSystemStatusAndValidation(void
     _StackFloatVariable1 = *(void *)(SystemContextValue + 0x163c);
     if ((*(uint *)((long long)StackParameter2 + 0xc) & 0x14000000) != 0) {
       _TemporaryFloatStack50 = 0x4080000040800000;
-      StatusBuffer7 = (void *                FUN_18011fc20(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
+      StatusBuffer7 = (void *                CreateSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
       _StackFloatVariable1 = *StatusBuffer7;
     }
     ContextSecondaryFloat7 = *(float *)(CharacterCode8[5] + 0x10);
@@ -137553,7 +137553,7 @@ void ProcessSystemStatusAndValidation(void
     _TemporaryFloatStack50 =
          CONCAT44(FloatValue30 - (*(float *)(SystemContextValue + 0x16b8) + *(float *)(SystemContextValue + 0x16b8)),
                   ContextSecondaryFloat7 - (*(float *)(SystemContextValue + 0x16b4) + *(float *)(SystemContextValue + 0x16b4)));
-    StatusBuffer7 = (void *)FUN_18011fc50(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
+    StatusBuffer7 = (void *)ProcessSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     FUN_18011fc80(&DataTransferStackBuffer,CharacterCode8 + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer7);
     FUN_180128fd0(FrameRegisterPointer + 2,CharacterCode8,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
     if (((FrameRegisterPointer[2] < *(float *)(CharacterCode8 + 0xc)) &&
@@ -139111,7 +139111,7 @@ void ProcessSystemMemoryAllocation(uint64_t CharacterCode,long long Utf8BufferSi
     _StackFloatVariable1 = *(void *)(CharacterTablePointer6 + 0x163c);
     if ((*(uint *)(StackParameter2 + 0xc) & 0x14000000) != 0) {
       _TemporaryFloatStack50 = 0x4080000040800000;
-      StatusBuffer5 = (void *                FUN_18011fc20(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
+      StatusBuffer5 = (void *                CreateSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer);
       _StackFloatVariable1 = *StatusBuffer5;
     }
     ContextSecondaryFloat5 = *(float *)(*(long long *)(BufferIndex + 0x28) + 0x10);
@@ -139128,7 +139128,7 @@ void ProcessSystemMemoryAllocation(uint64_t CharacterCode,long long Utf8BufferSi
     _TemporaryFloatStack50 =
          CONCAT44(ContextSecondaryFloat9 - (*(float *)(CharacterTablePointer6 + 0x16b8) + *(float *)(CharacterTablePointer6 + 0x16b8)),
                   ContextSecondaryFloat5 - (*(float *)(CharacterTablePointer6 + 0x16b4) + *(float *)(CharacterTablePointer6 + 0x16b4)));
-    StatusBuffer5 = (void *)FUN_18011fc50(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
+    StatusBuffer5 = (void *)ProcessSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     FUN_18011fc80(&DataTransferStackBuffer,BufferIndex + 0x60,&MemoryAllocationStackBuffer,*StatusBuffer5);
     FUN_180128fd0(FrameRegisterPointer + 2,BufferIndex,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
     if (((FrameRegisterPointer[2] < *(float *)(BufferIndex + 0x60)) && ((*(uint *)(BufferIndex + 0xc) & 8) == 0)) &&

@@ -78572,7 +78572,7 @@ void Unwind_18090bfe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemParametersWithValidation(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x20) + 0xa0,
@@ -78583,7 +78583,7 @@ void Unwind_18090c000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090c020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupDataBufferA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + ExceptionHandlerCallbackOffset10),
@@ -78593,7 +78593,7 @@ void Unwind_18090c020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090c030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupDataBufferA1Secondary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + ExceptionHandlerCallbackOffset10),
@@ -108952,4 +108952,3 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  * @note 原始函数名：Unwind_18090f140
  */
 #define ConfigureExceptionHandlerA0 Unwind_18090f140
-#define SetupExceptionHandler6E0 Unwind_1809066e0
