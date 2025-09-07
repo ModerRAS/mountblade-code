@@ -326,7 +326,7 @@
 #define ProcessCharacterResetBuffer ProcessCharacterResetBuffer
 #define ProcessCharacterInitializeBuffer ProcessCharacterInitializeBuffer
 #define ProcessCharacterSetupBuffer ProcessCharacterSetupBuffer
-#define ProcessCharacterAllocateBuffer FUN_18013e26c
+#define ProcessCharacterAllocateBuffer ProcessCharacterAllocateBuffer
 #define ProcessCharacterConfigureBuffer FUN_18013e2da
 #define ProcessCharacterBufferData FUN_18013e4c0
 #define ProcessCharacterBufferEx FUN_18013e620

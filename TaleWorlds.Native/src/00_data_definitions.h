@@ -12056,11 +12056,11 @@ uint64_t SystemMemoryAllocate(uint64_t MemorySize)
   uint64_t MemoryAddress;
   longlong LoopCounter;
   SystemMemoryAllocationResult = MemoryAllocateEx(SystemMemoryAllocator,memorySize,0x19);
-  LongCounter = MemoryValidateEx(MemoryAddress);
+  SystemMemoryValidationResult = MemoryValidateEx(SystemMemoryAllocationResult);
   LOCK();
-  SystemInitializationCounter = SystemInitializationCounter + LongCounter;
+  SystemInitializationCounter = SystemInitializationCounter + SystemMemoryValidationResult;
   UNLOCK();
-  return MemoryAddress;
+  return SystemMemoryAllocationResult;
 }
 uint64_t SystemMemoryResize(uint64_t MemoryAddress, uint64_t NewSize)
 {

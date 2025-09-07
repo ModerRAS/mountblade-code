@@ -30020,7 +30020,6 @@ void SystemContextManagerInitializer(void)
 
 
 
-// 函数: void InitializeSystemDataPointer(long long* SystemResourceManager)
 /**
  * @brief 系统资源清理函数
  * 
@@ -30029,16 +30028,17 @@ void SystemContextManagerInitializer(void)
  * 
  * @param SystemResourceManager 系统资源指针数组，包含要清理的资源信息
  * @note 这是系统资源管理的重要组成部分，用于确保资源的正确释放
+ * @note 资源遍历步长为0x48(72)字节，这是系统资源结构体的大小
  */
-void SystemResourceCleaner(long long* SystemResourceManager)
+void CleanupSystemResources(long long* SystemResourceManager)
 
 {
   long long ResourceDataIndex;
-  long long SystemThreadHandle;
+  long long CurrentResourceHandle;
   
   ResourceDataIndex = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
-  for (SystemThreadHandle = *SystemResourceManager; SystemThreadHandle != ResourceDataIndex; SystemThreadHandle = SystemThreadHandle + 0x48) {
-    DestroySystemResource(SystemThreadHandle);
+  for (CurrentResourceHandle = *SystemResourceManager; CurrentResourceHandle != ResourceDataIndex; CurrentResourceHandle = CurrentResourceHandle + SYSTEM_RESOURCE_SIZE) {
+    DestroySystemResource(CurrentResourceHandle);
   }
   if (*SystemResourceManager == 0) {
     return;
