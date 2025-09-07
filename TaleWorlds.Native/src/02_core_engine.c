@@ -194,6 +194,16 @@
 #define ManageSystemMemory FUN_18010e610
 
 /**
+ * @brief 字符代码浮点值计算器
+ * 
+ * 该函数根据输入的字符代码计算对应的浮点数值，
+ * 用于系统中的字符编码转换和数值计算。
+ * 
+ * @note 原始函数名：FUN_1801333d0
+ */
+#define CalculateCharacterCodeFloatValue FUN_1801333d0
+
+/**
  * @brief 系统状态验证器
  * 
  * 该函数负责验证系统状态，包括状态码检查和处理
@@ -304,6 +314,28 @@
 
 // 原始函数名：FUN_180179410 - UTF-8编码系统初始化函数
 #define InitializeUtf8EncodingSystem FUN_180179410
+
+// 系统核心函数语义化定义
+// 原始函数名：FUN_180179770 - 系统缓冲区处理函数
+#define ProcessSystemBufferEx FUN_180179770
+
+// 原始函数名：FUN_1801798f0 - 系统数据流处理函数
+#define ProcessSystemDataStreamEx FUN_1801798f0
+
+// 原始函数名：FUN_180179a0a - 系统状态检查函数
+#define CheckSystemStatus FUN_180179a0a
+
+// 原始函数名：FUN_180179aa0 - 系统内存管理函数
+#define ManageSystemMemoryEx FUN_180179aa0
+
+// 原始函数名：FUN_180179b7a - 系统资源分配函数
+#define AllocateSystemResource FUN_180179b7a
+
+// 原始函数名：FUN_18017cb20 - 系统数据验证函数
+#define ValidateSystemDataEx FUN_18017cb20
+
+// 原始函数名：FUN_18017cde0 - 系统配置处理函数
+#define ProcessSystemConfiguration FUN_18017cde0
 
 /**
  * @brief 处理系统数据操作
@@ -97941,7 +97973,24 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *Utf8InputBuffer
 
 
 
-/**\n * 系统核心数据处理和浮点运算函数\n * 处理系统数据结构、浮点运算、内存管理和状态验证\n */\nvoid ProcessSystemCoreDataAndFloatOperations(void
+/**
+ * 系统核心数据处理和浮点运算函数
+ * 
+ * 该函数负责处理系统核心数据结构和浮点运算，包括：
+ * - 数据结构初始化和配置
+ * - 浮点数运算和矩阵变换
+ * - 内存管理和状态验证
+ * - 系统参数设置和优化
+ * 
+ * 主要功能：
+ * 1. 初始化数据结构和配置参数
+ * 2. 执行浮点数运算和矩阵变换
+ * 3. 管理内存分配和释放
+ * 4. 验证系统状态和数据处理
+ * 
+ * @note 原始函数名：ProcessSystemCoreDataAndFloatOperations
+ */
+void ProcessSystemCoreDataAndFloatOperations(void
 {
   long long PrimaryDataSize;
   char SystemCheckResult;
@@ -150967,21 +151016,35 @@ float * ConvertUtf8ToUtf16Encoding(float *Utf8InputBuffer, uint Utf8BufferSize, 
 
 
 
-float * FUN_180131be4(uint64_t CharacterCode,float Utf8BufferSize,uint64_t Utf8SourcePointer,float *Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16转换的浮点运算
+ * 
+ * 该函数负责在UTF-8到UTF-16转换过程中处理浮点数运算，
+ * 包括阈值检查和浮点数乘法运算。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 返回处理后的UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180131be4
+ */
+float * ProcessUtf8ToUtf16FloatConversion(uint64_t CharacterCode, float Utf8BufferSize, uint64_t Utf8SourcePointer, float *Utf16EndPointer)
 {
-  long long ProcessingResult;
-  float SecondaryFloatValue;
-  float AuxiliaryFloat9;
-  float StackParameter3;
+  long long ContextPointer;
+  float ThresholdValue1;
+  float ScalingFactor1;
+  float ScalingFactor2;
   
-  if (SecondaryFloatValue < *(float *)(ProcessingResult + 0x370)) {
-    Utf8BufferSize = Utf8BufferSize * AuxiliaryFloat9;
+  if (ThresholdValue1 < *(float *)(ContextPointer + 0x370)) {
+    Utf8BufferSize = Utf8BufferSize * ScalingFactor1;
     Utf16EndPointer[1] = Utf8BufferSize;
-    *Utf16EndPointer = AuxiliaryFloat9 * *Utf16EndPointer;
+    *Utf16EndPointer = ScalingFactor1 * *Utf16EndPointer;
   }
-  if ((StackParameter3 != SecondaryFloatValue) && (SecondaryFloatValue < *(float *)(ProcessingResult + 0x374))) {
-    Utf16EndPointer[1] = Utf8BufferSize * StackParameter3;
-    *Utf16EndPointer = StackParameter3 * *Utf16EndPointer;
+  if ((ScalingFactor2 != ThresholdValue1) && (ThresholdValue1 < *(float *)(ContextPointer + 0x374))) {
+    Utf16EndPointer[1] = Utf8BufferSize * ScalingFactor2;
+    *Utf16EndPointer = ScalingFactor2 * *Utf16EndPointer;
     return Utf16EndPointer;
   }
   return Utf16EndPointer;
