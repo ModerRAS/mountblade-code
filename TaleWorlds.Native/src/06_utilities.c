@@ -27467,7 +27467,7 @@ uint64_t * ValidateSystemDataProcessing(void)
   float floatResultA_02;
   float floatResultA_03;
   float floatResultA_04;
-  float fVar21;
+  float calculatedFloatValue;
   
   if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
     return (DataBuffer *)0x1c;
@@ -27516,7 +27516,7 @@ uint64_t * ValidateSystemDataProcessing(void)
   }
   if (0x81 < *(uint *)(destinationIndexRegister + 8)) {
     exceptionDataBuffer1 = (DataBuffer *)ValidateDataSecurityA0(operationResult0,systemContext + 0x58);
-    fVar21 = floatResultA_00;
+    calculatedFloatValue = floatResultA_00;
     if ((int)exceptionDataBuffer1 != 0) {
       return exceptionDataBuffer1;
     }
@@ -50030,7 +50030,21 @@ void Unwind_180905280(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905290(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到指定偏移位置
+ * 
+ * 该函数用于在数据缓冲区的指定偏移位置（0x1c8）设置默认异常处理器B。
+ * 这是一个异常处理清理函数，用于确保系统在异常情况下能够正确处理。
+ * 
+ * @param operationBase 操作基础地址，当前未使用
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是Unwind类型的异常处理函数，用于系统异常恢复
+ * @see DefaultExceptionHandlerB
+ */
+void SetDefaultExceptionHandlerToOffset1C8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1c8) = &DefaultExceptionHandlerB;
@@ -50053,7 +50067,21 @@ void Unwind_180905290(DataBuffer operationBase,int64_t dataBuffer)
  * @note 这是Unwind类型的异常处理函数，用于系统异常恢复
  * @see DefaultExceptionHandlerB
  */
-void Unwind_1809052a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到指定偏移位置
+ * 
+ * 该函数用于在数据缓冲区的指定偏移位置（0x168）设置默认异常处理器B。
+ * 这是一个异常处理清理函数，用于确保系统在异常情况下能够正确处理。
+ * 
+ * @param operationBase 操作基础地址，当前未使用
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是Unwind类型的异常处理函数，用于系统异常恢复
+ * @see DefaultExceptionHandlerB
+ */
+void SetDefaultExceptionHandlerToOffset168(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x168) = &DefaultExceptionHandlerB;
@@ -50066,7 +50094,7 @@ void Unwind_1809052a0(DataBuffer operationBase,int64_t dataBuffer)
  * @brief 设置默认异常处理器B到指定偏移位置（变体）
  * 
  * 该函数用于在数据缓冲区的指定偏移位置（0x1e8）设置默认异常处理器B。
- * 这是Unwind_1809052a0函数的变体，用于不同的偏移位置。
+ * 这是SetDefaultExceptionHandlerToOffset168函数的变体，用于不同的偏移位置。
  * 
  * @param operationBase 操作基础地址，当前未使用
  * @param dataBuffer 数据缓冲区指针，包含异常处理相关数据
@@ -50074,9 +50102,9 @@ void Unwind_1809052a0(DataBuffer operationBase,int64_t dataBuffer)
  * @return void 无返回值
  * 
  * @note 这是Unwind类型的异常处理函数，用于系统异常恢复
- * @see DefaultExceptionHandlerB, Unwind_1809052a0
+ * @see DefaultExceptionHandlerB, SetDefaultExceptionHandlerToOffset168
  */
-void Unwind_1809052b0(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerToOffset1E8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1e8) = &DefaultExceptionHandlerB;
@@ -50099,7 +50127,7 @@ void Unwind_1809052b0(DataBuffer operationBase,int64_t dataBuffer)
  * @note 这是Unwind类型的异常处理函数，用于系统异常恢复时的资源清理
  * @see CleanupResourceHandler
  */
-void Unwind_1809052c0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupFlagBit1Resource(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
@@ -50115,7 +50143,7 @@ void Unwind_1809052c0(DataBuffer operationBase,int64_t dataBuffer)
  * @brief 清理标志位为2的资源处理器
  * 
  * 该函数检查数据缓冲区的标志位，如果第1位为1，则清除该标志位并调用资源清理函数。
- * 这是Unwind_1809052c0函数的变体，用于处理不同的标志位。
+ * 这是CleanupFlagBit1Resource函数的变体，用于处理不同的标志位。
  * 
  * @param operationBase 操作基础地址，当前未使用
  * @param dataBuffer 数据缓冲区指针，包含标志位和资源数据
@@ -50123,9 +50151,9 @@ void Unwind_1809052c0(DataBuffer operationBase,int64_t dataBuffer)
  * @return void 无返回值
  * 
  * @note 这是Unwind类型的异常处理函数，用于系统异常恢复时的资源清理
- * @see CleanupResourceHandler, Unwind_1809052c0
+ * @see CleanupResourceHandler, CleanupFlagBit1Resource
  */
-void Unwind_1809052f0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupFlagBit2Resource(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
@@ -50141,7 +50169,7 @@ void Unwind_1809052f0(DataBuffer operationBase,int64_t dataBuffer)
  * @brief 清理标志位为1的资源处理器（变体）
  * 
  * 该函数检查数据缓冲区的标志位，如果第0位为1，则清除该标志位并调用资源清理函数。
- * 这是Unwind_1809052c0函数的变体，使用不同的偏移位置进行资源清理。
+ * 这是CleanupFlagBit1Resource函数的变体，使用不同的偏移位置进行资源清理。
  * 
  * @param operationBase 操作基础地址，当前未使用
  * @param dataBuffer 数据缓冲区指针，包含标志位和资源数据
@@ -50149,9 +50177,9 @@ void Unwind_1809052f0(DataBuffer operationBase,int64_t dataBuffer)
  * @return void 无返回值
  * 
  * @note 这是Unwind类型的异常处理函数，用于系统异常恢复时的资源清理
- * @see CleanupResourceHandler, Unwind_1809052c0
+ * @see CleanupResourceHandler, CleanupFlagBit1Resource
  */
-void Unwind_180905320(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupFlagBit1ResourceVariant(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
@@ -50178,7 +50206,7 @@ void Unwind_180905320(DataBuffer operationBase,int64_t dataBuffer)
  * @warning 如果异常数据缓冲区状态异常，会调用TerminateSystemE0()终止系统
  * @see TemporaryExceptionHandler, DefaultExceptionHandlerB, TerminateSystemE0
  */
-void Unwind_180905350(DataBuffer operationBase,int64_t dataBuffer)
+void SetupTemporaryExceptionHandlerAndValidate(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
