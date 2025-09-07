@@ -13628,8 +13628,19 @@ DataBuffer ProcessUtilitySystemRequest(int64_t requestPointer)
 
 
 
-// 函数: void ValidateUtilityOperation(int64_t operationPointer,int64_t contextPointer)
-// 功能：验证工具系统操作的有效性，根据验证结果执行相应的操作流程
+/**
+ * @brief 验证工具系统操作的有效性
+ * 
+ * 该函数负责验证工具系统操作的有效性和安全性，根据验证结果执行相应的操作流程。
+ * 它会验证操作上下文，处理系统资源，并在验证失败时执行相应的恢复操作。
+ * 
+ * @param operationPointer 操作指针，包含要验证的操作信息
+ * @param contextPointer 上下文指针，包含系统上下文信息
+ * 
+ * @note 此函数包含操作验证和资源处理逻辑
+ * @note 如果验证失败，会跳转到ValidationFailed标签执行恢复操作
+ * @see ValidateOperationContext, ValidateAndProcessSystemResourceA0, ExecuteSystemResourceOperationCB0
+ */
 void ValidateUtilityOperation(int64_t operationPointer,int64_t contextPointer)
 
 {
@@ -13651,8 +13662,18 @@ ValidationFailed:
 
 
 
-// 函数: void ExecuteUtilityOperation(int64_t operationPointer,int64_t contextPointer)
-// 功能：执行工具系统操作，根据操作参数执行相应的系统功能
+/**
+ * @brief 执行工具系统操作
+ * 
+ * 该函数负责执行工具系统的各种操作，根据操作参数执行相应的系统功能。
+ * 它会执行系统操作，验证和处理系统资源，并管理系统资源。
+ * 
+ * @param operationPointer 操作指针，包含要执行的操作信息
+ * @param contextPointer 上下文指针，包含系统上下文信息
+ * 
+ * @note 此函数包含系统操作执行和资源管理逻辑
+ * @see ExecuteSystemOperation, ValidateAndProcessSystemResourceA0, ManageSystemResourceCC0
+ */
 void ExecuteUtilityOperation(int64_t operationPointer,int64_t contextPointer)
 
 {
