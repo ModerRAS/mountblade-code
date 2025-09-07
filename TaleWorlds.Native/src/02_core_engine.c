@@ -100,6 +100,8 @@
 #define ProcessCharacterCodeData FUN_18019c480                    // 处理字符代码数据
 #define ProcessCharacterEncodingAndStringFormatting FUN_18013d22f  // 处理字符编码和字符串格式化
 #define ProcessCharacterCodeValidationAndMemoryManagement FUN_18013d36b  // 处理字符代码验证和内存管理
+#define ProcessUtf8BufferSizeAndCharacterCodeManagement FUN_18013d378  // 处理UTF-8缓冲区大小和字符代码管理
+#define ProcessCharacterCodeAndStringComparison FUN_18013d387  // 处理字符代码和字符串比较
 #define ProcessCharacterCodeConversionEx FUN_18019c560            // 处理字符代码转换扩展
 #define ProcessCharacterCodeValidationEx FUN_18019c5b0            // 处理字符代码验证扩展
 #define ProcessCharacterEncodingData FUN_180212e40                // 处理字符编码数据
@@ -171523,7 +171525,7 @@ void ProcessCharacterCodeValidationAndMemoryManagement(uint32_t CharacterCode)
  * 
  * @see ProcessCharacterCodeAndBufferManagement, ProcessSystemMemoryBufferSetup
  */
-void FUN_18013d378(uint64_t CharacterCode, unsigned long long Utf8BufferSize)
+void ProcessUtf8BufferSizeAndCharacterCodeManagement(uint64_t CharacterCode, unsigned long long Utf8BufferSize)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -171654,7 +171656,20 @@ code_r0x00018013d378:
 
 
 
-3d387(uint32_t CharacterCodevoid FUN_18013d387(uint32_t CharacterCode
+/**
+ * @brief 处理字符代码和字符串比较操作
+ * 
+ * 该函数负责处理字符代码的验证和字符串比较操作。
+ * 函数会进行字符串比较、内存管理和格式化操作。
+ * 
+ * @param CharacterCode 要处理的字符代码
+ * 
+ * @note 原始函数名：FUN_18013d387
+ * @note 此函数涉及字符代码处理和字符串比较
+ * 
+ * @see ProcessStringComparison, ProcessStringFormattingOperation
+ */
+void ProcessCharacterCodeAndStringComparison(uint32_t CharacterCode)
 {
   short SystemShortValue1;
   int StringComparisonResult;
