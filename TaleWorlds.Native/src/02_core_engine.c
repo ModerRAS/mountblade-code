@@ -262915,7 +262915,7 @@ int IdentifySystemIdentifierPatternE(void
  * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
  * @note 原始函数名：FUN_180225472
  */
-int FUN_180225472(void
+int IdentifySystemIdentifierByPatternVariantA(void)
 {
   char *InputStringBuffer;
   int StringComparisonResult;
@@ -263225,7 +263225,17 @@ int FUN_180225472(void
  * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
  * @note 原始函数名：FUN_1802254b1
  */
-int FUN_1802254b1(void
+/**
+ * @brief 系统标识符识别和分类函数（变体B）
+ * 
+ * 根据输入的数据字符串模式和长度，识别并返回对应的系统标识符。
+ * 该函数是IdentifySystemIdentifierByPattern的变体版本，用于处理
+ * 不同类型的系统组件识别和分类。
+ * 
+ * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
+ * @note 原始函数名：FUN_1802254b1
+ */
+int IdentifySystemIdentifierByPatternVariantB(void)
 {
   char *InputStringBuffer;
   int StringComparisonResult;
@@ -264097,7 +264107,17 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
  * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
  * @note 原始函数名：FUN_180225577
  */
-int FUN_180225577(void
+/**
+ * @brief 系统标识符识别和分类函数（变体C）
+ * 
+ * 根据输入的数据字符串模式和长度，识别并返回对应的系统标识符。
+ * 该函数是IdentifySystemIdentifierByPattern的变体版本，用于处理
+ * 不同类型的系统组件识别和分类。
+ * 
+ * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
+ * @note 原始函数名：FUN_180225577
+ */
+int IdentifySystemIdentifierByPatternVariantC(void)
 {
   int LockResult;
   long long BufferStatus;
