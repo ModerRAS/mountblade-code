@@ -2949,6 +2949,14 @@
 // 功能：存储系统配置的数据表信息
 #define SystemConfigurationDataTable UNK_180985a80
 
+// 原始变量名：UNK_180982cc0 - 数据加密表
+// 功能：存储数据加密的表信息
+#define DataEncryptionTable UNK_180982cc0
+
+// 原始变量名：UNK_1809842e0 - 系统验证数据表A1
+// 功能：存储系统验证相关的数据表信息
+#define SystemValidationDataTableA1 UNK_1809842e0
+
 // 原始变量名：UNK_180983588 - 系统验证数据表A0
 // 功能：存储系统验证相关的数据表信息
 #define SystemValidationDataTableA0 UNK_180983588
