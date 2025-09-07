@@ -61895,7 +61895,7 @@ LAB_18008b3e2:
  * 
  18008b440，ProcessSystemMemoryAllocationAndValidation
  */
-unsigned long long ProcessSystemMemoryAllocationAndValidation(long long CharacterCode,long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+unsigned long long ProcessSystemMemoryAllocationAndValidation(long long systemContext,long long bufferSize,uint64_t sourceData,uint64_t endMarker)
 {
   long long *Utf8InputBuffer;
   long long BufferAllocationStatus;
@@ -61910,8 +61910,8 @@ unsigned long long ProcessSystemMemoryAllocationAndValidation(long long Characte
   long long SystemStackVariable40;
   uint FunctionAddress;
   
-  SystemStackVariableX10 = Utf8BufferSize;
-  InsertDataStructureIntoTree(CharacterCode + 0xb0,&SystemTemplatePointer,&SystemStackVariableX10,Utf16EndPointer,0xfffffffffffffffe);
+  SystemStackVariableX10 = bufferSize;
+  InsertDataStructureIntoTree(systemContext + 0xb0,&SystemTemplatePointer,&SystemStackVariableX10,endMarker,0xfffffffffffffffe);
   BufferAllocationStatus = SystemStackVariableX10;
   if ((char)CoreEngineSignedValue48 == '\0') {
     ValidationResultPointer = &CoreEngineDataTemplate;
@@ -61938,14 +61938,14 @@ unsigned long long ProcessSystemMemoryAllocationAndValidation(long long Characte
       memmove(SystemTemplatePointer,MemoryPoolBlockSize,*(long long *)(BufferAllocationStatus + 0x188) - MemoryPoolBlockSize);
     }
     ProcessSystemStackFlag();
-    ConfigureCharacterCode(CharacterCode,&SystemTemplatePointer);
+    ConfigureCharacterCode(systemContext,&SystemTemplatePointer);
     BufferAllocationStatus = SystemTemplatePointer;
-    MemoryAllocationSize = (int)(*(long long *)(CharacterCode + 0x118) - *(long long *)(CharacterCode + 0x110) >> 4);
+    MemoryAllocationSize = (int)(*(long long *)(systemContext + 0x118) - *(long long *)(systemContext + 0x110) >> 4);
     MemoryPoolBlockSize = (long long)MemoryAllocationSize;
     if (0 < MemoryAllocationSize) {
       do {
-        CharacterCode = *(long long **)(*(long long *)(CharacterCode + 0x110) + MemoryBoundaryEnd);
-        (**(code **)(*Utf8InputBuffer + 0x20)                  (CharacterCode,*(void *)(*(long long *)(CharacterCode + 0x110) + 8 + MemoryBoundaryEnd));
+        systemContext = *(long long **)(*(long long *)(systemContext + 0x110) + MemoryBoundaryEnd);
+        (**(code **)(*Utf8InputBuffer + 0x20)                  (systemContext,*(void *)(*(long long *)(systemContext + 0x110) + 8 + MemoryBoundaryEnd));
         MemoryBoundaryEnd = MemoryBoundaryEnd + 0x10;
         MemoryPoolBlockSize = MemoryPoolBlockSize + -1;
       } while (MemoryPoolBlockSize != 0);
