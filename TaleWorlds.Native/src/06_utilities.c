@@ -80022,7 +80022,19 @@ void ExecuteExceptionHandlerCallbackZ0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090bd40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调函数Z1
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作，使用特定的偏移地址
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_18090bd40
+ */
+void ExecuteExceptionHandlerCallbackZ1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x58) != (code *)0x0) {
@@ -80033,7 +80045,17 @@ void Unwind_18090bd40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090bd50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器函数Z0
+ * 
+ * 该函数负责设置默认异常处理器，将指定位置的异常处理器指针
+ * 设置为默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090bd50
+ */
+void SetDefaultExceptionHandlerZ0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x260) = &DefaultExceptionHandlerB;
@@ -80042,7 +80064,17 @@ void Unwind_18090bd50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bd60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器函数Z1
+ * 
+ * 该函数负责设置默认异常处理器，将指定位置的异常处理器指针
+ * 设置为默认异常处理器B，使用不同的偏移地址
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090bd60
+ */
+void SetDefaultExceptionHandlerZ1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + ExceptionHandlerContextOffsetA0) = &DefaultExceptionHandlerB;
@@ -80051,7 +80083,17 @@ void Unwind_18090bd60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bd70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理状态函数Z0
+ * 
+ * 该函数负责清理异常处理状态，检查特定条件并执行相应的清理操作
+ * 如果条件满足，会重置相关的数据指针和状态标志
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090bd70
+ */
+void CleanupExceptionHandlerStateZ0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x51) == '\0') {
@@ -80067,7 +80109,17 @@ void Unwind_18090bd70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bd80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统清理函数Z0
+ * 
+ * 该函数负责执行系统清理操作，包括验证资源上下文、调用清理回调函数
+ * 以及处理异常处理器指针的清理工作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090bd80
+ */
+void ExecuteSystemCleanupZ0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80091,7 +80143,17 @@ void Unwind_18090bd80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bd90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证数据处理器函数Z0
+ * 
+ * 该函数负责验证数据处理器，检查特定的状态标志并根据条件
+ * 执行数据验证操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090bd90
+ */
+void ValidateDataHandlerZ0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
@@ -80103,7 +80165,17 @@ void Unwind_18090bd90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bdc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统回调函数Z0
+ * 
+ * 该函数负责执行系统回调函数，从数据缓冲区获取回调函数指针
+ * 并执行相应的回调操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090bdc0
+ */
+void ExecuteSystemCallbackZ0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x60) != (int64_t *)0x0) {

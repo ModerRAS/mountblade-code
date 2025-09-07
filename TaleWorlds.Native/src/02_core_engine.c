@@ -44273,7 +44273,7 @@ float * ProcessFloatBoundaryCalculation(float *Utf8InputBuffer
         StackVariable70 = *(void *)(CharacterCode + 0x4a);
         StackUnsigned68 = *(void *)(CharacterCode + 0x4c);
         StackUnsigned60 = *(void *)(CharacterCode + 0x4e);
-        StackFloat58 = Utf8InputBuffer[0x50];
+        PrimaryFloatValue = Utf8InputBuffer[0x50];
         StackFloat54 = Utf8InputBuffer[0x51];
         StackFloatValue50 = Utf8InputBuffer[0x52];
         StackFloatValue4c = Utf8InputBuffer[0x53];
@@ -44285,7 +44285,7 @@ float * ProcessFloatBoundaryCalculation(float *Utf8InputBuffer
         StackVariable70 = *(void *)(CharacterCode + 0x4a);
         StackUnsigned68 = *(void *)(CharacterCode + 0x4c);
         StackUnsigned60 = *(void *)(CharacterCode + 0x4e);
-        StackFloat58 = Utf8InputBuffer[0x50];
+        PrimaryFloatValue = Utf8InputBuffer[0x50];
         StackFloat54 = Utf8InputBuffer[0x51];
         StackFloatValue50 = Utf8InputBuffer[0x52];
         StackFloatValue4c = Utf8InputBuffer[0x53];
@@ -49969,7 +49969,7 @@ void ProcessDataStructureParametersAndFloatCalculations(long long CharacterCode,
  * 
  18007940e，CleanupSystemBuffer
  */
-void CleanupSystemBuffer(void
+void CleanupSystemBuffer(void)
 {
   long long *Utf8InputBuffer;
   long long *BufferAllocationStatus;
@@ -153349,10 +153349,10 @@ void ProcessSystemConfigurationUpdate(void
   float SystemContextPrimaryFloat2;
   float PrimaryScalingFactor;
   float SecondaryScalingFactor;
-  float StackFloat58;
-  float StackFloat54;
+  float PrimaryFloatValue;
+  float SecondaryFloatValue;
   float DistanceThreshold;
-  float fStack_4c;
+  float StackFloat4c;
   
   ReferenceCountPointer = (int *)(SystemConfigurationHandle + 0x1d98);
   if ((*(int *)(SystemConfigurationHandle + 0x1d38) == 0) && (*ReferenceCountPointer == 0)) {
