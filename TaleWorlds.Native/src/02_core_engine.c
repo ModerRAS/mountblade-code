@@ -38134,14 +38134,14 @@ void ProcessEngineIOCompletionPort(long long EngineContext{
         SystemContext = (long long *)&SystemFlagE;
         SystemValidationPointer = &SystemNetworkHandlerTemplate;
         ContextDataPointer = &SystemConnectionManagerTemplate;
-        StackProcessingVariable70 = (uint32_t)MemoryAddressMask;
-        SystemUnsignedValue6C = (uint32_t)((unsigned long long)MemoryAddressMask >> 0x20);
-        StackProcessingUnsignedValue68 = (uint32_t)BufferStatus;
-        SystemUnsignedValue64 = (uint32_t)((unsigned long long)BufferStatus >> 0x20);
-        StackProcessingUnsignedValue60 = StackProcessingVariable70;
-        SystemUnsignedValue5C = SystemUnsignedValue6C;
-        BufferOffset = StackProcessingUnsignedValue68;
-        SystemUnsignedValue54 = SystemUnsignedValue64;
+        StackProcessingValue = (uint32_t)MemoryAddressMask;
+        SystemUnsignedValueExtended = (uint32_t)((unsigned long long)MemoryAddressMask >> 0x20);
+        StackProcessingSecondaryValue = (uint32_t)BufferStatus;
+        SystemUnsignedValueTertiary = (uint32_t)((unsigned long long)BufferStatus >> 0x20);
+        StackProcessingPrimaryValue = StackProcessingValue;
+        SystemUnsignedValueQuaternary = SystemUnsignedValueExtended;
+        BufferOffset = StackProcessingSecondaryValue;
+        SystemUnsignedValueQuinary = SystemUnsignedValueTertiary;
         MemoryBoundaryPointer = (long long *)ProcessMemoryBoundaryOperation(CalculatedCodePoint,&StackProcessingUnsignedValue60);
         if (MemoryBoundaryPointer != (long long *)0x0) {
           (**(code **)(*MemoryBoundaryPointer + 0x28))(MemoryBoundaryPointer);
@@ -38381,14 +38381,14 @@ void ManageBufferIndexllocation(long long *Utf8InputBuffer
  */
 void InitializeSystemEventHandlers(uint64_t *Utf8InputBuffer
 {
-  uint8_t MemoryOffsetValue [48];
+  uint8_t MemoryOffsetBuffer [48];
   uint64_t *SystemEventPointer;
-  uint64_t StackProcessingVariable70;
+  uint64_t StackProcessingValue;
   uint64_t *EnginePointerBuffer;
   unsigned long long ProcessingFlags;
   
-  StackProcessingVariable70 = 0xfffffffffffffffe;
-  ProcessingFlags = EncodingDecodingKey ^ (unsigned long long)aMemoryOffsetValue;
+  StackProcessingValue = 0xfffffffffffffffe;
+  ProcessingFlags = EncodingDecodingKey ^ (unsigned long long)MemoryOffsetBuffer;
   EnginePointerBuffer = CharacterCode;
   InitializeEngineSubsystem();
   *Utf8InputBuffer = &SystemCharacterCodeA;
