@@ -10335,18 +10335,18 @@ uint8_t SystemManagementDataTableA0;
 void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 {
   // 资源和操作相关变量
-  uint64_t ResourceIdentifier;
-  int32_t OperationStatus;
-  int64_t ResourceArrayIterator;
-  int32_t ProcessedResourceCount;
+  uint64_t ResourceIdentifier;              // 资源标识符
+  int32_t OperationStatus;                  // 操作状态码
+  int64_t ResourceArrayIterator;            // 资源数组迭代器
+  int32_t ProcessedResourceCount;           // 已处理资源计数
   
   // 安全和缓冲区相关变量
-  uint8_t SecurityValidationBuffer[SecurityValidationBufferSize];
-  int64_t SystemContextArray[2];
-  uint8_t *DataProcessingBuffer;
-  int32_t ResourceProcessingLoopCounter;
-  uint32_t DataProcessingFlags;
-  uint8_t WorkingDataBuffer[WorkingDataBufferSize];
+  uint8_t SecurityValidationBuffer[SecurityValidationBufferSize];  // 安全验证缓冲区
+  int64_t SystemContextArray[2];           // 系统上下文数组
+  uint8_t *DataProcessingBuffer;           // 数据处理缓冲区指针
+  int32_t ResourceProcessingLoopCounter;    // 资源处理循环计数器
+  uint32_t DataProcessingFlags;             // 数据处理标志
+  uint8_t WorkingDataBuffer[WorkingDataBufferSize];  // 工作数据缓冲区
   
   // 初始化操作状态
   OperationStatus = 0;
@@ -10359,44 +10359,53 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   // 栈保护变量
   uint64_t StackGuardValue;
   
-  // 执行栈保护检查
+  // 执行栈保护检查，防止栈溢出攻击
   StackGuardValue = ExceptionEncryptionKeyValue ^ (uint64_t)SecurityValidationBuffer;
   
-  // 查询和检索系统数据
+  // 查询和检索系统数据，获取系统上下文信息
   OperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ObjectHandle + ComponentHandleOffset), SystemContextArray);
   
   // 验证操作结果并处理数据
   if ((OperationStatus == SystemSuccessStatus) && (*(int64_t *)(SystemContextArray[0] + SystemContextOffset) != 0)) {
+    // 初始化数据处理缓冲区和标志
     DataProcessingBuffer = WorkingDataBuffer;
     ProcessedResourceCount = 0;
     ResourceProcessingLoopCounter = 0;
     DataProcessingFlags = ProcessingFlagMask;
     
-    // 执行核心功能
+    // 执行核心功能处理
     OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + DataConfigurationOffset), *(int64_t *)(SystemContextArray[0] + SystemContextOffset),
                           &DataProcessingBuffer);
     
     // 处理执行结果
     if (OperationStatus == SystemSuccessStatus) {
+      // 如果有资源需要处理，遍历资源列表
       if (0 < ResourceProcessingLoopCounter) {
         ResourceArrayIterator = 0;
         do {
+          // 获取资源标识符
           ResourceIdentifier = *(uint64_t *)(DataProcessingBuffer + ResourceArrayIterator);
+          // 处理资源操作
           OperationStatus = ProcessUtilityOperation(ResourceIdentifier);
           if (OperationStatus != SystemErrorStatus) {
+              // 释放资源
               ReleaseResource(ResourceIdentifier, 1);
           }
+          // 更新计数器和偏移量
           ProcessedResourceCount = ProcessedResourceCount + 1;
           ResourceArrayIterator = ResourceArrayIterator + ResourceHandleSize;
         } while (ProcessedResourceCount < ResourceProcessingLoopCounter);
       }
+      // 清理内存缓冲区
       CleanupMemory(&DataProcessingBuffer);
     }
     else {
+      // 操作失败时也要清理缓冲区
       CleanupMemory(&DataProcessingBuffer);
     }
   }
-    ExecuteSecurityCheck(StackGuardValue ^ (uint64_t)SecurityValidationBuffer);
+  // 执行最终的安全验证检查
+  ExecuteSecurityCheck(StackGuardValue ^ (uint64_t)SecurityValidationBuffer);
 }
 
 
@@ -16723,15 +16732,15 @@ void ProcessUtilitySystemRequest(int64_t systemHandle,int64_t requestContext)
 {
   int systemStatus;
   int64_t systemContext;
-  DataBuffer contextVariable;
+  DataBuffer systemDataBuffer;
   
   systemStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemHandle + ExceptionHandlerCallbackOffset10));
   if (systemStatus == 0) {
-    if (contextVariable == 0) {
+    if (systemDataBuffer == 0) {
       systemContext = 0;
     }
     else {
-      systemContext = contextVariable + -8;
+      systemContext = systemDataBuffer + -8;
     }
     *(ByteFlag *)(systemContext + 0xbc) = *(ByteFlag *)(systemHandle + 0x18);
       ExecuteSystemResourceOperationCB0(*(DataBuffer *)(requestContext + 0x98),systemHandle);
@@ -17727,7 +17736,26 @@ DataBuffer SaveSystemConfigurationA0(int64_t configHandle,int64_t systemContext)
 
 
 
-// 配置验证函数A0
+/**
+ * @brief 验证系统配置的有效性
+ * 
+ * 该函数负责验证系统配置的有效性和完整性。它会检查系统配置参数，
+ * 确保所有配置值都在有效范围内，并执行必要的安全验证。
+ * 
+ * 函数执行以下步骤：
+ * 1. 获取系统上下文句柄
+ * 2. 检查系统状态标志
+ * 3. 验证浮点数值范围
+ * 4. 执行操作范围验证
+ * 5. 处理验证结果并执行相应的清理操作
+ * 
+ * @return DataBuffer 验证结果状态码，0表示成功，非0表示失败
+ * 
+ * @note 此函数包含安全验证机制，确保配置验证过程的安全性
+ * @warning 如果验证失败，函数会返回相应的错误码
+ * 
+ * @see GetSystemContextHandle, ValidateOperationRangeA0, ProcessSystemDataA0, CleanupSystemEventA0
+ */
 DataBuffer ValidateSystemConfigurationA0(void)
 
 {
@@ -17739,6 +17767,7 @@ DataBuffer ValidateSystemConfigurationA0(void)
   int64_t systemContext;
   float secondFloatValue;
   DataWord operationParameter;
+  int64_t systemConfigurationContext;
   
   dataContext = GetSystemContextHandle();
   if ((*(uint *)(dataContext + 0x34) >> 4 & 1) != 0) {
@@ -17753,9 +17782,9 @@ DataBuffer ValidateSystemConfigurationA0(void)
   *(float *)(registerContext + ExceptionHandlerCallbackOffset10) = secondFloatValue;
   validationStatus = ValidateOperationRangeA0(systemContext + 0x60,operationParameter,secondFloatValue);
   if ((int)validationStatus == 0) {
-    memoryRegionBase = (DataBuffer *)ProcessSystemDataA0(DestinationContext + 0x60,&stackBufferMidAddress,DataProcessingOffset);
+    memoryRegionBase = (DataBuffer *)ProcessSystemDataA0(systemConfigurationContext + 0x60,&stackBufferMidAddress,DataProcessingOffset);
     *(DataBuffer *)(registerContext + 0x18) = *memoryRegionBase;
-      CleanupSystemEventA0(*(DataBuffer *)(DestinationContext + 0x98));
+      CleanupSystemEventA0(*(DataBuffer *)(systemConfigurationContext + 0x98));
   }
   return validationStatus;
 }
@@ -75284,7 +75313,19 @@ void SetDefaultExceptionHandlerBToOffset68(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_180909420(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到指定位置
+ * 
+ * 该函数将默认异常处理器B设置到数据缓冲区的指定位置(0x90)，
+ * 用于异常处理时的回调函数配置。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909420
+ * @note 这是一个异常处理器的配置函数，用于设置默认的异常处理回调
+ */
+void SetDefaultExceptionHandlerBToOffset90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x90) = &DefaultExceptionHandlerB;
@@ -75293,7 +75334,19 @@ void Unwind_180909420(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909430(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到指定位置
+ * 
+ * 该函数将默认异常处理器B设置到数据缓冲区的指定位置(0x38)，
+ * 用于异常处理时的回调函数配置。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909430
+ * @note 这是一个异常处理器的配置函数，用于设置默认的异常处理回调
+ */
+void SetDefaultExceptionHandlerBToOffset38(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x38) = &DefaultExceptionHandlerB;
@@ -75302,13 +75355,29 @@ void Unwind_180909430(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909440(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器上下文回调
+ * 
+ * 该函数从数据缓冲区的指定位置获取异常处理器上下文指针，
+ * 并执行该上下文中的回调函数。这是异常处理机制中的关键函数，
+ * 负责在适当的时机调用注册的异常处理回调。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文信息
+ * 
+ * @note 原始函数名：Unwind_180909440
+ * @note 该函数通过0xb8偏移量获取异常处理器上下文，然后通过0x28偏移量获取回调函数指针
+ * @note 这是一个异常处理的核心执行函数，确保异常处理链的正确执行
+ */
+void ExecuteExceptionHandlerContextCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取异常处理器上下文指针
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0xb8) + 0x28);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+    // 执行异常处理器回调函数
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
   return;
@@ -75316,13 +75385,29 @@ void Unwind_180909440(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909450(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器上下文回调（副本）
+ * 
+ * 该函数是ExecuteExceptionHandlerContextCallback的副本，
+ * 从数据缓冲区的指定位置获取异常处理器上下文指针，
+ * 并执行该上下文中的回调函数。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文信息
+ * 
+ * @note 原始函数名：Unwind_180909450
+ * @note 该函数的功能与Unwind_180909440完全相同，可能是为了不同的调用上下文
+ * @note 通过0xb8偏移量获取异常处理器上下文，然后通过0x28偏移量获取回调函数指针
+ */
+void ExecuteExceptionHandlerContextCallbackDuplicate(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取异常处理器上下文指针
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0xb8) + 0x28);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+    // 执行异常处理器回调函数
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
   return;
