@@ -462,11 +462,11 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ValidateSystemMemory FUN_180120960
 #define ProcessSystemMemoryOperation FUN_1801209b0
 #define ExecuteSystemValidation FUN_180120a30  // 现在函数名为：ExecuteSystemValidationAndInitializeMemoryPool
-#define HandleSystemDataTransfer FUN_180120a70
+#define HandleSystemDataTransfer FUN_180120a70  // 现在函数名为：HandleSystemDataTransferAndInitializeMemoryPools
 #define ProcessSystemContextData FUN_180120b10
 #define CleanupSystemResources FUN_180120d00
-#define InitializeSystemComponents FUN_1801210b0
-#define ProcessSystemEvents FUN_180121300
+#define InitializeSystemComponents FUN_1801210b0  // 现在函数名为：InitializeSystemComponentsAndProcessString
+#define ProcessSystemEvents FUN_180121300  // 现在函数名为：ProcessSystemEventsAndHandleUtf8Encoding
 #define ValidateSystemDataIntegrity FUN_180121742
 #define ProcessSystemBuffers FUN_180121761
 #define ExecuteSystemOperations FUN_18012198e
@@ -115547,7 +115547,22 @@ uint ValidateSystemDataAndProcessOperation(byte *OutputBuffer,long long OutputBu
 
 
 
-1300(uint64_t OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180121300(uint64_t OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统事件和UTF8字符编码
+ * 
+ * 该函数负责处理系统事件，验证和解析UTF8字符，并分配相应的内存。
+ * 用于系统事件处理和字符编码转换。
+ * 
+ * @param OutputBuffer 输出缓冲区指针
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 此函数会验证UTF8字符并计算所需内存空间
+ * @note 包含文件操作和内存池管理
+ * @note 用于系统事件处理过程中的字符编码转换
+ */
+void ProcessSystemEventsAndHandleUtf8Encoding(uint64_t OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
@@ -116699,7 +116714,22 @@ void ProcessSystemValidation(int *OutputBuffer, uint OutputBufferSize, uint64_t 
 
 
 
-2210(uint64_t OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180122210(uint64_t OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统数据验证和缓冲区管理
+ * 
+ * 该函数负责处理系统数据验证操作，管理缓冲区和内存分配。
+ * 用于系统数据处理过程中的验证和管理。
+ * 
+ * @param OutputBuffer 输出缓冲区指针
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 此函数会调用系统验证函数进行数据处理
+ * @note 包含栈空间管理和参数传递
+ * @note 用于系统数据处理和验证流程
+ */
+void ProcessSystemDataValidationAndBufferManagement(uint64_t OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer)
 {
   uint64_t ReservedStackSpace;
   uint64_t uStackX_20;
@@ -116713,7 +116743,21 @@ void ProcessSystemValidation(int *OutputBuffer, uint OutputBufferSize, uint64_t 
 
 
 
-2240(int *OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointervoid FUN_180122240(int *OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer
+/**
+ * @brief 验证系统并处理字符串比较
+ * 
+ * 该函数负责验证系统初始化状态，处理字符串比较和内存分配。
+ * 用于系统验证和字符串处理操作。
+ * 
+ * @param OutputBuffer 输出缓冲区指针
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * 
+ * @note 此函数会进行系统验证和字符串比较操作
+ * @note 包含内存分配和边界检查
+ * @note 用于系统初始化和字符串处理流程
+ */
+void ValidateSystemAndProcessStringComparison(int *OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer)
 {
   int LockResult;
   int CharacterByteCount;
@@ -116767,7 +116811,22 @@ void ProcessSystemValidation(int *OutputBuffer, uint OutputBufferSize, uint64_t 
 
 
 
-227a(int OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,int Utf16EndPointervoid FUN_18012227a(int OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,int Utf16EndPointer
+/**
+ * @brief 处理系统数据节点和内存管理
+ * 
+ * 该函数负责处理系统数据节点操作，管理内存分配和验证。
+ * 用于系统数据结构管理和内存操作。
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 此函数会处理数据节点和内存管理操作
+ * @note 包含系统初始化和验证
+ * @note 用于系统数据结构管理流程
+ */
+void ProcessSystemDataNodesAndMemoryManagement(int OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,int Utf16EndPointer)
 {
   int LockResult;
   int CharacterByteCount;
@@ -116800,7 +116859,16 @@ void ProcessSystemValidation(int *OutputBuffer, uint OutputBufferSize, uint64_t 
 
 
 
-2310(voidvoid FUN_180122310(void
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于系统中的占位操作。
+ * 在某些情况下需要空操作时会调用此函数。
+ * 
+ * @note 此函数不执行任何操作
+ * @note 用于系统架构中的占位符
+ */
+void SystemNullOperation(void)
 {
   return;
 }
