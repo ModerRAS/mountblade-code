@@ -2593,15 +2593,15 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 // 系统事件处理函数
 #define ProcessSystemEventProcessSystemEvent
 #define ValidateSystemStatusValidateSystemStatus
-#define AllocateSystemMemory(FUN_180639d60) AllocateSystemMemory
-#define InitializeSystemConstants(FUN_18008d310) InitializeSystemConstants
-#define CleanupSystemResources(FUN_18008d2b0) CleanupSystemResources
-#define ReleaseSystemMemory(FUN_18008d250) ReleaseSystemMemory
-#define ProcessSystemExit(FUN_1800e7950) ProcessSystemExit
-#define ValidateMemoryBlock(FUN_18024c420) ValidateMemoryBlock
-#define InitializeTimeManager(FUN_18005c480) InitializeTimeManager
-#define SetupSystemMemory(FUN_180074f10) SetupSystemMemory
-#define ExecuteSystemStartup(FUN_180112210) ExecuteSystemStartup
+#define AllocateSystemMemory FUN_180639d60
+#define InitializeSystemConstants FUN_18008d310
+#define CleanupSystemResources FUN_18008d2b0
+#define ReleaseSystemMemory FUN_18008d250
+#define ProcessSystemExit FUN_1800e7950
+#define ValidateMemoryBlock FUN_18024c420
+#define InitializeTimeManager FUN_18005c480
+#define SetupSystemMemory FUN_180074f10
+#define ExecuteSystemStartup FUN_180112210
 #define InitializeFloatConstants(InitializeFloatConstants) InitializeFloatConstants
 #define ProcessSystemConfiguration(FUN_180119790) ProcessSystemConfiguration
 #define ValidateSystemParameters(FUN_180095340) ValidateSystemParameters
@@ -3003,8 +3003,8 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ProcessDataFilter(FUN_18011f9b0) ProcessDataFilter
 
 // 系统管理函数
-#define ManageSystemResources(FUN_18005d390) ManageSystemResources
-#define ProcessSecondaryDatae520) ProcessSecondaryData
+#define ManageSystemResources FUN_18005d390
+#define ProcessSecondaryData FUN_18011e520
 
 // 系统数据结构配置函数组 - 基于偏移量的配置函数
 #define ConfigureSystemDataStructureOffset6f0 FUN_18010d6f0
