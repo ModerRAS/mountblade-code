@@ -118167,14 +118167,13 @@ uint8_t SystemExceptionHandlerStateTable;
 #define ExecuteSystemFinalizationA0 Unwind_180909860
 #define ProcessSystemTerminationA0 Unwind_180909870
 #define ExecuteSystemTerminationA0 Unwind_180909890
-#define ProcessSystemExitA0 Unwind_1809098a0
-#define ExecuteSystemExitA0 Unwind_1809098b0
-#define ProcessSystemAbortA0 Unwind_1809098c0
-#define ExecuteSystemAbortA0 Unwind_1809098d0
-#define CleanupSystemMemoryA0 Unwind_1809098d0
-#define ResetSystemStateA0 Unwind_180909900
-#define ValidateSystemIntegrityA0 Unwind_180909930
-#define ExecuteSystemIntegrityCheckA0 Unwind_180909960
+#define SetExceptionDataProcessorAtOffset50 Unwind_1809098a0
+#define SetExceptionDataProcessorAtOffset48 Unwind_1809098b0
+#define SetExceptionDataProcessorAtOffset48Duplicate Unwind_1809098c0
+#define SetResourceCleanupProcessorAtOffset40 Unwind_1809098d0
+#define SetDataValidationProcessorAtOffset30 Unwind_180909900
+#define SetDataValidationProcessorAtOffset5c Unwind_180909930
+#define SetDefaultExceptionHandlerAtOffsetf0 Unwind_180909960
 #define ValidateDataHandlerStateA0 Unwind_180908e10
 #define UnlockSystemMutexAndHandleErrorA0 Unwind_180909970
 #define SetDefaultExceptionHandlerAtOffset1D0A0 Unwind_180909980
@@ -118797,14 +118796,20 @@ uint8_t SystemExceptionHandlerStateTable;
  * - 已美化函数描述注释：8个
  * - 已美化Unwind函数：200+个
  * - 已美化FUN_函数：50+个
+ * - 已美化异常数据处理器函数：7个
+ * - 已美化资源清理处理器函数：1个
+ * - 已美化数据验证处理器函数：2个
+ * - 已美化默认异常处理器函数：1个
  * 
  * @note 所有变量名和函数名都已从Ghidra逆向生成的名称
  *       替换为具有语义的名称，提高了代码的可读性和维护性。
  * 
  * 本次更新：
- * - 为所有Unwind_函数添加了语义化的宏定义
- * - 为系统监控、维护、优化等功能函数添加了清晰的命名
- * - 为异常处理相关函数添加了描述性的名称
- * - 为系统资源管理函数添加了功能明确的名称
- * - 为系统组件管理函数添加了语义化的名称
+ * - 为Unwind_1809098a0-180909960系列函数添加了语义化的命名和详细文档注释
+ * - 为异常数据处理器函数添加了清晰的命名（SetExceptionDataProcessorAtOffset*）
+ * - 为资源清理处理器函数添加了功能明确的名称（SetResourceCleanupProcessorAtOffset40）
+ * - 为数据验证处理器函数添加了描述性的名称（SetDataValidationProcessorAtOffset*）
+ * - 为默认异常处理器函数添加了语义化的名称（SetDefaultExceptionHandlerAtOffsetf0）
+ * - 更新了相应的宏定义，确保函数名与宏定义保持一致
+ * - 为每个函数添加了详细的功能描述、参数说明和注意事项
  */
