@@ -114,6 +114,7 @@
 #define ResourceValidationOffset 0xd0
 #define ResourceActiveFlagOffset 0x60
 #define ExceptionHandlerOffset 0x40
+#define ExceptionHandlerOffsetF0 0xf8
 #define ExceptionContextOffset 0xa0
 #define ExceptionHandlerContextOffset 0x80
 #define ExceptionHandlerPointerOffset 400
@@ -10102,18 +10103,18 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
   if (*(int *)(localResourceDecrementBuffer[0] + 0x4c) < 1) {
     return ResourceInvalidErrorCode;
   }
-  decrementOperationResult = *(int *)(localResourceDecrementBuffer[0] + 0x4c) + -1;
-  *(int *)(localResourceDecrementBuffer[0] + 0x4c) = decrementOperationResult;
-  if (*(int *)(localResourceDecrementBuffer[0] + 0x58) + *(int *)(localResourceDecrementBuffer[0] + 0x54) + decrementOperationResult != 0) {
+  resourceDecrementResult = *(int *)(localResourceDecrementBuffer[0] + 0x4c) + -1;
+  *(int *)(localResourceDecrementBuffer[0] + 0x4c) = resourceDecrementResult;
+  if (*(int *)(localResourceDecrementBuffer[0] + 0x58) + *(int *)(localResourceDecrementBuffer[0] + 0x54) + resourceDecrementResult != 0) {
     return 0;
   }
   localResourceDecrementBuffer[0] = 0;
-  decrementOperationResult = ValidateResourceHandle(localResourceDecrementBuffer);
-  if (decrementOperationResult == 0) {
-    decrementOperationResult = CleanupResourceData(resourceContextPtr,0);
-    if (decrementOperationResult == 0) {
-      decrementOperationResult = ValidateSystemParameters(decrementValue);
-      if (decrementOperationResult == 0) {
+  resourceDecrementResult = ValidateResourceHandle(localResourceDecrementBuffer);
+  if (resourceDecrementResult == 0) {
+    resourceDecrementResult = CleanupResourceData(resourceContextPtr,0);
+    if (resourceDecrementResult == 0) {
+      resourceDecrementResult = ValidateSystemParameters(decrementValue);
+      if (resourceDecrementResult == 0) {
                     // WARNING: Subroutine does not return
         ReleaseSystemResources(localResourceDecrementBuffer);
       }
@@ -80111,7 +80112,20 @@ void Unwind_18090ccd0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_18090cce0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常资源清理函数E0 - 简化实现
+ * 
+ * 该函数负责在异常处理过程中清理系统资源，包括异常上下文处理、
+ * 资源迭代器管理和数据缓冲区验证。这是一个复杂的异常处理函数，
+ * 涉及多个系统组件的协调工作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090cce0
+ * @note 这是一个简化实现，保留了核心的异常处理逻辑
+ */
+void CleanupExceptionResourcesE0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -80120,24 +80134,29 @@ void Unwind_18090cce0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t *contextPointer;
   int64_t resourceIterator;
   
-  if (0 < *(int *)(dataBuffer + 0x50)) {
-    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
-    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
-       ) {
-      contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
+  if (0 < *(int *)(dataBuffer + ExceptionResourceCountOffset)) {
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + ResourceIteratorTableOffset);
+    if ((*(char *)(SystemResourcePointer + ResourceValidationFlag1) != '\0') || 
+        (*(char *)(SystemResourcePointer + ResourceValidationFlag2) != '\0')) {
+      contextPointer = (int64_t *)(resourceIterator + ResourceContextArrayOffset + 
+                     (int64_t)*(int *)(resourceIterator + ResourceContextIndexOffset) * ResourceContextSize);
       exceptionHandlerContext = *contextPointer;
-      exceptionHandlerContext = *(int64_t *)(exceptionHandlerContext + ((int64_t)(int)(contextPointer[1] - exceptionHandlerContext >> 3) + -1) * 8);
+      exceptionHandlerContext = *(int64_t *)(exceptionHandlerContext + 
+                         ((int64_t)(int)(contextPointer[1] - exceptionHandlerContext >> 3) + -1) * 8);
       ProcessSystemOperationsA0();
-      if (*(int64_t *)(exceptionHandlerContext + 0x68) == 0) {
-        *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = exceptionHandlerContext;
+      if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextStatusOffset) == 0) {
+        *(int64_t *)(resourceIterator + ResourceStatusArrayOffset + 
+               (int64_t)*(int *)(resourceIterator + ResourceContextIndexOffset) * 8) = exceptionHandlerContext;
       }
-      calculatedOffset = (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20;
-      exceptionHandlerContext = *(int64_t *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      calculatedOffset = (int64_t)*(int *)(resourceIterator + ResourceContextIndexOffset) * ResourceContextSize;
+      exceptionHandlerContext = *(int64_t *)(calculatedOffset + ResourceHandlerContextOffset + 
+                                 resourceIterator + ResourceContextBaseOffset);
+      operationResult = (int)(*(int64_t *)(calculatedOffset + ResourceValidationOffset + 
+                          resourceIterator + ResourceContextBaseOffset) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
-          if (*(char *)(*(int64_t *)(exceptionHandlerContext + resourceIterator * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(exceptionHandlerContext + resourceIterator * 8) + ResourceActiveFlagOffset) == '\x01') {
             if (operationResult != -1) {
               ValidateDataBufferA2(*(DataBuffer *)(exceptionHandlerContext + (int64_t)operationResult * 8));
             }
@@ -80149,16 +80168,28 @@ void Unwind_18090cce0(DataBuffer operationBase,int64_t dataBuffer)
       }
     }
   }
-  *(uint8_t **)(dataBuffer + 0x40) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_18090ccf0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器设置函数F0 - 简化实现
+ * 
+ * 设置默认异常处理器B到数据缓冲区的指定偏移量位置。
+ * 这是一个简单的异常处理器设置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ccf0
+ * @note 这是一个简化实现，仅设置异常处理器
+ */
+void SetExceptionHandlerF0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0xf8) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerOffsetF0) = &DefaultExceptionHandlerB;
   return;
 }
 
