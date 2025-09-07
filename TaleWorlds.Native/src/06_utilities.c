@@ -7997,7 +7997,8 @@ uint8_t SystemDataProcessingAreaA2;
 // 系统数据处理区A3
 // 功能：用于处理系统数据的区域
 uint8_t SystemDataProcessingAreaA3;
-byte SystemConfigurationDataA0;  // DAT_180c91d14
+// 系统配置数据存储
+uint8_t SystemConfigurationDataStorage;  // DAT_180c91d14
 // 系统清理处理器数据存储
 uint8_t SystemCleanupHandlerDataStore;
 // 系统异常处理相关变量
@@ -8008,16 +8009,16 @@ uint8_t SystemExceptionStackTable;
 // 系统状态验证函数A0
 // 功能：验证系统状态完整性
 #define ValidateSystemStatusA0 FUN_180943090
-uint8_t ValidateSystemStatusA0;
+uint8_t SystemStatusValidationFunction;
 // 系统数据表A0
 // 功能：存储系统数据表信息
 #define SystemDataTableA0 DAT_180d49ff8
-uint8_t SystemDataTableA0;
+uint8_t SystemDataTableStorage;
 
 // 系统配置处理函数A0
 // 功能：处理系统配置操作
 #define ProcessSystemConfigurationA0 FUN_1809430b0
-uint8_t ProcessSystemConfigurationA0;
+uint8_t SystemConfigurationProcessingFunction;
 // 系统内存管理区A0
 // 功能：用于系统内存管理的区域
 uint8_t SystemMemoryManagementAreaA0;
@@ -8157,6 +8158,7 @@ uint8_t SystemExceptionHandlerDataO;
 uint8_t SystemExceptionHandlerDataP;
 uint8_t SystemExceptionHandlerDataQ;
 uint8_t SystemExceptionHandlerDataR;
+// 系统安全验证标志位A0 - 用于验证系统安全状态
 uint8_t SystemSecurityValidationFlagA0;     // UNK_180a395c0
 uint8_t SystemSecurityValidationFlagA1;     // UNK_180a395e0
 uint8_t SystemSecurityValidationFlagA2;     // UNK_180a39600
@@ -8447,7 +8449,7 @@ uint8_t SystemStatusPointerA0;
 // 系统数据处理函数A0
 // 功能：处理系统数据操作
 #define ProcessSystemDataA0 FUN_1809430e0
-uint8_t ProcessSystemDataA0;
+uint8_t SystemDataProcessingFunction;
 // 系统标志变量A0
 // 功能：存储系统状态标志
 #define SystemFlagA0 DAT_180bf66d8
@@ -8455,15 +8457,15 @@ ByteFlag SystemFlagA0;
 // 系统数据表A1
 // 功能：存储系统数据表信息
 #define SystemDataTableA1 DAT_180c96858
-uint8_t SystemDataTableA1;
+uint8_t SystemDataTableStorageA1;
 // 系统缓冲区数据表A0
 // 功能：存储系统缓冲区数据表信息
 #define SystemBufferDataTableA0 DAT_180bfbf64
-uint8_t SystemBufferDataTableA0;
+uint8_t SystemBufferDataTableStorageA0;
 // 系统缓冲区数据表A1
 // 功能：存储系统缓冲区数据表信息
 #define SystemBufferDataTableA1 DAT_180bfbf7c
-uint8_t SystemBufferDataTableA1;
+uint8_t SystemBufferDataTableStorageA1;
 // 系统缓冲区数据表A2
 // 功能：存储系统缓冲区数据表信息
 #define SystemBufferDataTableA2 DAT_180bfbf60
@@ -20441,13 +20443,13 @@ ValidateDataSecurity:
             if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
           }
           validationCounter = (float)((int)validationCounter + 1);
-          pfVar21 = pfVar21 + 1;
+          pcalculatedFloatValue = pcalculatedFloatValue + 1;
         } while ((int)loopCounterFloat < 4);
-        pfVar21 = (float *)&FloatValidationArray;
+        pcalculatedFloatValue = (float *)&FloatValidationArray;
         loopCounterFloat = register_R13D;
         do {
-          floatValidationValue = *(float *)(register_R15 + -0x180985054 + (int64_t)pfVar21);
-          if (floatValidationValue != *pfVar21) {
+          floatValidationValue = *(float *)(register_R15 + -0x180985054 + (int64_t)pcalculatedFloatValue);
+          if (floatValidationValue != *pcalculatedFloatValue) {
             StackParameter38 = SystemOperationResult;
             in_stack_00000028 = &DataProcessingContextA0;
             ValidationDataBuffer = register_R13D;
@@ -20457,7 +20459,7 @@ ValidateDataSecurity:
             if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
           }
           validationCounter = (float)((int)validationCounter + 1);
-          pfVar21 = pfVar21 + 1;
+          pcalculatedFloatValue = pcalculatedFloatValue + 1;
         } while ((int)loopCounterFloat < 6);
         systemDataBuffer4 = ValidateParameters(systemContext + 200);
         operationResult3 = floatResultA_03;
@@ -27582,7 +27584,7 @@ ValidationLabelB:
       return exceptionDataBuffer3;
     }
     inputParameter9 = *(int *)(stackFramePointer + -0x21);
-    fVar21 = floatResultA_03;
+    calculatedFloatValue = floatResultA_03;
     if (inputParameter9 == 0) {
       exceptionDataBuffer3 = *(DataBuffer **)(stackFramePointer + -0x29);
     }
@@ -27593,7 +27595,7 @@ ValidationLabelB:
         exceptionDataBuffer3 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         inputParameter9 = *(int *)(stackFramePointer + -0x21);
-        fVar21 = floatResultA_04;
+        calculatedFloatValue = floatResultA_04;
       }
       exceptionDataBuffer3 = *(DataBuffer **)(stackFramePointer + -0x29);
       for (exceptionDataBuffer6 = exceptionDataBuffer3; (exceptionDataBuffer3 <= exceptionDataBuffer6 && (exceptionDataBuffer6 < exceptionDataBuffer3 + (int64_t)inputParameter9 * 3));
@@ -27607,8 +27609,8 @@ ValidationLabelB:
         *exceptionDataBuffer3 = *exceptionDataBuffer6;
         exceptionDataBuffer3[1] = systemDataBuffer;
         *(DataWord *)(exceptionDataBuffer3 + 2) = *(DataWord *)(exceptionDataBuffer6 + 2);
-        fVar21 = *(float *)((int64_t)exceptionDataBuffer6 + 0x14) + *(float *)(exceptionDataBuffer6 + 2);
-        *(float *)((int64_t)exceptionDataBuffer3 + 0x14) = fVar21;
+        calculatedFloatValue = *(float *)((int64_t)exceptionDataBuffer6 + 0x14) + *(float *)(exceptionDataBuffer6 + 2);
+        *(float *)((int64_t)exceptionDataBuffer3 + 0x14) = calculatedFloatValue;
         *(ByteFlag *)(exceptionDataBuffer3 + 3) = 1;
         inputParameter9 = *(int *)(stackFramePointer + -0x21);
         exceptionDataBuffer3 = *(DataBuffer **)(stackFramePointer + -0x29);
@@ -27636,11 +27638,11 @@ ValidationLabelB:
         validationContext7 = (int64_t)inputParameter9 * 0x18 + 0x14 + (int64_t)exceptionDataBuffer3;
         do {
           pValidationFloatValue4 = (float *)ExecuteSystemResourceOperation();
-          fVar21 = *pValidationFloatValue4;
+          calculatedFloatValue = *pValidationFloatValue4;
           fVar5 = pValidationFloatValue4[1];
           fVar6 = pValidationFloatValue4[2];
           fVar7 = pValidationFloatValue4[3];
-          *(float *)(validationContext7 + -0x14) = fVar21;
+          *(float *)(validationContext7 + -0x14) = calculatedFloatValue;
           *(float *)(validationContext7 + -0x10) = fVar5;
           *(float *)(validationContext7 + -0xc) = fVar6;
           *(float *)(validationContext7 + -8) = fVar7;
@@ -27656,12 +27658,12 @@ ValidationLabelB:
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      fVar21 = (float)CleanupDataResourcesA0(stackFramePointer + -0x29,0);
+      calculatedFloatValue = (float)CleanupDataResourcesA0(stackFramePointer + -0x29,0);
     }
   }
   else {
     exceptionDataBuffer1 = (DataBuffer *)CreateExceptionDataBuffer(operationResult0,systemContext + 0x48);
-    fVar21 = floatResultA_02;
+    calculatedFloatValue = floatResultA_02;
     if ((int)exceptionDataBuffer1 != 0) {
       return exceptionDataBuffer1;
     }
@@ -27671,18 +27673,18 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + 0x48) <= systemDataBuffer5 &&
       (systemDataBuffer5 < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
       systemDataBuffer5 = systemDataBuffer5 + 0x1c) {
-    fVar21 = (float)GetSystemContextValue(systemContext + 0x58);
+    calculatedFloatValue = (float)GetSystemContextValue(systemContext + 0x58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(destinationIndexRegister + 8)) && (securityCheckResult = 0x1c, *(int *)(destinationIndexRegister[1] + 0x18) == 0)) {
     securityCheckResult = OperateDataO0(*destinationIndexRegister,systemContext + 0x68,4);
-    fVar21 = floatResultA_01;
+    calculatedFloatValue = floatResultA_01;
   }
   if (securityCheckResult != 0) {
     return (DataBuffer *)(uint64_t)securityCheckResult;
   }
                     // WARNING: Subroutine does not return
-  ExecutePortControlOperation(fVar21,stackFramePointer + -9);
+  ExecutePortControlOperation(calculatedFloatValue,stackFramePointer + -9);
 }
 
 
@@ -27842,7 +27844,7 @@ ValidationProcessingLabel:
       return exceptionDataBuffer2;
     }
     inputParameter9 = *(int *)(stackFramePointer + -0x21);
-    fVar21 = floatResultA_03;
+    calculatedFloatValue = floatResultA_03;
     if (inputParameter9 == 0) {
       exceptionDataBuffer2 = *(DataBuffer **)(stackFramePointer + -0x29);
     }
@@ -27853,7 +27855,7 @@ ValidationProcessingLabel:
         exceptionDataBuffer2 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         inputParameter9 = *(int *)(stackFramePointer + -0x21);
-        fVar21 = floatResultA_04;
+        calculatedFloatValue = floatResultA_04;
       }
       exceptionDataBuffer2 = *(DataBuffer **)(stackFramePointer + -0x29);
       for (exceptionDataBuffer6 = exceptionDataBuffer2; (exceptionDataBuffer2 <= exceptionDataBuffer6 && (exceptionDataBuffer6 < exceptionDataBuffer2 + (int64_t)inputParameter9 * 3));
@@ -27867,8 +27869,8 @@ ValidationProcessingLabel:
         *exceptionDataBuffer2 = *exceptionDataBuffer6;
         exceptionDataBuffer2[1] = systemDataBuffer;
         *(DataWord *)(exceptionDataBuffer2 + 2) = *(DataWord *)(exceptionDataBuffer6 + 2);
-        fVar21 = *(float *)((int64_t)exceptionDataBuffer6 + 0x14) + *(float *)(exceptionDataBuffer6 + 2);
-        *(float *)((int64_t)exceptionDataBuffer2 + 0x14) = fVar21;
+        calculatedFloatValue = *(float *)((int64_t)exceptionDataBuffer6 + 0x14) + *(float *)(exceptionDataBuffer6 + 2);
+        *(float *)((int64_t)exceptionDataBuffer2 + 0x14) = calculatedFloatValue;
         *(ByteFlag *)(exceptionDataBuffer2 + 3) = 1;
         inputParameter9 = *(int *)(stackFramePointer + -0x21);
         exceptionDataBuffer2 = *(DataBuffer **)(stackFramePointer + -0x29);
@@ -27896,11 +27898,11 @@ ValidationProcessingLabel:
         validationContext7 = (int64_t)inputParameter9 * 0x18 + 0x14 + (int64_t)exceptionDataBuffer2;
         do {
           pValidationFloatValue4 = (float *)ExecuteSystemResourceOperation();
-          fVar21 = *pValidationFloatValue4;
+          calculatedFloatValue = *pValidationFloatValue4;
           fVar5 = pValidationFloatValue4[1];
           fVar6 = pValidationFloatValue4[2];
           fVar7 = pValidationFloatValue4[3];
-          *(float *)(validationContext7 + -0x14) = fVar21;
+          *(float *)(validationContext7 + -0x14) = calculatedFloatValue;
           *(float *)(validationContext7 + -0x10) = fVar5;
           *(float *)(validationContext7 + -0xc) = fVar6;
           *(float *)(validationContext7 + -8) = fVar7;
@@ -27916,12 +27918,12 @@ ValidationProcessingLabel:
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      fVar21 = (float)CleanupDataResourcesA0(stackFramePointer + -0x29,0);
+      calculatedFloatValue = (float)CleanupDataResourcesA0(stackFramePointer + -0x29,0);
     }
   }
   else {
     exceptionDataBuffer3 = (DataBuffer *)CreateExceptionDataBuffer(operationResult0,systemContext + 0x48);
-    fVar21 = floatResultA_02;
+    calculatedFloatValue = floatResultA_02;
     if ((int)exceptionDataBuffer3 != 0) {
       return exceptionDataBuffer3;
     }
@@ -27931,18 +27933,18 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + 0x48) <= systemDataBuffer5 &&
       (systemDataBuffer5 < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
       systemDataBuffer5 = systemDataBuffer5 + 0x1c) {
-    fVar21 = (float)GetSystemContextValue(systemContext + 0x58);
+    calculatedFloatValue = (float)GetSystemContextValue(systemContext + 0x58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(destinationIndexRegister + 8)) && (securityCheckResult = 0x1c, *(int *)(destinationIndexRegister[1] + 0x18) == 0)) {
     securityCheckResult = OperateDataO0(*destinationIndexRegister,systemContext + 0x68,4);
-    fVar21 = floatResultA_01;
+    calculatedFloatValue = floatResultA_01;
   }
   if (securityCheckResult != 0) {
     return (DataBuffer *)(uint64_t)securityCheckResult;
   }
                     // WARNING: Subroutine does not return
-  ExecutePortControlOperation(fVar21,stackFramePointer + -9);
+  ExecutePortControlOperation(calculatedFloatValue,stackFramePointer + -9);
 }
 
 
@@ -97268,12 +97270,12 @@ void CleanupSystemMemoryBufferB(void)
   int64_t memoryPointer;
   
   // 检查缓冲区大小是否超过阈值
-  if (0xf < _DAT_180bfc118) {
+  if (0xf < SystemMemoryCapacityTable) {
     memoryContext = CONCAT71(SecondaryMemoryContextHighByte, DAT_180bfc100);
     memoryPointer = memoryContext;
     
     // 检查内存块大小是否过大
-    if (0xfff < _DAT_180bfc118 + 1) {
+    if (0xfff < SystemMemoryCapacityTable + 1) {
       memoryPointer = *(int64_t *)(memoryContext + -8);
       
       // 验证内存块偏移量的有效性
@@ -97288,8 +97290,8 @@ void CleanupSystemMemoryBufferB(void)
   }
   
   // 重置缓冲区状态
-  _DAT_180bfc110 = 0;
-  _DAT_180bfc118 = 0xf;
+  SystemMemoryBaseTable = 0;
+  SystemMemoryCapacityTable = 0xf;
 
 942700(void)
 /**
@@ -97849,20 +97851,20 @@ void FreeSystemMemoryBuffer(void)
   int64_t memoryContext;
   int64_t memoryPointer;
   
-  if (0xf < _DAT_180bfc188) {
+  if (0xf < SystemMemoryContextExtendedTable) {
     memoryContext = CONCAT71(uRam0000000180bfc171,DAT_180bfc170);
     memoryPointer = memoryContext;
-    if (0xfff < _DAT_180bfc188 + 1) {
+    if (0xfff < SystemMemoryContextExtendedTable + 1) {
       memoryPointer = *(int64_t *)(memoryContext + -8);
       if (0x1f < (memoryContext - memoryPointer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer,_DAT_180bfc188 + 0x28);
+        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer,SystemMemoryContextExtendedTable + 0x28);
       }
     }
     free(memoryPointer);
   }
-  _DAT_180bfc180 = 0;
-  _DAT_180bfc188 = 0xf;
+  SystemMemoryBaseExtendedTable = 0;
+  SystemMemoryContextExtendedTable = 0xf;
 
 9429f0(void)
 /**
@@ -98423,7 +98425,7 @@ void DestroyMutexC(void)
 void SetDefaultExceptionHandlerToLocationC(void)
 
 {
-  _DAT_180d49f80 = &DefaultExceptionHandlerB;
+  SystemExceptionHandlerStateTable = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -99883,8 +99885,8 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define DataBufferPointerA3 UNK_180a05168
 
 // 系统数据表宏定义 - 美化DAT_变量
-#define SystemValidation基准常量A0 _DAT_180c4eaa0
-#define SystemValidation基准常量A1 _DAT_180c4eaa4
+#define SystemValidation基准常量A0 SystemValidationBaseConstantA0
+#define SystemValidation基准常量A1 SystemValidationBaseConstantA1
 #define SystemResourceIteratorTable _DAT_180c86938
 #define SystemFunctionPointerTable _DAT_180c86968
 #define SystemInputParameterTable _DAT_180c82868
