@@ -21937,7 +21937,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           if (((char)exceptionHandlerContext5 == '\0') &&
              (iterationCount = ValidateSystemDataA0(operationBase,CONCAT71((uint7)(uint3)(StackDataWordW >> 8),1)), iterationCount != 0
              )) goto ProcessCheckpointBufferValidation;
-          iterationCount = (**(FunctionPointer**)(puStack_2d8 + 0x10))(&puStack_2d8,DataTransferBufferA,0x200);
+          iterationCount = (**(FunctionPointer**)(StackPointerVariableE + 0x10))(&StackPointerVariableE,DataTransferBufferA,0x200);
           ProcessData(DataTransferBufferA + iterationCount,0x200 - iterationCount,10);
           iterationCount = (**(FunctionPointer**)(*operationBase + 8))(operationBase,DataTransferBufferA);
           if (iterationCount != 0) goto ProcessCheckpointBufferValidation;
@@ -21966,7 +21966,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             uStack_2bc = auStack_2f0._4_4_;
             fStack_2c8 = afStack_348[0];
             uStack_2d0 = 0;
-            puStack_2d8 = &ValidationContextBuffer;
+            StackPointerVariableE = &ValidationContextBuffer;
             uStack_2c4 = uStack_2c4 & 0xffffff00;
             if (*(int *)(exceptionHandlerContext1 + 0x58) < 1) {
               exceptionDataBuffer2 = &SystemResourceDataBuffer;
@@ -21982,7 +21982,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
               if (((calculatedValue != 0) || (calculatedValue = ProcessDataBufferA0(aStackDataWordV[0],&StackLongIntegerC,0), calculatedValue != 0)
                   ) || (calculatedValue = (**(FunctionPointer**)(*operationBase + 0x10))(operationBase), calculatedValue != 0))
               goto ProcessCheckpointBufferValidation;
-              statusCounter = (uint64_t)(lStack_320 * 48000) /
+              statusCounter = (uint64_t)(StackLongIntegerC * 48000) /
                       (uint64_t)*(uint *)((int64_t)operationBase + 0x1c);
               calculatedIndex = operationBase[2];
               plStack_340 = (int64_t *)&SystemValidationTable;
@@ -21995,9 +21995,9 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
               calculatedValue = ValidateDataIntegrityA0(operationBase,&plStack_340);
               if (calculatedValue != 0) goto ProcessCheckpointBufferValidation;
             }
-            calculatedValue = (**(FunctionPointer**)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
-            ProcessData(auStack_238 + calculatedValue,0x200 - calculatedValue,10);
-            calculatedValue = (**(FunctionPointer**)(*operationBase + 8))(operationBase,auStack_238);
+            calculatedValue = (**(FunctionPointer**)(StackPointerVariableE + 0x10))(&StackPointerVariableE,StackUnsignedIntegerUnionB,0x200);
+            ProcessData(StackUnsignedIntegerUnionB + calculatedValue,0x200 - calculatedValue,10);
+            calculatedValue = (**(FunctionPointer**)(*operationBase + 8))(operationBase,StackUnsignedIntegerUnionB);
             if (calculatedValue != 0) goto ProcessCheckpointBufferValidation;
             if ((char)exceptionHandlerContext1 == '\0') {
               calculatedValue = (**(FunctionPointer**)(*operationBase + 0x18))(operationBase);
@@ -22023,7 +22023,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             uStack_338 = SystemCleanupFlagffffffff;
             aplStack_330[0] = (int64_t *)CONCAT44(aplStack_330[0]._4_4_,SystemCleanupFlag);
             plStack_340 = *(int64_t **)(exceptionHandlerContextPointer6[2] + 0x18 + exceptionHandlerContext5);
-            lStack_320 = exceptionHandlerContext5;
+            StackLongIntegerC = exceptionHandlerContext5;
             ProcessDataConversionDN0(plStack_340,&uStack_338,aplStack_330);
             exceptionHandlerContextPointer4 = plStack_340;
             if ((int)aplStack_330[0] != -1) {
@@ -22056,7 +22056,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
                 iterationCount = -1;
                 calculatedValue = iterationCount;
 DataProcessingCheckpoint:
-                exceptionHandlerContext5 = lStack_320;
+                exceptionHandlerContext5 = StackLongIntegerC;
                 exceptionHandlerContextPointer6 = plStack_318;
               } while (iterationCount != -1);
             }
@@ -49407,7 +49407,14 @@ void Unwind_180904770(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904780(void)
+/**
+ * 销毁条件变量资源的异常处理函数
+ * 
+ * 该函数在异常处理过程中销毁条件变量资源，确保系统异常时能正确释放同步资源
+ * 
+ * @note 原始函数名：Unwind_180904780
+ */
+void DestroyConditionOnException(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -49416,7 +49423,14 @@ void Unwind_180904780(void)
 
 
 
-void Unwind_180904790(void)
+/**
+ * 销毁互斥锁资源的异常处理函数
+ * 
+ * 该函数在异常处理过程中销毁互斥锁资源，确保系统异常时能正确释放锁资源
+ * 
+ * @note 原始函数名：Unwind_180904790
+ */
+void DestroyMutexOnException(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -49479,7 +49493,17 @@ void Unwind_1809047e0(void)
 
 
 
-void Unwind_1809047f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * 销毁基于数据缓冲区的互斥锁资源的异常处理函数
+ * 
+ * 该函数在异常处理过程中销毁与特定数据缓冲区关联的互斥锁资源
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要销毁的互斥锁信息
+ * 
+ * @note 原始函数名：Unwind_1809047f0
+ */
+void DestroyMutexFromBufferOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x28));
@@ -49488,7 +49512,17 @@ void Unwind_1809047f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904800(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * 销毁基于数据缓冲区的条件变量的异常处理函数
+ * 
+ * 该函数在异常处理过程中销毁与特定数据缓冲区关联的条件变量资源
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要销毁的条件变量信息
+ * 
+ * @note 原始函数名：Unwind_180904800
+ */
+void DestroyConditionFromBufferOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Cnd_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x28));
@@ -104020,6 +104054,14 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：StackPointerBufferD - 栈指针缓冲区D
 // 功能：存储指针数据的栈缓冲区
 #define StackPointerBufferD StackPointerBufferD
+
+// 原始变量名：puStack_2d8 - 栈指针变量E
+// 功能：存储指针数据的栈变量
+#define StackPointerVariableE puStack_2d8
+
+// 原始变量名：StackUnsignedIntegerUnionB - 栈无符号整型联合体B
+// 功能：存储无符号整型联合体的栈数据
+#define StackUnsignedIntegerUnionB StackUnsignedIntegerUnionB
 
 // 原始变量名：uStack_150 - 栈数据字H
 // 功能：存储数据处理过程中的临时数据字

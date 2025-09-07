@@ -17669,7 +17669,7 @@ uint32_t SystemShutdownAndCleanup(void
     if (OperationCompletionFlag != '\0') break;
     Sleep(1);
   }
-  StackContext1 = CleanupContextStorage;
+  PrimaryCleanupContext = CleanupContextStorage;
   if (CleanupContextStorage != (long long ****)0x0) {
     TimeoutValue = __RTCastToVoid(CleanupContextStorage);
     *CleanupContext = (long long ***)&CleanupContextStorage;
@@ -114010,7 +114010,7 @@ LAB_18011ee7f:
     }
     if (StackParameter1 == 0.0) goto LAB_18011efb0;
     NormalizedValue = StackParameter1;
-    FUN_18011f940(CharacterCode,*ProcessingStatusFlag);
+    ProcessSystemCoordinates(CharacterCode,*ProcessingStatusFlag);
     IntegerValue = ProcessValidationCheck(StackParameter2);
     CharacterCodeSize = 1.0;
     if (IntegerValue < 1) {
