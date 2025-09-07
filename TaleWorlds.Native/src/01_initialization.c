@@ -18934,36 +18934,36 @@ void SystemNetworkManagerInitializer(void)
 uint64_t InitializeThreadLocalStorageCallbackTable(void)
 
 {
-  uint64_t LocalStoragePointer;
-  int *CallbackTable;
+  uint64_t ThreadLocalStorageBaseAddress;
+  int *CallbackFunctionTable;
   
-  LocalStoragePointer = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
-  *(uint64_t *)(LocalStoragePointer + LocalStorageDataOffset) = &SystemMemoryAllocatorReference;
-  *(uint64_t *)(LocalStoragePointer + LocalStorageSecondaryOffset) = 0;
-  *(uint32_t *)(LocalStoragePointer + LocalStorageTertiaryOffset) = 0;
-  *(uint64_t *)(LocalStoragePointer + LocalStorageDataOffset) = &SystemGlobalDataReference;
-  *(uint64_t *)(LocalStoragePointer + LocalStorageQuaternaryOffset) = 0;
-  *(uint64_t *)(LocalStoragePointer + LocalStorageSecondaryOffset) = 0;
-  *(uint32_t *)(LocalStoragePointer + LocalStorageTertiaryOffset) = 0;
-  LocalStoragePointer = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
-  CallbackTable = *(int **)(LocalStoragePointer + LocalStorageQuinaryOffset);
-  if (CallbackTable == (int *)0x0) {
-    CallbackTable = (int *)(LocalStoragePointer + LocalStorageSenaryOffset);
+  ThreadLocalStorageBaseAddress = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
+  *(uint64_t *)(ThreadLocalStorageBaseAddress + LocalStorageDataOffset) = &SystemMemoryAllocatorReference;
+  *(uint64_t *)(ThreadLocalStorageBaseAddress + LocalStorageSecondaryOffset) = 0;
+  *(uint32_t *)(ThreadLocalStorageBaseAddress + LocalStorageTertiaryOffset) = 0;
+  *(uint64_t *)(ThreadLocalStorageBaseAddress + LocalStorageDataOffset) = &SystemGlobalDataReference;
+  *(uint64_t *)(ThreadLocalStorageBaseAddress + LocalStorageQuaternaryOffset) = 0;
+  *(uint64_t *)(ThreadLocalStorageBaseAddress + LocalStorageSecondaryOffset) = 0;
+  *(uint32_t *)(ThreadLocalStorageBaseAddress + LocalStorageTertiaryOffset) = 0;
+  ThreadLocalStorageBaseAddress = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
+  CallbackFunctionTable = *(int **)(ThreadLocalStorageBaseAddress + LocalStorageQuinaryOffset);
+  if (CallbackFunctionTable == (int *)0x0) {
+    CallbackFunctionTable = (int *)(ThreadLocalStorageBaseAddress + LocalStorageSenaryOffset);
   }
   else {
-    if (*CallbackTable != 0x1e) goto CallbackTableInitializationComplete;
-    CallbackTable = (int *)malloc(0x100);
+    if (*CallbackFunctionTable != 0x1e) goto CallbackTableInitializationComplete;
+    CallbackFunctionTable = (int *)malloc(0x100);
     free(0);
-    if (CallbackTable == (int *)0x0) {
+    if (CallbackFunctionTable == (int *)0x0) {
       return 0xffffffff;
     }
-    *(uint64_t *)(CallbackTable + CallbackTableDataOffset) = *(uint64_t *)(LocalStoragePointer + LocalStorageQuinaryOffset);
+    *(uint64_t *)(CallbackFunctionTable + CallbackTableDataOffset) = *(uint64_t *)(ThreadLocalStorageBaseAddress + LocalStorageQuinaryOffset);
   }
-  *CallbackTable = 0;
-  *(int **)(LocalStoragePointer + LocalStorageQuinaryOffset) = CallbackTable;
+  *CallbackFunctionTable = 0;
+  *(int **)(ThreadLocalStorageBaseAddress + LocalStorageQuinaryOffset) = CallbackFunctionTable;
 CallbackTableInitializationComplete:
-  *(code **)(CallbackTable + (uint64_t)*CallbackTable * 2 + 4) = SystemTableCallbackFunction;
-  *CallbackTable = *CallbackTable + 1;
+  *(code **)(CallbackFunctionTable + (uint64_t)*CallbackFunctionTable * 2 + 4) = SystemTableCallbackFunction;
+  *CallbackFunctionTable = *CallbackFunctionTable + 1;
   return 0;
 }
 
@@ -21065,18 +21065,18 @@ void ProcessSystemMemoryRange(long long *memoryRangePointer)
 void InitializeSystemDataPointers(long long* systemResourceManager)
 
 {
-  void** dataEndPointer;
-  void** systemDataTable;
+  void** ResourceDataEndPointer;
+  void** SystemDataTableReference;
   
-  dataEndPointer = (void* *)systemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
-  for (void** resourceEntryIterator = (void* *)*systemResourceManager; resourceEntryIterator != dataEndPointer; resourceEntryIterator = resourceEntryIterator + 5) {
-    *resourceEntryIterator = &SystemGlobalDataReference;
-    if (resourceEntryIterator[1] != 0) {
+  ResourceDataEndPointer = (void* *)systemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
+  for (void** ResourceEntryIterator = (void* *)*systemResourceManager; ResourceEntryIterator != ResourceDataEndPointer; ResourceEntryIterator = ResourceEntryIterator + 5) {
+    *ResourceEntryIterator = &SystemGlobalDataReference;
+    if (ResourceEntryIterator[1] != 0) {
         SystemCleanupFunction();
     }
-    resourceEntryIterator[1] = 0;
-    *(uint32_t *)(resourceEntryIterator + 3) = 0;
-    *resourceEntryIterator = &SystemMemoryAllocatorReference;
+    ResourceEntryIterator[1] = 0;
+    *(uint32_t *)(ResourceEntryIterator + 3) = 0;
+    *ResourceEntryIterator = &SystemMemoryAllocatorReference;
   }
   if (*systemResourceManager != 0) {
       SystemCleanupFunction();
@@ -21096,32 +21096,32 @@ void InitializeSystemDataPointers(long long* systemResourceManager)
 void ReleaseMemoryBlockReference(ulong long* SystemResourceManager)
 
 {
-  int* ReferenceCountPointer;
-  void** SystemDataTable;
-  long long ResourceMemoryOffset;
-  ulong long MemoryPageBase;
+  int* MemoryReferenceCount;
+  void** SystemDataTableReference;
+  long long ResourceMemoryAddress;
+  ulong long MemoryPageBaseAddress;
   
-  void** ResourceEntryIterator = (void* *)*SystemResourceManager;
-  if (ResourceEntryIterator == (void* *)0x0) {
+  void** ResourceEntryPointer = (void* *)*SystemResourceManager;
+  if (ResourceEntryPointer == (void* *)0x0) {
     return;
   }
-  MemoryPageBase = (ulong long)ResourceEntryIterator & SystemMemoryPageAlignmentMask;
-  if (MemoryPageBase != 0) {
-    ResourceMemoryOffset = MemoryPageBase + MemoryPageResourceDataOffset + ((long long)ResourceEntryIterator - MemoryPageBase >> MemoryPageShiftBits) * MemoryPageEntrySize;
-    ResourceMemoryOffset = ResourceMemoryOffset - (ulong long)*(uint *)(ResourceMemoryOffset + 4);
-    if ((*(void ***)(MemoryPageBase + MemoryPageExceptionListOffset) == &ExceptionList) && (*(char *)(ResourceMemoryOffset + MemoryPageValidationOffset) == '\0')) {
-      *ResourceEntryIterator = *(void* *)(ResourceMemoryOffset + MemoryPagePointerOffset);
-      *(void* **)(ResourceMemoryOffset + MemoryPagePointerOffset) = ResourceEntryIterator;
-      ReferenceCountPointer = (int *)(ResourceMemoryOffset + MemoryPageReferenceCountOffset);
-      *ReferenceCountPointer = *ReferenceCountPointer + -1;
-      if (*ReferenceCountPointer == 0) {
+  MemoryPageBaseAddress = (ulong long)ResourceEntryPointer & SystemMemoryPageAlignmentMask;
+  if (MemoryPageBaseAddress != 0) {
+    ResourceMemoryAddress = MemoryPageBaseAddress + MemoryPageResourceDataOffset + ((long long)ResourceEntryPointer - MemoryPageBaseAddress >> MemoryPageShiftBits) * MemoryPageEntrySize;
+    ResourceMemoryAddress = ResourceMemoryAddress - (ulong long)*(uint *)(ResourceMemoryAddress + 4);
+    if ((*(void ***)(MemoryPageBaseAddress + MemoryPageExceptionListOffset) == &ExceptionList) && (*(char *)(ResourceMemoryAddress + MemoryPageValidationOffset) == '\0')) {
+      *ResourceEntryPointer = *(void* *)(ResourceMemoryAddress + MemoryPagePointerOffset);
+      *(void* **)(ResourceMemoryAddress + MemoryPagePointerOffset) = ResourceEntryPointer;
+      MemoryReferenceCount = (int *)(ResourceMemoryAddress + MemoryPageReferenceCountOffset);
+      *MemoryReferenceCount = *MemoryReferenceCount + -1;
+      if (*MemoryReferenceCount == 0) {
         ReleaseSystemResource();
         return;
       }
     }
     else {
-      SystemExceptionCheck(MemoryPageBase,CombineExceptionFlags(SystemExceptionIdentifierTemplate1,*(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
-                          ResourceEntryIterator,MemoryPageBase,InvalidHandleValue);
+      SystemExceptionCheck(MemoryPageBaseAddress,CombineExceptionFlags(SystemExceptionIdentifierTemplate1,*(void ***)(MemoryPageBaseAddress + 0x70) == &ExceptionList),
+                          ResourceEntryPointer,MemoryPageBaseAddress,InvalidHandleValue);
     }
   }
   return;
@@ -21156,76 +21156,76 @@ void ReleaseMemoryBlockReference(ulong long* SystemResourceManager)
 int InitializeSystemCoreComponents(long long SystemResourceManager,long long InitializationFlags)
 
 {
-  void*** SystemResourceHandle;           // 系统资源指针
-  long long SystemHandle;                  // 系统句柄
-  void** SystemHashNodeData;            // 系统哈希节点指针
-  long long MemoryBufferBase;              // 内存缓冲区基地址
-  int SystemResultValue;                    // 系统结果值
-  long long LocalSystemFlags;               // 本地系统标志
-  long long DataIndex;                     // 数据索引
-  ulong long MemoryPointer;                // 内存地址
+  void*** SystemResourceHandlePointer;           // 系统资源指针
+  long long SystemHandleValue;                  // 系统句柄
+  void** SystemHashNodeDataPointer;            // 系统哈希节点指针
+  long long MemoryBufferBaseAddress;              // 内存缓冲区基地址
+  int SystemOperationResult;                    // 系统结果值
+  long long LocalSystemConfigurationFlags;               // 本地系统标志
+  long long ResourceDataIndex;                     // 数据索引
+  ulong long SystemMemoryAddress;                // 内存地址
   void**** SystemResourceTablePointer;
-  void*** EncryptionContextPointer;
+  void*** SystemEncryptionContextPointer;
   void** SystemMemoryContextPointer;
   long long LocalMemoryBufferHandle;
-  uint32_t ResourceAllocationFlags;
-  void* SystemContextPrimary;
-  void* SystemContextSecondary;
-  void* MemoryBufferPrimary;
-  void* MemoryBufferSecondary;
-  void* MemoryBufferTertiary;
-  void* MemoryBufferQuaternary;
-  void* MemoryBufferQuinary;
-  void* MemoryBufferSenary;
-  void* MemoryBufferSeptenary;
-  void* MemoryBufferOctonary;
-  void* MemoryBufferNonary;
-  void* MemoryBufferDenary;
-  void* MemoryBufferUndenary;
-  void* MemoryBufferDuodenary;
-  void* MemoryBufferTredecenary;
-  void* MemoryBufferQuattuordecenary;
-  void* MemoryBufferQuindecenary;
+  uint32_t ResourceAllocationStatusFlags;
+  void* SystemPrimaryContext;
+  void* SystemSecondaryContext;
+  void* PrimaryMemoryBuffer;
+  void* SecondaryMemoryBuffer;
+  void* TertiaryMemoryBuffer;
+  void* QuaternaryMemoryBuffer;
+  void* QuinaryMemoryBuffer;
+  void* SenaryMemoryBuffer;
+  void* SeptenaryMemoryBuffer;
+  void* OctonaryMemoryBuffer;
+  void* NonaryMemoryBuffer;
+  void* DenaryMemoryBuffer;
+  void* UndenaryMemoryBuffer;
+  void* DuodenaryMemoryBuffer;
+  void* TredecenaryMemoryBuffer;
+  void* QuattuordecenaryMemoryBuffer;
+  void* QuindecenaryMemoryBuffer;
   void* ThreadLocalStorageParameter;
-  void* MemoryBufferSexdecenary;
-  void* MemoryBufferSeptendecenary;
-  void* MemoryBufferOctodecenary;
-  void* MemoryBufferNovemdecenary;
+  void* SexdecenaryMemoryBuffer;
+  void* SeptendecenaryMemoryBuffer;
+  void* OctodecenaryMemoryBuffer;
+  void* NovemdecenaryMemoryBuffer;
   void*** ResourceEncryptionContext;
   void*** SystemResourceManagerContext;
-  void* MemoryBufferVigesimal;
-  void* MemoryBufferUnvigesimal;
-  void* EncryptionKeyValue;
-  uint32_t SystemInitializationStatus;
-  void* SystemResourceHandle;
+  void* VigesimalMemoryBuffer;
+  void* UnvigesimalMemoryBuffer;
+  void* SystemEncryptionKeyValue;
+  uint32_t SystemInitializationStatusCode;
+  void* SystemResourceDataHandle;
   
   SystemGlobalHandle = SystemInvalidHandleTemplate;
-  SystemHandle = 0;
+  SystemHandleValue = 0;
   SystemMemoryContext = (void* *)&SystemGlobalDataReference;
-  SystemContextPrimary = 0;
+  SystemPrimaryContext = 0;
   LocalMemoryBufferHandle = 0;
-  ResourceAllocationFlags = 0;
-  MemoryBufferSecondary = 0;
-  MemoryBufferTertiary = 0;
-  MemoryBufferQuaternary = 0;
-  MemoryBufferQuinary = 0;
-  MemoryBufferSenary = 0;
-  MemoryBufferSeptenary = 0;
-  MemoryBufferOctonary = 0;
-  MemoryBufferNonary = 0;
-  MemoryBufferDenary = 0;
-  SystemInitializationStatus = 3;
-  MemoryBufferVigesimal = 0;
-  MemoryBufferUnvigesimal = 0;
-  EncryptionKeyValue = 0;
-  SystemHashNodeData = &SystemStringTemplate;
+  ResourceAllocationStatusFlags = 0;
+  SecondaryMemoryBuffer = 0;
+  TertiaryMemoryBuffer = 0;
+  QuaternaryMemoryBuffer = 0;
+  QuinaryMemoryBuffer = 0;
+  SenaryMemoryBuffer = 0;
+  SeptenaryMemoryBuffer = 0;
+  OctonaryMemoryBuffer = 0;
+  NonaryMemoryBuffer = 0;
+  DenaryMemoryBuffer = 0;
+  SystemInitializationStatusCode = 3;
+  VigesimalMemoryBuffer = 0;
+  UnvigesimalMemoryBuffer = 0;
+  SystemEncryptionKeyValue = 0;
+  SystemHashNodeDataPointer = &SystemStringTemplate;
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
-    SystemHashNodeData = *(void* **)(ConfigurationDataPointer + 8);
+    SystemHashNodeDataPointer = *(void* **)(ConfigurationDataPointer + 8);
   }
-  EncryptionContextPointer = &SystemEncryptionValueTriple;
+  SystemEncryptionContextPointer = &SystemEncryptionValueTriple;
   SystemEncryptionValueTriple = &SystemEncryptionValueTriple;
   SystemEncryptionPointerPrimary = &SystemEncryptionValueTriple;
-  InitializeSystemStructure(&SystemMemoryContextPointer,SystemHashNodeData);
+  InitializeSystemStructure(&SystemMemoryContextPointer,SystemHashNodeDataPointer);
   SystemResourceCounterTotal = 0;
   SystemResourceCounterActive = 0;
   SystemResourceCounterReserved = 0;
