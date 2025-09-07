@@ -2709,6 +2709,118 @@ void* UIGestureCoordinates;
 // 原始函数名: FUN_1806979e0
 #define InitializeUIEventQueueProcessor FUN_1806979e0
 
+// UI系统资源验证函数
+// 原始函数名: FUN_180743660
+#define ValidateUIResource FUN_180743660
+
+// UI系统信号量操作函数
+// 原始函数名: FUN_1807682e0
+#define OperateUISemaphore FUN_1807682e0
+
+// UI系统内存分配函数
+// 原始函数名: FUN_180743160
+#define AllocateUIMemory FUN_180743160
+
+// UI系统事件处理函数
+// 原始函数名: FUN_18075ec10
+#define ProcessUIEvent FUN_18075ec10
+
+// UI系统资源句柄函数
+// 原始函数名: FUN_180747e10
+#define GetUIResourceHandle FUN_180747e10
+
+// UI系统资源释放函数
+// 原始函数名: FUN_180747f10
+#define ReleaseUIResourceHandle FUN_180747f10
+
+// UI系统资源初始化函数
+// 原始函数名: FUN_180748010
+#define InitializeUIResource FUN_180748010
+
+// UI系统内存检查函数
+// 原始函数名: FUN_180743c40
+#define CheckUIMemory FUN_180743c40
+
+// UI系统数据验证函数
+// 原始函数名: FUN_180748290
+#define ValidateUIData FUN_180748290
+
+// UI系统状态检查函数
+// 原始函数名: FUN_18076fc40
+#define CheckUIState FUN_18076fc40
+
+// UI系统初始化函数
+// 原始函数名: FUN_180749060
+#define InitializeUISystem FUN_180749060
+
+// UI系统缓冲区操作函数
+// 原始函数名: FUN_1807d4140
+#define OperateUIBuffer FUN_1807d4140
+
+// UI系统渲染函数
+// 原始函数名: FUN_180744ee0
+#define RenderUIComponent FUN_180744ee0
+
+// UI系统数据读取函数
+// 原始函数名: FUN_1807499f0
+#define ReadUIData FUN_1807499f0
+
+// UI系统配置函数
+// 原始函数名: FUN_1807d0fe0
+#define ConfigureUISystem FUN_1807d0fe0
+
+// UI系统纹理操作函数
+// 原始函数名: FUN_18076f4f0
+#define OperateUITexture FUN_18076f4f0
+
+// UI系统渲染管道函数
+// 原始函数名: FUN_18076f100
+#define ProcessUIRenderPipeline FUN_18076f100
+
+// UI系统组件创建函数
+// 原始函数名: FUN_180774090
+#define CreateUIComponent FUN_180774090
+
+// UI系统事件调度函数
+// 原始函数名: FUN_1807902d0
+#define DispatchUIEvent FUN_1807902d0
+
+// UI系统数据转换函数
+// 原始函数名: FUN_18074dc70
+#define ConvertUIData FUN_18074dc70
+
+// UI系统信号量初始化函数
+// 原始函数名: FUN_18074dfc0
+#define InitializeUISemaphore FUN_18074dfc0
+
+// UI系统组件验证函数
+// 原始函数名: FUN_180755930
+#define ValidateUIComponent FUN_180755930
+
+// UI系统数据缓冲区函数
+// 原始函数名: FUN_18075dbf0
+#define ProcessUIDataBuffer FUN_18075dbf0
+
+// UI系统输入处理函数
+// 原始函数名: FUN_180762070
+#define ProcessUIInput FUN_180762070
+
+// UI系统内存分配函数
+// 原始函数名: FUN_18074f900
+#define AllocateUIMemoryEx FUN_18074f900
+
+// UI系统组件处理函数
+// 原始函数名: FUN_18074c3f0
+#define ProcessUIComponent FUN_18074c3f0
+
+// UI系统资源清理函数
+// 原始函数名: FUN_18075f8e0
+#define CleanupUIResource FUN_18075f8e0
+
+// UI系统内存释放函数
+// 原始函数名: FUN_180742e60
+#define ReleaseUIMemory FUN_180742e60
+
 // UI组件创建函数
 void* CreateUIComponent;
 
