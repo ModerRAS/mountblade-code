@@ -39226,7 +39226,7 @@ LAB_1800722f5:
         BufferInitializationFlag = 0x14;
         DataProcessingBuffer = (uint8_t *)BufferAllocate(MemoryPoolManager,0x16,0x13);
         *DataProcessingBuffer = 0;
-LAB_180072521:
+BufferChecksumProcessing:
         SystemChecksumValue = GetMemoryAllocationInfo(DataProcessingBuffer);
         DataProcessingFlags = CONCAT44(DataProcessingFlags.HighPart,SystemChecksumValue);
       }
@@ -39234,7 +39234,7 @@ LAB_180072521:
         CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
         BufferInitializationFlag = 0x14;
         DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,0x16,0x10);
-        goto LAB_180072521;
+        goto BufferChecksumProcessing;
       }
       *(uint16_t *)(DataProcessingBuffer + BufferInitializationFlag) = 10;
       BufferInitializationFlag = 0x15;
@@ -39285,7 +39285,7 @@ LAB_1800725ac:
             DataProcessingFlags = CONCAT44(DataProcessingFlags.HighPart,SystemChecksumValue);
             MemoryAddressMask = BufferInitializationFlag;
           }
-LAB_180072662:
+BufferDataCopy:
           BufferInitializationFlag = MemoryAddressMask;
                     // WARNING: Subroutine does not return
           memcpy(DataProcessingBuffer + BufferInitializationFlag,Utf8BufferSize,(long long)((int)LoopIterationCounter7 + 2));
@@ -39295,7 +39295,7 @@ LAB_180072662:
         BufferInitializationFlag = DataSize;
         DataProcessingBuffer = (uint8_t *)BufferAllocate(MemoryPoolManager,0x18,0x13);
         *DataProcessingBuffer = 0;
-LAB_1800726e7:
+BufferAllocationChecksum:
         SystemChecksumValue = GetMemoryAllocationInfo(DataProcessingBuffer);
         DataProcessingFlags = CONCAT44(DataProcessingFlags.HighPart,SystemChecksumValue);
       }
@@ -39327,7 +39327,7 @@ LAB_1800726e7:
         SystemChecksumValue = GetMemoryAllocationInfo(DataProcessingBuffer);
         DataProcessingFlags = CONCAT44(DataProcessingFlags.HighPart,SystemChecksumValue);
       }
-LAB_180072780:
+BufferDataWrite:
       *(uint16_t *)(DataProcessingBuffer + BufferInitializationFlag) = 10;
       PrimaryReturnCode = DataSize + 0xd;
       BufferInitializationFlag = MemoryAddressMask;
@@ -39341,14 +39341,14 @@ LAB_180072780:
           *DataProcessingBuffer = 0;
         }
         else {
-          if (MemoryAddressMask <= (uint)DataProcessingFlags) goto LAB_1800727ff;
+          if (MemoryAddressMask <= (uint)DataProcessingFlags) goto BufferSizeValidation;
           CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
           DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,MemoryAddressMask,0x10);
         }
         SystemChecksumValue = GetMemoryAllocationInfo(DataProcessingBuffer);
         DataProcessingFlags = CONCAT44(DataProcessingFlags.HighPart,SystemChecksumValue);
       }
-LAB_1800727ff:
+BufferSizeValidation:
       SystemStatusContext = (void *)(DataProcessingBuffer + BufferInitializationFlag);
       *SystemStatusContext = 0x6973736572707845;
       *(uint32_t *)(StatusBuffer3 + 1) = 0x203a6e6f;
