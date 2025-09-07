@@ -129509,7 +129509,7 @@ LAB_18012b2d2:
         FloatValue38 = (float)(int)(FloatValue38 * *(float *)(SystemContextValue + 0x18) * 600.0);
         SystemMemoryAllocationResult = ProcessSystemStatusUpdateAndFloatCalculation(0x20);
         SystemFlagB = CONCAT44(SystemFlagB.HighPart,SystemMemoryAllocationResult);
-        pSystemFloatValue = (float *)FUN_180128fd0(&uStack_1d8,CharacterCode4,
+        pSystemFloatValue = (float *)ProcessSystemMemoryOffset(&uStack_1d8,CharacterCode4,
                                          CONCAT44(FloatValue36 * FloatValue38 +
                                                   *(float *)((long long)CharacterCode4 + 0x54),
                                                   FloatValue34 * FloatValue38 + *(float *)(CharacterCode4 + 10)));
@@ -129796,7 +129796,7 @@ LAB_18012b82d:
       ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)pSystemMemoryOffset238 + 0xad) != '\0') {
-      FUN_180110540(1);
+      ExecuteSystemResourceReleaseAndCleanup(1);
     }
     if ((UnicodeCharacterValue & 2) == 0) {
       SystemContextValue = 0;
@@ -131583,7 +131583,7 @@ LAB_18012b465:
       ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)StackParameter2 + 0xad) != '\0') {
-      FUN_180110540(1);
+      ExecuteSystemResourceReleaseAndCleanup(1);
     }
     if (((uint)FloatValue34 & 2) == 0) {
       CharacterTablePointer5 = 0;
@@ -133426,7 +133426,7 @@ LAB_18012b465:
       ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)StackParameter2 + 0xad) != '\0') {
-      FUN_180110540(1);
+      ExecuteSystemResourceReleaseAndCleanup(1);
     }
     if (((uint)FloatValue33 & 2) == 0) {
       LoopIndex = 0;
@@ -135117,7 +135117,7 @@ LAB_18012b465:
       ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)StackParameter2 + 0xad) != '\0') {
-      FUN_180110540(1);
+      ExecuteSystemResourceReleaseAndCleanup(1);
     }
     SystemMemoryAllocationResult = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
     if (((uint)RegisterR15ValueD & 2) == 0) {
@@ -136728,7 +136728,7 @@ LAB_18012b510:
       ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)StackParameter2 + 0xad) != '\0') {
-      FUN_180110540(1);
+      ExecuteSystemResourceReleaseAndCleanup(1);
     }
     SystemMemoryAllocationResult = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
     if (((uint)FloatValue30 & 2) == 0) {
@@ -138417,7 +138417,7 @@ LAB_18012b465:
       ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)((long long)StackParameter2 + 0xad) != '\0') {
-      FUN_180110540(1);
+      ExecuteSystemResourceReleaseAndCleanup(1);
     }
     SystemMemoryAllocationResult = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
     if (((uint)RegisterR15ValueD & 2) == 0) {
@@ -139992,7 +139992,7 @@ LAB_18012b510:
       ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)(StackParameter2 + 0xad) != '\0') {
-      FUN_180110540(1);
+      ExecuteSystemResourceReleaseAndCleanup(1);
     }
     SystemMemoryAllocationResult = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
     if (((uint)ContextSecondaryFloat8 & 2) == 0) {
@@ -141062,7 +141062,7 @@ LAB_18012b510:
       ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)(StackParameter2 + 0xad) != '\0') {
-      FUN_180110540(1);
+      ExecuteSystemResourceReleaseAndCleanup(1);
     }
     CalculatedCodePoint = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
     if (((uint)RegisterR15ValueD & 2) == 0) {
@@ -141914,7 +141914,7 @@ void ExecuteSystemCoreDataProcessing(void)
       ExecuteSystemResourceReleaseAndCleanup(0);
     }
     if (*(char *)(StackParameter2 + 0xad) != '\0') {
-      FUN_180110540(1);
+      ExecuteSystemResourceReleaseAndCleanup(1);
     }
     MemoryAddressMask = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
     if ((RegisterR15ValueD & 2) == 0) {
