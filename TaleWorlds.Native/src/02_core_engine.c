@@ -58981,16 +58981,16 @@ void BufferAllocationStatusHandler(long long *Utf8InputBuffer
   uint8_t aSystemValue2a8 [32];
   void *SystemStatusBufferPointer;
   uint8_t *pSystemConfigurationMode;
-  uint32_t uStack_278;
-  unsigned long long uStack_270;
-  long long alStack_268 [2];
+  uint32_t SystemValidationCounter;
+  unsigned long long SystemMemoryAddress;
+  long long SystemMemoryBoundaryBuffer [2];
   void *DataBufferPointer;
   void *pBufferStringBuffer;
   uint BufferTypeFlag;
   uint8_t aSystemUintBuffer240 [520];
   unsigned long long FunctionAddress;
   
-  alStack_268[1] = 0xfffffffffffffffe;
+  SystemMemoryBoundaryBuffer[1] = 0xfffffffffffffffe;
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemValue2a8;
   MemoryAllocationIndex = 0;
   DataBufferPointer = &SystemHandlerTemplatePrimary;
@@ -59017,8 +59017,8 @@ void BufferAllocationStatusHandler(long long *Utf8InputBuffer
     ExecuteSystemDataOperationB(CharacterCode,Utf8SourcePointer);
   }
   else {
-    ProcessSystemDataTransferA(CharacterCode + 0x78,alStack_268,Utf8BufferSize);
-    if (alStack_268[0] != CharacterCode + 0x78) {
+    ProcessSystemDataTransferA(CharacterCode + 0x78,SystemMemoryBoundaryBuffer,Utf8BufferSize);
+    if (SystemMemoryBoundaryBuffer[0] != CharacterCode + 0x78) {
       SystemStatusBufferPointer = &SystemNullTemplate;
       uStack_270 = 0;
       pSystemConfigurationMode = (uint8_t *)0x0;
