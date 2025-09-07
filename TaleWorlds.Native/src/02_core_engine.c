@@ -227827,12 +227827,12 @@ LAB_180201300:
           pSystemStatusValue = &SystemStatusValueSecondary;
         }
       }
-      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0f9f8,pSystemStatusValue);
+      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueQuinary,pSystemStatusValue);
       pSystemStatusValue = &SystemStatusValuePrimary;
       if (0 < *(int *)(CoreEngineMemoryContext + 0x1030)) {
         pSystemStatusValue = &SystemStatusValueSecondary;
       }
-      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0f9b0,pSystemStatusValue);
+      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueTertiary,pSystemStatusValue);
       MutexLockResult = *(int *)(CoreEngineMemoryContext + 0xee0);
       if (MutexLockResult == 0) {
         pSystemStatusValue = &SystemStatusValueTertiary;
@@ -227852,7 +227852,7 @@ LAB_180201300:
           pSystemStatusValue = &SystemStatusValueSecondary;
         }
       }
-      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0f9d0,pSystemStatusValue);
+      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueQuaternary,pSystemStatusValue);
       MutexLockResult = *(int *)(CoreEngineMemoryContext + 0xa10);
       if (MutexLockResult == 0) {
         pSystemStatusValue = &SystemStatusValueTertiary;
@@ -227872,7 +227872,7 @@ LAB_180201300:
           pSystemStatusValue = &SystemStatusValueSecondary;
         }
       }
-      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0fa40,pSystemStatusValue);
+      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueSeptenary,pSystemStatusValue);
       MutexLockResult = *(int *)(CoreEngineMemoryContext + 0x7e0);
       if (MutexLockResult == 0) {
         pSystemStatusValue = &SystemStatusValuePrimary;
@@ -227892,7 +227892,7 @@ LAB_180201300:
           pSystemStatusValue = &SystemStatusValueSecondary;
         }
       }
-      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0fa58,pSystemStatusValue);
+      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueOctonary,pSystemStatusValue);
       MutexLockResult = *(int *)(CoreEngineMemoryContext + 0x770);
       if (MutexLockResult == 0) {
         pSystemStatusValue = &SystemStatusValueTertiary;
