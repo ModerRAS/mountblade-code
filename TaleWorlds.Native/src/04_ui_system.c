@@ -6053,22 +6053,26 @@ undefined8 SetUIComponentDataPointer(longlong componentManager,undefined8 dataPo
 
 
 
- 处理UI组件数据验证
+ /**
+ * @brief 处理UI组件数据验证
  * 
  * 验证和处理UI组件的数据，包括数据类型检查和内存操作。
  * 此函数用于确保UI组件数据的完整性和正确性。
-  ComponentManager UI组件管理器指针
- *  DataTarget 数据目标指针
- *  DataSource 数据源指针
- *  ValidationFlags 验证标志
  * 
-  ulonglong 返回验证结果，0表示失败，1表示成功
- ulonglong ProcessUIComponentDataValidation(longlong ComponentManager, longlong DataTarget, longlong DataSource, undefined8 ValidationFlags)
+ * @param ComponentManager UI组件管理器指针
+ * @param DataTarget 数据目标指针
+ * @param DataSource 数据源指针
+ * @param ValidationFlags 验证标志
+ * @return ulonglong 返回验证结果，0表示失败，1表示成功
+ * 
+ * @note 原始函数名：ProcessUIComponentDataValidation
+ */
+ulonglong ValidateUIComponentData(longlong ComponentManager, longlong DataTarget, longlong DataSource, undefined8 ValidationFlags)
 
 {
-  ulonglong ResultCode;
+  ulonglong ValidationResult;
   longlong DataHandle;
-  longlong Index;
+  longlong CharIndex;
   undefined *DataBuffer;
   ulonglong ValidationStatus;
   undefined8 CopyFlags;
@@ -6079,7 +6083,7 @@ undefined8 SetUIComponentDataPointer(longlong componentManager,undefined8 dataPo
   
   CopyFlags = 0xfffffffffffffffe;
   if (*(int *)(DataSource + 0x10) == 0) {
-    return ResultCode & 0xffffffffffffff00;
+    return ValidationResult & 0xffffffffffffff00;
   }
   DataBuffer = &UIDefaultDataBuffer;
   if (*(undefined **)(DataSource + 8) != (undefined *)0x0) {
@@ -6094,14 +6098,14 @@ undefined8 SetUIComponentDataPointer(longlong componentManager,undefined8 dataPo
   if (DataLength == 7) {
     DataHandle = 0;
     do {
-      Index = DataHandle + 1;
-      if (*(char *)(StringData + DataHandle) != (&UIStringValidator)[DataHandle]) goto ValidationFailed;
-      DataHandle = Index;
-    } while (Index != 8);
+      CharIndex = DataHandle + 1;
+      if (*(char *)(StringData + DataHandle) != (&UIStringValidator)[DataHandle]) goto UIValidationFailed;
+      DataHandle = CharIndex;
+    } while (CharIndex != 8);
     ValidationStatus = 0;
   }
   else {
-ValidationFailed:
+UIValidationFailed:
     if (StringData != 0) {
       AllocateUIBuffer(DataTarget,DataLength);
     }
@@ -6126,15 +6130,19 @@ ValidationFailed:
 
 
 
- 执行UI组件渲染操作
+ /**
+ * @brief 执行UI组件渲染操作
  * 
  * 调用UI组件的渲染函数指针来执行渲染操作。
  * 此函数用于触发UI组件的渲染过程。
-  RenderContext 渲染上下文指针
- *  ComponentData 组件数据指针
  * 
-  undefined8 返回操作成功标志
- undefined8 ExecuteUIComponentRenderOperation(longlong RenderContext, longlong ComponentData)
+ * @param RenderContext 渲染上下文指针
+ * @param ComponentData 组件数据指针
+ * @return undefined8 返回操作成功标志
+ * 
+ * @note 原始函数名：ExecuteUIComponentRenderOperation
+ */
+undefined8 RenderUIComponent(longlong RenderContext, longlong ComponentData)
 
 {
   undefined *RenderBuffer;
@@ -6174,21 +6182,35 @@ ValidationFailed:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int * GetUIComponentProperty(longlong uiContext,int *dataSource,longlong *targetBuffer,undefined8 bufferSize)
+/**
+ * @brief 获取UI组件属性
+ * 
+ * 从UI组件中获取指定的属性数据，包括验证和处理。
+ * 此函数用于读取和验证UI组件的属性信息。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return int* 返回数据源指针
+ * 
+ * @note 原始函数名：GetUIComponentProperty
+ */
+int * RetrieveUIComponentProperty(longlong uiContext, int *dataSource, longlong *targetBuffer, undefined8 bufferSize)
 
 {
-  undefined *pfunctionResult;
+  undefined *functionResult;
   int validationResult;
   longlong bufferStart;
-  uint loopCounter;
-  ulonglong currentIndex;
+  uint iterationCounter;
+  ulonglong propertyIndex;
   ulonglong bufferOffset;
   undefined *dataPointer;
   undefined4 isValidFlag;
   undefined8 maxValue;
   
   maxValue = 0xfffffffffffffffe;
-  currentIndex = 0;
+  propertyIndex = 0;
   validationResult = (**(code **)(uiContext + 0x60))(targetBuffer[1] - *targetBuffer >> 5);
   *dataSource = validationResult;
   if ((validationResult != 0) && (ManagedInterface != 0)) {
@@ -6196,20 +6218,20 @@ int * GetUIComponentProperty(longlong uiContext,int *dataSource,longlong *target
   }
   isValidFlag = 1;
   bufferStart = *targetBuffer;
-  bufferOffset = currentIndex;
+  bufferOffset = propertyIndex;
   if (targetBuffer[1] - bufferStart >> 5 != 0) {
     do {
-      pfunctionResult = *(undefined **)(bufferStart + 8 + bufferOffset);
+      functionResult = *(undefined **)(bufferStart + 8 + bufferOffset);
       dataPointer = &UIDefaultDataBuffer;
-      if (pfunctionResult != (undefined *)0x0) {
-        dataPointer = pfunctionResult;
+      if (functionResult != (undefined *)0x0) {
+        dataPointer = functionResult;
       }
-      (**(code **)(uiContext + 0x128))(*dataSource,currentIndex,dataPointer,bufferSize,isValidFlag,maxValue);
-      loopCounter = (int)currentIndex + 1;
-      currentIndex = (ulonglong)loopCounter;
+      (**(code **)(uiContext + 0x128))(*dataSource, propertyIndex, dataPointer, bufferSize, isValidFlag, maxValue);
+      iterationCounter = (int)propertyIndex + 1;
+      propertyIndex = (ulonglong)iterationCounter;
       bufferStart = *targetBuffer;
       bufferOffset = bufferOffset + 0x20;
-    } while ((ulonglong)(longlong)(int)loopCounter < (ulonglong)(targetBuffer[1] - bufferStart >> 5));
+    } while ((ulonglong)(longlong)(int)iterationCounter < (ulonglong)(targetBuffer[1] - bufferStart >> 5));
   }
   return dataSource;
 }
@@ -11245,18 +11267,18 @@ LAB_180659b1a:
     uiContext[0xf] = fVar25;
   }
   fVar25 = uiContext[0x18];
-  iVar5 = 0;
+  uiElementIndex = 0;
   floatResult5 = 0.0;
   if (0 < (int)fVar25) {
     pfVar7 = uiContext + 0x1b;
     do {
       uStack_180 = 0x180659e3d;
-      floatResult6 = (float)ProcessUIFloatValue(uiContext,iVar5);
+      floatResult6 = (float)ProcessUIFloatValue(uiContext,uiElementIndex);
       fVar20 = *pfVar7;
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       pfVar7 = pfVar7 + 0x4d6;
       floatResult5 = floatResult5 + floatResult6 * fVar20;
-    } while (iVar5 < (int)fVar25);
+    } while (uiElementIndex < (int)fVar25);
   }
   if (floatResult9 < 1.0) {
     if (uiContext[0x1854] <= 1.0 && uiContext[0x1854] != 1.0) {
@@ -16812,7 +16834,7 @@ void UpdateUIAnimationState(longlong uiContext,longlong dataSource)
     CalculateUIScaleFactor((longlong)*(int *)(bufferData + 0x14) * 0x30 + *(longlong *)(bufferData + 0xc78),
                   *(undefined4 *)(bufferData + 0x1c));
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (0.0 < fVar9) {
     if (*(int *)(bufferData + 0x14) == 5) {
       floatResult0 = *(float *)(uiContext + 0x3c);
@@ -16922,12 +16944,12 @@ LAB_18065dae7:
         if (0.001 < fVar7) {
           ProcessUIRenderState(*puVar6,dataSource);
         }
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         puVar6 = puVar6 + 1;
       } while (iVar5 < 6);
       fVar9 = *(float *)(uiContext + 0x3c);
     }
-    iVar5 = 0;
+    uiElementIndex = 0;
     if (0.0 < fVar9) {
       floatResult = *(float *)(uiContext + 0x34);
       fVar2 = *(float *)(uiContext + 0x38);
@@ -16959,7 +16981,7 @@ LAB_18065dae7:
         if (0.001 < fVar8) {
           ProcessUIRenderState(*puVar6,dataSource);
         }
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         puVar6 = puVar6 + 1;
       } while (iVar5 < 6);
     }
@@ -17068,7 +17090,7 @@ void HandleUIAnimationEvent(longlong uiContext,float dataSource)
     CalculateUIScaleFactor((longlong)*(int *)(bufferData + 0x14) * 0x30 + *(longlong *)(bufferData + 0xc78),
                   *(undefined4 *)(bufferData + 0x1c));
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (0.0 < fVar9) {
     if (*(int *)(bufferData + 0x14) == 5) {
       floatResult0 = *(float *)(uiContext + 0x3c);
@@ -17177,12 +17199,12 @@ LAB_18065dae7:
         if (0.001 < fVar7) {
           ProcessUIRenderState(*puVar6);
         }
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         puVar6 = puVar6 + 1;
       } while (iVar5 < 6);
       fVar9 = *(float *)(uiContext + 0x3c);
     }
-    iVar5 = 0;
+    uiElementIndex = 0;
     if (0.0 < fVar9) {
       floatResult = *(float *)(uiContext + 0x34);
       fVar2 = *(float *)(uiContext + 0x38);
@@ -17214,7 +17236,7 @@ LAB_18065dae7:
         if (0.001 < fVar8) {
           ProcessUIRenderState(*puVar6);
         }
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         puVar6 = puVar6 + 1;
       } while (iVar5 < 6);
     }
@@ -18184,7 +18206,7 @@ void RefreshUIDisplay(void)
   uStack_c8 = 0xfffffffffffffffe;
   functionResult = *(undefined8 *)(dataSource + 0x208);
   fVar7 = (1.0 - uiContext0) - uiContext1;
-  iVar5 = 0;
+  uiElementIndex = 0;
   uStackX_18 = targetBuffer;
   do {
     fVar6 = uiContext0;
@@ -18253,7 +18275,7 @@ joined_r0x00018065fb15:
       }
     }
 LAB_18065fce5:
-    iVar5 = iVar5 + 1;
+    uiElementIndex = uiElementIndex + 1;
     uiContext = uiContext + 1;
     if (5 < iVar5) {
       return;
@@ -29076,17 +29098,17 @@ void ConfigureUIBufferData(longlong renderContext, longlong dataSource, longlong
       if (*(int *)(bufferData + 0x1e8c) != 0) {
         functionResult = 0xfffffff8;
       }
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       *(undefined4 *)(bufferPtr + -0x39) = functionResult;
       contextData = contextData + -1;
       bufferPtr = bufferPtr + 0x254;
     } while (contextData != 0);
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (0 < *(int *)(bufferData + 0x1e74)) {
     contextData = 0;
     do {
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       *(undefined4 *)(contextData + *(longlong *)(bufferData + 0x43a8)) = 0xffffffff;
       contextData = contextData + 4;
     } while (iVar5 < *(int *)(bufferData + 0x1e74));
@@ -59338,7 +59360,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
         validationResult1 = afunctionResult3._12_4_ + validationResult1;
       }
       operationResult1 = 0;
-      iVar5 = 0;
+      uiElementIndex = 0;
       if (functionResult0 < 8) {
         if (1 < (longlong)(8 - functionResult0)) {
           pbVar2 = (byte *)(functionResult0 + (longlong)puVar8);
@@ -59466,7 +59488,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
         validationResult1 = afunctionResult3._12_4_ + validationResult1;
       }
       operationResult1 = 0;
-      iVar5 = 0;
+      uiElementIndex = 0;
       if (functionResult0 < 8) {
         if (1 < (longlong)(8 - functionResult0)) {
           pbVar2 = (byte *)(functionResult0 + (longlong)puVar8);
@@ -59594,7 +59616,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
         validationResult1 = afunctionResult3._12_4_ + validationResult1;
       }
       operationResult1 = 0;
-      iVar5 = 0;
+      uiElementIndex = 0;
       if (functionResult0 < 8) {
         if (1 < (longlong)(8 - functionResult0)) {
           pbVar2 = (byte *)(functionResult0 + (longlong)puVar8);
@@ -59724,7 +59746,7 @@ void CalculateUIDataDifferenceSum(uint *uiContext,int dataSource,uint *targetBuf
         validationResult1 = afunctionResult3._12_4_ + validationResult1;
       }
       operationResult1 = 0;
-      iVar5 = 0;
+      uiElementIndex = 0;
       if (functionResult0 < 8) {
         if (1 < (longlong)(8 - functionResult0)) {
           pbVar2 = (byte *)(functionResult0 + (longlong)puVar8);
@@ -72455,7 +72477,7 @@ void FUN_1807079df(undefined8 uiContext,int dataSource)
   if (7 < iVar9) {
     do {
       iVar9 = iVar9 + -8;
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
     } while (7 < iVar9);
     *(int *)(unaff_RBP + 0x2054) = iVar5;
     *(int *)(unaff_RBP + 0x2058) = iVar9;
@@ -72621,7 +72643,7 @@ void FUN_180707a56(void)
   if (7 < iVar9) {
     do {
       iVar9 = iVar9 + -8;
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
     } while (7 < iVar9);
     *(int *)(unaff_RBP + 0x2054) = iVar5;
     *(int *)(unaff_RBP + 0x2058) = iVar9;
@@ -72785,7 +72807,7 @@ void FUN_180707a74(void)
   if (7 < iVar9) {
     do {
       iVar9 = iVar9 + -8;
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
     } while (7 < iVar9);
     *(int *)(unaff_RBP + 0x2054) = iVar5;
     *(int *)(unaff_RBP + 0x2058) = iVar9;
@@ -73424,7 +73446,7 @@ void FUN_18070b6a0(longlong uiContext,undefined8 *dataSource,int targetBuffer)
   if (7 < iVar9) {
     do {
       iVar9 = iVar9 + -8;
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
     } while (7 < iVar9);
     *(int *)(bufferData + 0x2054) = iVar5;
     *(int *)(bufferData + 0x2058) = iVar9;
@@ -81725,7 +81747,7 @@ void FUN_1807163d0(longlong uiContext,longlong dataSource,float *targetBuffer,lo
   if ((param_8 != 1) && (param_8 = operationResult1 / param_8, param_8 <= iVar9)) {
     iVar9 = param_8;
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
   compareResult = iVar5;
   iVar4 = iVar5;
   if (param_9 == 0) {
@@ -82424,7 +82446,7 @@ ulonglong FUN_180717fa0(int *uiContext,float *dataSource,uint targetBuffer,undef
   }
   iVar5 = validationResult7;
   if (validationResult7 < 1) {
-    iVar5 = 0;
+    uiElementIndex = 0;
   }
   if (((uiContext0 != 0) && (param_6 != 0)) &&
      ((iVar5 != 0 || ((((targetBuffer / semaphoreHandle3 & 1) == 0 && (validationResult7 < 0)) || (1 < (int)resultPointer)))))) {
@@ -85019,7 +85041,7 @@ void FUN_180719ca0(longlong uiContext,int dataSource,int targetBuffer,longlong b
   int iVar6;
   double dVar7;
   
-  iVar5 = 0;
+  uiElementIndex = 0;
   do {
     iVar6 = 0;
     lVar4 = 0;
@@ -85054,7 +85076,7 @@ void FUN_180719ca0(longlong uiContext,int dataSource,int targetBuffer,longlong b
              0xc1600000;
       }
     }
-    iVar5 = iVar5 + 1;
+    uiElementIndex = uiElementIndex + 1;
   } while (iVar5 < param_6);
   return;
 }
@@ -85961,7 +85983,7 @@ void FUN_18071af00(longlong uiContext,int dataSource,int targetBuffer,longlong b
                  + *(float *)(bufferSize + lVar7 * 4);
           } while (iVar6 < param_9);
         }
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         lVar8 = lVar8 + 1;
         piVar4 = piVar4 + 1;
       } while (lVar8 < targetBuffer);
@@ -86064,11 +86086,11 @@ void FUN_18071b0a2(void)
   pcompareResult = (int *)(in_stack_00000090 + unaff_RSI * 4);
   do {
     if (0 < *pcompareResult) {
-      iVar5 = 0;
+      uiElementIndex = 0;
       do {
         operationResult = FUN_18070f360(in_stack_00000098,*pcompareResult);
         validationResult = *(int *)(unaff_R15 + 8) * iVar5;
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         contextData = (longlong)(validationResult + (int)unaff_RSI);
         *(float *)(unaff_R14 + contextData * 4) =
              ((float)(1 << (0xeU - (char)*pcompareResult & 0x1f)) * ((float)operationResult + 0.5) * 6.1035156e-05 +
@@ -87256,7 +87278,7 @@ void FUN_18071e580(float *uiContext,undefined8 dataSource,int targetBuffer)
   float fVar7;
   float fVar8;
   
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (3 < targetBuffer) {
     pfVar4 = uiContext + 10;
     uVar3 = (targetBuffer - 4U >> 2) + 1;
@@ -90810,7 +90832,7 @@ uint FUN_180721b40(longlong uiContext,uint dataSource,uint targetBuffer)
   }
   functionResult = 0;
   iVar7 = 0;
-  iVar5 = 0;
+  uiElementIndex = 0;
   do {
     uVar4 = 0;
     stringCompareIndex = 0;
@@ -92421,7 +92443,7 @@ void FUN_180723082(undefined8 uiContext,undefined8 dataSource,int targetBuffer)
     do {
       if ((int)uVar8 <= iVar5) break;
       targetBuffer = targetBuffer + 2 + eventTypeCode * 2;
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       uVar6 = eventTypeCode * 2 * in_R11D;
       eventTypeCode = uVar6 >> 0xf;
     } while (uVar6 >> 0xf != 0);
@@ -94385,7 +94407,7 @@ void FUN_180724f40(longlong uiContext,float *dataSource,longlong targetBuffer,lo
     fVar7 = 1.0 - (float)*(int *)(bufferData + 0x11b0) * 0.00390625;
     floatResult1 = floatResult1 + (fVar9 * 0.5 + 0.5) * fVar8 * -2.0 * fVar7 * fVar7;
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
   fVar8 = 0.0;
   if (*(char *)(uiContext + 0x12a5) == '\x02') {
     fVar9 = *(float *)(uiContext + 0x275c) + *(float *)(uiContext + 0x275c);
@@ -94474,7 +94496,7 @@ void FUN_180724f40(longlong uiContext,float *dataSource,longlong targetBuffer,lo
     if (0 < operationResult) {
       dataSource = dataSource + 0xa5;
       do {
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         fVar9 = (fVar8 - *(float *)(uiContext + 0x1c14)) * 0.4 + *(float *)(uiContext + 0x1c14);
         *(float *)(uiContext + 0x1c14) = fVar9;
         dataSource[4] = fVar9;
@@ -94595,7 +94617,7 @@ void FUN_180724f73(longlong uiContext,longlong dataSource,longlong targetBuffer,
     fVar7 = 1.0 - (float)*(int *)(bufferData + 0x11b0) * 0.00390625;
     floatResult1 = floatResult1 + (fVar9 * 0.5 + 0.5) * fVar8 * -2.0 * fVar7 * fVar7;
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
   fVar8 = 0.0;
   if (*(char *)(uiContext + 0x12a5) == '\x02') {
     fVar9 = *(float *)(uiContext + 0x275c) + *(float *)(uiContext + 0x275c);
@@ -94683,7 +94705,7 @@ void FUN_180724f73(longlong uiContext,longlong dataSource,longlong targetBuffer,
     if (0 < operationResult) {
       pfVar2 = unaff_R13 + 0xa5;
       do {
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         floatResult1 = (fVar8 - *(float *)(uiContext + 0x1c14)) * 0.4 + *(float *)(uiContext + 0x1c14);
         *(float *)(uiContext + 0x1c14) = floatResult1;
         pfVar2[4] = floatResult1;
@@ -94802,7 +94824,7 @@ void FUN_180724f7a(longlong uiContext,longlong dataSource,longlong targetBuffer,
     fVar7 = 1.0 - (float)*(int *)(unaff_RSI + 0x11b0) * 0.00390625;
     floatResult1 = floatResult1 + (fVar9 * 0.5 + 0.5) * fVar8 * -2.0 * fVar7 * fVar7;
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
   fVar8 = 0.0;
   if (*(char *)(unaff_RSI + 0x12a5) == '\x02') {
     fVar9 = *(float *)(unaff_RSI + 0x275c) + *(float *)(unaff_RSI + 0x275c);
@@ -94890,7 +94912,7 @@ void FUN_180724f7a(longlong uiContext,longlong dataSource,longlong targetBuffer,
     if (0 < operationResult) {
       pfVar2 = unaff_R13 + 0xa5;
       do {
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         floatResult1 = (fVar8 - *(float *)(unaff_RSI + 0x1c14)) * 0.4 + *(float *)(unaff_RSI + 0x1c14);
         *(float *)(unaff_RSI + 0x1c14) = floatResult1;
         pfVar2[4] = floatResult1;
@@ -95852,7 +95874,7 @@ void FUN_180726700(longlong uiContext,float *dataSource)
   ulonglong uStack_38;
   
   uStack_38 = XorEncryptionKey ^ (ulonglong)auStack_78;
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (*(char *)(uiContext + 0x12a5) == '\x02') {
     dVar9 = (double)exp((double)((dataSource[0xb1] - 12.0) * -0.25));
     pfloatResult = dataSource;
@@ -95873,7 +95895,7 @@ void FUN_180726700(longlong uiContext,float *dataSource)
   pfloatResult = dataSource;
   if (0 < (int)uVar3) {
     do {
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       fVar8 = SQRT((float)(dVar9 / (double)validationResult) * pfloatResult[0xb2] + *pfloatResult * *pfloatResult);
       if (32767.0 <= fVar8) {
         fVar8 = 32767.0;
@@ -96296,7 +96318,7 @@ void FUN_180726fd0(longlong uiContext,float *dataSource)
     do {
       sVar1 = *psVar3;
       psVar3 = psVar3 + 1;
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       *pfVar2 = (float)(int)sVar1 * 0.00024414063;
       pfVar2 = pfVar2 + 1;
     } while (iVar5 < *(int *)(bufferData + 0x121c));
@@ -97826,7 +97848,7 @@ void FUN_1807294f0(longlong uiContext,longlong dataSource,undefined8 targetBuffe
         } while (iVar8 < *(int *)(bufferData + 0x924));
       }
       iVar8 = *(int *)(bufferData + 0x914);
-      iVar5 = 0;
+      uiElementIndex = 0;
       iVar4 = 0;
       if (0 < iVar8) {
         piVar9 = (int *)(dataSource + 0x10);
@@ -106301,7 +106323,7 @@ void FUN_1807343b8(undefined8 uiContext,undefined8 dataSource,longlong targetBuf
   
   FUN_1807248c0(&stack0x00000050,abStackX_1f + 1);
   sVar1 = *(short *)(targetBuffer + 2);
-  iVar5 = 0;
+  uiElementIndex = 0;
   iVar9 = sVar1 + -1;
   lVar7 = (longlong)iVar9;
   if (-1 < iVar9) {
@@ -110138,7 +110160,7 @@ void FUN_180737ca0(longlong uiContext,longlong dataSource,longlong targetBuffer,
     dataSource = dataSource - bufferSize;
     do {
       operationResult0 = 0;
-      iVar5 = 0;
+      uiElementIndex = 0;
       if (-1 < (longlong)(functionResult2 - 2)) {
         eventTypeCode = functionResult2 >> 1;
         pbVar6 = (byte *)((functionResult2 - 2) + targetBuffer);
@@ -110210,7 +110232,7 @@ void FUN_180737ccf(longlong uiContext,longlong dataSource,undefined8 targetBuffe
   bufferSize = in_R10 - bufferSize;
   do {
     operationResult0 = 0;
-    iVar5 = 0;
+    uiElementIndex = 0;
     if (-1 < (longlong)(functionResult2 - 2)) {
       eventTypeCode = functionResult2 >> 1;
       pbVar6 = (byte *)((functionResult2 - 2) + unaff_R15);
@@ -123050,7 +123072,7 @@ undefined8 FUN_180743160(longlong uiContext,char dataSource)
       func_0x000180743c20(uiContext,3);
       operationResult = *(int *)(bufferData + 0x10780);
     }
-    iVar5 = 0;
+    uiElementIndex = 0;
     if (0 < operationResult) {
       do {
         piVar4 = (int *)(uiContext + 0x780 + (longlong)iVar5);
@@ -123228,7 +123250,7 @@ undefined8 FUN_180743166(longlong uiContext,char dataSource)
       func_0x000180743c20(uiContext,3);
       operationResult = *(int *)(bufferData + 0x10780);
     }
-    iVar5 = 0;
+    uiElementIndex = 0;
     if (0 < operationResult) {
       do {
         piVar4 = (int *)(uiContext + 0x780 + (longlong)iVar5);
@@ -133565,7 +133587,7 @@ ulonglong FUN_18074d860(longlong *uiContext,longlong dataSource,int targetBuffer
       iVar5 = aiStackX_20[0];
       do {
         contextData = contextData + 8;
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         *(undefined8 *)(uiContext[2] + -8 + contextData) = *(undefined8 *)(uiContext[2] + contextData);
       } while (iVar5 < aiStackX_18[0]);
     }
@@ -133793,7 +133815,7 @@ ulonglong FUN_18074dc70(longlong uiContext,longlong dataSource,int targetBuffer,
       if (0 < targetBuffer) {
         iVar8 = 0;
         do {
-          iVar5 = 0;
+          uiElementIndex = 0;
           if (0 < bufferSize) {
             puVar6 = (uint *)(dataSource + (longlong)iVar8 * 4);
             do {
@@ -133805,7 +133827,7 @@ ulonglong FUN_18074dc70(longlong uiContext,longlong dataSource,int targetBuffer,
               if (isCharacterMatch0) {
                 return (ulonglong)functionResult;
               }
-              iVar5 = iVar5 + 1;
+              uiElementIndex = uiElementIndex + 1;
               puVar6 = puVar6 + 1;
             } while (iVar5 < bufferSize);
           }
@@ -136219,7 +136241,7 @@ ulonglong FUN_180751310(longlong *uiContext,int dataSource,int targetBuffer,uint
                   (uiContext,lStack_90,lStack_88,0,(ulonglong)pallocatedMemory0 & 0xffffffff00000000);
         return 0xd;
       }
-      iVar5 = 0;
+      uiElementIndex = 0;
       if ((lStack_90 != 0) && (aiStackX_18[0] != 0)) {
         aiStackX_8[0] = 0;
         semaphoreHandle = (**(code **)(*uiContext + 200))(uiContext,lStack_90,aiStackX_18[0],aiStackX_8);
@@ -137165,7 +137187,7 @@ void FUN_180751d7a(longlong uiContext)
         FUN_180752820(componentIndex,iVar5,0,1);
         break;
       }
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       bufferPtr = bufferPtr + 1;
     } while (iVar5 < *(int *)(componentIndex + 0xb0));
   }
@@ -153378,7 +153400,7 @@ undefined8 FUN_180760c90(longlong uiContext,longlong dataSource,undefined4 targe
   undefined1 auStackX_18 [16];
   
   *(short *)(dataSource + 0x5a) = (short)targetBuffer;
-  iVar5 = 0;
+  uiElementIndex = 0;
   *(undefined4 *)(dataSource + 0x2c) = 0x100000;
   *(undefined2 *)(dataSource + 0x58) = 0;
   auStackX_18[0] = 0;
@@ -153404,7 +153426,7 @@ undefined8 FUN_180760c90(longlong uiContext,longlong dataSource,undefined4 targe
             *(longlong *)(contextData + *(longlong *)(bufferData + 0x20)) = componentIndex;
             contextData = contextData + 8;
           }
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           lVar4 = lVar4 + 8;
         } while (iVar5 < *(int *)(bufferData + 0xc));
       }
@@ -156744,7 +156766,7 @@ void FUN_1807632c0(float *uiContext,char dataSource,int targetBuffer,int bufferS
     auStack_178[5] = 0x3ed105ec;
     auStack_178[6] = 0x3ec1848f;
     auStack_178[7] = 0x3eb504f3;
-    iVar5 = 0;
+    uiElementIndex = 0;
     do {
       operationResult = iVar5;
       if (bufferSize <= iVar5) break;
@@ -158299,7 +158321,7 @@ undefined8 FUN_1807665bf(void)
         if (fVar3 <= pfVar4[-2]) {
           fVar3 = pfVar4[-2];
         }
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         context[1] = fVar3;
         fVar8 = pfVar4[-2];
         if (floatResult1 <= pfVar4[-2]) {
@@ -161533,7 +161555,7 @@ LAB_1807695ad:
                      (float)*(uint *)((longlong)uiContext + 0x16c)) /
                     (float)*(uint *)((longlong)uiContext + 0x15c)) * 100.0);
       if (iVar5 < 0) {
-        iVar5 = 0;
+        uiElementIndex = 0;
       }
       *(int *)((longlong)uiContext + 0x17c) = iVar5;
     } while (*(char *)((longlong)uiContext + 0x3c) == '\0');
@@ -162428,7 +162450,7 @@ LAB_18076a1a6:
           *(int *)(context + 0x154) = *(int *)(context + 0x154) + 1;
           iVar5 = *(int *)(context + 0x154);
           if (*(int *)(context + 0x150) <= *(int *)(context + 0x154)) {
-            iVar5 = 0;
+            uiElementIndex = 0;
           }
           *(int *)(context + 0x154) = iVar5;
           uVar6 = uVar6 - 1;
@@ -168728,7 +168750,7 @@ undefined8 FUN_18076ddb2(undefined4 uiContext,int dataSource,undefined8 targetBu
                     // WARNING: Subroutine does not return
     memcpy(uiContext,bufferSize,(longlong)(in_ECX * dataSource) << 2);
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (0 < in_ECX) {
     iVar4 = 0;
     do {
@@ -168756,7 +168778,7 @@ LAB_18076de65:
           *(undefined4 *)(unaff_RSI + allocatedMemory * 4) = eventTypeCode;
         } while (validationResult < *in_R11);
       }
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       iVar4 = iVar4 + iVar6;
     } while (iVar5 < *unaff_R14);
   }
@@ -168780,7 +168802,7 @@ undefined8 FUN_18076ddf9(int uiContext)
   int unaff_R15D;
   undefined4 uVar6;
   
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (0 < uiContext) {
     iVar4 = 0;
     do {
@@ -168808,7 +168830,7 @@ LAB_18076de65:
           *(undefined4 *)(unaff_RSI + allocatedMemory * 4) = uVar6;
         } while (validationResult < *in_R11);
       }
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       iVar4 = iVar4 + unaff_R15D;
     } while (iVar5 < *unaff_R14);
   }
@@ -170728,7 +170750,7 @@ int FUN_18076f6db(float uiContext,undefined8 dataSource,longlong *targetBuffer,l
     }
     *(float *)(context + 0x230) = unaff_XMM6_Da;
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
 LAB_18076f928:
   if ((unaff_R13B != '\0') && (in_stack_00000078 != 0)) {
                     // WARNING: Subroutine does not return
@@ -172404,7 +172426,7 @@ undefined8 FUN_180770ce0(longlong *uiContext)
   *(uint *)(allocatedMemory + 100) = *(uint *)(allocatedMemory + 100) | 0x10;
   UNLOCK();
   stringCompareIndex = *(longlong *)(allocatedMemory + 0xe8);
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (0 < *(int *)(stringCompareIndex + 0x60)) {
     contextData = 0;
     do {
@@ -172421,7 +172443,7 @@ LAB_180770d72:
         goto LAB_180770d72;
       }
       stringCompareIndex = *(longlong *)(allocatedMemory + 0xe8);
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       contextData = contextData + 8;
     } while (iVar5 < *(int *)(stringCompareIndex + 0x60));
   }
@@ -177327,7 +177349,7 @@ void FUN_180775970(short *uiContext,int dataSource,int targetBuffer,int bufferSi
       iVar6 = iVar7;
       while (iVar6 != 0) {
         iVar6 = iVar6 + -1;
-        iVar5 = 0;
+        uiElementIndex = 0;
         fVar9 = floatResult0 * 3.051851e-05;
         if (3 < dataSource) {
           semaphoreHandle = (dataSource - 4U >> 2) + 1;
@@ -178349,7 +178371,7 @@ undefined8 FUN_180776b70(longlong uiContext)
   stringCompareIndex = *(longlong *)(bufferData + 0xe8);
   poperationResult = (int *)(uiContext + 0x33c);
   *poperationResult = 0;
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (0 < *(int *)(stringCompareIndex + 0x60)) {
     lVar4 = 0;
     do {
@@ -178360,7 +178382,7 @@ undefined8 FUN_180776b70(longlong uiContext)
         return semaphoreHandle;
       }
       stringCompareIndex = *(longlong *)(bufferData + 0xe8);
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       lVar4 = lVar4 + 8;
     } while (iVar5 < *(int *)(stringCompareIndex + 0x60));
   }
@@ -179343,16 +179365,16 @@ undefined8 FUN_180778d00(longlong *uiContext)
   undefined4 uVar8;
   
   allocatedMemory = *uiContext;
-  iVar5 = 0;
+  uiElementIndex = 0;
   puVar6 = (undefined4 *)(allocatedMemory + 0x4cc);
   do {
     uVar8 = cosf((float)iVar5 * 0.0001917476);
-    iVar5 = iVar5 + 1;
+    uiElementIndex = uiElementIndex + 1;
     *puVar6 = uVar8;
     puVar6 = puVar6 + 1;
   } while (iVar5 < 0x2000);
   stringCompareIndex = *(longlong *)(allocatedMemory + 0xe8);
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (0 < *(int *)(stringCompareIndex + 0x60)) {
     lVar7 = 0;
     do {
@@ -179362,7 +179384,7 @@ undefined8 FUN_180778d00(longlong *uiContext)
         return uVar4;
       }
       stringCompareIndex = *(longlong *)(allocatedMemory + 0xe8);
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       lVar7 = lVar7 + 8;
     } while (iVar5 < *(int *)(stringCompareIndex + 0x60));
   }
@@ -187107,7 +187129,7 @@ undefined8 FUN_180780360(longlong uiContext)
   *(uint *)(uiContext + 100) = *(uint *)(uiContext + 100) | 0x10;
   UNLOCK();
   *(undefined1 *)(uiContext + 0x23c8) = 0;
-  iVar5 = 0;
+  uiElementIndex = 0;
   *(undefined4 *)(bufferData + 0x23cc) = 0;
   *(undefined4 *)(bufferData + 0x23d0) = 0x3f800000;
   *(undefined4 *)(bufferData + 0x348) = 0x3f800000;
@@ -187188,7 +187210,7 @@ undefined8 FUN_180780360(longlong uiContext)
         return uVar3;
       }
       componentIndex = *(longlong *)(bufferData + 0xe8);
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       lVar4 = lVar4 + 8;
     } while (iVar5 < *(int *)(componentIndex + 0x60));
   }
@@ -191274,7 +191296,7 @@ undefined4 FUN_180786030(int *uiContext,longlong *dataSource,int targetBuffer,ch
     return 0x1f;
   }
   if (targetBuffer == -1) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     if (0 < *uiContext) {
       lVar4 = 0;
       do {
@@ -191288,7 +191310,7 @@ undefined4 FUN_180786030(int *uiContext,longlong *dataSource,int targetBuffer,ch
           *dataSource = (longlong)colorBufferPointer;
           return 0;
         }
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         lVar4 = lVar4 + 8;
       } while (iVar5 < *uiContext);
     }
@@ -191329,7 +191351,7 @@ undefined8 FUN_180786056(int *uiContext,undefined8 dataSource,int targetBuffer)
   char in_stack_00000048;
   
   if (targetBuffer == -1) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     if (0 < *uiContext) {
       lVar4 = 0;
       do {
@@ -191343,7 +191365,7 @@ undefined8 FUN_180786056(int *uiContext,undefined8 dataSource,int targetBuffer)
           *unaff_R14 = (longlong)colorBufferPointer;
           return 0;
         }
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         lVar4 = lVar4 + 8;
       } while (iVar5 < *unaff_RBP);
     }
@@ -191759,7 +191781,7 @@ int FUN_1807866d0(longlong uiContext,int dataSource,ulonglong targetBuffer,int b
                           *(int *)(puVar3 + 6) * bufferSize,1,1,0x3f800000,1);
     if (iVar5 != 0) goto LAB_180786862;
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
 LAB_180786862:
   if (uStack_38 != 0) {
                     // WARNING: Subroutine does not return
@@ -192016,7 +192038,7 @@ int FUN_180786a50(longlong uiContext,ulonglong dataSource,int targetBuffer)
     if (allocatedMemoryPtr == 0) {
       FUN_180772cf0(*(longlong *)(bufferData + 0x48) + 0x6e0,0x5f);
     }
-    iVar5 = 0;
+    uiElementIndex = 0;
   }
 LAB_180786c1b:
   if (uStack_48 != 0) {
@@ -195854,7 +195876,7 @@ FUN_180789a00(longlong uiContext,undefined8 dataSource,undefined4 *targetBuffer,
               (dataSource,*(undefined8 *)(uiContext + 0x28),*(undefined8 *)(uiContext + 0x30),
                *(undefined4 *)(bufferData + 0x18));
     compareResult = *(int *)(bufferData + 0x18);
-    iVar5 = 0;
+    uiElementIndex = 0;
     allocatedMemory1 = *(longlong *)(bufferData + 0x28);
     iVar6 = 0;
     validationResult = compareResult / 2;
@@ -195980,13 +196002,13 @@ void FUN_180789a48(longlong uiContext)
   compareResult = *(int *)(context + 0x18);
   iVar4 = 0;
   allocatedMemory0 = *(longlong *)(context + 0x28);
-  iVar5 = 0;
+  uiElementIndex = 0;
   validationResult = compareResult / 2;
   if (0 < validationResult) {
     lVar8 = 0;
     do {
       validationResult = validationResult + iVar5;
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       *(undefined8 *)(allocatedMemory0 + (longlong)validationResult * 8) =
            *(undefined8 *)(allocatedMemory0 + (longlong)*(int *)(lVar8 + *(longlong *)(context + 0x38)) * 8)
       ;
@@ -196679,10 +196701,10 @@ int FUN_18078a340(longlong *uiContext,ulonglong dataSource,char targetBuffer)
             *pallocatedMemory = (longlong)(uiContext + 6);
             uiContext[7] = (longlong)pallocatedMemory;
             *(longlong **)pallocatedMemory[1] = pallocatedMemory;
-            iVar5 = 0;
+            uiElementIndex = 0;
             if ((*(int *)((longlong)plVar7 + 0x24) == 0) && ((char)uiContext[5] != '\0')) {
               FUN_18078a540(uiContext,plVar7);
-              iVar5 = 0;
+              uiElementIndex = 0;
             }
           }
           goto LAB_18078a3ed;
@@ -203023,7 +203045,7 @@ int FUN_180790500(longlong uiContext,int dataSource,longlong *targetBuffer)
   colorBufferPointer = (longlong *)*pallocatedMemory;
   do {
     if (colorBufferPointer == pallocatedMemory) {
-      iVar5 = 0;
+      uiElementIndex = 0;
       lVar4 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x70,&UNK_18095b580,0x5c,0);
       *targetBuffer = lVar4;
       if (lVar4 == 0) {
@@ -203054,7 +203076,7 @@ LAB_1807905d8:
     }
     *targetBuffer = (longlong)colorBufferPointer;
     if ((int)colorBufferPointer[3] == dataSource) {
-      iVar5 = 0;
+      uiElementIndex = 0;
       goto LAB_1807905d8;
     }
     colorBufferPointer = (longlong *)*colorBufferPointer;
@@ -203084,7 +203106,7 @@ int FUN_180790523(undefined8 uiContext)
   colorBufferPointer = (longlong *)*pallocatedMemory;
   do {
     if (colorBufferPointer == pallocatedMemory) {
-      iVar5 = 0;
+      uiElementIndex = 0;
       lVar4 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x70,&UNK_18095b580,0x5c,0);
       *unaff_RDI = lVar4;
       if (lVar4 == 0) {
@@ -203115,7 +203137,7 @@ LAB_1807905d8:
     }
     *unaff_RDI = (longlong)colorBufferPointer;
     if ((int)colorBufferPointer[3] == unaff_EBP) {
-      iVar5 = 0;
+      uiElementIndex = 0;
       goto LAB_1807905d8;
     }
     colorBufferPointer = (longlong *)*colorBufferPointer;
@@ -203276,7 +203298,7 @@ FUN_180790680(longlong *uiContext,undefined8 dataSource,longlong targetBuffer,un
                    *(undefined8 *)(in_stack_00000008 + 0x30),
                    *(undefined4 *)(in_stack_00000008 + 0x18));
         compareResult = *(int *)(in_stack_00000008 + 0x18);
-        iVar5 = 0;
+        uiElementIndex = 0;
         allocatedMemory1 = *(longlong *)(in_stack_00000008 + 0x28);
         iVar6 = 0;
         operationResult = compareResult / 2;
@@ -203609,14 +203631,14 @@ undefined8 FUN_180790930(longlong uiContext)
     iVar4 = 0;
     if (0 < (int)pallocatedMemory[3]) {
       do {
-        iVar5 = 0;
+        uiElementIndex = 0;
         if (0 < *(int *)((longlong)pallocatedMemory + 0x1c)) {
           do {
             (**(code **)(**(longlong **)
                            (pallocatedMemory[7] +
                            (longlong)(*(int *)((longlong)pallocatedMemory + 0x1c) * iVar4 + iVar5) * 8) + 0x28
                         ))();
-            iVar5 = iVar5 + 1;
+            uiElementIndex = uiElementIndex + 1;
           } while (iVar5 < *(int *)((longlong)pallocatedMemory + 0x1c));
         }
         iVar4 = iVar4 + 1;
@@ -203651,14 +203673,14 @@ undefined8 FUN_180790936(longlong uiContext)
     iVar4 = 0;
     if (0 < (int)pallocatedMemory[3]) {
       do {
-        iVar5 = 0;
+        uiElementIndex = 0;
         if (0 < *(int *)((longlong)pallocatedMemory + 0x1c)) {
           do {
             (**(code **)(**(longlong **)
                            (pallocatedMemory[7] +
                            (longlong)(*(int *)((longlong)pallocatedMemory + 0x1c) * iVar4 + iVar5) * 8) + 0x28
                         ))();
-            iVar5 = iVar5 + 1;
+            uiElementIndex = uiElementIndex + 1;
           } while (iVar5 < *(int *)((longlong)pallocatedMemory + 0x1c));
         }
         iVar4 = iVar4 + 1;
@@ -204097,7 +204119,7 @@ void FUN_180790ee0(longlong *uiContext)
   if (0 < (int)uiContext[3]) {
     do {
       operationResult = *(int *)((longlong)uiContext + 0x1c);
-      iVar5 = 0;
+      uiElementIndex = 0;
       if (0 < operationResult) {
         do {
           colorBufferPointer = *(longlong **)(uiContext[7] + (longlong)(operationResult * iVar4 + iVar5) * 8);
@@ -204110,7 +204132,7 @@ void FUN_180790ee0(longlong *uiContext)
                     // WARNING: Subroutine does not return
             FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),colorBufferPointer,&UNK_18095b780,0x165,1);
           }
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
         } while (iVar5 < operationResult);
       }
       iVar4 = iVar4 + 1;
@@ -205068,7 +205090,7 @@ undefined8 FUN_180791bb0(longlong *uiContext)
   int iVar5;
   
   allocatedMemory = *uiContext;
-  iVar5 = 0;
+  uiElementIndex = 0;
   *(undefined8 *)(allocatedMemory + 0x450) = 0x3f800000;
   *(undefined4 *)(allocatedMemory + 0x458) = 0;
   *(undefined4 *)(allocatedMemory + 0x45c) = 0x3f800000;
@@ -205093,7 +205115,7 @@ undefined8 FUN_180791bb0(longlong *uiContext)
         return uVar3;
       }
       componentIndex = *(longlong *)(allocatedMemory + 0xe8);
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       lVar4 = lVar4 + 8;
     } while (iVar5 < *(int *)(componentIndex + 0x60));
   }
@@ -209239,7 +209261,7 @@ undefined8 FUN_180796875(longlong uiContext,undefined8 dataSource,undefined8 tar
           iVar5 = iVar4;
         }
         else {
-          iVar5 = 0;
+          uiElementIndex = 0;
         }
         uVar6 = compareResult + iVar4;
         fVar9 = *(float *)(in_R10 + (ulonglong)uVar6 * 4);
@@ -209261,7 +209283,7 @@ undefined8 FUN_180796875(longlong uiContext,undefined8 dataSource,undefined8 tar
                *(float *)(uiContext + 0x2a8) * *(float *)(uiContext + 0x21c + (longlong)iVar4 * 4);
         }
         else {
-          iVar5 = 0;
+          uiElementIndex = 0;
         }
         uVar6 = iVar4 + compareResult + 1;
         fVar9 = *(float *)(in_R10 + (ulonglong)uVar6 * 4);
@@ -209283,7 +209305,7 @@ undefined8 FUN_180796875(longlong uiContext,undefined8 dataSource,undefined8 tar
                *(float *)(uiContext + 0x2a8) * *(float *)(uiContext + 0x220 + (longlong)iVar4 * 4);
         }
         else {
-          iVar5 = 0;
+          uiElementIndex = 0;
         }
         uVar6 = compareResult + 2 + iVar4;
         fVar9 = *(float *)(in_R10 + (ulonglong)uVar6 * 4);
@@ -216893,7 +216915,7 @@ void FUN_18079ea10(undefined8 uiContext,longlong dataSource,int targetBuffer)
     functionResult7 = 0;
     if (0 < operationResult8) {
       poperationResult6 = (int *)&DAT_180c1b958;
-      iVar5 = 0;
+      uiElementIndex = 0;
       do {
         if (0 < (int)functionResult7) {
           uVar8 = (ulonglong)functionResult7;
@@ -216977,7 +216999,7 @@ void FUN_18079ea10(undefined8 uiContext,longlong dataSource,int targetBuffer)
       operationResult8 = 2;
       poperationResult6 = (int *)0x180c1b95c;
       do {
-        iVar5 = 0;
+        uiElementIndex = 0;
         allocatedMemory3 = 0;
         if (3 < iStackX_18) {
           operationResult1 = 0;
@@ -230093,7 +230115,7 @@ void FUN_18080c4a0(longlong *uiContext,int dataSource,int targetBuffer,int *buff
     if (dataSource <= iVar8) {
       validationResult = dataSource;
     }
-    iVar5 = 0;
+    uiElementIndex = 0;
     *bufferSize = 0;
     *param_7 = 0;
     iVar4 = iVar5;
@@ -230140,12 +230162,12 @@ undefined4 FUN_18080c770(longlong uiContext,undefined8 dataSource)
   int iVar5;
   
   allocatedMemory = *(longlong *)(bufferData + 0x20);
-  iVar5 = 0;
+  uiElementIndex = 0;
   iVar4 = *(int *)(allocatedMemory + 8);
   validationResult = FUN_18080b990(dataSource,1);
   if (validationResult == 0) {
     for (; 1 < iVar4; iVar4 = iVar4 >> 1) {
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
     }
     iVar4 = FUN_18080b990(dataSource,iVar5);
     if (iVar4 == -1) {
@@ -230808,7 +230830,7 @@ undefined8 FUN_18080d690(longlong uiContext)
   if (allocatedMemory != 0) {
     func_0x000180743c20(allocatedMemory,1);
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
   *(undefined2 *)(uiContext + 0xbe8) = 0x100;
   if (0 < *(int *)(bufferData + 0x3c8)) {
     plVar7 = (longlong *)(uiContext + 0x3d0);
@@ -230853,7 +230875,7 @@ undefined8 FUN_18080d690(longlong uiContext)
           }
         }
       }
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
       plVar7 = plVar7 + 1;
     } while (iVar5 < *(int *)(bufferData + 0x3c8));
   }
@@ -232774,7 +232796,7 @@ void FUN_18080f800(longlong uiContext,float *dataSource,int *targetBuffer,longlo
   iStack_bc = 0x120 - aiStack_68[0] >> 1;
   operationResult1 = *(int *)(bufferSize + 0x44);
   uVar8 = 0;
-  iVar5 = 0;
+  uiElementIndex = 0;
   aiStack_68[2] = 0;
   aiStack_68[1] = aiStack_68[2];
   if (operationResult1 < aiStack_68[0]) {
@@ -241163,7 +241185,7 @@ void FUN_180818caf(undefined8 uiContext,longlong dataSource)
     if (-1 < compareResult) {
       func_0x00018082fe10(&stack0x00000070);
       compareResult = 0;
-      iVar5 = 0;
+      uiElementIndex = 0;
 LAB_180818dc0:
       do {
         if ((*(int *)(context + 0x80) < 3) ||
@@ -242891,7 +242913,7 @@ LAB_18081ab3f:
       }
       iVar5 = *(int *)(&UNK_18097fa10 + (ulonglong)functionResult1 * 4) + functionResult0;
       if (iVar5 < 0) {
-        iVar5 = 0;
+        uiElementIndex = 0;
       }
       else if (0x58 < iVar5) {
         iVar5 = 0x58;
@@ -243077,7 +243099,7 @@ LAB_18081ab3f:
       }
       iVar5 = *(int *)(&UNK_18097fa10 + (ulonglong)functionResult1 * 4) + functionResult0;
       if (iVar5 < 0) {
-        iVar5 = 0;
+        uiElementIndex = 0;
       }
       else if (0x58 < iVar5) {
         iVar5 = 0x58;
@@ -249542,7 +249564,7 @@ void FUN_180824050(undefined2 *uiContext,uint *dataSource,int targetBuffer,int b
   undefined1 afunctionResult7 [36];
   
   afunctionResult7 = in_ZMM0._28_36_;
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (0 < targetBuffer + -7) {
     contextData = (longlong)bufferSize;
     uVar4 = (targetBuffer - 8U >> 3) + 1;
@@ -252090,7 +252112,7 @@ undefined8 FUN_180825370(undefined8 uiContext,longlong *dataSource,int *targetBu
         uVar3 = (ulonglong)uVar4;
         *(undefined4 *)(dataSource + 3) = 0;
         *(uint *)((longlong)dataSource + 0x14) = uVar4;
-        iVar5 = 0;
+        uiElementIndex = 0;
       } while (uVar4 < *(uint *)((longlong)dataSource + 0xc));
     }
     if ((int)dataSource[2] != 0) {
@@ -255502,16 +255524,16 @@ undefined4 FUN_180829a70(longlong *uiContext,undefined8 dataSource,longlong *tar
   iVar4 = *(int *)((longlong)(int)targetBuffer[7] * 4 + 0x180bec07c);
   iVar5 = FUN_18080b990(dataSource,1);
   if (iVar5 == 1) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     functionResult5 = iVar4 - 1;
     for (uVar6 = functionResult5; uVar6 != 0; uVar6 = uVar6 >> 1) {
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
     }
     eventTypeCode = FUN_18080b990(dataSource,iVar5);
-    iVar5 = 0;
+    uiElementIndex = 0;
     *bufferSize = eventTypeCode;
     for (; functionResult5 != 0; functionResult5 = functionResult5 >> 1) {
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
     }
     eventTypeCode = FUN_18080b990(dataSource,iVar5);
     bufferSize[1] = eventTypeCode;
@@ -255662,7 +255684,7 @@ undefined4 FUN_180829a70(longlong *uiContext,undefined8 dataSource,longlong *tar
           bufferSize[*(char *)(allocatedMemory8 + -2 + targetBuffer[4])] =
                bufferSize[*(char *)(allocatedMemory8 + -2 + targetBuffer[4])] & 0x7fff;
         }
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
         allocatedMemory8 = allocatedMemory8 + 1;
       } while (iVar5 < *(int *)((longlong)targetBuffer + 0x34));
     }
@@ -255869,7 +255891,7 @@ undefined8 FUN_18082a950(uint *uiContext,longlong dataSource,undefined8 targetBu
       *(undefined8 *)(uiContext + 2) = eventTypeCode;
       eventTypeCode = func_0x0001807b17e0((int)(char)uiContext[9] << 3);
       cVar2 = (char)uiContext[9];
-      iVar5 = 0;
+      uiElementIndex = 0;
       *(undefined8 *)(uiContext + 4) = eventTypeCode;
       if ('\0' < cVar2) {
         lVar9 = 0;
@@ -255880,13 +255902,13 @@ undefined8 FUN_18082a950(uint *uiContext,longlong dataSource,undefined8 targetBu
             cVar2 = FUN_18080b990(targetBuffer,5);
             bVar3 = bVar3 | cVar2 << 3;
           }
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           *(byte *)(lVar9 + *(longlong *)(bufferData + 2)) = bVar3;
           lVar9 = lVar9 + 1;
           cVar2 = (char)uiContext[9];
         } while (iVar5 < cVar2);
       }
-      iVar5 = 0;
+      uiElementIndex = 0;
       if ('\0' < cVar2) {
         lVar9 = 0;
         iVar6 = 0;
@@ -255908,7 +255930,7 @@ undefined8 FUN_18082a950(uint *uiContext,longlong dataSource,undefined8 targetBu
             }
             iVar8 = iVar8 + 1;
           } while (iVar8 < 8);
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           iVar6 = iVar6 + 8;
           lVar9 = lVar9 + 1;
         } while (iVar5 < (char)uiContext[9]);
@@ -256037,7 +256059,7 @@ undefined8 FUN_18082aca0(int *uiContext,longlong dataSource,undefined8 targetBuf
   }
   else {
     iVar5 = FUN_18080b990(targetBuffer,4);
-    iVar5 = iVar5 + 1;
+    uiElementIndex = uiElementIndex + 1;
   }
   *uiContext = iVar5;
   iVar5 = FUN_18080b990(targetBuffer,1);
@@ -263807,10 +263829,10 @@ LAB_18082f701:
           operationResult = iVar4 + eventTypeCode;
           iVar5 = iVar4;
           if (uVar3 < *(uint *)(*(longlong *)(bufferData + 0x20) + (longlong)operationResult * 4)) {
-            iVar5 = 0;
+            uiElementIndex = 0;
           }
           eventTypeCode = eventTypeCode + iVar5;
-          iVar5 = 0;
+          uiElementIndex = 0;
           if (uVar3 < *(uint *)(*(longlong *)(bufferData + 0x20) + (longlong)operationResult * 4)) {
             iVar5 = iVar4;
           }
@@ -282511,7 +282533,7 @@ undefined8 FUN_18083f210(longlong uiContext,undefined8 *dataSource,longlong *tar
   
   plVar4 = (longlong *)(uiContext + 0x30);
   *targetBuffer = 0;
-  iVar5 = 0;
+  uiElementIndex = 0;
   do {
     pallocatedMemory = (longlong *)*plVar4;
     auStackX_18[0] = 0;
@@ -282537,7 +282559,7 @@ undefined8 FUN_18083f210(longlong uiContext,undefined8 *dataSource,longlong *tar
       stringCompareIndex = pallocatedMemory[3];
     }
     *targetBuffer = *targetBuffer + stringCompareIndex;
-    iVar5 = iVar5 + 1;
+    uiElementIndex = uiElementIndex + 1;
     plVar4 = plVar4 + 1;
   } while (iVar5 == 0);
   return 0;
@@ -282555,7 +282577,7 @@ undefined8 FUN_18083f2f0(longlong uiContext,longlong *dataSource,longlong target
   int iVar5;
   
   plVar4 = (longlong *)(uiContext + 0x30);
-  iVar5 = 0;
+  uiElementIndex = 0;
   do {
     pallocatedMemory = (longlong *)*plVar4;
     if ((char)pallocatedMemory[1] == '\0') {
@@ -282575,7 +282597,7 @@ LAB_18083f34c:
       }
     }
     componentIndex = *plVar4;
-    iVar5 = iVar5 + 1;
+    uiElementIndex = uiElementIndex + 1;
     plVar4 = plVar4 + 1;
     targetBuffer = targetBuffer + *(longlong *)(componentIndex + 0x18);
     if (iVar5 != 0) {
@@ -284002,20 +284024,20 @@ void FUN_180840af0(longlong uiContext,longlong dataSource,int *targetBuffer)
     }
     uiContext = uiContext + 0x60;
     if (isCharacterMatch) {
-      iVar5 = 0;
+      uiElementIndex = 0;
       validationResult = func_0x0001808675f0(uiContext);
       if (0 < validationResult) {
         do {
           stringCompareIndex = func_0x000180867680(uiContext,iVar5);
           if ((*(longlong *)(stringCompareIndex + 0x10) == lStack_38) &&
              (*(longlong *)(stringCompareIndex + 0x18) == lStack_30)) goto LAB_180840bf9;
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           validationResult = func_0x0001808675f0(uiContext);
         } while (iVar5 < validationResult);
       }
     }
     else {
-      iVar5 = 0;
+      uiElementIndex = 0;
       validationResult = func_0x0001808675f0(uiContext);
       if (0 < validationResult) {
         do {
@@ -284028,7 +284050,7 @@ void FUN_180840af0(longlong uiContext,longlong dataSource,int *targetBuffer)
           }
           validationResult = func_0x00018076b630(bufferPtr,dataSource);
           if (validationResult == 0) goto LAB_180840bf9;
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           validationResult = func_0x0001808675f0(uiContext);
         } while (iVar5 < validationResult);
       }
@@ -299418,7 +299440,7 @@ LAB_1808511a4:
       if (0 < *(int *)(lStack_d8 + 0x60)) {
         if ((*(int *)(lStack_d8 + 0x60) != 1) || (iVar5 = FUN_180850690(lStack_d8), iVar5 == 0)) {
           *(int *)(allocatedMemory5 + 0x60) = *(int *)(allocatedMemory5 + 0x60) + -1;
-          iVar5 = 0;
+          uiElementIndex = 0;
         }
         uStack_fc = uStack_fc & 0xff;
         if (iVar5 == 0) {
@@ -299427,7 +299449,7 @@ LAB_1808511a4:
       }
       allocatedMemory8 = lStack_e0;
       if (iVar5 == 0) {
-        iVar5 = 0;
+        uiElementIndex = 0;
       }
       if (iVar5 != 0) goto LAB_1808513ac;
       iVar7 = FUN_1808bd690(lStack_e0);
@@ -310039,7 +310061,7 @@ void FUN_180859ba0(longlong uiContext,longlong *dataSource)
   uStack_48 = XorEncryptionKey ^ (ulonglong)&lStack_78;
   if ((dataSource != (longlong *)0x0) && (stringCompareIndex = *dataSource, stringCompareIndex != 0)) {
     poperationResult = (int *)(stringCompareIndex + 0xd0);
-    iVar5 = 0;
+    uiElementIndex = 0;
     if ((*poperationResult == 0) &&
        (((*(int *)(stringCompareIndex + 0xd4) == 0 && (*(int *)(stringCompareIndex + 0xd8) == 0)) &&
         (*(int *)(stringCompareIndex + 0xdc) == 0)))) {
@@ -310055,7 +310077,7 @@ void FUN_180859ba0(longlong uiContext,longlong *dataSource)
     }
     psemaphoreHandle = (undefined8 *)(stringCompareIndex + 0xb0);
     for (bufferPtr = (undefined8 *)*psemaphoreHandle; bufferPtr != psemaphoreHandle; bufferPtr = (undefined8 *)*bufferPtr) {
-      iVar5 = iVar5 + 1;
+      uiElementIndex = uiElementIndex + 1;
     }
     uVar6 = (longlong)iVar5 * 4 + 0xf;
     if (uVar6 <= (ulonglong)((longlong)iVar5 * 4)) {
@@ -310574,7 +310596,7 @@ LAB_18085a746:
                           in_stack_ffffffffffffff08 & 0xffffffffffffff00,0);
     if (iVar5 != 0) goto LAB_18085a91b;
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
 LAB_18085a91b:
   if (lStack_b8 != 0) {
     poperationResult = (int *)(lStack_b8 + 0x10);
@@ -317050,7 +317072,7 @@ void FUN_180860480(longlong uiContext,undefined8 dataSource,undefined8 *targetBu
                     // WARNING: Subroutine does not return
       FUN_18084b240(dataSource,auStack_58);
     }
-    iVar5 = 0;
+    uiElementIndex = 0;
     uStack_68 = 1;
     uStack_70 = 0;
     uStack_78 = 0;
@@ -317074,7 +317096,7 @@ void FUN_180860480(longlong uiContext,undefined8 dataSource,undefined8 *targetBu
     if (plVar4 != colorBufferPointer) {
       do {
         plVar4 = (longlong *)*plVar4;
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
       } while (plVar4 != colorBufferPointer);
       if (iVar5 != 0) goto LAB_1808605ab;
     }
@@ -318004,7 +318026,7 @@ LAB_180860998:
              , iVar5 != 0)) goto LAB_180861693;
 LAB_1808609c2:
         }
-        iVar5 = 0;
+        uiElementIndex = 0;
         if (0 < *(int *)(unaff_R13 + 0x88)) {
           do {
             validationResult1 = 0;
@@ -318023,10 +318045,10 @@ LAB_1808609c2:
             uVar9 = extraout_XMM0_Qa_03;
             if (operationResult6 != 0) goto LAB_180861693;
 LAB_180860a65:
-            iVar5 = iVar5 + 1;
+            uiElementIndex = uiElementIndex + 1;
           } while (iVar5 < *(int *)(unaff_R13 + 0x88));
         }
-        iVar5 = 0;
+        uiElementIndex = 0;
         allocatedMemory4 = *(longlong *)(unaff_R12 + 0x88);
         if (0 < *(int *)(allocatedMemory4 + 0x88)) {
           do {
@@ -318046,10 +318068,10 @@ LAB_180860a65:
             if (operationResult6 != 0) goto LAB_180861693;
 LAB_180860af6:
             allocatedMemory4 = *(longlong *)(unaff_R12 + 0x88);
-            iVar5 = iVar5 + 1;
+            uiElementIndex = uiElementIndex + 1;
           } while (iVar5 < *(int *)(allocatedMemory4 + 0x88));
         }
-        iVar5 = 0;
+        uiElementIndex = 0;
         if (0 < *(int *)(unaff_R13 + 0xa8)) {
           do {
             validationResult1 = 0;
@@ -318099,7 +318121,7 @@ LAB_180860af6:
               }
             }
 LAB_180860c58:
-            iVar5 = iVar5 + 1;
+            uiElementIndex = uiElementIndex + 1;
           } while (iVar5 < *(int *)(unaff_R13 + 0xa8));
         }
         unaff_RSI = *(longlong *)(unaff_RBP + -0x78);
@@ -318154,10 +318176,10 @@ LAB_180860c58:
                (iVar5 = FUN_180868970(*(longlong *)(in_stack_00000070 + 0x80),colorBufferPointer2), iVar5 != 0))
             goto LAB_180861693;
             plVar7 = colorBufferPointer3 + 3;
-            iVar5 = 0;
+            uiElementIndex = 0;
             if (colorBufferPointer3 == (longlong *)0x0) {
               plVar7 = (longlong *)0x30;
-              iVar5 = 0;
+              uiElementIndex = 0;
             }
             while( true ) {
               if (*(int *)(*plVar7 + 0x60) <= iVar5) break;
@@ -318165,7 +318187,7 @@ LAB_180860c58:
               operationResult6 = FUN_180860480(in_stack_00000070,
                                      (longlong)iVar5 * 0x10 + *(longlong *)(*plVar7 + 0x58));
               if (operationResult6 != 0) goto LAB_180861693;
-              iVar5 = iVar5 + 1;
+              uiElementIndex = uiElementIndex + 1;
             }
             if (colorBufferPointer3 != *(longlong **)(unaff_RBP + -0x68)) {
               plVar7 = (longlong *)(*colorBufferPointer3 + -0x18);
@@ -318267,7 +318289,7 @@ LAB_180860f7b:
                         *(int *)(unaff_R12 + 0x278) = iVar5 + -1;
                       }
                       else {
-                        iVar5 = iVar5 + 1;
+                        uiElementIndex = uiElementIndex + 1;
                         functionResult7 = (int)*(uint *)(unaff_R12 + 0x27c) >> 0x1f;
                         operationResult6 = (*(uint *)(unaff_R12 + 0x27c) ^ functionResult7) - functionResult7;
                         if (operationResult6 < iVar5) {
@@ -318331,7 +318353,7 @@ LAB_180860f7b:
                         *(int *)(unaff_R12 + 0x268) = iVar5 + -1;
                       }
                       else {
-                        iVar5 = iVar5 + 1;
+                        uiElementIndex = uiElementIndex + 1;
                         functionResult7 = (int)*(uint *)(unaff_R12 + 0x26c) >> 0x1f;
                         operationResult6 = (*(uint *)(unaff_R12 + 0x26c) ^ functionResult7) - functionResult7;
                         if (operationResult6 < iVar5) {
@@ -318393,7 +318415,7 @@ LAB_180860f7b:
             if (((cVar3 != '\0') || ((*(uint *)(in_stack_00000070 + 0x2d8) >> 0xf & 1) != 0)) ||
                (*(int *)(in_stack_00000070 + 0x2e4) != 0)) {
               allocatedMemory4 = *(longlong *)(in_stack_00000070 + 0x88);
-              iVar5 = 0;
+              uiElementIndex = 0;
               if (0 < *(int *)(allocatedMemory4 + 0xa8)) {
                 contextData = *(longlong *)(unaff_RBP + -0x70);
                 do {
@@ -318423,7 +318445,7 @@ LAB_180860f7b:
                   }
 LAB_18086142b:
                   allocatedMemory4 = *(longlong *)(in_stack_00000070 + 0x88);
-                  iVar5 = iVar5 + 1;
+                  uiElementIndex = uiElementIndex + 1;
                 } while (iVar5 < *(int *)(allocatedMemory4 + 0xa8));
               }
             }
@@ -318472,7 +318494,7 @@ joined_r0x000180861496:
                     }
                     if (colorBufferPointer3 != pallocatedMemory5) {
                       do {
-                        iVar5 = 0;
+                        uiElementIndex = 0;
                         pallocatedMemory2 = colorBufferPointer3 + 3;
                         if (colorBufferPointer3 == (longlong *)0x0) {
                           pallocatedMemory2 = (longlong *)0x30;
@@ -318487,7 +318509,7 @@ joined_r0x000180861496:
                               FUN_180862080(in_stack_00000070,contextData,allocatedMemory4 + 0x40);
                               goto joined_r0x000180861496;
                             }
-                            iVar5 = iVar5 + 1;
+                            uiElementIndex = uiElementIndex + 1;
                           } while (iVar5 < operationResult6);
                           pallocatedMemory5 = *(longlong **)(unaff_RBP + -0x68);
                         }
@@ -320199,7 +320221,7 @@ void FUN_1808624a0(longlong uiContext)
   undefined8 uStackX_18;
   undefined8 uStackX_20;
   
-  iVar5 = 0;
+  uiElementIndex = 0;
   operationResult = *(int *)(bufferData + 0x2e4);
   uVar3 = *(uint *)(uiContext + 0x2d8) >> 5;
   if (operationResult < 3) {
@@ -320262,7 +320284,7 @@ void FUN_1808624a0(longlong uiContext)
     }
     iVar4 = FUN_18073da60(*(undefined8 *)(*(longlong *)(bufferData + 0x2b0) + 0x78),iVar5,eventTypeCode);
     if (iVar4 != 0) break;
-    iVar5 = iVar5 + 1;
+    uiElementIndex = uiElementIndex + 1;
     puVar6 = puVar6 + 1;
     if (3 < iVar5) {
       return;
@@ -326778,14 +326800,14 @@ undefined4 FUN_180867d60(undefined8 *uiContext)
     }
     if (uiContext[3] != 0) {
       componentIndex = *(longlong *)(uiContext[3] + 0xd0);
-      iVar5 = 0;
+      uiElementIndex = 0;
       iVar4 = *(int *)(componentIndex + 0x28);
       if (0 < iVar4) {
         puVar6 = *(undefined8 **)(componentIndex + 0x20);
         lVar7 = 0;
         do {
           if ((undefined8 *)*puVar6 == uiContext) break;
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           lVar7 = lVar7 + 1;
           puVar6 = puVar6 + 1;
         } while (lVar7 < iVar4);
@@ -327974,7 +327996,7 @@ FUN_1808690e0(code *uiContext,longlong *dataSource,longlong targetBuffer,undefin
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
   FUN_1808741f0(dataSource,&uStack_40,aiStack_38);
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
     iVar4 = (int)uStack_40;
@@ -328042,7 +328064,7 @@ FUN_180869270(code *uiContext,longlong *dataSource,longlong targetBuffer,undefin
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
   FUN_1808741f0(dataSource,&uStack_40,aiStack_38);
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
     iVar4 = (int)uStack_40;
@@ -328110,7 +328132,7 @@ FUN_180869400(code *uiContext,longlong *dataSource,longlong targetBuffer,undefin
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
   FUN_1808741f0(dataSource,&uStack_40,aiStack_38);
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
     iVar4 = (int)uStack_40;
@@ -328178,7 +328200,7 @@ FUN_180869590(code *uiContext,longlong *dataSource,longlong targetBuffer,undefin
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
   FUN_1808741f0(dataSource,&uStack_40,aiStack_38);
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
     iVar4 = (int)uStack_40;
@@ -328246,7 +328268,7 @@ FUN_180869720(code *uiContext,longlong *dataSource,longlong targetBuffer,undefin
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
   FUN_1808741f0(dataSource,&uStack_40,aiStack_38);
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
     iVar4 = (int)uStack_40;
@@ -328314,7 +328336,7 @@ FUN_1808698b0(code *uiContext,longlong *dataSource,longlong targetBuffer,undefin
   uStack_40 = 0xffffffffffffffff;
   aiStack_38[0] = -1;
   FUN_1808741f0(dataSource,&uStack_40,aiStack_38);
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (aiStack_38[0] != -1) {
     iVar6 = aiStack_38[0];
     iVar4 = (int)uStack_40;
@@ -328434,7 +328456,7 @@ void FUN_180869b10(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x70))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x148);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -328483,7 +328505,7 @@ LAB_180869c61:
             }
           }
 LAB_180869c72:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -328689,7 +328711,7 @@ void FUN_180869d10(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0xe0))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x88);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -328738,7 +328760,7 @@ LAB_180869e61:
             }
           }
 LAB_180869e72:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -328944,7 +328966,7 @@ void FUN_180869f10(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0xa0))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x118);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -328993,7 +329015,7 @@ LAB_18086a061:
             }
           }
 LAB_18086a072:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -329199,7 +329221,7 @@ void FUN_18086a110(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x68))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x188);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -329248,7 +329270,7 @@ LAB_18086a261:
             }
           }
 LAB_18086a272:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -329454,7 +329476,7 @@ void FUN_18086a310(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x38))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x1d8);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -329503,7 +329525,7 @@ LAB_18086a461:
             }
           }
 LAB_18086a472:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -329709,7 +329731,7 @@ void FUN_18086a510(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0xa8))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x108);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -329758,7 +329780,7 @@ LAB_18086a661:
             }
           }
 LAB_18086a672:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -329964,7 +329986,7 @@ void FUN_18086a710(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0xb0))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0xe8);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -330013,7 +330035,7 @@ LAB_18086a861:
             }
           }
 LAB_18086a872:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -330219,7 +330241,7 @@ void FUN_18086a910(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x60))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x1a8);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -330268,7 +330290,7 @@ LAB_18086aa61:
             }
           }
 LAB_18086aa72:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -330474,7 +330496,7 @@ void FUN_18086ab10(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x100))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x48);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -330523,7 +330545,7 @@ LAB_18086ac4d:
             }
           }
 LAB_18086ac58:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -330729,7 +330751,7 @@ void FUN_18086acf0(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x108))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x38);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -330778,7 +330800,7 @@ LAB_18086ae2d:
             }
           }
 LAB_18086ae38:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -330984,7 +331006,7 @@ void FUN_18086aed0(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x90))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x138);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -331033,7 +331055,7 @@ LAB_18086b021:
             }
           }
 LAB_18086b032:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -331239,7 +331261,7 @@ void FUN_18086b0d0(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x30))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x1e8);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -331288,7 +331310,7 @@ LAB_18086b221:
             }
           }
 LAB_18086b232:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -331494,7 +331516,7 @@ void FUN_18086b2d0(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0xf8))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x68);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -331543,7 +331565,7 @@ LAB_18086b40d:
             }
           }
 LAB_18086b418:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -331749,7 +331771,7 @@ void FUN_18086b4b0(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x28))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x198);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -331798,7 +331820,7 @@ LAB_18086b601:
             }
           }
 LAB_18086b612:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -332004,7 +332026,7 @@ void FUN_18086b6b0(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x88))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x158);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -332053,7 +332075,7 @@ LAB_18086b801:
             }
           }
 LAB_18086b812:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -332259,7 +332281,7 @@ void FUN_18086b8b0(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0xf0))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x78);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -332308,7 +332330,7 @@ LAB_18086b9ed:
             }
           }
 LAB_18086b9f8:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -332514,7 +332536,7 @@ void FUN_18086ba90(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x40))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x1c8);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -332563,7 +332585,7 @@ LAB_18086bbe1:
             }
           }
 LAB_18086bbf2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -332769,7 +332791,7 @@ void FUN_18086bc90(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x48))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x1b8);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -332818,7 +332840,7 @@ LAB_18086bde1:
             }
           }
 LAB_18086bdf2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -333024,7 +333046,7 @@ void FUN_18086be90(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0xd8))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x98);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -333073,7 +333095,7 @@ LAB_18086bfe1:
             }
           }
 LAB_18086bff2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -333279,7 +333301,7 @@ void FUN_18086c090(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0xb8))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x178);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -333328,7 +333350,7 @@ LAB_18086c1e1:
             }
           }
 LAB_18086c1f2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -333534,7 +333556,7 @@ void FUN_18086c290(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0xe8))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x58);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -333583,7 +333605,7 @@ LAB_18086c3cd:
             }
           }
 LAB_18086c3d8:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -333789,7 +333811,7 @@ void FUN_18086c470(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x80))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x168);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -333838,7 +333860,7 @@ LAB_18086c5c1:
             }
           }
 LAB_18086c5d2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -334044,7 +334066,7 @@ void FUN_18086c670(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0xd0))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0xa8);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -334093,7 +334115,7 @@ LAB_18086c7c1:
             }
           }
 LAB_18086c7d2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -334299,7 +334321,7 @@ void FUN_18086c870(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 200))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0xb8);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -334348,7 +334370,7 @@ LAB_18086c9c1:
             }
           }
 LAB_18086c9d2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -334554,7 +334576,7 @@ void FUN_18086ca70(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x98))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x128);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -334603,7 +334625,7 @@ LAB_18086cbc1:
             }
           }
 LAB_18086cbd2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -334809,7 +334831,7 @@ void FUN_18086cc70(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x58))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0x1f8);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -334858,7 +334880,7 @@ LAB_18086cdc1:
             }
           }
 LAB_18086cdd2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -335064,7 +335086,7 @@ void FUN_18086ce70(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x50))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0xd8);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -335113,7 +335135,7 @@ LAB_18086cfc1:
             }
           }
 LAB_18086cfd2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -335319,7 +335341,7 @@ void FUN_18086d070(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0xc0))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 200);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -335368,7 +335390,7 @@ LAB_18086d1c1:
             }
           }
 LAB_18086d1d2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -335574,7 +335596,7 @@ void FUN_18086d270(longlong uiContext,undefined8 *dataSource)
   puStack_78 = dataSource;
   stringCompareIndex = (**(code **)(*(longlong *)*dataSource + 0x78))((longlong *)*dataSource,0);
   if (stringCompareIndex != 0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
     iVar6 = *(int *)(bufferData + 0xf8);
     if (0 < iVar6) {
       stringCompareIndex = 0;
@@ -335623,7 +335645,7 @@ LAB_18086d3c1:
             }
           }
 LAB_18086d3d2:
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           stringCompareIndex = stringCompareIndex + 8;
         }
         dataSource = puStack_78;
@@ -342664,7 +342686,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
   if (dataSource == (longlong *)0x0) {
     return 0x1c;
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x1a8))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x1a8))); iVar5 = iVar5 + 1) {
     allocatedMemory = *(longlong *)(*(longlong *)(bufferData + 0x1a0) + (longlong)iVar5 * 8);
     if (allocatedMemory != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x60))(dataSource,0);
@@ -342674,7 +342696,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x38))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x38))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0x30) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x108))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x28))(colorBufferPointer);
@@ -342683,7 +342705,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x48))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x48))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0x40) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x100))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342692,7 +342714,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x58))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x58))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0x50) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0xe8))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342701,7 +342723,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x68))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x68))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0x60) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0xf8))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x28))(colorBufferPointer);
@@ -342710,7 +342732,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x78))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x78))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0x70) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0xf0))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342719,7 +342741,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x88))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x88))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0x80) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0xe0))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342728,7 +342750,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x98))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x98))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0x90) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0xd8))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342737,7 +342759,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0xa8))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0xa8))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0xa0) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0xd0))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342746,7 +342768,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0xb8))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0xb8))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0xb0) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 200))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342755,7 +342777,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 200))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 200))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0xc0) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0xc0))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342764,7 +342786,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0xd8))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0xd8))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0xd0) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x50))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x28))(colorBufferPointer);
@@ -342773,7 +342795,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0xe8))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0xe8))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0xe0) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0xb0))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342782,7 +342804,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0xf8))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0xf8))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0xf0) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x78))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342791,7 +342813,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x108))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x108))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0x100) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0xa8))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342800,7 +342822,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x118))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x118))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0x110) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0xa0))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342809,7 +342831,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x128))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x128))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0x120) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x98))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342818,7 +342840,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x138))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x138))); iVar5 = iVar5 + 1) {
     if (*(longlong *)(*(longlong *)(bufferData + 0x130) + (longlong)iVar5 * 8) != 0) {
       colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x90))(dataSource,0);
       uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342827,10 +342849,10 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
       }
     }
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
   do {
     if ((iVar5 < 0) || (*(int *)(bufferData + 0x148) <= iVar5)) {
-      for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x158))); iVar5 = iVar5 + 1) {
+      for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x158))); iVar5 = iVar5 + 1) {
         if (*(longlong *)(*(longlong *)(bufferData + 0x150) + (longlong)iVar5 * 8) != 0) {
           colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x88))(dataSource,0);
           uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342839,7 +342861,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
           }
         }
       }
-      for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x168))); iVar5 = iVar5 + 1) {
+      for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x168))); iVar5 = iVar5 + 1) {
         if (*(longlong *)(*(longlong *)(bufferData + 0x160) + (longlong)iVar5 * 8) != 0) {
           colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x80))(dataSource,0);
           uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342848,7 +342870,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
           }
         }
       }
-      for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x178))); iVar5 = iVar5 + 1) {
+      for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x178))); iVar5 = iVar5 + 1) {
         if (*(longlong *)(*(longlong *)(bufferData + 0x170) + (longlong)iVar5 * 8) != 0) {
           colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0xb8))(dataSource,0);
           uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342857,7 +342879,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
           }
         }
       }
-      for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x188))); iVar5 = iVar5 + 1) {
+      for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x188))); iVar5 = iVar5 + 1) {
         if (*(longlong *)(*(longlong *)(bufferData + 0x180) + (longlong)iVar5 * 8) != 0) {
           colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x68))(dataSource,0);
           uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342866,7 +342888,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
           }
         }
       }
-      for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x198))); iVar5 = iVar5 + 1) {
+      for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(bufferData + 0x198))); iVar5 = iVar5 + 1) {
         if (*(longlong *)(*(longlong *)(bufferData + 400) + (longlong)iVar5 * 8) != 0) {
           colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x28))(dataSource,0);
           uVar3 = (**(code **)(*colorBufferPointer + 0x20))(colorBufferPointer);
@@ -342875,7 +342897,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
           }
         }
       }
-      for (iVar5 = 0; (iVar4 = 0, -1 < iVar5 && (iVar4 = 0, iVar5 < *(int *)(bufferData + 0x1b8)));
+      for (uiElementIndex = 0; (iVar4 = 0, -1 < iVar5 && (iVar4 = 0, iVar5 < *(int *)(bufferData + 0x1b8)));
           iVar5 = iVar5 + 1) {
         if (*(longlong *)(*(longlong *)(bufferData + 0x1b0) + (longlong)iVar5 * 8) != 0) {
           colorBufferPointer = (longlong *)(**(code **)(*dataSource + 0x48))(dataSource,0);
@@ -342912,7 +342934,7 @@ undefined8 FUN_180875800(longlong uiContext,longlong *dataSource)
         return uVar3;
       }
     }
-    iVar5 = iVar5 + 1;
+    uiElementIndex = uiElementIndex + 1;
   } while( true );
 }
 
@@ -343847,7 +343869,7 @@ void FUN_180876428(void)
   }
   semaphoreHandle = *(undefined8 *)(unaff_R14 + 0x78);
   functionResult3 = *(uint *)(unaff_R14 + 0x20) >> 1;
-  for (iVar5 = 0; (-1 < iVar5 && (iVar5 < *(int *)(unaff_RSI + 0x13))); iVar5 = iVar5 + 1) {
+  for (uiElementIndex = 0; (-1 < iVar5 && (iVar5 < *(int *)(unaff_RSI + 0x13))); iVar5 = iVar5 + 1) {
     iVar6 = FUN_1808da5c0(*(undefined8 *)(unaff_RSI[0x12] + (longlong)iVar5 * 8),semaphoreHandle,functionResult3 & 1);
     if (((1 < iVar6 - 0x35U) || ((functionResult3 & 1) == 0)) && (iVar6 != 0)) goto LAB_180876d05;
     functionResult5 = extraout_XMM0_Da_02;
@@ -343985,10 +344007,10 @@ FUN_180876d54:
     }
     pallocatedMemory0 = (longlong *)*pstringCompareIndex;
     if (pallocatedMemory0 != pstringCompareIndex) {
-      iVar5 = 0;
+      uiElementIndex = 0;
       do {
         pallocatedMemory0 = (longlong *)*pallocatedMemory0;
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
       } while (pallocatedMemory0 != pstringCompareIndex);
       if (iVar5 != 0) goto FUN_180876d54;
     }
@@ -346743,14 +346765,14 @@ undefined8 FUN_180879510(longlong uiContext,longlong *dataSource,longlong target
     }
     componentIndex = (**(code **)(*dataSource + 0x158))(dataSource,uVar4,1,uVar4);
     if (componentIndex != 0) {
-      iVar5 = 0;
+      uiElementIndex = 0;
       if (0 < *(int *)(componentIndex + 0x40)) {
         allocatedMemory = *(longlong *)(componentIndex + 0x38);
         do {
           if ((*(longlong *)(allocatedMemory + (longlong)iVar5 * 0x10) == *(longlong *)(bufferData + 0x10)) &&
              (*(longlong *)(allocatedMemory + 8 + (longlong)iVar5 * 0x10) == *(longlong *)(bufferData + 0x18)))
           goto LAB_1808795e2;
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
         } while (iVar5 < *(int *)(componentIndex + 0x40));
       }
       uVar3 = FUN_18086da90((longlong *)(componentIndex + 0x38),(longlong *)(uiContext + 0x10),uStackX_8);
@@ -355921,7 +355943,7 @@ int FUN_180882160(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
               iVar6 != -1));
       iVar6 = iVar5 + 1;
       bVar7 = iVar5 != -1;
-      iVar5 = 0;
+      uiElementIndex = 0;
       if (bVar7) {
         iVar5 = iVar6;
       }
@@ -355933,7 +355955,7 @@ int FUN_180882160(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
             iVar6 = *(int *)(componentIndex + (longlong)iVar5 * 4);
             goto LAB_18088228f;
           }
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
           lVar4 = lVar4 + 1;
         } while (lVar4 != *(int *)(bufferData + 0x8a0));
       }
@@ -366488,7 +366510,7 @@ undefined8 FUN_18088c290(longlong uiContext)
     if (*(longlong *)(allocatedMemory + 0x180c4ec50) != 0) {
       return 0x1c;
     }
-    iVar5 = 0;
+    uiElementIndex = 0;
     stringCompareIndex = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x10000,&UNK_180985f90,0xbb,0,0,1)
     ;
     *(longlong *)(allocatedMemory + 0x180c4ec50) = stringCompareIndex;
@@ -366498,7 +366520,7 @@ undefined8 FUN_18088c290(longlong uiContext)
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        iVar5 = iVar5 + 1;
+        uiElementIndex = uiElementIndex + 1;
       } while (iVar5 < 0x2000);
       *(int *)(bufferData + 0x10) = *(int *)(bufferData + 0x10) + 0x2000;
       return uVar4;
@@ -376643,7 +376665,7 @@ undefined4 FUN_180894dd0(longlong uiContext,undefined8 dataSource,uint targetBuf
   if (bufferSize == 0) {
     return 0x1f;
   }
-  iVar5 = 0;
+  uiElementIndex = 0;
   semaphoreHandle = *(uint *)(uiContext + 0x20);
   auStack_28[0] = 0;
   compareResult = FUN_18088c740(auStack_28,uiContext);
@@ -376659,7 +376681,7 @@ undefined4 FUN_180894dd0(longlong uiContext,undefined8 dataSource,uint targetBuf
       if (plVar4 != pallocatedMemory) {
         do {
           plVar4 = (longlong *)*plVar4;
-          iVar5 = iVar5 + 1;
+          uiElementIndex = uiElementIndex + 1;
         } while (plVar4 != pallocatedMemory);
         if (iVar5 != 0) goto LAB_180894ebf;
       }
@@ -377298,7 +377320,7 @@ void FUN_180895bb0(longlong uiContext,int dataSource,undefined8 *targetBuffer)
                                  *(int *)(*(longlong *)(bufferData + 0x18) + (longlong)dataSource * 0xc) +
                                 *(longlong *)(bufferData + 8)) + 0x50))();
   if (pvalidationResult == (int *)0x0) {
-    iVar5 = 0;
+    uiElementIndex = 0;
   }
   else {
     iVar5 = *pvalidationResult;
@@ -378482,7 +378504,7 @@ void FUN_180896c60(undefined8 uiContext,longlong dataSource,uint targetBuffer,ch
   ulonglong uStack_58;
   
   uStack_58 = XorEncryptionKey ^ (ulonglong)auStack_328;
-  iVar5 = 0;
+  uiElementIndex = 0;
   if (targetBuffer != 0) {
     compareResult = *(int *)(dataSource + 0x220);
     if (compareResult == 0) {
@@ -378731,7 +378753,7 @@ LAB_180896ce3:
         }
       }
     }
-    iVar5 = 0;
+    uiElementIndex = 0;
     compareResult = 0;
     do {
       if ((compareResult < 0) || (*(int *)(dataSource + 200) <= compareResult)) break;

@@ -39587,18 +39587,18 @@ SystemMemoryValidationComplete:
   }
 SystemMemoryAllocationComplete: // 原始标签：LAB_180071000
 ProcessSystemStatusBuffer:
-  CharacterTablePointer5 = lStack_88;
+  CharacterTablePointer5 = SystemStringBufferPointer;
   SystemStatusBuffer = (void *)(memoryAllocationBuffer + BufferOffset);
   *SystemStatusBuffer = 0x6973736572707845;
   *(uint32_t *)(SystemStatusBuffer + 1) = 0x203a6e6f;
   *(uint8_t *)((long long)SystemStatusBuffer + 0xc) = 0;
   CharacterTablePointer6 = -1;
   BufferOffset = Utf16Char4;
-  if (lStack_88 != 0) {
+  if (SystemStringBufferPointer != 0) {
     do {
       CharacterTableIterator = CharacterTablePointer6;
       CharacterTablePointer6 = CharacterTableIterator + 1;
-    } while (*(char *)(lStack_88 + CharacterTablePointer6) != '\0');
+    } while (*(char *)(SystemStringBufferPointer + CharacterTablePointer6) != '\0');
     if (0 < (int)CharacterTablePointer6) {
       validationResult = Utf16Char4 + (int)CharacterTablePointer6;
       if (validationResult != 0) {
@@ -40238,7 +40238,7 @@ void ProcessSystemDataStructureValidation(uint64_t CharacterCode,long long Utf8B
   void *SystemEventDispatcher;
   void *SystemConfigurationStackPointer;
   uint32_t configurationFlag;
-  long long lStack_88;
+  long long SystemStringBufferPointer;
   void *pCalculationFunctionAddress;
   long long CoreEngineSignedValue78;
   uint32_t StackUnsignedValue68;
@@ -40253,7 +40253,7 @@ void ProcessSystemDataStructureValidation(uint64_t CharacterCode,long long Utf8B
   SystemUnsignedValue114 = 0;
   SystemUnsignedValue116 = 0;
   SystemStackRegisterFlagB0 = Utf8SourcePointer;
-  lStack_88 = Utf16EndPointer;
+  SystemStringBufferPointer = Utf16EndPointer;
   if ((CoreEngineThreadStatus != '\0') || (EngineThreadStringBuffer != '\0')) goto LAB_180072d7b;
   BufferOffset = 0;
   SystemKeyPointer = 0;
@@ -44510,9 +44510,9 @@ float * ProcessFloatBoundaryCalculation(float *Utf8InputBuffer
       Utf8InputBuffer[0xa7] = (Utf8InputBuffer[0xa3] + Utf8InputBuffer[0x9f]) * 0.5;
       Utf8InputBuffer[0xa8] = 3.4028235e+38;
       PrimaryFloatValue = 0.0;
-      ProcessingStatusFlag = (unsigned long long)*(uint *)(lStack_88 + 0x10);
-      if (0 < (int)*(uint *)(lStack_88 + 0x10)) {
-        FloatProcessingStatusFlag = *(float **)(lStack_88 + 0x18);
+      ProcessingStatusFlag = (unsigned long long)*(uint *)(SystemStringBufferPointer + 0x10);
+      if (0 < (int)*(uint *)(SystemStringBufferPointer + 0x10)) {
+        FloatProcessingStatusFlag = *(float **)(SystemStringBufferPointer + 0x18);
         SecondaryFloatValue = PrimaryFloatValue;
         do {
           PrimaryFloatValue = (*pCalculatedDistance - Utf8InputBuffer[0xa5]) * (*pCalculatedDistance - Utf8InputBuffer[0xa5]) +
@@ -50682,7 +50682,7 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure
         *(unsigned long long *)(CharacterCode + 0xa1) = CONCAT44(MatrixElementF,MatrixElementE);
         *(unsigned long long *)(CharacterCode + 0xa3) = CONCAT44(StackUnsignedValueac,StackFloatValueb0);
         ProcessingStatusFlag = ProcessingStatusFlag + 1;
-      } while (ProcessingStatusFlag < *(uint *)(lStack_88 + 0x10));
+      } while (ProcessingStatusFlag < *(uint *)(SystemStringBufferPointer + 0x10));
     }
     pFloatVariable7 = *(float **)(CharacterCode + 0x6e);
     if ((pFloatVariable7 != (float *)0x0) && (((uint)pFloatVariable7[0x4e] & 0x3000) != 0)) {
@@ -50745,9 +50745,9 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure
       Utf8InputBuffer[0xa7] = (Utf8InputBuffer[0xa3] + Utf8InputBuffer[0x9f]) * 0.5;
       Utf8InputBuffer[0xa8] = 3.4028235e+38;
       CalculatedDistance = 0.0;
-      SystemMemoryAllocationResult = (unsigned long long)*(uint *)(lStack_88 + 0x10);
-      if (0 < (int)*(uint *)(lStack_88 + 0x10)) {
-        pFloatVariable7 = *(float **)(lStack_88 + 0x18);
+      SystemMemoryAllocationResult = (unsigned long long)*(uint *)(SystemStringBufferPointer + 0x10);
+      if (0 < (int)*(uint *)(SystemStringBufferPointer + 0x10)) {
+        pFloatVariable7 = *(float **)(SystemStringBufferPointer + 0x18);
         SecondaryFloatValue = CalculatedDistance;
         do {
           CalculatedDistance = (*pFloatVariable7 - Utf8InputBuffer[0xa5]) * (*pFloatVariable7 - Utf8InputBuffer[0xa5]) +
@@ -193701,7 +193701,7 @@ long long * FUN_180169f60(uint64_t CharacterCode,long long *Utf8InputBufferSize,
           SystemOperationFlag98 = 0;
           plStack_b0 = (long long *)&ThreadLocalStorageTemplate;
           MemoryBlockIndex = CoreEngineProcessSystemContext(&pSystemOperation90,&plStack_b0,IntegerValue0 + 1,CalculationFunctionAddress);
-          if (lStack_88 != 0) {
+          if (SystemStringBufferPointer != 0) {
                     // WARNING: Subroutine does not return
             CoreEngineProcessSystemEvent();
           }
@@ -193899,7 +193899,7 @@ LAB_18016a555:
   }
   FUN_18016d200(*Utf8InputBufferSize,Utf8BufferSize[1],0);
   pSystemOperation90 = &SystemNullTemplate;
-  if (lStack_88 != 0) {
+  if (SystemStringBufferPointer != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
@@ -211020,7 +211020,7 @@ LAB_180184d09:
   ProcessingFlags = EncodingDecodingKey ^ (unsigned long long)aMemoryOffsetValue;
   CharacterCode = (long long *)Utf16EndPointer[7];
   MemoryAddressMask = 0;
-  plStack_88 = Utf16EndPointer;
+  pSystemStringBufferPointer = Utf16EndPointer;
   if (CharacterCode != (long long *)0x0) {
     aiStack_98[0] = Utf8BufferSize;
     if (Utf8BufferSize < 0) {
@@ -211110,7 +211110,7 @@ LAB_180184d09:
     }
   }
   CharacterCode = (long long *)Utf16EndPointer[7];
-  plStack_88 = Utf16EndPointer;
+  pSystemStringBufferPointer = Utf16EndPointer;
   if (CharacterCode != (long long *)0x0) {
     (**(code **)(*Utf8InputBuffer + 0x20))(CharacterCode,CharacterCode != Utf16EndPointer);
     Utf16EndPointer[7] = 0;
