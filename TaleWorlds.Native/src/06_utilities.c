@@ -27666,7 +27666,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
       validationOutcome = stackByteBuffer[0] >> 1;
       arrayIndex = ValidateArrayIndex((int64_t *)(operationBase + 0x20),validationOutcome);
       if (arrayIndex == 0) {
-        auStackX_18[0] = 0;
+        securityValidationBuffer[0] = 0;
         arrayIndex = 0;
         if (validationStatus >> 1 != 0) {
           do {
