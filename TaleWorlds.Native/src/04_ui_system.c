@@ -205,6 +205,20 @@ typedef enum {
 #define unmodifiedRSI SourceIndexPointer
 #define unmodifiedR15 TargetDataPointer
 #define unmodifiedR12D ComponentIndexValue
+#define bVar38 IsMemoryAllocated
+#define auVar8 TempByteBuffer
+#define localInt4 TempIntValue
+#define localChar5 TempCharValue
+#define ptrLocal9 DataBufferPointer
+#define pallocatedMemory MemoryAllocationPointer
+#define pstringBuffer StringBufferPointer
+#define ptextureData TextureDataPointer
+#define pfloatResult1 FloatResultArrayPointer
+#define LAB_ComponentSizeRequestHandler LAB_1806551b0
+#define LAB_ComponentConfigurationComplete LAB_1806567d0
+#define LAB_EventTypeResultReturn LAB_1806579f0
+#define pbVar9 BooleanResultArray
+#define isCharacterMatch2 IsSecondCharacterMatch
 #define ProcessUIRenderOperation FUN_180690580
 #define ProcessUIDataTransfer ProcessUIComponentBlend
 #define InitializeUILayoutSystem FUN_180707a56
@@ -4441,18 +4455,11 @@ undefined g_uiAnimationDataNonary;
 undefined g_uiAnimationDataDenary;
 undefined g_uiAnimationDataUndenary;
 
- 初始化UI系统渲染管线
-undefined InitializeUISystemRenderingPipeline;
+ undefined InitializeUISystemRenderingPipeline;
 undefined UIRenderPipelineConfigPrimary;
-
- 处理UI系统渲染管线
 uint8_t ProcessUISystemRenderingPipeline;
 uint8_t g_uiRenderPipelineDataPrimary;
-
- 更新UI系统渲染管线
 undefined UpdateUISystemRenderingPipeline;
-
- 渲染UI系统渲染管线
 undefined RenderUISystemRenderingPipeline;
 char UIInitializationFlag;
 undefined UILabelInitializationComplete;
@@ -73282,8 +73289,23 @@ void UpdateUIAnimationState(longlong uiContext,undefined8 dataSource,longlong ta
 
 
 
- void FUN_180707988(int uiContext,undefined8 dataSource,undefined8 targetBuffer,int bufferSize)
-void FUN_180707988(int uiContext,undefined8 dataSource,undefined8 targetBuffer,int bufferSize)
+ /**
+ * @brief 处理UI布局计算
+ * 
+ * 该函数负责UI系统的布局计算，包括：
+ * - 计算UI元素的位置和尺寸
+ * - 处理布局约束和优先级
+ * - 管理UI元素之间的空间分配
+ * - 优化布局性能
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 布局数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名: FUN_180707988
+ */
+void ProcessUILayoutCalculation(int uiContext, undefined8 dataSource, undefined8 targetBuffer, int bufferSize)
 
 {
   ulonglong result;
@@ -73486,8 +73508,21 @@ void FUN_180707988(int uiContext,undefined8 dataSource,undefined8 targetBuffer,i
 
 
 
- void FUN_1807079df(undefined8 uiContext,int dataSource)
-void FUN_1807079df(undefined8 uiContext,int dataSource)
+ /**
+ * @brief 获取UI布局数据
+ * 
+ * 该函数负责获取UI系统的布局数据，包括：
+ * - 从UI上下文中提取布局信息
+ * - 处理布局数据的格式转换
+ * - 验证布局数据的有效性
+ * - 返回处理后的布局数据
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * 
+ * @note 原始函数名: FUN_1807079df
+ */
+void GetUILayoutData(undefined8 uiContext, int dataSource)
 
 {
   ulonglong result;
