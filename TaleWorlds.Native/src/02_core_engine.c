@@ -1095,6 +1095,66 @@
 // 原始函数名：FUN_18017cde0 - 系统配置处理函数
 #define ProcessSystemConfiguration FUN_18017cde0
 
+// 系统内存池初始化函数
+#define InitializeSystemMemoryPool FUN_180141820
+
+// UTF-8缓冲区管理函数
+#define ManageUtf8InputBuffer FUN_18014c850
+
+// 系统内存分配函数
+#define AllocateSystemMemoryBuffer FUN_18014e160
+
+// UTF-8内存管理函数
+#define ManageUtf8MemoryEx FUN_18014e700
+
+// 系统缓冲区处理函数
+#define ProcessSystemBuffer FUN_18014e960
+
+// UTF-8输入流处理函数
+#define ProcessUtf8InputStream FUN_18014f250
+
+// UTF-8数据验证函数
+#define ValidateUtf8DataStream FUN_18014f3f0
+
+// UTF-8编码处理器函数
+#define ProcessUtf8EncodingStream FUN_18014f520
+
+// UTF-8缓冲区管理函数
+#define ManageUtf8BufferEx FUN_18014f6a0
+
+// UTF-8系统配置函数
+#define ConfigureUtf8System FUN_18014f840
+
+// UTF-8编码转换函数
+#define ConvertUtf8Encoding FUN_18014f980
+
+// UTF-8内存管理函数
+#define ManageUtf8MemoryAllocation FUN_18014fbc0
+
+// UTF-8字符处理函数
+#define ProcessUtf8CharacterData FUN_18014fe60
+
+// UTF-8数据转换函数
+#define ConvertUtf8CharacterData FUN_18014fe9c
+
+// UTF-8系统初始化函数
+#define InitializeUtf8System FUN_180150240
+
+// UTF-8缓冲区清理函数
+#define CleanupUtf8Buffer FUN_1801504b0
+
+// UTF-8数据验证函数
+#define ValidateUtf8DataEx FUN_180150ab0
+
+// UTF-16字符处理函数
+#define ProcessUtf16CharacterData FUN_1801582f0
+
+// UTF-16编码验证函数
+#define ValidateUtf16Encoding FUN_180158990
+
+// UTF-16字符转换函数
+#define ConvertUtf16Character FUN_180158a70
+
 /**
  * @brief 处理系统数据操作
  * 
@@ -174429,7 +174489,7 @@ uint64_t * ProcessUtf8InputBufferAllocation(uint64_t *Utf8InputBuffer
 
 
  (ram,0x0001801420ee (ram,0x0001801420f4 (ram,0x0001801420fe (ram,0x000180142103 (ram,0x000180142117 (ram,0x000180142121 (ram,0x00018014212d (ram,0x000180142134 (ram,0x000180141aab (ram,0x000180141ab3 (ram,0x000180141ab9 (ram,0x000180141ac6 (ram,0x000180141af9 (ram,0x000180141b01 (ram,0x000180141b04 (ram,0x000180141ad0 (ram,0x000180141ad5 (ram,0x000180141b1e (ram,0x000180141b2f (ram,0x000180141b49 (ram,0x000180141b4e (ram,0x000180141baf (ram,0x000180141bb7
-unsigned long long FUN_180141820(long long *Utf8InputBuffer
+unsigned long long InitializeSystemMemoryPool(long long *Utf8InputBuffer
 {
   char CurrentCharacter;
   uint32_t MemoryAllocationIndex;
