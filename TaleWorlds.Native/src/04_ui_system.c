@@ -10526,44 +10526,44 @@ undefined8 InitializeUIElementContext(longlong *uiContext)
       RenderContextPointer[-0x1c] = MatrixDataPointer[-1];
       RenderContextPointer[-0x18] = *(float *)(ComponentIndex + AllocatedMemoryBlock1 * 8);
       TransformMatrixValue3 = DistanceCalculation;
-      if (localFloat21 <= floatResult9) {
-        unmodifiedXMM10_Da = localFloat21;
+      if (TransformMatrixValue1 <= DistanceCalculation) {
+        TransformMatrixValue3 = TransformMatrixValue1;
       }
-      if (floatResult9 < localFloat21) {
-        result3 = *(undefined8 *)(unmodifiedRBP + -0x20);
+      if (DistanceCalculation < TransformMatrixValue1) {
+        ResultData = *(undefined8 *)(RenderContextPointer + -0x20);
       }
-      ProcessUIMatrixTransformation(unmodifiedRBP + -0x18,unmodifiedRBP + -0x1c,UIStackTransformMatrix3,UIStackRenderContext,
-                    unmodifiedRBP + -0x14);
-      localFloat21 = (unmodifiedRBP[-0xb] - unmodifiedRBP[-0x13]) * (unmodifiedRBP[-0xb] - unmodifiedRBP[-0x13]) +
-               (unmodifiedRBP[-0xc] - unmodifiedRBP[-0x14]) * (unmodifiedRBP[-0xc] - unmodifiedRBP[-0x14]) +
-               (unmodifiedRBP[-10] - unmodifiedRBP[-0x12]) * (unmodifiedRBP[-10] - unmodifiedRBP[-0x12]);
-      floatResult9 = localFloat21;
-      if (localFloat20 <= localFloat21) {
-        floatResult9 = localFloat20;
+      ProcessUIMatrixTransformation(RenderContextPointer + -0x18,RenderContextPointer + -0x1c,UIStackTransformMatrix3,UIStackRenderContext,
+                    RenderContextPointer + -0x14);
+      TransformMatrixValue1 = (RenderContextPointer[-0xb] - RenderContextPointer[-0x13]) * (RenderContextPointer[-0xb] - RenderContextPointer[-0x13]) +
+               (RenderContextPointer[-0xc] - RenderContextPointer[-0x14]) * (RenderContextPointer[-0xc] - RenderContextPointer[-0x14]) +
+               (RenderContextPointer[-10] - RenderContextPointer[-0x12]) * (RenderContextPointer[-10] - RenderContextPointer[-0x12]);
+      DistanceCalculation = TransformMatrixValue1;
+      if (MatrixValue1 <= TransformMatrixValue1) {
+        DistanceCalculation = MatrixValue1;
       }
-      if (localFloat21 < localFloat20) {
-        result4 = *(undefined8 *)(unmodifiedRBP + -0x14);
+      if (TransformMatrixValue1 < MatrixValue1) {
+        AdditionalResult = *(undefined8 *)(RenderContextPointer + -0x14);
       }
-      uiOperationResult8 = uiOperationResult8 + 1;
-      pfloatResult1 = pfloatResult1 + 2;
-      stackParam00000050 = stackParam00000050 + -1;
-      localFloat21 = unmodifiedXMM10_Da;
-      localFloat20 = floatResult9;
-    } while (stackParam00000050 != 0);
-    unmodifiedR12 = *(longlong *)(unmodifiedRBP + 0x40);
-    unmodifiedR13 = *(float **)(unmodifiedRBP + 0x46);
-    *(undefined8 *)(unmodifiedRBP + 0x44) = result3;
-    localFloat21 = unmodifiedRBP[0x45];
-    localFloat20 = unmodifiedRBP[0x44];
-    *(undefined8 *)(unmodifiedRBP + 0x42) = result4;
-    unmodifiedXMM15_Da = unmodifiedRBP[0x43];
-    unmodifiedXMM14_Da = unmodifiedRBP[0x42];
-    stackParam00000050 = 0;
+      OperationResult = OperationResult + 1;
+      MatrixDataPointer = MatrixDataPointer + 2;
+      StackContextPointer = StackContextPointer + -1;
+      TransformMatrixValue1 = TransformMatrixValue3;
+      MatrixValue1 = DistanceCalculation;
+    } while (StackContextPointer != 0);
+    RegisterR12 = *(longlong *)(RenderContextPointer + 0x40);
+    RegisterR13 = *(float **)(RenderContextPointer + 0x46);
+    *(undefined8 *)(RenderContextPointer + 0x44) = ResultData;
+    TransformMatrixValue1 = RenderContextPointer[0x45];
+    MatrixValue1 = RenderContextPointer[0x44];
+    *(undefined8 *)(RenderContextPointer + 0x42) = AdditionalResult;
+    TransformMatrixValue11 = RenderContextPointer[0x43];
+    TransformMatrixValue10 = RenderContextPointer[0x42];
+    StackContextPointer = 0;
   }
-  allocatedMemory7 = 0;
-  bVar3 = true;
-  uiOperationResult8 = 0;
-  if (3 < lStack0000000000000058) {
+  AllocatedMemoryBlock2 = 0;
+  IsContextInitialized = true;
+  OperationResult = 0;
+  if (3 < StackAllocationPointer) {
     componentIndex = *(longlong *)(unmodifiedR12 + 0x88);
     uiOperationResult5 = 2;
     allocatedMemory6 = (lStack0000000000000058 - 4U >> 2) + 1;
