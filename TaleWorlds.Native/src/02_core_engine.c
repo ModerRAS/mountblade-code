@@ -173667,7 +173667,7 @@ LAB_18014bf70:
 
 
 
-uint8_t FUN_18014c160(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+uint8_t ProcessCharacterCodeWithFullValidation(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
