@@ -4310,7 +4310,11 @@ undefined UIResourceLoaderSenary;
 undefined UIResourceLoaderSeptenary;
 undefined UIResourceLoaderOctonary;
 
- 返回UI系统状态标志
+ /**
+ * @brief 返回UI系统状态标志
+ * 
+ * @return undefined8 UI系统状态标志
+ */
 undefined8 GetUIStatusFlag(void)
 
 {

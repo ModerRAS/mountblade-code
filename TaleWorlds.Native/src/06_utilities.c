@@ -97965,7 +97965,17 @@ void CleanupExceptionMemoryBlocksA2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910060(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理上下文内存块A3
+ * 
+ * 该函数负责清理异常处理上下文中的内存块，处理单个内存块的清理工作
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180910060
+ */
+void CleanupExceptionMemoryBlocksA3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
