@@ -202,6 +202,12 @@
 #define fStackX_10 HorizontalOffsetValue                   // 水平偏移值
 #define fStackX_14 VerticalOffsetValue                     // 垂直偏移值
 #define fStackX_20 PrimaryTransformComponent               // 主变换组件
+
+// 新增的系统函数语义化宏定义
+#define ProcessSystemBufferInitialization FUN_18014e7d0     // 处理系统缓冲区初始化
+#define ProcessSystemStatusUpdate FUN_18014e8b0            // 处理系统状态更新
+#define ProcessSystemDataValidation FUN_18014e020          // 处理系统数据验证
+#define ProcessCharacterCodeWithFlags FUN_18014a370        // 处理带标志的字符代码
 #define fStackX_24 SecondaryTransformComponent             // 次变换组件
 #define fStack_48 StackPrimaryFloat                        // 栈主浮点值
 #define fStack_44 StackSecondaryFloat                      // 栈次浮点值
@@ -177630,7 +177636,7 @@ long long * ProcessCharacterCodeMemoryAllocation(long long CharacterCode,long lo
   
   DataSize = 0xfffffffffffffffe;
   MemoryAllocationIndex = MemoryAllocate(MemoryPoolManager,0x140,0x10,3,0,0xfffffffffffffffe);
-  MemoryBlockIndex = (long long *)FUN_18014a1b0(MemoryAllocationIndex);
+  MemoryBlockIndex = (long long *)ProcessSystemDataBufferAllocation(MemoryAllocationIndex);
   *CharacterCodeSize = (long long)MemoryBlockIndex;
   if (MemoryBlockIndex != (long long *)0x0) {
     (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
@@ -177940,7 +177946,7 @@ void ProcessUtf8CharacterEncodingAdvanced(uint64_t CharacterCode,uint64_t System
   *(void *)(SystemDataNode + 8) = Utf16Char;
   ProcessSystemMemoryDataAllocation(SystemDataNode + 0x20,PatternIndex + 0x20);
   if ((void *)(SystemDataNode + 0x40) != (void *)(PatternIndex + 0x40)) {
-    FUN_18014eff0((void *)(SystemDataNode + 0x40),*(void *)(PatternIndex + 0x40),
+    ProcessCharacterWithDataCopyEx((void *)(SystemDataNode + 0x40),*(void *)(PatternIndex + 0x40),
                   *(void *)(PatternIndex + 0x48));
   }
   *(uint32_t *)(SystemDataNode + 0x70) = *(uint32_t *)(PatternIndex + 0x70);
@@ -177976,7 +177982,7 @@ void SynchronizeSystemDataAndResources(void)
   
   ProcessSystemMemoryDataAllocation(SystemDataNode + 0x20,PatternIndex + 0x20);
   if ((void *)(SystemDataNode + 0x40) != (void *)(PatternIndex + 0x40)) {
-    FUN_18014eff0((void *)(SystemDataNode + 0x40),*(void *)(PatternIndex + 0x40),
+    ProcessCharacterWithDataCopyEx((void *)(SystemDataNode + 0x40),*(void *)(PatternIndex + 0x40),
                   *(void *)(PatternIndex + 0x48));
   }
   *(uint32_t *)(SystemDataNode + 0x70) = *(uint32_t *)(PatternIndex + 0x70);
@@ -179343,9 +179349,9 @@ LAB_18014b72a:
   CoreEnginePointerBuffer158 = (uint16_t *)0x0;
   CharacterDataBuffer = (uint16_t *)0x0;
   CoreEngineUnsignedValue = 3;
-  FUN_18014e7d0(&ProcessingBufferPointer,
+  ProcessSystemBufferInitialization(&ProcessingBufferPointer,
                 ((*(long long *)(CharacterCode + 0x70) - *(long long *)(CharacterCode + 0x68)) / 0x18) * 3);
-  FUN_18014e8b0(&SystemProcessingStatusFlag,
+  ProcessSystemStatusUpdate(&SystemProcessingStatusFlag,
                 ((*(long long *)(CharacterCode + 0x70) - *(long long *)(CharacterCode + 0x68)) / 0x18) * 3);
   SystemDataTablePointer = *(long long *)(CharacterCode + 0x70);
   LoopIndex = (SystemDataTablePointer - *(long long *)(CharacterCode + 0x68)) / 0x18;
@@ -179713,7 +179719,7 @@ uint8_t ProcessCharacterCodeWithFullValidation(long long CharacterCode,uint64_t 
   pSystemFlagG = (uint32_t *)0x0;
   SystemFlagH = 3;
   uStackX_10 = SystemBufferSize;
-  FUN_18014e7d0(&pSystemFlagE,*(long long *)(CharacterCode + 0x30) - *(long long *)(CharacterCode + 0x28) >> 4,
+  ProcessSystemBufferInitialization(&pSystemFlagE,*(long long *)(CharacterCode + 0x30) - *(long long *)(CharacterCode + 0x28) >> 4,
                 Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   SystemDataTablePointer = *(long long *)(CharacterCode + 0x28);
   TemporaryBuffer = pSystemFlagE;
