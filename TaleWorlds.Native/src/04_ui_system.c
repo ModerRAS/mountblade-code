@@ -72251,33 +72251,44 @@ BufferCompareLoop:
 
 
 
-int FUN_180706f00(undefined8 uiContext,undefined8 dataSource,longlong targetBuffer)
+/**
+ * 验证UI数据并处理缓冲区操作
+ * 
+ * 该函数负责验证UI系统数据的完整性，并根据验证结果处理缓冲区操作。
+ * 函数会检查数据长度、处理字符串比较、管理内存缓冲区，并确保数据在指定范围内。
+ * 
+ * @param uiContext UI系统上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @return 验证结果状态码，成功返回0，失败返回错误码
+ */
+int ValidateUIDataAndProcessBufferOperation(undefined8 uiContext,undefined8 dataSource,longlong targetBuffer)
 
 {
-  short sVar1;
-  int uiValidationResult;
-  longlong stringCompareIndex;
-  short *psVar4;
-  int unmodifiedEBX;
-  int localInt5;
-  int unmodifiedEBP;
-  short *unmodifiedRSI;
-  ulonglong MaxProcessingCount;
-  byte *pbVar7;
-  byte *pbVar8;
-  int localInt9;
-  short register10W;
-  byte *register11;
-  longlong unmodifiedR12;
-  int unmodifiedR13D;
-  byte *unmodifiedR14;
-  undefined8 *unmodifiedR15;
-  longlong lStackX_20;
-  undefined4 uStack0000000000000078;
-  longlong stackParam00000088;
-  int stackParam00000090;
-  int stackParam00000098;
-  int stackParam000000a0;
+  short characterLength;
+  int validationResult;
+  longlong stringIndex;
+  short *stringPointer;
+  int baseOffset;
+  int calculatedSize;
+  int dataCount;
+  short *dataSourcePointer;
+  ulonglong processingCounter;
+  byte *bufferPointer;
+  byte *outputBuffer;
+  int remainingSize;
+  short maxCharacterLength;
+  byte *targetBufferPointer;
+  longlong stringDataOffset;
+  int bufferSize;
+  byte *sourceBufferPointer;
+  undefined8 *dataReference;
+  longlong stackOffset;
+  undefined4 processingFlag;
+  longlong bufferAddress;
+  int bufferParam1;
+  int bufferParam2;
+  int bufferParam3;
   
   localInt5 = unmodifiedEBX + 2;
   uStack0000000000000078 = 1;
