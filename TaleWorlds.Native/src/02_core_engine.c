@@ -58,6 +58,10 @@
 #define StackPointerE0 lStack_e0                          // 栈指针E0
 #define StackPointerD8 pfStack_d8                          // 栈指针D8
 #define StackPointerB0 pcStack_b0                          // 栈指针B0
+#define StackPointerA8 pcStack_a8                          // 栈指针A8
+#define StackPointer60 pcStack_60                          // 栈指针60
+#define StackPointer68 pcStack_68                          // 栈指针68
+#define StackPointerD0 pcStack_d0                          // 栈指针D0
 
 // FUN_函数语义化宏定义
 #define ResetCharacterProcessingSystem FUN_18013ce40      // 重置字符处理系统
@@ -226,6 +230,19 @@
 #define MemoryOffset MemoryAllocationOffset                 // 内存偏移量
 #define MemoryIndex MemoryAllocationIndex                   // 内存索引
 #define CodePointValue CalculatedCodePoint                 // 码点值
+
+// 标签语义化宏定义
+#define LabelUtfEncodingProcessing LAB_18011f32e            // UTF编码处理标签
+#define LabelSystemMemoryCheck LAB_18008758f                // 系统内存检查标签
+#define LabelCharacterProcessing LAB_1800878e0              // 字符处理标签
+#define LabelSystemValidation LAB_18008807f                 // 系统验证标签
+#define LabelMemoryAllocation LAB_180087f81                 // 内存分配标签
+#define LabelCharacterValidation LAB_180087f16              // 字符验证标签
+#define LabelSystemProcessing LAB_180088131                 // 系统处理标签
+#define LabelDataProcessing LAB_180088ac9                    // 数据处理标签
+#define LabelCharacterEncoding LAB_18008913b                 // 字符编码标签
+#define LabelSystemConfiguration LAB_18008917c              // 系统配置标签
+#define LabelFinalProcessing LAB_1800892ba                    // 最终处理标签
 
 // 浮点变量语义化映射
 #define FloatVariable7 PrimaryFloatCoefficient              // 主浮点系数
@@ -118513,7 +118530,7 @@ LabelSystemConfigurationHandle:
     if (0.0 < *(float *)(SystemDataRegistry + 0x374)) {
       NormalizedParameterValue = NormalizedParameterValue * 10.0;
     }
-    if (((1.0 <= SecondaryFloatValue) && (0.0 < NormalizedParameterValue)) || ((SecondaryFloatValue <= 0.0 && (NormalizedParameterValue < 0.0)))    goto FUN_18011f32e;
+    if (((1.0 <= SecondaryFloatValue) && (0.0 < NormalizedParameterValue)) || ((SecondaryFloatValue <= 0.0 && (NormalizedParameterValue < 0.0)))    goto LabelUtfEncodingProcessing;
     NormalizedParameterValue = NormalizedParameterValue + SecondaryFloatValue;
     SecondaryFloatValue = 0.0;
     if ((0.0 <= NormalizedParameterValue) && (SecondaryFloatValue = NormalizedParameterValue, 1.0 <= NormalizedParameterValue)) {
@@ -176961,12 +176978,12 @@ void ProcessCharacterCodeSizeAndSystemFlagBuffer(long long CharacterCode, uint8_
     systemEventTemplatePointer[10] = 0;
     *(uint32_t *)(systemEventTemplatePointer + 0xb) = 3;
     *(uint64_t **)(CharacterCode + 0xc0) = systemEventTemplatePointer;
-    pcStack_68 = (code *)&SystemEventFunctionPointer;
-    pcStack_60 = _guard_check_icall;
+    StackPointer68 = (code *)&SystemEventFunctionPointer;
+    StackPointer60 = _guard_check_icall;
     CharacterCode = *(long long **)(*(long long *)(CharacterCode + 0xa8) + 0x88);
     SystemValidationFunction = *(code **)(*CharacterCode + 0x70);
-    pcStack_d8 = (code *)0x0;
-    pcStack_d0 = _guard_check_icall;
+    StackPointerD8 = (code *)0x0;
+    StackPointerD0 = _guard_check_icall;
     if (SystemFlagBuffer != SystemBufferSize) {
       pOperationStatus = *(code **)(SystemBufferSize + 0x10);
       if (pOperationStatus != (code *)0x0) {
@@ -176974,15 +176991,15 @@ void ProcessCharacterCodeSizeAndSystemFlagBuffer(long long CharacterCode, uint8_
         pOperationStatus = *(code **)(SystemBufferSize + 0x10);
       }
       pcStack_d0 = *(code **)(SystemBufferSize + 0x18);
-      pcStack_d8 = pOperationStatus;
+      StackPointerD8 = pOperationStatus;
     }
-    pcStack_b0 = (code *)0x0;
-    pcStack_a8 = _guard_check_icall;
+    StackPointerB0 = (code *)0x0;
+    StackPointerA8 = _guard_check_icall;
     CoreEngineSignedValueC8 = CharacterCode;
     ProcessSystemOperationFlags(aCoreEngineValueC0,SystemFlagBuffer);
     CoreEngineSignedValueA0 = CoreEngineSignedValueC8;
-    pcStack_88 = FUN_18014f840;
-    CharacterBuffer80 = FUN_18014f810;
+    StackPointer88 = GetProcessingPointer88;
+    CharacterBuffer80 = GetCharacterBuffer80;
     apSystemOperationFlag98[0] = (uint8_t *)MemoryAllocate(MemoryPoolManager,0x28,8,MemoryAllocationFlags);
     *(void *)(apSystemOperationFlag98[0] + 0x10) = 0;
     *(code **)(apSystemOperationFlag98[0] + 0x18) = _guard_check_icall;
@@ -176991,18 +177008,18 @@ void ProcessCharacterCodeSizeAndSystemFlagBuffer(long long CharacterCode, uint8_
       ProcessSystemOperationFlags(apSystemOperationFlag98[0],aCoreEngineValueC0);
     }
     *(long long *)(apSystemOperationFlag98[0] + 0x20) = CoreEngineSignedValueA0;
-    if (pcStack_b0 != (code *)0x0) {
-      (*pcStack_b0)(aCoreEngineValueC0,0,0);
+    if (StackPointerB0 != (code *)0x0) {
+      (*StackPointerB0)(aCoreEngineValueC0,0,0);
     }
-    if (pcStack_d8 != (code *)0x0) {
-      (*pcStack_d8)(SystemFlagBuffer,0,0);
+    if (StackPointerD8 != (code *)0x0) {
+      (*StackPointerD8)(SystemFlagBuffer,0,0);
     }
     (*SystemValidationFunction)(CharacterCode,&SystemConfigTemplatePrimary,*(long long *)(CharacterCode + 0xa8) + 0xc,0,apSystemOperationFlag98,aStackProcessingUnsignedValue78);
-    if (pcStack_88 != (code *)0x0) {
-      (*pcStack_88)(apSystemOperationFlag98,0,0);
+    if (StackPointer88 != (code *)0x0) {
+      (*StackPointer88)(apSystemOperationFlag98,0,0);
     }
-    if (pcStack_68 != (code *)0x0) {
-      (*pcStack_68)(aStackProcessingUnsignedValue78,0,0);
+    if (StackPointer68 != (code *)0x0) {
+      (*StackPointer68)(aStackProcessingUnsignedValue78,0,0);
     }
   }
   else {
