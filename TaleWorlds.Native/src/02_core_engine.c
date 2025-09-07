@@ -47849,13 +47849,13 @@ SystemMemoryCheck:
     SystemMemoryAllocationResult = *(uint *)(*(long long *)(SystemDataTablePointer + 0x1b8) + 0x138);
     if ((SystemMemoryAllocationResult & 0x20) != 0) {
       CharacterVariable5 = '\0';
-      goto LAB_1800782e0;
+      goto CharacterVariableSet;
     }
-    if ((SystemMemoryAllocationResult & 0x10) == 0) goto LAB_1800782d4;
+    if ((SystemMemoryAllocationResult & 0x10) == 0) goto SystemMemoryCheck;
     CurrentByteValue0 = (*(byte *)(CharacterCode + 0xfd) & 2) == 0;
   }
   CharacterVariable5 = CurrentByteValue0 + '\x01';
-LAB_1800782e0:
+CharacterVariableSet:
   *(char *)(CharacterCode + 0xff) = CharacterVariable5;
   SystemDataTablePointer = *(long long *)(CharacterCode + 0x1b8);
   SystemMemoryAllocationResult = *(uint *)(SystemDataTablePointer + 0x138) & 0x3000;
@@ -47963,13 +47963,13 @@ SystemMemoryCheck:
     ProcessingStatusFlag = *(uint *)(*(long long *)(CharacterCode + 0x1b8) + 0x138);
     if ((ProcessingStatusFlag & 0x20) != 0) {
       CharacterVariable5 = '\0';
-      goto LAB_1800782e0;
+      goto CharacterVariableSet;
     }
-    if ((ProcessingStatusFlag & 0x10) == 0) goto LAB_1800782d4;
+    if ((ProcessingStatusFlag & 0x10) == 0) goto SystemMemoryCheck;
     IsSystemContextValid = (*(byte *)(SystemContext + 0xfd) & 2) == 0;
   }
   CharacterVariable5 = IsSystemContextValid + '\x01';
-LAB_1800782e0:
+CharacterVariableSet:
   *(char *)(SystemContext + 0xff) = CharacterVariable5;
   CharacterTablePointer = *(long long *)(SystemContext + 0x1b8);
   ProcessingStatusFlag = *(uint *)(CharacterTablePointer + 0x138) & 0x3000;
@@ -48078,13 +48078,13 @@ SystemMemoryCheck:
     ProcessingStatusFlag = *(uint *)(*(long long *)(in_RCX + 0x1b8) + 0x138);
     if ((ProcessingStatusFlag & 0x20) != 0) {
       CharacterVariable5 = '\0';
-      goto LAB_1800782e0;
+      goto CharacterVariableSet;
     }
-    if ((ProcessingStatusFlag & 0x10) == 0) goto LAB_1800782d4;
+    if ((ProcessingStatusFlag & 0x10) == 0) goto SystemMemoryCheck;
     IsSystemContextValid = (*(byte *)(SystemContext + 0xfd) & 2) == 0;
   }
   CharacterVariable5 = IsSystemContextValid + '\x01';
-LAB_1800782e0:
+CharacterVariableSet:
   *(char *)(SystemContext + 0xff) = CharacterVariable5;
   CharacterTablePointer = *(long long *)(SystemContext + 0x1b8);
   ProcessingStatusFlag = *(uint *)(CharacterTablePointer + 0x138) & 0x3000;
@@ -48180,13 +48180,13 @@ SystemMemoryCheck:
     ProcessingStatusFlag = *(uint *)(*(long long *)(CharacterCode + 0x1b8) + 0x138);
     if ((ProcessingStatusFlag & 0x20) != 0) {
       CharacterVariable5 = '\0';
-      goto LAB_1800782e0;
+      goto CharacterVariableSet;
     }
-    if ((ProcessingStatusFlag & 0x10) == 0) goto LAB_1800782d4;
+    if ((ProcessingStatusFlag & 0x10) == 0) goto SystemMemoryCheck;
     IsSystemContextValid = (*(byte *)(SystemContext + 0xfd) & 2) == 0;
   }
   CharacterVariable5 = IsSystemContextValid + '\x01';
-LAB_1800782e0:
+CharacterVariableSet:
   *(char *)(SystemContext + 0xff) = CharacterVariable5;
   CharacterTablePointer = *(long long *)(SystemContext + 0x1b8);
   ProcessingStatusFlag = *(uint *)(CharacterTablePointer + 0x138) & 0x3000;
