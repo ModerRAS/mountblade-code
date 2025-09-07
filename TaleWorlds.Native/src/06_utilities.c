@@ -110819,34 +110819,33 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define ValidationStatusTableA0 UNK_180986940
 
 // 全局内存验证常量定义
-// 功能：用于系统内存验证和数据完整性检查的基准常量
-#define GlobalMemoryValidationConstantA SystemValidationBaseConstantA0
-#define GlobalMemoryValidationConstantB SystemValidationBaseConstantA1
+#define GlobalMemoryValidationPrimaryConstant DAT_180c4eaa0
+#define GlobalMemoryValidationSecondaryConstant DAT_180c4eaa4
 
-// 系统验证基准常量定义
-#define SystemValidationBaseConstantA0 DAT_180c4eaa0
-#define SystemValidationBaseConstantA1 DAT_180c4eaa4
 // 系统资源管理表定义
-#define SystemResourceIteratorTable _DAT_180c86938
-#define SystemFunctionPointerTable _DAT_180c86968
-#define SystemInputParameterTable _DAT_180c82868
-#define SystemMemoryContextTable _DAT_180bfc171
-#define SystemMemoryPointerTable _DAT_180bfc170
-#define SystemMemoryCapacityTable _DAT_180bfc118
-#define SystemMemoryBaseTable _DAT_180bfc110
+#define SystemResourceAllocationIterator _DAT_180c86938
+#define SystemFunctionDispatchTable _DAT_180c86968
+#define SystemParameterConfigurationTable _DAT_180c82868
+#define SystemMemoryContextManagementTable _DAT_180bfc171
+#define SystemMemoryPointerManagementTable _DAT_180bfc170
+#define SystemMemoryCapacityManagementTable _DAT_180bfc118
+#define SystemMemoryBaseAddressTable _DAT_180bfc110
 #define SystemMemoryContextHighByteTable SecondaryMemoryContextHighByte
+
 // 系统内存扩展表定义
 #define SystemMemoryContextExtendedTable _DAT_180bfc188
 #define SystemMemoryBaseExtendedTable _DAT_180bfc180
+
 // 系统资源列表管理表定义
-#define SystemResourceListEndTable _DAT_180bfa2f0
-#define SystemResourceCurrentTable _DAT_180bfa2e8
-#define SystemResourceListEndTableA1 _DAT_180bfa310
-#define SystemResourceCurrentTableA1 _DAT_180bfa308
-#define SystemResourceListEndTableA2 _DAT_180bfa330
-#define SystemResourceCurrentTableA2 _DAT_180bfa328
+#define SystemResourceAllocationEndTable _DAT_180bfa2f0
+#define SystemResourceCurrentAllocationTable _DAT_180bfa2e8
+#define SystemResourceAllocationEndTableSecondary _DAT_180bfa310
+#define SystemResourceCurrentAllocationTableSecondary _DAT_180bfa308
+#define SystemResourceAllocationEndTableTertiary _DAT_180bfa330
+#define SystemResourceCurrentAllocationTableTertiary _DAT_180bfa328
+
 // 系统异常处理器指针表定义
-#define SystemExceptionHandlerPointerTable _DAT_180bf9bd0
+#define SystemExceptionHandlerManagementTable _DAT_180bf9bd0
 #define SystemExceptionHandlerPointerTableA1 _DAT_180bf9f30
 #define SystemExceptionHandlerPointerTableA2 _DAT_180bf9f90
 #define SystemExceptionHandlerPointerTableA3 _DAT_180bf9ff0
