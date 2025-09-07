@@ -452,6 +452,14 @@
 // 原始函数名：Unwind_1809045c0 - 异常上下文处理器清理函数A19
 #define CleanupExceptionHandlerContextA19 Unwind_1809045c0
 
+// 原始函数名：Unwind_1809049e0 - 资源清理函数偏移量0x28
+// 功能：清理偏移量0x28处的资源指针，处理内存引用计数和异常情况
+#define CleanupResourceAtOffset28 Unwind_1809049e0
+
+// 原始函数名：Unwind_1809049f0 - 资源清理函数偏移量0x48
+// 功能：清理偏移量0x48处的资源指针，处理内存引用计数和异常情况
+#define CleanupResourceAtOffset48 Unwind_1809049f0
+
 // 原始函数名：ReleaseDataBufferResource - 数据缓冲区资源释放函数
 // 功能：释放数据缓冲区资源
 #define ReleaseDataBufferResource ReleaseDataBufferResource
@@ -104059,9 +104067,13 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储指针数据的栈变量
 #define StackPointerVariableE puStack_2d8
 
-// 原始变量名：StackUnsignedIntegerUnionB - 栈无符号整型联合体B
+// 原始变量名：auStack_238 - 栈无符号整型联合体B
 // 功能：存储无符号整型联合体的栈数据
-#define StackUnsignedIntegerUnionB StackUnsignedIntegerUnionB
+#define StackUnsignedIntegerUnionB auStack_238
+
+// 原始变量名：aStackDataWordV - 栈数据字数组V
+// 功能：存储数据字数组的栈变量
+#define StackDataWordArrayV aStackDataWordV
 
 // 原始变量名：uStack_150 - 栈数据字H
 // 功能：存储数据处理过程中的临时数据字
