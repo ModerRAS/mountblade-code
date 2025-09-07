@@ -962,6 +962,28 @@ void* UIGestureCoordinates;
 // 原始变量名：UNK_180981620 - UI数据表D
 #define UIDataTableD UNK_180981620
 
+// UI系统渲染缓冲区指针宏定义
+// 原始变量名：UNK_18097f660 - UI组件数据缓冲区指针
+#define UIComponentDataBufferPointer UNK_18097f660
+// 原始变量名：UNK_18097f960 - UI事件处理缓冲区指针
+#define UIEventHandlingBufferPointer UNK_18097f960
+// 原始变量名：UNK_18097fda8 - UI渲染缓冲区指针A
+#define UIRenderBufferPointerA UNK_18097fda8
+// 原始变量名：UNK_18097fdc0 - UI渲染缓冲区指针B
+#define UIRenderBufferPointerB UNK_18097fdc0
+// 原始变量名：UNK_18097fd98 - UI渲染缓冲区指针C
+#define UIRenderBufferPointerC UNK_18097fd98
+// 原始变量名：UNK_18097fd88 - UI渲染缓冲区指针D
+#define UIRenderBufferPointerD UNK_18097fd88
+// 原始变量名：UNK_18097fd78 - UI渲染缓冲区指针E
+#define UIRenderBufferPointerE UNK_18097fd78
+// 原始变量名：UNK_18097fd68 - UI渲染缓冲区指针F
+#define UIRenderBufferPointerF UNK_18097fd68
+// 原始变量名：UNK_18097fd58 - UI渲染缓冲区指针G
+#define UIRenderBufferPointerG UNK_18097fd58
+// 原始变量名：UNK_18097fd48 - UI渲染缓冲区指针H
+#define UIRenderBufferPointerH UNK_18097fd48
+
 // UI系统未知函数表宏定义
 #define UIUnknownFunctionTable1 UIUnknownFunctionTable1
 #define UIUnknownFunctionTable2 UIUnknownFunctionTable2
@@ -230175,8 +230197,18 @@ undefined8 FUN_18080c800(longlong *uiContext)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * @brief UI组件数据处理函数
+ * 
+ * 该函数负责处理UI组件的数据操作，包括组件索引管理、数据缓冲区处理
+ * 和系统资源清理。函数会遍历UI组件数组，执行必要的初始化和清理工作。
+ * 
+ * @param uiContext UI系统上下文指针，包含UI系统的状态和配置信息
+ * @return undefined8 返回处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18080c8a0
+ * @warning 该函数包含不返回的子程序调用，可能涉及系统级资源管理
+ */
 undefined8 FUN_18080c8a0(longlong uiContext)
 
 {
@@ -230215,7 +230247,7 @@ undefined8 FUN_18080c8a0(longlong uiContext)
       } while ((int)uVar6 < *(int *)(bufferData + 0x3cc));
     }
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),componentIndex,&UNK_18097f660,0x2d6,1);
+    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),componentIndex,&UIComponentDataBufferPointer,0x2d6,1);
   }
   if (*(longlong **)(uiContext + 0x280) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(uiContext + 0x280) + 0x10))();
@@ -230224,7 +230256,7 @@ undefined8 FUN_18080c8a0(longlong uiContext)
   if (*(longlong *)(bufferData + 0x5d8) != 0) {
                     // WARNING: Subroutine does not return
     FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(bufferData + 0x5d8),
-                  &UNK_18097f660,0x2e2,1);
+                  &UIComponentDataBufferPointer,0x2e2,1);
   }
   if (*(longlong *)(bufferData + 0x5e8) != 0) {
                     // WARNING: Subroutine does not return
@@ -238084,7 +238116,7 @@ void FUN_1808168c0(longlong uiContext,uint dataSource,char targetBuffer)
               uVar8 = 0x28;
             }
             piStack_c8 = (int *)((ulonglong)piStack_c8 & 0xffffffff00000000);
-            lVar4 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uVar8,&UNK_18097f960,0x48)
+            lVar4 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uVar8,&UIEventHandlingBufferPointer,0x48)
             ;
             *(longlong *)(bufferData + 0x230) = lVar4;
             if (lVar4 == 0) break;
@@ -245549,8 +245581,8 @@ undefined8 FUN_18081d250(short uiContext)
 {
   if (_DAT_180c4ea50 == 0) {
     _DAT_180d4ab10 = 0;
-    _DAT_180d4ab68 = &UNK_18097fda8;
-    _DAT_180d4ab38 = &UNK_18097fdc0;
+    _DAT_180d4ab68 = &UIRenderBufferPointerA;
+    _DAT_180d4ab38 = &UIRenderBufferPointerB;
     _DAT_180d4ab08 = 0;
     _DAT_180d4ab00 = 0;
     _DAT_180d4aaf8 = 0;
@@ -245594,12 +245626,12 @@ undefined8 FUN_18081d250(short uiContext)
     _DAT_180c4ea50 = 1;
   }
   if (uiContext == 0) {
-    _DAT_180d4ab18 = &UNK_18097fd98;
-    _DAT_180d4ab20 = &UNK_18097fd88;
-    _DAT_180d4ab28 = &UNK_18097fd78;
-    _DAT_180d4ab30 = &UNK_18097fd68;
-    _DAT_180d4ab40 = &UNK_18097fd58;
-    _DAT_180d4ab48 = &UNK_18097fd48;
+    _DAT_180d4ab18 = &UIRenderBufferPointerC;
+    _DAT_180d4ab20 = &UIRenderBufferPointerD;
+    _DAT_180d4ab28 = &UIRenderBufferPointerE;
+    _DAT_180d4ab30 = &UIRenderBufferPointerF;
+    _DAT_180d4ab40 = &UIRenderBufferPointerG;
+    _DAT_180d4ab48 = &UIRenderBufferPointerH;
     _DAT_180d4ab50 = &UNK_18097fd38;
     _DAT_180d4ab58 = &UNK_18097fd28;
     _DAT_180d4ab60 = &UNK_18097fd18;

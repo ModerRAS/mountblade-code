@@ -4532,7 +4532,7 @@ extern void* SystemPrimaryResourceTable;
 // 系统数据变量语义化宏定义
 // 数据配置表A0
 // 功能：存储系统数据配置信息，包括系统参数和配置选项
-#define SystemDataConfigurationTable UNK_1809864e0
+#define SystemDataConfigurationTable SystemConfigurationDataStorage
 
 // 更多工具函数宏定义
 // 原始函数名：FUN_180899220 - 系统参数处理函数A0
@@ -8116,7 +8116,7 @@ uint8_t DeserializationDataFlags;
 uint8_t DeserializationDataChecksum;
 // 原始变量名：UNK_180a22df8 - 系统配置数据表
 // 功能：存储系统配置信息
-#define SystemConfigurationDataTable UNK_180a22df8
+#define SystemConfigurationDataTable SystemConfigurationDataStorage
 uint8_t SystemConfigurationDataTable;
 
 // 函数: uint8_t UtilityCloneData;
@@ -8262,27 +8262,27 @@ uint8_t UtilityFilterBufferD;
 
 // 全局数据指针A35配置缓冲区
 // 功能：存储全局数据指针A35的配置信息
-#define GlobalDataPointerA35ConfigBuffer UNK_180a22f60
+#define GlobalDataPointerA35ConfigBuffer GlobalDataConfigurationBuffer
 uint8_t GlobalDataPointerA35ConfigBuffer;
 
 // 全局数据指针A35存储区
 // 功能：存储全局数据指针A35的相关信息
-#define GlobalDataPointerA35Storage DAT_180bfa0b0
+#define GlobalDataPointerA35Storage GlobalDataStorageArea
 uint8_t GlobalDataPointerA35Storage;
 
 // 全局数据指针A35状态区
 // 功能：存储全局数据指针A35的状态信息
-#define GlobalDataPointerA35Status DAT_180bfa0b8
+#define GlobalDataPointerA35Status GlobalDataStatusFlags
 uint8_t GlobalDataPointerA35Status;
 
 // 全局数据指针A35配置区
 // 功能：存储全局数据指针A35的配置信息
-#define GlobalDataPointerA35Config DAT_180bfa0c0
+#define GlobalDataPointerA35Config GlobalDataConfigurationSettings
 uint8_t GlobalDataPointerA35Config;
 
 // 全局数据指针A35缓存区
 // 功能：存储全局数据指针A35的缓存数据
-#define GlobalDataPointerA35Cache DAT_180bfa0c8
+#define GlobalDataPointerA35Cache GlobalDataCacheBuffer
 uint8_t GlobalDataPointerA35Cache;
 
 // 全局指针设置函数A36
@@ -8291,22 +8291,22 @@ uint8_t GlobalDataPointerA35Cache;
 
 // 全局数据指针A36配置缓冲区
 // 功能：存储全局数据指针A36的配置信息
-#define GlobalDataPointerA36ConfigBuffer UNK_180a22f40
+#define GlobalDataPointerA36ConfigBuffer GlobalDataSecondaryConfigBuffer
 uint8_t GlobalDataPointerA36ConfigBuffer;
 
 // 全局数据指针A36存储区
 // 功能：存储全局数据指针A36的相关信息
-#define GlobalDataPointerA36Storage DAT_180bfa110
+#define GlobalDataPointerA36Storage GlobalDataSecondaryStorage
 uint8_t GlobalDataPointerA36Storage;
 
 // 全局数据指针A36状态区
 // 功能：存储全局数据指针A36的状态信息
-#define GlobalDataPointerA36Status DAT_180bfa118
+#define GlobalDataPointerA36Status GlobalDataSecondaryStatus
 uint8_t GlobalDataPointerA36Status;
 
 // 全局数据指针A36配置区
 // 功能：存储全局数据指针A36的配置信息
-#define GlobalDataPointerA36Config DAT_180bfa120
+#define GlobalDataPointerA36Config GlobalDataSecondaryConfig
 uint8_t GlobalDataPointerA36Config;
 
 // 全局数据指针Cache缓存区
