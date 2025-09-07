@@ -144432,7 +144432,17 @@ eee0(uint CharacterCode,uint CharacterCodeSizevoid FUN_18012eee0(uint CharacterC
 
 
  (ram,0x00018012ef2e
-long long FUN_18012eff0(void
+/**
+ * @brief 初始化系统核心组件
+ * 
+ * 该函数负责初始化系统的核心组件，包括内存管理、
+ * 系统配置和验证等基础功能
+ * 
+ * @return long long 返回初始化状态码
+ * 
+ * @note 原始函数名：FUN_18012eff0
+ */
+long long InitializeSystemCoreComponents(void
 {
   long long PrimaryDataSize;
   char SystemCheckResult;
@@ -182623,7 +182633,6 @@ unsigned long long FUN_18015acc0(long long *CharacterCode,int CharacterCodeSize,
 
 
 
-5af90(uint64_t CharacterCode,long long CharacterCodeSize,int Utf8InputPointer,uint64_t Utf16EndPointer,
 /**
  * @brief 处理字符编码转换
  * 

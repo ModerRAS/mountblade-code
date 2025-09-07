@@ -5210,15 +5210,18 @@
 #define UtilityNoOperationJ FUN_18089611f
 
 // 原始函数名：FUN_1808aff40 - 参数验证函数A1
-// 功能：验证参数有效性
+// 功能：验证参数有效性，检查参数的类型、范围和约束条件
+// 确保传入的参数符合函数或操作的预期要求，防止无效参数导致的错误
 #define ValidateParametersA1 FUN_1808aff40
 
 // 原始函数名：FUN_1808b00b0 - 系统状态检查函数A0
-// 功能：检查系统状态
+// 功能：检查系统状态，包括系统运行状态、资源使用情况和错误状态
+// 提供系统健康监控和诊断功能，支持多种状态检查模式
 #define CheckSystemStatusA1 FUN_1808b00b0
 
 // 原始函数名：FUN_180899d90 - 数据验证函数A5
-// 功能：验证数据完整性
+// 功能：验证数据完整性，通过校验和、哈希值和结构检查确保数据未被篡改
+// 支持大数据块的完整性验证，提供高效的数据安全检查机制
 #define ValidateDataIntegrityA3 FUN_180899d90
 
 // 原始函数名：FUN_1808ac8a0 - 系统配置验证函数A0
@@ -50223,7 +50226,11 @@ void ResetExceptionContextOffset68(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据（偏移量0x40）
+ * @note 原始函数名：Unwind_180904900
+ */
+void ProcessExceptionDataWithOffset40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
@@ -50233,7 +50240,11 @@ void Unwind_180904900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据（偏移量0x40）- 重复函数
+ * @note 原始函数名：Unwind_180904910
+ */
+void ProcessExceptionDataWithOffset40Duplicate(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),

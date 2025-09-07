@@ -4400,7 +4400,16 @@ void ProcessUIParameters(undefined8 uiContext,undefined8 dataSource,undefined8 t
 
 
 
- void SetUIState(longlong uiContext)
+ /**
+ * @brief 设置UI系统状态
+ * 
+ * 该函数负责设置UI系统的状态信息，包括线程本地标志和资源管理器
+ * 主要用于UI系统的状态初始化和更新
+ * 
+ * @param uiContext UI上下文指针
+ * @note 原始函数名: SetUIState
+ */
+void SetUIState(longlong uiContext)
 void SetUIState(longlong uiContext)
 
 {
@@ -4879,18 +4888,26 @@ void ValidateUIState(void)
 
 
 
- void RefreshUIDisplay(void)
+ /**
+ * @brief 刷新UI显示
+ * 
+ * 该函数负责刷新UI系统的显示内容，检查渲染器初始化状态
+ * 并执行相应的渲染任务
+ * 
+ * @note 原始函数名: RefreshUIDisplay
+ */
+void RefreshUIDisplay(void)
 void RefreshUIDisplay(void)
 
 {
-  longlong unaff_RBP;
-  longlong unaff_RSI;
+  longlong stackFramePtr;
+  longlong contextPtr;
   
   if (UIRendererInitialized == '\0') {
-    *(undefined4 *)(unaff_RSI + 4) = 1;
+    *(undefined4 *)(contextPtr + 4) = 1;
   }
                     // WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(unaff_RBP + 0x47) ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(*(ulonglong *)(stackFramePtr + 0x47) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -5334,7 +5351,7 @@ void FinalizeUIFrame(void)
   undefined4 ProcessId;
   undefined8 ModuleHandle;
   longlong SnapshotHandle;
-  undefined1 auStack_3c8 [128];
+  undefined1 encryptionKeyBuffer [128];
   undefined8 uStack_348;
   undefined8 uStack_340;
   undefined1 auStack_324 [748];
@@ -6353,7 +6370,16 @@ ProcessUIComponentGeometry(longlong *uiContext,undefined8 *dataSource,undefined8
 
 
 
- void UpdateUIComponentGeometry(longlong uiContext)
+ /**
+ * @brief 更新UI组件几何信息
+ * 
+ * 该函数负责更新UI组件的几何信息，包括位置、尺寸等属性
+ * 主要用于UI布局和渲染的几何计算
+ * 
+ * @param uiContext UI上下文指针
+ * @note 原始函数名: UpdateUIComponentGeometry
+ */
+void UpdateUIComponentGeometry(longlong uiContext)
 void UpdateUIComponentGeometry(longlong uiContext)
 
 {
@@ -6410,14 +6436,26 @@ void ExecuteUISystemInterrupt(void)
 
 
 
-// UI系统字符串转换函数
+/**
+ * @brief 转换UI字符串
+ * 
+ * 该函数负责转换UI系统中的字符串数据，包括字符编码转换
+ * 和缓冲区管理。主要用于多语言支持和字符串处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 转换后的字符串指针
+ * @note 原始函数名: ConvertUIString
+ */
 undefined8 *
 ConvertUIString(undefined8 *uiContext,longlong dataSource,undefined8 targetBuffer,undefined8 bufferSize)
 
 {
   undefined8 functionResult;
   undefined4 semaphoreHandle;
-  undefined8 uVar3;
+  undefined8 bufferFlags;
   undefined1 auStack_28 [8];
   undefined8 uStack_20;
   undefined4 uStack_18;
@@ -6527,9 +6565,21 @@ void SetupUIMemoryAllocator(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 初始化UI纹理系统
-// 负责初始化UI系统中使用的所有纹理资源，包括纹理缓存、纹理池和纹理管理器
-// 该函数在UI系统启动时调用，确保所有纹理相关资源正确初始化
+/**
+ * @brief 初始化UI纹理系统
+ * 
+ * 该函数负责初始化UI系统中使用的所有纹理资源，包括纹理缓存、纹理池和纹理管理器。
+ * 函数会创建必要的Mono程序集，设置纹理数据缓冲区，并配置纹理组件。
+ * 
+ * 功能包括：
+ * - 创建和配置Mono程序集用于纹理管理
+ * - 初始化纹理数据缓冲区和内存管理
+ * - 设置纹理组件和字符串缓冲区
+ * - 配置UI上下文和事件处理
+ * 
+ * @note 该函数在UI系统启动时调用，确保所有纹理相关资源正确初始化
+ * @note 原始变量名已语义化：puVar6->ptextureData, puVar5->pstringBuffer等
+ */
 void InitializeUITextureSystem(void)
 
 {
@@ -6565,68 +6615,65 @@ void InitializeUITextureSystem(void)
   psemaphoreHandle = pallocatedTextureBuffer;
   bufferOffset = (ulonglong)textureBufferSize;
   ptextureData = (undefined4 *)((longlong)pallocatedTextureBuffer + bufferOffset);
-  *puVar6 = 0x656c6154;
-  puVar6[1] = 0x6c726f57;
-  puVar6[2] = 0x442e7364;
-  puVar6[3] = 0x654e746f;
-  *(undefined4 *)((longlong)puStack_b0 + uVar7 + 0x10) = 0x6c642e74;
-  *(undefined2 *)((longlong)puStack_b0 + uVar7 + 0x14) = 0x6c;
-  uStack_a8 = 0x15;
-  puVar6 = (undefined4 *)&UIDefaultDataBuffer;
-  if (puStack_b0 != (undefined4 *)0x0) {
-    puVar6 = puStack_b0;
+  ptextureData[3] = 0x654e746f;
+  *(undefined4 *)((longlong)pallocatedTextureBuffer + bufferOffset + 0x10) = 0x6c642e74;
+  *(undefined2 *)((longlong)pallocatedTextureBuffer + bufferOffset + 0x14) = 0x6c;
+  textureBufferSize = 0x15;
+  ptextureData = (undefined4 *)&UIDefaultDataBuffer;
+  if (pallocatedTextureBuffer != (undefined4 *)0x0) {
+    ptextureData = pallocatedTextureBuffer;
   }
-  lVar4 = mono_domain_assembly_open(UIMonoDomainInstance,puVar6);
-  puStack_b8 = &PrimaryUIBuffer;
+  monoAssemblyResult = mono_domain_assembly_open(UIMonoDomainInstance,ptextureData);
+  pprimaryUIBuffer = &PrimaryUIBuffer;
   if (psemaphoreHandle != (undefined4 *)0x0) {
                     // WARNING: Subroutine does not return
     DestroyUIComponent(psemaphoreHandle);
   }
-  puStack_b0 = (undefined4 *)0x0;
-  uStack_a0 = uStack_a0 & 0xffffffff00000000;
-  puStack_b8 = &SecondaryUIBuffer;
-  *pallocatedMemory = lVar4;
-  if (lVar4 == 0) {
+  pallocatedTextureBuffer = (undefined4 *)0x0;
+  encryptedBufferOffset = encryptedBufferOffset & 0xffffffff00000000;
+  pprimaryUIBuffer = &SecondaryUIBuffer;
+  *pallocatedMemory = monoAssemblyResult;
+  if (monoAssemblyResult == 0) {
     RegisterUIEvent(&UIEventUnregisterHandler,&UIEventUnregisterData);
-    lVar4 = *pallocatedMemory;
+    monoAssemblyResult = *pallocatedMemory;
   }
-  lVar4 = mono_assembly_get_image(lVar4);
-  pallocatedMemory[1] = lVar4;
-  if (lVar4 == 0) {
+  monoAssemblyResult = mono_assembly_get_image(monoAssemblyResult);
+  pallocatedMemory[1] = monoAssemblyResult;
+  if (monoAssemblyResult == 0) {
     RegisterUIEvent(&UIEventClearHandler);
   }
-  puStack_90 = &PrimaryUIBuffer;
-  uStack_78 = 0;
-  puStack_88 = (undefined8 *)0x0;
-  uStack_80 = 0;
-  puVar5 = (undefined8 *)CreateUIContext(UIContextManager,0x10,0x13);
-  *(undefined1 *)puVar5 = 0;
-  puStack_88 = puVar5;
-  uVar3 = ConfigureUIComponent(puVar5);
-  uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
-  *puVar5 = 0x6c6c6f72746e6f43;
-  *(undefined2 *)(puVar5 + 1) = 0x7265;
-  *(undefined1 *)((longlong)puVar5 + 10) = 0;
-  uStack_80 = 10;
-  puStack_b8 = &PrimaryUIBuffer;
-  uStack_a0 = 0;
-  puStack_b0 = (undefined4 *)0x0;
-  uStack_a8 = 0;
-  puVar6 = (undefined4 *)CreateUIContext(UIContextManager,0x12,0x13);
-  *(undefined1 *)puVar6 = 0;
-  puStack_b0 = puVar6;
-  uVar3 = ConfigureUIComponent(puVar6);
-  uStack_a0 = CONCAT44(uStack_a0._4_4_,uVar3);
-  *puVar6 = 0x656c6154;
-  puVar6[1] = 0x6c726f57;
-  puVar6[2] = 0x442e7364;
-  puVar6[3] = 0x654e746f;
-  *(undefined2 *)(puVar6 + 4) = 0x74;
-  uStack_a8 = 0x11;
-  mono_class_from_name(pallocatedMemory[1],puVar6,puVar5);
-  puStack_b8 = &PrimaryUIBuffer;
+  pstackPointer90 = &PrimaryUIBuffer;
+  stackValue78 = 0;
+  pstackPointer88 = (undefined8 *)0x0;
+  stackValue80 = 0;
+  pstringBuffer = (undefined8 *)CreateUIContext(UIContextManager,0x10,0x13);
+  *(undefined1 *)pstringBuffer = 0;
+  pstackPointer88 = pstringBuffer;
+  textureFormatFlag = ConfigureUIComponent(pstringBuffer);
+  stackValue78 = CONCAT44(stackValue78._4_4_,textureFormatFlag);
+  *pstringBuffer = 0x6c6c6f72746e6f43;
+  *(undefined2 *)(pstringBuffer + 1) = 0x7265;
+  *(undefined1 *)((longlong)pstringBuffer + 10) = 0;
+  stackValue80 = 10;
+  pprimaryUIBuffer = &PrimaryUIBuffer;
+  encryptedBufferOffset = 0;
+  pallocatedTextureBuffer = (undefined4 *)0x0;
+  textureBufferSize = 0;
+  ptextureData = (undefined4 *)CreateUIContext(UIContextManager,0x12,0x13);
+  *(undefined1 *)ptextureData = 0;
+  pallocatedTextureBuffer = ptextureData;
+  textureFormatFlag = ConfigureUIComponent(ptextureData);
+  encryptedBufferOffset = CONCAT44(encryptedBufferOffset._4_4_,textureFormatFlag);
+  *ptextureData = 0x656c6154;
+  ptextureData[1] = 0x6c726f57;
+  ptextureData[2] = 0x442e7364;
+  ptextureData[3] = 0x654e746f;
+  *(undefined2 *)(ptextureData + 4) = 0x74;
+  textureBufferSize = 0x11;
+  mono_class_from_name(pallocatedMemory[1],ptextureData,pstringBuffer);
+  pprimaryUIBuffer = &PrimaryUIBuffer;
                     // WARNING: Subroutine does not return
-  DestroyUIComponent(puVar6);
+  DestroyUIComponent(ptextureData);
 }
 
 
