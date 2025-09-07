@@ -147,6 +147,13 @@
 #define ResourceDescriptorPrimaryOffset 0x18
 #define ResourceDescriptorSecondaryOffset 0x20
 #define ResourceDescriptorTertiaryOffset 0x24
+
+// 资源验证和队列管理常量
+#define ResourceValidationFlagOffset 0x3541
+#define ResourceQueueNextOffset 0x3538
+#define ResourceDataPointerBackupOffset 0x20
+#define ResourceValidationCheckOffset 0xe
+#define ExceptionListOffset 0x70
 #define ResourceDescriptorQuaternaryOffset 0x1c
 #define SystemContextBufferOffset 8
 
@@ -60242,8 +60249,8 @@ void CleanupSystemResourcesAndValidateStatus(DataBuffer operationBase, int64_t d
   }
   resourceCleanupIterator = systemContextPointer[5];
   while (resourceCleanupIterator != 0) {
-    systemValidationFlag = (char *)(resourceCleanupIterator + 0x3541);
-    resourceCleanupIterator = *(int64_t *)(resourceCleanupIterator + 0x3538);
+    systemValidationFlag = (char *)(resourceCleanupIterator + ResourceValidationFlagOffset);
+    resourceCleanupIterator = *(int64_t *)(resourceCleanupIterator + ResourceQueueNextOffset);
     if (*systemValidationFlag != '\0') {
         TerminateSystemE0();
     }
@@ -60254,12 +60261,12 @@ void CleanupSystemResourcesAndValidateStatus(DataBuffer operationBase, int64_t d
   }
   systemDataFlags = (uint64_t)resourceValidationStatusPointer & MemoryRegionMask;
   if (systemDataFlags != 0) {
-    resourceCleanupIterator = systemDataFlags + 0x80 + ((int64_t)resourceValidationStatusPointer - systemDataFlags >> 0x10) * 0x50;
-    resourceCleanupIterator = resourceCleanupIterator - (uint64_t)*(uint *)(resourceCleanupIterator + 4);
-    if ((*(void ***)(systemDataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceCleanupIterator + 0xe) == '\0')) {
-      *resourceValidationStatusPointer = *(DataBuffer *)(resourceCleanupIterator + 0x20);
-      *(DataBuffer **)(resourceCleanupIterator + 0x20) = resourceValidationStatusPointer;
-      resourceReferenceCountPointer = (int *)(resourceCleanupIterator + 0x18);
+    resourceCleanupIterator = systemDataFlags + MemoryResourceBaseOffset + ((int64_t)resourceValidationStatusPointer - systemDataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceCleanupIterator = resourceCleanupIterator - (uint64_t)*(uint *)(resourceCleanupIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(systemDataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceCleanupIterator + ResourceValidationCheckOffset) == '\0')) {
+      *resourceValidationStatusPointer = *(DataBuffer *)(resourceCleanupIterator + ResourceDataPointerOffset);
+      *(DataBuffer **)(resourceCleanupIterator + ResourceDataPointerBackupOffset) = resourceValidationStatusPointer;
+      resourceReferenceCountPointer = (int *)(resourceCleanupIterator + ReferenceCountOffset);
       *resourceReferenceCountPointer = *resourceReferenceCountPointer + -1;
       if (*resourceReferenceCountPointer == 0) {
         HandleExceptionE0();
@@ -60267,7 +60274,7 @@ void CleanupSystemResourcesAndValidateStatus(DataBuffer operationBase, int64_t d
       }
     }
     else {
-      ManageMemory(systemDataFlags,SetBitFlag(0xff000000,*(void ***)(systemDataFlags + 0x70) == &ExceptionList),
+      ManageMemory(systemDataFlags,SetBitFlag(0xff000000,*(void ***)(systemDataFlags + ExceptionListOffset) == &ExceptionList),
                           resourceValidationStatusPointer,systemDataFlags,SystemCleanupFlagAlternative);
     }
   }
