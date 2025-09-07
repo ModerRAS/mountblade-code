@@ -160926,7 +160926,16 @@ LAB_18013a7a6:
 
 
 
-3a3d0(long long OutputBuffer,uint32_t *OutputBufferSize,long long Utf8InputPointervoid FUN_18013a3d0(long long OutputBuffer,uint32_t *OutputBufferSize,long long Utf8InputPointer
+/**
+ * @brief 初始化字符串编码缓冲区
+ * 
+ * 该函数负责初始化用于字符串编码的缓冲区结构
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ */
+void InitializeStringEncodingBuffer(long long OutputBuffer, uint32_t *OutputBufferSize, long long Utf8InputPointer)
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
