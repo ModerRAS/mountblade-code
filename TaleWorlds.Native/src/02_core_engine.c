@@ -19512,14 +19512,14 @@ void CoreEngineInitializeRuntimeEnvironment(void
   if (SystemValidationFlag == '\0') {
     CoreEngineResetSystemStatus(&StackBuffer678);
   }
-  StatusBufferPointer4e8 = &SystemStringBuffer;
+  SystemStatusBufferPointer4e8 = &SystemStringBuffer;
   StringProcessingBuffer = ConfigStringBufferA;
   ConfigStringBufferA[0] = 0;
   StringLength = 0x18;
   strcpy_s(ConfigStringBufferA,0x40,&SystemConfigTemplateB);
-  InitializeCoreEngineConfig(CoreEngineConfigFlag,&StatusBufferPointer4e8,&StackBuffer678);
-  StatusBufferPointer4e8 = &ThreadLocalStorageTemplate;
-  StatusBufferPointer488 = &SystemStringBuffer;
+  InitializeCoreEngineConfig(CoreEngineConfigFlag,&SystemStatusBufferPointer4e8,&StackBuffer678);
+  SystemStatusBufferPointer4e8 = &ThreadLocalStorageTemplate;
+  SystemStatusBufferPointer488 = &SystemStringBuffer;
   SystemStringBufferA = ConfigStringBufferB;
   ConfigStringBufferB[0] = 0;
   BufferSizeA = 0xb;
@@ -123707,7 +123707,8 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-6ffa(voidvoid FUN_180126ffa(void
+// 原始函数名：FUN_180126ffa - 系统参数配置函数
+#define ConfigureSystemParameters FUN_180126ffa
 {
   float *pSystemContextPrimaryFloat;
   byte SystemHighByte;
@@ -123882,7 +123883,8 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-700b(voidvoid FUN_18012700b(void
+// 原始函数名：FUN_18012700b - 系统数据验证函数
+#define ValidateSystemDataEx FUN_18012700b
 {
   float *pSystemContextPrimaryFloat;
   byte SystemHighByte;
@@ -124054,7 +124056,8 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-7012(voidvoid FUN_180127012(void
+// 原始函数名：FUN_180127012 - 系统事件处理函数
+#define ProcessSystemEventEx FUN_180127012
 {
   float *pSystemContextPrimaryFloat;
   byte SystemHighByte;
@@ -177715,7 +177718,7 @@ uint64_t * FUN_180150ab0(uint64_t *CharacterCode,unsigned long long CharacterCod
     NetworkConnectionStatus = 0;
     NetworkConnectionRetryCount = 0;
     NetworkConnectionMaxRetries = 3;
-    FUN_1808fc820(FUN_180941ad0);
+    ProcessSystemResourceAndInitialize(FUN_180941ad0);
     ProcessSystemResourceAndConfigure(&GlobalTimeoutValue);
   }
   NetworkConnectionStatus = NetworkConnectionState;
@@ -205122,7 +205125,7 @@ void SystemDataProcessingFunction(void
   if ((*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (unsigned long long)__tls_index * 8) +
                0x48) < SystemMemoryLimit) && (CheckRenderParameterStatus(&SystemMemoryLimit), SystemMemoryLimit == -1)) {
     SystemMemoryFlag = 0;
-    FUN_1808fc820(&SystemMemoryAddressPrimary);
+    ProcessSystemResourceAndInitialize(&SystemMemoryAddressPrimary);
     ProcessSystemResourceAndConfigure(&SystemMemoryParameter); /* 系统内存参数 - 用于内存管理和配置 */
   }
   StackUnsignedValue150 = 0;

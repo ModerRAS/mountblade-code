@@ -2005,7 +2005,7 @@
  * 
  * @note 原始函数名：FUN_180942400
  */
-#define SetDefaultExceptionHandlerA29 FUN_180942400
+#define SetDefaultExceptionHandler29 FUN_180942400
 
 /**
  * @brief 设置默认异常处理器A30
@@ -2014,7 +2014,7 @@
  * 
  * @note 原始函数名：FUN_180942420
  */
-#define SetDefaultExceptionHandlerA30 FUN_180942420
+#define SetDefaultExceptionHandler30 FUN_180942420
 
 /**
  * @brief 设置默认异常处理器A31
@@ -2023,7 +2023,7 @@
  * 
  * @note 原始函数名：FUN_180942440
  */
-#define SetDefaultExceptionHandlerA31 FUN_180942440
+#define SetDefaultExceptionHandler31 FUN_180942440
 
 /**
  * @brief 设置默认异常处理器A32
@@ -2032,7 +2032,7 @@
  * 
  * @note 原始函数名：FUN_180942460
  */
-#define SetDefaultExceptionHandlerA32 FUN_180942460
+#define SetDefaultExceptionHandler32 FUN_180942460
 
 /**
  * @brief 设置默认异常处理器A33
@@ -2041,7 +2041,7 @@
  * 
  * @note 原始函数名：FUN_180942480
  */
-#define SetDefaultExceptionHandlerA33 FUN_180942480
+#define SetDefaultExceptionHandler33 FUN_180942480
 
 /**
  * @brief 设置默认异常处理器A34
@@ -2050,7 +2050,7 @@
  * 
  * @note 原始函数名：FUN_1809424a0
  */
-#define SetDefaultExceptionHandlerA34 FUN_1809424a0
+#define SetDefaultExceptionHandler34 FUN_1809424a0
 
 // 系统处理函数宏定义 (E系列)
 
@@ -2061,7 +2061,7 @@
  * 
  * @note 原始函数名：FUN_180892880
  */
-#define ValidateAndProcessFloatingPointNumberA1 FUN_180892880
+#define ValidateAndProcessFloatingPointNumber1 FUN_180892880
 
 /**
  * @brief 查询系统状态A0
@@ -2070,7 +2070,7 @@
  * 
  * @note 原始函数名：FUN_1808928d3
  */
-#define QuerySystemStatusA0 FUN_1808928d3
+#define QuerySystemStatus0 FUN_1808928d3
 
 /**
  * @brief 获取系统配置A0
