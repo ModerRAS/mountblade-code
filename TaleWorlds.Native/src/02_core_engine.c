@@ -39142,11 +39142,11 @@ void ManageBufferIndexllocation(long long *CharacterCode
   SystemOperationType = 3;
   MemoryBlockIndex = CharacterCode[1];
   MemoryOffsetValue = *(void *)(MemoryBlockIndex + 0x140);
-  CoreEngineSignedValueC8 = (long long)IntegerValue9 + *(long long *)(MemoryBlockIndex + 0x1f0);
+  EngineContextValue = (long long)IntegerValue9 + *(long long *)(MemoryBlockIndex + 0x1f0);
   SystemStackRegisterFlagB0 = 1;
-  LocalStackValueC0 = CoreEngineSignedValueC8;
-  (**(code **)(MemoryBlockIndex + 0x180))(&CoreEngineSignedValueC8,*(long long *)(MemoryBlockIndex + 0x1f8) + 8);
-  if (((char)SystemStackRegisterFlagB0 == '\0') && (CoreEngineSignedValueC8 != 0)) {
+  LocalStackValueC0 = EngineContextValue;
+  (**(code **)(MemoryBlockIndex + 0x180))(&EngineContextValue,*(long long *)(MemoryBlockIndex + 0x1f8) + 8);
+  if (((char)SystemStackRegisterFlagB0 == '\0') && (EngineContextValue != 0)) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }

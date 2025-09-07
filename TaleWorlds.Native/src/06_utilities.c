@@ -49292,12 +49292,12 @@ void InitializeSystemExceptionHandlerE(DataBuffer operationBase,int64_t dataBuff
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0xdb0) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0xdb0))(exceptionHandlerContext + 0xda0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextPrimaryOffset);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerCallbackOffsetDb0) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerCallbackOffsetDb0))(exceptionHandlerContext + ExceptionHandlerCallbackDataOffsetDa0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xd78) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xd80) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCleanupOffsetD78) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerCleanupStateOffsetD80) != 0) {
       TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd80) = 0;
