@@ -22443,7 +22443,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
       if (0 < iterationCount) {
         do {
           ProcessSystemDataA0(exceptionHandlerContext5,ValidationDataBufferA,exceptionHandlerContextPointer4);
-          ProcessContext(exceptionHandlerContext5,exceptionHandlerContextPointer4,afStack_348,alStack_300);
+          ProcessContext(exceptionHandlerContext5,exceptionHandlerContextPointer4,afStack_348,contextProcessingArray300);
           exceptionHandlerContext1 = GetSystemContextHandle(exceptionHandlerContext5,exceptionHandlerContextPointer4);
           systemStatusChar = CheckSystemStatus(exceptionHandlerContext1,0);
           if ((systemStatusChar == '\0') && (afStack_348[0] != *(float *)(exceptionHandlerContext1 + 0x4c))) {
