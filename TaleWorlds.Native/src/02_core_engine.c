@@ -255137,11 +255137,17 @@ void ProcessCharacterStatusBuffer(void)
 
 
 
-195b0(uint64_t *Utf8InputBuffer,long long Utf8BufferSizevoid FUN_1802195b0(uint64_t *Utf8InputBuffer,long long Utf8BufferSize
+/**
+ * @brief UTF-8输入缓冲区处理和系统事件管理函数
+ * 
+ * 该函数负责处理UTF-8输入缓冲区的数据，并管理相关系统事件的初始化和执行
+ * 主要用于系统输入数据的预处理和事件调度
+ */
+void ProcessUtf8InputBufferAndManageEvents(uint64_t *Utf8InputBuffer,long long Utf8BufferSize)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
-  uint64_t *systemEventTemplatePointer;
+  uint64_t *SystemEventTemplatePointer;
   long long SystemDataRegistry;
   uint64_t *Utf8InputBufferPointer;
   long long MemoryBoundaryEnd;
