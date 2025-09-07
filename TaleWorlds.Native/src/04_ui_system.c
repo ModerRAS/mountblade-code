@@ -6295,8 +6295,8 @@ undefined8 FreeUIComponentData(undefined8 uiContext,ulonglong dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ClearUIComponentData(undefined8 *uiContext)
-void ClearUIComponentData(undefined8 *uiContext)
+ void ClearUIComponentData(UIHandle *uiContext)
+void ClearUIComponentData(UIHandle *uiContext)
 
 {
   *uiContext = &UIEventHandler;
@@ -7144,7 +7144,7 @@ void UpdateUIComponentGeometry(longlong uiContext)
  *  bufferSize 缓冲区大小
   转换后的字符串指针
   原始函数名: ConvertUIString
- undefined8 ConvertUIString(undefined8 *uiContext,longlong dataSource,undefined8 targetBuffer,undefined8 bufferSize)
+ undefined8 ConvertUIString(UIHandle *uiContext,longlong dataSource,undefined8 targetBuffer,undefined8 bufferSize)
 
 {
   undefined8 conversionResult;
@@ -8666,7 +8666,7 @@ undefined4 * CreateUIColorBuffer(undefined4 *uiContext)
 
 
  UI组件释放函数
-undefined8 FreeUIComponent(undefined8 *uiContext,ulonglong dataSource,undefined8 targetBuffer,undefined8 bufferSize)
+undefined8 FreeUIComponent(UIHandle *uiContext,ulonglong dataSource,undefined8 targetBuffer,undefined8 bufferSize)
 
 {
   undefined8 result;
@@ -16951,7 +16951,7 @@ undefined8 GetUIElementData(longlong uiContext,int dataSource)
 
 
 
-undefined8 * SetUIElementData(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * SetUIElementData(UIHandle *uiContext,ulonglong dataSource)
 
 {
   uiContext[399] = 0;
@@ -17981,7 +17981,7 @@ void TriggerUIUpdateCallback(void)
 
 
 
- void ApplyUITransformMatrix(undefined8 *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 *bufferSize,
+ void ApplyUITransformMatrix(UIHandle *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 *bufferSize,
 /* * 应用UI变换矩阵
  *  uiContext 输出矩阵指针
  *  dataSource 变换类型
@@ -17989,7 +17989,7 @@ void TriggerUIUpdateCallback(void)
  *  bufferSize 输入矩阵指针
  *  resultPointer 缩放因子X
  *  param_6 缩放因子Y
- void ApplyUITransformMatrix(undefined8 *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 *bufferSize,
+ void ApplyUITransformMatrix(UIHandle *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 *bufferSize,
                           float resultPointer,float param_6)
 
 {
@@ -18878,8 +18878,8 @@ undefined8 GetUIComponentHandle(longlong uiContext)
 
 
 
- void SetUITransformParameters(undefined8 *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
-void SetUITransformParameters(undefined8 *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+ void SetUITransformParameters(UIHandle *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+void SetUITransformParameters(UIHandle *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
                   undefined8 resultPointer,undefined4 param_6,undefined4 param_7,float param_8,
                   undefined8 param_9,float uiContext0,float uiContext1,float uiContext2,char uiContext3,
                   longlong uiContext4,int *uiContext5)
@@ -20273,7 +20273,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
 
 
  UI组件管理器初始化函数
-void* InitializeUIComponentManager(undefined8 *uiContext,ulonglong dataSource,undefined8 targetBuffer,undefined8 bufferSize)
+void* InitializeUIComponentManager(UIHandle *uiContext,ulonglong dataSource,undefined8 targetBuffer,undefined8 bufferSize)
 
 {
    设置UI组件管理器指针
@@ -23487,7 +23487,7 @@ undefined8 UIProcessComponentCallback(longlong uiContext,undefined8 dataSource)
 
 
 
-undefined8 UIAllocateResourceMemory(undefined8 *uiContext,ulonglong dataSource,undefined8 targetBuffer,undefined8 bufferSize)
+undefined8 UIAllocateResourceMemory(UIHandle *uiContext,ulonglong dataSource,undefined8 targetBuffer,undefined8 bufferSize)
 
 {
   *uiContext = &g_uiNullResourcePointer;
@@ -24924,7 +24924,7 @@ void CalculateUIComponentScale(float uiContext,undefined8 dataSource,float targe
 
 
 
-int ValidateUIComponentState(undefined8 *uiContext,undefined8 *dataSource,undefined8 targetBuffer,uint bufferSize,
+int ValidateUIComponentState(UIHandle *uiContext,undefined8 *dataSource,undefined8 targetBuffer,uint bufferSize,
                  int resultPointer)
 
 {
@@ -24993,7 +24993,7 @@ int ValidateUIComponentState(undefined8 *uiContext,undefined8 *dataSource,undefi
 
 
 
-int ValidateUIComponentVisibility(undefined8 *uiContext,undefined8 *dataSource,undefined8 targetBuffer,uint bufferSize)
+int ValidateUIComponentVisibility(UIHandle *uiContext,undefined8 *dataSource,undefined8 targetBuffer,uint bufferSize)
 
 {
   int uiOperationResult;
@@ -54581,7 +54581,7 @@ int ValidateUIResourceIntegrity(undefined8 uiContext,int dataSource,undefined8 t
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void InitializeUIRenderDataProcessor(undefined8 *uiContext,int dataSource,undefined1 (*targetBuffer) [16],
+ void InitializeUIRenderDataProcessor(UIHandle *uiContext,int dataSource,undefined1 (*targetBuffer) [16],
 /* * UI系统渲染数据处理器初始化函数
  初始化UI系统的渲染数据处理器，设置渲染数据的处理参数和缓冲区。
  * 主要用于处理UI渲染相关的数据和操作。
@@ -54592,7 +54592,7 @@ int ValidateUIResourceIntegrity(undefined8 uiContext,int dataSource,undefined8 t
  *  resultPointer 结果指针数组，用于存储处理结果
  * 
   原始函数名：FUN_1806935a0
- void InitializeUIRenderDataProcessor(undefined8 *uiContext,int dataSource,undefined1 (*targetBuffer) [16],
+ void InitializeUIRenderDataProcessor(UIHandle *uiContext,int dataSource,undefined1 (*targetBuffer) [16],
                   undefined1 (*bufferSize) [16],undefined1 (*resultPointer) [16])
 
 {
@@ -57225,7 +57225,7 @@ int ValidateUIResourceIntegrity(undefined8 uiContext,int dataSource,undefined8 t
  *  resultPointer 结果指针，用于存储处理结果
  * 
   原始函数名：FUN_180694c40
- void InitializeUIMemoryManager(undefined8 *uiContext,int dataSource,undefined1 *targetBuffer,undefined1 *bufferSize,
+ void InitializeUIMemoryManager(UIHandle *uiContext,int dataSource,undefined1 *targetBuffer,undefined1 *bufferSize,
                   undefined1 *resultPointer)
 
 {
@@ -66556,8 +66556,8 @@ void RenderUIButtonInternal(undefined8 uiContext,longlong dataSource,undefined8 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void UpdateUIComponentData(undefined8 *uiContext,undefined1 *dataSource,int targetBuffer,int bufferSize,
-void UpdateUIComponentData(undefined8 *uiContext,undefined1 *dataSource,int targetBuffer,int bufferSize,
+ void UpdateUIComponentData(UIHandle *uiContext,undefined1 *dataSource,int targetBuffer,int bufferSize,
+void UpdateUIComponentData(UIHandle *uiContext,undefined1 *dataSource,int targetBuffer,int bufferSize,
                   undefined8 resultPointer,int param_6,undefined1 param_7)
 
 {
@@ -69183,7 +69183,19 @@ LAB_1806a011c:
 
 
 
-uint FUN_18069ff39(longlong uiContext,undefined1 *dataSource)
+/**
+ * @brief 验证UI组件状态
+ * 
+ * 验证UI组件的状态信息，检查组件是否处于有效状态。
+ * 该函数通过分析数据源和UI上下文来验证组件状态的有效性。
+ * 
+ * @param uiContext UI上下文指针，包含状态验证所需的上下文信息
+ * @param dataSource 数据源指针，包含组件状态数据
+ * @return 验证结果，成功返回非零值，失败返回0
+ * 
+ * @note 原始函数名: FUN_18069ff39
+ */
+uint ValidateUIComponentStatus(longlong uiContext,undefined1 *dataSource)
 
 {
   byte isCharacterMatch;
@@ -69287,7 +69299,17 @@ LAB_1806a011c:
 
 
 
-uint FUN_18069ff67(void)
+/**
+ * @brief 获取UI系统处理状态
+ * 
+ * 获取UI系统的当前处理状态，包括事件处理、组件更新等状态信息。
+ * 该函数检查系统的处理队列和状态标志，返回当前的处理状态码。
+ * 
+ * @return UI系统处理状态码，表示当前系统的处理状态
+ * 
+ * @note 原始函数名: FUN_18069ff67
+ */
+uint GetUISystemProcessingStatus(void)
 
 {
   byte isCharacterMatch;
@@ -70742,7 +70764,21 @@ void ProcessUIAnimationData(longlong *uiContext,undefined8 dataSource,undefined8
  * @return 验证结果：true表示验证通过，false表示验证失败
  * @note 原始函数名: FUN_1807040a0
  */
-bool FUN_1807040a0(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
+/**
+ * @brief 处理UI数据缓冲区
+ * 
+ * 处理UI数据缓冲区的操作，包括数据读取、写入和验证。
+ * 该函数根据给定的参数执行相应的缓冲区操作。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 操作结果，成功返回true，失败返回false
+ * 
+ * @note 原始函数名: FUN_1807040a0
+ */
+bool ProcessUIDataBuffer(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
 
 {
   float floatResult;
@@ -71635,7 +71671,7 @@ LAB_1807053b0:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessUIComponentData(undefined8 *uiContext,undefined4 *dataSource,undefined8 targetBuffer,int bufferSize,
+ void ProcessUIComponentData(UIHandle *uiContext,undefined4 *dataSource,undefined8 targetBuffer,int bufferSize,
                   undefined8 resultPointer,undefined8 param_6,int param_7)
 
 {
@@ -73013,7 +73049,7 @@ void ProcessUIAnimation(undefined8 uiContext,undefined8 dataSource,undefined8 ta
  */
 void UpdateUIAnimationState(longlong uiContext,undefined8 dataSource,longlong targetBuffer,uint bufferSize,int resultPointer,
                             undefined4 animationParam1,undefined4 animationParam2,undefined4 animationParam3,int frameRate,
-                            undefined4 uiContext0,undefined8 uiContext1,undefined8 *uiContext2)
+                            undefined4 uiContext0,undefined8 uiContext1,UIHandle *uiContext2)
 
 {
   ulonglong animationUpdateResult;
@@ -95350,8 +95386,8 @@ void FUN_180724c7e(undefined8 uiContext,longlong dataSource,undefined8 targetBuf
 
 
 
- void FUN_180724e37(undefined8 *uiContext,longlong dataSource,undefined8 targetBuffer,longlong bufferSize)
-void FUN_180724e37(undefined8 *uiContext,longlong dataSource,undefined8 targetBuffer,longlong bufferSize)
+ void FUN_180724e37(UIHandle *uiContext,longlong dataSource,undefined8 targetBuffer,longlong bufferSize)
+void FUN_180724e37(UIHandle *uiContext,longlong dataSource,undefined8 targetBuffer,longlong bufferSize)
 
 {
   undefined8 *register11;
@@ -125488,8 +125524,8 @@ undefined8 FUN_180743e50(longlong uiContext)
 
 
 
- void FUN_180743e90(undefined8 *uiContext)
-void FUN_180743e90(undefined8 *uiContext)
+ void FUN_180743e90(UIHandle *uiContext)
+void FUN_180743e90(UIHandle *uiContext)
 
 {
   undefined8 *ptrResult;
@@ -125680,7 +125716,7 @@ void FUN_180743e90(undefined8 *uiContext)
 
 
 
-undefined8 * FUN_180744640(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180744640(UIHandle *uiContext,ulonglong dataSource)
 
 {
   longlong *pallocatedMemory;
@@ -125720,7 +125756,7 @@ undefined8 * FUN_180744640(undefined8 *uiContext,ulonglong dataSource)
 
 
 
-undefined8 * FUN_180744750(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180744750(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180957f58;
@@ -136737,7 +136773,7 @@ undefined8 FUN_180750820(longlong uiContext,longlong dataSource,int targetBuffer
 
 
 
-uint FUN_180750950(undefined8 *uiContext,int *dataSource,undefined4 *targetBuffer,byte *bufferSize,byte *resultPointer)
+uint FUN_180750950(UIHandle *uiContext,int *dataSource,undefined4 *targetBuffer,byte *bufferSize,byte *resultPointer)
 
 {
   longlong allocatedMemory;
@@ -137686,7 +137722,7 @@ ulonglong FUN_180751580(longlong uiContext,longlong dataSource,uint targetBuffer
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180751800(undefined8 *uiContext)
+int FUN_180751800(UIHandle *uiContext)
 
 {
   longlong allocatedMemory;
@@ -137917,7 +137953,7 @@ int FUN_180751800(undefined8 *uiContext)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180751811(undefined8 *uiContext)
+int FUN_180751811(UIHandle *uiContext)
 
 {
   longlong allocatedMemory;
@@ -138512,7 +138548,7 @@ undefined8 FUN_1807520e0(longlong uiContext,undefined4 dataSource)
 
 
 
-undefined8 FUN_180752300(undefined8 *uiContext,uint dataSource,int targetBuffer,uint bufferSize,int resultPointer)
+undefined8 FUN_180752300(UIHandle *uiContext,uint dataSource,int targetBuffer,uint bufferSize,int resultPointer)
 
 {
   int uiOperationResult;
@@ -138618,7 +138654,7 @@ LAB_18075246d:
 
 
 
-undefined8 FUN_1807524e0(undefined8 *uiContext,uint dataSource)
+undefined8 FUN_1807524e0(UIHandle *uiContext,uint dataSource)
 
 {
   uint *ptrResult;
@@ -138736,8 +138772,8 @@ LAB_180752566:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807526e0(undefined8 *uiContext,longlong dataSource)
-void FUN_1807526e0(undefined8 *uiContext,longlong dataSource)
+ void FUN_1807526e0(UIHandle *uiContext,longlong dataSource)
+void FUN_1807526e0(UIHandle *uiContext,longlong dataSource)
 
 {
   longlong *pallocatedMemory;
@@ -138791,7 +138827,7 @@ void FUN_1807526e0(undefined8 *uiContext,longlong dataSource)
 
 
 
-undefined8 FUN_180752820(undefined8 *uiContext,int dataSource,longlong targetBuffer,char bufferSize)
+undefined8 FUN_180752820(UIHandle *uiContext,int dataSource,longlong targetBuffer,char bufferSize)
 
 {
   longlong allocatedMemory;
@@ -141554,7 +141590,7 @@ void FUN_180755270(longlong *uiContext)
 
 
 
-undefined8 * FUN_1807554e0(undefined8 *uiContext)
+undefined8 * FUN_1807554e0(UIHandle *uiContext)
 
 {
   undefined8 *ptrResult;
@@ -141968,7 +142004,7 @@ LAB_180755ea0:
 
 
 
-undefined8 FUN_180755d89(undefined8 *uiContext)
+undefined8 FUN_180755d89(UIHandle *uiContext)
 
 {
   longlong *pallocatedMemory;
@@ -144233,7 +144269,7 @@ LAB_18075833f:
 
 
 
-undefined8 FUN_1807584a8(undefined8 *uiContext)
+undefined8 FUN_1807584a8(UIHandle *uiContext)
 
 {
   bool isCharacterMatch;
@@ -157459,7 +157495,7 @@ undefined8 FUN_180762b60(longlong uiContext,float dataSource,char targetBuffer)
 
 
 
-undefined8 FUN_180762c70(undefined8 *uiContext,undefined8 dataSource,char targetBuffer,char bufferSize)
+undefined8 FUN_180762c70(UIHandle *uiContext,undefined8 dataSource,char targetBuffer,char bufferSize)
 
 {
   short sVar1;
@@ -157833,7 +157869,7 @@ void FUN_180763100(void)
 
 
 
-undefined8 FUN_1807631a0(undefined8 *uiContext,longlong dataSource,char targetBuffer)
+undefined8 FUN_1807631a0(UIHandle *uiContext,longlong dataSource,char targetBuffer)
 
 {
   undefined8 result;
@@ -157859,7 +157895,7 @@ undefined8 FUN_1807631a0(undefined8 *uiContext,longlong dataSource,char targetBu
 
 
 
-undefined8 FUN_180763220(undefined8 *uiContext)
+undefined8 FUN_180763220(UIHandle *uiContext)
 
 {
   longlong *pallocatedMemory;
@@ -158403,7 +158439,7 @@ undefined8 FUN_180765975(void)
 
 
 
-undefined8 FUN_180765990(undefined8 *uiContext,char dataSource,char targetBuffer)
+undefined8 FUN_180765990(UIHandle *uiContext,char dataSource,char targetBuffer)
 
 {
   if (dataSource != '\0') {
@@ -158474,7 +158510,7 @@ FUN_180765a60(longlong *uiContext,longlong dataSource,longlong targetBuffer,unde
 
 
 
-undefined8 FUN_180765c40(undefined8 *uiContext,float dataSource,int targetBuffer,char bufferSize,char resultPointer)
+undefined8 FUN_180765c40(UIHandle *uiContext,float dataSource,int targetBuffer,char bufferSize,char resultPointer)
 
 {
   undefined8 result;
@@ -160689,7 +160725,7 @@ void FUN_180767956(void)
 
 
 
-undefined8 FUN_1807679d0(undefined8 *uiContext)
+undefined8 FUN_1807679d0(UIHandle *uiContext)
 
 {
   char localChar1;
@@ -162120,7 +162156,7 @@ undefined8 FUN_180768bf0(void)
 
 
 
-undefined8 * FUN_180768c40(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180768c40(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180958ba0;
@@ -172356,7 +172392,7 @@ void FUN_18076ff30(void)
 
 
 
-undefined8 FUN_180770070(undefined8 *uiContext,undefined8 dataSource)
+undefined8 FUN_180770070(UIHandle *uiContext,undefined8 dataSource)
 
 {
   undefined8 result;
@@ -172720,7 +172756,7 @@ undefined8 FUN_1807703c0(longlong uiContext,int dataSource)
 
 
 
-undefined8 * FUN_180770400(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180770400(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180958ba0;
@@ -176554,7 +176590,7 @@ void FUN_180773a64(void)
 
 
 
-undefined8 * FUN_180773a80(undefined8 *uiContext)
+undefined8 * FUN_180773a80(UIHandle *uiContext)
 
 {
   undefined8 *ptrResult;
@@ -192169,7 +192205,7 @@ void FUN_180785943(void)
 
 
 
-undefined8 * FUN_180785980(undefined8 *uiContext)
+undefined8 * FUN_180785980(UIHandle *uiContext)
 
 {
   undefined8 *ptrResult;
@@ -192195,7 +192231,7 @@ undefined8 * FUN_180785980(undefined8 *uiContext)
 
 
 
-undefined8 * FUN_180785a20(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180785a20(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180957f58;
@@ -192850,7 +192886,7 @@ void FUN_1807862c9(void)
 
 
 
-undefined8 * FUN_180786350(undefined8 *uiContext)
+undefined8 * FUN_180786350(UIHandle *uiContext)
 
 {
   *uiContext = &UNK_18095ac78;
@@ -197444,7 +197480,7 @@ void FUN_180789cf0(longlong *uiContext)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_180789e60(undefined8 *uiContext)
+undefined4 FUN_180789e60(UIHandle *uiContext)
 
 {
   undefined8 *ptrResult;
@@ -197702,7 +197738,7 @@ LAB_18078a1be:
 
 
 
-int FUN_18078a0d9(undefined8 *uiContext,longlong *dataSource,char targetBuffer,int bufferSize)
+int FUN_18078a0d9(UIHandle *uiContext,longlong *dataSource,char targetBuffer,int bufferSize)
 
 {
   undefined8 *ptrResult;
@@ -201450,7 +201486,7 @@ LAB_18078d107:
 
 
 
-undefined8 * InitializeUIContext(undefined8 *uiContext)
+undefined8 * InitializeUIContext(UIHandle *uiContext)
 
 {
   func_0x000180768c10();
@@ -201470,7 +201506,7 @@ undefined8 * InitializeUIContext(undefined8 *uiContext)
 
 
 
-undefined8 * FUN_18078d1f0(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_18078d1f0(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180958ba0;
@@ -201482,7 +201518,7 @@ undefined8 * FUN_18078d1f0(undefined8 *uiContext,ulonglong dataSource)
 
 
 
-undefined8 * FUN_18078d220(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_18078d220(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180958ba0;
@@ -205387,7 +205423,7 @@ LAB_180790dde:
 
 
 
-undefined8 * FUN_180790e40(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180790e40(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_18095b5f8;
@@ -205399,7 +205435,7 @@ undefined8 * FUN_180790e40(undefined8 *uiContext,ulonglong dataSource)
 
 
 
-undefined8 * FUN_180790e70(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180790e70(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_18095b5f8;
@@ -205411,7 +205447,7 @@ undefined8 * FUN_180790e70(undefined8 *uiContext,ulonglong dataSource)
 
 
 
-undefined8 * FUN_180790ea0(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180790ea0(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_18095b5f8;
@@ -205618,8 +205654,8 @@ void FUN_180791040(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180791210(undefined8 *uiContext,longlong dataSource,int targetBuffer,int bufferSize,int resultPointer)
-void FUN_180791210(undefined8 *uiContext,longlong dataSource,int targetBuffer,int bufferSize,int resultPointer)
+ void FUN_180791210(UIHandle *uiContext,longlong dataSource,int targetBuffer,int bufferSize,int resultPointer)
+void FUN_180791210(UIHandle *uiContext,longlong dataSource,int targetBuffer,int bufferSize,int resultPointer)
 
 {
   longlong *pallocatedMemory;
@@ -206017,8 +206053,8 @@ void FUN_1807915fb(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180791615(undefined8 *uiContext,undefined8 dataSource,undefined8 targetBuffer,ulonglong bufferSize)
-void FUN_180791615(undefined8 *uiContext,undefined8 dataSource,undefined8 targetBuffer,ulonglong bufferSize)
+ void FUN_180791615(UIHandle *uiContext,undefined8 dataSource,undefined8 targetBuffer,ulonglong bufferSize)
+void FUN_180791615(UIHandle *uiContext,undefined8 dataSource,undefined8 targetBuffer,ulonglong bufferSize)
 
 {
   longlong *pallocatedMemory;
@@ -221319,7 +221355,7 @@ undefined8 FUN_180801220(longlong uiContext,longlong dataSource,float targetBuff
 
 
 
-undefined8 * FUN_180801350(undefined8 *uiContext)
+undefined8 * FUN_180801350(UIHandle *uiContext)
 
 {
   FUN_1807f7c50();
@@ -225411,7 +225447,7 @@ undefined8 FUN_180804f75(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180804fa0(undefined8 *uiContext)
+undefined8 FUN_180804fa0(UIHandle *uiContext)
 
 {
   longlong *pallocatedMemory;
@@ -227517,8 +227553,8 @@ void FUN_180806fc2(void)
 
 
 
- void FUN_180806fd0(undefined8 *uiContext)
-void FUN_180806fd0(undefined8 *uiContext)
+ void FUN_180806fd0(UIHandle *uiContext)
+void FUN_180806fd0(UIHandle *uiContext)
 
 {
   longlong allocatedMemory;
@@ -227548,7 +227584,7 @@ void FUN_180806fd0(undefined8 *uiContext)
 
 
 
-undefined8 FUN_180807060(undefined8 *uiContext)
+undefined8 FUN_180807060(UIHandle *uiContext)
 
 {
   longlong allocatedMemory;
@@ -240717,8 +240753,8 @@ void FUN_18081726f(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180817430(undefined8 *uiContext)
-void FUN_180817430(undefined8 *uiContext)
+ void FUN_180817430(UIHandle *uiContext)
+void FUN_180817430(UIHandle *uiContext)
 
 {
   undefined1 result;
@@ -245576,8 +245612,8 @@ void FUN_18081bc90(longlong uiContext)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18081bd20(undefined8 *uiContext)
-void FUN_18081bd20(undefined8 *uiContext)
+ void FUN_18081bd20(UIHandle *uiContext)
+void FUN_18081bd20(UIHandle *uiContext)
 
 {
                      WARNING: Subroutine does not return
@@ -245897,7 +245933,7 @@ LAB_18081c502:
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18081c5b0(undefined8 *uiContext,int dataSource)
+ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
 
 {
   short sVar1;
@@ -283648,7 +283684,7 @@ void FUN_18083ec20(float *uiContext)
 
 
 
-undefined8 * FUN_18083eec0(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_18083eec0(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180981b58;
@@ -283717,7 +283753,7 @@ undefined8 * FUN_18083ef10(undefined8 uiContext,undefined8 *dataSource)
 
 
 
-undefined8 * FUN_18083eff0(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_18083eff0(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_18094a240;
@@ -283769,7 +283805,7 @@ undefined8 * FUN_18083f030(undefined8 uiContext,undefined8 *dataSource)
 
 
 
-undefined8 * FUN_18083f0e0(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_18083f0e0(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180981ba8;
@@ -284071,7 +284107,7 @@ LAB_18083f55c:
 
 
 
-undefined8 * FUN_18083f5b0(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_18083f5b0(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180981ba8;
@@ -284083,7 +284119,7 @@ undefined8 * FUN_18083f5b0(undefined8 *uiContext,ulonglong dataSource)
 
 
 
-undefined8 * FUN_18083f600(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_18083f600(UIHandle *uiContext,ulonglong dataSource)
 
 {
   FUN_180840100(uiContext + 4);
@@ -284096,7 +284132,7 @@ undefined8 * FUN_18083f600(undefined8 *uiContext,ulonglong dataSource)
 
 
 
-undefined8 * FUN_18083f670(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_18083f670(UIHandle *uiContext,ulonglong dataSource)
 
 {
   FUN_180840100(uiContext + 0x12);
@@ -284111,7 +284147,7 @@ undefined8 * FUN_18083f670(undefined8 *uiContext,ulonglong dataSource)
 
 
 
-undefined8 * FUN_18083f6e0(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_18083f6e0(UIHandle *uiContext,ulonglong dataSource)
 
 {
   FUN_180840270(uiContext + 4);
@@ -284124,7 +284160,7 @@ undefined8 * FUN_18083f6e0(undefined8 *uiContext,ulonglong dataSource)
 
 
 
-undefined8 * FUN_18083f760(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_18083f760(UIHandle *uiContext,ulonglong dataSource)
 
 {
   FUN_180840270(uiContext + 0xb);
@@ -285294,7 +285330,7 @@ LAB_180840a03:
 
 
 
-undefined8 FUN_180840a90(undefined8 *uiContext,int *dataSource,int *targetBuffer)
+undefined8 FUN_180840a90(UIHandle *uiContext,int *dataSource,int *targetBuffer)
 
 {
   undefined8 result;
@@ -293136,7 +293172,7 @@ FUN_180848ff1:
 
 
 
-undefined8 * FUN_18084c050(undefined8 *uiContext,undefined8 dataSource,byte targetBuffer)
+undefined8 * FUN_18084c050(UIHandle *uiContext,undefined8 dataSource,byte targetBuffer)
 
 {
   undefined8 result;
@@ -293299,8 +293335,8 @@ uint FUN_18084c220(longlong *uiContext)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18084c2d0(undefined8 *uiContext)
-void FUN_18084c2d0(undefined8 *uiContext)
+ void FUN_18084c2d0(UIHandle *uiContext)
+void FUN_18084c2d0(UIHandle *uiContext)
 
 {
   longlong *pallocatedMemory;
@@ -293691,8 +293727,8 @@ void FUN_18084c680(longlong *uiContext)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18084c730(undefined8 *uiContext)
-void FUN_18084c730(undefined8 *uiContext)
+ void FUN_18084c730(UIHandle *uiContext)
+void FUN_18084c730(UIHandle *uiContext)
 
 {
   int uiOperationResult;
@@ -293898,8 +293934,8 @@ LAB_18084ca76:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18084c738(undefined8 *uiContext)
-void FUN_18084c738(undefined8 *uiContext)
+ void FUN_18084c738(UIHandle *uiContext)
+void FUN_18084c738(UIHandle *uiContext)
 
 {
   int uiOperationResult;
@@ -294105,8 +294141,8 @@ LAB_18084ca76:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18084c744(undefined8 *uiContext)
-void FUN_18084c744(undefined8 *uiContext)
+ void FUN_18084c744(UIHandle *uiContext)
+void FUN_18084c744(UIHandle *uiContext)
 
 {
   int uiOperationResult;
@@ -294558,7 +294594,7 @@ void FUN_18084cae7(undefined8 uiContext,undefined8 dataSource,longlong *targetBu
 
 
 
-undefined8 * FUN_18084cb70(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_18084cb70(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *(undefined4 *)(uiBufferData + 1) = 0xdeadf00d;
@@ -296353,7 +296389,7 @@ undefined * FUN_18084da10(void)
 
 
 
-undefined8 * FUN_18084da70(undefined8 *uiContext)
+undefined8 * FUN_18084da70(UIHandle *uiContext)
 
 {
   FUN_1808b0200(uiContext,0x16);
@@ -296972,7 +297008,7 @@ LAB_18084e5ba:
 
 
 
-undefined8 FUN_18084e710(undefined8 *uiContext,undefined8 dataSource,char targetBuffer)
+undefined8 FUN_18084e710(UIHandle *uiContext,undefined8 dataSource,char targetBuffer)
 
 {
   int uiOperationResult;
@@ -300386,8 +300422,8 @@ void FUN_180850b5a(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180850b70(undefined8 *uiContext,undefined8 dataSource,longlong targetBuffer,undefined8 *bufferSize)
-void FUN_180850b70(undefined8 *uiContext,undefined8 dataSource,longlong targetBuffer,undefined8 *bufferSize)
+ void FUN_180850b70(UIHandle *uiContext,undefined8 dataSource,longlong targetBuffer,undefined8 *bufferSize)
+void FUN_180850b70(UIHandle *uiContext,undefined8 dataSource,longlong targetBuffer,undefined8 *bufferSize)
 
 {
   undefined8 result;
@@ -302055,8 +302091,8 @@ LAB_180851f6d:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180852090(undefined8 *uiContext,undefined8 *dataSource)
-void FUN_180852090(undefined8 *uiContext,undefined8 *dataSource)
+ void FUN_180852090(UIHandle *uiContext,undefined8 *dataSource)
+void FUN_180852090(UIHandle *uiContext,undefined8 *dataSource)
 
 {
   undefined8 result;
@@ -304026,7 +304062,7 @@ void FUN_180853840(longlong uiContext,undefined8 dataSource)
 
 
 
-undefined8 FUN_1808538a0(undefined8 *uiContext,longlong dataSource)
+undefined8 FUN_1808538a0(UIHandle *uiContext,longlong dataSource)
 
 {
   int uiOperationResult;
@@ -304281,7 +304317,7 @@ LAB_180853ee2:
 
 
 
-undefined8 FUN_180853d20(undefined8 *uiContext,undefined8 dataSource)
+undefined8 FUN_180853d20(UIHandle *uiContext,undefined8 dataSource)
 
 {
   longlong allocatedMemory;
@@ -304347,7 +304383,7 @@ undefined8 FUN_180853d20(undefined8 *uiContext,undefined8 dataSource)
 
 
 
-byte FUN_180853e60(undefined8 *uiContext)
+byte FUN_180853e60(UIHandle *uiContext)
 
 {
   longlong allocatedMemory;
@@ -304457,7 +304493,7 @@ void FUN_180853fc0(longlong uiContext,char dataSource)
 
 
 
-undefined8 FUN_180854040(undefined8 *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+undefined8 FUN_180854040(UIHandle *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
              undefined8 resultPointer,undefined8 param_6)
 
 {
@@ -306779,7 +306815,7 @@ undefined8 FUN_1808558e0(undefined8 uiContext,longlong dataSource,longlong targe
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808559c0(undefined8 *uiContext)
+undefined8 FUN_1808559c0(UIHandle *uiContext)
 
 {
   int *puiOperationResult;
@@ -315353,7 +315389,7 @@ void FUN_18085d7f0(longlong *uiContext,undefined8 dataSource,undefined4 targetBu
 
 
 
-undefined8 FUN_18085d860(undefined8 *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+undefined8 FUN_18085d860(UIHandle *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
              longlong resultPointer,undefined8 param_6,undefined4 param_7,undefined8 param_8,
              undefined8 param_9)
 
@@ -315634,8 +315670,8 @@ void FUN_18085dd7c(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18085dff0(undefined8 *uiContext)
-void FUN_18085dff0(undefined8 *uiContext)
+ void FUN_18085dff0(UIHandle *uiContext)
+void FUN_18085dff0(UIHandle *uiContext)
 
 {
   longlong *pallocatedMemory;
@@ -315798,8 +315834,8 @@ LAB_18085e1d5:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18085e003(undefined8 *uiContext)
-void FUN_18085e003(undefined8 *uiContext)
+ void FUN_18085e003(UIHandle *uiContext)
+void FUN_18085e003(UIHandle *uiContext)
 
 {
   longlong allocatedMemory;
@@ -316927,7 +316963,7 @@ undefined8 FUN_18085f0e0(longlong uiContext,char dataSource)
 
 
 
-undefined8 FUN_18085f11f(undefined8 *uiContext)
+undefined8 FUN_18085f11f(UIHandle *uiContext)
 
 {
   longlong allocatedMemory;
@@ -316987,7 +317023,7 @@ undefined8 FUN_18085f11f(undefined8 *uiContext)
 
 
 
-undefined8 FUN_18085f163(undefined8 *uiContext)
+undefined8 FUN_18085f163(UIHandle *uiContext)
 
 {
   longlong allocatedMemory;
@@ -323694,8 +323730,8 @@ LAB_180864019:
 
 
 
- void FUN_180863f57(undefined8 *uiContext)
-void FUN_180863f57(undefined8 *uiContext)
+ void FUN_180863f57(UIHandle *uiContext)
+void FUN_180863f57(UIHandle *uiContext)
 
 {
   int uiOperationResult;
@@ -326147,7 +326183,7 @@ void FUN_180865a0f(void)
 
 
 
-undefined8 * FUN_180865a20(undefined8 *uiContext)
+undefined8 * FUN_180865a20(UIHandle *uiContext)
 
 {
   undefined4 result;
@@ -326204,7 +326240,7 @@ undefined8 * FUN_180865a20(undefined8 *uiContext)
 
 
 
-undefined8 * FUN_180865b00(undefined8 *uiContext)
+undefined8 * FUN_180865b00(UIHandle *uiContext)
 
 {
   undefined4 result;
@@ -326258,7 +326294,7 @@ undefined8 * FUN_180865b00(undefined8 *uiContext)
 
 
 
-undefined8 * FUN_180865bc0(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180865bc0(UIHandle *uiContext,ulonglong dataSource)
 
 {
   FUN_180840270(uiContext + 0x11);
@@ -327265,7 +327301,7 @@ int FUN_180866f50(undefined8 uiContext,undefined4 *dataSource,undefined8 *target
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180866fe0(undefined8 *uiContext,longlong *dataSource,char targetBuffer)
+undefined8 FUN_180866fe0(UIHandle *uiContext,longlong *dataSource,char targetBuffer)
 
 {
   longlong allocatedMemory;
@@ -327661,7 +327697,7 @@ LAB_1808675ba:
 
 
 
-undefined8 FUN_180867600(undefined8 *uiContext,int *dataSource,int *targetBuffer)
+undefined8 FUN_180867600(UIHandle *uiContext,int *dataSource,int *targetBuffer)
 
 {
   undefined8 result;
@@ -327879,7 +327915,7 @@ void FUN_180867810(longlong *uiContext,longlong dataSource)
 
 
 
-undefined8 FUN_1808678e0(undefined8 *uiContext,int *dataSource,undefined4 targetBuffer,undefined1 bufferSize)
+undefined8 FUN_1808678e0(UIHandle *uiContext,int *dataSource,undefined4 targetBuffer,undefined1 bufferSize)
 
 {
   undefined8 result;
@@ -328028,7 +328064,7 @@ FUN_180867b40(longlong uiContext,longlong dataSource,undefined8 targetBuffer,und
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180867bc0(undefined8 *uiContext)
+undefined8 FUN_180867bc0(UIHandle *uiContext)
 
 {
   undefined8 *ptrResult;
@@ -328110,7 +328146,7 @@ FUN_180867cf0(longlong uiContext,longlong dataSource,undefined8 targetBuffer,und
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_180867d60(undefined8 *uiContext)
+undefined4 FUN_180867d60(UIHandle *uiContext)
 
 {
   ulonglong result;
@@ -339650,7 +339686,7 @@ undefined8 FUN_180871320(longlong uiContext,longlong *dataSource)
 
 
 
-undefined8 FUN_1808719a0(undefined8 *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+undefined8 FUN_1808719a0(UIHandle *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
              undefined8 resultPointer)
 
 {
@@ -342248,7 +342284,7 @@ undefined8 FUN_180873cd0(longlong *uiContext)
 
 
 
-undefined8 * FUN_180873ec0(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180873ec0(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_1809851e8;
@@ -342260,7 +342296,7 @@ undefined8 * FUN_180873ec0(undefined8 *uiContext,ulonglong dataSource)
 
 
 
-undefined8 * FUN_180873ef0(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180873ef0(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_1809851e8;
@@ -342272,7 +342308,7 @@ undefined8 * FUN_180873ef0(undefined8 *uiContext,ulonglong dataSource)
 
 
 
-undefined8 * FUN_180873f20(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180873f20(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_1809851e8;
@@ -368528,8 +368564,8 @@ uint FUN_18088cd80(longlong *uiContext)
 
 
 
- void FUN_18088ce50(undefined8 *uiContext)
-void FUN_18088ce50(undefined8 *uiContext)
+ void FUN_18088ce50(UIHandle *uiContext)
+void FUN_18088ce50(UIHandle *uiContext)
 
 {
   int uiOperationResult;
@@ -371298,7 +371334,7 @@ void FUN_18088f6f7(void)
 
 
 
-undefined8 FUN_18088f710(undefined8 *uiContext,undefined8 *dataSource)
+undefined8 FUN_18088f710(UIHandle *uiContext,undefined8 *dataSource)
 
 {
   byte isCharacterMatch;
@@ -379700,7 +379736,7 @@ LAB_1808963ec:
 
 
 
-undefined8 * FUN_180896800(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180896800(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180986350;
@@ -379712,7 +379748,7 @@ undefined8 * FUN_180896800(undefined8 *uiContext,ulonglong dataSource)
 
 
 
-undefined8 * FUN_180896830(undefined8 *uiContext,ulonglong dataSource)
+undefined8 * FUN_180896830(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180986370;
@@ -383073,7 +383109,7 @@ void FUN_180899100(longlong uiContext,undefined4 *dataSource)
 
 
 
-undefined8 FUN_180899180(undefined8 *uiContext,longlong dataSource)
+undefined8 FUN_180899180(UIHandle *uiContext,longlong dataSource)
 
 {
   undefined8 result;
@@ -383221,7 +383257,7 @@ undefined8 FUN_1808992f0(longlong *uiContext,undefined4 *dataSource)
 
 
 
-undefined8 FUN_180899360(undefined8 *uiContext,longlong dataSource)
+undefined8 FUN_180899360(UIHandle *uiContext,longlong dataSource)
 
 {
   undefined8 result;
@@ -383246,7 +383282,7 @@ undefined8 FUN_180899360(undefined8 *uiContext,longlong dataSource)
 
 
 
-undefined8 FUN_1808993e0(undefined8 *uiContext,longlong *dataSource)
+undefined8 FUN_1808993e0(UIHandle *uiContext,longlong *dataSource)
 
 {
   undefined8 result;
@@ -383770,8 +383806,8 @@ void FUN_180899950(longlong uiContext,undefined4 *dataSource)
 
 
 
- void FUN_1808999c1(undefined8 *uiContext,undefined8 dataSource)
-void FUN_1808999c1(undefined8 *uiContext,undefined8 dataSource)
+ void FUN_1808999c1(UIHandle *uiContext,undefined8 dataSource)
+void FUN_1808999c1(UIHandle *uiContext,undefined8 dataSource)
 
 {
   undefined8 *ptrResult;
@@ -383927,8 +383963,8 @@ void FUN_1808999c1(undefined8 *uiContext,undefined8 dataSource)
 
 
 
- void FUN_180899ae6(undefined8 *uiContext)
-void FUN_180899ae6(undefined8 *uiContext)
+ void FUN_180899ae6(UIHandle *uiContext)
+void FUN_180899ae6(UIHandle *uiContext)
 
 {
   uint result;
@@ -384803,7 +384839,7 @@ undefined8 FUN_18089a690(longlong uiContext,undefined4 *dataSource)
 
 
 
-undefined8 FUN_18089a6e8(undefined8 *uiContext,undefined8 dataSource)
+undefined8 FUN_18089a6e8(UIHandle *uiContext,undefined8 dataSource)
 
 {
   int uiOperationResult;
