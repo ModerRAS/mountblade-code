@@ -79,7 +79,21 @@
  * @note 原始函数名：FUN_18013ce40
  */
 #define ResetCharacterProcessingSystem FUN_18013ce40
-#define ProcessCharacterDataWithCode FUN_180136210        // 使用字符代码处理字符数据
+/**
+ * @brief 使用字符代码处理字符数据
+ * 
+ * 该函数负责根据字符代码处理字符数据，主要功能包括：
+ * - 解析输入的字符代码
+ * - 执行字符数据转换和处理
+ * - 管理字符编码状态
+ * - 处理字符数据的有效性验证
+ * 
+ * 该函数是字符处理系统的核心组件，用于处理各种字符编码
+ * 格式的数据，包括ASCII、UTF-8、UTF-16等。
+ * 
+ * @note 原始函数名：FUN_180136210
+ */
+#define ProcessCharacterDataWithCode FUN_180136210
 #define FinalizeCharacterProcessing FUN_180136440         // 完成字符处理
 #define ProcessCurrentCharacterData FUN_180122160             // 处理字符串缓冲区数据
 #define FinalizeStringProcessing FUN_180136ab0            // 完成字符串处理
@@ -10550,7 +10564,7 @@ void CoreEngineInitializeNetworkMessageQueue(void)
   void *RootNode;
   int ComparisonResult;
   long long *SystemHandle;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *PreviousNode;
   void *CurrentNode;
   void *NextNode;
@@ -10604,7 +10618,7 @@ void CoreEngineInitializeNetworkEventHandler(void)
   void *RootNode;
   int ComparisonResult;
   long long *SystemHandle;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *PreviousNode;
   void *CurrentNode;
   void *NextNode;
@@ -10658,7 +10672,7 @@ void CoreEngineInitializeNetworkDataSynchronizer(void)
   void *SyncPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *PreviousSyncNode;
   void *CurrentSyncNode;
   void *NextSyncNode;
@@ -10787,7 +10801,7 @@ void CoreEngineInitializeNetworkStatusMonitor(void
   void *MonitorPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *PreviousMonitorNode;
   void *CurrentMonitorNode;
   void *NextMonitorNode;
@@ -11530,7 +11544,7 @@ void CoreEngineInitializeDataManager(void
   void *DataManagerSystemRootPointer;
   int MemoryCompareResult;
   long long *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *CurrentDataManagerNode;
   void *PreviousDataManagerNode;
   void *NextDataManagerNode;
@@ -12212,7 +12226,7 @@ void CoreEngineInitializeUIManager(void
   void **CharacterCode;
   int MemoryMatchResult;
   long long *SystemHandle;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void **CurrentNodePointer;
   void **PreviousNodePointer;
   void **NextNodePointer;
@@ -12951,7 +12965,7 @@ void CoreEngineInitializeNetworkConfigurationSystem(void) {
   void *SystemContext;
   int ComparisonResult;
   long long *SystemHandle;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *PreviousNode;
   void *CurrentNode;
   void *NextNode;
@@ -13016,7 +13030,7 @@ void CoreEngineInitializeResourceManagerSystem(void) {
   void *SystemContext;
   int ComparisonResult;
   long long *SystemHandle;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *PreviousNode;
   void *CurrentNode;
   void *NextNode;
@@ -13082,7 +13096,7 @@ void CoreEngineInitializeNetworkEventSystem(void
   void *CharacterCode;
   int ComparisonResult;
   long long *SystemHandle;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *PreviousNode;
   void *CurrentNode;
   void *NextNode;
@@ -19000,7 +19014,7 @@ void CoreEngineInitializeGameRenderMemoryManager(void
   uint64_t *MemoryPoolPointer;
   int ComparisonResult;
   long long *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *PreviousMemoryNode;
   uint64_t *CurrentMemoryNode;
   uint64_t *NextMemoryNode;
@@ -20176,7 +20190,7 @@ void CoreEngineInitializeSystemConfigNodeG(void)
   void *SystemContext;
   int MemoryCompareResult;
   long long *SystemHandle;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *PreviousNode;
   void *CurrentNode;
   void *NextNode;
@@ -20238,7 +20252,7 @@ void CoreEngineInitializeSystemDataNodeH(void)
   void *SystemContext;
   int MemoryCompareResult;
   long long *SystemHandle;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *PreviousNode;
   void *CurrentNode;
   void *NextNode;
@@ -22701,7 +22715,7 @@ void CoreEngineProcessSystemData(unsigned long long *SystemProcessingStatusFlag
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   PrimaryProcessingStatusFlag = (void *)*SystemProcessingStatusFlag;
@@ -23907,7 +23921,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   PrimaryProcessingStatusFlag = (void *)*CharacterCode;
@@ -24615,7 +24629,7 @@ void CoreEngineExecuteConditionVariableTimedWait(uint64_t CharacterCode, uint64_
 {
   int LockResult;
   uint SystemTicks;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint8_t BufferOffset [32];
   long long TimeoutSeconds;
   int TimeoutNanoseconds;
@@ -25753,7 +25767,7 @@ void CoreEngineProcessSystemEventsAndResourceCleanup(long long CharacterCode
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x218);
@@ -29434,7 +29448,7 @@ void CoreEngineHandleLogEvent(long long CharacterCode, unsigned long long System
 void CoreEngineInitializeDataStructureHandles(void
 {
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint64_t SystemDataNode;
   
   if (PatternIndex != 0) {
@@ -29644,9 +29658,9 @@ void CoreEngineProcessDataCleanup(long long *CharacterCode
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long StackFrameAddressPointer;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   unsigned long long MemoryOffsetValue;
   long long CharacterLimit;
@@ -31591,7 +31605,7 @@ void ProcessBufferDataAndExecuteEvents(long long systemHandle
   long long BufferStatus;
   long long SystemContext;
   uint64_t *systemEventTemplatePointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long *SystemDataNode;
   long long SystemDataRegistry;
   long long NullPointerValue;
@@ -31741,7 +31755,7 @@ void ProcessCharacterStatusBufferManager(long long CharacterCode,uint64_t System
   long long SystemContext;
   uint64_t *MemoryAddressMask;
   unsigned long long CalculatedCodePoint;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   long long SystemDataNode;
   
   CalculatedCodePoint = *(long long *)(CharacterCode + 8) - Utf8SourcePointer >> 5;
@@ -31769,7 +31783,7 @@ void ProcessCharacterStatusBufferManager(long long CharacterCode,uint64_t System
 {
   uint64_t Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
   
@@ -31848,7 +31862,7 @@ void ReallocateMemoryBuffer(long long *CharacterCode,long long SystemBufferSize,
 {
   uint64_t Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
   
@@ -32272,7 +32286,7 @@ void ProcessCharacterCode(long long *CharacterCode
   uint DataSize;
   int CharacterTablePointer;
   int ArrayIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t ******MultiLevelBufferPointer1;
   uint64_t ******MultiLevelBufferPointer2;
   uint64_t ******MultiLevelBufferPointer3;
@@ -33596,7 +33610,7 @@ void CoreEngineProcessStringOperation(void *stringBuffer, void *searchString, vo
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint8_t SystemOperationBuffer [32];
   uint64_t StackSecurityValue78;
   void *StackCurrentCharacter70;
@@ -34897,7 +34911,7 @@ uint64_t ProcessCharacterCodeMemoryAllocation(long long CharacterCode,uint64_t S
 {
   long long *CharacterCode;
   unsigned long long *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -34997,11 +35011,11 @@ uint64_t ProcessSystemMemoryAllocation(void
 {
   unsigned long long *CharacterStatusBuffer;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   long long SystemDataNode;
   
   LOCK();
@@ -35073,7 +35087,7 @@ uint64_t ValidateDataStructureStatus(uint64_t *CharacterCode,long long SystemBuf
 {
   char CurrentCharacter;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   long long *AllocatedMemorySizePointer;
   long long *MemoryBoundaryPointer;
@@ -35283,7 +35297,7 @@ void ProcessSystemContextWithLock(long long CharacterCode,long long *CharacterCo
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int LockStatus;
   long long AllocatedMemorySize;
   uint64_t SystemFlags;
@@ -35416,7 +35430,7 @@ void CoreEngineInitializeSystemConfiguration(uint64_t SystemConfigHandle,long lo
   long long SystemConfigPointer;
   uint64_t *ResourceHandle;
   uint8_t EncryptionBuffer [32];
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryBlock;
   uint8_t TemporaryBuffer [8];
   long long DataOffset;
@@ -35478,7 +35492,7 @@ void CoreEngineProcessCharacterStatusBuffer(long long *CharacterStatusBuffer
 {
   uint64_t *CharacterStatusBuffer;
   code *SystemValidationFunction;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
   long long *MemoryBoundaryPointer;
@@ -35555,7 +35569,7 @@ void CoreEngineProcessCharacterStatusBuffer(long long *CharacterStatusBuffer
 {
   uint64_t *CharacterStatusBuffer;
   code *SystemValidationFunction;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
   long long *MemoryBoundaryPointer;
@@ -38543,7 +38557,7 @@ void ProcessSystemDataStructureTransfer(long long *SystemContext,long long Conte
 {
   long long PrimaryDataSize;
   void *SystemRootNode;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   uint64_t *DataBufferPointer;
   long long MemoryBoundaryEnd;
@@ -39154,7 +39168,7 @@ void ManageBufferIndexllocation(long long *CharacterCode
 {
   int *ReferenceCountPointer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint64_t CalculatedCodePoint;
   uint64_t DataSize;
@@ -39357,7 +39371,7 @@ void SynchronizeDataStructures(long long CharacterCode,long long SystemBufferSiz
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *MemoryAddressMask;
   uint64_t *CharacterCodePointer;
   unsigned long long DataSize;
@@ -39657,7 +39671,7 @@ void ReleaseSystemResources(long long CharacterCode
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   long long *AllocatedMemorySizePointer;
   long long *MemoryBoundaryPointer;
@@ -39766,7 +39780,7 @@ AllocateAndInitializeMemoryBlockIndex(long long CharacterCode,long long *Charact
 {
   long long PrimaryDataSize;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   
   MemoryAllocationIndex = AdditionalParameter1 % (unsigned long long)*(uint *)(CharacterCode + 0x10);
@@ -39808,7 +39822,7 @@ uint64_t ProcessSystemBufferOperation(unsigned long long *CharacterCode,uint64_t
 {
   long long *CharacterCode;
   unsigned long long *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   char SystemCharacterCode;
   bool SystemValidationFlag;
@@ -39955,7 +39969,7 @@ uint64_t ProcessDataStructureReference(long long CharacterCode, uint64_t *Charac
 {
   long long *SystemSystemContext;
   unsigned long long *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   long long AllocatedMemorySize;
   unsigned long long DataSize;
@@ -40342,7 +40356,7 @@ void InitializeCoreDataStructure(long long CharacterCode,long long SystemBufferS
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint8_t StackProcessingVariable [32];
   uint64_t LocalStackProcessingVariable;
   void *PointerToStackProcessingVariable;
@@ -41887,7 +41901,7 @@ void ProcessDataStructureWithSource(uint64_t CharacterCode,long long SystemBuffe
   EnginePointerBuffer = NULL;
   StackProcessingValue = 0;
   IntegerValue = IsDebuggerPresent();
-  if (IntegerValue == 0) {
+  if (LockResult == 0) {
     SystemDataRegistry = AllocateSystemMemory(&SystemValidationPointer,0);
     StackProcessingValue = *(uint32_t *)(SystemDataRegistry + 0x10);
     TemporaryBuffer = *(void **)(SystemDataRegistry + 8);
@@ -44549,10 +44563,10 @@ void ReleaseSystemResources(long long CharacterCode
 {
   int LockResult;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *SystemContext;
   long long SystemDataRegistry;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   long long SystemDataNode;
   unsigned long long CalculatedCodePoint;
   long long RegisterR13Value;
@@ -45915,7 +45929,7 @@ void ProcessCoreEngineDataStructureConfiguration(long long CharacterCode,uint64_
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t MemoryAddressMask;
   uint32_t ComparisonResult;
   uint32_t DataSize;
@@ -46098,7 +46112,7 @@ void ReleaseCoreEngineDataStructureResources(uint64_t *CharacterCode
 {
   byte *ByteComparisonPointer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   
   MemoryAddressMask = 0xfffffffffffffffe;
@@ -46741,7 +46755,7 @@ long long * ProcessCoreEngineDataStructureAndContext(long long *CharacterCode,lo
 {
   byte *CurrentBytePointer;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t MemoryAddressMask;
   uint32_t CalculatedCodePoint;
   uint32_t DataSize;
@@ -47440,7 +47454,7 @@ unsigned long long ProcessCharacterCodeReferences(long long CharacterCode
 {
   int *ReferenceCountPointer;
   byte SystemHighByte;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -47775,7 +47789,7 @@ void ProcessSystemReferenceCount(long long CharacterCode
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x28);
@@ -50114,7 +50128,7 @@ void InitializeCharacterCode(uint64_t *CharacterCode,uint64_t SystemBufferSize,u
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   
@@ -52418,7 +52432,7 @@ uint8_t CheckSystemLockStatusAndReturn(void
 {
   uint8_t *CharacterStatusBuffer;
   uint8_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemContext;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
@@ -52479,7 +52493,7 @@ uint8_t WaitAndProcessMemoryAllocationStatus(void
 {
   uint8_t *CharacterStatusBuffer;
   uint8_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemContext;
   int CharacterTablePointer;
   long long SystemDataNode;
@@ -54389,7 +54403,7 @@ uint32_t ProcessDataStructureBufferAllocation(long long CharacterCode
   long long StackFrameAddressPointer;
   long long SystemDataRegistry;
   int RemainingSpace;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   long long SystemDataNode;
   uint DataSize;
   int ProcessIterationCount;
@@ -54737,7 +54751,7 @@ long long* ProcessSystemDataStructureTransfer(long long* CharacterCode, long lon
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long *SystemContextRegister;
   long long *SystemRegisterPointerX10;
@@ -54793,7 +54807,7 @@ long long* ProcessSystemDataStructureTransfer(long long* CharacterCode, long lon
 {
   uint8_t *CharacterStatusBuffer;
   uint8_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int stackIntBuffer [2];
   
   *(uint16_t *)(CharacterCode + 1) = 0;
@@ -54830,7 +54844,7 @@ long long* ProcessSystemDataStructureTransfer(long long* CharacterCode, long lon
 {
   long long PrimaryDataSize;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   unsigned long long CalculatedCodePoint;
   
@@ -55204,7 +55218,7 @@ void CopySystemDataStructure(long long CharacterCode,unsigned long long SystemBu
 void InitializeSystemMemory(void
 {
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint64_t SystemDataNode;
   
   if (PatternIndex != 0) {
@@ -55394,7 +55408,7 @@ void ProcessSystemDataStructureExpansion(long long *CharacterCode, unsigned long
 {
   long long *SystemContext;
   unsigned long long BlockIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   
   SystemContext = (long long *)CharacterCode[1];
@@ -55883,7 +55897,7 @@ void ValidateCoreEngineDataIntegrity(long long CharacterCode,long long *Characte
 {
   uint64_t Utf16Char;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   uint8_t aSystemFlagF [32];
   uint32_t MemoryOffsetValue;
@@ -57158,7 +57172,7 @@ void ProcessSystemCharacterStatusBuffer(uint64_t targetDataStructure, uint64_t s
  */
 long long ProcessCoreEngineMemoryManagement(long long *CharacterCode,long long *CharacterCodeSize,int OperationType
 {
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   if (OperationType == 3) {
     return 0x180bfdbe0;
@@ -57215,7 +57229,7 @@ long long ProcessDataStructureDeepCopy(long long *CharacterCode,long long *Chara
 {
   uint64_t *SourceCharacterStatusBuffer;
   long long *ResourcePointer;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *TargetMemoryBuffer;
   
   if (OperationType == 3) {
@@ -57282,7 +57296,7 @@ void ProcessCharacterCodeReference(unsigned long long *CharacterCode
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   PrimaryProcessingStatusFlag = (void *)*CharacterCode;
@@ -61539,7 +61553,7 @@ void InitializeSystemDataStructureProcessor(uint64_t *CharacterCode,uint64_t *Ch
   long long *CharacterCode;
   long long DataBufferSize;
   long long *CharacterCode2;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *CharacterCode3;
   uint64_t *CharacterStatusBufferPointer;
   long long *CharacterCode4;
@@ -65485,7 +65499,7 @@ void ProcessDataStructureValidation(uint64_t *CharacterCode
   bool HighByte;
   uint64_t *ProcessingResult;
   byte *LowBytePointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int RegisterValueEDI;
   uint MemoryAddressMask;
   int RemainingSpace;
@@ -65567,7 +65581,7 @@ void ValidateDataStructureByteComparison(long long CharacterCode
   byte CurrentByteValue;
   long long ProcessingResult;
   byte *HighBytePointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int RegisterValueEDI;
   uint UnicodeCodePoint;
   int SystemRegisterR10D;
@@ -65722,7 +65736,7 @@ void InsertDataStructureIntoTree(uint64_t *CharacterCode,uint64_t SystemBufferSi
 {
   unsigned long long InsertionValue;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *TreeTraversalNode;
   uint64_t InsertionPositionFlag;
   bool ShouldInsertToLeft;
@@ -66787,7 +66801,7 @@ void SortSystemDataStructure(long long *CharacterCode,long long *CharacterCodeSi
 {
   byte CurrentByteValue;
   bool ShouldInsert;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   byte *StringPointer;
   uint StringLength;
@@ -66853,7 +66867,7 @@ void ProcessSystemDataTransferOperation(long long *CharacterCode,long long *Char
 {
   byte CurrentByteValue;
   bool HighByte;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   byte *SystemBytePointer;
   uint DataSize;
@@ -66919,7 +66933,7 @@ void CleanupSystemResources(void
 {
   byte CurrentByteValue;
   bool HighByte;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   byte *SystemBytePointer;
   uint DataSize;
@@ -67021,7 +67035,7 @@ void SortSystemMemoryBlocks(long long *CharacterCode,long long *CharacterCodeSiz
 {
   byte CurrentByteValue;
   long long CurrentMemoryBlock;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte *StringPointer;
   uint StringLength;
   long long *CurrentPosition;
@@ -67071,7 +67085,7 @@ void ProcessSystemMemoryAllocation(long long *CharacterCode,long long *Character
 {
   byte CurrentByteValue;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte *ValidationBytePointer;
   uint CalculatedCodePoint;
   long long *MemoryBoundaryPointer;
@@ -67121,7 +67135,7 @@ void ReleaseSystemResources(void
 {
   byte CurrentByteValue;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte *ValidationBytePointer;
   uint CalculatedCodePoint;
   long long *StackFrameAddressPointer;
@@ -67224,7 +67238,7 @@ e690(long long *CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePoi
 {
   uint64_t *CharacterStatusBuffer;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   MemoryBlockIndex = CharacterCode[1];
   CharacterStatusBuffer = (void *)*Utf8SourcePointer;
@@ -67578,7 +67592,7 @@ LAB_18008ebc0:
 void ProcessCharacterStatusBuffer(void
 {
   uint64_t *CharacterStatusBuffer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long BufferStatus;
   long long CharacterLimit;
   uint64_t *NullPointerValue;
@@ -67629,7 +67643,7 @@ void ProcessCharacterStatusBuffer(void
  */
 void ProcessRegisterIndex(void
 {
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint64_t *CharacterStatusBuffer;
   long long CharacterLimit;
   uint64_t *NullPointerValue;
@@ -67675,7 +67689,7 @@ void ProcessMemoryAllocation(long long *CharacterCode,long long *CharacterCodeSi
 {
   byte CurrentByteValue;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte *ValidationBytePointer;
   uint CalculatedCodePoint;
   int ValidationResult;
@@ -67855,7 +67869,7 @@ void ProcessDataStructureMemoryOperation(long long *CharacterCode,long long *Cha
   byte CurrentByteValue;
   long long ProcessingResult;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte *ValidationBytePointer;
   uint CalculatedCodePoint;
   int ValidationResult;
@@ -68941,7 +68955,7 @@ void ProcessMemoryBufferSwap(void
   long long BufferStatus;
   byte *dataSwapPointer;
   uint MemoryAddressMask;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
   long long CharacterTablePointer;
@@ -70091,7 +70105,7 @@ void CoreEngineUpdateSystemStatus(void
 {
   char CurrentCharacter;
   char SystemCheckResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -71184,7 +71198,7 @@ void UpdateSystemCoordinates(uint64_t targetDataStructure, int sourceXCoordinate
 {
   long long *CharacterCode;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
   float CalculatedDistance;
@@ -71246,7 +71260,7 @@ void SetSystemFloatParameter(float targetValue, long long sourceData, float para
   long long ProcessingResult;
   long long SystemContext;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   float MatrixTransformMultiplier1;
   
   StringComparisonResult = 0;
@@ -72259,7 +72273,7 @@ void ProcessSystemMemoryAllocation(long long targetDataStructure
 {
   int LockResult;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   uint DataSize;
@@ -73201,7 +73215,7 @@ void ProcessRenderingDataAndResourceManagement(long long *RenderContext, uint64_
 long long ProcessSystemMemoryAllocationAndCharacterStatusBuffer(long long CharacterCode, long long SystemBufferSize
 {
   uint64_t *CharacterStatusBuffer;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryAllocationIndex;
   
   MemoryAllocationIndex = *(unsigned long long *)(CharacterCode + 8);
@@ -73246,7 +73260,7 @@ void ProcessSystemDataStructureSynchronization(long long CharacterCode, long lon
 {
   long long ProcessingResult;
   uint64_t *CharacterStatusBuffer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long BufferStatus;
   
   BufferStatus = CharacterCode - ProcessingResult >> 5;
@@ -73290,7 +73304,7 @@ void ProcessSystemDataStructureSynchronization(long long CharacterCode, long lon
 void ProcessSystemDataStructureValidation(uint64_t CharacterCode, long long SystemBufferSize
 {
   uint64_t *CharacterStatusBuffer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   
   CharacterStatusBuffer = (void *)(SystemBufferSize + 0x28);
@@ -73329,7 +73343,7 @@ void ProcessSystemDataStructureValidation(uint64_t CharacterCode, long long Syst
 void ProcessSystemDataStructureCleanup(long long CharacterCode
 {
   uint64_t *CharacterStatusBuffer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   
   CharacterStatusBuffer = (void *)(CharacterCode + -0x20);
   *(uint64_t **)(PatternIndex + 8) = CharacterStatusBuffer;
@@ -73357,7 +73371,7 @@ void ProcessSystemDataStructureCleanup(long long CharacterCode
 void ProcessSystemDataStructureCall(long long DataStructure
 {
   uint64_t *CharacterStatusBuffer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   
   CharacterStatusBuffer = (void *)(DataStructure + -0x20);
   *(uint64_t **)(PatternIndex + 8) = CharacterStatusBuffer;
@@ -74855,10 +74869,10 @@ void AllocateSystemMemoryBlock(void
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint MemoryAddressMask;
   unsigned long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long CharacterLimit;
   unsigned long long CalculatedCodePoint;
   
@@ -74915,7 +74929,7 @@ void InitializeCoreEngineDataStructure(long long *CharacterCode,int SystemBuffer
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint64_t CalculatedCodePoint;
   long long *MemoryBoundaryPointer;
@@ -76542,7 +76556,7 @@ float CalculateSystemAverageValue(long long CharacterCode,long long SystemBuffer
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   float MatrixTransformMultiplier2;
   float CalculatedDistance;
@@ -76652,7 +76666,7 @@ void ProcessSystemConfigurationHandle(uint64_t *CharacterCode
 {
   long long *CharacterCode;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint8_t CalculatedCodePoint;
   float *FloatProcessingStatusFlag;
@@ -76839,7 +76853,7 @@ void ProcessSystemMemoryBlock(long long CharacterCode
   long long PrimaryDataSize;
   long long BufferStatus;
   long long ProcessingResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   long long *SystemContext;
   unsigned long long CalculatedCodePoint;
@@ -76917,7 +76931,7 @@ void SystemMemoryAllocator(void
   long long BufferStatus;
   long long *SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   
   if (StackFrameAddressPointer == 0) {
@@ -76964,7 +76978,7 @@ void AdjustSystemMemoryBlock(long long CharacterCode
   unsigned long long UnicodeCodePoint;
   long long SystemContext;
   unsigned long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   
   BufferStatus = *(long long *)(SystemContext + 8);
@@ -77123,7 +77137,7 @@ void ProcessSystemSystemDataNodeing(void
   uint16_t DataValue;
   int CurrentIndex;
   int *IndexContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint16_t *CharacterStatusBufferPointer;
   long long MaxIndex;
   
@@ -77356,7 +77370,7 @@ long long ProcessSystemDataHandlerA(void
   long long *MemoryBlockIndex;
   uint MemoryAddressMask;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long AllocatedMemorySize;
   long long SystemParameter;
   
@@ -77578,7 +77592,7 @@ long long ProcessSystemDataHandlerB(void
   long long *MemoryBlockIndex;
   uint MemoryAddressMask;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long AllocatedMemorySize;
   long long SystemParameter;
   
@@ -78099,7 +78113,7 @@ long long CalculateSystemMemoryAddress(void{
   long long *MemoryBlockIndex;
   uint MemoryAddressMask;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long AllocatedMemorySize;
   long long SystemParameter;
   
@@ -78312,7 +78326,7 @@ long long ProcessSystemMemoryAddressValidation(void
   long long *MemoryBlockIndex;
   uint MemoryAddressMask;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long AllocatedMemorySize;
   long long SystemParameter;
   
@@ -79991,7 +80005,7 @@ void CompareAndSortMemoryBlocks(long long *CharacterCode,long long *CharacterCod
 {
   byte CurrentByteValue;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   bool BooleanOperationFlag4;
   long long *AllocatedMemorySizePointer;
   byte *Utf8OutputPointer;
@@ -80070,7 +80084,7 @@ void AdvancedCompareAndSortMemoryBlocks(long long *CharacterCode,long long *Char
 {
   byte CurrentByteValue;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   bool BooleanOperationFlag4;
   long long *AllocatedMemorySizePointer;
   byte *Utf8OutputPointer;
@@ -80157,7 +80171,7 @@ void CheckSystemMemoryStatus(void
 {
   byte CurrentByteValue;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   bool BooleanOperationFlag4;
   long long *ProcessingResult;
   long long *AllocatedMemorySizePointer;
@@ -81302,7 +81316,7 @@ void ProcessFloatingPointDataStructureSort(float *CharacterCode,float *Character
   float SourceFloatValue;
   float TargetFloatValue;
   unsigned long long DataStructureSize;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long AllocatedMemorySize;
   float *FloatProcessingStatusFlag;
   long long MemoryPoolBlockSize;
@@ -81454,7 +81468,7 @@ void ProcessFloatingPointQuickSort(float *CharacterCode,float *CharacterCodeSize
   float TargetFloatValue;
   long long RegisterValue;
   unsigned long long DataStructureSize;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long AllocatedMemorySize;
   float *FloatProcessingStatusFlag;
   long long MemoryPoolBlockSize;
@@ -81601,7 +81615,7 @@ void ProcessFloatDataQuickSort(uint64_t CharacterCode,float *CharacterCodeSize
 {
   float PivotValue;
   float ComparisonValue;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   float *LeftPartitionPointer;
   long long MemoryBoundaryEnd;
@@ -81741,10 +81755,10 @@ d87b(uint64_t CharacterCode,long long SystemBufferSizevoid ProcessIntegerDataStr
 {
   float PivotValue;
   long long HeapSize;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   float *DataArray;
   long long HeapIndex;
   float *pFloatVariable7;
@@ -81844,7 +81858,7 @@ void ProcessMemoryAllocationWithFloat(uint64_t CharacterCode,long long SystemBuf
 {
   float FloatValue;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   float *SystemDataNode;
@@ -82421,8 +82435,8 @@ void ProcessSystemDataStructureHeapSort(void
 {
   double ConfigurationParamA;
   long long BufferStatus;
-  long long MemoryOffset;
-  unsigned long long PatternIndex;
+  long long SearchStartIndex;
+  unsigned long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
@@ -82531,7 +82545,7 @@ void ProcessSystemDataStructureHeapSortOptimized(void
 {
   double ConfigurationParamA;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long *SystemParameter;
@@ -82746,7 +82760,7 @@ long long * CompareAndSortSystemDataStructure(long long *CharacterCode,long long
 {
   byte CurrentByteValue;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   bool BooleanOperationFlag4;
   long long *AllocatedMemorySizePointer;
   byte *Utf8OutputPointer;
@@ -83091,7 +83105,7 @@ void ProcessSystemDataStructureLockAndCompare(long long CharacterCode,long long 
 {
   int LockResult;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   uint64_t *CharacterCodePointer;
   void *CurrentNode;
@@ -83836,7 +83850,7 @@ void SystemCheckAndMemoryAllocation(void
   unsigned long long MemoryOffsetValue;
   uint64_t *SystemContext;
   unsigned long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long CalculatedCodePoint;
   
   if (PatternIndex == 0x7fffffffffffffff) {
@@ -83877,7 +83891,7 @@ void InitializeSystemDataStreamProcessing(void
   unsigned long long UnicodeCodePoint;
   uint64_t *SystemContext;
   unsigned long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   
   UnicodeCodePoint = PatternIndex + 1U | 0xf;
@@ -84593,7 +84607,7 @@ void ProcessSystemDataConversion(long long *CharacterCode,long long *CharacterCo
 {
   uint8_t SystemStatusByte;
   uint8_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint32_t *CharacterCodePointer;
   long long *MemoryBoundaryPointer;
@@ -84835,7 +84849,7 @@ ProcessSystemDataStructureBufferOperation(long long *CharacterCode,long long *Ch
 {
   uint8_t SystemStatusByte;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint8_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   uint8_t *SecondaryProcessingStatusFlag;
@@ -89727,7 +89741,7 @@ void InitializeCoreEngineRenderingSystem(long long CharacterCode,uint64_t System
 {
   uint8_t *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   uint64_t CalculatedCodePoint;
   void *SecondaryProcessingStatusFlag;
@@ -90162,7 +90176,7 @@ LAB_1801080f5:
 {
   uint8_t *CharacterStatusBuffer;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   uint32_t CalculatedCodePoint;
   uint64_t DataSize;
@@ -91990,7 +92004,7 @@ af70(uint64_t *CharacterCode,long long SystemBufferSize,long long Utf8SourcePoin
 {
   int LockResult;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint16_t *pMemoryAddressMask;
   uint64_t *CharacterCodePointer;
   long long MemoryBoundaryEnd;
@@ -92026,7 +92040,7 @@ af70(uint64_t *CharacterCode,long long SystemBufferSize,long long Utf8SourcePoin
   SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)aSystemStackData;
   MatchCounter = *(int *)(SystemBufferSize + 0x10);
   SystemPointerValue170 = CharacterCode;
-  if ((MatchCounter == 0x11) && (IntegerValue = strcmp(*(void *)(SystemBufferSize + 8),&SystemContextParameterE), IntegerValue == 0)  {
+  if ((MatchCounter == 0x11) && (LockResult = strcmp(*(void *)(SystemBufferSize + 8),&SystemContextParameterE), LockResult == 0)  {
     CoreEngineExecuteSystemEvent(&SystemTemplatePointer,Utf8SourcePointer);
     if ((0 < (int)SystemValue1a8) && (MemoryBlockIndex = strstr(stackPointer1B0,&SystemContextTemplateTertiary), MemoryBlockIndex != 0)) {
       MatchCounter = 5;
@@ -92084,7 +92098,7 @@ af70(uint64_t *CharacterCode,long long SystemBufferSize,long long Utf8SourcePoin
     SystemTemplatePointer = &ThreadLocalStorageTemplate;
   }
   else if ((MatchCounter == 0x12) &&
-          (IntegerValue = strcmp(*(void *)(SystemBufferSize + 8),&SystemDataBufferC), IntegerValue == 0)) {
+          (LockResult = strcmp(*(void *)(SystemBufferSize + 8),&SystemDataBufferC), LockResult == 0)) {
     SystemPointerValue170 = CharacterCode + 0x270;
     CleanupSystemContext(SystemPointerValue170);
     SystemStatusContext = &CoreEngineDataTemplate;
@@ -94550,7 +94564,7 @@ void ProcessSystemDataValidation(long long CharacterCode, long long SystemBuffer
   long long EncodingConversionResult;
   long long SystemStringIndex;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   long long SystemRegisterR11;
   int PrimaryIntegerValue;
@@ -94879,7 +94893,7 @@ void ValidateSystemDataStructureIntegrity(uint64_t CharacterCode
   unsigned long long SystemChecksum;
   unsigned long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   long long secondaryLoopCounter;
   unsigned long long RegisterR12Value;
@@ -95037,13 +95051,13 @@ void ResetSystemDataStatus(void
 {
   float NormalizationFactor;
   float *pFloatReferenceValue;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   unsigned long long CalculatedCodePoint;
   unsigned long long DataSize;
   unsigned long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   long long MemoryPoolBlockSize;
   unsigned long long RegisterR12Value;
@@ -95186,13 +95200,13 @@ void ProcessFloatingPointDataAndValidate(void
 {
   float SystemContextPrimaryFloat;
   float *pContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   unsigned long long CalculatedCodePoint;
   unsigned long long DataSize;
   unsigned long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   long long MemoryPoolBlockSize;
   unsigned long long RegisterR12Value;
@@ -95293,7 +95307,7 @@ void CleanupSystemDataAndReset(void
   unsigned long long UnicodeCodePoint;
   unsigned long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   long long SystemDataRegistry;
   uint64_t RegisterR12Value;
@@ -95353,8 +95367,8 @@ void CheckSystemStatusAndValidate(void
   long long PrimaryDataSize;
   char SystemCheckResult;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   uint64_t RegisterR12Value;
   float MatrixTransformMultiplier1;
   float FloatingPointRegisterA;
@@ -95401,7 +95415,7 @@ void ProcessSystemBufferAndConfigure(void
   uint8_t in_AL;
   char SystemCheckResult;
   uint8_t in_register_00000001;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemRegisterR10;
   char RegisterR12ValueB;
   float BaseFloatValue;
@@ -96714,7 +96728,7 @@ unsigned long long ProcessDataStructureAndFloatCalculation(uint32_t CharacterCod
   char *CurrentCharacter1;
   long long SystemContextValue;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   long long SystemRegisterR11;
   uint RegisterR13ValueD;
@@ -96884,7 +96898,7 @@ char ProcessSystemMemoryBuffer(void
   uint64_t SystemContext;
   long long secondaryLoopCounter;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   char *pSystemValidationChar;
   uint RegisterR13ValueD;
@@ -97138,7 +97152,7 @@ uint8_t ProcessSystemDataStructure(uint32_t CharacterCode,float *CharacterCodeSi
 {
   float *pFloatProcessingStatusFlag;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   uint8_t CalculatedCodePoint;
   uint DataSize;
@@ -97243,7 +97257,7 @@ uint8_t ValidateSystemDataAndReturnStatus(void
   uint InputDataLength;
   long long MemoryBoundaryEnd;
   long long FramePointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint8_t SystemCurrentCharacter;
   long long RegisterR15;
   bool ZeroFlag;
@@ -97793,7 +97807,7 @@ uint8_t ValidateDataStructure(long long CharacterCode,int SystemBufferSize
   int MatchCounter;
   long long SystemContextValue;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int RegisterR12ValueD;
   uint8_t CharacterLimitB;
   long long NullPointerValue;
@@ -98708,7 +98722,7 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCo
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   bool BooleanOperationFlag4;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -99491,7 +99505,7 @@ unsigned long long ProcessDataStructureAndSystemConfiguration(uint64_t Character
   void *SystemCharacterStatusBuffer;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long CharacterTablePointer5;
   long long RegisterR13Value;
   char *NullPointerValue;
@@ -99680,7 +99694,7 @@ char ProcessSystemMemoryBufferSecondary(void
   void *StringProcessingStatus;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint64_t SystemDataNode;
   long long secondaryLoopCounter;
   int CharacterLimitD;
@@ -100016,7 +100030,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *CharacterCode, 
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   float *pMatrixTransformMultiplier2;
   char *CharacterPointer;
@@ -100584,7 +100598,7 @@ float *SetupFloatProcessingStatusFlag(float *CharacterCode)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -100654,7 +100668,7 @@ void ProcessFloatDataStructureAndSystemBuffer(float *CharacterCode,uint64_t Syst
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   long long ProcessingResult;
   long long AllocatedMemorySize;
@@ -100887,7 +100901,7 @@ void SystemDataValidationAndProcessing(void)
 {
   float *ProcessingStatusFlagPrimary;
   float DataValueSecondary;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint32_t ValidationStatus;
   uint32_t DataSize;
@@ -102857,7 +102871,7 @@ void CoreEngineProcessDataStructureAndMemoryAllocation(long long CharacterCode, 
   long long MemoryAllocationOffset;
   char *ValidationPointer;
   long long FramePointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   char *SystemStatusPointer;
   uint64_t RegisterR12Value;
@@ -103341,7 +103355,7 @@ void ProcessUtf16CharacterAndFloatBuffer(void)
 {
   uint32_t Utf16Char;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   float TemporaryFloatStack68;
   float StackProcessingParameter3;
   float StackFloat1;
@@ -103517,7 +103531,7 @@ void ProcessSystemFloatingPointDataOperation(char *CharacterCode, uint SystemBuf
 {
   int *ReferenceCountPointer;
   double TimeDifferenceInSeconds;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   double *SecondaryParameterPointer;
   char *CharacterPointer;
@@ -103975,7 +103989,7 @@ unsigned long long ProcessSystemMemoryAllocation(char *CharacterCode,uint64_t Sy
 {
   int LockResult;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   byte ShouldReturnSource;
   int ValidationResult;
@@ -104131,7 +104145,7 @@ byte ProcessSystemMemoryAllocationAndStatusManagement(void
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte OperationStatus;
   int MemoryIndex;
   int *pMemoryPointer;
@@ -104415,7 +104429,7 @@ void ProcessDataStructureConfigurationAndMemoryAllocation(uint32_t *CharacterCod
 {
   float NormalizationFactor;
   ushort AllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   float *ReferenceFloatPointer;
   ushort *DataValidationPointer;
   float CalculatedDistance;
@@ -104528,7 +104542,7 @@ int ValidateCharacterDataStructure64(uint64_t CharacterCode,int SystemBufferSize
 {
   ushort CharacterValue;
   bool ValidationFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long DataStructureHandle;
   
   DataStructureHandle = CharacterCode;
@@ -104697,7 +104711,7 @@ unsigned long long ConfigureSystemDataStructureAndMemory(long long CharacterCode
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   int RemainingSpace;
   unsigned long long DataSize;
@@ -104745,7 +104759,7 @@ void ProcessSystemDataMemoryMoveAndCopy(void)
 {
   long long PrimaryDataSize;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int RegisterValueEDI;
   int NullPointerD;
   uint32_t MemoryOffsetFlag;
@@ -104934,7 +104948,7 @@ void ProcessFloatSystemContextUtf16String(float *CharacterCode,long long SystemB
 {
   ushort Utf16Char;
   float *pContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   float MatrixTransformMultiplier1;
   float MatrixTransformMultiplier2;
   float CalculatedDistance;
@@ -105040,7 +105054,7 @@ void ProcessFloatDataCollisionDetection(long long CharacterCode,long long System
 {
   uint16_t *CharacterStatusBuffer;
   uint16_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   MemoryBlockIndex = (long long)Utf16EndPointer;
   CharacterStatusBuffer = (uint16_t *)CalculateFloatDataTransformation(SystemBufferSize + 0x18,Utf8SourcePointer,Utf16EndPointer,0);
@@ -105795,7 +105809,7 @@ void ProcessUtf16CharacterData(uint64_t CharacterCode,uint64_t SystemBufferSize,
   long long ProcessingResult;
   int *SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   int EncodingValidationResult;
   int RemainingSpace;
@@ -109002,7 +109016,7 @@ char InitializeSystemResourceStructure(uint32_t CharacterCode, int SystemBufferS
   short *SystemContextData;
   short *ShortValuePointer15;
   long long FramePointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   short *SystemDataNode;
   int IntegerValue6;
   long long CharacterTableIterator;
@@ -109372,7 +109386,7 @@ char ProcessSystemFloatOperationsAndMemoryConfiguration(void)
   
   // 寄存器和临时变量
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long RegisterR12Value;
   uint32_t XMM15RegisterA;
   uint32_t SystemParameter2;
@@ -109479,7 +109493,7 @@ char ProcessSystemConfigurationAndStatusCheck(void)
   long long *CharacterCode;
   uint *PrimaryProcessingStatusFlag;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   float SecondaryFloatValue;
   uint64_t StackProcessingParameter58;
   
@@ -109897,7 +109911,7 @@ unsigned long long ProcessSystemContextWithBufferValidation(uint64_t CharacterCo
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   int RemainingSpace;
   unsigned long long DataSize;
@@ -109993,7 +110007,7 @@ unsigned long long ProcessSystemDataConversionAndMemoryManagement(uint Character
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   byte shouldReturnSource;
   uint8_t DataSize;
@@ -110382,7 +110396,7 @@ void SystemContextValidator(uint32_t CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   int RemainingSpace;
   int ValidationResult;
@@ -111100,7 +111114,7 @@ unsigned long long ProcessSystemContextWithUint32Parameters(uint32_t CharacterCo
   long long SystemContext;
   char *CurrentCharacter;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   char SystemCheckResult0;
   long long BufferStatus1;
@@ -111761,7 +111775,7 @@ void SetupIntegerDataNetwork(uint64_t CharacterCode,char *CharacterCodeSize,uint
 {
   int LockResult;
   float *pContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   bool BooleanCurrentCharacter6;
@@ -112397,7 +112411,7 @@ a864(voidvoid CoreEngineResetSystemState(void
 {
   char *CurrentCharacter;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   char *SystemDataNode;
   long long NullPointerValue;
   float BaseFloatValue;
@@ -112762,7 +112776,7 @@ uint64_t ProcessDataStructureAllocation(int *CharacterCode,uint64_t *CharacterCo
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int ComparisonResult;
   uint32_t ValidationValue;
   uint64_t DataSize;
@@ -112900,7 +112914,7 @@ uint64_t ManageDataStructureMemory(long long CharacterCode
   uint32_t *StringProcessingStatus;
   long long SystemContext;
   int ComputedResult;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int *SystemDataNode;
   uint32_t *TemporaryBuffer;
   uint MemoryAllocationIndex;
@@ -113131,12 +113145,12 @@ uint64_t ProcessSystemDataAndConfigureMemory(void
 {
   uint64_t Utf16Char;
   uint64_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t MemoryAddressMask;
   int RemainingSpace;
   uint32_t *SecondaryProcessingStatusFlag;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int *SystemDataNode;
   uint32_t *StringProcessingStatus;
   uint ProcessingStatusFlag;
@@ -113227,12 +113241,12 @@ uint64_t ProcessSystemBufferAndSort(void
 {
   uint64_t Utf16Char;
   uint64_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int in_EAX;
   uint32_t MemoryAddressMask;
   uint32_t *CharacterCodePointer;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int *SystemDataNode;
   uint32_t *SecondaryProcessingStatusFlag;
   uint SystemChecksum;
@@ -113326,7 +113340,7 @@ void CleanupMemoryAllocation(void
 {
   int *ReferenceCountPointer;
   long long BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   float FloatVariable6;
@@ -113900,7 +113914,7 @@ bac0(long long CharacterCode,byte *CharacterCodeSizevoid ValidateIntegerDataShad
 {
   byte CurrentByteValue;
   byte *HighBytePointer;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint MemoryAddressMask;
   int RemainingSpace;
   
@@ -113977,7 +113991,7 @@ bbb0(int *CharacterCode,uint32_t SystemBufferSize,long long Utf8SourcePointervoi
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   int RemainingSpace;
   int ValidationResult;
@@ -114034,7 +114048,7 @@ void ProcessIntegerDataTexture(int *CharacterCode,int SystemBufferSize)
 {
   int LockResult;
   int *pStringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   int *pRemainingSpace;
   
@@ -115151,7 +115165,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t CharacterCode
   long long BufferStatus4;
   int *SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int StringComparisonResult5;
   unsigned long long SystemDataNode;
   byte HighByte6;
@@ -115589,7 +115603,7 @@ char CoreEngineValidateSystemStatus(void
   long long BufferStatus1;
   int *SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int StringComparisonResult2;
   unsigned long long SystemDataNode;
   byte MemoryFlagD;
@@ -115924,7 +115938,7 @@ char ManageSystemResourceAndRelease(void)
   long long BufferStatus1;
   int *SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int StringComparisonResult2;
   unsigned long long SystemDataNode;
   byte MemoryFlagD;
@@ -116454,7 +116468,7 @@ unsigned long long ProcessSystemContextWithMixedParameters(long long CharacterCo
 {
   uint32_t Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   uint64_t DataSize;
@@ -117063,7 +117077,7 @@ void CoreEngineInitializeSystemData(int *CharacterCode,int SystemBufferSize)
   
   IntegerValue = CharacterCode[1];
   if (IntegerValue < SystemBufferSize) {
-    if (IntegerValue == 0) {
+    if (LockResult == 0) {
       IntegerValue = 8;
     }
     else {
@@ -117089,7 +117103,7 @@ void ProcessSystemBufferSize(int *CharacterCode,int SystemBufferSize)
   
   IntegerValue = CharacterCode[1];
   if (IntegerValue < SystemBufferSize) {
-    if (IntegerValue == 0) {
+    if (LockResult == 0) {
       IntegerValue = 8;
     }
     else {
@@ -117515,7 +117529,7 @@ ProcessFloatVectorCalculation(float *CharacterCode,int SystemBufferSize,uint64_t
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   int RemainingSpace;
   uint8_t DataSize;
@@ -119557,7 +119571,7 @@ void CleanupSystemContextMemory(long long CharacterCode, uint64_t SystemBufferSi
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   
   MemoryAddressMask = 0xfffffffffffffffe;
@@ -119637,7 +119651,7 @@ void ProcessStringOperationHandler(long long CharacterCode, unsigned long long *
 {
   long long PrimaryDataSize;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   if (SystemBufferSize == (unsigned long long *)0x0) {
@@ -119805,7 +119819,7 @@ long long ProcessSystemContextWithPointerParameters(uint64_t CharacterCode,uint6
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   
@@ -119817,10 +119831,10 @@ long long ProcessSystemContextWithPointerParameters(uint64_t CharacterCode,uint6
     return 0;
   }
   IntegerValue = fseek(BufferStatus,0,2);
-  if (IntegerValue == 0) {
+  if (LockResult == 0) {
     IntegerValue = ftell(BufferStatus);
     AllocatedMemorySize = (long long)IntegerValue;
-    if ((IntegerValue != -1) && (IntegerValue = fseek(BufferStatus,0,0), IntegerValue == 0)) {
+    if ((IntegerValue != -1) && (IntegerValue = fseek(BufferStatus,0,0), LockResult == 0)) {
       if (SystemConfigurationHandle != 0) {
         *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
       }
@@ -121023,7 +121037,7 @@ void ProcessCharacterEncodingConversion(int CharacterCode, uint64_t SystemBuffer
   int LockResult;
   int StringComparisonResult;
   long long StackFrameAddressPointer;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int *SystemDataNode;
   bool in_ZF;
   
@@ -122448,7 +122462,7 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t SystemBuffer
 {
   float SystemContextPrimaryFloat;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   float MatrixTransformMultiplier1;
   float MatrixTransformMultiplier2;
   float CalculatedDistance;
@@ -122523,7 +122537,7 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t SystemBuffer
 {
   long long PrimaryDataSize;
   uint MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t SystemStackOffset28;
   uint32_t ProcessingCounter;
   uint32_t uStack_1c;
@@ -123930,7 +123944,7 @@ uint64_t ValidateSystemConfigurationStatus(long long CharacterCode,int SystemBuf
 {
   long long PrimaryDataSize;
   char SystemCheckResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   if ((((*(int *)(SystemConfigurationHandle + 0x1b18) == 0) || (*(int *)(SystemConfigurationHandle + 0x1b18) == SystemBufferSize)      || (*(char *)(SystemConfigurationHandle + 0x1b1c) != '\0')) &&
      (CharacterTablePointer = *(long long *)(SystemConfigurationHandle + 0x1af8),
@@ -124027,7 +124041,7 @@ ExecuteMemoryAllocationAndDataProcessing(uint64_t *CharacterCode,uint64_t System
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   float MatrixTransformMultiplier1;
   uint64_t CalculatedCodePoint;
   int ValidationResult;
@@ -124204,7 +124218,7 @@ uint64_t ExecuteMemoryBufferCommands(long long CharacterCode,uint64_t SystemBuff
 {
   uint *CharacterStatusBuffer;
   int *pStringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t MemoryAddressMask;
   long long AllocatedMemorySize;
   long long *MemoryBoundaryPointer;
@@ -124346,7 +124360,7 @@ uint64_t ExecuteMemoryBufferCommands(long long CharacterCode,uint64_t SystemBuff
 {
   long long PrimaryDataSize;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
   long long *MemoryBoundaryPointer;
@@ -124638,7 +124652,7 @@ LAB_180124eff:
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint CalculatedCodePoint;
   float CalculatedDistance;
@@ -124716,7 +124730,7 @@ LAB_180124eff:
 {
   float SystemContextPrimaryFloat;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint MemoryAddressMask;
   float MatrixTransformMultiplier2;
   float in_XMM4_Da;
@@ -125070,7 +125084,7 @@ void ProcessSystemMemoryAllocationAndConfiguration(uint64_t CharacterCode,uint64
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   int RemainingSpace;
   float *FloatProcessingStatusFlag;
@@ -125256,7 +125270,7 @@ LAB_180125a82:
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   float *pMatrixTransformMultiplier2;
   long long *MemoryBoundaryPointer;
@@ -125877,7 +125891,7 @@ LAB_180125a82:
 {
   long long PrimaryDataSize;
   char *SystemValidationFunction;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint MemoryAddressMask;
   unsigned long long CalculatedCodePoint;
   unsigned long long DataSize;
@@ -126478,7 +126492,7 @@ LAB_180125a82:
 {
   int LockResult;
   long long BufferStatus;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   
   IntegerValue = *(int *)(PatternIndex + 0x188);
   if (1 < IntegerValue) {
@@ -126571,7 +126585,7 @@ void ProcessCharacterEncodingDataBlock(long long CharacterCode, int SystemBuffer
 {
   long long PrimaryDataSize;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   *(int *)(SystemConfigurationHandle + 0x3a0) = *(int *)(SystemConfigurationHandle + 0x3a0) + 1;
   ProcessCharacterEncodingValidation(*(long long *)(CharacterCode + 0x28) + 0xb8 + (long long)SystemBufferSize * 0x10,
@@ -126607,7 +126621,7 @@ void ProcessCharacterEncodingBatch(void)
   long long PrimaryDataSize;
   uint InputDataLength;
   uint32_t RegisterEBPValue;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long MemoryAllocationIndex;
   
   MemoryAllocationIndex = (unsigned long long)InputDataLength;
@@ -126668,7 +126682,7 @@ void ManageSystemMemoryReferenceCount(void)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   void *PrimaryProcessingStatusFlag;
   void *MemoryBlockIndex;
@@ -127608,7 +127622,7 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 {
   float *pSystemContextPrimaryFloat;
   byte SystemHighByte;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   bool shouldReturnSource;
   uint32_t DataSize;
@@ -127784,7 +127798,7 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 {
   float *pSystemContextPrimaryFloat;
   byte SystemHighByte;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   bool shouldReturnSource;
   uint32_t DataSize;
@@ -127957,7 +127971,7 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 {
   float *pSystemContextPrimaryFloat;
   byte SystemHighByte;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   bool BooleanOperationFlag4;
   uint32_t CalculatedCodePoint;
   uint32_t DataSize;
@@ -127969,7 +127983,7 @@ void ProcessSystemRenderingAndMemoryManagement(void)
   int LoopCounter;
   long long *CharacterCode3;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint Utf16Char4;
   long long SystemDataNode;
   float SystemFloatValue;
@@ -128129,7 +128143,7 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 {
   float *pSystemContextPrimaryFloat;
   byte SystemHighByte;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   bool BooleanOperationFlag4;
   uint32_t CalculatedCodePoint;
   uint32_t DataSize;
@@ -128141,7 +128155,7 @@ void ProcessSystemRenderingAndMemoryManagement(void)
   int LoopCounter;
   long long *CharacterCode3;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint Utf16Char4;
   long long SystemDataNode;
   float SystemFloatValue;
@@ -128754,7 +128768,7 @@ void ProcessSystemEventQueueAndMemoryAllocation(void)
 {
   int *ReferenceCountPointer;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint64_t CalculatedCodePoint;
   int ValidationResult;
@@ -128952,7 +128966,7 @@ void ProcessSystemMemoryBlock(void)
 {
   int *ReferenceCountPointer;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint64_t CalculatedCodePoint;
   int ValidationResult;
@@ -129069,7 +129083,7 @@ void SystemMemoryReferenceCountManager(void)
 {
   int *ReferenceCountPointer;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   int RemainingSpace;
   long long SystemContext;
@@ -130175,7 +130189,7 @@ void ProcessCharacterTableDataFiltering(void)
   long long PrimaryDataSize;
   long long ProcessingResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t StackFrameAddressPointer;
   long long *EngineContext;
   long long SystemDataNode;
@@ -130985,7 +130999,7 @@ unsigned long long ConvertSystemDataAndParameters(uint64_t CharacterCode,uint64_
 {
   uint64_t Utf16Char;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint8_t MemoryAddressMask;
   int RemainingSpace;
   int ValidationResult;
@@ -131167,7 +131181,7 @@ uint64_t * ManageSystemMemoryPointers(uint64_t *CharacterCode,long long SystemBu
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   float MatrixTransformMultiplier1;
   float MatrixTransformMultiplier2;
   float CalculatedDistance;
@@ -131291,7 +131305,7 @@ uint64_t * HandleFloatMemoryOperations(uint64_t *CharacterCode,long long SystemB
 {
   float SystemContextPrimaryFloat;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   float MatrixTransformMultiplier1;
   float MatrixTransformMultiplier2;
   float CalculatedDistance;
@@ -135234,7 +135248,7 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Syste
   float InputDataLength;
   uint32_t *PrimaryProcessingStatusFlag7;
   float *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   byte HighByte8;
   long long SystemRegisterR11;
   uint64_t RegisterR12Value;
@@ -137076,7 +137090,7 @@ void InitializeSystemStringProcessing(void)
   int StringComparisonResult4;
   float *pContextSecondaryFloat5;
   float *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   byte HighByte6;
   char RegisterR12ValueB;
   long long BufferValidationStatus;
@@ -138768,7 +138782,7 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode)
   int StringComparisonResult4;
   float *pContextSecondaryFloat5;
   float *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   byte HighByte6;
   char RegisterR12ValueB;
   float ContextSecondaryFloat7;
@@ -140389,7 +140403,7 @@ void ProcessSystemStatusAndValidation(void
   int StringComparisonResult4;
   float *pContextSecondaryFloat5;
   float *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   byte HighByte6;
   char RegisterR12ValueB;
   float ContextSecondaryFloat7;
@@ -142065,7 +142079,7 @@ void ProcessSystemMemoryAllocation(uint64_t CharacterCode,long long SystemBuffer
   int StringComparisonResult2;
   float *pContextSecondaryFloat3;
   float *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   byte HighByte4;
   uint RegisterValueEDI;
   char RegisterR12ValueB;
@@ -143621,7 +143635,7 @@ void ProcessSystemFloatVectorOperation(float CharacterCode,float SystemBufferSiz
   uint64_t UnicodeCharacterCode;
   uint8_t MemoryAllocationHandle;
   float *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   byte CurrentByteValue9;
   float *RegisterR12Value;
@@ -144706,7 +144720,7 @@ void ExecuteSystemCoreDataProcessing(void)
   uint8_t MemoryAllocationHandle;
   long long StringIndexCounter;
   float *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint64_t SystemDataNode;
   byte ValidationSuccessFlag;
   float *RegisterR12Value;
@@ -145552,7 +145566,7 @@ void ProcessSystemStatusValidationAndInitialization(void)
   uint64_t *ConfigurationString;
   uint8_t Utf16ConversionContext;
   float *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint32_t PrimaryReturnCode;
   uint64_t SystemDataNode;
   float *RegisterR12Value;
@@ -145896,7 +145910,7 @@ void ProcessUnicodeCharacterEncodingValidation(void)
   uint8_t UnicodeCodePoint;
   int EncodingValidationResult;
   uint64_t *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   float *RegisterR12Value;
   long long RegisterR13Value;
   uint NullPointerD;
@@ -146035,7 +146049,7 @@ void ProcessCharacterCodeConversionAndValidation(long long CharacterCode)
   uint8_t CalculatedCodePoint;
   int ValidationResult;
   uint32_t *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long RegisterR13Value;
   uint NullPointerD;
   float AuxiliaryFloat13;
@@ -146136,7 +146150,7 @@ void InitializeSystemEventProcessor(void)
   uint8_t MemoryAllocationIndex;
   int InputDataLength;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int RegisterValueEDI;
   long long RegisterR13Value;
   uint NullPointerD;
@@ -146199,7 +146213,7 @@ void ProcessSystemMemoryCleanup(void)
   char CurrentCharacter;
   uint8_t MemoryAllocationIndex;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long RegisterR13Value;
   uint NullPointerD;
   float AuxiliaryFloat13;
@@ -146517,7 +146531,7 @@ void ProcessSystemDataValidation(void)
   long long AllocatedMemorySize;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   float CalculatedDistance;
   
@@ -146602,11 +146616,11 @@ void InitializeSystemContextManager(void)
 {
   int *ReferenceCountPointer;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   uint8_t *NullPointerValue;
   float MatrixTransformMultiplier2;
@@ -146690,7 +146704,7 @@ void ProcessSystemFloatCalculation(void)
   long long BufferStatus;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   float CalculatedFilterValue;
   
@@ -146743,7 +146757,7 @@ void InitializeSystemFloatProcessor(void)
   long long BufferStatus;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   float CalculatedFilterValue;
   
@@ -146795,7 +146809,7 @@ void ProcessSystemDataDeallocation(void)
   long long PrimaryDataSize;
   int in_EAX;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   float ContextSecondaryFloat;
   
@@ -146890,7 +146904,7 @@ d2e0(long long CharacterCodevoid ValidateSystemDataTablePointer(long long Charac
 {
   long long PrimaryDataSize;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   int RemainingSpace;
   
@@ -147298,7 +147312,7 @@ void SetCharacterEncodingBufferSize(int CharacterCode, uint32_t SystemBufferSize
 {
   uint Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int iStack_28;
   uint32_t uStack_24;
   
@@ -147457,7 +147471,7 @@ void ProcessCharacterCodeAndMemoryBlock(int CharacterCode)
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint MemoryAddressMask;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -147680,7 +147694,7 @@ void ProcessUtf8CharacterEncoding64(uint64_t CharacterCode, long long SystemBuff
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long SystemDataNode;
   unsigned long long CalculatedCodePoint;
@@ -147717,7 +147731,7 @@ unsigned long long CheckSystemInternalStatus(void
   uint Utf16Char;
   unsigned long long ProcessingResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   MemoryBlockIndex = *(long long *)(SystemConfigurationHandle + 0x1b00);
   if (MemoryBlockIndex == *(long long *)(SystemConfigurationHandle + 0x1af8)) {
@@ -147975,7 +147989,7 @@ void ProcessSystemSecondaryEventHandle(void)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   float MatrixTransformMultiplier2;
   
@@ -148012,7 +148026,7 @@ e4e0(voidvoid ProcessSystemEncoding(void
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   char CharacterInputDataLength;
@@ -148117,7 +148131,7 @@ e4f6(uint64_t CharacterCode,uint64_t SystemBufferSize,uint8_t Utf8SourcePointer,
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   char CharacterInputDataLength;
@@ -148221,7 +148235,7 @@ e63a(uint32_t CharacterCode,float SystemBufferSizevoid ProcessSystemFloatingPoin
   char OperationStatus;
   int EncodingValidationResult;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemRegisterR10;
   long long SystemRegisterR11;
   float in_XMM5_Da;
@@ -148277,7 +148291,7 @@ e6e8(voidvoid ValidateSystemData(void
 {
   int LockResult;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemRegisterR10;
   long long SystemRegisterR11;
   uint32_t FloatingPointRegisterA;
@@ -148307,7 +148321,7 @@ e706(voidvoid InitializeSystemValidator(void
 {
   int in_EAX;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemRegisterR10;
   long long SystemRegisterR11;
   uint32_t FloatingPointRegisterA;
@@ -148374,7 +148388,7 @@ e910(uint64_t CharacterCode,char SystemBufferSizevoid InitializeSystemComponents
 {
   int *ReferenceCountPointer;
   byte *HighBytePointer;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint CalculatedCodePoint;
   uint8_t aSystemStackFlag [32];
@@ -148742,7 +148756,7 @@ ed10(long long CharacterCodevoid ProcessSystemContextValidation(long long Charac
 {
   int LockResult;
   bool HighByte;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   long long *AllocatedMemorySizePointer;
   int ValidationResult;
@@ -148823,7 +148837,7 @@ void ValidateStringComparisonResult(long long CharacterCode)
   long long *EngineContext;
   int RemainingSpace;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long MemoryBoundaryEnd;
   long long MemoryPoolBlockSize;
   long long *SystemDataTablePointer;
@@ -148898,7 +148912,7 @@ void ProcessStringComparisonResultValidation(void)
   long long *EngineContext;
   int InputDataLength;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   long long AllocatedMemorySize;
   long long SystemRegisterR11;
@@ -149569,7 +149583,7 @@ float * ProcessUtf8CharacterEncoding(float *CharacterCode, long long SystemBuffe
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   float HorizontalAdjustment;
   float VerticalAdjustment;
   
@@ -149634,7 +149648,7 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *CharacterCode, long long Syst
 {
   uint Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int *ValidationResult;
   float CharacterScaleFactor;
   float HorizontalOffset;
@@ -150302,7 +150316,7 @@ void InitializeSystemEx(void)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   bool BooleanOperationFlag4;
   long long AllocatedMemorySize;
   uint8_t DataSize;
@@ -150583,7 +150597,7 @@ void ProcessSystemBufferStatus(void)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   bool BooleanOperationFlag4;
   uint32_t CalculatedCodePoint;
   uint32_t DataSize;
@@ -150604,7 +150618,7 @@ void ProcessSystemBufferStatus(void)
   uint64_t StackFrameAddressPointer;
   char CurrentCharacter;
   int StringComparisonResult0;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   uint64_t SystemDataNode;
   unsigned long long MemoryAllocationCounter;
   int StringComparisonResult2;
@@ -150922,7 +150936,7 @@ void ProcessSystemBufferStatusAndCharacterEncoding(void)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   bool BooleanOperationFlag4;
   uint16_t CalculatedCodePoint;
   void *CurrentNode;
@@ -150932,7 +150946,7 @@ void ProcessSystemBufferStatusAndCharacterEncoding(void)
   long long SystemContext;
   int RegisterEBPValue;
   char CurrentCharacter0;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   uint SystemStatusCode;
   int IntegerValue3;
   uint64_t RegisterR12Value;
@@ -151169,7 +151183,7 @@ void ProcessSystemContextAndUnicodeCodePoint(void)
   unsigned long long UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
   long long SystemContext;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   uint64_t RegisterR12Value;
   
   if ((*(uint *)(SystemContext + 0x19e8) & 0x400) == 0) {
@@ -151286,7 +151300,7 @@ int * ProcessUtf8ToUtf16CharacterEncoding(long long CharacterCode,int SystemBuff
 {
   int LockResult;
   uint MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint16_t MemoryAddressMask;
   int *ConversionResultPointer;
   int ValidationResult;
@@ -151599,7 +151613,7 @@ void ValidateCharacterEncodingData(uint64_t CharacterCode)
   long long SystemContext;
   uint RegisterEBPValue;
   int ArrayIndex;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   unsigned long long ProcessCurrentCharacter;
   long long SystemDataNode;
   long long CharacterLimit;
@@ -151801,7 +151815,7 @@ void ProcessSystemFloatDataAndCheckStatus(void)
   uint RegisterEBPValue;
   char CharacterStatus2;
   int ComputedResult;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   unsigned long long MemoryAllocationLoopCounter;
   long long SystemDataNode;
   float FloatingPointRegisterA;
@@ -152654,7 +152668,7 @@ uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t S
          (AuxiliaryFloat9 < *(float *)(SystemRegisterR11 + 0x18))) && (*(int *)(in_R8 + 0x1cfc) == 1)) &&
        ((*(uint *)(*(long long *)(in_R8 + 0x1c98) + 0xc) & 0x10000000) == 0)) {
       IntegerValue = *(int *)(in_R8 + 0x1d2c);
-      if (IntegerValue == 0) {
+      if (LockResult == 0) {
         if (Utf8SourcePointer <= FloatingPointRegisterA) {
           return SystemBufferSize;
         }
@@ -155275,7 +155289,7 @@ void ProcessSystemFloatMatrixOperations(void
 {
   float *SystemFloatPointer;
   long long BufferPointer;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemContextPointer;
   long long SystemDataNode;
   int SystemRegisterValue;
@@ -155393,7 +155407,7 @@ void ProcessSystemValidationEC4(void)
   float *pSystemContextPrimaryFloat;
   long long BufferStatus;
   long long ProcessingResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemContext;
   long long SystemDataNode;
   uint32_t CharacterLimitD;
@@ -155506,7 +155520,7 @@ void ProcessSystemValidationFDB(void)
 {
   float *pSystemContextPrimaryFloat;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemContext;
   uint32_t CharacterLimitD;
   float MatrixTransformMultiplier1;
@@ -156056,7 +156070,7 @@ void ProcessCharacterEncoding680(int CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   int RemainingSpace;
   int ValidationResult;
@@ -157509,7 +157523,7 @@ void CoreEngineProcessSystemBufferStatus(void)
   uint SystemChecksum;
   uint8_t *StringProcessingStatus;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long Utf16Char;
   long long SystemDataNode;
   char CurrentCharacter1;
@@ -157683,7 +157697,7 @@ void CoreEngineProcessCharacterCode(float CharacterCode)
 {
   unsigned long long *CharacterStatusBuffer;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   char SystemCharacterCode;
   float *FloatProcessingStatusFlag;
@@ -157692,7 +157706,7 @@ void CoreEngineProcessCharacterCode(float CharacterCode)
   uint8_t *TemporaryBuffer;
   uint32_t ProcessCurrentCharacter;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemStatusCode;
   long long SystemDataNode;
   char CurrentCharacter3;
@@ -158361,13 +158375,13 @@ void CoreEngineProcessSystemCharacter(void)
 {
   uint Utf16Char;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   int RemainingSpace;
   char *CharacterPointer;
   long long MemoryPoolBlockSize;
   long long secondaryLoopCounter;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   unsigned long long MemoryAllocationLoopCounter;
   char *CurrentCharacter0;
@@ -159283,7 +159297,7 @@ void ProcessUtf8CharacterEncodingAndMemoryAllocation(uint64_t CharacterCode,int 
   long long DataBlockSize;
   int *ReferenceCounter;
   unsigned long long ConversionContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemHandle;
   int ProcessingStatus;
   uint64_t FramePointer;
@@ -159531,7 +159545,7 @@ void InitializeSystemContextAndMemoryManagement(void)
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int ValidationStatus;
   uint64_t CalculatedCodePoint;
   int ConversionResult;
@@ -159720,7 +159734,7 @@ void InitializeSystemFloatValues(void
   uint MemoryAllocationIndex;
   int *ReferenceCountPointer1;
   long long SystemContextValue;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   unsigned long long ValidationResult;
   uint Utf16Char4;
@@ -159849,7 +159863,7 @@ void ProcessSystemFloatInitialization(void
   uint SystemMemoryAllocationResult;
   int *ReferenceCountPointer0;
   long long SystemStringIndex;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   unsigned long long SystemStatusCode;
   uint ValidationResult;
@@ -160019,7 +160033,7 @@ void HandleCharacterEncodingBufferExpansion(long long CharacterCode
 {
   uint32_t *CharacterStatusBuffer;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int *pEncodingValidationResult;
   uint CalculatedCodePoint;
   uint32_t DataSize;
@@ -160377,7 +160391,7 @@ void InitializeSystemStateAndMemoryManagement(void
 {
   uint32_t *CharacterStatusBuffer;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t MemoryAddressMask;
   long long AllocatedMemorySize;
   int ValidationResult;
@@ -160541,7 +160555,7 @@ void ProcessSystemCharacterAndStatusManagement(void
 {
   uint32_t *CharacterStatusBuffer;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t MemoryAddressMask;
   long long AllocatedMemorySize;
   int ValidationResult;
@@ -160912,7 +160926,7 @@ unsigned long long CalculateCharacterProcessingResult(void
 {
   int LockResult;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   unsigned long long ProcessingResult;
   float MatrixTransformMultiplier2;
@@ -161513,10 +161527,10 @@ void ProcessCharacterCodeConversion(void
 {
   int *ReferenceCountPointer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   unsigned long long CalculatedCodePoint;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint DataSize;
   uint32_t SystemChecksum;
   unsigned long long CharacterLimit;
@@ -161595,10 +161609,10 @@ void ProcessCharacterCodeConversion(void
 {
   long long *CharacterCode;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint MemoryAddressMask;
   int *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int RegisterValueEDI;
   unsigned long long DataSize;
   long long CharacterLimit;
@@ -161672,7 +161686,7 @@ void ProcessCharacterCodeConversion(void
   long long BufferStatus;
   uint UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint32_t CalculatedCodePoint;
   unsigned long long CharacterLimit;
   float FloatingPointRegisterA;
@@ -161734,7 +161748,7 @@ void ProcessSystemMemoryManagementAndBufferStatus(void)
   long long BufferStatus;
   uint UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint32_t CalculatedCodePoint;
   unsigned long long CharacterLimit;
   float FloatingPointRegisterA;
@@ -163040,7 +163054,7 @@ void HandleStringCopyOperation(long long CharacterCode, long long SystemBufferSi
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
   byte BooleanByteFlag6;
@@ -163115,7 +163129,7 @@ void ProcessCharacterTableCleanup(long long CharacterCode, long long SystemBuffe
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
   byte BooleanByteFlag6;
@@ -163182,7 +163196,7 @@ void ProcessCharacterTableCleanup(long long CharacterCode, long long SystemBuffe
   int *ReferenceCountPointer;
   long long BufferStatus;
   long long SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataNode;
   long long SystemDataRegistry;
   char RegisterR13ValueB;
@@ -163243,7 +163257,7 @@ void ResetSystemCharacterState(void)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemContext;
   char RegisterR13ValueB;
   long long CharacterLimit;
@@ -163383,7 +163397,7 @@ void ProcessCharacterInputBufferValidation(uint32_t *CharacterCode)
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   bool BooleanOperationFlag4;
   bool shouldReturnSource;
   int ValidationResult;
@@ -163485,7 +163499,7 @@ void ProcessCharacterMemoryAllocation(long long CharacterCode, uint64_t SystemBu
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   MemoryBlockIndex = SystemConfigurationHandle;
   Utf16Char = *(uint32_t *)(SystemConfigurationHandle + 0x1b48);
@@ -163945,7 +163959,7 @@ void ProcessUtf8CharacterEncodingEx(float CharacterCode,byte SystemBufferSize,in
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t *MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   uint32_t DataSize;
@@ -164294,7 +164308,7 @@ void ProcessUtf8CharacterEncodingAdvanced(float CharacterCode,byte SystemBufferS
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t *MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   uint32_t DataSize;
@@ -164650,7 +164664,7 @@ void ProcessCharacterCodeValidation(float CharacterCode
   uint16_t ProcessingStatusFlag;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   uint16_t SystemMemoryAllocationResult;
   long long RegisterR13Value;
@@ -164840,7 +164854,7 @@ void ProcessCharacterDataConversion(uint32_t CharacterCode,uint64_t SystemBuffer
   int StringComparisonResult;
   uint32_t UnicodeCodePoint;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   long long RegisterR13Value;
   uint32_t CharacterLimitD;
@@ -164923,7 +164937,7 @@ void ProcessCharacterFinalValidation(uint32_t CharacterCode
   uint32_t SystemChecksum;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   long long RegisterR13Value;
   uint32_t CharacterLimitD;
@@ -165017,7 +165031,7 @@ void ProcessSystemValidation(void
 {
   int LockResult;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   long long RegisterR13Value;
   uint32_t CharacterLimitD;
@@ -165705,7 +165719,7 @@ uint64_t ProcessSystemCharacterStatusBuffer(long long CharacterCode,long long Sy
 {
   int LockResult;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   int RemainingSpace;
   long long MemoryBoundaryEnd;
@@ -165746,7 +165760,7 @@ uint64_t ProcessSystemCharacterStatusBuffer(long long CharacterCode,long long Sy
       if ((StringComparisonResult == 0) || ((char)pComputedResult[4] == '\0')) {
         if (IntegerValue == 0) goto LAB_180138f93;
       }
-      else if (IntegerValue == 0) {
+      else if (LockResult == 0) {
         return 1;
       }
       if ((*(char *)(MemoryBoundaryEnd + 0x24) != '\0') && (StringComparisonResult == 0)) {
@@ -165938,7 +165952,7 @@ char ProcessSystemDataStructureMemory(long long CharacterCode, long long SystemB
                                      byte AdditionalParameter2{
   bool CurrentByteValue;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   byte shouldReturnSource;
   char CharacterInputDataLength;
@@ -166158,7 +166172,7 @@ uint8_t GetSystemStringEncodingStatus(void)
   float *pMatrixTransformMultiplier2;
   uint InputDataLength;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   float *FloatProcessingStatusFlag;
   long long SystemDataNode;
   float *pFloatVariable7;
@@ -166938,7 +166952,7 @@ void ProcessCharacterEncodingValidation(long long CharacterCode,uint32_t *Charac
 {
   float SystemContextPrimaryFloat;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte BooleanByteFlag4;
   long long AllocatedMemorySize;
   uint32_t DataSize;
@@ -167103,7 +167117,7 @@ void ProcessUtf8ToUtf16MemoryAllocationAndFloatCalculation(long long CharacterCo
 {
   float SystemContextPrimaryFloat;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte BooleanByteFlag4;
   long long AllocatedMemorySize;
   float CalculatedDistance;
@@ -167625,7 +167639,7 @@ void ProcessCharacterEncodingBufferOperation(long long CharacterCode, int System
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   if (((Utf8SourcePointer == 0) || ((*(uint *)(CharacterCode + 0xec) & Utf8SourcePointer) != 0)) &&
      (*(uint *)(CharacterCode + 0xec) = *(uint *)(CharacterCode + 0xec) & 0xfffffff1,
@@ -167879,7 +167893,7 @@ LAB_18013b1d6:
 {
   int *ReferenceCountPointer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   unsigned long long CalculatedCodePoint;
   unsigned long long DataSize;
@@ -168378,7 +168392,7 @@ void ProcessCharacterCodeUtf8Encoding(long long CharacterCode)
 {
   uint Utf16Char;
   int *pStringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte BooleanByteFlag4;
   uint16_t CalculatedCodePoint;
   uint32_t DataSize;
@@ -168604,7 +168618,7 @@ void ValidateCharacterEncodingSystemConfiguration(void)
   int IntegerValue9;
   unsigned long long StackFrameAddressPointer;
   unsigned long long Utf16Char;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   byte IsMemoryBlockEqual;
   long long CharacterLimit;
@@ -168720,7 +168734,7 @@ void ProcessCharacterCodeUtf16Conversion(long long CharacterCode)
   int IntegerValue9;
   unsigned long long StackFrameAddressPointer;
   unsigned long long Utf16Char;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   byte IsMemoryBlockEqual;
   long long CharacterLimit;
@@ -168820,7 +168834,7 @@ void InitializeSystemMemoryAndCharacterEncoding(void)
   int SystemRegister;
   unsigned long long StackFrameAddress;
   unsigned long long Utf16CharacterValue;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   byte MemoryBlockStatus;
   long long CharacterLimit;
@@ -169623,7 +169637,7 @@ void ProcessUtf8CharacterEncodingValidation(long long CharacterCode, uint64_t *C
 {
   char CurrentCharacter;
   int *pStringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   void *CharacterCodePointer;
   char *CharacterPointer;
@@ -170533,7 +170547,7 @@ void ProcessSystemDataSynchronize(void)
   int ProcessIterationCount;
   uint *StringProcessingStatus;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   byte *ByteBufferPointer9;
   char *SystemDataNode;
   byte *CurrentBytePointer0;
@@ -170678,7 +170692,7 @@ void ProcessSystemConfigurationData(void)
   uint *StringProcessingStatus;
   long long StackFrameAddressPointer;
   byte *ByteBufferPointer9;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   char *SystemDataNode;
   byte *CurrentBytePointer0;
   char *BufferEndPointer;
@@ -170909,7 +170923,7 @@ long long ProcessCharacterCodeData(long long *CharacterCode)
   unsigned long long CalculatedCodePoint;    // 计算出的Unicode码点
   unsigned long long DataSize;               // 数据大小
   int ProcessIterationCount;                // 处理迭代计数
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   long long SystemDataNode;
   
   ReferenceCountPointer = (int *)(SystemDataNode + 0x2e08);
@@ -170975,7 +170989,7 @@ long long ExecuteCharacterTableProcessingLoop(void
   long long PrimaryDataSize;
   int *SystemContext;
   int RegisterEBPValue;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   long long SystemDataNode;
   unsigned long long MemoryAllocationIndex;
   long long *NullPointerValue;
@@ -171018,7 +171032,7 @@ long long GetCharacterTablePointerAndProcessData(void
 {
   long long PrimaryDataSize;
   int *SystemContext;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   long long SystemDataNode;
   long long *NullPointerValue;
   
@@ -171051,7 +171065,7 @@ long long ProcessSystemMemoryFinalization(void)
 {
   long long SystemMemorySize;
   int *SystemContext;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   long long SystemDataNode;
   long long *MemoryStatusPointer;
   
@@ -171809,7 +171823,7 @@ void ProcessCharacterCodeValidationAndMemoryManagement(uint32_t CharacterCode)
 {
   short SystemShortValue1;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
   uint DataSize;
@@ -171909,7 +171923,7 @@ void ProcessSystemBufferSizeAndCharacterCodeManagement(uint64_t CharacterCode, u
   long long EncodingConversionResult;
   uint ProcessCurrentCharacter;
   unsigned long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int RegisterValueEDI;
   long long SystemRegisterR10;
   uint64_t *RegisterR12Value;
@@ -172042,7 +172056,7 @@ void ProcessCharacterCodeAndStringComparison(uint32_t CharacterCode)
 {
   short SystemShortValue1;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   uint DataSize;
@@ -172121,7 +172135,7 @@ void ProcessSystemDataFormatting(void)
 {
   short SystemShortValue1;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   uint DataSize;
@@ -172409,7 +172423,7 @@ void ProcessSystemDataTable(int *CharacterCode, uint64_t *CharacterCodeSize)
   IntegerValue = CharacterCode[1];
   if (*CharacterCode == IntegerValue) {
     EncodingValidationResult = *CharacterCode + 1;
-    if (IntegerValue == 0) {
+    if (LockResult == 0) {
       StringComparisonResult = 8;
     }
     else {
@@ -172664,7 +172678,7 @@ void NoOperationFunction(void)
     *CharacterCode = SystemBufferSize;
     return;
   }
-  if (IntegerValue == 0) {
+  if (LockResult == 0) {
     StringComparisonResult = 8;
   }
   else {
@@ -172783,7 +172797,7 @@ void UpdateSystemContextRegisterValue(void)
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   uint64_t CalculatedCodePoint;
   long long MemoryBoundaryEnd;
@@ -172939,7 +172953,7 @@ void ProcessUtf8ToUtf16DataFlow(uint64_t *CharacterCode,uint64_t SystemBufferSiz
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   uint CalculatedCodePoint;
   unsigned long long DataSize;
@@ -173208,7 +173222,7 @@ void ProcessCharacterFlushOperation(void)
   IntegerValue = CharacterCode[1];
   if (*CharacterCode == IntegerValue) {
     RemainingSpace = *CharacterCode + 1;
-    if (IntegerValue == 0) {
+    if (LockResult == 0) {
       InputDataLength = 8;
     }
     else {
@@ -173312,7 +173326,7 @@ void ProcessCharacterResetBuffer(void)
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   uint64_t CalculatedCodePoint;
   int ValidationResult;
@@ -173369,7 +173383,7 @@ void ProcessCharacterInitializeBuffer(void)
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long ProcessingResult;
   uint64_t MemoryAddressMask;
   int *SystemContext;
@@ -173412,7 +173426,7 @@ void ProcessCharacterSetupBuffer(void)
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   int *SystemContext;
   uint64_t *StackFrameAddressPointer;
@@ -173565,7 +173579,7 @@ void ProcessCharacterConfigureBuffer(void)
   
   IntegerValue = CharacterCode[1];
   if (IntegerValue < SystemBufferSize) {
-    if (IntegerValue == 0) {
+    if (LockResult == 0) {
       IntegerValue = 8;
     }
     else {
@@ -173589,7 +173603,7 @@ void ProcessCharacterConfigureBuffer(void)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   MemoryBlockIndex = SystemConfigurationHandle;
   BufferStatus = *(long long *)(CharacterCode + 2);
@@ -173616,7 +173630,7 @@ void ProcessCharacterConfigureBuffer(void)
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
   int ValidationResult;
@@ -173722,7 +173736,7 @@ long long ProcessUtf8BufferAllocationAndConfiguration(int *CharacterCode,long lo
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
   int ValidationResult;
@@ -173982,7 +173996,7 @@ void ProcessSystemBufferSizeOptimization(int *CharacterCode,int SystemBufferSize
     *CharacterCode = SystemBufferSize;
     return;
   }
-  if (IntegerValue == 0) {
+  if (LockResult == 0) {
     StringComparisonResult = 8;
   }
   else {
@@ -174184,7 +174198,7 @@ long long ProcessCharacterCodeMemoryManagement(long long CharacterCode)
 {
   long long *CharacterCode;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   MemoryBlockIndex = *(long long *)(CharacterCode + 8);
@@ -177685,7 +177699,7 @@ void ProcessCharacterCodeBufferResetAndValidation(uint64_t *CharacterCode,uint64
 {
   long long PrimaryDataSize;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *pMemoryOffsetValue;
   long long lStack_b0;
   uint32_t CoreEngineValueA8;
@@ -177907,10 +177921,10 @@ void ProcessUtf8ToUtf16ConversionBuffered(long long CharacterCode,long long *Cha
   long long PrimaryDataSize;
   long long ProcessingResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long *SystemDataNode;
   void *SecondaryProcessingStatusFlag;
   
@@ -177986,7 +178000,7 @@ void CleanupSystemResources(void)
 {
   long long PrimaryDataSize;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long *SystemDataNode;
   void *PrimaryProcessingStatusFlag;
   long long CharacterLimit;
@@ -178050,7 +178064,7 @@ void ProcessUtf8CharacterEncodingAdvanced(uint64_t CharacterCode,uint64_t System
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   unsigned long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   void *MemoryAddressMask;
   long long CharacterLimit;
@@ -178097,7 +178111,7 @@ void ProcessUtf8CharacterEncodingAdvanced(uint64_t CharacterCode,uint64_t System
 
 void SynchronizeSystemDataAndResources(void)
 {
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   void *CharacterStatusBuffer;
   
@@ -178385,7 +178399,7 @@ void ProcessUtf8ToUtf16ConversionInitial(uint64_t CharacterCode,long long System
 {
   float SystemContextPrimaryFloat;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   uint64_t DataSize;
@@ -178699,7 +178713,7 @@ void ProcessUtf8ToUtf16ConversionEx(long long CharacterCode,uint64_t SystemBuffe
   long long systemLoopCounter;
   unsigned long long Utf16Char;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   float *in_R8;
   unsigned long long SystemRegisterR11;
   float SecondaryFloatValue;
@@ -178910,7 +178924,7 @@ void ProcessCharacterCodeValidationWithFloat(int CharacterCode,unsigned long lon
   uint64_t DataSize;
   unsigned long long SystemChecksum;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint ProcessingStatusFlag;
   unsigned long long SystemRegisterR11;
   unsigned long long MemoryAllocationLoopCounter;
@@ -179123,7 +179137,7 @@ void ProcessUtf8ToUtf16ConversionWithValidation(uint64_t CharacterCode,uint64_t 
   uint64_t DataSize;
   unsigned long long SystemChecksum;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint ProcessingStatusFlag;
   unsigned long long SystemRegisterR11;
   unsigned long long MemoryAllocationLoopCounter;
@@ -180058,7 +180072,7 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *CharacterCode,long lon
 {
   uint Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint64_t CalculatedCodePoint;
   
@@ -180152,7 +180166,7 @@ void ManageMemoryReferenceCount(unsigned long long *CharacterCode)
 {
   int *ReferenceCountPointer;
   void *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryAddressMask;
   
   if (CharacterCode[0xd] != 0) {
@@ -180303,7 +180317,7 @@ void CalculateAndUpdateMemoryPoolSize(uint64_t CharacterCode, long long SystemBu
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
   long long *MemoryBoundaryPointer;
@@ -180503,7 +180517,7 @@ void ExecuteSystemCharacterEncodingCleanup(void)
 {
   uint64_t Utf16Char;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
   long long *MemoryBoundaryPointer;
@@ -181288,7 +181302,7 @@ void ProcessCharacterCodeAndSystemBufferSize(long long CharacterCode,long long S
 {
   uint32_t Utf16Char;
   uint32_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemContext;
   unsigned long long MemoryOffsetValue;
   long long *PatternIndex;
@@ -181353,7 +181367,7 @@ void ProcessCharacterCodeSystemBufferAndUtf8Source(uint64_t CharacterCode,uint64
   uint32_t Utf16Char;
   long long BufferStatus;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint32_t *SystemDataNode;
   
   if (SystemContext != 0) {
@@ -181387,7 +181401,7 @@ long long * ProcessCharacterCodeAndSizeManagement(long long *CharacterCode,long 
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   unsigned long long CalculatedCodePoint;
   unsigned long long DataSize;
@@ -181464,7 +181478,7 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
   long long PrimaryDataSize;
   long long BufferStatus;
   long long ProcessingResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *SystemContext;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
@@ -181526,7 +181540,7 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
   long long PrimaryDataSize;
   long long *SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   
   if (SystemDataNode == 0) {
@@ -181559,7 +181573,7 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
   long long BufferStatus;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   unsigned long long UnicodeCodePoint;
   
@@ -181936,7 +181950,7 @@ uint64_t * AllocateCharacterSystemMemory(uint64_t *CharacterCode, long long Syst
   long long PrimaryDataSize;
   uint32_t *PrimaryProcessingStatusFlag;
   uint32_t *systemEventTemplatePointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long *SystemDataNode;
   
   if (PatternIndex == 0) {
@@ -182017,7 +182031,7 @@ uint64_t * AllocateCharacterSystemMemory(uint64_t *CharacterCode, long long Syst
 {
   long long PrimaryDataSize;
   long long *SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   
   if (SystemBufferSize == 0) {
     CharacterTablePointer = 0;
@@ -182158,10 +182172,10 @@ long long InitializeCharacterProcessingContext(long long CharacterCode,long long
   long long PrimaryDataSize;
   long long ProcessingResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   long long *SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   unsigned long long CalculatedCodePoint;
   
@@ -182216,7 +182230,7 @@ long long InitializeCharacterProcessingContext(long long CharacterCode,long long
   long long BufferStatus;
   uint64_t *systemEventTemplatePointer;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   
   CharacterTablePointer = NetworkConnectionManager;
@@ -182325,11 +182339,11 @@ void ProcessCharacterWithAdvancedValidation(long long *CharacterCode,unsigned lo
   long long PrimaryDataSize;
   long long ProcessingResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   long long SystemContext;
   unsigned long long CalculatedCodePoint;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long *SystemDataNode;
   
   BufferStatus = ProcessingResult >> 5;
@@ -182382,7 +182396,7 @@ void ProcessCharacterWithAdvancedValidation(long long *CharacterCode,unsigned lo
   long long BufferStatus;
   uint64_t *systemEventTemplatePointer;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   
   CharacterTablePointer = NetworkConnectionManager;
@@ -182544,7 +182558,7 @@ void ProcessCharacterWithAdvancedValidation(long long *CharacterCode,unsigned lo
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long lStackX_8;
@@ -182604,7 +182618,7 @@ void ProcessCharacterWithAdvancedValidation(long long *CharacterCode,unsigned lo
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long StackFrameAddressPointer;
   long long *SystemDataNode;
   
@@ -182645,7 +182659,7 @@ void ProcessCharacterWithAdvancedValidation(long long *CharacterCode,unsigned lo
   unsigned long long UnicodeCodePoint;
   long long SystemDataRegistry;
   unsigned long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   long long SystemRegisterR10;
   uint64_t DataStorageValue;
@@ -183158,7 +183172,7 @@ long long * FUN_18014fbc0(long long *CharacterCode,long long *CharacterCodeSize,
 {
   long long *CharacterCode;
   uint MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long *AllocatedMemorySizePointer;
   
@@ -183259,7 +183273,7 @@ long long * FUN_18014fe60(long long CharacterCode,long long SystemBufferSize,lon
 {
   long long *CharacterCode;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   unsigned long long CalculatedCodePoint;
   long long MemoryBoundaryEnd;
@@ -183432,7 +183446,7 @@ long long * FUN_18014fe9c(long long CharacterCode,uint64_t SystemBufferSize,long
 {
   long long *CharacterCode;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   unsigned long long CalculatedCodePoint;
   long long MemoryBoundaryEnd;
@@ -183628,7 +183642,7 @@ long long * FUN_180150240(long long *CharacterCode,long long *CharacterCodeSize
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   unsigned long long CalculatedCodePoint;
   unsigned long long DataSize;
@@ -183694,7 +183708,7 @@ long long * FUN_180150240(long long *CharacterCode,long long *CharacterCodeSize
   long long PrimaryDataSize;
   long long BufferStatus;
   long long ProcessingResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *SystemContext;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
@@ -183757,7 +183771,7 @@ long long * FUN_180150240(long long *CharacterCode,long long *CharacterCodeSize
   long long PrimaryDataSize;
   long long *SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   
   if (SystemDataNode == 0) {
@@ -183790,7 +183804,7 @@ long long * FUN_180150240(long long *CharacterCode,long long *CharacterCodeSize
   long long BufferStatus;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   unsigned long long UnicodeCodePoint;
   
@@ -185595,7 +185609,7 @@ uint64_t ProcessSystemCharacterEncodingConfiguration(long long SystemContext, lo
 {
   void **pCharacterStatusBuffer;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   uint32_t CalculatedCodePoint;
   void *SecondaryProcessingStatusFlag;
@@ -187290,7 +187304,7 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t CharacterCode,uns
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   FUN_18015b450();
@@ -187380,7 +187394,7 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t CharacterCode,uns
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   FUN_18015b450();
@@ -188153,7 +188167,7 @@ AllocateSystemMemoryBuffer(long long *CharacterCode,long long *CharacterCodeSize
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   int RemainingSpace;
   uint DataSize;
@@ -188320,7 +188334,7 @@ ResizeMemoryPool(long long *CharacterCode,long long *CharacterCodeSize,uint64_t 
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   long long *SystemContextRegister;
   long long *SystemRegisterPointerX10;
@@ -188906,7 +188920,7 @@ uint64_t ProcessSystemMemoryManagement(uint64_t CharacterCode,long long SystemBu
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   char SystemCharacterCode;
   int ValidationResult;
@@ -188962,7 +188976,7 @@ uint64_t ProcessSystemMemoryManagement(uint64_t CharacterCode,long long SystemBu
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   char CharacterInputDataLength;
@@ -189017,7 +189031,7 @@ uint64_t ProcessSystemMemoryManagement(uint64_t CharacterCode,long long SystemBu
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   int RemainingSpace;
   long long *MemoryBoundaryPointer;
@@ -189185,7 +189199,7 @@ long long * FUN_180159210(long long CharacterCode,long long *CharacterCodeSize,u
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   uint64_t *CharacterCodePointer;
   void *CurrentNode;
@@ -189534,7 +189548,7 @@ ConfigureSystemParameters(uint64_t CharacterCode,uint64_t SystemBufferSize,uint6
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -189772,7 +189786,7 @@ void ProcessCharacterEncodingConversion(uint64_t CharacterCode,long long SystemB
 {
   long long PrimaryDataSize;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint16_t MemoryAddressMask;
   int RemainingSpace;
   uint16_t *SecondaryProcessingStatusFlag;
@@ -189933,7 +189947,7 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   FUN_18015b450();
@@ -189970,7 +189984,7 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
 {
   unsigned long long Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   Utf16Char = *(unsigned long long *)(CharacterCode + 0x10);
@@ -190110,9 +190124,9 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long StackFrameAddressPointer;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   unsigned long long MemoryOffsetValue;
   long long CharacterLimit;
@@ -190161,9 +190175,9 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long StackFrameAddressPointer;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   unsigned long long MemoryOffsetValue;
   uint64_t NullPointerValue;
   
@@ -190200,7 +190214,7 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long StackFrameAddressPointer;
   unsigned long long MemoryOffsetValue;
   
@@ -190237,7 +190251,7 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
 {
   uint32_t Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long MemoryOperationStatus;
@@ -190299,7 +190313,7 @@ uint64_t * FUN_18015b6b0(long long CharacterCode,uint64_t *CharacterCodeSize,int
 {
   int LockResult;
   int *pStringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int *pEncodingValidationResult;
   unsigned long long CalculatedCodePoint;
   uint64_t SystemRegisterFlagX8;
@@ -193222,9 +193236,9 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *CharacterC
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long StackFrameAddressPointer;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   unsigned long long MemoryOffsetValue;
   long long CharacterLimit;
@@ -193273,9 +193287,9 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *CharacterC
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long StackFrameAddressPointer;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   unsigned long long MemoryOffsetValue;
   uint64_t NullPointerValue;
   
@@ -193312,7 +193326,7 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *CharacterC
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long StackFrameAddressPointer;
   unsigned long long MemoryOffsetValue;
   
@@ -193548,7 +193562,7 @@ UpdateSystemStatus(uint64_t *CharacterCode,uint64_t SystemBufferSize,long long *
 {
   uint Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   uint64_t DataSize;
@@ -194038,7 +194052,7 @@ uint64_t * FUN_1801616b0(long long CharacterCode,uint64_t *CharacterCodeSize,uin
   SystemPriorityLevel = 0xfffffffffffffffe;
   TemporaryBuffer = (uint8_t *)0x0;
   IntegerValue = *(int *)(CharacterCode + 0x20);
-  if (IntegerValue == 0) {
+  if (LockResult == 0) {
     *CharacterCodeSize = &ThreadLocalStorageTemplate;
     SystemBufferSize[1] = 0;
     *(uint32_t *)(SystemBufferSize + 2) = 0;
@@ -194362,7 +194376,7 @@ LAB_180161e6a:
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   
   *(long long *)(SystemBufferSize + 0x48) = CharacterCode;
@@ -195057,7 +195071,7 @@ ProcessUtf8ToUtf16AdvancedStringConverter(uint64_t CharacterCode,uint64_t *Chara
 {
   uint Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   long long AllocatedMemorySize;
   int ValidationResult;
@@ -195520,7 +195534,7 @@ ProcessUtf8ToUtf16CharacterEncodingInitialize(uint64_t CharacterCode,uint64_t *C
 {
   uint32_t *CharacterStatusBuffer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint32_t CalculatedCodePoint;
   uint64_t DataSize;
@@ -196693,7 +196707,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx2(uint64_t CharacterCode,uint64_t *Characte
 {
   long long PrimaryDataSize;
   uint32_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint MemoryAddressMask;
   unsigned long long DataSize;
   unsigned long long SystemChecksum;
@@ -196886,7 +196900,7 @@ long long FUN_180168af0(long long CharacterCode,long long SystemBufferSize
 {
   uint Utf16Char;
   void *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -197061,7 +197075,7 @@ long long * FUN_180169110(uint64_t CharacterCode,long long *CharacterCodeSize,lo
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint64_t CalculatedCodePoint;
   void *SecondaryProcessingStatusFlag;
@@ -197167,7 +197181,7 @@ long long FUN_180169350(long long *CharacterCode,long long SystemBufferSize
 {
   uint32_t Utf16Char;
   char *SystemValidationFunction;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint16_t *pMemoryAddressMask;
   void *CharacterCodePointer;
   uint DataSize;
@@ -197422,7 +197436,7 @@ long long * FUN_180169f60(uint64_t CharacterCode,long long *CharacterCodeSize,ui
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long **pSystemContextPtr;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -197929,7 +197943,7 @@ LAB_18016aa7a:
 {
   uint Utf16Char;
   uint32_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   uint32_t aStackProcessingUnsignedValue68 [2];
   void *EncodingBuffer;
@@ -198548,7 +198562,7 @@ uint64_t FUN_18016bb80(long long CharacterCode,int *CharacterCodeSize
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   void *CharacterCodePointer;
   void *SecondaryProcessingStatusFlag;
@@ -199502,7 +199516,7 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long SystemBufferS
   long long CharacterTablePointer5;
   void *SystemCharacterStatusPointer;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int RegisterValueEDI;
   unsigned long long RegisterR12Value;
   uint64_t RegisterR13Value;
@@ -199599,7 +199613,7 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long SystemBufferS
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -199648,7 +199662,7 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long SystemBufferS
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   unsigned long long CalculatedCodePoint;
   
@@ -200354,7 +200368,7 @@ uint64_t InitializeUtf8ToUtf16ConversionEnvironment(uint64_t *CharacterCode,uint
 {
   long long *CharacterCode;
   uint32_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint CalculatedCodePoint;
   unsigned long long SystemChecksum;
@@ -200447,7 +200461,7 @@ uint64_t * FUN_18016e1a0(uint64_t *CharacterCode
 {
   long long PrimaryDataSize;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   
   FUN_180176060(CoreEngineEventInitialized);
@@ -200794,7 +200808,7 @@ ProcessCharacterCode(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t 
 {
   uint32_t *CharacterStatusBuffer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   uint32_t CalculatedCodePoint;
   uint64_t DataSize;
@@ -202296,7 +202310,7 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t CharacterCode,uint
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   unsigned long long CalculatedCodePoint;
   
@@ -202348,7 +202362,7 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long CharacterCode)
 {
   uint64_t *CharacterStatusBuffer;                    // 字符状态缓冲区指针
   uint32_t *PrimaryProcessingStatusFlag;              // 主要处理状态标志指针
-  long long MemoryOffset;                             // 内存偏移量
+  long long SearchStartIndex;                             // 内存偏移量
   long long SystemDataRegistry;              // 系统数据结构注册表
   unsigned long long CalculatedCodePoint;             // 计算得到的码点值
   uint8_t SystemOperationBuffer [32];                 // 系统操作缓冲区
@@ -202716,7 +202730,7 @@ void ProcessCharacterWindowMessageAndSystemStatus(long long CharacterCode)
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   uint8_t SystemOperationBuffer [32];
   uint64_t WindowAreaWidth;
@@ -203663,7 +203677,7 @@ void ValidateSystemCharacterData(long long CharacterCode, uint64_t SystemBufferS
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char OperationStatus;
   short SystemShortValue5;
   int ValidationResult;
@@ -204200,7 +204214,7 @@ void ProcessUnicodeCharacterAndMemoryManagement(void
   int EncodingValidationResult;
   unsigned long long CalculatedCodePoint;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint DataSize;
   float FloatVariable7;
   uint8_t aProcessingStatusFlag [16];
@@ -204682,7 +204696,7 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int SystemBufferSize,
     else {
       WindowWidth = SystemBufferSize;
       WindowHeight = Utf8SourcePointer;
-      if (IntegerValue == 0) {
+      if (LockResult == 0) {
         ArrayIndex = 0xca0000;
         if (SystemBufferSize <= InputDataLength) {
           WindowOffsetX = (InputDataLength - SystemBufferSize) / 2 + WindowOffsetX;
@@ -205634,7 +205648,7 @@ void ProcessCharacterCodeReferenceCount(unsigned long long *CharacterCode)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   unsigned long long CalculatedCodePoint;
   
@@ -205686,7 +205700,7 @@ void ProcessCharacterCodeMemoryManagement(unsigned long long *CharacterCode)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   unsigned long long CalculatedCodePoint;
   
@@ -205740,7 +205754,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long *C
 {
   long long PrimaryDataSize;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *MemoryAddressMask;
   uint8_t aCoreEngineUnsignedValue208 [32];
   void **ppDataProcessingStatus;
@@ -205845,7 +205859,7 @@ uint64_t FUN_180174c70(uint64_t CharacterCode,long long *CharacterCodeSize
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   char SystemCharacterCode;
   int ValidationResult;
@@ -206066,7 +206080,7 @@ void ProcessSystemDataValidation(uint64_t CharacterCode,long long SystemBufferSi
 {
   long long PrimaryDataSize;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint8_t aDataContentStatus [32];
   uint64_t CoreEngineUnsignedValue;
   void *memoryAllocationBuffer;
@@ -206112,7 +206126,7 @@ void ExecuteSystemDataProcessing(uint64_t CharacterCode,long long SystemBufferSi
 {
   long long PrimaryDataSize;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint8_t aDataContentStatus [32];
   uint64_t CoreEngineUnsignedValue;
   void *memoryAllocationBuffer;
@@ -206260,7 +206274,7 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long CharacterLimit;
   long long NullPointerValue;
   void *DataStorageValue;
@@ -206303,7 +206317,7 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
 {
   long long ProcessingResult;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint64_t uStack0000000000000028;
   uint32_t UnsignedStackProcessingParameter30;
   uint32_t uStack0000000000000038;
@@ -206818,7 +206832,7 @@ void ProcessCharacterCodeAndEncoding(long long CharacterCode,long long *Characte
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   uint64_t *CharacterCodePointer;
   uint8_t aCoreEngineValueA8 [32];
@@ -209058,7 +209072,7 @@ void ConvertUtf8CharacterEncoding(uint32_t CharacterCode)
   long long SystemDataRegistry;
   long long SystemContext;
   uint32_t *StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   
   if (SystemContext != PatternIndex) {
     memcmp(CharacterCode,SystemContext + 0x20,0x10);
@@ -209446,7 +209460,7 @@ void CleanupSystemContextData(unsigned long long *CharacterCode
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   PrimaryProcessingStatusFlag = (void *)*CharacterCode;
@@ -209484,7 +209498,7 @@ void ProcessMemoryReferenceCount(long long CharacterCode
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
   PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 8);
@@ -209842,7 +209856,7 @@ void ProcessSystemContextDataEncoding(long long CharacterCode,long long *Charact
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   uint64_t *CharacterCodePointer;
   void *CurrentNode;
@@ -210366,7 +210380,7 @@ long long * FUN_18017b240(long long *CharacterCode,long long *CharacterCodeSize
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   unsigned long long CalculatedCodePoint;
   unsigned long long DataSize;
@@ -210432,7 +210446,7 @@ long long * FUN_18017b240(long long *CharacterCode,long long *CharacterCodeSize
   long long PrimaryDataSize;
   long long BufferStatus;
   long long ProcessingResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *SystemContext;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
@@ -210495,7 +210509,7 @@ long long * FUN_18017b240(long long *CharacterCode,long long *CharacterCodeSize
   long long PrimaryDataSize;
   long long *SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   
   if (SystemDataNode == 0) {
@@ -210528,7 +210542,7 @@ long long * FUN_18017b240(long long *CharacterCode,long long *CharacterCodeSize
   long long BufferStatus;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   unsigned long long UnicodeCodePoint;
   
@@ -210746,7 +210760,7 @@ long long * FUN_18017b240(long long *CharacterCode,long long *CharacterCodeSize
   long long *MemoryBlockIndex;
   uint64_t MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long CharacterLimit;
   
   MemoryAllocationIndex = *(long long *)(CharacterCode + 8) - Utf8SourcePointer >> 3;
@@ -210774,7 +210788,7 @@ long long * FUN_18017b5e0(long long CharacterCode,long long SystemBufferSize,lon
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   MemoryBlockIndex = SystemBufferSize - CharacterCode >> 3;
   if (0 < MemoryBlockIndex) {
@@ -213730,7 +213744,7 @@ void CalculateSystemCharacterMetrics(long long CharacterCode,int SystemBufferSiz
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   int *pRemainingSpace;
   long long MemoryBoundaryEnd;
@@ -214508,7 +214522,7 @@ void ConvertUtf16Encoding(long long CharacterCode,long long *CharacterCodeSize,l
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint8_t aSystemFlagB [32];
   uint32_t SystemFlagF;
@@ -214578,7 +214592,7 @@ LAB_180183f13:
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint8_t aSystemFlagF [32];
   uint32_t MemoryOffsetValue;
@@ -214644,7 +214658,7 @@ LAB_180184089:
 {
   long long *CharacterCode;
   code *SystemValidationFunction;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint8_t aStackProcessingUnsignedValue78 [32];
   int aStringComparisonMode [2];
   long long *pSystemTemporaryValue50;
@@ -214890,7 +214904,7 @@ LAB_180184411:
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   uint64_t CalculatedCodePoint;
   
@@ -214982,7 +214996,7 @@ InitializeCharacterCodePointer(uint64_t *CharacterCode,unsigned long long System
 {
   char CurrentCharacter;
   uint32_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
   long long *MemoryBoundaryPointer;
@@ -215240,7 +215254,7 @@ LAB_180184aa5:
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint8_t aSystemFlagF [32];
   uint32_t MemoryOffsetValue;
@@ -215440,7 +215454,7 @@ LAB_180184d09:
 {
   unsigned long long Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   
   MemoryAddressMask = 0xfffffffffffffffe;
@@ -215479,7 +215493,7 @@ LAB_180184d09:
 {
   char CurrentCharacter;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   long long *AllocatedMemorySizePointer;
   long long MemoryBoundaryEnd;
@@ -215634,7 +215648,7 @@ LAB_1801852f0:
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint8_t aSystemFlagB [32];
   uint32_t SystemFlagF;
@@ -215720,7 +215734,7 @@ void SetScreenshotHighlightAsync(long long CharacterCode,uint64_t *CharacterCode
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t AsyncOperationResult;
   uint8_t SystemFlagArray [32];
   uint32_t OperationCurrentCharacter;
@@ -215810,7 +215824,7 @@ void SetVideoHighlightAsync(long long CharacterCode,uint64_t *CharacterCodeSize,
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t AsyncOperationResult;
   uint8_t SystemFlagArray [32];
   uint32_t OperationCurrentCharacter;
@@ -216017,7 +216031,7 @@ LAB_1801859b0:
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint8_t aSystemFlagB [32];
   uint32_t SystemFlagF;
@@ -216253,7 +216267,7 @@ LAB_180185b78:
 {
   unsigned long long Utf16Char;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint64_t CalculatedCodePoint;
   
@@ -217352,7 +217366,7 @@ LAB_18018764a:
 {
   unsigned long long Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   
   MemoryAddressMask = 0xfffffffffffffffe;
@@ -217470,7 +217484,7 @@ LAB_18018764a:
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   uint64_t CalculatedCodePoint;
   
@@ -217588,7 +217602,7 @@ uint64_t * FUN_180187f11(uint64_t CharacterCode,long long SystemBufferSize
   long long *AllocatedMemorySizePointer;
   uint64_t *SystemContext;
   void *CurrentNode;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   void *PreviousNode;
   void *NextNode;
   long long StackProcessingParameter3;
@@ -217644,7 +217658,7 @@ uint64_t * FUN_180187f26(uint64_t CharacterCode,long long SystemBufferSize
   int MemoryMatchResult;
   long long *EngineContext;
   uint64_t *SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint64_t *SystemDataNode;
   uint64_t *CharacterCodePointer;
   uint64_t *RegisterR13Value;
@@ -217696,7 +217710,7 @@ long long FUN_180187f94(void
   unsigned long long MemoryAllocationIndex;
   int MemoryMatchResult;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long RegisterR13Value;
   long long StackProcessingParameter3;
   
@@ -217725,7 +217739,7 @@ long long FUN_180187f9e(void
   unsigned long long MemoryAllocationIndex;
   int MemoryMatchResult;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long StackProcessingParameter3;
   
   Utf16Char = *(unsigned long long *)(SystemContext + 0x30);
@@ -217752,7 +217766,7 @@ uint64_t * FUN_18018801e(void
   int MemoryMatchResult;
   long long *EngineContext;
   uint64_t *SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint64_t *SystemDataNode;
   uint64_t *RegisterR13Value;
   unsigned long long CharacterLimit;
@@ -219247,7 +219261,7 @@ long long * FUN_180189c50(long long *CharacterCode,long long *CharacterCodeSize
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   long long AllocatedMemorySize;
   uint64_t DataSize;
@@ -220505,7 +220519,7 @@ uint64_t * FUN_18018b4c0(uint64_t CharacterCode,long long SystemBufferSize
 {
   int LockResult;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *MemoryAddressMask;
   long long AllocatedMemorySize;
   long long *MemoryBoundaryPointer;
@@ -221062,7 +221076,7 @@ long long * FUN_18018c160(long long *CharacterCode,uint64_t *CharacterCodeSize
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   char CharacterInputDataLength;
@@ -221893,7 +221907,7 @@ LAB_18018ce62:
 {
   byte *CurrentBytePointer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t MemoryAddressMask;
   uint32_t CalculatedCodePoint;
   uint32_t DataSize;
@@ -223397,7 +223411,7 @@ bool ValidateStringComparisonAndMemoryBoundary(uint64_t CharacterCode,long long 
 {
   byte *CurrentBytePointer;
   long long FirstStringSearchResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte *ValidationBytePointer;
   void *DataStructureHandle;
   int CharacterComparisonResult;
@@ -223785,7 +223799,7 @@ joined_r0x0001801906da:
 {
   byte *CurrentBytePointer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   byte *SystemBytePointer;
   int ValidationResult;
@@ -224638,7 +224652,7 @@ LAB_180190d41:
   uint64_t Utf16Char;
   char SystemCheckResult;
   long long StackFrameAddressPointer;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint64_t SystemParameter;
   long long AllocatedMemorySize;
@@ -224749,7 +224763,7 @@ LAB_180190d41:
   uint64_t Utf16Char;
   char SystemCheckResult;
   long long StackFrameAddressPointer;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint64_t SystemParameter;
   long long AllocatedMemorySize;
@@ -224854,7 +224868,7 @@ LAB_180190d41:
 {
   char CurrentCharacter;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint8_t SystemArrayBuffer368 [848];
   
@@ -224907,7 +224921,7 @@ LAB_180190f00:
 {
   uint64_t Utf16Char;
   char SystemCheckResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -225068,7 +225082,7 @@ LAB_180190f00:
 {
   uint64_t Utf16Char;
   char SystemCheckResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -225231,7 +225245,7 @@ LAB_180190f00:
   uint64_t Utf16Char;
   char SystemCheckResult;
   long long ProcessingResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   uint32_t *SystemDataNode;
@@ -225405,7 +225419,7 @@ unsigned long long FUN_180191560(unsigned long long CharacterCode,unsigned long 
 {
   byte *CurrentBytePointer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte *ValidationBytePointer;
   void *CharacterCodePointer;
   int ValidationResult;
@@ -226560,7 +226574,7 @@ long long FUN_180193b4a(void
   long long *MemoryBlockIndex;
   uint MemoryAddressMask;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long AllocatedMemorySize;
   long long SystemParameter;
   
@@ -226654,7 +226668,7 @@ void ProcessSystemDataStructureAllocation(long long *CharacterCode,unsigned long
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   unsigned long long DataSize;
@@ -226736,12 +226750,12 @@ void ProcessSystemDataStructureCleanup(long long CharacterCode
   uint64_t *CharacterStatusBuffer;
   long long ProcessingResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemContext;
   long long SystemDataRegistry;
   uint64_t *CharacterCodePointer;
   unsigned long long DataSize;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long MemoryPoolBlockSize;
   long long *CharacterLimit;
   
@@ -226806,12 +226820,12 @@ void ProcessSystemDataStructureCopy(long long CharacterCode
   uint64_t *CharacterStatusBuffer;
   long long ProcessingResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemContext;
   long long SystemDataRegistry;
   uint64_t *CharacterCodePointer;
   unsigned long long DataSize;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long MemoryPoolBlockSize;
   long long *CharacterLimit;
   
@@ -226866,7 +226880,7 @@ void ProcessSystemDataStructureCopy(long long CharacterCode
 {
   uint64_t *SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   uint64_t *SystemDataNode;
   long long RegisterR12Value;
   long long *CharacterLimit;
@@ -226897,7 +226911,7 @@ void ProcessSystemDataStructureCopy(long long CharacterCode
 void ExecuteSystemContextProcessing(void
 {
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long PrimaryDataSize;
   long long CharacterLimit;
   
@@ -226992,7 +227006,7 @@ LAB_180193ed9:
   uint UnicodeCodePoint;
   int EncodingValidationResult;
   uint64_t *SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long AllocatedMemorySize;
   void *CurrentNode;
   void *PreviousNode;
@@ -227111,7 +227125,7 @@ uint64_t ProcessDataStructureValidation(long long *CharacterCode,uint64_t System
 {
   long long PrimaryDataSize;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   uint64_t *CharacterCodePointer;
   int *pValidationResult;
@@ -227503,7 +227517,7 @@ LAB_1801945bb:
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   long long AllocatedMemorySize;
   unsigned long long DataSize;
@@ -227693,7 +227707,7 @@ float * ProcessCharacterCodeMatrixTransform(float *CharacterCode,float *Characte
 {
   uint8_t *CharacterStatusBuffer;
   uint8_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint8_t *MemoryAddressMask;
   
   pMemoryAddressMask = (uint8_t *)CharacterCode[1];
@@ -229217,7 +229231,7 @@ uint64_t FUN_180196ab0(uint64_t CharacterCode,unsigned long long SystemBufferSiz
 {
   long long *CharacterCode;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *SystemRegisterPointerX10;
   long long **PerformanceFrequencyDoublePointer;
   
@@ -229561,7 +229575,7 @@ uint64_t * FUN_180196bd0(uint64_t *CharacterCode
 {
   short *pSystemShortValue1;
   short SystemShortValue2;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   float *pMatrixTransformMultiplier2;
   uint64_t DataSize;
@@ -230830,7 +230844,7 @@ void ProcessSystemDataEncodingAndConversion(long long CharacterCode, uint64_t Sy
 {
   byte *CurrentBytePointer;
   byte SystemHighByte;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *EngineContext;
   byte *SystemBytePointer;
   uint DataSize;
@@ -232166,7 +232180,7 @@ LAB_18019a44a:
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   void *SecondaryProcessingStatusFlag;
@@ -233200,7 +233214,7 @@ uint32_t FUN_18019c480(long long CharacterCode
 {
   uint32_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   uint32_t CalculatedCodePoint;
   uint32_t DataSize;
@@ -237995,7 +238009,7 @@ LAB_180201f5b:
   float *SystemContext;
   uint64_t StackFrameAddressPointer;
   long long CharacterTablePointer;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   float *SystemDataNode;
   unsigned long long Utf16Char9;
   unsigned long long MemoryAllocationIndexPrimary;
@@ -238197,7 +238211,7 @@ LAB_180201f5b:
   long long MemoryAllocationOffset;
   long long CharacterTableIterator;
   uint MemoryAllocationHandle;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   float *in_R8;
   float *pContextSecondaryFloat0;
@@ -238330,7 +238344,7 @@ LAB_180201f5b:
   long long systemLoopCounter;
   int InputDataLength;
   uint MemoryAllocationIndex;
-  unsigned long long PatternIndex;
+  unsigned long long PatternMatchStatus;
   unsigned long long SystemDataNode;
   float *in_R8;
   unsigned long long SystemParameter;
@@ -238573,7 +238587,7 @@ LAB_180201f5b:
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   float *FloatVariablePointer4;
   float *pMatrixTransformMultiplier2;
   uint8_t RegisterValueBL;
@@ -238784,7 +238798,7 @@ LAB_180201f5b:
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   float *FloatVariablePointer4;
   float *pMatrixTransformMultiplier2;
   uint8_t RegisterValueBL;
@@ -239422,7 +239436,7 @@ long long FUN_180203b2a(void
   long long *MemoryBlockIndex;
   uint MemoryAddressMask;
   long long SystemContext;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long AllocatedMemorySize;
   long long SystemParameter;
   
@@ -239731,7 +239745,7 @@ void HandleSystemDataConversion(uint8_t (*CharacterCode) [16],uint8_t (*Characte
 {
   bool CurrentByteValue;
   uint64_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint8_t (*paMemoryAddressMask) [16];
   int RemainingSpace;
   uint8_t (*paDataSize) [16];
@@ -242272,7 +242286,7 @@ uint64_t * FUN_1802064e0(long long CharacterCode,uint64_t *CharacterCodeSize,uin
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint MemoryAddressMask;
   int RemainingSpace;
   long long MemoryBoundaryEnd;
@@ -242504,7 +242518,7 @@ LAB_180206c6d:
 {
   unsigned long long *CharacterStatusBuffer;
   unsigned long long *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long *MemoryAddressMask;
   unsigned long long *CharacterCodePointer;
   
@@ -242916,7 +242930,7 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *CharacterCode,int *
 {
   int LockResult;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte BooleanByteFlag4;
   uint8_t CalculatedCodePoint;
   long long MemoryBoundaryEnd;
@@ -243644,7 +243658,7 @@ void ProcessSystemCharacterStream(uint64_t CharacterCode,long long *CharacterCod
 {
   uint *CharacterStatusBuffer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int RegisterEBPValue;
   uint MemoryAddressMask;
   unsigned long long CalculatedCodePoint;
@@ -244846,7 +244860,7 @@ LAB_1802090fa:
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   int ValidationResult;
@@ -244892,7 +244906,7 @@ LAB_1802090fa:
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long StackFrameAddressPointer;
   long long *PatternIndex;
   int EncodingValidationResult;
@@ -245066,7 +245080,7 @@ LAB_1802093e9:
 {
   int LockResult;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   uint64_t *CharacterCodePointer;
   uint DataSize;
@@ -245300,7 +245314,7 @@ LAB_1802097bc:
   long long PrimaryDataSize;
   long long BufferStatus;
   long long ProcessingResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long *SystemDataNode;
@@ -246209,7 +246223,7 @@ LAB_180209c13:
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   uint64_t DataSize;
@@ -247244,7 +247258,7 @@ long long * FUN_18020c010(uint64_t CharacterCode,long long *CharacterCodeSize,lo
 {
   byte *CurrentBytePointer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   byte *SystemBytePointer;
   long long MemoryBoundaryEnd;
@@ -248318,7 +248332,7 @@ LAB_18020d04f:
 {
   uint64_t Utf16Char;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   int RemainingSpace;
   int ValidationResult;
@@ -248693,7 +248707,7 @@ void ProcessCharacterCodeAndUtf8BufferTraversal(uint CharacterCode,int SystemBuf
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint64_t SystemStackOffset48;
   uint64_t SystemPriorityLevel;
@@ -248879,7 +248893,7 @@ long long FUN_18020dd10(long long *CharacterCode,long long *CharacterCodeSize,in
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
@@ -249076,7 +249090,7 @@ void ProcessCharacterCodeAndCharacterEncodingConversion(uint64_t *CharacterCode,
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   
@@ -249228,7 +249242,7 @@ void ProcessCharacterCodeAndCharacterEncodingConversion(uint64_t *CharacterCode,
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   uint8_t CalculatedCodePoint;
   
@@ -249490,7 +249504,7 @@ unsigned long long FUN_18020ee40(long long CharacterCode
 {
   unsigned long long *CharacterStatusBuffer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   long long *MemoryBoundaryPointer;
@@ -250212,7 +250226,7 @@ long long * FUN_1802117b0(long long CharacterCode,long long *CharacterCodeSize,u
 {
   uint Utf16Char;
   void *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   void *SecondaryProcessingStatusFlag;
@@ -250294,7 +250308,7 @@ long long FUN_1802119c0(long long CharacterCode,uint SystemBufferSize,uint64_t U
 {
   uint32_t Utf16Char;
   uint MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -251625,7 +251639,7 @@ bool ValidateUtf8CharacterEncodingAndBuffer(long long CharacterCode,int SystemBu
 {
   long long PrimaryDataSize;
   int *StringComparisonResultPointer;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int ValidationResultArray [6];
   
   CharacterTablePointer = *(long long *)(CharacterCode + 0x38);
@@ -251872,7 +251886,7 @@ FUN_180214ad0(uint64_t CharacterCode,int SystemBufferSize,long long Utf8SourcePo
 {
   float *pSystemContextPrimaryFloat;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint MemoryAddressMask;
   float *pMatrixTransformMultiplier2;
   float *FloatProcessingStatusFlag;
@@ -251971,7 +251985,7 @@ uint64_t FUN_180214b09(float *CharacterCode,float *CharacterCodeSize
 {
   float *pSystemContextPrimaryFloat;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint MemoryAddressMask;
   int *ProcessingResult;
   unsigned long long CalculatedCodePoint;
@@ -253108,7 +253122,7 @@ LAB_180215d8e:
   
   if (*(char *)(CharacterCode + 0x210) == '\0') {
     IntegerValue = FUN_18084b380(*(void *)(CharacterCode + 0x368));
-    if (IntegerValue == 0) {
+    if (LockResult == 0) {
       *(void *)(CharacterCode + 0x380) = *(void *)(CharacterCode + 0x378);
       return;
     }
@@ -253495,7 +253509,7 @@ LAB_18040698e:
 {
   uint Utf16Char;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t *MemoryAddressMask;
   uint32_t *CharacterCodePointer;
   uint32_t VectorRegisterDa;
@@ -253693,7 +253707,7 @@ bool ValidateUtf16CharacterEncodingAndSystemConfiguration(void
 {
   uint Utf16Char;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t *MemoryAddressMask;
   uint32_t *CharacterCodePointer;
   uint32_t VectorRegisterDa;
@@ -253844,7 +253858,7 @@ uint8_t FUN_1802164d6(void
 
 16522(uint64_t CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointervoid FUN_180216522(uint64_t CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer
 {
-  long long PatternIndex;
+  long long PatternMatchStatus;
   int RegisterValueEDI;
   
   Utf8SourcePointer = Utf8SourcePointer + 0x24;
@@ -254244,7 +254258,7 @@ uint64_t FUN_180216d70(unsigned long long CharacterCode,long long SystemBufferSi
 {
   long long *CharacterCode;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int EncodingValidationResult;
   uint64_t *CharacterCodePointer;
   void *CurrentNode;
@@ -255091,7 +255105,7 @@ FUN_180218290(long long CharacterCode,long long *CharacterCodeSize,uint64_t Utf8
 {
   long long PrimaryDataSize;
   unsigned long long MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   MemoryAllocationIndex = AdditionalParameter1 % (unsigned long long)*(uint *)(CharacterCode + 0x10);
   MemoryBlockIndex = FUN_180218bc0(CharacterCode,*(void *)(*(long long *)(CharacterCode + 8) + MemoryAllocationIndex * 8),
@@ -255359,7 +255373,7 @@ LAB_18021878d:
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   long long MemoryOperationStatus;
@@ -255421,7 +255435,7 @@ long long FUN_180218920(long long *CharacterCode,uint64_t *CharacterCodeSize,uin
 {
   unsigned long long Utf16Char;
   code *SystemValidationFunction;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   unsigned long long CalculatedCodePoint;
   long long MemoryBoundaryEnd;
@@ -255485,7 +255499,7 @@ long long FUN_180218a80(long long CharacterCode,long long SystemBufferSize,uint6
 {
   long long PrimaryDataSize;
   uint MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -255832,7 +255846,7 @@ LAB_1802190a9:
 {
   byte CurrentByteValue;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte *ValidationBytePointer;
   uint CalculatedCodePoint;
   unsigned long long DataSize;
@@ -255998,11 +256012,11 @@ void SortAndOptimizeCharacterData(void)
 {
   long long PrimaryDataSize;
   byte SystemHighByte;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte *ValidationBytePointer;
   uint CalculatedCodePoint;
   unsigned long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   void *CurrentNode;
   long long MemoryPoolBlockSize;
   long long SecondaryLoopCounter;
@@ -256589,7 +256603,7 @@ long long FUN_180219e30(long long CharacterCode,long long SystemBufferSize,long 
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   
   if (CharacterCode != SystemBufferSize) {
     MemoryBlockIndex = CharacterCode - Utf8SourcePointer;
@@ -256797,7 +256811,7 @@ uint64_t FUN_18021a590(uint64_t CharacterCode,unsigned long long SystemBufferSiz
 {
   byte CurrentByteValue;
   code *SystemValidationFunction;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   int RemainingSpace;
   long long MemoryBoundaryEnd;
@@ -257089,7 +257103,7 @@ int ValidateUtf8StringEncoding(long long CharacterCode,long long SystemBufferSiz
 {
   byte *CurrentBytePointer;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   byte *ValidationBytePointer;
   void *CharacterCodePointer;
   int ValidationResult;
@@ -257170,7 +257184,7 @@ int ValidateUtf16StringEncoding(long long CharacterCode,uint64_t SystemBufferSiz
   int EncodingValidationResult;
   int RemainingSpace;
   int ValidationResult;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long MemoryPoolBlockSize;
   long long *SystemDataTablePointer;
   long long systemLoopCounter;
@@ -258108,7 +258122,7 @@ FUN_18021f4e0(uint64_t *CharacterCode,long long *CharacterCodeSize,uint64_t Utf8
 {
   int LockResult;
   uint64_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   bool bStack_50;
   long long CoreEngineSignedValue48;
@@ -258179,7 +258193,7 @@ FUN_18021f710(uint64_t *CharacterCode,long long *CharacterCodeSize,uint64_t Utf8
 {
   int LockResult;
   uint64_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   
@@ -258745,7 +258759,7 @@ FUN_18021f7f0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8Sou
 {
   int LockResult;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t TemporaryFlag;
   uint32_t DataProcessingFlags;
   uint32_t uStack_110;
@@ -259739,7 +259753,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Chara
     FUN_180226020(SystemBufferSize,&CoreEngineValue148);
   }
   IntegerValue = *(int *)(CoreEngineRenderContext + 0x1d44);
-  if (IntegerValue == 0) {
+  if (LockResult == 0) {
     SecondaryProcessingStatusFlag = SystemStringQuinary;
   }
   else if (IntegerValue == 1) {
@@ -261059,7 +261073,7 @@ int SystemIdentifierParserVariant(void
 {
   char *CurrentCharacter;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int InputDataLength;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
@@ -261426,9 +261440,9 @@ int ValidateSystemStringProcessing(void)
 {
   char *CurrentCharacter;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataRegistry;
   long long SystemDataNode;
   
@@ -261784,7 +261798,7 @@ int IdentifySystemIdentifierByPattern(void)
   int StringComparisonResult;
   long long MemoryBlockOffset;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataRegistry;
   long long SystemDataNode;
   
@@ -262134,9 +262148,9 @@ int IdentifySystemIdentifierByPatternVariantB(void
 {
   char *CurrentCharacter;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataRegistry;
   long long SystemDataNode;
   
@@ -262478,9 +262492,9 @@ int IdentifySystemIdentifierByPatternVariantC(void
 {
   char *CurrentCharacter;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataRegistry;
   long long SystemDataNode;
   
@@ -262812,9 +262826,9 @@ int IdentifySystemIdentifierByPatternVariantD(void
 {
   char *CurrentCharacter;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataRegistry;
   long long SystemDataNode;
   
@@ -263141,9 +263155,9 @@ int IdentifySystemIdentifierPatternB(void
 {
   char *CurrentCharacter;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataRegistry;
   long long SystemDataNode;
   
@@ -263466,9 +263480,9 @@ int IdentifySystemIdentifierPatternC(void
 {
   char *CurrentCharacter;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataRegistry;
   long long SystemDataNode;
   
@@ -263788,9 +263802,9 @@ int IdentifySystemIdentifierPatternD(void
 {
   char *CurrentCharacter;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataRegistry;
   long long SystemDataNode;
   
@@ -264106,9 +264120,9 @@ int IdentifySystemIdentifierPatternE(void
 {
   char *CurrentCharacter;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataRegistry;
   long long SystemDataNode;
   
@@ -264420,9 +264434,9 @@ int IdentifySystemIdentifierByPatternVariantA(void)
 {
   char *CurrentCharacter;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataRegistry;
   long long SystemDataNode;
   
@@ -264740,9 +264754,9 @@ int IdentifySystemIdentifierByPatternVariantB(void)
 {
   char *CurrentCharacter;
   int StringComparisonResult;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataRegistry;
   long long SystemDataNode;
   
@@ -265035,8 +265049,8 @@ int ParseSystemStringConstantAndReturnIdentifier(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 7) {
@@ -265060,7 +265074,7 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     }
   }
   if ((InputDataLength == 8) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStringConstant13180), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStringConstant13180), LockResult == 0)) {
     return 0x2c;
   }
   if (InputDataLength == 4) {
@@ -265192,15 +265206,15 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -265224,11 +265238,11 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -265266,11 +265280,11 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -265284,7 +265298,7 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -265297,21 +265311,21 @@ int ParseSystemStringConstantAndReturnIdentifier(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -265324,8 +265338,8 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 3) {
@@ -265339,7 +265353,7 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     }
   }
   if ((InputDataLength == 8) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStringConstant13180), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStringConstant13180), LockResult == 0)) {
     return 0x2c;
   }
   if (InputDataLength == 4) {
@@ -265471,15 +265485,15 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -265503,11 +265517,11 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -265545,11 +265559,11 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -265563,7 +265577,7 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -265576,21 +265590,21 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -265623,12 +265637,12 @@ int IdentifySystemIdentifierByPatternVariantC(void)
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if ((InputDataLength == 8) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStringConstant13180), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStringConstant13180), LockResult == 0)) {
     return 0x2c;
   }
   if (InputDataLength == 4) {
@@ -265760,15 +265774,15 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -265792,11 +265806,11 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -265834,11 +265848,11 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -265852,7 +265866,7 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -265865,21 +265879,21 @@ int IdentifySystemIdentifierByPatternVariantC(void)
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -265904,7 +265918,7 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
   long long BufferStatus;
   int InputStringLength;
   long long SearchIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataNode;
   long long MemoryBlockIndex;
   
@@ -266300,15 +266314,15 @@ int CheckSystemStatusPatternMatch(void)
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -266332,11 +266346,11 @@ int CheckSystemStatusPatternMatch(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -266374,11 +266388,11 @@ int CheckSystemStatusPatternMatch(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -266392,7 +266406,7 @@ int CheckSystemStatusPatternMatch(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -266405,21 +266419,21 @@ int CheckSystemStatusPatternMatch(void)
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -266438,8 +266452,8 @@ int CheckSystemStatusPatternMatchVariantA(void)
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 4) {
@@ -266555,15 +266569,15 @@ int CheckSystemStatusPatternMatchVariantA(void)
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -266587,11 +266601,11 @@ int CheckSystemStatusPatternMatchVariantA(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -266629,11 +266643,11 @@ int CheckSystemStatusPatternMatchVariantA(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -266647,7 +266661,7 @@ int CheckSystemStatusPatternMatchVariantA(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -266660,21 +266674,21 @@ int CheckSystemStatusPatternMatchVariantA(void)
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -266693,8 +266707,8 @@ int CheckSystemStatusPatternMatchVariantB(void)
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 4) {
@@ -266802,15 +266816,15 @@ int CheckSystemStatusPatternMatchVariantB(void)
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -266834,11 +266848,11 @@ int CheckSystemStatusPatternMatchVariantB(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -266876,11 +266890,11 @@ int CheckSystemStatusPatternMatchVariantB(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -266894,7 +266908,7 @@ int CheckSystemStatusPatternMatchVariantB(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -266907,21 +266921,21 @@ int CheckSystemStatusPatternMatchVariantB(void)
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -266940,8 +266954,8 @@ int CheckSystemStatusPatternMatchVariantC(void)
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 4) {
@@ -267041,15 +267055,15 @@ int CheckSystemStatusPatternMatchVariantC(void)
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -267073,11 +267087,11 @@ int CheckSystemStatusPatternMatchVariantC(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -267115,11 +267129,11 @@ int CheckSystemStatusPatternMatchVariantC(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -267133,7 +267147,7 @@ int CheckSystemStatusPatternMatchVariantC(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -267146,21 +267160,21 @@ int CheckSystemStatusPatternMatchVariantC(void)
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -267282,15 +267296,15 @@ int DetectSystemStatusPatternMatch(void)
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -267314,11 +267328,11 @@ int DetectSystemStatusPatternMatch(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -267356,11 +267370,11 @@ int DetectSystemStatusPatternMatch(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -267374,7 +267388,7 @@ int DetectSystemStatusPatternMatch(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -267387,21 +267401,21 @@ int DetectSystemStatusPatternMatch(void)
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -267420,8 +267434,8 @@ int CheckSystemStatusPatternMatchVariantE(void)
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 3) {
@@ -267503,15 +267517,15 @@ int CheckSystemStatusPatternMatchVariantE(void)
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -267535,11 +267549,11 @@ int CheckSystemStatusPatternMatchVariantE(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -267577,11 +267591,11 @@ int CheckSystemStatusPatternMatchVariantE(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -267595,7 +267609,7 @@ int CheckSystemStatusPatternMatchVariantE(void)
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -267608,21 +267622,21 @@ int CheckSystemStatusPatternMatchVariantE(void)
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -267645,8 +267659,8 @@ int IdentifySystemIdentifierByPatternVariantS(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 3) {
@@ -267720,15 +267734,15 @@ int IdentifySystemIdentifierByPatternVariantS(void
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -267752,11 +267766,11 @@ int IdentifySystemIdentifierByPatternVariantS(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -267794,11 +267808,11 @@ int IdentifySystemIdentifierByPatternVariantS(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -267812,7 +267826,7 @@ int IdentifySystemIdentifierByPatternVariantS(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -267825,21 +267839,21 @@ int IdentifySystemIdentifierByPatternVariantS(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -267866,8 +267880,8 @@ int IdentifySystemIdentifierByPatternVariantT(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 3) {
@@ -267933,15 +267947,15 @@ int IdentifySystemIdentifierByPatternVariantT(void
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -267965,11 +267979,11 @@ int IdentifySystemIdentifierByPatternVariantT(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -268007,11 +268021,11 @@ int IdentifySystemIdentifierByPatternVariantT(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -268025,7 +268039,7 @@ int IdentifySystemIdentifierByPatternVariantT(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -268038,21 +268052,21 @@ int IdentifySystemIdentifierByPatternVariantT(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -268073,8 +268087,8 @@ int IdentifySystemIdentifierByLengthAndContent(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 3) {
@@ -268132,15 +268146,15 @@ int IdentifySystemIdentifierByLengthAndContent(void
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -268164,11 +268178,11 @@ int IdentifySystemIdentifierByLengthAndContent(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -268206,11 +268220,11 @@ int IdentifySystemIdentifierByLengthAndContent(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -268224,7 +268238,7 @@ int IdentifySystemIdentifierByLengthAndContent(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -268237,21 +268251,21 @@ int IdentifySystemIdentifierByLengthAndContent(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -268272,8 +268286,8 @@ int IdentifySystemIdentifierByPatternVariantV(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 5) {
@@ -268321,15 +268335,15 @@ int IdentifySystemIdentifierByPatternVariantV(void
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -268353,11 +268367,11 @@ int IdentifySystemIdentifierByPatternVariantV(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -268395,11 +268409,11 @@ int IdentifySystemIdentifierByPatternVariantV(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -268413,7 +268427,7 @@ int IdentifySystemIdentifierByPatternVariantV(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -268426,21 +268440,21 @@ int IdentifySystemIdentifierByPatternVariantV(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -268461,8 +268475,8 @@ int IdentifySystemIdentifierByPatternVariantW(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 5) {
@@ -268502,15 +268516,15 @@ int IdentifySystemIdentifierByPatternVariantW(void
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -268534,11 +268548,11 @@ int IdentifySystemIdentifierByPatternVariantW(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -268576,11 +268590,11 @@ int IdentifySystemIdentifierByPatternVariantW(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -268594,7 +268608,7 @@ int IdentifySystemIdentifierByPatternVariantW(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -268607,21 +268621,21 @@ int IdentifySystemIdentifierByPatternVariantW(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -268642,8 +268656,8 @@ int IdentifySystemIdentifierByPatternVariantX(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 3) {
@@ -268673,15 +268687,15 @@ int IdentifySystemIdentifierByPatternVariantX(void
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -268705,11 +268719,11 @@ int IdentifySystemIdentifierByPatternVariantX(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -268747,11 +268761,11 @@ int IdentifySystemIdentifierByPatternVariantX(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -268765,7 +268779,7 @@ int IdentifySystemIdentifierByPatternVariantX(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -268778,21 +268792,21 @@ int IdentifySystemIdentifierByPatternVariantX(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -268813,8 +268827,8 @@ int IdentifySystemIdentifierByPatternVariantY(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 3) {
@@ -268836,15 +268850,15 @@ int IdentifySystemIdentifierByPatternVariantY(void
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -268868,11 +268882,11 @@ int IdentifySystemIdentifierByPatternVariantY(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -268910,11 +268924,11 @@ int IdentifySystemIdentifierByPatternVariantY(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -268928,7 +268942,7 @@ int IdentifySystemIdentifierByPatternVariantY(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -268941,21 +268955,21 @@ int IdentifySystemIdentifierByPatternVariantY(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -268976,8 +268990,8 @@ int IdentifySystemIdentifierByPatternVariantZ(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 3) {
@@ -268991,15 +269005,15 @@ int IdentifySystemIdentifierByPatternVariantZ(void
     }
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -269023,11 +269037,11 @@ int IdentifySystemIdentifierByPatternVariantZ(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -269065,11 +269079,11 @@ int IdentifySystemIdentifierByPatternVariantZ(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -269083,7 +269097,7 @@ int IdentifySystemIdentifierByPatternVariantZ(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -269096,21 +269110,21 @@ int IdentifySystemIdentifierByPatternVariantZ(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -269131,20 +269145,20 @@ int IdentifySystemIdentifierByPatternVariantAA(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueSenary), LockResult == 0)) {
     return 0x1e;
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -269168,11 +269182,11 @@ int IdentifySystemIdentifierByPatternVariantAA(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -269210,11 +269224,11 @@ int IdentifySystemIdentifierByPatternVariantAA(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -269228,7 +269242,7 @@ int IdentifySystemIdentifierByPatternVariantAA(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -269241,21 +269255,21 @@ int IdentifySystemIdentifierByPatternVariantAA(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -269276,16 +269290,16 @@ int IdentifySystemIdentifierByPatternVariantAB(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemStatusValueQuinary), LockResult == 0)) {
     return 0x34;
   }
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -269309,11 +269323,11 @@ int IdentifySystemIdentifierByPatternVariantAB(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -269351,11 +269365,11 @@ int IdentifySystemIdentifierByPatternVariantAB(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -269369,7 +269383,7 @@ int IdentifySystemIdentifierByPatternVariantAB(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -269382,21 +269396,21 @@ int IdentifySystemIdentifierByPatternVariantAB(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -269417,12 +269431,12 @@ int IdentifySystemIdentifierByPatternVariantAC(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if ((InputDataLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctodecenary), LockResult == 0)) {
     return 0x35;
   }
   if (InputDataLength == 4) {
@@ -269446,11 +269460,11 @@ int IdentifySystemIdentifierByPatternVariantAC(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -269488,11 +269502,11 @@ int IdentifySystemIdentifierByPatternVariantAC(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -269506,7 +269520,7 @@ int IdentifySystemIdentifierByPatternVariantAC(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -269519,21 +269533,21 @@ int IdentifySystemIdentifierByPatternVariantAC(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -269554,8 +269568,8 @@ int IdentifySystemIdentifierByPatternVariantAD(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 4) {
@@ -269579,11 +269593,11 @@ int IdentifySystemIdentifierByPatternVariantAD(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -269621,11 +269635,11 @@ int IdentifySystemIdentifierByPatternVariantAD(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -269639,7 +269653,7 @@ int IdentifySystemIdentifierByPatternVariantAD(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -269652,21 +269666,21 @@ int IdentifySystemIdentifierByPatternVariantAD(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -269687,8 +269701,8 @@ int IdentifySystemIdentifierByPatternVariantAE(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 5) {
@@ -269702,11 +269716,11 @@ int IdentifySystemIdentifierByPatternVariantAE(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -269744,11 +269758,11 @@ int IdentifySystemIdentifierByPatternVariantAE(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -269762,7 +269776,7 @@ int IdentifySystemIdentifierByPatternVariantAE(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -269775,21 +269789,21 @@ int IdentifySystemIdentifierByPatternVariantAE(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -269810,16 +269824,16 @@ int IdentifySystemIdentifierByPatternVariantAF(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuindecenary), LockResult == 0)) {
     return 0x20;
   }
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -269857,11 +269871,11 @@ int IdentifySystemIdentifierByPatternVariantAF(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -269875,7 +269889,7 @@ int IdentifySystemIdentifierByPatternVariantAF(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -269888,21 +269902,21 @@ int IdentifySystemIdentifierByPatternVariantAF(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -269923,12 +269937,12 @@ int IdentifySystemIdentifierByPatternVariantB3(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if ((InputDataLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuattuordecenary), LockResult == 0)) {
     return 0x21;
   }
   if (InputDataLength == 4) {
@@ -269966,11 +269980,11 @@ int IdentifySystemIdentifierByPatternVariantB3(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -269984,7 +269998,7 @@ int IdentifySystemIdentifierByPatternVariantB3(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -269997,21 +270011,21 @@ int IdentifySystemIdentifierByPatternVariantB3(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270111,12 +270125,12 @@ int IdentifySystemIdentifierByPatternVariantB4(void)
       return 0x2e;
     }
     LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270132,13 +270146,13 @@ int IdentifySystemIdentifierByPatternVariantB4(void)
  * 
  * @return 返回匹配的系统标识符代码
  */
-int IdentifySystemIdentifierByPatternVariantB5(void
+int IdentifySystemIdentifierByPatternVariantB5(void)
 {
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 4) {
@@ -270168,11 +270182,11 @@ int IdentifySystemIdentifierByPatternVariantB5(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -270186,7 +270200,7 @@ int IdentifySystemIdentifierByPatternVariantB5(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -270199,21 +270213,21 @@ int IdentifySystemIdentifierByPatternVariantB5(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270234,8 +270248,8 @@ int IdentifySystemIdentifierByPatternVariantB6(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 4) {
@@ -270257,11 +270271,11 @@ int IdentifySystemIdentifierByPatternVariantB6(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -270275,7 +270289,7 @@ int IdentifySystemIdentifierByPatternVariantB6(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -270288,21 +270302,21 @@ int IdentifySystemIdentifierByPatternVariantB6(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270323,8 +270337,8 @@ int IdentifySystemIdentifierByPatternVariantB7(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 4) {
@@ -270338,11 +270352,11 @@ int IdentifySystemIdentifierByPatternVariantB7(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -270356,7 +270370,7 @@ int IdentifySystemIdentifierByPatternVariantB7(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -270369,21 +270383,21 @@ int IdentifySystemIdentifierByPatternVariantB7(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270404,16 +270418,16 @@ int IdentifySystemIdentifierByPatternVariantB8(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -270427,7 +270441,7 @@ int IdentifySystemIdentifierByPatternVariantB8(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -270440,21 +270454,21 @@ int IdentifySystemIdentifierByPatternVariantB8(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270475,12 +270489,12 @@ int IdentifySystemIdentifierByPatternVariantB9(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -270494,7 +270508,7 @@ int IdentifySystemIdentifierByPatternVariantB9(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -270507,21 +270521,21 @@ int IdentifySystemIdentifierByPatternVariantB9(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270542,8 +270556,8 @@ int IdentifySystemIdentifierByPatternVariantB10(void
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 6) {
@@ -270557,7 +270571,7 @@ int IdentifySystemIdentifierByPatternVariantB10(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -270570,21 +270584,21 @@ int IdentifySystemIdentifierByPatternVariantB10(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270604,12 +270618,12 @@ int IdentifySystemIdentifierByPatternVariantB11(void
 {
   int LockResult;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long BufferStatus;
   long long SystemDataNode;
   
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -270622,21 +270636,21 @@ int IdentifySystemIdentifierByPatternVariantB11(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270656,7 +270670,7 @@ int IdentifySystemIdentifierByPatternVariantB12(void
 {
   int LockResult;
   int InputDataLength;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long BufferStatus;
   long long SystemDataNode;
   
@@ -270670,21 +270684,21 @@ int IdentifySystemIdentifierByPatternVariantB12(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270710,21 +270724,21 @@ uint32_t GetSystemStatusRegister(void
   long long SystemDataNode;
   
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270749,17 +270763,17 @@ uint32_t GetSystemControlRegister(void
   long long SystemDataNode;
   
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if ((InputDataLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary), LockResult == 0)) {
     return 0x33;
   }
   return 0;
@@ -270784,14 +270798,14 @@ uint32_t GetSystemInterruptRegister(void
   long long SystemDataNode;
   
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    if (LockResult == 0) {
       return 0x2f;
     }
   }
   if (InputDataLength == 0xb) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary);
+    if (LockResult == 0) {
       return 0x33;
     }
   }
@@ -270816,8 +270830,8 @@ uint32_t GetSystemErrorRegister(void
   long long SystemDataNode;
   
   if (InputDataLength == 0xb) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordPrimary);
+    if (LockResult == 0) {
       return 0x33;
     }
   }
@@ -270921,7 +270935,7 @@ uint64_t GetSystemNullStatus(void
 {
   void *CharacterStatusBuffer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -271269,7 +271283,7 @@ uint64_t * FUN_180226430(uint64_t *CharacterCode
 {
   long long PrimaryDataSize;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t *MemoryAddressMask;
   uint64_t *CharacterCodePointer;
   long long MemoryBoundaryEnd;
@@ -271950,7 +271964,7 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long SystemBufferSize
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
   
@@ -271991,7 +272005,7 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long SystemBufferSize
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
   
@@ -272646,7 +272660,7 @@ LAB_180227e59:
 {
   uint32_t Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   unsigned long long DataSize;
@@ -272706,7 +272720,7 @@ LAB_180227e59:
 {
   uint32_t Utf16Char;
   uint32_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long *SystemContext;
   long long SystemDataNode;
   long long RegisterR12Value;
@@ -272963,7 +272977,7 @@ void ProcessCharacterCodeAndCharacterEncodingConversion(uint32_t *CharacterCode,
 {
   uint32_t Utf16Char;
   uint8_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t MemoryAddressMask;
   uint32_t CalculatedCodePoint;
   char *CharacterPointer;
@@ -273172,7 +273186,7 @@ void ProcessCharacterCodeAndCharacterEncodingConversion(uint32_t *CharacterCode,
 {
   uint32_t Utf16Char;
   uint8_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint32_t MemoryAddressMask;
   uint32_t CalculatedCodePoint;
   char *CharacterPointer;
@@ -273385,7 +273399,7 @@ void ProcessCharacterCodeAndCharacterEncodingConversion(uint32_t *CharacterCode,
 {
   uint32_t Utf16Char;
   uint8_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   char *pOperationStatus;
   uint8_t *CharacterCodePointer;
   uint32_t *SecondaryProcessingStatusFlag;
@@ -274228,7 +274242,7 @@ LAB_1802297eb:
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
   
@@ -274447,7 +274461,7 @@ LAB_1802297eb:
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
   
@@ -274969,7 +274983,7 @@ LAB_1802297eb:
 {
   unsigned long long Utf16Char;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   unsigned long long CalculatedCodePoint;
   
@@ -275038,7 +275052,7 @@ LAB_1802297eb:
   long long BufferStatus;
   long long StackFrameAddressPointer;
   long long *PatternIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long CharacterLimit;
   
   if (CharacterLimit == 0) {
@@ -275081,11 +275095,11 @@ LAB_1802297eb:
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   long long SystemContext;
   long long AllocatedMemorySize;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   unsigned long long CharacterLimit;
   
   MemoryBlockIndex = SUB168(SEXT816(Utf16EndPointer) * SEXT816(*(long long *)(PatternIndex + 8) - Utf8SourcePointer),8);
@@ -275818,7 +275832,7 @@ long long FUN_18022ac3f(void
   unsigned long long CalculatedCodePoint;
   float *SystemContext;
   long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -276283,7 +276297,7 @@ uint64_t FUN_18022b980(uint64_t CharacterCode,unsigned long long SystemBufferSiz
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   uint64_t MemoryAddressMask;
   
   MemoryAddressMask = 0xfffffffffffffffe;
@@ -277079,7 +277093,7 @@ uint64_t * FUN_18022cab0(uint64_t *CharacterCode,uint64_t *CharacterCodeSize
 {
   void *CharacterStatusBuffer;
   void *SystemContext;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *MemoryAddressMask;
   
   PrimaryProcessingStatusFlag = CharacterCode + 5;
@@ -277504,7 +277518,7 @@ bool ValidateSystemCharacterProcessingStatus(long long CharacterCode
 {
   char CurrentCharacter;
   long long *BufferAllocationStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   long long SystemDataRegistry;
   byte *SystemBytePointer;
   uint DataSize;
@@ -278694,7 +278708,7 @@ void ProcessCharacterCodeHash(unsigned long long *CharacterCode,long long System
   unsigned long long CalculatedCodePoint;
   void *CurrentNode;
   unsigned long long StackFrameAddressPointer;
-  long long PatternIndex;
+  long long PatternMatchStatus;
   long long SystemDataNode;
   long long SystemRegisterR10;
   
@@ -278786,7 +278800,7 @@ long long FUN_18022ef00(long long CharacterCode,long long SystemBufferSize,long 
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
-  long long MemoryOffset;
+  long long SearchStartIndex;
   void *MemoryAddressMask;
   
   MemoryBlockIndex = (SystemBufferSize - CharacterCode) / 0x58;
