@@ -47402,7 +47402,7 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   fStack0000000000000060 = Utf8SourcePointer * in_XMM4_Da + ContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7 + DataNodeIndex[0xc];
   TemporaryFloatStack64 = Utf8SourcePointer * in_XMM4_Db + ContextSecondaryFloat * FloatVariable5 + SystemContextPrimaryFloat * ProcessedFloatValue8 + DataNodeIndex[0xd];
   TemporaryFloatStack68 = Utf8SourcePointer * in_XMM4_Dc + ContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue + DataNodeIndex[0xe];
-  uStack0000000000000028 = in_stack_000000e8;
+  StackParameterE8 = in_stack_000000e8;
   TemporaryStackValue6c = 0x3f800000;
   TemporaryStackValue5c = 0;
   uStack000000000000004c = 0;
