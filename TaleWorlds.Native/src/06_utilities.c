@@ -295,9 +295,9 @@
 // 系统函数地址常量
 #define ResourceDataValidationFunction 0x00018076b630
 #define SystemStatusRetrievalFunction 0x0001808e64d0
-#define RangeValidationFunctionA0 0x000180867960
-#define DataProcessingFunctionA0 0x000180867660
-#define ExceptionHandlerFunction 0x00018008d310
+#define RangeValidationFunctionAddress 0x000180867960
+#define DataProcessingFunctionAddress 0x000180867660
+#define ExceptionHandlerFunctionAddress 0x00018008d310
 #define OperationResultCheckFunction 0x0001808fd8d4
 #define CallbackExecutionFunction 0x0001808fd024
 
