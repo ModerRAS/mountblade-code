@@ -78206,7 +78206,23 @@ void ProcessSystemResourceCleanupD3(DataBuffer operationBase, int64_t dataBuffer
 
 
 
-void Unwind_1809097c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统资源清理D4
+ * 
+ * 该函数负责处理系统资源的清理操作，验证异常数据缓冲区，
+ * 调用系统资源清理函数，并在必要时终止系统
+ * 
+ * @param operationBase 系统操作句柄
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809097c0
+ * @warning 此函数必须在资源清理上下文中调用
+ * 
+ * @see ProcessSystemResourcesWithCleanup, TerminateSystemE0
+ */
+void ProcessSystemResourceCleanupD4(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -78221,7 +78237,23 @@ void Unwind_1809097c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809097d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统参数验证D5
+ * 
+ * 该函数负责处理系统参数的验证操作，调用系统参数验证函数，
+ * 传递操作标志和系统清理标志
+ * 
+ * @param operationBase 系统操作句柄
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809097d0
+ * @warning 此函数必须在参数验证上下文中调用
+ * 
+ * @see ProcessSystemParametersWithValidation, SystemCleanupFlagAlternative
+ */
+void ProcessSystemParametersValidationD5(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
