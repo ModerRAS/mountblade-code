@@ -63316,22 +63316,44 @@ void UnwindExceptionHandlerB4(DataBuffer ExceptionContext, int64_t HandlerContex
 
 
 
-void Unwind_180907090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 异常处理器回调执行函数J0
+ * 
+ * 该函数负责执行异常处理器回调，使用偏移量0xe8获取回调函数指针
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907090
+ */
+void ExecuteExceptionHandlerCallbackJ0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   if (*(FunctionPointer**)(dataBuffer + 0xe8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0xe8))(dataBuffer + 0xd8,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (**(FunctionPointer**)(dataBuffer + 0xe8))(dataBuffer + 0xd8, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-void Unwind_1809070a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 异常处理器回调执行函数K0
+ * 
+ * 该函数负责执行异常处理器回调，使用偏移量0x68获取回调函数指针
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809070a0
+ */
+void ExecuteExceptionHandlerCallbackK0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   if (*(FunctionPointer**)(dataBuffer + 0x68) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x68))(dataBuffer + 0x58,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (**(FunctionPointer**)(dataBuffer + 0x68))(dataBuffer + 0x58, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
