@@ -81659,7 +81659,23 @@ void DestroyMutexAndReleaseResources(void)
 
 
 
-void Unwind_18090a490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数的包装器
+ * 
+ * 该函数是异常数据处理函数的包装器，负责从数据缓冲区中提取参数
+ * 并调用核心异常数据处理函数。主要功能包括：
+ * - 从数据缓冲区中获取异常数据地址
+ * - 提取异常处理所需的操作标志
+ * - 调用核心异常数据处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090a490
+ */
+void ProcessExceptionDataWrapper(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x60) + 0xba8,
