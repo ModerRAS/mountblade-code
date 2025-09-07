@@ -100,6 +100,25 @@ const void* const SystemDataResourceTableSecondary = (void*)0x18098d0f8;
 // 系统状态缓冲区常量 - 用于替换UNK_180a081b4等变量
 const void* const SystemStatusBufferPrimary = (void*)0x180a081b4;
 const void* const SystemStatusBufferSecondary = (void*)0x180a081bc;
+
+// 系统数据节点模板常量 - 用于替换UNK_180a0c7d8等变量
+const void* const SystemDataNodeTemplatePrimary = (void*)0x180a0c7d8;
+const void* const SystemDataNodeTemplateSecondary = (void*)0x180a0c7f0;
+const void* const SystemDataNodeTemplateTertiary = (void*)0x180a0c808;
+const void* const SystemDataNodeTemplateQuaternary = (void*)0x180a0c508;
+
+// 系统字符串和配置常量 - 用于替换UNK_180a0b1c8等变量
+const void* const SystemStringConfigurationTemplate = (void*)0x180a0b1c8;
+const void* const SystemConfigurationTemplatePrimary = (void*)0x180a0c4a0;
+const void* const SystemConfigurationTemplateSecondary = (void*)0x180a0c178;
+const void* const SystemStringTemplatePrimary = (void*)0x180a0b1d8;
+const void* const SystemStringTemplateSecondary = (void*)0x180a0b1f0;
+
+// 系统事件和操作常量 - 用于替换UNK_1801b9c30等变量
+const void* const SystemEventTemplatePrimary = (void*)0x1801b9c30;
+const void* const SystemOperationFlagPointer = (void*)0x1801bca50;
+const void* const SystemEventPointerPrimary = (void*)0x1801bca40;
+const void* const SystemStackBufferTemplate = (void*)0x1801bca00;
 const void* const SystemConfigurationData = (void*)0x180a013c0;
 const void* const SystemStatusValidationData = (void*)0x180a08a00;
 const void* const SystemMemoryListHeadPrimary = (void*)0x180a08d78;
@@ -101634,49 +101653,68 @@ LabelCharacterProcessingComplete:
 
 
 
-unsigned long long FUN_1801166f0(uint64_t SystemContextPointer,char *Utf8BufferSize,int Utf16InputPointer,uint64_t *Utf16EndPointer,
+/**
+ * 核心引擎系统处理函数
+ * 
+ * 该函数负责处理系统的核心操作，包括：
+ * - UTF-8到UTF-16的字符串转换
+ * - 内存分配和管理
+ * - 系统参数验证
+ * - 浮点数计算和处理
+ * - 系统事件处理
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2（代码指针）
+ * @param AdditionalParameter3 额外参数3
+ * @return 处理结果状态码
+ */
+unsigned long long CoreEngineSystemProcessor(uint64_t SystemContextPointer,char *Utf8BufferSize,int Utf16InputPointer,uint64_t *Utf16EndPointer,
                        uint AdditionalParameter1,code *AdditionalParameter2,uint64_t AdditionalParameter3
 {
   int *ReferenceCountPointer;
-  float *pSystemContextFloat2;
-  uint *systemEventTemplatePointer;
-  short SystemShortValue4;
-  short *pSystemShortValue5;
+  float *SystemContextFloat;
+  uint *SystemEventTemplate;
+  short SystemShortValue;
+  short *SystemShortPointer;
   char *CharacterPointer;
-  short *dataStreamPointer;
-  bool BooleanStringBuffer8;
-  bool BooleanValidationFlag9;
-  bool CurrentByteValue0;
-  bool BooleanVariable11;
-  bool CurrentByteValue2;
-  short *pSystemShortValue13;
-  bool CurrentByteValue4;
-  long long loopCounter5;
-  float SystemContextFloat16;
-  char StringBuffer7;
-  char StringBuffer8;
-  float SystemContextFloat19;
-  int StringComparisonResult0;
-  uint32_t MemoryAllocationIndex1;
+  short *DataStreamPointer;
+  bool BooleanStringFlag;
+  bool BooleanValidationFlag;
+  bool CurrentByteFlag;
+  bool BooleanVariable;
+  bool CurrentByteStatus;
+  short *SystemShortPointer2;
+  bool CurrentByteResult;
+  long long LoopCounter;
+  float SystemFloatValue;
+  char StringBuffer;
+  char StringBuffer2;
+  float SystemFloatValue2;
+  int StringComparisonResult;
+  uint32_t MemoryAllocationIndex;
   uint32_t MemoryAllocationIndex2;
   uint32_t MemoryAllocationIndex3;
-  float SystemContextFloat24;
-  uint32_t MemoryAllocationIndex5;
-  uint64_t MemoryAllocationIndex6;
-  unsigned long long MemoryAllocationIndex7;
-  long long bufferAllocationStatus8;
-  char *pSystemCheckResult9;
-  uint16_t *systemEventTemplatePointer0;
-  char *FunctionPointer1;
-  long long *MemoryBlockIndex2;
-  short *pSystemShortValue33;
-  float *pFloatValue34;
-  int ValidationCode5;
-  uint UnicodeCodePoint6;
-  short *pSystemShortValue38;
-  long long MemoryBlockIndex9;
-  byte hasComparisonResult0;
-  uint MemoryAddressMask1;
+  float SystemFloatValue3;
+  uint32_t MemoryAllocationIndex4;
+  uint64_t MemoryAllocationSize;
+  unsigned long long MemoryAllocationSize2;
+  long long BufferAllocationStatus;
+  char *SystemCheckResult;
+  uint16_t *SystemEventTemplate2;
+  char *FunctionPointer;
+  long long *MemoryBlockIndex;
+  short *SystemShortPointer3;
+  float *FloatValuePointer;
+  int ValidationCode;
+  uint UnicodeCodePoint;
+  short *SystemShortPointer4;
+  long long MemoryBlockData;
+  byte HasComparisonResult;
+  uint MemoryAddressMask;
   uint MemoryAddressMask2;
   int validationResult3;
   int validationResult4;
@@ -217725,14 +217763,14 @@ ConfigureSystemDataNodeTemplates(uint64_t *SystemContextPointer,unsigned long lo
  * 
  * @return uint64_t* 返回配置后的系统上下文指针
  * 
- * @note 此函数设置两个未知数据节点：UNK_180a0c7d8 和 UNK_180a0c7f0
+ * @note 此函数设置两个系统数据节点模板：SystemDataNodeTemplatePrimary 和 SystemDataNodeTemplateSecondary
  * @note 当 Utf8BufferSize 为奇数时，会释放系统上下文指针的内存（8字节）
  */
 uint64_t *
 ConfigureSystemUnknownDataNodes(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
-  *SystemContextPointer = &UNK_180a0c7d8;
-  *SystemContextPointer = &UNK_180a0c7f0;
+  *SystemContextPointer = &SystemDataNodeTemplatePrimary;
+  *SystemContextPointer = &SystemDataNodeTemplateSecondary;
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,8,Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
   }
@@ -217772,7 +217810,7 @@ InitializeSystemDataContext(uint64_t SystemContextPointer,uint64_t *Utf8BufferSi
   SystemContextPointer[2] = 0;
   *(uint32_t *)(SystemContextPointer + 3) = 0;
   SystemContextPointer[4] = 0;
-  *SystemContextPointer = (long long)&UNK_180a0c808;
+  *SystemContextPointer = (long long)&SystemDataNodeTemplateTertiary;
   SystemContextPointer[0xd] = 0;
   SystemContextPointer[5] = 0x3f800000;
   SystemContextPointer[6] = 0;
@@ -217808,7 +217846,7 @@ FUN_180194e00(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Ut
   SystemContextPointer[2] = 0;
   *(uint32_t *)(SystemContextPointer + 3) = 0;
   SystemContextPointer[4] = 0;
-  *SystemContextPointer = (long long)&UNK_180a0c808;
+  *SystemContextPointer = (long long)&SystemDataNodeTemplateTertiary;
   SystemContextPointer[0xd] = 0;
   SystemContextPointer[5] = 0x3f800000;
   SystemContextPointer[6] = 0;
@@ -217894,7 +217932,7 @@ uint64_t * FUN_180195000(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize
   SystemContextPointer[2] = 0;
   *(uint32_t *)(SystemContextPointer + 3) = 0;
   SystemContextPointer[4] = 0;
-  *SystemContextPointer = (long long)&UNK_180a0c808;
+  *SystemContextPointer = (long long)&SystemDataNodeTemplateTertiary;
   SystemContextPointer[0xd] = 0;
   SystemContextPointer[5] = 0x3f800000;
   SystemContextPointer[6] = 0;
@@ -217922,8 +217960,8 @@ uint64_t * FUN_1801950d0(long long SystemContextPointer
   uint64_t *pSystemFlagX8;
   
   StatusBuffer = (void *)MemoryAllocate(MemoryPoolManager,8,8,3,0xfffffffffffffffe);
-  *StatusBuffer = &UNK_180a0c7f0;
-  *StatusBuffer = &UNK_180a0c7d8;
+  *StatusBuffer = &SystemDataNodeTemplateSecondary;
+  *StatusBuffer = &SystemDataNodeTemplatePrimary;
   pSystemFlagX8 = StatusBuffer;
   ProcessSystemContextAllocation(SystemContextPointer + 0x48,&pSystemFlagX8);
   return StatusBuffer;
@@ -218032,7 +218070,7 @@ uint64_t * FUN_1801951e0(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize
   SystemContextPointer[2] = 0;
   *(uint32_t *)(SystemContextPointer + 3) = 0;
   SystemContextPointer[4] = 0;
-  *SystemContextPointer = (long long)&UNK_180a0c808;
+  *SystemContextPointer = (long long)&SystemDataNodeTemplateTertiary;
   SystemContextPointer[0xd] = 0;
   SystemContextPointer[5] = 0x3f800000;
   SystemContextPointer[6] = 0;
@@ -218068,7 +218106,7 @@ FUN_1801952e0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
   uint64_t Utf16Char;
   
   Utf16Char = 0xfffffffffffffffe;
-  *SystemContextPointer = &UNK_180a0c508;
+  *SystemContextPointer = &SystemDataNodeTemplateQuaternary;
   FUN_1801c2640();
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,0xb8,Utf16InputPointer,Utf16EndPointer,Utf16Char);
@@ -218112,7 +218150,7 @@ FUN_1801953d0(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Ut
   Utf8BufferSize[1] = Utf8BufferSize + 3;
   *(uint8_t *)(Utf8BufferSize + 3) = 0;
   *(uint32_t *)(Utf8BufferSize + 2) = 8;
-  strcpy_s(Utf8BufferSize[1],0x80,&UNK_180a0b1c8,Utf16EndPointer,0,0xfffffffffffffffe);
+  strcpy_s(Utf8BufferSize[1],0x80,&SystemStringConfigurationTemplate,Utf16EndPointer,0,0xfffffffffffffffe);
   return Utf8BufferSize;
 }
 
@@ -218303,7 +218341,7 @@ uint64_t * InitializeSystemContext(uint64_t *SystemContextPointer,long long Utf8
   *SystemContextPointer = &DataNodeTemplateB;
   SystemVariable9 = 0;
   *(uint32_t *)(SystemContextPointer + 1) = 0;
-  *SystemContextPointer = &UNK_180a0c4a0;
+  *SystemContextPointer = &SystemConfigurationTemplatePrimary;
   SystemContextPointer[8] = 0;
   *(uint16_t *)(SystemContextPointer + 3) = 0x100;
   *(uint8_t *)((long long)SystemContextPointer + 0x1a) = 0;
@@ -218614,7 +218652,7 @@ uint64_t * InitializeSystemContext(uint64_t *SystemContextPointer,long long Utf8
   SystemContextPointer[0xb94] = 0;
   SystemContextPointer[0xb95] = 0;
   *(uint32_t *)(SystemContextPointer + 0xb96) = 3;
-  ProcessSystemResourceInitialization(SystemContextPointer + 0xb97,0x2408,1,&UNK_1801b9c30,FUN_1801b99e0);
+  ProcessSystemResourceInitialization(SystemContextPointer + 0xb97,0x2408,1,&SystemEventTemplatePrimary,FUN_1801b99e0);
   *(uint32_t *)(SystemContextPointer + 0x1018) = 0;
   _Mtx_init_in_situ(SystemContextPointer + 0x1019,2);
   SystemContextPointer[0x1023] = 0;
@@ -218876,7 +218914,7 @@ uint64_t * InitializeSystemContext(uint64_t *SystemContextPointer,long long Utf8
   *(void *)((long long)SystemContextPointer + 0x3eb4) = 0;
   *(void *)((long long)SystemContextPointer + 0x3ebc) = 0;
   *(uint32_t *)((long long)SystemContextPointer + 0x3ec4) = 0xc2c80000;
-  (**(code **)(SystemContextPointer[0x7da] + 0x10))(SystemContextPointer + 0x7da,&UNK_180a0b1f0);
+  (**(code **)(SystemContextPointer[0x7da] + 0x10))(SystemContextPointer + 0x7da,&SystemStringTemplateSecondary);
   *(uint8_t *)((long long)SystemContextPointer + 0x561) = 0;
   *(uint16_t *)(SystemContextPointer + 0x9f) = 0x101;
   *(uint8_t *)((long long)SystemContextPointer + 0x314) = 1;
@@ -218995,7 +219033,7 @@ uint64_t * InitializeSystemContext(uint64_t *SystemContextPointer,long long Utf8
   if (plStack_190 != (long long *)0x0) {
     MemoryAddressMask = (**(code **)(*plStack_190 + 0x38))();
   }
-  CalculatedCodePoint = FUN_180095000(MemoryAddressMask,&plStack_100,&UNK_180a0b1d8,0);
+  CalculatedCodePoint = FUN_180095000(MemoryAddressMask,&plStack_100,&SystemStringTemplatePrimary,0);
   HandleUtf8BufferSize(MemoryBlockSizePointer,CalculatedCodePoint);
   if (plStack_100 != (long long *)0x0) {
     (**(code **)(*plStack_100 + 0x38))();
@@ -219471,8 +219509,8 @@ uint64_t * FUN_180196bd0(uint64_t *SystemContextPointer
   }
   psystemEventConfigurationPointer = (uint64_t ****)&pStackTempPointer;
   ppSystemOperationFlag98 = (uint64_t **)afStackX_10;
-  ppSystemOperationFlag90 = (uint64_t **)&UNK_1801bca50;
-  SystemEventPointer = &UNK_1801bca40;
+  ppSystemOperationFlag90 = (uint64_t **)&SystemOperationFlagPointer;
+  SystemEventPointer = &SystemEventPointerPrimary;
   pStackTempPointer = SystemContextPointer;
   FUN_18015b810(&pStackTempPointer,0,(long long)SystemContextPointer[0x53b] - (long long)SystemContextPointer[0x53a] >> 3,0x10,
                 0xffffffffffffffff,&pStackTempPointer,Utf16Char7);
@@ -219595,7 +219633,7 @@ LAB_1801974aa:
   psystemEventConfigurationPointer = &pppFunctionAddress80;
   pppFunctionAddress80 = &pStackTempPointer;
   pfStack_78 = afStackX_10;
-  StackVariableBuffer = &UNK_1801bca00;
+  StackVariableBuffer = &SystemStackBufferTemplate;
   pcStack_68 = FUN_1801bc9a0;
   FUN_18015b810(&pppFunctionAddress80,0,(long long)ppSystemOperationFlag98 - (long long)pStackTempPointer >> 3,0x10,
                 0xffffffffffffffff,&pppFunctionAddress80);
@@ -219867,7 +219905,7 @@ LAB_18019797c:
   uint64_t *StatusBuffer;
   long long bufferAllocationStatus;
   
-  *SystemContextPointer = &UNK_180a0c4a0;
+  *SystemContextPointer = &SystemConfigurationTemplatePrimary;
   FUN_1801a2ea0();
   StatusBuffer = (void *)SystemContextPointer[0x66c];
   if (StatusBuffer != NULL) {
@@ -220408,12 +220446,12 @@ LAB_180198827:
   }
   if (*(float *)(SystemContextPointer + 0x3140) <= 0.1) {
     pCurrentMemoryBlockAddress = (long long *)MemoryAllocate(MemoryPoolManager,0x10,8,3);
-    *pCurrentMemoryBlockAddress = (long long)&UNK_180a0c178;
+    *pCurrentMemoryBlockAddress = (long long)&SystemConfigurationTemplateSecondary;
     pCurrentMemoryBlockAddress[1] = SystemContextPointer;
   }
   else if (*(int *)(SystemContextPointer + 0x3054) == 2) {
     pCurrentMemoryBlockAddress = (long long *)MemoryAllocate(MemoryPoolManager,0x20,8,3);
-    *pCurrentMemoryBlockAddress = (long long)&UNK_180a0c178;
+    *pCurrentMemoryBlockAddress = (long long)&SystemConfigurationTemplateSecondary;
     pCurrentMemoryBlockAddress[1] = SystemContextPointer;
     *pCurrentMemoryBlockAddress = (long long)&UNK_180a0c118;
     pCurrentMemoryBlockAddress[2] = 0;
@@ -220421,7 +220459,7 @@ LAB_180198827:
   }
   else {
     pCurrentMemoryBlockAddress = (long long *)MemoryAllocate(MemoryPoolManager,0x70,8,3);
-    *pCurrentMemoryBlockAddress = (long long)&UNK_180a0c178;
+    *pCurrentMemoryBlockAddress = (long long)&SystemConfigurationTemplateSecondary;
     pCurrentMemoryBlockAddress[1] = SystemContextPointer;
     *pCurrentMemoryBlockAddress = (long long)&UNK_180a0c148;
     pCurrentMemoryBlockAddress[2] = 0;
