@@ -179532,21 +179532,21 @@ uint64_t * SwapUtf8InputAndSizeBuffers(uint64_t *Utf8InputBuffer,uint64_t *Utf8I
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
-  uint64_t UnicodeCodePoint;
+  uint64_t TempSwapValue;
   
   *Utf8InputBuffer = 0;
   Utf8InputBuffer[1] = 0;
   Utf8InputBuffer[2] = 0;
   *(uint32_t *)(CharacterCode + 3) = *(uint32_t *)(Utf8BufferSize + 3);
-  UnicodeCodePoint = *Utf8InputBuffer;
+  TempSwapValue = *Utf8InputBuffer;
   *Utf8InputBuffer = *Utf8InputBufferSize;
-  *Utf8InputBufferSize = UnicodeCodePoint;
-  UnicodeCodePoint = Utf8InputBuffer[1];
+  *Utf8InputBufferSize = TempSwapValue;
+  TempSwapValue = Utf8InputBuffer[1];
   Utf8InputBuffer[1] = Utf8BufferSize[1];
-  Utf8BufferSize[1] = UnicodeCodePoint;
-  UnicodeCodePoint = Utf8InputBuffer[2];
+  Utf8BufferSize[1] = TempSwapValue;
+  TempSwapValue = Utf8InputBuffer[2];
   Utf8InputBuffer[2] = Utf8BufferSize[2];
-  Utf8BufferSize[2] = UnicodeCodePoint;
+  Utf8BufferSize[2] = TempSwapValue;
   MemoryAllocationIndex = *(uint32_t *)(CharacterCode + 3);
   *(uint32_t *)(CharacterCode + 3) = *(uint32_t *)(Utf8BufferSize + 3);
   *(uint32_t *)(Utf8BufferSize + 3) = MemoryAllocationIndex;
@@ -208112,39 +208112,48 @@ FUN_180179a0a:
 
 
 uint64_t *
-FUN_180179aa0(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
+/**
+ * 在UTF-8输入缓冲区中插入或查找内存块
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1（比较值）
+ * @return 返回更新后的UTF-8缓冲区大小
+ */
+uint64_t InsertOrFindMemoryBlockInUtf8Buffer(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
              int *AdditionalParameter1
 {
-  bool CurrentByteValue;
-  int StringComparisonResult;
-  long long *MemoryBlockIndex;
+  bool ShouldInsertBefore;
+  int ComparisonValue;
+  long long *CurrentMemoryBlock;
   long long *EngineContext;
   long long AllocatedMemorySize;
-  uint64_t DataSize;
+  uint64_t InsertPosition;
   
-  MemoryBlockIndex = (long long *)*Utf8InputBuffer;
-  if ((Utf16EndPointer == MemoryBlockIndex) || (Utf16EndPointer == CharacterCode)) {
-    if ((Utf8InputBuffer[4] != 0) && (Utf16EndPointer = MemoryBlockIndex, *(int *)(MemoryBlockIndex + 4) < *AdditionalParameter1)) {
-LAB_180179aff:
-      DataSize = 0;
-      goto LAB_180179b02;
+  CurrentMemoryBlock = (long long *)*Utf8InputBuffer;
+  if ((Utf16EndPointer == CurrentMemoryBlock) || (Utf16EndPointer == InvalidMemoryMarker)) {
+    if ((Utf8InputBuffer[4] != 0) && (Utf16EndPointer = CurrentMemoryBlock, *(int *)(CurrentMemoryBlock + 4) < *AdditionalParameter1)) {
+InsertAtBeginning:
+      InsertPosition = 0;
+      goto ProcessInsertion;
     }
   }
   else {
-    MemoryBlockIndex = (long long *)GetNextMemoryBlockIndex(Utf16EndPointer);
-    if (((int)Utf16EndPointer[4] < *AdditionalParameter1) && (*AdditionalParameter1 < (int)MemoryBlockIndex[4])) {
-      if (*Utf16EndPointer == 0) goto LAB_180179aff;
-      DataSize = 1;
-      Utf16EndPointer = MemoryBlockIndex;
-LAB_180179b02:
+    CurrentMemoryBlock = (long long *)GetNextMemoryBlockIndex(Utf16EndPointer);
+    if (((int)Utf16EndPointer[4] < *AdditionalParameter1) && (*AdditionalParameter1 < (int)CurrentMemoryBlock[4])) {
+      if (*Utf16EndPointer == 0) goto InsertAtBeginning;
+      InsertPosition = 1;
+      Utf16EndPointer = CurrentMemoryBlock;
+ProcessInsertion:
       if (Utf16EndPointer != (long long *)0x0) {
-        FUN_180179d80(CharacterCode,Utf8BufferSize,Utf16EndPointer,DataSize,AdditionalParameter1);
+        InsertMemoryBlockIntoTree(InvalidMemoryMarker,Utf8BufferSize,Utf16EndPointer,InsertPosition,AdditionalParameter1);
         return Utf8BufferSize;
       }
     }
   }
-  CurrentByteValue = true;
-  MemoryBlockIndex = CharacterCode;
+  ShouldInsertBefore = true;
+  CurrentMemoryBlock = InvalidMemoryMarker;
   if ((long long *)Utf8InputBuffer[2] != (long long *)0x0) {
     SystemContextPtr = (long long *)Utf8InputBuffer[2];
     do {
