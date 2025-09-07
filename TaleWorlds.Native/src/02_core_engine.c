@@ -47260,7 +47260,7 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x148);
   ContextSecondaryFloat = *(float *)(SystemContext + 0x150);
   TemporaryFloatStack50 = Utf16EndPointer * in_XMM4_Da + FilterInputValue * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7;
-  fStack0000000000000054 = Utf16EndPointer * in_XMM4_Db + FilterInputValue * FloatVariable5 + SystemContextPrimaryFloat * ProcessedFloatValue8;
+  VelocityCoefficient54 = Utf16EndPointer * in_XMM4_Db + FilterInputValue * FloatVariable5 + SystemContextPrimaryFloat * ProcessedFloatValue8;
   fStack0000000000000058 = Utf16EndPointer * in_XMM4_Dc + FilterInputValue * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
   fStack0000000000000060 = Utf8SourcePointer * in_XMM4_Da + ContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7 + DataNodeIndex[0xc];
