@@ -89999,11 +89999,24 @@ void Unwind_18090cb30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cb40(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 清理异常处理上下文和资源迭代器
+ * 
+ * 该函数负责清理异常处理上下文，管理资源迭代器和内存块的释放。
+ * 它会检查数据缓冲区的状态，清理资源引用，并重置异常处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090cb40
+ * @warning 此函数为异常处理系统的一部分，应在异常发生时由系统自动调用
+ * 
+ * @see ProcessSystemOperationsA0, ValidateDataBufferA2, DefaultExceptionHandlerB
+ */
+void CleanupExceptionContextAndResourceIterator(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t exceptionHandlerContext;
-  int operationResult;
+  int validationStatus;
   int64_t memoryBlockOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
