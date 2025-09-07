@@ -21458,19 +21458,19 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   if (dataContext == 0) {
     bufferPointer = exceptionHandlerContext4;
   }
-  StackLongIntegerB = dataBuffer;
+  ProcessingLongIntegerB = dataBuffer;
   iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&TemporaryDataWordA);
   if (iterationCount == 0) {
     exceptionDataBuffer6 = (DataBuffer *)(dataBuffer + 8);
-    StackDataWordD = 0;
+    TemporaryDataWordD = 0;
     StackPointerBufferB = exceptionDataBuffer6;
     bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + 8))(exceptionDataBuffer6);
-    iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&StackDataWordD);
+    iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&TemporaryDataWordD);
     if (iterationCount == 0) {
       StackDataWordE = 0;
       StackPointerBufferC = &DataValidationErrorBase;
       StackDataWordG = StackDataWordA;
-      StackDataWordF = StackDataWordD;
+      StackDataWordF = TemporaryDataWordD;
       iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferC);
       if (iterationCount == 0) {
         StackLongIntegerA = (int64_t)*(int *)(dataContext + 0x28);
@@ -21502,7 +21502,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
             }
             bufferPointer = bufferPointer + 1;
             exceptionHandlerContext4 = exceptionHandlerContext4 + 0x18;
-            dataBuffer = StackLongIntegerB;
+            dataBuffer = ProcessingLongIntegerB;
           } while (bufferPointer < StackLongIntegerA);
         }
         systemDataBuffer1 = *(DataBuffer *)(*(int64_t *)(operationBase + 8) + 800);
@@ -110205,9 +110205,9 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：存储长整型数据的栈变量
 #define StackLongIntegerA StackLongIntegerA
 
-// 原始变量名：StackLongIntegerB - 栈长整型B
+// 原始变量名：ProcessingLongIntegerB - 栈长整型B
 // 功能：存储长整型数据的栈变量
-#define StackLongIntegerB StackLongIntegerB
+#define ProcessingLongIntegerB ProcessingLongIntegerB
 
 // 原始变量名：lStack_320 - 栈长整型数C
 // 功能：存储长整型数的栈变量
