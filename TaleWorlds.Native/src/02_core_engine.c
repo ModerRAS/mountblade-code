@@ -169279,7 +169279,20 @@ long long FUN_18013ce56(long long *Utf8InputBuffer
 
 
 
-long long FUN_18013cebd(void
+/**
+ * @brief 执行系统字符表处理循环
+ * 
+ * 该函数负责执行系统字符表的处理循环，包括字符表的遍历、数据处理和状态更新。
+ * 函数会遍历字符表中的各个条目，执行相应的处理操作，并更新系统状态。
+ * 
+ * @return long long 返回循环计数器的值，表示处理的字符数量
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的字符表处理逻辑
+ * @warning 简化实现仅执行基本的循环操作，不进行实际的字符表数据处理
+ * 
+ * @see DataNodeIndex, CharacterTablePointer, SystemContext
+ */
+long long ExecuteCharacterTableProcessingLoop(void
 {
   long long PrimaryDataSize;
   int *SystemContext;
@@ -169310,7 +169323,20 @@ long long FUN_18013cebd(void
 
 
 
-long long FUN_18013cefa(void
+/**
+ * @brief 获取字符表指针并处理数据
+ * 
+ * 该函数负责获取系统字符表的指针，并处理相关的数据操作。
+ * 函数会验证指针的有效性，处理数据索引，并返回处理结果。
+ * 
+ * @return long long 返回循环计数器的值，表示处理的状态
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的字符表指针处理逻辑
+ * @warning 简化实现仅执行基本的指针操作，不进行实际的字符表数据处理
+ * 
+ * @see CharacterTablePointer, SystemContext, DataNodeIndex
+ */
+long long GetCharacterTablePointerAndProcessData(void
 {
   long long PrimaryDataSize;
   int *SystemContext;
