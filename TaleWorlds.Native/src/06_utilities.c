@@ -42842,18 +42842,6 @@ void CleanupExceptionDataA1(DataBuffer operationBase,int64_t dataBuffer,DataBuff
  * @param operationFlagB 操作标志B
  * @note 原始函数名：Unwind_180903790
  */
-/**
- * @brief 异常数据清理函数A2
- * 
- * 该函数负责清理异常数据和验证上下文，处理异常处理器的设置，
- * 并在必要时终止系统运行
- * 
- * @param operationBase 操作基础参数
- * @param dataBuffer 数据缓冲区
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
- * @note 原始函数名：Unwind_180903790
- */
 void CleanupExceptionDataA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -42896,7 +42884,7 @@ void CleanupExceptionDataA2(DataBuffer operationBase,int64_t dataBuffer,DataBuff
  * @param operationFlagB 操作标志B
  * @note 原始函数名：Unwind_1809037b0
  */
-void Unwind_1809037b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionDataA3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
