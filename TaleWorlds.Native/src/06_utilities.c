@@ -25043,10 +25043,10 @@ MemoryCheckpointA:
         registerValueEDI = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x00000038,registerValueESI,4,0);
       }
       else {
-        uStack0000000000000034 = 0;
+        uint64_t allocationFlag = 0;
         registerValueEDI = AllocateMemory(*validationContextPointer,(int64_t)&StackBuffer30 + 4);
         if (registerValueEDI == 0) {
-          if ((uint64_t)uStack0000000000000034 + 4 <= (uint64_t)validationContextPointer[2]) goto ProcessCheckpointDataSizeCheck;
+          if ((uint64_t)allocationFlag + 4 <= (uint64_t)validationContextPointer[2]) goto ProcessCheckpointDataSizeCheck;
           registerValueEDI = 0x11;
         }
       }
