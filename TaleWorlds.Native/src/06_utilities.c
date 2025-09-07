@@ -26958,12 +26958,12 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
       systemDataBuffer = ExecuteDataValidationOperation(*dataBuffer,stackByteBuffer);
       if ((int)systemDataBuffer == 0) {
         operationResult = 0;
-        auStackX_18[0] = 0;
+        systemStatusUnion[0] = 0;
         validationStatus = stackByteBuffer[0] & 1;
         memoryBaseAddress = stackByteBuffer[0] >> 1;
         if (memoryBaseAddress != 0) {
           do {
-            systemDataBuffer = ExecuteSystemInitializationOperation(dataBuffer,auStackX_18[0]);
+            systemDataBuffer = ExecuteSystemInitializationOperation(dataBuffer,systemStatusUnion[0]);
             if ((int)systemDataBuffer != 0) {
               return systemDataBuffer;
             }
@@ -26971,12 +26971,12 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
             if ((int)systemDataBuffer != 0) {
               return systemDataBuffer;
             }
-            systemDataBuffer = ExecuteSystemCleanupOperation(dataBuffer,auStackX_18);
+            systemDataBuffer = ExecuteSystemCleanupOperation(dataBuffer,systemStatusUnion);
             if ((int)systemDataBuffer != 0) {
               return systemDataBuffer;
             }
             operationResult = operationResult + 1;
-            auStackX_18[0] = auStackX_18[0] & -validationStatus;
+            systemStatusUnion[0] = systemStatusUnion[0] & -validationStatus;
           } while (operationResult < (int)memoryBaseAddress);
         }
                     // WARNING: Subroutine does not return
@@ -29526,7 +29526,7 @@ OperationLabelD:
     }
     else if (exceptionHandlerContextPointer[2] == 0) {
 ValidationContextHandler:
-      operationResult = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,auStackX_18,1,1,0);
+      operationResult = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,systemStatusUnion,1,1,0);
     }
     else {
       allocatedMemorySize = 0;
@@ -29538,8 +29538,8 @@ ValidationContextHandler:
     }
     statusCounter = 0;
     if (operationResult == 0) {
-      statusCounter = (uint)((char)auStackX_18[0] != '\0');
-      validationOutcome = (uint)((char)auStackX_18[0] == '\0');
+      statusCounter = (uint)((char)systemStatusUnion[0] != '\0');
+      validationOutcome = (uint)((char)systemStatusUnion[0] == '\0');
       validationStatus = 0;
     }
     else {
@@ -29582,7 +29582,7 @@ ValidationErrorHandler:
       }
       else if (exceptionHandlerContextPointer[2] == 0) {
 ValidationRetryHandler:
-        operationResult = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,auStackX_18,1,1,0);
+        operationResult = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,systemStatusUnion,1,1,0);
       }
       else {
         allocatedMemorySize = 0;
@@ -29595,8 +29595,8 @@ ValidationRetryHandler:
       securityCheckResult = 0;
       operationResult = 1;
       if (operationResult == 0) {
-        securityCheckResult = (uint)((char)auStackX_18[0] != '\0');
-        operationResult = (uint)((char)auStackX_18[0] == '\0');
+        securityCheckResult = (uint)((char)systemStatusUnion[0] != '\0');
+        operationResult = (uint)((char)systemStatusUnion[0] == '\0');
       }
       validationStatus = (uint64_t)operationResult;
       if (operationResult == 0) {
@@ -29632,7 +29632,7 @@ DataProcessingHandler:
       statusCounter = stackByteBuffer[0] >> 1;
       validationStatus = ValidateSystemStatusA0(operationBase + 0x60,statusCounter);
       if ((int)validationStatus == 0) {
-        auStackX_18[0] = 0;
+        systemStatusUnion[0] = 0;
         validationStatus = dataFlags;
         if (operationResult >> 1 != 0) {
           do {
@@ -31063,12 +31063,12 @@ uint64_t GetSystemMemoryBaseAddress(int64_t operationBase,int64_t *dataBuffer)
   }
   else {
     if (exceptionHandlerContextPointer[2] != 0) {
-      auStackX_18[0] = 0;
-      operationResult = AllocateMemory(*exceptionHandlerContextPointer,auStackX_18);
+      systemStatusUnion[0] = 0;
+      operationResult = AllocateMemory(*exceptionHandlerContextPointer,systemStatusUnion);
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)auStackX_18[0] + 4) {
+      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)systemStatusUnion[0] + 4) {
         operationResult = 0x11;
         goto ProcessCheckpointValidationCleanup;
       }
@@ -31096,12 +31096,12 @@ ValidationContextCleanup:
   }
   else {
     if (exceptionHandlerContextPointer[2] != 0) {
-      auStackX_18[0] = 0;
-      operationResult = AllocateMemory(*exceptionHandlerContextPointer,auStackX_18);
+      systemStatusUnion[0] = 0;
+      operationResult = AllocateMemory(*exceptionHandlerContextPointer,systemStatusUnion);
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)auStackX_18[0] + 4) {
+      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)systemStatusUnion[0] + 4) {
         operationResult = 0x11;
         goto ProcessCheckpointValidationStateUpdate;
       }
@@ -31131,7 +31131,7 @@ ValidationStateUpdate:
   if (*exceptionHandlerContextPointer != 0) {
     if (exceptionHandlerContextPointer[2] == 0) {
 ValidationCompleteHandler:
-      validationStatus = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,auStackX_18,1,1,0);
+      validationStatus = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,systemStatusUnion,1,1,0);
     }
     else {
       stackByteBuffer[0] = 0;
@@ -31143,7 +31143,7 @@ ValidationCompleteHandler:
     }
   }
   if (validationStatus == 0) {
-    validationFlag = (char)auStackX_18[0] != '\0';
+    validationFlag = (char)systemStatusUnion[0] != '\0';
     validationStatus = 0;
   }
   if (validationStatus != 0) {
@@ -32721,7 +32721,7 @@ uint64_t ValidatePortControlOperation(int64_t operationBase,int64_t *dataBuffer)
   uint memoryBaseAddress;
   uint dataFlags;
   uint64_t validationOutcome;
-  uint auStackX_18 [2];
+  uint systemStatusUnion [2];
   uint stackByteBuffer [2];
   ByteFlag validationBuffer3 [32];
   ByteFlag ainputDataWord [32];
@@ -32752,7 +32752,7 @@ uint64_t ValidatePortControlOperation(int64_t operationBase,int64_t *dataBuffer)
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  auStackX_18[0] = 0;
+  systemStatusUnion[0] = 0;
   validationStatus = stackByteBuffer[0] & 1;
   dataFlags = stackByteBuffer[0] >> 1;
   operationResult = validationOutcome;
@@ -32767,14 +32767,14 @@ uint64_t ValidatePortControlOperation(int64_t operationBase,int64_t *dataBuffer)
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      operationResult = ExecuteSystemCleanupOperation(dataBuffer,auStackX_18);
+      operationResult = ExecuteSystemCleanupOperation(dataBuffer,systemStatusUnion);
       if ((int)operationResult != 0) {
         return operationResult;
       }
       memoryBaseAddress = (int)operationResult + 1;
       operationResult = (uint64_t)memoryBaseAddress;
-      auStackX_18[0] = auStackX_18[0] & -validationStatus;
-      operationResult = (uint64_t)auStackX_18[0];
+      systemStatusUnion[0] = systemStatusUnion[0] & -validationStatus;
+      operationResult = (uint64_t)systemStatusUnion[0];
     } while ((int)memoryBaseAddress < (int)dataFlags);
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
@@ -32793,12 +32793,12 @@ uint64_t ValidatePortControlOperation(int64_t operationBase,int64_t *dataBuffer)
   }
   else {
     if (exceptionHandlerContextPointer[2] != 0) {
-      auStackX_18[0] = 0;
-      operationResult = AllocateMemory(*exceptionHandlerContextPointer,auStackX_18);
+      systemStatusUnion[0] = 0;
+      operationResult = AllocateMemory(*exceptionHandlerContextPointer,systemStatusUnion);
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)auStackX_18[0] + 4) {
+      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)systemStatusUnion[0] + 4) {
         operationResult = 0x11;
         goto ProcessCheckpointValidationComplete3;
       }
@@ -33566,10 +33566,10 @@ ValidationStartHandler:
     memoryBaseAddress = ValidateDataAndReturnStatusO3(*pdataContext,SecurityValidationBufferC,1,4,0);
   }
   else {
-    auStackX_18[0] = 0;
-    memoryBaseAddress = AllocateMemory(*pdataContext,auStackX_18);
+    systemStatusUnion[0] = 0;
+    memoryBaseAddress = AllocateMemory(*pdataContext,systemStatusUnion);
     if ((int)memoryBaseAddress == 0) {
-      if ((uint64_t)auStackX_18[0] + 4 <= (uint64_t)pdataContext[2]) goto ProcessCheckpointValidationStart2;
+      if ((uint64_t)systemStatusUnion[0] + 4 <= (uint64_t)pdataContext[2]) goto ProcessCheckpointValidationStart2;
       memoryBaseAddress = 0x11;
     }
   }
@@ -33578,8 +33578,8 @@ ValidationStartHandler:
     return memoryBaseAddress;
   }
   dataBufferSizeValid = *(uint *)(dataBuffer + 8) < 0x34;
-  cStackX_20 = (char)memoryBaseAddress;
-  auStackX_18[0] = CONCAT31(auStackX_18[0]._1_3_,cStackX_20);
+  hasValidSystemName = (char)memoryBaseAddress;
+  systemStatusUnion[0] = CONCAT31(systemStatusUnion[0]._1_3_,hasValidSystemName);
   isMemoryAllocationComplete = false;
   if (0x37 < *(uint *)(dataBuffer + 8)) {
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
@@ -33642,7 +33642,7 @@ ValidationDataHandler2:
         }
       }
       if (validationStatus == 0) {
-        auStackX_18[0] = CONCAT31(auStackX_18[0]._1_3_,validationStatusBuffer[0] != '\0');
+        systemStatusUnion[0] = CONCAT31(systemStatusUnion[0]._1_3_,validationStatusBuffer[0] != '\0');
       }
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -33676,7 +33676,7 @@ ValidationStateHandler3:
         }
       }
       if (validationStatus == 0) {
-        cStackX_20 = validationStatusBuffer[0] != '\0';
+        hasValidSystemName = validationStatusBuffer[0] != '\0';
       }
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -33756,7 +33756,7 @@ ProcessCheckpointValidationState5:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  if ((((!isOperationValid) && ((char)auStackX_18[0] == '\0')) && (cStackX_20 == '\0')) && (!hasValidData)) {
+  if ((((!isOperationValid) && ((char)systemStatusUnion[0] == '\0')) && (hasValidSystemName == '\0')) && (!hasValidData)) {
     dataFlags = 0;
   }
   *(DataWord *)(operationBase + 0x38) = dataFlags;
@@ -34578,7 +34578,7 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
 
 {
   DataBuffer systemDataBuffer;
-  DataWord auStackX_18 [2];
+  DataWord systemStatusUnion [2];
   ByteFlag validationBuffer3 [64];
   ByteFlag SecurityValidationBufferA [32];
   
@@ -34593,118 +34593,118 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
         if (*(int *)(dataBuffer[1] + 0x18) == 0) {
           switch(*(DataWord *)(operationBase + 0x60)) {
           default:
-            auStackX_18[0] = 0;
+            systemStatusUnion[0] = 0;
             break;
           case 1:
-            auStackX_18[0] = 1;
+            systemStatusUnion[0] = 1;
             break;
           case 2:
-            auStackX_18[0] = 2;
+            systemStatusUnion[0] = 2;
             break;
           case 3:
-            auStackX_18[0] = 3;
+            systemStatusUnion[0] = 3;
             break;
           case 4:
-            auStackX_18[0] = 4;
+            systemStatusUnion[0] = 4;
             break;
           case 5:
-            auStackX_18[0] = 5;
+            systemStatusUnion[0] = 5;
             break;
           case 6:
-            auStackX_18[0] = 6;
+            systemStatusUnion[0] = 6;
             break;
           case 7:
-            auStackX_18[0] = 7;
+            systemStatusUnion[0] = 7;
             break;
           case 8:
-            auStackX_18[0] = 8;
+            systemStatusUnion[0] = 8;
             break;
           case 9:
-            auStackX_18[0] = 9;
+            systemStatusUnion[0] = 9;
             break;
           case 10:
-            auStackX_18[0] = 10;
+            systemStatusUnion[0] = 10;
             break;
           case 0xb:
-            auStackX_18[0] = 0xb;
+            systemStatusUnion[0] = 0xb;
             break;
           case 0xc:
-            auStackX_18[0] = 0xc;
+            systemStatusUnion[0] = 0xc;
             break;
           case 0xd:
-            auStackX_18[0] = 0xd;
+            systemStatusUnion[0] = 0xd;
             break;
           case 0xe:
-            auStackX_18[0] = 0xe;
+            systemStatusUnion[0] = 0xe;
             break;
           case 0xf:
-            auStackX_18[0] = 0xf;
+            systemStatusUnion[0] = 0xf;
             break;
           case 0x10:
-            auStackX_18[0] = 0x10;
+            systemStatusUnion[0] = 0x10;
             break;
           case 0x11:
-            auStackX_18[0] = 0x11;
+            systemStatusUnion[0] = 0x11;
             break;
           case 0x12:
-            auStackX_18[0] = 0x12;
+            systemStatusUnion[0] = 0x12;
             break;
           case 0x13:
-            auStackX_18[0] = 0x13;
+            systemStatusUnion[0] = 0x13;
             break;
           case 0x14:
-            auStackX_18[0] = 0x14;
+            systemStatusUnion[0] = 0x14;
             break;
           case 0x15:
-            auStackX_18[0] = 0x15;
+            systemStatusUnion[0] = 0x15;
             break;
           case 0x16:
-            auStackX_18[0] = 0x16;
+            systemStatusUnion[0] = 0x16;
             break;
           case 0x17:
-            auStackX_18[0] = 0x17;
+            systemStatusUnion[0] = 0x17;
             break;
           case 0x18:
-            auStackX_18[0] = 0x18;
+            systemStatusUnion[0] = 0x18;
             break;
           case 0x19:
-            auStackX_18[0] = 0x19;
+            systemStatusUnion[0] = 0x19;
             break;
           case 0x1a:
-            auStackX_18[0] = 0x1a;
+            systemStatusUnion[0] = 0x1a;
             break;
           case 0x1b:
-            auStackX_18[0] = 0x1b;
+            systemStatusUnion[0] = 0x1b;
             break;
           case 0x1c:
-            auStackX_18[0] = 0x1c;
+            systemStatusUnion[0] = 0x1c;
             break;
           case 0x1d:
-            auStackX_18[0] = 0x1d;
+            systemStatusUnion[0] = 0x1d;
             break;
           case 0x1e:
-            auStackX_18[0] = 0x1e;
+            systemStatusUnion[0] = 0x1e;
             break;
           case 0x1f:
-            auStackX_18[0] = 0x1f;
+            systemStatusUnion[0] = 0x1f;
             break;
           case 0x20:
-            auStackX_18[0] = 0x20;
+            systemStatusUnion[0] = 0x20;
             break;
           case 0x21:
-            auStackX_18[0] = 0x21;
+            systemStatusUnion[0] = 0x21;
             break;
           case 0x22:
-            auStackX_18[0] = 0x22;
+            systemStatusUnion[0] = 0x22;
             break;
           case 0x23:
-            auStackX_18[0] = 0x23;
+            systemStatusUnion[0] = 0x23;
             break;
           case 0x24:
-            auStackX_18[0] = 0x24;
+            systemStatusUnion[0] = 0x24;
           }
           systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
-                            (*(DataBuffer **)(*dataBuffer + 8),auStackX_18,4);
+                            (*(DataBuffer **)(*dataBuffer + 8),systemStatusUnion,4);
           if (((int)systemDataBuffer == 0) &&
              (systemDataBuffer = ValidateDataFormatStructure(dataBuffer,operationBase + 0x40,0x3d), (int)systemDataBuffer == 0)) {
                     // WARNING: Subroutine does not return
@@ -35053,7 +35053,7 @@ DataBuffer ProcessDataConversionA1(int64_t operationBase,int64_t *dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
-  DataWord auStackX_18 [4];
+  DataWord systemStatusUnion [4];
   ByteFlag ainputDataWord [32];
   ByteFlag SecurityValidationBufferA [32];
   
@@ -35068,9 +35068,9 @@ DataBuffer ProcessDataConversionA1(int64_t operationBase,int64_t *dataBuffer)
       if (*(int *)(dataBuffer[1] + 0x18) != 0) {
         return 0x1c;
       }
-      auStackX_18[0] = *(DataWord *)(operationBase + 0xd8);
+      systemStatusUnion[0] = *(DataWord *)(operationBase + 0xd8);
       systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
-                        (*(DataBuffer **)(*dataBuffer + 8),auStackX_18,4);
+                        (*(DataBuffer **)(*dataBuffer + 8),systemStatusUnion,4);
       if ((int)systemDataBuffer == 0) {
         if (*(int *)(dataBuffer[1] + 0x18) != 0) {
           return 0x1c;
@@ -35110,7 +35110,7 @@ uint64_t ProcessDataWithPointerOperation(int64_t operationBase,int64_t *dataBuff
   uint operationResult;
   DataWord *validationStatusPointer;
   uint64_t memoryBaseAddress;
-  BytePair auStackX_18 [4];
+  BytePair systemStatusUnion [4];
   BytePair stackByteBuffer [4];
   DataWord acolorDataWord [2];
   DataWord blueAlphaComponents;
@@ -35146,9 +35146,9 @@ uint64_t ProcessDataWithPointerOperation(int64_t operationBase,int64_t *dataBuff
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                             (*(DataBuffer **)(exceptionHandlerContext + 8),acolorDataWord,4);
           if (operationResult == 0) {
-            auStackX_18[0] = (BytePair)colorPackedData;
+            systemStatusUnion[0] = (BytePair)colorPackedData;
             operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
-                              (*(DataBuffer **)(exceptionHandlerContext + 8),auStackX_18,2);
+                              (*(DataBuffer **)(exceptionHandlerContext + 8),systemStatusUnion,2);
             if (operationResult == 0) {
               stackByteBuffer[0] = colorPackedData._2_2_;
               operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
