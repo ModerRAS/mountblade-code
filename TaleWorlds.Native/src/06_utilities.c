@@ -24996,6 +24996,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
   DataWord validationOutcome;
   uint64_t securityCheckResult;
   DataBuffer operationDataBuffer;
+  DataBuffer stackDataBuffer;
   
   operationDataBuffer = CONCAT44(operationDataBuffer._4_4_,*dataBuffer);
   inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&operationDataBuffer,4);
@@ -25021,9 +25022,9 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
           } while ((int)validationStatus < inputParameter);
         }
         inputParameter = dataBuffer[DataBufferOffsetE];
-        temporaryDataBuffer = CONCAT44(temporaryDataBuffer._4_4_,inputParameter);
+        operationDataBuffer = CONCAT44(operationDataBuffer._4_4_,inputParameter);
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
-                          (*(DataBuffer **)(operationBase + DataBufferOffset8),&temporaryDataBuffer,DataProcessingMultiplier4);
+                          (*(DataBuffer **)(operationBase + DataBufferOffset8),&operationDataBuffer,DataProcessingMultiplier4);
         if (operationResult == 0) {
           memoryRegionBase = dataFlags;
           if (0 < inputParameter) {
