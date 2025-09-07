@@ -30,6 +30,42 @@
 #define ProcessStringConversion ConvertStringEncoding
 #define InitializeStringEncodingBuffer SetupStringEncodingBuffer
 
+/**
+ * @brief 处理系统配置状态变更
+ * 
+ * 该函数负责在系统配置状态发生变化时进行相应的处理和更新
+ * 
+ * @note 原始函数名：FUN_180133110
+ */
+#define HandleSystemConfigurationStateChange FUN_180133110
+
+/**
+ * @brief 处理系统状态和资源分配
+ * 
+ * 该函数负责处理系统状态变更、资源分配和内存管理
+ * 
+ * @note 原始函数名：FUN_180131dad
+ */
+#define ProcessSystemStateAndResourceAllocation FUN_180131dad
+
+/**
+ * @brief 处理系统数据表和浮点值
+ * 
+ * 该函数负责处理系统数据表的浮点值运算和数据管理
+ * 
+ * @note 原始函数名：FUN_180131c60
+ */
+#define ProcessSystemDataTableAndFloatValue FUN_180131c60
+
+/**
+ * @brief 处理字符编码转换
+ * 
+ * 该函数负责处理字符编码转换，支持UTF-8到UTF-16的转换
+ * 
+ * @note 原始函数名：FUN_1801331eb
+ */
+#define ProcessCharacterEncodingConversion FUN_1801331eb
+
 
 /**
  * @brief 获取系统浮点数值
@@ -35156,10 +35192,10 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t CharacterCode
   uint64_t *DataBuffer9;
   uint32_t StringProcessingBuffer;
   uint8_t systemStackBuffer368 [32];
-  void *stackPointer348;
-  uint16_t stackArray338 [2];
-  uint16_t stackArray334 [2];
-  void *stackPointer330;
+  void *systemBufferPointer348;
+  uint16_t systemArrayBuffer338 [2];
+  uint16_t systemArrayBuffer334 [2];
+  void *systemBufferPointer330;
   long long stackMemoryOffset328;
   int stackIndex320;
   unsigned long long stackVariable318;
@@ -35178,7 +35214,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t CharacterCode
   uint32_t stackFlag2b0;
   unsigned long long stackVariable2a8;
   void *stackPointer2a0;
-  char *StringProcessingBuffer298;
+  char *characterStringPointer;
   int stackIndex290;
   uint32_t stackFlag288;
   uint64_t stackVariable280;
@@ -35462,23 +35498,23 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t CharacterCode
         StatusBuffer8 = EventVariablePointer;
         if (((long long)memoryAllocationBuffer - (long long)EventVariablePointer & 0xffffffffffffffe0U) == 0x40) {
           CoreEngineExecuteSystemEvent(&EventBufferPointer,EventVariablePointer);
-          if (pcStack_298 != (char *)0x0) {
+          if (characterStringPointer != (char *)0x0) {
             CharacterCounter = 0;
             LoopIndex = 0;
             CurrentMemoryBlockAddress = 0;
-            characterStringBuffer = *pcStack_298;
+            characterStringBuffer = *characterStringPointer;
             while (characterStringBuffer != '\0') {
-              if (' ' < pcStack_298[CurrentMemoryBlockAddress]) {
+              if (' ' < characterStringPointer[CurrentMemoryBlockAddress]) {
                 if (LoopIndex != CurrentMemoryBlockAddress) {
-                  pcStack_298[LoopIndex] = pcStack_298[CurrentMemoryBlockAddress];
+                  characterStringPointer[LoopIndex] = characterStringPointer[CurrentMemoryBlockAddress];
                 }
                 CharacterCounter = CharacterCounter + 1;
                 LoopIndex = LoopIndex + 1;
               }
               CurrentMemoryBlockAddress = CurrentMemoryBlockAddress + 1;
-              CurrentCharacter = pcStack_298[CurrentMemoryBlockAddress];
+              CurrentCharacter = characterStringPointer[CurrentMemoryBlockAddress];
             }
-            pcStack_298[LoopIndex] = '\0';
+            characterStringPointer[LoopIndex] = '\0';
           }
           ComputedResult = 0;
           if (MemoryAllocationIndex != 0) {
@@ -35489,7 +35525,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t CharacterCode
               if (CharacterByteCount == CharacterCounter) {
                 if (CharacterByteCount != 0) {
                   pValidationByteFlag3 = (byte *)*StatusBuffer8;
-                  CurrentMemoryBlockAddress = (long long)pcStack_298 - (long long)pValidationByteFlag3;
+                  CurrentMemoryBlockAddress = (long long)characterStringPointer - (long long)pValidationByteFlag3;
                   do {
                     pCurrentByteValue = pValidationByteFlag3 + CurrentMemoryBlockAddress;
                     IntegerValue5 = (uint)*pValidationByteFlag3 - (uint)*pCurrentByteValue;
@@ -35517,11 +35553,11 @@ SystemMemoryValidation: // 原始标签：LAB_180065a3e
             } while ((unsigned long long)(long long)ComputedResult < MemoryAllocationIndex);
           }
           EventBufferPointer = &SystemNullTemplate;
-          if (pcStack_298 != (char *)0x0) {
+          if (characterStringPointer != (char *)0x0) {
                     // WARNING: Subroutine does not return
             CoreEngineProcessSystemEvent();
           }
-          pcStack_298 = (char *)0x0;
+          characterStringPointer = (char *)0x0;
           EventStringBuffer = 0;
           EventBufferPointer = &ThreadLocalStorageTemplate;
           for (StatusBuffer8 = StatusBuffer7; StatusBuffer8 != CharacterCodePointer; StatusBuffer8 = StatusBuffer8 + 4) {
@@ -151468,7 +151504,7 @@ void ValidateSystemData(void)
   *(uint32_t *)(MemoryPoolBlockSize + 0x1d0c) = 0;
   *(uint32_t *)(MemoryPoolBlockSize + 0x1cb8) = 0;
   if (*(char *)(MemoryPoolBlockSize + 0x1d21) != '\0') {
-    FUN_180133110();
+    ProcessSystemResourceAllocation();
   }
   if (*(int *)(MemoryPoolBlockSize + 0x1d28) == 2) {
     if ((*(int *)(MemoryPoolBlockSize + 0x1d38) == 0) && (*(int *)(MemoryPoolBlockSize + 0x1d98) == 0)) {
@@ -151506,7 +151542,7 @@ void ValidateSystemData(void)
   if (((StringIndexCounter != 0) && (*(long long *)(StringIndexCounter + 0x3c0) != 0)) && (*(int *)(MemoryPoolBlockSize + 0x1cfc) == 0)) {
     *(void *)(StringIndexCounter + 0x3c0) = 0;
   }
-  FUN_180133790();
+  CleanupSystemResources();
   if (((CurrentByteValue8 == 0) && (!shouldReturnSource)) ||
      ((*(long long *)(MemoryPoolBlockSize + 0x1c98) == 0 ||
       ((*(uint *)(*(long long *)(MemoryPoolBlockSize + 0x1c98) + 0xc) & 0x40000) != 0)))) {
@@ -151910,7 +151946,14 @@ LAB_180132de6:
 
 
 
-31dad(voidvoid FUN_180131dad(void
+/**
+ * @brief 处理系统状态和资源分配
+ * 
+ * 该函数负责处理系统状态变更、资源分配和内存管理
+ * 
+ * @note 原始函数名：FUN_180131dad
+ */
+void ProcessSystemStateAndResourceAllocation(void)
 {
   uint64_t *StatusBuffer;
   uint32_t MemoryAllocationIndex;
@@ -152308,7 +152351,7 @@ LAB_180132de6:
   *(uint32_t *)(SystemContext + 0x1d0c) = 0;
   *(uint32_t *)(SystemContext + 0x1cb8) = 0;
   if (*(char *)(SystemContext + 0x1d21) != '\0') {
-    FUN_180133110();
+    ProcessSystemResourceAllocation();
   }
   if (*(int *)(SystemContext + 0x1d28) == 2) {
     if ((*(int *)(SystemContext + 0x1d38) == 0) && (*(int *)(SystemContext + 0x1d98) == 0)) {
@@ -152346,7 +152389,7 @@ LAB_180132de6:
   if (((CharacterTablePointer != 0) && (*(long long *)(CharacterTablePointer + 0x3c0) != 0)) && (*(int *)(SystemContext + 0x1cfc) == 0     ) {
     *(void *)(CharacterTablePointer + 0x3c0) = 0;
   }
-  FUN_180133790();
+  CleanupSystemResources();
   if (((CurrentByteValue7 == 0) && (!shouldReturnSource)) ||
      ((*(long long *)(SystemContext + 0x1c98) == 0 ||
       ((*(uint *)(*(long long *)(SystemContext + 0x1c98) + 0xc) & 0x40000) != 0)))) {
@@ -152382,7 +152425,7 @@ LAB_180132de6:
             *(uint32_t *)(SystemContext + 0x1ca0) = 0;
           }
           else {
-            FUN_180131750(0);
+            ValidateSystemStatus(0);
           }
         }
         else if ((*(uint *)(*(long long *                             (*(long long *)(SystemContext + 0x1bb8) + -0x28 + (long long)MatchCounter * 0x30) +
@@ -153098,7 +153141,14 @@ void ProcessSystemFloatMatrixOperations(void
 
 
 
-32ec4(voidvoid FUN_180132ec4(void
+/**
+ * @brief 系统验证处理函数EC4
+ * 
+ * 该函数负责处理系统验证相关的操作
+ * 
+ * @note 原始函数名：FUN_180132ec4
+ */
+void ProcessSystemValidationEC4(void)
 {
   float *pSystemContextPrimaryFloat;
   long long BufferStatus;
@@ -153205,7 +153255,14 @@ void ProcessSystemFloatMatrixOperations(void
 
 
 
-32fdb(voidvoid FUN_180132fdb(void
+/**
+ * @brief 系统验证处理函数FDB
+ * 
+ * 该函数负责处理系统验证相关的操作
+ * 
+ * @note 原始函数名：FUN_180132fdb
+ */
+void ProcessSystemValidationFDB(void)
 {
   float *pSystemContextPrimaryFloat;
   long long BufferStatus;
@@ -153265,7 +153322,15 @@ void ProcessSystemFloatMatrixOperations(void
 
 
 
-32ffd(long long CharacterCodevoid FUN_180132ffd(long long CharacterCode
+/**
+ * @brief 字符编码转换处理函数FFD
+ * 
+ * 该函数负责处理字符编码转换相关的操作
+ * 
+ * @param CharacterCode 字符编码
+ * @note 原始函数名：FUN_180132ffd
+ */
+void ProcessCharacterEncodingConversionFFD(long long CharacterCode)
 {
   float *pSystemContextPrimaryFloat;
   long long BufferStatus;
@@ -153442,7 +153507,18 @@ void ProcessSystemConfigurationUpdate(void
 
 
 
-331eb(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointervoid FUN_1801331eb(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer
+/**
+ * @brief UTF8到UTF16编码转换函数1EB
+ * 
+ * 该函数负责将UTF8编码转换为UTF16编码
+ * 
+ * @param CharacterCode 字符编码
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @note 原始函数名：FUN_1801331eb
+ */
+void ConvertUtf8ToUtf16Encoding1EB(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer)
 {
   uint64_t *StatusBuffer;
   float ContextSecondaryFloat;
@@ -154409,7 +154485,7 @@ LAB_180133d4a:
         *(int *)(Utf16Char4 + 0x3cc) = IntegerValue6;
       }
     }
-    FUN_180131750(SystemStatusCode);
+    ValidateSystemStatus(SystemStatusCode);
   }
   return;
 }
@@ -154682,7 +154758,7 @@ LAB_180133d4a:
         *(int *)(Utf16Char4 + 0x3cc) = IntegerValue6;
       }
     }
-    FUN_180131750(SystemStatusCode);
+    ValidateSystemStatus(SystemStatusCode);
   }
   return;
 }
@@ -155539,7 +155615,7 @@ LAB_180133d43:
         *(int *)(CalculatedCodePoint + 0x3cc) = (int)NullPointerValue;
       }
     }
-    FUN_180131750(MemoryAddressMask);
+    ValidateSystemStatus(MemoryAddressMask);
   }
   return;
 }
@@ -276112,6 +276188,16 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_180136440
  */
 #define ProcessSystemDataTransfer FUN_180136440
+
+/**
+ * @brief 系统资源清理器
+ * 
+ * 该函数负责清理系统资源，包括内存释放和状态重置。
+ * 在核心引擎中用于资源清理操作。
+ * 
+ * @note 原始函数名：FUN_180133790
+ */
+#define CleanupSystemResources FUN_180133790
 
 /**
  * @brief 处理系统状态更新
