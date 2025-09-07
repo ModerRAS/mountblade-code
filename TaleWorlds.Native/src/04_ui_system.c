@@ -394306,11 +394306,11 @@ void ProcessUIBufferOperation(void)
     if (operationResult != 0) {
       return;
     }
-    operationResult = unaff_EBP;
-    if (*(int *)(context[1] + 0x18) == 0) {
-      in_stack_000000b0 = 6;
-      operationResult = (**(code **)**(undefined8 **)(*context + 8))
-                        (*(undefined8 **)(*context + 8),&stack0x000000b0,4);
+    operationResult = registerEBP;
+    if (*(int *)(uiContext[1] + 0x18) == 0) {
+      operationCode = 6;
+      operationResult = (**(code **)**(undefined8 **)(*uiContext + 8))
+                        (*(undefined8 **)(*uiContext + 8),&operationCode,4);
     }
     if (operationResult != 0) {
       return;
@@ -394323,15 +394323,15 @@ void ProcessUIBufferOperation(void)
       }
       operationResult = operationResult + 1;
     } while (operationResult < 6);
-    if (*(uint *)(context + 8) < 0x6e) {
-      unaff_EBP = 0;
+    if (*(uint *)(uiContext + 8) < 0x6e) {
+      registerEBP = 0;
     }
-    else if (*(int *)(context[1] + 0x18) == 0) {
-      in_stack_000000b0 = CONCAT31(in_stack_000000b0._1_3_,*(undefined1 *)(unaff_RSI + 0x5c));
-      unaff_EBP = (**(code **)**(undefined8 **)(*context + 8))
-                            (*(undefined8 **)(*context + 8),&stack0x000000b0,1);
+    else if (*(int *)(uiContext[1] + 0x18) == 0) {
+      operationCode = CONCAT31(operationCode._1_3_,*(undefined1 *)(registerRSI + 0x5c));
+      registerEBP = (**(code **)**(undefined8 **)(*uiContext + 8))
+                            (*(undefined8 **)(*uiContext + 8),&operationCode,1);
     }
-    if (unaff_EBP != 0) {
+    if (registerEBP != 0) {
       return;
     }
                     // WARNING: Subroutine does not return
