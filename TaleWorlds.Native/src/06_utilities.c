@@ -18833,23 +18833,23 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
               dataFlags = (uint64_t)securityCheckResult;
               arrayIndex = (int)StackMemoryData;
               if (securityCheckResult != 0) {
-                securityCheckResult = uStack_110._4_4_;
-                if ((int64_t)uStack_110 < 0) {
-                  securityCheckResult = -uStack_110._4_4_;
+                securityCheckResult = StackMemoryData._4_4_;
+                if ((int64_t)StackMemoryData < 0) {
+                  securityCheckResult = -StackMemoryData._4_4_;
                 }
-                resourceIterator = (int64_t)(int)uStack_110;
-                statusCounter = uStack_110._4_4_;
+                resourceIterator = (int64_t)(int)StackMemoryData;
+                statusCounter = StackMemoryData._4_4_;
                 if ((int)securityCheckResult < 0) {
-                  if (0 < (int)uStack_110) {
+                  if (0 < (int)StackMemoryData) {
                     return dataFlags;
                   }
-                  if ((0 < (int)uStack_110._4_4_) && (uStack_118 != 0)) {
+                  if ((0 < (int)StackMemoryData._4_4_) && (StackMemoryBuffer != 0)) {
                     // WARNING: Subroutine does not return
-                    ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),uStack_118,&SystemMemoryPoolB,
+                    ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),StackMemoryBuffer,&SystemMemoryPoolB,
                                   0x100,1);
                   }
-                  uStack_118 = 0;
-                  uStack_110 = 0;
+                  StackMemoryBuffer = 0;
+                  StackMemoryData = 0;
                   statusCounter = 0;
                 }
                 if (arrayIndex < 0) {
