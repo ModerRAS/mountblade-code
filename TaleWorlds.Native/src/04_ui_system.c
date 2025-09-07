@@ -37651,9 +37651,9 @@ void ProcessUIRendererData4Optimized(longlong uiContext,longlong dataSource,unde
   undefined1 in_XMM5 [16];
   undefined1 unaff_XMM6 [16];
   
-  afunctionResult1 = _DAT_180946f20;
-  afunctionResult0 = _DAT_180946ed0;
-  auVar9 = _DAT_180946ec0;
+  afunctionResult1 = UIVectorOperationMask6;
+  afunctionResult0 = UIVectorOperationMask1;
+  auVar9 = UIVectorOperationMask0;
   asemaphoreHandle1 = packsswb(*param_6,*param_6);
   afunctionResult5 = pshuflw(in_XMM0,asemaphoreHandle1,0);
   asemaphoreHandle1 = pshuflw(asemaphoreHandle1,asemaphoreHandle1,0xaa);
