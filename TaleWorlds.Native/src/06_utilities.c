@@ -80073,7 +80073,7 @@ void InvokeFunctionPointerAtOffset130(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_18090c6f0(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeFunctionPointerAtOffset150(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x150) != (int64_t *)0x0) {
@@ -80084,7 +80084,7 @@ void Unwind_18090c6f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c700(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateDataHandlerAtOffset30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
@@ -80096,7 +80096,7 @@ void Unwind_18090c700(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c730(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeFunctionPointerAtOffset148(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x148) != (int64_t *)0x0) {
@@ -80107,7 +80107,7 @@ void Unwind_18090c730(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c740(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeFunctionPointerAtOffset160(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x160) != (int64_t *)0x0) {
