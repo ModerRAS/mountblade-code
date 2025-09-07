@@ -22333,10 +22333,10 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   // 美化后的变量名
   uint64_t securityValidationValue;
   
-  securityStack38 = ExceptionEncryptionKeyValue ^ (uint64_t)securityBuffer;
+  securityValidationValue = ExceptionEncryptionKeyValue ^ (uint64_t)securityBuffer;
   nullPointer = (int64_t *)0x0;
-  contextArray300[1] = 0;
-  operationResult = InitializeBufferA0(contextArray300 + 1,dataContext[1]);
+  contextProcessingArray300[1] = 0;
+  operationResult = InitializeBufferA0(contextProcessingArray300 + 1,dataContext[1]);
   if ((operationResult == 0) && (operationResult = ValidateSystemDataA0(dataContext,1), operationResult == 0)) {
     (**(FunctionPointer**)(*dataContext + 8))(dataContext,&DataProcessingConfigurationTableA2);
     if (((*(uint *)(dataContext + 3) & 0x1000000) == 0) ||
@@ -22388,12 +22388,12 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
       contextPointer = nullPointer;
       resourceIterator = nullPointer;
       finalContext = nullPointer;
-      contextArray300[0] = (int64_t)operationResult;
+      contextProcessingArray300[0] = (int64_t)operationResult;
       if (0 < operationResult) {
         do {
           currentResource = dataContext[1];
-          validationStack2d0 = 0;
-          pointerStack2d8 = &ValidationStackPointer;
+          validationStackData2d0 = 0;
+          pointerStackBuffer2d8 = &ValidationStackPointer;
           processedValue = SUB84(resourceIterator,0);
           exceptionHandlerContextPointer3 = (int64_t *)(exceptionHandlerContext5 + 0xe0 + (int64_t)exceptionHandlerContextPointer0);
           exceptionHandlerContext1 = *exceptionHandlerContextPointer3;
@@ -22410,15 +22410,15 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           ValidationStatusPointerB = validationStatusPointer[1];
           ValidationStatusPointerC = validationStatusPointer[2];
           ContextDataWordAB = validationStatusPointer[3];
-          lStack_294 = *(int64_t *)(exceptionHandlerContext5 + 0x260 + (int64_t)exceptionHandlerContextPointer9);
+          offsetStackData294 = *(int64_t *)(exceptionHandlerContext5 + 0x260 + (int64_t)exceptionHandlerContextPointer9);
           ContextDataWordW = *(uint *)(exceptionHandlerContext5 + 0x268 + (int64_t)exceptionHandlerContextPointer9);
-          exceptionHandlerContext1 = exceptionHandlerContext1 - lStack_294;
+          exceptionHandlerContext1 = exceptionHandlerContext1 - offsetStackData294;
           if (exceptionHandlerContext1 == 0) {
             exceptionHandlerContext1 = (statusCounter & SystemCleanupFlag) - (uint64_t)ContextDataWordW;
           }
           exceptionHandlerContext5 = operationBase[4];
           ContextDataWordX = exceptionHandlerContext1 == 0;
-          fStack_2c8 = ValidationFloatValue8;
+          floatStackValue2c8 = ValidationFloatValue8;
           if (((char)exceptionHandlerContext5 == '\0') &&
              (iterationCount = ValidateSystemDataA0(operationBase,CONCAT71((uint7)(uint3)(ContextDataWordW >> 8),1)), iterationCount != 0
              )) goto ProcessCheckpointBufferValidation;
@@ -22435,7 +22435,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           exceptionHandlerContextPointer0 = exceptionHandlerContextPointer0 + 6;
           exceptionHandlerContextPointer3 = (int64_t *)(uint64_t)((int)ValidationFloatValue8 + 1);
           exceptionHandlerContextPointer9 = (int64_t *)((int64_t)exceptionHandlerContextPointer9 + 0xc);
-        } while ((int64_t)exceptionHandlerContextPointer4 < alStack_300[0]);
+        } while ((int64_t)exceptionHandlerContextPointer4 < contextProcessingArray300[0]);
       }
       exceptionHandlerContext5 = operationBase[1] + 0x60;
       iterationCount = ValidateContext(exceptionHandlerContext5);
