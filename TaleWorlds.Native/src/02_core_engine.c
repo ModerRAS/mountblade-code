@@ -176458,7 +176458,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *Utf8InputBuffer,unsigned long l
     MemoryAllocationIndex = *(ushort *)(SystemContextValue + 0x32c);
     UnicodeCodePoint = *(ushort *)(SystemContextValue + 0x32e);
     ProcessCurrentCharacter = 0;
-    FUN_18029eb90(*(void *)(CoreEngineRenderContext + 0x1cd8),SystemContextValue,0,0,&pSystemRegisterFlagX8,0);
+    ProcessCharacterWithRenderContext(*(void *)(CoreEngineRenderContext + 0x1cd8),SystemContextValue,0,0,&pSystemRegisterFlagX8,0);
     ProcessingStatusFlag = 0;
     SystemContextValue = (long long)(int)((uint)UnicodeCodePoint * (uint)MemoryAllocationIndex);
     SystemMemoryAllocationResult = ProcessCurrentCharacter;
@@ -176533,7 +176533,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *Utf8InputBuffer,unsigned long l
   MemoryAllocationIndex = *(ushort *)(Utf8BufferSize + 0x32e);
   SystemMemoryAllocationResult = 0;
   uStack0000000000000028 = 0;
-  FUN_18029eb90(*(void *)(CharacterCode + 0x1cd8));
+  ProcessCharacterWithRenderContext(*(void *)(CharacterCode + 0x1cd8));
   DataSize = 0;
   EncodingConversionResult = (long long)(int)((uint)MemoryAllocationIndex * in_EAX);
   SystemChecksum = SystemMemoryAllocationResult;
@@ -184134,7 +184134,7 @@ code_r0x000180151fd7:
   case 0x15:
     ppuStack_210 = *(uint32_t ***)(CharacterCode + 200);
     uStack_218 = *(unsigned long long *)(CharacterCode + 0xb8);
-    FUN_18029eb90(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
+    ProcessCharacterWithRenderContext(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
                   *(uint32_t *)(CharacterCode + 0xac),*(uint32_t *)(CharacterCode + 0xa8));
     break;
   case 0x16:
