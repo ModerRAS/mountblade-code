@@ -56425,7 +56425,24 @@ void DestroyMutexB(void)
 
 
 
-void Unwind_180905cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行双重异常清理回调
+ * 
+ * 该函数在异常展开过程中执行两个异常清理回调函数：
+ * - 第一个回调处理数据缓冲区0x1f8偏移量的异常
+ * - 第二个回调处理数据缓冲区0x1d8偏移量的异常
+ * 最后重置默认异常处理器
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常回调信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180905cf0
+ * @note 处理0x1f8和0x1d8偏移量的异常回调
+ * @note 最终设置0x80偏移量的默认异常处理器
+ */
+void ExecuteDualExceptionCleanupCallbacks(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1f8) != (code *)0x0) {
@@ -56440,7 +56457,21 @@ void Unwind_180905cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行主要异常清理回调
+ * 
+ * 该函数在异常展开过程中执行主要的异常清理回调函数，
+ * 处理数据缓冲区0x1d8偏移量的异常。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常回调信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180905d00
+ * @note 处理0x1d8偏移量的异常回调
+ */
+void ExecutePrimaryExceptionCleanupCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1d8) != (code *)0x0) {
@@ -56451,7 +56482,21 @@ void Unwind_180905d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行次要异常清理回调
+ * 
+ * 该函数在异常展开过程中执行次要的异常清理回调函数，
+ * 处理数据缓冲区0x1f8偏移量的异常。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常回调信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180905d20
+ * @note 处理0x1f8偏移量的异常回调
+ */
+void ExecuteSecondaryExceptionCleanupCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1f8) != (code *)0x0) {
@@ -56462,7 +56507,21 @@ void Unwind_180905d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行上下文异常清理回调
+ * 
+ * 该函数在异常展开过程中执行上下文相关的异常清理回调函数，
+ * 处理数据缓冲区0x30偏移量的异常上下文。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180905d40
+ * @note 处理0x30偏移量的异常上下文回调
+ */
+void ExecuteContextualExceptionCleanupCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -56476,7 +56535,20 @@ void Unwind_180905d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905d50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在异常展开过程中释放互斥锁
+ * 
+ * 该函数在异常展开过程中检查并释放互斥锁，如果互斥锁已被锁定，
+ * 则尝试解锁并在失败时抛出C错误异常。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含互斥锁信息
+ * 
+ * @note 原始函数名：Unwind_180905d50
+ * @note 检查0x50偏移量的互斥锁状态
+ * @note 处理0x48偏移量的互斥锁指针
+ */
+void ReleaseMutexLockDuringUnwind(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int inputParameter;
@@ -56492,7 +56564,18 @@ void Unwind_180905d50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905d60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置主要异常处理器指针
+ * 
+ * 该函数在异常展开过程中重置主要的异常处理器指针为默认值。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * 
+ * @note 原始函数名：Unwind_180905d60
+ * @note 重置0x30偏移量的异常处理器指针
+ */
+void ResetPrimaryExceptionHandlerPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x30) = &DefaultExceptionHandlerB;
@@ -56501,7 +56584,18 @@ void Unwind_180905d60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905d70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置次要异常处理器指针
+ * 
+ * 该函数在异常展开过程中重置次要的异常处理器指针为默认值。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * 
+ * @note 原始函数名：Unwind_180905d70
+ * @note 重置0x30偏移量的异常处理器指针
+ */
+void ResetSecondaryExceptionHandlerPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x30) = &DefaultExceptionHandlerB;
@@ -56510,7 +56604,18 @@ void Unwind_180905d70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905d80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置第三异常处理器指针
+ * 
+ * 该函数在异常展开过程中重置第三的异常处理器指针为默认值。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * 
+ * @note 原始函数名：Unwind_180905d80
+ * @note 重置0x60偏移量的异常处理器指针
+ */
+void ResetTertiaryExceptionHandlerPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x60) = &DefaultExceptionHandlerB;
@@ -56519,7 +56624,21 @@ void Unwind_180905d80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行扩展上下文异常清理
+ * 
+ * 该函数在异常展开过程中执行扩展上下文的异常清理回调函数，
+ * 处理数据缓冲区0x50偏移量的扩展异常上下文。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含扩展异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180905d90
+ * @note 处理0x50偏移量的扩展异常上下文回调
+ */
+void ExecuteExtendedContextExceptionCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -56672,7 +56791,24 @@ void HandleSystemException(DataBuffer exceptionContext,int64_t contextData)
 
 
 
-void Unwind_180905e40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在异常展开过程中处理系统资源队列
+ * 
+ * 该函数在异常展开过程中处理系统资源队列，包括：
+ * - 处理系统配置
+ * - 管理异常处理上下文
+ * - 处理资源队列的插入和删除操作
+ * - 在队列满时执行特殊的清理逻辑
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含系统资源队列信息
+ * 
+ * @note 原始函数名：Unwind_180905e40
+ * @note 处理0x28偏移量的系统配置
+ * @note 管理0x3508偏移量的异常处理上下文
+ * @note 处理0x3530偏移量的资源队列操作
+ */
+void ProcessSystemResourceQueueDuringUnwind(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
