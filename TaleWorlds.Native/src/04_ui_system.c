@@ -100409,115 +100409,115 @@ UpdateComponentLayout:
         logResult = (double)CalculateUIComponentOptimization(*(longlong *)(uiContextBase + -0x60) +
                                        (longlong)(stackLayoutParams * 0x14) * 4,
                                        stackRenderParams * *(int *)(uiContextBase + 0x2cb0));
-        if (operationResult6 <= iVar7) {
-          allocatedMemory2 = CONCAT44(unaff_000000b4,CONCAT22(unaff_000000b2,unaff_R14W));
+        if (calculationResult <= componentSize) {
+          renderMemoryPool = CONCAT44(optimizationFlags,CONCAT22(operationMode,componentType));
           do {
-            semaphoreHandle3 = CONCAT22(unaff_000000b2,unaff_R14W);
-            componentIndex1 = CONCAT44(unaff_000000b4,CONCAT22(unaff_000000b2,unaff_R14W));
-            if (0 < (longlong)operationResult9) {
-              componentIndex5 = allocatedMemory2 * 4;
+            semaphoreHandle3 = CONCAT22(operationMode,componentType);
+            componentIndex1 = CONCAT44(optimizationFlags,CONCAT22(operationMode,componentType));
+            if (0 < (longlong)calculationResult) {
+              componentIndex5 = renderMemoryPool * 4;
               do {
-                dVar34 = (double)CONCAT44(unaff_XMM9_Db,unaff_XMM9_Da);
-                allocatedMemory0 = CONCAT44(unaff_000000b4,CONCAT22(unaff_000000b2,unaff_R14W));
-                dVar36 = dVar31 + 1.0;
-                if (3 < in_stack_00000078) {
-                  allocatedMemory3 = (in_stack_00000078 - 4U >> 2) + 1;
-                  allocatedMemory0 = allocatedMemory3 * 4;
-                  lVar9 = componentIndex5;
+                sizeRatio = (double)CONCAT44(textureQuality,renderQuality);
+                componentMemoryPool = CONCAT44(optimizationFlags,CONCAT22(operationMode,componentType));
+                pixelRatio = logResult + 1.0;
+                if (3 < stackMemorySize) {
+                  textureMemoryPool = (stackMemorySize - 4U >> 2) + 1;
+                  componentMemoryPool = textureMemoryPool * 4;
+                  memoryOffset = componentIndex5;
                   do {
-                    pfVar27 = (float *)(unaff_RBP + 0x1d00 + lVar9);
-                    dVar34 = (double)*(float *)(unaff_RBP + 0xae0 + lVar9) + dVar34 +
-                             (double)*(float *)(unaff_RBP + 0xd88 + lVar9) +
-                             (double)*(float *)(unaff_RBP + 0x1030 + lVar9) +
-                             (double)*(float *)(unaff_RBP + 0x12d8 + lVar9);
-                    pfloatResult = (float *)(unaff_RBP + 0x1fa8 + lVar9);
-                    pfVar2 = (float *)(unaff_RBP + 0x2250 + lVar9);
-                    pfVar3 = (float *)(unaff_RBP + 0x24f8 + lVar9);
-                    lVar9 = lVar9 + 0xaa0;
-                    dVar36 = (double)*pfVar27 + dVar36 + (double)*pfloatResult + (double)*pfVar2 +
-                             (double)*pfVar3;
-                    allocatedMemory3 = allocatedMemory3 + -1;
-                  } while (allocatedMemory3 != 0);
+                    finalResultBuffer = (float *)(uiContextBase + 0x1d00 + memoryOffset);
+                    sizeRatio = (double)*(float *)(uiContextBase + 0xae0 + memoryOffset) + sizeRatio +
+                             (double)*(float *)(uiContextBase + 0xd88 + memoryOffset) +
+                             (double)*(float *)(uiContextBase + 0x1030 + memoryOffset) +
+                             (double)*(float *)(uiContextBase + 0x12d8 + memoryOffset);
+                    layoutResultBuffer = (float *)(uiContextBase + 0x1fa8 + memoryOffset);
+                    intermediateResultBuffer = (float *)(uiContextBase + 0x2250 + memoryOffset);
+                    finalResultBuffer = (float *)(uiContextBase + 0x24f8 + memoryOffset);
+                    memoryOffset = memoryOffset + 0xaa0;
+                    pixelRatio = (double)*finalResultBuffer + pixelRatio + (double)*layoutResultBuffer + (double)*intermediateResultBuffer +
+                             (double)*finalResultBuffer;
+                    textureMemoryPool = textureMemoryPool + -1;
+                  } while (textureMemoryPool != 0);
                 }
-                if (allocatedMemory0 < in_stack_00000078) {
-                  lVar9 = (allocatedMemory2 + (allocatedMemory0 * 0x22 + componentIndex1) * 5) * 4;
-                  allocatedMemory0 = in_stack_00000078 - allocatedMemory0;
+                if (componentMemoryPool < stackMemorySize) {
+                  memoryOffset = (renderMemoryPool + (componentMemoryPool * 0x22 + componentIndex1) * 5) * 4;
+                  componentMemoryPool = stackMemorySize - componentMemoryPool;
                   do {
-                    pfVar27 = (float *)(unaff_RBP + 0xae0 + lVar9);
-                    pfloatResult = (float *)(unaff_RBP + 0x1d00 + lVar9);
-                    lVar9 = lVar9 + 0x2a8;
-                    dVar34 = dVar34 + (double)*pfVar27;
-                    dVar36 = dVar36 + (double)*pfloatResult;
-                    allocatedMemory0 = allocatedMemory0 + -1;
-                  } while (allocatedMemory0 != 0);
+                    finalResultBuffer = (float *)(uiContextBase + 0xae0 + memoryOffset);
+                    layoutResultBuffer = (float *)(uiContextBase + 0x1d00 + memoryOffset);
+                    memoryOffset = memoryOffset + 0x2a8;
+                    sizeRatio = sizeRatio + (double)*finalResultBuffer;
+                    pixelRatio = pixelRatio + (double)*layoutResultBuffer;
+                    componentMemoryPool = componentMemoryPool + -1;
+                  } while (componentMemoryPool != 0);
                 }
-                fVar32 = unaff_XMM8_Da;
-                if ((double)CONCAT44(unaff_XMM9_Db,unaff_XMM9_Da) <= dVar34 &&
-                    dVar34 != (double)CONCAT44(unaff_XMM9_Db,unaff_XMM9_Da)) {
-                  fVar32 = (1.0 - (float)(int)semaphoreHandle3 * (0.05 / fVar30))                            (float)((dVar34 + dVar34) / dVar36);
+                adjustedScale = baseTextureScale;
+                if ((double)CONCAT44(textureQuality,renderQuality) <= sizeRatio &&
+                    sizeRatio != (double)CONCAT44(textureQuality,renderQuality)) {
+                  adjustedScale = (1.0 - (float)(int)semaphoreHandle3 * (0.05 / baseScale))                            (float)((sizeRatio + sizeRatio) / pixelRatio);
                 }
-                if ((unaff_XMM7_Da < fVar32) &&
-                   ((char)(&UNK_180956e90)[componentIndex1] + operationResult6 <= in_stack_00000068)) {
-                  unaff_XMM7_Da = fVar32;
-                  iVar8 = operationResult6;
-                  uStack0000000000000048 = semaphoreHandle3;
+                if ((baseRenderScale < adjustedScale) &&
+                   ((char)(&UIRenderSemaphoreTertiary)[componentIndex1] + calculationResult <= inputTextureCount)) {
+                  baseRenderScale = adjustedScale;
+                  layoutIterations = calculationResult;
+                  stackComponentFlags = semaphoreHandle3;
                 }
                 semaphoreHandle3 = semaphoreHandle3 + 1;
                 componentIndex1 = componentIndex1 + 1;
                 componentIndex5 = componentIndex5 + 0x14;
-                iVar7 = iStack0000000000000040;
-              } while (componentIndex1 < operationResult9);
+                componentSize = stackOptimizationLevel;
+              } while (componentIndex1 < calculationResult);
             }
-            allocatedMemory2 = allocatedMemory2 + 1;
-            operationResult6 = operationResult6 + 1;
-          } while (operationResult6 <= iVar7);
+            renderMemoryPool = renderMemoryPool + 1;
+            calculationResult = calculationResult + 1;
+          } while (calculationResult <= componentSize);
         }
-        if ((int)*(uint *)(unaff_RBP + 0x2cb0) < 1) {
-          semaphoreHandle2 = (ulonglong)uStack0000000000000048;
-          sVar18 = (short)iVar8 - (short)in_stack_00000058;
+        if ((int)*(uint *)(uiContextBase + 0x2cb0) < 1) {
+          taskPriority = (ulonglong)stackComponentFlags;
+          componentType = (short)layoutIterations - (short)inputComponentCount;
         }
         else {
-          semaphoreHandle2 = (ulonglong)(int)uStack0000000000000048;
-          functionResult5 = (ulonglong)*(uint *)(unaff_RBP + 0x2cb0);
-          pvalidationResult6 = *(int **)(unaff_RBP + -0x80);
-          pcVar14 = puStack0000000000000070 + semaphoreHandle2;
-          operationResult9 = *(int *)(unaff_RBP + -0x68);
+          taskPriority = (ulonglong)(int)stackComponentFlags;
+          renderTaskId = (ulonglong)*(uint *)(uiContextBase + 0x2cb0);
+          pvalidationResult6 = *(int **)(uiContextBase + -0x80);
+          dataBufferPtr = stackDataPtr + taskPriority;
+          calculationResult = *(int *)(uiContextBase + -0x68);
           do {
-            operationResult6 = *pcVar14 + iVar8;
-            if (operationResult9 < in_stack_00000058) {
-              iVar7 = in_stack_00000058;
-              if ((operationResult6 <= in_stack_00000058) && (iVar7 = operationResult6, operationResult6 < operationResult9)) {
-                iVar7 = operationResult9;
+            calculationResult = *dataBufferPtr + layoutIterations;
+            if (calculationResult < inputComponentCount) {
+              componentSize = inputComponentCount;
+              if ((calculationResult <= inputComponentCount) && (componentSize = calculationResult, calculationResult < calculationResult)) {
+                componentSize = calculationResult;
               }
             }
             else {
-              iVar7 = operationResult9;
-              if ((operationResult6 <= operationResult9) && (iVar7 = operationResult6, operationResult6 < in_stack_00000058)) {
-                iVar7 = in_stack_00000058;
+              componentSize = calculationResult;
+              if ((calculationResult <= calculationResult) && (componentSize = calculationResult, calculationResult < inputComponentCount)) {
+                componentSize = inputComponentCount;
               }
             }
-            *pvalidationResult6 = iVar7;
-            pcVar14 = pcVar14 + componentIndex0;
+            *pvalidationResult6 = componentSize;
+            dataBufferPtr = dataBufferPtr + componentIndex0;
             pvalidationResult6 = pvalidationResult6 + 1;
-            functionResult5 = functionResult5 - 1;
-          } while (functionResult5 != 0);
-          sVar18 = (short)iVar8 - (short)in_stack_00000058;
+            renderTaskId = renderTaskId - 1;
+          } while (renderTaskId != 0);
+          componentType = (short)layoutIterations - (short)inputComponentCount;
         }
       }
-      **(short **)(unaff_RBP + -0x58) = sVar18;
-      **(undefined1 **)(unaff_RBP + -0x50) = (char)semaphoreHandle2;
-      goto LAB_18072d1b4;
+      **(short **)(uiContextBase + -0x58) = componentType;
+      **(undefined1 **)(uiContextBase + -0x50) = (char)taskPriority;
+      goto FinalizeLayoutOptimization;
     }
   }
-  componentContextPtr = *(undefined8 **)(unaff_RBP + -0x80);
+  componentContextPtr = *(undefined8 **)(uiContextBase + -0x80);
   *componentContextPtr = 0;
   componentContextPtr[1] = 0;
-  **(undefined4 **)(unaff_RBP + -0x78) = CONCAT22(unaff_000000b2,unaff_R14W);
-  **(undefined2 **)(unaff_RBP + -0x58) = unaff_R14W;
-  **(undefined1 **)(unaff_RBP + -0x50) = 0;
-LAB_18072d1b4:
+  **(undefined4 **)(uiContextBase + -0x78) = CONCAT22(operationMode,componentType);
+  **(undefined2 **)(uiContextBase + -0x58) = componentType;
+  **(undefined1 **)(uiContextBase + -0x50) = 0;
+FinalizeLayoutOptimization:
                     // WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(unaff_RBP + 0x2b60) ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(*(ulonglong *)(uiContextBase + 0x2b60) ^ (ulonglong)&stack0x00000000);
 }
 
 
