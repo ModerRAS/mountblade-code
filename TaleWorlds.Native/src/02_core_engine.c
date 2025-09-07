@@ -169216,7 +169216,20 @@ uint64_t * FUN_18014a1b0(uint64_t *SystemContextPointer
 
 
 uint64_t *
-FUN_18014a2d0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 初始化UTF-16到UTF-8转换器
+ * 
+ * 该函数负责初始化UTF-16到UTF-8的转换器，设置系统上下文和内存模板
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回系统上下文指针
+ * 
+ * @note 原始函数名：FUN_18014a2d0
+ */
+uint64_t *InitializeUtf16ToUtf8Converter(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   
@@ -178497,7 +178510,21 @@ LAB_1801565db:
 
 
 uint64_t *
-FUN_1801566b0(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 初始化系统上下文
+ * 
+ * 该函数负责初始化系统上下文，包括内存分配、互斥锁初始化、
+ * 数据表设置和各种系统参数的配置
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回初始化后的系统上下文指针
+ * 
+ * @note 原始函数名：FUN_1801566b0
+ */
+uint64_t *InitializeSystemContext(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   long long *BufferAllocationStatus;
@@ -178625,7 +178652,19 @@ FUN_1801566b0(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Ut
 
 
 
-uint64_t FUN_180156b20(uint64_t SystemContextPointer,unsigned long long Utf8BufferSize
+/**
+ * @brief 初始化系统内存管理器并处理缓冲区
+ * 
+ * 该函数负责初始化系统内存管理器，并根据UTF-8缓冲区大小的奇偶性
+ * 决定是否释放系统上下文内存
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return uint64_t 返回系统上下文指针
+ * 
+ * @note 原始函数名：FUN_180156b20
+ */
+uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t SystemContextPointer,unsigned long long Utf8BufferSize)
 {
   InitializeSystemMemoryManager();
   if ((Utf8BufferSize & 1) != 0) {
