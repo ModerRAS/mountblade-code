@@ -1424,6 +1424,30 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 原始函数名：FUN_18011d900 - 系统数据复制和初始化函数
 #define CopyAndInitializeSystemData FUN_18011d900
 
+// 原始函数名：FUN_180142220 - UTF-16字符处理和系统缓冲区管理函数
+#define ProcessUtf16CharAndSystemBuffer FUN_180142220
+
+// 原始函数名：FUN_1801426a4 - 系统内存分配和状态处理函数
+#define ProcessSystemMemoryAllocationAndStatus FUN_1801426a4
+
+// 原始函数名：FUN_1801427a0 - 系统内存块链表处理函数
+#define ProcessSystemMemoryBlockList FUN_1801427a0
+
+// 原始函数名：FUN_180142a00 - 系统编码转换和数据处理函数
+#define ProcessSystemEncodingAndData FUN_180142a00
+
+// 原始函数名：FUN_180142990 - 系统状态缓冲区清理函数
+#define CleanupSystemStatusBuffer FUN_180142990
+
+// 原始函数名：FUN_1801429a6 - 系统初始化和服务启动函数
+#define InitializeSystemAndStartServices FUN_1801429a6
+
+// 原始函数名：FUN_1801429dc - 系统上下文初始化函数
+#define InitializeSystemContext FUN_1801429dc
+
+// 原始函数名：FUN_180142b20 - 系统函数调用处理函数
+#define ProcessSystemFunctionCall FUN_180142b20
+
 // 系统数据表常量定义
 const void* const SystemDataTablePointerPrimary = (void*)0x180a064a0;
 const void* const SystemDataTablePointerSecondary = (void*)0x180a064a8;
@@ -167156,7 +167180,7 @@ uint64_t *ProcessSystemEventHandling(long long SystemContextPointer,uint64_t *Ut
   ProcessSystemMemoryDataTransfer(SystemContextPointer + 0x20,CoreEngineSystemContext + 0x290);
   ppDataContentStatus = &puStack_190;
   MemoryAddressMask = CoreEngineFinalizeSystemEvent(&puStack_190,SystemContextPointer + 0x20);
-  StringComparisonResult = FUN_180142220(SystemContextPointer,MemoryAddressMask);
+  StringComparisonResult = ProcessUtf16CharAndSystemBuffer(SystemContextPointer,MemoryAddressMask);
   if (*(char *)((long long)StringComparisonResult + *(long long *)(SystemContextPointer + 0x8c8)) == '\0') {
     ProcessSystemMemoryDataTransfer(SystemContextPointer + 0x438,(long long)StringComparisonResult * 0x20 + *(long long *)(SystemContextPointer + 0x888));
                     // WARNING: Subroutine does not return
@@ -167643,7 +167667,7 @@ uint32_t FUN_180142220(long long SystemContextPointer,uint64_t *Utf8BufferSize,u
   }
   pStackVariableBuffer = &pSystemFlagE;
   MemoryAllocationIndex = ProcessSystemMemoryAllocationIndex(&pSystemFlagE,&pSystemFlagA);
-  ValidationResult = FUN_180142220(SystemContextPointer,MemoryAllocationIndex);
+  ValidationResult = ProcessUtf16CharAndSystemBuffer(SystemContextPointer,MemoryAllocationIndex);
   if (*(char *)((long long)ValidationResult + *(long long *)(SystemContextPointer + 0x8c8)) == '\0') {
     CoreEngineFinalizeSystemEvent(Utf8BufferSize,Utf16InputPointer);
     ProcessingCounter = 1;
@@ -197466,7 +197490,7 @@ long long InitializeSystemDataTemplate(uint64_t SystemContextPointer,long long U
   
   DataConfigurationCounter = *CoreEngineSystemContext;
   MemoryAllocationIndex = CoreEngineExecuteSystemEvent(auStack_28,Utf16InputPointer,Utf16InputPointer,Utf16EndPointer,0,0xfffffffffffffffe);
-  IntegerValue = FUN_180142220(DataConfigurationCounter,MemoryAllocationIndex);
+  IntegerValue = ProcessUtf16CharAndSystemBuffer(DataConfigurationCounter,MemoryAllocationIndex);
   if ((IntegerValue < 0) ||
      (DataConfigurationCounter = *(long long *)(*CoreEngineSystemContext + 0x888),
      (unsigned long long)(*(long long *)(*CoreEngineSystemContext + 0x890) - DataConfigurationCounter >> 5) <= (unsigned long long)(long long)IntegerValue     ) {
