@@ -170879,19 +170879,28 @@ uint64_t * AllocateSystemConfigurationString(void
 
 
 
-3d010(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18013d010(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * 处理系统配置数据
+ * 根据不同的配置路径设置相应的配置参数
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessSystemConfigurationData(uint64_t CharacterCode, uint64_t Utf8BufferSize, long long Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  int LockResult;
-  float ContextSecondaryFloat;
-  uint32_t aStackProcessingConfigurationFlag [4];
-  float fStack_18;
-  float fStack_14;
-  int aiStack_10 [2];
+  int ProcessingResult;
+  float SecondaryConfigurationValue;
+  uint32_t ConfigurationFlags [4];
+  float PrimaryFloatValue;
+  float SecondaryFloatValue;
+  int TertiaryConfigurationValues [2];
   
-  IntegerValue = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemFileOperationPath,&fStack_18,&fStack_14);
-  if (IntegerValue == 2) {
-    *(float *)(Utf8SourcePointer + 0xc) = fStack_18;
-    *(float *)(Utf8SourcePointer + 0x10) = fStack_14;
+  ProcessingResult = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemFileOperationPath,&PrimaryFloatValue,&SecondaryFloatValue);
+  if (ProcessingResult == 2) {
+    *(float *)(Utf8SourcePointer + 0xc) = PrimaryFloatValue;
+    *(float *)(Utf8SourcePointer + 0x10) = SecondaryFloatValue;
     return;
   }
   IntegerValue = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemConfigurationPath,&fStack_18,&fStack_14);
@@ -178804,7 +178813,7 @@ LAB_18014c263:
 
 
 
-long long * FUN_18014c570(long long *Utf8InputBuffer,long long *Utf8InputBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+long long * ProcessUtf8ToUtf16BufferConversion(long long *Utf8InputBuffer,long long *Utf8InputBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint Utf16Char;
   long long BufferStatus;
