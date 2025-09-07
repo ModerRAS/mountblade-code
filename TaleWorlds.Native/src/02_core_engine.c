@@ -167,6 +167,19 @@
 #define StackUintValue StackUintValue6c                    // 堆栈无符号整数值
 #define TemporaryFloatStack TemporaryFloatStack68          // 临时浮点堆栈
 #define InputFilterValue FilterInputValue                   // 输入过滤值
+
+// UTF-8缓冲区处理函数
+#define ProcessUtf8BufferAllocationAndConfiguration FUN_18013e4c0  // 处理UTF-8缓冲区分配和配置
+#define ConfigureMemoryBlockExtension FUN_18013e570            // 配置内存块扩展
+#define ProcessUtf8InputBufferValidation FUN_18013e620         // 处理UTF-8输入缓冲区验证
+#define CleanupUtf8ProcessingResources FUN_18013e74d           // 清理UTF-8处理资源
+#define ResetUtf8ProcessingState FUN_18013e77c                // 重置UTF-8处理状态
+#define InitializeUtf8MemoryManagement FUN_18013e7f2           // 初始化UTF-8内存管理
+#define ProcessUtf8BufferSizeOptimization FUN_18013e800        // 处理UTF-8缓冲区大小优化
+#define ValidateUtf8CharacterCode FUN_18013e81a                // 验证UTF-8字符代码
+#define FinalizeUtf8BufferProcessing FUN_18013e8d4             // 完成UTF-8缓冲区处理
+#define ReleaseUtf8ProcessingResources FUN_18013e8e6           // 释放UTF-8处理资源
+#define ProcessUtf8CharacterCodeConversion FUN_18013e910       // 处理UTF-8字符代码转换
 #define PrimaryDataBuffer PrimaryDataStorage               // 主要数据缓冲区
 #define SecondaryFloatBuffer SecondaryFloatValue           // 次要浮点缓冲区
 #define DataStructureIndex DataNodePointer                   // 数据结构索引
@@ -173357,7 +173370,23 @@ void ProcessCharacterConfigureBuffer(void)
 
 
 
-long long FUN_18013e4c0(int *Utf8InputBuffer,long long Utf8BufferSize,uint64_t *Utf8SourcePointer
+/**
+ * @brief 处理UTF-8缓冲区分配和配置
+ * 
+ * 该函数负责处理UTF-8输入缓冲区的内存分配和配置操作，包括：
+ * - 验证输入缓冲区的有效性
+ * - 计算内存池块大小
+ * - 处理内存边界和数据移动
+ * - 配置字符状态缓冲区
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return long long 返回处理后的内存地址偏移量
+ * 
+ * @note 原始函数名: FUN_18013e4c0
+ */
+long long ProcessUtf8BufferAllocationAndConfiguration(int *Utf8InputBuffer,long long Utf8BufferSize,uint64_t *Utf8SourcePointer
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t MemoryAllocationIndex;

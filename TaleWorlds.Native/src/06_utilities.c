@@ -239,6 +239,7 @@
 #define SystemOperationSecondaryDataOffset 0x28     // 系统操作次数据偏移量
 #define DataBlockMultiplier                  0x10  // 数据块乘数
 #define DataBlockShiftBits                   4     // 数据块位移位数
+#define SystemValidationFlagsOffset         0x2c  // 系统验证标志偏移量
 #define ValidationContextResourceOffset 0x2e8      // 验证上下文资源偏移量
 #define ExceptionHandlerTableOffset 0x2b0           // 异常处理表偏移量
 #define ExceptionHandlerDataOffset 0x78             // 异常处理数据偏移量
@@ -30084,11 +30085,11 @@ void CheckSystemStatusB0(void)
       if (SystemOperationResult != 0) {
         return;
       }
-      if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
-        SystemOperationResult = ProcessDataBlocksA1(*SystemRegisterContext,(int64_t)SystemParameter * 0x10 + *(int64_t *)(SystemContextPointer + ExceptionHandlerCallbackOffset10));
+      if (*(int *)(SystemRegisterContext[1] + ResourceReferenceCountOffset) == 0) {
+        SystemOperationResult = ProcessDataBlocksA1(*SystemRegisterContext,(int64_t)SystemParameter * DataBlockMultiplier + *(int64_t *)(SystemContextPointer + ExceptionHandlerCallbackOffset10));
       }
       else {
-        SystemOperationResult = 0x1c;
+        SystemOperationResult = ResourceInvalidErrorCode;
       }
       if (SystemOperationResult != 0) {
         return;
@@ -30108,23 +30109,23 @@ void CheckSystemStatusB0(void)
     return;
   }
   ResourceIterator = (int64_t)(int)SystemOperationCount;
-  MemoryValidationStatus = (int)*(uint *)(SystemContextPointer + 0x2c) >> 0x1f;
-  if (((int)((*(uint *)(SystemContextPointer + 0x2c) ^ MemoryValidationStatus) - MemoryValidationStatus) < (int)SystemOperationCount) &&
-     (SystemOperationResult = ValidateSystemMemoryA0(SystemContextPointer + 0x20,SystemOperationCount), SystemOperationResult != 0)) {
+  MemoryValidationStatus = (int)*(uint *)(SystemContextPointer + SystemValidationFlagsOffset) >> 0x1f;
+  if (((int)((*(uint *)(SystemContextPointer + SystemValidationFlagsOffset) ^ MemoryValidationStatus) - MemoryValidationStatus) < (int)SystemOperationCount) &&
+     (SystemOperationResult = ValidateSystemMemoryA0(SystemContextPointer + SystemContextDataOffset,SystemOperationCount), SystemOperationResult != 0)) {
     return;
   }
-  SystemOperationResult = *(int *)(SystemContextPointer + 0x28);
+  SystemOperationResult = *(int *)(SystemContextPointer + SystemOperationSecondaryDataOffset);
   if (SystemOperationResult < SystemParameter) {
-      memset((int64_t)SystemOperationResult + *(int64_t *)(SystemContextPointer + 0x20),0,(int64_t)(SystemParameter - SystemOperationResult));
+      memset((int64_t)SystemOperationResult + *(int64_t *)(SystemContextPointer + SystemContextDataOffset),0,(int64_t)(SystemParameter - SystemOperationResult));
   }
-  *(int *)(SystemContextPointer + 0x28) = SystemParameter;
+  *(int *)(SystemContextPointer + SystemOperationSecondaryDataOffset) = SystemParameter;
   if (SystemParameter != 0) {
-    if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
-      SystemParameter = OperateDataO0(*SystemRegisterContext,*(DataBuffer *)(SystemContextPointer + 0x20),ResourceIterator);
+    if (*(int *)(SystemRegisterContext[1] + ResourceReferenceCountOffset) == 0) {
+      SystemParameter = OperateDataO0(*SystemRegisterContext,*(DataBuffer *)(SystemContextPointer + SystemContextDataOffset),ResourceIterator);
       if (SystemParameter == 0) goto ProcessCheckpointOperationCheck;
     }
     else {
-      SystemParameter = 0x1c;
+      SystemParameter = ResourceInvalidErrorCode;
     }
     if (SystemParameter != 0) {
       return;
