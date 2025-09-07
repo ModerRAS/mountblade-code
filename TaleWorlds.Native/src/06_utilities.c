@@ -19497,7 +19497,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               iterationCount = ProcessUtilityOperation(dataBuffer);
               if (iterationCount == 4) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &UNK_180983b68;
+                puStack_1c0 = &DataIntegrityValidationErrorD;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = 0.0;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
@@ -19505,7 +19505,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               }
               if ((*(uint *)(dataBuffer + 0x2d8) >> 3 & 1) != 0) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &UNK_180983cf8;
+                puStack_1c0 = &DataIntegrityValidationErrorE;
                 uStack_1b0 = uStack_1c8;
                 ValidateDataIntegrityA0(operationBase,&puStack_1c0);
               }
