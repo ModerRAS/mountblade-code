@@ -1057,6 +1057,9 @@
 // 原始函数名：FUN_1800547b0 - 系统清理执行函数
 #define ExecuteSystemCleanup FUN_1800547b0
 
+// 原始函数名：FUN_18016f9f0 - UTF-8编码内存分配函数
+#define AllocateUtf8EncodingMemory FUN_18016f9f0
+
 // 系统核心函数语义化定义
 // 原始函数名：FUN_180179770 - 系统缓冲区处理函数
 #define ProcessSystemBufferEx FUN_180179770
