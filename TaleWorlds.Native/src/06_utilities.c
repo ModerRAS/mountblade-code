@@ -33215,17 +33215,17 @@ ValidationErrorHandler5:
           CleanupSystemResourcesA0(&StackPointerBufferG);
           return memoryBaseAddress;
         }
-        poperationResult = puStack_88;
-        if ((int)uStack_80 != 0) {
-          for (; (puStack_88 <= poperationResult && (poperationResult < puStack_88 + (int)uStack_80));
-              poperationResult = poperationResult + 1) {
+        operationResultPointer = StackPointerWordAF;
+        if ((int)SecurityValidationBufferB != 0) {
+          for (; (StackPointerWordAF <= operationResultPointer && (operationResultPointer < StackPointerWordAF + (int)SecurityValidationBufferB));
+              operationResultPointer = operationResultPointer + 1) {
             memoryPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x28,&SystemMemoryAllocationBuffer,0xc1c,
                                   0,0,1);
             if (memoryPointer == 0) {
               memoryBaseAddress = 0x26;
               goto ProcessCheckpointValidationError4;
             }
-            systemDataBuffer = *poperationResult;
+            systemDataBuffer = *operationResultPointer;
             *(int64_t *)memoryPointer = memoryPointer;
             *(int64_t *)(memoryPointer + 8) = memoryPointer;
             *(DataWord *)(memoryPointer + 0x10) = systemDataBuffer;
@@ -105228,8 +105228,8 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define StackExceptionContextData2 uStack_12c
 
 // 原始变量名：uStack_128 - 栈数据字L
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordL uStack_128
+// 功能：存储异常上下文的数据字3
+#define StackExceptionContextData3 uStack_128
 
 // 原始变量名：uStack_124 - 栈数据字M
 // 功能：存储数据处理过程中的临时数据字
