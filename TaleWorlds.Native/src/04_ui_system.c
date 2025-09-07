@@ -393006,14 +393006,17 @@ undefined8 FUN_18089fc50(longlong uiContext,undefined8 *dataSource)
 
 
 
- 处理UI系统事件验证
- 处理UI系统的事件验证逻辑
- * 用于验证UI事件的有效性和处理流程
-  eventHandler 事件处理器指针
- *  eventData 事件数据指针
-  处理结果，0表示成功，非0表示错误
+ /**
+ * @brief 处理UI系统事件验证
  * 
-  原始函数名: FUN_18089ffe0
+ * 处理UI系统的事件验证逻辑，用于验证UI事件的有效性和处理流程
+ * 
+ * @param eventHandler 事件处理器指针
+ * @param eventData 事件数据指针
+ * @return 处理结果，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名: FUN_18089ffe0
+ */
  uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 {
   uint64_t result;
