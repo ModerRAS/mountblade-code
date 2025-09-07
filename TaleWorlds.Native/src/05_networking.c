@@ -298,7 +298,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkQueueEnabledFlag 0x08                          // 队列启用标志别名
 #define NetworkPacketStatusPrimaryOffset 0x38                  // 网络数据包主状态数据偏移量
 #define NetworkPacketStatusSecondaryOffset 0x3c                // 网络数据包次级状态数据偏移量
-#define NetworkPacketStatusTertiaryOffset 0x40                 // 网络数据包第三级状态数据偏移量
+#define NetworkPacketProcessingStatusOffset 0x40                 // 网络数据包处理状态数据偏移量
 #define NetworkPacketStatusQuaternaryOffset 0x44               // 网络数据包第四级状态数据偏移量
 #define ConnectionContextActiveCountIndex 1                     // 连接上下文活跃连接数索引
 #define ConnectionContextPacketStatusIndex 1                   // 连接上下文数据包状态索引
@@ -3836,7 +3836,7 @@ NetworkHandle HandleNetworkConnectionPacket(NetworkHandle ConnectionContext, int
   uint32_t PacketProcessingStatus;                        // 数据包处理状态值，用于确定处理策略
   
   // 获取处理状态值
-  PacketProcessingStatus = *(uint32_t *)(PacketData + NetworkPacketStatusTertiaryOffset);
+  PacketProcessingStatus = *(uint32_t *)(PacketData + NetworkPacketProcessingStatusOffset);
   
   // 根据数据包状态选择不同的处理路径
   if (PacketProcessingStatus < NetworkPacketStatusLimit) {
@@ -3931,7 +3931,7 @@ uint64_t GenerateConnectionStateUniqueId(uint32_t ConnectionStateFlags, uint32_t
  * 
  * @note 此函数会初始化连接上下文数据并设置连接状态，使用静态数组存储上下文数据
  * @warning 调用者需要确保SecurityValidationData有足够的空间存储验证结果，至少SecurityValidationBufferSize字节
- * @see NetworkConnectionIdMaskValue, NetworkStatusActive, NetworkValidationSuccess
+ * @see NetworkConnectionIdentifierMaskValue, NetworkStatusActive, NetworkValidationSuccess
  */
 void* ProcessNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int64_t RequestData, void* SecurityValidationData, 
                              uint32_t FinalizeValue, uint32_t ProcessingFlags, uint32_t ValidationFlags, uint32_t ProcessingMode)
@@ -3947,7 +3947,7 @@ void* ProcessNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int
   
   // 设置连接基本信息
   ConnectionActiveState = NetworkStatusActive;                             // 设置连接状态为活跃
-  ConnectionIdentifier = (uint32_t)(RequestData & NetworkConnectionIdMaskValue);  // 从请求数据提取连接标识符
+  ConnectionIdentifier = (uint32_t)(RequestData & NetworkConnectionIdentifierMaskValue);  // 从请求数据提取连接标识符
   
   // 验证连接安全性
   ConnectionSecurityStatus = NetworkValidationFailure;

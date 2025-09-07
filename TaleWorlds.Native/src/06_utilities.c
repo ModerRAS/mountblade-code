@@ -8261,7 +8261,7 @@ uint8_t SystemDataBufferA;
 // 系统资源预留空间G
 uint8_t SystemResourceReservedSpaceG;
 // 系统状态标志变量B
-char SystemStatusFlagB;
+char SystemStatusFlagB;                      // 系统状态标志B
 // 系统异常处理状态表A3
 uint8_t SystemExceptionHandlerStatusA3;
 uint8_t SystemPerformanceCounterA;
@@ -8378,15 +8378,15 @@ uint8_t SystemMemoryManagementBlockB2;
 // 全局系统数据指针
 int64_t GlobalSystemDataPointer;
 // 系统健康状态指示器
-uint SystemHealthStatusIndicator;
+uint SystemHealthStatusIndicator;             // 系统健康状态指示器
 // 系统性能指标主值
-double SystemPerformanceMetricPrimary;
+double SystemPerformanceMetricPrimary;        // 系统性能指标主值
 // 系统性能指标次值
-double SystemPerformanceMetricSecondary;
+double SystemPerformanceMetricSecondary;       // 系统性能指标次值
 // 工具系统错误计数器
-int UtilitySystemErrorCount;
+int UtilitySystemErrorCount;                  // 工具系统错误计数器
 // 系统计时值
-double SystemTimingValue;
+double SystemTimingValue;                     // 系统计时值
 // 系统主状态
 uint8_t SystemStatePrimary;
 // 系统次状态
@@ -9427,7 +9427,7 @@ uint8_t ThreadLocalStorageValidationFlag;    // UNK_180a2eac0
 #define SystemConfigurationDataTableA0 DAT_180c92510
 uint8_t SystemConfigurationDataTableA0;
 // 系统主缓存状态标志
-char SystemMainCacheStatusFlag;
+char SystemMainCacheStatusFlag;               // 系统主缓存状态标志
 // 系统状态指针A0
 // 功能：指向系统状态数据
 #define SystemStatusPointerA0 UNK_180a3e5e8
@@ -15913,19 +15913,19 @@ RangeValidationSuccess:
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (lStackX_8 == 0) {
+  if (LocalStackOffset == 0) {
     calculatedOffset = 0;
   }
   else {
-    calculatedOffset = lStackX_8 + -8;
+    calculatedOffset = LocalStackOffset + -8;
   }
   *(DataWord *)(calculatedOffset + 0xa4 + (int64_t)*(int *)(operationBase + 0x18) * 4) =
        *(DataWord *)(resourceDescriptor + 0x1c);
   calculatedOffset = *(int64_t *)(dataBuffer + 0x98);
   if ((*(int *)(calculatedOffset + 0x180) != 0) || (*(int *)(calculatedOffset + 0x184) != 0)) {
-    lStackX_8 = 0;
-    InitializeSystemContextA0(&lStackX_8);
-    if (lStackX_8 == *(int64_t *)((int64_t)*(int *)(calculatedOffset + 0x17c) * 8 + 0x180c4f450)) {
+    LocalStackOffset = 0;
+    InitializeSystemContextA0(&LocalStackOffset);
+    if (LocalStackOffset == *(int64_t *)((int64_t)*(int *)(calculatedOffset + 0x17c) * 8 + 0x180c4f450)) {
       operationResult = ProcessSystemDataEC0(calculatedOffset,operationBase);
       if ((int)operationResult == 0) {
         return 0;
@@ -20324,13 +20324,13 @@ void ProcessFloatingPointDataA0(void)
   int64_t DataContextPointer;
   char SystemRegisterR15B;
   float FloatResultA;
-  float FloatResultA_00;
-  float FloatResultA_01;
-  float FloatResultA_02;
-  float FloatResultA_03;
-  float FloatResultA_04;
-  float FloatResultA_05;
-  float FloatResultA_06;
+  float ProcessedFloatResult00;
+  float ProcessedFloatResult01;
+  float ProcessedFloatResult02;
+  float ProcessedFloatResult03;
+  float ProcessedFloatResult04;
+  float ProcessedFloatResult05;
+  float ProcessedFloatResult06;
   float FloatValue;
   DataWord SystemOperationResult;     // 系统操作结果
   float NormalizedParameterValue;    // 标准化参数值
