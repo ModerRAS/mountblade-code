@@ -69641,14 +69641,29 @@ void ProcessSystemParametersWithValidationA1(DataBuffer operationBase,int64_t da
 
 
 
-void Unwind_180908110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调函数A0
+ * 
+ * 该函数负责处理异常回调，包括：
+ * - 获取异常数据缓冲区指针
+ * - 执行系统资源清理
+ * - 终止异常处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180908110
+ */
+void ExceptionHandlerCallbackA0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + ExceptionHandlerCallbackOffset10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x68), *exceptionDataBuffer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
       TerminateSystemE0(exceptionDataBuffer);
   }
   return;
@@ -69656,14 +69671,29 @@ void Unwind_180908110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180908120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调函数A1
+ * 
+ * 该函数负责处理异常回调，包括：
+ * - 获取异常数据缓冲区指针
+ * - 执行系统资源清理
+ * - 终止异常处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180908120
+ */
+void ExceptionHandlerCallbackA1(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + ExceptionHandlerCallbackOffset10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x68), *exceptionDataBuffer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
       TerminateSystemE0(exceptionDataBuffer);
   }
   return;
@@ -69671,7 +69701,22 @@ void Unwind_180908120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180908130(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数B0
+ * 
+ * 该函数负责初始化异常处理器，包括：
+ * - 获取异常数据缓冲区指针
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908130
+ */
+void InitializeExceptionHandlerB0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -69689,7 +69734,17 @@ void Unwind_180908130(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908140(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器C0
+ * 
+ * 该函数负责在指定偏移量处设置默认异常处理器B。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908140
+ */
+void SetDefaultExceptionHandlerC0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x98) + 0x20) = &DefaultExceptionHandlerB;
@@ -69698,7 +69753,17 @@ void Unwind_180908140(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908150(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器C1
+ * 
+ * 该函数负责在指定偏移量处设置默认异常处理器B。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908150
+ */
+void SetDefaultExceptionHandlerC1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x80) + 0x20) = &DefaultExceptionHandlerB;
@@ -69707,7 +69772,24 @@ void Unwind_180908150(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统验证和异常处理函数D0
+ * 
+ * 该函数负责执行系统验证和异常处理，包括：
+ * - 获取数据上下文
+ * - 初始化系统验证
+ * - 处理系统参数验证
+ * - 执行异常回调处理
+ * - 清理系统资源
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180908160
+ */
+void SystemValidationAndExceptionHandlerD0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -69717,10 +69799,10 @@ void Unwind_180908160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   dataContext = *(int64_t *)(dataBuffer + 0x80);
   validationStatus = SystemCleanupFlagAlternative;
   InitializeSystemValidation();
-  ProcessSystemParametersWithValidation(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),operationFlagA,operationFlagB,validationStatus);
+  ProcessSystemParametersWithValidation(dataContext + 0x40, *(DataBuffer *)(dataContext + 0x50), operationFlagA, operationFlagB, validationStatus);
   exceptionDataBuffer = *(DataBuffer **)(dataContext + 0x20);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessSystemResourcesWithCleanup(dataContext + 0x10,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    ProcessSystemResourcesWithCleanup(dataContext + 0x10, *exceptionDataBuffer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
       TerminateSystemE0(exceptionDataBuffer);
   }
   return;
@@ -69728,14 +69810,29 @@ void Unwind_180908160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180908170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统验证和异常处理函数D1
+ * 
+ * 该函数负责处理异常回调，包括：
+ * - 获取异常数据缓冲区指针
+ * - 执行系统资源清理
+ * - 终止异常处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180908170
+ */
+void SystemValidationAndExceptionHandlerD1(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + ExceptionHandlerCallbackOffset10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x60),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x60), *exceptionDataBuffer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
       TerminateSystemE0(exceptionDataBuffer);
   }
   return;
