@@ -217598,7 +217598,7 @@ void FUN_180194b30(uint64_t SystemContextPointer) {
  * @note 此函数设置两个物理函数指针：SystemPhysicsFunctionPointerA 和 SystemPhysicsFunctionPointerB
  * @note 当 Utf8BufferSize 为奇数时，会释放系统上下文指针的内存
  */
-uint64_t *FUN_180194b60(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer) {
+uint64_t *ConfigureSystemPhysicsFunctionPointers(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer) {
   *SystemContextPointer = &SystemPhysicsFunctionPointerA;
   *SystemContextPointer = &SystemPhysicsFunctionPointerB;
   if ((Utf8BufferSize & 1) != 0) {
@@ -217623,7 +217623,7 @@ uint64_t *FUN_180194b60(uint64_t *SystemContextPointer,unsigned long long Utf8Bu
  * @note 此函数设置缓冲区的特定值：0x7f7fffff 是最大的32位浮点数
  * @note 调用 FUN_1800b9f60(0) 进行额外的初始化操作
  */
-uint32_t *FUN_180194c10(uint64_t SystemContextPointer,uint32_t *Utf8BufferSize) {
+uint32_t *InitializeUtf8Buffer(uint64_t SystemContextPointer,uint32_t *Utf8BufferSize) {
   *Utf8BufferSize = 0;
   Utf8BufferSize[1] = 0;
   Utf8BufferSize[2] = 0;

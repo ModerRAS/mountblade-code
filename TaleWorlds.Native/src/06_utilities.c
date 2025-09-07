@@ -227,8 +227,8 @@
 // 原始函数名：FUN_180047e40 - 系统参数验证函数A0
 #define ValidateSystemParametersA0 FUN_180047e40
 
-// 原始函数名：FUN_18008d1f0 - 系统数据处理函数A0
-#define ProcessSystemDataA0 FUN_18008d1f0
+// 原始函数名：ProcessSystemDataA0 - 系统数据处理函数A0
+#define ProcessSystemDataA0 ProcessSystemDataA0
 
 // 原始函数名：FUN_180090b80 - 系统上下文验证函数A0
 #define ValidateSystemContextA0 FUN_180090b80
@@ -7851,18 +7851,18 @@ uint8_t SystemExceptionHandlerDataA32;
 uint8_t SystemExceptionHandlerDataA33;
 uint8_t SystemExceptionHandlerDataA34;
 uint8_t SystemExceptionHandlerDataA35;
-uint8_t UNK_180a39008;
-uint8_t UNK_180a39020;
-uint8_t UNK_180a39030;
-uint8_t UNK_180a39058;
-uint8_t UNK_180a39078;
-uint8_t UNK_180a39090;
-uint8_t UNK_180a390b8;
-uint8_t UNK_180a390d0;
-uint8_t UNK_180a390f0;
-uint8_t UNK_180a39110;
-uint8_t UNK_180a39128;
-uint8_t UNK_180a39148;
+uint8_t SystemExceptionHandlerDataA36;
+uint8_t SystemExceptionHandlerDataA37;
+uint8_t SystemExceptionHandlerDataA38;
+uint8_t SystemExceptionHandlerDataA39;
+uint8_t SystemExceptionHandlerDataA40;
+uint8_t SystemExceptionHandlerDataA41;
+uint8_t SystemExceptionHandlerDataA42;
+uint8_t SystemExceptionHandlerDataA43;
+uint8_t SystemExceptionHandlerDataA44;
+uint8_t SystemExceptionHandlerDataA45;
+uint8_t SystemExceptionHandlerDataA46;
+uint8_t SystemExceptionHandlerDataA47;
 uint8_t UNK_180a39170;
 uint8_t UNK_180a39188;
 uint8_t UNK_180a391b8;
@@ -8634,9 +8634,9 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
               break;
             }
             loopIndex = (uint64_t)((int32_t)loopIndex + 1);
-            searchIndex = searchIndex + 1;
+            componentSearchIndex = componentSearchIndex + 1;
             componentPointer = componentPointer + 1;
-          } while ((int64_t)searchIndex < (int64_t)componentCount);
+          } while ((int64_t)componentSearchIndex < (int64_t)componentCount);
         }
         componentCount = componentCount + 1;
         if (*(int32_t *)(componentData + COMPONENT_CAPACITY_OFFSET) < componentCount) {
@@ -58834,7 +58834,7 @@ void Unwind_180907800(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x20) + 8);
   validationContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x60) {
-    FUN_180089640(calculatedOffset);
+    UpdateSystemStatusA0(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -58882,7 +58882,7 @@ void Unwind_180907820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180907830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_18008d810(*(int64_t *)(dataBuffer + 0x20) + 0x78,
+  ProcessSystemDataA0(*(int64_t *)(dataBuffer + 0x20) + 0x78,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x88),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -58968,7 +58968,7 @@ void Unwind_1809078a0(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = *(int64_t **)(dataBuffer + 0x28);
   validationContext = pdataContext[1];
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x60) {
-    FUN_180089640(calculatedOffset);
+    UpdateSystemStatusA0(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -59063,18 +59063,18 @@ void InvokeExceptionHandlerWithParamsB(DataBuffer exceptionContext, int64_t hand
  * @brief 调用异常处理函数并传递参数
  * 
  * 该函数是一个异常处理包装函数，负责调用底层的异常处理函数
- * 并传递必要的参数。使用不同的底层函数FUN_18008d810。
+ * 并传递必要的参数。使用不同的底层函数ProcessSystemDataA0。
  * 
  * @param exceptionContext 异常上下文指针，包含异常处理的相关信息
  * @param handlerData 处理器数据指针，包含处理器相关的数据信息
  * @param cleanupParam1 清理参数1，用于传递给异常处理函数
  * @param cleanupParam2 清理参数2，用于传递给异常处理函数
  * 
- * @note 该函数会调用底层的异常处理函数FUN_18008d810
+ * @note 该函数会调用底层的异常处理函数ProcessSystemDataA0
  */
 void InvokeExceptionHandlerWithParamsC(DataBuffer exceptionContext, int64_t handlerData, DataBuffer cleanupParam1, DataBuffer cleanupParam2)
 {
-  FUN_18008d810(*(int64_t *)(handlerData + 0x28), *(DataBuffer *)(*(int64_t *)(handlerData + 0x28) + 0x10),
+  ProcessSystemDataA0(*(int64_t *)(handlerData + 0x28), *(DataBuffer *)(*(int64_t *)(handlerData + 0x28) + 0x10),
                 cleanupParam1, cleanupParam2, SystemCleanupFlagfffffffe);
   return;
 }
@@ -59085,18 +59085,18 @@ void InvokeExceptionHandlerWithParamsC(DataBuffer exceptionContext, int64_t hand
  * @brief 调用异常处理函数并传递参数
  * 
  * 该函数是一个异常处理包装函数，负责调用底层的异常处理函数
- * 并传递必要的参数。使用底层函数FUN_18008d810。
+ * 并传递必要的参数。使用底层函数ProcessSystemDataA0。
  * 
  * @param exceptionContext 异常上下文指针，包含异常处理的相关信息
  * @param handlerData 处理器数据指针，包含处理器相关的数据信息
  * @param cleanupParam1 清理参数1，用于传递给异常处理函数
  * @param cleanupParam2 清理参数2，用于传递给异常处理函数
  * 
- * @note 该函数会调用底层的异常处理函数FUN_18008d810
+ * @note 该函数会调用底层的异常处理函数ProcessSystemDataA0
  */
 void InvokeExceptionHandlerWithParamsD(DataBuffer exceptionContext, int64_t handlerData, DataBuffer cleanupParam1, DataBuffer cleanupParam2)
 {
-  FUN_18008d810(*(int64_t *)(handlerData + 0x28), *(DataBuffer *)(*(int64_t *)(handlerData + 0x28) + 0x10),
+  ProcessSystemDataA0(*(int64_t *)(handlerData + 0x28), *(DataBuffer *)(*(int64_t *)(handlerData + 0x28) + 0x10),
                 cleanupParam1, cleanupParam2, SystemCleanupFlagfffffffe);
   return;
 }
@@ -59145,7 +59145,7 @@ void Unwind_180907920(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = *(int64_t **)(dataBuffer + 0x40);
   validationContext = pdataContext[1];
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x60) {
-    FUN_180089640(calculatedOffset);
+    UpdateSystemStatusA0(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -59159,7 +59159,7 @@ void Unwind_180907920(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180907930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_18008d810(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessSystemDataA0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -59169,7 +59169,7 @@ void Unwind_180907930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180907940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_18008d810(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessSystemDataA0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -60859,7 +60859,7 @@ void Unwind_180908050(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer 
   int64_t *validationContextPointer;
   
   validationContextPointer = ValidationContextPointerArray;
-  FUN_18008d1f0(&SystemValidationDataTable,ValidationContextPointerArray[1],operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  ProcessSystemDataA0(&SystemValidationDataTable,ValidationContextPointerArray[1],operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   ValidationContextPointerArray[1] = (int64_t)validationContextPointer;
   *ValidationContextPointerArray = (int64_t)validationContextPointer;
   ValidationContextPointerArray[2] = (int64_t)validationContextPointer;
@@ -78534,7 +78534,7 @@ void Unwind_18090d7e0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(calculatedOffset + 0x14c0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(calculatedOffset + 0x14c0) + 0x38))();
   }
-  FUN_180080df0();
+  ExecuteSystemCleanup();
   if (*(int64_t *)(calculatedOffset + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -79308,7 +79308,7 @@ void Unwind_18090e000(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(calculatedOffset + 0x14c0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(calculatedOffset + 0x14c0) + 0x38))();
   }
-  FUN_180080df0();
+  ExecuteSystemCleanup();
   if (*(int64_t *)(calculatedOffset + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -90084,7 +90084,18 @@ void CleanupExceptionAtOffset21A0(DataBuffer operationBase,int64_t dataBuffer,Da
 
 
 
-void Unwind_1809116e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常清理函数 - 上下文偏移量0x2210
+ * 
+ * 清理验证上下文中偏移量0x2210处的异常处理状态
+ * 设置临时异常处理器，然后重置为默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void CleanupExceptionAtOffset2210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -94492,7 +94503,7 @@ void ProcessValidationContextA0(DataBuffer operationBase,DataBuffer dataBuffer,D
   int64_t *validationContextPointer;
   
   validationContextPointer = ValidationContextPointerArray;
-  FUN_18008d1f0(operationBase,ValidationContextPointerArray[1],operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  ProcessSystemDataA0(operationBase,ValidationContextPointerArray[1],operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   ValidationContextPointerArray[1] = (int64_t)validationContextPointer;
   *ValidationContextPointerArray = (int64_t)validationContextPointer;
   ValidationContextPointerArray[2] = (int64_t)validationContextPointer;
@@ -98381,8 +98392,8 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始函数名：FUN_180047e40 - 系统参数验证函数A0
 #define ValidateSystemParametersA0 FUN_180047e40
 
-// 原始函数名：FUN_18008d1f0 - 系统数据处理函数A0
-#define ProcessSystemDataA0 FUN_18008d1f0
+// 原始函数名：ProcessSystemDataA0 - 系统数据处理函数A0
+#define ProcessSystemDataA0 ProcessSystemDataA0
 
 // 原始函数名：FUN_180090b80 - 系统上下文验证函数A0
 #define ValidateSystemContextA0 FUN_180090b80
