@@ -78414,7 +78414,18 @@ void ProcessDataBufferA1InUnwind(DataBuffer operationBase, int64_t dataBuffer, D
 
 
 
-void Unwind_180909860(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理函数
+ * 
+ * 该函数负责管理内存资源的引用计数，当引用计数降为0时触发异常处理。
+ * 主要用于系统内存资源的生命周期管理和异常处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909860
+ */
+void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -78450,7 +78461,20 @@ void Unwind_180909860(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数A0
+ * 
+ * 该函数处理系统异常数据，根据提供的操作标志执行相应的异常处理逻辑。
+ * 主要用于系统异常状态的管理和处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180909870
+ */
+void ProcessExceptionDataA0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(*(int64_t *)(dataBuffer + 0x40) + 0x90,
@@ -78461,7 +78485,20 @@ void Unwind_180909870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180909890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数A1
+ * 
+ * 该函数处理系统异常数据，使用异常处理器回调偏移量来处理异常。
+ * 主要用于系统异常状态的管理和处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180909890
+ */
+void ProcessExceptionDataA1(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(*(int64_t *)(dataBuffer + 0x50),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x50) + ExceptionHandlerCallbackOffset10),
