@@ -70114,15 +70114,15 @@ void DestroyMutexAtOffset90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909ca0(DataBuffer operationBase,int64_t dataBuffer)
+void UnlockMutexAtOffsetA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
   if (*(char *)(dataBuffer + 0x40) != '\0') {
-    inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x38));
-    if (inputParameter != 0) {
-      __Throw_C_error_std__YAXH_Z(inputParameter);
+    mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x38));
+    if (mutexUnlockResult != 0) {
+      __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
     }
   }
   return;
