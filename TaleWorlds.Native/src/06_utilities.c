@@ -56276,7 +56276,18 @@ void CleanupExceptionHandlersInExtendedTable(DataBuffer operationBase,int64_t da
 
 
 
-void Unwind_180905c80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器资源函数
+ * 
+ * 该函数负责清理异常处理器资源，包括重置资源指针和清理内存区域
+ * 主要用于异常处理机制的资源管理和清理操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180905c80
+ */
+void CleanupExceptionHandlerResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -56968,7 +56979,18 @@ void ExecuteTertiaryContextExceptionCleanup(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_180905ea0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理线程同步和异常资源函数
+ * 
+ * 该函数负责清理线程同步资源（互斥锁和条件变量）和异常处理资源
+ * 包括验证状态指针的清理、引用计数的管理以及内存资源的释放
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文和资源信息
+ * 
+ * @note 原始函数名：Unwind_180905ea0
+ */
+void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -57186,7 +57208,18 @@ void DestroyMutexB(void)
 
 
 
-void Unwind_180905f50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 销毁互斥锁函数
+ * 
+ * 该函数负责销毁数据缓冲区中指定位置的互斥锁
+ * 主要用于线程同步资源的清理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含互斥锁信息
+ * 
+ * @note 原始函数名：Unwind_180905f50
+ */
+void DestroyMutexLock(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x68));
@@ -57195,7 +57228,18 @@ void Unwind_180905f50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905f60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 销毁条件变量函数
+ * 
+ * 该函数负责销毁数据缓冲区中指定位置的条件变量
+ * 主要用于线程同步资源的清理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含条件变量信息
+ * 
+ * @note 原始函数名：Unwind_180905f60
+ */
+void DestroyConditionVariable(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Cnd_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x68));
@@ -57286,7 +57330,22 @@ void UnwindCleanupThreadResourceQueue(DataBuffer exceptionContext, int64_t threa
 
 
 
-void Unwind_180905f90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常数据表和同步对象
+ * 
+ * 该函数在异常展开过程中清理异常数据表和同步对象，包括：
+ * - 重置异常数据表指针
+ * - 销毁互斥锁和条件变量
+ * - 设置多个异常数据表的处理
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常数据表信息
+ * 
+ * @note 原始函数名：Unwind_180905f90
+ * @note 处理0x70偏移量的异常数据表
+ * @note 销毁互斥锁和条件变量
+ */
+void CleanupExceptionDataTableAndSynchronization(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -57303,7 +57362,24 @@ void Unwind_180905f90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905fa0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理带有内存管理的线程上下文B
+ * 
+ * 该函数在异常展开过程中清理线程上下文并进行内存管理，包括：
+ * - 销毁互斥锁和条件变量
+ * - 清理验证状态指针
+ * - 处理内存引用计数和验证标志
+ * - 管理异常处理资源和内存区域
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含线程上下文信息
+ * 
+ * @note 原始函数名：Unwind_180905fa0
+ * @note 从数据缓冲区的0x70偏移量获取线程上下文
+ * @note 处理互斥锁、条件变量、内存管理等多种资源
+ * @note 管理0xe0偏移量的内存区域和引用计数
+ */
+void CleanupThreadContextWithMemoryManagementB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -57364,7 +57440,18 @@ void Unwind_180905fa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905fc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统配置迭代函数
+ * 
+ * 该函数负责迭代处理系统配置，遍历配置数据并调用相应的处理函数
+ * 主要用于系统配置的批量处理和管理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含配置上下文信息
+ * 
+ * @note 原始函数名：Unwind_180905fc0
+ */
+void ProcessSystemConfigurationIteration(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -57442,7 +57529,16 @@ void Unwind_180905fe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905ff0(void)
+/**
+ * @brief 执行最终的异常清理
+ * 
+ * 该函数在异常展开过程中执行最终的清理操作，
+ * 销毁条件变量以释放系统资源。
+ * 
+ * @note 原始函数名：Unwind_180905ff0
+ * @note 这是异常展开过程中的最后清理步骤
+ */
+void ExecuteFinalExceptionCleanup(void)
 
 {
   _Cnd_destroy_in_situ();
