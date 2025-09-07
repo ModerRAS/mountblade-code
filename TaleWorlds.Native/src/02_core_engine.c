@@ -244902,7 +244902,7 @@ LAB_1802158f5:
       pCurrentMemoryBlockAddress[0xb] = AdditionalParameter1;
       if (*(int *)(SystemConfigData + 0x9a0) != 0) {
         SystemCounterVariableB = SystemCounterVariableB + 1;
-        ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a1b008,SystemCounterVariableB,Utf16Char,CharacterCode2
+        ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemConfigurationTemplateTertiary,SystemCounterVariableB,Utf16Char,CharacterCode2
                      );
       }
       *pCurrentMemoryBlockAddress = (long long)&SystemContextPrimary;
@@ -245142,7 +245142,7 @@ LAB_180215c6e:
     if (*(void **)(CharacterCodeSize + 8) != NULL) {
       TertiaryProcessingStatusFlag = *(void **)(CharacterCodeSize + 8);
     }
-    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a108d0,TertiaryProcessingStatusFlag,ProcessStringBuffer);
+    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemDataBufferPointerQuinary,TertiaryProcessingStatusFlag,ProcessStringBuffer);
     ValidationCode = -1;
 LAB_180215cc5:
     validationResult = _Mtx_unlock(CharacterCode + 0x318);
@@ -245206,7 +245206,7 @@ LAB_180215d8e:
   if (*(void **)(CharacterCodeSize + 8) != NULL) {
     pMemoryAddressMask = *(void **)(CharacterCodeSize + 8);
   }
-  ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10988,pMemoryAddressMask);
+  ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemDataBufferPointerOctonary,pMemoryAddressMask);
   return -1;
 }
 
@@ -245224,7 +245224,7 @@ LAB_180215d8e:
       *(void *)(CharacterCode + 0x380) = *(void *)(CharacterCode + 0x378);
       return;
     }
-    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a109b8);
+    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemDataBufferPointerNonary);
   }
   return;
 }
@@ -249172,7 +249172,7 @@ LAB_18021ae8e:
   if (*(void **)(CharacterCodeSize + 8) != NULL) {
     CharacterCodePointer = *(void **)(CharacterCodeSize + 8);
   }
-  ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a108d0,CharacterCodePointer);
+  ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemDataBufferPointerQuinary,CharacterCodePointer);
   return -1;
 }
 
@@ -249229,7 +249229,7 @@ LAB_18021ae8e:
   if (*(void **)(RegisterSourceIndex + 8) != NULL) {
     puStack0000000000000028 = *(void **)(RegisterSourceIndex + 8);
   }
-  ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a108d0);
+  ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemDataBufferPointerQuinary);
   return -1;
 }
 
@@ -249292,7 +249292,7 @@ LAB_18021af9e:
   if (*(void **)(CharacterCodeSize + 8) != NULL) {
     pMemoryAddressMask = *(void **)(CharacterCodeSize + 8);
   }
-  ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10988,pMemoryAddressMask);
+  ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemDataBufferPointerOctonary,pMemoryAddressMask);
   return -1;
 }
 
