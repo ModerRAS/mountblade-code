@@ -8164,9 +8164,9 @@ void* GlobalDataPointerA38Config;     // DAT_180bfa240
 void* GlobalDataPointerA38Cache;      // DAT_180bfa248
 void* GlobalDataPointerA38ValidationBuffer;  // DAT_180a22fa8
 
-// 函数: uint8_t ProcessUtilityDataBB0;
+// 函数: uint8_t ProcessUtilityData;
 // 
-// 工具数据处理函数BB0
+// 工具数据处理函数
 // 
 // 功能：
 // 处理工具系统数据，执行数据转换、验证或格式化操作
@@ -8258,7 +8258,8 @@ uint8_t SystemInitDataA;
 uint8_t SystemInitDataB;
 // 系统初始化数据C
 uint8_t SystemInitDataC;
-uint8_t UtilitySystemInitData4;
+// 系统初始化数据D
+uint8_t SystemInitDataD;
 // 全局数据指针A39相关变量
 void* GlobalDataPointerA39Storage;    // DAT_180bfa3e8
 void* GlobalDataPointerA39Status;     // DAT_180bfa3f0
