@@ -2152,12 +2152,10 @@ void InitializeSystemMemoryPool(void)
   void** MainSystemTablePointer;
   int MemoryPoolIdentifierComparisonResult;
   long long* SystemMemoryInfoPointer;
-  long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** PreviousNodePointer;
-  uint64_t SystemInitializationStatusFlag;
   long long SystemRequiredMemorySize;
   void** AllocatedMemoryPoolNode;
   void* MemoryPoolInitializationHandler;
