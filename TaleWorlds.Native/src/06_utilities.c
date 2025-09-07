@@ -49272,7 +49272,19 @@ void CallExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffer,D
 
 
 
-void Unwind_180904660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数A
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180904660
+ */
+void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -49286,7 +49298,19 @@ void Unwind_180904660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904670(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数B
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作，使用不同的偏移地址
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180904670
+ */
+void ExecuteExceptionHandlerCallbackB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -49300,7 +49324,16 @@ void Unwind_180904670(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904680(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据表配置函数
+ * 
+ * 该函数负责配置异常数据表，设置异常处理所需的各个数据表指针
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180904680
+ */
+void ConfigureExceptionDataTable(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -49314,7 +49347,19 @@ void Unwind_180904680(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904690(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数C
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作，使用不同的偏移地址
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180904690
+ */
+void ExecuteExceptionHandlerCallbackC(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -49328,7 +49373,16 @@ void Unwind_180904690(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809046a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据表配置函数B
+ * 
+ * 该函数负责配置异常数据表，设置异常处理所需的特定数据表指针
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_1809046a0
+ */
+void ConfigureExceptionDataTableB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -49412,7 +49466,19 @@ void Unwind_1809046d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809046e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数D
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作，使用不同的偏移地址
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_1809046e0
+ */
+void ExecuteExceptionHandlerCallbackD(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
