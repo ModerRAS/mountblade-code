@@ -78508,7 +78508,20 @@ void ProcessExceptionDataA1(DataBuffer operationBase, int64_t dataBuffer, DataBu
 
 
 
-void Unwind_1809098a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数A2
+ * 
+ * 该函数处理系统异常数据，使用异常处理器回调偏移量来处理异常。
+ * 主要用于系统异常状态的管理和处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809098a0
+ */
+void ProcessExceptionDataA2(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(*(int64_t *)(dataBuffer + 0x50),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x50) + ExceptionHandlerCallbackOffset10),
@@ -78518,7 +78531,20 @@ void Unwind_1809098a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809098b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数A3
+ * 
+ * 该函数处理系统异常数据，使用异常处理器回调偏移量来处理异常。
+ * 主要用于系统异常状态的管理和处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809098b0
+ */
+void ProcessExceptionDataA3(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
@@ -78528,7 +78554,20 @@ void Unwind_1809098b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809098c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数A4
+ * 
+ * 该函数处理系统异常数据，使用异常处理器回调偏移量来处理异常。
+ * 主要用于系统异常状态的管理和处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809098c0
+ */
+void ProcessExceptionDataA4(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
@@ -78538,7 +78577,18 @@ void Unwind_1809098c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809098d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源清理处理函数A0
+ * 
+ * 该函数根据数据缓冲区的标志位来决定是否执行资源清理操作。
+ * 当标志位为1时，清除标志位并调用资源清理处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809098d0
+ */
+void CleanupResourceHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x40) & 1) != 0) {
@@ -78550,7 +78600,18 @@ void Unwind_1809098d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909900(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据验证处理函数A0
+ * 
+ * 该函数根据数据缓冲区的标志位来决定是否执行数据验证操作。
+ * 当标志位为1时，清除标志位并调用数据验证处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909900
+ */
+void ValidateDataHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
@@ -78562,7 +78623,18 @@ void Unwind_180909900(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909930(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据验证处理函数A0
+ * 
+ * 该函数检查数据缓冲区的标志位，当标志位被设置时，清除标志位并调用数据验证处理器。
+ * 主要用于系统数据的验证和处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909930
+ */
+void ValidateDataProcessingA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x5c) & 1) != 0) {
@@ -78574,7 +78646,18 @@ void Unwind_180909930(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909960(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数A0
+ * 
+ * 该函数设置数据缓冲区中指定偏移量处的默认异常处理器B。
+ * 主要用于系统异常处理机制的配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909960
+ */
+void SetDefaultExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0xf0) = &DefaultExceptionHandlerB;
