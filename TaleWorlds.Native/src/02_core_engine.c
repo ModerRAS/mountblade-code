@@ -20138,12 +20138,12 @@ void CoreEngineMemoryTransferComplete(void
  * 
  * @param SystemStringBuffer 系统状态标志指针
  */
-void CoreEngineResetSystemStringBuffer(uint8_t *SystemStringBuffer
+void CoreEngineResetSystemStringBuffer(uint8_t *SystemStringBuffer)
 {
-  long long RegisterRDI;
+  long long BufferOffset;
   
   *SystemStringBuffer = 0;
-  *(uint32_t *)(RegisterRDI + 0x10) = 0;
+  *(uint32_t *)(BufferOffset + 0x10) = 0;
   return;
 }
 
@@ -23649,33 +23649,33 @@ void CoreEngineExecuteDataCopyAndMemoryAllocation(long long targetBuffer
  * @note 涉及内存管理和数据移动操作
  * @note 会检查数据大小并进行相应的分配操作
  */
-void CoreEngineAllocateMemoryAndCopyDataBlock(void
+void CoreEngineAllocateMemoryAndCopyDataBlock(void)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
-  long long RegisterRBP;
-  long long RegisterRSI;
-  long long *RegisterRDI;
-  long long RegisterR14;
+  long long StackBasePointer;
+  long long SourceIndexPointer;
+  long long *DestinationPointer;
+  long long ArraySize;
   
-  if (RegisterR14 == 0) {
+  if (ArraySize == 0) {
     BufferStatus = 0;
   }
   else {
-    BufferStatus = BufferAllocate(MemoryPoolManager,RegisterR14 * 4,(char)RegisterRDI[3]);
+    BufferStatus = BufferAllocate(MemoryPoolManager,ArraySize * 4,(char)DestinationPointer[3]);
   }
-  if (RegisterRSI != RegisterRBP) {
+  if (SourceIndexPointer != StackBasePointer) {
                     // WARNING: Subroutine does not return
     memmove(BufferStatus);
   }
-  if (*RegisterRDI != 0) {
+  if (*DestinationPointer != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  CharacterTablePointer = BufferStatus + RegisterR14 * 4;
-  *RegisterRDI = BufferStatus;
-  RegisterRDI[1] = LoopCounter;
-  RegisterRDI[2] = LoopCounter;
+  CharacterTablePointer = BufferStatus + ArraySize * 4;
+  *DestinationPointer = BufferStatus;
+  DestinationPointer[1] = LoopCounter;
+  DestinationPointer[2] = LoopCounter;
   return;
 }
 
@@ -23696,32 +23696,32 @@ void CoreEngineAllocateMemoryAndCopyDataBlock(void
  * @note 此函数会处理内存移动和数据块重定位
  * @note 涉及复杂的数据块操作和指针管理
  */
-void CoreEngineProcessDataBlockShift(long long CharacterCode
+void CoreEngineProcessDataBlockShift(long long CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
-  long long RegisterFramePointer;
-  long long RegisterSourceIndex;
-  long long RegisterDestinationIndex;
-  unsigned long long GeneralRegister14;
+  long long StackFramePointer;
+  long long DataSourcePointer;
+  long long DataDestinationPointer;
+  unsigned long long MaxCharacterCount;
   
-  BufferStatus = *(long long *)(RegisterDestinationIndex + 8);
+  BufferStatus = *(long long *)(DataDestinationPointer + 8);
   UnicodeCodePoint = BufferStatus - CharacterCode >> 2;
-  if (UnicodeCodePoint < GeneralRegister14) {
-    CharacterTablePointer = UnicodeCodePoint * 4 + RegisterSourceIndex;
-    if (RegisterSourceIndex != CharacterTablePointer) {
+  if (UnicodeCodePoint < MaxCharacterCount) {
+    CharacterTablePointer = UnicodeCodePoint * 4 + DataSourcePointer;
+    if (DataSourcePointer != CharacterTablePointer) {
                     // WARNING: Subroutine does not return
       memmove();
     }
-    if (CharacterTablePointer != RegisterFramePointer) {
+    if (CharacterTablePointer != StackFramePointer) {
                     // WARNING: Subroutine does not return
-      memmove(BufferStatus,LoopCounter,RegisterFramePointer - CharacterTablePointer);
+      memmove(BufferStatus,LoopCounter,StackFramePointer - CharacterTablePointer);
     }
     *(long long *)(DataNodeIndex + 8) = BufferStatus;
   }
   else {
-    if (RegisterSourceIndex != RegisterFramePointer) {
+    if (DataSourcePointer != StackFramePointer) {
                     // WARNING: Subroutine does not return
       memmove();
     }

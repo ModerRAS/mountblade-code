@@ -67557,7 +67557,17 @@ void SetDefaultExceptionHandlerAtIndirectOffset20(DataBuffer operationBase,int64
 
 
 
-void Unwind_180907ba0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 条件性设置默认异常处理器到偏移量0xa0
+ * 
+ * 检查数据缓冲区偏移量0x34处的标志位，如果第0位为1，则清除该位并调用数据验证函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907ba0
+ */
+void ConditionallySetExceptionHandlerAtOffsetA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x34) & 1) != 0) {
@@ -67569,7 +67579,17 @@ void Unwind_180907ba0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907bd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 条件性验证数据偏移量0x270
+ * 
+ * 检查数据缓冲区偏移量0x34处的标志位，如果第1位为1，则清除该位并验证偏移量0x270处的数据
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907bd0
+ */
+void ConditionallyValidateDataAtOffset270(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x34) & 2) != 0) {
@@ -67581,7 +67601,17 @@ void Unwind_180907bd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907c00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量0x2c0
+ * 
+ * 在数据缓冲区的偏移量0x2c0处设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907c00
+ */
+void SetDefaultExceptionHandlerAtOffset2C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x2c0) = &DefaultExceptionHandlerB;
@@ -67590,7 +67620,18 @@ void Unwind_180907c00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907c10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器状态（偏移量600）
+ * 
+ * 通过数据缓冲区偏移量600处的指针，重置异常处理器状态
+ * 设置临时异常处理器，检查终止条件，然后重置为默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907c10
+ */
+void ResetExceptionHandlerStateAtOffset600(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
