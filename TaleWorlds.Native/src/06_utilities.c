@@ -79727,6 +79727,15 @@ void ManageResourceReferenceCountB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 资源引用计数管理器C0
+ * 
+ * 该函数用于管理资源的引用计数，使用0x330偏移量
+ * 主要用于内存管理和资源清理
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ */
 void Unwind_18090d410(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -101309,3 +101318,71 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：uStack_e4 - 栈数据缓冲区C
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferC uStack_e4
+
+// 原始变量名：uStack_308 - 栈数据字T
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordT uStack_308
+
+// 原始变量名：uStack_2e0 - 栈数据字U
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordU uStack_2e0
+
+// 原始变量名：uStack_2e8 - 栈数据字V
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordV uStack_2e8
+
+// 原始变量名：uStack_28c - 栈数据字W
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordW uStack_28c
+
+// 原始变量名：uStack_288 - 栈数据字X
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordX uStack_288
+
+// 原始变量名：uStack_284 - 栈数据字Y
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordY uStack_284
+
+// 原始变量名：uStack_280 - 栈数据字Z
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordZ uStack_280
+
+// 原始变量名：uStack_27c - 栈数据字AA
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAA uStack_27c
+
+// 原始变量名：uStack_298 - 栈数据字AB
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAB uStack_298
+
+// 原始变量名：puStack_2a8 - 栈指针缓冲区G
+// 功能：存储指针数据的栈缓冲区
+#define StackPointerBufferG puStack_2a8
+
+// 原始变量名：iStack_2a0 - 栈整型D
+// 功能：存储整型数据的栈变量
+#define StackIntegerD iStack_2a0
+
+// 原始变量名：iStack_290 - 栈整型E
+// 功能：存储整型数据的栈变量
+#define StackIntegerE iStack_290
+
+// 原始变量名：puStack_2f8 - 栈指针缓冲区H
+// 功能：存储指针数据的栈缓冲区
+#define StackPointerBufferH puStack_2f8
+
+// 原始变量名：iStack_2f0 - 栈整型F
+// 功能：存储整型数据的栈变量
+#define StackIntegerF iStack_2f0
+
+// 原始变量名：afStack_304 - 栈浮点数组C
+// 功能：存储浮点数组的栈数据
+#define StackFloatArrayC afStack_304
+
+// 原始变量名：piStack_6f0 - 栈整型指针C
+// 功能：存储整型指针的栈变量
+#define StackIntegerPointerC piStack_6f0
+
+// 原始变量名：piStack_8 - 栈整型指针D
+// 功能：存储整型指针的栈变量
+#define StackIntegerPointerD piStack_8

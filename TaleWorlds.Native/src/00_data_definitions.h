@@ -12779,7 +12779,7 @@ uint64_t SystemConfigureParameters(uint64_t *ConfigurationArrayPointer,longlong 
   uint *StringProcessingResultPointer;
   uint64_t NetworkRequestResult;
   uint8_t MemoryAllocationResult;
-  ulonglong StackVariable10;
+  ulonglong MemoryAlignmentMask;
   uint NetworkDataBuffer [2];
   ulonglong AudioProcessingBuffer;
   if (*(int *)(ConfigurationIndex + 0x18) < *(int *)(*(longlong *)(ConfigurationIndex + 0x10) + 0xb4)) {
@@ -12984,7 +12984,7 @@ uint64_t SystemAudioCreateBuffer(uint32_t BufferSizeParameter,uint *AudioFormatP
   uint UnsignedValue;
   uint16_t *pUnsignedIndex;
   uint16_t *pUnsignedSize;
-  byte StackBuffer18 [8];
+  byte LoopCounterBuffer [8];
   longlong AudioProcessingBuffer;
   if (SystemProcessingEnabledFlag == '\0') {
     return 0x80920005;
@@ -13004,7 +13004,7 @@ uint64_t SystemAudioCreateBuffer(uint32_t BufferSizeParameter,uint *AudioFormatP
   ProcessSystemTask(AudioFormatPointer);
   LoopCounterValue = CalculateLoopValue(BufferSizeParameter,&MemoryOffset);
   if (LoopCounterValue == 0) {
-    FinalizeLoopCounter(BufferSizeParameter,StackBuffer18);
+    FinalizeLoopCounter(BufferSizeParameter,LoopCounterBuffer);
     if (*(longlong *)(AudioProcessingBuffer + 0x160) != 0) {
       CharacterValue = GetCharacterValue();
       UnsignedValue = *(uint *)(*(longlong *)(AudioProcessingBuffer + 0x160) + 0xc);
@@ -13022,7 +13022,7 @@ uint64_t SystemAudioCreateBuffer(uint32_t BufferSizeParameter,uint *AudioFormatP
       *(uint8_t *)((longlong)AudioFormatPointer + 9) =
            *(uint8_t *)(*(longlong *)(AudioProcessingBuffer + 0x160) + 0x15);
       *(uint8_t *)(AudioFormatPointer + 2) = *(uint8_t *)(*(longlong *)(AudioProcessingBuffer + 0x160) + 0x14);
-      if ((*(char *)(AudioProcessingBuffer + 0x68) == '\x01') && ((StackBuffer18[0] & 8) != 0)) {
+      if ((*(char *)(AudioProcessingBuffer + 0x68) == '\x01') && ((LoopCounterBuffer[0] & 8) != 0)) {
         ModuleInitializationResult = *(longlong *)(AudioProcessingBuffer + 0x160);
         UnsignedValue = *(uint *)(ModuleInitializationResult + 0x74);
         BufferSize = *(uint *)(ModuleInitializationResult + 0x78);
