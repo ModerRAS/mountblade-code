@@ -8329,11 +8329,11 @@ void* GlobalDataPointerExtendedQuinary;
 //   void* - 数据处理结果
 void* UtilityProcessDataPrimary;
 // 全局数据指针Extended相关变量
-void* GlobalDataPointerExtendedStorage;    // DAT_180bfa230
-void* GlobalDataPointerExtendedStatus;     // DAT_180bfa238
-void* GlobalDataPointerExtendedConfig;     // DAT_180bfa240
-void* GlobalDataPointerExtendedCache;      // DAT_180bfa248
-void* GlobalDataPointerExtendedValidationBuffer;  // DAT_180a22fa8
+void* GlobalDataPointerExtendedStorage;    
+void* GlobalDataPointerExtendedStatus;     
+void* GlobalDataPointerExtendedConfig;     
+void* GlobalDataPointerExtendedCache;      
+void* GlobalDataPointerExtendedValidationBuffer;  
 
 // 函数: uint8_t ProcessUtilityData;
 // 
@@ -8432,36 +8432,36 @@ uint8_t SystemInitDataC;
 // 系统初始化数据D
 uint8_t SystemInitDataD;
 // 全局数据指针A39相关变量
-void* GlobalDataPointerA39Storage;    // DAT_180bfa3e8
-void* GlobalDataPointerA39Status;     // DAT_180bfa3f0
-void* GlobalDataPointerA39Config;     // DAT_180bfa3f8
-void* GlobalDataPointerA39Cache;      // DAT_180bfa400
+void* GlobalDataPointerA39Storage;    
+void* GlobalDataPointerA39Status;     
+void* GlobalDataPointerA39Config;     
+void* GlobalDataPointerA39Cache;      
 // 全局数据指针A40相关变量
-void* GlobalDataPointerA40Storage;    // DAT_180bfa480
-void* GlobalDataPointerA40Status;     // DAT_180bfa488
-void* GlobalDataPointerA40Config;     // DAT_180bfa490
-void* GlobalDataPointerA40Cache;      // DAT_180bfa498
+void* GlobalDataPointerA40Storage;    
+void* GlobalDataPointerA40Status;     
+void* GlobalDataPointerA40Config;     
+void* GlobalDataPointerA40Cache;      
 // 全局数据指针A41相关变量
-void* GlobalDataPointerA41Storage;    // DAT_180bfa518
-void* GlobalDataPointerA41Status;     // DAT_180bfa520
-void* GlobalDataPointerA41Config;     // DAT_180bfa528
-void* GlobalDataPointerA41Cache;      // DAT_180bfa530
+void* GlobalDataPointerA41Storage;    
+void* GlobalDataPointerA41Status;     
+void* GlobalDataPointerA41Config;     
+void* GlobalDataPointerA41Cache;      
 // 全局数据指针A42相关变量
-void* GlobalDataPointerA42Storage;    // DAT_180bfa5b0
-void* GlobalDataPointerA42Status;     // DAT_180bfa5b8
-void* GlobalDataPointerA42Config;     // DAT_180bfa5c0
-void* GlobalDataPointerA42Cache;      // DAT_180bfa5c8
+void* GlobalDataPointerA42Storage;    
+void* GlobalDataPointerA42Status;     
+void* GlobalDataPointerA42Config;     
+void* GlobalDataPointerA42Cache;      
 // 全局数据指针A43相关变量
-void* GlobalDataPointerA43Storage;    // DAT_180bfa648
-void* GlobalDataPointerA43Status;     // DAT_180bfa650
+void* GlobalDataPointerA43Storage;    
+void* GlobalDataPointerA43Status;     
 // 全局数据指针A43相关变量（续）
-void* GlobalDataPointerA43ValidationBuffer;  // DAT_180bfa658
-void* GlobalDataPointerA43ExtraData;        // DAT_180bfa660
+void* GlobalDataPointerA43ValidationBuffer;  
+void* GlobalDataPointerA43ExtraData;        
 // 全局数据指针A44相关变量
-void* GlobalDataPointerA44Storage;          // DAT_180bfa6e0
-void* GlobalDataPointerA44Status;           // DAT_180bfa6e8
-void* GlobalDataPointerA44Config;           // DAT_180bfa6f0
-void* GlobalDataPointerA44Cache;            // DAT_180bfa6f8
+void* GlobalDataPointerA44Storage;          
+void* GlobalDataPointerA44Status;           
+void* GlobalDataPointerA44Config;           
+void* GlobalDataPointerA44Cache;            
 bool UtilitySystemControlFlag600;
 bool SystemStatusControlFlag1;
 bool SystemStatusControlFlag2;

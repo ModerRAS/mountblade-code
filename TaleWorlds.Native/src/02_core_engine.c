@@ -9990,16 +9990,16 @@ void CoreEngineInitializePhysicsManager(void
  */
 void CoreEngineInitializeAnimationManager(void
 {
-  char NodeStringBuffer;
-  void *SystemSystemContext;
-  int MemoryCompareResult;
+  char NodeStatusBuffer;
+  void *SystemContext;
+  int MemoryComparisonResult;
   long long *EngineContext;
-  long long AllocatedMemorySize;
-  void *CurrentNode;
-  void *PreviousNode;
-  void *NextNode;
-  void *NewNode;
-  void *ConnectionInitializerCallback;
+  long long MemoryAllocationSize;
+  void *CurrentAnimationNode;
+  void *PreviousAnimationNode;
+  void *NextAnimationNode;
+  void *NewAnimationNode;
+  void *AnimationInitializerCallback;
   
   EngineContext = (long long *)CoreEngineGetSystemContext();
   SystemSystemContext = (void *)*EngineContext;
@@ -46516,7 +46516,7 @@ void ProcessFloatCalculationAndDataFiltering(void
     MatrixRow3Col1 = FilterInputValue * SystemContextPrimaryFloat3 + ContextSecondaryFloat * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
     MatrixRow3Col2 = FilterInputValue * SystemContextPrimaryFloat4 + ContextSecondaryFloat * ContextPrimaryFloat0 + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
     MatrixRow3Col3 = FilterInputValue * SystemFloatValue + ContextSecondaryFloat * ContextPrimaryFloat1 + SystemContextPrimaryFloat * ContextPrimaryFloat9;
-    fStack00000000000000cc = FilterInputValue * SystemContextPrimaryFloat6 + ContextSecondaryFloat * SystemContextPrimaryFloat2 + SystemContextPrimaryFloat * ContextSecondaryFloat0;
+    MatrixRow3Col4 = FilterInputValue * SystemContextPrimaryFloat6 + ContextSecondaryFloat * SystemContextPrimaryFloat2 + SystemContextPrimaryFloat * ContextSecondaryFloat0;
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
     TransformedMatrixElementD0 =
          FloatVariable4 * SystemContextPrimaryFloat3 + FloatVariable5 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue + InputParameterArray[0xc];
@@ -46686,7 +46686,7 @@ void ExecuteFloatDataProcessingAndContextManagement(void
     MatrixRow3Col1 = FilterInputValue * ContextPrimaryFloat1 + ContextSecondaryFloat * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue;
     MatrixRow3Col2 = FilterInputValue * SystemContextPrimaryFloat2 + ContextSecondaryFloat * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6;
     MatrixRow3Col3 = FilterInputValue * SystemContextPrimaryFloat3 + ContextSecondaryFloat * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
-    fStack00000000000000cc = FilterInputValue * SystemContextPrimaryFloat4 + ContextSecondaryFloat * ContextPrimaryFloat0 + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
+    MatrixRow3Col4 = FilterInputValue * SystemContextPrimaryFloat4 + ContextSecondaryFloat * ContextPrimaryFloat0 + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
     TransformedMatrixElementD0 = FloatVariable4 * ContextPrimaryFloat1 + FloatVariable5 * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue + SourceIndex[0xc];
     TransformedMatrixElementD4 = FloatVariable4 * SystemContextPrimaryFloat2 + FloatVariable5 * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6 + SourceIndex[0xd];
@@ -46864,7 +46864,7 @@ void ExecuteSystemStatusCheckAndDataProcessing(void
     MatrixRow3Col1 = FilterInputValue * ContextPrimaryFloat1 + ContextSecondaryFloat * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue;
     MatrixRow3Col2 = FilterInputValue * SystemContextPrimaryFloat2 + ContextSecondaryFloat * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6;
     MatrixRow3Col3 = FilterInputValue * SystemContextPrimaryFloat3 + ContextSecondaryFloat * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
-    fStack00000000000000cc = FilterInputValue * SystemContextPrimaryFloat4 + ContextSecondaryFloat * ContextPrimaryFloat0 + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
+    MatrixRow3Col4 = FilterInputValue * SystemContextPrimaryFloat4 + ContextSecondaryFloat * ContextPrimaryFloat0 + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
     TransformedMatrixElementD0 =
          FloatVariable4 * ContextPrimaryFloat1 + FloatVariable5 * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue + InputParameterArray[0xc];
@@ -47232,6 +47232,7 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   float VelocityCoefficient54;
   float AccelerationCoefficient58;
   uint32_t StackParameter5C;
+  uint32_t StackParameter60;
   float PositionCoefficient60;
   float TemporaryFloat64;
   float TemporaryFloat68;
@@ -47323,7 +47324,7 @@ void ProcessSystemRenderParametersAndStatus(void
   StackDataOffset58 = DataNodeIndex[5] & 0xffffffff;
   StackDataOffset48 = DataNodeIndex[3] & 0xffffffff;
   StackDataOffset38 = DataNodeIndex[1] & 0xffffffff;
-  CalculateFloatValue(0x3f800000,uStack0000000000000060,CharacterLimitD,&SystemStackBuffer,StackParameterE0);
+  CalculateFloatValue(0x3f800000,StackParameter60,CharacterLimitD,&SystemStackBuffer,StackParameterE0);
   return;
 }
 
@@ -65982,13 +65983,13 @@ void ProcessSystemEventTemplateData(void
   uint64_t *systemEventTemplatePointer;
   long long CharacterLimit;
   uint64_t *NullPointerValue;
-  uint64_t uStack0000000000000060;
+  uint64_t StackParameter60;
   
   CharacterTablePointer = CharacterLimit - (long long)NullPointerValue >> 3;
   if (1 < CharacterTablePointer) {
     BufferStatus = (CharacterTablePointer + -2 >> 1) + 1;
     do {
-      uStack0000000000000060 = NullPointerValue[BufferStatus + -1];
+      StackParameter60 = NullPointerValue[BufferStatus + -1];
       BufferStatus = BufferStatus + -1;
       ProcessSystemDataStructureAllocation();
     } while (BufferStatus != 0);
@@ -187634,7 +187635,7 @@ LAB_1801604e5:
   uint64_t StackVariable48;
   uint64_t uStack0000000000000050;
   uint64_t TemporaryStackValue58;
-  uint64_t uStack0000000000000060;
+  uint64_t StackParameter60;
   long long StackParameter0;
   long long MemoryOffsetStorage;
   int FloatValueStorage;
