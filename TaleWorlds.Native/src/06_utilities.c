@@ -1541,16 +1541,30 @@
 // 原始函数名：Unwind_180909f00 - 销毁互斥锁清理函数A14
 // 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA14 Unwind_180909f00
-#define UnwindCleanupContextA15 Unwind_180909f20
-#define UnwindCleanupContextA16 Unwind_180909f40
+// 原始函数名：Unwind_180909f20 - 系统上下文清理函数A15
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA15 Unwind_180909f20
+// 原始函数名：Unwind_180909f40 - 系统上下文清理函数A16
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA16 Unwind_180909f40
 // 原始函数名：Unwind_180909f60 - 内存资源引用计数清理函数
 // 功能：清理内存资源的引用计数，处理内存块的释放和引用关系更新
 #define CleanupMemoryResourceReferenceCount Unwind_180909f60
-#define UnwindCleanupContextA18 Unwind_180909f80
-#define UnwindCleanupContextA19 Unwind_180909fa0
-#define UnwindCleanupContextA20 Unwind_180909fc0
-#define UnwindCleanupContextA21 Unwind_180909fe0
-#define UnwindCleanupContextA22 Unwind_18090a000
+// 原始函数名：Unwind_180909f80 - 系统上下文清理函数A18
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA18 Unwind_180909f80
+// 原始函数名：Unwind_180909fa0 - 系统上下文清理函数A19
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA19 Unwind_180909fa0
+// 原始函数名：Unwind_180909fc0 - 系统上下文清理函数A20
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA20 Unwind_180909fc0
+// 原始函数名：Unwind_180909fe0 - 系统上下文清理函数A21
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA21 Unwind_180909fe0
+// 原始函数名：Unwind_18090a000 - 系统上下文清理函数A22
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA22 Unwind_18090a000
 
 // 新美化的Unwind函数宏定义
 #define ExecuteHandlerAtOffset108 Unwind_1809070d0
@@ -116556,16 +116570,30 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 原始函数名：Unwind_180909f00 - 销毁互斥锁清理函数A14
 // 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA14 Unwind_180909f00
-#define UnwindCleanupContextA15 Unwind_180909f20
-#define UnwindCleanupContextA16 Unwind_180909f40
+// 原始函数名：Unwind_180909f20 - 系统上下文清理函数A15
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA15 Unwind_180909f20
+// 原始函数名：Unwind_180909f40 - 系统上下文清理函数A16
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA16 Unwind_180909f40
 // 原始函数名：Unwind_180909f60 - 内存资源引用计数清理函数
 // 功能：清理内存资源的引用计数，处理内存块的释放和引用关系更新
 #define CleanupMemoryResourceReferenceCount Unwind_180909f60
-#define UnwindCleanupContextA18 Unwind_180909f80
-#define UnwindCleanupContextA19 Unwind_180909fa0
-#define UnwindCleanupContextA20 Unwind_180909fc0
-#define UnwindCleanupContextA21 Unwind_180909fe0
-#define UnwindCleanupContextA22 Unwind_18090a000
+// 原始函数名：Unwind_180909f80 - 系统上下文清理函数A18
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA18 Unwind_180909f80
+// 原始函数名：Unwind_180909fa0 - 系统上下文清理函数A19
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA19 Unwind_180909fa0
+// 原始函数名：Unwind_180909fc0 - 系统上下文清理函数A20
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA20 Unwind_180909fc0
+// 原始函数名：Unwind_180909fe0 - 系统上下文清理函数A21
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA21 Unwind_180909fe0
+// 原始函数名：Unwind_18090a000 - 系统上下文清理函数A22
+// 功能：清理系统上下文，释放相关资源
+#define CleanupSystemContextA22 Unwind_18090a000
 
 // 原始函数名：ReleaseDataBufferResource - 数据缓冲区资源释放函数
 // 功能：释放数据缓冲区资源
