@@ -30029,14 +30029,14 @@ void ProcessMemoryReferenceCountAndBlockManagement(uint64_t *SystemContextPointe
   int *ReferenceCountPointer;
   int StringComparisonResult;
   unsigned long long UnicodeCodePoint;
-  unsigned long long MemoryOffsetValue;
+  unsigned long long MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
   long long MemoryBoundaryEnd;
   long long MemoryPoolBlockSize;
-  long long secondaryLoopCounter;
-  long long systemLoopCounter;
+  long long SecondaryLoopCounter;
+  long long SystemLoopCounter;
   unsigned long long Utf16Char;
-  bool BooleanVariable11;
+  bool IsMemoryBlockProcessed;
   
   *SystemContextPointer = &SecondaryDataStructureTemplate;
   UnicodeCodePoint = SystemContextPointer[4];
@@ -147567,7 +147567,20 @@ LAB_180131a76:
 
 
 
-float * FUN_180131aa0(float *SystemContextPointer,uint Utf8BufferSize,uint Utf16InputPointer,float Utf16EndPointer,float AdditionalParameter1
+/**
+ * 系统浮点数上下文处理函数
+ * 
+ * 处理系统浮点数上下文的初始化和计算，根据不同的参数配置
+ * 执行相应的浮点数运算和内存分配操作。
+ * 
+ * @param SystemContextPointer 系统上下文指针，用于存储计算结果
+ * @param Utf8BufferSize UTF8缓冲区大小，用于确定内存分配策略
+ * @param Utf16InputPointer UTF16输入指针，用于字符编码处理
+ * @param Utf16EndPointer UTF16结束指针，用于边界检查
+ * @param AdditionalParameter1 额外参数，用于扩展功能
+ * @return float* 返回处理后的浮点数上下文指针
+ */
+float * ProcessSystemFloatContext(float *SystemContextPointer,uint Utf8BufferSize,uint Utf16InputPointer,float Utf16EndPointer,float AdditionalParameter1
 {
   long long PrimaryDataSize;
   unsigned long long MemoryAllocationIndex;
@@ -237153,8 +237166,8 @@ void FUN_18020a890(uint64_t SystemContextPointer,long long Utf8BufferSize,long l
     if (pSystemInitializationMode != NULL) {
       PrimaryProcessingStatusFlag3 = pSystemInitializationMode;
     }
-    apuStack_418[0] = &UNK_180a03ac8;
-    apuStack_418[2] = &UNK_180a01620;
+    apuStack_418[0] = &SystemStringPrimaryTemplate;
+    apuStack_418[2] = &SystemStringSecondaryTemplate;
     __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ(alStack_360);
     uStack_458 = 1;
     __0__basic_iostream_DU__char_traits_D_std___std__QEAA_PEAV__basic_streambuf_DU__char_traits_D_std___1__Z
