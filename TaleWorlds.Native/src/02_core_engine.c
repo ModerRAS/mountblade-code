@@ -50029,13 +50029,15 @@ void CleanupSystemBuffer(void)
   uint UnicodeCharacterCode;
   int SystemStatusValue;
   int IntegerValue9;
+  int IntegerValue8;
+  int IterationCounter;
   uint32_t *PrimaryProcessingStatusFlag0;
   uint *ProcessingStatusPointer;
   unsigned long long MemoryAllocationOffset;
   unsigned long long MemoryAllocationSize;
   bool HighByte4;
   uint64_t StackParameterStorage;
-  uint64_t InputDataBuffer;
+  long long *CharacterCode;
   
   long long AllocatedMemorySize = *(long long *)(SystemContext + 600);
   if (*(int *)(AllocatedMemorySize + 0x28) != *(int *)(CoreEngineSystemContext + 0x224)) {
@@ -154087,7 +154089,7 @@ LAB_1801338ca:
       SystemContextPrimaryFloat6 = 0.0;
     }
     if (0.0 < SecondaryFloatValue != 0.0 < SystemContextPrimaryFloat6) {
-      FUN_180133680();
+      ValidateSystemDataIntegrity();
       *(uint32_t *)(BufferStatus + 0x1cf4) = 0x3f800000;
       SystemFloatValue = 1.0;
     }
@@ -154129,7 +154131,7 @@ LAB_1801338ca:
       StringBuffer4 = ValidateSystemConfiguration(*(int *)(BufferStatus + 0x3c),1);
     }
     if (StringBuffer4 != '\0') {
-      FUN_180133680();
+      ValidateSystemDataIntegrity();
       SystemContextValue = *(long long *)(BufferStatus + 0x1cd8);
     }
     if (*(char *)(BufferStatus + 0x134) == '\0') {
@@ -154368,7 +154370,7 @@ LAB_1801338ca:
     }
     UnicodeCodePoint = (uint8_t)(NullPointerValue >> 8);
     if ((int)CONCAT71(UnicodeCodePoint,0.0 < ContextPrimaryFloat9) != (int)CONCAT71(UnicodeCodePoint,0.0 < SystemContextPrimaryFloat8)) {
-      FUN_180133680();
+      ValidateSystemDataIntegrity();
       *(uint32_t *)(SystemContext + 0x1cf4) = 0x3f800000;
       SecondaryFloatValue = 1.0;
     }
@@ -154409,7 +154411,7 @@ LAB_1801338ca:
       OperationStatus = ValidateSystemConfiguration(*(int *)(SystemContext + 0x3c),1);
     }
     if (OperationStatus != '\0') {
-      FUN_180133680();
+      ValidateSystemDataIntegrity();
       SystemDataTablePointer = *(long long *)(SystemContext + 0x1cd8);
     }
     if (*(char *)(SystemContext + 0x134) == StringCodeBuffer) {
@@ -154654,7 +154656,7 @@ LAB_1801338ca:
     }
     UnicodeCodePoint = (uint8_t)(NullPointerValue >> 8);
     if ((int)CONCAT71(UnicodeCodePoint,FloatingPointRegisterA < SystemContextPrimaryFloat8) != (int)CONCAT71(UnicodeCodePoint,FloatingPointRegisterA < SecondaryFloatValue)    {
-      FUN_180133680();
+      ValidateSystemDataIntegrity();
       *(uint32_t *)(SystemContext + 0x1cf4) = 0x3f800000;
       ContextPrimaryFloat9 = 1.0;
     }
@@ -154695,7 +154697,7 @@ LAB_1801338ca:
       OperationStatus = ValidateSystemConfiguration(*(int *)(SystemContext + 0x3c),1);
     }
     if (OperationStatus != '\0') {
-      FUN_180133680();
+      ValidateSystemDataIntegrity();
       SystemDataTablePointer = *(long long *)(SystemContext + 0x1cd8);
     }
     if (*(char *)(SystemContext + 0x134) == StringCodeBuffer) {
@@ -154895,7 +154897,7 @@ void CoreEngineProcessSystemStatusAndMemory(void)
   MutexLockResult = (int)NullPointerValue;
   UnicodeCodePoint = (uint8_t)(NullPointerValue >> 8);
   if ((int)CONCAT71(UnicodeCodePoint,FloatingPointRegisterA < SecondaryFloatValue) != (int)CONCAT71(UnicodeCodePoint,FloatingPointRegisterA < SystemContextPrimaryFloat6)) {
-    FUN_180133680();
+    ValidateSystemDataIntegrity();
     *(uint32_t *)(SystemContext + 0x1cf4) = 0x3f800000;
     SystemContextPrimaryFloat8 = SecondaryFloatValue;
   }
@@ -154935,7 +154937,7 @@ void CoreEngineProcessSystemStatusAndMemory(void)
       CharacterVariable5 = ValidateSystemConfiguration(*(int *)(SystemContext + 0x3c),1);
     }
     if (CharacterVariable5 != '\0') {
-      FUN_180133680();
+      ValidateSystemDataIntegrity();
       SystemDataTablePointer = *(long long *)(SystemContext + 0x1cd8);
     }
     if (*(char *)(SystemContext + 0x134) == StringCodeBuffer) {
@@ -155096,7 +155098,7 @@ void CoreEngineProcessSystemOperationStatus(void)
   float SecondaryFloatValue;
   unsigned long long ProcessingStatusFlag;
   
-  FUN_180133680();
+  ValidateSystemDataIntegrity();
   *(uint32_t *)(SystemContext + 0x1cf4) = 0x3f800000;
   if (*(float *)(SystemContext + 0x344) <= FloatingPointRegisterA) {
     *(uint8_t *)(SystemContext + 0x1cf8) = 0;
@@ -155126,7 +155128,7 @@ void CoreEngineProcessSystemOperationStatus(void)
       OperationStatus = ValidateSystemConfiguration(*(int *)(SystemContext + 0x3c),1);
     }
     if (OperationStatus != '\0') {
-      FUN_180133680();
+      ValidateSystemDataIntegrity();
       EncodingConversionResult = *(long long *)(SystemContext + 0x1cd8);
     }
     if (*(char *)(EngineSystemContext + 0x134) == SystemBufferChar) {
@@ -155312,7 +155314,7 @@ void CoreEngineProcessSystemBufferStatus(void)
       OperationStatus = ValidateSystemConfiguration(*(int *)(SystemContext + 0x3c),RegisterValueR12D & 0xff);
     }
     if (OperationStatus != '\0') {
-      FUN_180133680();
+      ValidateSystemDataIntegrity();
       SourceIndex = *(long long *)(SystemContext + 0x1cd8);
     }
     if (*(char *)(SystemContext + 0x134) == StringBuffer2) {
@@ -158761,16 +158763,16 @@ uint64_t * FUN_180135420(uint64_t *Utf8InputBuffer
           *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        InitializeSystemMemoryPool(BufferStatus,SystemMemoryPoolBase,Utf8SourcePointer,Utf16EndPointer,SystemChecksumValue);
+        InitializeSystemMemoryPool(BufferStatus,SystemMemoryPoolBase,sourceData,endMarker,SystemChecksumValue);
       }
       MemoryAddressMask = (int)CalculatedCodePoint + 1;
       UnicodeCodePoint = UnicodeCodePoint + 0x10;
       CalculatedCodePoint = (unsigned long long)MemoryAddressMask;
     } while ((int)MemoryAddressMask < *pValidationResult);
-    pValidationResult = *(int **)(CharacterCode + 0x2df8);
+    pValidationResult = *(int **)(systemContext + 0x2df8);
   }
   if (pValidationResult == (int *)0x0) {
-    *(void *)(CharacterCode + 0x2df8) = 0;
+    *(void *)(systemContext + 0x2df8) = 0;
     return;
   }
   CharacterTablePointer = *(long long *)(pValidationResult + 10);
