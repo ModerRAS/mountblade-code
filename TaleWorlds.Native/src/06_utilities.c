@@ -3779,21 +3779,21 @@
 // 功能：存储异常数据的初始化信息
 #define ExceptionDataInitializationTable UNK_1809ff498
 
-// 原始变量名：UNK_18009ee10 - 默认异常处理器A
-// 功能：默认异常处理器的第一种状态
-#define DefaultExceptionHandlerA UNK_18009ee10
+// 原始变量名：UNK_18009ee10 - 主默认异常处理器
+// 功能：系统主要的默认异常处理器入口点
+#define PrimaryDefaultExceptionHandler UNK_18009ee10
 
-// 原始变量名：UNK_1800a127e - 系统状态标志A
-// 功能：存储系统状态标志信息
-#define SystemStatusFlagA UNK_1800a127e
+// 原始变量名：UNK_1800a127e - 系统主状态标志
+// 功能：存储系统主要运行状态标志
+#define SystemMainStatusFlag UNK_1800a127e
 
-// 原始变量名：UNK_180a01630 - 系统验证标志A
-// 功能：存储系统验证标志信息
-#define SystemValidationFlagA UNK_180a01630
+// 原始变量名：UNK_180a01630 - 系统完整性验证标志
+// 功能：存储系统完整性验证状态标志
+#define SystemIntegrityValidationFlag UNK_180a01630
 
-// 原始变量名：UNK_180a17010 - 系统资源表A
-// 功能：存储系统资源表信息
-#define SystemResourceTableA UNK_180a17010
+// 原始变量名：UNK_180a17010 - 系统主资源表
+// 功能：存储系统主要资源分配表
+#define SystemPrimaryResourceTable UNK_180a17010
 
 // 原始变量名：_DAT_180bf9390 - 全局异常处理器指针A1
 // 功能：存储全局异常处理器A1的指针
@@ -8470,33 +8470,33 @@ uint8_t SystemDebugDataBlockQuaternary;
 uint8_t SystemDebugDataBlockFifth;
 
 // 函数: uint8_t UtilityHandleEvent1;
-uint8_t UtilityHandleEvent1;
+uint8_t UtilityHandleEventPrimary;
 // 系统数据表
-uint8_t SystemDataTable1;
-uint8_t SystemDataTable2;
-uint8_t SystemDataTable3;
+uint8_t SystemDataTablePrimary;
+uint8_t SystemDataTableSecondary;
+uint8_t SystemDataTableTertiary;
 // 系统内存管理数据块D
-uint8_t SystemMemoryManagementBlockD1;
+uint8_t SystemMemoryManagementBlockDPrimary;
 // 系统数据表
-uint8_t SystemDataTable4;
+uint8_t SystemDataTableQuaternary;
 // 系统配置数据块
-uint8_t SystemConfigurationDataBlock1;
-uint8_t SystemConfigurationDataBlock2;
+uint8_t SystemConfigurationDataBlockPrimary;
+uint8_t SystemConfigurationDataBlockSecondary;
 // 系统配置数据块
-uint8_t SystemConfigurationDataBlock3;
+uint8_t SystemConfigurationDataBlockTertiary;
 // 系统内存管理数据块D
-uint8_t SystemMemoryManagementBlockD2;
-uint8_t SystemMemoryManagementBlockD3;
-uint8_t SystemMemoryManagementBlockD4;
+uint8_t SystemMemoryManagementBlockDSecondary;
+uint8_t SystemMemoryManagementBlockDTertiary;
+uint8_t SystemMemoryManagementBlockDQuaternary;
 // 系统配置数据块
-uint8_t SystemConfigurationDataBlock4;
+uint8_t SystemConfigurationDataBlockQuaternary;
 // 系统内存管理数据块D
-uint8_t SystemMemoryManagementBlockD5;
-uint8_t SystemMemoryManagementBlockD6;
+uint8_t SystemMemoryManagementBlockDFifth;
+uint8_t SystemMemoryManagementBlockDSixth;
 
 // 函数: uint8_t UtilityResizeMemoryHeap;
 // 调整内存堆大小，重新分配内存空间
-uint8_t UtilityResizeMemoryHeap;
+uint8_t UtilityResizeMemoryHeapFlag;
 // 系统内存管理相关变量
 uint8_t SystemMemoryManagementTable;
 uint8_t SystemMemoryAllocationTable;
@@ -100003,23 +100003,38 @@ void Unwind_180912300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常处理器链表A0
+ * 
+ * 该函数负责清理异常处理器链表，遍历多个异常处理器并逐个处理。
+ * 它会检查每个异常处理器的有效性，并在需要时调用系统异常处理函数。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912320
+ */
+void CleanupExceptionHandlerChainA0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
   int64_t dataContext;
   DataBuffer validationStatus;
   
+  // 获取数据上下文并设置验证状态
   dataContext = *(int64_t *)(dataBuffer + 0x40);
   validationStatus = SystemCleanupFlagAlternative;
   ResetSystemState();
+  
+  // 检查并处理第一个异常处理器
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x390);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x378);
   if (exceptionHandlerContext != 0) {
