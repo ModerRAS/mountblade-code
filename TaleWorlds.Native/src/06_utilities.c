@@ -15066,39 +15066,39 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
   if (validationResult != 0) {
     return;
   }
-  operationResult = (int)*(uint *)(dataBuffer + ValidationDataOffset) >> 0x1f;
-  operationResult = (*(uint *)(dataBuffer + ValidationDataOffset) ^ operationResult) - operationResult;
-  validationResult = *(int *)(dataBuffer + ValidationResultOffset) + 1;
-  if (operationResult < validationResult) {
-    operationResult = (int)((float)operationResult * 1.5);
-    if (validationResult <= operationResult) {
-      validationResult = operationResult;
+  allocationCount = (int)*(uint *)(resourceDataBuffer + ValidationDataOffset) >> 0x1f;
+  allocationCount = (*(uint *)(resourceDataBuffer + ValidationDataOffset) ^ allocationCount) - allocationCount;
+  requiredCapacity = *(int *)(resourceDataBuffer + ValidationResultOffset) + 1;
+  if (allocationCount < requiredCapacity) {
+    allocationCount = (int)((float)allocationCount * 1.5);
+    if (requiredCapacity <= allocationCount) {
+      requiredCapacity = allocationCount;
     }
-    if (validationResult < 8) {
-      validationResult = 8;
+    if (requiredCapacity < 8) {
+      requiredCapacity = 8;
     }
-    if (validationResult < *(int *)(dataBuffer + ValidationResultOffset)) goto ErrorHandlingLabel;
-    if (validationResult != 0) {
-      if ((MaximumMemoryBufferSize < validationResult * 8 - 1U) ||
-         (allocatedMemory = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),validationResult * 8,&SystemMemoryPoolB,
+    if (requiredCapacity < *(int *)(resourceDataBuffer + ValidationResultOffset)) goto ErrorHandlingLabel;
+    if (requiredCapacity != 0) {
+      if ((MaximumMemoryBufferSize < requiredCapacity * 8 - 1U) ||
+         (allocatedMemory = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),requiredCapacity * 8,&SystemMemoryPoolB,
                                 0xf4,0), allocatedMemory == 0)) goto ErrorHandlingLabel;
-      if (*(int *)(dataBuffer + ValidationResultOffset) != 0) {
-          memcpy(allocatedMemory,*(DataBuffer *)(dataBuffer + MemoryPointerOffset),
-               (int64_t)*(int *)(dataBuffer + ValidationResultOffset) << 3);
+      if (*(int *)(resourceDataBuffer + ValidationResultOffset) != 0) {
+          memcpy(allocatedMemory,*(DataBuffer *)(resourceDataBuffer + MemoryPointerOffset),
+               (int64_t)*(int *)(resourceDataBuffer + ValidationResultOffset) << 3);
       }
     }
-    if ((0 < *(int *)(dataBuffer + ValidationDataOffset)) && (*(int64_t *)(dataBuffer + MemoryPointerOffset) != 0))
+    if ((0 < *(int *)(resourceDataBuffer + ValidationDataOffset)) && (*(int64_t *)(resourceDataBuffer + MemoryPointerOffset) != 0))
     {
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(dataBuffer + MemoryPointerOffset),
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(resourceDataBuffer + MemoryPointerOffset),
                     &SystemMemoryPoolB,0x100,1);
     }
-    *(int64_t *)(dataBuffer + MemoryPointerOffset) = allocatedMemory;
-    *(int *)(dataBuffer + ValidationDataOffset) = validationResult;
+    *(int64_t *)(resourceDataBuffer + MemoryPointerOffset) = allocatedMemory;
+    *(int *)(resourceDataBuffer + ValidationDataOffset) = requiredCapacity;
   }
   *(int64_t *)
-   (*(int64_t *)(dataBuffer + MemoryPointerOffset) + (int64_t)*(int *)(dataBuffer + ValidationResultOffset) * 8) =
+   (*(int64_t *)(resourceDataBuffer + MemoryPointerOffset) + (int64_t)*(int *)(resourceDataBuffer + ValidationResultOffset) * 8) =
        dataInput;
-  *(int *)(dataBuffer + ValidationResultOffset) = *(int *)(dataBuffer + ValidationResultOffset) + 1;
+  *(int *)(resourceDataBuffer + ValidationResultOffset) = *(int *)(resourceDataBuffer + ValidationResultOffset) + 1;
 SystemCleanupLabel:
     CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
 }
