@@ -21975,7 +21975,7 @@ ValidateDataSecurity:
   DataWord loopCounter;
   DataWord systemDataBuffer1;
   char statusChar;
-  int inputParameter3;
+  int functionInputParameter3;
   uint systemDataBuffer4;
   int64_t inputAccumulatorRegister;
   int64_t exceptionHandlerContext5;
