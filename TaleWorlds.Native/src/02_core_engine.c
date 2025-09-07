@@ -126075,7 +126075,7 @@ float * ProcessFloatMemoryBuffers(float *SystemContextPointer,long long Utf8Buff
 
 
 
-float * FUN_180129445(float *SystemContextPointer,long long Utf8BufferSize,float Utf16InputPointer,float Utf16EndPointer
+float * ManageFloatMemoryAllocation(float *SystemContextPointer,long long Utf8BufferSize,float Utf16InputPointer,float Utf16EndPointer)
 {
   float SystemContextFloat1;
   float SystemContextFloat2;
@@ -167158,7 +167158,7 @@ uint64_t *ProcessSystemEventHandling(long long SystemContextPointer,uint64_t *Ut
   MemoryAddressMask = CoreEngineFinalizeSystemEvent(&puStack_190,SystemContextPointer + 0x20);
   StringComparisonResult = FUN_180142220(SystemContextPointer,MemoryAddressMask);
   if (*(char *)((long long)StringComparisonResult + *(long long *)(SystemContextPointer + 0x8c8)) == '\0') {
-    FUN_180056f70(SystemContextPointer + 0x438,(long long)StringComparisonResult * 0x20 + *(long long *)(SystemContextPointer + 0x888));
+    ProcessSystemMemoryDataTransfer(SystemContextPointer + 0x438,(long long)StringComparisonResult * 0x20 + *(long long *)(SystemContextPointer + 0x888));
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)aStackVariable1B8);
   }
