@@ -114003,7 +114003,7 @@ LAB_18011ee7f:
   }
   else {
     if (OperationMode != 2) goto LAB_18011efb0;
-    CharacterCode = (float)FUN_180131aa0(&StackParameter1,3,5,0,0);
+    CharacterCode = (float)AllocateSystemMemoryBuffer(&StackParameter1,3,5,0,0);
     if ((*(int *)(SystemContext + 0x1cac) == RegisterValueEDI) && (*(char *)(SystemContext + 0x1b3c) == '\0')) {
       FlagValue = *(int *)(SystemContext + 0x1b2c);
       goto LAB_18011ee7f;
@@ -161214,11 +161214,11 @@ void ProcessUtf8ToUtf16MemoryAllocationAndFloatCalculation(long long CharacterCo
       CalculatedDistance = *(float *)(SystemDataConfiguration + 0x163c + AllocatedMemorySize * 4);
       TertiaryFloatValue = *(float *)((long long)&AdditionalParameter1 + AllocatedMemorySize * 4) - InputParameterFloat;
       CalculatedDistance = CalculatedDistance + CalculatedDistance;
-      if (FloatValue8 <= 0.0) {
-        MemoryAllocationThreshold1 = 0.0;
+      if (TertiaryFloatValue <= 0.0) {
+        float MemoryAllocationThreshold = 0.0;
       }
-      if (FloatValue8 <= CalculatedDistance) {
-        CalculatedDistance = FloatValue8;
+      if (TertiaryFloatValue <= CalculatedDistance) {
+        CalculatedDistance = TertiaryFloatValue;
       }
       CalculatedDistance = (float)(int)(CalculatedDistance * 0.5);
       if ((*(byte *)(BufferStatus + 0xa1) & 4) == 0) {
