@@ -10598,9 +10598,9 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
               }
               break;
             }
-            componentIterationCounter = (uint64_t)((int32_t)componentIterationCounter + 1);
-            componentSearchIndex = componentSearchIndex + 1;
-            activeComponentContext = activeComponentContext + 1;
+            componentIterationCounter = (uint64_t)((int32_t)componentIterationCounter + ArrayElementIncrement);
+            componentSearchIndex = componentSearchIndex + ArrayElementIncrement;
+            activeComponentContext = activeComponentContext + ArrayElementIncrement;
           } while ((int64_t)componentSearchIndex < (int64_t)registeredComponentCount);
         }
         registeredComponentCount = registeredComponentCount + 1;
@@ -10610,8 +10610,8 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
           if (registeredComponentCount <= componentListCapacity) {
             componentBufferSize = componentListCapacity;
           }
-          if (componentBufferSize < 8) {
-            componentListCapacity = 8;
+          if (componentBufferSize < MinimumCapacityThreshold) {
+            componentListCapacity = MinimumCapacityThreshold;
           }
           else if (componentListCapacity < registeredComponentCount) {
             componentListCapacity = registeredComponentCount;

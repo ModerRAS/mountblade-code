@@ -159375,7 +159375,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode)
         UnicodeCharacterCode = (unsigned long long)DataSize;
         StringProcessingStatus = StringProcessingStatus;
         do {
-          FUN_1801359f0(CharacterTablePointer5,*StringProcessingStatus,0);
+          ProcessCharacterTable(CharacterTablePointer5, *StringProcessingStatus, 0);
           StringProcessingStatus = StringProcessingStatus + 1;
           UnicodeCharacterCode = UnicodeCharacterCode - 1;
         } while (UnicodeCharacterCode != 0);
@@ -159417,7 +159417,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode)
         pMemoryAddressMask = *(uint32_t **)(Utf16Char4 + 8 + *(long long *)(ValidationResultPointer + 2));
         if ((pMemoryAddressMask != (uint32_t *)0x0) &&
            ((*(long long *)(pMemoryAddressMask + 2) == 0 && (*(long long *)(pMemoryAddressMask + 4) != 0)))) {
-          FUN_18013b0f0(*pMemoryAddressMask);
+          ProcessMemoryAddressMask(*pMemoryAddressMask);
         }
         DataSize = (int)Utf16Char9 + 1;
         Utf16Char9 = (unsigned long long)DataSize;
@@ -160539,7 +160539,7 @@ void CoreEngineInitializeNetworkSystem(void
       MemoryAllocationIndex = *(uint32_t *)SystemStatusBuffer;
       ProcessStringCopyOperation(StatusBuffer2,SystemStatusBuffer);
       ValidateStringOperation(MemoryAllocationIndex,*(uint32_t *)StatusBuffer2);
-      FUN_1801359f0(CharacterCode,SystemStatusBuffer,1);
+      ProcessCharacterTable(CharacterCode, SystemStatusBuffer, 1);
     }
     else {
       if (0 < EncodingValidationResult) {
@@ -160569,7 +160569,7 @@ void CoreEngineInitializeNetworkSystem(void
       StatusBuffer2[9] = SystemStatusBuffer[9];
       SystemStatusBuffer[3] = 0;
       SystemStatusBuffer[2] = 0;
-      FUN_1801359f0(CharacterCode,SystemStatusBuffer,1);
+      ProcessCharacterTable(CharacterCode, SystemStatusBuffer, 1);
     }
   }
   if (StatusBuffer2[6] != 0) {
@@ -165770,7 +165770,7 @@ LAB_18013b1d6:
     MemoryAllocationIndex = (unsigned long long)SystemStatusCode;
     SystemStatusBuffer = TemporaryBuffer;
     do {
-      FUN_1801359f0(SystemDataStructureRegistry,*SystemStatusBuffer,0);
+      ProcessCharacterTable(SystemDataStructureRegistry, *SystemStatusBuffer, 0);
       SystemStatusBuffer = SystemStatusBuffer + 1;
       MemoryAllocationIndex = MemoryAllocationIndex - 1;
     } while (MemoryAllocationIndex != 0);
