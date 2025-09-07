@@ -27455,6 +27455,18 @@ void UtilityNoOperationJ(void)
 
 
 
+/**
+ * @brief 处理高级数据操作A0
+ * 
+ * 该函数负责处理高级数据操作，包括数据验证、内存管理和状态检查
+ * 主要用于处理复杂的数据结构和系统调用
+ * 
+ * @param operationBase 操作基础数据，包含操作配置和状态信息
+ * @param dataBuffer 数据缓冲区，包含需要处理的数据
+ * @return DataBuffer 操作结果，包含处理后的数据和状态信息
+ * 
+ * @note 原始函数名：FUN_1800f8950
+ */
 DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuffer)
 
 {
@@ -27466,7 +27478,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
   int64_t memoryPointer;
   int64_t memoryOffset;
   int64_t bufferPointer;
-  int stackParameterArray [4];
+  int memoryPointerArray [4];
   
   memoryOffset = 0;
   operationResult = (ushort)(*(int *)(dataBuffer + ValidationResultOffset) != 0);
