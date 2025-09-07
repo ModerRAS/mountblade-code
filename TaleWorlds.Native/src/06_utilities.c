@@ -24270,45 +24270,45 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
-  float *pinputData2;
+  float *floatDataPointer;
   int operationStatus;
-  float calculationResult4;
-  BytePair auStackX_8 [4];
+  float normalizedValue;
+  BytePair stackBufferX [4];
   
-  auStackX_8[0] = CONCAT11(auStackX_8[0]._1_1_,*(ByteFlag *)(dataBuffer + 0x104));
-  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))(*(DataBuffer **)(operationBase + 8),auStackX_8,1);
+  stackBufferX[0] = CONCAT11(stackBufferX[0]._1_1_,*(ByteFlag *)(dataBuffer + 0x104));
+  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))(*(DataBuffer **)(operationBase + 8),stackBufferX,1);
   if ((int)systemDataBuffer == 0) {
     operationStatus = 0;
     if (0 < *(short *)(dataBuffer + 0x104)) {
-      pfVar2 = (float *)(dataBuffer + 0x84);
+      floatDataPointer = (float *)(dataBuffer + 0x84);
       do {
-        fVar4 = pfVar2[-0x20] * 0.25;
-        if (0.0 <= fVar4) {
-          if (1.0 <= fVar4) {
-            fVar4 = 1.0;
+        normalizedValue = floatDataPointer[-0x20] * 0.25;
+        if (0.0 <= normalizedValue) {
+          if (1.0 <= normalizedValue) {
+            normalizedValue = 1.0;
           }
         }
         else {
-          fVar4 = 0.0;
+          normalizedValue = 0.0;
         }
-        auStackX_8[0] = (BytePair)(int)(fVar4 * 65535.0);
+        stackBufferX[0] = (BytePair)(int)(normalizedValue * 65535.0);
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                          (*(DataBuffer **)(operationBase + 8),auStackX_8,2);
+                          (*(DataBuffer **)(operationBase + 8),stackBufferX,2);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
-        fVar4 = *pfVar2 * 0.25;
-        if (0.0 <= fVar4) {
-          if (1.0 <= fVar4) {
-            fVar4 = 1.0;
+        normalizedValue = *floatDataPointer * 0.25;
+        if (0.0 <= normalizedValue) {
+          if (1.0 <= normalizedValue) {
+            normalizedValue = 1.0;
           }
         }
         else {
-          fVar4 = 0.0;
+          normalizedValue = 0.0;
         }
-        auStackX_8[0] = (BytePair)(int)(fVar4 * 65535.0);
+        stackBufferX[0] = (BytePair)(int)(normalizedValue * 65535.0);
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                          (*(DataBuffer **)(operationBase + 8),auStackX_8,2);
+                          (*(DataBuffer **)(operationBase + 8),stackBufferX,2);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
@@ -80098,7 +80098,18 @@ void Unwind_18090d1c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d1d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器C1
+ * 
+ * 该函数负责管理系统资源的引用计数，当引用计数降为0时触发异常处理
+ * 主要用于内存管理和资源清理操作
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090d1d0
+ */
+void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -80311,7 +80322,18 @@ void CleanupMemoryReferenceCounterA2(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_18090d220(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器C3
+ * 
+ * 该函数负责管理系统资源的引用计数，当引用计数降为0时触发异常处理
+ * 主要用于内存管理和资源清理操作
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090d220
+ */
+void ManageResourceReferenceCountC3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -84979,7 +85001,18 @@ void Unwind_18090ebc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ebf0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器重置器D0
+ * 
+ * 该函数负责重置异常处理器状态，包括临时和默认异常处理器的切换
+ * 主要用于异常处理后的系统状态恢复
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ebf0
+ */
+void ResetExceptionHandlersD0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 200) != (int64_t *)0x0) {
