@@ -8203,8 +8203,8 @@ uint8_t SystemSecurityValidationFlagA108;   // UNK_180a39fe0
 uint8_t SystemSecurityValidationFlagA109;   // UNK_180a39ff8
 uint8_t SystemSecurityValidationFlagA110;   // UNK_180a3a018
 uint8_t SystemSecurityValidationFlagA111;   // UNK_180a3a038
-uint8_t UNK_180a3a048;
-uint8_t UNK_180a3a058;
+uint8_t SystemSecurityValidationFlagA112;  // UNK_180a3a048
+uint8_t SystemSecurityValidationFlagA113;  // UNK_180a3a058
 uint8_t UNK_180a3a068;
 uint8_t UNK_180a3a078;
 uint8_t UNK_180a3a098;
