@@ -1944,6 +1944,98 @@
  */
 #define ExceptionHandlerC8 Unwind_18090a940
 
+// Unwind_函数宏定义扩展 (18090a000-18090a100系列)
+
+/**
+ * @brief 异常处理函数D0
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a000
+ */
+#define ExceptionHandlerD0 Unwind_18090a000
+
+/**
+ * @brief 异常处理函数D1
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a020
+ */
+#define ExceptionHandlerD1 Unwind_18090a020
+
+/**
+ * @brief 异常处理函数D2
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a060
+ */
+#define ExceptionHandlerD2 Unwind_18090a060
+
+/**
+ * @brief 异常处理函数D3
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a080
+ */
+#define ExceptionHandlerD3 Unwind_18090a080
+
+/**
+ * @brief 异常处理函数D4
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a0b0
+ */
+#define ExceptionHandlerD4 Unwind_18090a0b0
+
+/**
+ * @brief 异常处理函数D5
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a0c0
+ */
+#define ExceptionHandlerD5 Unwind_18090a0c0
+
+/**
+ * @brief 异常处理函数D6
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a0d0
+ */
+#define ExceptionHandlerD6 Unwind_18090a0d0
+
+/**
+ * @brief 异常处理函数D7
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a0e0
+ */
+#define ExceptionHandlerD7 Unwind_18090a0e0
+
+/**
+ * @brief 异常处理函数D8
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a0f0
+ */
+#define ExceptionHandlerD8 Unwind_18090a0f0
+
+/**
+ * @brief 异常处理函数D9
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a100
+ */
+#define ExceptionHandlerD9 Unwind_18090a100
+
 // 请求和数据处理函数宏定义 (F系列)
 
 /**
