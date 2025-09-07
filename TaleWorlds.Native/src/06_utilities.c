@@ -101640,7 +101640,21 @@ void ReleaseExceptionContextMemoryResource(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_1809107a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文重置和处理器配置函数7A0
+ * 
+ * 该函数负责重置异常上下文并配置异常处理器。
+ * 它会调用现有的异常处理器，然后设置临时和默认异常处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给异常处理器）
+ * 
+ * @note 原始函数名：Unwind_1809107a0
+ * @note 这是一个异常上下文管理函数，用于重置和配置异常处理器
+ */
+void ResetExceptionContextAndConfigureHandlers(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
