@@ -31533,21 +31533,21 @@ void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
       }
       if (securityValidationResult == 0) {
         if (*(uint *)(dataBuffer + 8) < 0x4d) {
-          inputParameter = 0;
+          securityValidationResult = 0;
         }
         else if (*(int *)(dataBuffer[1] + 0x18) == 0) {
-          inputParameter = OperateDataO0(*dataBuffer,operationBase + 0x21c,4);
+          securityValidationResult = OperateDataO0(*dataBuffer,operationBase + 0x21c,4);
         }
         else {
-          inputParameter = 0x1c;
+          securityValidationResult = 0x1c;
         }
-        if (inputParameter == 0) {
+        if (securityValidationResult == 0) {
           *(DataWord *)(DataContext + 0x200) = *(DataWord *)(DataContext + 0x10);
           *(DataWord *)(DataContext + 0x204) = *(DataWord *)(DataContext + 0x14);
           *(DataWord *)(DataContext + 0x208) = *(DataWord *)(DataContext + 0x18);
           *(DataWord *)(DataContext + 0x20c) = *(DataWord *)(resourceDescriptor + 0x1c);
                     // WARNING: Subroutine does not return
-          ExecutePortControlOperation(SecurityBuffer,ainputDataWord);
+          ExecutePortControlOperation(SecurityBuffer,portControlBuffer);
         }
       }
     }
@@ -47288,7 +47288,20 @@ void ExecuteExceptionHandlerCallbackA0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_1809041d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器状态管理器A0
+ * 
+ * 该函数负责管理异常处理器的状态，包括异常处理的初始化、
+ * 状态检查和清理工作。确保异常处理系统的正常运行。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809041d0
+ */
+void ManageExceptionHandlerStatusA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
