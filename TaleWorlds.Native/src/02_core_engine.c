@@ -137,7 +137,7 @@
 #define ProcessCharacterMemoryManagement FUN_180216210            // 处理字符内存管理
 #define ProcessSystemFinalizationEx FUN_18021aef5                  // 处理系统最终化扩展
 #define GetSystemErrorCode FUN_180225472                           // 获取系统错误代码
-#define GetMemoryBoundaryEnd FUN_18014e960                       // 获取内存边界结束
+#define InitializeCharacterProcessingContext FUN_18014e960         // 初始化字符处理系统上下文
 #define GetProcessingPointerC0 FUN_18014f6a0                    // 获取处理指针C0
 #define ProcessCharacterEncodingAndSystemInitialization FUN_18014a9d0  // 处理字符编码和系统初始化
 #define ProcessCharacterCodeWithSecondarySystemValidation FUN_18014aae0  // 处理字符代码的二级系统验证
@@ -570,7 +570,7 @@
 #define ProcessCharacterWithSystemDataCopyEx2 FUN_18014f059
 #define ProcessCharacterWithSystemDataCopyEx3 FUN_18014f0e5
 #define ProcessCharacterWithSystemDataCopyEx4 FUN_18014f220
-#define ProcessCharacterWithSystemDataCopyEx5 FUN_18014f250
+#define ProcessCharacterCodeSystemOperation FUN_18014f250            // 处理字符代码系统操作
 #define ProcessCharacterWithSystemDataCopyEx6 FUN_18014f3f0
 #define ProcessCharacterWithSystemAllocationEx FUN_18014aa50
 #define ProcessCharacterWithSystemDataCopyEx7 FUN_18014fbc0
@@ -1226,7 +1226,7 @@
 #define ProcessSystemBuffer FUN_18014e960
 
 // UTF-8输入流处理函数
-#define ProcessUtf8InputStream FUN_18014f250
+#define ProcessCharacterCodeSystemOperation FUN_18014f250            // 处理字符代码系统操作
 
 // UTF-8数据验证函数
 #define ValidateUtf8DataStream FUN_18014f3f0
@@ -182036,7 +182036,22 @@ uint64_t * AllocateCharacterSystemMemory(uint64_t *CharacterCode, long long Syst
 
 
 
-long long FUN_18014e960(long long CharacterCode,long long SystemBufferSize
+/**
+ * @brief 初始化字符处理系统上下文
+ * 
+ * 该函数用于初始化字符处理系统的上下文数据，包括：
+ * - 设置安全检查函数指针
+ * - 处理系统操作标志
+ * - 复制系统配置数据
+ * 
+ * @param CharacterCode 字符代码指针，用于初始化的上下文
+ * @param SystemBufferSize 系统缓冲区大小，用于配置验证
+ * @return long long 返回初始化后的字符代码指针
+ * 
+ * @note 此函数用于系统启动时的字符处理初始化
+ * @note 初始化过程包括安全检查和配置复制
+ */
+long long InitializeCharacterProcessingContext(long long CharacterCode,long long SystemBufferSize)
 {
   *(void *)(CharacterCode + 0x10) = 0;
   *(code **)(CharacterCode + 0x18) = _guard_check_icall;
@@ -182656,7 +182671,28 @@ void ProcessCharacterWithAdvancedValidation(long long *CharacterCode,unsigned lo
 
 
 
-long long FUN_18014f250(long long *CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer
+/**
+ * @brief 处理字符代码系统操作
+ * 
+ * 该函数用于处理字符代码系统的各种操作，包括：
+ * - 系统事件处理
+ * - 内存分配和模板创建
+ * - 字符状态管理
+ * - 代码大小管理
+ * 
+ * @param CharacterCode 字符代码指针，用于处理操作
+ * @param CharacterCodeSize 字符代码大小指针，用于大小管理
+ * @param Utf8SourcePointer UTF-8源指针，指定操作类型
+ * @return long long 操作结果或状态码
+ * 
+ * @note 操作类型说明：
+ * @note 0: 系统事件处理
+ * @note 1: 内存分配和模板创建
+ * @note 2: 字符代码大小管理
+ * @note 3: 返回系统地址
+ * @note 4: 返回字符代码
+ */
+long long ProcessCharacterCodeSystemOperation(long long *CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t MemoryAllocationIndex;
@@ -182697,7 +182733,29 @@ long long FUN_18014f250(long long *CharacterCode,long long *CharacterCodeSize,in
 
 
 
-long long FUN_18014f3f0(long long *CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8数据流验证
+ * 
+ * 该函数用于处理UTF-8数据流的验证和内存管理，包括：
+ * - 系统常量地址返回
+ * - 字符代码指针管理
+ * - 字符表处理和内存释放
+ * - 内存分配和数据处理
+ * 
+ * @param CharacterCode 字符代码指针，用于数据验证
+ * @param CharacterCodeSize 字符代码大小指针，用于大小管理
+ * @param Utf8SourcePointer UTF-8源指针，指定操作类型
+ * @param Utf16EndPointer UTF-16结束指针，用于数据处理
+ * @return long long 操作结果或状态码
+ * 
+ * @note 操作类型说明：
+ * @note 0: 字符表处理和内存释放
+ * @note 1: 内存分配和数据处理
+ * @note 2: 字符代码重置
+ * @note 3: 返回系统常量地址
+ * @note 4: 返回字符代码指针
+ */
+long long ValidateUtf8DataStream(long long *CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
