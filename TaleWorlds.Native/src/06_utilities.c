@@ -175,34 +175,34 @@
 #define ExceptionHandlerStateOffset 0x178
 #define ExceptionHandlerTable2Offset 0x140
 
-// 资源清理函数D0相关常量
+// 资源清理函数相关常量
 #define ResourceFlagOffset 0x20
-#define ResourceFlagD0 2
-#define ResourceFlagMaskD0 0xfffffffd
-#define ResourceHandlerOffsetD0 0x88
-#define ResourceFlagD30 8
-#define ResourceFlagMaskD30 0xfffffff7
-#define ResourceHandlerOffsetD30 0x68
-#define ResourceFlagD60 0x10
-#define ResourceFlagMaskD60 0xffffffef
-#define ResourceHandlerOffsetD60 0x48
-#define ResourceFlagD90 0x20
-#define ResourceFlagMaskD90 0xffffffdf
-#define ResourceHandlerOffsetD90 0x68
-#define ResourceFlagDC0 0x40
-#define ResourceFlagMaskDC0 0xffffffbf
-#define ResourceHandlerOffsetDC0 0x48
-#define ExceptionHandlerStatus2Offset 0x148
-#define ExceptionHandlerState2Offset 0x158
-#define ExceptionHandlerTable3Offset 0x120
-#define ExceptionHandlerStatus3Offset 0x128
-#define ExceptionHandlerState3Offset 0x138
-#define ExceptionHandlerTable4Offset 0x100
-#define ExceptionHandlerStatus4Offset 0x108
-#define ExceptionHandlerState4Offset 0x118
-#define ExceptionHandlerTable5Offset 0xe0
-#define ExceptionHandlerStatus5Offset 0xe8
-#define ExceptionHandlerState5Offset 0xf8
+#define ResourceFlagPrimary 2
+#define ResourceFlagMaskPrimary 0xfffffffd
+#define ResourceHandlerOffsetPrimary 0x88
+#define ResourceFlagSecondary 8
+#define ResourceFlagMaskSecondary 0xfffffff7
+#define ResourceHandlerOffsetSecondary 0x68
+#define ResourceFlagTertiary 0x10
+#define ResourceFlagMaskTertiary 0xffffffef
+#define ResourceHandlerOffsetTertiary 0x48
+#define ResourceFlagQuaternary 0x20
+#define ResourceFlagMaskQuaternary 0xffffffdf
+#define ResourceHandlerOffsetQuaternary 0x68
+#define ResourceFlagQuinary 0x40
+#define ResourceFlagMaskQuinary 0xffffffbf
+#define ResourceHandlerOffsetQuinary 0x48
+#define ExceptionHandlerStatusSecondaryOffset 0x148
+#define ExceptionHandlerStateSecondaryOffset 0x158
+#define ExceptionHandlerTableTertiaryOffset 0x120
+#define ExceptionHandlerStatusTertiaryOffset 0x128
+#define ExceptionHandlerStateTertiaryOffset 0x138
+#define ExceptionHandlerTableQuaternaryOffset 0x100
+#define ExceptionHandlerStatusQuaternaryOffset 0x108
+#define ExceptionHandlerStateQuaternaryOffset 0x118
+#define ExceptionHandlerTableQuinaryOffset 0xe0
+#define ExceptionHandlerStatusQuinaryOffset 0xe8
+#define ExceptionHandlerStateQuinaryOffset 0xf8
 
 // 异常处理器回调相关常量
 #define ExceptionHandlerCallbackOffset 0x310
@@ -311,8 +311,8 @@
 #define ThreadLocalStorageBaseAddressAddress 0x180c4f450
 
 // 内存对齐和掩码常量
-#define MemoryAlignmentValue 0xf
-#define MemoryAlignmentMaskValue 0xfffffff0
+#define MemoryAlignmentPadding 0xf
+#define MemoryAlignmentMask 0xfffffff0
 #define MaximumMemoryBufferSize 0x3ffffffe
 
 // 异常处理相关地址常量
@@ -72041,10 +72041,22 @@ void Unwind_180908e90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908ea0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 销毁流缓冲区的异常处理函数
+ * 
+ * 该函数在异常处理过程中销毁流缓冲区资源，确保系统异常时能正确释放I/O资源
+ * 从数据缓冲区的0x40偏移量处获取流缓冲区指针进行销毁
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要销毁的流缓冲区信息
+ * 
+ * @note 原始函数名：Unwind_180908ea0
+ * @note 原始调用：__1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ
+ */
+void DestroyStreamBufferOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                          __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(*(DataBuffer *)(dataBuffer + 0x40));
+  DestroyBasicStreambuf(*(DataBuffer *)(dataBuffer + 0x40));
   return;
 }
 
@@ -111235,7 +111247,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define CleanupSystemResourceDataB0 Unwind_180908e70
 #define ExecuteSystemResourceCallbacksB0 Unwind_180908e80
 #define ResetSystemResourceContextA0 Unwind_180908e90
-#define ClearSystemResourceFlagsA0 Unwind_180908ea0
+#define ClearSystemResourceFlagsA0 DestroyStreamBufferOnException
 #define InitializeSystemResourceDataA0 Unwind_180908eb0
 #define SetupSystemResourcePointersA0 Unwind_180908ec0
 #define ValidateSystemResourceStateA0 Unwind_180908ed0
