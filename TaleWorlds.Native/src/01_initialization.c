@@ -70066,33 +70066,43 @@ void ConfigureSystemResourceManagerExtended(void* SystemResourceManager,long lon
 
 
 
-// 函数: void FinalizeSystemResourceManager(void)
+/**
+ * @brief 完成系统资源管理器的清理工作
+ * 
+ * 该函数负责清理和释放系统资源管理器占用的所有资源，包括内存池、
+ * 资源句柄、数据缓冲区等。它会确保所有资源都被正确释放，
+ * 避免内存泄漏和资源残留。
+ * 
+ * @note 此函数在系统关闭或重启时调用，确保资源被正确清理
+ * @warning 清理过程不可逆，一旦执行将无法恢复资源状态
+ * @see InitializeSystemResourceManager, CreateSystemResourcePool
+ */
 void FinalizeSystemResourceManager(void)
 
 {
-  long long *PrimaryResourceHandle;
-  long long *resourcePoolPointer;
-  byte *pisOperationComplete;
-  uint32_t ResourceAddress;
-  uint CurrentThreadIdentifier;
-  uint ResourceHash;
-  long long *plocalDataIndex;
-  long long SystemMemoryPointer;
-  int systemId;
-  int SystemInitializationState;
-  long long SystemResourceDataIndex;
-  uint SystemProcessingResult;
-  ulong long MemoryBlockAddress;
-  char *systemFunctionPointer3;
-  uint *SystemThreadLocalStorageBasePointer;
-  long long SystemDataIndexPointer;
-  int ResourceValidationResult;
-  int SystemInitializationStatusFlags;
-  uint32_t *SystemStringTemplatePointer;
-  ulong long SystemOperationResult;
-  uint *SystemDataResourcePointer;
-  ulong long ResourceCreationFlags;
-  bool isSystemActive1;
+  long long *PrimaryResourceHandle;                    // 主要资源句柄指针
+  long long *ResourcePoolPointer;                     // 资源池指针
+  byte *OperationCompletionFlag;                      // 操作完成标志
+  uint32_t ResourceAddress;                           // 资源地址
+  uint CurrentThreadIdentifier;                        // 当前线程标识符
+  uint ResourceHash;                                  // 资源哈希值
+  long long *LocalDataIndexPointer;                   // 本地数据索引指针
+  long long SystemMemoryPointer;                      // 系统内存指针
+  int SystemId;                                       // 系统标识符
+  int SystemInitializationState;                     // 系统初始化状态
+  long long SystemResourceDataIndex;                  // 系统资源数据索引
+  uint SystemProcessingResult;                        // 系统处理结果
+  ulong long MemoryBlockAddress;                      // 内存块地址
+  char *SystemFunctionPointer;                        // 系统函数指针
+  uint *SystemThreadLocalStorageBasePointer;          // 系统线程本地存储基指针
+  long long SystemDataIndexPointer;                   // 系统数据索引指针
+  int ResourceValidationResult;                       // 资源验证结果
+  int SystemInitializationStatusFlags;                // 系统初始化状态标志
+  uint32_t *SystemStringTemplatePointer;             // 系统字符串模板指针
+  ulong long SystemOperationResult;                   // 系统操作结果
+  uint *SystemDataResourcePointer;                    // 系统数据资源指针
+  ulong long ResourceCreationFlags;                   // 资源创建标志
+  bool IsSystemActive;                               // 系统是否活跃
   
   PrimaryResourceHandle = (long long *)(systemDataIndexPtr + 0x38);
   SystemProcessingResult = (uint)MemoryBlockAddress;
