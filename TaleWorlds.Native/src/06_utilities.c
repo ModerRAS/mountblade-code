@@ -43928,7 +43928,7 @@ void ExceptionHandlerA8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
 
 
 
-void Unwind_180903ac0(DataBuffer operationBase,int64_t dataBuffer)
+void ExceptionHandlerA9(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -100658,3 +100658,52 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：acStackX_24 - 栈系统状态
 // 功能：存储系统状态的栈变量
 #define StackSystemStatus acStackX_24
+
+// 栈变量宏定义 - 美化stack0x变量
+// 原始变量名：stack0x00000040 - 栈数据缓冲区D
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferD stack0x00000040
+
+// 原始变量名：stack0x00000020 - 栈数据缓冲区E
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferE stack0x00000020
+
+// 原始变量名：stack0x00000068 - 栈数据缓冲区F
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferF stack0x00000068
+
+// 原始变量名：stack0x00000078 - 栈数据缓冲区G
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferG stack0x00000078
+
+// 原始变量名：stack0x00000038 - 栈数据缓冲区H
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferH stack0x00000038
+
+// 原始变量名：stack0x00000018 - 栈数据缓冲区I
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferI stack0x00000018
+
+// 原始变量名：stack0x00000008 - 栈数据缓冲区J
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferJ stack0x00000008
+
+// 原始变量名：stack0x00000088 - 栈数据缓冲区K
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferK stack0x00000088
+
+// 原始变量名：stack0x00000080 - 栈数据缓冲区L
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferL stack0x00000080
+
+// 原始变量名：stack0x00000094 - 栈数据缓冲区M
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferM stack0x00000094
+
+// 原始变量名：stack0x000000b8 - 栈数据缓冲区N
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferN stack0x000000b8
+
+// 原始变量名：stack0x000000b0 - 栈数据缓冲区O
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferO stack0x000000b0
