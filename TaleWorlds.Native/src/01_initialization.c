@@ -15183,7 +15183,7 @@ void InitializeSystemResourceManagerPrimary(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&GAME_CORE_SYSTEM_ID,0x10);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&GAME_CORE_SYSTEM_ID,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -15195,7 +15195,7 @@ void InitializeSystemResourceManagerPrimary(void)
     CurrentNodePointer = NextNodePointer;
     NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((HashTablePointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashTablePointer + SystemNodeIdentifierOffset,0x10), SystemIdentifierCompareResult < 0)) {
+  if ((HashTablePointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashTablePointer + SystemNodeIdentifierOffset,SystemIdentifierSize), SystemIdentifierCompareResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,SystemMemoryAllocationSize + SystemNodeAllocationExtraSize,SystemMemoryAllocationSize);
     HashTablePointer = AllocatedSystemNode;
