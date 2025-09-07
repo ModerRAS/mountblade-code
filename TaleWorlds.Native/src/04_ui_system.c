@@ -65738,9 +65738,9 @@ ulonglong DecodeUIStateData(longlong uiContext,longlong dataSource,int targetBuf
         }
         allocatedMemory0 = dataSource + 0x16;
       }
-      bVar1 = (&UNK_180948db8)[functionResult5];
+      bVar1 = (&UITextureFormatTable)[functionResult5];
       functionResult3 = *(int *)(bufferData + 0x1c) + 1U >> 1;
-      puVar9 = (undefined1 *)(allocatedMemory0 + (ulonglong)(byte)(&UNK_180948d81)[functionResult5] * 0x21);
+      puVar9 = (undefined1 *)(allocatedMemory0 + (ulonglong)(byte)(&UITextureOffsetTable)[functionResult5] * 0x21);
       if (*(int *)(bufferData + 0x18) < 0) {
         FUN_18069ec80(uiContext);
       }
@@ -65762,7 +65762,7 @@ ulonglong DecodeUIStateData(longlong uiContext,longlong dataSource,int targetBuf
       }
     }
     else {
-      puVar9 = (undefined1 *)((ulonglong)(byte)(&UNK_180948d81)[functionResult5] * 0x21 + dataSource);
+      puVar9 = (undefined1 *)((ulonglong)(byte)(&UITextureOffsetTable)[functionResult5] * 0x21 + dataSource);
     }
     functionResult4 = (ulonglong)functionResult2;
     functionResult5 = uVar7;

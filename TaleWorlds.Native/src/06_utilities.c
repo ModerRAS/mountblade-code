@@ -105548,3 +105548,83 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：uStack_258 - 验证状态指针T
 // 功能：存储验证状态指针的第20个数据
 #define ValidationStatusPointerT uStack_258
+
+// 原始变量名：uStack_254 - 数据缓冲区指针A
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerA uStack_254
+
+// 原始变量名：uStack_250 - 数据缓冲区指针B
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerB uStack_250
+
+// 原始变量名：uStack_24c - 数据缓冲区指针C
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerC uStack_24c
+
+// 原始变量名：uStack_248 - 数据缓冲区指针D
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerD uStack_248
+
+// 原始变量名：uStack_244 - 数据缓冲区指针E
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerE uStack_244
+
+// 原始变量名：uStack_240 - 数据缓冲区指针F
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerF uStack_240
+
+// 原始变量名：uStack_23c - 数据缓冲区指针G
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerG uStack_23c
+
+// 原始变量名：uStack_238 - 数据缓冲区指针H
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerH uStack_238
+
+// 原始变量名：uStack_234 - 数据缓冲区指针I
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerI uStack_234
+
+// 原始变量名：uStack_230 - 数据缓冲区指针J
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerJ uStack_230
+
+// 原始变量名：uStack_22c - 数据缓冲区指针K
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerK uStack_22c
+
+// 原始变量名：uStack_228 - 数据缓冲区指针L
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerL uStack_228
+
+// 原始变量名：uStack_224 - 数据缓冲区指针M
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerM uStack_224
+
+// 原始变量名：uStack_220 - 数据缓冲区指针N
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerN uStack_220
+
+// 原始变量名：uStack_21c - 数据缓冲区指针O
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerO uStack_21c
+
+// 原始变量名：uStack_218 - 数据缓冲区指针P
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerP uStack_218
+
+// 原始变量名：uStack_214 - 数据缓冲区指针Q
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerQ uStack_214
+
+// 原始变量名：uStack_210 - 数据缓冲区指针R
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerR uStack_210
+
+// 原始变量名：uStack_20c - 数据缓冲区指针S
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerS uStack_20c
+
+// 原始变量名：uStack_208 - 数据缓冲区指针T
+// 功能：存储数据缓冲区的指针
+#define DataBufferPointerT uStack_208
