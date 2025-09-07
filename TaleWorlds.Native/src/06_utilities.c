@@ -101973,6 +101973,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 系统状态检查函数A0
  * 
  * 该函数负责检查系统状态和标志
+ * 包括系统健康检查、错误检测和状态报告
  * 
  * @note 原始函数名：FUN_180883750
  */
@@ -101982,6 +101983,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 数据验证函数A2
  * 
  * 该函数负责验证数据的安全性和完整性
+ * 包括数据加密验证、完整性校验和访问控制检查
  * 
  * @note 原始函数名：FUN_1808aec50
  */
@@ -101991,6 +101993,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 数据处理函数A2
  * 
  * 该函数负责处理数据操作和验证
+ * 包括数据流处理、批量操作和结果验证
  * 
  * @note 原始函数名：FUN_1808a5780
  */
@@ -102000,6 +102003,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 系统初始化函数A0
  * 
  * 该函数负责初始化系统组件
+ * 包括组件注册、资源配置和初始化顺序管理
  * 
  * @note 原始函数名：FUN_1807d3e20
  */
