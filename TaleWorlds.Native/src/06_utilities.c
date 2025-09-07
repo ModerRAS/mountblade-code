@@ -68,6 +68,27 @@
 #define ResourcePrimaryDataOffset 0x90
 #define ResourceSecondaryDataOffset 800
 
+// 系统操作上下文常量
+#define SystemOperationDataOffset 0x10
+#define SystemOperationTargetOffset 0x18
+#define SystemOperationStatusOffset 0x20
+#define SystemOperationRequestOffset 0x2c
+#define SystemOperationContextOffset 0x4c
+#define SystemDataHandleOffset 0x14
+#define SystemContextDataOffset 0x50
+#define SystemSecondaryDataOffset 0x44
+#define SystemTertiaryDataOffset 0x38
+#define SystemContextOffset90 0x90
+#define SystemContextOffset554 0x554
+#define SystemCleanupContextOffset 0x90
+#define SystemExceptionHandlerOffset10 0x10
+#define SystemOperationValidationOffset 0x1c
+#define SystemResourceOffset 0xd0
+#define SystemDataCountOffset 0x18
+
+// 操作限制常量
+#define MaxCopyOperationSize 0x38
+
 // 缓冲区大小常量
 #define SecurityValidationBufferSize 32
 #define WorkingDataBufferSize 512
@@ -13920,16 +13941,16 @@ int ProcessResourceCopyOperation(int64_t ResourceOperationContext)
   uint8_t ResourceDataBuffer[72];
   
   ResourceTargetPointer = 0;
-  if (0 < *(int *)(ResourceOperationContext + 0x20)) {
-    ResourceTargetPointer = *(int64_t *)(ResourceOperationContext + 0x18);
+  if (0 < *(int *)(ResourceOperationContext + SystemOperationStatusOffset)) {
+    ResourceTargetPointer = *(int64_t *)(ResourceOperationContext + SystemOperationTargetOffset);
   }
-  CopyOperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ResourceOperationContext + 0x4c),SystemQueryBuffer);
+  CopyOperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ResourceOperationContext + SystemOperationContextOffset),SystemQueryBuffer);
   if (CopyOperationStatus == 0) {
     CopyOperationStatus = *(int *)(ResourceOperationContext + ExceptionHandlerCallbackOffset10);
-    if (0x38 < *(int *)(ResourceOperationContext + ExceptionHandlerCallbackOffset10)) {
-      CopyOperationStatus = 0x38;
+    if (MaxCopyOperationSize < *(int *)(ResourceOperationContext + ExceptionHandlerCallbackOffset10)) {
+      CopyOperationStatus = MaxCopyOperationSize;
     }
-      memcpy(ResourceDataBuffer,ResourceOperationContext + 0x10,(int64_t)CopyOperationStatus);
+      memcpy(ResourceDataBuffer,ResourceOperationContext + SystemOperationDataOffset,(int64_t)CopyOperationStatus);
   }
   if (ResourceTargetPointer != 0) {
       AllocateResourceA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),ResourceTargetPointer,&SystemMemoryPoolA,ResourceAllocationSizeB8,1);
@@ -13978,7 +13999,7 @@ void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
   // 如果查询成功，处理数据请求
   if (processingStatus[0] == 0) {
     dataOffset = dataHandle + SystemContextDataOffset;
-    ProcessDataRequest(requestInfo,processingStatus,*(DataWord *)(dataHandle + 0x14),resultBuffer);
+    ProcessDataRequest(requestInfo,processingStatus,*(DataWord *)(dataHandle + SystemDataHandleOffset),resultBuffer);
   }
   
   return;
@@ -14011,7 +14032,7 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
   
   conversionStatus = InitializeConversionContext(*(DataWord *)(contextHandle + SystemContextConversionOffset),&systemContextBuffer);
   if ((int)conversionStatus == 0) {
-    DataCount = *(int *)(contextHandle + 0x18);
+    DataCount = *(int *)(contextHandle + SystemDataCountOffset);
     if ((0 < DataCount) && (*(uint *)(contextHandle + ResourceDescriptorValidationOffset) < 2)) {
       dataPointer = 0;
       if (*(uint *)(contextHandle + ResourceDescriptorValidationOffset) == 0) {
