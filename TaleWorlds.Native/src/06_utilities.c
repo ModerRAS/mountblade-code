@@ -100169,7 +100169,18 @@ void ProcessDataArrayAtOffset120(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180912890(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据数组处理函数120（备选实现）
+ * 
+ * 该函数负责处理位于偏移量0x120处的数据数组，调用数据数组处理函数
+ * 来执行数据处理操作。这是ProcessDataArrayAtOffset120的备选实现。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要处理的数据数组信息
+ * 
+ * @note 原始函数名：Unwind_180912890
+ */
+void ProcessDataArrayAtOffset120Alt(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + 0x120);
@@ -100178,7 +100189,18 @@ void Unwind_180912890(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809128a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据数组处理函数120（次要实现）
+ * 
+ * 该函数负责处理位于偏移量0x120处的数据数组，调用数据数组处理函数
+ * 来执行数据处理操作。这是ProcessDataArrayAtOffset120的次要实现。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要处理的数据数组信息
+ * 
+ * @note 原始函数名：Unwind_1809128a0
+ */
+void ProcessDataArrayAtOffset120Secondary(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + 0x120);
@@ -100187,7 +100209,18 @@ void Unwind_1809128a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809128b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源处理标志检查函数
+ * 
+ * 该函数负责检查资源处理的标志位，如果特定标志位被设置，
+ * 则清除该标志并调用资源清理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源处理标志信息
+ * 
+ * @note 原始函数名：Unwind_1809128b0
+ */
+void CheckResourceProcessingFlags(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
