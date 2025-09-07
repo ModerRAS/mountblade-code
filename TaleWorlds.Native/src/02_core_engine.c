@@ -114930,17 +114930,17 @@ void ProcessSystemBufferSize(int *Utf8InputBuffer,int Utf8BufferSize)
  * @note 内存块大小为Utf8BufferSize * 0x28字节
  */
 void ExpandUtf8Buffer28(int *SystemContext,int BufferSize) {
-  uint64_t NewMemoryBuffer;
+  uint64_t AllocatedMemoryBuffer;
   
   if (SystemContext[1] < BufferSize) {
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
     }
-    NewMemoryBuffer = SystemCallMemoryAccess((long long)BufferSize * 0x28,SystemMemoryPoolBase);
+    AllocatedMemoryBuffer = SystemCallMemoryAccess((long long)BufferSize * 0x28,SystemMemoryPoolBase);
     if (*(long long *)(SystemContext + 2) != 0) {
-      memcpy(NewMemoryBuffer,*(long long *)(SystemContext + 2),(long long)*SystemContext * 0x28);
+      memcpy(AllocatedMemoryBuffer,*(long long *)(SystemContext + 2),(long long)*SystemContext * 0x28);
     }
-    *(void *)(SystemContext + 2) = NewMemoryBuffer;
+    *(void *)(SystemContext + 2) = AllocatedMemoryBuffer;
     SystemContext[1] = BufferSize;
   }
   return;
@@ -114964,19 +114964,19 @@ void ExpandUtf8Buffer28(int *SystemContext,int BufferSize) {
  */
 void ExpandUtf8Buffer28NoArgs(void) {
   long long SystemConfigurationHandle;
-  uint64_t NewMemoryBuffer;
+  uint64_t AllocatedMemoryBuffer;
   int *SystemContext;
-  long long BufferSize;
+  long long RequiredBufferSize;
   
   if (SystemConfigurationHandle != 0) {
     *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
   }
-  NewMemoryBuffer = SystemCallMemoryAccess(BufferSize * 0x28,SystemMemoryPoolBase);
+  AllocatedMemoryBuffer = SystemCallMemoryAccess(RequiredBufferSize * 0x28,SystemMemoryPoolBase);
   if (*(long long *)(SystemContext + 2) != 0) {
-    memcpy(NewMemoryBuffer,*(long long *)(SystemContext + 2),(long long)*SystemContext * 0x28);
+    memcpy(AllocatedMemoryBuffer,*(long long *)(SystemContext + 2),(long long)*SystemContext * 0x28);
   }
-  *(void *)(SystemContext + 2) = NewMemoryBuffer;
-  SystemContext[1] = (int)BufferSize;
+  *(void *)(SystemContext + 2) = AllocatedMemoryBuffer;
+  SystemContext[1] = (int)RequiredBufferSize;
   return;
 }
 
@@ -155981,7 +155981,13 @@ LAB_180134065:
 
 
 
-33e3f(voidvoid FUN_180133e3f(void
+/**
+ * @brief 系统浮点值验证器
+ * 
+ * 该函数负责处理系统浮点值计算、验证和节点管理。
+ * 原始函数名: FUN_180133e3f
+ */
+void CoreEngineProcessSystemFloatValidator(void)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -156108,7 +156114,13 @@ LAB_180134065:
 
 
 
-33fb3(voidvoid FUN_180133fb3(void
+/**
+ * @brief 系统字符处理器
+ * 
+ * 该函数负责处理系统字符、内存偏移和系统数据结构注册。
+ * 原始函数名: FUN_180133fb3
+ */
+void CoreEngineProcessSystemCharacter(void)
 {
   uint Utf16Char;
   void *SystemContext;
