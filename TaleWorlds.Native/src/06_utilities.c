@@ -100,6 +100,8 @@
 #define MemoryReferenceCleanupOffset210 0x210
 #define ResourceCleanupOffset250 0x250
 #define MemoryReferenceCleanupOffset490 0x490
+#define MemoryReferenceCleanupOffset2F0 0x2f0
+#define MemoryReferenceCleanupOffset310 0x310
 
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
@@ -90560,7 +90562,7 @@ void ManageMemoryReferenceCountAtOffset2F0(DataBuffer operationBase,int64_t data
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x2f0);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset2F0);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -90615,7 +90617,7 @@ void ManageMemoryReferenceCountAtOffset310(DataBuffer operationBase,int64_t data
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x310);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset310);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -92331,7 +92333,7 @@ void Unwind_18090d3c0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x2f0);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset2F0);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -92367,7 +92369,7 @@ void Unwind_18090d3d0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x2f0);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset2F0);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -92403,7 +92405,7 @@ void Unwind_18090d3e0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x310);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset310);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -92439,7 +92441,7 @@ void Unwind_18090d3f0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x310);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset310);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -95199,7 +95201,17 @@ void ExecuteExceptionHandlerCallbackA0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090e540(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调函数E540
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作。使用偏移量0xe00获取异常处理器上下文。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e540
+ */
+void ExecuteExceptionHandlerCallbackE540(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -95213,16 +95225,36 @@ void Unwind_18090e540(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e560(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作函数E560
+ * 
+ * 该函数负责执行内存操作，调用ExecuteMemoryOperation函数处理特定的内存地址
+ * 使用偏移量0xe08和ValidateDataHandler作为处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e560
+ */
+void ExecuteMemoryOperationE560(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xe08,8,2,ValidateDataHandler);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xe08, 8, 2, ValidateDataHandler);
   return;
 }
 
 
 
-void Unwind_18090e5a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调函数E5A0
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作。使用偏移量0xe18获取异常处理器上下文。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e5a0
+ */
+void ExecuteExceptionHandlerCallbackE5A0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
