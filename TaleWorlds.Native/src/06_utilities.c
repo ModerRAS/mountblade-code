@@ -75263,7 +75263,19 @@ void Unwind_180909400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180909410(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到指定位置
+ * 
+ * 该函数将默认异常处理器B设置到数据缓冲区的指定位置(0x68)，
+ * 用于异常处理时的回调函数配置。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909410
+ * @note 这是一个异常处理器的配置函数，用于设置默认的异常处理回调
+ */
+void SetDefaultExceptionHandlerBToOffset68(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x68) = &DefaultExceptionHandlerB;
