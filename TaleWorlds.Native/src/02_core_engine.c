@@ -42832,7 +42832,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t CharacterCode,uint64_t *
   if (CharacterStatusBuffer3 != NULL) {
     ConfigurationString = CharacterStatusBuffer3;
   }
-  ProcessCoreEngineInitialization(0,&pSystemOperation90,cStackX_10,1,ConfigurationString,CharacterStatusBuffer,Utf16ConversionContext);
+  ProcessCoreEngineInitialization(0,&pSystemOperation90,SystemCharacterDelimiter,1,ConfigurationString,CharacterStatusBuffer,Utf16ConversionContext);
   if (CoreEngineSignedValue48 != 0) {
     FinalizeNetworkConfiguration();
   }
