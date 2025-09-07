@@ -25,6 +25,99 @@
 #define UISystemMemoryManagerFallbackPtr (code *)&UISystemMemoryManagerFallbackFunction
 #define UISystemMemoryManagerAdvancedFallbackPtr (code *)&UISystemMemoryManagerAdvancedFallbackFunction
 
+// UI系统函数宏定义 - 处理UI数据写入操作
+#define ProcessUIDataWrite FUN_180705180
+
+// UI系统函数宏定义 - 初始化UI上下文
+#define InitializeUIContext FUN_180705210
+
+// UI系统函数宏定义 - 处理UI数据读取操作
+#define ProcessUIDataRead FUN_1807054a0
+
+// UI系统函数宏定义 - 更新UI状态
+#define UpdateUIState FUN_180705530
+
+// UI系统函数宏定义 - 处理UI缓冲区操作
+#define ProcessUIBufferOperation FUN_180705545
+
+// UI系统函数宏定义 - 验证UI系统
+#define ValidateUISystem FUN_180705616
+
+// UI系统函数宏定义 - 获取UI数据
+#define GetUIData FUN_1807056b0
+
+// UI系统函数宏定义 - 设置UI数据
+#define SetUIData FUN_1807056f0
+
+// UI系统函数宏定义 - 处理UI渲染数据
+#define ProcessUIRenderData FUN_180705870
+
+// UI系统函数宏定义 - 清理UI资源
+#define CleanupUIResources FUN_1807058d0
+
+// UI系统函数宏定义 - 处理UI组件数据
+#define ProcessUIComponentData FUN_180705980
+
+// UI系统函数宏定义 - 处理UI事件
+#define ProcessUIEvent FUN_1807069e0
+
+// UI系统函数宏定义 - 处理UI事件缓冲区
+#define ProcessUIEventBuffer FUN_180706b30
+
+// UI系统函数宏定义 - 更新UI事件状态
+#define UpdateUIEventState FUN_180706b61
+
+// UI系统函数宏定义 - 初始化UI事件系统
+#define InitializeUIEventSystem FUN_180706ba7
+
+// UI系统函数宏定义 - 处理UI渲染
+#define ProcessUIRendering FUN_180707200
+
+// UI系统函数宏定义 - 处理UI渲染缓冲区
+#define ProcessUIRenderBuffer FUN_1807072c0
+
+// UI系统函数宏定义 - 计算UI渲染数据
+#define CalculateUIRenderData FUN_18070737d
+
+// UI系统函数宏定义 - 处理UI纹理数据
+#define ProcessUITextureData FUN_180707457
+
+// UI系统函数宏定义 - 更新UI纹理
+#define UpdateUITexture FUN_1807074b0
+
+// UI系统函数宏定义 - 处理UI动画
+#define ProcessUIAnimation FUN_1807075c0
+
+// UI系统函数宏定义 - 更新UI动画状态
+#define UpdateUIAnimationState FUN_180707950
+
+// UI系统函数宏定义 - 处理UI布局
+#define ProcessUILayout FUN_180707988
+
+// UI系统函数宏定义 - 获取UI布局数据
+#define GetUILayoutData FUN_1807079df
+
+// UI系统函数宏定义 - 初始化UI布局系统
+#define InitializeUILayoutSystem FUN_180707a56
+
+// UI系统函数宏定义 - 验证UI布局
+#define ValidateUILayout FUN_180707a74
+
+// UI系统函数宏定义 - 处理UI输入
+#define ProcessUIInput FUN_180707df0
+
+// UI系统函数宏定义 - 处理UI焦点
+#define ProcessUIFocus FUN_18070b610
+
+// UI系统函数宏定义 - 更新UI焦点状态
+#define UpdateUIFocusState FUN_18070b660
+
+// UI系统函数宏定义 - 处理UI焦点事件
+#define ProcessUIFocusEvent FUN_18070b6a0
+
+// UI系统函数宏定义 - 处理UI组件事件
+#define ProcessUIComponentEvent FUN_18070ba50
+
 #define CalculateUITransformMatrix CalculateUITransformMatrixInternal
 
 #define CalculateUIScaleFactor CalculateUIScaleFactorInternal
@@ -10056,8 +10149,8 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
           bVar5 = true;
         }
         if ((!bVar5) ||
-           ((fVar31 = (pfloatResult7[-2] - *(float *)(lVar4 + 4 + (longlong)(validationResult1 % operationResult8) * 8))                       (fStackX_18 - pfloatResult7[-3]) -
-                      (fStackX_1c - pfloatResult7[-2])                       (pfloatResult7[-3] - *(float *)(lVar4 + (longlong)(validationResult1 % operationResult8) * 8)),
+           ((fVar31 = (pfloatResult7[-2] - *(float *)(lVar4 + 4 + (longlong)(validationResult1 % operationResult8) * 8))                       (rotationAngleX - pfloatResult7[-3]) -
+                      (rotationAngleY - pfloatResult7[-2])                       (pfloatResult7[-3] - *(float *)(lVar4 + (longlong)(validationResult1 % operationResult8) * 8)),
             fVar31 <= 0.0 && (fVar31 < 0.0)))) {
           bVar5 = false;
         }
