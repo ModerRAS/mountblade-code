@@ -8157,9 +8157,9 @@ void* GlobalDataPointerExtendedQuinary;
 // 返回值:
 //   void* - 数据处理结果
 void* UtilityProcessDataPrimary;
-// 全局数据指针A38相关变量
-void* GlobalDataPointerA38Storage;    // DAT_180bfa230
-void* GlobalDataPointerA38Status;     // DAT_180bfa238
+// 全局数据指针Extended相关变量
+void* GlobalDataPointerExtendedStorage;    // DAT_180bfa230
+void* GlobalDataPointerExtendedStatus;     // DAT_180bfa238
 void* GlobalDataPointerA38Config;     // DAT_180bfa240
 void* GlobalDataPointerA38Cache;      // DAT_180bfa248
 void* GlobalDataPointerA38ValidationBuffer;  // DAT_180a22fa8
@@ -8498,7 +8498,7 @@ uint8_t UtilitySystemLocalStatus2;
 #define ConfigureUtilitySystemStorage FUN_180943140
 uint8_t ConfigureUtilitySystemStorage;
 
-943160;
+// 原始函数名：FUN_180943160 - 工具系统存储验证函数
 #define ValidateUtilitySystemStorage FUN_180943160
 uint8_t ValidateUtilitySystemStorage;
 uint8_t UtilitySystemStorageData1;
@@ -67946,7 +67946,19 @@ void ProcessSystemExceptionCallback7cb0(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180907cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常回调链A0
+ * 
+ * 遍历并执行异常回调链中的所有回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907cc0
+ */
+void ProcessExceptionCallbackChainA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -67966,7 +67978,17 @@ void Unwind_180907cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907cd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量0x360
+ * 
+ * 在数据缓冲区的偏移量0x360处设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907cd0
+ */
+void SetDefaultExceptionHandlerAtOffset360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x360) = &DefaultExceptionHandlerB;
