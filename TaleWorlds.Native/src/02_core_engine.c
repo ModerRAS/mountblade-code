@@ -174390,7 +174390,16 @@ uint64_t * ProcessUtf8InputBufferAllocation(uint64_t *Utf8InputBuffer
 
 
  (ram,0x0001801420ee (ram,0x0001801420f4 (ram,0x0001801420fe (ram,0x000180142103 (ram,0x000180142117 (ram,0x000180142121 (ram,0x00018014212d (ram,0x000180142134 (ram,0x000180141aab (ram,0x000180141ab3 (ram,0x000180141ab9 (ram,0x000180141ac6 (ram,0x000180141af9 (ram,0x000180141b01 (ram,0x000180141b04 (ram,0x000180141ad0 (ram,0x000180141ad5 (ram,0x000180141b1e (ram,0x000180141b2f (ram,0x000180141b49 (ram,0x000180141b4e (ram,0x000180141baf (ram,0x000180141bb7
-unsigned long long FUN_180141820(long long *Utf8InputBuffer
+/**
+ * @brief 处理系统字符串路径和内存分配
+ * 
+ * 该函数负责处理系统字符串路径的规范化、内存分配和缓冲区管理。
+ * 主要功能包括路径分隔符处理、内存池分配、字符串验证等。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @return 处理结果状态码，0xffffffff表示失败
+ */
+unsigned long long ProcessSystemStringPathAndMemoryAllocation(long long *Utf8InputBuffer)
 {
   char InputStringBuffer;
   uint32_t MemoryAllocationIndex;
