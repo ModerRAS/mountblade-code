@@ -48825,7 +48825,19 @@ int CalculateUIImageBlockDifference(undefined1 (*uiContext) [32],int dataSource,
 
 
  void FUN_1806917c0(undefined1 (*uiContext) [16],ulonglong *dataSource,int targetBuffer)
-void FUN_1806917c0(undefined1 (*uiContext) [16],ulonglong *dataSource,int targetBuffer)
+/**
+ * UI系统事件分发器初始化函数
+ * 
+ * 该函数负责初始化UI系统的事件分发器，设置事件处理的基本参数和状态。
+ * 主要用于处理UI事件的分发机制，确保事件能够正确传递到相应的处理器。
+ * 
+ * @param uiContext UI上下文数组，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含事件处理所需的数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * 
+ * @note 原始函数名：FUN_1806917c0
+ */
+void InitializeUIEventDispatcher(undefined1 (*uiContext) [16],ulonglong *dataSource,int targetBuffer)
 
 {
   ulonglong functionResult;
