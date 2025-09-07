@@ -141559,7 +141559,7 @@ LAB_18012b510:
     }
     if (RegisterFramePointer[0xc] != -NAN) {
       MemoryAllocationOffset = CONCAT44(CalculatedCodePoint,AuxiliaryFloat13);
-      FUN_1801296e0(RegisterFramePointer + -0x14,SystemParameter2,RegisterFramePointer[0xc],FilterInputValue2,MemoryAllocationOffset);
+      CleanupSystemEventHandling(RegisterFramePointer + -0x14,SystemParameter2,RegisterFramePointer[0xc],FilterInputValue2,MemoryAllocationOffset);
       SystemDataTablePointer = SystemConfigurationHandle;
       CalculatedCodePoint = (uint32_t)((unsigned long long)MemoryAllocationOffset >> 0x20);
       MemoryAllocationOffset = *(void *)(SystemParameter2 + 0x2e8);
