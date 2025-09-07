@@ -70064,7 +70064,20 @@ void Unwind_180908e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180908e50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常资源引用计数函数E50
+ * 
+ * 该函数负责清理异常处理过程中的资源引用计数。它会验证资源指针的有效性，
+ * 计算内存偏移量，并递减引用计数。当引用计数归零时，会调用异常处理器。
+ * 这是异常展开机制的重要组成部分，确保资源在异常处理过程中被正确释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180908e50
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的资源清理
+ */
+void CleanupExceptionResourceReferenceCountE50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -91060,7 +91073,18 @@ void ExecuteExceptionHandlerCallbackA0(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_18090f8b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放独占锁A0
+ * 
+ * 该函数检查指定偏移量处的标志位，并在设置时释放独占锁。
+ * 这是线程同步机制中的重要组成部分，用于确保资源的正确释放。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含锁信息
+ * 
+ * @note 原始函数名：Unwind_18090f8b0
+ */
+void ReleaseExclusiveLockA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0xa8) != '\0') {
@@ -91071,7 +91095,18 @@ void Unwind_18090f8b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f8c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放独占锁A1
+ * 
+ * 该函数检查指定偏移量处的标志位，并在设置时释放独占锁。
+ * 与ReleaseExclusiveLockA0功能相同，但可能在不同的上下文中使用。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含锁信息
+ * 
+ * @note 原始函数名：Unwind_18090f8c0
+ */
+void ReleaseExclusiveLockA1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0xa8) != '\0') {
@@ -91082,7 +91117,18 @@ void Unwind_18090f8c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f8d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调A1
+ * 
+ * 该函数检查并执行指定偏移量处的异常处理器回调函数。
+ * 与ExecuteExceptionHandlerCallbackA0类似，但操作的是不同的偏移量。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_18090f8d0
+ */
+void ExecuteExceptionHandlerCallbackA1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -91096,7 +91142,18 @@ void Unwind_18090f8d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f8e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放独占锁A2
+ * 
+ * 该函数检查指定偏移量处的标志位，并在设置时释放独占锁。
+ * 与前两个释放锁函数类似，但操作的是不同的偏移量（0x60）。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含锁信息
+ * 
+ * @note 原始函数名：Unwind_18090f8e0
+ */
+void ReleaseExclusiveLockA2(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x68) != '\0') {
