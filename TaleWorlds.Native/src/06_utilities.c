@@ -21467,10 +21467,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
     bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + 8))(exceptionDataBuffer6);
     iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&TemporaryDataWordD);
     if (iterationCount == 0) {
-      StackDataWordE = 0;
+      TemporaryDataWordE = 0;
       StackPointerBufferC = &DataValidationErrorBase;
       TemporaryDataWordG = StackDataWordA;
-      StackDataWordF = TemporaryDataWordD;
+      TemporaryDataWordF = TemporaryDataWordD;
       iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferC);
       if (iterationCount == 0) {
         StackLongIntegerA = (int64_t)*(int *)(dataContext + 0x28);
@@ -21515,8 +21515,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
             if (iterationCount != 0) {
               StackDataBufferA = *(DataBuffer *)(dataContext + 0x38);
               StackDataBufferB = *(DataBuffer *)(dataContext + 0x40);
-              StackDataWordJ = *(DataWord *)(dataContext + 0x48);
-              StackDataWordK = *(DataWord *)(dataContext + 0x4c);
+              TemporaryDataWordJ = *(DataWord *)(dataContext + 0x48);
+              TemporaryDataWordK = *(DataWord *)(dataContext + 0x4c);
               StackDataWordL = *(DataWord *)(dataContext + 0x50);
               DataContextOffset54Data = *(DataWord *)(dataContext + 0x54);
               StackPointerBufferD = &SystemSecurityCheckReference;
