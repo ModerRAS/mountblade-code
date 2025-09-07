@@ -21864,8 +21864,30 @@ void ExecuteSecurityCheckJumpA0(void)
 
 
 
-// 原始函数名：FUN_180897520 - 数据指针处理函数A0
-// 功能：处理长整型数据指针，执行缓冲区操作和验证
+/**
+ * @brief 数据指针处理函数A0
+ * 
+ * 该函数负责处理长整型数据指针，执行缓冲区操作和验证。它会使用加密密钥
+ * 对数据进行加密处理，验证系统数据的有效性，然后通过函数指针调用执行
+ * 具体的数据处理操作。
+ * 
+ * @details 函数执行流程：
+ * 1. 计算加密密钥的异或结果
+ * 2. 获取异常处理上下文
+ * 3. 验证系统数据的有效性
+ * 4. 通过函数指针调用执行数据处理操作
+ * 5. 处理数据缓冲区中的数据
+ * 6. 执行操作基础的回调函数
+ * 7. 根据操作结果决定后续处理
+ * 
+ * @param dataPointer 数据指针，指向要处理的数据
+ * @param resultPointer 结果指针，用于存储处理结果
+ * @return void 无返回值，结果通过resultPointer返回
+ * 
+ * @warning 此函数涉及复杂的加密和验证操作
+ * @note 原始函数名：FUN_180897520
+ * @see ValidateSystemDataA0, ProcessData, ExceptionEncryptionKeyValue
+ */
 #define ProcessDataPointerOperationsA0 FUN_180897520
 
 void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer)
@@ -22868,8 +22890,23 @@ ValidationFailedLabel:
 
 
 
-// 原始函数名：FUN_180897afe - 安全检查执行函数A1
-// 功能：执行安全检查并在检查失败时终止程序
+/**
+ * @brief 安全检查执行函数A1
+ * 
+ * 该函数负责执行安全检查并在检查失败时终止程序。它会从栈帧上下文中
+ * 获取安全检查参数，并与安全缓冲区进行异或操作，然后执行安全检查。
+ * 如果检查失败，函数会终止程序执行。
+ * 
+ * @details 函数执行流程：
+ * 1. 从栈帧上下文中获取安全检查参数
+ * 2. 将参数与安全缓冲区地址进行异或操作
+ * 3. 执行安全检查
+ * 4. 根据检查结果决定是否终止程序
+ * 
+ * @warning 此函数在安全检查失败时会终止程序执行
+ * @note 原始函数名：FUN_180897afe
+ * @see ExecuteSecurityCheck, StackFrameContext, securityBuffer
+ */
 #define ExecuteSecurityCheckAndTerminateA1 FUN_180897afe
 
 void ExecuteSecurityCheckAndTerminateA1(void)
