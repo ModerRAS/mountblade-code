@@ -4226,7 +4226,7 @@
 
 // 系统验证数据表A8
 // 功能：存储系统验证相关的第八级数据表和验证规则
-#define SystemValidationDataTableA8 UNK_180983be8
+#define SystemValidationDataTableA8 SystemSecurityValidationTable
 
 
 // 系统重置和异常状态变量声明
@@ -4301,35 +4301,35 @@ extern void* SystemPrimaryResourceTable;
 
 // 系统异常处理器指针A1
 // 功能：存储全局异常处理器A1的指针
-#define SystemGlobalExceptionHandlerA1 DAT_180bf9390
+#define SystemGlobalExceptionHandlerA1 GlobalSystemExceptionHandler1
 
 // 系统异常处理器指针A2
 // 功能：存储全局异常处理器A2的指针
-#define SystemGlobalExceptionHandlerA2 DAT_180bf93f0
+#define SystemGlobalExceptionHandlerA2 GlobalSystemExceptionHandler2
 
 // 系统异常处理器指针A3
 // 功能：存储全局异常处理器A3的指针
-#define SystemGlobalExceptionHandlerA3 DAT_180bf9450
+#define SystemGlobalExceptionHandlerA3 GlobalSystemExceptionHandler3
 
 // 系统异常处理器指针A4
 // 功能：存储全局异常处理器A4的指针
-#define SystemGlobalExceptionHandlerA4 DAT_180bf94b0
+#define SystemGlobalExceptionHandlerA4 GlobalSystemExceptionHandler4
 
 // 系统异常处理器指针A5
 // 功能：存储全局异常处理器A5的指针
-#define SystemGlobalExceptionHandlerA5 DAT_180bf9510
+#define SystemGlobalExceptionHandlerA5 GlobalSystemExceptionHandler5
 
 // 系统异常处理器指针A6
 // 功能：存储全局异常处理器A6的指针
-#define SystemGlobalExceptionHandlerA6 DAT_180bf9570
+#define SystemGlobalExceptionHandlerA6 GlobalSystemExceptionHandler6
 
 // 系统异常处理器指针A7
 // 功能：存储全局异常处理器A7的指针
-#define SystemGlobalExceptionHandlerA7 DAT_180bf95d0
+#define SystemGlobalExceptionHandlerA7 GlobalSystemExceptionHandler7
 
 // 全局异常处理器指针A8
 // 功能：存储全局异常处理器A8的指针
-#define GlobalExceptionHandlerPointerA8 DAT_180bf9630
+#define GlobalExceptionHandlerPointerA8 GlobalSystemExceptionHandler8
 
 // 全局异常处理器指针A9
 // 功能：存储全局异常处理器A9的指针
