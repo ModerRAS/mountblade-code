@@ -59841,7 +59841,7 @@ void SetExceptionDataTableAtOffset7a0(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_1809067b0(DataBuffer operationBase,int64_t dataBuffer)
+void ConfigureExceptionHandlerAtOffset7b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -59859,7 +59859,7 @@ void Unwind_1809067b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809067c0(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionDataTableAtOffset7c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -59874,7 +59874,7 @@ void Unwind_1809067c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809067d0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionCleanupAtOffset7d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -59888,7 +59888,7 @@ void Unwind_1809067d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809067f0(DataBuffer operationBase,int64_t dataBuffer)
+void ResetExceptionContextAtOffset7f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
