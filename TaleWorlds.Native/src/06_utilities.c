@@ -39856,6 +39856,18 @@ void CleanupResourcePointer(DataBuffer resourceBuffer,int64_t contextOffset)
 
 
 
+/**
+ * @brief 清理次要资源
+ * 
+ * 该函数负责清理系统中的次要资源，包括引用计数管理和内存释放。
+ * 它会检查资源指针的有效性，计算内存偏移量，并执行相应的清理操作。
+ * 
+ * @param ExceptionContext 异常上下文，包含资源管理所需的信息
+ * @param ResourceHandler 资源处理器地址，用于定位特定的资源
+ * 
+ * @note 该函数包含内存安全检查和引用计数管理
+ * @warning 如果引用计数归零，会调用异常处理器
+ */
 void CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandler)
 
 {
@@ -39864,7 +39876,7 @@ void CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandle
   int64_t calculatedOffset;
   uint64_t memoryBaseAddress;
   
-  resourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + 0x98);
+  resourcePointer = (DataBuffer *)**(uint64_t **)(ExceptionContext + 0x98);
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -39892,6 +39904,18 @@ void CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandle
 
 
 
+/**
+ * @brief 重置默认处理器
+ * 
+ * 该函数负责重置系统默认异常处理器，将其设置为默认的异常处理程序B。
+ * 这是一个简单的设置操作，用于恢复系统的默认异常处理行为。
+ * 
+ * @param ExceptionContext 异常上下文（未使用，保留用于接口一致性）
+ * @param HandlerAddress 处理器地址，指定要重置的处理器位置
+ * 
+ * @note 该函数直接修改指定地址的处理器指针
+ * @see DefaultExceptionHandlerB
+ */
 void ResetDefaultHandler(DataBuffer ExceptionContext,int64_t HandlerAddress)
 
 {
@@ -47764,7 +47788,22 @@ void CleanupAdvancedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180904290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 重置扩展异常处理器状态
+ * 
+ * 该函数负责重置扩展异常处理器的状态，将它们设置为默认状态。
+ * 函数会检查每个异常处理器的当前状态，如果有异常状态存在，
+ * 则会调用系统终止函数，否则将异常处理器重置为默认处理器。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180904290
+ * @warning 此函数包含系统终止调用，确保在调用前系统状态稳定
+ */
+void ResetExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -49006,7 +49045,18 @@ void Unwind_1809046a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809046b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常数据表6
+ * 
+ * 该函数负责设置异常数据表6到指定的数据缓冲区位置。
+ * 这是一个简单的设置操作，用于异常处理系统的初始化。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809046b0
+ */
+void SetExceptionDataTable6(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x50) = &ExceptionDataTable6;
@@ -49015,7 +49065,20 @@ void Unwind_1809046b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809046c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置基础异常处理器状态
+ * 
+ * 该函数负责重置基础异常处理器的状态，将它们设置为默认状态。
+ * 函数会检查异常处理器的当前状态，如果有异常状态存在，
+ * 则会调用系统终止函数，否则将异常处理器重置为默认处理器。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809046c0
+ * @warning 此函数包含系统终止调用，确保在调用前系统状态稳定
+ */
+void ResetBasicExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -80265,7 +80328,26 @@ void ManageMemoryReferenceCountAtOffset330(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090d120(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理内存引用计数（偏移0x350）
+ * 
+ * 该函数负责管理内存资源的引用计数，当引用计数降为0时触发异常处理。
+ * 这是一个内存管理的关键函数，确保资源的正确释放和异常处理。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含资源指针和内存管理信息
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0x350偏移处获取资源指针
+ * 2. 计算内存基地址和偏移量
+ * 3. 检查内存有效性并管理引用计数
+ * 4. 当引用计数降为0时触发异常处理
+ * 5. 对于异常情况调用通用内存管理函数
+ * 
+ * @note 原始函数名：Unwind_18090d120
+ * @warning 此函数不返回，最后会调用异常处理或内存管理函数
+ */
+void ManageMemoryReferenceCountAtOffset350(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -80301,7 +80383,26 @@ void Unwind_18090d120(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d130(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理内存引用计数（偏移0x470）
+ * 
+ * 该函数负责管理内存资源的引用计数，当引用计数降为0时触发异常处理。
+ * 这是一个内存管理的关键函数，确保资源的正确释放和异常处理。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含资源指针和内存管理信息
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0x470偏移处获取资源指针
+ * 2. 计算内存基地址和偏移量
+ * 3. 检查内存有效性并管理引用计数
+ * 4. 当引用计数降为0时触发异常处理
+ * 5. 对于异常情况调用通用内存管理函数
+ * 
+ * @note 原始函数名：Unwind_18090d130
+ * @warning 此函数不返回，最后会调用异常处理或内存管理函数
+ */
+void ManageMemoryReferenceCountAtOffset470(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -103735,6 +103836,34 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：alStack_300 - 栈长整型数组A
 // 功能：存储长整型数组的栈数据
 #define StackLongIntegerArrayA alStack_300
+
+// 原始变量名：auStack_2f0 - 栈无符号整型联合体A
+// 功能：存储无符号整型联合体的栈数据
+#define StackUnsignedIntegerUnionA auStack_2f0
+
+// 原始变量名：aplStack_330 - 栈长整型指针数组A
+// 功能：存储长整型指针数组的栈数据
+#define StackLongIntegerPointerArrayA aplStack_330
+
+// 原始变量名：plStack_340 - 栈长整型指针B
+// 功能：存储长整型指针的栈变量
+#define StackLongIntegerPointerB plStack_340
+
+// 原始变量名：uStack_338 - 栈数据字AE
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAE uStack_338
+
+// 原始变量名：uStack_88 - 栈数据字AF
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAF uStack_88
+
+// 原始变量名：uStack_278 - 栈数据字AG
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAG uStack_278
+
+// 原始变量名：uStack_270 - 栈数据字AH
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAH uStack_270
 
 // 原始变量名：fStack_2c8 - 栈浮点数A
 // 功能：存储浮点数的栈变量
