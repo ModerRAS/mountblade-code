@@ -58416,29 +58416,43 @@ longlong CalculateUIImageDifferenceBasic(void)
 
 
 
-longlong FUN_1806958c0(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,uint *resultPointer)
+/**
+ * @brief UI图像差异计算器（循环模式）
+ * 
+ * 该函数负责计算UI图像的差异值，使用循环计算模式
+ * 通过多次迭代计算图像差异，适用于批量图像处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，用于存储计算结果
+ * @return 计算得到的差异值
+ * @note 原始函数名: FUN_1806958c0
+ */
+longlong CalculateUIImageDifferenceIterative(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,uint *resultPointer)
 
 {
-  uint *pfunctionResult;
-  int validationResult;
-  longlong lVar3;
-  int aiStack_38 [2];
-  longlong lStack_30;
+  uint *resultAccumulator;
+  int validationAccumulator;
+  longlong iterationCounter;
+  int stackBuffer [2];
+  longlong bufferOffset;
   
-  pfunctionResult = resultPointer;
-  validationResult = 0;
+  resultAccumulator = resultPointer;
+  validationAccumulator = 0;
   *resultPointer = 0;
-  lVar3 = 2;
-  lStack_30 = (longlong)(bufferSize << 4);
+  iterationCounter = 2;
+  bufferOffset = (longlong)(bufferSize << 4);
   do {
-    CalculateUIImageSquareDifferenceSumAVX2(uiContext,dataSource,targetBuffer,bufferSize,&resultPointer,aiStack_38);
+    CalculateUIImageSquareDifferenceSumAVX2(uiContext,dataSource,targetBuffer,bufferSize,&resultPointer,stackBuffer);
     uiContext = uiContext + (dataSource << 4);
-    *pfunctionResult = *pfunctionResult + (int)resultPointer;
-    validationResult = validationResult + aiStack_38[0];
-    targetBuffer = targetBuffer + lStack_30;
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  return (ulonglong)*pfunctionResult - ((longlong)validationResult * (longlong)validationResult >> 10);
+    *resultAccumulator = *resultAccumulator + (int)resultPointer;
+    validationAccumulator = validationAccumulator + stackBuffer[0];
+    targetBuffer = targetBuffer + bufferOffset;
+    iterationCounter = iterationCounter + -1;
+  } while (iterationCounter != 0);
+  return (ulonglong)*resultAccumulator - ((longlong)validationAccumulator * (longlong)validationAccumulator >> 10);
 }
 
 
