@@ -442,6 +442,15 @@
 #define ResourceHandlerContextOffset 200               // 资源处理上下文偏移量 - 资源处理相关上下文信息的偏移位置
 #define ResourceContextBaseOffset 0x7f20               // 资源上下文基础偏移量 - 资源上下文数据的基础地址偏移
 #define ResourceValidationOffset 0xd0                   // 资源验证偏移量 - 资源有效性验证信息的存储位置
+#define ResourceDataBufferOffset 0x50                   // 资源数据缓冲区偏移量 - 资源数据缓冲区的存储位置
+#define ResourceCountOffset 0x58                        // 资源计数偏移量 - 资源引用计数的存储位置
+#define OperationSuccessCode 0x4a                        // 操作成功代码 - 表示操作成功完成的返回码
+#define ResourceNotFoundCode 0x1e                        // 资源未找到代码 - 表示资源不存在的错误码
+#define FloatDataOffset 0x14                             // 浮点数据偏移量 - 浮点数据的存储位置
+#define DataContextOffset 0x18                            // 数据上下文偏移量 - 数据上下文的存储位置
+#define DataValidationOffset 0x20                         // 数据验证偏移量 - 数据验证信息的存储位置
+#define SecondaryValidationOffset 0x34                    // 次要验证偏移量 - 次要验证信息的存储位置
+#define ValidationFlagOffset 0x35                         // 验证标志偏移量 - 验证标志位的存储位置
 #define ResourceActiveFlagOffset 0x60                  // 资源活动标志偏移量 - 资源活动状态标志位的存储位置
 #define ExceptionHandlerOffset 0x40                      // 异常处理器偏移量 - 默认异常处理器的存储位置
 #define ExceptionHandlerOffsetF0 0xf8                    // 异常处理器F0偏移量 - F0类型异常处理器的专用位置
@@ -12812,7 +12821,7 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
   }
   dataContextPointer = *(int64_t *)(stackTempValue + 8);
   if (dataContextPointer != 0) {
-    floatDataValue = *(float *)(resourceHandle + 0x14);
+    floatDataValue = *(float *)(resourceHandle + FloatDataOffset);
     for (dataIterator = *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset);
         (*(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) <= dataIterator &&
         (dataIterator < *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) + *(int *)(dataContextPointer + ExceptionHandlerContextDataOffset))); dataIterator = dataIterator + 1) {
@@ -12834,9 +12843,9 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
           maskResult = movmskps(bitShiftedFlags,vectorRegister);
           floatDataValue = (float)(int)(integerConversionValue - (maskResult & 1));
         }
-        floatDataValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(dataContextPointer + 0x18),floatDataValue);
-        if (((*(char *)(dataContextPointer + 0x34) == '\0') ||
-            ((*(uint *)(*(int64_t *)(dataContextPointer + 0x18) + 0x34) >> 1 & 1) == 0)) &&
+        floatDataValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(dataContextPointer + DataContextOffset),floatDataValue);
+        if (((*(char *)(dataContextPointer + SecondaryValidationOffset) == '\0') ||
+            ((*(uint *)(*(int64_t *)(dataContextPointer + DataContextOffset) + 0x34) >> 1 & 1) == 0)) &&
            (floatDataValue != *(float *)(dataContextPointer + 0x20))) {
           *(float *)(dataContextPointer + 0x20) = floatDataValue;
           UpdateValidationContextA0(dataContextPointer);
@@ -15348,7 +15357,7 @@ DataBuffer ConfigureUtilityDataA1(int64_t configPointer,int64_t dataPointer)
       systemStackPointer = systemStackPointer + -8;
     }
     if (*(int64_t *)(systemStackPointer + 0x18) == 0) {
-      return 0x1e;
+      return ResourceNotFoundCode;
     }
     configurationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(*(int64_t *)(systemStackPointer + 0x18) + 0xd0),
                                 configPointer + 0x18);
@@ -15402,13 +15411,13 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
         listEntry = *(int64_t *)(adjustedStackPointer + 0x20) + entryOffset;
         memoryResourcePointer = *(int64_t *)(listEntry + ExceptionHandlerCallbackOffset10);
         if (memoryResourcePointer == 0) {
-          return 0x1e;
+          return ResourceNotFoundCode;
         }
-        if (*(int *)(memoryResourcePointer + 0x58) < 1) {
+        if (*(int *)(memoryResourcePointer + ResourceCountOffset) < 1) {
           resourceData = &SystemResourceDataBuffer;
         }
         else {
-          resourceData = *(uint8_t **)(memoryResourcePointer + 0x50);
+          resourceData = *(uint8_t **)(memoryResourcePointer + ResourceDataBufferOffset);
         }
         validationStatus = ValidateResourceDataIntegrityA0(resourceData, resourceContext + 0x1c);
         if (validationStatus == 0) {
@@ -15468,13 +15477,13 @@ DataBuffer ProcessSystemResourceValidationWithStack(void)
       memoryResourcePointer = *(int64_t *)(securityCheckResult + 0x20) + dataOffset;
       exceptionHandlerContext = *(int64_t *)(memoryResourcePointer + ExceptionHandlerCallbackOffset10);
       if (exceptionHandlerContext == 0) {
-        return 0x1e;
+        return ResourceNotFoundCode;
       }
       if (*(int *)(exceptionHandlerContext + 0x58) < 1) {
         memoryRegionBase = &SystemResourceDataBuffer;
       }
       else {
-        memoryRegionBase = *(uint8_t **)(exceptionHandlerContext + 0x50);
+        memoryRegionBase = *(uint8_t **)(exceptionHandlerContext + ResourceDataBufferOffset);
       }
       operationResult = ValidateResourceDataIntegrityA0(memoryRegionBase);
       if (operationResult == 0) {
@@ -15490,7 +15499,7 @@ DataBuffer ProcessSystemResourceValidationWithStack(void)
       dataOffset = dataOffset + 0x18;
     } while ((int)operationResult < *(int *)(securityCheckResult + 0x28));
   }
-  return 0x4a;
+  return OperationSuccessCode;
 }
 
 
@@ -15571,7 +15580,7 @@ uint64_t ValidateSystemDataIndexAndProcessResource(int64_t systemContext, int64_
   }
   
   if (*(int64_t *)(*(int64_t *)(systemDataPtr + 0x20) + 0x10 + (int64_t)dataIndex * 0x18) == 0) {
-    return 0x1e;  // 资源不存在错误
+    return ResourceNotFoundCode;  // 资源不存在错误
   }
   
   // 验证并处理系统资源
@@ -15985,11 +15994,11 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
     result = ValidateSystemDataRange(queryBuffer[0],contextPointer + 0x18,&systemContextBuffer);
     if ((int)result == 0) {
       if (systemContextBuffer == 0) {
-        return 0x4a;
+        return OperationSuccessCode;
       }
       dataPointer = *(int64_t *)(systemContextBuffer + ExceptionHandlerCallbackOffset10);
       if (dataPointer == 0) {
-        return 0x1e;
+        return ResourceNotFoundCode;
       }
       if ((*(byte *)(dataPointer + 0x34) & 0x11) != 0) {
         return ComponentDataValidationFailure;
@@ -16074,11 +16083,11 @@ DataBuffer ValidateAndProcessFloatingPointNumber(int64_t DataHandle, int64_t Con
         if ((int)ValidationStatus == 0) {
             // 验证数据指针有效性
             if (ContextBuffer == 0) {
-                return 0x4a;
+                return OperationSuccessCode;
             }
             ValuePointer = *(int64_t *)(ContextBuffer + ExceptionHandlerCallbackOffset10);
             if (ValuePointer == 0) {
-                return 0x1e;
+                return ResourceNotFoundCode;
             }
             // 检查数据状态标志位
             if ((*(byte *)(ValuePointer + 0x34) & 0x11) != 0) {
@@ -16123,11 +16132,11 @@ DataBuffer QuerySystemStatusE0(void)
   int64_t DataProcessingOffset;
   
   if (DataProcessingOffset == 0) {
-    return 0x4a;
+    return OperationSuccessCode;
   }
   dataContext = *(int64_t *)(DataProcessingOffset + ExceptionHandlerCallbackOffset10);
   if (dataContext == 0) {
-    return 0x1e;
+    return ResourceNotFoundCode;
   }
   if ((*(byte *)(dataContext + 0x34) & 0x11) != 0) {
     return ComponentDataValidationFailure;
@@ -16161,7 +16170,7 @@ DataBuffer InitializeSystemE0(void)
   
   dataContext = *(int64_t *)(registerContext + ExceptionHandlerCallbackOffset10);
   if (dataContext == 0) {
-    return 0x1e;
+    return ResourceNotFoundCode;
   }
   if ((*(byte *)(dataContext + 0x34) & 0x11) != 0) {
     return ComponentDataValidationFailure;
@@ -16315,7 +16324,7 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
     }
     resourceDataPointer = *(int64_t *)(resourceHandle + 0x18);
     if (resourceDataPointer == 0) {
-      return 0x1e;
+      return ResourceNotFoundCode;
     }
     validationBuffer[0] = 0;
     operationResult = ExecuteSystemOperationA0(dataBuffer,resourceHandle,systemContext + 0x28,validationBuffer);
@@ -16367,7 +16376,7 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
     }
     dataContext = *(int64_t *)(systemContext + 0x18);
     if (dataContext == 0) {
-      return 0x1e;
+      return ResourceNotFoundCode;
     }
     operationResult[0] = 0;
     memoryRegionBase = ExecuteSystemOperationA0(contextParameter,systemContext,dataParameter + 0x28,operationResult);
@@ -16451,7 +16460,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
   dataStructurePointer = *(int64_t *)(dataStructurePointer + 0x20) + (int64_t)operationIndex * 0x18;
   dataOffset = *(int64_t *)(dataStructurePointer + ExceptionHandlerCallbackOffset10);
   if (dataOffset == 0) {
-    return 0x1e;
+    return ResourceNotFoundCode;
   }
   if ((*(byte *)(dataOffset + 0x34) & 0x11) == 0) {
     inputFloatValue = *(float *)(ResourceDescriptor + 0x20);
@@ -16550,7 +16559,7 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
         }
         dataRecordIndex = *(int64_t *)(dataRecordIndex + ExceptionHandlerCallbackOffset10);
         if (dataRecordIndex == 0) {
-          return 0x1e;
+          return ResourceNotFoundCode;
         }
         if (*(int *)(dataRecordIndex + 0x30) != 0) {
           return ComponentDataValidationFailure;
@@ -16640,7 +16649,7 @@ DataBuffer GetSystemStatusA0(void)
         }
         dataNodePointer = *(int64_t *)(dataNodePointer + ExceptionHandlerCallbackOffset10);
         if (dataNodePointer == 0) {
-          return 0x1e;
+          return ResourceNotFoundCode;
         }
         if (*(uint *)(dataNodePointer + 0x30) != inputRegisterR9D) {
           return ComponentDataValidationFailure;
@@ -16686,7 +16695,7 @@ void UtilityNoOperationI(void)
 DataBuffer ValidateSystemConfigurationA0(void)
 
 {
-  return 0x1e;
+  return ResourceNotFoundCode;
 }
 
 
@@ -17040,7 +17049,7 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
   }
   dataHandle = *(int64_t *)(CONCAT44(stackBufferHighPart,stackBufferLowPart) + ExceptionHandlerCallbackOffset10);
   if (dataHandle == 0) {
-    return 0x1e;
+    return ResourceNotFoundCode;
   }
   if ((*(byte *)(dataHandle + 0x34) & 0x11) != 0) {
     return ComponentDataValidationFailure;
@@ -17108,7 +17117,7 @@ DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
   exceptionHandlerContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
                     (*(int64_t **)(systemContext + 800),&memoryOffsetPrimary,1);
   if ((exceptionHandlerContext == 0) || (*(int64_t *)(exceptionHandlerContext + 0x2e8) == 0)) {
-    return 0x4a;
+    return OperationSuccessCode;
   }
   operationResult = ValidateAndProcessSystemResourceA0(*(int64_t *)(exceptionHandlerContext + 0x2e8),memoryDescriptor + 0x20);
   if ((int)operationResult != 0) {
@@ -18493,7 +18502,7 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
       // 初始化系统缓冲区
       InitializeSystemBufferA0(systemBufferA, 0x27, &SystemBufferConfiguration, inputDataWord);
     }
-    if ((**(int **)(memoryBlockOffset + 0xd0) != 0) ||
+    if ((**(int **)(memoryBlockOffset + ResourceValidationOffset) != 0) ||
        (operationResult = ValidateSystemConfigurationA0(*(DataWord *)(operationContext + 0x18)), operationResult == 0)) {
       *resultPointer = memoryBlockOffset;
     }
@@ -18523,7 +18532,7 @@ void ExecuteSecurityValidationOperation(uint64_t securityContext)
       InitializeSystemBufferA0(&stackBufferHighAddress,0x27,&SystemBufferConfiguration,contextValue & SystemCleanupFlag,
                   contextValue._4_2_);
   }
-  if (**(int **)(securityContextHandle + 0xd0) == 0) {
+  if (**(int **)(securityContextHandle + ResourceValidationOffset) == 0) {
     validationResult = ValidateSystemConfigurationA0(*(DataWord *)(systemData + 0x18));
     if (validationResult != 0) goto DataProcessingLabel;
   }
@@ -18882,7 +18891,7 @@ uint32_t ProcessSystemRequestWithValidation(int64_t requestContext,DataBuffer re
       }
       *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) = *(DataBuffer *)(requestContext + 0x58);
       *exceptionHandlerContextPointer = requestContext + 0x50;
-      *(int64_t **)(requestContext + 0x58) = exceptionHandlerContextPointer;
+      *(int64_t **)(requestContext + ResourceContextOffset) = exceptionHandlerContextPointer;
       **(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) = (int64_t)exceptionHandlerContextPointer;
       ProcessValidationContextData(exceptionHandlerContext,operationResultData);
       UpdateRequestContextState(requestContext,operationResultData);
@@ -19734,7 +19743,7 @@ ValidationCompleteLabel:
       return 0;
     }
   }
-  return 0x1e;
+  return ResourceNotFoundCode;
 }
 
 
@@ -19815,7 +19824,7 @@ DataBuffer ValidateDataIntegrityA2(int64_t DataDescriptor,DataBuffer ValidationC
 DataBuffer UtilityNoOperationH(void)
 
 {
-  return 0x1e;
+  return ResourceNotFoundCode;
 }
 
 
@@ -23435,19 +23444,19 @@ DataBuffer ProcessComplexDataA2(int64_t *OperationBase,char *InputDataBuffer,Dat
     while (CurrentCharacter != '\0') {
       ValidationStatusFlag = *(byte *)((int64_t)ExceptionHandlingBuffer + 7);
       if (ValidationStatusFlag == 0) {
-        return 0x4a;
+        return OperationSuccessCode;
       }
       CurrentCharacter = ProcessCharacterDataA0(CurrentCharacter);
       ExceptionHandlingBuffer = (uint *)(*OperationBase + (uint64_t)(ExceptionHandlingBuffer[1] & 0xffffff) * 8);
       CharacterMatchIndex = 0;
       if (ValidationStatusFlag == 0) {
-        return 0x4a;
+        return OperationSuccessCode;
       }
       while (*(char *)((int64_t)ExceptionHandlingBuffer + 3) != CurrentCharacter) {
         CharacterMatchIndex = CharacterMatchIndex + 1;
         ExceptionHandlingBuffer = ExceptionHandlingBuffer + 2;
         if ((int)(uint)ValidationStatusFlag <= CharacterMatchIndex) {
-          return 0x4a;
+          return OperationSuccessCode;
         }
       }
       InputDataBuffer = InputDataBuffer + 1;
@@ -23464,7 +23473,7 @@ DataBuffer ProcessComplexDataA2(int64_t *OperationBase,char *InputDataBuffer,Dat
         CurrentCharacter = *CharacterIterator;
       }
       if (*StringComparisonPointer != '\0') {
-        return 0x4a;
+        return OperationSuccessCode;
       }
 SystemCheckpointA:
       CurrentCharacter = *InputDataBuffer;
@@ -23479,7 +23488,7 @@ SystemCheckpointA:
           ExceptionHandlingBuffer = ExceptionHandlingBuffer + 2;
         } while (CharacterProcessingCounter < (int)(uint)ValidationStatusFlag);
       }
-      return 0x4a;
+      return OperationSuccessCode;
     }
 SystemCheckpointB:
     SecurityValidationResult = ExceptionHandlingBuffer[1] & 0xffffff;
@@ -23539,7 +23548,7 @@ DataBuffer BinarySearchAndProcessData(int64_t SearchContext,uint *SearchKeyPoint
       }
       if (MatchResult == 0) {
         if (MiddleIndex < 0) {
-          return 0x4a;
+          return OperationSuccessCode;
         }
         ProcessingResult = ProcessDataItem(SearchContext,MiddleIndex,0,ProcessData,SearchFlags,AdditionalData);
         return ProcessingResult;
@@ -23554,7 +23563,7 @@ DataBuffer BinarySearchAndProcessData(int64_t SearchContext,uint *SearchKeyPoint
       }
     } while (LeftBoundary <= RightBoundary);
   }
-  return 0x4a;
+  return OperationSuccessCode;
 }
 
 

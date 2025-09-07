@@ -27,7 +27,7 @@
 #define ValidateCharacterBuffer FUN_18011bc70                // 验证字符缓冲区
 #define ProcessCharacterTableCleanup FUN_180136f68            // 处理字符表清理
 #define ProcessCharacterDataValidation FUN_180136fa8          // 处理字符数据验证
-#define ResetSystemCharacterState FUN_18013701d               // 重置系统字符状态
+#define ResetSystemCharacterState ResetSystemCharacterState   // 重置系统字符状态
 #define TemporaryProcessingStatus TemporaryStackValue58    // 临时处理状态
 #define TemporaryFloatResult TemporaryFloatStack44        // 临时浮点结果
 #define ProcessingStringBuffer StringBuffer6                // 处理字符串缓冲区
@@ -162142,7 +162142,14 @@ void HandleStringCopyOperation(long long CharacterCode, long long Utf8BufferSize
 
 
 
-3701d(voidvoid FUN_18013701d(void
+/**
+ * @brief 重置系统字符状态
+ * 
+ * 重置字符处理系统的状态，清理内存池和系统资源
+ * 
+ * @return void 无返回值
+ */
+void ResetSystemCharacterState(void)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -162177,7 +162184,15 @@ void HandleStringCopyOperation(long long CharacterCode, long long Utf8BufferSize
 
 
 
-37030(uint64_t CharacterCodevoid FUN_180137030(uint64_t CharacterCode
+/**
+ * @brief 使用字符代码初始化系统内存池
+ * 
+ * 根据字符代码初始化系统内存池，清理系统状态并分配内存资源
+ * 
+ * @param CharacterCode 字符代码，用于内存池初始化
+ * @return void 无返回值
+ */
+void InitializeSystemMemoryPoolWithCharCode(uint64_t CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -162189,7 +162204,6 @@ void HandleStringCopyOperation(long long CharacterCode, long long Utf8BufferSize
     ReferenceCountPointer = (int *)(BufferStatus + 0x3a8);
     *ReferenceCountPointer = *ReferenceCountPointer + -1;
   }
-                    // WARNING: Subroutine does not return
   InitializeSystemMemoryPool(CharacterCode,SystemMemoryPoolBase);
 }
 
@@ -198166,27 +198180,59 @@ ProcessUtf8InputBuffer(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_
 
 
 
-uint64_t FUN_18016eaa0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief UTF-8字符处理替代函数
+ * 
+ * 对UTF-8字符进行替代处理，调用替代处理函数并返回结果
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return 处理后的字符代码
+ */
+uint64_t ProcessUtf8CharacterAlternative(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer
 {
-  FUN_180166dd0(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
+  ProcessUtf8CharacterAlternativeInternal(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
 
 
+/**
+ * @brief UTF-8字符编码处理函数B
+ * 
+ * 对UTF-8字符进行编码处理，调用编码处理函数B并返回结果
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 处理后的字符代码
+ */
 uint64_t
-FUN_18016eb20(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ProcessUtf8CharacterEncodingB(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  FUN_180166b10(CharacterCode,CharacterCode,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe);
+  ProcessUtf8CharacterEncodingInternalB(CharacterCode,CharacterCode,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
 
 
+/**
+ * @brief UTF-8字符编码处理函数C
+ * 
+ * 对UTF-8字符进行编码处理，调用编码处理函数C并返回结果
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 处理后的字符代码
+ */
 uint64_t
-FUN_18016eba0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ProcessUtf8CharacterEncodingC(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  FUN_180166950(CharacterCode,CharacterCode,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe);
+  ProcessUtf8CharacterEncodingInternalC(CharacterCode,CharacterCode,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
