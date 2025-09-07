@@ -53939,42 +53939,42 @@ void InitializeCoreEngineDataStructure(long long CharacterCode, long long *Utf8I
   MemoryAllocationIndex = CoreEngineSystemState;
   if (LockResult != 0) {
     IntegerValue = IntegerValue * 4;
-    pSystemOperationFlag98 = &SystemStringBuffer;
-    pSystemOperation90 = StackBuffer80;
-    StackBuffer80[0] = 0;
+    SystemOperationFlagPointer = &SystemStringBuffer;
+    SystemOperationBuffer = SystemStackBuffer;
+    SystemStackBuffer[0] = 0;
     StackValidationData = 0x1c;
-    strcpy_s(StackBuffer80,0x40,&StringTemplateBuffer);
+    strcpy_s(SystemStackBuffer,0x40,&StringTemplateBuffer);
     ReleaseSystemMemoryResources();
-    pSystemOperationFlag98 = &ThreadLocalStorageTemplate;
+    SystemOperationFlagPointer = &ThreadLocalStorageTemplate;
     SystemDataStructureRegistry = MemoryAllocate(MemoryPoolManager,IntegerValue,0x10,0x1e);
-    InitializeSecondaryMemoryPoolManager(MemoryAllocationIndex,&plStack_b0);
-    MemoryBlockIndex = plStack_b0;
-    plStack_b0[2] = SystemDataStructureRegistry;
-    *(int *)(plStack_b0 + 3) = IntegerValue;
-    *(int *)((long long)plStack_b0 + 0x1c) = IntegerValue;
-    *(uint8_t *)(plStack_b0 + 4) = 0;
+    InitializeSecondaryMemoryPoolManager(MemoryAllocationIndex,&SecondaryMemoryPoolPointer);
+    MemoryBlockIndex = SecondaryMemoryPoolPointer;
+    SecondaryMemoryPoolPointer[2] = SystemDataStructureRegistry;
+    *(int *)(SecondaryMemoryPoolPointer + 3) = IntegerValue;
+    *(int *)((long long)SecondaryMemoryPoolPointer + 0x1c) = IntegerValue;
+    *(uint8_t *)(SecondaryMemoryPoolPointer + 4) = 0;
     MemoryOffsetValue = 1;
-    plStack_b0 = (long long *)0x0;
-    plStack_a8 = (long long *)*Utf8InputBufferSize;
+    SecondaryMemoryPoolPointer = (long long *)0x0;
+    PrimaryMemoryPoolPointer = (long long *)*Utf8InputBufferSize;
     *Utf8InputBufferSize = (long long)MemoryBlockIndex;
-    if (plStack_a8 != (long long *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+    if (PrimaryMemoryPoolPointer != (long long *)0x0) {
+      (**(code **)(*PrimaryMemoryPoolPointer + 0x38))();
     }
     MemoryOffsetValue = 0;
-    if (plStack_b0 != (long long *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    if (SecondaryMemoryPoolPointer != (long long *)0x0) {
+      (**(code **)(*SecondaryMemoryPoolPointer + 0x38))();
     }
                     // WARNING: Subroutine does not return
     memcpy(*(void *)(*Utf8InputBufferSize + 0x10),*(void *)(CharacterCode + 8),
            (long long)*(int *)(*Utf8InputBufferSize + 0x1c));
   }
-  plStack_a8 = (long long *)*Utf8InputBufferSize;
+  PrimaryMemoryPoolPointer = (long long *)*Utf8InputBufferSize;
   *Utf8InputBufferSize = 0;
-  if (plStack_a8 != (long long *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  if (PrimaryMemoryPoolPointer != (long long *)0x0) {
+    (**(code **)(*PrimaryMemoryPoolPointer + 0x38))();
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)aSystemFlagF);
+  CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemEncryptionKey);
 }
 
 
@@ -53990,21 +53990,21 @@ void InitializeCoreEngineDataStructure(long long CharacterCode, long long *Utf8I
  * @param CharacterCode 目标数据结构地址
  * @param Utf8BufferSize 源数据结构指针
  */
-void ProcessCoreEngineDataSynchronization(long long CharacterCode,long long *Utf8InputBufferSize
+void ProcessCoreEngineDataSynchronization(long long CharacterCode,long long *Utf8InputBufferSize)
 {
   int LockResult;
   uint64_t MemoryAllocationIndex;
   long long *MemoryBlockIndex;
   long long SystemDataStructureRegistry;
-  uint8_t aSystemFlagF [32];
+  uint8_t SystemEncryptionKey[32];
   uint32_t MemoryOffsetValue;
-  long long *plStack_b0;
-  long long *plStack_a8;
+  long long *SecondaryMemoryPoolPointer;
+  long long *PrimaryMemoryPoolPointer;
   uint64_t CoreEngineUnsignedValueA0;
-  void *pSystemOperationFlag98;
-  uint8_t *pSystemOperation90;
+  void *SystemOperationFlagPointer;
+  uint8_t *SystemOperationBuffer;
   uint32_t StackValidationData;
-  uint8_t StackBuffer80 [72];
+  uint8_t SystemStackBuffer[72];
   unsigned long long FunctionAddress;
   
   CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
