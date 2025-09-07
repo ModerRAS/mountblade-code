@@ -100036,11 +100036,11 @@ void FUN_18072b540(double *uiContext,longlong dataSource,float targetBuffer,int 
 void CalculateUIBufferParameters(longlong uiContext, longlong dataSource, int targetBuffer, int bufferSize)
 
 {
-  float *pfloatResult;
-  longlong lVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
+  float *resultPointer;
+  longlong loopCounter;
+  float scaleFactor;
+  float baseValue;
+  float calculatedValue;
   
   fVar4 = 1.0;
   fVar3 = 1.0 / (float)(bufferSize + 1);
