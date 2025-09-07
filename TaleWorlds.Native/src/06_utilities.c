@@ -132,6 +132,9 @@
 #define ResourceFlagD30 8
 #define ResourceFlagMaskD30 0xfffffff7
 #define ResourceHandlerOffsetD30 0x68
+#define ResourceFlagD60 0x10
+#define ResourceFlagMaskD60 0xffffffef
+#define ResourceHandlerOffsetD60 0x48
 #define ExceptionHandlerStatus2Offset 0x148
 #define ExceptionHandlerState2Offset 0x158
 #define ExceptionHandlerTable3Offset 0x120
@@ -60071,7 +60074,22 @@ void ValidateContextStateB(DataBuffer exceptionHandlerContext, int64_t validatio
 
 
 
-void Unwind_180906c80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数6c80
+ * 
+ * 该函数负责清理资源引用计数，管理内存释放和资源生命周期。
+ * 主要功能包括：
+ * - 检查资源指针有效性
+ * - 计算内存偏移量
+ * - 管理引用计数
+ * - 处理异常情况
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源信息
+ * 
+ * @note 原始函数名：Unwind_180906c80
+ */
+void CleanupResourceReferenceCount6c80(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -60107,7 +60125,22 @@ void Unwind_180906c80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906c90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数6c90
+ * 
+ * 该函数负责清理资源引用计数，管理内存释放和资源生命周期。
+ * 主要功能包括：
+ * - 检查资源指针有效性
+ * - 计算内存偏移量
+ * - 管理引用计数
+ * - 处理异常情况
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源信息
+ * 
+ * @note 原始函数名：Unwind_180906c90
+ */
+void CleanupResourceReferenceCount6c90(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -80252,24 +80285,48 @@ void CleanupResourceD30(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090cd60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源清理函数D60 - 简化实现
+ * 
+ * 检查数据缓冲区中的标志位，如果设置了资源标志位0x10，
+ * 则清除该标志位并调用资源清理处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源状态信息
+ * 
+ * @note 原始函数名：Unwind_18090cd60
+ * @note 这是一个简化实现，处理资源清理标志位0x10
+ */
+void CleanupResourceD60(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + 0x20) & 0x10) != 0) {
-    *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xffffffef;
-    CleanupResourceHandler(dataBuffer + 0x48);
+  if ((*(uint *)(dataBuffer + ResourceFlagOffset) & ResourceFlagD60) != 0) {
+    *(uint *)(dataBuffer + ResourceFlagOffset) = *(uint *)(dataBuffer + ResourceFlagOffset) & ResourceFlagMaskD60;
+    CleanupResourceHandler(dataBuffer + ResourceHandlerOffsetD60);
   }
   return;
 }
 
 
 
-void Unwind_18090cd90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源清理函数D90 - 简化实现
+ * 
+ * 检查数据缓冲区中的标志位，如果设置了资源标志位0x20，
+ * 则清除该标志位并调用资源清理处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源状态信息
+ * 
+ * @note 原始函数名：Unwind_18090cd90
+ * @note 这是一个简化实现，处理资源清理标志位0x20
+ */
+void CleanupResourceD90(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + 0x20) & 0x20) != 0) {
-    *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xffffffdf;
-    CleanupResourceHandler(dataBuffer + 0x68);
+  if ((*(uint *)(dataBuffer + ResourceFlagOffset) & ResourceFlagD90) != 0) {
+    *(uint *)(dataBuffer + ResourceFlagOffset) = *(uint *)(dataBuffer + ResourceFlagOffset) & ResourceFlagMaskD90;
+    CleanupResourceHandler(dataBuffer + ResourceHandlerOffsetD90);
   }
   return;
 }
