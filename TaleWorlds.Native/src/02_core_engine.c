@@ -318,12 +318,12 @@
 #define ProcessCharacterFinalizeOperation FUN_18013dc14
 #define ProcessCharacterTerminateOperation FUN_18013dc26
 #define ProcessCharacterReleaseOperation FUN_18013dc8c
-#define ProcessCharacterFreeOperation FUN_18013dd05
-#define ProcessCharacterValidateOperation FUN_18013deaa
-#define ProcessCharacterClearOperation FUN_18013df54
-#define ProcessCharacterFlushOperation FUN_18013df66
-#define ProcessCharacterPurgeOperation FUN_18013e04c
-#define ProcessCharacterResetBuffer FUN_18013e0c5
+#define ProcessCharacterFreeOperation ProcessCharacterReleaseOperation
+#define ProcessCharacterValidateOperation ProcessCharacterValidateOperation
+#define ProcessCharacterClearOperation ProcessCharacterClearOperation
+#define ProcessCharacterFlushOperation ProcessCharacterFlushOperation
+#define ProcessCharacterPurgeOperation ProcessCharacterPurgeOperation
+#define ProcessCharacterResetBuffer ProcessCharacterResetBuffer
 #define ProcessCharacterInitializeBuffer FUN_18013e14c
 #define ProcessCharacterSetupBuffer FUN_18013e1c5
 #define ProcessCharacterAllocateBuffer FUN_18013e26c
@@ -172827,7 +172827,15 @@ void ProcessCharacterClearOperation(void)
 
 
 
-3df66(voidvoid FUN_18013df66(void
+/**
+ * @brief 处理字符刷新操作
+ * 
+ * 该函数负责刷新字符处理系统的缓冲区，
+ * 确保数据的一致性和完整性。
+ * 
+ * @note 原始函数名：FUN_18013df66
+ */
+void ProcessCharacterFlushOperation(void)
 {
   uint32_t *SystemContext;
   uint32_t RegisterValueEDI;
@@ -172932,7 +172940,15 @@ void ProcessCharacterClearOperation(void)
 
 
 
-3e04c(voidvoid FUN_18013e04c(void
+/**
+ * @brief 处理字符清理操作
+ * 
+ * 该函数负责清理字符处理系统中的资源和状态，
+ * 确保系统能够正确关闭或重新初始化。
+ * 
+ * @note 原始函数名：FUN_18013e04c
+ */
+void ProcessCharacterPurgeOperation(void)
 {
   int LockResult;
   long long BufferStatus;
@@ -172963,7 +172979,15 @@ void ProcessCharacterClearOperation(void)
 
 
 
-3e0c5(voidvoid FUN_18013e0c5(void
+/**
+ * @brief 重置字符缓冲区
+ * 
+ * 该函数负责重置字符处理系统的缓冲区状态，
+ * 为下一次字符处理操作做准备。
+ * 
+ * @note 原始函数名：FUN_18013e0c5
+ */
+void ProcessCharacterResetBuffer(void)
 {
   int LockResult;
   long long BufferStatus;
@@ -173031,7 +173055,15 @@ void ProcessCharacterClearOperation(void)
 
 
 
-3e14c(voidvoid FUN_18013e14c(void
+/**
+ * @brief 初始化字符缓冲区
+ * 
+ * 该函数负责初始化字符处理系统的缓冲区，
+ * 为字符处理操作准备必要的内存空间。
+ * 
+ * @note 原始函数名：FUN_18013e14c
+ */
+void ProcessCharacterInitializeBuffer(void)
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
@@ -173066,7 +173098,15 @@ void ProcessCharacterClearOperation(void)
 
 
 
-3e1c5(voidvoid FUN_18013e1c5(void
+/**
+ * @brief 设置字符缓冲区
+ * 
+ * 该函数负责设置字符处理系统的缓冲区参数，
+ * 配置缓冲区的大小和属性。
+ * 
+ * @note 原始函数名：FUN_18013e1c5
+ */
+void ProcessCharacterSetupBuffer(void)
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
@@ -173141,7 +173181,15 @@ void ProcessCharacterClearOperation(void)
 
 
 
-3e26c(voidvoid FUN_18013e26c(void
+/**
+ * @brief 分配字符缓冲区
+ * 
+ * 该函数负责为字符处理系统分配缓冲区内存，
+ * 确保有足够的内存空间进行字符处理操作。
+ * 
+ * @note 原始函数名：FUN_18013e26c
+ */
+void ProcessCharacterAllocateBuffer(void)
 {
   long long ProcessingResult;
   uint64_t Utf16Char;
@@ -173164,7 +173212,15 @@ void ProcessCharacterClearOperation(void)
 
 
 
-3e2da(voidvoid FUN_18013e2da(void
+/**
+ * @brief 配置字符缓冲区
+ * 
+ * 该函数负责配置字符处理系统的缓冲区参数，
+ * 设置缓冲区的各种属性和配置选项。
+ * 
+ * @note 原始函数名：FUN_18013e2da
+ */
+void ProcessCharacterConfigureBuffer(void)
 {
   return;
 }
