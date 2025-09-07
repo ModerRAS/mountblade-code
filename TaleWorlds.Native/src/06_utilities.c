@@ -82348,7 +82348,23 @@ void UnlockMutexAtOffset90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a7a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源并管理引用计数
+ * 
+ * 该函数负责释放内存资源并管理其引用计数。主要功能包括：
+ * - 从数据缓冲区中获取内存资源指针
+ * - 验证内存资源指针的有效性
+ * - 计算内存区域的基地址
+ * - 管理内存块的引用计数
+ * - 当引用计数归零时触发异常处理
+ * - 在异常情况下调用内存管理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090a7a0
+ */
+void ReleaseMemoryResourceWithReferenceCounting(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -82422,18 +82438,18 @@ void ExecuteCallbackAndSetExceptionHandler(DataBuffer operationBase,int64_t data
 
 
 /**
- * @brief 系统展开处理函数A0
+ * @brief 执行展开回调函数
  * 
- * 执行系统展开操作，在异常处理或栈展开过程中调用。该函数负责
- * 执行必要的回调函数，确保系统状态的正确恢复。
+ * 检查数据缓冲区中的回调函数指针，如果存在则执行展开回调函数。
+ * 该函数在系统展开过程中被调用，用于执行特定的回调操作。
  * 
- * @param operationBase 操作基础地址，用于展开处理的上下文
- * @param dataBuffer 数据缓冲区指针，包含展开处理所需的信息
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含回调函数信息
  * 
  * @note 原始函数名：Unwind_18090a7c0
- * @note 该函数在系统展开过程中被调用，用于执行清理和恢复操作
+ * @note 简化实现：检查并执行展开回调函数
  */
-void Unwind_18090a7c0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteUnwindCallback(DataBuffer operationBase,int64_t dataBuffer)
 {
   // 检查并执行展开回调函数
   if (*(int64_t **)(dataBuffer + 0x48) != (int64_t *)0x0) {
@@ -82496,7 +82512,19 @@ void Unwind_18090a7d0(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_18090a7e0
  * @note 该函数在异常展开过程中被调用，用于执行上下文相关的清理操作
  */
-void Unwind_18090a7e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理上下文回调
+ * 
+ * 获取异常处理上下文指针，并执行相应的回调函数。
+ * 该函数在系统展开过程中被调用，用于处理异常处理上下文的清理工作。
+ * 
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090a7e0
+ * @note 简化实现：检查并执行异常处理上下文回调函数
+ */
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
@@ -100068,7 +100096,23 @@ void ProcessDataBufferA7Wrapper(DataBuffer operationBase,int64_t dataBuffer,Data
 
 
 
-void Unwind_18090f850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理函数的包装器
+ * 
+ * 该函数是数据缓冲区处理函数的包装器，负责从数据缓冲区中提取参数
+ * 并调用核心数据缓冲区处理函数。主要功能包括：
+ * - 从数据缓冲区中获取处理参数地址
+ * - 提取异常处理回调指针
+ * - 调用核心数据缓冲区处理函数
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含处理参数
+ * @param operationFlagA 操作标志A，传递给处理函数
+ * @param operationFlagB 操作标志B，传递给处理函数
+ * 
+ * @note 原始函数名：Unwind_18090f850
+ */
+void ProcessDataBufferWithFlagsWrapper(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA7(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -100078,7 +100122,23 @@ void Unwind_18090f850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据验证和处理函数的包装器
+ * 
+ * 该函数是数据验证和处理函数的包装器，负责从数据缓冲区中提取参数
+ * 并调用核心数据验证和处理函数。主要功能包括：
+ * - 从数据缓冲区中获取处理参数地址
+ * - 提取异常处理回调指针
+ * - 调用核心数据验证和处理函数
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含处理参数
+ * @param operationFlagA 操作标志A，传递给处理函数
+ * @param operationFlagB 操作标志B，传递给处理函数
+ * 
+ * @note 原始函数名：Unwind_18090f860
+ */
+void ValidateAndProcessDataWrapper(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateAndProcessData(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -100088,7 +100148,23 @@ void Unwind_18090f860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据验证和处理函数的包装器（变体）
+ * 
+ * 该函数是数据验证和处理函数的包装器变体，功能与Unwind_18090f860相同，
+ * 但可能在不同的上下文中使用。主要功能包括：
+ * - 从数据缓冲区中获取处理参数地址
+ * - 提取异常处理回调指针
+ * - 调用核心数据验证和处理函数
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含处理参数
+ * @param operationFlagA 操作标志A，传递给处理函数
+ * @param operationFlagB 操作标志B，传递给处理函数
+ * 
+ * @note 原始函数名：Unwind_18090f870
+ */
+void ValidateAndProcessDataWrapperVariant(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateAndProcessData(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -100098,7 +100174,20 @@ void Unwind_18090f870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f880(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 互斥锁解锁函数
+ * 
+ * 该函数负责解锁位于偏移量140处的互斥锁。主要功能包括：
+ * - 从数据缓冲区中获取互斥锁指针
+ * - 调用互斥锁解锁函数
+ * - 处理解锁失败的异常情况
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含互斥锁信息
+ * 
+ * @note 原始函数名：Unwind_18090f880
+ */
+void UnlockMutexAtOffset140(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int inputParameter;
@@ -100112,7 +100201,20 @@ void Unwind_18090f880(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f890(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调函数
+ * 
+ * 该函数检查并执行位于偏移量38处的异常处理器回调函数。主要功能包括：
+ * - 从数据缓冲区中获取回调函数指针
+ * - 验证回调函数指针的有效性
+ * - 执行回调函数
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含回调函数信息
+ * 
+ * @note 原始函数名：Unwind_18090f890
+ */
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + DataBufferOffset140) != (int64_t *)0x0) {
