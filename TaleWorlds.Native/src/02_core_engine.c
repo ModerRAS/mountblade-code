@@ -55526,38 +55526,38 @@ void InitializeCoreEngineDataStructure(long long systemContext, long long *memor
   uint8_t systemStackBuffer[72];                                    // 系统栈缓冲区
   unsigned long long functionAddress;                                // 函数地址
   
-  CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
-  MemoryOffsetValue = 0;
-  IntegerValue = **(int **)(CharacterCode + 8);
-  *(int **)(CharacterCode + 8) = *(int **)(CharacterCode + 8) + 1;
-  MemoryAllocationIndex = CoreEngineSystemState;
-  if (LockResult != 0) {
-    IntegerValue = IntegerValue * 4;
-    SystemOperationFlagPointer = &SystemInputStringBuffer;
-    SystemOperationBuffer = SystemStackBuffer;
-    SystemStackBuffer[0] = 0;
-    StackValidationData = 0x1c;
-    strcpy_s(SystemStackBuffer,0x40,&StringTemplateBuffer);
-    ReleaseSystemMemoryResources();
-    SystemOperationFlagPointer = &ThreadLocalStorageTemplate;
-    SystemDataRegistry = MemoryAllocate(MemoryPoolManager,IntegerValue,0x10,0x1e);
-    InitializeSecondaryMemoryPoolManager(MemoryAllocationIndex,&SecondaryMemoryPoolPointer);
-    MemoryBlockIndex = SecondaryMemoryPoolPointer;
-    SecondaryMemoryPoolPointer[2] = SystemDataRegistry;
-    *(int *)(SecondaryMemoryPoolPointer + 3) = IntegerValue;
-    *(int *)((long long)SecondaryMemoryPoolPointer + 0x1c) = IntegerValue;
-    *(uint8_t *)(SecondaryMemoryPoolPointer + 4) = 0;
-    MemoryOffsetValue = 1;
-    SecondaryMemoryPoolPointer = (long long *)0x0;
-    PrimaryMemoryPoolPointer = (long long *)*Utf8InputBufferSize;
-    *Utf8InputBufferSize = (long long)MemoryBlockIndex;
-    if (PrimaryMemoryPoolPointer != (long long *)0x0) {
-      (**(code **)(*PrimaryMemoryPoolPointer + 0x38))();
+  systemOperationCode = 0xfffffffffffffffe;                                // 设置系统操作码
+  functionAddress = EncodingDecodingKey ^ (unsigned long long)systemEncryptionKey; // 计算函数地址
+  memoryOffsetValue = 0;                                                   // 重置内存偏移值
+  referenceCount = **(int **)(systemContext + 8);                          // 获取引用计数
+  *(int **)(systemContext + 8) = *(int **)(systemContext + 8) + 1;         // 增加引用计数
+  memoryAllocationIndex = CoreEngineSystemState;                            // 获取内存分配索引
+  if (systemLockResult != 0) {                                             // 检查系统锁定状态
+    referenceCount = referenceCount * 4;                                     // 调整引用计数
+    systemOperationFlagPointer = &SystemInputStringBuffer;                  // 设置操作标志指针
+    systemOperationBuffer = systemStackBuffer;                               // 设置操作缓冲区
+    systemStackBuffer[0] = 0;                                               // 初始化栈缓冲区
+    stackValidationData = 0x1c;                                             // 设置栈验证数据
+    strcpy_s(systemStackBuffer, 0x40, &StringTemplateBuffer);               // 复制字符串模板
+    ReleaseSystemMemoryResources();                                         // 释放系统内存资源
+    systemOperationFlagPointer = &ThreadLocalStorageTemplate;               // 设置线程本地存储模板
+    systemDataRegistry = MemoryAllocate(MemoryPoolManager, referenceCount, 0x10, 0x1e); // 分配内存
+    InitializeSecondaryMemoryPoolManager(memoryAllocationIndex, &secondaryMemoryPoolPointer); // 初始化次级内存池
+    memoryBlockIndex = secondaryMemoryPoolPointer;                          // 设置内存块索引
+    secondaryMemoryPoolPointer[2] = systemDataRegistry;                     // 设置系统数据注册表
+    *(int *)(secondaryMemoryPoolPointer + 3) = referenceCount;              // 设置引用计数
+    *(int *)((long long)secondaryMemoryPoolPointer + 0x1c) = referenceCount; // 设置次级内存池引用计数
+    *(uint8_t *)(secondaryMemoryPoolPointer + 4) = 0;                      // 初始化内存池状态
+    memoryOffsetValue = 1;                                                  // 设置内存偏移值
+    secondaryMemoryPoolPointer = (long long *)0x0;                          // 清空次级内存池指针
+    primaryMemoryPoolPointer = (long long *)*memoryPoolHandle;             // 获取主内存池指针
+    *memoryPoolHandle = (long long)memoryBlockIndex;                       // 设置内存池句柄
+    if (primaryMemoryPoolPointer != (long long *)0x0) {                    // 检查主内存池状态
+      (**(code **)(*primaryMemoryPoolPointer + 0x38))();                   // 调用主内存池处理器
     }
-    MemoryOffsetValue = 0;
-    if (SecondaryMemoryPoolPointer != (long long *)0x0) {
-      (**(code **)(*SecondaryMemoryPoolPointer + 0x38))();
+    memoryOffsetValue = 0;                                                  // 重置内存偏移值
+    if (secondaryMemoryPoolPointer != (long long *)0x0) {                 // 检查次级内存池状态
+      (**(code **)(*secondaryMemoryPoolPointer + 0x38))();                  // 调用次级内存池处理器
     }
                     // WARNING: Subroutine does not return
     memcpy(*(void *)(*Utf8InputBufferSize + 0x10),*(void *)(CharacterCode + 8),
@@ -173514,20 +173514,25 @@ void ConfigureMemoryBlockExtension(int *Utf8InputBuffer,int *Utf8InputBufferSize
 
 
 
-3e620(int *Utf8InputBuffer,int Utf8BufferSizevoid FUN_18013e620(int *Utf8InputBuffer,int Utf8BufferSize
+/**
+ * 处理UTF-8输入缓冲区的扩展和内存分配
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ */
+void ProcessUtf8InputBufferExpansion(int *Utf8InputBuffer,int Utf8BufferSize)
 {
-  uint64_t Utf16Char;
+  uint64_t AllocatedMemoryAddress;
   
   if (Utf8InputBuffer[1] < Utf8BufferSize) {
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
     }
-    Utf16Char = SystemCallMemoryAccess((long long)Utf8BufferSize << 4,SystemMemoryPoolBase);
+    AllocatedMemoryAddress = SystemCallMemoryAccess((long long)Utf8BufferSize << 4,SystemMemoryPoolBase);
     if (*(long long *)(CharacterCode + 2) != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(Utf16Char,*(long long *)(CharacterCode + 2),(long long)*Utf8InputBuffer << 4);
+      memcpy(AllocatedMemoryAddress,*(long long *)(CharacterCode + 2),(long long)*Utf8InputBuffer << 4);
     }
-    *(void *)(CharacterCode + 2) = Utf16Char;
+    *(void *)(CharacterCode + 2) = AllocatedMemoryAddress;
     Utf8InputBuffer[1] = Utf8BufferSize;
   }
   return;
