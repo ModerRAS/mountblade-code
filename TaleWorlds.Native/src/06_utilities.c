@@ -33551,7 +33551,7 @@ uint64_t ProcessDataWithPointerOperation(int64_t operationBase,int64_t *dataBuff
  * 
  * @return uint64_t 返回操作状态码，0表示成功，非0表示错误
  */
-uint64_t FUN_18089f9b3(void)
+uint64_t ValidateSystemContextAndProcessData(void)
 
 {
   int64_t validationContext;
@@ -33633,7 +33633,7 @@ uint64_t FUN_18089f9b3(void)
  * 
  * @return uint64_t 返回操作状态码，0表示成功，非0表示错误
  */
-uint64_t FUN_18089f9f6(void)
+uint64_t ManageMemoryAndValidatePointers(void)
 
 {
   int64_t validationContext;
@@ -33704,7 +33704,7 @@ uint64_t FUN_18089f9f6(void)
  * 
  * @return uint64_t 返回操作状态码，0表示成功，非0表示错误
  */
-uint64_t FUN_18089fa3c(void)
+uint64_t ProcessSystemDataValidationAndCleanup(void)
 
 {
   int64_t validationContext;
@@ -33761,7 +33761,7 @@ uint64_t FUN_18089fa3c(void)
  * 
  * @return uint64_t 返回操作状态码，0表示成功，非0表示错误
  */
-uint64_t FUN_18089fac2(void)
+uint64_t ExecuteSystemMemoryOperations(void)
 
 {
   uint systemDataBuffer;
