@@ -99522,4 +99522,93 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：释放数据缓冲区资源
 #define ReleaseDataBufferResource ReleaseDataBufferResource
 
+// 异常处理和系统操作函数宏定义 (180910系列)
+/**
+ * @brief 执行验证上下文处理器A0
+ * 
+ * 该函数用于执行验证上下文处理器，调用特定的函数指针进行验证操作
+ * 
+ * @note 原始函数名：Unwind_180910000
+ */
+#define ExecuteValidationContextProcessorA0 Unwind_180910000
 
+/**
+ * @brief 处理系统操作循环A0
+ * 
+ * 该函数用于处理系统操作的循环，遍历验证上下文并调用系统操作函数
+ * 
+ * @note 原始函数名：Unwind_180910010
+ */
+#define ProcessSystemOperationLoopA0 Unwind_180910010
+
+/**
+ * @brief 处理系统操作循环A1
+ * 
+ * 该函数用于处理系统操作的循环，遍历验证上下文并调用系统操作函数
+ * 
+ * @note 原始函数名：Unwind_180910020
+ */
+#define ProcessSystemOperationLoopA1 Unwind_180910020
+
+/**
+ * @brief 处理系统操作循环A2
+ * 
+ * 该函数用于处理系统操作的循环，遍历验证上下文并调用系统操作函数
+ * 
+ * @note 原始函数名：Unwind_180910030
+ */
+#define ProcessSystemOperationLoopA2 Unwind_180910030
+
+/**
+ * @brief 处理系统操作循环A3
+ * 
+ * 该函数用于处理系统操作的循环，遍历验证上下文并调用系统操作函数
+ * 
+ * @note 原始函数名：Unwind_180910040
+ */
+#define ProcessSystemOperationLoopA3 Unwind_180910040
+
+/**
+ * @brief 处理系统操作循环A4
+ * 
+ * 该函数用于处理系统操作的循环，遍历验证上下文并调用系统操作函数
+ * 
+ * @note 原始函数名：Unwind_180910050
+ */
+#define ProcessSystemOperationLoopA4 Unwind_180910050
+
+/**
+ * @brief 处理系统操作循环A5
+ * 
+ * 该函数用于处理系统操作的循环，遍历验证上下文并调用系统操作函数
+ * 
+ * @note 原始函数名：Unwind_180910060
+ */
+#define ProcessSystemOperationLoopA5 Unwind_180910060
+
+/**
+ * @brief 执行异常处理器A0
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_180910070
+ */
+#define ExecuteExceptionHandlerA0 Unwind_180910070
+
+/**
+ * @brief 执行异常处理器A1
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_180910080
+ */
+#define ExecuteExceptionHandlerA1 Unwind_180910080
+
+/**
+ * @brief 执行异常处理器A2
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_180910090
+ */
+#define ExecuteExceptionHandlerA2 Unwind_180910090
