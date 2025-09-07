@@ -17787,14 +17787,14 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
   uint colorBlueComponentMidByte;
   uint colorBlueComponentHighByte;
   uint colorAlphaComponentHighByte;
-  uint stackOffset58;
+  uint stackOffsetGuard;
   uint blueAlphaComponents;
   
   // 数据处理变量
   DataWord inputDataWord;
-  uint inputComponent1;
-  uint inputComponent2;
-  uint inputComponent3;
+  uint inputRedComponent;
+  uint inputGreenComponent;
+  uint inputBlueComponent;
   ByteFlag systemBufferA[40];
   uint64_t securityCheckValueA;
   
@@ -17814,9 +17814,9 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
   exceptionHandlerContextPointer = *(int64_t **)(operationContext + 800);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     inputDataWord = *operationFlags;
-    inputComponent1 = operationFlags[1];
-    inputComponent2 = operationFlags[2];
-    inputComponent3 = operationFlags[3];
+    inputRedComponent = operationFlags[1];
+    inputGreenComponent = operationFlags[2];
+    inputBlueComponent = operationFlags[3];
     calculatedOffset = (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x288))(exceptionHandlerContextPointer, &inputDataWord, 1);
     if (calculatedOffset == 0) {
       // 颜色分量提取和处理
@@ -22578,7 +22578,7 @@ CalculationCheckpoint:
     }
   }
 MemoryCheckpoint:
-    ReleaseResourceA1(alStack_300 + 1);
+    ReleaseResourceA1(contextProcessingArray300 + 1);
 }
 
 
