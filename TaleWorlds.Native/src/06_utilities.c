@@ -97,6 +97,8 @@
 #define StatusRegisterOffset 0x34                  // 状态寄存器偏移量
 #define ResourceDataOffset 0x20                     // 资源数据偏移量
 #define ArrayElementSize 0x18                       // 数组元素大小
+#define SystemEventDataOffset 0x30                  // 系统事件数据偏移量
+#define SystemEventDataSecondaryOffset 0x34         // 系统事件数据次要偏移量
 #define DataPointerOffset 0x20                     // 数据指针偏移量
 
 // 数据合并函数定义
@@ -13200,8 +13202,8 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
   
   eventProcessingResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventPointer + ExceptionHandlerCallbackOffset10),&systemEventData);
   if (eventProcessingResult == 0) {
-    *(DataWord *)(eventPointer + 0x18) = *(DataWord *)(systemEventData + 0x30);
-    *(DataWord *)(eventPointer + 0x1c) = *(DataWord *)(systemEventData + 0x34);
+    *(DataWord *)(eventPointer + ResourceDescriptorPrimaryOffset) = *(DataWord *)(systemEventData + SystemEventDataOffset);
+    *(DataWord *)(eventPointer + ResourceDescriptorQuaternaryOffset) = *(DataWord *)(systemEventData + SystemEventDataSecondaryOffset);
     ProcessSystemEventB0(*(DataBuffer *)(contextPointer + 0x98),eventPointer);
   }
   return;
@@ -16667,7 +16669,7 @@ DataBuffer ValidateAndProcessFloatRange(int64_t rangeContext,int64_t exceptionHa
     goto RangeValidationFailure;
   }
   if (inputValue < 0.0) {
-joined_r0x00018089322a:
+RangeValidationFailureWithNegativeValue:
     if (inputValue != -1.0) {
 RangeValidationFailure:
       return ComponentDataValidationFailure;
