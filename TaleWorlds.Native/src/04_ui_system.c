@@ -73754,7 +73754,6 @@ void InitializeUILayoutSystem(void)
  * 并计算布局相关的数值用于后续渲染
  */
 void ValidateUILayout(void)
-void ValidateUILayout(void)
 
 {
   ulonglong validationResult;
