@@ -15143,7 +15143,20 @@ void CoreEngineManageThreadResources(void
 
 
 
- void CoreEngineHandleThreadEvents(voidvoid CoreEngineHandleThreadEvents(void
+ /**
+ * @brief 处理线程事件和系统状态
+ * 
+ * 该函数负责处理线程事件和系统状态监控，遍历系统节点并处理线程相关的事件。
+ * 通过内存比较确定节点的位置，并根据需要创建新的节点。
+ * 
+ * @param 无
+ * @return 无
+ * 
+ * @note 此函数使用链表结构组织系统节点
+ * @note 通过内存比较确定节点的插入位置
+ * @note 节点包含处理函数指针和状态标识
+ */
+void CoreEngineHandleThreadEvents(void)
 {
   char StatusBuffer;
   EngineContext *SystemContext;
@@ -190830,7 +190843,7 @@ ProcessUtf8ToUtf16CharacterEncodingValidation(uint64_t CharacterCode,uint64_t *U
 
 
 uint64_t *
-FUN_180168590(uint64_t CharacterCode,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingEx(uint64_t CharacterCode,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
 {
   long long PrimaryDataSize;
   long long BufferStatus;
