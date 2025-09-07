@@ -7002,14 +7002,14 @@ SystemStringProcessingFoundLabel:
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
       if (SystemTertiaryParameter == *StringProcessingResultPointer) {
         LongValue = *(longlong *)(LongValue + 0x10);
-        goto Label_18032b96c;
+        goto StringProcessingValidationLabel;
       }
     }
     LongValue = *(longlong *)(LongValue + 0x10);
     StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + LongValue * 8);
-Label_18032b96c:
+StringProcessingValidationLabel:
     if ((StringProcessingResultPointer != *(uint **)(ModuleInitializationResult + LongValue * 8)) && (LongValue = *(longlong *)(StringProcessingResultPointer + 2), LongValue != 0)
-       ) goto Label_18032b98e;
+       ) goto StringProcessingSuccessLabel;
   }
   InitializeSystemDataTemplate(SystemDataTemplateAddress);
   LongValue = SystemDataTemplateAddress;
