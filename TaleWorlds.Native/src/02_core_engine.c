@@ -6985,8 +6985,8 @@ void CoreEngineInitializeNetworkConnectionPool(void) {
     CoreEngineSetupNetworkConnection(SystemHandle,&NewNode,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
     CurrentNode = NewNode;
   }
-  CurrentNode[6] = 0x49086ba08ab981a7;
-  CurrentNode[7] = 0xa9191d34ad910696;
+  CurrentNode[6] = SystemNodeIdentifierNonary;
+  CurrentNode[7] = SystemNodeIdentifierUndenary;
   CurrentNode[8] = (uint64_t)&NetworkConnectionPoolConfig;
   CurrentNode[9] = 0;
   CurrentNode[10] = (uint64_t)NetworkConnectionInitializer;
@@ -7042,8 +7042,8 @@ void CoreEngineInitializeNetworkMessageQueue(void)
     CoreEngineSetupNetworkQueue(SystemHandle,&NewNode,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
     CurrentNode = NewNode;
   }
-  CurrentNode[6] = 0x402feffe4481676e;
-  CurrentNode[7] = 0xd4c2151109de93a0;
+  CurrentNode[6] = SystemNetworkMessageQueueIdentifierPrimary;
+  CurrentNode[7] = SystemNetworkMessageQueueIdentifierSecondary;
   CurrentNode[8] = &SystemConnectionTemplateB;
   CurrentNode[9] = 0;
   CurrentNode[10] = NetworkMessageHandler;
