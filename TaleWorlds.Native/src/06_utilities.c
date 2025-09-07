@@ -4337,7 +4337,7 @@ extern void* SystemPrimaryResourceTable;
 
 // 全局异常处理器指针A10
 // 功能：存储全局异常处理器A10的指针
-#define GlobalExceptionHandlerPointerA10 DAT_180bf96f0
+#define GlobalExceptionHandlerPointerA10 GlobalSystemExceptionHandler10
 
 // 全局异常处理器指针A11
 // 功能：存储全局异常处理器A11的指针
