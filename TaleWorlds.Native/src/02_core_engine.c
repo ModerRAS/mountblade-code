@@ -2663,6 +2663,16 @@ const void* const SystemConfigurationTemplateSecondary = (void*)0x180a10520;
 
 // 系统数据表常量 - 用于替换UNK_18020f868等变量
 const void* const SystemDataTablePrimary = (void*)0x18020f868;
+
+// FFT处理相关常量
+#define FFTTwiddleFactorTableOffset 0x4cc
+#define FFTTwiddleFactorBoundary1 0x4132
+#define FFTTwiddleFactorBoundary2 0xfb34
+#define FFTTwiddleFactorBoundary3 0x8132
+#define FFTTwiddleFactorShiftValue 0xd
+#define FFTComplexRealPartOffset 0
+#define FFTComplexImagPartOffset 4
+#define FFTComplexSize 8
 const char* const StringTemplateCommandSystem = (const char*)0x180a09e30;
 const char* const StringTemplateResponseSystem = (const char*)0x180a09e38;
 
@@ -166928,7 +166938,12 @@ void ProcessCharacterUtf8InputBuffer(long long CharacterCode)
 
 
 
-3b58d(voidvoid FUN_18013b58d(void
+/**
+ * @brief 初始化字符处理系统
+ * 
+ * 初始化字符处理系统的基本配置和状态，为后续字符处理做准备
+ */
+void InitializeCharacterProcessingSystem(void)
 {
   return;
 }
@@ -277125,6 +277140,8 @@ uint64_t ProcessAudioSignalFFT(void* AudioContext, void* FrequencyFactor, uint32
   float RealPart1;
   float RealPart2;
   float ImaginaryPart2;
+  uint64_t FFTCharacterTablePointer;
+  uint32_t AudioContextCharacterStatusBufferOffset;
   
   FFTStageCount = (uint64_t)(uint32_t)FrequencyFactor;
   do {
