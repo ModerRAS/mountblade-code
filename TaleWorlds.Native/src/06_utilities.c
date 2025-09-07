@@ -42686,6 +42686,18 @@ void Unwind_180903770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 异常数据清理函数A2
+ * 
+ * 该函数负责清理异常数据和验证上下文，处理异常处理器的设置，
+ * 并在必要时终止系统运行
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180903790
+ */
 void Unwind_180903790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -42716,6 +42728,18 @@ void Unwind_180903790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 异常数据清理函数A3
+ * 
+ * 该函数负责清理异常数据和验证上下文，处理异常处理器的设置，
+ * 并在必要时终止系统运行
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_1809037b0
+ */
 void Unwind_1809037b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -42746,6 +42770,18 @@ void Unwind_1809037b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 异常数据清理函数A4
+ * 
+ * 该函数负责清理异常数据和验证上下文，处理异常处理器的设置，
+ * 并在必要时终止系统运行
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_1809037d0
+ */
 void Unwind_1809037d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -99669,3 +99705,44 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @note 原始函数名：Unwind_180910090
  */
 #define ExecuteExceptionHandlerA2 Unwind_180910090
+
+// 系统安全验证标志宏定义 - 美化UNK_变量
+#define SystemSecurityValidationFlagA0 UNK_180a395c0
+#define SystemSecurityValidationFlagA1 UNK_180a395e0
+#define SystemSecurityValidationFlagA2 UNK_180a39600
+#define SystemSecurityValidationFlagA3 UNK_180a39628
+#define SystemSecurityValidationFlagA4 UNK_180a39640
+#define SystemSecurityValidationFlagA5 UNK_180a39660
+#define SystemSecurityValidationFlagA6 UNK_180a39688
+#define SystemSecurityValidationFlagA7 UNK_180a396b0
+#define SystemSecurityValidationFlagA8 UNK_180a396c8
+#define SystemSecurityValidationFlagA9 UNK_180a396f0
+#define SystemSecurityValidationFlagA10 UNK_180a39710
+#define SystemSecurityValidationFlagA11 UNK_180a39728
+#define SystemSecurityValidationFlagA12 UNK_180a39740
+#define SystemSecurityValidationFlagA13 UNK_180a39758
+#define SystemSecurityValidationFlagA14 UNK_180a39768
+#define SystemSecurityValidationFlagA15 UNK_180a39788
+#define SystemSecurityValidationFlagA16 UNK_180a397a8
+#define SystemSecurityValidationFlagA17 UNK_180a397c8
+#define SystemSecurityValidationFlagA18 UNK_180a397d8
+#define SystemSecurityValidationFlagA19 UNK_180a397e8
+#define SystemSecurityValidationFlagA20 UNK_180a397f8
+#define SystemSecurityValidationFlagA21 UNK_180a39820
+#define SystemSecurityValidationFlagA22 UNK_180a39850
+#define SystemSecurityValidationFlagA23 UNK_180a39864
+#define SystemSecurityValidationFlagA24 UNK_180a39870
+#define SystemSecurityValidationFlagA25 UNK_180a39888
+#define SystemSecurityValidationFlagA26 UNK_180a398a8
+#define SystemSecurityValidationFlagA27 UNK_180a398b8
+#define SystemSecurityValidationFlagA28 UNK_180a398d8
+#define SystemSecurityValidationFlagA29 UNK_180a398f0
+#define SystemSecurityValidationFlagA30 UNK_180a39910
+#define SystemSecurityValidationFlagA31 UNK_180a39920
+#define SystemSecurityValidationFlagA32 UNK_180a39940
+#define SystemSecurityValidationFlagA33 UNK_180a39970
+#define SystemSecurityValidationFlagA34 UNK_180a39988
+#define SystemSecurityValidationFlagA35 UNK_180a399a8
+#define SystemSecurityValidationFlagA36 UNK_180a399c0
+#define SystemSecurityValidationFlagA37 UNK_180a399e0
+#define SystemSecurityValidationFlagA38 UNK_180a399f0
