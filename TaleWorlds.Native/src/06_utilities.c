@@ -76000,6 +76000,12 @@ void Unwind_180909f60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理互斥量资源
+ * 
+ * 该函数负责销毁和清理系统中的互斥量资源，确保线程同步资源的正确释放。
+ * 
+ */
 void CleanupMutexResources(void)
 
 {
@@ -76009,6 +76015,16 @@ void CleanupMutexResources(void)
 
 
 
+/**
+ * @brief 处理异常数据并执行清理
+ * 
+ * 该函数处理异常数据，并在处理完成后执行系统清理操作。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
 void ProcessExceptionDataWithCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -76020,6 +76036,16 @@ void ProcessExceptionDataWithCleanup(DataBuffer operationBase,int64_t dataBuffer
 
 
 
+/**
+ * @brief 处理系统参数并执行清理
+ * 
+ * 该函数处理系统参数，并在处理完成后执行系统清理操作。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
 void ProcessSystemParametersWithCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -76031,6 +76057,14 @@ void ProcessSystemParametersWithCleanup(DataBuffer operationBase,int64_t dataBuf
 
 
 
+/**
+ * @brief 执行内存清理操作
+ * 
+ * 该函数执行内存清理操作，确保系统资源的正确释放。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ */
 void ExecuteMemoryCleanupOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -76040,6 +76074,14 @@ void ExecuteMemoryCleanupOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 执行异常处理回调
+ * 
+ * 该函数执行异常处理回调函数，处理特定的异常情况。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ */
 void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -76054,6 +76096,14 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer
 
 
 
+/**
+ * @brief 执行异常内存操作
+ * 
+ * 该函数执行异常相关的内存操作，确保异常情况下的内存安全。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ */
 void ExecuteExceptionMemoryOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -76063,6 +76113,14 @@ void ExecuteExceptionMemoryOperation(DataBuffer operationBase,int64_t dataBuffer
 
 
 
+/**
+ * @brief 执行异常上下文清理
+ * 
+ * 该函数清理异常上下文，遍历所有相关的上下文偏移量并执行相应的清理操作。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ */
 void ExecuteExceptionContextCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -76085,6 +76143,14 @@ void ExecuteExceptionContextCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 执行数据缓冲区内存操作
+ * 
+ * 该函数执行数据缓冲区相关的内存操作，确保数据缓冲区的正确处理。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ */
 void ExecuteDataBufferMemoryOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
