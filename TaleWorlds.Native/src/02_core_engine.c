@@ -180304,8 +180304,8 @@ void ProcessCharacterCodeWithMemoryAllocation(uint64_t CharacterCode,uint64_t Sy
   long long EncodingConversionResult;
   long long SystemStringIndex;
   uint64_t SystemStatusCode;
-  bool ValidationByteFlag3;
-  bool ProcessingByte4;
+  bool ValidationCompletedFlag;
+  bool ProcessingSuccessFlag;
   uint64_t SystemRegisterFlagX8;
   uint32_t BufferOffset;
   uint32_t SystemUnsignedValue54;
