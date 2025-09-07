@@ -112499,7 +112499,7 @@ void ProcessSystemDataStructureEx(int *SystemContextPointer,uint64_t *Utf8Buffer
     if (ValidationCode + 1 < StringComparisonResult) {
       IntegerValue = StringComparisonResult;
     }
-    FUN_18011dc70(SystemContextPointer,IntegerValue);
+    ProcessReferenceCount(SystemContextPointer,IntegerValue);
     ValidationCode = *SystemContextPointer;
   }
   *(void *)(*(long long *)(SystemContextPointer + 2) + (long long)ValidationCode * 8) = *Utf8BufferSize;
@@ -120637,7 +120637,7 @@ LAB_180125a82:
     if (0 < (int)UnicodeCodePoint) {
       MemoryAddressMask = (unsigned long long)UnicodeCodePoint;
     }
-    FUN_18011dc70(SystemContext + 0x1ad0,MemoryAddressMask);
+    ProcessReferenceCount(SystemContext + 0x1ad0,MemoryAddressMask);
   }
   *(int *)(SystemContext + 0x1ad0) = MutexLockResult;
   IntegerValue = *(int *)(SystemContext + 0x1bc4);
@@ -120966,7 +120966,7 @@ LAB_180125a82:
     if (RemainingSpace + 1 < validationResult) {
       MutexLockResult = validationResult;
     }
-    FUN_18011dc70(ReferenceCountPointer,MutexLockResult);
+    ProcessReferenceCount(ReferenceCountPointer,MutexLockResult);
     RemainingSpace = *ReferenceCountPointer;
   }
   *(void *)(*(long long *)(SystemContextPointer + 0x1620) + (long long)RemainingSpace * 8) = UnicodeCodePoint;
@@ -121590,7 +121590,7 @@ LAB_180125a82:
     if (ValidationCode + 1 < StringComparisonResult) {
       IntegerValue = StringComparisonResult;
     }
-    FUN_18011dc70(SystemContextPointer,IntegerValue);
+    ProcessReferenceCount(SystemContextPointer,IntegerValue);
     ValidationCode = *SystemContextPointer;
   }
   *(long long *)(*(long long *)(SystemContextPointer + 2) + (long long)ValidationCode * 8) = Utf8BufferSize;
@@ -121673,7 +121673,7 @@ LAB_180125a82:
         if (ValidationCode + 1 < StringComparisonResult) {
           IntegerValue = StringComparisonResult;
         }
-        FUN_18011dc70(SystemContextPointer,IntegerValue);
+        ProcessReferenceCount(SystemContextPointer,IntegerValue);
         ValidationCode = *SystemContextPointer;
       }
       *(int **)(*(long long *)(SystemContextPointer + 2) + (long long)ValidationCode * 8) = Utf8BufferSize;
@@ -123510,7 +123510,7 @@ LAB_180126e9d:
     if (0 < (int)ProcessStringBuffer) {
       Utf16Char5 = (unsigned long long)ProcessStringBuffer;
     }
-    FUN_18011dc70(ReferenceCountPointer,Utf16Char5);
+    ProcessReferenceCount(ReferenceCountPointer,Utf16Char5);
   }
   *ReferenceCountPointer = 0;
   Utf16Char5 = PrimaryReturnCode;
@@ -123537,7 +123537,7 @@ LAB_180126e9d:
           if (IntegerValue3 + 1 < IntegerValue2) {
             ComputedResult = IntegerValue2;
           }
-          FUN_18011dc70(ReferenceCountPointer,ComputedResult);
+          ProcessReferenceCount(ReferenceCountPointer,ComputedResult);
           IntegerValue3 = *ReferenceCountPointer;
         }
         *(long long *)(*(long long *)(DataStructureCounter + 0x1620) + (long long)IntegerValue3 * 8) = AllocatedMemorySize;
@@ -123559,10 +123559,10 @@ LAB_180126e9d:
     if (0 < (int)ProcessStringBuffer) {
       Utf16Char5 = (unsigned long long)ProcessStringBuffer;
     }
-    FUN_18011dc70(PrimaryProcessingStatusFlag,Utf16Char5);
+    ProcessReferenceCount(PrimaryProcessingStatusFlag,Utf16Char5);
   }
   *PrimaryProcessingStatusFlag = 0;
-  FUN_18011dc70(PrimaryProcessingStatusFlag,*(uint32_t *)(SystemOffsetValue + 0x1aa0));
+  ProcessReferenceCount(PrimaryProcessingStatusFlag,*(uint32_t *)(SystemOffsetValue + 0x1aa0));
   ProcessStringBuffer = *(uint *)(SystemOffsetValue + 0x1aa0);
   Utf16Char5 = PrimaryReturnCode;
   Utf16Char8 = PrimaryReturnCode;
@@ -123694,7 +123694,7 @@ LAB_180126e9d:
     if (0 < (int)MemoryAllocationIndex) {
       Utf16Char4 = (unsigned long long)MemoryAllocationIndex;
     }
-    FUN_18011dc70(ReferenceCountPointer,Utf16Char4);
+    ProcessReferenceCount(ReferenceCountPointer,Utf16Char4);
   }
   *ReferenceCountPointer = 0;
   Utf16Char4 = Utf16Char5;
@@ -123721,7 +123721,7 @@ LAB_180126e9d:
           if (IntegerValue2 + 1 < IntegerValue1) {
             ComputedResult = IntegerValue1;
           }
-          FUN_18011dc70(ReferenceCountPointer,ComputedResult);
+          ProcessReferenceCount(ReferenceCountPointer,ComputedResult);
           IntegerValue2 = *ReferenceCountPointer;
         }
         *(long long *)(*(long long *)(DataStructureCounter + 0x1620) + (long long)IntegerValue2 * 8) = AllocatedMemorySize;
@@ -123743,10 +123743,10 @@ LAB_180126e9d:
     if (0 < (int)MemoryAllocationIndex) {
       Utf16Char4 = (unsigned long long)MemoryAllocationIndex;
     }
-    FUN_18011dc70(PrimaryProcessingStatusFlag,Utf16Char4);
+    ProcessReferenceCount(PrimaryProcessingStatusFlag,Utf16Char4);
   }
   *PrimaryProcessingStatusFlag = 0;
-  FUN_18011dc70(PrimaryProcessingStatusFlag,*(uint32_t *)(SystemContext + 0x1aa0));
+  ProcessReferenceCount(PrimaryProcessingStatusFlag,*(uint32_t *)(SystemContext + 0x1aa0));
   MemoryAllocationIndex = *(uint *)(SystemContext + 0x1aa0);
   Utf16Char4 = Utf16Char5;
   Utf16Char7 = Utf16Char5;
@@ -123882,7 +123882,7 @@ LAB_180126e9d:
     if (0 < ComputedResult) {
       IntegerValue3 = ComputedResult;
     }
-    FUN_18011dc70(ReferenceCountPointer,IntegerValue3);
+    ProcessReferenceCount(ReferenceCountPointer,IntegerValue3);
   }
   *ReferenceCountPointer = CONCAT22(SystemStringBufferMid,CONCAT11(SystemStringBufferLow,RegisterValueR12B));
   IntegerValue3 = CONCAT22(SystemStringBufferMid,CONCAT11(SystemStringBufferLow,RegisterValueR12B));
@@ -123911,7 +123911,7 @@ LAB_180126e9d:
           if (ComputedResult + 1 < IntegerValue9) {
             ValidationResult = IntegerValue9;
           }
-          FUN_18011dc70(ReferenceCountPointer,ValidationResult);
+          ProcessReferenceCount(ReferenceCountPointer,ValidationResult);
           ComputedResult = *ReferenceCountPointer;
         }
         *(long long *)(*(long long *)(SystemContextValue + 0x1620) + (long long)ComputedResult * 8) = MemoryBlockIndex;
@@ -123932,10 +123932,10 @@ LAB_180126e9d:
     if (0 < ComputedResult) {
       IntegerValue3 = ComputedResult;
     }
-    FUN_18011dc70(ReferenceCountPointer,IntegerValue3);
+    ProcessReferenceCount(ReferenceCountPointer,IntegerValue3);
   }
   *ReferenceCountPointer = CONCAT22(SystemStringBufferMid,CONCAT11(SystemStringBufferLow,RegisterValueR12B));
-  FUN_18011dc70(ReferenceCountPointer,*(uint32_t *)(SystemContext + 0x1aa0));
+  ProcessReferenceCount(ReferenceCountPointer,*(uint32_t *)(SystemContext + 0x1aa0));
   ComputedResult = *(int *)(SystemContext + 0x1aa0);
   IntegerValue3 = CONCAT22(SystemStringBufferMid,CONCAT11(SystemStringBufferLow,RegisterValueR12B));
   if (ComputedResult != 0) {
@@ -124021,7 +124021,7 @@ LAB_180126e9d:
         if (ComputedResult + 1 < MutexLockResult) {
           ValidationResult = MutexLockResult;
         }
-        FUN_18011dc70(*(void *)(MemoryBlockIndex + 8),ValidationResult);
+        ProcessReferenceCount(*(void *)(MemoryBlockIndex + 8),ValidationResult);
         ComputedResult = *RegisterSourceIndex;
       }
       *(long long *)(*(long long *)(RegisterSourceIndex + 2) + (long long)ComputedResult * 8) = MemoryBlockIndex;
@@ -124041,10 +124041,10 @@ LAB_180126e9d:
     if (0 < ComputedResult) {
       MutexLockResult = ComputedResult;
     }
-    FUN_18011dc70(ReferenceCountPointer,MutexLockResult);
+    ProcessReferenceCount(ReferenceCountPointer,MutexLockResult);
   }
   *ReferenceCountPointer = CONCAT22(SystemStringBufferMid,CONCAT11(SystemStringBufferLow,RegisterValueR12B));
-  FUN_18011dc70(ReferenceCountPointer,*(uint32_t *)(SystemContext + 0x1aa0));
+  ProcessReferenceCount(ReferenceCountPointer,*(uint32_t *)(SystemContext + 0x1aa0));
   ComputedResult = *(int *)(SystemContext + 0x1aa0);
   MutexLockResult = CONCAT22(SystemStringBufferMid,CONCAT11(SystemStringBufferLow,RegisterValueR12B));
   if (ComputedResult != 0) {
@@ -124116,10 +124116,10 @@ LAB_180126e9d:
     if (0 < RemainingSpace) {
       ValidationResult = RemainingSpace;
     }
-    FUN_18011dc70(ReferenceCountPointer,ValidationResult);
+    ProcessReferenceCount(ReferenceCountPointer,ValidationResult);
   }
   *ReferenceCountPointer = CONCAT22(SystemStringBufferMid,CONCAT11(SystemStringBufferLow,RegisterValueR12B));
-  FUN_18011dc70(ReferenceCountPointer,*(uint32_t *)(SystemContext + 0x1aa0));
+  ProcessReferenceCount(ReferenceCountPointer,*(uint32_t *)(SystemContext + 0x1aa0));
   RemainingSpace = *(int *)(SystemContext + 0x1aa0);
   ValidationResult = CONCAT22(SystemStringBufferMid,CONCAT11(SystemStringBufferLow,RegisterValueR12B));
   if (RemainingSpace != 0) {
@@ -124176,9 +124176,9 @@ LAB_180126e9d:
   uint32_t SystemStringBufferHigh;
   int *RegisterGeneral14;
   
-  FUN_18011dc70();
+  ProcessReferenceCount();
   *RegisterGeneral14 = RegisterValueR12D;
-  FUN_18011dc70();
+  ProcessReferenceCount();
   ValidationCode = *(int *)(SystemContext + 0x1aa0);
   if (ValidationCode != 0) {
     AllocatedMemorySize = CONCAT44(SystemStringBufferHigh,RegisterValueR12D);
@@ -124300,7 +124300,7 @@ LAB_180126e9d:
           if (0 < (int)CalculatedCodePoint) {
             MemoryAllocationIndex = (unsigned long long)CalculatedCodePoint;
           }
-          FUN_18011dc70(SystemStatusBuffer,MemoryAllocationIndex);
+          ProcessReferenceCount(SystemStatusBuffer,MemoryAllocationIndex);
         }
         *SystemStatusBuffer = 0;
         SystemStatusBuffer = SystemStatusBuffer + 4;
@@ -124368,7 +124368,7 @@ LAB_180126e9d:
         if (IntegerValue3 < ValidationResult) {
           ValidationCode = ValidationResult;
         }
-        FUN_18011dc70(ReferenceCountPointer,ValidationCode);
+        ProcessReferenceCount(ReferenceCountPointer,ValidationCode);
       }
       *ReferenceCountPointer = IntegerValue3;
       if (*(int *)(LoopCounter9 + 200) != 0) {
@@ -124396,7 +124396,7 @@ LAB_180126e9d:
               if (ValidationResult + 1 < MutexLockResult) {
                 IntegerValue3 = MutexLockResult;
               }
-              FUN_18011dc70(ReferenceCountPointer,IntegerValue3);
+              ProcessReferenceCount(ReferenceCountPointer,IntegerValue3);
               ValidationResult = *ReferenceCountPointer;
             }
             *(int **)(*(long long *)(LoopCounter9 + 0xc0) + (long long)ValidationResult * 8) = pComputedResult;
@@ -124500,7 +124500,7 @@ LAB_180126e9d:
           if (0 < (int)MemoryAddressMask) {
             SystemVariable9 = (unsigned long long)MemoryAddressMask;
           }
-          FUN_18011dc70(StatusBuffer,SystemVariable9);
+          ProcessReferenceCount(StatusBuffer,SystemVariable9);
         }
         *StatusBuffer = 0;
         StatusBuffer = StatusBuffer + 4;
@@ -124567,7 +124567,7 @@ LAB_180126e9d:
         if (IntegerValue2 < RemainingSpace) {
           ValidationCode = RemainingSpace;
         }
-        FUN_18011dc70(ReferenceCountPointer,ValidationCode);
+        ProcessReferenceCount(ReferenceCountPointer,ValidationCode);
       }
       *ReferenceCountPointer = IntegerValue2;
       if (*(int *)(loopCounter8 + 200) != 0) {
@@ -124595,7 +124595,7 @@ LAB_180126e9d:
               if (RemainingSpace + 1 < ValidationResult) {
                 IntegerValue2 = ValidationResult;
               }
-              FUN_18011dc70(ReferenceCountPointer,IntegerValue2);
+              ProcessReferenceCount(ReferenceCountPointer,IntegerValue2);
               RemainingSpace = *ReferenceCountPointer;
             }
             *(int **)(*(long long *)(loopCounter8 + 0xc0) + (long long)RemainingSpace * 8) = pMutexLockResult;
@@ -126011,7 +126011,7 @@ unsigned long long FUN_180128bd0(uint64_t SystemContextPointer,uint64_t Utf8Buff
     if (ValidationResult + 1 < RemainingSpace) {
       StringComparisonResult = RemainingSpace;
     }
-    FUN_18011dc70(ReferenceCountPointer3,StringComparisonResult);
+    ProcessReferenceCount(ReferenceCountPointer3,StringComparisonResult);
     ValidationResult = *ReferenceCountPointer3;
   }
   *(unsigned long long *)(*(long long *)(MemoryBlockIndex + 0x1ab8) + (long long)ValidationResult * 8) = ProcessingStatusFlag;
@@ -126029,7 +126029,7 @@ unsigned long long FUN_180128bd0(uint64_t SystemContextPointer,uint64_t Utf8Buff
       if (ValidationResult + 1 < IntegerValue2) {
         IntegerValue1 = IntegerValue2;
       }
-      FUN_18011dc70(ReferenceCountPointer3,IntegerValue1);
+      ProcessReferenceCount(ReferenceCountPointer3,IntegerValue1);
       IntegerValue1 = *ReferenceCountPointer3;
     }
   }
@@ -126044,7 +126044,7 @@ unsigned long long FUN_180128bd0(uint64_t SystemContextPointer,uint64_t Utf8Buff
         if (ValidationResult + 1 < IntegerValue2) {
           IntegerValue1 = IntegerValue2;
         }
-        FUN_18011dc70(ReferenceCountPointer3,IntegerValue1);
+        ProcessReferenceCount(ReferenceCountPointer3,IntegerValue1);
         ValidationResult = *ReferenceCountPointer3;
       }
       if (0 < ValidationResult) {
@@ -126056,7 +126056,7 @@ unsigned long long FUN_180128bd0(uint64_t SystemContextPointer,uint64_t Utf8Buff
       goto LAB_180128faf;
     }
     if (*(int *)(MemoryBlockIndex + 0x1aa4) == 0) {
-      FUN_18011dc70(ReferenceCountPointer3,8);
+      ProcessReferenceCount(ReferenceCountPointer3,8);
       IntegerValue1 = *ReferenceCountPointer3;
     }
   }
@@ -141956,7 +141956,7 @@ d7c0(long long SystemContextPointervoid ProcessSystemMemoryAddress(long long Sys
   ValidationResultPointer = *(int **)(*(long long *)(SystemDataTablePointer + 0x1af8) + 0x2e8);
   IntegerValue0 = ValidationResultPointer[0x1c];
   if (IntegerValue0 == ValidationResultPointer[0x1d]) {
-    FUN_18011dc70(ValidationResultPointer + 0x1c);
+    ProcessReferenceCount(ValidationResultPointer + 0x1c);
     IntegerValue0 = ValidationResultPointer[0x1c];
   }
   *(void *)(*(long long *)(ValidationResultPointer + 0x1e) + (long long)IntegerValue0 * 8) = MemoryAllocationIndex;
@@ -156596,7 +156596,7 @@ uint32_t * FUN_180136a10(uint32_t *SystemContextPointer,uint32_t Utf8BufferSize
     if (ValidationCode + 1 < StringComparisonResult) {
       IntegerValue = StringComparisonResult;
     }
-    FUN_18011dc70(SystemContextPointer + 8,IntegerValue);
+    ProcessReferenceCount(SystemContextPointer + 8,IntegerValue);
     ValidationCode = SystemContextPointer[8];
   }
   *(long long *)(*(long long *)(SystemContextPointer + 10) + (long long)ValidationCode * 8) = Utf8BufferSize;
@@ -166440,7 +166440,7 @@ long long FUN_18013d540(void
     if (0 < StringComparisonResult) {
       IntegerValue = StringComparisonResult;
     }
-    FUN_18011dc70(SystemContextPointer,IntegerValue);
+    ProcessReferenceCount(SystemContextPointer,IntegerValue);
     *SystemContextPointer = 0;
     return;
   }
