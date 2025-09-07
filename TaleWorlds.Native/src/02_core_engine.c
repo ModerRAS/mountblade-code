@@ -119973,7 +119973,24 @@ LAB_1801256ac:
 
 
 
-5780(uint64_t SystemContextPointer,uint64_t Utf8BufferSizevoid ProcessSystemMemoryAllocationAndConfiguration(uint64_t SystemContextPointer,uint64_t Utf8BufferSize
+/**
+ * @brief 处理系统内存分配和配置
+ * 
+ * 该函数负责处理系统的内存分配和配置操作，包括：
+ * - 管理内存池的分配和释放
+ * - 处理浮点数计算和数据配置
+ * - 维护系统状态和标志位
+ * - 处理内存块的初始化和清理
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return 无
+ * 
+ * @note 此函数是系统内存管理的核心函数
+ * @note 涉及复杂的内存分配和配置逻辑
+ * @note 包含多个循环处理和状态检查
+ */
+void ProcessSystemMemoryAllocationAndConfiguration(uint64_t SystemContextPointer,uint64_t Utf8BufferSize
 {
   int LockResult;
   long long bufferAllocationStatus;
@@ -200626,7 +200643,7 @@ void ProcessSystemContextDataEncoding(long long SystemContextPointer,long long *
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(SystemContextPtr);
   }
-LAB_18017a85e:
+LAB_18017a85e:  // 系统偏移值设置标签
   if ((SecondaryProcessingStatusFlag == StatusBuffer) || (SystemOffsetValue = 1, (unsigned long long)SystemContextPtr[4] < (unsigned long long)SecondaryProcessingStatusFlag[4])) {
     SystemOffsetValue = 0;
   }

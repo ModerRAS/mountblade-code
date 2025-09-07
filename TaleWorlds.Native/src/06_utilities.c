@@ -59516,7 +59516,17 @@ void Unwind_1809074e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809074f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理器指针A0
+ * 
+ * 初始化异常处理器指针A0，用于系统异常处理机制的初始化。
+ * 这个函数在系统启动时调用，确保异常处理系统的正常运行。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void InitializeExceptionHandlerPointerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
