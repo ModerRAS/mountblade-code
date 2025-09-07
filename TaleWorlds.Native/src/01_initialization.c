@@ -46766,7 +46766,7 @@ void* AllocateSystemMemoryWithMutex(long long SystemResourceManager,long long Co
         SystemMemoryBuffer1F8 = ConfigurationDataPointer;
         *(int *)(ConfigurationDataPointer + 0x120) = *(int *)(ConfigurationDataPointer + 0x120) + 1;
         UNLOCK();
-        systemCounter = ReadFile(*(void* *)(ConfigurationDataPointer + 0x128),uRam00000000000001f0,ThreadContext & SystemMaximumUnsigned32BitValue,0,
+        systemCounter = ReadFile(*(void* *)(ConfigurationDataPointer + 0x128),SystemMemoryBuffer1F0,ThreadContext & SystemMaximumUnsigned32BitValue,0,
                          0);
         if (systemCounter != 0) {
             UpdateContextManagerSystem(SystemContextManagerPointer,&SystemStateUpdateData);
