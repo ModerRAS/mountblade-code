@@ -199990,7 +199990,9 @@ uint64_t * FUN_180179ec0(uint64_t *SystemContextPointer,unsigned long long Utf8B
 
 
 
-7a030(unsigned long long *SystemContextPointervoid FUN_18017a030(unsigned long long *SystemContextPointer
+// 系统上下文数据清理函数
+// 清理系统上下文数据，释放相关资源并重置状态
+void CleanupSystemContextData(unsigned long long *SystemContextPointer
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -200026,7 +200028,9 @@ uint64_t * FUN_180179ec0(uint64_t *SystemContextPointer,unsigned long long Utf8B
 
 
 
-7a060(long long SystemContextPointervoid FUN_18017a060(long long SystemContextPointer
+7a060(long long SystemContextPointer// 系统内存引用计数处理函数
+// 处理系统内存的引用计数，管理内存资源的生命周期
+void ProcessMemoryReferenceCount(long long SystemContextPointer
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -270291,7 +270295,42 @@ const void* const SystemStringConstantWideChar = (void*)0x180a13110;
 const void* const SystemStringConstantMultiByte = (void*)0x180a13120;
 const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 
+// 系统上下文和UTF-8处理函数组 - 用于替换FUN_18017a0xx等函数
+// 原始函数名：FUN_18017a030 - 系统上下文数据清理函数
+#define CleanupSystemContextData FUN_18017a030
+// 原始函数名：FUN_18017a060 - 系统内存引用计数处理函数
+#define ProcessMemoryReferenceCount FUN_18017a060
+// 原始函数名：FUN_18017a0a0 - UTF-16到UTF-8编码转换缓冲区处理函数
+#define ProcessUtf16ToUtf8ConversionBuffer FUN_18017a0a0
+// 原始函数名：FUN_18017a0f0 - UTF-8编码缓冲区处理函数
+#define ProcessUtf8EncodingBuffer FUN_18017a0f0
+// 原始函数名：FUN_18017a130 - 系统上下文缓冲区重置函数
+#define ResetSystemContextBuffer FUN_18017a130
+// 原始函数名：FUN_18017a160 - 系统主上下文缓冲区处理函数
+#define ProcessPrimarySystemContextBuffer FUN_18017a160
+// 原始函数名：FUN_18017a1a0 - 系统主上下文缓冲区设置函数
+#define SetPrimarySystemContextBuffer FUN_18017a1a0
+// 原始函数名：FUN_18017a1c0 - 系统资源释放和清理函数
+#define ReleaseAndCleanupSystemResources FUN_18017a1c0
+// 原始函数名：FUN_18017a200 - 系统次级上下文缓冲区处理函数
+#define ProcessSecondarySystemContextBuffer FUN_18017a200
+// 原始函数名：FUN_18017a240 - UTF-16编码处理和系统事件函数
+#define ProcessUtf16EncodingAndSystemEvent FUN_18017a240
+// 原始函数名：FUN_18017a270 - 系统循环处理和事件触发函数
+#define ProcessSystemLoopAndTriggerEvent FUN_18017a270
+// 原始函数名：FUN_18017a290 - UTF-16编码处理和系统事件备用函数
+#define ProcessUtf16EncodingAndSystemEventAlt FUN_18017a290
+// 原始函数名：FUN_18017a2c0 - 系统上下文和UTF-8大小处理函数
+#define ProcessSystemContextAndUtf8Size FUN_18017a2c0
+// 原始函数名：FUN_18017a600 - 系统上下文数据编码处理函数
+#define ProcessSystemContextDataEncoding FUN_18017a600
+// 原始函数名：FUN_18017a9c0 - 系统数据表处理函数
+#define ProcessSystemDataTable FUN_18017a9c0
+// 原始函数名：FUN_18017aa30 - 系统数据表清理函数
+#define CleanupSystemDataTable FUN_18017aa30
 
-
+// 系统编码转换主处理函数
+// 原始函数名：FUN_18017b400 - UTF-16到UTF-8编码转换主处理函数
+#define ConvertUtf16ToUtf8MainProcessor FUN_18017b400
 
 

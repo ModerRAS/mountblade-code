@@ -20980,7 +20980,7 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
                                          *(DataWord *)(operationBase[1] + 0x20),
                                          *(DataWord *)(validationContext + 0x78),operationResult,dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress
                                         ), (int)operationResult == 0)) &&
-                 ((operationResult = (**(FunctionPointer**)(*operationBase + 8))(operationBase,&UNK_1809864dc), (int)operationResult == 0 &&
+                 ((operationResult = (**(FunctionPointer**)(*operationBase + 8))(operationBase,&DataProcessingConfigurationTableA1), (int)operationResult == 0 &&
                   (((*(uint *)(operationBase + 3) & 2) != 0 ||
                    (operationResult = ProcessFloatingPointDataA0(operationBase), (int)operationResult == 0)))))) {
                 operationResult = 0;
@@ -96685,7 +96685,7 @@ void SetDefaultExceptionHandler09(void)
 void SetDefaultExceptionHandler01(void)
 
 {
-  _DAT_180bf9bd0 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerBPointerTable = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -96874,7 +96874,7 @@ void SetDefaultExceptionHandler09(void)
 void SetDefaultExceptionHandler10(void)
 
 {
-  _DAT_180bf9f30 = &DefaultExceptionHandlerB;
+  SystemExceptionHandlerPointerTableA1 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -96895,7 +96895,7 @@ void SetDefaultExceptionHandler10(void)
 void SetDefaultExceptionHandler11(void)
 
 {
-  _DAT_180bf9f90 = &DefaultExceptionHandlerB;
+  SystemExceptionHandlerPointerTableA2 = &DefaultExceptionHandlerB;
   return;
 }
 
