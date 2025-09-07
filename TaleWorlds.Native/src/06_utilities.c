@@ -47306,7 +47306,7 @@ void ManageExceptionHandlerStatusA0(DataBuffer operationBase,int64_t dataBuffer,
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset);
   if (*(FunctionPointer**)(exceptionHandlerContext + 400) != (code *)0x0) {
     (**(FunctionPointer**)(exceptionHandlerContext + 400))(exceptionHandlerContext + 0x180,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
