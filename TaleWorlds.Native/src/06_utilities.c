@@ -1854,6 +1854,14 @@
 // 功能：临时异常处理程序，用于系统初始化期间
 #define TemporaryExceptionHandler UNK_180a3c3e0
 
+// 原始变量名：UNK_180a3cf50 - 异常处理器A
+// 功能：异常处理器的第一种状态
+#define ExceptionHandlerA UNK_180a3cf50
+
+// 原始变量名：UNK_180a30778 - 异常处理器B
+// 功能：异常处理器的第二种状态
+#define ExceptionHandlerB UNK_180a30778
+
 // 原始函数名：FUN_180943090 - 线程本地存储初始化函数A3
 // 功能：初始化线程本地存储A3
 #define InitializeThreadLocalStorageA3 FUN_180943090
@@ -17915,9 +17923,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
   DataWord uStack_90;
   DataWord uStack_88;
   ByteFlag uStack_80;
-  ByteFlag auStack_78 [8];
-  ByteFlag auStack_70 [8];
-  ByteFlag auStack_68 [40];
+  ByteFlag validationBuffer1 [8];
+  ByteFlag validationBuffer2 [8];
+  ByteFlag validationBuffer3 [40];
   
   securityCheckResult = *(uint *)(operationBase + 0x6c);
   dataFlags = 0;
@@ -17977,7 +17985,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
             }
           }
           else if (arrayIndex == 5) {
-            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),auStack_78);
+            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),validationBuffer1);
             validationContextPointer3 = plStack_108;
             if (arrayIndex == 0) {
               puStack_d8 = &SystemValidationDataTableA3;
@@ -18003,7 +18011,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
             }
           }
           else if (arrayIndex == 6) {
-            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),auStack_70);
+            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),validationBuffer2);
             validationContextPointer3 = plStack_108;
             if (arrayIndex == 0) {
               puStack_b8 = &SystemValidationDataTableA7;
@@ -18016,7 +18024,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
           }
           else if ((arrayIndex == 7) &&
                   (arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),
-                                               auStack_68), validationContextPointer3 = plStack_108, arrayIndex == 0)) {
+                                               validationBuffer3), validationContextPointer3 = plStack_108, arrayIndex == 0)) {
             operationResult = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
             calculatedValue = (int)dataFlags + 1;
             arrayIndex = inputParameter6;
@@ -25325,7 +25333,7 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
   
   systemDataBuffer = ExecuteSecurityValidation(dataBuffer,ainputDataWord,1,0x54495645);
   if (((((int)systemDataBuffer == 0) &&
-       (systemDataBuffer = ExecuteSecurityValidation(dataBuffer,auStack_68,0,0x42495645), (int)systemDataBuffer == 0)) &&
+       (systemDataBuffer = ExecuteSecurityValidation(dataBuffer,validationBuffer3,0,0x42495645), (int)systemDataBuffer == 0)) &&
       (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + 0x10), (int)systemDataBuffer == 0)) &&
      (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + 0xd8), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
@@ -25359,7 +25367,7 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
           } while (operationResult < (int)memoryBaseAddress);
         }
                     // WARNING: Subroutine does not return
-        ExecutePortControlOperation(dataBuffer,auStack_68);
+        ExecutePortControlOperation(dataBuffer,validationBuffer3);
       }
     }
   }
@@ -26832,7 +26840,7 @@ ValidationLabelD:
     return (uint64_t)operationResult;
   }
                     // WARNING: Subroutine does not return
-  ExecutePortControlOperation(dataBuffer,auStack_68);
+  ExecutePortControlOperation(dataBuffer,validationBuffer3);
 }
 
 
@@ -31074,7 +31082,7 @@ uint64_t ValidatePortControlOperation(int64_t operationBase,int64_t *dataBuffer)
   uint64_t validationOutcome;
   uint auStackX_18 [2];
   uint stackByteBuffer [2];
-  ByteFlag auStack_68 [32];
+  ByteFlag validationBuffer3 [32];
   ByteFlag ainputDataWord [32];
   uint64_t operationResult;
   
@@ -31082,7 +31090,7 @@ uint64_t ValidatePortControlOperation(int64_t operationBase,int64_t *dataBuffer)
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  operationResult = ExecuteSecurityValidation(dataBuffer,auStack_68,0,0x42414e53);
+  operationResult = ExecuteSecurityValidation(dataBuffer,validationBuffer3,0,0x42414e53);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -31171,7 +31179,7 @@ ValidationCompleteHandler2:
       }
       if ((int)operationResult == 0) {
                     // WARNING: Subroutine does not return
-        ExecutePortControlOperation(dataBuffer,auStack_68);
+        ExecutePortControlOperation(dataBuffer,validationBuffer3);
       }
     }
   }
@@ -31848,7 +31856,7 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t validationContext,int6
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  memoryBaseAddress = ExecuteSecurityValidation(dataBuffer,auStack_78,0,0x424e5254);
+  memoryBaseAddress = ExecuteSecurityValidation(dataBuffer,validationBuffer1,0,0x424e5254);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
@@ -32123,7 +32131,7 @@ ProcessCheckpointValidationExit2:
   }
   if ((int)memoryBaseAddress == 0) {
                     // WARNING: Subroutine does not return
-    ExecutePortControlOperation(dataBuffer,auStack_78);
+    ExecutePortControlOperation(dataBuffer,validationBuffer1);
   }
   return memoryBaseAddress;
 }
@@ -32938,12 +32946,12 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
 {
   DataBuffer systemDataBuffer;
   DataWord auStackX_18 [2];
-  ByteFlag auStack_68 [64];
+  ByteFlag validationBuffer3 [64];
   ByteFlag auStack_28 [32];
   
   systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,auStack_28,1,0x5453494c,0x46464542);
   if (((int)systemDataBuffer == 0) &&
-     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,auStack_68,0,0x42464542,0), (int)systemDataBuffer == 0)) {
+     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,validationBuffer3,0,0x42464542,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0x10);
       if (((int)systemDataBuffer == 0) &&
@@ -33067,7 +33075,7 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
           if (((int)systemDataBuffer == 0) &&
              (systemDataBuffer = ValidateDataFormatStructure(dataBuffer,operationBase + 0x40,0x3d), (int)systemDataBuffer == 0)) {
                     // WARNING: Subroutine does not return
-            ExecuteSystemCleanupRoutine(dataBuffer,auStack_68);
+            ExecuteSystemCleanupRoutine(dataBuffer,validationBuffer3);
           }
         }
         else {
@@ -33337,11 +33345,11 @@ uint64_t ValidateDataBufferOperation(int64_t operationBase,DataBuffer *dataBuffe
 {
   uint systemDataBuffer;
   uint64_t operationResult;
-  ByteFlag auStack_70 [64];
+  ByteFlag validationBuffer2 [64];
   ByteFlag auStack_30 [40];
   
   operationResult = ExecuteDataBufferOperation(dataBuffer,auStack_30,1,0x5453494c,operationFlagA);
-  if (((int)operationResult == 0) && (operationResult = ExecuteDataBufferOperation(dataBuffer,auStack_70,0,operationFlagB,0), (int)operationResult == 0))
+  if (((int)operationResult == 0) && (operationResult = ExecuteDataBufferOperation(dataBuffer,validationBuffer2,0,operationFlagB,0), (int)operationResult == 0))
   {
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0x10);
@@ -33349,7 +33357,7 @@ uint64_t ValidateDataBufferOperation(int64_t operationBase,DataBuffer *dataBuffe
       if ((systemDataBuffer == 0) &&
          ((operationMode == '\0' || (operationResult = ValidateDataSecurityContext(operationBase + 0x48,dataBuffer), (int)operationResult == 0)))) {
                     // WARNING: Subroutine does not return
-        ExecuteSystemCleanupRoutine(dataBuffer,auStack_70);
+        ExecuteSystemCleanupRoutine(dataBuffer,validationBuffer2);
       }
     }
     else {
