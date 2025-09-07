@@ -10006,35 +10006,35 @@ void InitializeNetworkStatusNode(void)
   void *tempStackPointer;
   code *functionCallback;
   
-  SystemContextPtr = (long long *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  systemContextPtr = (long long *)CoreEngineGetSystemContext();
+  primaryProcessingStatusFlag = (uint64_t *)*systemContextPtr;
+  statusBuffer = *(char *)((long long)primaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
-  SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (StringBuffer == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
-    if (MemoryMatchResult < 0) {
-      NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  tertiaryProcessingStatusFlag = primaryProcessingStatusFlag;
+  secondaryProcessingStatusFlag = (void *)primaryProcessingStatusFlag[1];
+  while (statusBuffer == '\0') {
+    memoryMatchResult = memcmp(secondaryProcessingStatusFlag + 4, &SystemComparisonDataSecondary, 0x10);
+    if (memoryMatchResult < 0) {
+      nextNode = (void *)currentNode[2];
+      secondaryProcessingStatusFlag = tertiaryProcessingStatusFlag;
     }
     else {
-      NextNode = (void *)*CurrentNode;
+      nextNode = (void *)*currentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
-    CurrentNode = NextNode;
-    StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    tertiaryProcessingStatusFlag = secondaryProcessingStatusFlag;
+    currentNode = nextNode;
+    statusBuffer = *(char *)((long long)nextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
-    MemoryAllocationSize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,MemoryAllocationSize + 0x20,MemoryAllocationSize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+  if ((tertiaryProcessingStatusFlag == primaryProcessingStatusFlag) || (memoryMatchResult = memcmp(&SystemComparisonDataSecondary, tertiaryProcessingStatusFlag + 4, 0x10), memoryMatchResult < 0)) {
+    memoryAllocationSize = CoreEngineAllocateMemory(systemContextPtr);
+    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, tertiaryProcessingStatusFlag, memoryAllocationSize + 0x20, memoryAllocationSize);
+    tertiaryProcessingStatusFlag = temporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
-  TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
-  TertiaryProcessingStatusFlag[9] = 1;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  tertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
+  tertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
+  tertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
+  tertiaryProcessingStatusFlag[9] = 1;
+  tertiaryProcessingStatusFlag[10] = functionCallback;
   return;
 }
 
@@ -10048,48 +10048,48 @@ void InitializeNetworkStatusNode(void)
  * 和初始化相关的连接数据结构。函数会遍历连接链表，查找合适的
  * 位置插入新的连接节点，并设置节点的标识符和连接回调函数。
  */
-void InitializeNetworkConnectionNode(void
+void InitializeNetworkConnectionNode(void)
 {
-  char StringBuffer;
-  void *SystemContext;
-  int MemoryMatchResult;
-  long long *EngineContext;
-  long long MemoryAllocationSize;
-  void *CurrentNode;
-  void *PreviousNode;
-  void *NextNode;
-  void *TempStackPointer;
+  char statusBuffer;
+  void *systemContext;
+  int memoryMatchResult;
+  long long *engineContext;
+  long long memoryAllocationSize;
+  void *currentNode;
+  void *previousNode;
+  void *nextNode;
+  void *tempStackPointer;
   code *functionCallback;
   
-  SystemContextPtr = (long long *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  systemContextPtr = (long long *)CoreEngineGetSystemContext();
+  primaryProcessingStatusFlag = (uint64_t *)*systemContextPtr;
+  statusBuffer = *(char *)((long long)primaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
-  SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (StringBuffer == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
-    if (MemoryMatchResult < 0) {
-      NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  tertiaryProcessingStatusFlag = primaryProcessingStatusFlag;
+  secondaryProcessingStatusFlag = (void *)primaryProcessingStatusFlag[1];
+  while (statusBuffer == '\0') {
+    memoryMatchResult = memcmp(secondaryProcessingStatusFlag + 4, &SystemComparisonDataTertiary, 0x10);
+    if (memoryMatchResult < 0) {
+      nextNode = (void *)currentNode[2];
+      secondaryProcessingStatusFlag = tertiaryProcessingStatusFlag;
     }
     else {
-      NextNode = (void *)*CurrentNode;
+      nextNode = (void *)*currentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
-    CurrentNode = NextNode;
-    StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    tertiaryProcessingStatusFlag = secondaryProcessingStatusFlag;
+    currentNode = nextNode;
+    statusBuffer = *(char *)((long long)nextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
-    MemoryAllocationSize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,MemoryAllocationSize + 0x20,MemoryAllocationSize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+  if ((tertiaryProcessingStatusFlag == primaryProcessingStatusFlag) || (memoryMatchResult = memcmp(&SystemComparisonDataTertiary, tertiaryProcessingStatusFlag + 4, 0x10), memoryMatchResult < 0)) {
+    memoryAllocationSize = CoreEngineAllocateMemory(systemContextPtr);
+    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, tertiaryProcessingStatusFlag, memoryAllocationSize + 0x20, memoryAllocationSize);
+    tertiaryProcessingStatusFlag = temporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
-  TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
-  TertiaryProcessingStatusFlag[9] = 4;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  tertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
+  tertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
+  tertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
+  tertiaryProcessingStatusFlag[9] = 4;
+  tertiaryProcessingStatusFlag[10] = functionCallback;
   return;
 }
 
