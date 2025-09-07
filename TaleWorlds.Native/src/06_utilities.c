@@ -90120,7 +90120,17 @@ void ClearValidationFlagAndCallHandlerA0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090fbf0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放排他锁B0
+ * 
+ * 该函数负责在指定的条件下释放SRW排他锁
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁状态信息
+ * 
+ * @note 原始函数名：Unwind_18090fbf0
+ */
+void ReleaseExclusiveLockB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x88) != '\0') {
@@ -90131,7 +90141,17 @@ void Unwind_18090fbf0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fc00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B2
+ * 
+ * 该函数负责在指定的数据缓冲区位置设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090fc00
+ */
+void SetDefaultExceptionHandlerB2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x100) = &DefaultExceptionHandlerB;
@@ -100887,6 +100907,14 @@ void InitializeExceptionHandlerC(void)
 
 
 
+/**
+ * @brief 初始化全局数据指针A1
+ * 
+ * 该函数负责将默认异常处理器B设置到全局异常处理器指针A1中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180941f80
+ */
 void InitializeGlobalDataPointerA1(void)
 
 {
@@ -100898,6 +100926,14 @@ void InitializeGlobalDataPointerA1(void)
 
 
 
+/**
+ * @brief 初始化全局数据指针A2
+ * 
+ * 该函数负责将默认异常处理器B设置到全局异常处理器指针A2中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180941fc0
+ */
 void InitializeGlobalDataPointerA2(void)
 
 {
