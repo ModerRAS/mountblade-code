@@ -129,7 +129,7 @@
 #define EventHandlerConfigOffset2c 0x2c
 
 // 权限请求上下文常量
-#define RequestDataOffset18 0x18
+#define PermissionRequestDataOffset18 0x18
 #define PermissionContextOffset8 0x8
 #define PermissionDataOffset78 0x78
 
@@ -15811,7 +15811,7 @@ DataBuffer HandlePermissionRequest(int64_t permissionRequestContext,int64_t syst
     if (*(int64_t *)(permissionContext + 8) == 0) {
       return ResourceAccessDenied;
     }
-    *(DataBuffer *)(permissionRequestContext + PermissionRequestDataOffset18) = *(DataBuffer *)(*(int64_t *)(permissionContext + 8) + 0x78);
+    *(DataBuffer *)(permissionRequestContext + PermissionRequestDataOffset18) = *(DataBuffer *)(*(int64_t *)(permissionContext + PermissionContextOffset8) + PermissionDataOffset78);
     permissionResult = ProcessSystemEventB0(*(DataBuffer *)(systemParameters + SystemEventOffset),permissionRequestContext);
   }
   return permissionResult;
