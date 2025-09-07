@@ -62670,8 +62670,15 @@ void InitializeUICharacterMatchSystem(void)
 
 
 
- void FUN_1806986b7(void)
-void FUN_1806986b7(void)
+ /**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作，直接返回。
+ * 通常用作占位符或默认的空实现。
+ * 
+ * @note 原始函数名: FUN_1806986b7
+ */
+void PerformNoOperation(void)
 
 {
   return;
@@ -62852,88 +62859,112 @@ void InitializeUIMemoryBuffer(longlong uiContext,int dataSource)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1806988d0(int *uiContext,int dataSource,int targetBuffer)
-void FUN_1806988d0(int *uiContext,int dataSource,int targetBuffer)
+ /**
+ * @brief UI数据加密处理函数
+ * 
+ * 该函数负责对UI系统中的敏感数据进行加密处理，使用数学运算和随机数生成
+ * 来确保数据的安全性。函数会生成加密密钥并对UI上下文数据进行加密。
+ * 
+ * @param uiContext UI上下文指针，包含需要加密的UI数据
+ * @param dataSource 数据源参数，影响加密强度
+ * @param targetBuffer 目标缓冲区参数，用于加密算法
+ * 
+ * @note 原始函数名: FUN_1806988d0
+ * @warning 该函数不返回，会调用ExecuteUIRenderTask继续执行
+ */
+void ProcessUIDataEncryption(int *uiContext,int dataSource,int targetBuffer)
 
 {
-  code *pcVar1;
-  byte bVar2;
-  ulonglong uVar3;
-  int *piVar4;
-  int iVar5;
-  longlong contextData;
-  int iVar7;
-  int iVar8;
-  int iVar9;
-  char *pcVar10;
-  double dVar11;
-  double dVar12;
-  undefined1 auStack_1d8 [32];
-  char acStack_1b8 [304];
-  ulonglong uStack_88;
+  code *exceptionHandler;
+  byte randomByte;
+  ulonglong bufferLength;
+  int *contextPointer;
+  int encryptionFactor;
+  longlong iterationCounter;
+  int charCount;
+  int charValue;
+  int totalChars;
+  char *bufferPointer;
+  double mathConstant;
+  double encryptionValue;
+  undefined1 encryptionKeyBuffer [32];
+  char dataBuffer [304];
+  ulonglong encryptedDataLength;
   
-  uStack_88 = XorEncryptionKey ^ (ulonglong)auStack_1d8;
+  encryptedDataLength = XorEncryptionKey ^ (ulonglong)encryptionKeyBuffer;
   PerformUIMemoryCleanup();
-  iVar9 = 0;
-  iVar8 = -0x20;
-  dVar11 = (double)sqrt(0x401921fb53c8d4f1);
+  totalChars = 0;
+  charValue = -0x20;
+  mathConstant = (double)sqrt(0x401921fb53c8d4f1);
   do {
-    dVar12 = (double)exp();
-    iVar5 = (int)(dVar12 * (1.0 / (dVar11 * (((double)(0x3f - dataSource) * 0.6) / 63.0 +
+    encryptionValue = (double)exp();
+    encryptionFactor = (int)(encryptionValue * (1.0 / (mathConstant * (((double)(0x3f - dataSource) * 0.6) / 63.0 +
                                             (double)targetBuffer + 0.5))) * 256.0 + 0.5);
-    if (iVar5 != 0) {
-      iVar7 = 0;
-      if (0 < iVar5) {
-        pcVar10 = acStack_1b8 + iVar9;
-        for (contextData = (longlong)iVar5; iVar7 = iVar5, contextData != 0; contextData = contextData + -1) {
-          *pcVar10 = (char)iVar8;
-          pcVar10 = pcVar10 + 1;
+    if (encryptionFactor != 0) {
+      charCount = 0;
+      if (0 < encryptionFactor) {
+        bufferPointer = dataBuffer + totalChars;
+        for (iterationCounter = (longlong)encryptionFactor; charCount = encryptionFactor, iterationCounter != 0; iterationCounter = iterationCounter + -1) {
+          *bufferPointer = (char)charValue;
+          bufferPointer = bufferPointer + 1;
         }
       }
-      iVar9 = iVar9 + iVar7;
+      totalChars = totalChars + charCount;
     }
-    iVar8 = iVar8 + 1;
-  } while (iVar8 < 0x20);
-  uVar3 = (ulonglong)iVar9;
+    charValue = charValue + 1;
+  } while (charValue < 0x20);
+  bufferLength = (ulonglong)totalChars;
   while( true ) {
-    if (0xff < (longlong)uVar3) {
-      contextData = 0xc00;
-      piVar4 = uiContext + 2;
+    if (0xff < (longlong)bufferLength) {
+      iterationCounter = 0xc00;
+      contextPointer = uiContext + 2;
       do {
-        bVar2 = rand();
-        *(char *)piVar4 = acStack_1b8[bVar2];
-        contextData = contextData + -1;
-        piVar4 = (int *)((longlong)piVar4 + 1);
-      } while (contextData != 0);
-      piVar4 = uiContext + 0x308;
-      contextData = 0x10;
+        randomByte = rand();
+        *(char *)contextPointer = dataBuffer[randomByte];
+        iterationCounter = iterationCounter + -1;
+        contextPointer = (int *)((longlong)contextPointer + 1);
+      } while (iterationCounter != 0);
+      contextPointer = uiContext + 0x308;
+      iterationCounter = 0x10;
       do {
-        *(char *)(piVar4 + -4) = -acStack_1b8[0];
-        *(char *)piVar4 = -acStack_1b8[0];
-        *(char *)(piVar4 + 4) = acStack_1b8[0] * -2;
-        piVar4 = (int *)((longlong)piVar4 + 1);
-        contextData = contextData + -1;
-      } while (contextData != 0);
+        *(char *)(contextPointer + -4) = -dataBuffer[0];
+        *(char *)contextPointer = -dataBuffer[0];
+        *(char *)(contextPointer + 4) = dataBuffer[0] * -2;
+        contextPointer = (int *)((longlong)contextPointer + 1);
+        iterationCounter = iterationCounter + -1;
+      } while (iterationCounter != 0);
       *uiContext = dataSource;
       uiContext[1] = targetBuffer;
                     // WARNING: Subroutine does not return
-      ExecuteUIRenderTask(uStack_88 ^ (ulonglong)auStack_1d8);
+      ExecuteUIRenderTask(encryptedDataLength ^ (ulonglong)encryptionKeyBuffer);
     }
-    if (299 < uVar3) break;
-    acStack_1b8[uVar3] = '\0';
-    uVar3 = uVar3 + 1;
+    if (299 < bufferLength) break;
+    dataBuffer[bufferLength] = '\0';
+    bufferLength = bufferLength + 1;
   }
   TriggerUIErrorHandler();
-  pcVar1 = (code *)swi(3);
-  (*pcVar1)();
+  exceptionHandler = (code *)swi(3);
+  (*exceptionHandler)();
   return;
 }
 
 
 
 
- void FUN_1806988f5(int *uiContext,int dataSource,int targetBuffer)
-void FUN_1806988f5(int *uiContext,int dataSource,int targetBuffer)
+ /**
+ * @brief UI系统寄存器状态保存函数
+ * 
+ * 该函数负责保存UI系统相关的寄存器状态，包括XMM寄存器和通用寄存器。
+ * 这是一个底层系统函数，用于在UI操作过程中保存和恢复CPU寄存器状态。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源参数
+ * @param targetBuffer 目标缓冲区参数
+ * 
+ * @note 原始函数名: FUN_1806988f5
+ * @warning 这是一个底层系统函数，涉及寄存器操作
+ */
+void SaveUIRegisterState(int *uiContext,int dataSource,int targetBuffer)
 
 {
   code *pcVar1;
