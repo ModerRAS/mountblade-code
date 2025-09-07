@@ -59991,7 +59991,7 @@ void ResetExceptionStateAtOffset8b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809068d0(DataBuffer operationBase,int64_t dataBuffer)
+void ClearExceptionMemoryAtOffset8d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemMemoryA1(*(int64_t *)(dataBuffer + 0x50) + 0x2e0);
@@ -60000,7 +60000,7 @@ void Unwind_1809068d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809068f0(DataBuffer operationBase,int64_t dataBuffer)
+void TerminateExceptionContextAtOffset8f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemMemoryA2(*(int64_t *)(dataBuffer + 0x50) + 0x2f0);
@@ -60284,7 +60284,7 @@ void CleanupExceptionContextA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906a10(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessExceptionRecoveryAtOffsetA10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x48) != (int64_t *)0x0) {
