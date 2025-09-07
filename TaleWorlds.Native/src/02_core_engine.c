@@ -140060,7 +140060,7 @@ LAB_18012b2d2:
     if (CharacterByteCount2 == 4) {
       SystemParameter1 =
            (void *)CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),AuxiliaryFloat13);
-      pSystemContextPrimaryFloat3 = (float *)FUN_180131aa0(RegisterFramePointer + 0x18,2,0);
+      pSystemContextPrimaryFloat3 = (float *)AllocateSystemFloatArray(RegisterFramePointer + 0x18,2,0);
       ContextSecondaryFloat9 = *pSystemContextPrimaryFloat3;
       FilterInputValue0 = pSystemContextPrimaryFloat3[1];
     }
@@ -141133,7 +141133,7 @@ LAB_18012b2d2:
     if (SystemOperationResult == 4) {
       SystemParameter1 =
            (void *)CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),AuxiliaryFloat13);
-      pContextPrimaryFloat1 = (float *)FUN_180131aa0(RegisterFramePointer + 0x18,2,0);
+      pContextPrimaryFloat1 = (float *)AllocateSystemFloatArray(RegisterFramePointer + 0x18,2,0);
       ContextSecondaryFloat7 = *pContextPrimaryFloat1;
       ContextSecondaryFloat6 = pContextPrimaryFloat1[1];
     }
@@ -151066,7 +151066,7 @@ LAB_180132c8d:
     *(float *)(CharacterTablePointer5 + 0x11c) = (ContextSecondaryFloat1 + *(float *)(CharacterTablePointer5 + 0x11c)) - ContextSecondaryFloat0;
   }
 LAB_180132d15:
-  FUN_180131aa0(&PrimaryScalingFactor,4,0,0x3dcccccd,0x41200000);
+  AllocateSystemFloatArray(&PrimaryScalingFactor,4,0,0x3dcccccd,0x41200000);
   if ((PrimaryScalingFactor != 0.0) && (*(char *)(CharacterTablePointer5 + 0xac) != '\0')) {
     ContextSecondaryFloat0 = *(float *)(CharacterTablePointer5 + 0x8c);
     ContextSecondaryFloat1 = (float)(int)(PrimaryScalingFactor * FilterInputValue0 + ContextSecondaryFloat0);
@@ -151908,7 +151908,7 @@ SystemContextValueAdjustment:
     *(float *)(LoopIndex + 0x11c) = (ContextSecondaryFloat0 + *(float *)(LoopIndex + 0x11c)) - ContextPrimaryFloat9;
   }
 LAB_180132d15:
-  FUN_180131aa0(&stack0x000000b0,4,0,0x3dcccccd,0x41200000);
+  AllocateSystemFloatArray(&stack0x000000b0,4,0,0x3dcccccd,0x41200000);
   if ((MatrixRow2Col1 != 0.0) && (*(char *)(LoopIndex + 0xac) != '\0')) {
     ContextPrimaryFloat9 = *(float *)(LoopIndex + 0x8c);
     ContextSecondaryFloat0 = (float)(int)(MatrixRow2Col1 * ContextSecondaryFloat9 + ContextPrimaryFloat9);
@@ -152134,7 +152134,7 @@ LAB_180132c8d:
     *(float *)(BufferPointer + 0x11c) = (MatrixTransformX + *(float *)(BufferPointer + 0x11c)) - NormalizedValue;
   }
 LAB_180132d15:
-  FUN_180131aa0(&stack0x000000b0,4,0,0x3dcccccd,0x41200000);
+  AllocateSystemFloatArray(&stack0x000000b0,4,0,0x3dcccccd,0x41200000);
   if ((MatrixCoefficient1 != ReferenceFloatValue) && (*(char *)(BufferPointer + 0xac) != CharacterValidationStatus)) {
     NormalizedValue = *(float *)(BufferPointer + 0x8c);
     MatrixTransformX = (float)(int)(MatrixCoefficient1 * TertiaryMatrixFloat + NormalizedValue);
@@ -153340,7 +153340,7 @@ LAB_1801338ca:
         MemoryAllocationIndex = 1;
         StringProcessingStatus = aSystemRegisterFlagX8;
 LAB_180133c1e:
-        FloatProcessingStatusFlag = (float *)FUN_180131aa0(StringProcessingStatus,MemoryAllocationIndex,0,0,0);
+        FloatProcessingStatusFlag = (float *)AllocateSystemFloatArray(StringProcessingStatus,MemoryAllocationIndex,0,0,0);
         SystemFloatValue = pCalculatedDistance[1];
         if ((*pCalculatedDistance != 0.0) || (SystemFloatValue != 0.0)) {
           SecondaryFloatValue = *(float *)(BufferStatus + 0xbc);
