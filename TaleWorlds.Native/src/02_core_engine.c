@@ -113548,7 +113548,7 @@ uint8_t ProcessEngineDataInterpolation(float *CharacterCode,int CharacterCodeSiz
     }
     if ((float)AdditionalParameter2 == 0.0) goto LAB_18011e808;
     SystemContextPrimaryFloat0 = (float)AdditionalParameter2;
-    FUN_18011f880(ProcessingStatusFlag,*Utf16EndPointer,AdditionalParameter1,BufferStatus);
+    ProcessSystemMemoryConfiguration(ProcessingStatusFlag,*Utf16EndPointer,AdditionalParameter1,BufferStatus);
     ValidationCode = ProcessValidationCheck(AdditionalParameter3);
     if (ValidationCode < 1) {
       NormalizedParameter = (float)AllocatedMemorySize;
@@ -113575,7 +113575,7 @@ uint8_t ProcessEngineDataInterpolation(float *CharacterCode,int CharacterCodeSiz
     }
     if (((1.0 <= VectorRegisterDa) && (0.0 < NormalizedParameter)) || ((VectorRegisterDa <= 0.0 && (NormalizedParameter < 0.0))       ) goto LAB_18011e808;
   }
-  DataStructureCounter = FUN_18011f520(AdditionalParameter3);
+  DataStructureCounter = ProcessSystemMemoryStructure(AdditionalParameter3);
   if (*Utf16EndPointer != DataStructureCounter) {
     *Utf16EndPointer = DataStructureCounter;
     DataSize = 1;
@@ -113705,7 +113705,7 @@ LAB_18011eba2:
   }
   else {
     if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto LAB_18011ec19;
-    ProcessStringBuffer = FUN_180131aa0(&AdditionalParameter2,3,5,0,0);
+    ProcessStringBuffer = AllocateSystemMemoryBuffer(&AdditionalParameter2,3,5,0,0);
     if ((*(int *)(DataStructureCounter + 0x1cac) == CharacterCodeSize) && (*(char *)(DataStructureCounter + 0x1b3c) == '\0')) {
       *(bool *)(DataStructureCounter + 0x1b3c) = *(int *)(DataStructureCounter + 0x1b2c) != 0;
       if (*(int *)(DataStructureCounter + 0x1b2c) != 0) {
@@ -113879,7 +113879,7 @@ SystemConfigurationReset:
   }
   else {
     if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto CoordinateTransformationExit;
-    ContextCoordinate = (float)FUN_180131aa0(ScalingFactors,3,5,0,0);
+    ContextCoordinate = (float)AllocateSystemMemoryBuffer(ScalingFactors,3,5,0,0);
     if ((*(int *)(SystemConfigurationPointer + 0x1cac) == ConfigurationStatus) && (*(char *)(SystemConfigurationPointer + 0x1b3c) == '\0')) {
       ConfigurationStatus = *(int *)(SystemConfigurationPointer + 0x1b2c);
       goto SystemConfigurationReset;

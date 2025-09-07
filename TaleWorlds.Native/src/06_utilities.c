@@ -21545,10 +21545,10 @@ OperationFailedLabel:
       validationResult = processCount + 1;
       if (0 < maxIterations) {
         do {
-          uStack_278 = 0;
+          stackDataBuffer278 = 0;
           dataContext = operationBase[4];
           pStackDataWordZ = &SystemProcessingBuffer;
-          uStack_270 = StackDataBufferA[0];
+          stackDataBuffer270 = StackDataBufferA[0];
           if (((char)dataContext == '\0') && (operationStatus = ValidateSystemDataA0(operationBase,1), operationStatus != 0))
           goto ProcessCheckpointResourceValidation;
           operationStatus = (**(FunctionPointer**)(pStackDataWordZ + 0x10))(&pStackDataWordZ,DataTransferBufferA,0x200);
