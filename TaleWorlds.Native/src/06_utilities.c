@@ -28711,6 +28711,14 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer SystemContext)
   float extraFloatValue4;
   float computedFloatValue;
   
+  // 新增的语义化变量，用于替换原始的Ghidra生成变量名
+  float primaryFloatResult;     // 主要浮点结果，替换fVar20
+  float validationCounter;     // 验证计数器，替换fVar4
+  float secondValidationValue; // 第二验证值，替换fVar5
+  float thirdValidationValue;  // 第三验证值，替换fVar6
+  float fourthValidationValue; // 第四验证值，替换fVar7
+  float secondaryFloatResult;  // 次要浮点结果，替换fVar9
+  
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {
     operationResult = ValidateDataProcessingA0(SystemContext,systemContextData + 0x58);
@@ -28835,11 +28843,11 @@ ValidationLabelB:
         exceptionHandlerContext6 = (int64_t)inputParameter8 * 0x18 + 0x14 + (int64_t)exceptionDataBuffer4;
         do {
           pValidationFloatValue3 = (float *)ExecuteSystemResourceOperation();
-          fVar20 = *pValidationFloatValue3;
-          fVar4 = pValidationFloatValue3[1];
-          fVar5 = pValidationFloatValue3[2];
-          fVar6 = pValidationFloatValue3[3];
-          *(float *)(exceptionHandlerContext6 + -0x14) = fVar20;
+          primaryFloatResult = *pValidationFloatValue3;
+          validationCounter = pValidationFloatValue3[1];
+          secondValidationValue = pValidationFloatValue3[2];
+          thirdValidationValue = pValidationFloatValue3[3];
+          *(float *)(exceptionHandlerContext6 + -0x14) = primaryFloatResult;
           *(float *)(exceptionHandlerContext6 + -0x10) = fVar4;
           *(float *)(exceptionHandlerContext6 + -0xc) = fVar5;
           *(float *)(exceptionHandlerContext6 + -8) = fVar6;
@@ -65299,7 +65307,22 @@ void SystemCleanupHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908630(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_180908630 - 异常回调执行器A1
+// 功能：执行异常处理回调函数A1
+#define ExceptionCallbackExecutorA1 Unwind_180908630
+
+/**
+ * @brief 异常回调执行器A1
+ * 
+ * 该函数负责在异常展开时执行异常处理回调函数A1
+ * 从异常上下文中获取回调函数指针并执行
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 此函数在异常处理过程中自动调用
+ */
+void ExceptionCallbackExecutorA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
