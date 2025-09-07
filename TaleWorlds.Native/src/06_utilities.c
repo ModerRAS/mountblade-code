@@ -290,7 +290,7 @@
 // 异常处理相关地址常量
 #define PrimaryExceptionHandlerAddress 0x0001808d7494
 #define SecondaryExceptionHandlerAddress 0x0001808d74a4
-#define ExceptionHandlerAddress3 0x0001808d74b1
+#define TertiaryExceptionHandlerAddress 0x0001808d74b1
 
 // 系统函数地址常量
 #define ResourceDataValidationFunctionAddress 0x00018076b630
@@ -10956,7 +10956,7 @@ DataBuffer ValidateResourcePointerAccess(int64_t resourceDescriptor)
 
  (ram,PrimaryExceptionHandlerAddress)
  (ram,SecondaryExceptionHandlerAddress)
- (ram,ExceptionHandlerAddress3)
+ (ram,TertiaryExceptionHandlerAddress)
 
 /**
  * @brief 处理浮点数组资源
@@ -12225,7 +12225,7 @@ void ProcessUtilityOperation(int64_t operationParams,uint64_t systemContext)
   }
   return;
 }
- (ram,ExceptionHandlerAddress3)
+ (ram,TertiaryExceptionHandlerAddress)
 
 // 函数: DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
 // 

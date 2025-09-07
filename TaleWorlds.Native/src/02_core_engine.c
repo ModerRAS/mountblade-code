@@ -20018,7 +20018,7 @@ void SetThreadLocalStoragePointer(long long ThreadLocalStoragePointer
  * @note 用于线程本地存储系统的配置
  */
 void SetThreadLocalStorageTemplate(uint64_t *threadStoragePointer) {
-  *Utf8InputBuffer = &ThreadLocalStorageTemplate;
+  *threadStoragePointer = &ThreadLocalStorageTemplate;
   return;
 }
 
@@ -20040,6 +20040,12 @@ void SetThreadLocalStorageTemplate(uint64_t *threadStoragePointer) {
   uint64_t *DataBufferPointer;
   long long DataLength;
   uint64_t configurationHandle;
+  long long CalculatedMemorySize;
+  void *StringProcessingStatus;
+  void *MemoryAddressMask;
+  void *TemporaryBuffer;
+  void *Utf8SourcePointer;
+  long long Utf8BufferSize;
   
   configurationHandle = configHandle;
   CalculatedMemorySize = CoreEngineCompareDataStructures(&CoreEngineDataStructure);
@@ -252921,7 +252927,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     SystemFlagF = 0;
     CoreEngineSignedValueE8 = 0;
     SystemFlagE = 0;
-    FUN_180049bf0(&CoreEngineValue148,&UNK_180a13430);
+    FUN_180049bf0(&CoreEngineValue148,&SystemMemoryBufferN);
     (**(code **)(OperationStatus + 0x10))(&OperationStatus,&DataReferencePointerA);
     SystemChecksumValue = Utf8BufferSize[1];
     if (SystemChecksumValue < (unsigned long long)Utf8BufferSize[2]) {
@@ -253012,7 +253018,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     SystemFlagF = 0;
     CoreEngineSignedValueE8 = 0;
     SystemFlagE = 0;
-    FUN_180049bf0(&CoreEngineValue148,&UNK_180a13450);
+    FUN_180049bf0(&CoreEngineValue148,&SystemMemoryBufferO);
     (**(code **)(OperationStatus + 0x10))(&OperationStatus,&DataReferencePointerA);
     SystemChecksumValue = Utf8BufferSize[1];
     if (SystemChecksumValue < (unsigned long long)Utf8BufferSize[2]) {
