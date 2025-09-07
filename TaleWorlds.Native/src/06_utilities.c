@@ -7548,11 +7548,11 @@ uint8_t CloneDataHandle;
 #define ValidateUtilityDataA1 FUN_180942280
 
 uint8_t ValidateUtilityDataA0;
-uint8_t UtilityDataValidationBufferA;
-uint8_t UtilityDataValidationBufferB;
-uint8_t UtilityDataValidationBufferC;
-uint8_t UtilityDataValidationBufferD;
-uint8_t UtilityValidationStatusA;
+uint8_t UtilityDataValidationPrimaryBuffer;
+uint8_t UtilityDataValidationSecondaryBuffer;
+uint8_t UtilityDataValidationTertiaryBuffer;
+uint8_t UtilityDataValidationQuaternaryBuffer;
+uint8_t UtilityValidationStatus;
 
 // 原始函数名：FUN_1809422a0 - 数据压缩函数A1
 // 功能：压缩工具数据以减少存储空间
@@ -52141,7 +52141,7 @@ void SystemExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904eb0(DataBuffer operationBase,int64_t dataBuffer)
+void SystemExceptionHandlerE(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
