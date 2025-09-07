@@ -964,6 +964,8 @@ char SystemConfigStateArray[64];
 #define SystemFloatMaxValue 0x7f7fffff
 #define SystemMemoryAlignmentMask 0xffffffff00000000
 #define SystemBufferSizeMask 0xffffffffffffff00
+#define SystemSecurityStackPointer 0x4ab0
+#define SystemLocalStackPointer 0x218
 #define SystemAddressAlignmentMask 0xffffffffffffffe0
 #define SystemAddressAlignment32Mask 0xffffffffffffff20
 #define SystemNetworkAddressBase 0x180c80000
@@ -12789,7 +12791,7 @@ Label_1807c2ec7:
     FinalizeNetworkSession();
   }
 Label_1807c2a43:
-  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + 0x4ab0) ^ (ulonglong)&LocalSecurityStackVariable);
+  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + SystemSecurityStackPointer) ^ (ulonglong)&LocalSecurityStackVariable);
 }
       SystemProcessingStatusFlag = '\x01';
     }
@@ -12814,7 +12816,7 @@ Label_1807c2a43:
  */
 void SystemSecurityValidationFunction(uint64_t SecurityContext)
 {
-  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + 0x218) ^ (ulonglong)&LocalStackVariable);
+  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + SystemLocalStackPointer) ^ (ulonglong)&LocalStackVariable);
 }
       SystemMemoryAllocationCounter = 0;
       SystemMemoryAllocationAddress = MemoryAddress;
@@ -12846,10 +12848,10 @@ MemoryAllocationReset:
     MemoryAllocationResult = 1;
   }
   StringProcessingResultPointer = (uint *)GetStringProcessingResult();
-  MemoryOffset = 0;
+  CurrentMemoryOffset = 0;
   MemoryAlignmentMask = MemoryAlignmentMask & SystemBufferSizeMask;
   NetworkDataBuffer[0] = *StringProcessingResultPointer;
-  NetworkRequestResult = ProcessNetworkRequest(ConfigurationArrayPointer,*(uint64_t *)(ConfigurationIndex + 0x10),NetworkDataBuffer,&MemoryOffset,&MemoryAlignmentMask);
+  NetworkRequestResult = ProcessNetworkRequest(ConfigurationArrayPointer,*(uint64_t *)(ConfigurationIndex + 0x10),NetworkDataBuffer,&CurrentMemoryOffset,&MemoryAlignmentMask);
   if ((int)NetworkRequestResult != 0) {
     return NetworkRequestResult;
   }
@@ -12865,14 +12867,14 @@ MemoryAllocationReset:
       return 0x1c;
     }
     BufferSize = CalculateBufferSize(*ConfigurationArrayPointer,BufferSize - *(int *)(ConfigurationArrayPointer + 1));
-    MemoryAlignmentMask = BufferSize + MemoryOffset;
-    if (MemoryAlignmentMask == MemoryOffset) {
-      MemoryAlignmentMask = MemoryOffset + 1;
+    MemoryAlignmentMask = BufferSize + CurrentMemoryOffset;
+    if (MemoryAlignmentMask == CurrentMemoryOffset) {
+      MemoryAlignmentMask = CurrentMemoryOffset + 1;
     }
   }
   GetStringProcessingResult();
   if (ConfigurationFlag1 != '\0') {
-    NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x20,&MemoryOffset,&MemoryAlignmentMask,MemoryAllocationResult,0);
+    NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x20,&CurrentMemoryOffset,&MemoryAlignmentMask,MemoryAllocationResult,0);
     if ((int)NetworkRequestResult != 0) {
       return NetworkRequestResult;
     }
@@ -12895,7 +12897,7 @@ MemoryAllocationReset:
     MemoryAllocationResult = 0;
   }
 NetworkOperationCompleteLabel:
-  NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x28,&MemoryOffset,&MemoryAlignmentMask,MemoryAllocationResult,1);
+  NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x28,&CurrentMemoryOffset,&MemoryAlignmentMask,MemoryAllocationResult,1);
   if ((int)NetworkRequestResult == 0) {
     *(int *)(ConfigurationIndex + 0x18) = *(int *)(ConfigurationIndex + 0x18) + 1;
     return 0;
