@@ -44329,15 +44329,15 @@ float * ProcessFloatBoundaryCalculation(float *Utf8InputBuffer
         if (*pFloatBoundaryMin < StackFloatValueA8) {
           StackFloatValueA8 = *pFloatBoundaryMin;
         }
-        StackFloata4 = FloatProcessingStatusFlag[1];
-        if (Utf8InputBuffer[0x9e] < StackFloata4) {
-          StackFloata4 = Utf8InputBuffer[0x9e];
+        StackFloatValueA4 = FloatProcessingStatusFlag[1];
+        if (Utf8InputBuffer[0x9e] < StackFloatValueA4) {
+          StackFloatValueA4 = Utf8InputBuffer[0x9e];
         }
         StackFloata0 = FloatProcessingStatusFlag[2];
         if (Utf8InputBuffer[0x9f] < StackFloata0) {
           StackFloata0 = Utf8InputBuffer[0x9f];
         }
-        *(unsigned long long *)pFloatBoundaryMin = CONCAT44(StackFloata4,StackFloatValueA8);
+        *(unsigned long long *)pFloatBoundaryMin = CONCAT44(StackFloatValueA4,StackFloatValueA8);
         *(unsigned long long *)(CharacterCode + 0x9f) = CONCAT44(StackUnsignedValue9c,StackFloata0);
         StackFloatValueb8 = *FloatProcessingStatusFlag;
         if (StackFloatValueb8 < Utf8InputBuffer[0xa1]) {
