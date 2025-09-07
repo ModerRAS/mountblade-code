@@ -64829,9 +64829,9 @@ void ProcessUIComponentQueue(int *uiContext,int *dataSource)
   validationResult = operationResult / 2;
   ProcessUIComponentMemoryOperations(*(undefined8 *)(uiContext + 0xe),uiContext[4],uiContext[2],uiContext[3],operationResult,operationResult,
                 (uiContext[1] - uiContext[3]) + operationResult,(operationResult - uiContext[2]) + *uiContext);
-  FUN_18069c3b0(*(undefined8 *)(uiContext + 0x10),uiContext[9],uiContext[7],uiContext[8],validationResult,validationResult,
+  ProcessUIComponentMemoryOperations(*(undefined8 *)(uiContext + 0x10),uiContext[9],uiContext[7],uiContext[8],validationResult,validationResult,
                 (uiContext[6] - uiContext[8]) + validationResult,(uiContext[5] - uiContext[7]) + validationResult);
-  FUN_18069c3b0(*(undefined8 *)(uiContext + 0x12),uiContext[9],uiContext[7],uiContext[8],validationResult,validationResult,
+  ProcessUIComponentMemoryOperations(*(undefined8 *)(uiContext + 0x12),uiContext[9],uiContext[7],uiContext[8],validationResult,validationResult,
                 (uiContext[6] - uiContext[8]) + validationResult,(uiContext[5] - uiContext[7]) + validationResult);
   return;
 }
