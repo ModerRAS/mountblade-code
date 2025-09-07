@@ -131302,7 +131302,7 @@ LAB_18012b465:
     FloatValue33 = *(float *)(StackParameter2 + 9) * 0.65;
   }
   *(float *)((long long)StackParameter2 + 0x284) = (float)(int)FloatValue33;
-  FUN_180291500(StackParameter2[0x5d]);
+  ExecuteSystemComponentInitializationAndConfiguration(StackParameter2[0x5d]);
   *(uint *)(StackParameter2[0x5d] + 0x30) =
        -(uint)(*(char *)(MemoryPoolBlockSize + 0x16c1) != '\0') & 2 | (uint)(*(char *)(MemoryPoolBlockSize + 0x16c0) != '\0');
   CharacterTablePointer5 = StackParameter2[0x5d];
@@ -133144,7 +133144,7 @@ LAB_18012b465:
     FloatValue32 = *(float *)(StackParameter2 + 9) * 0.65;
   }
   *(float *)((long long)StackParameter2 + 0x284) = (float)(int)FloatValue32;
-  FUN_180291500(StackParameter2[0x5d]);
+  ExecuteSystemComponentInitializationAndConfiguration(StackParameter2[0x5d]);
   *(uint *)(StackParameter2[0x5d] + 0x30) =
        -(uint)(*(char *)(RegisterSourceIndex + 0x16c1) != '\0') & 2 |
        (uint)(*(char *)(RegisterSourceIndex + 0x16c0) != '\0');
@@ -134838,7 +134838,7 @@ LAB_18012b465:
     FloatValue30 = *(float *)(StackParameter2 + 9) * 0.65;
   }
   *(float *)((long long)StackParameter2 + 0x284) = (float)(int)FloatValue30;
-  FUN_180291500(StackParameter2[0x5d]);
+  ExecuteSystemComponentInitializationAndConfiguration(StackParameter2[0x5d]);
   *(uint *)(StackParameter2[0x5d] + 0x30) =
        -(uint)(*(char *)(RegisterSourceIndex + 0x16c1) != '\0') & 2 |
        (uint)(*(char *)(RegisterSourceIndex + 0x16c0) != '\0');
@@ -136449,7 +136449,7 @@ LAB_18012b510:
     FloatValue31 = *(float *)(StackParameter2 + 9) * 0.65;
   }
   *(float *)((long long)StackParameter2 + 0x284) = (float)(int)FloatValue31;
-  FUN_180291500(StackParameter2[0x5d]);
+  ExecuteSystemComponentInitializationAndConfiguration(StackParameter2[0x5d]);
   *(uint *)(StackParameter2[0x5d] + 0x30) =
        -(uint)(*(char *)(RegisterSourceIndex + 0x16c1) != '\0') & 2 |
        (uint)(*(char *)(RegisterSourceIndex + 0x16c0) != '\0');
@@ -138138,7 +138138,7 @@ LAB_18012b465:
     FloatValue30 = *(float *)(StackParameter2 + 9) * 0.65;
   }
   *(float *)((long long)StackParameter2 + 0x284) = (float)(int)FloatValue30;
-  FUN_180291500(StackParameter2[0x5d]);
+  ExecuteSystemComponentInitializationAndConfiguration(StackParameter2[0x5d]);
   *(uint *)(StackParameter2[0x5d] + 0x30) =
        -(uint)(*(char *)(RegisterSourceIndex + 0x16c1) != '\0') & 2 |
        (uint)(*(char *)(RegisterSourceIndex + 0x16c0) != '\0');
@@ -139713,7 +139713,7 @@ LAB_18012b510:
     ContextSecondaryFloat9 = *(float *)(StackParameter2 + 0x48) * 0.65;
   }
   *(float *)(StackParameter2 + 0x284) = (float)(int)ContextSecondaryFloat9;
-  FUN_180291500(*(void *)(StackParameter2 + 0x2e8));
+  ExecuteSystemComponentInitializationAndConfiguration(*(void *)(StackParameter2 + 0x2e8));
   *(uint *)(*(long long *)(StackParameter2 + 0x2e8) + 0x30) =
        -(uint)(*(char *)(RegisterSourceIndex + 0x16c1) != '\0') & 2 |
        (uint)(*(char *)(RegisterSourceIndex + 0x16c0) != '\0');
@@ -140783,7 +140783,7 @@ LAB_18012b510:
     ContextSecondaryFloat7 = *(float *)(StackParameter2 + 0x48) * 0.65;
   }
   *(float *)(StackParameter2 + 0x284) = (float)(int)ContextSecondaryFloat7;
-  FUN_180291500(*(void *)(StackParameter2 + 0x2e8));
+  ExecuteSystemComponentInitializationAndConfiguration(*(void *)(StackParameter2 + 0x2e8));
   *(uint *)(*(long long *)(StackParameter2 + 0x2e8) + 0x30) =
        -(uint)(*(char *)(RegisterSourceIndex + 0x16c1) != '\0') & 2 |
        (uint)CONCAT71((int7)(DataNodeIndex >> 8),*(char *)(RegisterSourceIndex + 0x16c0) != '\0');
@@ -141636,7 +141636,7 @@ void ExecuteSystemCoreDataProcessing(void)
     ContextSecondaryFloat6 = *(float *)(StackParameter2 + 0x48) * 0.65;
   }
   *(float *)(StackParameter2 + 0x284) = (float)(int)ContextSecondaryFloat6;
-  FUN_180291500(*(void *)(StackParameter2 + 0x2e8));
+  ExecuteSystemComponentInitializationAndConfiguration(*(void *)(StackParameter2 + 0x2e8));
   *(uint *)(*(long long *)(StackParameter2 + 0x2e8) + 0x30) =
        -(uint)(*(char *)(RegisterSourceIndex + 0x16c1) != '\0') & 2 |
        (uint)CONCAT71((int7)((unsigned long long)DataNodeIndex >> 8),*(char *)(RegisterSourceIndex + 0x16c0) != '\0');
@@ -274108,5 +274108,23 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_18013db40
  */
 #define ExecuteSystemMemoryBufferManagementAndOptimization FUN_18013db40
+
+/**
+ * @brief 执行系统字符状态验证和处理
+ * 
+ * 该函数负责执行系统字符状态的验证和处理操作，确保字符数据的正确性。
+ * 
+ * @note 原始函数名：FUN_180110000
+ */
+#define ExecuteSystemCharacterStatusValidationAndProcessing FUN_180110000
+
+/**
+ * @brief 执行系统浮点数栈操作和清理
+ * 
+ * 该函数负责执行系统浮点数栈操作和清理，管理浮点数栈的状态和数据。
+ * 
+ * @note 原始函数名：FUN_18010e590
+ */
+#define ExecuteSystemFloatingPointStackOperationAndCleanup FUN_18010e590
 
 
