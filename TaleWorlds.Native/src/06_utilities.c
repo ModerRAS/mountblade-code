@@ -22829,10 +22829,10 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           ProcessContext(exceptionHandlerContext5,exceptionHandlerContextPointer4,StackFloatArrayE,contextProcessingArray300);
           exceptionHandlerContext1 = GetSystemContextHandle(exceptionHandlerContext5,exceptionHandlerContextPointer4);
           systemStatusChar = CheckSystemStatus(exceptionHandlerContext1,0);
-          if ((systemStatusChar == '\0') && (afStack_348[0] != *(float *)(exceptionHandlerContext1 + 0x4c))) {
+          if ((systemStatusChar == '\0') && (StackFloatArrayE[0] != *(float *)(exceptionHandlerContext1 + 0x4c))) {
             ExceptionContextProcessorB = DataProcessingStruct._0_4_;
             StatusCounterA = DataProcessingStruct._4_4_;
-            fStack_2c8 = afStack_348[0];
+            StackFloatValueA = StackFloatArrayE[0];
             SystemResetFlagLocal = 0;
             StackPointerVariableE = &ValidationContextBuffer;
             ExceptionContextProcessorA = ExceptionContextProcessorA & 0xffffff00;
@@ -22853,14 +22853,14 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
               statusCounter = (uint64_t)(StackLongIntegerC * 48000) /
                       (uint64_t)*(uint *)((int64_t)operationBase + 0x1c);
               calculatedIndex = operationBase[2];
-              plStack_340 = (int64_t *)&SystemValidationTable;
+              StackLongIntegerPointerB = (int64_t *)&SystemValidationTable;
               SystemCleanupFlagLocal = SystemCleanupFlagLocal & ZeroValue;
               operationBase[2] = statusCounter;
-              aplStack_330[0] = exceptionHandlerContextPointer6;
+              StackLongIntegerPointerArrayA[0] = exceptionHandlerContextPointer6;
               if (calculatedIndex != 0) {
-                aplStack_330[0] = (int64_t *)(statusCounter - calculatedIndex);
+                StackLongIntegerPointerArrayA[0] = (int64_t *)(statusCounter - calculatedIndex);
               }
-              calculatedValue = ValidateDataIntegrityA0(operationBase,&plStack_340);
+              calculatedValue = ValidateDataIntegrityA0(operationBase,&StackLongIntegerPointerB);
               if (calculatedValue != 0) goto ProcessCheckpointBufferValidation;
             }
             calculatedValue = (**(FunctionPointer**)(StackPointerVariableE + ExceptionHandlerCallbackOffset10))(&StackPointerVariableE,StackUnsignedIntegerUnionB,0x200);
