@@ -59020,9 +59020,9 @@ void BufferAllocationStatusHandler(long long *Utf8InputBuffer
     ProcessSystemDataTransferA(CharacterCode + 0x78,SystemMemoryBoundaryBuffer,Utf8BufferSize);
     if (SystemMemoryBoundaryBuffer[0] != CharacterCode + 0x78) {
       SystemStatusBufferPointer = &SystemNullTemplate;
-      uStack_270 = 0;
+      SystemMemoryAddress = 0;
       pSystemConfigurationMode = (uint8_t *)0x0;
-      uStack_278 = 0;
+      SystemValidationCounter = 0;
       CoreEngineProcessSystemEvent(&SystemStatusBufferPointer,BufferTypeFlag);
       if (0 < (int)BufferTypeFlag) {
         StatusBuffer = &CoreEngineDataTemplate;
@@ -59035,7 +59035,7 @@ void BufferAllocationStatusHandler(long long *Utf8InputBuffer
       if ((pBufferStringBuffer != NULL) && (uStack_278 = 0, pSystemConfigurationMode != (uint8_t *)0x0)) {
         *pSystemConfigurationMode = 0;
       }
-      ProcessSystemDataTransferB(alStack_268[0] + 0x60,alStack_268,&SystemStatusBufferPointer);
+      ProcessSystemDataTransferB(SystemMemoryBoundaryBuffer[0] + 0x60,SystemMemoryBoundaryBuffer,&SystemStatusBufferPointer);
       SystemStatusBufferPointer = &SystemNullTemplate;
       if (pSystemConfigurationMode != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
