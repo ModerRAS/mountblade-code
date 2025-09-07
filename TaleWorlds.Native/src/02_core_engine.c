@@ -147,6 +147,7 @@
 #define ProcessSystemMemoryPoolAllocation FUN_18014e700       // 处理系统内存池分配
 #define ProcessSystemCharacterEncodingConversion FUN_18014f980 // 处理系统字符编码转换
 #define ProcessCharacterCodeWithSystemBufferManagement FUN_18014b7f0 // 处理字符代码和系统缓冲区管理
+#define ProcessCharacterCodeWithUtf8BufferValidation FUN_18014c430 // 处理字符代码和UTF8缓冲区验证
 
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
@@ -404,6 +405,7 @@
 #define ProcessCharacterWithSystemRegister FUN_180632650
 #define ProcessCharacterWithValidation FUN_180146180
 #define ProcessCharacterWithSecondaryValidation FUN_1801469d0
+#define ReleaseCharacterCodeResources FUN_1801839a0      // 释放字符代码资源
 #define ProcessCharacterWithTertiaryValidation FUN_180147920
 #define ProcessCharacterWithComplexCode FUN_180149590
 #define ProcessCharacterWithSimpleCode FUN_180149b00
@@ -179858,7 +179860,7 @@ LAB_18014c263:
 
 
 
-4c430(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18014c430(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void FUN_18014c430(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   int LockResult;
   long long BufferStatus;
