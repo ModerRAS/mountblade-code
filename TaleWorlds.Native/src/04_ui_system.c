@@ -58457,47 +58457,60 @@ longlong CalculateUIImageDifferenceIterative(longlong uiContext,int dataSource,l
 
 
 
-longlong FUN_180695990(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,uint *resultPointer)
+/**
+ * @brief UI图像差异计算器（高级模式）
+ * 
+ * 该函数负责计算UI图像的差异值，使用高级计算模式
+ * 通过双重循环计算图像差异，适用于复杂的图像处理场景
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，用于存储计算结果
+ * @return 计算得到的差异值
+ * @note 原始函数名: FUN_180695990
+ */
+longlong CalculateUIImageDifferenceAdvanced(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,uint *resultPointer)
 
 {
-  uint *pfunctionResult;
-  longlong lVar2;
-  uint uVar3;
-  ulonglong uVar4;
-  longlong lVar5;
-  longlong lVar6;
-  ulonglong uVar7;
-  int aiStack_78 [2];
-  longlong lStack_70;
-  longlong lStack_68;
-  longlong lStack_60;
-  longlong lStack_58;
+  uint *resultAccumulator;
+  longlong contextOffset;
+  uint validationValue;
+  ulonglong validationAccumulator;
+  longlong innerLoopCounter;
+  longlong offsetDifference;
+  ulonglong outerLoopOffset;
+  int stackBuffer [2];
+  longlong outerAccumulator;
+  longlong outerLoopCounter;
+  longlong contextStride;
+  longlong bufferStride;
   
-  pfunctionResult = resultPointer;
-  uVar4 = 0;
-  lStack_70 = 0;
-  lStack_58 = (longlong)(bufferSize << 4);
-  lStack_60 = (longlong)(dataSource << 4);
+  resultAccumulator = resultPointer;
+  validationAccumulator = 0;
+  outerAccumulator = 0;
+  bufferStride = (longlong)(bufferSize << 4);
+  contextStride = (longlong)(dataSource << 4);
   *resultPointer = 0;
-  lStack_68 = 2;
-  allocationSize = bufferIndex;
+  outerLoopCounter = 2;
   do {
-    lVar2 = uVar7 + uiContext;
-    lVar5 = 2;
-    lVar6 = lStack_70 - uVar7;
+    contextOffset = outerLoopOffset + uiContext;
+    innerLoopCounter = 2;
+    offsetDifference = outerAccumulator - outerLoopOffset;
     do {
-      CalculateUIImageSquareDifferenceSumAVX2(lVar2,dataSource,(lVar6 - uiContext) + targetBuffer + lVar2,bufferSize,&resultPointer,aiStack_78);
-      lVar2 = lVar2 + 0x20;
-      *pfunctionResult = *pfunctionResult + (int)resultPointer;
-      uVar3 = (int)uVar4 + aiStack_78[0];
-      uVar4 = (ulonglong)uVar3;
-      lVar5 = lVar5 + -1;
-    } while (lVar5 != 0);
-    lStack_70 = lStack_70 + lStack_58;
-    uVar7 = uVar7 + lStack_60;
-    lStack_68 = lStack_68 + -1;
-  } while (lStack_68 != 0);
-  return (ulonglong)*pfunctionResult - ((longlong)(int)uVar3 * (longlong)(int)uVar3 >> 0xb);
+      CalculateUIImageSquareDifferenceSumAVX2(contextOffset,dataSource,(offsetDifference - uiContext) + targetBuffer + contextOffset,bufferSize,&resultPointer,stackBuffer);
+      contextOffset = contextOffset + 0x20;
+      *resultAccumulator = *resultAccumulator + (int)resultPointer;
+      validationValue = (int)validationAccumulator + stackBuffer[0];
+      validationAccumulator = (ulonglong)validationValue;
+      innerLoopCounter = innerLoopCounter + -1;
+    } while (innerLoopCounter != 0);
+    outerAccumulator = outerAccumulator + bufferStride;
+    outerLoopOffset = outerLoopOffset + contextStride;
+    outerLoopCounter = outerLoopCounter + -1;
+  } while (outerLoopCounter != 0);
+  return (ulonglong)*resultAccumulator - ((longlong)(int)validationValue * (longlong)(int)validationValue >> 0xb);
 }
 
 
