@@ -20061,14 +20061,14 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer dataBuffer,DataWord validation
     *(int *)(destinationContext + 0x18) = *(int *)(destinationContext + 0x18) + 1;
   }
   else {
-    operationResult = (DataWord *)((int64_t)calculatedSize * 0x10 + *(int64_t *)(DestinationContext + ExceptionHandlerCallbackOffset10));
-    *(DataWord *)(DestinationContext + 0x20) = operationResult[1];
+    operationResult = (DataWord *)((int64_t)allocatedMemorySize * 0x10 + *(int64_t *)(destinationContext + ExceptionHandlerCallbackOffset10));
+    *(DataWord *)(destinationContext + 0x20) = operationResult[1];
     operationResult[1] = SystemCleanupFlag;
-    *operationResult = *contextPointer;
-    *(DataBuffer *)(operationResult + 2) = *systemContext;
+    *operationResult = *contextDataPointer;
+    *(DataBuffer *)(operationResult + 2) = *systemContextPointer;
   }
-  *registerContext = calculatedSize;
-  *(int *)(DestinationContext + 0x24) = *(int *)(DestinationContext + 0x24) + 1;
+  *registerContextPointer = allocatedMemorySize;
+  *(int *)(destinationContext + 0x24) = *(int *)(destinationContext + 0x24) + 1;
   return 0;
 }
 
@@ -75870,17 +75870,29 @@ void InitializeSystemComponentsProcessorC(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_1809094d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统组件初始化处理器D
+ * 
+ * 该函数负责初始化系统组件，遍历数据缓冲区中扩展区域的系统组件列表
+ * 并调用初始化函数进行系统组件的初始化操作。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809094d0
+ * @note 这是一个系统初始化函数，用于初始化扩展区域的系统组件
+ */
+void InitializeSystemComponentsProcessorD(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t exceptionHandlerContext;
-  int64_t dataContext;
+  int64_t componentContextEnd;
+  int64_t componentContextStart;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x1c0);
-  for (dataContext = *(int64_t *)(dataBuffer + 0x1b8); dataContext != exceptionHandlerContext; dataContext = dataContext + 0x78) {
-    InitializeSystemComponents(dataContext);
+  componentContextEnd = *(int64_t *)(dataBuffer + ExtendedComponentListEndOffset);
+  for (componentContextStart = *(int64_t *)(dataBuffer + ExtendedComponentListStartOffset); componentContextStart != componentContextEnd; componentContextStart = componentContextStart + SystemComponentSize) {
+    InitializeSystemComponents(componentContextStart);
   }
-  if (*(int64_t *)(dataBuffer + 0x1b8) == 0) {
+  if (*(int64_t *)(dataBuffer + ExtendedComponentListStartOffset) == 0) {
     return;
   }
     TerminateSystemE0();
