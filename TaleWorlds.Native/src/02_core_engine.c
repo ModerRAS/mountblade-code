@@ -167,6 +167,15 @@
 #define ProcessUtf8ToUtf16ConversionFinal FUN_18016f720    // 最终UTF-8到UTF-16转换处理
 #define ProcessUtf8CharacterAdvancedEncoding FUN_18016f7d0  // 高级UTF-8字符编码处理
 #define ProcessUtf8ToUtf16ConversionComplete FUN_18016f9f0  // 完整UTF-8到UTF-16转换处理
+
+// 缺失的函数定义
+#define ProcessCharacterCodeWithSecondaryPointer FUN_18014f6a0  // 处理字符代码和二级指针
+#define ProcessCharacterCodeWithPrimaryPointer FUN_18014f660  // 处理字符代码和主指针
+#define ProcessSystemMemoryBlockSetup FUN_18014f3f0          // 处理系统内存块设置
+#define ProcessCharacterCodeWithBufferPointer FUN_18014f520   // 处理字符代码和缓冲区指针
+#define ProcessSystemMemoryManagement FUN_18015c0a0          // 处理系统内存管理
+#define ProcessSystemMemoryAllocationEx FUN_18015c190         // 处理系统内存分配扩展
+#define ProcessSystemMemoryBufferFinalization FUN_180170da0   // 处理系统内存缓冲区最终化
 #define ProcessCharacterEncodingValidation FUN_18013a1b0   // 处理字符编码验证
 #define ReleaseCharacterTableBuffer FUN_18011bbb0           // 释放字符表缓冲区
 #define InitializeUtf8ProcessingBuffer FUN_180136a10        // 初始化UTF8处理缓冲区

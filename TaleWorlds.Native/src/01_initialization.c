@@ -5001,48 +5001,51 @@ void InitializeSystemResourcePool(void)
  * @note 该函数在系统初始化阶段被调用，用于建立配置管理的基础
  */
 void InitializeSystemConfigurationManager(void)
-
 {
-  char NodeActiveFlag;
+  bool IsNodeActive;
   void** SystemDataTable;
-  int SystemIdentifierCompareResult;
+  int IdentifierComparisonResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
   void** CurrentNodePointer;
   void** NextNodePointer;
-  void** HashTablePointer;
+  void** TargetNodePointer;
   void** SystemStackPointer;
   
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
-  NodeActiveFlag = *(char*)((long long)RootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset);
+  IsNodeActive = *(char*)((long long)RootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset) == 0;
   SystemStackPointer = &SystemDataNodeAudioProcessor;
-  HashTablePointer = RootNodeReference;
+  TargetNodePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
-  while (NodeActiveFlag == '\0') {
-    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateConfigurationManager,SystemIdentifierSize);
-    if (SystemIdentifierCompareResult < 0) {
+  
+  while (!IsNodeActive) {
+    IdentifierComparisonResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset, &SystemDataTemplateConfigurationManager, SystemIdentifierSize);
+    if (IdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
-      CurrentNodePointer = HashTablePointer;
+      CurrentNodePointer = TargetNodePointer;
     }
     else {
       NextNodePointer = (void**)*CurrentNodePointer;
     }
-    HashTablePointer = CurrentNodePointer;
+    TargetNodePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    IsNodeActive = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset) == 0;
   }
-  if ((HashTablePointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + SystemNodeIdentifierOffset,0x10), SystemIdentifierCompareResult < 0)) {
+  
+  if ((TargetNodePointer == RootNodeReference) || 
+      (IdentifierComparisonResult = memcmp(&SystemDataTemplateConfigurationManager, TargetNodePointer + SystemNodeIdentifierOffset, SystemIdentifierSize), IdentifierComparisonResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,SystemMemoryAllocationSize + SystemNodeAllocationExtraSize,SystemMemoryAllocationSize);
-    HashTablePointer = AllocatedSystemNode;
+    AllocateSystemMemory(SystemDataTable, &AllocatedSystemNode, TargetNodePointer, SystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemMemoryAllocationSize);
+    TargetNodePointer = AllocatedSystemNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[SystemNodeDataPointerIndex] = &SystemDataNodeInputController;
-  HashTablePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
-  HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
+  
+  TargetNodePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  TargetNodePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
+  TargetNodePointer[SystemNodeDataPointerIndex] = &SystemDataNodeInputController;
+  TargetNodePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
+  TargetNodePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
 }
 

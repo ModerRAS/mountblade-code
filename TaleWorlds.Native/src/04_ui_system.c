@@ -100161,24 +100161,41 @@ void ProcessUIFloatDataTransformation(longlong uiContext,float *dataSource,int t
 
 
 
- void FUN_18072b17c(longlong uiContext,longlong dataSource,undefined8 targetBuffer,longlong bufferSize)
-void FUN_18072b17c(longlong uiContext,longlong dataSource,undefined8 targetBuffer,longlong bufferSize)
+ /**
+ * @brief 执行UI数据的高级变换处理
+ * 
+ * 该函数负责处理UI系统中的高级数据变换操作，包括：
+ * - 复杂数据结构的变换计算
+ * - 高精度浮点运算
+ * - 数据加密/解密处理
+ * - 批量数据操作
+ * 
+ * @param uiContext UI上下文指针，用于访问UI系统状态和数据
+ * @param dataSource 数据源指针，包含待处理的输入数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * 
+ * @note 原始函数名：FUN_18072b17c
+ * @note 该函数包含异或操作，可能用于数据加密或校验
+ */
+void ProcessUIDataAdvancedTransformation(longlong uiContext,longlong dataSource,undefined8 targetBuffer,longlong bufferSize)
+void ProcessUIDataAdvancedTransformation(longlong uiContext,longlong dataSource,undefined8 targetBuffer,longlong bufferSize)
 
 {
-  float floatResult;
-  float localFloat2;
-  float resultValue;
-  float processedFloat;
-  longlong EventDataIndex;
-  longlong contextData;
-  float *presultFloat;
-  longlong localLong8;
-  longlong unmodifiedRBP;
-  int localInt9;
-  longlong allocatedMemory0;
-  float *pfloatResult1;
-  float *register11;
-  uint in_XMM5_Da;
+  float inputValue;
+  float tempValueA;
+  float tempValueB;
+  float transformedValue;
+  longlong dataCounter;
+  longlong processingIndex;
+  float *resultPointer;
+  longlong iterationCount;
+  longlong loopLimit;
+  int processingStep;
+  longlong blockSize;
+  float *sourcePointer;
+  float *dataRegister;
+  uint encryptionMask;
   
   localLong8 = 0;
   localInt9 = 0;
