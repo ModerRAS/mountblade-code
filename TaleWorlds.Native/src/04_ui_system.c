@@ -6524,19 +6524,28 @@ LAB_UIContextInitialize:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void CleanupUIComponent(void)
+ /**
+ * @brief 清理UI组件资源
+ * 
+ * 该函数负责清理UI组件使用的各种资源，包括内存缓冲区、加密数据等。
+ * 执行必要的清理操作以释放系统资源。
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数使用XOR加密来保护敏感数据
+ */
 void CleanupUIComponent(void)
 
 {
-  undefined1 auStack_2a8 [144];
-  undefined8 uStack_218;
-  undefined1 auStack_178 [288];
-  ulonglong uStack_58;
+  undefined1 encryptionBuffer [144];
+  undefined8 cleanupFlag;
+  undefined1 workspaceBuffer [288];
+  ulonglong encryptedKey;
   
-  uStack_218 = 0xfffffffffffffffe;
-  uStack_58 = XorEncryptionKey ^ (ulonglong)auStack_2a8;
+  cleanupFlag = 0xfffffffffffffffe;
+  encryptedKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
                     // WARNING: Subroutine does not return
-  memset(auStack_178,0,0x118);
+  memset(workspaceBuffer,0,0x118);
 }
 
 
@@ -6544,21 +6553,32 @@ void CleanupUIComponent(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessUIComponentData(undefined8 uiContext,longlong *dataSource)
+ /**
+ * @brief 处理UI组件数据
+ * 
+ * 该函数负责处理UI组件的数据，包括数据验证、配置处理和渲染准备。
+ * 使用线程安全的方式处理数据，确保在多线程环境下的数据一致性。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针数组
+ * @return 无返回值
+ * 
+ * @note 该函数使用互斥锁确保线程安全，并使用XOR加密保护数据
+ */
 void ProcessUIComponentData(undefined8 uiContext,longlong *dataSource)
 
 {
   int operationResult;
   longlong elementCount;
-  undefined1 buffer1 [184];
+  undefined1 processingBuffer [184];
   undefined1 configBuffer [32];
-  undefined8 maxValue;
+  undefined8 maximumValue;
   undefined8 mutexId;
-  undefined1 renderBuffer [2048];
+  undefined1 renderWorkspace [2048];
   ulonglong encryptedValue;
   
-  maxValue = 0xfffffffffffffffe;
-  encryptedValue = XorEncryptionKey ^ (ulonglong)buffer1;
+  maximumValue = 0xfffffffffffffffe;
+  encryptedValue = XorEncryptionKey ^ (ulonglong)processingBuffer;
   InitializeUISystem();
   mutexId = UI_SYSTEM_MUTEX_ID;
   operationResult = _Mtx_lock(UI_SYSTEM_MUTEX_ID);
@@ -6974,70 +6994,82 @@ void* InitializeUIString(undefined8 uiContext,undefined8 *dataSource,undefined8 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// UI系统动态数组重新分配函数
+/**
+ * @brief 调整UI系统动态数组大小
+ * 
+ * 该函数负责调整UI系统动态数组的大小，以适应新的数据需求。
+ * 当数组容量不足时，会重新分配更大的内存空间，并复制原有数据。
+ * 
+ * @param arrayInfo 数组信息指针
+ * @param dataSource 数据源指针
+ * @param additionalSize 需要添加的额外大小
+ * @return 无返回值
+ * 
+ * @note 该函数处理内存重新分配、数据复制和内存清理操作
+ */
 void ResizeDynamicArray(longlong arrayInfo,undefined8 dataSource,int additionalSize)
 
 {
   longlong allocatedMemory;
-  longlong lVar2;
-  ulonglong uVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
-  int iVar7;
+  longlong bufferStartAddress;
+  ulonglong currentBufferSize;
+  longlong bufferEndAddress;
+  ulonglong newBufferSize;
+  ulonglong requiredSize;
+  int sizeDifference;
   
-  iVar7 = *(int *)(bufferData + 0x18) - *(int *)(bufferData + 0x10);
+  sizeDifference = *(int *)(bufferData + 0x18) - *(int *)(bufferData + 0x10);
   allocatedMemory = *(longlong *)(bufferData + 0x18);
-  lVar2 = *(longlong *)(bufferData + 0x10);
-  uVar3 = allocatedMemory - lVar2;
-  uVar6 = (ulonglong)(iVar7 + targetBuffer);
-  if (uVar3 < uVar6) {
-    uVar6 = (lVar2 - allocatedMemory) + uVar6;
-    if ((ulonglong)(*(longlong *)(bufferData + 0x20) - allocatedMemory) < uVar6) {
-      uVar5 = uVar3 * 2;
-      if (uVar3 == 0) {
-        uVar5 = 1;
+  bufferStartAddress = *(longlong *)(bufferData + 0x10);
+  currentBufferSize = allocatedMemory - bufferStartAddress;
+  requiredSize = (ulonglong)(sizeDifference + targetBuffer);
+  if (currentBufferSize < requiredSize) {
+    requiredSize = (bufferStartAddress - allocatedMemory) + requiredSize;
+    if ((ulonglong)(*(longlong *)(bufferData + 0x20) - allocatedMemory) < requiredSize) {
+      newBufferSize = currentBufferSize * 2;
+      if (currentBufferSize == 0) {
+        newBufferSize = 1;
       }
-      if (uVar5 < uVar3 + uVar6) {
-        uVar5 = uVar3 + uVar6;
+      if (newBufferSize < currentBufferSize + requiredSize) {
+        newBufferSize = currentBufferSize + requiredSize;
       }
-      if (uVar5 == 0) {
-        lVar4 = allocatedMemory;
+      if (newBufferSize == 0) {
+        bufferEndAddress = allocatedMemory;
         allocatedMemory = 0;
       }
       else {
-        allocatedMemory = CreateUIContext(UIContextManager,uVar5,*(undefined1 *)(uiContext + 0x28));
-        lVar2 = *(longlong *)(bufferData + 0x10);
-        lVar4 = *(longlong *)(bufferData + 0x18);
+        allocatedMemory = CreateUIContext(UIContextManager,newBufferSize,*(undefined1 *)(uiContext + 0x28));
+        bufferStartAddress = *(longlong *)(bufferData + 0x10);
+        bufferEndAddress = *(longlong *)(bufferData + 0x18);
       }
-      if (lVar2 != lVar4) {
+      if (bufferStartAddress != bufferEndAddress) {
                     // WARNING: Subroutine does not return
-        memmove(allocatedMemory,lVar2,lVar4 - lVar2);
+        memmove(allocatedMemory,bufferStartAddress,bufferEndAddress - bufferStartAddress);
       }
-      if (uVar6 != 0) {
+      if (requiredSize != 0) {
                     // WARNING: Subroutine does not return
-        memset(allocatedMemory,0,uVar6);
+        memset(allocatedMemory,0,requiredSize);
       }
       if (*(longlong *)(bufferData + 0x10) != 0) {
                     // WARNING: Subroutine does not return
         DestroyUIComponent();
       }
       *(longlong *)(bufferData + 0x10) = allocatedMemory;
-      *(ulonglong *)(uiContext + 0x20) = allocatedMemory + uVar5;
+      *(ulonglong *)(uiContext + 0x20) = allocatedMemory + newBufferSize;
     }
-    else if (uVar6 != 0) {
+    else if (requiredSize != 0) {
                     // WARNING: Subroutine does not return
-      memset(allocatedMemory,0,uVar6);
+      memset(allocatedMemory,0,requiredSize);
     }
   }
   else {
-    allocatedMemory = lVar2 + uVar6;
+    allocatedMemory = bufferStartAddress + requiredSize;
   }
   *(longlong *)(bufferData + 0x18) = allocatedMemory;
                     // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  memcpy((longlong)iVar7 + *(longlong *)(bufferData + 0x10),dataSource,(longlong)targetBuffer);
+  memcpy((longlong)sizeDifference + *(longlong *)(bufferData + 0x10),dataSource,(longlong)targetBuffer);
   return;
 }
 

@@ -161323,7 +161323,7 @@ uint8_t GetSystemStringEncodingStatus(void)
 
 
 
-uint8_t FUN_1801397fd(uint32_t *CharacterCode,float *CharacterCodeSize,float Utf8InputPointer
+uint8_t ProcessCharacterCodeWithSizeValidation(uint32_t *CharacterCode,float *CharacterCodeSize,float Utf8InputPointer
 {
   uint64_t Utf16Char;
   uint ValidationCode;
@@ -170025,7 +170025,7 @@ uint64_t * ProcessSystemFunctionCall(uint64_t *CharacterCode)
 
 
 
-uint64_t FUN_180143190(uint64_t CharacterCode,unsigned long long CharacterCodeSize
+uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsigned long long CharacterCodeSize
 {
   FUN_1801431d0();
   if ((CharacterCodeSize & 1) != 0) {
