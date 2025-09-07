@@ -10126,9 +10126,9 @@ DataBuffer ProcessMemoryFlagUpdate(int64_t memoryConfig)
            (memoryRegionIterator < *(int64_t **)(localMemoryBuffer[0] + MemoryRegionIteratorOffset) + *(int *)(localMemoryBuffer[0] + MemoryRegionBoundOffset)))) {
       memoryRegionBlock = *memoryRegionIterator;
       memoryRegionIterator = memoryRegionIterator + 1;
-      if ((*(int64_t *)(memoryRegionBlock + 0x18) == *(int64_t *)(localMemoryBuffer[0] + 8)) &&
-         (memoryRegionBlock = *(int64_t *)(memoryRegionBlock + 0x10), memoryRegionBlock != 0)) {
-        memoryFlagPtr = (uint *)(memoryRegionBlock + 0x2d8);
+      if ((*(int64_t *)(memoryRegionBlock + MemoryRegionDataBaseOffset) == *(int64_t *)(localMemoryBuffer[0] + MemoryRegionDataReferenceOffset)) &&
+         (memoryRegionBlock = *(int64_t *)(memoryRegionBlock + MemoryRegionPointerFieldOffset), memoryRegionBlock != 0)) {
+        memoryFlagPtr = (uint *)(memoryRegionBlock + SystemStateFlagsExtendedOffset);
         *memoryFlagPtr = *memoryFlagPtr | 4;
       }
     }
