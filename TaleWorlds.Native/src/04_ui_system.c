@@ -10492,6 +10492,20 @@ LAB_180659172:
 
 
 
+/**
+ * @brief 初始化UI元素上下文
+ * 
+ * 该函数负责初始化UI元素的上下文环境，包括：
+ * - 设置变换矩阵和几何参数
+ * - 初始化内存分配和组件状态
+ * - 配置渲染上下文和变换参数
+ * - 执行几何验证和碰撞检测
+ * 
+ * @param uiContext UI上下文指针，用于存储初始化后的UI状态
+ * @return 返回初始化状态码，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名: InitializeUIElementContext
+ */
 undefined8 InitializeUIElementContext(longlong *uiContext)
 
 {
@@ -22145,7 +22159,7 @@ void CreateUIWidget(longlong uiContext,longlong dataSource,undefined8 targetBuff
   longlong widgetAnimationIndex;
   byte widgetEventProcessingFlag;
   byte widgetAnimationFlag;
-  longlong stringCompareIndex1;
+  longlong widgetStringCompareIndex;
   int uiCompareResult2;
   int uiCompareResult3;
   float resultValue4;
