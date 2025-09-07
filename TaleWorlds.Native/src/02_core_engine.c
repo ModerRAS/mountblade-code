@@ -42530,6 +42530,9 @@ void HandleSystemDataStructureConfigurationAndInitialization(long long *SystemCo
   long long *SystemMemoryReference;
   uint16_t SystemBufferControlFlag;
   char SystemBufferFlag;
+  long long *SystemStackPointer1;
+  long long *SystemStackPointer2;
+  uint32_t SystemProcessingStatusFlag;
   
   MemoryAllocationIndex = 0xfffffffffffffffe;
   if (SystemContextPointer[0x42] == 0) {
@@ -42548,46 +42551,43 @@ void HandleSystemDataStructureConfigurationAndInitialization(long long *SystemCo
     InitializeSystemFlag(&SystemContextPointerBackup,SystemContextPointer,0,Utf16EndPointer,MemoryAllocationIndex);
     (**(code **)(*SystemContextPointer + 0x38))(SystemContextPointer);
     SystemContextPointer = SystemMemoryPointer;
-    *(uint32_t *)(plStack_38 + 2) = 0;
-    *(uint32_t *)(plStack_38 + 7) = 0;
-    *(uint32_t *)(plStack_38 + 0x11) = 0;
-    *(uint32_t *)(plStack_38 + 0xc) = 0;
-    *(uint16_t *)(plStack_38 + 0x18) = 0;
-    if (plStack_38[0x17] != 0) {
+    *(uint32_t *)(SystemStackPointer1 + 2) = 0;
+    *(uint32_t *)(SystemStackPointer1 + 7) = 0;
+    *(uint32_t *)(SystemStackPointer1 + 0x11) = 0;
+    *(uint32_t *)(SystemStackPointer1 + 0xc) = 0;
+    *(uint16_t *)(SystemStackPointer1 + 0x18) = 0;
+    if (SystemStackPointer1[0x17] != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
-    plStack_38[0x17] = 0;
-    ProcessStackElement(plStack_38[0x16]);
+    SystemStackPointer1[0x17] = 0;
+    ProcessStackElement(SystemStackPointer1[0x16]);
     SystemContextPointer[0x16] = 0;
     *(uint32_t *)(SystemContextPointer + SystemNodeStatusOffset) = 0;
-    uStack_10 = 0x101;
-    if ((plStack_40 != (long long *)0x0) && (plStack_38 != (long long *)0x0)) {
+    SystemProcessingStatusFlag = 0x101;
+    if ((SystemStackPointer2 != (long long *)0x0) && (SystemStackPointer1 != (long long *)0x0)) {
       if (SystemBufferFlag != '\0') {
         CleanupSystemResources();
       }
       ValidateStackArray(StackArray30);
-      if ((char)uStack_10 != '\0') {
-        InitializeSystemState(plStack_40);
+      if ((char)SystemProcessingStatusFlag != '\0') {
+        InitializeSystemState(SystemStackPointer2);
       }
-      if (uStack_10.StatusFlag != '\0') {
-        InitializeSystemState(plStack_40);
+      if (SystemProcessingStatusFlag.StatusFlag != '\0') {
+        InitializeSystemState(SystemStackPointer2);
       }
-      SystemContextPointer = plStack_38;
-      plStack_38 = (long long *)0x0;
+      SystemContextPointer = SystemStackPointer1;
+      SystemStackPointer1 = (long long *)0x0;
       if (SystemContextPointer != (long long *)0x0) {
         (**(code **)(*SystemContextPointer + 0x38))();
       }
     }
     ValidateStackArray(StackArray30);
-    if (plStack_18 != (long long *)0x0) {
-      (**(code **)(*plStack_18 + 0x38))();
+    if (SystemStackPointer1 != (long long *)0x0) {
+      (**(code **)(*SystemStackPointer1 + 0x38))();
     }
-    if (plStack_38 != (long long *)0x0) {
-      (**(code **)(*plStack_38 + 0x38))();
-    }
-    if (plStack_40 != (long long *)0x0) {
-      (**(code **)(*plStack_40 + 0x38))();
+    if (SystemStackPointer2 != (long long *)0x0) {
+      (**(code **)(*SystemStackPointer2 + 0x38))();
       return;
     }
   }
@@ -160124,7 +160124,7 @@ LAB_180139b2f:
         SystemContextSecondaryFloat0 = *(float *)(*(long long *)(lStackX_10 + 0x30) + 0x3c);
       }
       else {
-        pFloatValue8 = (float *)FUN_18011ce30(&uStack_178,
+        pFloatValue8 = (float *)FUN_18011ce30(&FloatStack1,
                                         *(void *)**(long long **)(lStackX_10 + 0x28),
                                         *(uint8_t *)(**(long long **)(lStackX_10 + 0x28) + 0xb7));
         SystemContextSecondaryFloat0 = *pFloatValue8;
@@ -160138,7 +160138,7 @@ LAB_180139b2f:
     SystemByteValue = DataContentStatus;
     if (0 < IntegerValue5) {
       SystemOffsetValue = 0;
-      SystemContextPrimaryFloat8 = uStack_138.HighPart;
+      SystemContextPrimaryFloat8 = UnsignedStack1.HighPart;
       do {
         loopCounter4 = LocalDataStructure160;
         StatusBuffer6 = SystemStatusBuffer;
@@ -160148,32 +160148,32 @@ LAB_180139b2f:
         CharacterVariable5 = FUN_180138e60(StatusBuffer6,SystemContextPointer);
         SystemContextSecondaryFloat3 = SystemContextSecondaryFloat0;
         if (CharacterVariable5 != '\0') {
-          FUN_18011ce30(&fStack_158,*StatusBuffer6,*(uint8_t *)((long long)StatusBuffer6 + 0xb7));
-          MemoryAddressMask = uStack_138;
-          CalculatedFilterValue = fStack_150;
-          SystemContextPrimaryFloat9 = SystemContextSecondaryFloat0 + fStack_158;
-          SystemContextSecondaryFloat1 = SystemContextPrimaryFloat8 + fStack_154;
-          uStack_178 = (float *)CONCAT44(SystemContextPrimaryFloat8,SystemContextSecondaryFloat0);
+          FUN_18011ce30(&FloatStack2,*StatusBuffer6,*(uint8_t *)((long long)StatusBuffer6 + 0xb7));
+          MemoryAddressMask = UnsignedStack1;
+          CalculatedFilterValue = FloatStack3;
+          SystemContextPrimaryFloat9 = SystemContextSecondaryFloat0 + FloatStack2;
+          SystemContextSecondaryFloat1 = SystemContextPrimaryFloat8 + FloatStack4;
+          FloatStack1 = (float *)CONCAT44(SystemContextPrimaryFloat8,SystemContextSecondaryFloat0);
           SystemContextValue = 0;
-          fStack_148 = SystemContextSecondaryFloat0 + fStack_158 + *(float *)(loopCounter4 + 0x1674);
+          FloatStack5 = SystemContextSecondaryFloat0 + FloatStack2 + *(float *)(loopCounter4 + 0x1674);
           SystemContextSecondaryFloat4 = SystemContextPrimaryFloat8;
-          fStack_170 = SystemContextPrimaryFloat9;
-          fStack_16c = SystemContextSecondaryFloat1;
+          FloatStack6 = SystemContextPrimaryFloat9;
+          FloatStack7 = SystemContextSecondaryFloat1;
           do {
             SystemByteValue = *(uint *)((long long)StatusBuffer6 + 0xc) >> 0x14 & 1 | 0x200000;
             if (((SystemContextSecondaryFloat0 < SystemContextSecondaryFloat2) || (SystemContextSecondaryFloat4 < SystemContextPrimaryFloat8)) ||
-               ((fStack_130 < SystemContextPrimaryFloat9 || (fStack_12c < SystemContextSecondaryFloat1)))) {
-              ProcessSystemEventEx(alStack_108[SystemContextValue],MemoryAddressMask,CONCAT44(fStack_12c,fStack_130),0);
+               ((FloatStack8 < SystemContextPrimaryFloat9 || (FloatStack9 < SystemContextSecondaryFloat1)))) {
+              ProcessSystemEventEx(LongArrayStack1[SystemContextValue],MemoryAddressMask,CONCAT44(FloatStack9,FloatStack8),0);
             }
-            loopCounter4 = alStack_108[SystemContextValue];
-            FUN_18011cf80(loopCounter4,&uStack_178,SystemByteValue,FloatValue3);
-            FUN_18011d200(loopCounter4,&uStack_178,SystemByteValue,*StatusBuffer6,0,0);
-            SystemContextSecondaryFloat1 = fStack_16c;
-            SystemContextPrimaryFloat9 = fStack_170;
-            SystemContextSecondaryFloat0 = (float)uStack_178;
-            SystemContextSecondaryFloat4 = uStack_178.HighPart;
-            if (((((float)uStack_178 < SystemContextSecondaryFloat2) || (uStack_178.HighPart < SystemContextPrimaryFloat8)) ||
-                (fStack_130 < fStack_170)) || (fStack_12c < fStack_16c)) {
+            loopCounter4 = LongArrayStack1[SystemContextValue];
+            FUN_18011cf80(loopCounter4,&FloatStack1,SystemByteValue,FloatValue3);
+            FUN_18011d200(loopCounter4,&FloatStack1,SystemByteValue,*StatusBuffer6,0,0);
+            SystemContextSecondaryFloat1 = FloatStack7;
+            SystemContextPrimaryFloat9 = FloatStack6;
+            SystemContextSecondaryFloat0 = (float)FloatStack1;
+            SystemContextSecondaryFloat4 = FloatStack1.HighPart;
+            if (((((float)FloatStack1 < SystemContextSecondaryFloat2) || (FloatStack1.HighPart < SystemContextPrimaryFloat8)) ||
+                (FloatStack8 < FloatStack6)) || (FloatStack9 < FloatStack7)) {
               *(int *)(loopCounter4 + 0x60) = *(int *)(loopCounter4 + 0x60) + -1;
               FUN_180291950(loopCounter4);
             }
