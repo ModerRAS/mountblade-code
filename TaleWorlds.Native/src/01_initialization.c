@@ -209,13 +209,9 @@
 #define EncryptionUndenaryOffset             0x128 // 加密第十一偏移量
 #define EncryptionDuodenaryOffset            0x138 // 加密第十二偏移量
 
-// 矩阵相关偏移量
-#define MatrixPrimaryOffset                 0xc   // 矩阵主偏移量
-#define MatrixSecondaryOffset               0x18  // 矩阵次要偏移量
-#define MatrixTertiaryOffset                0x1c  // 矩阵第三偏移量
-#define MatrixQuaternaryOffset              0x20  // 矩阵第四偏移量
-#define MatrixQuinaryOffset                 0x2c  // 矩阵第五偏移量
-#define MatrixSenaryOffset                  0x30  // 矩阵第六偏移量
+// 变换上下文相关偏移量
+#define TransformContextDataOffset          0x218  // 变换上下文数据偏移量
+#define TransformContextSecondaryOffset     0x218  // 变换上下文次要偏移量
 
 // 本地存储相关偏移量
 #define LocalStorageDataOffset              0x18  // 本地存储数据偏移量
@@ -15483,7 +15479,7 @@ void InitializeSystemResourceManagerSenary(void)
  * 初始化系统事件资源管理器
  * 设置系统事件标识符和相关数据结构
  */
-void InitializeSystemResourceManagerG(void)
+void InitializeSystemResourceManagerSeptenary(void)
 
 {
   char NodeActiveFlag;
@@ -15536,7 +15532,7 @@ void InitializeSystemResourceManagerG(void)
  * 初始化系统资源管理器
  * 设置系统资源标识符和相关数据结构
  */
-void InitializeSystemResourceManagerH(void)
+void InitializeSystemResourceManagerOctonary(void)
 
 {
   char NodeActiveFlag;
@@ -15589,7 +15585,7 @@ void InitializeSystemResourceManagerH(void)
  * 初始化系统资源管理器I
  * 设置系统资源标识符和相关数据结构
  */
-void InitializeSystemResourceManagerI(void)
+void InitializeSystemResourceManagerNonary(void)
 
 {
   char NodeActiveFlag;
@@ -15651,7 +15647,7 @@ void InitializeSystemResourceManagerI(void)
  * @return 无返回值
  * @note 该函数在系统初始化阶段调用，确保资源管理系统的正常运行
  */
-void InitializeSystemResourceManagerJ(void)
+void InitializeSystemResourceManagerDenary(void)
 
 {
   char NodeActiveFlag;
@@ -15705,7 +15701,7 @@ void InitializeSystemResourceManagerJ(void)
  * 初始化系统资源管理器K
  * 设置系统资源标识符和相关数据结构
  */
-void InitializeSystemResourceManagerK(void)
+void InitializeSystemResourceManagerUndenary(void)
 
 {
   void* SystemRegisterValue;
@@ -15731,7 +15727,7 @@ void InitializeSystemResourceManagerK(void)
  * 初始化系统资源管理器L
  * 处理系统资源字符串初始化
  */
-void InitializeSystemResourceManagerL(void)
+void InitializeSystemResourceManagerDuodenary(void)
 
 {
   void* SystemRegisterValue;
@@ -15757,7 +15753,7 @@ void InitializeSystemResourceManagerL(void)
  * 初始化系统资源管理器M
  * 处理系统资源字符串初始化
  */
-void InitializeSystemResourceManagerM(void)
+void InitializeSystemResourceManagerTredecenary(void)
 
 {
   void* SystemRegisterValue;
@@ -15783,7 +15779,7 @@ void InitializeSystemResourceManagerM(void)
  * 初始化系统资源管理器N
  * 处理系统资源初始化
  */
-void InitializeSystemResourceManagerN(void)
+void InitializeSystemResourceManagerQuattuordecenary(void)
 
 {
   void* SystemRegisterValue;
@@ -15817,7 +15813,7 @@ int InitializeSystemValidationModule(void)
  * 初始化系统调试管理器（主模块）
  * 设置系统调试标识符和相关数据结构
  */
-void InitializeSystemDebugManagerPrimary(void)
+void InitializeSystemDebugManagerCore(void)
 
 {
   char NodeActiveFlag;
@@ -15870,7 +15866,7 @@ void InitializeSystemDebugManagerPrimary(void)
  * 初始化系统调试管理器（次级模块）
  * 设置系统调试标识符和相关数据结构
  */
-void InitializeSystemDebugManagerSecondary(void)
+void InitializeSystemDebugManagerExtended(void)
 
 {
   char NodeActiveFlag;
@@ -15923,7 +15919,7 @@ void InitializeSystemDebugManagerSecondary(void)
  * 初始化系统调试管理器（第三模块）
  * 设置系统调试标识符和相关数据结构
  */
-void InitializeSystemDebugManagerTertiary(void)
+void InitializeSystemDebugManagerAdvanced(void)
 
 {
   char NodeActiveFlag;
@@ -16864,10 +16860,10 @@ void InitializeSystemPluginComponent(void)
 
 
 
-// 函数: void InitializeSystemSubcomponentA(void)
+// 函数: void InitializeSystemSubcomponentCore(void)
 // 功能: 初始化系统子组件A - 负责系统资源初始化回调的设置
 // 该函数通过系统根指针遍历系统节点，设置资源初始化相关的回调函数和系统标识
-void InitializeSystemSubcomponentA(void)
+void InitializeSystemSubcomponentCore(void)
 
 {
   char NodeActiveFlag;
@@ -16916,10 +16912,10 @@ void InitializeSystemSubcomponentA(void)
 
 
 
-// 函数: void InitializeSystemSubcomponentB(void)
+// 函数: void InitializeSystemSubcomponentMemory(void)
 // 功能: 初始化系统子组件B - 负责系统事件回调的设置
 // 该函数通过系统根指针遍历系统节点，设置事件处理相关的回调函数和系统标识
-void InitializeSystemSubcomponentB(void)
+void InitializeSystemSubcomponentMemory(void)
 
 {
   char NodeActiveFlag;
@@ -16968,10 +16964,10 @@ void InitializeSystemSubcomponentB(void)
 
 
 
-// 函数: void InitializeSystemSubcomponentC(void)
+// 函数: void InitializeSystemSubcomponentResource(void)
 // 功能: 初始化系统子组件C - 负责系统内存管理组件的初始化
 // 该函数初始化系统内存管理相关的数据结构和配置参数
-void InitializeSystemSubcomponentC(void)
+void InitializeSystemSubcomponentResource(void)
 
 {
   char NodeActiveFlag;
@@ -27840,7 +27836,7 @@ void InitializeSystemResourceManager(long long SystemResourceHandle)
   long long ResourceMemoryOffset;
   ulong long SystemMemoryPageBase;
   
-  ResourceHashEntryPointer = *(void* **)(SystemResourceHandle + TRANSFORM_CONTEXT_OFFSET_218);
+  ResourceHashEntryPointer = *(void* **)(SystemResourceHandle + TransformContextDataOffset);
   if (ResourceHashEntryPointer == (void* *)0x0) {
     return;
   }
@@ -57651,7 +57647,7 @@ uint8_t ProcessSystemResourceAndManageStatus(long long SystemResourceManager,voi
   
   CreationFlags = 0xfffffffffffffffe;
   SetupSystemMemory(&ResourceHandle);
-  SystemInitializationStatus = SearchSystemResource(SystemResourceManager + TRANSFORM_CONTEXT_OFFSET_218,&ResourceHandle,AdditionalParameter,ConfigurationFlag,CreationFlags);
+  SystemInitializationStatus = SearchSystemResource(SystemResourceManager + TransformContextDataOffset,&ResourceHandle,AdditionalParameter,ConfigurationFlag,CreationFlags);
   ResourceHandle = &SystemGlobalDataPointer;
   if (LocalStackOffset != 0) {
       SystemCleanupFunction();
@@ -58612,8 +58608,8 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemReso
   *(int *)(ResourceMemoryOffset + 0x2c0) = (int)SystemResourceDataIndex;
   *(uint32_t *)(ResourceMemoryOffset + 0x2c4) = ResourceAddress;
   *(int *)(*ConfigurationDataPointer + 0x108) = (int)SystemResourceManager[0x21];
-  if ((long long *)(*ConfigurationDataPointer + TRANSFORM_CONTEXT_OFFSET_218) != SystemResourceManager + 0x43) {
-    ProcessSystemConfigurationData((long long *)(*ConfigurationDataPointer + TRANSFORM_CONTEXT_OFFSET_218),SystemResourceManager[0x43],SystemResourceManager[0x44]);
+  if ((long long *)(*ConfigurationDataPointer + TransformContextDataOffset) != SystemResourceManager + 0x43) {
+    ProcessSystemConfigurationData((long long *)(*ConfigurationDataPointer + TransformContextDataOffset),SystemResourceManager[0x43],SystemResourceManager[0x44]);
   }
   ResourceHashEntryPointer0 = &SystemStringTemplate;
   if ((void* *)SystemResourceManager[3] != (void* *)0x0) {
@@ -66454,8 +66450,8 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
     *(void* **)(SystemResourceManager + SystemResourceManagerOffset600) = SystemOperationCounterPointer;
   }
   *(uint8_t *)(SystemResourceManager + 0xf6) = *(uint8_t *)(AdditionalParameter + 0xcc);
-  if ((void* *)(SystemResourceManager + TRANSFORM_CONTEXT_OFFSET_218) != (void* *)(AdditionalParameter + 0xd0)) {
-    ProcessTransformContext((void* *)(SystemResourceManager + TRANSFORM_CONTEXT_OFFSET_218),*(void* *)(AdditionalParameter + 0xd0),
+  if ((void* *)(SystemResourceManager + TransformContextDataOffset) != (void* *)(AdditionalParameter + 0xd0)) {
+    ProcessTransformContext((void* *)(SystemResourceManager + TransformContextDataOffset),*(void* *)(AdditionalParameter + 0xd0),
                   *(void* *)(AdditionalParameter + 0xd8));
   }
   *(uint32_t *)(*(long long *)(SystemResourceManager + 0x268) + 0x10) = *(uint32_t *)(AdditionalParameter + 0xf0);
@@ -70816,8 +70812,8 @@ void* NormalizeAudioData(void)
       } while (audioProcessingLoop != 0);
     }
     currentAudioSample = currentAudioSample + 1;
-    audioNormalizedValue = *(float *)(*(long long *)(audioProcessingContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (long long)(int)processedAudioBit * 8);
-    audioWeightedSum2 = *(float *)(*(long long *)(audioProcessingContext + TRANSFORM_CONTEXT_OFFSET_218) + (long long)(int)processedAudioBit * 8);
+    audioNormalizedValue = *(float *)(*(long long *)(audioProcessingContext + TransformContextDataOffset) + 4 + (long long)(int)processedAudioBit * 8);
+    audioWeightedSum2 = *(float *)(*(long long *)(audioProcessingContext + TransformContextDataOffset) + (long long)(int)processedAudioBit * 8);
     audioNormalizedValue = CalculateSquareRoot(audioWeightedSum2 * audioWeightedSum2 + audioNormalizedValue * audioNormalizedValue) * 2.5;
     if (audioMaxAmplitude <= audioNormalizedValue) {
       audioNormalizedValue = audioMaxAmplitude;
@@ -71600,7 +71596,7 @@ void* CalculateRotationTransform(long long TransformContext, uint RotationBits)
               CurrentRow = RowIndex + ((int)(((EndRow + -3) - StartRow) - 1U >> 2) + 1) * 4;
               do {
                 ulong long FourthRowOffset = (ulong long)TargetRow;
-                long long MatrixPointer = *(long long *)(TransformContext + TRANSFORM_CONTEXT_OFFSET_218);
+                long long MatrixPointer = *(long long *)(TransformContext + TransformContextDataOffset);
                 ulong long ThirdRowOffset = (ulong long)(TargetRow - 1);
                 ulong long SecondRowOffset = (ulong long)(TargetRow - 2);
                 uint FirstRowOffset = TargetRow - 3;
@@ -71611,11 +71607,11 @@ void* CalculateRotationTransform(long long TransformContext, uint RotationBits)
                 float FirstResult = FourthRowCosine * SineValue - FourthRowSine * CosineValue;
                 float SecondResult = FourthRowSine * SineValue + FourthRowCosine * CosineValue;
                 *(float *)(MatrixPointer + StartRow * 8) = FirstResult + MatrixVal1;
-                *(float *)(*(long long *)(TransformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + StartRow * 8) = SecondResult + MatrixVal2;
-                *(float *)(*(long long *)(TransformContext + TRANSFORM_CONTEXT_OFFSET_218) + (ulong long)FirstRowOffset * 8) = MatrixVal1 - FirstResult;
-                *(float *)(*(long long *)(TransformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (ulong long)FirstRowOffset * 8) =
+                *(float *)(*(long long *)(TransformContext + TransformContextDataOffset) + 4 + StartRow * 8) = SecondResult + MatrixVal2;
+                *(float *)(*(long long *)(TransformContext + TransformContextDataOffset) + (ulong long)FirstRowOffset * 8) = MatrixVal1 - FirstResult;
+                *(float *)(*(long long *)(TransformContext + TransformContextDataOffset) + 4 + (ulong long)FirstRowOffset * 8) =
                      MatrixVal2 - SecondResult;
-                MatrixPointer = *(long long *)(TransformContext + TRANSFORM_CONTEXT_OFFSET_218);
+                MatrixPointer = *(long long *)(TransformContext + TransformContextDataOffset);
                 SecondResult = *(float *)(MatrixPointer + 4 + SecondRowOffset * 8);
                 FirstResult = *(float *)(MatrixPointer + SecondRowOffset * 8);
                 MatrixVal1 = *(float *)(MatrixPointer + 8 + StartRow * 8);
@@ -71623,10 +71619,10 @@ void* CalculateRotationTransform(long long TransformContext, uint RotationBits)
                 float ThirdResult = FirstResult * SineValue - SecondResult * CosineValue;
                 SecondResult = SecondResult * SineValue + FirstResult * CosineValue;
                 *(float *)(MatrixPointer + 8 + StartRow * 8) = ThirdResult + MatrixVal1;
-                *(float *)(*(long long *)(TransformContext + TRANSFORM_CONTEXT_OFFSET_218) + 0xc + StartRow * 8) = SecondResult + MatrixVal2;
-                *(float *)(*(long long *)(TransformContext + TRANSFORM_CONTEXT_OFFSET_218) + SecondRowOffset * 8) = MatrixVal1 - ThirdResult;
-                *(float *)(*(long long *)(TransformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + SecondRowOffset * 8) = MatrixVal2 - SecondResult;
-                MatrixPointer = *(long long *)(TransformContext + TRANSFORM_CONTEXT_OFFSET_218);
+                *(float *)(*(long long *)(TransformContext + TransformContextDataOffset) + 0xc + StartRow * 8) = SecondResult + MatrixVal2;
+                *(float *)(*(long long *)(TransformContext + TransformContextDataOffset) + SecondRowOffset * 8) = MatrixVal1 - ThirdResult;
+                *(float *)(*(long long *)(TransformContext + TransformContextDataOffset) + 4 + SecondRowOffset * 8) = MatrixVal2 - SecondResult;
+                MatrixPointer = *(long long *)(TransformContext + TransformContextDataOffset);
                 SecondResult = *(float *)(MatrixPointer + ThirdRowOffset * 8);
                 FirstResult = *(float *)(MatrixPointer + 4 + ThirdRowOffset * 8);
                 MatrixVal1 = *(float *)(MatrixPointer + 0x10 + StartRow * 8);
@@ -71634,10 +71630,10 @@ void* CalculateRotationTransform(long long TransformContext, uint RotationBits)
                 ThirdResult = SecondResult * SineValue - FirstResult * CosineValue;
                 SecondResult = FirstResult * SineValue + SecondResult * CosineValue;
                 *(float *)(MatrixPointer + 0x10 + StartRow * 8) = ThirdResult + MatrixVal1;
-                *(float *)(*(long long *)(TransformContext + TRANSFORM_CONTEXT_OFFSET_218) + 0x14 + StartRow * 8) = SecondResult + MatrixVal2;
-                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + thirdRowOffset * 8) = matrixVal1 - thirdResult;
-                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + thirdRowOffset * 8) = matrixVal2 - secondResult;
-                matrixPointer = *(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218);
+                *(float *)(*(long long *)(TransformContext + TransformContextDataOffset) + 0x14 + StartRow * 8) = SecondResult + MatrixVal2;
+                *(float *)(*(long long *)(transformContext + TransformContextDataOffset) + thirdRowOffset * 8) = matrixVal1 - thirdResult;
+                *(float *)(*(long long *)(transformContext + TransformContextDataOffset) + 4 + thirdRowOffset * 8) = matrixVal2 - secondResult;
+                matrixPointer = *(long long *)(transformContext + TransformContextDataOffset);
                 secondResult = *(float *)(matrixPointer + fourthRowOffset * 8);
                 firstResult = *(float *)(matrixPointer + 4 + fourthRowOffset * 8);
                 matrixVal1 = *(float *)(matrixPointer + 0x18 + startRow * 8);
@@ -71645,10 +71641,10 @@ void* CalculateRotationTransform(long long TransformContext, uint RotationBits)
                 thirdResult = secondResult * sineValue - firstResult * cosineValue;
                 secondResult = firstResult * sineValue + secondResult * cosineValue;
                 *(float *)(matrixPointer + 0x18 + startRow * 8) = thirdResult + matrixVal1;
-                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 0x1c + startRow * 8) = secondResult + matrixVal2;
+                *(float *)(*(long long *)(transformContext + TransformContextDataOffset) + 0x1c + startRow * 8) = secondResult + matrixVal2;
                 startRow = startRow + 4;
-                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + fourthRowOffset * 8) = matrixVal1 - thirdResult;
-                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + fourthRowOffset * 8) = matrixVal2 - secondResult;
+                *(float *)(*(long long *)(transformContext + TransformContextDataOffset) + fourthRowOffset * 8) = matrixVal1 - thirdResult;
+                *(float *)(*(long long *)(transformContext + TransformContextDataOffset) + 4 + fourthRowOffset * 8) = matrixVal2 - secondResult;
                 targetRow = targetRow + 4;
               } while (startRow < endRow + -3);
             }
@@ -71656,7 +71652,7 @@ void* CalculateRotationTransform(long long TransformContext, uint RotationBits)
               targetRow = CurrentRow + halfRange;
               do {
                 ulong long targetRowIndex = (ulong long)targetRow;
-                matrixPointer = *(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218);
+                matrixPointer = *(long long *)(transformContext + TransformContextDataOffset);
                 secondResult = *(float *)(matrixPointer + targetRowIndex * 8);
                 firstResult = *(float *)(matrixPointer + 4 + targetRowIndex * 8);
                 matrixVal1 = *(float *)(matrixPointer + startRow * 8);
@@ -71664,10 +71660,10 @@ void* CalculateRotationTransform(long long TransformContext, uint RotationBits)
                 float intermediateResult = secondResult * sineValue - firstResult * cosineValue;
                 secondResult = firstResult * sineValue + secondResult * cosineValue;
                 *(float *)(matrixPointer + startRow * 8) = intermediateResult + matrixVal1;
-                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + startRow * 8) = secondResult + matrixVal2;
+                *(float *)(*(long long *)(transformContext + TransformContextDataOffset) + 4 + startRow * 8) = secondResult + matrixVal2;
                 startRow = startRow + 1;
-                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + targetRowIndex * 8) = matrixVal1 - intermediateResult;
-                *(float *)(*(long long *)(transformContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + targetRowIndex * 8) = matrixVal2 - secondResult;
+                *(float *)(*(long long *)(transformContext + TransformContextDataOffset) + targetRowIndex * 8) = matrixVal1 - intermediateResult;
+                *(float *)(*(long long *)(transformContext + TransformContextDataOffset) + 4 + targetRowIndex * 8) = matrixVal2 - secondResult;
                 targetRow = targetRow + 1;
               } while (startRow < endRow);
             }
@@ -71797,7 +71793,7 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
             SystemInitializationState = SystemOperationResult + ((int)(((resourceCounter + -3) - ResourceDataLocation) - 1U >> 2) + 1) * 4;
             do {
               SystemInitializationStatusFlags = (ulong long)SystemProcessingResult;
-              SystemProcessBufferPtr = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
+              SystemProcessBufferPtr = *(long long *)(in_R11 + TransformContextDataOffset);
               SystemInitializationStatus = (ulong long)(SystemProcessingResult - 1);
               CurrentThreadIdentifier = (ulong long)(SystemProcessingResult - 2);
               ThreadContext = SystemProcessingResult - 3;
@@ -71808,10 +71804,10 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               InterpolationFactorV = MatrixElement1 * ResultValue2 - MagnitudeSquared * ResultValue1;
               MagnitudeSquared = MagnitudeSquared * ResultValue2 + MatrixElement1 * ResultValue1;
               *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8) = InterpolationFactorV + MatrixElement2;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + (ulong long)ThreadContext * 8) = MatrixElement2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (ulong long)ThreadContext * 8) = MatrixElement3 - MagnitudeSquared;
-              SystemProcessBufferPtr = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 4 + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + (ulong long)ThreadContext * 8) = MatrixElement2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 4 + (ulong long)ThreadContext * 8) = MatrixElement3 - MagnitudeSquared;
+              SystemProcessBufferPtr = *(long long *)(in_R11 + TransformContextDataOffset);
               MagnitudeSquared = *(float *)(SystemProcessingBufferPointer + 4 + CurrentThreadIdentifier * 8);
               MatrixElement1 = *(float *)(SystemProcessingBufferPointer + CurrentThreadIdentifier * 8);
               MatrixElement2 = *(float *)(SystemProcessingBufferPointer + 8 + ResourceDataLocation * 8);
@@ -71819,10 +71815,10 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               InterpolationFactorV = MatrixElement1 * ResultValue2 - MagnitudeSquared * ResultValue1;
               MagnitudeSquared = MagnitudeSquared * ResultValue2 + MatrixElement1 * ResultValue1;
               *(float *)(SystemProcessingBufferPointer + 8 + ResourceDataLocation * 8) = InterpolationFactorV + MatrixElement2;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0xc + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + CurrentThreadIdentifier * 8) = MatrixElement2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + CurrentThreadIdentifier * 8) = MatrixElement3 - MagnitudeSquared;
-              SystemProcessBufferPtr = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 0xc + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + CurrentThreadIdentifier * 8) = MatrixElement2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 4 + CurrentThreadIdentifier * 8) = MatrixElement3 - MagnitudeSquared;
+              SystemProcessBufferPtr = *(long long *)(in_R11 + TransformContextDataOffset);
               MagnitudeSquared = *(float *)(SystemProcessingBufferPointer + SystemInitializationStatus * 8);
               MatrixElement1 = *(float *)(SystemProcessingBufferPointer + 4 + SystemInitializationStatus * 8);
               MatrixElement2 = *(float *)(SystemProcessingBufferPointer + 0x10 + ResourceDataLocation * 8);
@@ -71830,10 +71826,10 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               InterpolationFactorV = MagnitudeSquared * ResultValue2 - MatrixElement1 * ResultValue1;
               MagnitudeSquared = MatrixElement1 * ResultValue2 + MagnitudeSquared * ResultValue1;
               *(float *)(SystemProcessingBufferPointer + 0x10 + ResourceDataLocation * 8) = InterpolationFactorV + MatrixElement2;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0x14 + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + SystemInitializationStatus * 8) = MatrixElement2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + SystemInitializationStatus * 8) = MatrixElement3 - MagnitudeSquared;
-              SystemProcessBufferPtr = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 0x14 + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + SystemInitializationStatus * 8) = MatrixElement2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 4 + SystemInitializationStatus * 8) = MatrixElement3 - MagnitudeSquared;
+              SystemProcessBufferPtr = *(long long *)(in_R11 + TransformContextDataOffset);
               MagnitudeSquared = *(float *)(SystemProcessingBufferPointer + SystemInitializationStatusFlags * 8);
               MatrixElement1 = *(float *)(SystemProcessingBufferPointer + 4 + SystemInitializationStatusFlags * 8);
               MatrixElement2 = *(float *)(SystemProcessingBufferPointer + 0x18 + ResourceDataLocation * 8);
@@ -71841,10 +71837,10 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               InterpolationFactorV = MagnitudeSquared * ResultValue2 - MatrixElement1 * ResultValue1;
               MagnitudeSquared = MatrixElement1 * ResultValue2 + MagnitudeSquared * ResultValue1;
               *(float *)(SystemProcessingBufferPointer + 0x18 + ResourceDataLocation * 8) = InterpolationFactorV + MatrixElement2;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0x1c + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 0x1c + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
               ResourceDataLocation = ResourceDataLocation + 4;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + SystemInitializationStatusFlags * 8) = MatrixElement2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + SystemInitializationStatusFlags * 8) = MatrixElement3 - MagnitudeSquared;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + SystemInitializationStatusFlags * 8) = MatrixElement2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 4 + SystemInitializationStatusFlags * 8) = MatrixElement3 - MagnitudeSquared;
               SystemProcessingResult = SystemProcessingResult + 4;
             } while (ResourceDataLocation < resourceCounter + -3);
           }
@@ -71852,7 +71848,7 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
             SystemProcessingResult = SystemInitializationState + systemResourceCounterD;
             do {
               CurrentThreadIdentifier = (ulong long)SystemProcessingResult;
-              SystemProcessBufferPtr = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
+              SystemProcessBufferPtr = *(long long *)(in_R11 + TransformContextDataOffset);
               MagnitudeSquared = *(float *)(SystemProcessingBufferPointer + CurrentThreadIdentifier * 8);
               MatrixElement1 = *(float *)(SystemProcessingBufferPointer + 4 + CurrentThreadIdentifier * 8);
               MatrixElement2 = *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8);
@@ -71860,10 +71856,10 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               InterpolationFactorV = MagnitudeSquared * ResultValue2 - MatrixElement1 * ResultValue1;
               MagnitudeSquared = MatrixElement1 * ResultValue2 + MagnitudeSquared * ResultValue1;
               *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8) = InterpolationFactorV + MatrixElement2;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 4 + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
               ResourceDataLocation = ResourceDataLocation + 1;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + CurrentThreadIdentifier * 8) = MatrixElement2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + CurrentThreadIdentifier * 8) = MatrixElement3 - MagnitudeSquared;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + CurrentThreadIdentifier * 8) = MatrixElement2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 4 + CurrentThreadIdentifier * 8) = MatrixElement3 - MagnitudeSquared;
               SystemProcessingResult = SystemProcessingResult + 1;
             } while (ResourceDataLocation < resourceCounter);
           }
