@@ -113010,6 +113010,14 @@ void ManageSystemDataAccess(int *CharacterCode,int CharacterCodeSize)
 
 
 
+/**
+ * @brief 初始化核心引擎网络系统
+ * 
+ * 该函数负责初始化核心引擎的网络通信系统，设置网络连接池
+ * 和相关的网络处理参数。
+ * 
+ * @note 原始函数名可能包含格式错误，已修复
+ */
 void CoreEngineInitializeNetwork(void)
 {
   long long ResultValue;
@@ -113041,6 +113049,17 @@ void CoreEngineInitializeInput(void)
 
 
 
+/**
+ * @brief 初始化核心引擎系统数据
+ * 
+ * 该函数负责初始化核心引擎的系统数据结构，包括字符编码处理
+ * 和缓冲区大小的动态调整。
+ * 
+ * @param CharacterCode 字符编码数组指针
+ * @param CharacterCodeSize 字符编码大小
+ * 
+ * @note 原始函数名可能包含格式错误，已修复
+ */
 void CoreEngineInitializeSystemData(int *CharacterCode,int CharacterCodeSize)
 {
   int LockResult;
@@ -114772,19 +114791,20 @@ void ProcessStringFormatting32Bit(char *CharacterCode,uint64_t CharacterCodeSize
   char StringBuffer;
   char *pSystemCheckResult;
   bool IsHighByteSet;
-  uint8_t aStackUnsigned78 [32];
-  char cStack_58;
-  char acStack_57 [63];
-  unsigned long long uStack_18;
+  bool IsPercentCharacter;
+  uint8_t EncodingBuffer[32];
+  char FormatResultChar;
+  char FormattedStringBuffer[63];
+  unsigned long long EncodingKey;
   
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aStackUnsigned78;
+  EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
     StringBuffer = *CharacterCode;
     if (StringBuffer == '\0') {
 LAB_18011f4b5:
       if ((StringBuffer == '%') && (CharacterCode[1] != '%')) {
-        OperateBufferAndSetParameters(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
-        pSystemCheckResult = &cStack_58;
+        OperateBufferAndSetParameters(&FormatResultChar,0x40,CharacterCode,Utf8InputPointer);
+        pSystemCheckResult = &FormatResultChar;
         while (cStack_58 == ' ') {
           pSystemCheckResult = pSystemCheckResult + 1;
           cStack_58 = *pSystemCheckResult;
@@ -114839,14 +114859,14 @@ void ProcessStringFormatting64Bit(char *CharacterCode,uint64_t CharacterCodeSize
   char acStack_57 [63];
   unsigned long long uStack_18;
   
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aStackUnsigned78;
+  EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
     StringBuffer = *CharacterCode;
     if (StringBuffer == '\0') {
 LAB_18011f555:
       if ((StringBuffer == '%') && (CharacterCode[1] != '%')) {
-        OperateBufferAndSetParameters(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
-        pSystemCheckResult = &cStack_58;
+        OperateBufferAndSetParameters(&FormatResultChar,0x40,CharacterCode,Utf8InputPointer);
+        pSystemCheckResult = &FormatResultChar;
         while (cStack_58 == ' ') {
           pSystemCheckResult = pSystemCheckResult + 1;
           cStack_58 = *pSystemCheckResult;
@@ -114901,14 +114921,14 @@ void ProcessStringFormatting64BitV2(char *CharacterCode,uint64_t CharacterCodeSi
   char acStack_57 [63];
   unsigned long long uStack_18;
   
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aStackUnsigned78;
+  EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
     StringBuffer = *CharacterCode;
     if (StringBuffer == '\0') {
 LAB_18011f5f5:
       if ((StringBuffer == '%') && (CharacterCode[1] != '%')) {
-        OperateBufferAndSetParameters(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
-        pSystemCheckResult = &cStack_58;
+        OperateBufferAndSetParameters(&FormatResultChar,0x40,CharacterCode,Utf8InputPointer);
+        pSystemCheckResult = &FormatResultChar;
         while (cStack_58 == ' ') {
           pSystemCheckResult = pSystemCheckResult + 1;
           cStack_58 = *pSystemCheckResult;
@@ -114965,7 +114985,7 @@ void ProcessStringFormattingFloat(char *CharacterCode,uint64_t CharacterCodeSize
   char acStack_57 [63];
   unsigned long long uStack_18;
   
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aStackUnsigned78;
+  EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
     SystemCheckResult = *CharacterCode;
     if (SystemCheckResult == '\0') {
@@ -115014,14 +115034,14 @@ f740(char *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointervoi
   char acStack_57 [63];
   unsigned long long uStack_18;
   
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aStackUnsigned78;
+  EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
     StringBuffer = *CharacterCode;
     if (StringBuffer == '\0') {
 LAB_18011f775:
       if ((StringBuffer == '%') && (CharacterCode[1] != '%')) {
-        OperateBufferAndSetParameters(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
-        pSystemCheckResult = &cStack_58;
+        OperateBufferAndSetParameters(&FormatResultChar,0x40,CharacterCode,Utf8InputPointer);
+        pSystemCheckResult = &FormatResultChar;
         while (cStack_58 == ' ') {
           pSystemCheckResult = pSystemCheckResult + 1;
           cStack_58 = *pSystemCheckResult;
@@ -178595,7 +178615,7 @@ uint64_t FUN_180153ab0(long long CharacterCode,long long CharacterCodeSize,long 
   unsigned long long uStack_18;
   
   SystemTimeoutCounter = 0xfffffffffffffffe;
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aStackUnsigned78;
+  EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   IntegerValue = *(int *)(CharacterCode + 0xbd0);
   if (*(int *)(CharacterCode + 0xbd0) < 1) {
     IntegerValue = 1;
@@ -182338,7 +182358,7 @@ LAB_180159499:
   unsigned long long uStack_18;
   
   SystemKeyPointer = 0xfffffffffffffffe;
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aStackUnsigned78;
+  EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   SystemTimeoutCounter = 0;
   pSystemPriorityLevel = &UnknownDataStructureTemplate;
   pFunctionAddress = auStack_28;
@@ -243120,7 +243140,7 @@ LAB_180214064:
   uint32_t uStack_1c;
   unsigned long long uStack_18;
   
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aStackUnsigned78;
+  EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   if (*(char *)(CharacterCode + 0x210) == '\0') {
     MemoryAllocationIndex = CharacterCodeSize[1];
     uStack_3c = 0;
@@ -268632,7 +268652,7 @@ uint GetMemoryAllocationStatus(long long CharacterCode,long long *CharacterCodeS
   unsigned long long uStack_18;
   
   SystemTimeoutCounter = 0xfffffffffffffffe;
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aStackUnsigned78;
+  EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   Utf16Char = *(void *)(CharacterCode + 0x1e0);
   SystemValidationPointer = &RenderConfigManager;
   QuaternaryStackPointer8 = aFunctionAddress;
@@ -269989,7 +270009,7 @@ long long * FUN_18022f240(uint64_t *CharacterCode,unsigned long long CharacterCo
 
 
 
-2f390(uint64_t *CharacterCodevoid FUN_18022f390(uint64_t *CharacterCode
+2f390(uint64_t *CharacterCodevoid CleanupSystemCharacterData(uint64_t *CharacterCode
 {
   long long *CharacterCode;
   
