@@ -37853,6 +37853,7 @@ SystemEventMemoryAllocationLabel:
     FunctionAddress80 = 0x12;
     SystemEventPointer = (uint8_t *)BufferAllocate(MemoryPoolManager,0x14,0x13);
     *SystemEventPointer = 0;
+SystemEventMemoryAllocationComplete: // 原始标签：LAB_180071af3
 SystemEventProcessingLabel:
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
@@ -37860,7 +37861,7 @@ SystemEventProcessingLabel:
   else if ((uint)StackUnsigned78 < 0x14) {
     FunctionAddress80 = 0x12;
     SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,0x14,0x10,0x13);
-    goto LAB_180071b69;
+    goto SystemEventDataProcessingComplete;
   }
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   FunctionAddress80 = 0x13;
@@ -115443,17 +115444,25 @@ uint ValidateSystemDataAndProcessOperation(byte *CharacterCode,long long Charact
  */
 void ConvertUtf8ToUtf16Character(uint64_t CharacterCode, uint64_t CharacterCodeSize, uint64_t Utf8InputPointer, uint64_t Utf16EndPointer
 {
-  long long PrimaryDataSize;
-  int CharacterByteCount;
-  int MemoryMatchResult;
-  long long DataStructureCounter;
-  int RemainingSpace;
+  // 数据处理相关变量
+  long long PrimaryDataSize;              // 主要数据大小
+  int CharacterByteCount;                // 字符字节计数
+  int MemoryMatchResult;                 // 内存匹配结果
+  long long DataStructureCounter;        // 数据结构计数器
+  int RemainingSpace;                    // 剩余空间
+  int ValidationCode;                    // 验证代码
+  long long LoopCounter;                 // 循环计数器
   
-  CharacterByteCount = ValidateAndParseUtf8Character(CharacterCode,0);
+  // 验证并解析UTF8字符
+  CharacterByteCount = ValidateAndParseUtf8Character(CharacterCode, 0);
   CharacterByteCount = CharacterByteCount + 1;
-  ValidationCode = ValidateAndParseUtf8Character(CharacterCodeSize,0);
+  
+  // 验证字符大小并计算所需空间
+  ValidationCode = ValidateAndParseUtf8Character(CharacterCodeSize, 0);
   RemainingSpace = ValidationCode + 1 + CharacterByteCount;
   DataStructureCounter = 0;
+  
+  // 分配内存缓冲区
   if (0 < RemainingSpace) {
     if (RemainingSpace < 8) {
       RemainingSpace = 8;
@@ -115463,19 +115472,25 @@ void ConvertUtf8ToUtf16Character(uint64_t CharacterCode, uint64_t CharacterCodeS
       if (SystemDataConfiguration != 0) {
         *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + 1;
       }
-      DataStructureCounter = SystemCallMemoryAccess((long long)RemainingSpace * 2,SystemMemoryPoolBase);
+      DataStructureCounter = SystemCallMemoryAccess((long long)RemainingSpace * 2, SystemMemoryPoolBase);
     }
   }
-  AllocateSystemMemoryAndManage(DataStructureCounter,CharacterByteCount,CharacterCode,Utf16EndPointer,0);
-  loopCounter = DataStructureCounter + (long long)CharacterByteCount * 2;
-  AllocateSystemMemoryAndManage(LoopCounter,ValidationCode + 1,CharacterCodeSize,Utf16EndPointer,0);
-  _wfopen(DataStructureCounter,loopCounter);
+  
+  // 分配系统内存并管理数据
+  AllocateSystemMemoryAndManage(DataStructureCounter, CharacterByteCount, CharacterCode, Utf16EndPointer, 0);
+  LoopCounter = DataStructureCounter + (long long)CharacterByteCount * 2;
+  AllocateSystemMemoryAndManage(LoopCounter, ValidationCode + 1, CharacterCodeSize, Utf16EndPointer, 0);
+  
+  // 执行文件操作
+  _wfopen(DataStructureCounter, LoopCounter);
+  
+  // 清理内存
   if (DataStructureCounter != 0) {
     if (SystemDataConfiguration != 0) {
       *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    InitializeSystemMemoryPool(DataStructureCounter,SystemMemoryPoolBase);
+    // 初始化系统内存池
+    InitializeSystemMemoryPool(DataStructureCounter, SystemMemoryPoolBase);
   }
   return;
 }
