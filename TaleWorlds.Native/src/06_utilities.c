@@ -9739,46 +9739,30 @@ uint8_t SystemManagementDataTableA0;
 // 功能：清理异常处理过程中的临时数据
 #define CleanupExceptionProcessG4 Unwind_180905940
 
-// 原始函数名：Unwind_180905950 - 异常处理函数G5
+// 异常处理函数G5
 // 功能：处理异常状态并执行恢复操作
 #define ProcessExceptionRecoveryG5 Unwind_180905950
 
-// 原始函数名：Unwind_180905960 - 异常回调处理函数G6
+// 异常回调处理函数G6
 // 功能：处理异常回调并执行相关操作
 #define HandleExceptionCallbacksG6 Unwind_180905960
 
-// 原始函数名：Unwind_180905980 - 异常数据重置函数G7
+// 异常数据重置函数G7
 // 功能：重置异常数据并清理相关状态
 #define ResetExceptionDataG7 Unwind_180905980
 
-// 原始函数名：Unwind_1809059a0 - 异常处理函数G8
+// 异常处理函数G8
 // 功能：处理异常状态并执行回调操作
 #define ProcessExceptionWithCallbacksG8 Unwind_1809059a0
 
-// 原始函数名：Unwind_1809059b0 - 异常处理函数G9
+// 异常处理函数G9
 // 功能：处理异常状态并执行系统调用
 #define ProcessExceptionSystemCallG9 Unwind_1809059b0
 
-// 原始函数名：Unwind_1809059c0 - 异常状态验证函数G10
+// 异常状态验证函数G10
 // 功能：验证异常状态并执行相关操作
 #define ValidateExceptionStatusG10 Unwind_1809059c0
 
-/**
- * @brief 处理对象数据并执行相关操作
- * 
- * 对指定的对象数据进行处理和操作，包括系统数据查询、资源处理、
- * 安全验证和内存清理等功能。该函数执行完整的对象数据处理流程。
- * 
- * @param ObjectHandle 对象句柄或指针，指向要处理的对象
- * @param DataContext 数据上下文或配置信息，包含处理所需的配置数据
- * 
- * @return void 无返回值
- * 
- * @note 此函数包含安全验证机制，确保处理过程的安全性
- * @warning 函数执行过程中不会返回，最后会调用安全检查
- * 
- * @see QueryAndRetrieveSystemDataA0, ExecuteCoreFunction, ProcessUtilityOperation
- */
 /**
  * @brief 处理对象数据并进行验证
  * 
