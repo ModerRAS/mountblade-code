@@ -2357,6 +2357,7 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ProcessSystemMemoryReset FUN_18013c732
 #define ProcessSystemDataReset FUN_18013c750
 #define ProcessSystemCharacterDataEx FUN_18013c78b
+#define ValidateSystemConfigurationStatus FUN_18013c7cf
 #define ProcessSystemMemoryDataEx FUN_18013c7cf
 #define ProcessSystemBufferFinalize FUN_18013c7eb
 #define ProcessSystemMemoryStatus FUN_18013c940
