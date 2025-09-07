@@ -28082,7 +28082,7 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   if (*(uint *)(dataBuffer + 8) < 0x6d) {
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
       systemDataBuffer = *dataBuffer;
-      validationOutcome = OperateDataO0(systemDataBuffer,&uStack_78,4);
+      validationOutcome = OperateDataO0(systemDataBuffer,&stackDataBuffer78,4);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
@@ -28840,6 +28840,18 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer SystemContext)
   float thirdValidationValue;  // 第三验证值，替换fVar6
   float fourthValidationValue; // 第四验证值，替换fVar7
   float secondaryFloatResult;  // 次要浮点结果，替换fVar9
+  float systemDataBuffer;      // 系统数据缓冲区，替换系统相关变量
+  float statusCounter;         // 状态计数器，替换状态相关变量
+  float loopCounter;           // 循环计数器，替换循环相关变量
+  float inputParameter8;       // 输入参数8，替换参数相关变量
+  float systemDataBuffer1;     // 系统数据缓冲区1，替换系统相关变量
+  float operationBase;         // 操作基数，替换操作相关变量
+  float stackFramePointer;     // 栈帧指针，替换栈相关变量
+  float register_R12;          // 寄存器R12，替换寄存器相关变量
+  float exceptionDataBuffer4;  // 异常数据缓冲区4，替换异常相关变量
+  float exceptionHandlerContext7; // 异常处理上下文7，替换异常处理相关变量
+  float exceptionHandlerContext6; // 异常处理上下文6，替换异常处理相关变量
+  float exceptionDataBuffer2;  // 异常数据缓冲区2，替换异常相关变量
   
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {
