@@ -19594,7 +19594,7 @@ ProcessDataSecurityValidation:
   validationContext5 = (*(code *)*inputAccumulatorRegister)(resourcePointer2);
   inputParameter3 = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(validationContext5 + 0xd0),&StackBuffer48);
   if (inputParameter3 == 0) {
-    StackBuffer70 = &UNK_1809832b8;
+    StackBuffer70 = &DataValidationErrorBase;
     *(DataWord *)(stackFramePointer + -0xf) = StackParameter20;
     *(float *)(stackFramePointer + -0x10) = fStack0000000000000048;
     StackParameter78 = register_R13D;
