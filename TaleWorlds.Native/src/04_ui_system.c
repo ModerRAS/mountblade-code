@@ -60336,7 +60336,7 @@ void ProcessUIImageScaling(undefined1 (*uiContext) [32],int dataSource,longlong 
 
 
 
- void FUN_1806979e0(void)
+ void TriggerUIRenderingUpdate(void)
  UI渲染更新触发函数
  * 
  * 该函数触发UI系统的渲染更新流程。
@@ -64571,7 +64571,7 @@ void InitializeUICriticalSectionResource(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18069c080(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined1 *bufferSize,
+ void ProcessUIComponentDataEncryption(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined1 *bufferSize,
  处理UI组件数据加密和渲染任务
  处理UI组件数据的加密操作，并执行相应的渲染任务
  * 使用XOR加密密钥对数据进行保护，然后调用渲染任务执行器
@@ -64685,7 +64685,7 @@ void ProcessUIComponentRender(longlong uiContext,undefined8 dataSource,undefined
 
 
 
- void FUN_18069c3b0(undefined1 *uiContext,int dataSource,int targetBuffer,int bufferSize,int resultPointer,int param_6,
+ void ProcessUIComponentMemoryOperations(undefined1 *uiContext,int dataSource,int targetBuffer,int bufferSize,int resultPointer,int param_6,
  处理UI组件内存操作和数据复制
  处理UI组件的内存操作，包括内存清零、数据复制和内存移动
  * 用于UI组件的初始化、数据更新和内存管理
@@ -64814,7 +64814,7 @@ void ProcessUIComponentQueue(int *uiContext,int *dataSource)
 
 
 
- void FUN_18069c640(int *uiContext)
+ void UpdateUIComponentLayout(int *componentData)
  UI组件布局更新函数
  更新UI组件的布局信息，包括组件的位置、大小等布局参数。
  * 根据组件的状态数据重新计算布局信息。

@@ -11529,7 +11529,7 @@ void CoreEngineInitializeConnectionPoolManager(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -11590,7 +11590,7 @@ void CoreEngineInitializeNetworkResourceManager(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint32_t StackConfigurationFlag;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -12076,7 +12076,7 @@ void CoreEngineInitializeConnectionManager(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -12130,7 +12130,7 @@ void CoreEngineInitializeCacheManager(void)
   void *LeftTraverseNode;                               // 左遍历节点指针
   void *RightTraverseNode;                              // 右遍历节点指针
   void *NextNodePointer;                                // 下一个节点指针
-  void *TempStackPointer;                               // 临时栈指针
+  void *TemporaryStackPointer;                               // 临时栈指针
   uint64_t StackConfigurationFlag;                      // 栈配置标志
   
   EngineContext = (long long *)CoreEngineGetSystemContext();
@@ -12154,8 +12154,8 @@ void CoreEngineInitializeCacheManager(void)
   }
   if ((LeftTraverseNode == SystemContext) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuaternary,LeftTraverseNode + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
-    CoreEngineSetupMemoryNode(SystemContext,&TempStackPointer,LeftTraverseNode,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    LeftTraverseNode = TempStackPointer;
+    CoreEngineSetupMemoryNode(SystemContext,&TemporaryStackPointer,LeftTraverseNode,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    LeftTraverseNode = TemporaryStackPointer;
   }
   LeftTraverseNode[6] = 0x4b2d79e470ee4e2c;
   LeftTraverseNode[7] = 0x9c552acd3ed5548d;
@@ -12183,7 +12183,7 @@ void CoreEngineInitializeQueueManager(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -12237,7 +12237,7 @@ void CoreEngineInitializeThreadPoolManager(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -12473,7 +12473,7 @@ void InitializeNetworkConfigurationNode(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -12527,7 +12527,7 @@ void InitializeNetworkAuthenticationNode(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -12581,7 +12581,7 @@ void InitializeNetworkValidationNode(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -12864,7 +12864,7 @@ void InitializeNetworkSecurityNode(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -12919,7 +12919,7 @@ void InitializeNetworkBufferNode(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -13027,7 +13027,7 @@ void SystemConnectionManagerInitialize(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -13174,7 +13174,7 @@ void NetworkStatusProcessorInitialize(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -13281,7 +13281,7 @@ void SystemConnectionTemplateAInitialize(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -13334,7 +13334,7 @@ void NetworkSecurityProcessorInitialize(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -13388,7 +13388,7 @@ void SystemConnectionTemplateCInitialize(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -13442,7 +13442,7 @@ void FileSystemProcessorInitialize(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   void *RegisterX18TempPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -14522,7 +14522,7 @@ void CoreEngineInitializeNetworkStatusProcessor(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -14575,7 +14575,7 @@ void CoreEngineInitializeConnectionInitializer(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -14959,7 +14959,7 @@ void CoreEngineInitializeSystemDataTemplateUI(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15020,7 +15020,7 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15082,7 +15082,7 @@ void CoreEngineInitializeSystemConnectionTemplateB(void)
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *NetworkSecurityCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15136,7 +15136,7 @@ void CoreEngineInitializeSystemManager(void)
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15190,7 +15190,7 @@ void CoreEngineInitializeSystemConnectionTemplateG(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   void *RegisterX18TempPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15244,7 +15244,7 @@ void CoreEngineInitializeConfigurationManager(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15297,7 +15297,7 @@ void CoreEngineInitializeResourceManager(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15350,7 +15350,7 @@ void CoreEngineInitializeMemoryAllocator(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15404,7 +15404,7 @@ void CoreEngineInitializeThreadScheduler(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15457,7 +15457,7 @@ void CoreEngineInitializeEventManager(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15511,7 +15511,7 @@ void CoreEngineInitializeRenderManager(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15565,7 +15565,7 @@ void CoreEngineInitializePhysicsManager(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   void *RegisterX18TempPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15619,7 +15619,7 @@ void CoreEngineInitializeAudioManager(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15672,7 +15672,7 @@ void CoreEngineInitializeNetworkManager(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15725,7 +15725,7 @@ void CoreEngineInitializeInputManager(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15779,7 +15779,7 @@ void CoreEngineInitializeFileSystemManager(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15832,7 +15832,7 @@ void CoreEngineInitializeSecurityManager(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -15886,7 +15886,7 @@ void CoreEngineInitializeDatabaseManager(void)
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -16314,7 +16314,7 @@ void CoreEngineInitializeThreadSystem(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -16368,7 +16368,7 @@ void CoreEngineProcessThreadQueue(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -16422,7 +16422,7 @@ void CoreEngineManageThreadResources(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -16482,7 +16482,7 @@ void CoreEngineHandleThreadEvents(void)
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -16535,7 +16535,7 @@ void CoreEngineInitializeThreadSynchronization(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -16588,7 +16588,7 @@ void CoreEngineSetupThreadPriorities(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -16635,7 +16635,7 @@ void CoreEngineSetupThreadPriorities(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -16735,7 +16735,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -16783,7 +16783,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -16830,7 +16830,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -16992,7 +16992,7 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -17046,7 +17046,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -17094,7 +17094,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -17142,7 +17142,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -17623,7 +17623,7 @@ void CoreEngineInitializeDataStreamManager(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -17670,7 +17670,7 @@ void CoreEngineInitializeDataStreamManager(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -17717,7 +17717,7 @@ void CoreEngineInitializeDataStreamManager(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -18083,7 +18083,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -18130,7 +18130,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
-  StackPointer *TempStackPointer;
+  StackPointer *TemporaryStackPointer;
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -18178,7 +18178,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -18226,7 +18226,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -18274,7 +18274,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -18322,7 +18322,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -18370,7 +18370,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -18618,7 +18618,7 @@ void CoreEngineInitializeSystemThreadNodeJ(void
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -21250,7 +21250,7 @@ void CoreEngineInitializeSystemResources(long long *systemResourcePtr,uint64_t *
 {
   long long *SystemResourceAllocator;
   long long *SystemResourcePointer;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   long long *Utf8InputBuffer;
   long long **SystemContextHandle;
   uint32_t AllocationFlags;
@@ -37356,7 +37356,7 @@ void ManageBufferIndexllocation(long long *Utf8InputBuffer
   long long *SystemDataTablePointer;
   int IntegerValue9;
   long long lStackX_8;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   long long CoreEngineSignedValueC8;
   long long StackMemoryBufferC0;
   uint64_t MemoryOffsetValue;
@@ -74372,7 +74372,7 @@ void ProcessSystemEventHandler(uint64_t CharacterCode,uint64_t *Utf8InputBufferS
   uint64_t *StatusBuffer6;
   uint64_t *StatusBuffer7;
   float SystemContextPrimaryFloat8;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t *pStackConfigurationFlag;
   long long *pPerformanceCounterValue;
   void *SystemMemoryPointer;
@@ -123848,7 +123848,7 @@ LAB_180125a82:
   byte *ByteBufferPointer9;
   unsigned long long Utf16Char;
   uint64_t *pSystemRegisterFlagX8;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t **ppStackConfigurationFlag;
   uint64_t *puStackX_20;
   void *CoreEnginePointerBuffer78;
@@ -160409,7 +160409,7 @@ void CoreEngineInitializeNetworkSystem(void
   uint64_t *StatusBuffer2;
   int IntegerValue3;
   uint8_t SystemRegisterFlagBuffer [8];
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint8_t *pStackConfigurationFlag;
   uint64_t *puStackX_20;
   uint64_t Utf16Char4;
@@ -172025,7 +172025,7 @@ uint32_t ProcessUtf16CharAndSystemBuffer(long long CharacterCode,uint64_t *Utf8I
   uint UnicodeCodePoint;
   unsigned long long CalculatedCodePoint;
   uint8_t SystemRegisterFlagBuffer [8];
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   unsigned long long MemoryOffsetValue;
   
   MemoryAddressMask = 0;
@@ -183559,7 +183559,7 @@ uint64_t *InitializeSystemContext(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferS
 {
   uint64_t Utf16Char;
   long long *BufferAllocationStatus;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   long long *SystemRegisterPointerX18;
   long long *pPerformanceCounterValue;
   
@@ -216957,7 +216957,7 @@ long long * FUN_18018c160(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSi
   long long *MemoryPoolBlockSizePointer;
   uint32_t ProcessingStatusFlag;
   long long *SystemRegisterPointerX8;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   long long MemoryOperationStatus;
   long long lStack_38;
   long long lStack_30;
@@ -244661,7 +244661,7 @@ long long FUN_18020dd10(long long *Utf8InputBuffer,long long *Utf8InputBufferSiz
   int CharacterByteCount;
   long long MemoryOffset;
   long long SystemDataStructureRegistry;
-  void *TempStackPointer;
+  void *TemporaryStackPointer;
   uint64_t ReservedStackSpace;
   uint64_t *puStackX_20;
   
