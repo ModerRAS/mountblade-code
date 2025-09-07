@@ -60397,6 +60397,18 @@ void SetExceptionDataTableAtOffset7a0(DataBuffer operationBase,int64_t dataBuffe
 
 
 
+/**
+ * @brief 配置异常处理器函数7b0
+ * 
+ * 该函数负责配置异常处理器，包括设置临时异常处理器和默认异常处理器B。
+ * 它会检查异常上下文的状态，并在必要时终止系统操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器配置信息
+ * 
+ * @note 原始函数名：Unwind_1809067b0
+ * @note 这是一个异常展开（unwind）处理函数，用于配置异常处理器
+ */
 void ConfigureExceptionHandlerAtOffset7b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -60415,6 +60427,18 @@ void ConfigureExceptionHandlerAtOffset7b0(DataBuffer operationBase,int64_t dataB
 
 
 
+/**
+ * @brief 初始化异常数据表函数7c0
+ * 
+ * 该函数负责初始化异常数据表，设置系统异常数据表、默认异常处理器B
+ * 以及异常数据表3和6的引用关系。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常数据表初始化信息
+ * 
+ * @note 原始函数名：Unwind_1809067c0
+ * @note 这是一个异常展开（unwind）处理函数，用于初始化异常数据表
+ */
 void InitializeExceptionDataTableAtOffset7c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -60430,6 +60454,18 @@ void InitializeExceptionDataTableAtOffset7c0(DataBuffer operationBase,int64_t da
 
 
 
+/**
+ * @brief 执行异常清理操作函数7d0
+ * 
+ * 该函数负责执行异常清理操作，通过异常上下文指针调用相应的清理函数。
+ * 它会检查异常上下文指针的有效性，然后执行异常处理器的清理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常清理操作信息
+ * 
+ * @note 原始函数名：Unwind_1809067d0
+ * @note 这是一个异常展开（unwind）处理函数，用于执行异常清理操作
+ */
 void ExecuteExceptionCleanupAtOffset7d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {

@@ -2925,7 +2925,16 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 #define ProcessSystemDataAndAllocateValidation FUN_1800a05a0
 #define ProcessSystemDataAndAllocateSecondary FUN_1800a0350
 
-// 原始函数名：FUN_18009cee0 - 系统数据结构配置和复制函数
+/**
+ * @brief 处理系统数据结构配置和复制
+ * 
+ * 该函数负责系统数据结构的配置和复制操作，包括数据结构的初始化和复制。
+ * 确保系统数据结构的正确配置和复制。
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18009cee0
+ */
 #define ProcessSystemDataStructureConfigurationAndCopy FUN_18009cee0
 
 /**
@@ -2937,17 +2946,79 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
  */
 #define ProcessSystemInitializationAndResourceAllocation FUN_1809419e0
 
+/**
+ * @brief 处理系统浮点数据和纹理
+ * 
+ * 该函数负责系统浮点数据和纹理的处理操作，包括纹理数据的加载和处理。
+ * 确保浮点数据和纹理的正确处理。
+ * 
+ * @return 处理结果状态码
+ */
 #define ProcessSystemFloatDataAndTexture FUN_180114450
+/**
+ * @brief 处理系统字符串数据
+ * 
+ * 该函数负责系统字符串数据的处理操作，包括字符串的解析、转换和存储。
+ * 确保字符串数据的正确处理和管理。
+ * 
+ * @return 处理结果状态码
+ */
 #define ProcessSystemStringData FUN_18013c800
+/**
+ * @brief 处理系统动画数据
+ * 
+ * 该函数负责系统动画数据的处理操作，包括动画数据的加载、解析和播放。
+ * 确保动画数据的正确处理和播放。
+ * 
+ * @return 处理结果状态码
+ */
 #define ProcessSystemAnimationData ProcessSystemFunctionTable
+/**
+ * @brief 处理系统物理数据
+ * 
+ * 该函数负责系统物理数据的处理操作，包括物理模拟和碰撞检测。
+ * 确保物理数据的正确处理和物理模拟的准确性。
+ * 
+ * @return 处理结果状态码
+ */
 #define ProcessSystemPhysicsData FUN_18010fad0
+/**
+ * @brief 处理系统着色器数据
+ * 
+ * 该函数负责系统着色器数据的处理操作，包括着色器的编译和链接。
+ * 确保着色器数据的正确处理和着色器的正常运行。
+ * 
+ * @return 处理结果状态码
+ */
 #define ProcessSystemShaderData ProcessFloatDataInputAndSystemConfiguration
 
-// 渲染系统初始化函数
+/**
+ * @brief 初始化渲染系统组件
+ * 
+ * 该函数负责渲染系统组件的初始化操作，包括渲染设备的初始化和配置。
+ * 确保渲染系统组件的正确初始化。
+ * 
+ * @return 初始化结果状态码
+ */
 #define InitializeRenderingSystemComponent FUN_18005b7c0
+/**
+ * @brief 配置渲染系统参数
+ * 
+ * 该函数负责渲染系统参数的配置操作，包括渲染参数的设置和优化。
+ * 确保渲染系统参数的正确配置。
+ * 
+ * @return 配置结果状态码
+ */
 #define ConfigureRenderingSystemParameters FUN_18005d260
 
-// 系统数据结构配置函数
+/**
+ * @brief 配置系统数据结构偏移070
+ * 
+ * 该函数负责系统数据结构的配置操作，包括数据结构偏移量的设置。
+ * 确保系统数据结构的正确配置。
+ * 
+ * @return 配置结果状态码
+ */
 #define ConfigureSystemDataStructureOffset070 FUN_18010d070
 #define ConfigureSystemDataStructureOffset0f0 FUN_18010d0f0
 #define ConfigureSystemDataStructureOffset170 FUN_18010d170
