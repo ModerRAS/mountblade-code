@@ -169740,7 +169740,7 @@ uint64_t * GetCharacterStatusBuffer(void)
   DataStringLength = *(int *)(SystemContext + 0x2e28);
   *(int *)(SystemContext + 0x2e28) = DataStringLength + 1;
   StringProcessingStatus = (void *)((long long)DataStringLength * 0x38 + *(long long *)(SystemContext + 0x2e30));
-  DataSize = FUN_1801210b0();
+  DataSize = GetSystemCharacterDataStatus();
   *StringProcessingStatus = DataSize;
   SystemMemoryAllocationResult = 0xffffffff;
   HighByte = *CharacterLimit;
@@ -169808,7 +169808,7 @@ uint64_t * GetCharacterStatusBufferByCode(int CharacterCode)
   DataStringLength = *(int *)(SystemContext + 0x2e28);
   *(int *)(SystemContext + 0x2e28) = DataStringLength + 1;
   StringProcessingStatus = (void *)((long long)DataStringLength * 0x38 + *(long long *)(SystemContext + 0x2e30));
-  DataSize = FUN_1801210b0();
+  DataSize = GetSystemCharacterDataStatus();
   *StringProcessingStatus = DataSize;
   SystemMemoryAllocationResult = 0xffffffff;
   HighByte = *CharacterLimit;
@@ -170184,7 +170184,7 @@ void WriteSystemConfigurationHandle(long long CharacterCode)
   if (CharacterCode != 0) {
     DataSize = 0;
     FileOperationResult = ExecuteSystemCleanup(&DataSize);
-    FileHandle = FUN_180121300(CharacterCode, SystemConfigurationHandlePath);
+    FileHandle = GetSystemConfigurationHandlePath(CharacterCode, SystemConfigurationHandlePath);
     if (FileHandle != 0) {
       fwrite(FileOperationResult, 1, DataSize, FileHandle);
       fclose(FileHandle);
