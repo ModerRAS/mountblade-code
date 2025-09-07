@@ -6749,33 +6749,33 @@ undefined8 *
 ConvertUIString(undefined8 *uiContext,longlong dataSource,undefined8 targetBuffer,undefined8 bufferSize)
 
 {
-  undefined8 functionResult;
+  undefined8 conversionResult;
   undefined4 semaphoreHandle;
   undefined8 bufferFlags;
-  undefined1 auStack_28 [8];
-  undefined8 uStack_20;
-  undefined4 uStack_18;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined1 workspaceBuffer [8];
+  undefined8 contextData;
+  undefined4 bufferOffset;
+  undefined4 bufferInfo;
+  undefined4 bufferFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  bufferFlags = 0xfffffffffffffffe;
   semaphoreHandle = 0;
   if ((dataSource != 0) && (*(int *)(dataSource + 0x10) != 0)) {
-    functionResult = mono_string_to_utf8(dataSource);
-    InitializeUIDataBuffer(auStack_28,functionResult,targetBuffer,bufferSize,semaphoreHandle,uVar3);
-    mono_free(functionResult);
+    conversionResult = mono_string_to_utf8(dataSource);
+    InitializeUIDataBuffer(workspaceBuffer,conversionResult,targetBuffer,bufferSize,semaphoreHandle,bufferFlags);
+    mono_free(conversionResult);
     *uiContext = &SecondaryUIBuffer;
     uiContext[1] = 0;
     *(undefined4 *)(bufferData + 2) = 0;
     *uiContext = &PrimaryUIBuffer;
-    *(undefined4 *)(bufferData + 2) = uStack_18;
-    uiContext[1] = uStack_20;
-    *(undefined4 *)((longlong)uiContext + 0x1c) = uStack_c;
-    *(undefined4 *)(bufferData + 3) = uStack_10;
+    *(undefined4 *)(bufferData + 2) = bufferOffset;
+    uiContext[1] = contextData;
+    *(undefined4 *)((longlong)uiContext + 0x1c) = bufferFlag;
+    *(undefined4 *)(bufferData + 3) = bufferInfo;
     return uiContext;
   }
-  uVar3 = GetUIState();
-  OperateUIBuffer(uiContext,uVar3);
+  bufferFlags = GetUIState();
+  OperateUIBuffer(uiContext,bufferFlags);
   return uiContext;
 }
 
