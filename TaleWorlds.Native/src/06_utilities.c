@@ -4956,6 +4956,7 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 // 系统资源数据管理相关变量宏定义
 #define SystemResourceDataManager _DAT_180c967a0     // 系统资源数据管理器
 #define SystemResourceDataTable DAT_180c96790         // 系统资源数据表
+#define SystemResourceDataBuffer DAT_18098bc73         // 系统资源数据缓冲区
 
 // 异常处理系统全局变量
 void* ExceptionHandlerTablePointer;        // 异常处理器表指针
@@ -40952,7 +40953,17 @@ void MutexDestroyer490(void)
 
 
 
-void Unwind_1809034b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常清理处理器B0
+ * 
+ * 该函数负责处理偏移量0x40处的异常清理操作
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常状态信息
+ * 
+ * @note 原始函数名：Unwind_1809034b0
+ */
+void ProcessExceptionCleanupAtOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -40988,7 +40999,17 @@ void Unwind_1809034b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809034c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常清理处理器B1
+ * 
+ * 该函数负责处理偏移量0x48处的异常清理操作
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常状态信息
+ * 
+ * @note 原始函数名：Unwind_1809034c0
+ */
+void ProcessExceptionCleanupAtOffset48(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
