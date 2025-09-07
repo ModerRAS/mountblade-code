@@ -146296,28 +146296,42 @@ LAB_18012edb4:
 
 
 
-edc6(voidvoid FUN_18012edc6(void
+/**
+ * @brief 处理字符字节计数验证
+ * 
+ * 该函数负责处理字符字节计数的验证和调整，确保缓冲区大小足够存储字符数据。
+ * 在核心引擎中用于字符编码处理时的缓冲区管理。
+ * 
+ * @note 原始函数名：FUN_18012edc6
+ */
+#define ProcessCharacterByteCountValidation FUN_18012edc6
+
+void ProcessCharacterByteCountValidation(void)
 {
-  int LockResult;
+  int SystemLockResult;
   int CharacterByteCount;
   int MemoryAllocationSize;
   int CharacterTablePointer;
   long long GeneralRegister14;
   
+  GeneralRegister14 = SystemConfigurationHandle;
+  CharacterTablePointer = *(int *)(GeneralRegister14 + 0x1bb8);
+  MemoryAllocationSize = *(int *)(GeneralRegister14 + 0x1bb4);
+  
   if (MemoryAllocationSize < CharacterTablePointer) {
-    IntegerValue = *(int *)(GeneralRegister14 + 0x1bb4);
-    if (IntegerValue < MemoryAllocationSize) {
-      if (IntegerValue == 0) {
-        IntegerValue = 8;
+    SystemLockResult = *(int *)(GeneralRegister14 + 0x1bb4);
+    if (SystemLockResult < MemoryAllocationSize) {
+      if (SystemLockResult == 0) {
+        SystemLockResult = 8;
       }
       else {
-        IntegerValue = IntegerValue / 2 + IntegerValue;
+        SystemLockResult = SystemLockResult / 2 + SystemLockResult;
       }
       CharacterByteCount = MemoryAllocationSize;
-      if (MemoryAllocationSize < IntegerValue) {
-        CharacterByteCount = IntegerValue;
+      if (MemoryAllocationSize < SystemLockResult) {
+        CharacterByteCount = SystemLockResult;
       }
-      ProcessCharacterByteCountValidation(GeneralRegister14 + 0x1bb0,CharacterByteCount);
+      ProcessCharacterByteCountAllocation(GeneralRegister14 + 0x1bb0, CharacterByteCount);
     }
     *(int *)(GeneralRegister14 + 0x1bb0) = MemoryAllocationSize;
   }
@@ -147066,7 +147080,19 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
 
 
 
-f711(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_18012f711(uint64_t CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理UTF-8字符编码转换
+ * 
+ * 该函数负责处理UTF-8字符编码转换，包括字符代码处理和缓冲区管理。
+ * 在核心引擎中用于UTF-8字符编码转换操作。
+ * 
+ * @param CharacterCode 字符代码值
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @note 原始函数名：FUN_18012f711
+ */
+#define ProcessUtf8CharacterEncodingConversion FUN_18012f711
+
+void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long Utf8BufferSize)
 {
   long long PrimaryDataSize;
   uint MemoryAllocationIndex;
@@ -147134,7 +147160,19 @@ f711(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_18012f711(uint64_t 
 
 
 
-f8b5(uint64_t *Utf8InputBuffer,long long Utf8BufferSizevoid FUN_18012f8b5(uint64_t *Utf8InputBuffer,long long Utf8BufferSize
+/**
+ * @brief 处理UTF-8输入缓冲区
+ * 
+ * 该函数负责处理UTF-8输入缓冲区，包括数据节点索引和引用计数管理。
+ * 在核心引擎中用于UTF-8输入缓冲区处理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @note 原始函数名：FUN_18012f8b5
+ */
+#define ProcessUtf8InputBuffer FUN_18012f8b5
+
+void ProcessUtf8InputBuffer(uint64_t *Utf8InputBuffer, long long Utf8BufferSize)
 {
   uint in_EAX;
   long long RegisterFramePointer;
@@ -147210,7 +147248,17 @@ f8b5(uint64_t *Utf8InputBuffer,long long Utf8BufferSizevoid FUN_18012f8b5(uint64
 
 
 
-f941(voidvoid FUN_18012f941(void
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，直接返回。
+ * 在核心引擎中用于占位或空操作。
+ * 
+ * @note 原始函数名：FUN_18012f941
+ */
+#define EmptyOperation2 FUN_18012f941
+
+void EmptyOperation2(void)
 {
   long long RegisterFramePointer;
   uint64_t *DataNodeIndex;
@@ -147267,7 +147315,17 @@ f941(voidvoid FUN_18012f941(void
 
 
 
-f94a(voidvoid FUN_18012f94a(void
+/**
+ * @brief 处理系统数据过滤
+ * 
+ * 该函数负责处理系统数据过滤，包括浮点数计算和滤波处理。
+ * 在核心引擎中用于数据过滤操作。
+ * 
+ * @note 原始函数名：FUN_18012f94a
+ */
+#define ProcessSystemDataFiltering FUN_18012f94a
+
+void ProcessSystemDataFiltering(void)
 {
   long long RegisterFramePointer;
   uint64_t *DataNodeIndex;

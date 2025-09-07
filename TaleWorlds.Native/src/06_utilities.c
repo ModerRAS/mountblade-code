@@ -79917,7 +79917,17 @@ void ExceptionContextHandler0e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c0f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数0f0
+ * 
+ * 该函数负责设置默认异常处理器B到不同的缓冲区位置
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090c0f0
+ */
+void ExceptionContextHandler0f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x3c0) = &DefaultExceptionHandlerB;
@@ -79926,7 +79936,17 @@ void Unwind_18090c0f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c100(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数100
+ * 
+ * 该函数负责遍历异常上下文指针数组并调用相应的异常处理器
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090c100
+ */
+void ExceptionContextHandler100(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
