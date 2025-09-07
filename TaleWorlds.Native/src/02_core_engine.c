@@ -264974,18 +264974,28 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
 
 
 
-int FUN_1802255e7(void
+/**
+ * @brief 解析系统状态值并返回对应的标识码
+ * 
+ * 该函数通过比较输入数据的长度和内容来识别不同的系统状态，
+ * 并返回相应的标识码。主要用于系统状态的识别和分类。
+ * 
+ * @return 返回识别到的状态标识码，如果未匹配到任何状态则返回默认值
+ * 
+ * @note 原始函数名：FUN_1802255e7
+ */
+int ParseSystemStatusValue(void)
 {
-  int LockResult;
-  long long BufferStatus;
-  int DataStringLength;
-  long long PatternIndex;
-  long long MemoryOffset;
-  long long DataNodePointer;
+  int SystemLockResult;
+  long long SystemBufferStatus;
+  int InputDataLength;
+  long long SearchPatternIndex;
+  long long MemoryAccessOffset;
+  long long SystemDataNodePointer;
   
-  if (DataStringLength == 4) {
-    MemoryBlockIndex = PatternIndex;
-    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueVigintenary)[BufferStatus]
+  if (InputDataLength == 4) {
+    SystemMemoryBlockIndex = SearchPatternIndex;
+    while (SystemBufferStatus = SystemMemoryBlockIndex, *(char *)(*(long long *)(SystemDataNodePointer + 8) + SystemBufferStatus) == (&SystemStatusValueVigintenary)[SystemBufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
       if (BufferStatus + 1 == 5) {

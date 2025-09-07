@@ -5240,77 +5240,77 @@ ProcessUIDataValidation:
 void ProcessUIUpdates(void)
 
 {
-  char CurrentChar;
-  code *ErrorHandler;
-  undefined1 UpperCaseChar;
-  int NumericValue;
-  longlong StringSearchResult;
-  char *CharPointer;
-  ulonglong StringLength;
-  longlong StackPointer;
-  int *ResultPointer;
-  ulonglong StringPointer;
-  ulonglong CharIndex;
+  char currentChar;
+  code *errorHandler;
+  undefined1 upperCaseChar;
+  int numericValue;
+  longlong stringSearchResult;
+  char *charPointer;
+  ulonglong stringLength;
+  longlong stackPointer;
+  int *resultPointer;
+  ulonglong stringPointer;
+  ulonglong charIndex;
   
-  StringLength = 0xffffffffffffffff;
+  stringLength = 0xffffffffffffffff;
   do {
-    StringLength = StringLength + 1;
-  } while (*(char *)(StackPointer + -9 + StringLength) != '\0');
-  if (0x40 < StringLength) {
-    StringLength = StringPointer;
+    stringLength = stringLength + 1;
+  } while (*(char *)(stackPointer + -9 + stringLength) != '\0');
+  if (0x40 < stringLength) {
+    stringLength = stringPointer;
   }
-  CharIndex = 0;
-  if (StringLength != 0) {
+  charIndex = 0;
+  if (stringLength != 0) {
     do {
-      UpperCaseChar = toupper((int)*(char *)(StackPointer + -9 + CharIndex));
-      *(undefined1 *)(StackPointer + -0x59 + CharIndex) = UpperCaseChar;
-      CharIndex = CharIndex + 1;
-    } while (CharIndex < StringLength);
+      upperCaseChar = toupper((int)*(char *)(stackPointer + -9 + charIndex));
+      *(undefined1 *)(stackPointer + -0x59 + charIndex) = upperCaseChar;
+      charIndex = charIndex + 1;
+    } while (charIndex < stringLength);
   }
-  if (0x40 < StringLength) {
+  if (0x40 < stringLength) {
     TriggerUIErrorHandler();
-    ErrorHandler = (code *)swi(3);
-    (*ErrorHandler)();
+    errorHandler = (code *)swi(3);
+    (*errorHandler)();
     return;
   }
-  *(undefined1 *)(StackPointer + -0x59 + StringLength) = 0;
-  if (*(char *)(StackPointer + -0x59) == '\0') {
+  *(undefined1 *)(stackPointer + -0x59 + stringLength) = 0;
+  if (*(char *)(stackPointer + -0x59) == '\0') {
 LAB_UIStringCacheFound:
-    *ResultPointer = 1;
+    *resultPointer = 1;
   }
   else {
-    StringCacheResult = strstr(&UIStringCache,StackPointer + -0x59);
-    if (StringCacheResult != 0) goto LAB_UIStringCacheFound;
-    StringCacheResult = strstr(&DefaultUIStringCache,StackPointer + -0x59);
-    if (StringCacheResult == 0) {
-      *(longlong *)(StackPointer + -0x69) = StackPointer + -0x59;
-      ParsedNumericValue = strtol(StackPointer + -0x59,StackPointer + -0x69,10);
-      UnitSuffixPointer = *(char **)(StackPointer + -0x69);
-      if (ResultPointer[2] == 8) {
-        UnitChar = *UnitSuffixPointer;
-        if (UnitChar == 'K') {
-          UnitSuffixPointer = UnitSuffixPointer + 1;
-          *(char **)(StackPointer + -0x69) = UnitSuffixPointer;
+    stringCacheResult = strstr(&UIStringCache,stackPointer + -0x59);
+    if (stringCacheResult != 0) goto LAB_UIStringCacheFound;
+    stringCacheResult = strstr(&DefaultUIStringCache,stackPointer + -0x59);
+    if (stringCacheResult == 0) {
+      *(longlong *)(stackPointer + -0x69) = stackPointer + -0x59;
+      parsedNumericValue = strtol(stackPointer + -0x59,stackPointer + -0x69,10);
+      unitSuffixPointer = *(char **)(stackPointer + -0x69);
+      if (resultPointer[2] == 8) {
+        unitChar = *unitSuffixPointer;
+        if (unitChar == 'K') {
+          unitSuffixPointer = unitSuffixPointer + 1;
+          *(char **)(stackPointer + -0x69) = unitSuffixPointer;
         }
-        else if (UnitChar == 'M') {
-          ParsedNumericValue = ParsedNumericValue << 10;
-          UnitSuffixPointer = UnitSuffixPointer + 1;
-          *(char **)(StackPointer + -0x69) = UnitSuffixPointer;
+        else if (unitChar == 'M') {
+          parsedNumericValue = parsedNumericValue << 10;
+          unitSuffixPointer = unitSuffixPointer + 1;
+          *(char **)(stackPointer + -0x69) = unitSuffixPointer;
         }
-        else if (UnitChar == 'G') {
-          ParsedNumericValue = ParsedNumericValue << 0x14;
-          UnitSuffixPointer = UnitSuffixPointer + 1;
-          *(char **)(unmodifiedRBP + -0x69) = UnitSuffixPointer;
+        else if (unitChar == 'G') {
+          parsedNumericValue = parsedNumericValue << 0x14;
+          unitSuffixPointer = unitSuffixPointer + 1;
+          *(char **)(stackPointer + -0x69) = unitSuffixPointer;
         }
         else {
-          ParsedNumericValue = (int)((longlong)ParsedNumericValue + 0x3ffU >> 10);
+          parsedNumericValue = (int)((longlong)parsedNumericValue + 0x3ffU >> 10);
         }
-        if (*UnitSuffixPointer == 'B') {
-          UnitSuffixPointer = UnitSuffixPointer + 1;
-          *(char **)(unmodifiedRBP + -0x69) = UnitSuffixPointer;
+        if (*unitSuffixPointer == 'B') {
+          unitSuffixPointer = unitSuffixPointer + 1;
+          *(char **)(stackPointer + -0x69) = unitSuffixPointer;
         }
       }
-      if (*UnitSuffixPointer != '\0') {
+      if (*unitSuffixPointer != '\0') {
         ValidateUIData(&UIValidationData,*(undefined8 *)(unmodifiedRSI + 4),unmodifiedRBP + -0x59);
         unmodifiedRSI[1] = 1;
         goto LAB_UIRenderTaskExecution;
