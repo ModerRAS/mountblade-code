@@ -52564,7 +52564,20 @@ void ProcessExceptionResourceCleanupCallbacksE(DataBuffer operationBase,int64_t 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180904fe0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理文件句柄A
+ * 
+ * 该函数负责清理数据缓冲区中指定偏移量的文件句柄。
+ * 如果文件句柄存在，则关闭文件并减少资源计数器。
+ * 使用锁机制确保资源计数的线程安全。
+ * 
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含文件句柄信息
+ * 
+ * @note 原始函数名：Unwind_180904fe0
+ * @note 简化实现：关闭文件句柄并减少资源计数
+ */
+void CleanupFileHandleA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x68) != 0) {
