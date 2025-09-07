@@ -18423,7 +18423,6 @@ DataValidationLabel:
 
 
 
-895b89(void)
 /**
  * 安全检查执行函数 - 执行系统安全检查并终止进程
  * 
@@ -18927,7 +18926,6 @@ DataBuffer ValidateAndProcessResourceAllocation(int minimumSize,int requestedSiz
 
 
 
-895e7e(void)
 // 空操作函数C
 // 不执行任何操作，直接返回
 void NoOperationC(void)
@@ -22106,7 +22104,6 @@ MemoryCheckpoint:
 
 
 
-8986b0(int64_t operationBase,DataBuffer dataBuffer)
 /**
  * @brief 数据块验证函数A0
  * @details 验证数据块的完整性和有效性，执行边界检查和大小验证
@@ -23080,7 +23077,6 @@ DataBuffer ProcessDataBlockOperationA1(int64_t *systemContext,DataWord *dataBuff
 
 
 
-898fc0(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 多段数据处理函数A0
  * @details 处理多段数据，包括不同大小的数据块（4字节、2字节、8字节等）
