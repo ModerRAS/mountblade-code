@@ -46051,23 +46051,22 @@ void UpdateTargetDataContext(long long CharacterCode,long long *Utf8InputBufferS
  */
 long long CalculateDataStructureCapacity(long long DataStructurePointer)
 {
-  long long PrimaryDataSize;
-  long long BufferStatus;
+  // 未使用的变量保留以维持栈结构
   byte MemoryStatusFlag;
   
-  MemoryInputStringBuffer = *(byte *)(CharacterCode + 0xfd) & 0x20;
-  CharacterTableIndex = CharacterCode;
-  if (MemoryInputStringBuffer == 0) {
-    CharacterTableIndex = GetMemoryBlockData(*(void *)(CharacterCode + 0x1b0));
+  MemoryStatusFlag = *(byte *)(DataStructurePointer + 0xfd) & 0x20;
+  long long CharacterTableIndex = DataStructurePointer;
+  if (MemoryStatusFlag == 0) {
+    CharacterTableIndex = GetMemoryBlockData(*(void *)(DataStructurePointer + 0x1b0));
   }
-  BufferStatus = 2;
+  long long BufferStatusMultiplier = 2;
   if (0xffff < *(int *)(CharacterTableIndex + 0x200)) {
-    BufferStatus = 4;
+    BufferStatusMultiplier = 4;
   }
-  if (MemoryInputStringBuffer == 0) {
-    CharacterCode = GetMemoryBlockData(*(void *)(CharacterCode + 0x1b0));
+  if (MemoryStatusFlag == 0) {
+    DataStructurePointer = GetMemoryBlockData(*(void *)(DataStructurePointer + 0x1b0));
   }
-  return (*(int *)(CharacterCode + 0x1fc) * 3) * BufferStatus;
+  return (*(int *)(DataStructurePointer + 0x1fc) * 3) * BufferStatusMultiplier;
 }
 
 
