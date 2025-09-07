@@ -20101,16 +20101,16 @@ MemoryCopyLabel:
       }
     }
     else {
-      if (validationResult == '\x06') {
-        validationResult = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + 0x58));
+      if (dataType == '\x06') {
+        int validationResult = ValidateSystemConfiguration(*(DataBuffer *)(systemContext + 0x58));
         if (validationResult == '\0') goto MemoryCopyLabel;
         *dataBuffer = 0;
         GOTO_ValidationFailed;
       }
-      if (validationResult == '\a') {
-        validationResult = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + 0x58));
+      if (dataType == '\a') {
+        int validationResult = ValidateSystemConfiguration(*(DataBuffer *)(systemContext + 0x58));
         if (validationResult == '\0') {
-          if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(operationBase + 0x58) + 0x90) + 0x790) +
+          if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(systemContext + 0x58) + 0x90) + 0x790) +
                       0x1c8) != 0) {
             *dataBuffer = 0;
             GOTO_ValidationFailed;
@@ -20119,19 +20119,19 @@ MemoryCopyLabel:
         }
       }
       else {
-        if ((validationResult != '\x02') || ((*(byte *)(operationBase + OperationBaseOffset6C) & 4) != 0)) goto MemoryCopyLabel;
-        DataProcessingBuffer = *(DataWord *)(dataPointer + 0x20);
-        arrayIndex = ValidateAndProcessDataFlags(operationBase,arrayIndex,&DataProcessingBuffer);
-        if (arrayIndex != 0) GOTO_ValidationFailed;
-        arrayIndex = QueryAndRetrieveSystemDataA0(DataProcessingBuffer,ValidationContextBuffer);
-        if ((arrayIndex != 0) || (*(int *)(ValidationContextBuffer[0] + 0x30) != 2)) goto MemoryCopyLabel;
+        if ((dataType != '\x02') || ((*(byte *)(systemContext + OperationBaseOffset6C) & 4) != 0)) goto MemoryCopyLabel;
+        DataWord dataProcessingBuffer = *(DataWord *)(dataPointer + 0x20);
+        int resultIndex = ValidateAndProcessDataFlags(systemContext,currentIndex,&dataProcessingBuffer);
+        if (resultIndex != 0) GOTO_ValidationFailed;
+        resultIndex = QueryAndRetrieveSystemDataA0(dataProcessingBuffer,ValidationContextBuffer);
+        if ((resultIndex != 0) || (*(int *)(ValidationContextBuffer[0] + 0x30) != 2)) goto MemoryCopyLabel;
       }
     }
     *dataBuffer = 0;
   }
   else {
-    *(uint *)(operationBase + OperationBaseOffset6C) = *(uint *)(operationBase + OperationBaseOffset6C) & SecurityValidationMask;
-    *(uint *)(operationBase + OperationBaseOffset6C) = *(uint *)(operationBase + OperationBaseOffset6C) | MemoryOperationFlag;
+    *(uint *)(systemContext + OperationBaseOffset6C) = *(uint *)(systemContext + OperationBaseOffset6C) & SecurityValidationMask;
+    *(uint *)(systemContext + OperationBaseOffset6C) = *(uint *)(systemContext + OperationBaseOffset6C) | MemoryOperationFlag;
     *dataBuffer = 0;
   }
 ExecuteSecurityValidation:
