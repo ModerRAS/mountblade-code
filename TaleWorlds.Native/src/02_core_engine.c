@@ -5220,6 +5220,34 @@ void* CoreEngineDataTemplateY;
 void* CoreEngineDataTemplateZ;
 void* CoreEngineDataTemplateAA;
 
+// 系统异步操作数据常量定义
+const void* const SystemAsyncOperationDataPrimary = (void*)0x180a184260;
+const void* const SystemAsyncOperationDataSecondary = (void*)0x180a185030;
+
+// 系统字符串模板常量定义
+const void* const SystemStringTemplatePrimary = (void*)0x180a0a7b8;
+const void* const SystemStringTemplateSecondary = (void*)0x180a0a800;
+const void* const SystemStringTemplateTertiary = (void*)0x180a0a890;
+
+// 系统缓冲区常量定义
+const void* const SystemBufferPrimary = (void*)0x180a186550;
+const void* const SystemBufferSecondary = (void*)0x180a0aa34;
+const void* const SystemBufferTertiary = (void*)0x180a0abe0;
+const void* const SystemBufferQuaternary = (void*)0x180a0ab70;
+const void* const SystemBufferQuinary = (void*)0x180a0aba8;
+const void* const SystemBufferSenary = (void*)0x180a0ab00;
+const void* const SystemBufferSeptenary = (void*)0x180a0ab38;
+const void* const SystemBufferOctonary = (void*)0x180a0aac8;
+const void* const SystemBufferNonary = (void*)0x180a0aaa8;
+
+// 系统配置常量定义
+const void* const SystemConfigurationParameterPrimary = (void*)0x180a0a9b0;
+const void* const SystemConfigurationParameterSecondary = (void*)0x180a0aa20;
+const void* const SystemConfigurationParameterTertiary = (void*)0x180a0aa58;
+const void* const SystemConfigurationParameterQuaternary = (void*)0x180a0aa40;
+const void* const SystemConfigurationParameterQuinary = (void*)0x180a0aa90;
+const void* const SystemConfigurationParameterSenary = (void*)0x180a0aa70;
+
 // 系统关键字和标识符常量 - 用于替换UNK_180a132xx变量
 const char* const SystemKeywordPrimary = (const char*)0x180a132c0;
 const char* const SystemKeywordSecondary = (const char*)0x180a132e0;
@@ -203412,12 +203440,12 @@ LAB_1801807f2:
   pMemoryAddressMask[0x28] = 0;
   *(uint8_t *)((long long)pMemoryAddressMask + 0x8a) = 1;
   (**(code **)(*pSystemDataTablePointer + 0x10))(pSystemDataTablePointer,&CoreEngineDataTemplate);
-  (**(code **)(*SystemContextPointer0 + 0x10))(SystemContextPointer0,&UNK_180a1ff90);
+  (**(code **)(*SystemContextPointer0 + 0x10))(SystemContextPointer0,&SystemProcessingStatusTertiary);
   SystemContextPointer0 = pMemoryAddressMask + 0x20;
-  *SystemContextPointer0 = (long long)&UNK_180a1ff90;
-  pMemoryAddressMask[0x21] = &UNK_180a07998;
-  pMemoryAddressMask[0x22] = &UNK_180a1ff8c;
-  pMemoryAddressMask[0x23] = &UNK_180a1ff80;
+  *SystemContextPointer0 = (long long)&SystemProcessingStatusTertiary;
+  pMemoryAddressMask[0x21] = &SystemMemoryAddressMaskPrimary;
+  pMemoryAddressMask[0x22] = &SystemProcessingStatusQuaternary;
+  pMemoryAddressMask[0x23] = &SystemProcessingStatusQuinary;
   do {
     loopCounter = *SystemContextPointer0;
     pBufferInitializationFlag = &SystemNullTemplate;
@@ -203505,7 +203533,7 @@ LAB_1801807f2:
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x88,8,3,0xfffffffffffffffe);
   systemEventTemplatePointer = PrimaryProcessingStatusFlag;
   FUN_1803456e0(PrimaryProcessingStatusFlag,Utf8BufferSize,SystemContextPointer);
-  *systemEventTemplatePointer = &UNK_180a1ef60;
+  *systemEventTemplatePointer = &SystemMemoryAddressMaskSecondary;
   systemEventTemplatePointer[0xf] = 0;
   pSystemPriorityLevel = &SystemNullTemplate;
   uStack_28 = 0;
@@ -203822,15 +203850,15 @@ void FUN_180181e30(uint64_t SystemContextPointer,long long Utf8BufferSize,unsign
           SystemContextPointer2 = (long long *)FUN_1800b33d0(SystemMemoryManagerPointer,&AdditionalParameter1,&pMemoryOffsetValue);
           SecondaryProcessingStatusFlag = pSystemStackFlagB0;
           if (AdditionalParameter1 == (long long *)0x0) {
-            if ((CoreEngineValueA8 == 0xb) && (SystemOperationResult = strcmp(pSystemStackFlagB0,&UNK_180a03008), SystemOperationResult == 0)) {
-              FUN_180626ee0(&UNK_180a02a80,&UNK_180a03008);
+            if ((CoreEngineValueA8 == 0xb) && (SystemOperationResult = strcmp(pSystemStackFlagB0,&SystemEventTemplateSecondary), SystemOperationResult == 0)) {
+              FUN_180626ee0(&SystemEventTemplatePrimary,&SystemEventTemplateSecondary);
             }
             else {
               StatusBuffer5 = &CoreEngineDataTemplate;
               if (SecondaryProcessingStatusFlag != NULL) {
                 StatusBuffer5 = SecondaryProcessingStatusFlag;
               }
-              FUN_180627020(&UNK_180a02a20,StatusBuffer5,&UNK_180a0a2a8);
+              FUN_180627020(&SystemEventTemplatePrimary,StatusBuffer5,&SystemMemoryBlockIndex);
               EngineStatusBuffer = (void *)FUN_1800befa0(SystemStatusBufferPointerA,&pCoreEngineSignedValueC8);
               BufferAllocationStatus = (long long *)*StatusBuffer3;
               *EngineStatusBuffer = 0;
@@ -204123,7 +204151,7 @@ FUN_1801834d0(long long SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t U
 
 uint64_t * FUN_180183970(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize
 {
-  *SystemContextPointer = &UNK_180a0ad58;
+  *SystemContextPointer = &SystemMemoryAddressMaskPrimary;
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,8);
   }
@@ -204138,14 +204166,14 @@ FUN_1801839a0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
   uint64_t Utf16Char;
   
   Utf16Char = 0xfffffffffffffffe;
-  *SystemContextPointer = &UNK_180a0ad28;
+  *SystemContextPointer = &SystemMemoryAddressSecondary;
   if (SystemContextPointer[1] != 0) {
     NVGSDK_Release();
   }
   if (SystemContextPointer[2] != 0) {
     FUN_180188120();
   }
-  *SystemContextPointer = &UNK_180a0ad58;
+  *SystemContextPointer = &SystemMemoryAddressMaskPrimary;
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,0x18,Utf16InputPointer,Utf16EndPointer,Utf16Char);
   }
@@ -204185,8 +204213,8 @@ FUN_1801839a0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemUintBuffer258;
   OperationStatus = 0;
   MemoryBlockIndex = (long long *)AllocateSystemMemoryPool(0x18);
-  *MemoryBlockIndex = (long long)&UNK_180a0ad58;
-  *MemoryBlockIndex = (long long)&UNK_180a0ad28;
+  *MemoryBlockIndex = (long long)&SystemMemoryAddressPrimary;
+  *MemoryBlockIndex = (long long)&SystemMemoryAddressSecondary;
   MemoryBlockIndex[2] = 0;
   lStack_1f0 = 0;
   lStack_1e8 = 0;
@@ -204378,7 +204406,7 @@ LAB_180183f13:
   }
 LAB_180184089:
   *(void *)(MemoryBlockIndex + 0x40) = SystemStackFlag;
-  NVGSDK_GetUILanguageAsync(*(void *)(SystemContextPointer + 8),&UNK_180184260,MemoryBlockIndex);
+  NVGSDK_GetUILanguageAsync(*(void *)(SystemContextPointer + 8),&SystemAsyncOperationDataPrimary,MemoryBlockIndex);
   MemoryOffsetValue = 1;
   plStack_b0 = alStack_88;
   if (plStack_50 != (long long *)0x0) {
@@ -249963,14 +249991,14 @@ int ParseSystemIdentifier(long long SystemContextPointer
   }
   if (ValidationCode == 7) {
     MemoryBoundaryEnd = MemoryAllocationSize;
-    while (DataConfigurationCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(SystemContextPointer + 8) + DataConfigurationCounter) == (&UNK_180a13100)[DataConfigurationCounter]    {
+    while (DataConfigurationCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(SystemContextPointer + 8) + DataConfigurationCounter) == ((char*)SystemStringConstantASCII)[DataConfigurationCounter]    {
       MemoryBoundaryEnd = DataConfigurationCounter + 1;
       if (DataConfigurationCounter + 1 == 8) {
         return (int)DataConfigurationCounter + 0x2b;
       }
     }
     MemoryBoundaryEnd = MemoryAllocationSize;
-    while (DataConfigurationCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(SystemContextPointer + 8) + DataConfigurationCounter) == (&UNK_180a13108)[DataConfigurationCounter]    {
+    while (DataConfigurationCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(SystemContextPointer + 8) + DataConfigurationCounter) == ((char*)SystemStringConstantUTF16)[DataConfigurationCounter]    {
       MemoryBoundaryEnd = DataConfigurationCounter + 1;
       if (DataConfigurationCounter + 1 == 8) {
         return (int)DataConfigurationCounter + -3;
@@ -249983,10 +250011,10 @@ int ParseSystemIdentifier(long long SystemContextPointer
   if ((((ValidationCode == 2) && (StringBuffer = *(char **)(SystemContextPointer + 8), *StringBuffer == 'A')) && (StringBuffer[1] == '8')     && (StringBuffer[2] == '\0')) {
     return 6;
   }
-  if ((ValidationCode == 8) && (StringComparisonResult = strcmp(*(void *)(SystemContextPointer + 8),&UNK_180a13130), StringComparisonResult == 0)) {
+  if ((ValidationCode == 8) && (StringComparisonResult = strcmp(*(void *)(SystemContextPointer + 8),SystemStringConstantUTF32), StringComparisonResult == 0)) {
     return 7;
   }
-  if ((ValidationCode == 0x11) && (StringComparisonResult = strcmp(*(void *)(SystemContextPointer + 8),&UNK_180a13140), StringComparisonResult == 0)  {
+  if ((ValidationCode == 0x11) && (StringComparisonResult = strcmp(*(void *)(SystemContextPointer + 8),SystemStringConstantUnicode), StringComparisonResult == 0)  {
     return 0x36;
   }
   if ((ValidationCode == 0xd) && (StringComparisonResult = strcmp(*(void *)(SystemContextPointer + 8),&UNK_180a13110), StringComparisonResult == 0)) {
@@ -269563,6 +269591,13 @@ const void* const SystemEventTemplateSecondary = (void*)0x180a03008;
 const void* const SystemStringConstantL8 = (void*)0x180a13158;
 const void* const SystemStringConstantR8 = (void*)0x180a13160;
 const void* const SystemStringConstantUTF8 = (void*)0x180a13180;
+const void* const SystemStringConstantASCII = (void*)0x180a13100;
+const void* const SystemStringConstantUTF16 = (void*)0x180a13108;
+const void* const SystemStringConstantUTF32 = (void*)0x180a13130;
+const void* const SystemStringConstantUnicode = (void*)0x180a13140;
+const void* const SystemStringConstantWideChar = (void*)0x180a13110;
+const void* const SystemStringConstantMultiByte = (void*)0x180a13120;
+const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 
 
 

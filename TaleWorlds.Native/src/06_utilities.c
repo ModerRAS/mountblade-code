@@ -40593,7 +40593,18 @@ void ManageExceptionReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180903320(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器配置管理器
+ * 
+ * 该函数负责配置和管理异常处理器，包括设置临时异常处理器、验证状态
+ * 以及配置默认异常处理器。确保异常处理系统的正确初始化
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常状态信息
+ * 
+ * @note 原始函数名：Unwind_180903320
+ */
+void ConfigureExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -40613,7 +40624,20 @@ void Unwind_180903320(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180903330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常资源清理处理器E3
+ * 
+ * 该函数负责清理偏移量0x80处的异常资源，调用系统资源清理函数
+ * 确保在异常处理过程中正确释放和清理相关资源
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常状态信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903330
+ */
+void CleanupExceptionResourceAtOffset80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -40629,7 +40653,20 @@ void Unwind_180903330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常资源清理处理器E4
+ * 
+ * 该函数负责清理偏移量0x88处的异常资源，调用系统资源清理函数
+ * 确保在异常处理过程中正确释放和清理相关资源
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常状态信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903340
+ */
+void CleanupExceptionResourceAtOffset88(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
