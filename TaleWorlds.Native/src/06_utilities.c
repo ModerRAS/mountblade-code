@@ -65275,7 +65275,22 @@ void DataValidationHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908600(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_180908600 - 系统清理处理器A1
+// 功能：执行系统相关的清理操作
+#define SystemCleanupHandlerA1 Unwind_180908600
+
+/**
+ * @brief 系统清理处理器A1
+ * 
+ * 该函数负责在异常展开时执行系统相关的清理操作
+ * 处理系统资源和状态的清理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 此函数在异常处理过程中自动调用
+ */
+void SystemCleanupHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0x30,0x20,0x50,CleanupResourceHandler);
