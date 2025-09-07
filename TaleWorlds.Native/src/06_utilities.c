@@ -105,6 +105,13 @@
 #define SystemOperationDataOffset 0x2a0
 #define SystemOperationStatusOffset 0x30
 #define SystemResourceCleanupOffset 0x40
+#define ExceptionDataTableOffset 0x100
+#define ExceptionDataContextOffset 0x18
+#define ExceptionHandlerContextDataOffset 0x20
+#define ExceptionHandlerSetupOffset 0x38
+#define ExceptionHandlerSecondaryOffset 0xe0
+#define ExceptionHandlerContextTableOffset 0x180
+#define ExceptionHandlerFunctionOffset 0x38
 #define SystemComponentListOffset 0x4d8
 #define SystemComponentCountOffset 0x4e4
 #define SystemComponentCapacityOffset 0x4e8
@@ -100124,62 +100131,112 @@ void ProcessDataArrayEA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090feb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源清理函数EB0
+ * 
+ * 该函数负责清理资源处理器，检查状态标志并执行清理操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090feb0
+ * @note 这是一个资源清理函数，用于清理资源处理器
+ */
+void CleanupResourceHandlerEB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
-    *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    CleanupResourceHandler(dataBuffer + 0x40);
+  if ((*(uint *)(dataBuffer + SystemOperationStatusOffset) & 1) != 0) {
+    *(uint *)(dataBuffer + SystemOperationStatusOffset) = *(uint *)(dataBuffer + SystemOperationStatusOffset) & 0xfffffffe;
+    CleanupResourceHandler(dataBuffer + SystemResourceCleanupOffset);
   }
   return;
 }
 
 
 
-void Unwind_18090fee0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据数组处理函数EE0
+ * 
+ * 该函数负责处理数据数组（EE0变体），调用数据数组处理函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090fee0
+ * @note 这是一个数据数组处理函数，用于处理数据数组（EE0变体）
+ */
+void ProcessDataArrayEE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + 0x2a0);
+  ProcessDataArrayA0(dataBuffer + SystemOperationDataOffset);
   return;
 }
 
 
 
-void Unwind_18090fef0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据数组处理函数EF0
+ * 
+ * 该函数负责处理数据数组（EF0变体），调用数据数组处理函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090fef0
+ * @note 这是一个数据数组处理函数，用于处理数据数组（EF0变体）
+ */
+void ProcessDataArrayEF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + 0x2a0);
+  ProcessDataArrayA0(dataBuffer + SystemOperationDataOffset);
   return;
 }
 
 
 
-void Unwind_18090ff00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据表设置函数F00
+ * 
+ * 该函数负责设置异常数据表，配置异常处理数据
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ff00
+ * @note 这是一个异常数据表设置函数，用于设置异常处理数据
+ */
+void SetExceptionDataTableF00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  DataBuffer *exceptionDataBuffer;
+  DataBuffer *exceptionDataTablePointer;
   
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x100);
-  *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &ExceptionDataTable6;
+  exceptionDataTablePointer = *(DataBuffer **)(dataBuffer + ExceptionDataTableOffset);
+  *exceptionDataTablePointer = &ExceptionDataTable3;
+  *exceptionDataTablePointer = &ExceptionDataTable6;
   return;
 }
 
 
 
-void Unwind_18090ff10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统操作处理函数F10
+ * 
+ * 该函数负责处理系统操作（F10变体），遍历数据上下文并调用系统操作处理函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ff10
+ * @note 这是一个系统操作处理函数，用于处理数据上下文中的系统操作（F10变体）
+ */
+void ProcessSystemOperationsF10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t exceptionHandlerContext;
-  int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t systemExceptionHandlerContext;
+  int64_t *systemOperationContext;
+  int64_t operationBlockOffset;
   
-  dataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x100) + 0x18);
-  exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x100) + 0x20);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x128) {
-    ProcessSystemOperationsA1(memoryBlockOffset);
+  systemOperationContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionDataTableOffset) + ExceptionDataContextOffset);
+  systemExceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionDataTableOffset) + ExceptionHandlerContextDataOffset);
+  for (operationBlockOffset = *systemOperationContext; operationBlockOffset != systemExceptionHandlerContext; operationBlockOffset = operationBlockOffset + SystemOperationBlockSize) {
+    ProcessSystemOperationsA1(operationBlockOffset);
   }
-  if (*dataContext == 0) {
+  if (*systemOperationContext == 0) {
     return;
   }
     TerminateSystemE0();
@@ -100187,42 +100244,82 @@ void Unwind_18090ff10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ff20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数F20
+ * 
+ * 该函数负责设置默认异常处理器，配置异常处理机制
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ff20
+ * @note 这是一个默认异常处理器设置函数，用于配置异常处理机制
+ */
+void SetDefaultExceptionHandlerF20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(*(int64_t *)(dataBuffer + 0x100) + 0x38) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(*(int64_t *)(dataBuffer + ExceptionDataTableOffset) + ExceptionHandlerSetupOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_18090ff30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数F30
+ * 
+ * 该函数负责设置默认异常处理器（F30变体），配置异常处理机制
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ff30
+ * @note 这是一个默认异常处理器设置函数，用于配置异常处理机制（F30变体）
+ */
+void SetDefaultExceptionHandlerF30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(*(int64_t *)(dataBuffer + 0x100) + 0xe0) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(*(int64_t *)(dataBuffer + ExceptionDataTableOffset) + ExceptionHandlerSecondaryOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_18090ff50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数F50
+ * 
+ * 该函数负责调用异常处理器，执行异常处理操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ff50
+ * @note 这是一个异常处理器调用函数，用于执行异常处理操作
+ */
+void CallExceptionHandlerF50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x100) + 0x180);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionDataTableOffset) + ExceptionHandlerContextTableOffset);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset))();
   }
   return;
 }
 
 
 
-void Unwind_18090ff70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据表设置函数F70
+ * 
+ * 该函数负责设置异常数据表（F70变体），配置异常处理数据
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ff70
+ * @note 这是一个异常数据表设置函数，用于设置异常处理数据（F70变体）
+ */
+void SetExceptionDataTableF70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x100) = &ExceptionDataTable6;
+  **(DataBuffer **)(dataBuffer + ExceptionDataTableOffset) = &ExceptionDataTable6;
   return;
 }
 
