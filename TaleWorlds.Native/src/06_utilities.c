@@ -78788,7 +78788,18 @@ void ProcessResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180909a10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数A2
+ * 
+ * 该函数在数据缓冲区的偏移量0x330处设置默认异常处理器B。
+ * 主要用于系统异常处理机制的配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909a10
+ */
+void SetDefaultExceptionHandlerA2(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x330) = &DefaultExceptionHandlerB;
@@ -78797,7 +78808,18 @@ void Unwind_180909a10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909a20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数A3
+ * 
+ * 该函数在数据缓冲区的偏移量0x410处设置默认异常处理器B。
+ * 主要用于系统异常处理机制的配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909a20
+ */
+void SetDefaultExceptionHandlerA3(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x410) = &DefaultExceptionHandlerB;
@@ -78806,7 +78828,18 @@ void Unwind_180909a20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909a30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 互斥锁解锁处理函数A0
+ * 
+ * 该函数解锁指定的互斥锁，并在解锁失败时抛出C标准错误异常。
+ * 主要用于系统同步机制的管理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909a30
+ */
+void UnlockMutexAndHandleErrorA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int inputParameter;
@@ -78820,7 +78853,18 @@ void Unwind_180909a30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909a40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源清理函数A0
+ * 
+ * 该函数清理指定偏移量处的内存资源，处理内存引用计数和异常情况。
+ * 主要用于系统内存管理和资源释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909a40
+ */
+void CleanupMemoryResourceA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
