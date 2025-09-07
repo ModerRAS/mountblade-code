@@ -26818,6 +26818,8 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
   uint parameterBuffer[2];
   uint8_t validationDataA[32];
   uint8_t validationDataB[32];
+  uint flagBuffer[2];
+  uint operationCounter[2];
   
   systemDataBuffer = ExecuteSecurityValidation(dataBuffer,ainputDataWord,1,0x54495645);
   if (((((int)systemDataBuffer == 0) &&

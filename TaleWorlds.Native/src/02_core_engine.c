@@ -39,6 +39,12 @@
 #define ProcessStringConversion FUN_180136f60
 #define InitializeStringEncodingBuffer FUN_180120d00
 
+// 系统浮点数处理宏定义
+#define GetSystemFloatValue FUN_18010e760
+#define ProcessSystemFloatData FUN_18010e7f0
+#define GetSystemFloatArray FUN_18010e720
+#define CalculateSystemFloatValue FUN_180123c00
+
 // 系统数据结构处理函数宏定义
 
 /**
@@ -119180,7 +119186,7 @@ uint64_t * FUN_180123460(uint64_t *CharacterCode,long long CharacterCodeSize,byt
       BufferStatus = BufferStatus + 0x40;
     } while (ValidationCode != (int)CharacterCode[0x59]);
   }
-  FUN_18011fab0(CharacterCode + 0x5e);
+  ProcessSystemDataEx(CharacterCode + 0x5e);
   BufferStatus = CharacterCode[0x5a];
   if (BufferStatus != 0) {
     if (SystemDataConfiguration != 0) {
@@ -119361,7 +119367,7 @@ unsigned long long ValidateSystemData(float *CharacterCode,int CharacterCodeSize
     if (Utf8InputPointer != (float *)0x0) {
       pFloatVariable7 = Utf8InputPointer;
     }
-    FUN_1801314c0(LoopCounter,pFloatVariable7,CharacterCodeSize);
+    ProcessSystemFloatCalculationAndConfiguration(LoopCounter,pFloatVariable7,CharacterCodeSize);
   }
   *(int *)(loopCounter + 0x144) = CharacterCodeSize;
   UnicodeCodePoint = *(void *)CharacterCode;
@@ -147528,7 +147534,7 @@ uint8_t FUN_1801313c6(uint64_t CharacterCode,uint8_t CharacterCodeSize,float Utf
 
 
 
-314c0(long long CharacterCode,float *CharacterCodeSize,int Utf8InputPointervoid FUN_1801314c0(long long CharacterCode,float *CharacterCodeSize,int Utf8InputPointer
+314c0(long long CharacterCode,float *CharacterCodeSize,int Utf8InputPointervoid ProcessSystemFloatCalculationAndConfiguration(long long CharacterCode,float *CharacterCodeSize,int Utf8InputPointer
 {
   float *pSystemContextPrimaryFloat;
   float SystemContextSecondaryFloat;
@@ -167442,7 +167448,7 @@ long long FUN_18013e4c0(int *CharacterCode,long long CharacterCodeSize,uint64_t 
   }
   loopCounter = *(long long *)(CharacterCode + 0x80);
   if (loopCounter != 0) {
-    FUN_18011fab0(loopCounter);
+    ProcessSystemDataEx(loopCounter);
     if (SystemDataConfiguration != 0) {
       *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + -1;
     }
