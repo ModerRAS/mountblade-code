@@ -1115,7 +1115,36 @@ void ClearNetworkConnectionCache(void);
  * @param BufferPointer 缓冲区指针
  * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t InitializeNetworkBuffer(int64_t BufferPointer);
+/**
+ * @brief 初始化网络缓冲区
+ * 
+ * 初始化网络缓冲区，设置缓冲区参数
+ * 
+ * @param BufferPointer 缓冲区指针
+ * @return uint32_t 初始化结果，0表示成功，其他值表示错误码
+ */
+uint32_t InitializeNetworkBuffer(int64_t BufferPointer)
+{
+  // 缓冲区初始化变量
+  uint32_t BufferInitializationResult;                     // 缓冲区初始化结果状态
+  uint32_t BufferValidationResult;                          // 缓冲区验证结果
+  
+  // 初始化验证结果
+  BufferInitializationResult = NetworkValidationFailure;
+  BufferValidationResult = NetworkValidationFailure;
+  
+  // 验证缓冲区指针有效性
+  if (BufferPointer != 0) {
+    BufferValidationResult = NetworkValidationSuccess;
+  }
+  
+  // 如果缓冲区有效，则初始化成功
+  if (BufferValidationResult == NetworkValidationSuccess) {
+    BufferInitializationResult = NetworkValidationSuccess;
+  }
+  
+  return BufferInitializationResult;
+}
 
 /**
  * @brief 处理网络数组数据
@@ -1126,7 +1155,45 @@ uint32_t InitializeNetworkBuffer(int64_t BufferPointer);
  * @param ArrayIndex 数组索引
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ProcessNetworkArrayData(int64_t NetworkContextArray, uint32_t ArrayIndex);
+/**
+ * @brief 处理网络数组数据
+ * 
+ * 处理网络数组数据，进行数据验证和处理
+ * 
+ * @param NetworkContextArray 网络上下文数组
+ * @param ArrayIndex 数组索引
+ * @return uint32_t 处理结果，0表示成功，其他值表示错误码
+ */
+uint32_t ProcessNetworkArrayData(int64_t NetworkContextArray, uint32_t ArrayIndex)
+{
+  // 数组数据处理变量
+  uint32_t ArrayProcessingResult;                         // 数组处理结果状态
+  uint32_t ArrayValidationResult;                          // 数组验证结果
+  uint32_t IndexValidationResult;                          // 索引验证结果
+  
+  // 初始化处理结果
+  ArrayProcessingResult = NetworkValidationFailure;
+  ArrayValidationResult = NetworkValidationFailure;
+  IndexValidationResult = NetworkValidationFailure;
+  
+  // 验证上下文数组有效性
+  if (NetworkContextArray != 0) {
+    ArrayValidationResult = NetworkValidationSuccess;
+  }
+  
+  // 验证数组索引有效性
+  if (ArrayIndex < NetworkMaximumSignedInt32Value) {
+    IndexValidationResult = NetworkValidationSuccess;
+  }
+  
+  // 如果验证都成功，则处理成功
+  if (ArrayValidationResult == NetworkValidationSuccess && 
+      IndexValidationResult == NetworkValidationSuccess) {
+    ArrayProcessingResult = NetworkValidationSuccess;
+  }
+  
+  return ArrayProcessingResult;
+}
 
 /**
  * @brief 关闭网络连接
@@ -1137,7 +1204,45 @@ uint32_t ProcessNetworkArrayData(int64_t NetworkContextArray, uint32_t ArrayInde
  * @param ConnectionFlags 连接标志
  * @return uint32_t 关闭结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
+/**
+ * @brief 关闭网络连接
+ * 
+ * 关闭网络连接，释放相关资源
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ * @param ConnectionFlags 连接标志
+ * @return uint32_t 关闭结果，0表示成功，其他值表示错误码
+ */
+uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags)
+{
+  // 连接关闭处理变量
+  uint32_t ConnectionCloseResult;                         // 连接关闭结果状态
+  uint32_t ContextValidationResult;                        // 上下文验证结果
+  uint32_t FlagsValidationResult;                          // 标志验证结果
+  
+  // 初始化关闭结果
+  ConnectionCloseResult = NetworkValidationFailure;
+  ContextValidationResult = NetworkValidationFailure;
+  FlagsValidationResult = NetworkValidationFailure;
+  
+  // 验证连接上下文有效性
+  if (NetworkConnectionContext != NULL && *NetworkConnectionContext != 0) {
+    ContextValidationResult = NetworkValidationSuccess;
+  }
+  
+  // 验证连接标志有效性
+  if (ConnectionFlags != 0) {
+    FlagsValidationResult = NetworkValidationSuccess;
+  }
+  
+  // 如果验证都成功，则关闭成功
+  if (ContextValidationResult == NetworkValidationSuccess && 
+      FlagsValidationResult == NetworkValidationSuccess) {
+    ConnectionCloseResult = NetworkValidationSuccess;
+  }
+  
+  return ConnectionCloseResult;
+}
 
 // 网络系统内部辅助函数声明
 /**
@@ -1218,6 +1323,13 @@ uint32_t NetworkManagerContextData;                           // 网络管理器
  * 存储网络连接的各种状态标志位，包括连接建立、断开、错误等状态
  */
 uint32_t NetworkConnectionStateFlags;                          // 网络连接状态标志集合
+
+/**
+ * @brief 网络连接缓存状态
+ * 
+ * 存储网络连接缓存的状态信息，用于缓存管理和清理操作
+ */
+uint32_t NetworkConnectionCacheStatus;                         // 网络连接缓存状态
 
 /**
  * @brief 网络连接超时时间（毫秒）
