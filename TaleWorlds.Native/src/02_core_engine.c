@@ -112409,7 +112409,7 @@ void CoreEngineInitializeInput(void)
 
 
 
-da90(int *SystemContextPointer,int Utf8BufferSizevoid CoreEngineInitializeSystemData(int *SystemContextPointer,int Utf8BufferSize
+void CoreEngineInitializeSystemData(int *SystemContextPointer,int Utf8BufferSize)
 {
   int LockResult;
   int StringComparisonResult;
