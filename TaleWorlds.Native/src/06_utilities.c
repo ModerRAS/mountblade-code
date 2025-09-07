@@ -30129,24 +30129,24 @@ uint64_t ProcessSystemDataA0(int64_t systemContext, int64_t *exceptionHandlerCon
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  dataFlags1 = securityCheckResult;
+  secondaryValidationFlags = securityCheckResult;
   if (*(uint *)(exceptionHandlerContext + 8) < 0x70) {
     if (*(int *)(exceptionHandlerContext[1] + 0x18) != 0) {
-      dataFlags1 = 0x1c;
+      secondaryValidationFlags = 0x1c;
       goto ProcessCheckpointSystemStateUpdate;
     }
     exceptionHandlerContextPointer = (int64_t *)*exceptionHandlerContext;
     if (*exceptionHandlerContextPointer == 0) {
-      dataFlags1 = 0x1c;
+      secondaryValidationFlags = 0x1c;
     }
     else if (exceptionHandlerContextPointer[2] == 0) {
-OperationLabelA:
-      dataFlags1 = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,validationBuffer1,1,1,0);
+ValidateDataOperationLabel:
+      secondaryValidationFlags = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,primaryValidationBuffer,1,1,0);
     }
     else {
-      validationBuffer2[0] = 0;
-      dataFlags1 = AllocateMemory(*exceptionHandlerContextPointer,validationBuffer2);
-      if (dataFlags1 == 0) {
+      secondaryValidationBuffer[0] = 0;
+      secondaryValidationFlags = AllocateMemory(*exceptionHandlerContextPointer,secondaryValidationBuffer);
+      if (secondaryValidationFlags == 0) {
         if ((uint64_t)validationBuffer2[0] + 1 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointBufferSizeCheck;
         dataFlags1 = 0x11;
       }
