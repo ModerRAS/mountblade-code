@@ -68,6 +68,28 @@
 #define ResourceDescriptorQuaternaryOffset 0x1c
 #define SystemContextBufferOffset 8
 
+// 异常处理相关常量定义
+#define ExceptionCallbackOffset 0xb0
+#define ExceptionContextOffset 0xa0
+#define ExceptionHandlerContextOffset 0x80
+#define ExceptionHandlerPointerOffset 400
+#define ExceptionHandlerDataOffset 0x180
+#define ExceptionHandlerTableOffset 0x160
+#define ExceptionHandlerStatusOffset 0x168
+#define ExceptionHandlerStateOffset 0x178
+#define ExceptionHandlerTable2Offset 0x140
+#define ExceptionHandlerStatus2Offset 0x148
+#define ExceptionHandlerState2Offset 0x158
+#define ExceptionHandlerTable3Offset 0x120
+#define ExceptionHandlerStatus3Offset 0x128
+#define ExceptionHandlerState3Offset 0x138
+#define ExceptionHandlerTable4Offset 0x100
+#define ExceptionHandlerStatus4Offset 0x108
+#define ExceptionHandlerState4Offset 0x118
+#define ExceptionHandlerTable5Offset 0xe0
+#define ExceptionHandlerStatus5Offset 0xe8
+#define ExceptionHandlerState5Offset 0xf8
+
 // 数据配置和内存管理常量定义
 #define DataConfigurationOffset 0x90
 #define MemoryRegionIteratorOffset 0x20
@@ -19069,12 +19091,12 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
   uint securityCheckResult;
   uint statusCounter;
   uint64_t loopCounter;
-  int inputParameter1;
+  int securityValidationInput;
   DataWord *exceptionDataBuffer2;
   int64_t *exceptionHandlerContextPointer3;
-  int inputParameter4;
+  int dataFlagsInput;
   int64_t exceptionHandlerContext5;
-  int inputParameter6;
+  int loopCounterInput;
   bool validationStatusFlag;
   int stackContextBuffer [2];
   unsigned int stackParameterBuffer [2];
@@ -19128,7 +19150,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
   if ((securityCheckResult & 1) == 0) {
     systemContextPointer = (int64_t *)(operationBase + 0x70);
     memoryOperationCounter = 0;
-    inputParameter6 = 0;
+    loopCounterInput = 0;
     stackUIntBuffer[0] = 0;
     memoryOperationHandle = 0;
     securityValidationValue = SystemCleanupFlagffffffff;
@@ -19138,10 +19160,10 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
     if (arrayIndexBuffer[0] != -1) {
       exceptionHandlerContextPointer3 = systemContextPointer;
       loopCounter = dataFlags;
-      inputParameter1 = (int)securityValidationValue;
+      securityValidationInput = (int)securityValidationValue;
       do {
         do {
-          inputParameter6 = (int)loopCounter;
+          loopCounterInput = (int)loopCounter;
           resourceIterator = exceptionHandlerContextPointer3[2];
           exceptionHandlerContext5 = (int64_t)stackIntBuffer[0];
           arrayIndex = *(int *)(resourceIterator + 8 + exceptionHandlerContext5 * 0x10);
@@ -22324,12 +22346,12 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
     if (outputBuffer != (DataWord *)0x0) {
       dataPointer = (DataWord *)(dataContext[2] + (int64_t)itemIndex * 0x10);
       processResult = dataPointer[1];
-      field2 = dataPointer[2];
-      field3 = dataPointer[3];
+      fieldIndex2 = dataPointer[2];
+      fieldIndex3 = dataPointer[3];
       *outputBuffer = *dataPointer;
       outputBuffer[1] = processResult;
-      outputBuffer[2] = field2;
-      outputBuffer[3] = field3;
+      outputBuffer[2] = fieldIndex2;
+      outputBuffer[3] = fieldIndex3;
     }
     totalLength = 0;
     bufferOffset = 0;

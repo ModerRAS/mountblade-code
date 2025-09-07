@@ -116449,7 +116449,16 @@ void UpdateSystemDataTable(int *OutputBuffer,uint OutputBufferSize,uint Utf8Inpu
 
 
 
-2160(int *OutputBuffer,uint OutputBufferSize,uint64_t Utf8InputPointervoid FUN_180122160(int *OutputBuffer,uint OutputBufferSize,uint64_t Utf8InputPointer
+/**
+ * @brief 处理UTF8到UTF16编码转换
+ * 
+ * 该函数负责处理UTF8字符串到UTF16字符串的转换操作
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ */
+void ProcessSystemValidation(int *OutputBuffer, uint OutputBufferSize, uint64_t Utf8InputPointer)
 {
   int LockResult;
   uint *PrimaryProcessingStatusFlag;
@@ -156012,7 +156021,15 @@ uint64_t * FUN_180135420(uint64_t *OutputBuffer
 
 
 
-uint FUN_1801358c0(long long OutputBuffer
+/**
+ * @brief 获取内存地址掩码
+ * 
+ * 该函数负责计算并返回内存地址掩码值
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @return 内存地址掩码值
+ */
+uint GetMemoryAddressMask(long long OutputBuffer)
 {
   int LockResult;
   uint *PrimaryProcessingStatusFlag;
@@ -192385,10 +192402,24 @@ LAB_18016d59c:
 
 
 
+/**
+ * @brief 系统数据编码处理函数
+ * 
+ * 该函数负责处理系统数据的编码操作，调用底层的编码处理函数
+ * 来完成数据转换和处理。
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return uint64_t 返回处理后的输出缓冲区
+ * 
+ * @note 原始函数名：FUN_18016d870
+ */
 uint64_t
-FUN_18016d870(uint64_t OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+ProcessSystemDataEncoding(uint64_t OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
 {
-  FUN_180168960(Utf16EndPointer,OutputBuffer,Utf8InputPointer,Utf16EndPointer,0,0xfffffffffffffffe);
+  ProcessSystemEncodingValidation(Utf16EndPointer,OutputBuffer,Utf8InputPointer,Utf16EndPointer,0,0xfffffffffffffffe);
   return OutputBuffer;
 }
 
@@ -271274,5 +271305,11 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define ProcessProcessingStatus FUN_18011f880
 // 原始函数名：FUN_18011f8d0 - 系统字符串缓冲区处理函数
 #define ProcessStringBuffer FUN_18011f8d0
+
+// 原始函数名：FUN_18016d870 - 系统数据编码处理函数
+#define ProcessSystemDataEncoding FUN_18016d870
+
+// 原始函数名：FUN_180168960 - 系统编码验证处理函数
+#define ProcessSystemEncodingValidation FUN_180168960
 
 
