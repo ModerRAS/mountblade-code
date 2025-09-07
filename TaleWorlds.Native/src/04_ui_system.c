@@ -20370,32 +20370,60 @@ void HandleUIInputEvent(longlong uiContext,longlong dataSource)
 
 
  void RenderUIComponent(longlong uiContext,float dataSource,undefined8 targetBuffer)
+/**
+ * @brief 渲染UI组件
+ * 
+ * 该函数负责渲染UI组件，处理组件的位置更新和边界检查。
+ * 根据数据源的值和UI上下文的状态，动态调整组件的渲染参数。
+ * 
+ * @param uiContext UI上下文指针，包含渲染状态信息
+ * @param dataSource 数据源值，用于计算渲染参数
+ * @param targetBuffer 目标缓冲区，用于存储渲染结果
+ * @return void
+ * 
+ * @note 原始函数名：FUN_18004c9a0
+ * @note 该函数涉及浮点数计算和边界检查逻辑
+ */
 void RenderUIComponent(longlong uiContext,float dataSource,undefined8 targetBuffer)
 
 {
-  float floatResult;
-  float fVar2;
-  float fVar3;
-  float fVar4;
+  float currentThreshold;               // 当前阈值
+  float minBoundary;                     // 最小边界值
+  float maxBoundary;                     // 最大边界值
+  float zeroValue;                       // 零值基准
   
-  fVar2 = *(float *)(uiContext + 0x1d0);
-  fVar4 = 0.0;
-  if ((fVar2 == 0.0) && (0.0 < *(float *)(uiContext + 0x1d4))) {
-    ValidateUIComponent(fVar2,targetBuffer);
-    fVar2 = *(float *)(uiContext + 0x1d0);
+  // 获取当前阈值和边界值
+  currentThreshold = *(float *)(uiContext + 0x1d0);
+  zeroValue = 0.0;
+  
+  // 检查是否需要验证UI组件
+  if ((currentThreshold == 0.0) && (0.0 < *(float *)(uiContext + 0x1d4))) {
+    ValidateUIComponent(currentThreshold, targetBuffer);
+    currentThreshold = *(float *)(uiContext + 0x1d0);
   }
-  floatResult = *(float *)(uiContext + 0x1d4);
-  if (fVar2 != floatResult) {
-    dataSource = dataSource * *(float *)(uiContext + 0x1d8);
-    fVar3 = floatResult - fVar2;
-    if ((-dataSource <= fVar3) && (fVar3 < dataSource)) {
-      *(float *)(uiContext + 0x1d0) = floatResult;
+  
+  // 获取最大边界值
+  maxBoundary = *(float *)(uiContext + 0x1d4);
+  
+  // 检查是否需要更新阈值
+  if (currentThreshold != maxBoundary) {
+    // 根据数据源计算调整值
+    float adjustmentFactor = dataSource * *(float *)(uiContext + 0x1d8);
+    float boundaryDifference = maxBoundary - currentThreshold;
+    
+    // 检查是否在调整范围内
+    if ((-adjustmentFactor <= boundaryDifference) && (boundaryDifference < adjustmentFactor)) {
+      *(float *)(uiContext + 0x1d0) = maxBoundary;
       return;
     }
-    if (fVar3 < fVar4) {
-      dataSource = -dataSource;
+    
+    // 根据差值符号调整方向
+    if (boundaryDifference < zeroValue) {
+      adjustmentFactor = -adjustmentFactor;
     }
-    *(float *)(uiContext + 0x1d0) = dataSource + fVar2;
+    
+    // 更新当前阈值
+    *(float *)(uiContext + 0x1d0) = adjustmentFactor + currentThreshold;
   }
   return;
 }
@@ -46374,7 +46402,23 @@ longlong FUN_18068f9a0(longlong uiContext,int dataSource,ulonglong targetBuffer,
 
 
 
-int FUN_18068fb30(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+/**
+ * @brief 处理UI数据操作（快速模式）
+ * 
+ * 该函数负责处理UI系统中的数据操作，使用快速处理模式
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18068fb30
+ */
+int ProcessUIDataOperationFast(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
                  undefined8 resultPointer,int param_6,int *param_7)
 
 {
@@ -46388,7 +46432,23 @@ int FUN_18068fb30(undefined8 uiContext,int dataSource,undefined8 targetBuffer,un
 
 
 
-int FUN_18068fba0(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+/**
+ * @brief 处理UI数据操作（标准模式）
+ * 
+ * 该函数负责处理UI系统中的数据操作，使用标准处理模式
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18068fba0
+ */
+int ProcessUIDataOperationStandard(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
                  undefined8 resultPointer,int param_6,int *param_7)
 
 {
