@@ -274127,4 +274127,74 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define ExecuteSystemFloatingPointStackOperationAndCleanup FUN_18010e590
 
+/**
+ * @brief 处理渲染数据操作
+ * 
+ * 该函数负责处理渲染数据的操作，包括渲染参数的设置和渲染上下文的管理。
+ * 用于核心引擎的渲染系统，处理各种渲染相关的数据操作。
+ * 
+ * @param renderContext 渲染上下文指针
+ * @param operationType 操作类型
+ * @param dataSource 数据源指针
+ * @param dataTarget 数据目标指针
+ * @param additionalParam 额外参数
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18023b050
+ */
+#define ProcessRenderDataOperation FUN_18023b050
+
+/**
+ * @brief 处理渲染上下文和数据
+ * 
+ * 该函数负责处理渲染上下文和相关数据，包括渲染状态的设置和数据转换。
+ * 在核心引擎中用于管理渲染的上下文信息和数据处理。
+ * 
+ * @param contextPointer 上下文指针
+ * @param floatPointer 浮点数指针
+ * @param matrixElement 矩阵元素
+ * @param stackParameter 栈参数
+ * @param additionalParam2 额外参数2
+ * @param additionalParam4 额外参数4
+ * @param statusCode 状态码
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180235ae0
+ */
+#define ProcessRenderContextAndData FUN_180235ae0
+
+/**
+ * @brief 处理系统配置和状态
+ * 
+ * 该函数负责处理系统配置和状态信息，包括系统参数的设置和状态管理。
+ * 在核心引擎中用于管理系统配置信息和运行状态。
+ * 
+ * @param configPointer 配置指针
+ * @param errorCode 错误代码指针
+ * @param unsignedValue 无符号值
+ * @param stackParameter1 栈参数1
+ * @param stackParameter2 栈参数2
+ * @param configFlag 配置标志
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_1802356b0
+ */
+#define ProcessSystemConfigurationAndStatus FUN_1802356b0
+
+/**
+ * @brief 处理系统数据表和缓冲区
+ * 
+ * 该函数负责处理系统数据表和缓冲区的操作，包括数据表的分配和缓冲区管理。
+ * 在核心引擎中用于数据表的动态分配和缓冲区的管理。
+ * 
+ * @param dataTable 数据表指针
+ * @param operation 操作类型
+ * @param sizeParam 大小参数
+ * @param bufferFlag 缓冲区标志指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18023c450
+ */
+#define ProcessSystemDataTableAndBuffer FUN_18023c450
+
 
