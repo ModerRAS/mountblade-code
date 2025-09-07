@@ -9894,19 +9894,19 @@ void ValidateSystemState(void)
 uint64_t RegisterSystemComponent(int64_t componentHandle)
 
 {
-  int64_t componentData;
-  int64_t systemHandle;
-  int32_t bufferSize;
-  uint64_t queryResult;
-  uint64_t processResult;
-  int64_t *componentPointer;
-  int32_t componentCount;
-  uint64_t loopIndex;
-  int32_t componentCapacity;
-  uint64_t componentSearchIndex;
-  int64_t *componentList;
+  int64_t componentDataContext;
+  int64_t systemContextHandle;
+  int32_t componentBufferSize;
+  uint64_t systemQueryResult;
+  uint64_t componentProcessResult;
+  int64_t *currentComponentPointer;
+  int32_t currentComponentCount;
+  uint64_t componentLoopIndex;
+  int32_t componentListCapacity;
+  uint64_t componentSearchIterator;
+  int64_t *componentListPointer;
   int64_t systemContextBuffer;
-  int8_t dataValidationBuffer [DataValidationBufferSize];
+  int8_t componentValidationBuffer [DataValidationBufferSize];
   
   queryResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
   if ((int)queryResult != 0) {
