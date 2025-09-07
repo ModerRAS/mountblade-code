@@ -187,7 +187,7 @@
  * 
  * @note 原始函数名：ConvertData
  */
-#define ConvertDataType ConvertDataType
+#define ConvertDataType FUN_18007f6a0
 
 /**
  * @brief 内存管理函数A0
