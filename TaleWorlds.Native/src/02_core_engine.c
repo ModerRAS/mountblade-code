@@ -52642,7 +52642,7 @@ CharacterTableAllocationLoopVariant:
         MemoryBlockIndex1 = (long long)pStringComparisonResult0 - (long long)ReferenceCountPointer3 >> 2;
         if (MemoryBlockIndex1 == 0) {
           MemoryBlockIndex1 = 1;
-LAB_180079d9b:
+ReferenceCountAllocationLoop:
           ReferenceCountPointer5 = (int *)BufferAllocate(MemoryPoolManager,MemoryBlockIndex1 * 4,
                                          *(uint8_t *)(BufferStatus1 + 0x18 + lStack_170));
           pStringComparisonResult0 = *(int **)(BufferStatus1 + 8 + BufferStatus3);
@@ -52650,7 +52650,7 @@ LAB_180079d9b:
         }
         else {
           MemoryBlockIndex1 = MemoryBlockIndex1 * 2;
-          if (MemoryBlockIndex1 != 0) goto LAB_180079d9b;
+          if (MemoryBlockIndex1 != 0) goto ReferenceCountAllocationLoop;
           ReferenceCountPointer5 = (int *)0x0;
         }
         if (ReferenceCountPointer3 != pStringComparisonResult0) {
