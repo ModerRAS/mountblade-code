@@ -145,84 +145,56 @@
  */
 #define ValidateSystemContext FUN_180080870
 
-// 系统验证和清理函数宏定义
 /**
  * @brief 系统验证初始化函数
- * 
- * 初始化系统验证相关的数据结构和状态，为后续的系统验证操作做准备
- * 
  * @note 原始函数名：FUN_18004b730
  */
 #define InitializeSystemValidation FUN_18004b730
 
 /**
  * @brief 系统数据验证处理函数
- * 
- * 处理系统数据的验证操作，确保数据的完整性和正确性
- * 
  * @note 原始函数名：FUN_180058370
  */
 #define ProcessSystemDataValidation FUN_180058370
 
 /**
  * @brief 系统数据缓冲区验证函数
- * 
- * 验证系统数据缓冲区的有效性和安全性
- * 
  * @note 原始函数名：FUN_18004b790
  */
 #define ValidateSystemDataBuffer FUN_18004b790
 
 /**
  * @brief 系统数据指针清理函数
- * 
- * 清理系统数据指针相关的资源，释放内存
- * 
  * @note 原始函数名：FUN_18064e900
  */
 #define CleanupSystemDataPointer FUN_18064e900
 
 /**
  * @brief 上下文处理函数
- * 
- * 该函数用于处理上下文操作
- * 
  * @note 原始函数名：ProcessContext
  */
 #define ProcessSystemContext FUN_18007f840
 
 /**
  * @brief 数据转换函数A0
- * 
- * 该函数用于数据转换操作
- * 
  * @note 原始函数名：ConvertData
  */
 #define ConvertDataType FUN_18007f6a0
 
 /**
  * @brief 内存管理函数A0
- * 
- * 该函数用于内存管理操作
- * 
  * @note 原始函数名：ManageMemory
  */
 #define ManageSystemMemory FUN_18013ea00
 
 /**
  * @brief 系统清理函数A0
- * 
- * 该函数用于清理系统资源
- * 
  * @note 原始函数名：CleanupSystem
  */
 #define CleanupSystemResources FUN_1808fc5ac
 
 /**
  * @brief 系统配置函数A0
- * 
- * 该函数用于配置系统参数
- * 
  * @note 原始函数名：ConfigureSystemA0
  */
 #define ConfigureSystemParameters FUN_1808fc51c
