@@ -9908,32 +9908,32 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   int64_t systemContextBuffer;
   int8_t componentValidationBuffer [DataValidationBufferSize];
   
-  queryResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
-  if ((int)queryResult != 0) {
-    return queryResult;
+  systemQueryResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
+  if ((int)systemQueryResult != 0) {
+    return systemQueryResult;
   }
-  systemHandle = *(int64_t *)(systemContextBuffer + SystemContextOffset);
-  if ((systemHandle == 0) || (*(int64_t *)(systemHandle + SYSTEM_CONTEXT_OFFSET) != systemContextBuffer)) {
+  systemContextHandle = *(int64_t *)(systemContextBuffer + SystemContextOffset);
+  if ((systemContextHandle == 0) || (*(int64_t *)(systemContextHandle + SYSTEM_CONTEXT_OFFSET) != systemContextBuffer)) {
     return SystemContextValidationFailure;
   }
-  componentData = *(int64_t *)(systemHandle + COMPONENT_DATA_OFFSET);
-  if (systemHandle == 0) {
+  componentDataContext = *(int64_t *)(systemContextHandle + COMPONENT_DATA_OFFSET);
+  if (systemContextHandle == 0) {
     return ComponentDataValidationFailure;
   }
-  if (*(int32_t *)(systemHandle + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
-    queryResult = ProcessInputData(systemHandle,dataValidationBuffer);
-    if ((int32_t)queryResult != 0) {
-      return queryResult;
+  if (*(int32_t *)(systemContextHandle + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
+    systemQueryResult = ProcessInputData(systemContextHandle,componentValidationBuffer);
+    if ((int32_t)systemQueryResult != 0) {
+      return systemQueryResult;
     }
-    processResult = ValidateInputData(dataValidationBuffer);
-    if ((int32_t)processResult != 0) {
-      return processResult;
+    componentProcessResult = ValidateInputData(componentValidationBuffer);
+    if ((int32_t)componentProcessResult != 0) {
+      return componentProcessResult;
     }
-    if ((int8_t)queryResult == (int8_t)processResult) {
-      if (dataValidationBuffer[0] == (int8_t)processResult) {
-        componentList = (int64_t *)(componentData + COMPONENT_LIST_OFFSET);
-        componentSearchIndex = 0;
-        componentCount = *(int32_t *)(componentData + COMPONENT_COUNT_OFFSET);
+    if ((int8_t)systemQueryResult == (int8_t)componentProcessResult) {
+      if (componentValidationBuffer[0] == (int8_t)componentProcessResult) {
+        componentListPointer = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
+        componentSearchIterator = 0;
+        currentComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
         if (0 < componentCount) {
           componentPointer = (int64_t *)*componentList;
           loopIndex = componentSearchIndex;
@@ -60058,7 +60058,16 @@ void ProcessDataBufferOffset50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809069f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行0x188偏移回调函数
+ * 
+ * 该函数负责执行数据缓冲区0x188偏移量处的回调函数，用于异常处理和资源管理
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含回调函数信息
+ * @note 原始函数名：Unwind_1809069f0
+ */
+void ExecuteOffset188Callback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x188) != (int64_t *)0x0) {
@@ -60069,7 +60078,16 @@ void Unwind_1809069f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906a00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常上下文函数A0
+ * 
+ * 该函数负责清理异常上下文，执行系统清理操作，并验证资源上下文的有效性
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @note 原始函数名：Unwind_180906a00
+ */
+void CleanupExceptionContextA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -98938,7 +98956,7 @@ void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d58);
   if (exceptionHandlerContext != 0) {
@@ -98946,7 +98964,7 @@ void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d48);
   if (exceptionHandlerContext != 0) {
@@ -98954,7 +98972,7 @@ void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   return;
 }
@@ -99750,7 +99768,7 @@ void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataB
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x378);
   if (exceptionHandlerContext != 0) {
@@ -99758,7 +99776,7 @@ void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataB
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x368);
   if (exceptionHandlerContext != 0) {
@@ -99766,7 +99784,7 @@ void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataB
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x358);
   if (exceptionHandlerContext != 0) {
@@ -99774,7 +99792,7 @@ void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataB
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x318);
   if (exceptionHandlerContext != 0) {
@@ -99782,7 +99800,7 @@ void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataB
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x308);
   if (exceptionHandlerContext != 0) {
@@ -99790,7 +99808,7 @@ void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataB
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2f8);
   if (exceptionHandlerContext != 0) {
@@ -99798,7 +99816,7 @@ void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataB
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   return;
 }
@@ -100036,21 +100054,24 @@ void CleanupExceptionHandlerChainA0(DataBuffer operationBase, int64_t dataBuffer
     }
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
+  
+  // 检查并处理第二个异常处理器
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x378);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
+  
+  // 检查并处理第三个异常处理器
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x368);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x358);
   if (exceptionHandlerContext != 0) {
@@ -100058,7 +100079,7 @@ void CleanupExceptionHandlerChainA0(DataBuffer operationBase, int64_t dataBuffer
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x318);
   if (exceptionHandlerContext != 0) {
@@ -100066,7 +100087,7 @@ void CleanupExceptionHandlerChainA0(DataBuffer operationBase, int64_t dataBuffer
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x308);
   if (exceptionHandlerContext != 0) {
@@ -100074,7 +100095,7 @@ void CleanupExceptionHandlerChainA0(DataBuffer operationBase, int64_t dataBuffer
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2f8);
   if (exceptionHandlerContext != 0) {
@@ -100082,7 +100103,7 @@ void CleanupExceptionHandlerChainA0(DataBuffer operationBase, int64_t dataBuffer
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   return;
 }
@@ -100091,7 +100112,19 @@ void CleanupExceptionHandlerChainA0(DataBuffer operationBase, int64_t dataBuffer
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常处理器A0
+ * 
+ * 该函数负责清理单个异常处理器，检查其有效性并在需要时调用系统异常处理函数。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912340
+ */
+void CleanupExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
