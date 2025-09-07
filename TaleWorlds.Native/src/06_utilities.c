@@ -54015,6 +54015,17 @@ void Unwind_1809065a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 设置临时异常处理器引用
+ * 
+ * 该函数负责在指定位置设置临时异常处理器的引用，
+ * 用于异常处理系统的初始化和配置。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器配置信息
+ * 
+ * @note 原始函数名：Unwind_1809065b0
+ */
 void SetTemporaryExceptionHandlerReference(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -54024,7 +54035,15 @@ void SetTemporaryExceptionHandlerReference(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_1809065c0(void)
+/**
+ * @brief 销毁原地互斥锁
+ * 
+ * 该函数负责销毁当前作用域内的互斥锁，释放相关资源。
+ * 这是一个基础的系统清理函数，用于线程同步资源的释放。
+ * 
+ * @note 原始函数名：Unwind_1809065c0
+ */
+void DestroyMutexInPlace(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -54033,7 +54052,7 @@ void Unwind_1809065c0(void)
 
 
 
-void Unwind_1809065d0(void)
+void DestroySystemMutex(void)
 
 {
   _Mtx_destroy_in_situ(0x180c91910);
@@ -54042,7 +54061,7 @@ void Unwind_1809065d0(void)
 
 
 
-void Unwind_1809065e0(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0xd0) = &DefaultExceptionHandlerB;
@@ -54051,7 +54070,7 @@ void Unwind_1809065e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809065f0(DataBuffer operationBase,int64_t dataBuffer)
+void ResetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0xd0) = &DefaultExceptionHandlerB;
@@ -54060,28 +54079,28 @@ void Unwind_1809065f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906600(DataBuffer operationBase,int64_t dataBuffer)
+void ClearOperationFlagAndCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180044a30(*(DataBuffer *)(dataBuffer + 0x48));
+    CleanupResourceHandler(*(DataBuffer *)(dataBuffer + 0x48));
   }
   return;
 }
 
 
 
-void Unwind_180906630(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionDataTable(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xa0);
-  *exceptionDataBuffer = &UNK_180a02e68;
+  *exceptionDataBuffer = &ExceptionDataTable;
   exceptionDataBuffer[2] = &DefaultExceptionHandlerB;
-  *exceptionDataBuffer = &UNK_180a21720;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &SystemConfigurationTable;
+  *exceptionDataBuffer = &ExceptionDataTable2;
   return;
 }
 
