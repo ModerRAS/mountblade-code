@@ -15406,11 +15406,11 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
     *(int *)(queueInfo + QUEUE_CAPACITY_OFFSET) = requiredCapacity;
   }
   *(int64_t *)
-   (*(int64_t *)(resourceDataBuffer + MemoryPointerOffset) + (int64_t)*(int *)(resourceDataBuffer + ValidationResultOffset) * 8) =
-       dataInput;
-  *(int *)(resourceDataBuffer + ValidationResultOffset) = *(int *)(resourceDataBuffer + ValidationResultOffset) + 1;
+   (*(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) + (int64_t)*(int *)(queueInfo + QUEUE_SIZE_OFFSET) * 8) =
+       systemHandle;
+  *(int *)(queueInfo + QUEUE_SIZE_OFFSET) = *(int *)(queueInfo + QUEUE_SIZE_OFFSET) + 1;
 SystemCleanupLabel:
-    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+    CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET));
 }
 
 
@@ -15480,7 +15480,7 @@ void ResetUtilitySystemToInitialState(void)
        dataSize;
   *(int *)(registerContext + 0x28) = *(int *)(registerContext + 0x28) + 1;
 SystemCleanupLabel:
-    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+    CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET));
 }
 
 
@@ -15541,7 +15541,7 @@ void ValidateUtilityConfiguration(int configId,int validationFlags)
        systemParameter;
   *(int *)(registerContext + 0x28) = *(int *)(registerContext + 0x28) + 1;
 SystemCleanupLabel:
-    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+    CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET));
 }
 
 
@@ -18450,7 +18450,7 @@ DataBuffer CleanupSystemB0(void)
         memoryRegionBase = (DataBuffer *)
                  ProcessSystemDataA0(systemContext + 0x60,&systemDataBuffer,operationParameter);
         *(DataBuffer *)(DestinationContext + 0x18) = *memoryRegionBase;
-          CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+          CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET));
       }
     }
   }
@@ -18499,7 +18499,7 @@ DataBuffer ResetSystemB0(void)
         validationStatusPointer = (DataBuffer *)
                  ProcessSystemDataA0(systemContext + 0x60,&dataProcessingBuffer,SystemInputParameter);
         *(DataBuffer *)(DestinationContext + 0x18) = *validationStatusPointer;
-          CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+          CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET));
       }
     }
   }
