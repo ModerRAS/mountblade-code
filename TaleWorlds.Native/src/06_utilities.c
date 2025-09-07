@@ -347,6 +347,13 @@
 #define ThreadLocalStorageOffset 0x17c
 #define ThreadLocalStorageBaseAddressAddress 0x180c4f450
 
+// 异常处理上下文状态常量
+#define ExceptionHandlerContextStateOffset 0x58                    // 异常处理上下文状态偏移量
+#define ExceptionStatePrimaryOffset 0x12                           // 异常状态主偏移量
+#define ExceptionStateSecondaryOffset 0x1a                         // 异常状态次偏移量
+#define ExceptionHandlerContextPointerOffset 0x50                  // 异常处理上下文指针偏移量
+#define ExceptionHandlerContextPointerSecondaryOffset 0x60         // 异常处理上下文指针次偏移量
+
 // 内存对齐和掩码常量
 #define MemoryAlignmentPadding 0xf
 #define MemoryAlignmentMask 0xfffffff0
@@ -60014,15 +60021,15 @@ void CleanupExceptionHandlerState(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x58);
-  if (*(int64_t *)(exceptionHandlerContext + 0x12) != 0) {
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextStateOffset);
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionStatePrimaryOffset) != 0) {
       TerminateSystemE0();
   }
-  *(int64_t *)(exceptionHandlerContext + 0x12) = 0;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1a) != 0) {
+  *(int64_t *)(exceptionHandlerContext + ExceptionStatePrimaryOffset) = 0;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionStateSecondaryOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1a) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionStateSecondaryOffset) = 0;
   return;
 }
 
@@ -60045,7 +60052,7 @@ void CleanupExceptionHandlerPointer(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x50);
+  exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + ExceptionHandlerContextPointerOffset);
   if (*exceptionHandlerContextPointer != 0) {
       TerminateSystemE0();
   }
