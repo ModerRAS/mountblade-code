@@ -105198,7 +105198,7 @@ void InitializeSystemContextAndMemoryAllocation(void
 
 
 
-unsigned long long FUN_180118aa0(uint64_t SystemContextPointer,uint32_t Utf8BufferSize
+unsigned long long ProcessSystemContextWithBufferValidation(uint64_t SystemContextPointer,uint32_t Utf8BufferSize
 {
   long long PrimaryDataSize;
   long long bufferAllocationStatus;
@@ -105729,7 +105729,7 @@ void SystemContextValidator(uint32_t SystemContextPointer)
 
  (ram,0x000180118c7e (ram,0x000180118c85 (ram,0x000180118f40 (ram,0x00018011958b (ram,0x00018011913b (ram,0x00018011916e (ram,0x00018011917d (ram,0x000180119177 (ram,0x00018011917f (ram,0x0001801190e0 (ram,0x000180119064 (ram,0x000180119019 (ram,0x00018011902f (ram,0x0001801190b4 (ram,0x000180119128 (ram,0x000180119187 (ram,0x000180119650 (ram,0x000180119653// WARNING: Restarted to delay deadcode elimination for space: stack
 
-unsigned long long FUN_1801198c0(char *SystemContextPointer
+unsigned long long ProcessSystemContextWithCharacterHandling(char *SystemContextPointer
 {
   float SystemContextFloat1;
   float *pSystemContextFloat2;
@@ -106079,7 +106079,7 @@ LAB_180119279:
 
 
 
-unsigned long long FUN_180119960(char *SystemContextPointer,char Utf8BufferSize,uint Utf16InputPointer,float *Utf16EndPointer
+unsigned long long ProcessSystemContextWithFloatParameters(char *SystemContextPointer,char Utf8BufferSize,uint Utf16InputPointer,float *Utf16EndPointer
 {
   uint *StatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -106373,7 +106373,7 @@ LAB_180119eed:
 
 
 
-unsigned long long FUN_1801199c7(uint32_t SystemContextPointer,uint64_t Utf8BufferSize,unsigned long long Utf16InputPointer
+unsigned long long ProcessSystemContextWithUint32Parameters(uint32_t SystemContextPointer,uint64_t Utf8BufferSize,unsigned long long Utf16InputPointer
 {
   uint *StatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
