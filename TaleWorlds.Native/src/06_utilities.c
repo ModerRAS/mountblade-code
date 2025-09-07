@@ -29619,7 +29619,7 @@ uint64_t GetSystemMemoryBaseAddress(int64_t operationBase,int64_t *dataBuffer)
   int64_t *validationContextPointer;
   uint64_t operationResult;
   uint validationStatus;
-  bool bVar4;
+  bool validationFlag;
   uint auStackX_18 [2];
   uint stackByteBuffer [2];
   ByteFlag ainputDataWord [32];
@@ -29700,7 +29700,7 @@ ValidationStateUpdate:
     return operationResult;
   }
   if (2 < (int)dataBuffer[8] - 0x65U) goto ProcessCheckpointValidationExit;
-  bVar4 = false;
+  validationFlag = false;
   if (*(int *)(dataBuffer[1] + 0x18) != 0) goto ProcessCheckpointValidationError2;
   validationContextPointer = (int64_t *)*dataBuffer;
   if (*validationContextPointer != 0) {
@@ -29718,14 +29718,14 @@ ValidationCompleteHandler:
     }
   }
   if (validationStatus == 0) {
-    bVar4 = (char)auStackX_18[0] != '\0';
+    validationFlag = (char)auStackX_18[0] != '\0';
     validationStatus = 0;
   }
   if (validationStatus != 0) {
 ValidationErrorHandler3:
     return (uint64_t)validationStatus;
   }
-  if (bVar4) {
+  if (validationFlag) {
     *(DataWord *)(operationBase + 0x10) = 3;
   }
 ValidationExitHandler:
@@ -29752,7 +29752,7 @@ uint64_t GetGlobalResourcePointer(void)
   uint validationStatus;
   int64_t *destinationIndexRegister;
   int64_t systemContext;
-  bool bVar4;
+  bool validationFlag;
   char cStack0000000000000090;
   uint stackDataSize;
   
@@ -29828,7 +29828,7 @@ ValidationStateUpdate:
     return operationResult;
   }
   if (2 < (int)destinationIndexRegister[8] - 0x65U) goto ProcessCheckpointValidationExit;
-  bVar4 = false;
+  validationFlag = false;
   if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) goto ProcessCheckpointValidationError2;
   validationContextPointer = (int64_t *)*destinationIndexRegister;
   if (*validationContextPointer != 0) {
@@ -29846,14 +29846,14 @@ ValidationCompleteHandler:
     }
   }
   if (validationStatus == 0) {
-    bVar4 = cStack0000000000000090 != '\0';
+    validationFlag = cStack0000000000000090 != '\0';
     validationStatus = 0;
   }
   if (validationStatus != 0) {
 ValidationErrorHandler3:
     return (uint64_t)validationStatus;
   }
-  if (bVar4) {
+  if (validationFlag) {
     *(DataWord *)(systemContext + 0x10) = 3;
   }
 ValidationExitHandler:
