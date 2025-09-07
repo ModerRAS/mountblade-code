@@ -146,6 +146,7 @@
 #define ProcessSystemMemoryDataAllocation FUN_18014e160       // 处理系统内存数据分配
 #define ProcessSystemMemoryPoolAllocation FUN_18014e700       // 处理系统内存池分配
 #define ProcessSystemCharacterEncodingConversion FUN_18014f980 // 处理系统字符编码转换
+#define ProcessCharacterCodeWithSystemBufferManagement FUN_18014b7f0 // 处理字符代码和系统缓冲区管理
 
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
@@ -179319,7 +179320,7 @@ LAB_18014b72a:
 
 
 
-4b7f0(long long CharacterCode,uint64_t SystemBufferSizevoid FUN_18014b7f0(long long CharacterCode,uint64_t SystemBufferSize
+void FUN_18014b7f0(long long CharacterCode,uint64_t SystemBufferSize)
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
