@@ -20089,26 +20089,26 @@ DataTransferLabel:
 DataBuffer ProcessInputData(DataBuffer inputData,int processingMode)
 
 {
-  int64_t exceptionHandlerContext;
-  int64_t *registerContext;
-  int registerValueEDI;
+  int64_t allocatedMemory;
+  int64_t *contextPointer;
+  int bufferSize;
   
-  exceptionHandlerContext = 0;
-  if (registerValueEDI == 0) {
+  allocatedMemory = 0;
+  if (processingMode == 0) {
 DataTransferLabel:
-    if ((0 < *(int *)((int64_t)registerContext + 0xc)) && (*registerContext != 0)) {
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*registerContext,&SystemMemoryPoolB,0x100,1);
+    if ((0 < *(int *)((int64_t)contextPointer + 0xc)) && (*contextPointer != 0)) {
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*contextPointer,&SystemMemoryPoolB,0x100,1);
     }
-    *registerContext = exceptionHandlerContext;
-    *(int *)((int64_t)registerContext + 0xc) = registerValueEDI;
+    *contextPointer = allocatedMemory;
+    *(int *)((int64_t)contextPointer + 0xc) = processingMode;
     return 0;
   }
-  if (dataBuffer * 0xc - 1U < MaxSafeBufferSize) {
-    exceptionHandlerContext = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),dataBuffer * 0xc,&SystemMemoryPoolB,0xf4,
+  if (inputData * 0xc - 1U < MaxSafeBufferSize) {
+    allocatedMemory = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),inputData * 0xc,&SystemMemoryPoolB,0xf4,
                           0);
-    if (exceptionHandlerContext != 0) {
-      if ((int)registerContext[1] != 0) {
-          memcpy(exceptionHandlerContext,*registerContext,(int64_t)(int)registerContext[1] * 0xc);
+    if (allocatedMemory != 0) {
+      if ((int)contextPointer[1] != 0) {
+          memcpy(allocatedMemory,*contextPointer,(int64_t)(int)contextPointer[1] * 0xc);
       }
       goto ResourceReleaseLabel;
     }
@@ -110941,11 +110941,11 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define SystemStatusValidationErrorCode SystemStatusValidationErrorMessage
 
 // 数据完整性验证错误信息常量
-#define DataIntegrityValidationErrorCodeA UNK_180983be8
-#define DataIntegrityValidationErrorCodeB UNK_180983a60
-#define DataIntegrityValidationErrorCodeC UNK_180983ae8
-#define DataIntegrityValidationErrorCodeD UNK_180983b68
-#define DataIntegrityValidationErrorCodeE UNK_180983cf8
+#define DataIntegrityValidationErrorCodeA DataIntegrityValidationPrimaryError
+#define DataIntegrityValidationErrorCodeB DataIntegrityValidationSecondaryError
+#define DataIntegrityValidationErrorCodeC DataIntegrityValidationTertiaryError
+#define DataIntegrityValidationErrorCodeD DataIntegrityValidationQuaternaryError
+#define DataIntegrityValidationErrorCodeE DataIntegrityValidationQuinaryError
 
 // 缺失的FUN_函数宏定义
 // 原始函数名：FUN_1800596a0 - 数据验证处理函数
