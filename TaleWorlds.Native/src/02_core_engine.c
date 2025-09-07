@@ -6,6 +6,25 @@
 #define SecondaryProcessingStatusOffset 0x370
 #define MemoryBlockValidationOffset 0x328
 
+// 变量名语义化宏定义
+#define Utf16CharacterValue Utf16Char4                    // UTF-16字符值
+#define TemporaryProcessingStatus TemporaryStackValue58    // 临时处理状态
+#define TemporaryFloatResult TemporaryFloatStack44        // 临时浮点结果
+#define ProcessingStringBuffer StringBuffer6                // 处理字符串缓冲区
+#define SystemPrimaryContext SystemContextValue            // 系统主上下文
+#define SystemConfigHandle SystemConfigurationHandle        // 系统配置句柄
+#define CharacterStringPointer CharacterPointer            // 字符串指针
+#define StackUintValue StackUintValue6c                    // 堆栈无符号整数值
+#define TemporaryFloatStack TemporaryFloatStack68          // 临时浮点堆栈
+#define InputFilterValue FilterInputValue                   // 输入过滤值
+#define PrimaryDataBuffer PrimaryDataStorage               // 主要数据缓冲区
+#define SecondaryFloatBuffer SecondaryFloatValue           // 次要浮点缓冲区
+#define DataStructureIndex DataNodeIndex                   // 数据结构索引
+#define SystemFramePointer StackFramePointer               // 系统帧指针
+#define MemoryOffset MemoryAllocationOffset                 // 内存偏移量
+#define MemoryIndex MemoryAllocationIndex                   // 内存索引
+#define CodePointValue CalculatedCodePoint                 // 码点值
+
 #define ProcessSystemResourceAllocation ProcessSystemResourceAllocation
 
 #define ProcessSystemMemoryBlockCleanup ProcessSystemMemoryBlockCleanup
@@ -25061,34 +25080,34 @@ void CoreEngineProcessSystemCommand(uint64_t CharacterCode, uint64_t Utf8BufferS
   char CharacterDataBuffer [16];
   unsigned long long EncodingKeyOffset;
   
-  MemoryOffset68 = 0xfffffffffffffffe;
-  MemoryOffset48 = EncodingDecodingKey ^ (unsigned long long)SystemMemoryBufferB;
+  SystemMemoryAlignmentMask = 0xfffffffffffffffe;
+  EncodedMemoryOffset = EncodingDecodingKey ^ (unsigned long long)SystemMemoryBufferB;
   ProcessingStatusFlag = (uint8_t*)0x0;
-  MemoryOffset1F8 = 0;
-  ConfigurationFlagG = Utf8BufferSize;
-  CharacterTablePointer60 = Utf8BufferSize;
+  MemoryValidationFlag = 0;
+  SystemConfigurationValue = Utf8BufferSize;
+  CharacterTablePointer = Utf8BufferSize;
   UnicodeCodePoint = GetCurrentProcessId();
-  SystemEventPointerC = &SystemNullTemplate;
-  SystemConfigurationFlagF = 0;
-  LoopCounterE8 = 0;
-  SystemValidationFlagE = 0;
-  CoreEngineProcessSystemEvent(&SystemEventPointerC,6);
-  CharacterTablePointer = LoopCounterE8;
-  ProcessingStatusFlag = (unsigned long long)SystemValidationFlagE;
-  *(uint32_t *)(ProcessingStatusFlag + LoopCounterE8) = 0x44495020;
-  *(uint16_t *)(ProcessingStatusFlag + 4 + LoopCounterE8) = 0x203a;
-  *(uint8_t *)(ProcessingStatusFlag + 6 + LoopCounterE8) = 0;
-  SystemValidationFlagE = 6;
-  ProcessSystemInfo(SystemCharacterBuffer58,&SystemInfoHandlerTemplate,UnicodeCodePoint);
+  SystemEventPointer = &SystemNullTemplate;
+  SystemProcessingFlag = 0;
+  EncodingLoopCounter = 0;
+  SystemValidationStatus = 0;
+  CoreEngineProcessSystemEvent(&SystemEventPointer,6);
+  CharacterTablePointer = EncodingLoopCounter;
+  ProcessingStatusFlag = (unsigned long long)SystemValidationStatus;
+  *(uint32_t *)(ProcessingStatusFlag + EncodingLoopCounter) = 0x44495020;
+  *(uint16_t *)(ProcessingStatusFlag + 4 + EncodingLoopCounter) = 0x203a;
+  *(uint8_t *)(ProcessingStatusFlag + 6 + EncodingLoopCounter) = 0;
+  SystemValidationStatus = 6;
+  ProcessSystemInfo(CharacterProcessingBuffer,&SystemInfoHandler,UnicodeCodePoint);
   BufferStatus = -1;
   do {
     EncodingConversionResult = BufferStatus;
     BufferStatus = EncodingConversionResult + 1;
-  } while (CoreEngineCharArray58[EncodingConversionResult + 1] != '\0');
+  } while (CoreEngineStringBuffer[EncodingConversionResult + 1] != '\0');
   if (0 < (int)(EncodingConversionResult + 1)) {
     CoreEngineProcessSystemEvent(&OperationStatus,(int)EncodingConversionResult + 7);
                     // WARNING: Subroutine does not return
-    memcpy((unsigned long long)SystemFlagE + CoreEngineSignedValueE8,CoreEngineCharArray58,(long long)((int)EncodingConversionResult + 2));
+    memcpy((unsigned long long)SystemEventBuffer + SystemMemoryOffset,CoreEngineCharArray58,(long long)((int)EncodingConversionResult + 2));
   }
   TemporaryBuffer = &DefaultStatusBuffer;
   if (EngineMemoryFlag != '\0') {
@@ -158888,17 +158907,29 @@ void ProcessSystemContextAndByteBufferAux(void)
 
 
 
-void FUN_180135010(int CharacterCode,uint64_t Utf8BufferSize,uint Utf8SourcePointer
+/**
+ * @brief 验证UTF-8字符编码表指针
+ * 
+ * 该函数负责验证UTF-8字符编码表的指针是否有效，并处理相关的内存分配
+ * 主要用于字符编码系统的初始化和验证
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_180135010
+ */
+void ValidateUtf8CharacterEncodingTablePointer(int CharacterCode,uint64_t Utf8BufferSize,uint Utf8SourcePointer
 {
   long long PrimaryDataSize;
   uint MemoryAllocationIndex;
   
-  CharacterTablePointer = SystemConfigurationHandle;
+  int CharacterTableHandle = SystemConfigurationHandle;
   MemoryAllocationIndex = Utf8SourcePointer & 0xff ^ 1;
   *(uint8_t *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0xb1) = 1;
-  CharacterTablePointer = *(long long *)(*(long long *)(CharacterTablePointer + 0x1af8) + 0x210);
-  if (CharacterTablePointer != 0) {
-    if ((*(int *)(CharacterTablePointer + 0x10) == CharacterCode) && (*(uint *)(CharacterTablePointer + 4) == MemoryAllocationIndex)) {
+  CharacterTableHandle = *(long long *)(*(long long *)(CharacterTableHandle + 0x1af8) + 0x210);
+  if (CharacterTableHandle != 0) {
+    if ((*(int *)(CharacterTableHandle + 0x10) == CharacterCode) && (*(uint *)(CharacterTableHandle + 4) == MemoryAllocationIndex)) {
       return;
     }
     HandleSystemException();
@@ -170216,29 +170247,40 @@ long long FUN_18013d540(void
 
 
 
-void FUN_18013de90(int *Utf8InputBuffer,int Utf8BufferSize
+/**
+ * @brief 处理UTF-8输入缓冲区大小调整
+ * 
+ * 该函数负责调整UTF-8输入缓冲区的大小，确保缓冲区能够容纳足够的字符数据
+ * 主要用于UTF-8字符编码处理中的内存管理
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18013de90
+ */
+void HandleUtf8InputBufferSizeAdjustment(int *Utf8InputBuffer,int Utf8BufferSize
 {
   int LockResult;
   int CharacterByteCount;
   uint64_t UnicodeCodePoint;
   int EncodingValidationResult;
   
-  IntegerValue = Utf8InputBuffer[1];
-  if (Utf8BufferSize <= IntegerValue) {
+  int CurrentBufferSize = Utf8InputBuffer[1];
+  if (Utf8BufferSize <= CurrentBufferSize) {
     *Utf8InputBuffer = Utf8BufferSize;
     return;
   }
-  if (IntegerValue == 0) {
+  if (CurrentBufferSize == 0) {
     CharacterByteCount = 8;
   }
   else {
-    CharacterByteCount = IntegerValue / 2 + IntegerValue;
+    CharacterByteCount = CurrentBufferSize / 2 + CurrentBufferSize;
   }
   EncodingValidationResult = Utf8BufferSize;
   if (Utf8BufferSize < CharacterByteCount) {
     EncodingValidationResult = CharacterByteCount;
   }
-  if (IntegerValue < EncodingValidationResult) {
+  if (CurrentBufferSize < EncodingValidationResult) {
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
     }
@@ -252936,7 +252978,19 @@ uint32_t FUN_18021aef5(void
 
 
 
-int FUN_18021af10(long long CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理字符编码转换和验证
+ * 
+ * 该函数负责处理字符编码的转换操作，并验证编码的正确性
+ * 主要用于UTF-8到其他编码格式的转换处理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return int 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18021af10
+ */
+int ProcessCharacterEncodingConversionAndValidation(long long CharacterCode,long long Utf8BufferSize
 {
   byte *CurrentBytePointer;
   int CharacterByteCount;
@@ -252946,7 +253000,7 @@ int FUN_18021af10(long long CharacterCode,long long Utf8BufferSize
   int ValidationResult;
   int ProcessIterationCount;
   long long secondaryLoopCounter;
-  long long *pStringOffset;
+  long long *StringOffsetPointer;
   long long EncodingConversionResult;
   
   StringLength = 0;
