@@ -3034,6 +3034,10 @@
 // 功能：验证配置的有效性并返回验证结果
 #define ValidateConfigurationA1 FUN_180898f40
 
+// 原始变量名：UNK_180983be8 - 系统验证数据表A8
+// 功能：存储系统验证相关的数据表信息
+#define SystemValidationDataTableA8 UNK_180983be8
+
 // 原始变量名：ExceptionContextPtr - 异常上下文指针
 // 功能：存储异常处理的上下文指针信息
 #define ExceptionContextPtr ExceptionContextPtr
