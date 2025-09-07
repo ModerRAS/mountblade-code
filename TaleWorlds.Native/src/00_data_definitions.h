@@ -4342,7 +4342,7 @@ Label_ModuleConfigurationStart:
   StackCounter48 = SystemModuleContext;
   SystemModuleContext = (longlong *)*pUnsignedValue;
   StackGameSessionBuffer[0] = 0;
-  plStack_2f8 = aPerformanceCounterValue;
+  PerformanceCounterValue = aPerformanceCounterValue;
   MemoryAddress1 = 0;
   aPerformanceCounterValue[0] = 0;
   aPerformanceCounterValue[1] = 0;
@@ -4350,7 +4350,7 @@ Label_ModuleConfigurationStart:
   StackParameter4 = 3;
   InitializeGameSession(StackGameSessionBuffer);
   ProcessGameData((longlong)SystemFrameCounter * 0x238 + GameEngineDataAddress + 0x1598,StackGameSessionBuffer);
-  plStack_2f8 = aPerformanceCounterValue;
+  PerformanceCounterValue = aPerformanceCounterValue;
   if (aPerformanceCounterValue[0] != 0) {
     CleanupSystemResources();
   }
@@ -4424,13 +4424,13 @@ Label_ModuleConfigurationStart:
     SystemComponentRegistrationBuffer[0] = SystemFloatOneValue;
     StackParameter14 = 0x20000;
     StackParameterPointer = &SystemRegistrationBuffer;
-    pplStack_328 = (longlong **)&StackCounter2f0;
+    SystemConfigurationPointer = (longlong **)&StackCounter2f0;
     RegisterSystemComponent(&SystemConstantEE,4,SystemConfigurationData + 0x167c,SystemComponentRegistrationBuffer);
-    plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x40000000);
+    PerformanceCounterValue = (longlong *)CONCAT44(plStack_2f8._4_4_,0x40000000);
     StackCounter48 = (longlong *)CONCAT44(StackCounter48._4_4_,0x3f800000);
     StackParameter14 = 0x20000;
     StackParameterPointer = &SystemRegistrationBuffer;
-    pplStack_328 = &plStack_2f8;
+    SystemConfigurationPointer = &PerformanceCounterValue;
     RegisterSystemComponent(&SystemConstantFF,4,SystemConfigurationData + 0x1680,&StackCounter48);
     FinalizeSystemComponent();
     SystemModuleContext = pModuleInitializationResult4;
@@ -4446,15 +4446,15 @@ Label_ModuleConfigurationStart:
       __Throw_C_error_std__YAXH_Z(IntegerResult);
     }
     pModuleInitializationResult4 = SystemModuleContext;
-    plStack_2c0 = SystemModuleContext;
+    SystemModuleContext = SystemModuleContext;
     SystemModuleContext = (longlong *)*pUnsignedValue;
     SystemInitializeSecondary(&SystemInitializationBufferB,0,0);
     StackCounter48 = (longlong *)CONCAT44(StackCounter48._4_4_,0x40000000);
-    plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
+    PerformanceCounterValue = (longlong *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
     StackParameter14 = 0x20000;
     StackParameterPointer = &SystemRegistrationBuffer;
-    pplStack_328 = (longlong **)&StackCounter48;
-    RegisterSystemConfigurationParameter(&SystemConfigurationParameterBuffer,4,SystemConfigurationData + 0x1688,&plStack_2f8);
+    SystemConfigurationPointer = (longlong **)&StackCounter48;
+    RegisterSystemConfigurationParameter(&SystemConfigurationParameterBuffer,4,SystemConfigurationData + 0x1688,&PerformanceCounterValue);
     FinalizeSystemComponent();
     SystemModuleContext = pModuleInitializationResult4;
     IntegerResult = _Mtx_unlock(SystemMutexAddressA);
@@ -4469,15 +4469,15 @@ Label_ModuleConfigurationStart:
       __Throw_C_error_std__YAXH_Z(IntegerResult);
     }
     pModuleInitializationResult4 = SystemModuleContext;
-    plStack_2c0 = SystemModuleContext;
+    SystemModuleContext = SystemModuleContext;
     SystemModuleContext = (longlong *)*pUnsignedValue;
     SystemInitializeSecondary(&SystemInitializationBufferC,0,0);
     StackCounter48 = (longlong *)CONCAT44(StackCounter48._4_4_,0x40000000);
-    plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
+    PerformanceCounterValue = (longlong *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
     StackParameter14 = 0x20000;
     StackParameterPointer = &SystemRegistrationBuffer;
-    pplStack_328 = (longlong **)&StackCounter48;
-    RegisterSystemConfigurationParameter(&SystemConfigurationParameterBuffer,4,SystemConfigurationData + 0x168c,&plStack_2f8);
+    SystemConfigurationPointer = (longlong **)&StackCounter48;
+    RegisterSystemConfigurationParameter(&SystemConfigurationParameterBuffer,4,SystemConfigurationData + 0x168c,&PerformanceCounterValue);
     if (*(float *)(SystemConfigurationData + 0x168c) == 0.0) {
       *(uint32_t *)(SystemConfigurationData + 0x168c) = SystemFloatOneValue;
     }
@@ -4602,14 +4602,14 @@ Label_ModuleConfigurationStart:
       __Throw_C_error_std__YAXH_Z(IntegerResult);
     }
     pModuleInitializationResult4 = SystemModuleContext;
-    plStack_2c0 = SystemModuleContext;
+    SystemModuleContext = SystemModuleContext;
     SystemModuleContext = (longlong *)*pUnsignedValue;
-    plStack_2f8 = (longlong *)0x0;
+    PerformanceCounterValue = (longlong *)0x0;
     StackCounter48 = (longlong *)0x0;
-    pplStack_328 = (longlong **)&cStack_300;
-    ConfigureModuleInitialization(ModuleInitializationResult2,&StackSystemPointer,&plStack_2f8,&StackCounter48);
+    SystemConfigurationPointer = (longlong **)&cStack_300;
+    ConfigureModuleInitialization(ModuleInitializationResult2,&StackSystemPointer,&PerformanceCounterValue,&StackCounter48);
     if (*(char *)(ModuleInitializationResult2 + 0x60) != '\0') {
-      ValidateModuleInitialization(ModuleInitializationResult2,&plStack_2f8,&StackCounter48,acStack_2ff);
+      ValidateModuleInitialization(ModuleInitializationResult2,&PerformanceCounterValue,&StackCounter48,acStack_2ff);
     }
     if ((cStack_300 == '\0') && (acStack_2ff[0] == '\0')) {
       *(uint8_t *)(ModuleInitializationResult2 + 0x60) = 0;
@@ -12902,14 +12902,14 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
       return MemoryAllocationResult;
     }
   }
-  NetworkOperationResult = ProcessNetworkCommunication(NetworkOperationResult,*(uint64_t *)(OperationType + 0x10),LongOffset,*ResponseDataPointer,UnsignedSize,0,0,&StackVariable8);
+  NetworkOperationResult = ProcessNetworkCommunication(NetworkOperationResult,*(uint64_t *)(OperationType + 0x10),LongOffset,*ResponseDataPointer,UnsignedSize,0,0,&NetworkResponseBuffer);
   if ((int)NetworkOperationResult == 0) {
     if (OperationFlag2 != (char)NetworkOperationResult) {
-      SetMemoryOffset(StackVariable8,LongOffset);
+      SetMemoryOffset(NetworkResponseBuffer,LongOffset);
     }
     NetworkStatusFlag = (byte)(*(uint *)(OperationType + 0x1c) >> 4) & 1;
-    *(uint *)(StackVariable8 + 0x4c) =
-         ~((NetworkStatusFlag ^ 1) * 2) & ((uint)NetworkStatusFlag + (uint)NetworkStatusFlag | *(uint *)(StackVariable8 + 0x4c));
+    *(uint *)(NetworkResponseBuffer + 0x4c) =
+         ~((NetworkStatusFlag ^ 1) * 2) & ((uint)NetworkStatusFlag + (uint)NetworkStatusFlag | *(uint *)(NetworkResponseBuffer + 0x4c));
     NetworkOperationResult = 0;
   }
   return NetworkOperationResult;
