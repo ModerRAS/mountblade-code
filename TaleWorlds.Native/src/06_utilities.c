@@ -50128,7 +50128,13 @@ void CleanupResourceB0Wrapper(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905080(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源C0函数
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180905080
+ */
+void CleanupResourceC0Wrapper(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CleanupResourceA0(dataBuffer + 0x90);
