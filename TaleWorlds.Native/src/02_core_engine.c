@@ -95,6 +95,18 @@
  */
 #define ProcessSystemDataValidation FUN_180122890
 
+// 原始函数名：FUN_18013e000 - 系统内存分配函数
+#define AllocateSystemMemoryEx FUN_18013e000
+
+// 原始函数名：FUN_1801283f0 - 系统缓冲区处理和参数验证函数
+#define ProcessSystemBufferAndValidateParameters FUN_1801283f0
+
+// 原始函数名：FUN_18012eee0 - 系统事件处理和状态检查函数
+#define ProcessSystemEventAndCheckStatus FUN_18012eee0
+
+// 原始函数名：FUN_18016bdb0 - 系统数据编码和转换处理函数
+#define ProcessSystemDataEncodingAndConversion FUN_18016bdb0
+
 // 系统节点状态偏移量常量
 #define SystemNodeStatusOffset 0x19
 
@@ -495,6 +507,17 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 
 // 系统数据结构和图形配置函数
 #define ConfigureSystemDataStructureWithGraphics FUN_18010cd70
+
+// 系统缓冲区处理函数
+#define ProcessSystemBufferValidation FUN_18011fa30
+#define ProcessSystemDataBufferAllocation FUN_180121420
+
+// 系统字符串处理函数
+#define ProcessSystemStringEncodingConversion FUN_18013c020
+#define ProcessSystemStringBufferAllocation FUN_18013c4e0
+#define ProcessSystemStringDataValidation FUN_18013cf40
+#define ProcessSystemStringEncodingOperation FUN_18013d010
+#define ProcessSystemStringDataConversion FUN_18013d200
 
 // 系统初始化和配置函数
 #define InitializeSystemDataEx FUN_1801189e0
@@ -2372,13 +2395,31 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
  */
 #define CheckSystemStatusAndValidate FUN_18010ec09
 
-// 原始函数名：FUN_18010ec85 - 系统缓冲区处理和配置函数
+/**
+ * @brief 处理系统缓冲区和配置
+ * 
+ * 该函数负责处理系统缓冲区并进行相关配置操作
+ * 
+ * @note 原始函数名：FUN_18010ec85
+ */
 #define ProcessSystemBufferAndConfigure FUN_18010ec85
 
-// 原始函数名：FUN_18010effd - 系统事件处理和通知函数
+/**
+ * @brief 处理系统事件和通知
+ * 
+ * 该函数负责处理系统事件并发送相关通知
+ * 
+ * @note 原始函数名：FUN_18010effd
+ */
 #define ProcessSystemEventAndNotify FUN_18010effd
 
-// 原始函数名：FUN_18010f06e - 目标数据结构处理和配置函数
+/**
+ * @brief 处理目标数据结构和配置
+ * 
+ * 该函数负责处理目标数据结构并进行相关配置
+ * 
+ * @note 原始函数名：FUN_18010f06e
+ */
 #define ProcessOutputBufferAndConfigure FUN_18010f06e
 
 // 原始函数名：FUN_18010f0c3 - 系统资源清理和释放函数
@@ -163345,7 +163386,14 @@ LAB_18013bf0b:
 
 
 
-3c020(long long OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,char *Utf16EndPointervoid FUN_18013c020(long long OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,char *Utf16EndPointer
+/**
+ * @brief 处理系统字符串编码转换
+ * 
+ * 该函数负责处理系统字符串的编码转换操作，确保字符串数据的正确处理。
+ * 
+ * @note 原始函数名：FUN_18013c020
+ */
+void ProcessSystemStringEncodingConversion(long long OutputBuffer, uint64_t OutputBufferSize, uint64_t Utf8InputPointer, char *Utf16EndPointer)
 {
   uint64_t *StatusBuffer;
   long long bufferAllocationStatus;
