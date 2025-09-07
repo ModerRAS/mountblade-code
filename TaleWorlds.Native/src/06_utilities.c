@@ -7627,7 +7627,7 @@ uint32_t UtilityQueuePriority;
 // 
 // 返回值:
 //   无
-void ConfigureUtilityThreadPool;             // 配置工具系统线程池
+void ConfigureUtilityThreadPool(void);             // 配置工具系统线程池
 // 工具系统线程池配置变量
 uint32_t UtilityThreadPoolSize;
 uint32_t UtilityThreadPoolStatus;

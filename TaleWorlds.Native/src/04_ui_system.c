@@ -69600,7 +69600,7 @@ LAB_1806a011c:
 
 
 /**
- * @brief 验证UI资源数据
+ * @brief 验证UI系统资源数据
  * 
  * 该函数负责验证UI系统资源数据的完整性和有效性，
  * 检查资源数据的格式和内容是否符合要求
@@ -69608,7 +69608,7 @@ LAB_1806a011c:
  * @return 验证结果状态码，成功返回验证通过的资源数量
  * @note 原始函数名: FUN_1806a007d
  */
-int ValidateUIResourceData(void)
+int ValidateUISystemResourceData(void)
 
 {
   int operationResult;
