@@ -168708,48 +168708,48 @@ void ProcessCharacterEncodingAndBufferManagement(long long CharacterCode, uint64
   long long BufferStatus;
   int MemoryMatchResult;
   long long SystemDataRegistry;
-  int *pRemainingSpace;
+  int *RemainingSpacePointer;
   unsigned long long DataSize;
   int ProcessIterationCount;
   unsigned long long ProcessingStatusFlag;
-  int IntegerValue9;
-  char acStackX_20 [8];
-  int iStack_48;
-  int iStack_44;
+  int SystemRegisterValue;
+  char TempBuffer[8];
+  int ValidationStatus1;
+  int ValidationStatus2;
   uint32_t SystemPriorityLevel;
-  uint32_t uStack_3c;
+  uint32_t SystemFlags;
   uint32_t FunctionAddress;
-  int iStack_34;
+  int MemoryOffset;
   uint32_t ProcessingFlags;
-  uint8_t uStack_2c;
-  char cStack_2b;
-  uint8_t uStack_2a;
-  uint8_t uStack_29;
-  uint8_t uStack_28;
-  uint8_t uStack_27;
-  uint32_t uStack_26;
-  uint16_t uStack_22;
+  uint8_t BufferControl;
+  char StatusChar;
+  uint8_t NumberSystemFlag;
+  uint8_t DataTypeFlag;
+  uint8_t EncodingFlag;
+  uint8_t ValidationFlag;
+  uint32_t DataControl;
+  uint16_t SizeInfo;
   uint16_t ProcessingCounter;
-  uint32_t uStack_1e;
-  uint16_t uStack_1a;
+  uint32_t AddressInfo;
+  uint16_t FormatFlags;
   
   DataSize = 0;
-  acStackX_20[0] = '\0';
-  iStack_44 = 0;
+  TempBuffer[0] = '\0';
+  ValidationStatus2 = 0;
   SystemPriorityLevel = 0;
-  iStack_48 = 0;
-  uStack_26 = 0;
-  uStack_22 = 0;
+  ValidationStatus1 = 0;
+  DataControl = 0;
+  SizeInfo = 0;
   ProcessingCounter = 0;
-  uStack_1e = 0;
-  iStack_34 = 0;
+  AddressInfo = 0;
+  MemoryOffset = 0;
   ProcessingFlags = 0;
   FunctionAddress = 0;
-  uStack_29 = 0;
-  uStack_28 = 0;
-  uStack_2a = 0;
-  uStack_2c = 0xff;
-  cStack_2b = '\0';
+  DataTypeFlag = 0;
+  EncodingFlag = 0;
+  NumberSystemFlag = 0;
+  BufferControl = 0xff;
+  StatusChar = '\0';
   for (; (*Utf16EndPointer == ' ' || (*Utf16EndPointer == '\t')); Utf16EndPointer = Utf16EndPointer + 1) {
   }
   StringLength = 8;
@@ -168765,36 +168765,36 @@ void ProcessCharacterEncodingAndBufferManagement(long long CharacterCode, uint64
     }
     for (Utf16EndPointer = Utf16EndPointer + 9; (*Utf16EndPointer == ' ' || (*Utf16EndPointer == '\t')); Utf16EndPointer = Utf16EndPointer + 1) {
     }
-    uStack_2a = 1;
+    NumberSystemFlag = 1;
   }
-  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableOctovigesimal,&FunctionAddress,&iStack_48);
+  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableOctovigesimal,&FunctionAddress,&ValidationStatus1);
   if (DataStringLength != 1) {
     return;
   }
-  Utf16EndPointer = Utf16EndPointer + iStack_48;
-  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableUntrigesimal,&iStack_34,&iStack_48);
+  Utf16EndPointer = Utf16EndPointer + ValidationStatus1;
+  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableUntrigesimal,&MemoryOffset,&ValidationStatus1);
   if (DataStringLength == 1) {
-    Utf16EndPointer = Utf16EndPointer + iStack_48;
-    if (iStack_34 == 0) {
+    Utf16EndPointer = Utf16EndPointer + ValidationStatus1;
+    if (MemoryOffset == 0) {
       return;
     }
   }
-  else if (iStack_34 == 0) {
-    DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableTrigesimal,&iStack_44,&SystemPriorityLevel,&iStack_48);
+  else if (MemoryOffset == 0) {
+    DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableTrigesimal,&ValidationStatus2,&SystemPriorityLevel,&ValidationStatus1);
     if (DataStringLength != 2) {
       return;
     }
-    SystemDataRegistry = (long long)iStack_48;
-    uStack_3c = CONCAT22((uint16_t)SystemPriorityLevel,(short)iStack_44);
-    pRemainingSpace = &iStack_48;
-    uStack_26 = uStack_3c;
-    DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer + SystemDataRegistry,SystemDataTableTritesimal,&iStack_44,&SystemPriorityLevel,pRemainingSpace);
+    SystemDataRegistry = (long long)ValidationStatus1;
+    SystemFlags = CONCAT22((uint16_t)SystemPriorityLevel,(short)ValidationStatus2);
+    RemainingSpacePointer = &ValidationStatus1;
+    DataControl = SystemFlags;
+    DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer + SystemDataRegistry,SystemDataTableTritesimal,&ValidationStatus2,&SystemPriorityLevel,RemainingSpacePointer);
     if (DataStringLength != 2) {
       return;
     }
-    Utf16EndPointer = Utf16EndPointer + SystemDataRegistry + iStack_48;
-    uStack_22 = (uint16_t)iStack_44;
-    uStack_3c = CONCAT22((uint16_t)SystemPriorityLevel,uStack_22);
+    Utf16EndPointer = Utf16EndPointer + SystemDataRegistry + ValidationStatus1;
+    SizeInfo = (uint16_t)ValidationStatus2;
+    SystemFlags = CONCAT22((uint16_t)SystemPriorityLevel,SizeInfo);
     ProcessingCounter = (uint16_t)SystemPriorityLevel;
     goto LAB_18013c174;
   }
