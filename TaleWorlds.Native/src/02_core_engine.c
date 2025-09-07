@@ -2142,6 +2142,19 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 原始函数名：FUN_180121fa0 - 系统数据查找函数
 #define FindSystemData FUN_180121fa0
 
+/**
+ * @brief 处理UTF-8输入缓冲区并进行字符匹配
+ * 
+ * 该函数负责处理UTF-8编码的输入缓冲区，通过计算字符边界和面积来进行字符匹配。
+ * 函数会遍历字符表，检查输入字符是否在预定义的字符边界范围内，并返回相应的结果。
+ * 
+ * @param Utf8InputBuffer UTF-8编码的输入缓冲区，包含4个浮点数表示的字符边界
+ * @return unsigned long long 匹配结果的校验和或索引值
+ * 
+ * @note 原始函数名：FUN_180130ec0
+ */
+#define ProcessUtf8InputBufferAndMatchCharacter FUN_180130ec0
+
 // 原始函数名：FUN_180129220 - 系统浮点数处理函数
 #define ProcessSystemFloat FUN_180129220
 
