@@ -8183,9 +8183,9 @@ void* DataTableConfigurationTertiary;
 void* DataTableConfigurationQuaternary;
 bool SystemConfigurationControlFlag;
 
-// 函数: uint8_t ValidateUtilityDataBC0;
+// 函数: uint8_t ValidateUtilityData;
 // 
-// 工具数据验证函数BC0
+// 工具数据验证函数
 // 
 // 功能：
 // 验证工具系统数据，检查数据完整性和有效性
@@ -8197,9 +8197,9 @@ bool SystemConfigurationControlFlag;
 //   uint8_t - 验证结果状态
 uint8_t ValidateUtilityData;
 
-// 函数: uint8_t EncryptUtilityDataBD0;
+// 函数: uint8_t EncryptUtilityData;
 // 
-// 工具数据加密函数BD0
+// 工具数据加密函数
 // 
 // 功能：
 // 加密工具系统数据，保护敏感信息安全
@@ -8211,9 +8211,9 @@ uint8_t ValidateUtilityData;
 //   uint8_t - 加密结果状态
 uint8_t EncryptUtilityData;
 
-// 函数: uint8_t DecryptUtilityDataBE0;
+// 函数: uint8_t DecryptUtilityData;
 // 
-// 工具数据解密函数BE0
+// 工具数据解密函数
 // 
 // 功能：
 // 解密工具系统数据，恢复原始信息
