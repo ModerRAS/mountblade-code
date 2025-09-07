@@ -20015,10 +20015,10 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
  * @note 通过memcmp比较节点数据来确定节点位置
  * @note 为新节点分配内存并设置配置参数
  */
-void CoreEngineInitializeSystemConfigNodeG(void
+void CoreEngineInitializeSystemConfigNodeG(void)
 {
   char NodeCurrentCharacter;
-  void *Utf8InputBuffer;
+  void *SystemContext;
   int MemoryCompareResult;
   long long *SystemHandle;
   long long MemoryOffset;
@@ -20029,11 +20029,11 @@ void CoreEngineInitializeSystemConfigNodeG(void
   uint64_t ConfigHandler;
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
-  CharacterCode = (void *)*SystemHandle;
-  NodeCurrentCharacter = *(char *)((long long)Utf8InputBuffer[1] + SystemNodeStatusOffset);
+  SystemContext = (void *)*SystemHandle;
+  NodeCurrentCharacter = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
   ConfigHandler = 0;
-  CurrentNode = CharacterCode;
-  PreviousNode = (void *)Utf8InputBuffer[1];
+  CurrentNode = SystemContext;
+  PreviousNode = (void *)SystemContext[1];
   while (NodeCurrentCharacter == '\0') {
     MemoryCompareResult = memcmp(PreviousNode + 4,&SystemConfigTemplateSecondary,0x10);
     if (MemoryCompareResult < 0) {
@@ -20047,7 +20047,7 @@ void CoreEngineInitializeSystemConfigNodeG(void
     PreviousNode = NextNode;
     NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((CurrentNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemConfigTemplateSecondary,CurrentNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((CurrentNode == SystemContext) || (MemoryCompareResult = memcmp(&SystemConfigTemplateSecondary,CurrentNode + 4,0x10), MemoryCompareResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
     CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNodePointer;

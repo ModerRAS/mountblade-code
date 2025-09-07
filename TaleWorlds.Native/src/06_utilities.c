@@ -863,10 +863,18 @@
 #define systemContextData SystemContextDataPointer
 
 // 数据处理流程控制标签宏定义
-#define ProcessCheckpointDataFlow ProcessCheckpointDataFlow
-#define ProcessCheckpointParameterValidation ProcessCheckpointParameterValidation
-#define MemoryAllocationLabel MemoryAllocationLabel
-#define ProcessCompleteLabel ProcessCompleteLabel
+// 系统数据处理流程检查点
+// 功能：在数据处理流程中设置检查点以确保数据完整性
+#define ProcessCheckpointDataFlow ValidateDataFlowCheckpoint
+// 检查点参数验证
+// 功能：验证检查点参数的有效性和完整性
+#define ProcessCheckpointParameterValidation ValidateCheckpointParameters
+// 内存分配标签
+// 功能：标记内存分配操作的开始和结束点
+#define MemoryAllocationLabel SystemMemoryAllocationTag
+// 处理完成标签
+// 功能：标记处理操作的完成状态
+#define ProcessCompleteLabel SystemProcessCompletionTag
 
 // 异常处理器常用偏移量常量定义
 #define ExceptionHandlerContextOffset 0x60

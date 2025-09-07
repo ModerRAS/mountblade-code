@@ -20228,11 +20228,7 @@ undefined8 DestroyUIComponentManager(undefined8 *manager_ptr,ulonglong flags,und
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 计算UI组件的变换矩阵
- 计算UI组件的位置、旋转和缩放变换，生成最终的变换矩阵。
- * 支持三维空间中的复杂变换计算，包括矩阵乘法、向量归一化和角度计算。
-  component_ptr UI组件指针，包含组件的变换配置信息
- /**
+   /**
  * @brief 计算UI组件变换矩阵
  * 
  * 计算UI组件的3D变换矩阵，包括位置、旋转和缩放变换。
@@ -20488,8 +20484,7 @@ undefined8 DestroyUIComponentManager(undefined8 *manager_ptr,ulonglong flags,und
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void HandleUIInputEvent(longlong uiContext,longlong dataSource)
- 处理UI输入事件
+  处理UI输入事件
  处理UI系统的输入事件，包括事件数据读取、状态更新和资源管理。
  * 使用加密保护机制确保事件处理的安全性，支持多线程环境下的并发访问。
   uiContext UI上下文指针，包含UI系统的状态信息
@@ -20498,7 +20493,8 @@ undefined8 DestroyUIComponentManager(undefined8 *manager_ptr,ulonglong flags,und
  * 
   原始函数名：FUN_18004c890
   该函数涉及线程安全操作，使用锁机制保护共享资源
- void HandleUIInputEvent(longlong uiContext,longlong dataSource)
+ */
+void HandleUIInputEvent(longlong uiContext,longlong dataSource)
 
 {
   uint *eventDataPtr;                   事件数据指针
@@ -20577,8 +20573,7 @@ undefined8 DestroyUIComponentManager(undefined8 *manager_ptr,ulonglong flags,und
 
 
 
- void RenderUIComponent(longlong uiContext,float dataSource,undefined8 targetBuffer)
- 渲染UI组件
+  渲染UI组件
  渲染UI组件，处理组件的位置更新和边界检查。
  * 根据数据源的值和UI上下文的状态，动态调整组件的渲染参数。
   uiContext UI上下文指针，包含渲染状态信息
@@ -20588,7 +20583,8 @@ undefined8 DestroyUIComponentManager(undefined8 *manager_ptr,ulonglong flags,und
  * 
   原始函数名：FUN_18004c9a0
   该函数涉及浮点数计算和边界检查逻辑
- void RenderUIComponent(longlong uiContext,float dataSource,undefined8 targetBuffer)
+ */
+void RenderUIComponent(longlong uiContext,float dataSource,undefined8 targetBuffer)
 
 {
   float currentThreshold;                当前阈值
