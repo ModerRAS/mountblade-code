@@ -180,6 +180,7 @@
 #define FinalizeUtf8BufferProcessing FUN_18013e8d4             // 完成UTF-8缓冲区处理
 #define ReleaseUtf8ProcessingResources FUN_18013e8e6           // 释放UTF-8处理资源
 #define ProcessUtf8CharacterCodeConversion FUN_18013e910       // 处理UTF-8字符代码转换
+#define ProcessAdvancedUtf8ToUtf16Conversion FUN_18032c0b0      // 处理高级UTF-8到UTF-16转换
 #define PrimaryDataBuffer PrimaryDataStorage               // 主要数据缓冲区
 #define SecondaryFloatBuffer SecondaryFloatValue           // 次要浮点缓冲区
 #define DataStructureIndex DataNodePointer                   // 数据结构索引
@@ -200034,7 +200035,7 @@ ProcessUtf8ToUtf16ConversionExtended(uint64_t *Utf8InputBuffer,uint64_t Utf8Buff
   long long lStack_20;
   uint32_t uStack_10;
   
-  FUN_18032c0b0(*(void *)(CoreEngineSystemContext + 0x3d8),&puStack_28,Utf8SourcePointer,Utf16EndPointer,0,
+  ProcessAdvancedUtf8ToUtf16Conversion(*(void *)(CoreEngineSystemContext + 0x3d8),&puStack_28,Utf8SourcePointer,Utf16EndPointer,0,
                 0xfffffffffffffffe);
   puStack_28 = &SystemNullTemplate;
   if (lStack_20 != 0) {
