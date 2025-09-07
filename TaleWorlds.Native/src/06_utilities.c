@@ -60177,7 +60177,18 @@ void Unwind_180906ae0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906af0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文中的回调函数A0
+ * 
+ * 该函数负责从异常上下文中获取回调函数指针并执行相应的回调操作
+ * 主要用于异常处理过程中的回调函数调用
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906af0
+ */
+void ExecuteExceptionHandlerContextCallbackA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -60191,7 +60202,20 @@ void Unwind_180906af0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行带操作标志的回调函数A0
+ * 
+ * 该函数负责执行带有操作标志的回调函数，将标志位传递给回调函数
+ * 主要用于需要传递额外参数的回调操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含回调函数信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给回调函数）
+ * 
+ * @note 原始函数名：Unwind_180906b00
+ */
+void ExecuteCallbackWithFlagsA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x78) != (code *)0x0) {
