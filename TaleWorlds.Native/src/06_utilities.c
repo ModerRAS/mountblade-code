@@ -9731,11 +9731,11 @@ uint8_t SystemManagementDataTableA0;
 // 功能：重置异常状态并清理相关资源
 #define ResetExceptionStateG2 Unwind_180905920
 
-// 原始函数名：Unwind_180905930 - 异常验证函数G3
+// 异常验证函数G3
 // 功能：验证异常状态并执行相关操作
 #define ValidateExceptionStateG3 Unwind_180905930
 
-// 原始函数名：Unwind_180905940 - 异常清理函数G4
+// 异常清理函数G4
 // 功能：清理异常处理过程中的临时数据
 #define CleanupExceptionProcessG4 Unwind_180905940
 
