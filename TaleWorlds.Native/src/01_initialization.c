@@ -389,6 +389,21 @@
 #define SystemPhysicsModuleTemplateId2   0xdcfdc333a769ec93  // 系统物理模块模板标识符2
 #define SystemScriptingModuleTemplateId1   0x431d7c8d7c475be2  // 系统脚本模块模板标识符1
 
+// 系统配置缓冲区常量
+#define SystemConfigBufferSize                 32  // 系统配置缓冲区大小
+#define SystemConfigPrimaryEnabledFlag         1   // 系统配置主要启用标志
+#define SystemConfigSecondaryEnabledFlag        0   // 系统配置次要启用标志
+
+// 系统初始化状态常量
+#define SystemInitializationSuccess           0   // 系统初始化成功状态
+#define SystemInitializationFailure           -1  // 系统初始化失败状态
+
+// 系统标识符大小常量
+#define SystemIdentifierSize                   0x10  // 系统标识符大小（16字节）
+
+// 系统节点分配常量
+#define SystemNodeAllocationExtraSize         0x20  // 系统节点分配额外大小
+
 // 资源数据偏移量常量
 #define ResourceDataTransformXOffset        0x130  // 资源数据变换X偏移量
 #define ResourceDataTransformYOffset        0x134  // 资源数据变换Y偏移量
@@ -15110,9 +15125,9 @@ int InitializeSystemSecondaryConfigurationModule(void)
 
 {
   long long SystemInitializationStatus;
-  uint8_t SystemConfigBuffer [32];
+  uint8_t SystemConfigBuffer [SystemConfigBufferSize];
   
-  SystemConfigBuffer[0] = 0;
+  SystemConfigBuffer[0] = SystemConfigSecondaryEnabledFlag;
   ConfigureSystemModule(&SystemConfigurationDataTableB,SystemConfigBuffer);
   SystemInitializationStatus = VerifySystemConfiguration(SystemConfigValidatorTertiary);
   return (SystemInitializationStatus != 0) - 1;
