@@ -15219,14 +15219,14 @@ DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
   uint validationData;
   DataWord tempValue;
   
-  validationData = *(uint *)(dataContext + DATA_CONTEXT_OFFSET_18);
+  validationData = *(uint *)(dataContext + DATA_PROCESSING_CONTEXT_OFFSET);
   if ((validationData & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset10),&validationData);
   if ((int)result == 0) {
-    *(DataWord *)(CONCAT44(tempValue,systemDataBuffer) + DATA_BUFFER_OFFSET_24) = *(DataWord *)(dataContext + DATA_CONTEXT_OFFSET_18);
-      CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_CONTEXT_OFFSET_98),dataContext);
+    *(DataWord *)(CONCAT44(tempValue,systemDataBuffer) + DATA_STORAGE_BUFFER_OFFSET) = *(DataWord *)(dataContext + DATA_PROCESSING_CONTEXT_OFFSET);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET),dataContext);
   }
   return result;
 }
@@ -15254,11 +15254,11 @@ DataBuffer ProcessUtilityDataAndExecute(int64_t dataContext,int64_t systemContex
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (*(char *)(systemDataBuffer + 0x2c) == '\0') {
+  if (*(char *)(systemDataBuffer + QUEUE_CAPACITY_OFFSET) == '\0') {
     return 0x4f;
   }
-  *(ByteFlag *)(systemDataBuffer + 0x2c) = 0;
-    ExecuteSystemOperation(*(DataBuffer *)(systemContext + 0x98),dataContext);
+  *(ByteFlag *)(systemDataBuffer + QUEUE_CAPACITY_OFFSET) = 0;
+    ExecuteSystemOperation(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET),dataContext);
 }
 
 
@@ -15293,11 +15293,11 @@ void ProcessSystemEventQueueWithBufferManagement(int64_t eventContext,int64_t sy
     return;
   }
   newBuffer = 0;
-  bufferPtr = eventHandle + EVENT_HANDLE_OFFSET_8;
+  bufferPtr = eventHandle + EVENT_HANDLER_OFFSET;
   if (eventHandle == 0) {
     bufferPtr = newBuffer;
   }
-  status = ValidateAndProcessSystemResourceA0(bufferPtr,eventContext + 0x18);
+  status = ValidateAndProcessSystemResourceA0(bufferPtr,eventContext + DATA_PROCESSING_CONTEXT_OFFSET);
   if (status != 0) {
     return;
   }
@@ -15332,7 +15332,7 @@ void ProcessSystemEventQueueWithBufferManagement(int64_t eventContext,int64_t sy
        eventHandle;
   *(int *)(queueInfo + QUEUE_SIZE_OFFSET) = *(int *)(queueInfo + QUEUE_SIZE_OFFSET) + 1;
 ExitHandler:
-    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),eventContext);
+    CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET),eventContext);
 }
 
 
@@ -15363,16 +15363,16 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
   int64_t systemContext;
   int64_t queueInfo;
   
-  processStatus = ProcessSystemEventDataA0(systemHandle,optimizationFlags,*(DataBuffer *)(queueInfo + 8));
-  if (validationResult != 0) {
+  processStatus = ProcessSystemEventDataA0(systemHandle,optimizationFlags,*(DataBuffer *)(queueInfo + QUEUE_INFORMATION_OFFSET));
+  if (processStatus != 0) {
     return;
   }
-  allocatedMemory = 0;
-  resourceContext = dataInput + 8;
-  if (dataInput == 0) {
-    resourceContext = allocatedMemory;
+  memoryResourcePointer = 0;
+  memoryBlockOffset = systemHandle + EVENT_HANDLER_OFFSET;
+  if (systemHandle == 0) {
+    memoryBlockOffset = memoryResourcePointer;
   }
-  validationResult = ValidateAndProcessSystemResourceA0(resourceContext,systemContext + 0x18);
+  operationResult = ValidateAndProcessSystemResourceA0(memoryBlockOffset,systemContext + DATA_PROCESSING_CONTEXT_OFFSET);
   if (validationResult != 0) {
     return;
   }
