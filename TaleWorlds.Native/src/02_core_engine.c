@@ -55497,21 +55497,34 @@ void ProcessSystemDataInitialization(uint64_t CharacterCode,long long *Utf8Input
  * @note 函数内部会处理内存分配失败的情况
  * @note 使用系统全局变量来跟踪分配状态
  */
-void InitializeCoreEngineDataStructure(long long CharacterCode, long long *Utf8InputBufferSize) {
-  int LockResult;
-  uint64_t MemoryAllocationIndex;
-  long long *MemoryBlockIndex;
-  long long SystemDataRegistry;
-  uint8_t SystemEncryptionKey[32];
-  uint32_t MemoryOffsetValue;
-  long long *SecondaryMemoryPoolPointer;
-  long long *PrimaryMemoryPoolPointer;
-  uint64_t CoreEngineUnsignedValueA0;
-  void *SystemOperationFlagPointer;
-  uint8_t *SystemOperationBuffer;
-  uint32_t StackValidationData;
-  uint8_t SystemStackBuffer[72];
-  unsigned long long FunctionAddress;
+/**
+ * @brief 初始化核心引擎数据结构
+ * 
+ * 该函数负责初始化核心引擎的数据结构，包括内存池管理、系统加密和资源分配。
+ * 函数会创建主内存池和次级内存池，并设置相关的系统参数。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param memoryPoolHandle 内存池句柄指针
+ * 
+ * @note 此函数会处理内存分配和加密操作
+ * @note 函数可能会调用系统事件处理器并不返回
+ * @note 使用了系统加密密钥进行数据保护
+ */
+void InitializeCoreEngineDataStructure(long long systemContext, long long *memoryPoolHandle) {
+  int systemLockResult;                                             // 系统锁定结果
+  uint64_t memoryAllocationIndex;                                   // 内存分配索引
+  long long *memoryBlockIndex;                                      // 内存块索引
+  long long systemDataRegistry;                                     // 系统数据注册表
+  uint8_t systemEncryptionKey[32];                                  // 系统加密密钥
+  uint32_t memoryOffsetValue;                                       // 内存偏移值
+  long long *secondaryMemoryPoolPointer;                            // 次级内存池指针
+  long long *primaryMemoryPoolPointer;                              // 主内存池指针
+  uint64_t systemOperationCode;                                     // 系统操作码
+  void *systemOperationFlagPointer;                                 // 系统操作标志指针
+  uint8_t *systemOperationBuffer;                                   // 系统操作缓冲区
+  uint32_t stackValidationData;                                     // 栈验证数据
+  uint8_t systemStackBuffer[72];                                    // 系统栈缓冲区
+  unsigned long long functionAddress;                                // 函数地址
   
   CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
