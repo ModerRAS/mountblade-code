@@ -12805,7 +12805,7 @@ MemoryAllocationReset:
   if ((char)MemoryAlignmentMask == (char)NetworkRequestResult) {
     return 0;
   }
-  StackVariable10 = 0;
+  MemoryAlignmentMask = 0;
   StringProcessingResultPointer = (uint *)GetStringProcessingResult();
   BufferSize = *(uint *)((longlong)ConfigurationArrayPointer + 0xc);
   if (((BufferSize != *StringProcessingResultPointer) && (*(uint *)(ConfigurationArrayPointer + 4) <= BufferSize)) &&
