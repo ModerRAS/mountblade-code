@@ -15054,17 +15054,17 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
  * @note 系统连接模板使用内存池技术来优化性能
  * @note 此模板专门处理网络安全相关的连接配置
  */
-void CoreEngineInitializeSystemConnectionTemplateB(void
+void CoreEngineInitializeSystemConnectionTemplateB(void)
 {
-  char StatusBuffer;
+  char ConnectionStatusBuffer;
   EngineContext *SystemContext;
-  int ComparisonResult;
+  int MemoryComparisonResult;
   MemorySize AllocatedMemory;
   SystemNode *CurrentNode;
   SystemNode *PreviousNode;
   SystemNode *NextNode;
   StackPointer *TempStackPointer;
-  FunctionCallback *ConnectionCallback;
+  FunctionCallback *NetworkSecurityCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
