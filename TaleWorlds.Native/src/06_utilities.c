@@ -43124,104 +43124,143 @@ void CleanupExceptionDataA8(DataBuffer operationBase,int64_t dataBuffer,DataBuff
 
 
 
-void Unwind_180903870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 初始化异常处理器上下文
+ * 
+ * 该函数负责初始化异常处理器的上下文，包括设置和清理多个异常处理器。
+ * 函数会验证上下文中的函数指针，然后依次设置临时异常处理器，
+ * 清理状态标志，最后设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903870
+ */
+void InitializeExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t validationContext;
+  int64_t exceptionHandlerContext;
   
-  validationContext = *(int64_t *)(dataBuffer + 0x80);
-  if (*(FunctionPointer**)(validationContext + 0x510) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x510))(validationContext + 0x500,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
+  if (*(FunctionPointer**)(exceptionHandlerContext + 0x510) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + 0x510))(exceptionHandlerContext + 0x500,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(validationContext + 0x4e0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x4e8) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x4e8) = 0;
-  *(DataWord *)(validationContext + 0x4f8) = 0;
-  *(DataBuffer *)(validationContext + 0x4e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4c0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x4c8) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + 0x4e8) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x4f8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x4c8) = 0;
-  *(DataWord *)(validationContext + 0x4d8) = 0;
-  *(DataBuffer *)(validationContext + 0x4c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4a0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x4a8) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + 0x4c8) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x4d8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x4a8) = 0;
-  *(DataWord *)(validationContext + 0x4b8) = 0;
-  *(DataBuffer *)(validationContext + 0x4a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x480) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x488) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + 0x4a8) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x4b8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x480) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x488) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x488) = 0;
-  *(DataWord *)(validationContext + 0x498) = 0;
-  *(DataBuffer *)(validationContext + 0x480) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x460) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x468) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + 0x488) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x498) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x480) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x460) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x468) = 0;
-  *(DataWord *)(validationContext + 0x478) = 0;
-  *(DataBuffer *)(validationContext + 0x460) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x468) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x478) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x460) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_180903890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 设置扩展异常处理器
+ * 
+ * 该函数负责设置扩展的异常处理器，包括两个异常处理器的初始化和清理。
+ * 函数会验证扩展上下文中的函数指针，然后设置临时异常处理器，
+ * 清理状态标志，最后设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903890
+ */
+void SetupExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t validationContext;
+  int64_t extendedHandlerContext;
   
-  validationContext = *(int64_t *)(dataBuffer + 0x80);
-  if (*(FunctionPointer**)(validationContext + 0x580) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x580))(validationContext + 0x570,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  extendedHandlerContext = *(int64_t *)(dataBuffer + 0x80);
+  if (*(FunctionPointer**)(extendedHandlerContext + 0x580) != (code *)0x0) {
+    (**(FunctionPointer**)(extendedHandlerContext + 0x580))(extendedHandlerContext + 0x570,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(validationContext + 0x548) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x550) != 0) {
+  *(DataBuffer *)(extendedHandlerContext + 0x548) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(extendedHandlerContext + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x550) = 0;
-  *(DataWord *)(validationContext + 0x560) = 0;
-  *(DataBuffer *)(validationContext + 0x548) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x528) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x530) != 0) {
+  *(DataBuffer *)(extendedHandlerContext + 0x550) = 0;
+  *(DataWord *)(extendedHandlerContext + 0x560) = 0;
+  *(DataBuffer *)(extendedHandlerContext + 0x548) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(extendedHandlerContext + 0x528) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(extendedHandlerContext + 0x530) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x530) = 0;
-  *(DataWord *)(validationContext + 0x540) = 0;
-  *(DataBuffer *)(validationContext + 0x528) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(extendedHandlerContext + 0x530) = 0;
+  *(DataWord *)(extendedHandlerContext + 0x540) = 0;
+  *(DataBuffer *)(extendedHandlerContext + 0x528) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_1809038b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化基本异常处理器
+ * 
+ * 该函数负责初始化基本的异常处理器，设置临时异常处理器，
+ * 清理状态标志，然后设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809038b0
+ */
+void InitializeBasicExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t validationContext;
+  int64_t basicHandlerContext;
   
-  validationContext = *(int64_t *)(dataBuffer + 0x88);
-  *(DataBuffer *)(validationContext + 8) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x10) != 0) {
+  basicHandlerContext = *(int64_t *)(dataBuffer + 0x88);
+  *(DataBuffer *)(basicHandlerContext + 8) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(basicHandlerContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x10) = 0;
-  *(DataWord *)(validationContext + 0x20) = 0;
-  *(DataBuffer *)(validationContext + 8) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(basicHandlerContext + 0x10) = 0;
+  *(DataWord *)(basicHandlerContext + 0x20) = 0;
+  *(DataBuffer *)(basicHandlerContext + 8) = &DefaultExceptionHandlerB;
   return;
 }
 
