@@ -2507,6 +2507,126 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 #define ConfigureSystemDataStructureOffset1f0 FUN_18010d1f0
 #define ConfigureSystemDataStructureOffset270 FUN_18010d270
 #define ConfigureSystemDataStructureOffset2f0 FUN_18010d2f0
+
+/**
+ * @brief 处理系统数据并分配验证内存
+ * 
+ * 该函数负责处理系统数据的验证内存分配操作，包括内存验证和分配。
+ * 确保系统数据验证内存的正确分配。
+ */
+#define ProcessSystemDataAndAllocateValidation FUN_1800a05a0
+
+/**
+ * @brief 处理系统数据并分配次要内存
+ * 
+ * 该函数负责处理系统数据的次要内存分配操作，作为主要内存分配的补充。
+ * 确保系统数据次要内存的正确分配。
+ */
+#define ProcessSystemDataAndAllocateSecondary FUN_1800a0350
+
+/**
+ * @brief 处理系统数据并配置字符串
+ * 
+ * 该函数负责处理系统数据的字符串配置操作，包括字符串的设置和初始化。
+ * 确保系统数据字符串的正确配置。
+ */
+#define ProcessSystemDataAndConfigureString FUN_1800a1160
+
+/**
+ * @brief 处理系统数据并配置次要系统
+ * 
+ * 该函数负责处理系统数据的次要系统配置操作，包括次要系统的设置和初始化。
+ * 确保系统数据次要系统的正确配置。
+ */
+#define ProcessSystemDataAndConfigureSecondary FUN_1800a0e50
+
+/**
+ * @brief 处理系统数据并清理文件
+ * 
+ * 该函数负责处理系统数据的文件清理操作，包括文件的删除和释放。
+ * 确保系统数据文件的正确清理。
+ */
+#define ProcessSystemDataAndCleanupFile FUN_1800a19c0
+
+/**
+ * @brief 处理系统数据并获取分配信息
+ * 
+ * 该函数负责处理系统数据的分配信息获取操作，包括内存分配状态的查询。
+ * 确保系统数据分配信息的正确获取。
+ */
+#define ProcessSystemDataAndGetAllocation FUN_18009f9d0
+
+/**
+ * @brief 处理系统数据并配置系统
+ * 
+ * 该函数负责处理系统数据的系统配置操作，包括系统参数的设置和初始化。
+ * 确保系统数据系统的正确配置。
+ */
+#define ProcessSystemDataAndConfigureSystem FUN_1808ffb84
+
+/**
+ * @brief 处理系统数据并获取整数值
+ * 
+ * 该函数负责处理系统数据的整数值获取操作，包括整数数据的提取和转换。
+ * 确保系统数据整数值的正确获取。
+ */
+#define ProcessSystemDataAndGetInteger FUN_1800a16b0
+
+/**
+ * @brief 处理系统数据并配置文件
+ * 
+ * 该函数负责处理系统数据的文件配置操作，包括文件的设置和初始化。
+ * 确保系统数据文件的正确配置。
+ */
+#define ProcessSystemDataAndConfigureFile FUN_1800a1920
+
+/**
+ * @brief 处理系统数据并检查文件
+ * 
+ * 该函数负责处理系统数据的文件检查操作，包括文件状态的验证和检查。
+ * 确保系统数据文件的正确检查。
+ */
+#define ProcessSystemDataAndCheckFile FUN_1800a1850
+
+/**
+ * @brief 处理系统数据并配置函数
+ * 
+ * 该函数负责处理系统数据的函数配置操作，包括函数指针的设置和初始化。
+ * 确保系统数据函数的正确配置。
+ */
+#define ProcessSystemDataAndConfigureFunction FUN_18009f020
+
+/**
+ * @brief 处理系统数据并增加值
+ * 
+ * 该函数负责处理系统数据的值增加操作，包括计数器的递增和更新。
+ * 确保系统数据值的正确增加。
+ */
+#define ProcessSystemDataAndIncrementValue FUN_180067110
+
+/**
+ * @brief 处理系统数据并获取大小
+ * 
+ * 该函数负责处理系统数据的大小获取操作，包括数据大小的计算和返回。
+ * 确保系统数据大小的正确获取。
+ */
+#define ProcessSystemDataAndGetSize FUN_18009f170
+
+/**
+ * @brief 处理系统数据并清理次要目标
+ * 
+ * 该函数负责处理系统数据的次要目标清理操作，作为主要目标清理的补充。
+ * 确保系统数据次要目标的正确清理。
+ */
+#define ProcessSystemDataAndCleanupSecondary FUN_18009fb60
+
+/**
+ * @brief 处理系统数据并清理目标
+ * 
+ * 该函数负责处理系统数据的目标清理操作，包括目标数据的删除和释放。
+ * 确保系统数据目标的正确清理。
+ */
+#define ProcessSystemDataAndCleanupTarget FUN_18009fbe0
 #define ConfigureSystemDataStructureOffset3b0 FUN_18010d3b0
 #define ConfigureSystemDataStructureOffset470 FUN_18010d470
 #define ConfigureSystemDataStructureOffset4f0 FUN_18010d4f0
