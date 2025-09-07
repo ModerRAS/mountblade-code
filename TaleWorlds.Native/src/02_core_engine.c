@@ -217517,19 +217517,44 @@ LAB_180194acf:
 
 
 
-94b30(uint64_t SystemContextPointervoid FUN_180194b30(uint64_t SystemContextPointer
-{
+/**
+ * @brief 初始化系统内存块
+ * 
+ * 该函数负责初始化系统内存块，为系统运行准备必要的内存空间。
+ * 函数会调用底层内存初始化函数，设置内存块的大小和属性。
+ * 
+ * @param SystemContextPointer 系统上下文指针，用于访问系统状态和配置
+ * 
+ * @note 此函数是系统初始化过程中的重要步骤
+ * @note 内存块大小设置为0x30字节
+ * @note 使用FUN_18004a130作为初始化回调函数
+ */
+void FUN_180194b30(uint64_t SystemContextPointer) {
   InitializeSystemMemoryBlock(SystemContextPointer,0x30,4,FUN_18004a130,0xfffffffffffffffe);
   return;
 }
 
 
 
-uint64_t *
-FUN_180194b60(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
-{
+/**
+ * @brief 配置系统物理函数指针
+ * 
+ * 该函数负责配置系统物理引擎的函数指针，设置物理计算的入口点。
+ * 函数会根据 Utf8BufferSize 的奇偶性决定是否释放内存。
+ * 
+ * @param SystemContextPointer 系统上下文指针，用于存储函数指针
+ * @param Utf8BufferSize UTF-8缓冲区大小，用于判断是否需要释放内存
+ * @param Utf16InputPointer UTF-16输入指针，用于内存释放操作
+ * @param Utf16EndPointer UTF-16结束指针，用于内存释放操作
+ * 
+ * @return uint64_t* 返回配置后的系统上下文指针
+ * 
+ * @note 此函数设置两个物理函数指针：SystemPhysicsFunctionPointerA 和 SystemPhysicsFunctionPointerB
+ * @note 当 Utf8BufferSize 为奇数时，会释放系统上下文指针的内存
+ */
+uint64_t *FUN_180194b60(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer) {
   *SystemContextPointer = &SystemPhysicsFunctionPointerA;
-  *SystemContextPointer = &UNK_180a0cb40;
+  *SystemContextPointer = &SystemPhysicsFunctionPointerB;
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,8,Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
   }
@@ -217538,8 +217563,21 @@ FUN_180194b60(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
 
 
 
-uint32_t * FUN_180194c10(uint64_t SystemContextPointer,uint32_t *Utf8BufferSize
-{
+/**
+ * @brief 初始化UTF-8缓冲区
+ * 
+ * 该函数负责初始化UTF-8缓冲区，设置缓冲区的初始值和默认配置。
+ * 函数会将缓冲区的前8个元素设置为特定的值，并调用初始化函数。
+ * 
+ * @param SystemContextPointer 系统上下文指针，用于访问系统状态
+ * @param Utf8BufferSize UTF-8缓冲区指针，将被初始化
+ * 
+ * @return uint32_t* 返回初始化后的UTF-8缓冲区指针
+ * 
+ * @note 此函数设置缓冲区的特定值：0x7f7fffff 是最大的32位浮点数
+ * @note 调用 FUN_1800b9f60(0) 进行额外的初始化操作
+ */
+uint32_t *FUN_180194c10(uint64_t SystemContextPointer,uint32_t *Utf8BufferSize) {
   *Utf8BufferSize = 0;
   Utf8BufferSize[1] = 0;
   Utf8BufferSize[2] = 0;
@@ -217664,8 +217702,8 @@ uint64_t * FUN_180194ef0(long long SystemContextPointer
   uint64_t *ValidationValuePointer;
   
   StatusBuffer = (void *)MemoryAllocate(MemoryPoolManager,8,8,3,0xfffffffffffffffe);
-  *StatusBuffer = &UNK_180a0cb40;
-  *StatusBuffer = &UNK_180a0c9a0;
+  *StatusBuffer = &SystemPhysicsFunctionPointerB;
+  *StatusBuffer = &SystemPhysicsFunctionPointerA;
   ValidationValuePointer = *(uint64_t **)(SystemContextPointer + 0x30);
   if (ValidationValuePointer < *(uint64_t **)(SystemContextPointer + 0x38)) {
     *(uint64_t **)(SystemContextPointer + 0x30) = ValidationValuePointer + 1;
