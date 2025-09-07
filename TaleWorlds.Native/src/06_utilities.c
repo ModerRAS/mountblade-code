@@ -80166,7 +80166,18 @@ void SetDefaultExceptionHandlerBAtOffset750(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_18090c900(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用0x200偏移量的函数指针
+ * 
+ * 该函数检查数据缓冲区0x200偏移量处的函数指针是否有效，如果有效则调用该函数。
+ * 这是一个通用的函数指针调用包装器，用于执行系统回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含函数指针
+ * 
+ * @note 原始函数名：Unwind_18090c900
+ */
+void InvokeFunctionPointerAtOffset200(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x200) != (int64_t *)0x0) {

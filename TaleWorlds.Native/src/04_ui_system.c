@@ -72185,7 +72185,7 @@ undefined8 ProcessUIContextDataCopy(byte *uiContext,byte *dataSource,int targetB
     dataValidationResult = func_0x0001806fd5e0(dataSource,targetBuffer);
     if ((0 < dataValidationResult) &&
        (operationResult = *(int *)(bufferData + 4), (operationResult + dataValidationResult) * *(int *)(bufferData + 0x1e8) < 0x3c1)) {
-      copyOperationResult = FUN_18070f860(dataSource,targetBuffer,bufferSize,tempStackBuffer,uiContext + ((longlong)operationResult + 1) * 8,
+      copyOperationResult = ProcessUIDataEncoding(dataSource,targetBuffer,bufferSize,tempStackBuffer,uiContext + ((longlong)operationResult + 1) * 8,
                             uiContext + (longlong)operationResult * 2 + 0x188,0,0);
       if (0 < (int)copyOperationResult) {
         *(int *)(bufferData + 4) = *(int *)(bufferData + 4) + dataValidationResult;
