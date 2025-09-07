@@ -44325,9 +44325,9 @@ float * ProcessFloatBoundaryCalculation(float *Utf8InputBuffer
     if (*(int *)(StackLong88 + 0x10) != 0) {
       do {
         FloatProcessingStatusFlag = (float *)((long long)(int)iterationCounter * 0x10 + *(long long *)(StackLong88 + 0x18));
-        StackFloata8 = *FloatProcessingStatusFlag;
-        if (*pFloatBoundaryMin < StackFloata8) {
-          StackFloata8 = *pFloatBoundaryMin;
+        StackFloatValueA8 = *FloatProcessingStatusFlag;
+        if (*pFloatBoundaryMin < StackFloatValueA8) {
+          StackFloatValueA8 = *pFloatBoundaryMin;
         }
         StackFloata4 = FloatProcessingStatusFlag[1];
         if (Utf8InputBuffer[0x9e] < StackFloata4) {
@@ -44337,7 +44337,7 @@ float * ProcessFloatBoundaryCalculation(float *Utf8InputBuffer
         if (Utf8InputBuffer[0x9f] < StackFloata0) {
           StackFloata0 = Utf8InputBuffer[0x9f];
         }
-        *(unsigned long long *)pFloatBoundaryMin = CONCAT44(StackFloata4,StackFloata8);
+        *(unsigned long long *)pFloatBoundaryMin = CONCAT44(StackFloata4,StackFloatValueA8);
         *(unsigned long long *)(CharacterCode + 0x9f) = CONCAT44(StackUnsignedValue9c,StackFloata0);
         StackFloatValueb8 = *FloatProcessingStatusFlag;
         if (StackFloatValueb8 < Utf8InputBuffer[0xa1]) {
