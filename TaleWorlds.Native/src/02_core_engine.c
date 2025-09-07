@@ -179836,7 +179836,7 @@ LAB_18014c263:
   ProcessingCounter = 0;
   uStack_18 = 3;
   SystemRegisterFlagBuffer[0] = 0;
-  FUN_18014e020(&piStack_30,(long long)(int)(CharacterCode[1] - *CharacterCode >> 3),SystemRegisterFlagBuffer,Utf16EndPointer,
+  ProcessSystemDataValidation(&piStack_30,(long long)(int)(CharacterCode[1] - *CharacterCode >> 3),SystemRegisterFlagBuffer,Utf16EndPointer,
                 0xfffffffffffffffe);
   BufferStatus = CharacterCode[0xe] - CharacterCode[0xd] >> 0x3f;
   DataSize = CalculatedCodePoint;
@@ -180134,7 +180134,7 @@ uint64_t * ManageCharacterCode(uint64_t *CharacterCode,uint64_t *CharacterCodeSi
     EncodingValidationResult = 0;
     pcStack_20 = (code *)0x0;
     pcStack_18 = _guard_check_icall;
-    FUN_18014a370(SystemBufferSize,1,&ProcessingFlags);
+    ProcessCharacterCodeWithFlags(SystemBufferSize,1,&ProcessingFlags);
     if (pcStack_20 != (code *)0x0) {
       (*pcStack_20)(&ProcessingFlags,0,0);
     }
@@ -213800,11 +213800,11 @@ LAB_18018222c:
 uint64_t* ConvertUtf8ToUtf16Encoding(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,int *Utf16EndPointer,unsigned long long AdditionalParameter1)
              
 {
-  long long PrimaryDataSize;
-  int *pStringComparisonResult;
-  uint64_t UnicodeCodePoint;
-  char SystemKeyBuffer [4];
-  uint uStackX_c;
+  long long CharacterTablePointer;          // 字符表指针
+  int *EncodingNodeIterator;               // 编码节点迭代器
+  uint64_t UnicodeCodePoint;                // Unicode码点
+  char ConversionKeyBuffer [4];             // 转换密钥缓冲区
+  uint CodePointStackSize;                 // 码点栈大小
   
   AdditionalParameter1 = AdditionalParameter1 % (unsigned long long)*(uint *)(CharacterCode + 0x10);
   CharacterTablePointer = *(long long *)(CharacterCode + 8);
