@@ -21108,6 +21108,20 @@ void CoreEngineInitializeSystemInfoAndConfigurationProcessor(void
   int64_t* SystemInfoApplicationHandle [3];
   uint8_t SystemInfoProcessingBuffer [272];
   uint64_t SystemInfoEncodedValue;
+  void* SystemInfoStackPointer;
+  void* SystemInfoStackAlternativePointer;
+  void* SystemInfoStackSecondaryAlternativePointer;
+  void* SystemInfoStackQuaternaryPointer;
+  void* SystemInfoStackQuaternaryPointer1;
+  void* SystemInfoStackQuaternaryPointer2;
+  int SystemInfoStackProcessingConfigurationFlag;
+  int SystemInfoStackProcessingInitializationFlag;
+  void* SystemInfoStackSecondaryPointer;
+  int SystemInfoStackProcessingFlag;
+  void* SystemInfoStackNullTemplatePointer;
+  void* SystemInfoStackThreadLocalStoragePointer;
+  int SystemInfoStackSecurityFlag;
+  int SystemInfoStackCleanupFlag;
   
   SystemInfoTimestamp = 0xfffffffffffffffe;
   SystemInfoEncodedValue = EncodingDecodingKey ^ (uint64_t)SystemInfoEncodingBuffer;
