@@ -112,6 +112,15 @@
 #define GetMemoryBoundaryEnd FUN_18014e960                       // 获取内存边界结束
 #define GetProcessingPointerC0 FUN_18014f6a0                    // 获取处理指针C0
 
+// 系统函数指针映射
+#define ExecuteSystemFunctionCodeExecution FUN_18013cf40      // 执行系统函数代码执行
+#define ProcessSystemCharacterCodeValidation FUN_18013d010    // 处理系统字符代码验证
+#define ProcessSystemMemoryBlockAllocation FUN_18013d200     // 处理系统内存块分配
+#define ExecuteSystemFunctionInitialization FUN_18013c020     // 执行系统函数初始化
+#define ProcessSystemDataStructureSetup FUN_18013c4e0        // 处理系统数据结构设置
+#define GetSystemCharacterDataStatus FUN_1801210b0           // 获取系统字符数据状态
+#define GetSystemConfigurationHandlePath FUN_180121300        // 获取系统配置句柄路径
+
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
 #define ProcessUtf8ToUtf16ConversionEx FUN_18016ef90       // 扩展UTF-8到UTF-16转换处理
