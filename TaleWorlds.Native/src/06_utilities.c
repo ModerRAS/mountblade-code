@@ -49011,7 +49011,7 @@ void CleanupExceptionHandlersLevel13(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180904550(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionHandlersLevel14(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -49041,7 +49041,19 @@ void Unwind_180904550(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904570(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理带验证的异常处理器
+ * 
+ * 该函数负责处理带验证的异常处理器，执行数据验证和异常处理操作
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180904570
+ */
+void ProcessExceptionHandlersWithValidation(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -49497,7 +49509,19 @@ void Unwind_1809047c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809047d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 调用异常处理器回调函数
+ * 
+ * 该函数负责调用异常处理器回调，执行异常处理操作
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809047d0
+ */
+void CallExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -60073,7 +60097,22 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906db0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统上下文验证函数A0
+ * 
+ * 该函数负责验证系统上下文的完整性，检查异常处理上下文的有效性。
+ * 主要功能包括：
+ * - 遍历异常处理上下文指针
+ * - 验证上下文指针的有效性
+ * - 检查系统状态一致性
+ * - 处理验证失败的情况
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906db0
+ */
+void ValidateSystemContextA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -60109,7 +60148,22 @@ void Unwind_180906db0(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180906dc0
  */
-void Unwind_180906dc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理函数A1
+ * 
+ * 该函数负责清理系统资源，包括引用计数管理和内存释放。
+ * 主要功能包括：
+ * - 检查资源指针有效性
+ * - 计算内存基地址和偏移量
+ * - 管理引用计数
+ * - 处理异常情况
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906dc0
+ */
+void CleanupSystemResourceA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
