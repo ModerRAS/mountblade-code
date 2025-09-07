@@ -173637,7 +173637,11 @@ void CleanupUtf8ProcessingResources(void)
 
 
 
-3e77c(voidvoid FUN_18013e77c(void
+/**
+ * @brief 重置UTF-8处理状态
+ * @note 原始函数名：FUN_18013e77c
+ */
+void ResetUtf8ProcessingState(void)
 {
   long long ProcessingResult;
   uint64_t Utf16Char;
@@ -173669,7 +173673,11 @@ void CleanupUtf8ProcessingResources(void)
 
 
 
-3e800(int *Utf8InputBuffer,int Utf8BufferSizevoid FUN_18013e800(int *Utf8InputBuffer,int Utf8BufferSize
+/**
+ * @brief 处理UTF-8缓冲区大小优化
+ * @note 原始函数名：FUN_18013e800
+ */
+void ProcessUtf8BufferSizeOptimization(int *Utf8InputBuffer,int Utf8BufferSize)
 {
   int LockResult;
   int StringComparisonResult;
