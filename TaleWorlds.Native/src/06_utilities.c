@@ -20545,6 +20545,11 @@ void ProcessFloatingPointDataA0(float inputValue)
   float LoopCounterFloat;        // 循环计数器
   float *FloatArrayPointer;      // 浮点数组指针
   
+  // 初始化新变量，用于替换原始的Ghidra生成变量名
+  ValidationFloatValue = 0.0f;
+  LoopCounterFloat = 0.0f;
+  FloatArrayPointer = NULL;
+  
   if (inputValue != 1.0) {
     validationContext = &ValidationContextA0;
     contextFlags = stackFlags;

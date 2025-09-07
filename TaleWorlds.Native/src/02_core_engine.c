@@ -113227,48 +113227,63 @@ LAB_18011ec19:
 
 
 
-uint8_t
-// 计算系统坐标变换和距离处理的函数
-// 处理浮点数坐标变换，计算距离并进行缩放处理
-bool CalculateSystemCoordinateTransformationAndDistance(float SystemContextPointer, int ValidationCode, uint64_t Utf16InputPointer, float *OutputCoordinatePointer, float InputParameter1,
-                                                      float InputParameter2, uint64_t AdditionalParameter3, uint64_t AdditionalParameter4, uint64_t AdditionalParameter5, float *SystemOutputPointer)
+/**
+ * @brief 计算系统坐标变换和距离处理
+ * 
+ * 该函数处理浮点数坐标变换，计算距离并进行缩放处理。
+ * 主要用于系统坐标系统的位置计算和变换操作。
+ * 
+ * @param ContextCoordinate 系统上下文坐标值
+ * @param ValidationCode 验证代码
+ * @param DataBufferPointer 数据缓冲区指针
+ * @param OutputCoordinatePointer 输出坐标指针
+ * @param InputCoordinate1 输入坐标值1
+ * @param InputCoordinate2 输入坐标值2
+ * @param Parameter3 附加参数3
+ * @param Parameter4 附加参数4
+ * @param Parameter5 附加参数5
+ * @param ResultOutputPointer 结果输出指针
+ * @return 处理状态掩码
+ */
+bool CalculateSystemCoordinateTransformationAndDistance(float ContextCoordinate, int ValidationCode, uint64_t DataBufferPointer, float *OutputCoordinatePointer, float InputCoordinate1,
+                                                      float InputCoordinate2, uint64_t Parameter3, uint64_t Parameter4, uint64_t Parameter5, float *ResultOutputPointer)
 {
   float PrimaryCoordinateValue;
   long long SystemConfigurationPointer;
-  int MemoryValidationResult;
+  int ConfigurationStatus;
   float *CoordinateRegisterPointer;
-  uint8_t MemoryStatusMask;
-  float VectorScaleFactor;
-  float DistanceCalculationValue;
+  uint8_t ProcessingStatus;
+  float ScaleFactor;
+  float DistanceValue;
   float NormalizedDistance;
   float ScaledCoordinateValue;
-  float InputCoordinateValue;
-  float PrimaryScalingFactor[2];
+  float LimitedDistanceValue;
+  float ScalingFactors[2];
   
   SystemConfigurationPointer = SystemDataConfiguration;
   PrimaryCoordinateValue = CoordinateRegisterPointer[2];
-  DistanceCalculationValue = (PrimaryCoordinateValue - *CoordinateRegisterPointer) - 4.0;
-  if (InputParameter2 <= InputParameter1) {
-    NormalizedDistance = InputParameter1 - InputParameter2;
+  DistanceValue = (PrimaryCoordinateValue - *CoordinateRegisterPointer) - 4.0;
+  if (InputCoordinate2 <= InputCoordinate1) {
+    NormalizedDistance = InputCoordinate1 - InputCoordinate2;
   }
   else {
-    NormalizedDistance = InputParameter2 - InputParameter1;
+    NormalizedDistance = InputCoordinate2 - InputCoordinate1;
   }
-  InputCoordinateValue = DistanceCalculationValue;
-  if (*(float *)(SystemDataConfiguration + 0x1694) <= DistanceCalculationValue) {
-    InputCoordinateValue = *(float *)(SystemDataConfiguration + 0x1694);
+  LimitedDistanceValue = DistanceValue;
+  if (*(float *)(SystemDataConfiguration + 0x1694) <= DistanceValue) {
+    LimitedDistanceValue = *(float *)(SystemDataConfiguration + 0x1694);
   }
-  ValidationCode = *(int *)(SystemDataConfiguration + 0x1b2c);
-  MemoryStatusMask = 0;
-  DistanceCalculationValue = DistanceCalculationValue - InputCoordinateValue;
-  InputCoordinateValue = InputCoordinateValue * 0.5;
-  ScaledCoordinateValue = *CoordinateRegisterPointer + 2.0 + InputCoordinateValue;
-  if (ValidationCode != ValidationCode) goto CoordinateTransformationExit;
+  ConfigurationStatus = *(int *)(SystemDataConfiguration + 0x1b2c);
+  ProcessingStatus = 0;
+  DistanceValue = DistanceValue - LimitedDistanceValue;
+  LimitedDistanceValue = LimitedDistanceValue * 0.5;
+  ScaledCoordinateValue = *CoordinateRegisterPointer + 2.0 + LimitedDistanceValue;
+  if (ConfigurationStatus != ConfigurationStatus) goto CoordinateTransformationExit;
   if (*(int *)(SystemDataConfiguration + 0x1b60) == 1) {
     if (*(char *)(SystemDataConfiguration + 0x120) == '\0') {
 SystemConfigurationReset:
-      *(bool *)(SystemConfigurationPointer + 0x1b3c) = ValidationCode != 0;
-      if (ValidationCode != 0) {
+      *(bool *)(SystemConfigurationPointer + 0x1b3c) = ConfigurationStatus != 0;
+      if (ConfigurationStatus != 0) {
         *(uint32_t *)(SystemConfigurationPointer + 0x1b38) = 0;
         *(uint8_t *)(SystemConfigurationPointer + 0x1b3e) = 0;
       }
@@ -113279,26 +113294,26 @@ SystemConfigurationReset:
       goto CoordinateTransformationExit;
     }
     NormalizedDistance = 0.0;
-    if (((0.0 < DistanceCalculationValue) &&
-        (NormalizedDistance = (*(float *)(SystemDataConfiguration + 0x118) - ScaledCoordinateValue) / DistanceCalculationValue, 0.0 <= NormalizedDistance)) &&
+    if (((0.0 < DistanceValue) &&
+        (NormalizedDistance = (*(float *)(SystemDataConfiguration + 0x118) - ScaledCoordinateValue) / DistanceValue, 0.0 <= NormalizedDistance)) &&
        (NormalizedDistance = NormalizedDistance, 1.0 <= NormalizedDistance)) {
       NormalizedDistance = 1.0;
     }
   }
   else {
     if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto CoordinateTransformationExit;
-    SystemContextPointer = (float)FUN_180131aa0(PrimaryScalingFactor,3,5,0,0);
-    if ((*(int *)(SystemConfigurationPointer + 0x1cac) == ValidationCode) && (*(char *)(SystemConfigurationPointer + 0x1b3c) == '\0')) {
-      ValidationCode = *(int *)(SystemConfigurationPointer + 0x1b2c);
+    ContextCoordinate = (float)FUN_180131aa0(ScalingFactors,3,5,0,0);
+    if ((*(int *)(SystemConfigurationPointer + 0x1cac) == ConfigurationStatus) && (*(char *)(SystemConfigurationPointer + 0x1b3c) == '\0')) {
+      ConfigurationStatus = *(int *)(SystemConfigurationPointer + 0x1b2c);
       goto SystemConfigurationReset;
     }
-    if (PrimaryScalingFactor[0] == 0.0) goto CoordinateTransformationExit;
-    FUN_18011f940(SystemContextPointer,*OutputCoordinatePointer,InputParameter1,InputParameter2);
-    ValidationCode = ProcessValidationCheck(AdditionalParameter3);
-    DistanceCalculationValue = 1.0;
-    if (ValidationCode < 1) {
+    if (ScalingFactors[0] == 0.0) goto CoordinateTransformationExit;
+    FUN_18011f940(ContextCoordinate,*OutputCoordinatePointer,InputCoordinate1,InputCoordinate2);
+    ConfigurationStatus = ProcessValidationCheck(Parameter3);
+    DistanceValue = 1.0;
+    if (ConfigurationStatus < 1) {
       if (((-100.0 <= NormalizedDistance) && (NormalizedDistance <= 100.0)) || (0.0 < *(float *)(SystemConfigurationPointer + 0x370))) {
-        if (0.0 <= PrimaryScalingFactor[0]) {
+        if (0.0 <= ScalingFactors[0]) {
           NormalizedDistance = 1.0 / NormalizedDistance;
         }
         else {
@@ -113306,11 +113321,11 @@ SystemConfigurationReset:
         }
       }
       else {
-        NormalizedDistance = PrimaryScalingFactor[0] * 0.01;
+        NormalizedDistance = ScalingFactors[0] * 0.01;
       }
     }
     else {
-      NormalizedDistance = PrimaryScalingFactor[0] * 0.01;
+      NormalizedDistance = ScalingFactors[0] * 0.01;
       if (0.0 < *(float *)(SystemConfigurationPointer + 0x370)) {
         NormalizedDistance = NormalizedDistance * 0.1;
       }
@@ -113318,29 +113333,29 @@ SystemConfigurationReset:
     if (0.0 < *(float *)(SystemConfigurationPointer + 0x374)) {
       NormalizedDistance = NormalizedDistance * 10.0;
     }
-    SystemContextPointer = VectorScaleFactor;
-    if (((1.0 <= VectorScaleFactor) && (0.0 < NormalizedDistance)) || ((VectorScaleFactor <= 0.0 && (NormalizedDistance < 0.0))       ) goto CoordinateTransformationExit;
-    NormalizedDistance = NormalizedDistance + VectorScaleFactor;
+    ContextCoordinate = ScaleFactor;
+    if (((1.0 <= ScaleFactor) && (0.0 < NormalizedDistance)) || ((ScaleFactor <= 0.0 && (NormalizedDistance < 0.0))       )) goto CoordinateTransformationExit;
+    NormalizedDistance = NormalizedDistance + ScaleFactor;
     NormalizedDistance = 0.0;
     if ((0.0 <= NormalizedDistance) && (NormalizedDistance = NormalizedDistance, 1.0 <= NormalizedDistance)) {
       NormalizedDistance = 1.0;
     }
   }
-  SystemContextPointer = (float)FUN_18011f690(AdditionalParameter3,DistanceCalculationValue,(InputParameter2 - InputParameter1) * NormalizedDistance + InputParameter1);
-  if (SystemContextPointer != *OutputCoordinatePointer) {
-    *OutputCoordinatePointer = SystemContextPointer;
-    MemoryStatusMask = 1;
+  ContextCoordinate = (float)FUN_18011f690(Parameter3,DistanceValue,(InputCoordinate2 - InputCoordinate1) * NormalizedDistance + InputCoordinate1);
+  if (ContextCoordinate != *OutputCoordinatePointer) {
+    *OutputCoordinatePointer = ContextCoordinate;
+    ProcessingStatus = 1;
   }
 CoordinateTransformationExit:
-  NormalizedDistance = (float)FUN_18011f940(SystemContextPointer,*OutputCoordinatePointer,InputParameter1,InputParameter2);
-  DistanceCalculationValue = CoordinateRegisterPointer[3];
+  NormalizedDistance = (float)FUN_18011f940(ContextCoordinate,*OutputCoordinatePointer,InputCoordinate1,InputCoordinate2);
+  DistanceValue = CoordinateRegisterPointer[3];
   NormalizedDistance = CoordinateRegisterPointer[1];
-  ScaledCoordinateValue = (((PrimaryCoordinateValue - 2.0) - InputCoordinateValue) - ScaledCoordinateValue) * NormalizedDistance + ScaledCoordinateValue;
-  *SystemOutputPointer = ScaledCoordinateValue - InputCoordinateValue;
-  SystemOutputPointer[1] = NormalizedDistance + 2.0;
-  SystemOutputPointer[2] = ScaledCoordinateValue + InputCoordinateValue;
-  SystemOutputPointer[3] = DistanceCalculationValue - 2.0;
-  return MemoryStatusMask;
+  ScaledCoordinateValue = (((PrimaryCoordinateValue - 2.0) - LimitedDistanceValue) - ScaledCoordinateValue) * NormalizedDistance + ScaledCoordinateValue;
+  *ResultOutputPointer = ScaledCoordinateValue - LimitedDistanceValue;
+  ResultOutputPointer[1] = NormalizedDistance + 2.0;
+  ResultOutputPointer[2] = ScaledCoordinateValue + LimitedDistanceValue;
+  ResultOutputPointer[3] = DistanceValue - 2.0;
+  return ProcessingStatus;
 }
 
 
