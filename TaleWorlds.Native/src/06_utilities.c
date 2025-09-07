@@ -24065,9 +24065,9 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
                 if ((int)memoryBaseAddress != 0) {
                   return memoryBaseAddress;
                 }
-                aiStack_48[0] = CONCAT31(aiStack_48[0]._1_3_,sVar1 != 0);
+                stackParameterArray[0] = CONCAT31(stackParameterArray[0]._1_3_,statusFlag != 0);
                 memoryBaseAddress = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                                  (*(DataBuffer **)(operationBase + 8),aiStack_48,1);
+                                  (*(DataBuffer **)(operationBase + 8),stackParameterArray,1);
                 if ((int)memoryBaseAddress != 0) {
                   return memoryBaseAddress;
                 }

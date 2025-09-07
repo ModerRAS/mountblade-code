@@ -93594,6 +93594,13 @@ void ProcessRenderParameterCalculation(int SystemContextPointer
  * 
  * 处理系统内存分配和状态管理
  */
+/**
+ * @brief 系统内存分配处理函数
+ * 
+ * 该函数负责处理系统内存分配操作，包括内存块的验证、配置和优化。
+ * 函数会计算内存分配大小，验证内存操作的有效性，并根据系统状态
+ * 进行相应的内存管理操作。
+ */
 void ProcessSystemMemoryAllocation(void)
 {
   uint32_t *StatusBuffer;
@@ -93603,40 +93610,40 @@ void ProcessSystemMemoryAllocation(void)
   long long MemoryAllocationSize;
   float CalculatedDistance;
   uint32_t SystemByteValue;
-  long long secondaryLoopCounter;
+  long long LoopCounter;
   long long SystemContext;
   long long RegisterFramePointer;
   long long DataIndex;
   int RegisterGeneral14D;
   int RegisterValueR15D;
-  float SystemFloatParameter1;
+  float NormalizedParameter;
   float SystemContextFloat10;
   float FloatingPointRegisterA;
-  float FloatRegisterX7_Lo;
+  float BaseFloatValue;
   float SystemContextFloat11;
   float SystemContextFloat12;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float SystemContextFloat13;
-  float unaff_XMM10_Da;
-  float unaff_XMM11_Da;
+  float AuxiliaryFloat10;
+  float AuxiliaryFloat11;
   float SystemContextFloat14;
-  float unaff_XMM13_Da;
+  float AuxiliaryFloat13;
   float SystemFloatValue;
   float SystemContextFloat16;
   float SystemStringBuffer30;
-  float fStack0000000000000034;
-  float fStack0000000000000038;
-  float fStack000000000000003c;
-  uint32_t uStack0000000000000040;
+  float StackVariable34;
+  float StackVariable38;
+  float StackVariable3c;
+  uint32_t StackVariable40;
   uint32_t StackBuffer1;
-  uint32_t uStack0000000000000048;
+  uint32_t StackVariable48;
   float FloatParameter2;
   
-  if (unaff_XMM10_Da < fStack000000000000003c - FloatRegisterX7_Lo) {
-    uStack0000000000000040 = *(uint32_t *)(DataIndex + 0x17a8);
-    uStack0000000000000044 = *(uint32_t *)(DataIndex + 0x17ac);
-    uStack0000000000000048 = *(uint32_t *)(DataIndex + 0x17b0);
-    fStack000000000000004c = *(float *)(DataIndex + 0x17b4);
+  if (AuxiliaryFloat10 < StackVariable3c - BaseFloatValue) {
+    StackVariable40 = *(uint32_t *)(DataIndex + 0x17a8);
+    StackVariable44 = *(uint32_t *)(DataIndex + 0x17ac);
+    StackVariable48 = *(uint32_t *)(DataIndex + 0x17b0);
+    StackVariable4c = *(float *)(DataIndex + 0x17b4);
     *(float *)(RegisterFramePointer + -0x7d) = fStack000000000000004c * *(float *)(DataIndex + 0x1628);
     SystemByteValue = ValidateSystemData(&DataStackBuffer);
     ProcessSystemDataAndConfigure(*(void *)(SystemContext + 0x2e8),&SystemStackBuffer,&stack0x00000038,SystemByteValue,
