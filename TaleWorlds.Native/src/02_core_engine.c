@@ -117248,7 +117248,17 @@ void ValidateSystemDataStructure(long long CharacterCode,float *CharacterCodeSiz
 
 
 
-2503(uint64_t CharacterCode,float *CharacterCodeSize,float *Utf8InputPointervoid FUN_180122503(uint64_t CharacterCode,float *CharacterCodeSize,float *Utf8InputPointer
+/**
+ * @brief 处理浮点数据编码转换
+ * 
+ * 该函数负责处理浮点数据的编码转换操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小（浮点数指针）
+ * @param Utf8InputPointer UTF-8输入指针（浮点数指针）
+ * @note 原始函数名：FUN_180122503
+ */
+void ProcessFloatDataEncodingConversion(uint64_t CharacterCode, float *CharacterCodeSize, float *Utf8InputPointer)
 {
   uint64_t *StatusBuffer;
   float SystemContextSecondaryFloat;
@@ -243277,17 +243287,17 @@ LAB_180214378:
   fStack_84 = 0.0;
   FUN_180846210(*(void *)(CharacterCode + 0x368),&SystemEventQueueDataTableDuodenary,&fStack_84,0);
   fStack_80 = 0.0;
-  FUN_180846210(*(void *)(CharacterCode + 0x368),&UNK_180a10710,&fStack_80,0);
+  FUN_180846210(*(void *)(CharacterCode + 0x368),&SystemEventQueueDataTableTertiary,&fStack_80,0);
   fStack_7c = 0.0;
   FUN_180846210(*(void *)(CharacterCode + 0x368),&SystemEventQueueDataTableQuattuordecenary,&fStack_7c,0);
   fStack_78 = 0.0;
   FUN_180846210(*(void *)(CharacterCode + 0x368),&DefaultSystemString,&fStack_78,0);
   fStack_74 = 0.0;
-  FUN_180846210(*(void *)(CharacterCode + 0x368),&UNK_180a106e8,&fStack_74,0);
+  FUN_180846210(*(void *)(CharacterCode + 0x368),&SystemEventQueueDataTableSenary,&fStack_74,0);
   fStack_70 = 0.0;
-  FUN_180846210(*(void *)(CharacterCode + 0x368),&UNK_180a10700,&fStack_70,0);
+  FUN_180846210(*(void *)(CharacterCode + 0x368),&SystemEventQueueDataTableSeptenary,&fStack_70,0);
   fStack_6c = 0.0;
-  FUN_180846210(*(void *)(CharacterCode + 0x368),&UNK_180a10750,&fStack_6c,0);
+  FUN_180846210(*(void *)(CharacterCode + 0x368),&SystemEventQueueDataTableOctonary,&fStack_6c,0);
   fStack_68 = 0.0;
   FUN_180846210(*(void *)(CharacterCode + 0x368),&UNK_180a10760,&fStack_68,0);
   fStack_64 = 0.0;
