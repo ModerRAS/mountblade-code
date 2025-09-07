@@ -10190,12 +10190,12 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   int32_t componentBufferSize;
   uint64_t systemQueryStatus;
   uint64_t componentProcessStatus;
-  int64_t *currentComponentContext;
-  int32_t CurrentComponentCount;
-  uint64_t ComponentLoopCounter;
+  int64_t *activeComponentContext;
+  int32_t registeredComponentCount;
+  uint64_t componentIterationCounter;
   int32_t componentListCapacity;
-  uint64_t ComponentSearchCounter;
-  int64_t *ComponentListContext;
+  uint64_t componentSearchIndex;
+  int64_t *componentListPointer;
   int64_t systemContextBuffer;
   int8_t ComponentValidationBuffer [DataValidationBufferSize];
   
@@ -10222,29 +10222,29 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
     }
     if ((int8_t)systemQueryStatus == (int8_t)ComponentProcessStatus) {
       if (ComponentValidationBuffer[0] == (int8_t)ComponentProcessStatus) {
-        componentListContext = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
-        componentSearchCounter = 0;
-        currentComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
-        if (0 < currentComponentCount) {
-          CurrentComponentContext = (int64_t *)*ComponentListContext;
-          ComponentLoopCounter = ComponentSearchCounter;
+        componentListPointer = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
+        componentSearchIndex = 0;
+        registeredComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
+        if (0 < registeredComponentCount) {
+          activeComponentContext = (int64_t *)*componentListPointer;
+          componentIterationCounter = componentSearchIndex;
           do {
-            if (*CurrentComponentContext == ComponentValidationBuffer) {
-              if (ComponentInactiveStatus < (int32_t)ComponentLoopCounter) {
+            if (*activeComponentContext == ComponentValidationBuffer) {
+              if (ComponentInactiveStatus < (int32_t)componentIterationCounter) {
                 return 0;
               }
               break;
             }
-            ComponentLoopCounter = (uint64_t)((int32_t)ComponentLoopCounter + 1);
-            ComponentSearchCounter = ComponentSearchCounter + 1;
-            CurrentComponentContext = CurrentComponentContext + 1;
-          } while ((int64_t)ComponentSearchCounter < (int64_t)CurrentComponentCount);
+            componentIterationCounter = (uint64_t)((int32_t)componentIterationCounter + 1);
+            componentSearchIndex = componentSearchIndex + 1;
+            activeComponentContext = activeComponentContext + 1;
+          } while ((int64_t)componentSearchIndex < (int64_t)registeredComponentCount);
         }
-        CurrentComponentCount = CurrentComponentCount + 1;
-        if (*(int32_t *)(componentDataContext + COMPONENT_CAPACITY_OFFSET) < CurrentComponentCount) {
+        registeredComponentCount = registeredComponentCount + 1;
+        if (*(int32_t *)(componentDataContext + COMPONENT_CAPACITY_OFFSET) < registeredComponentCount) {
           componentListCapacity = (int32_t)((float)*(int32_t *)(componentDataContext + COMPONENT_CAPACITY_OFFSET) * ComponentCapacityGrowthFactor);
-          componentBufferSize = CurrentComponentCount;
-          if (CurrentComponentCount <= componentListCapacity) {
+          componentBufferSize = registeredComponentCount;
+          if (registeredComponentCount <= componentListCapacity) {
             componentBufferSize = componentListCapacity;
           }
           if (componentBufferSize < 8) {
@@ -58029,47 +58029,47 @@ void CleanupSystemResourcesAndValidateStatus(DataBuffer operationBase, int64_t d
   int64_t resourceCleanupIterator;
   uint64_t systemDataFlags;
   
-  contextPointer = *(int64_t **)(dataBuffer + 0x78);
-  validationStatusPointer = (DataBuffer *)*contextPointer;
-  if (validationStatusPointer != (DataBuffer *)0x0) {
-    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)validationStatusPointer[3] = 0;
+  systemContextPointer = *(int64_t **)(dataBuffer + 0x78);
+  resourceValidationStatusPointer = (DataBuffer *)*systemContextPointer;
+  if (resourceValidationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)resourceValidationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)resourceValidationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-      TerminateSystemE0(validationStatusPointer);
+    (**(FunctionPointer**)*resourceValidationStatusPointer)(resourceValidationStatusPointer,0);
+      TerminateSystemE0(resourceValidationStatusPointer);
   }
-  if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + ExceptionHandlerCallbackOffset10) != 0)) {
+  if ((systemContextPointer[6] != 0) && (*(int64_t *)(systemContextPointer[6] + ExceptionHandlerCallbackOffset10) != 0)) {
       TerminateSystemE0();
   }
-  resourceIterator = contextPointer[5];
-  while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + 0x3541);
-    resourceIterator = *(int64_t *)(resourceIterator + 0x3538);
-    if (*validationFlag != '\0') {
+  resourceCleanupIterator = systemContextPointer[5];
+  while (resourceCleanupIterator != 0) {
+    systemValidationFlag = (char *)(resourceCleanupIterator + 0x3541);
+    resourceCleanupIterator = *(int64_t *)(resourceCleanupIterator + 0x3538);
+    if (*systemValidationFlag != '\0') {
         TerminateSystemE0();
     }
   }
-  validationStatusPointer = (DataBuffer *)contextPointer[3];
-  if (validationStatusPointer == (DataBuffer *)0x0) {
+  resourceValidationStatusPointer = (DataBuffer *)systemContextPointer[3];
+  if (resourceValidationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
-  if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
-      referenceCountPointer = (int *)(resourceIterator + 0x18);
-      *referenceCountPointer = *referenceCountPointer + -1;
-      if (*referenceCountPointer == 0) {
+  systemDataFlags = (uint64_t)resourceValidationStatusPointer & MemoryRegionMask;
+  if (systemDataFlags != 0) {
+    resourceCleanupIterator = systemDataFlags + 0x80 + ((int64_t)resourceValidationStatusPointer - systemDataFlags >> 0x10) * 0x50;
+    resourceCleanupIterator = resourceCleanupIterator - (uint64_t)*(uint *)(resourceCleanupIterator + 4);
+    if ((*(void ***)(systemDataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceCleanupIterator + 0xe) == '\0')) {
+      *resourceValidationStatusPointer = *(DataBuffer *)(resourceCleanupIterator + 0x20);
+      *(DataBuffer **)(resourceCleanupIterator + 0x20) = resourceValidationStatusPointer;
+      resourceReferenceCountPointer = (int *)(resourceCleanupIterator + 0x18);
+      *resourceReferenceCountPointer = *resourceReferenceCountPointer + -1;
+      if (*resourceReferenceCountPointer == 0) {
         HandleExceptionE0();
         return;
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
+      ManageMemory(systemDataFlags,CONCAT71(0xff000000,*(void ***)(systemDataFlags + 0x70) == &ExceptionList),
+                          resourceValidationStatusPointer,systemDataFlags,SystemCleanupFlagAlternative);
     }
   }
   return;
