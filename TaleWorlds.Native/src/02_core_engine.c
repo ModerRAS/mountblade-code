@@ -110769,7 +110769,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t SystemContext
     MemoryBufferA = *(long long *)(RegisterValueR13 + 0x1af8);
     StatusBuffer = (uint *)(MemoryBufferA + 0x1a8);
     *StatusBuffer = *StatusBuffer | 0x18;
-    FUN_18011d940(MemoryBufferA + 0x1b8);
+    ProcessSystemResourceCleanup(MemoryBufferA + 0x1b8);
     AdditionalParameter3 = 3.4028235e+38;
     StackVariable3c = 3.4028235e+38;
     AdditionalParameter4 = -3.4028235e+38;
@@ -110964,7 +110964,7 @@ LAB_18011c9d9:
     *(float *)(RegisterSourceIndex + 0x1b4c) = *(float *)(RegisterSourceIndex + 0x1b4c) - (FloatValue33 - FloatValue37);
   }
   else {
-    FUN_1801248f0(MemoryBufferA);
+    CheckSystemResourceStatus(MemoryBufferA);
   }
 LAB_18011cbe6:
   HighByte6 = *(byte *)(RegisterFramePointer + 0x70);
@@ -110991,7 +110991,7 @@ LAB_18011cbeb:
   fStack000000000000006c = (float)systemEventTemplatePointer[3] * *(float *)(RegisterValueR13 + 0x1628);
   Utf16Char7 = ValidateSystemData(&SystemContextPointer2);
   Utf16Char4 = *(uint *)(RegisterFramePointer + 0x88);
-  FUN_18011cf80(DataSize,&AdditionalParameter3,Utf16Char4,Utf16Char7);
+  ValidateSystemData(DataSize,&AdditionalParameter3,Utf16Char4,Utf16Char7);
   if (StringComparisonResult5 == *(int *)(SystemDataConfiguration + 0x1ca0)) {
     ProcessMemoryLock(&AdditionalParameter3,1,SystemDataConfiguration);
   }
@@ -111035,7 +111035,7 @@ LAB_18011cbeb:
         ((pSystemCheckResult1 != (char *)0xffffffffffffffff && (*pSystemCheckResult1 != '\0')) &&
         ((*pSystemCheckResult1 != '#' || (pSystemCheckResult1[1] != '#')))); pSystemCheckResult1 = pSystemCheckResult1 + 1) {
     }
-    FUN_18012ea30(&SystemShaderDataTable,(int)pSystemCheckResult1 - (int)pSystemValidationChar,pSystemValidationChar);
+    ProcessSystemDataUpdate(&SystemShaderDataTable,(int)pSystemCheckResult1 - (int)pSystemValidationChar,pSystemValidationChar);
   }
   return (unsigned long long)bStack0000000000000034;
 }
@@ -111261,7 +111261,7 @@ LAB_18011c9d9:
       if (IntegerValue7 + 1 < IntegerValue6) {
         SystemOperationResult = IntegerValue6;
       }
-      FUN_18013e6c0(bufferAllocationStatus5 + 0x10,IntegerValue9);
+      ProcessSystemDataFinalization(bufferAllocationStatus5 + 0x10,IntegerValue9);
       IntegerValue7 = *(int *)(bufferAllocationStatus5 + 0x10);
       LoopCounter9 = *(long long *)(RegisterFramePointer + 0x90);
       RegisterValueR13 = SystemDataConfiguration;
@@ -111294,7 +111294,7 @@ LAB_18011c9d9:
     *(float *)(RegisterSourceIndex + 0x1b4c) = *(float *)(RegisterSourceIndex + 0x1b4c) - (SystemContextSecondaryFloat6 - FloatValue30);
   }
   else {
-    FUN_1801248f0(LoopCounter9);
+    CheckSystemResourceStatus(LoopCounter9);
   }
 LAB_18011cbe6:
   MemoryFlagD = *(byte *)(RegisterFramePointer + 0x70);
@@ -111321,7 +111321,7 @@ LAB_18011cbeb:
   fStack000000000000006c = (float)PrimaryProcessingStatusFlag[3] * *(float *)(RegisterValueR13 + 0x1628);
   Utf16Char8 = ValidateSystemData(&stack0x00000060);
   MemoryAllocationBase = *(uint *)(RegisterFramePointer + 0x88);
-  FUN_18011cf80(SystemByteValue,&stack0x00000038,MemoryAllocationBase,Utf16Char8);
+  ValidateSystemData(SystemByteValue,&stack0x00000038,MemoryAllocationBase,Utf16Char8);
   if (StringComparisonResult2 == *(int *)(SystemDataConfiguration + 0x1ca0)) {
     ProcessMemoryLock(&stack0x00000038,1,SystemDataConfiguration);
   }
@@ -111596,7 +111596,7 @@ LAB_18011c9d9:
       if (IntegerValue7 + 1 < IntegerValue6) {
         SystemOperationResult = IntegerValue6;
       }
-      FUN_18013e6c0(bufferAllocationStatus5 + 0x10,IntegerValue9);
+      ProcessSystemDataFinalization(bufferAllocationStatus5 + 0x10,IntegerValue9);
       IntegerValue7 = *(int *)(bufferAllocationStatus5 + 0x10);
       LoopCounter9 = *(long long *)(RegisterFramePointer + 0x90);
       RegisterValueR13 = SystemDataConfiguration;
@@ -111629,7 +111629,7 @@ LAB_18011c9d9:
     *(float *)(RegisterSourceIndex + 0x1b4c) = *(float *)(RegisterSourceIndex + 0x1b4c) - (SystemContextSecondaryFloat6 - FloatValue30);
   }
   else {
-    FUN_1801248f0(LoopCounter9);
+    CheckSystemResourceStatus(LoopCounter9);
   }
 LAB_18011cbe6:
   MemoryFlagD = *(byte *)(RegisterFramePointer + 0x70);
@@ -111656,7 +111656,7 @@ LAB_18011cbeb:
   fStack000000000000006c = (float)PrimaryProcessingStatusFlag[3] * *(float *)(RegisterValueR13 + 0x1628);
   Utf16Char8 = ValidateSystemData(&stack0x00000060);
   MemoryAllocationBase = *(uint *)(RegisterFramePointer + 0x88);
-  FUN_18011cf80(SystemByteValue,&stack0x00000038,MemoryAllocationBase,Utf16Char8);
+  ValidateSystemData(SystemByteValue,&stack0x00000038,MemoryAllocationBase,Utf16Char8);
   if (StringComparisonResult2 == *(int *)(SystemDataConfiguration + 0x1ca0)) {
     ProcessMemoryLock(&stack0x00000038,1,SystemDataConfiguration);
   }
@@ -111879,7 +111879,7 @@ void CoreEngineProcessFloatData(long long SystemContextPointer,float *Utf8Buffer
     if (RemainingSpace + 1 < validationResult) {
       StringComparisonResult = validationResult;
     }
-    FUN_18011dc70(ReferenceCountPointer,StringComparisonResult);
+    ProcessReferenceCount(ReferenceCountPointer,StringComparisonResult);
     RemainingSpace = *ReferenceCountPointer;
   }
   SystemContextPrimaryFloat0 = SystemContextPrimaryFloat0 + 1.0 + FloatValue8;
@@ -111888,7 +111888,7 @@ void CoreEngineProcessFloatData(long long SystemContextPointer,float *Utf8Buffer
   *ReferenceCountPointer = *ReferenceCountPointer + 1;
   PrimaryScalingFactor = FloatValue8 + *Utf8BufferSize;
   SecondaryScalingFactor = SystemContextPrimaryFloat0;
-  FUN_180293730(SystemContextPointer,&PrimaryScalingFactor,FloatValue8,6,9);
+  ProcessScalingFactor(SystemContextPointer,&PrimaryScalingFactor,FloatValue8,6,9);
   PrimaryScalingFactor = Utf8BufferSize[2] - FloatValue8;
   ProcessStringBuffer = 0;
   SecondaryScalingFactor = SystemContextPrimaryFloat0;
@@ -270919,5 +270919,13 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define ProcessScalingFactor FUN_180293730
 // 原始函数名：FUN_18011dbd0 - 系统上下文处理函数
 #define ProcessSystemContext FUN_18011dbd0
+// 原始函数名：FUN_18011da00 - 系统字符串比较处理函数
+#define ProcessStringComparison FUN_18011da00
+// 原始函数名：FUN_18011f830 - 系统内存分配处理函数
+#define ProcessMemoryAllocation FUN_18011f830
+// 原始函数名：FUN_18011f880 - 系统处理状态处理函数
+#define ProcessProcessingStatus FUN_18011f880
+// 原始函数名：FUN_18011f8d0 - 系统字符串缓冲区处理函数
+#define ProcessStringBuffer FUN_18011f8d0
 
 
