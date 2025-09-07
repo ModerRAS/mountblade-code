@@ -18796,10 +18796,10 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
             arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),validationBuffer2);
             validationContextPointer3 = systemContextPointer;
             if (arrayIndex == 0) {
-              puStack_b8 = &SystemValidationDataTableA7;
-              uStack_a8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
-              uStack_b0 = 0;
-              uStack_a0 = 0x3f800000;
+              StackSecurityPointer = &SystemValidationDataTableA7;
+              StackSecurityData = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              StackSecurityOffset = 0;
+              StackSecurityFlag = 0x3f800000;
               ValidateSystemA0(&puStack_b8,*(DataBuffer *)(operationBase + 0x58));
               validationContextPointer3 = systemContextPointer;
             }
