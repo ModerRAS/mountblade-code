@@ -158759,35 +158759,57 @@ long long GetSystemContext(void
 
 
 
-uint64_t * FUN_180135420(uint64_t *Utf8InputBuffer
+/**
+ * @brief 初始化UTF-8输入缓冲区
+ * 
+ * 该函数负责初始化UTF-8输入缓冲区，设置各种初始状态和标志位。
+ * 主要用于字符编码转换的预处理阶段。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @return 返回初始化后的字符码指针
+ * 
+ * @note 原始函数名：FUN_180135420
+ */
+uint64_t * InitializeUtf8InputBuffer(uint64_t *Utf8InputBuffer)
 {
   long long PrimaryDataSize;
   void *SystemContext;
   
+  // 初始化UTF-8输入缓冲区的各个字段
   Utf8InputBuffer[4] = 0;
   Utf8InputBuffer[5] = 0;
   Utf8InputBuffer[7] = 0;
   Utf8InputBuffer[8] = 0;
   Utf8InputBuffer[9] = 0;
+  
+  // 初始化字符码相关的内存区域
   *(void *)((long long)CharacterCode + 0x54) = 0;
   *(void *)((long long)CharacterCode + 0x5c) = 0;
   *(uint8_t *)((long long)CharacterCode + 100) = 1;
+  
+  // 清空UTF-8输入缓冲区的主要字段
   *Utf8InputBuffer = 0;
   Utf8InputBuffer[3] = 0;
   Utf8InputBuffer[2] = 0;
   Utf8InputBuffer[1] = 0;
   Utf8InputBuffer[6] = 0;
+  
+  // 设置字符码的验证标志
   *(uint32_t *)(CharacterCode + 10) = 0xffffffff;
   Utf8InputBuffer[0xe] = 0;
   Utf8InputBuffer[0xd] = 0;
   Utf8InputBuffer[0x10] = 0;
   Utf8InputBuffer[0xf] = 0;
+  
+  // 初始化字符码的内存状态
   *(void *)((long long)CharacterCode + 0x8c) = 0xffffffffffffffff;
   *(uint32_t *)(CharacterCode + 0x11) = 0xffffffff;
   *(void *)((long long)CharacterCode + 0x94) = 0;
   *(uint32_t *)((long long)CharacterCode + 0x9c) = 0;
   *(uint8_t *)(CharacterCode + 0x14) = 4;
   *(byte *)((long long)CharacterCode + 0xa1) = *(byte *)((long long)CharacterCode + 0xa1) & 0xe0;
+  
+  // 处理系统状态
   PrimaryProcessingStatusFlag = CharacterCode + 0x18;
   CharacterTablePointer = 5;
   do {
@@ -158795,10 +158817,13 @@ uint64_t * FUN_180135420(uint64_t *Utf8InputBuffer
     PrimaryProcessingStatusFlag = PrimaryProcessingStatusFlag + 2;
     CharacterTablePointer = CharacterTablePointer + -1;
   } while (CharacterTablePointer != 0);
+  
+  // 完成最终初始化
   *(uint32_t *)(CharacterCode + 0x15) = 0;
   Utf8InputBuffer[0x16] = 0;
   *(uint32_t *)(CharacterCode + 0x17) = 0xffffffff;
   *(uint32_t *)((long long)CharacterCode + 0xbc) = 0;
+  
   return CharacterCode;
 }
 
@@ -159509,31 +159534,59 @@ uint GetMemoryAddressMask(long long CharacterCode
 
 
 
-uint32_t * FUN_180135960(long long CharacterCode,int Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16的转换状态
+ * 
+ * 该函数负责处理UTF-8到UTF-16转换过程中的状态管理，包括
+ * 内存分配、系统配置更新和状态缓冲区设置。
+ * 
+ * @param CharacterCode 字符码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 返回状态缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180135960
+ */
+uint32_t * ProcessUtf8ToUtf16ConversionStatus(long long CharacterCode,int Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint32_t *StatusBuffer;
-  uint8_t auStackX_10 [8];
-  uint8_t *pStackConfigurationFlag;
+  uint8_t StackConfigurationBuffer[8];
+  uint8_t *StackConfigurationFlag;
   long long PerformanceCounterValue;
   uint64_t MemoryAllocationIndex;
   
+  // 初始化内存分配索引
   MemoryAllocationIndex = 0xfffffffffffffffe;
+  
+  // 获取默认UTF-8缓冲区大小
   if (Utf8BufferSize == 0) {
-    Utf8BufferSize = FUN_1801358c0();
+    Utf8BufferSize = GetDefaultUtf8BufferSize();
   }
+  
+  // 更新系统配置引用计数
   if (SystemConfigurationHandle != 0) {
     *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
   }
+  
+  // 获取性能计数器值
   PerformanceCounterValue = SystemCallMemoryAccess(0xa8,SystemMemoryPoolBase);
-  pStackConfigurationFlag = auStackX_10;
+  StackConfigurationFlag = StackConfigurationBuffer;
+  
+  // 分配状态缓冲区
   if (PerformanceCounterValue == 0) {
     StatusBuffer = (uint32_t *)0x0;
   }
   else {
-    StatusBuffer = (uint32_t *)FUN_180136a10(PerformanceCounterValue,Utf8BufferSize);
+    StatusBuffer = (uint32_t *)AllocateStatusBuffer(PerformanceCounterValue,Utf8BufferSize);
   }
+  
+  // 设置状态缓冲区标志
   *(byte *)(StatusBuffer + 0x28) = *(byte *)(StatusBuffer + 0x28) | 3;
-  FUN_180122160(*(void *)(CharacterCode + 0x2df8),*StatusBuffer,StatusBuffer,Utf16EndPointer,MemoryAllocationIndex);
+  
+  // 执行转换状态处理
+  ExecuteConversionStatusProcessing(*(void *)(CharacterCode + 0x2df8),*StatusBuffer,StatusBuffer,Utf16EndPointer,MemoryAllocationIndex);
+  
   return StatusBuffer;
 }
 
@@ -160228,8 +160281,21 @@ void CoreEngineInitializeNetworkSystem(void
 
 
 
-uint32_t * FUN_180136a10(uint32_t *Utf8InputBuffer,uint32_t Utf8BufferSize
+/**
+ * @brief 初始化UTF-8处理缓冲区
+ * 
+ * 该函数负责初始化UTF-8处理缓冲区，设置缓冲区大小、状态标志
+ * 和相关内存区域。主要用于UTF-8字符处理的前期准备工作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return 返回初始化后的字符码指针
+ * 
+ * @note 原始函数名：FUN_180136a10
+ */
+uint32_t * InitializeUtf8ProcessingBuffer(uint32_t *Utf8InputBuffer,uint32_t Utf8BufferSize)
 {
+  // 初始化字符码的基本字段
   *(void *)(CharacterCode + 8) = 0;
   *(void *)(CharacterCode + 10) = 0;
   *(void *)(CharacterCode + 0xe) = 0;
@@ -160237,14 +160303,24 @@ uint32_t * FUN_180136a10(uint32_t *Utf8InputBuffer,uint32_t Utf8BufferSize
   *(void *)(CharacterCode + 0x12) = 0;
   *(void *)(CharacterCode + 0x15) = 0;
   *(void *)(CharacterCode + 0x17) = 0;
+  
+  // 设置系统节点状态
   *(uint8_t *)(CharacterCode + SystemNodeStatusOffset) = 1;
+  
+  // 设置UTF-8输入缓冲区的基本参数
   *Utf8InputBuffer = Utf8BufferSize;
   Utf8InputBuffer[1] = 0;
+  
+  // 清空字符码的其他字段
   *(void *)(CharacterCode + 6) = 0;
   *(void *)(CharacterCode + 4) = 0;
   *(void *)(CharacterCode + 2) = 0;
   *(void *)(CharacterCode + 0xc) = 0;
+  
+  // 设置缓冲区验证标志
   Utf8InputBuffer[0x14] = 0xffffffff;
+  
+  // 初始化字符码的扩展字段
   *(void *)(CharacterCode + 0x1c) = 0;
   *(void *)(CharacterCode + 0x1a) = 0;
   *(void *)(CharacterCode + 0x20) = 0;
@@ -160253,8 +160329,11 @@ uint32_t * FUN_180136a10(uint32_t *Utf8InputBuffer,uint32_t Utf8BufferSize
   Utf8InputBuffer[0x22] = 0xffffffff;
   *(void *)(CharacterCode + 0x25) = 0;
   Utf8InputBuffer[0x27] = 0;
+  
+  // 设置最终状态标志
   *(uint8_t *)(CharacterCode + 0x28) = 4;
   *(byte *)((long long)CharacterCode + 0xa1) = *(byte *)((long long)CharacterCode + 0xa1) & 0xe0;
+  
   return CharacterCode;
 }
 
