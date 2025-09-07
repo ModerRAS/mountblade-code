@@ -218,6 +218,7 @@
 #define ProcessSystemCleanup FUN_18014ccf0                    // 处理系统清理
 #define ProcessCharacterWithSystemData FUN_180149ed0         // 处理字符和系统数据
 #define ProcessCharacterBufferReset FUN_180149bd0             // 处理字符缓冲区重置
+#define ProcessSystemDataAllocation FUN_18014ebb6             // 处理系统数据分配
 #define fStackX_24 SecondaryTransformComponent             // 次变换组件
 #define fStack_48 StackPrimaryFloat                        // 栈主浮点值
 #define fStack_44 StackSecondaryFloat                      // 栈次浮点值
