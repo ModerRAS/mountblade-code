@@ -20003,12 +20003,12 @@ void CoreEngineStringCopyWithLength(long long destinationBuffer,uint64_t sourceD
 
 
 
- void CoreEngineStringCopyCleanup(void/**
+ /**
  * @brief 清理字符串复制操作的临时资源
  * 
  * 该函数负责清理字符串复制过程中产生的临时数据和资源
  */
-void CoreEngineStringCopyCleanup(void
+void CoreEngineStringCopyCleanup(void)
 {
                     // WARNING: Subroutine does not return
   memcpy();
@@ -96919,7 +96919,7 @@ uint8_t ValidateSystemOperation(void
   }
   StatusBuffer = (uint32_t *)(SystemContext + 0x1628 + (SystemDataTablePointer + 10) * 0x10);
   TertiaryDataStorage = *StatusBuffer;
-  uStack000000000000003c = StatusBuffer[1];
+  unsignedStackParameter3C = StatusBuffer[1];
   SystemParameter2 = StatusBuffer[2];
   TemporaryFloatStack44 = (float)StatusBuffer[3];
   *(float *)(StackFramePointer + -0x7d) = TemporaryFloatStack44 * *(float *)(SystemContext + 0x1628);
