@@ -20055,15 +20055,15 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
       if (SystemStringIndex < 0) {
         ConfigurationParamA = ConfigurationParamA + 1.8446744073709552e+19;
       }
-      ValidateEngineConfiguration(CharacterCodePointer,&SystemConfigTemplateD,&EngineConfigDataaa8,
+      ValidateEngineConfiguration(CharacterCodePointer,&SystemConfigTemplateD,&EngineConfigDataFileSystem,
                     (double)(float)(ConfigurationParamA * 9.5367431640625e-07));
       ConfigurationParamA = *(double *)(SystemDataTablePointer + 0x78 + MemoryAllocationIndex);
       if (ConfigurationParamA != 0.0) {
-        ValidateEngineConfiguration(CharacterCodePointer,&SystemConfigDataB,&EngineConfigDataac8,ConfigurationParamA);
+        ValidateEngineConfiguration(CharacterCodePointer,&SystemConfigDataB,&EngineConfigDataNetworkInterface,ConfigurationParamA);
       }
       ConfigurationParamA = *(double *)(SystemDataTablePointer + 0x80 + MemoryAllocationIndex);
       if (ConfigurationParamA != 0.0) {
-        ValidateEngineConfiguration(CharacterCodePointer,&SystemConfigDataB,&EngineConfigDataad8,ConfigurationParamA);
+        ValidateEngineConfiguration(CharacterCodePointer,&SystemConfigDataB,&EngineConfigDataSecurityContext,ConfigurationParamA);
       }
       SystemDataTablePointer = MemoryAllocationIndex + 0xd0 + SystemDataTablePointer;
       SystemStringIndex = *(long long *)(SystemDataTablePointer + 8);
@@ -20126,7 +20126,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
     } while ((unsigned long long)(long long)(int)PrimaryReturnCode < (unsigned long long)(CoreEngineDataEndPointer - CoreEngineDataTablePointer >> 8));
   }
   ConfigurationEntryCounter = 0;
-  ValidateEngineConfiguration(CharacterCodePointer,&EngineConfigDataae8);
+  ValidateEngineConfiguration(CharacterCodePointer,&EngineConfigDataMemoryManager);
   if ((SystemConfigDataEndPointer - SystemConfigDataTablePointer) / 0x28 != 0) {
     SystemStringIndex = 0;
     do {
@@ -37534,20 +37534,20 @@ void ProcessCoreEngineDataStructure(uint64_t CharacterCode,long long CharacterCo
   char ControlFlag120;
   char ValidationFlag119;
   uint32_t StringEncodingBuffer;
-  void *PointerData118;
+  void *SystemEventTemplatePointer;
   uint8_t *BufferPointer110;
   uint DataSize108;
   uint64_t MemoryContext100;
-  void *PointerDataF8;
-  void *PointerDataF0;
-  uint32_t ProcessingFlagE0;
-  void *BufferPointerD8;
+  void *SystemMemoryBufferPointer;
+  void *SystemDataStructurePointer;
+  uint32_t SystemProcessingStatusFlag;
+  void *SystemTempBufferPointer;
   long long TimeoutValue;
-  uint32_t ProcessingFlagC0;
-  uint32_t ReservedData98;
-  uint32_t ValidationData94;
-  long long StackData90;
-  long long ReservedData88;
+  uint32_t SystemOperationStatusFlag;
+  uint32_t Utf8InputDataPointer;
+  uint32_t SystemValidationStatus;
+  long long SystemStackPointer;
+  long long Utf16OutputPointer;
   uint64_t MemoryContext60;
   uint64_t ProcessingContext58;
   uint64_t DataStructure50;
@@ -37566,8 +37566,8 @@ void ProcessCoreEngineDataStructure(uint64_t CharacterCode,long long CharacterCo
   ReservedData98 = Utf8InputPointer;
   ReservedData88 = Utf16EndPointer;
   ProcessSystemInfoHandler(&ProcessingContext58,0x10,&SystemInfoHandlerTemplate,Utf8InputPointer);
-  CurrentMemoryBlockAddress = ProcessTemporaryBuffer(&BufferPointerD8,Utf16EndPointer);
-  PointerData118 = &SystemNullTemplate;
+  CurrentMemoryBlockAddress = ProcessTemporaryBuffer(&SystemTempBufferPointer,Utf16EndPointer);
+  SystemEventTemplatePointer = &SystemNullTemplate;
   MemoryContext100 = 0;
   BufferPointer110 = (uint8_t *)0x0;
   DataSize108 = 0;
@@ -124470,7 +124470,7 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 // 原始函数名：FUN_180127425 - 系统状态重置函数
 #define ResetSystemStatus FUN_180127425
-void FUN_180127425(void)
+void ResetSystemStatus(void)
 {
   return;
 }
@@ -124481,7 +124481,7 @@ void FUN_180127425(void)
 
 // 原始函数名：FUN_180127440 - 系统数据结构处理函数
 #define ProcessSystemDataStructure FUN_180127440
-void FUN_180127440(void)
+void ProcessSystemDataStructure(void)
 {
   int *ReferenceCountPointer;
   uint *PrimaryProcessingStatusFlag;
