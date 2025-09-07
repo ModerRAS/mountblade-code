@@ -150,6 +150,7 @@
 #define ExceptionHandlerPointerOffset18 0x18
 #define ExceptionHandlerPointerOffset20 0x20
 #define ExceptionMemoryRegionOffset70 0x70
+#define ExceptionDataPointerOffset 0x218
 
 // 系统操作处理常量
 #define SystemContextDataOffset 0x80
@@ -4688,6 +4689,22 @@
  * @note 原始函数名：FUN_18089dda2
  */
 #define ProcessDataBuffer FUN_18089dda2
+
+// 原始函数名：Unwind_18090af70 - 异常上下文内存资源清理函数
+// 功能：清理异常上下文中的内存资源，执行回调函数并管理系统终止状态
+#define CleanupExceptionContextMemoryResources Unwind_18090af70
+
+// 原始函数名：Unwind_18090af90 - 异常处理器回调执行函数
+// 功能：执行异常处理器回调函数，处理异常清理操作
+#define ExecuteExceptionHandlerCallback Unwind_18090af90
+
+// 原始函数名：Unwind_18090afb0 - 异常处理器回调执行函数A1
+// 功能：在0x2e0偏移处执行异常处理器回调函数
+#define ExecuteExceptionHandlerCallbackA1 Unwind_18090afb0
+
+// 原始函数名：Unwind_18090afd0 - 异常处理器回调执行函数A2
+// 功能：在0x2e8偏移处执行异常处理器回调函数
+#define ExecuteExceptionHandlerCallbackA2 Unwind_18090afd0
 
 /**
  * @brief 内存地址验证函数
@@ -38667,7 +38684,7 @@ void ValidateExceptionDataPointer(DataBuffer exceptionContext, int64_t contextDa
   uint64_t baseAddress;
   
   // 获取异常数据指针
-  dataPointer = *(DataBuffer **)(*(int64_t *)(contextData + 0x20) + 0x218);
+  dataPointer = *(DataBuffer **)(*(int64_t *)(contextData + 0x20) + ExceptionDataPointerOffset);
   if (dataPointer == (DataBuffer *)0x0) {
     return;
   }
@@ -83998,7 +84015,20 @@ void Unwind_18090af50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090af70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文内存资源清理函数
+ * 
+ * 清理异常上下文中的内存资源，遍历内存区域并执行相应的回调函数。
+ * 该函数负责在异常处理过程中清理相关的内存资源，确保系统状态的正确性。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090af70
+ * @note 该函数会遍历内存区域，对每个有效的数据上下文执行回调函数，
+ *       然后清理相关的内存资源，并在必要时终止系统。
+ */
+void CleanupExceptionContextMemoryResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -84007,24 +84037,32 @@ void Unwind_18090af70(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
+  // 获取内存块偏移量和内存区域基础地址
   memoryBlockOffset = *(int64_t *)(dataBuffer + 0x50);
   memoryRegionBase = *(uint64_t *)(memoryBlockOffset + 0x2b0);
   exceptionHandlerContext = *(int64_t *)(memoryBlockOffset + 0x2a8);
   operationResult = 0;
+  
+  // 遍历内存区域，清理异常上下文资源
   if (memoryRegionBase != 0) {
     do {
       dataContext = *(int64_t *)(exceptionHandlerContext + operationResult * 8);
       if (dataContext != 0) {
+        // 执行数据上下文的回调函数
         if (*(int64_t **)(dataContext + 8) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
-          TerminateSystemE0(dataContext);
+        // 终止系统并清理数据上下文
+        TerminateSystemE0(dataContext);
       }
+      // 清理异常上下文中的数据指针
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
     memoryRegionBase = *(uint64_t *)(memoryBlockOffset + 0x2b0);
   }
+  
+  // 重置内存块状态并验证系统状态
   *(DataBuffer *)(memoryBlockOffset + 0x2b8) = 0;
   if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + 0x2a8) != 0)) {
       TerminateSystemE0();
@@ -84034,12 +84072,27 @@ void Unwind_18090af70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090af90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行函数
+ * 
+ * 执行异常处理器的回调函数，处理异常清理操作。
+ * 该函数通过异常处理上下文指针调用相应的回调函数来完成异常处理。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090af90
+ * @note 该函数是一个简化的异常处理器，主要用于执行特定的回调函数。
+ */
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取异常处理上下文指针
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x2d0);
+  
+  // 如果上下文指针有效，则执行回调函数
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
@@ -84048,12 +84101,27 @@ void Unwind_18090af90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090afb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行函数A1
+ * 
+ * 在0x2e0偏移处执行异常处理器回调函数，处理异常清理操作。
+ * 该函数通过特定偏移处的异常处理上下文指针调用相应的回调函数。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090afb0
+ * @note 该函数是异常处理器回调函数的变体，使用0x2e0偏移量。
+ */
+void ExecuteExceptionHandlerCallbackA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取0x2e0偏移处的异常处理上下文指针
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x2e0);
+  
+  // 如果上下文指针有效，则执行回调函数
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
@@ -84062,12 +84130,27 @@ void Unwind_18090afb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090afd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行函数A2
+ * 
+ * 在0x2e8偏移处执行异常处理器回调函数，处理异常清理操作。
+ * 该函数通过特定偏移处的异常处理上下文指针调用相应的回调函数。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090afd0
+ * @note 该函数是异常处理器回调函数的变体，使用0x2e8偏移量。
+ */
+void ExecuteExceptionHandlerCallbackA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取0x2e8偏移处的异常处理上下文指针
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x2e8);
+  
+  // 如果上下文指针有效，则执行回调函数
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
