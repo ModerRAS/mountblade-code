@@ -47626,34 +47626,49 @@ void ConfigureExceptionHandlerChain(DataBuffer operationBase,int64_t dataBuffer,
 
 
 
-void Unwind_180904250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 初始化三级异常处理器
+ * 
+ * 该函数负责初始化第三组异常处理器，设置它们的临时和默认处理器。
+ * 函数会检查每个异常处理器的当前状态，如果有异常状态存在，
+ * 则会调用系统终止函数，否则将异常处理器重置为默认处理器。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180904250
+ * @warning 此函数包含系统终止调用，确保在调用前系统状态稳定
+ */
+void InitializeTertiaryExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t exceptionHandlerContext;
+  int64_t exceptionContextPointer;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x490) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x490))(exceptionHandlerContext + 0x480,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionContextPointer = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset);
+  if (*(FunctionPointer**)(exceptionContextPointer + 0x490) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionContextPointer + 0x490))(exceptionContextPointer + 0x480,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x460) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x468) != 0) {
-                    // WARNING: Subroutine does not return
+  *(DataBuffer *)(exceptionContextPointer + 0x460) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContextPointer + 0x468) != 0) {
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x468) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x478) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x460) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x440) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x448) != 0) {
-                    // WARNING: Subroutine does not return
+  *(DataBuffer *)(exceptionContextPointer + 0x468) = 0;
+  *(DataWord *)(exceptionContextPointer + 0x478) = 0;
+  *(DataBuffer *)(exceptionContextPointer + 0x460) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContextPointer + 0x440) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContextPointer + 0x448) != 0) {
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x448) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x458) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x440) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x420) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x428) != 0) {
-                    // WARNING: Subroutine does not return
+  *(DataBuffer *)(exceptionContextPointer + 0x448) = 0;
+  *(DataWord *)(exceptionContextPointer + 0x458) = 0;
+  *(DataBuffer *)(exceptionContextPointer + 0x440) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContextPointer + 0x420) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContextPointer + 0x428) != 0) {
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x428) = 0;
