@@ -94823,7 +94823,7 @@ void UtilityProcessParameter2(DataBuffer operationBase,int64_t dataBuffer)
   char statusFlag;
   int systemCheckResult;
   
-  FUN_1808fc5ac();
+  CheckSystemStatus();
   statusFlag = *(char *)(dataBuffer + 0x38);
   systemCheckResult = func_0x0001808fd8d4();
   if ((systemCheckResult != 0) && (statusFlag == '\0')) {
@@ -94844,7 +94844,7 @@ void UtilityProcessParameter2(DataBuffer operationBase,int64_t dataBuffer)
 void ExecuteUtilityOperation(DataBuffer *operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc51c(*(DataBuffer *)(dataBuffer + 0x60),*(DataWord *)(dataBuffer + 0x68),
+  ExecuteUtilityOperationWithParams(*(DataBuffer *)(dataBuffer + 0x60),*(DataWord *)(dataBuffer + 0x68),
                 *(DataBuffer *)(dataBuffer + 0x70),FUN_1808fc074,*(DataWord *)*operationBase,operationBase);
   return;
 }

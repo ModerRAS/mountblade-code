@@ -104832,7 +104832,7 @@ char ProcessSystemConfigurationAndStatusCheck(void)
 
  (ram,0x000180118ca3 (ram,0x000180118f40 (ram,0x00018011913b (ram,0x00018011916e (ram,0x00018011917d (ram,0x000180119177 (ram,0x00018011917f (ram,0x0001801190e0 (ram,0x000180119064 (ram,0x000180119128 (ram,0x000180119187 (ram,0x00018011958b// WARNING: Restarted to delay deadcode elimination for space: stack
 
-unsigned long long FUN_1801189e0(char *SystemContextPointer
+unsigned long long ProcessSystemContextWithUtf8Conversion(char *SystemContextPointer
 {
   float SystemContextFloat1;
   float SystemContextFloat2;
@@ -220621,11 +220621,11 @@ unsigned long long FUN_180198b90(long long SystemContextPointer,long long *Utf8B
   uint64_t SystemStatusCode;
   
   SystemStatusCode = 0xfffffffffffffffe;
-  OperationStatus = FUN_1802eee20(*Utf8BufferSize,&UNK_180a0c460);
+  OperationStatus = FUN_1802eee20(*Utf8BufferSize,&SystemConfigurationTemplateQuinary);
   if (OperationStatus != '\0') {
     *(uint16_t *)(SystemContextPointer + 0x5c40) = 0x101;
   }
-  OperationStatus = FUN_1802eee20(*Utf8BufferSize,&UNK_180a0c480);
+  OperationStatus = FUN_1802eee20(*Utf8BufferSize,&SystemConfigurationTemplateSenary);
   if (OperationStatus != '\0') {
     *(uint8_t *)(SystemContextPointer + 0x5bf0) = 1;
     *(uint8_t *)(SystemContextPointer + 0x5c42) = 1;
@@ -220646,7 +220646,7 @@ unsigned long long FUN_180198b90(long long SystemContextPointer,long long *Utf8B
           if (*(void **)(MemoryBoundaryEnd + 0x290) != NULL) {
             TemporaryBuffer = *(void **)(MemoryBoundaryEnd + 0x290);
           }
-          MemoryBlockSizePointer = (long long *)InitializeSystemEvent(&UNK_180a0b220,TemporaryBuffer);
+          MemoryBlockSizePointer = (long long *)InitializeSystemEvent(&SystemEventTemplateQuaternary,TemporaryBuffer);
         }
         if ((long long *)*Utf8BufferSize != (long long *)0x0) {
           MemoryBlockSizePointer = (long long *)(**(code **)(*(long long *)*Utf8BufferSize + 0x38))();
@@ -220715,16 +220715,25 @@ LAB_180198da7:
 
 
 
-98e30(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint8_t Utf16EndPointervoid FUN_180198e30(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint8_t Utf16EndPointer
+/**
+ * @brief 系统数据处理和编码转换函数
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 处理结果状态码
+ * @note 负责数据编码转换、系统事件处理和缓冲区管理
+ */
+void ProcessSystemDataEncodingAndConversion(long long SystemContextPointer, uint64_t Utf8BufferSize, uint64_t Utf16InputPointer, uint8_t Utf16EndPointer)
 {
-  byte *pCurrentByteValue;
+  byte *CurrentBytePointer;
   byte SystemHighByte;
   long long MemoryOffset;
   long long *EngineContext;
   byte *SystemBytePointer;
   uint DataSize;
   uint SystemByteValue;
-  char *pSystemStatusChar;
+  char *SystemStatusCharPointer;
   uint SystemVariable9;
   long long *SystemContextPointer0;
   int IntegerValue1;
@@ -220735,31 +220744,31 @@ LAB_180198da7:
   long long *SystemContextPointer7;
   unsigned long long Utf16Char8;
   long long *SystemContextPointer9;
-  long long *pMemoryBufferA;
-  uint8_t aBufferInitializationFlag [32];
+  long long *MemoryBufferPointer;
+  uint8_t BufferInitializationFlag [32];
   uint8_t tempVariable108;
-  uint uStack_104;
-  void *pSystemFlagA;
-  byte *pbStack_f8;
+  uint StackUnsigned104;
+  void *SystemFlagAPointer;
+  byte *StackBytePointerF8;
   uint SystemFlagC;
   unsigned long long SystemFlagD;
-  void *pSystemFlagE;
-  byte *pbStack_d8;
+  void *SystemFlagEPointer;
+  byte *StackBytePointerD8;
   uint SystemFlagG;
   unsigned long long SystemFlagH;
-  long long *plStack_c0;
-  long long *plStack_b8;
-  long long *plStack_b0;
-  long long *plStack_a8;
+  long long *StackPointerC0;
+  long long *StackPointerB8;
+  long long *StackPointerB0;
+  long long *StackPointerA8;
   uint32_t CoreEngineUnsignedValueA0;
   long long StackLongValue;
-  long long lStack_90;
+  long long StackLongValue90;
   uint64_t StackValidationData;
   uint64_t FunctionAddress80;
   uint64_t StackUnsigned78;
-  char acStack_70 [16];
+  char StackBuffer70 [16];
   char SystemBuffer60 [16];
-  char acStack_50 [16];
+  char StackBuffer50 [16];
   unsigned long long SystemPriorityLevel;
   long long MemoryAllocationOffset;
   
@@ -221040,7 +221049,7 @@ long long * FUN_1801993a0(uint64_t SystemContextPointer,long long *Utf8BufferSiz
     }
     FUN_180275cf0(LoopCounter,0,&plStack_30,1);
     (**(code **)(*(long long *)*Utf8BufferSize + 0x100))((long long *)*Utf8BufferSize,0);
-    (**(code **)(*(long long *)(*Utf8BufferSize + 0x1f0) + 0x10)              ((long long *)(*Utf8BufferSize + 0x1f0),&UNK_180a0b290);
+    (**(code **)(*(long long *)(*Utf8BufferSize + 0x1f0) + 0x10)              ((long long *)(*Utf8BufferSize + 0x1f0),&SystemEventTemplateQuinary);
     FUN_180276f30(*Utf8BufferSize,*Utf8BufferSize + 0x214,1);
     (**(code **)(*(long long *)*Utf8BufferSize + 0x148))((long long *)*Utf8BufferSize,&SystemDataTemplate); /* 系统数据模板 - 用于数据结构初始化 */
   }
