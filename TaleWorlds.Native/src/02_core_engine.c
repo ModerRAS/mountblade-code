@@ -200010,7 +200010,18 @@ uint64_t FUN_180174c70(uint64_t CharacterCode,long long *Utf8InputBufferSize
 
  (ram,0x000180174e52 (ram,0x000180174e57 (ram,0x000180174e5c (ram,0x000180174e5f
 
-74d60(uint64_t CharacterCode,uint64_t Utf8BufferSizevoid FUN_180174d60(uint64_t CharacterCode,uint64_t Utf8BufferSize
+/**
+ * @brief 处理字符编码转换
+ * 
+ * 该函数负责将字符编码从一种格式转换为另一种格式，通常用于UTF-8到UTF-16的转换。
+ * 函数会验证输入的字符代码和缓冲区大小，并分配必要的内存来处理转换过程。
+ * 
+ * @param CharacterCode 字符代码，用于标识要转换的字符
+ * @param Utf8BufferSize UTF-8缓冲区大小，指定输入缓冲区的长度
+ * 
+ * @note 原始函数名：FUN_180174d60
+ */
+void ProcessCharacterEncodingConversion(uint64_t CharacterCode,uint64_t Utf8BufferSize)
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
@@ -200064,7 +200075,18 @@ uint64_t FUN_180174c70(uint64_t CharacterCode,long long *Utf8InputBufferSize
 
 
 
-74f70(uint64_t CharacterCode,uint64_t *Utf8InputBufferSizevoid FUN_180174f70(uint64_t CharacterCode,uint64_t *Utf8InputBufferSize
+/**
+ * @brief 清理UTF-8缓冲区管理
+ * 
+ * 该函数负责清理和释放UTF-8缓冲区相关的资源，包括关闭句柄、销毁互斥锁和释放内存。
+ * 函数会检查缓冲区状态，确保所有资源都被正确释放，避免内存泄漏。
+ * 
+ * @param CharacterCode 字符代码，用于标识要清理的缓冲区
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针，用于获取和更新缓冲区状态
+ * 
+ * @note 原始函数名：FUN_180174f70
+ */
+void CleanupUtf8BufferManagement(uint64_t CharacterCode,uint64_t *Utf8InputBufferSize)
 {
   if (Utf8BufferSize == NULL) {
     return;
@@ -200091,8 +200113,22 @@ uint64_t FUN_180174c70(uint64_t CharacterCode,long long *Utf8InputBufferSize
 
 
 
+/**
+ * @brief 初始化系统上下文数据
+ * 
+ * 该函数负责初始化系统的上下文数据结构，设置主数据和次级数据指针。
+ * 函数会根据缓冲区大小进行相应的内存管理操作，确保系统上下文正确初始化。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针，用于存储输入数据
+ * @param Utf8BufferSize UTF-8缓冲区大小，指定输入缓冲区的长度
+ * @param Utf8SourcePointer UTF-8源指针，指向输入数据的起始位置
+ * @param Utf16EndPointer UTF-16结束指针，指向输出数据的结束位置
+ * @return uint64_t* 返回处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_180175020
+ */
 uint64_t *
-FUN_180175020(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+InitializeSystemContextData(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   *Utf8InputBuffer = SystemContextDataPrimary;
   *Utf8InputBuffer = SystemContextDataSecondary;
@@ -200106,7 +200142,18 @@ FUN_180175020(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
 
 
 
-75120(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_180175120(uint64_t CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理系统数据分配
+ * 
+ * 该函数负责处理系统数据的分配和管理，包括内存分配、数据结构初始化和系统配置。
+ * 函数会使用编码解码密钥来处理系统数据，确保数据的安全性和完整性。
+ * 
+ * @param CharacterCode 字符代码，用于标识要处理的数据
+ * @param Utf8BufferSize UTF-8缓冲区大小，指定数据缓冲区的长度
+ * 
+ * @note 原始函数名：FUN_180175120
+ */
+void ProcessSystemDataAllocation(uint64_t CharacterCode,long long Utf8BufferSize)
 {
   long long PrimaryDataSize;
   uint8_t aSystemUintBuffer238 [32];
@@ -200127,7 +200174,18 @@ FUN_180175020(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
 
 
 
-75180(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_180175180(uint64_t CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理系统数据验证
+ * 
+ * 该函数负责验证系统数据的完整性和有效性，包括数据格式检查、内存偏移验证和内容状态确认。
+ * 函数会使用各种验证机制来确保数据符合系统要求，并执行相应的处理操作。
+ * 
+ * @param CharacterCode 字符代码，用于标识要验证的数据
+ * @param Utf8BufferSize UTF-8缓冲区大小，指定数据缓冲区的长度
+ * 
+ * @note 原始函数名：FUN_180175180
+ */
+void ProcessSystemDataValidation(uint64_t CharacterCode,long long Utf8BufferSize)
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
@@ -200173,7 +200231,7 @@ FUN_180175020(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
 
 
 
-752b0(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_1801752b0(uint64_t CharacterCode,long long Utf8BufferSize
+void ExecuteSystemDataProcessing(uint64_t CharacterCode,long long Utf8BufferSize)
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
