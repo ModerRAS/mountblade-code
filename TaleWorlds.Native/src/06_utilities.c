@@ -21519,7 +21519,7 @@ ValidateDataSecurity:
   float *poutputValue21;
   DataBuffer *StackFrameContext;
   int64_t systemContext;
-  DataBuffer *register_R12;
+  DataBuffer *DataBufferRegister;
   float dataPointerD;
   int64_t systemContext;
   uint64_t operationResult2;
@@ -21560,7 +21560,7 @@ ValidateDataSecurity:
       dataContext = *(int64_t *)(operationResult0 + 0x10 + exceptionHandlerContext5);
       calculatedOffset = *(int64_t *)(operationResult0 + 8 + exceptionHandlerContext5);
       charSystemStatus = CheckSystemStatus(dataContext,1);
-      register_R12 = StackMemoryBasePointer;
+      FloatRegisterR12 = StackMemoryBasePointer;
       if ((charSystemStatus == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
         operationResult3 = *(DataWord *)(operationResult0 + 4 + exceptionHandlerContext5);
         StackFrameContext[-4] = &SystemMemoryInitializationReference;
@@ -21588,7 +21588,7 @@ ValidateDataSecurity:
     } while ((int64_t)operationResult2 < StackLoopCounter);
   }
   systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
-  systemDataBuffer6 = (**(FunctionPointer**)*register_R12)(register_R12);
+  systemDataBuffer6 = (**(FunctionPointer**)*FloatRegisterR12)(FloatRegisterR12);
   inputParameter3 = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,systemNameBufferX);
   if (inputParameter3 == 0) {
     operationResult3 = floatResultA;
@@ -25881,7 +25881,7 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
   ByteTriple dataFlags;
   int LoopCounter;
   DataWord AddressRegister;
-  uint register_EBP;
+  uint StackFrameRegister;
   char carryFlag;
   int *StackIntegerPointerD;
   DataWord memoryBaseAddress;
@@ -25890,7 +25890,7 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
   validationResult = (char)inputAccumulatorRegisterEAX + -0x57 + carryFlag;
   memoryBaseAddress = CONCAT31(dataFlags,validationResult);
   *(DataWord *)CONCAT44(AddressRegister,memoryBaseAddress) = memoryBaseAddress;
-  *(uint *)(operationBase + -0x565dff77) = *(uint *)(operationBase + -0x565dff77) & register_EBP;
+  *(uint *)(operationBase + -0x565dff77) = *(uint *)(operationBase + -0x565dff77) & StackFrameRegister;
   *(DataWord *)CONCAT44(AddressRegister,memoryBaseAddress) = memoryBaseAddress;
   StackIntegerPointerD = dataBuffer;
   *(DataWord *)CONCAT44(AddressRegister,memoryBaseAddress) = memoryBaseAddress;
@@ -29318,7 +29318,7 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer SystemContext)
   float systemDataBuffer1;     // 系统数据缓冲区1，替换系统相关变量
   float operationBase;         // 操作基数，替换操作相关变量
   float StackFrameContext;     // 栈帧指针，替换栈相关变量
-  float register_R12;          // 寄存器R12，替换寄存器相关变量
+  float FloatRegisterR12;          // 寄存器R12，替换寄存器相关变量
   float exceptionDataBuffer4;  // 异常数据缓冲区4，替换异常相关变量
   float exceptionHandlerContext7; // 异常处理上下文7，替换异常处理相关变量
   float exceptionHandlerContext6; // 异常处理上下文6，替换异常处理相关变量
@@ -29354,9 +29354,9 @@ ValidationLabelB:
             ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(StackFrameContext + -0x29),
                         &SystemMemoryPoolB,0x100,1);
         }
-        *(DataBuffer **)(StackFrameContext + -0x29) = register_R12;
+        *(DataBuffer **)(StackFrameContext + -0x29) = FloatRegisterR12;
         *(uint *)(StackFrameContext + -0x1d) = securityCheckResult;
-        exceptionDataBuffer4 = register_R12;
+        exceptionDataBuffer4 = FloatRegisterR12;
         statusCounter = securityCheckResult;
       }
       else {
@@ -29375,7 +29375,7 @@ ValidationLabelB:
             *(DataWord *)(exceptionHandlerContext6 + -0x10) = systemDataBuffer;
             *(DataWord *)(exceptionHandlerContext6 + -0xc) = operationResult;
             *(DataWord *)(exceptionHandlerContext6 + -8) = validationStatus;
-            *(DataBuffer **)(exceptionHandlerContext6 + -4) = register_R12;
+            *(DataBuffer **)(exceptionHandlerContext6 + -4) = FloatRegisterR12;
             exceptionHandlerContext7 = exceptionHandlerContext7 + -1;
             exceptionHandlerContext6 = exceptionHandlerContext6 + 0x18;
           } while (exceptionHandlerContext7 != 0);
@@ -29409,7 +29409,7 @@ ValidationLabelB:
       exceptionDataBuffer4 = *(DataBuffer **)(StackFrameContext + -0x29);
       for (exceptionDataBuffer5 = exceptionDataBuffer4; (exceptionDataBuffer4 <= exceptionDataBuffer5 && (exceptionDataBuffer5 < exceptionDataBuffer4 + (int64_t)inputParameter8 * 3));
           exceptionDataBuffer5 = exceptionDataBuffer5 + 3) {
-        *(DataBuffer **)(StackFrameContext + 0x77) = register_R12;
+        *(DataBuffer **)(StackFrameContext + 0x77) = FloatRegisterR12;
         statusCounter = ValidateDataSecurityA1(systemContext + 0x48,StackFrameContext + 0x77);
         systemDataBuffer1 = (uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
@@ -29435,9 +29435,9 @@ ValidationLabelB:
       if ((0 < (int)statusCounter) && (exceptionDataBuffer4 != (DataBuffer *)0x0)) {
           ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),exceptionDataBuffer4,&SystemMemoryPoolB,0x100,1);
       }
-      *(DataBuffer **)(StackFrameContext + -0x29) = register_R12;
+      *(DataBuffer **)(StackFrameContext + -0x29) = FloatRegisterR12;
       *(uint *)(StackFrameContext + -0x1d) = securityCheckResult;
-      exceptionDataBuffer4 = register_R12;
+      exceptionDataBuffer4 = FloatRegisterR12;
       statusCounter = securityCheckResult;
     }
     if (inputParameter8 < 0) {
@@ -29454,7 +29454,7 @@ ValidationLabelB:
           *(float *)(exceptionHandlerContext6 + -0x10) = validationCounter;
           *(float *)(exceptionHandlerContext6 + -0xc) = secondValidationValue;
           *(float *)(exceptionHandlerContext6 + -8) = thirdValidationValue;
-          *(DataBuffer **)(exceptionHandlerContext6 + -4) = register_R12;
+          *(DataBuffer **)(exceptionHandlerContext6 + -4) = FloatRegisterR12;
           exceptionHandlerContext7 = exceptionHandlerContext7 + -1;
           exceptionHandlerContext6 = exceptionHandlerContext6 + 0x18;
         } while (exceptionHandlerContext7 != 0);
@@ -35086,7 +35086,7 @@ void ConfigureSystemOptionsC1(void)
   int inputParameter;
   int operationResult;
   int64_t *registerContext;
-  int register_EBP;
+  int StackFrameRegister;
   int64_t systemContext;
   DataWord InputParamB0;
   
@@ -35104,7 +35104,7 @@ void ConfigureSystemOptionsC1(void)
     if (inputParameter != 0) {
       return;
     }
-    inputParameter = register_EBP;
+    inputParameter = StackFrameRegister;
     if (*(int *)(registerContext[1] + 0x18) == 0) {
       StackDataBufferD = 6;
       inputParameter = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
@@ -35122,14 +35122,14 @@ void ConfigureSystemOptionsC1(void)
       inputParameter = inputParameter + 1;
     } while (inputParameter < 6);
     if (*(uint *)(registerContext + 8) < 0x6e) {
-      register_EBP = 0;
+      StackFrameRegister = 0;
     }
     else if (*(int *)(registerContext[1] + 0x18) == 0) {
       StackDataBufferD = CONCAT31(StackDataBufferD._1_3_,*(ByteFlag *)(systemContext + 0x5c));
-      register_EBP = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
+      StackFrameRegister = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
                             (*(DataBuffer **)(*registerContext + 8),&StackDataBufferU,1);
     }
-    if (register_EBP != 0) {
+    if (StackFrameRegister != 0) {
       return;
     }
       ExecuteSystemCleanupRoutine();
