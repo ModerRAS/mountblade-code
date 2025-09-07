@@ -78221,7 +78221,17 @@ void CleanupResourceAtOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d020(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理偏移量0xF0处的资源
+ * 
+ * 该函数负责清理指定偏移量处的资源指针，处理内存引用计数和异常情况
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090d020
+ */
+void CleanupResourceAtOffsetF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -78257,7 +78267,17 @@ void Unwind_18090d020(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d030(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理偏移量0x110处的资源
+ * 
+ * 该函数负责清理指定偏移量处的资源指针，处理内存引用计数和异常情况
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090d030
+ */
+void CleanupResourceAtOffset110(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -78393,7 +78413,17 @@ void CleanupExceptionAtOffset220(DataBuffer ExceptionContext,int64_t ExceptionOf
 
 
 
-void Unwind_18090d060(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理偏移量0x170处的资源
+ * 
+ * 该函数负责清理指定偏移量处的资源指针，处理内存引用计数和异常情况
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090d060
+ */
+void CleanupResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -78429,7 +78459,17 @@ void Unwind_18090d060(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d070(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理偏移量0x190处的资源
+ * 
+ * 该函数负责清理指定偏移量处的资源指针，处理内存引用计数和异常情况
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090d070
+ */
+void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -79952,7 +79992,20 @@ void Unwind_18090d310(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理偏移量0x6F0处的资源（带操作标志）
+ * 
+ * 该函数负责清理指定偏移量处的资源指针，处理内存引用计数和异常情况
+ * 支持额外的操作标志参数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090d320
+ */
+void CleanupResourceAtOffset6F0WithFlags(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -81325,7 +81378,14 @@ void Unwind_18090d6a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d6e0(void)
+/**
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责销毁互斥锁资源，清理相关的同步对象
+ * 
+ * @note 原始函数名：Unwind_18090d6e0
+ */
+void DestroyMutexResource(void)
 
 {
   _Mtx_destroy_in_situ();
