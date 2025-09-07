@@ -106724,6 +106724,18 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：递减系统资源计数器并执行系统函数表操作
 #define DecrementSystemResourceCounterAF0 Unwind_18090caf0
 
+// 原始函数名：Unwind_18090cb00 - 异常上下文处理函数B00
+// 功能：处理异常上下文，设置默认异常处理器B
+#define ProcessExceptionContextB00 Unwind_18090cb00
+
+// 原始函数名：Unwind_18090cb10 - 异常处理器设置函数B10
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandlerB10 Unwind_18090cb10
+
+// 原始函数名：Unwind_18090cb20 - 异常上下文处理函数B20
+// 功能：处理异常上下文，设置默认异常处理器B
+#define ProcessExceptionContextB20 Unwind_18090cb20
+
 // 原始函数名：Unwind_180905470 - 异常处理回调函数470
 // 功能：执行异常处理回调函数，从数据缓冲区的0x118偏移量获取回调函数指针
 #define ExecuteExceptionHandlerCallback470 Unwind_180905470
