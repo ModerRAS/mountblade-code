@@ -166479,6 +166479,24 @@ void ProcessSystemMemoryCleanup(void
 
 
 
+/**
+ * @brief 处理字符编码转换
+ * 
+ * 该函数负责处理字符编码的转换操作，包括：
+ * - 遍历字符表并进行编码转换
+ * - 处理UTF-8缓冲区大小和源指针
+ * - 管理UTF-16编码的结束指针
+ * - 执行系统数据表操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 无
+ * 
+ * @note 原始函数名：FUN_18013a860
+ * @note 此函数是字符编码处理系统的核心组件
+ */
 void ProcessCharacterEncodingConversion(long long CharacterCode,int Utf8BufferSize,int Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
@@ -261260,6 +261278,16 @@ int FUN_1802253ee(void
 
 
 
+/**
+ * @brief 系统标识符识别和分类函数（变体G）
+ * 
+ * 根据输入的数据字符串模式和长度，识别并返回对应的系统标识符。
+ * 该函数是IdentifySystemIdentifierByPattern的变体版本，用于处理
+ * 不同类型的系统组件识别和分类。
+ * 
+ * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
+ * @note 原始函数名：FUN_18022541a
+ */
 int FUN_18022541a(void
 {
   char *InputStringBuffer;
@@ -261568,6 +261596,16 @@ int FUN_18022541a(void
 
 
 
+/**
+ * @brief 系统标识符识别和分类函数（变体H）
+ * 
+ * 根据输入的数据字符串模式和长度，识别并返回对应的系统标识符。
+ * 该函数是IdentifySystemIdentifierByPattern的变体版本，用于处理
+ * 不同类型的系统组件识别和分类。
+ * 
+ * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
+ * @note 原始函数名：FUN_180225446
+ */
 int FUN_180225446(void
 {
   char *InputStringBuffer;
