@@ -45033,10 +45033,10 @@ void ProcessUIRenderQueue(undefined1 (*uiContext) [16],int dataSource,undefined1
 undefined4 GetUIRenderingStatus(void)
 
 {
-  undefined4 *in_stack_00000028;
+  undefined4 *renderingStatusPtr;
   
-  FUN_18068d2b0();
-  return *in_stack_00000028;
+  ProcessUIRenderQueue();
+  return *renderingStatusPtr;
 }
 
 
@@ -46548,11 +46548,11 @@ int ProcessUIDataOperationMode8Standard(undefined8 uiContext,int dataSource,unde
 int PerformUIInitializationCheck(void)
 
 {
-  int *stackParameter;
-  uint stackValue;
+  int *statusParameter;
+  uint statusValue;
   
-  FUN_18068d2b0();
-  return *stackParameter - ((uint)(stackValue * stackValue) >> 8);
+  ProcessUIRenderQueue();
+  return *statusParameter - ((uint)(statusValue * statusValue) >> 8);
 }
 
 
@@ -68545,7 +68545,7 @@ int FUN_18069f8f0(longlong uiContext,longlong dataSource)
     *(int *)(bufferData + 0x18) = *(int *)(bufferData + 0x18) - (uint)bVar1;
     *(ulonglong *)(uiContext + 0x10) = uVar4 << (bVar1 & 0x3f);
     *(uint *)(uiContext + 0x1c) = uVar5 << (bVar1 & 0x1f);
-    cVar2 = (&UNK_180948308)[(longlong)(int)(uint)bVar6 + (longlong)cVar2];
+    cVar2 = (&g_uiCharacterMappingTable)[(longlong)(int)(uint)bVar6 + (longlong)cVar2];
   } while ('\0' < cVar2);
   return -(int)cVar2;
 }

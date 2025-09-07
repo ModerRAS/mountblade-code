@@ -6308,95 +6308,63 @@ void* SystemResourcePointerA5;          // _DAT_180c960a0 - 系统资源指针A5
 // 系统资源数据缓冲区变量声明
 void* SystemResourceDataBufferA0;         // DAT_180c960c0 - 系统资源数据缓冲区A0
 
-// 系统验证相关变量宏定义
-// 原始变量名：_DAT_180c95f18 - 系统验证上下文指针A0
-#define SystemValidationContextPointerA0 GlobalSystemValidationContextPointerA0   // 系统验证上下文指针A0
-// 原始变量名：DAT_180c95f28 - 系统验证清理标志A0
-#define SystemValidationCleanupFlagA0 GlobalSystemValidationCleanupFlagA0       // 系统验证清理标志A0
-// 原始变量名：_DAT_180c95f20 - 系统验证上下文清理A0
-#define SystemValidationContextCleanupA0 GlobalSystemValidationContextCleanupA0   // 系统验证上下文清理A0
-// 原始变量名：_DAT_180c95ef8 - 系统验证终止标志A0
-#define SystemValidationTerminationFlagA0 GlobalSystemValidationTerminationFlagA0  // 系统验证终止标志A0
-// 原始变量名：DAT_180c95fe8 - 系统验证清理标志A1
-#define SystemValidationCleanupFlagA1 GlobalSystemValidationCleanupFlagA1       // 系统验证清理标志A1
-// 原始变量名：_DAT_180c95fc8 - 系统验证终止标志A1
-#define SystemValidationTerminationFlagA1 GlobalSystemValidationTerminationFlagA1  // 系统验证终止标志A1
-// 原始变量名：DAT_180c96210 - 系统验证清理标志A2
-#define SystemValidationCleanupFlagA2 GlobalSystemValidationCleanupFlagA2       // 系统验证清理标志A2
+// 系统验证相关变量声明
+void* SystemValidationContextPointerA0;   // _DAT_180c95f18 - 系统验证上下文指针A0
+uint8_t SystemValidationCleanupFlagA0;       // DAT_180c95f28 - 系统验证清理标志A0
+void* SystemValidationContextCleanupA0;   // _DAT_180c95f20 - 系统验证上下文清理A0
+uint8_t SystemValidationTerminationFlagA0;  // _DAT_180c95ef8 - 系统验证终止标志A0
+uint8_t SystemValidationCleanupFlagA1;       // DAT_180c95fe8 - 系统验证清理标志A1
+uint8_t SystemValidationTerminationFlagA1;  // _DAT_180c95fc8 - 系统验证终止标志A1
+uint8_t SystemValidationCleanupFlagA2;       // DAT_180c96210 - 系统验证清理标志A2
 
-// 系统数据缓冲区相关变量宏定义
-// 原始变量名：DAT_180a06434 - 系统数据缓冲区A
-#define SystemDataBufferA GlobalSystemDataBufferA               // 系统数据缓冲区A
-// 原始变量名：UNK_180986298 - 系统数据缓冲区B
-#define SystemDataBufferB GlobalSystemDataBufferB                // 系统数据缓冲区B
-// 原始变量名：UNK_180984010 - 系统数据缓冲区C
-#define SystemDataBufferC GlobalSystemDataBufferC                // 系统数据缓冲区C
-// 原始变量名：UNK_180982240 - 系统数据缓冲区D
-#define SystemDataBufferD GlobalSystemDataBufferD                // 系统数据缓冲区D
+// 系统数据缓冲区相关变量声明
+void* SystemDataBufferA;               // DAT_180a06434 - 系统数据缓冲区A
+void* SystemDataBufferB;                // UNK_180986298 - 系统数据缓冲区B
+void* SystemDataBufferC;                // UNK_180984010 - 系统数据缓冲区C
+void* SystemDataBufferD;                // UNK_180982240 - 系统数据缓冲区D
 
-// 数据缓冲区管理相关变量宏定义
-// 原始变量名：lRam0000000180d49d68 - 数据缓冲区起始地址
-#define DataBufferStartAddress lRam0000000180d49d68             // 数据缓冲区起始地址
-// 原始变量名：uRam0000000180d49d70 - 数据缓冲区大小计数器
-#define DataBufferSizeCounter uRam0000000180d49d70              // 数据缓冲区大小计数器
-// 原始变量名：lRam0000000180d49d78 - 数据缓冲区结束地址
-#define DataBufferEndAddress lRam0000000180d49d78               // 数据缓冲区结束地址
-// 原始变量名：uRam0000000180d49d58 - 数据缓冲区清理指针
-#define DataBufferCleanupPointer uRam0000000180d49d58           // 数据缓冲区清理指针
+// 数据缓冲区管理相关变量声明
+void* DataBufferStartAddress;             // lRam0000000180d49d68 - 数据缓冲区起始地址
+uint32_t DataBufferSizeCounter;              // uRam0000000180d49d70 - 数据缓冲区大小计数器
+void* DataBufferEndAddress;               // lRam0000000180d49d78 - 数据缓冲区结束地址
+void* DataBufferCleanupPointer;           // uRam0000000180d49d58 - 数据缓冲区清理指针
 
-// 原始变量名：_DAT_180bf64f8 - 默认异常处理器B指针
-#define DefaultExceptionHandlerBPointer GlobalDefaultExceptionHandlerBPointer     // 默认异常处理器B指针
+// 默认异常处理器指针变量声明
+void* DefaultExceptionHandlerBPointer;     // _DAT_180bf64f8 - 默认异常处理器B指针
 
-// 异常处理器指针变量宏定义
-// 原始变量名：_DAT_180bf90b0 - 异常处理器指针A
-#define ExceptionHandlerPointerA GlobalExceptionHandlerPointerA         // 异常处理器指针A
-// 原始变量名：_DAT_180bf7310 - 异常处理器指针B
-#define ExceptionHandlerPointerB GlobalExceptionHandlerPointerB         // 异常处理器指针B
-// 原始变量名：_DAT_180bf92d0 - 异常处理器指针C
-#define ExceptionHandlerPointerC GlobalExceptionHandlerPointerC         // 异常处理器指针C
-// 原始变量名：_DAT_180bf9330 - 异常处理器指针D
-#define ExceptionHandlerPointerD GlobalExceptionHandlerPointerD         // 异常处理器指针D
-// 原始变量名：_DAT_180bf9510 - 异常处理器指针E
-#define ExceptionHandlerPointerE GlobalExceptionHandlerPointerE         // 异常处理器指针E
-// 原始变量名：_DAT_180bf9570 - 异常处理器指针F
-#define ExceptionHandlerPointerF GlobalExceptionHandlerPointerF         // 异常处理器指针F
-// 原始变量名：_DAT_180bf96f0 - 异常处理器指针G
-#define ExceptionHandlerPointerG GlobalExceptionHandlerPointerG         // 异常处理器指针G
-// 原始变量名：_DAT_180bf9750 - 异常处理器指针H
-#define ExceptionHandlerPointerH GlobalExceptionHandlerPointerH         // 异常处理器指针H
-// 原始变量名：_DAT_180bf97b0 - 异常处理器指针I
-#define ExceptionHandlerPointerI GlobalExceptionHandlerPointerI         // 异常处理器指针I
-// 原始变量名：_DAT_180bf9810 - 异常处理器指针J
-#define ExceptionHandlerPointerJ GlobalExceptionHandlerPointerJ         // 异常处理器指针J
-// 原始变量名：_DAT_180bf9870 - 异常处理器指针K
-#define ExceptionHandlerPointerK GlobalExceptionHandlerPointerK         // 异常处理器指针K
-// 原始变量名：_DAT_180bf98d0 - 异常处理器指针L
-#define ExceptionHandlerPointerL GlobalExceptionHandlerPointerL         // 异常处理器指针L
+// 异常处理器指针变量声明
+void* ExceptionHandlerPointerA;         // _DAT_180bf90b0 - 异常处理器指针A
+void* ExceptionHandlerPointerB;         // _DAT_180bf7310 - 异常处理器指针B
+void* ExceptionHandlerPointerC;         // _DAT_180bf92d0 - 异常处理器指针C
+void* ExceptionHandlerPointerD;         // _DAT_180bf9330 - 异常处理器指针D
+void* ExceptionHandlerPointerE;         // _DAT_180bf9510 - 异常处理器指针E
+void* ExceptionHandlerPointerF;         // _DAT_180bf9570 - 异常处理器指针F
+void* ExceptionHandlerPointerG;         // _DAT_180bf96f0 - 异常处理器指针G
+void* ExceptionHandlerPointerH;         // _DAT_180bf9750 - 异常处理器指针H
+void* ExceptionHandlerPointerI;         // _DAT_180bf97b0 - 异常处理器指针I
+void* ExceptionHandlerPointerJ;         // _DAT_180bf9810 - 异常处理器指针J
+void* ExceptionHandlerPointerK;         // _DAT_180bf9870 - 异常处理器指针K
+void* ExceptionHandlerPointerL;         // _DAT_180bf98d0 - 异常处理器指针L
 
-// 系统函数表指针宏定义
-// 原始变量名：_DAT_180c86968 - 系统函数表指针
-#define SystemFunctionTablePointer GlobalSystemFunctionTablePointer       // 系统函数表指针
-// 原始变量名：_DAT_180bf9930 - 异常处理器指针M
-#define ExceptionHandlerPointerM GlobalExceptionHandlerPointerM         // 异常处理器指针M
-// 原始变量名：_DAT_180bf9990 - 异常处理器指针N
-#define ExceptionHandlerPointerN GlobalExceptionHandlerPointerN         // 异常处理器指针N
-// 原始变量名：_DAT_180bf99f0 - 异常处理器指针O
-#define ExceptionHandlerPointerO GlobalExceptionHandlerPointerO         // 异常处理器指针O
-// 原始变量名：_DAT_180bf9a50 - 异常处理器指针P
-#define ExceptionHandlerPointerP GlobalExceptionHandlerPointerP         // 异常处理器指针P
-// 原始变量名：_DAT_180bf9ab0 - 异常处理器指针Q
-#define ExceptionHandlerPointerQ GlobalExceptionHandlerPointerQ         // 异常处理器指针Q
-#define ExceptionHandlerPointerR _DAT_180bf9b10         // 异常处理器指针R
-#define ExceptionHandlerPointerS _DAT_180bf9b70         // 异常处理器指针S
-#define ExceptionHandlerPointerT _DAT_180bf9bd0         // 异常处理器指针T
-#define ExceptionHandlerPointerU _DAT_180bf9c30         // 异常处理器指针U
-#define ExceptionHandlerPointerV _DAT_180bf9c90         // 异常处理器指针V
-#define ExceptionHandlerPointerW _DAT_180bf9cf0         // 异常处理器指针W
-#define ExceptionHandlerPointerX _DAT_180bf9d50         // 异常处理器指针X
-#define ExceptionHandlerPointerY _DAT_180bf9db0         // 异常处理器指针Y
-#define ExceptionHandlerPointerZ _DAT_180bf9e10         // 异常处理器指针Z
-#define ExceptionHandlerPointerAA _DAT_180bf9e70         // 异常处理器指针AA
-#define ExceptionHandlerPointerBB _DAT_180bf9ed0         // 异常处理器指针BB
+// 系统函数表指针变量声明
+void* SystemFunctionTablePointer;       // _DAT_180c86968 - 系统函数表指针
+// 异常处理器指针变量声明（续）
+void* ExceptionHandlerPointerM;         // _DAT_180bf9930 - 异常处理器指针M
+void* ExceptionHandlerPointerN;         // _DAT_180bf9990 - 异常处理器指针N
+void* ExceptionHandlerPointerO;         // _DAT_180bf99f0 - 异常处理器指针O
+void* ExceptionHandlerPointerP;         // _DAT_180bf9a50 - 异常处理器指针P
+void* ExceptionHandlerPointerQ;         // _DAT_180bf9ab0 - 异常处理器指针Q
+void* ExceptionHandlerPointerR;         // _DAT_180bf9b10 - 异常处理器指针R
+void* ExceptionHandlerPointerS;         // _DAT_180bf9b70 - 异常处理器指针S
+void* ExceptionHandlerPointerT;         // _DAT_180bf9bd0 - 异常处理器指针T
+void* ExceptionHandlerPointerU;         // _DAT_180bf9c30 - 异常处理器指针U
+void* ExceptionHandlerPointerV;         // _DAT_180bf9c90 - 异常处理器指针V
+void* ExceptionHandlerPointerW;         // _DAT_180bf9cf0 - 异常处理器指针W
+void* ExceptionHandlerPointerX;         // _DAT_180bf9d50 - 异常处理器指针X
+void* ExceptionHandlerPointerY;         // _DAT_180bf9db0 - 异常处理器指针Y
+void* ExceptionHandlerPointerZ;         // _DAT_180bf9e10 - 异常处理器指针Z
+void* ExceptionHandlerPointerAA;         // _DAT_180bf9e70 - 异常处理器指针AA
+void* ExceptionHandlerPointerBB;         // _DAT_180bf9ed0 - 异常处理器指针BB
 
 // 内存验证相关变量宏定义
 // 原始变量名：_DAT_180c91f18 - 内存验证起始指针

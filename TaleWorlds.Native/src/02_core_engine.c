@@ -2,36 +2,27 @@
 
 #define ProcessSystemResourceAllocation ProcessSystemResourceAllocation
 
-// 系统内存管理宏定义
 #define ProcessSystemMemoryBlockCleanup ProcessSystemMemoryBlockCleanup
 #define ProcessSystemMemoryBlockDealloc ProcessSystemMemoryBlockDealloc
 #define ProcessSystemMemoryBlockValidation ProcessSystemMemoryBlockValidation
 #define ProcessSystemMemoryBlockFinalize ProcessSystemMemoryBlockFinalize
 
-// 系统事件处理宏定义
 #define ProcessSystemEventHandling ProcessSystemEventHandling
 
-// 系统内存管理宏定义
 #define ProcessSystemMemoryRelease ProcessSystemMemoryRelease
 #define ProcessSystemMemoryFree ProcessSystemMemoryFree
 
-// 系统缓冲区管理宏定义
 #define ProcessSystemBufferCleanup ProcessSystemBufferCleanup
 #define ProcessSystemMemoryBlockInitialize ProcessSystemMemoryBlockInitialize
 
-// 系统数据处理宏定义
 #define ProcessSystemDataTableOperation HandleSystemDataTableProcessing
 #define ProcessSystemMemoryAllocation HandleSystemMemoryAllocationAndManagement
 #define ProcessSystemDataBlockOperation HandleSystemDataBlockProcessingAndManagement
 #define ProcessSystemDataStructureCopy HandleSystemDataStructureCopyAndSynchronization
 
-// 系统资源管理宏定义
 #define ProcessSystemResourceInitialization HandleSystemResourceInitializationAndConfiguration
 
-// 系统上下文管理宏定义
 #define ProcessSystemContextManagement HandleSystemContextManagementAndMaintenance
-
-// UTF8到UTF16转换处理宏定义
 #define ProcessUtf8ToUtf16Conversion FUN_18013a1b0
 #define GetMemoryAddressMask FUN_1801358c0
 #define AllocateValidationMemory FUN_180136a10
