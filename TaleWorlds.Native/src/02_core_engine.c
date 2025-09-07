@@ -8067,7 +8067,7 @@ void InitializeGameDataStructureNode(void
  * @note 通过遍历连接池查找合适位置插入新连接
  * @note 连接池使用链表结构组织，支持动态内存分配
  */
-void CoreEngineInitializenetworkConnectionPoolResourceManager(void
+void CoreEngineInitializeNetworkConnectionPoolResourceManager(void)
 {
   bool ConnectionPoolActive;
   uint64_t *ConnectionPoolPointer;
@@ -8121,7 +8121,7 @@ void CoreEngineInitializenetworkConnectionPoolResourceManager(void
  * 该函数负责初始化网络连接池的队列管理器，用于管理网络连接的队列操作。
  * 通过遍历连接池中的节点，检查连接状态，并根据需要创建新的连接。
  */
-void CoreEngineInitializenetworkConnectionPoolQueueManager(void
+void CoreEngineInitializeNetworkConnectionPoolQueueManager(void)
 {
   bool ConnectionPoolActive;
   uint64_t *ConnectionPoolPointer;
@@ -16485,7 +16485,7 @@ void CoreEngineInitializenetworkConnectionPoolManager(void
  * 该函数负责初始化网络连接池的状态监控系统
  * 设置连接状态的实时监控、状态报告和异常处理机制
  */
-void CoreEngineInitializenetworkConnectionPoolStatusMonitor(void
+void CoreEngineInitializeNetworkConnectionPoolStatusMonitor(void)
 {
   char ConnectionStringBuffer;
   void *ConnectionPoolPointer;
@@ -127600,8 +127600,8 @@ uint8_t ProcessMemoryAllocationFlags(uint32_t CharacterCode,uint64_t Utf8BufferS
   *(uint32_t *)(DataStructureCounter + 0x1704) = *(uint32_t *)(DataStructureCounter + 0x1744);
   SetCharacterEncodingBufferSize(6,*(uint32_t *)(DataStructureCounter + 0x1664));
   SetCharacterEncodingBufferSize(7,*(uint32_t *)(DataStructureCounter + 0x1668));
-  FUN_18012da40(1,DataStructureCounter + 0x165c);
-  SystemChecksumValue = FUN_1801283f0(0,CharacterCode,Utf8BufferSize);
+  SetCharacterEncodingInputBuffer(1,DataStructureCounter + 0x165c);
+  SystemChecksumValue = ProcessSystemDataAndParametersEx(0,CharacterCode,Utf8BufferSize);
   MemoryBoundaryEnd = SystemConfigurationHandle;
   SystemDataTablePointer = (long long)*(int *)(SystemConfigurationHandle + 0x1b90);
   DataStructureCounter = *(long long *)(SystemConfigurationHandle + 0x1b98);
@@ -128544,7 +128544,7 @@ float * ProcessSystemFloatDataAndInitializeBuffer(float *Utf8InputBuffer,long lo
   if ((MemoryAllocationIndex9 >> 0x1a & 1) != 0) {
     PrimaryProcessingStatusFlag7 = (uint32_t *              ((long long)*(int *)(DataStructureCounter + 0x1bc0) * 0x30 + *(long long *)(DataStructureCounter + 0x1bb8));
     *(long long **)(PrimaryProcessingStatusFlag7 + 2) = pSystemMemoryOffset238;
-    FUN_18013df80((int *)(DataStructureCounter + 0x1bc0),PrimaryProcessingStatusFlag7);
+    FinalizeSystemDataStructure((int *)(DataStructureCounter + 0x1bc0),PrimaryProcessingStatusFlag7);
     *(uint32_t *)(pSystemMemoryOffset238 + 0x18) = *PrimaryProcessingStatusFlag7;
   }
   if ((0 < (int)ProcessingStatusFlag) && ((MemoryAllocationIndex9 >> 0x18 & 1) == 0)) {
@@ -128581,7 +128581,7 @@ float * ProcessSystemFloatDataAndInitializeBuffer(float *Utf8InputBuffer,long lo
     else {
       LowByte = true;
     }
-    FUN_18012de80();
+    FinalizeSystemBuffer();
   }
   if (*(int *)(DataStructureCounter + 0x1bd8) == 0) {
     if (CoreEngineIntegerValue200 != iStack_1b8) {
@@ -130269,7 +130269,7 @@ LAB_18012ce0f:
     else {
       hasMemoryBoundaryChanged = true;
     }
-    FUN_18012de80();
+    FinalizeSystemBuffer();
   }
   if (*(int *)(MemoryPoolBlockSize + 0x1bd8) == 0) {
     FloatValue32 = FrameRegisterPointer[-0x10];
@@ -132107,7 +132107,7 @@ LAB_18012ce0f:
     else {
       hasMemoryBoundaryChanged = true;
     }
-    FUN_18012de80();
+    FinalizeSystemBuffer();
   }
   if (*(int *)(RegisterSourceIndex + 0x1bd8) == 0) {
     FloatValue31 = FrameRegisterPointer[-0x10];
@@ -143998,7 +143998,16 @@ da33(voidvoid FUN_18012da33(void
 
 
 
-da40(int CharacterCode,uint64_t *Utf8InputBufferSizevoid FUN_18012da40(int CharacterCode,uint64_t *Utf8InputBufferSize
+/**
+ * @brief 设置字符编码输入缓冲区
+ * 
+ * 设置字符编码的输入缓冲区，用于存储字符编码数据
+ * 
+ * @param CharacterCode 字符编码值
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @return void 无返回值
+ */
+void SetCharacterEncodingInputBuffer(int CharacterCode, uint64_t *Utf8InputBufferSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
