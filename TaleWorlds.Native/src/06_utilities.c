@@ -2236,17 +2236,17 @@
 // 功能：执行系统命令和操作
 #define ExecuteSystemCommand FUN_18009fb60
 
-// 原始函数名：FUN_1800f7260 - 数据处理函数A0
+// 原始函数名：ProcessDataOperationA0 - 数据处理函数A0
 // 功能：处理数据和缓冲区操作
-#define ProcessDataOperationA0 FUN_1800f7260
+#define ProcessDataOperationA0 ProcessDataOperationA0
 
-// 原始函数名：FUN_1800f7320 - 数据处理函数A1
+// 原始函数名：ProcessDataOperationA1 - 数据处理函数A1
 // 功能：处理数据和验证操作
-#define ProcessDataOperationA1 FUN_1800f7320
+#define ProcessDataOperationA1 ProcessDataOperationA1
 
-// 原始函数名：FUN_180058210 - 数据验证函数A0
+// 原始函数名：ValidateDataIntegrityA0 - 数据验证函数A0
 // 功能：验证数据完整性和状态
-#define ValidateDataIntegrityA0 FUN_180058210
+#define ValidateDataIntegrityA0 ValidateDataIntegrityA0
 
 // 原始函数名：FUN_180893d8f - 数据同步处理函数A0
 // 功能：处理数据同步操作
@@ -3473,9 +3473,9 @@
 #define DataConfigurationTableA4 UNK_1809865f0
 
 // 系统核心函数宏定义
-// 原始函数名：FUN_180058210 - 异常处理函数A0
+// 原始函数名：ValidateDataIntegrityA0 - 异常处理函数A0
 // 功能：处理系统异常和资源清理
-#define ProcessSystemExceptionA0 FUN_180058210
+#define ProcessSystemExceptionA0 ValidateDataIntegrityA0
 
 // 原始函数名：FUN_1800587d0 - 系统资源处理函数A0
 // 功能：处理系统资源和异常状态
@@ -4355,9 +4355,9 @@
 // 功能：处理系统资源并执行清理
 #define ProcessSystemResourcesWithCleanup FUN_18004b790
 
-// 原始函数名：FUN_180058210 - 系统数据处理函数
+// 原始函数名：ValidateDataIntegrityA0 - 系统数据处理函数
 // 功能：处理系统数据并执行验证
-#define ProcessSystemDataWithValidation FUN_180058210
+#define ProcessSystemDataWithValidation ValidateDataIntegrityA0
 
 // 原始函数名：FUN_1800587d0 - 系统事件处理函数
 // 功能：处理系统事件并执行回调
@@ -80044,6 +80044,34 @@ void Unwind_18090e400(DataBuffer operationBase,int64_t dataBuffer)
 }
 
 
+
+// 原始函数名：FUN_1800e7ca0 - 内存操作处理函数A0
+// 功能：处理内存操作和数据验证
+#define ProcessMemoryOperationA0 FUN_1800e7ca0
+
+// 原始函数名：FUN_1801b9690 - 内存操作处理函数A1
+// 功能：处理内存操作和数据验证
+#define ProcessMemoryOperationA1 FUN_1801b9690
+
+// 原始函数名：FUN_1800e7f20 - 内存操作处理函数A2
+// 功能：处理内存操作和数据验证
+#define ProcessMemoryOperationA2 FUN_1800e7f20
+
+// 原始函数名：FUN_1800e7b80 - 内存操作处理函数A3
+// 功能：处理内存操作和数据验证
+#define ProcessMemoryOperationA3 FUN_1800e7b80
+
+// 原始函数名：FUN_1800e7d00 - 内存操作处理函数A4
+// 功能：处理内存操作和数据验证
+#define ProcessMemoryOperationA4 FUN_1800e7d00
+
+// 原始函数名：FUN_1800e7c40 - 内存操作处理函数A5
+// 功能：处理内存操作和数据验证
+#define ProcessMemoryOperationA5 FUN_1800e7c40
+
+// 原始函数名：FUN_1800e7be0 - 内存操作处理函数A6
+// 功能：处理内存操作和数据验证
+#define ProcessMemoryOperationA6 FUN_1800e7be0
 
 void Unwind_18090e410(DataBuffer operationBase,int64_t dataBuffer)
 
