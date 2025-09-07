@@ -13989,10 +13989,20 @@ DataBuffer ValidateDataIntegrity(int64_t dataStructure, int64_t exceptionHandler
 
 
 
-// 函数: void ProcessUtilityDataStructure(int64_t dataStructurePointer,int64_t contextPointer)
-// 功能：处理工具系统数据结构，根据上下文参数执行相应的数据处理操作
-void ProcessUtilityDataStructure(int64_t dataStructurePointer,int64_t contextPointer)
-
+/**
+ * @brief 处理工具系统数据结构
+ * 
+ * 该函数负责处理工具系统的数据结构，根据上下文参数执行相应的数据处理操作。
+ * 它会分配系统缓冲区，验证上下文，然后遍历数据结构进行处理。
+ * 
+ * @param dataStructurePointer 数据结构指针，包含数据处理的相关信息
+ * @param contextPointer 上下文指针，包含系统上下文和配置信息
+ * 
+ * @note 函数使用链表结构处理数据节点
+ * @note 包含内存分配和清理操作
+ * @note 使用系统状态检查来控制处理流程
+ */
+void ProcessUtilityDataStructure(int64_t dataStructurePointer, int64_t contextPointer)
 {
   int64_t *dataNodePointer;
   int validationResult;
@@ -14001,28 +14011,44 @@ void ProcessUtilityDataStructure(int64_t dataStructurePointer,int64_t contextPoi
   int64_t *currentNodePointer;
   DataBuffer systemContextBuffer[2];
   
+  // 上下文指针偏移量常量
+  const int ContextValidationOffset = CONTEXT_DATA_OFFSET_90;
+  const int ContextListHeadOffset = CONTEXT_POINTER_OFFSET_50;
+  const int ContextSystemOffset = SystemContextPointerOffset;
+  const int DataStructureFlagOffset = DATA_STRUCTURE_OFFSET_EXCEPTION_HANDLER;
+  const int NodeHeaderSize = 8;  // 节点头大小
+  const int NodeDataOffset = 16; // 节点数据偏移量
+  
   currentNodePointer = (int64_t *)0x0;
   systemContextBuffer[0] = 0;
   validationResult = AllocateSystemBufferCA0(systemContextBuffer);
-  if ((validationResult == 0) && (validationResult = ValidateContextA0(*(DataBuffer *)(contextPointer + CONTEXT_DATA_OFFSET_90)), validationResult == 0)) {
-    nextNodePointer = (int64_t *)(*(int64_t *)(contextPointer + CONTEXT_POINTER_OFFSET_50) + -8);
-    if (*(int64_t *)(contextPointer + CONTEXT_POINTER_OFFSET_50) == 0) {
+  
+  if ((validationResult == 0) && 
+      (validationResult = ValidateContextA0(*(DataBuffer *)(contextPointer + ContextValidationOffset)), validationResult == 0)) {
+    
+    // 初始化链表遍历
+    nextNodePointer = (int64_t *)(*(int64_t *)(contextPointer + ContextListHeadOffset) - NodeHeaderSize);
+    if (*(int64_t *)(contextPointer + ContextListHeadOffset) == 0) {
       nextNodePointer = currentNodePointer;
     }
+    
     dataNodePointer = currentNodePointer;
     if (nextNodePointer != (int64_t *)0x0) {
       dataNodePointer = nextNodePointer + 1;
     }
+    
+    // 遍历数据结构
     do {
-      if (dataNodePointer == (int64_t *)(contextPointer + CONTEXT_POINTER_OFFSET_50)) {
-        if (*(char *)(dataStructurePointer + DATA_STRUCTURE_OFFSET_EXCEPTION_HANDLER) != '\0') {
+      if (dataNodePointer == (int64_t *)(contextPointer + ContextListHeadOffset)) {
+        if (*(char *)(dataStructurePointer + DataStructureFlagOffset) != '\0') {
           InitializeSystemContextA0(contextPointer);
         }
         break;
       }
+      
       nextNodePointer = dataNodePointer;
-      if (dataNodePointer != (int64_t *)(contextPointer + SystemContextPointerOffset)) {
-        previousNodePointer = (int64_t *)(*dataNodePointer + -8);
+      if (dataNodePointer != (int64_t *)(contextPointer + ContextSystemOffset)) {
+        previousNodePointer = (int64_t *)(*dataNodePointer - NodeHeaderSize);
         if (*dataNodePointer == 0) {
           previousNodePointer = currentNodePointer;
         }
@@ -14031,14 +14057,17 @@ void ProcessUtilityDataStructure(int64_t dataStructurePointer,int64_t contextPoi
           nextNodePointer = previousNodePointer + 1;
         }
       }
+      
       previousNodePointer = dataNodePointer + 2;
       if (dataNodePointer == (int64_t *)0x0) {
         previousNodePointer = (int64_t *)&DefaultDataNodePointer;
       }
       dataNodePointer = nextNodePointer;
+      
     } while ((*previousNodePointer == 0) || (validationResult = CheckSystemStateCW0(contextPointer), validationResult == 0));
   }
-    CleanupSystemResourceCA0(systemContextBuffer);
+  
+  CleanupSystemResourceCA0(systemContextBuffer);
 }
 
 
