@@ -81239,7 +81239,14 @@ void ProcessSystemConfigurationA1(DataBuffer operationBase,int64_t dataBuffer,Da
 
 
 
-void Unwind_18090a2f0(void)
+/**
+ * @brief 互斥锁销毁函数
+ * 
+ * 该函数销毁互斥锁资源，释放锁占用的内存。
+ * 
+ * @note 原始函数名：Unwind_18090a2f0
+ */
+void DestroyMutexLock(void)
 
 {
   _Mtx_destroy_in_situ();
