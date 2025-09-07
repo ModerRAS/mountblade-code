@@ -60888,7 +60888,19 @@ void Unwind_180906b90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906ba0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 从嵌套偏移量调用异常处理器
+ * 
+ * 该函数从嵌套的偏移量（0x20+0x18）处获取异常上下文指针，然后调用相应的异常处理器。
+ * 这是一个用于处理嵌套异常的函数调用包装器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906ba0
+ * @note 这是一个异常展开（unwind）处理函数，用于嵌套异常处理
+ */
+void InvokeExceptionHandlerFromNestedOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -61442,7 +61454,21 @@ void CleanupResourceReferenceCount6cc0(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_180906cd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理0x118偏移量的异常资源引用计数
+ * 
+ * 该函数负责清理位于数据缓冲区0x118偏移量处的异常资源引用计数。它会验证资源指针的有效性，
+ * 计算内存偏移量，并递减引用计数。当引用计数归零时，会调用异常处理器。
+ * 这是异常展开机制的重要组成部分，确保资源在异常处理过程中被正确释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906cd0
+ * @note 这是一个异常展开（unwind）处理函数，用于资源引用计数清理
+ * @note 函数操作0x118偏移量处的资源指针
+ */
+void CleanupExceptionResourceReferenceCountAtOffset118(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -61478,7 +61504,22 @@ void Unwind_180906cd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906ce0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证异常上下文指针范围
+ * 
+ * 该函数验证位于0xf8到0x100偏移量范围内的异常上下文指针。它会遍历这个范围内的所有指针，
+ * 检查它们是否为0。如果发现任何非零指针，会调用系统终止函数。
+ * 这是一个异常状态验证函数，用于确保异常上下文的完整性。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文指针范围
+ * 
+ * @note 原始函数名：Unwind_180906ce0
+ * @note 这是一个异常展开（unwind）处理函数，用于异常上下文验证
+ * @note 函数检查0xf8到0x100偏移量范围内的指针
+ * @warning 如果发现异常状态，会调用系统终止函数
+ */
+void ValidateExceptionContextPointerRange(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -61497,7 +61538,21 @@ void Unwind_180906ce0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906cf0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理0xf8偏移量的异常资源引用计数
+ * 
+ * 该函数负责清理位于数据缓冲区0xf8偏移量处的异常资源引用计数。它会验证资源指针的有效性，
+ * 计算内存偏移量，并递减引用计数。当引用计数归零时，会调用异常处理器。
+ * 这是异常展开机制的重要组成部分，确保资源在异常处理过程中被正确释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906cf0
+ * @note 这是一个异常展开（unwind）处理函数，用于资源引用计数清理
+ * @note 函数操作0xf8偏移量处的资源指针
+ */
+void CleanupExceptionResourceReferenceCountAtOffsetF8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
