@@ -70495,8 +70495,22 @@ void ProcessUITextureData(undefined8 uiContext,int dataSource,undefined4 targetB
 
 
 
- void FUN_1807048a0(int uiContext,int dataSource,int targetBuffer,longlong bufferSize,int resultPointer,uint param_6,
-void FUN_1807048a0(int uiContext,int dataSource,int targetBuffer,longlong bufferSize,int resultPointer,uint param_6,
+ /**
+ * @brief 处理UI布局数据
+ * 
+ * 处理UI系统的布局数据，包括布局计算和尺寸调整
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7
+ * 
+ * @note 原始函数名: FUN_1807048a0
+ */
+void ProcessUILayoutData(int uiContext,int dataSource,int targetBuffer,longlong bufferSize,int resultPointer,uint param_6,
                   longlong param_7)
 
 {
@@ -70576,8 +70590,19 @@ void FUN_1807048a0(int uiContext,int dataSource,int targetBuffer,longlong buffer
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180704a20(undefined8 uiContext,int dataSource,undefined4 targetBuffer,undefined8 bufferSize)
-void FUN_180704a20(undefined8 uiContext,int dataSource,undefined4 targetBuffer,undefined8 bufferSize)
+ /**
+ * @brief 处理UI事件数据
+ * 
+ * 处理UI系统的事件数据，包括事件分发和处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名: FUN_180704a20
+ */
+void ProcessUIEventData(undefined8 uiContext,int dataSource,undefined4 targetBuffer,undefined8 bufferSize)
 
 {
   undefined1 astackUInt108 [20];
@@ -70597,8 +70622,18 @@ void FUN_180704a20(undefined8 uiContext,int dataSource,undefined4 targetBuffer,u
 
 
 
- void FUN_180705180(longlong *uiContext,int dataSource,int targetBuffer)
-void FUN_180705180(longlong *uiContext,int dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI数据写入
+ * 
+ * 处理UI系统的数据写入操作，包括数据验证和存储
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * 
+ * @note 原始函数名: FUN_180705180
+ */
+void ProcessUIDataWrite(longlong *uiContext,int dataSource,int targetBuffer)
 
 {
   int uiOperationResult;
