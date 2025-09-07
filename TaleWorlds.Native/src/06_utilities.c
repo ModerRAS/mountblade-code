@@ -50192,7 +50192,16 @@ void DestroyMutex(void)
 
 
 
-void Unwind_180904e10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器C0
+ * 
+ * 该函数用于在数据缓冲区的指定位置设置默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180904e10
+ */
+void SetDefaultExceptionHandlerC0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0xc0) = &DefaultExceptionHandlerB;
@@ -50201,7 +50210,16 @@ void Unwind_180904e10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904e20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器E8
+ * 
+ * 该函数用于在数据缓冲区的指定位置设置默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180904e20
+ */
+void SetDefaultExceptionHandlerE8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0xe8) = &DefaultExceptionHandlerB;
@@ -50210,7 +50228,16 @@ void Unwind_180904e20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904e30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行数据缓冲区清理回调
+ * 
+ * 该函数用于在数据缓冲区清理时执行相关的回调函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180904e30
+ */
+void ExecuteDataBufferCleanupCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0xa8) != (int64_t *)0x0) {
