@@ -170428,23 +170428,48 @@ long long GetCharacterTablePointerAndProcessData(void
 
 
 
-long long FUN_18013cf04(void
+/**
+ * @brief 处理系统内存最终化
+ * 
+ * 该函数负责最终化系统内存，包括数据大小计算、内存清理和状态重置。
+ * 它会处理系统上下文、模式索引和数据节点指针，确保系统内存处于正确的最终状态。
+ * 
+ * @return long long 返回处理后的系统内存大小或状态码
+ * 
+ * @note 原始函数名：FUN_18013cf04
+ */
+long long ProcessSystemMemoryFinalization(void)
 {
-  long long PrimaryDataSize;
+  long long SystemMemorySize;
   int *SystemContext;
   unsigned long long PatternIndex;
   long long DataNodePointer;
-  long long *NullPointerValue;
+  long long *MemoryStatusPointer;
   
+  // 获取系统上下文
+  SystemContext = (int *)GetSystemContext();
+  DataNodePointer = GetSystemDataNodePointer();
+  
+  // 处理模式索引验证
+  PatternIndex = GetCurrentPatternIndex();
   if (*(unsigned long long *)(SystemContext + 2) != PatternIndex) {
     PatternIndex = (unsigned long long)(*SystemContext - 1);
+    UpdatePatternIndex(PatternIndex);
   }
-  *NullPointerValue = (long long)(int)PatternIndex;
-  CharacterTablePointer = 0x180c82861;
+  
+  // 设置内存状态
+  MemoryStatusPointer = GetMemoryStatusPointer();
+  *MemoryStatusPointer = (long long)(int)PatternIndex;
+  
+  // 获取字符表指针
+  CharacterTablePointer = GetCharacterTableBaseAddress();
   if (*(long long *)(DataNodePointer + 0x2e10) != 0) {
     CharacterTablePointer = *(long long *)(DataNodePointer + 0x2e10);
   }
-  return LoopCounter;
+  
+  // 计算并返回系统内存大小
+  SystemMemorySize = CalculateSystemMemorySize();
+  return SystemMemorySize;
 }
 
 
@@ -170575,7 +170600,20 @@ uint64_t * ProcessCharacterCodeValidation(uint64_t CharacterCode,uint64_t Utf8Bu
 
 
 
-uint64_t * FUN_18013cf5d(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint Utf8SourcePointer,byte *Utf16EndPointer
+/**
+ * @brief 处理UTF-16字符编码转换
+ * 
+ * 该函数负责处理UTF-16字符编码的转换操作，包括字符验证、内存分配和缓冲区管理
+ * 
+ * @param CharacterCode 要处理的字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回处理后的字符状态缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18013cf5d
+ */
+uint64_t * ProcessUtf16CharacterEncodingConversion(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint Utf8SourcePointer,byte *Utf16EndPointer
 {
   uint32_t *CharacterStatusBuffer;
   byte SystemHighByte;
