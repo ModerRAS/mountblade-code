@@ -73147,53 +73147,54 @@ void FUN_1807079df(undefined8 uiContext,int dataSource)
 
 
  void FUN_180707a56(void)
-void FUN_180707a56(void)
+void InitializeUILayoutSystem(void)
 
 {
-  ulonglong result;
-  undefined8 *psemaphoreHandle;
-  undefined8 uVar3;
-  int localInt4;
-  int localInt5;
-  longlong contextData;
-  longlong localLong7;
-  float *plocalFloat8;
-  int localInt9;
-  ulonglong result0;
+  ulonglong layoutElementCount;
+  undefined8 *puiElementHandle;
+  undefined8 elementData;
+  int elementStartIndex;
+  int elementEndIndex;
+  longlong elementOffset;
+  longlong loopCounter;
+  float *playoutFloatArray;
+  int layoutDimension;
+  ulonglong processedElementCount;
+  int layoutWidth;
   int uiOperationResult1;
-  longlong unmodifiedRBP;
-  int unmodifiedESI;
+  longlong layoutContext;
+  int layoutHeight;
   int uiOperationResult2;
   int uiOperationResult3;
-  ulonglong result4;
-  uint result5;
-  int unmodifiedR12D;
-  bool isCharacterMatch7;
-  float floatResult8;
-  float floatResult9;
-  float localFloat20;
-  undefined8 *stackParam000000d8;
-  ulonglong result6;
+  ulonglong totalElements;
+  uint elementIndex;
+  int layoutXPosition;
+  bool isElementValid;
+  float minValue;
+  float maxValue;
+  float accumulatedValue;
+  undefined8 *stackLayoutData;
+  ulonglong elementCounter;
   
-  *(int *)(unmodifiedRBP + 0x1d1c) = unmodifiedESI - unmodifiedR12D;
-  *(undefined4 *)stackParam000000d8 = 0;
-  localInt9 = *(int *)(unmodifiedRBP + 0x2054);
-  localInt5 = *(int *)(unmodifiedRBP + 0x2050);
-  localInt4 = localInt5 - localInt9;
-  uiOperationResult2 = localInt4 + 100;
-  if (-1 < localInt4) {
-    uiOperationResult2 = localInt4;
+  *(int *)(layoutContext + 0x1d1c) = layoutHeight - layoutXPosition;
+  *(undefined4 *)stackLayoutData = 0;
+  layoutDimension = *(int *)(layoutContext + 0x2054);
+  elementEndIndex = *(int *)(layoutContext + 0x2050);
+  elementStartIndex = elementEndIndex - layoutDimension;
+  uiOperationResult2 = elementStartIndex + 100;
+  if (-1 < elementStartIndex) {
+    uiOperationResult2 = elementStartIndex;
   }
-  result4 = 0;
-  localInt4 = 0;
-  if (((*(int *)(unmodifiedRBP + 8) / 0x32 < unmodifiedR12D) && (localInt9 != localInt5)) &&
-     (localInt9 = localInt9 + 1, localInt9 == 100)) {
-    localInt9 = 0;
+  totalElements = 0;
+  elementStartIndex = 0;
+  if (((*(int *)(layoutContext + 8) / 0x32 < layoutXPosition) && (layoutDimension != elementEndIndex)) &&
+     (layoutDimension = layoutDimension + 1, layoutDimension == 100)) {
+    layoutDimension = 0;
   }
   uiOperationResult1 = 1;
-  uiOperationResult3 = localInt9 + -1;
-  if (localInt9 != localInt5) {
-    uiOperationResult3 = localInt9;
+  uiOperationResult3 = layoutDimension + -1;
+  if (layoutDimension != elementEndIndex) {
+    uiOperationResult3 = layoutDimension;
   }
   if (uiOperationResult3 < 0) {
     uiOperationResult3 = 99;
