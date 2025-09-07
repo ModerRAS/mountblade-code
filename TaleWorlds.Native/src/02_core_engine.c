@@ -33409,7 +33409,7 @@ void InitializeSystemDataStructure(uint64_t *dataStructurePointer
  * 该函数负责释放核心引擎的资源句柄和相关内存
  * 用于资源管理和内存清理
  */
-uint64_t *CoreEngineReleaseResourceHandle(uint64_t *ResourceHandle,unsigned long long ResourceFlags,uint64_t UnusedParam1,uint64_t UnusedParam2
+uint64_t *CoreEngineReleaseResourceHandle(uint64_t *ResourceHandle,unsigned long long ResourceFlags,uint64_t UnusedParam1,uint64_t UnusedParam2)
 {
   uint64_t MemoryFreeFlag;
   
@@ -252632,7 +252632,7 @@ int ValidateUtf8StringEncoding(long long CharacterCode,long long Utf8BufferSize)
   long long SystemLoopCounter;
   long long *Utf8BufferPointer;
   
-  MemoryBlockIndex = FUN_18020fa10(*(void *)(CharacterCode + 0x1f8));
+  MemoryBlockHandle = FUN_18020fa10(*(void *)(CharacterCode + 0x1f8));
   if (MemoryBlockIndex != 0) {
     return *(int *)(MemoryBlockIndex + 0x54);
   }

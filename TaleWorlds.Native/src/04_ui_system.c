@@ -7622,28 +7622,28 @@ UIEventTypeSelectCheck:
       }
     }
   }
-  else if (iStack_20 == 0xb) {
-    compareResult = strcmp(lStack_28,&UIEventTypeAxis);
+  else if (eventTypeIndex == 0xb) {
+    compareResult = strcmp(eventDataPtr,&UIEventTypeAxis);
     if (compareResult == 0) {
 UIAxisEventProcessing:
-      if ((iStack_40 == 1) &&
-         (((*pcStack_48 != 'x' || (pcStack_48[1] != '\0')) && (*pcStack_48 == 'y')))) {
-        bVar8 = pcStack_48[1] == '\0';
+      if ((stringLength == 1) &&
+         (((*eventStringPtr != 'x' || (eventStringPtr[1] != '\0')) && (*eventStringPtr == 'y')))) {
+        EventProcessingResult = eventStringPtr[1] == '\0';
         goto LAB_180655bea;
       }
     }
   }
-  else if (iStack_20 == 0x16) {
-    compareResult = strcmp(lStack_28,&UIEventTypeBlur);
-    if (((compareResult == 0) && (iStack_40 == 1)) && ((*pcStack_48 != 'x' || (pcStack_48[1] != '\0')))) {
-      if ((*pcStack_48 == 'y') && (pcStack_48[1] == '\0')) {
+  else if (eventTypeIndex == 0x16) {
+    compareResult = strcmp(eventDataPtr,&UIEventTypeBlur);
+    if (((compareResult == 0) && (stringLength == 1)) && ((*eventStringPtr != 'x' || (eventStringPtr[1] != '\0')))) {
+      if ((*eventStringPtr == 'y') && (eventStringPtr[1] == '\0')) {
         eventTypeCode = 4;
         goto LAB_180655685;
       }
-      if (*pcStack_48 == 'z') {
-        bVar8 = pcStack_48[1] == '\0';
+      if (*eventStringPtr == 'z') {
+        EventProcessingResult = eventStringPtr[1] == '\0';
 LAB_1806559dc:
-        if (bVar8) {
+        if (EventProcessingResult) {
           eventTypeCode = 8;
           goto LAB_180655685;
         }
