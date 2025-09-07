@@ -72155,7 +72155,18 @@ BufferCompareLoop:
 
 
 
-ulonglong FUN_180706d32(byte *uiContext,int dataSource)
+/**
+ * @brief 计算UI数据偏移量
+ * 
+ * 根据UI上下文和数据源计算数据偏移量，用于数据访问和定位。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源索引
+ * @return 计算得到的偏移量
+ * 
+ * @note 原始函数名: FUN_180706d32
+ */
+ulonglong CalculateUIDataOffset(byte *uiContext,int dataSource)
 
 {
   byte *pisCharacterMatch;
@@ -72463,7 +72474,19 @@ int ValidateUIDataAndProcessBufferOperation(undefined8 uiContext,undefined8 data
 
 
 
-float FUN_1807070a0(longlong uiContext,float *dataSource,int targetBuffer)
+/**
+ * @brief 获取UI浮点数据
+ * 
+ * 从UI上下文中获取浮点类型的数据。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @return 获取到的浮点数据
+ * 
+ * @note 原始函数名: FUN_1807070a0
+ */
+float GetUIFloatData(longlong uiContext,float *dataSource,int targetBuffer)
 
 {
   float *pfloatResult;
