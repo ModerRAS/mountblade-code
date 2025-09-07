@@ -307,6 +307,15 @@
 #define EventSystemIdentifier1          0x45b8d074df27d12f  // 事件系统标识符1
 #define EventSystemIdentifier2          0x8d98f4c06880eda4  // 事件系统标识符2
 #define ResourceSystemIdentifier1       0x42d293584c8cf3e5  // 资源系统标识符1
+
+// 系统资源管理器操作常量
+#define SystemResourceManagerLockStatusOffset      0x3530  // 系统资源管理器锁状态偏移量
+#define SystemResourceManagerMemoryPointerOffset   0x3538  // 系统资源管理器内存指针偏移量
+#define SystemResourceManagerThreadContextOffset   0x28    // 系统资源管理器线程上下文偏移量
+#define SystemResourceLockAcquiredFlag            0x1     // 系统资源锁获取标志
+#define SystemResourceLockReleaseFlag              0x7fffffff // 系统资源锁释放标志
+#define SystemResourceLockAcquireValue             -0x80000000 // 系统资源锁获取值
+#define SystemResourceAllocationStep               0x1a8   // 系统资源分配步长
 #define ResourceSystemIdentifier2       0x355ffeb2d29e668a  // 资源系统标识符2
 #define GameCoreSystemIdentifier1       0x123456789abcdef0  // 游戏核心系统标识符1
 #define GameCoreSystemIdentifier2       0x0987654321fedcba  // 游戏核心系统标识符2
