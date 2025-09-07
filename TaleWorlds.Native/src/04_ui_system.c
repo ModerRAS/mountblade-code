@@ -1,6 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// UI系统备用函数指针宏定义 - 用于CPU特性检测时的备用实现
 #define UIEventDispatchFallbackPtr (code *)&UIEventDispatchFallbackFunction
 #define UIStateUpdateFallbackPtr (code *)&UIStateUpdateFallbackFunction
 #define UIComponentSyncFallbackPtr (code *)&UIComponentSyncFallbackFunction
@@ -40,25 +39,12 @@
 
 #define InitializeUIMemoryPool InitializeUIMemoryPool
 
-// UI系统事件处理函数宏定义
 #define ValidateEventDataStructure ValidateEventDataStructure
 #define ProcessUIComponentRegistration ProcessUIComponentRegistration
 #define ValidateUIComponentData ValidateUIComponentData
 #define ProcessUIEventChainValidation ProcessUIEventChainValidation
 #define TerminateUIEventProcessing TerminateUIEventProcessing
 
-/**
- * @brief 验证UI组件
- * 
- * 该函数负责验证UI组件的有效性和完整性
- * 
- * @param componentPtr 组件指针
- * @param param2 参数2
- * @param param3 参数3
- * @param resultPtr 结果指针
- * @return 验证结果状态码
- * @note 原始函数名: ValidateUIComponent
- */
 #define ValidateUIComponent ValidateUIComponent
 
 /**
@@ -66133,8 +66119,17 @@ void MoveUIBufferData(longlong uiContext)
 
 
 
- void FUN_18069bebb(longlong uiContext)
-void FUN_18069bebb(longlong uiContext)
+ /**
+ * @brief 处理UI数据缓冲区的内存操作
+ * 
+ * 该函数负责处理UI数据缓冲区的内存复制和重新排列操作，
+ * 主要用于优化UI数据的存储布局和访问性能。
+ * 
+ * @param uiContext UI上下文指针
+ * @return 无返回值
+ * @note 原始函数名: FUN_18069bebb
+ */
+void ProcessUIDataBufferMemoryOperations(longlong uiContext)
 
 {
   uint functionResult;
@@ -66167,8 +66162,16 @@ void FUN_18069bebb(longlong uiContext)
 
 
 
- void FUN_18069bf80(void)
-void FUN_18069bf80(void)
+ /**
+ * @brief 执行UI内存复制操作
+ * 
+ * 该函数负责执行UI系统中的内存复制操作，
+ * 用于数据传输和缓冲区管理。
+ * 
+ * @return 无返回值
+ * @note 原始函数名: FUN_18069bf80
+ */
+void ExecuteUIMemoryCopyOperation(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -66180,8 +66183,17 @@ void FUN_18069bf80(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18069bfb0(code *uiContext)
-void FUN_18069bfb0(code *uiContext)
+ /**
+ * @brief 初始化UI上下文并管理关键区域
+ * 
+ * 该函数负责初始化UI上下文，管理关键区域的创建和销毁，
+ * 确保UI系统的线程安全性。
+ * 
+ * @param uiContext UI上下文指针
+ * @return 无返回值
+ * @note 原始函数名: FUN_18069bfb0
+ */
+void InitializeUIContextAndManageCriticalSection(code *uiContext)
 
 {
   int operationResult;
@@ -99971,8 +99983,8 @@ void FUN_180729cb8(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
 
 
 
- void FUN_180729d55(void)
-void FUN_180729d55(void)
+ void ProcessUIComponentData(void)
+void ProcessUIComponentData(void)
 
 {
   char cVar1;
@@ -100014,8 +100026,8 @@ void FUN_180729d55(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180729e70(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer)
-void FUN_180729e70(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer)
+ void TransferUIData(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer)
+void TransferUIData(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer)
 
 {
   ulonglong functionResult;
@@ -200145,7 +200157,7 @@ undefined8 FUN_18078b010(longlong uiContext,int dataSource)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18078b543(longlong uiContext)
+undefined8 ProcessUIEventChainValidation(longlong uiContext)
 
 {
   int operationResult;
@@ -299999,40 +300011,49 @@ void FUN_18084fcba(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18084fcd0(longlong *uiContext)
+/**
+ * @brief 在UI上下文中查找并处理组件
+ * 
+ * 该函数负责在UI上下文中根据特定的哈希值查找组件，
+ * 并处理组件的索引、字符串比较和内存管理操作。
+ * 
+ * @param uiContext UI上下文指针，包含组件状态和索引信息
+ * @return 操作结果状态码，0表示成功，非零表示错误
+ * @note 原始函数名: FUN_18084fcd0
+ */
+int FindAndProcessUIComponent(longlong *uiContext)
 
 {
-  uint functionResult;
+  uint searchResult;
   longlong componentIndex;
-  longlong stringCompareIndex;
-  uint uVar4;
-  uint uVar5;
-  longlong *pcontextData;
-  int *piVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong allocatedMemory0;
-  int operationResult1;
-  int operationResult2;
-  uint *pfunctionResult3;
-  uint *pfunctionResult4;
-  uint *pfunctionResult5;
-  longlong *pallocatedMemory6;
-  bool isCharacterMatch7;
-  uint uStack_68;
-  uint uStack_64;
-  uint uStack_60;
-  uint uStack_5c;
-  undefined8 uStack_58;
-  int iStack_50;
-  undefined4 uStack_4c;
-  int iStack_48;
-  undefined4 uStack_44;
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  int iStack_38;
-  undefined4 uStack_34;
-  undefined8 uStack_30;
+  longlong hashValue1;
+  uint componentData1;
+  uint componentData2;
+  longlong *contextDataPtr;
+  int *indexPtr;
+  longlong tempVar1;
+  longlong tempVar2;
+  longlong memoryPtr;
+  int operationStatus1;
+  int operationStatus2;
+  uint *dataBuffer1;
+  uint *dataBuffer2;
+  uint *dataBuffer3;
+  longlong *allocatedMemoryPtr;
+  bool isValidComponent;
+  uint stackData1;
+  uint stackData2;
+  uint stackData3;
+  uint stackData4;
+  undefined8 stackVar1;
+  int stackIndex1;
+  undefined4 stackVar2;
+  int stackIndex2;
+  undefined4 stackVar3;
+  undefined4 stackVar4;
+  int stackIndex3;
+  undefined4 stackVar5;
+  undefined8 stackVar6;
   
   componentIndex = uiContext[5];
   if (componentIndex != 0) {
