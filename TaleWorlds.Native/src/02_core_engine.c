@@ -180395,15 +180395,15 @@ LAB_ValidationComplete:
           ProcessingByte4 = DistanceThreshold == SystemContextPrimaryFloat;
           ValidationByteFlag3 = DistanceThreshold < SystemContextPrimaryFloat;
         }
-        if ((ValidationByteFlag3 || ProcessingByte4) && ((byte)SystemPriorityLevel < *(byte *)(EncodingConversionResult + 0x38))) goto LAB_18014ccbd;
+        if ((ValidationByteFlag3 || ProcessingByte4) && ((byte)SystemPriorityLevel < *(byte *)(EncodingConversionResult + 0x38))) goto LAB_AllocationFailed;
       }
       SystemStatusCode = 1;
-      goto LAB_18014ccc0;
+      goto LAB_MemoryAllocationComplete;
     }
   }
-LAB_18014ccbd:
+LAB_AllocationFailed:
   SystemStatusCode = 0;
-LAB_18014ccc0:
+LAB_MemoryAllocationComplete:
                     // WARNING: Subroutine does not return
   AllocateMemoryWithFlags(SystemStringIndex,EncodingConversionResult,StringOffset,SystemStatusCode);
 }
