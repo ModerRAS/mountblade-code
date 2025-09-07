@@ -99,6 +99,9 @@
 // 异常处理相关常量定义
 #define ExceptionCallbackOffset 0xb0
 #define ModuleResourceAllocationStatus 0x1e
+#define ResourceHandleArrayIndex 0
+#define ResourceHandleDataOffset 8
+#define ResourceCountThreshold 1
 
 // 异常资源清理函数E0相关常量
 #define ExceptionResourceCountOffset 0x50
@@ -10115,7 +10118,7 @@ uint64_t ProcessResourceAllocation(int64_t ResourceConfiguration, int64_t Resour
   int64_t LocalResourceBuffer[2];
   
   ValidationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ResourceConfiguration + ComponentHandleOffset), LocalResourceBuffer);
-  AllocatedResourceHandle = LocalResourceBuffer[0];
+  AllocatedResourceHandle = LocalResourceBuffer[ResourceHandleArrayIndex];
   if ((int32_t)ValidationResult != 0) {
     return ValidationResult;
   }
