@@ -92319,7 +92319,19 @@ void CleanupDataValidationFlag280(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809102b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源处理标志清理器2B0
+ * 
+ * 该函数负责清理资源处理标志，重置标志位并调用资源清理函数
+ * 如果资源处理标志位被设置，则清除标志并调用资源处理清理函数
+ * 
+ * @param operationBase 操作基址，用于资源处理管理
+ * @param dataBuffer 数据缓冲区，包含资源处理标志位和清理信息
+ * 
+ * @note 原始函数名：Unwind_1809102b0
+ * @note 该函数处理资源处理标志的清理和资源清理操作
+ */
+void CleanupResourceProcessingFlag2B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x40) & 1) != 0) {
@@ -92331,7 +92343,22 @@ void Unwind_1809102b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809102e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常资源批量清理器2E0
+ * 
+ * 该函数负责批量清理异常资源，遍历资源链表并调用清理函数
+ * 通过遍历资源指针链表，对每个资源调用相应的清理处理函数
+ * 如果资源链表为空，则直接返回，否则在清理完成后终止系统
+ * 
+ * @param operationBase 操作基址，用于资源批量清理
+ * @param dataBuffer 数据缓冲区，包含资源链表信息和异常数据
+ * @param operationFlagA 操作标志A，传递给资源清理函数
+ * @param operationFlagB 操作标志B，传递给资源清理函数
+ * 
+ * @note 原始函数名：Unwind_1809102e0
+ * @note 该函数处理资源链表的批量清理操作
+ */
+void CleanupExceptionResourceBatch2E0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
