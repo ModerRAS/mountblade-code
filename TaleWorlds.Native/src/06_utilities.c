@@ -45116,7 +45116,20 @@ void ExceptionHandlerA46(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180903ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器配置函数Ce0
+ * 
+ * 该函数负责配置异常处理器。它会获取异常处理器回调函数，
+ * 并在条件满足时调用该函数处理异常。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * @param operationFlagA 操作标志A，用于控制处理流程
+ * @param operationFlagB 操作标志B，用于控制处理流程
+ * 
+ * @note 原始函数名：Unwind_180903ce0
+ */
+void ExceptionHandlerA47(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -45130,7 +45143,21 @@ void Unwind_180903ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器配置函数Cf0
+ * 
+ * 该函数负责配置异常处理器。它会获取验证上下文，调用相关函数，
+ * 设置临时异常处理器，检查数据缓冲区状态，清除相关标志位，
+ * 并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * @param operationFlagA 操作标志A，用于控制处理流程
+ * @param operationFlagB 操作标志B，用于控制处理流程
+ * 
+ * @note 原始函数名：Unwind_180903cf0
+ */
+void ExceptionHandlerA48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
