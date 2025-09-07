@@ -10090,8 +10090,8 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
       if (ComponentValidationBuffer[0] == (int8_t)ComponentProcessStatus) {
         componentListContext = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
         componentSearchCounter = 0;
-        CurrentComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
-        if (0 < CurrentComponentCount) {
+        currentComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
+        if (0 < currentComponentCount) {
           CurrentComponentContext = (int64_t *)*ComponentListContext;
           ComponentLoopCounter = ComponentSearchCounter;
           do {
