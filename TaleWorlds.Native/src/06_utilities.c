@@ -35,6 +35,28 @@
 #define ResourcePrimaryDataOffset 0x90
 #define ResourceSecondaryDataOffset 800
 
+// 系统组件常量定义
+#define SystemComponentContextOffset 0x48
+#define SystemComponentDataOffset 0x38
+#define SystemComponentStatusOffset 0xe4
+#define SystemComponentListOffset 0x4d8
+#define SystemComponentCountOffset 0x4e4
+#define SystemComponentCapacityOffset 0x4e8
+#define SystemComponentActiveOffset 0x4e0
+#define SystemStateFlagsOffset 0x2d8
+#define SystemStateCheckBit 7
+#define MemoryRegionDataOffset 0x18
+#define MemoryRegionPointerOffset 0x10
+#define MemoryRegionBaseOffset 0x20
+#define MemoryRegionSizeOffset 0x28
+#define MemoryAccessPointerOffset 0x10
+#define ResourceDescriptorOffset 0x10
+#define ResourceDescriptorPrimaryOffset 0x18
+#define ResourceDescriptorSecondaryOffset 0x20
+#define ResourceDescriptorTertiaryOffset 0x24
+#define ResourceDescriptorQuaternaryOffset 0x1c
+#define SystemContextBufferOffset 8
+
 // Goto 标签宏定义 - 用于美化代码
 #define GOTO_ValidationFailed goto ExecuteSecurityValidation
 #define GOTO_SecurityCheckFailed goto ExecuteSystemSecurityCheck
@@ -8615,16 +8637,6 @@ void ValidateSystemState(void)
 uint64_t RegisterSystemComponent(int64_t componentHandle)
 
 {
-  // 组件句柄结构体偏移量定义
-  #define COMPONENT_HANDLE_OFFSET 0x10    // 组件句柄在结构体中的偏移量
-  #define SYSTEM_CONTEXT_OFFSET 0x48       // 系统上下文偏移量
-  #define COMPONENT_DATA_OFFSET 0x38       // 组件数据偏移量
-  #define COMPONENT_STATUS_OFFSET 0xe4     // 组件状态偏移量
-  #define COMPONENT_LIST_OFFSET 0x4d8      // 组件列表偏移量
-  #define COMPONENT_COUNT_OFFSET 0x4e4    // 组件计数偏移量
-  #define COMPONENT_CAPACITY_OFFSET 0x4e8  // 组件容量偏移量
-  #define COMPONENT_ACTIVE_OFFSET 0x4e0    // 组件活跃数偏移量
-  
   int64_t componentData;
   int64_t systemHandle;
   int32_t bufferSize;
@@ -8639,7 +8651,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   int64_t systemContextBuffer;
   int8_t dataValidationBuffer [16];
   
-  queryResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + COMPONENT_HANDLE_OFFSET),&systemContextBuffer);
+  queryResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
   if ((int)queryResult != 0) {
     return queryResult;
   }
@@ -71648,7 +71660,7 @@ void Unwind_18090bfb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090bfc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800c2ca0(*(int64_t *)(dataBuffer + 0x20) + 0x20,
+  ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x20) + 0x20,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x30),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -71659,7 +71671,7 @@ void Unwind_18090bfc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090bfd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800c2ff0(*(int64_t *)(dataBuffer + 0x20) + 0x50,
+  ValidateDataBufferA1(*(int64_t *)(dataBuffer + 0x20) + 0x50,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x60),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -71704,7 +71716,7 @@ void Unwind_18090c000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090c020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800c2ca0(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
+  ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -71714,7 +71726,7 @@ void Unwind_18090c020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090c030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800c2ca0(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
+  ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -71724,7 +71736,7 @@ void Unwind_18090c030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090c040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800c2ff0(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
+  ValidateDataBufferA1(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -71734,7 +71746,7 @@ void Unwind_18090c040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090c050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800c2ff0(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
+  ValidateDataBufferA1(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -71767,7 +71779,7 @@ void Unwind_18090c060(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090c070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800c2ca0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -71777,7 +71789,7 @@ void Unwind_18090c070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090c080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800c2ca0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -71787,7 +71799,7 @@ void Unwind_18090c080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090c090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800c2ff0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ValidateDataBufferA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -71797,7 +71809,7 @@ void Unwind_18090c090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090c0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800c2ff0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ValidateDataBufferA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -72233,7 +72245,7 @@ void Unwind_18090c260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090c270(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x180);
+  ProcessDataArrayA0(dataBuffer + 0x180);
   return;
 }
 
@@ -72296,7 +72308,7 @@ void Unwind_18090c2a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090c2b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x180);
+  ProcessDataArrayA0(dataBuffer + 0x180);
   return;
 }
 
@@ -72305,7 +72317,7 @@ void Unwind_18090c2b0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090c2c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x180);
+  ProcessDataArrayA0(dataBuffer + 0x180);
   return;
 }
 
@@ -84204,7 +84216,7 @@ void Unwind_18090fb10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090fb20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x280);
+  ProcessDataArrayA0(dataBuffer + 0x280);
   return;
 }
 
@@ -84231,7 +84243,7 @@ void Unwind_18090fb40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090fb50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x280);
+  ProcessDataArrayA0(dataBuffer + 0x280);
   return;
 }
 
@@ -84240,7 +84252,7 @@ void Unwind_18090fb50(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090fb60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x280);
+  ProcessDataArrayA0(dataBuffer + 0x280);
   return;
 }
 
@@ -84658,7 +84670,7 @@ void Unwind_18090fe90(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090fea0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x2a0);
+  ProcessDataArrayA0(dataBuffer + 0x2a0);
   return;
 }
 
@@ -84679,7 +84691,7 @@ void Unwind_18090feb0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090fee0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x2a0);
+  ProcessDataArrayA0(dataBuffer + 0x2a0);
   return;
 }
 
@@ -84688,7 +84700,7 @@ void Unwind_18090fee0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090fef0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x2a0);
+  ProcessDataArrayA0(dataBuffer + 0x2a0);
   return;
 }
 
@@ -93970,7 +93982,7 @@ void Unwind_180912850(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180912880(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x120);
+  ProcessDataArrayA0(dataBuffer + 0x120);
   return;
 }
 
@@ -93979,7 +93991,7 @@ void Unwind_180912880(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180912890(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x120);
+  ProcessDataArrayA0(dataBuffer + 0x120);
   return;
 }
 
@@ -93988,7 +94000,7 @@ void Unwind_180912890(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809128a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x120);
+  ProcessDataArrayA0(dataBuffer + 0x120);
   return;
 }
 
