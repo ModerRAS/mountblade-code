@@ -3748,15 +3748,15 @@ ModeValidationCheckLabel:
                       StackParameter12 = 0xf;
                       BufferSize1 = BufferSize9;
                       BufferSize8 = BufferSize9;
-                      if (0 < (int)(UnsignedIndex - 0xe)) goto Label_BufferSizeValidationCheck;
-                      goto Label_BufferSizeValidationComplete;
+                      if (0 < (int)(UnsignedIndex - 0xe)) goto BufferSizeValidationCheckLabel;
+                      goto BufferSizeValidationCompleteLabel;
                     }
                     if (UnsignedIndex == 0xf) {
                       LoopCounterValue = strcmp(pMemoryAddress1);
                       if (LoopCounterValue == 0) {
                         CharacterProcessingFlag = '\x01';
                         *(uint8_t *)(SystemControlDataAddress + 0x22) = 1;
-                        goto Label_SystemDataProcessing;
+                        goto SystemDataProcessingLabel;
                       }
 LabelNetworkProcessingExit:
                       BooleanCondition = false;
@@ -3769,33 +3769,33 @@ LabelNetworkProcessingExit:
 LabelStringProcessingExit:
                           ProcessNetworkData(SystemStringDataPointer,pMemoryAddress7);
                         }
-                        goto Label_DataProcessingComplete;
+                        goto DataProcessingCompleteLabel;
                       }
                       if (UnsignedIndex == 0x1a) {
                         LoopCounterValue = strcmp(pMemoryAddress1);
                         if (LoopCounterValue == 0) {
                           *(uint8_t *)(SystemControlDataAddress + 0x21) = 1;
-                          goto Label_SystemDataProcessing;
+                          goto SystemDataProcessingLabel;
                         }
-                        goto Label_DataProcessingComplete;
+                        goto DataProcessingCompleteLabel;
                       }
                       if (UnsignedIndex == 0x10) {
                         LoopCounterValue = strcmp(pMemoryAddress1);
                         if (LoopCounterValue == 0) {
                           SystemDataProcessingFlag = 0;
-                          goto Label_SystemDataProcessing;
+                          goto SystemDataProcessingLabel;
                         }
-                        goto Label_DataProcessingComplete;
+                        goto DataProcessingCompleteLabel;
                       }
                       if (UnsignedIndex == 0x18) {
                         LoopCounterValue = strcmp(pMemoryAddress1);
                         if (LoopCounterValue == 0) {
                           SystemNetworkEnabled = 1;
-                          goto Label_SystemDataProcessing;
+                          goto SystemDataProcessingLabel;
                         }
-                        goto Label_DataProcessingComplete;
+                        goto DataProcessingCompleteLabel;
                       }
-                      if (UnsignedIndex != 0x14) goto Label_DataProcessingComplete;
+                      if (UnsignedIndex != 0x14) goto DataProcessingCompleteLabel;
                       LoopCounterValue = strcmp(pMemoryAddress1);
                       BooleanCondition = LoopCounterValue == 0;
                     }
@@ -4027,9 +4027,9 @@ BufferSizeValidationCheckLabel:
     } while ((longlong)BufferSize8 < 0xf);
     if (BufferSize6 == 0xf) goto Label_BufferSizeValidationConfirmed;
   }
-Label_BufferSizeValidationComplete:
+BufferSizeValidationCompleteLabel:
   LoopCounterValue = -1;
-Label_BufferSizeValidationConfirmed:
+BufferSizeValidationConfirmedLabel:
   SystemDataProcess(&SystemBufferPointer310,&SystemBufferPointer128,LoopCounterValue + 0xf,pMemoryAddress4);
   SystemBufferPointerE8 = (uint64_t *)0x0;
   SystemBufferPointerE0 = (uint64_t *)0x0;

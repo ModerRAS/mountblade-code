@@ -69450,23 +69450,6 @@ void ResetSystemStatusFlags(void)
  * 
  * @see ProcessSystemDataA0, free
  */
-/**
- * @brief 验证上下文处理器函数
- * 
- * 该函数负责处理验证上下文，执行系统数据验证并清理验证上下文数组。
- * 它会保存当前的异常处理上下文指针，处理系统数据验证，然后重置验证上下文数组。
- * 最后设置验证上下文状态标志为0，并释放验证上下文指针数组的内存。
- * 
- * @param operationBase 操作基址
- * @param dataBuffer 数据缓冲区
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
- * 
- * @note 原始函数名：Unwind_180908050
- * @warning 此函数会释放内存，调用者需确保参数有效性
- * 
- * @see ProcessSystemDataA0, free
- */
 void ProcessValidationContext(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
