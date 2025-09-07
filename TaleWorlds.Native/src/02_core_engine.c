@@ -2367,6 +2367,15 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_180069130 - 系统数据处理和配置函数
 #define ProcessSystemDataAndConfigureEx FUN_180069130
 
+// 原始函数名：FUN_1800b9f60 - 系统初始化和配置函数
+#define InitializeSystemConfiguration FUN_1800b9f60
+
+// 原始函数名：FUN_180082a50 - 系统内存边界处理和计算函数
+#define ProcessMemoryBoundaryAndCalculate FUN_180082a50
+
+// 原始函数名：FUN_18009b220 - 系统上下文处理和配置函数
+#define ProcessSystemContextAndConfigure FUN_18009b220
+
 // 原始函数名：FUN_180291a50 - 系统数据验证函数
 #define ValidateSystemData FUN_180291a50
 
@@ -170027,7 +170036,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *SystemContextPointer,unsigned l
     pcStack_b0 = (code *)0x0;
     pcStack_a8 = _guard_check_icall;
     CoreEngineSignedValueC8 = SystemContextPointer;
-    FUN_180069130(aCoreEngineValueC0,SystemFlagBuffer);
+    ProcessSystemDataAndConfigureEx(aCoreEngineValueC0,SystemFlagBuffer);
     CoreEngineSignedValueA0 = CoreEngineSignedValueC8;
     pcStack_88 = FUN_18014f840;
     CharacterBuffer80 = FUN_18014f810;
@@ -170036,7 +170045,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *SystemContextPointer,unsigned l
     *(code **)(apSystemOperationFlag98[0] + 0x18) = _guard_check_icall;
     SystemValidationPointer = apSystemOperationFlag98[0];
     if (apSystemOperationFlag98[0] != aCoreEngineValueC0) {
-      FUN_180069130(apSystemOperationFlag98[0],aCoreEngineValueC0);
+      ProcessSystemDataAndConfigureEx(apSystemOperationFlag98[0],aCoreEngineValueC0);
     }
     *(long long *)(apSystemOperationFlag98[0] + 0x20) = CoreEngineSignedValueA0;
     if (pcStack_b0 != (code *)0x0) {
@@ -171202,7 +171211,7 @@ long long * FUN_18014acf0(long long SystemContextPointer,long long *Utf8BufferSi
   fStack_88 = MatrixElementE;
   fStack_84 = MatrixElementF;
   fStack_80 = MatrixElementG;
-  FUN_1800b9f60(&MatrixElementM);
+  InitializeSystemConfiguration(&MatrixElementM);
   SystemContextPointer[0x1f] = CONCAT44(MatrixElementN,MatrixElementM);
   SystemContextPointer[0x20] = CONCAT44(uStack_8c,MatrixElementO);
   SystemContextPointer[0x21] = CONCAT44(fStack_84,fStack_88);
@@ -171497,7 +171506,7 @@ long long * FUN_18014acf0(long long SystemContextPointer,long long *Utf8BufferSi
   *(uint32_t *)(RegisterFramePointer + -0x25) = MemoryAllocationSize;
   *(uint32_t *)(RegisterFramePointer + -0x21) = in_XMM2_Dc;
   *(uint32_t *)(RegisterFramePointer + -0x1d) = in_XMM2_Dd;
-  FUN_1800b9f60(RegisterFramePointer + -0x39);
+  InitializeSystemConfiguration(RegisterFramePointer + -0x39);
   MemoryAddressMask = *(void *)(RegisterFramePointer + -0x31);
   MemoryAllocationIndex0 = *(uint32_t *)(RegisterFramePointer + -9);
   CalculatedCodePoint = *(void *)(RegisterFramePointer + -0x29);
@@ -171709,7 +171718,7 @@ long long * FUN_18014acf0(long long SystemContextPointer,long long *Utf8BufferSi
   *(uint32_t *)(RegisterFramePointer + -0x25) = Utf16Char9;
   *(uint32_t *)(RegisterFramePointer + -0x21) = in_XMM2_Dc;
   *(uint32_t *)(RegisterFramePointer + -0x1d) = in_XMM2_Dd;
-  FUN_1800b9f60(RegisterFramePointer + -0x39);
+  InitializeSystemConfiguration(RegisterFramePointer + -0x39);
   MemoryAllocationIndex = *(void *)(RegisterFramePointer + -0x31);
   PrimaryReturnCode = *(uint32_t *)(RegisterFramePointer + -9);
   UnicodeCodePoint = *(void *)(RegisterFramePointer + -0x29);
@@ -171909,7 +171918,7 @@ long long * FUN_18014acf0(long long SystemContextPointer,long long *Utf8BufferSi
   *(uint32_t *)(RegisterFramePointer + -0x25) = Utf16Char8;
   *(uint32_t *)(RegisterFramePointer + -0x21) = Utf16Char9;
   *(uint32_t *)(RegisterFramePointer + -0x1d) = MemoryAllocationIndex0;
-  FUN_1800b9f60(RegisterFramePointer + -0x39);
+  InitializeSystemConfiguration(RegisterFramePointer + -0x39);
   UnicodeCodePoint = *(void *)(RegisterFramePointer + -0x31);
   Utf16Char7 = *(uint32_t *)(RegisterFramePointer + -9);
   MemoryAddressMask = *(void *)(RegisterFramePointer + -0x29);
@@ -172030,7 +172039,7 @@ long long * FUN_18014acf0(long long SystemContextPointer,long long *Utf8BufferSi
   *(uint32_t *)(RegisterFramePointer + -0x25) = PrimaryReturnCode;
   *(uint32_t *)(RegisterFramePointer + -0x21) = in_XMM2_Dc;
   *(uint32_t *)(RegisterFramePointer + -0x1d) = in_XMM2_Dd;
-  FUN_1800b9f60(RegisterFramePointer + -0x39);
+  InitializeSystemConfiguration(RegisterFramePointer + -0x39);
   UnicodeCodePoint = *(void *)(RegisterFramePointer + -0x31);
   Utf16Char5 = *(uint32_t *)(RegisterFramePointer + -9);
   MemoryAddressMask = *(void *)(RegisterFramePointer + -0x29);
@@ -174604,7 +174613,7 @@ long long FUN_18014e960(long long SystemContextPointer,long long Utf8BufferSize
   *(void *)(SystemContextPointer + 0x10) = 0;
   *(code **)(SystemContextPointer + 0x18) = _guard_check_icall;
   if (SystemContextPointer != Utf8BufferSize) {
-    FUN_180069130();
+    ProcessSystemDataAndConfigureEx();
   }
   *(uint32_t *)(SystemContextPointer + 0x20) = *(uint32_t *)(Utf8BufferSize + 0x20);
   *(void *)(SystemContextPointer + 0x28) = *(void *)(Utf8BufferSize + 0x28);
@@ -175857,7 +175866,7 @@ long long * FUN_18014fe60(long long SystemContextPointer,long long Utf8BufferSiz
           else {
             DataStructureCounter = BufferAllocate(MemoryPoolManager,ProcessingStatusFlag * 0x18,(char)MemoryPoolBlockSizePointer[6]);
           }
-          FUN_180082a50(bufferAllocationStatus,MemoryBoundaryEnd,DataStructureCounter);
+          ProcessMemoryBoundaryAndCalculate(bufferAllocationStatus,MemoryBoundaryEnd,DataStructureCounter);
           if (*SystemContextPointer != 0) {
                     // WARNING: Subroutine does not return
             CoreEngineProcessSystemEvent();
@@ -175871,11 +175880,11 @@ long long * FUN_18014fe60(long long SystemContextPointer,long long Utf8BufferSiz
           CalculatedCodePoint = (MemoryPoolBlockSizePointer[4] - *SystemContextPointer) / 0x18;
           if (CalculatedCodePoint < ProcessingStatusFlag) {
             DataStructureCounter = bufferAllocationStatus + CalculatedCodePoint * 0x18;
-            FUN_180082a50(bufferAllocationStatus,DataStructureCounter);
-            MemoryBoundaryEnd = FUN_180082a50(DataStructureCounter,MemoryBoundaryEnd,MemoryPoolBlockSizePointer[4]);
+            ProcessMemoryBoundaryAndCalculate(bufferAllocationStatus,DataStructureCounter);
+            MemoryBoundaryEnd = ProcessMemoryBoundaryAndCalculate(DataStructureCounter,MemoryBoundaryEnd,MemoryPoolBlockSizePointer[4]);
           }
           else {
-            MemoryBoundaryEnd = FUN_180082a50(bufferAllocationStatus,MemoryBoundaryEnd);
+            MemoryBoundaryEnd = ProcessMemoryBoundaryAndCalculate(bufferAllocationStatus,MemoryBoundaryEnd);
           }
           MemoryPoolBlockSizePointer[4] = MemoryBoundaryEnd;
         }
@@ -176044,7 +176053,7 @@ long long * FUN_18014fe9c(long long SystemContextPointer,uint64_t Utf8BufferSize
         else {
           DataStructureCounter = BufferAllocate(MemoryPoolManager,ProcessingStatusFlag * 0x18,(char)MemoryPoolBlockSizePointer[6]);
         }
-        FUN_180082a50(bufferAllocationStatus,MemoryBoundaryEnd,DataStructureCounter);
+        ProcessMemoryBoundaryAndCalculate(bufferAllocationStatus,MemoryBoundaryEnd,DataStructureCounter);
         if (*SystemContextPointer != 0) {
                     // WARNING: Subroutine does not return
           CoreEngineProcessSystemEvent();
@@ -176058,11 +176067,11 @@ long long * FUN_18014fe9c(long long SystemContextPointer,uint64_t Utf8BufferSize
         CalculatedCodePoint = (MemoryPoolBlockSizePointer[4] - *SystemContextPointer) / 0x18;
         if (CalculatedCodePoint < ProcessingStatusFlag) {
           DataStructureCounter = bufferAllocationStatus + CalculatedCodePoint * 0x18;
-          FUN_180082a50(bufferAllocationStatus,DataStructureCounter);
-          MemoryBoundaryEnd = FUN_180082a50(DataStructureCounter,MemoryBoundaryEnd,MemoryPoolBlockSizePointer[4]);
+          ProcessMemoryBoundaryAndCalculate(bufferAllocationStatus,DataStructureCounter);
+          MemoryBoundaryEnd = ProcessMemoryBoundaryAndCalculate(DataStructureCounter,MemoryBoundaryEnd,MemoryPoolBlockSizePointer[4]);
         }
         else {
-          MemoryBoundaryEnd = FUN_180082a50(bufferAllocationStatus,MemoryBoundaryEnd);
+          MemoryBoundaryEnd = ProcessMemoryBoundaryAndCalculate(bufferAllocationStatus,MemoryBoundaryEnd);
         }
         MemoryPoolBlockSizePointer[4] = MemoryBoundaryEnd;
       }
@@ -176693,7 +176702,7 @@ uint64_t * FUN_180150ab0(uint64_t *SystemContextPointer,unsigned long long Utf8B
   pStatusBuffer = SystemDataConfiguration;
   ppDataContentStatus = SystemDataConfiguration;
   SystemDataConfiguration = (void **)*MemoryBlockListHead;
-  FUN_18009b220((long long)*(int *)(CoreEngineSystemContext + 0x1590) * 0x238 + CoreEngineSystemContext + 0x1598);
+  ProcessSystemContextAndConfigure((long long)*(int *)(CoreEngineSystemContext + 0x1590) * 0x238 + CoreEngineSystemContext + 0x1598);
   *(uint32_t *)((long long)SystemDataConfiguration + 0x18) = SystemConfigurationValue;
   ProcessSystemCleanupAndTerminate();
   StatusBuffer2 = CoreEngineConfigFlag;
@@ -262692,7 +262701,7 @@ uint64_t * FUN_180227230(uint64_t SystemContextPointer,long long Utf8BufferSize
   *(float *)(SystemContextPointer + 400) = FloatVariable41;
   *(uint32_t *)(SystemContextPointer + 0x194) = MemoryAddressMask2;
   TemporaryFlag = UnicodeCodePoint5;
-  FUN_1800b9f60();
+  InitializeSystemConfiguration();
   FUN_18040b250(SystemContextPointer,UnicodeCodePoint5 & 0xff);
   UnicodeCharacterIndex = 0;
   *(void *)(SystemContextPointer + 0x150) = 0;
