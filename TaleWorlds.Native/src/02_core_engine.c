@@ -8381,7 +8381,7 @@ void CoreEngineInitializeNetworkStatusMonitor(void
   void *CurrentMonitorNode;
   void *NextMonitorNode;
   void *NewMonitorPointer;
-  code *StatusCallbackFunction;
+  FunctionPointer *StatusCallbackFunction;
   
   SystemHandle = (long long *)CoreEngineGetNetworkSystemHandle();
   MonitorPoolPointer = (void *)*SystemHandle;
@@ -8666,7 +8666,7 @@ void InitializeGameDataStructureNode(void
   void *CurrentGameDataNode;
   void *NextGameDataNode;
   void *NewGameDataNode;
-  code *GameDataInitializationFunction;
+  FunctionPointer *GameDataInitializationFunction;
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   GameDataNodePointer = (void *)*SystemContext;
@@ -19000,7 +19000,7 @@ void CoreEngineHandleSystemErrorAndInitializeErrorHandler(uint64_t errorHandlerP
   if (ThreadLocalStorageProcessingStatusFlag != NULL) {
     SystemStatusContext = ThreadLocalStorageProcessingStatusFlag;
   }
-  SymSetSearchPath(SymbolProcessingHandle,StatusBuffer3);
+  SymSetSearchPath(SymbolProcessingHandle,SymbolSearchPath);
   OperationResult = MemoryAllocatorPointer[0xb];
   if (OperationResult == 0) {
     OperationResult = LoadLibraryA(&SystemLibraryName);
@@ -25081,19 +25081,19 @@ IndexValidationLoop: // 原始标签：LAB_180054912，IndexValidationLoop
                 if (CharacterDataBuffer != (uint8_t *)0x0) {
                   *CharacterDataBuffer = 0;
                 }
-                Utf16Char = *StatusBuffer5;
-                ProcessStringBuffer = (unsigned long long)Utf16Char;
-                if (*(long long *)(StatusBuffer5 + -2) != 0) {
-                  CoreEngineProcessSystemEvent(&CoreEnginePointerBuffer158,ProcessStringBuffer);
+                Utf16Char = *StringProcessingBuffer;
+                StringLength = (unsigned long long)Utf16Char;
+                if (*(long long *)(StringProcessingBuffer + -2) != 0) {
+                  CoreEngineProcessSystemEvent(&SystemEventBuffer,StringLength);
                 }
                 if (Utf16Char != 0) {
                     // WARNING: Subroutine does not return
-                  memcpy(CharacterDataBuffer,*(void *)(StatusBuffer5 + -2),ProcessStringBuffer);
+                  memcpy(CharacterDataBuffer,*(void *)(StringProcessingBuffer + -2),StringLength);
                 }
                 if (CharacterDataBuffer != (uint8_t *)0x0) {
                   CharacterDataBuffer[ProcessStringBuffer] = 0;
                 }
-                SystemStatusValue.HighPart = StatusBuffer5[3];
+                SystemStatusValue.HighPart = StringProcessingBuffer[3];
                 CoreEngineUnsignedValue = Utf16Char;
                 CoreEngineProcessSystemEvent(&CoreEnginePointerBuffer158,0x12);
                 StringProcessingStatus = (uint32_t *)(CharacterDataBuffer + CoreEngineUnsignedValue);
@@ -25116,16 +25116,16 @@ IndexValidationLoop: // 原始标签：LAB_180054912，IndexValidationLoop
               else {
 CharacterDataProcessingComplete: // 原始标签：LAB_180054d28
 ProcessStatusBufferLoop:
-                StatusBufferIndex = *StatusBuffer5 - 1;
-                if (-1 < StatusBufferIndex) {
-                  LoopIndex = (long long)StatusBufferIndex;
+                StringProcessingIndex = *StringProcessingBuffer - 1;
+                if (-1 < StringProcessingIndex) {
+                  LoopIndex = (long long)StringProcessingIndex;
                   do {
-                    if (*(char *)(LoopIndex + *(long long *)(StatusBuffer5 + -2)) == '/') goto PathSeparatorFound;
-                    StatusBufferIndex = StatusBufferIndex + -1;
+                    if (*(char *)(LoopIndex + *(long long *)(StringProcessingBuffer + -2)) == '/') goto PathSeparatorFound;
+                    StringProcessingIndex = StringProcessingIndex - 1;
                     LoopIndex = LoopIndex + -1;
                   } while (-1 < LoopIndex);
                 }
-                StatusBufferIndex = -1;
+                StringProcessingIndex = -1;
 PathSeparatorFound: // 原始标签：LAB_180054d57
 ProcessCharacterDataComplete:
                 CoreEngineProcessSystemContext(systemEventTemplatePointer + (long long)ArrayIterationIndex * 4,&pSystemOperationFlag98,IterationCounter + 1,0xffffffff);
@@ -146147,7 +146147,18 @@ LAB_18012edb4:
 
 
 
-ed32(long long CharacterCodevoid FUN_18012ed32(long long CharacterCode
+/**
+ * @brief 验证字符字节计数
+ * 
+ * 该函数负责验证字符的字节计数，确保字符编码的正确性。
+ * 在核心引擎中用于字符编码验证。
+ * 
+ * @param CharacterCode 字符代码值
+ * @note 原始函数名：FUN_18012ed32
+ */
+#define ValidateCharacterByteCount FUN_18012ed32
+
+void ValidateCharacterByteCount(long long CharacterCode)
 {
   int LockResult;
   bool HighByte;
@@ -146212,7 +146223,17 @@ LAB_18012edb4:
 
 
 
-ed58(voidvoid FUN_18012ed58(void
+/**
+ * @brief 处理字符字节计数验证
+ * 
+ * 该函数负责处理字符字节计数的验证，包括内存分配和数据验证。
+ * 在核心引擎中用于字符字节计数的验证处理。
+ * 
+ * @note 原始函数名：FUN_18012ed58
+ */
+#define ProcessCharacterByteCountValidation FUN_18012ed58
+
+void ProcessCharacterByteCountValidation(void)
 {
   int LockResult;
   uint MemoryAllocationIndex;
@@ -146306,7 +146327,17 @@ edc6(voidvoid FUN_18012edc6(void
 
 
 
-ee0d(voidvoid FUN_18012ee0d(void
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，直接返回。
+ * 在核心引擎中用于占位或空操作。
+ * 
+ * @note 原始函数名：FUN_18012ee0d
+ */
+#define EmptyOperation FUN_18012ee0d
+
+void EmptyOperation(void)
 {
   return;
 }
@@ -146315,7 +146346,19 @@ ee0d(voidvoid FUN_18012ee0d(void
 
 
 
-ee20(int CharacterCode,char Utf8BufferSizevoid FUN_18012ee20(int CharacterCode,char Utf8BufferSize
+/**
+ * @brief 处理UTF-8字符编码
+ * 
+ * 该函数负责处理UTF-8字符编码，包括字符代码转换和缓冲区大小管理。
+ * 在核心引擎中用于UTF-8字符编码处理。
+ * 
+ * @param CharacterCode 字符代码值
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @note 原始函数名：FUN_18012ee20
+ */
+#define ProcessUtf8CharacterEncoding FUN_18012ee20
+
+void ProcessUtf8CharacterEncoding(int CharacterCode,char Utf8BufferSize)
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
@@ -146357,7 +146400,19 @@ ee20(int CharacterCode,char Utf8BufferSizevoid FUN_18012ee20(int CharacterCode,c
 
 
 
-eee0(uint CharacterCode,uint Utf8BufferSizevoid FUN_18012eee0(uint CharacterCode,uint Utf8BufferSize
+/**
+ * @brief 处理Unicode字符编码
+ * 
+ * 该函数负责处理Unicode字符编码，包括字符代码转换和缓冲区大小管理。
+ * 在核心引擎中用于Unicode字符编码处理。
+ * 
+ * @param CharacterCode 字符代码值
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @note 原始函数名：FUN_18012eee0
+ */
+#define ProcessUnicodeCharacterEncoding FUN_18012eee0
+
+void ProcessUnicodeCharacterEncoding(uint CharacterCode,uint Utf8BufferSize)
 {
   long long PrimaryDataSize;
   char SystemCheckResult;
@@ -146486,7 +146541,17 @@ long long InitializeSystemCoreComponents(void
 
 
 
-f0c0(voidvoid FUN_18012f0c0(void
+/**
+ * @brief 初始化系统状态缓冲区
+ * 
+ * 该函数负责初始化系统状态缓冲区，包括引用计数和系统事件模板。
+ * 在核心引擎中用于系统状态缓冲区的初始化。
+ * 
+ * @note 原始函数名：FUN_18012f0c0
+ */
+#define InitializeSystemStatusBuffer FUN_18012f0c0
+
+void InitializeSystemStatusBuffer(void)
 {
   int *ReferenceCountPointer;
   char *pSystemCheckResult;
@@ -147399,7 +147464,7 @@ uint64_t ProcessCharacterCodeAndValidateSystemData(long long CharacterCode,uint3
  * @param CharacterCode 字符编码参数
  * @return long long 返回验证结果
  * 
- * @note 原始函数名：FUN_18012fe00
+ * @note 原始函数名：ProcessMemoryAllocation
  */
 long long ValidateSystemConfiguration(uint64_t CharacterCode
 {
@@ -147704,7 +147769,7 @@ long long ValidateSystemConfiguration(uint64_t CharacterCode
   }
   if ((*(uint *)(AllocatedMemorySize + 0xc) & 0x800) == 0) {
 LAB_180130765:
-    SystemMemoryAllocationResult = FUN_18012fe00(*(void *)(AllocatedMemorySize + 0x118));
+    SystemMemoryAllocationResult = ProcessMemoryAllocation(*(void *)(AllocatedMemorySize + 0x118));
 LAB_180130774:
     SystemStatusCode = SystemMemoryAllocationResult;
     if (SystemMemoryAllocationResult == 0) goto LAB_18013078e;
@@ -148043,7 +148108,7 @@ void ProcessSystemBufferStatus(void)
   }
   if ((*(uint *)(SystemContext + 0xc) & 0x800) == 0) {
 LAB_180130765:
-    Utf16ConversionContext = FUN_18012fe00(*(void *)(SystemContext + 0x118));
+    Utf16ConversionContext = ProcessMemoryAllocation(*(void *)(SystemContext + 0x118));
 LAB_180130774:
     MemoryAllocationCounter = Utf16ConversionContext;
     if (Utf16ConversionContext == 0) goto LAB_18013078e;
@@ -148287,7 +148352,7 @@ LAB_180130808:
   }
   if ((*(uint *)(SystemContext + 0xc) & 0x800) == 0) {
 LAB_180130765:
-    Utf16Char4 = FUN_18012fe00(*(void *)(SystemContext + 0x118));
+    Utf16Char4 = ProcessMemoryAllocation(*(void *)(SystemContext + 0x118));
 LAB_180130774:
     SystemChecksumValue = Utf16Char4;
     if (Utf16Char4 == 0) goto LAB_18013078e;
@@ -148371,7 +148436,7 @@ LAB_180130808:
   }
   if ((*(uint *)(SystemContext + 0xc) & 0x800) == 0) {
 LAB_180130765:
-    Utf16Char = FUN_18012fe00(*(void *)(SystemContext + 0x118));
+    Utf16Char = ProcessMemoryAllocation(*(void *)(SystemContext + 0x118));
 LAB_180130774:
     UnicodeCodePoint = Utf16Char;
     if (Utf16Char == 0) goto LAB_18013078e;
