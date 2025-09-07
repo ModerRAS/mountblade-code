@@ -2080,7 +2080,7 @@
  * 
  * @note 原始函数名：func_0x000180060150
  */
-#define InitializeDataBuffer InitializeDataBuffer
+#define InitializeSystemDataBuffer InitializeDataBuffer
 
 /**
  * @brief 系统操作函数A0
@@ -2089,7 +2089,7 @@
  * 
  * @note 原始函数名：func_0x00018006d490
  */
-#define ExecuteSystemCommand ExecuteSystemCommand
+#define ExecuteSystemCoreCommand ExecuteSystemCommand
 
 // 全局指针设置函数宏定义
 /**
