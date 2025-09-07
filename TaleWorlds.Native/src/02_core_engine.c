@@ -269896,7 +269896,15 @@ int IdentifySystemIdentifierByPatternVariantAF(void
 
 
 
-int FUN_180225a93(void
+/**
+ * 识别系统标识符模式变体B3
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为13、4、10、9、6、17、14、11的字符串匹配。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantB3(void
 {
   int LockResult;
   long long BufferStatus;
@@ -269997,7 +270005,15 @@ int FUN_180225a93(void
 
 
 
-int FUN_180225abf(void
+/**
+ * 识别系统标识符模式变体B4
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为4、10、9、6、17、14、11的字符串匹配。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantB4(void
 {
   int LockResult;
   long long BufferStatus;
@@ -270094,7 +270110,15 @@ int FUN_180225abf(void
 
 
 
-int FUN_180225b07(void
+/**
+ * 识别系统标识符模式变体B5
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为4、10、9、6、17、14、11的字符串匹配。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantB5(void
 {
   int LockResult;
   long long BufferStatus;
@@ -270183,7 +270207,15 @@ int FUN_180225b07(void
 
 
 
-int FUN_180225b47(void
+/**
+ * 识别系统标识符模式变体B6
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为4、10、9、6、17、14、11的字符串匹配。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantB6(void
 {
   int LockResult;
   long long BufferStatus;
@@ -270264,7 +270296,15 @@ int FUN_180225b47(void
 
 
 
-int FUN_180225b87(void
+/**
+ * 识别系统标识符模式变体B7
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为4、10、9、6、17、14、11的字符串匹配。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantB7(void
 {
   int LockResult;
   long long BufferStatus;
@@ -270337,7 +270377,15 @@ int FUN_180225b87(void
 
 
 
-int FUN_180225bc7(void
+/**
+ * 识别系统标识符模式变体B8
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为4、10、9、6、17、14、11的字符串匹配。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantB8(void
 {
   int LockResult;
   long long BufferStatus;
@@ -270400,7 +270448,15 @@ int FUN_180225bc7(void
 
 
 
-int FUN_180225bf3(void
+/**
+ * 识别系统标识符模式变体B9
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为4、10、9、6、17、14、11的字符串匹配。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantB9(void
 {
   int LockResult;
   long long BufferStatus;
@@ -270459,7 +270515,15 @@ int FUN_180225bf3(void
 
 
 
-int FUN_180225c1f(void
+/**
+ * 识别系统标识符模式变体B10
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为4、10、9、6、17、14、11的字符串匹配。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantB10(void
 {
   int LockResult;
   long long BufferStatus;
@@ -270514,7 +270578,15 @@ int FUN_180225c1f(void
 
 
 
-int FUN_180225c59(void
+/**
+ * 识别系统标识符模式变体B11
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为4、10、9、6、17、14、11的字符串匹配。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantB11(void
 {
   int LockResult;
   int InputDataLength;
@@ -270558,7 +270630,15 @@ int FUN_180225c59(void
 
 
 
-int FUN_180225c85(void
+/**
+ * 识别系统标识符模式变体B12
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为4、10、9、6、17、14、11的字符串匹配。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantB12(void
 {
   int LockResult;
   int InputDataLength;
