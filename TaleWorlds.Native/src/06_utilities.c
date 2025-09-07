@@ -60233,7 +60233,21 @@ void CleanupResourceReferenceCount6ca0(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_180906cb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证异常上下文状态6cb0
+ * 
+ * 该函数负责验证异常上下文状态，如果发现异常则终止系统。
+ * 主要功能包括：
+ * - 遍历异常上下文指针
+ * - 检查指针有效性
+ * - 发现异常时终止系统
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906cb0
+ */
+void ValidateExceptionContextState6cb0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80354,12 +80368,24 @@ void CleanupResourceD90(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090cdc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源清理函数DC0 - 简化实现
+ * 
+ * 检查数据缓冲区中的标志位，如果设置了资源标志位0x40，
+ * 则清除该标志位并调用资源清理处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源状态信息
+ * 
+ * @note 原始函数名：Unwind_18090cdc0
+ * @note 这是一个简化实现，处理资源清理标志位0x40
+ */
+void CleanupResourceDC0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + 0x20) & 0x40) != 0) {
-    *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xffffffbf;
-    CleanupResourceHandler(dataBuffer + 0x48);
+  if ((*(uint *)(dataBuffer + ResourceFlagOffset) & ResourceFlagDC0) != 0) {
+    *(uint *)(dataBuffer + ResourceFlagOffset) = *(uint *)(dataBuffer + ResourceFlagOffset) & ResourceFlagMaskDC0;
+    CleanupResourceHandler(dataBuffer + ResourceHandlerOffsetDC0);
   }
   return;
 }
