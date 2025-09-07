@@ -167,6 +167,48 @@
 #define ResourceDescriptorValidationOffset 0x1c    // 资源描述符验证偏移量
 #define ResourceDescriptorDataOffset 0x20         // 资源描述符数据偏移量
 
+// 异常处理相关偏移量常量
+#define ExceptionHandlerContextOffset 0x48         // 异常处理上下文偏移量
+#define ExceptionHandlerOffset 0x20               // 异常处理器偏移量
+#define ExceptionStateOffset 0x50                 // 异常状态偏移量
+#define ExceptionStatusOffset 0x58                // 异常状态偏移量
+#define ExceptionDataPtrOffset 0x50               // 异常数据指针偏移量
+#define ExceptionHandlerCallbackOffset30 0x30    // 异常处理回调偏移量30
+
+// 系统上下文相关偏移量常量
+#define SystemContextDataOffset 0x18              // 系统上下文数据偏移量
+#define SystemContextOffset90 0x90                // 系统上下文偏移量90
+#define SystemContextOffset554 0x554              // 系统上下文偏移量554
+#define SystemContextOperationOffset 0xd0         // 系统上下文操作偏移量
+
+// 数据处理相关偏移量常量
+#define DataContextOffset14 0x14                  // 数据上下文偏移量14
+#define DataContextOffset20 0x20                  // 数据上下文偏移量20
+#define DataContextOffset2c 0x2c                  // 数据上下文偏移量2c
+#define DataContextOffset38 0x38                  // 数据上下文偏移量38
+#define DataContextOffset44 0x44                  // 数据上下文偏移量44
+#define DataContextOffset50 0x50                  // 数据上下文偏移量50
+
+// 队列信息相关偏移量常量
+#define QueueInfoDataOffset 0x20                  // 队列信息数据偏移量
+#define QueueInfoSizeOffset 0x28                  // 队列信息大小偏移量
+
+// 事件相关偏移量常量
+#define EventDataOffset18 0x18                     // 事件数据偏移量18
+#define EventDataOffset1c 0x1c                     // 事件数据偏移量1c
+#define EventDataOffset30 0x30                     // 事件数据偏移量30
+#define EventDataOffset34 0x34                     // 事件数据偏移量34
+
+// 请求相关偏移量常量
+#define RequestDataOffset18 0x18                   // 请求数据偏移量18
+#define RequestDataOffset2c 0x2c                   // 请求数据偏移量2c
+
+// 数据结构相关偏移量常量
+#define DataStructureOffset18 0x18                // 数据结构偏移量18
+#define DataStructureOffset24 0x24                // 数据结构偏移量24
+#define DataStructureOffset28 0x28                 // 数据结构偏移量28
+#define DataStructureOffset29 0x29                 // 数据结构偏移量29
+
 // 数据处理偏移量常量定义
 #define DataBufferOffset8 8                        // 数据缓冲区偏移量8
 #define DataBufferOffsetC 0xc                      // 数据缓冲区偏移量0xc
@@ -35134,6 +35176,14 @@ void ProcessSystemOperationsC0(void)
 
 
 
+/**
+ * @brief 系统状态清理函数C1
+ * 
+ * 清理系统的C1状态，释放相关资源。
+ * 这是一个简化的状态清理函数，目前只返回空操作。
+ * 
+ * @note 原始函数名可能来自某个系统状态清理序列
+ */
 void CleanupSystemStateC1(void)
 
 {
@@ -35142,6 +35192,18 @@ void CleanupSystemStateC1(void)
 
 
 
+/**
+ * @brief 数据验证执行函数A2
+ * 
+ * 执行数据的验证操作，通过多层验证确保数据的完整性和安全性。
+ * 该函数使用函数指针机制进行灵活的数据验证。
+ * 
+ * @param operationBase 操作基础地址，包含验证配置信息
+ * @param dataBuffer 数据缓冲区指针，包含待验证的数据
+ * @return DataBuffer 验证结果数据缓冲区
+ * 
+ * @note 该函数包含多层验证机制，使用函数指针进行灵活的验证操作
+ */
 DataBuffer ExecuteDataValidationA2(int64_t operationBase,int64_t *dataBuffer)
 
 {

@@ -31,31 +31,31 @@
 #define InitializeStringEncodingBuffer SetupStringEncodingBuffer
 
 /**
- * @brief 处理系统配置状态变更
+ * @brief 验证系统数据并检查状态
  * 
- * 该函数负责在系统配置状态发生变化时进行相应的处理和更新
+ * 该函数负责验证系统数据的完整性和状态，确保数据符合系统要求
  * 
- * @note 原始函数名：FUN_180133110
+ * @note 原始函数名：ValidateSystemDataAndCheckStatus
  */
-#define HandleSystemConfigurationStateChange FUN_180133110
+#define ValidateSystemDataAndCheckStatus ValidateSystemDataAndCheckStatus
 
 /**
- * @brief 处理系统状态和资源分配
+ * @brief 分配系统数据表
  * 
- * 该函数负责处理系统状态变更、资源分配和内存管理
+ * 该函数负责分配和管理系统数据表的内存空间
  * 
- * @note 原始函数名：FUN_180131dad
+ * @note 原始函数名：AllocateSystemDataTable
  */
-#define ProcessSystemStateAndResourceAllocation FUN_180131dad
+#define AllocateSystemDataTable AllocateSystemDataTable
 
 /**
- * @brief 处理系统数据表和浮点值
+ * @brief 处理浮点转换和验证
  * 
- * 该函数负责处理系统数据表的浮点值运算和数据管理
+ * 该函数负责处理浮点数的转换操作和验证工作
  * 
- * @note 原始函数名：FUN_180131c60
+ * @note 原始函数名：FUN_180131aa0
  */
-#define ProcessSystemDataTableAndFloatValue FUN_180131c60
+#define ProcessFloatConversionAndValidation FUN_180131aa0
 
 /**
  * @brief 处理字符编码转换
@@ -3949,8 +3949,8 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_18011dae0 - 系统数据引用计数管理函数
 #define ManageSystemDataReferenceCount FUN_18011dae0
 
-// 原始函数名：FUN_180119960 - 系统数据验证和状态检查函数
-#define ValidateSystemDataAndCheckStatus FUN_180119960
+// 原始函数名：ValidateSystemDataAndCheckStatus - 系统数据验证和状态检查函数
+#define ValidateSystemDataAndCheckStatus ValidateSystemDataAndCheckStatus
 
 // 原始函数名：FUN_18012e060 - 系统错误处理函数
 #define HandleSystemError FUN_18012e060
@@ -4600,8 +4600,8 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ProcessSystemEventEx FUN_18012ee20
 // 原始函数名：ProcessSystemConfiguration2 - 系统内存分配函数
 #define AllocateSystemMemoryEx ProcessSystemConfiguration2
-// 原始函数名：FUN_180119960 - 系统数据验证函数
-#define ValidateSystemDataEx FUN_180119960
+// 原始函数名：ValidateSystemDataAndCheckStatus - 系统数据验证函数
+#define ValidateSystemDataEx ValidateSystemDataAndCheckStatus
 // 原始函数名：FUN_18011d940 - 系统数据结构处理函数
 #define ProcessSystemDataStructure FUN_18011d940
 // 原始函数名：FUN_18011db30 - 系统参数验证函数
@@ -4974,7 +4974,7 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define CheckSystemAllocatedMemorySize ValidateCoreEngineAllocatedMemorySize
 #define AccessSystemContext FUN_180126de0
 #define InitializeSystemModule FUN_180131810
-#define AllocateSystemBuffer FUN_180128b60
+#define AllocateSystemBuffer AllocateSystemDataTable
 #define ConfigureSystemBuffer ProcessSystemBufferOperation
 #define SetupSystemBuffer FUN_180128a80
 #define FinalizeSystemBuffer FUN_18012de80
@@ -7729,8 +7729,8 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 // 原始函数名：FUN_18012e250 - 系统事件处理函数
 #define ProcessSystemEvent FUN_18012e250
 
-// 原始函数名：FUN_180119960 - 系统数据验证和检查状态函数
-#define ValidateSystemDataAndCheckStatus FUN_180119960
+// 原始函数名：ValidateSystemDataAndCheckStatus - 系统数据验证和检查状态函数
+#define ValidateSystemDataAndCheckStatus ValidateSystemDataAndCheckStatus
 
 // 原始函数名：CleanupEventAndSystemMaintenance - 事件清理和系统维护函数
 #define CleanupEventAndSystemMaintenance CleanupEventAndSystemMaintenance
@@ -155754,7 +155754,7 @@ void CoreEngineProcessSystemMemoryAllocation(void)
   MemoryPoolBlockSize = SystemConfigurationHandle;
   if (0.15 < *(float *)(SystemConfigurationHandle + 0x1cf0) || *(float *)(SystemConfigurationHandle + 0x1cf0) == 0.15) {
     if (*(long long *)(SystemConfigurationHandle + 0x1ce8) == 0) {
-      SystemMemoryAllocationResult = FUN_180128b60(SystemDataTablePointer60);
+      SystemMemoryAllocationResult = AllocateSystemDataTable(SystemDataTablePointer60);
       *(void *)(MemoryPoolBlockSize + 0x1ce8) = SystemMemoryAllocationResult;
     }
     SystemDataTablePointer = **(long long **)(MemoryPoolBlockSize + 0x1c70);
@@ -155825,7 +155825,7 @@ LAB_180134021:
             }
 LAB_180134065:
             SystemRegisterFlagX8 = 0;
-            FUN_180119960(StringCodeBuffer,*(uint64_t **)(MemoryPoolBlockSize + 0x1cd8) == SecondaryProcessingStatusFlag,0,&SystemRegisterFlagX8);
+            ValidateSystemDataAndCheckStatus(StringCodeBuffer,*(uint64_t **)(MemoryPoolBlockSize + 0x1cd8) == SecondaryProcessingStatusFlag,0,&SystemRegisterFlagX8);
           }
         }
         SystemDataTablePointer = SystemDataTablePointer + -1;
@@ -155889,7 +155889,7 @@ void CoreEngineProcessSystemFloatFilter(void)
   uint64_t MemoryAllocationIndexAdditional0;
   
   if (in_ZF) {
-    SystemMemoryAllocationResult = FUN_180128b60(SystemDataTablePointer60);
+    SystemMemoryAllocationResult = AllocateSystemDataTable(SystemDataTablePointer60);
     *(void *)(DataNodeIndex + 0x1ce8) = SystemMemoryAllocationResult;
   }
   SystemDataTablePointer = **(long long **)(DataNodeIndex + 0x1c70);
@@ -155958,7 +155958,7 @@ LAB_180134021:
           }
 LAB_180134065:
           FunctionReturnValue = 0;
-          FUN_180119960(StringCodeBuffer,*(uint64_t **)(DataNodeIndex + 0x1cd8) == SecondaryProcessingStatusFlag,0,&DataTransferStackBuffer,
+          ValidateSystemDataAndCheckStatus(StringCodeBuffer,*(uint64_t **)(DataNodeIndex + 0x1cd8) == SecondaryProcessingStatusFlag,0,&DataTransferStackBuffer,
                         PrimaryReturnCode);
         }
       }
@@ -156022,7 +156022,7 @@ void CoreEngineProcessSystemFloatValidator(void)
   uint64_t MemoryAllocationIndexAdditional0;
   
   if (in_ZF) {
-    SystemMemoryAllocationResult = FUN_180128b60(SystemDataTablePointer60);
+    SystemMemoryAllocationResult = AllocateSystemDataTable(SystemDataTablePointer60);
     *(void *)(DataNodeIndex + 0x1ce8) = SystemMemoryAllocationResult;
   }
   SystemDataTablePointer = **(long long **)(DataNodeIndex + 0x1c70);
@@ -156091,7 +156091,7 @@ LAB_180134021:
           }
 LAB_180134065:
           FunctionReturnValue = 0;
-          FUN_180119960(StringCodeBuffer,*(uint64_t **)(DataNodeIndex + 0x1cd8) == SecondaryProcessingStatusFlag,0,&DataTransferStackBuffer,
+          ValidateSystemDataAndCheckStatus(StringCodeBuffer,*(uint64_t **)(DataNodeIndex + 0x1cd8) == SecondaryProcessingStatusFlag,0,&DataTransferStackBuffer,
                         PrimaryReturnCode);
         }
       }
@@ -156182,7 +156182,7 @@ LAB_180134021:
         }
 LAB_180134065:
         FunctionReturnValue = 0;
-        FUN_180119960(StringBuffer0,*(uint64_t **)(DataNodeIndex + 0x1cd8) == PrimaryProcessingStatusFlag,0,&DataTransferStackBuffer);
+        ValidateSystemDataAndCheckStatus(StringBuffer0,*(uint64_t **)(DataNodeIndex + 0x1cd8) == PrimaryProcessingStatusFlag,0,&DataTransferStackBuffer);
       }
     }
     SourceIndex = SourceIndex + -1;
@@ -162721,7 +162721,7 @@ LAB_18013802c:
               pCharacterByteCount1 = ReferenceCountPointer9;
               do {
                 BufferStatus5 = *(long long *)(pCharacterByteCount3 + 2);
-                SystemValidationChar = FUN_180119960(**(uint64_t **)((long long)ReferenceCountPointer8 + BufferStatus5 + 8),
+                SystemValidationChar = ValidateSystemDataAndCheckStatus(**(uint64_t **)((long long)ReferenceCountPointer8 + BufferStatus5 + 8),
                                       *(int *)((long long)ReferenceCountPointer8 + BufferStatus5) == pCharacterByteCount3[5],0,
                                       &StackConfigurationFlag);
                 if (SystemValidationChar != '\0') {
@@ -194599,7 +194599,7 @@ void ProcessCharacterEncodingAndSystemContext(long long ***Utf8InputBuffer,long 
     CharacterValidationResult = FUN_18012eee0(MutexLockResult,0x141);
     if (CharacterValidationResult != '\0') {
       pppSystemRegisterPointerX8 = (long long ****)0x0;
-      CharacterValidationResult = FUN_180119960(&SystemEventBufferSenary,0,0,&pppSystemRegisterPointerX8,MemoryAllocationOffset);
+      CharacterValidationResult = ValidateSystemDataAndCheckStatus(&SystemEventBufferSenary,0,0,&pppSystemRegisterPointerX8,MemoryAllocationOffset);
       if (CharacterValidationResult != '\0') {
         ppSystemContextPtr = (long long ***)Utf8InputBuffer[1];
         ppCharacterCode6 = (long long ***)*Utf8InputBuffer;
@@ -195070,7 +195070,7 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long Utf8BufferSiz
       if (TemporaryBuffer != NULL) {
         StatusBuffer6 = TemporaryBuffer;
       }
-      StringBuffer2 = FUN_180119960(StatusBuffer6,ComputedResult == IntegerValue3,0,&SystemRegisterFlagX8);
+      StringBuffer2 = ValidateSystemDataAndCheckStatus(StatusBuffer6,ComputedResult == IntegerValue3,0,&SystemRegisterFlagX8);
       if (StringBuffer2 != '\0') {
         *(int *)(CharacterCode + 0x68) = IntegerValue3;
       }
@@ -195241,7 +195241,7 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long Utf8BufferSiz
       if (TemporaryBuffer != NULL) {
         StatusBuffer6 = TemporaryBuffer;
       }
-      StringBuffer2 = FUN_180119960(StatusBuffer6,ComputedResult == IntegerValue3,0,&stack0x00000090);
+      StringBuffer2 = ValidateSystemDataAndCheckStatus(StatusBuffer6,ComputedResult == IntegerValue3,0,&stack0x00000090);
       if (StringBuffer2 != '\0') {
         *(int *)(CharacterCode + 0x68) = IntegerValue3;
       }
@@ -195356,7 +195356,7 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long Utf8BufferSiz
     if (StringProcessingStatus != NULL) {
       StatusBuffer6 = StringProcessingStatus;
     }
-    StringBuffer2 = FUN_180119960(StatusBuffer6,MutexLockResult == RegisterValueEDI,0,&stack0x00000090);
+    StringBuffer2 = ValidateSystemDataAndCheckStatus(StatusBuffer6,MutexLockResult == RegisterValueEDI,0,&stack0x00000090);
     if (StringBuffer2 != '\0') {
       *(int *)(SourceIndex + 0x68) = RegisterValueEDI;
     }
