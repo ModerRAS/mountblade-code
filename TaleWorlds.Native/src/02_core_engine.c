@@ -166952,7 +166952,15 @@ void InitializeCharacterProcessingSystem(void)
 
 
 
-3b5a0(uint64_t *Utf8InputBuffer,uint8_t *Utf8InputBufferSizevoid FUN_18013b5a0(uint64_t *Utf8InputBuffer,uint8_t *Utf8InputBufferSize
+/**
+ * @brief 处理UTF-8输入缓冲区和大小
+ * 
+ * 处理UTF-8输入缓冲区和缓冲区大小数据，包括内存分配、数据传输和状态管理
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针，包含UTF-8编码数据
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针，包含缓冲区大小信息
+ */
+void ProcessUtf8InputBufferWithSize(uint64_t *Utf8InputBuffer, uint8_t *Utf8InputBufferSize)
 {
   uint Utf16Char;
   long long BufferStatus;
@@ -167148,7 +167156,12 @@ LAB_18013b83c:
 
 
 
-3b5f5(voidvoid FUN_18013b5f5(void
+/**
+ * @brief 初始化UTF-8字符处理系统
+ * 
+ * 初始化UTF-8字符处理系统的配置和状态，为字符编码转换做准备
+ */
+void InitializeUtf8CharacterProcessingSystem(void)
 {
   uint Utf16Char;
   int *pCharacterByteCount;
@@ -277188,18 +277201,18 @@ uint64_t ProcessAudioSignalFFT(void* AudioContext, void* FrequencyFactor, uint32
         }
         ProcessedSampleValue = ProcessedSampleValue & 0x7fff;
         BitReversalIndex = (uint64_t)ProcessedSampleValue;
-        BitReversalValue = ProcessedSampleValue >> 0xd;
-        if (ProcessedSampleValue >> 0xd == 0) {
-          TwiddleFactorImag = *(float *)(AudioContext + 0x4cc + BitReversalIndex * 4);
+        BitReversalValue = ProcessedSampleValue >> FFTTwiddleFactorShiftValue;
+        if (ProcessedSampleValue >> FFTTwiddleFactorShiftValue == 0) {
+          TwiddleFactorImag = *(float *)(AudioContext + FFTTwiddleFactorTableOffset + BitReversalIndex * 4);
         }
         else if (BitReversalValue == 1) {
-          TwiddleFactorImag = -*(float *)(AudioContext + (0x4132 - (uint64_t)ProcessedSampleValue) * 4);
+          TwiddleFactorImag = -*(float *)(AudioContext + (FFTTwiddleFactorBoundary1 - (uint64_t)ProcessedSampleValue) * 4);
         }
         else if (BitReversalValue == 2) {
-          TwiddleFactorImag = -*(float *)(AudioContext + -0xfb34 + BitReversalIndex * 4);
+          TwiddleFactorImag = -*(float *)(AudioContext + -FFTTwiddleFactorBoundary2 + BitReversalIndex * 4);
         }
         else if (BitReversalValue == 3) {
-          TwiddleFactorImag = *(float *)(AudioContext + (0x8132 - BitReversalIndex) * 4);
+          TwiddleFactorImag = *(float *)(AudioContext + (FFTTwiddleFactorBoundary3 - BitReversalIndex) * 4);
         }
         else {
           TwiddleFactorImag = 0.0;
@@ -277218,43 +277231,43 @@ uint64_t ProcessAudioSignalFFT(void* AudioContext, void* FrequencyFactor, uint32
               BitReversalIndex = (uint64_t)(ProcessedSampleValue - 1);
               BitReversalValue = ProcessedSampleValue - 2;
               BitReversalValue = ProcessedSampleValue - 3;
-              ImaginaryResult = *(float *)(DataBuffer + 4 + (uint64_t)BitValue * 8);
-              RealPart1 = *(float *)(DataBuffer + (uint64_t)BitValue * 8);
-              RealPart2 = *(float *)(DataBuffer + StartIndex * 8);
-              ImaginaryPart2 = *(float *)(DataBuffer + 4 + StartIndex * 8);
+              ImaginaryResult = *(float *)(DataBuffer + FFTComplexImagPartOffset + (uint64_t)BitValue * FFTComplexSize);
+              RealPart1 = *(float *)(DataBuffer + FFTComplexRealPartOffset + (uint64_t)BitValue * FFTComplexSize);
+              RealPart2 = *(float *)(DataBuffer + StartIndex * FFTComplexSize);
+              ImaginaryPart2 = *(float *)(DataBuffer + FFTComplexImagPartOffset + StartIndex * FFTComplexSize);
               RealResult = RealPart1 * TwiddleReal - ImaginaryResult * TwiddleImaginary;
               ImaginaryResult = ImaginaryResult * TwiddleReal + RealPart1 * TwiddleImaginary;
-              *(float *)(DataBuffer + StartIndex * 8) = RealResult + RealPart2;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + 4 + StartIndex * 8) = ImaginaryResult + ImaginaryPart2;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + (uint64_t)BitValue * 8) = RealPart2 - RealResult;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + 4 + (uint64_t)BitValue * 8) = ImaginaryPart2 - ImaginaryResult;
+              *(float *)(DataBuffer + StartIndex * FFTComplexSize) = RealResult + RealPart2;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + FFTComplexImagPartOffset + StartIndex * FFTComplexSize) = ImaginaryResult + ImaginaryPart2;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + (uint64_t)BitValue * FFTComplexSize) = RealPart2 - RealResult;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + FFTComplexImagPartOffset + (uint64_t)BitValue * FFTComplexSize) = ImaginaryPart2 - ImaginaryResult;
               DataBuffer = *(void **)(AudioContext + AudioContextCharacterStatusBufferOffset);
-              ImaginaryResult = *(float *)(DataBuffer + 4 + BitValue * 8);
-              RealPart1 = *(float *)(DataBuffer + BitValue * 8);
-              RealPart2 = *(float *)(DataBuffer + 8 + StartIndex * 8);
-              ImaginaryPart2 = *(float *)(DataBuffer + 0xc + StartIndex * 8);
+              ImaginaryResult = *(float *)(DataBuffer + FFTComplexImagPartOffset + BitValue * FFTComplexSize);
+              RealPart1 = *(float *)(DataBuffer + FFTComplexRealPartOffset + BitValue * FFTComplexSize);
+              RealPart2 = *(float *)(DataBuffer + FFTComplexSize + StartIndex * FFTComplexSize);
+              ImaginaryPart2 = *(float *)(DataBuffer + FFTComplexSize + FFTComplexImagPartOffset + StartIndex * FFTComplexSize);
               RealResult = RealPart1 * TwiddleReal - ImaginaryResult * TwiddleImaginary;
               ImaginaryResult = ImaginaryResult * TwiddleReal + RealPart1 * TwiddleImaginary;
-              *(float *)(DataBuffer + 8 + StartIndex * 8) = RealResult + RealPart2;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + 0xc + StartIndex * 8) = ImaginaryResult + ImaginaryPart2;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + BitValue * 8) = RealPart2 - RealResult;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + 4 + BitValue * 8) = ImaginaryPart2 - ImaginaryResult;
+              *(float *)(DataBuffer + FFTComplexSize + StartIndex * FFTComplexSize) = RealResult + RealPart2;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + FFTComplexSize + FFTComplexImagPartOffset + StartIndex * FFTComplexSize) = ImaginaryResult + ImaginaryPart2;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + FFTComplexRealPartOffset + BitValue * FFTComplexSize) = RealPart2 - RealResult;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + FFTComplexImagPartOffset + BitValue * FFTComplexSize) = ImaginaryPart2 - ImaginaryResult;
               DataBuffer = *(void **)(AudioContext + AudioContextCharacterStatusBufferOffset);
-              ImaginaryResult = *(float *)(DataBuffer + BitIndex * 8);
-              RealPart1 = *(float *)(DataBuffer + 4 + BitIndex * 8);
-              RealPart2 = *(float *)(DataBuffer + 0x10 + StartIndex * 8);
-              ImaginaryPart2 = *(float *)(DataBuffer + 0x14 + StartIndex * 8);
+              ImaginaryResult = *(float *)(DataBuffer + FFTComplexRealPartOffset + BitIndex * FFTComplexSize);
+              RealPart1 = *(float *)(DataBuffer + FFTComplexImagPartOffset + BitIndex * FFTComplexSize);
+              RealPart2 = *(float *)(DataBuffer + FFTComplexSize * 2 + StartIndex * FFTComplexSize);
+              ImaginaryPart2 = *(float *)(DataBuffer + FFTComplexSize * 2 + FFTComplexImagPartOffset + StartIndex * FFTComplexSize);
               RealResult = ImaginaryResult * TwiddleReal - RealPart1 * TwiddleImaginary;
               ImaginaryResult = RealPart1 * TwiddleReal + ImaginaryResult * TwiddleImaginary;
-              *(float *)(DataBuffer + 0x10 + StartIndex * 8) = RealResult + RealPart2;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + 0x14 + StartIndex * 8) = ImaginaryResult + ImaginaryPart2;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + BitIndex * 8) = RealPart2 - RealResult;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + 4 + BitIndex * 8) = ImaginaryPart2 - ImaginaryResult;
+              *(float *)(DataBuffer + FFTComplexSize * 2 + StartIndex * FFTComplexSize) = RealResult + RealPart2;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + FFTComplexSize * 2 + FFTComplexImagPartOffset + StartIndex * FFTComplexSize) = ImaginaryResult + ImaginaryPart2;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + FFTComplexRealPartOffset + BitIndex * FFTComplexSize) = RealPart2 - RealResult;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + FFTComplexImagPartOffset + BitIndex * FFTComplexSize) = ImaginaryPart2 - ImaginaryResult;
               DataBuffer = *(void **)(AudioContext + AudioContextCharacterStatusBufferOffset);
-              ImaginaryResult = *(float *)(DataBuffer + TempIndex * 8);
-              RealPart1 = *(float *)(DataBuffer + 4 + TempIndex * 8);
-              RealPart2 = *(float *)(DataBuffer + 0x18 + StartIndex * 8);
-              ImaginaryPart2 = *(float *)(DataBuffer + 0x1c + StartIndex * 8);
+              ImaginaryResult = *(float *)(DataBuffer + FFTComplexRealPartOffset + TempIndex * FFTComplexSize);
+              RealPart1 = *(float *)(DataBuffer + FFTComplexImagPartOffset + TempIndex * FFTComplexSize);
+              RealPart2 = *(float *)(DataBuffer + FFTComplexSize * 3 + StartIndex * FFTComplexSize);
+              ImaginaryPart2 = *(float *)(DataBuffer + FFTComplexSize * 3 + FFTComplexImagPartOffset + StartIndex * FFTComplexSize);
               RealResult = ImaginaryResult * TwiddleReal - RealPart1 * TwiddleImaginary;
               ImaginaryResult = RealPart1 * TwiddleReal + ImaginaryResult * TwiddleImaginary;
               *(float *)(DataBuffer + 0x18 + StartIndex * 8) = RealResult + RealPart2;
