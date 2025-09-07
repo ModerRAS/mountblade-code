@@ -37,6 +37,7 @@
 #define AllocateValidationMemory FUN_180136a10
 #define ProcessSystemValidation FUN_180122160
 #define ProcessStringConversion FUN_180136f60
+#define InitializeStringEncodingBuffer FUN_180120d00
 
 // 系统节点状态偏移量常量
 #define SystemNodeStatusOffset 0x19
@@ -111892,7 +111893,7 @@ void CoreEngineProcessFloatData(long long SystemContextPointer,float *Utf8Buffer
   PrimaryScalingFactor = Utf8BufferSize[2] - FloatValue8;
   ProcessStringBuffer = 0;
   SecondaryScalingFactor = SystemContextPrimaryFloat0;
-  FUN_180293730(SystemContextPointer,&PrimaryScalingFactor,FloatValue8,9,0xc);
+  ProcessScalingFactor(SystemContextPointer,&PrimaryScalingFactor,FloatValue8,9,0xc);
   PrimaryScalingFactor = Utf8BufferSize[2];
   RemainingSpace = *ReferenceCountPointer;
   validationResult = *(int *)(SystemContextPointer + 0x84);
@@ -111905,7 +111906,7 @@ void CoreEngineProcessFloatData(long long SystemContextPointer,float *Utf8Buffer
     if (RemainingSpace + 1 < MutexLockResult) {
       validationResult = MutexLockResult;
     }
-    FUN_18011dc70(ReferenceCountPointer,validationResult);
+    ProcessReferenceCount(ReferenceCountPointer,validationResult);
     RemainingSpace = *ReferenceCountPointer;
   }
   *(unsigned long long *)(*(long long *)(SystemContextPointer + 0x88) + (long long)RemainingSpace * 8) =
@@ -112404,7 +112405,7 @@ d940(int *SystemContextPointer,uint32_t *Utf8BufferSizevoid ValidateSystemContex
     if (ValidationCode + 1 < StringComparisonResult) {
       IntegerValue = StringComparisonResult;
     }
-    FUN_18011dbd0(SystemContextPointer,IntegerValue);
+    ProcessSystemContext(SystemContextPointer,IntegerValue);
     ValidationCode = *SystemContextPointer;
   }
   *(uint32_t *)(*(long long *)(SystemContextPointer + 2) + (long long)ValidationCode * 4) = *Utf8BufferSize;
@@ -114710,7 +114711,7 @@ uint64_t * ProcessSystemContextData(uint64_t *SystemContextPointer
 
 
 
-fef0(uint64_t SystemContextPointervoid FUN_18011fef0(uint64_t SystemContextPointer
+void InitializeSystemMemoryContext(uint64_t SystemContextPointer)
 {
   InitializeSystemMemoryBlock(SystemContextPointer,0x10,2,CopyAndInitializeSystemData,0xfffffffffffffffe);
   return;
@@ -114719,11 +114720,11 @@ fef0(uint64_t SystemContextPointervoid FUN_18011fef0(uint64_t SystemContextPoint
 
 
 
-ff20(uint32_t *SystemContextPointervoid InitializeSystemContext(uint32_t *SystemContextPointer
+void InitializeSystemContext(uint32_t *SystemContextPointer)
 {
-  uint32_t uStack_18;
+  uint32_t StackData;
   
-  uStack_18 = CONCAT31(uStack_18._1_3_,1);
+  StackData = CONCAT31(StackData._1_3_,1);
   *(void *)(SystemContextPointer + 7) = 0;
   *(void *)(SystemContextPointer + 5) = 0;
   *(void *)(SystemContextPointer + 3) = 0;
@@ -114731,19 +114732,19 @@ ff20(uint32_t *SystemContextPointervoid InitializeSystemContext(uint32_t *System
   *SystemContextPointer = 0;
   *(void *)(SystemContextPointer + 0x1d) = 0;
   *(void *)(SystemContextPointer + 0x1f) = 0;
-  SystemContextPointer[0x21] = uStack_18;
+  SystemContextPointer[0x21] = StackData;
   return;
 }
 
 
 
 
-ff60(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_18011ff60(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+void InitializeStringEncodingContext(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   
   Utf16Char = 0xfffffffffffffffe;
-  FUN_180120d00(SystemContextPointer + 8);
+  InitializeStringEncodingBuffer(SystemContextPointer + 8);
   *(void *)(SystemContextPointer + 0x1600) = 0;
   *(void *)(SystemContextPointer + 0x1608) = 0;
   *(void *)(SystemContextPointer + 0x1618) = 0;
@@ -114756,17 +114757,17 @@ ff60(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputP
 
 
 
-0960(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_180120960(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+void ProcessStringEncodingConversionA(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
-  loopCounter = *(long long *)(SystemContextPointer + 0x1530);
-  if (loopCounter != 0) {
+  PrimaryDataSize = *(long long *)(SystemContextPointer + 0x1530);
+  if (PrimaryDataSize != 0) {
     if (SystemDataConfiguration != 0) {
       *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    InitializeSystemMemoryPool(LoopCounter,SystemMemoryPoolBase,Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
+    InitializeSystemMemoryPool(PrimaryDataSize,SystemMemoryPoolBase,Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
   }
   return;
 }
@@ -114775,25 +114776,25 @@ ff60(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputP
 
 
 
-09b0(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_1801209b0(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+void ProcessStringEncodingConversionB(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
-  loopCounter = *(long long *)(SystemContextPointer + 0xe0);
-  if (loopCounter != 0) {
+  PrimaryDataSize = *(long long *)(SystemContextPointer + 0xe0);
+  if (PrimaryDataSize != 0) {
     if (SystemDataConfiguration != 0) {
       *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    InitializeSystemMemoryPool(LoopCounter,SystemMemoryPoolBase,Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
+    InitializeSystemMemoryPool(PrimaryDataSize,SystemMemoryPoolBase,Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
   }
-  loopCounter = *(long long *)(SystemContextPointer + 200);
-  if (loopCounter != 0) {
+  PrimaryDataSize = *(long long *)(SystemContextPointer + 200);
+  if (PrimaryDataSize != 0) {
     if (SystemDataConfiguration != 0) {
       *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    InitializeSystemMemoryPool(LoopCounter,SystemMemoryPoolBase,Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
+    InitializeSystemMemoryPool(PrimaryDataSize,SystemMemoryPoolBase,Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
   }
   return;
 }
@@ -165688,7 +165689,7 @@ long long FUN_18013d540(void
     if (1 < StringComparisonResult) {
       IntegerValue = StringComparisonResult;
     }
-    FUN_18011dbd0(SystemContextPointer,IntegerValue);
+    ProcessSystemContext(SystemContextPointer,IntegerValue);
     *SystemContextPointer = 1;
     return;
   }
@@ -166466,7 +166467,7 @@ long long FUN_18013d540(void
     if (0 < StringComparisonResult) {
       IntegerValue = StringComparisonResult;
     }
-    FUN_18011dbd0(SystemContextPointer,IntegerValue);
+    ProcessSystemContext(SystemContextPointer,IntegerValue);
     *SystemContextPointer = 0;
     return;
   }
