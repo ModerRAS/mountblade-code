@@ -90047,7 +90047,27 @@ void Unwind_1809102e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809102f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数序列（偏移0xd0）
+ * 
+ * 该函数遍历异常处理回调函数序列并执行它们，用于系统异常处理和清理。
+ * 如果没有回调函数存在，则会终止系统。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含异常处理信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0xd0偏移处获取异常数据缓冲区
+ * 2. 从偏移200处获取资源指针起始位置
+ * 3. 遍历回调函数序列并执行每个函数
+ * 4. 如果没有回调函数，则终止系统
+ * 
+ * @note 原始函数名：Unwind_1809102f0
+ * @warning 在某些条件下此函数不会返回，会调用系统终止函数
+ */
+void ExecuteExceptionCallbacksAtOffsetD0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -103864,6 +103884,82 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：uStack_270 - 栈数据字AH
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordAH uStack_270
+
+// 原始变量名：uStack_2c4 - 栈数据字AI
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAI uStack_2c4
+
+// 原始变量名：uStack_2c0 - 栈数据字AQ
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAQ uStack_2c0
+
+// 原始变量名：uStack_2bc - 栈数据字AJ
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAJ uStack_2bc
+
+// 原始变量名：uStack_2b8 - 栈数据字AK
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAK uStack_2b8
+
+// 原始变量名：uStack_2b4 - 栈数据字AL
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAL uStack_2b4
+
+// 原始变量名：uStack_2ac - 栈数据字AM
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAM uStack_2ac
+
+// 原始变量名：uStack_2a4 - 栈数据字AN
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAN uStack_2a4
+
+// 原始变量名：uStack_2a0 - 栈数据字AO
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAO uStack_2a0
+
+// 原始变量名：uStack_29c - 栈数据字AP
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAP uStack_29c
+
+// 原始变量名：uStack_2d0 - 栈数据字AR
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAR uStack_2d0
+
+// 原始变量名：uStack_84 - 栈数据字AS
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAS uStack_84
+
+// 原始变量名：uStack_38 - 栈数据字AT
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAT uStack_38
+
+// 原始变量名：uStack_34 - 栈数据字AU
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAU uStack_34
+
+// 原始变量名：uStack_30 - 栈数据字AV
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAV uStack_30
+
+// 原始变量名：uStack_2c - 栈数据字AW
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAW uStack_2c
+
+// 原始变量名：uStack_78 - 栈数据字AX
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAX uStack_78
+
+// 原始变量名：uStack_74 - 栈数据字AY
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAY uStack_74
+
+// 原始变量名：uStack_70 - 栈数据字AZ
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAZ uStack_70
+
+// 原始变量名：uStack_6c - 栈数据字BA
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordBA uStack_6c
 
 // 原始变量名：fStack_2c8 - 栈浮点数A
 // 功能：存储浮点数的栈变量
