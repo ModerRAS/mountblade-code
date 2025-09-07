@@ -33787,6 +33787,14 @@ uint64_t FUN_18089fac2(void)
 
 
 
+/**
+ * @brief 系统资源管理函数
+ * 
+ * 管理系统资源，包括资源的分配、释放和生命周期管理
+ * 该函数确保系统资源的正确使用和释放，防止资源泄漏
+ * 
+ * @return uint64_t 返回操作状态码，0表示成功，非0表示错误
+ */
 uint64_t FUN_18089fad8(void)
 
 {
@@ -89942,43 +89950,69 @@ void Unwind_180911890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809118a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常回调处理器Z0
+ * 
+ * 该函数负责处理异常回调操作，遍历异常数据缓冲区并执行相应的回调函数
+ * 如果发现异常数据指针为空，则终止系统运行
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809118a0
+ */
+void ProcessExceptionCallbacksZ0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   DataBuffer *resourcePointer;
-  DataBuffer validationStatus;
+  DataBuffer systemCleanupStatus;
   
-  validationStatus = SystemCleanupFlagfffffffe;
+  systemCleanupStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xb8);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xb0); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer, 0, operationFlagA, operationFlagB, systemCleanupStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xb0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // WARNING: Subroutine does not return
   TerminateSystemE0();
 }
 
 
 
-void Unwind_1809118b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常回调处理器Z1
+ * 
+ * 该函数负责处理异常回调操作，遍历异常数据缓冲区并执行相应的回调函数
+ * 如果发现异常数据指针为空，则终止系统运行
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809118b0
+ */
+void ProcessExceptionCallbacksZ1(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   DataBuffer *resourcePointer;
-  DataBuffer validationStatus;
+  DataBuffer systemCleanupStatus;
   
-  validationStatus = SystemCleanupFlagfffffffe;
+  systemCleanupStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x138);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x130); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer, 0, operationFlagA, operationFlagB, systemCleanupStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x130) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // WARNING: Subroutine does not return
   TerminateSystemE0();
 }
 
