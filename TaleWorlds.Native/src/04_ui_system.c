@@ -66185,86 +66185,110 @@ void ProcessUIRenderPipelineHandler(longlong uiContext)
 
 
 
- void FUN_18069d8a0(longlong uiContext,longlong dataSource,undefined8 *targetBuffer,int bufferSize,
-void FUN_18069d8a0(longlong uiContext,longlong dataSource,undefined8 *targetBuffer,int bufferSize,
-                  longlong resultPointer,int param_6)
-
+ /**
+ * @brief 处理UI事件数据
+ * 
+ * 从数据源中提取UI事件数据并处理，包括事件类型码、信号量处理等
+ * 
+ * @param UiContext UI上下文指针
+ * @param DataSource 数据源指针
+ * @param TargetBuffer 目标缓冲区指针
+ * @param BufferSize 缓冲区大小
+ * @param ResultPointer 结果指针
+ * @param EventDataSize 事件数据大小参数
+ * 
+ * @note 该函数处理UI事件数据的提取和处理，包括事件类型码解析和信号量操作
+ */
+void ProcessUIEventData(longlong UiContext,longlong DataSource,undefined8 *TargetBuffer,int BufferSize,
+                        longlong ResultPointer,int EventDataSize)
 {
-  undefined8 functionResult;
-  undefined8 semaphoreHandle;
-  ushort uVar3;
-  longlong lVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
+  undefined8 eventDataResult;
+  undefined8 eventSemaphoreHandle;
+  ushort eventSubtypeCode;
+  longlong eventOffset;
+  longlong bufferSizeValue;
+  undefined8 *eventDataSourcePointer;
   uint eventTypeCode;
   
-  eventTypeCode = (uint)*(short *)(dataSource + 0x30);
-  uVar3 = *(ushort *)(dataSource + 0x32);
-  puVar6 = (undefined8 *)
-           ((longlong)*(int *)(dataSource + 0x20) +
-           ((longlong)(short)uVar3 >> 3) + resultPointer + (longlong)(((int)eventTypeCode >> 3) * param_6));
-  if (((eventTypeCode & 7) == 0) && (((longlong)(short)uVar3 & 7U) == 0)) {
-    lVar4 = (longlong)param_6;
-    functionResult = *(undefined8 *)((longlong)puVar6 + lVar4);
-    semaphoreHandle = *(undefined8 *)((longlong)puVar6 + lVar4 * 2);
-    lVar5 = (longlong)bufferSize;
-    *targetBuffer = *puVar6;
-    *(undefined8 *)((longlong)targetBuffer + lVar5) = functionResult;
-    *(undefined8 *)((longlong)targetBuffer + lVar5 * 2) = semaphoreHandle;
-    *(undefined8 *)((longlong)targetBuffer + lVar5 * 3) = *(undefined8 *)((longlong)puVar6 + lVar4 * 3);
+  eventTypeCode = (uint)*(short *)(DataSource + 0x30);
+  eventSubtypeCode = *(ushort *)(DataSource + 0x32);
+  eventDataSourcePointer = (undefined8 *)
+           ((longlong)*(int *)(DataSource + 0x20) +
+           ((longlong)(short)eventSubtypeCode >> 3) + ResultPointer + (longlong)(((int)eventTypeCode >> 3) * EventDataSize));
+  if (((eventTypeCode & 7) == 0) && (((longlong)(short)eventSubtypeCode & 7U) == 0)) {
+    eventOffset = (longlong)EventDataSize;
+    eventDataResult = *(undefined8 *)((longlong)eventDataSourcePointer + eventOffset);
+    eventSemaphoreHandle = *(undefined8 *)((longlong)eventDataSourcePointer + eventOffset * 2);
+    bufferSizeValue = (longlong)BufferSize;
+    *TargetBuffer = *eventDataSourcePointer;
+    *(undefined8 *)((longlong)TargetBuffer + bufferSizeValue) = eventDataResult;
+    *(undefined8 *)((longlong)TargetBuffer + bufferSizeValue * 2) = eventSemaphoreHandle;
+    *(undefined8 *)((longlong)TargetBuffer + bufferSizeValue * 3) = *(undefined8 *)((longlong)eventDataSourcePointer + eventOffset * 3);
     return;
   }
                     // WARNING: Could not recover jumptable at 0x00018069d932. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(uiContext + 4000))(puVar6,param_6,uVar3 & 7,eventTypeCode & 7);
+  (**(code **)(UiContext + 4000))(eventDataSourcePointer,EventDataSize,eventSubtypeCode & 7,eventTypeCode & 7);
   return;
 }
 
 
 
 
- void FUN_18069d940(longlong uiContext,longlong dataSource,undefined8 *targetBuffer,int bufferSize,
-void FUN_18069d940(longlong uiContext,longlong dataSource,undefined8 *targetBuffer,int bufferSize,
-                  longlong resultPointer,int param_6)
-
+ /**
+ * @brief 处理UI事件数据扩展
+ * 
+ * 处理更复杂的UI事件数据，包括多层事件数据的处理和信号量管理
+ * 
+ * @param UiContext UI上下文指针
+ * @param DataSource 数据源指针
+ * @param TargetBuffer 目标缓冲区指针
+ * @param BufferSize 缓冲区大小
+ * @param ResultPointer 结果指针
+ * @param EventDataSize 事件数据大小参数
+ * 
+ * @note 该函数处理更复杂的UI事件数据结构，支持多层事件数据的处理
+ */
+void ProcessUIEventDataExtended(longlong UiContext,longlong DataSource,undefined8 *TargetBuffer,int BufferSize,
+                               longlong ResultPointer,int EventDataSize)
 {
-  undefined8 *pfunctionResult;
+  undefined8 *functionResultPointer;
   undefined8 semaphoreHandle;
-  undefined8 uVar3;
-  ushort uVar4;
-  longlong lVar5;
-  longlong contextData;
-  undefined8 *peventTypeCode;
-  uint uVar8;
+  undefined8 eventDataValue;
+  ushort eventSubtypeCode;
+  longlong eventOffset;
+  longlong contextSize;
+  undefined8 *eventDataSourcePointer;
+  uint eventTypeCode;
   
-  uVar8 = (uint)*(short *)(dataSource + 0x30);
-  uVar4 = *(ushort *)(dataSource + 0x32);
-  peventTypeCode = (undefined8 *)
-           ((longlong)*(int *)(dataSource + 0x20) +
-           ((longlong)(short)uVar4 >> 3) + resultPointer + (longlong)(((int)uVar8 >> 3) * param_6));
-  if (((uVar8 & 7) == 0) && (((longlong)(short)uVar4 & 7U) == 0)) {
-    lVar5 = (longlong)param_6;
-    semaphoreHandle = *(undefined8 *)((longlong)peventTypeCode + lVar5);
-    uVar3 = *(undefined8 *)((longlong)peventTypeCode + lVar5 * 2);
-    contextData = (longlong)bufferSize;
-    pfunctionResult = (undefined8 *)((longlong)peventTypeCode + lVar5 * 3);
-    *targetBuffer = *peventTypeCode;
-    *(undefined8 *)((longlong)targetBuffer + contextData) = semaphoreHandle;
-    *(undefined8 *)((longlong)targetBuffer + contextData * 2) = uVar3;
-    targetBuffer = (undefined8 *)((longlong)targetBuffer + contextData * 3);
-    semaphoreHandle = *(undefined8 *)((longlong)pfunctionResult + lVar5);
-    uVar3 = *(undefined8 *)((longlong)pfunctionResult + lVar5 * 2);
-    *targetBuffer = *pfunctionResult;
-    *(undefined8 *)((longlong)targetBuffer + contextData) = semaphoreHandle;
-    *(undefined8 *)((longlong)targetBuffer + contextData * 2) = uVar3;
-    semaphoreHandle = *(undefined8 *)((longlong)pfunctionResult + lVar5 * 4);
-    *(undefined8 *)((longlong)targetBuffer + contextData * 3) = *(undefined8 *)((longlong)pfunctionResult + lVar5 * 3);
-    *(undefined8 *)((longlong)targetBuffer + contextData * 4) = semaphoreHandle;
+  eventTypeCode = (uint)*(short *)(DataSource + 0x30);
+  eventSubtypeCode = *(ushort *)(DataSource + 0x32);
+  eventDataSourcePointer = (undefined8 *)
+           ((longlong)*(int *)(DataSource + 0x20) +
+           ((longlong)(short)eventSubtypeCode >> 3) + ResultPointer + (longlong)(((int)eventTypeCode >> 3) * EventDataSize));
+  if (((eventTypeCode & 7) == 0) && (((longlong)(short)eventSubtypeCode & 7U) == 0)) {
+    eventOffset = (longlong)EventDataSize;
+    semaphoreHandle = *(undefined8 *)((longlong)eventDataSourcePointer + eventOffset);
+    eventDataValue = *(undefined8 *)((longlong)eventDataSourcePointer + eventOffset * 2);
+    contextSize = (longlong)BufferSize;
+    functionResultPointer = (undefined8 *)((longlong)eventDataSourcePointer + eventOffset * 3);
+    *TargetBuffer = *eventDataSourcePointer;
+    *(undefined8 *)((longlong)TargetBuffer + contextSize) = semaphoreHandle;
+    *(undefined8 *)((longlong)TargetBuffer + contextSize * 2) = eventDataValue;
+    TargetBuffer = (undefined8 *)((longlong)TargetBuffer + contextSize * 3);
+    semaphoreHandle = *(undefined8 *)((longlong)functionResultPointer + eventOffset);
+    eventDataValue = *(undefined8 *)((longlong)functionResultPointer + eventOffset * 2);
+    *TargetBuffer = *functionResultPointer;
+    *(undefined8 *)((longlong)TargetBuffer + contextSize) = semaphoreHandle;
+    *(undefined8 *)((longlong)TargetBuffer + contextSize * 2) = eventDataValue;
+    semaphoreHandle = *(undefined8 *)((longlong)functionResultPointer + eventOffset * 4);
+    *(undefined8 *)((longlong)TargetBuffer + contextSize * 3) = *(undefined8 *)((longlong)functionResultPointer + eventOffset * 3);
+    *(undefined8 *)((longlong)TargetBuffer + contextSize * 4) = semaphoreHandle;
     return;
   }
                     // WARNING: Could not recover jumptable at 0x00018069d9d2. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(uiContext + 0xfa8))(peventTypeCode,param_6,uVar4 & 7,uVar8 & 7);
+  (**(code **)(UiContext + 0xfa8))(eventDataSourcePointer,EventDataSize,eventSubtypeCode & 7,eventTypeCode & 7);
   return;
 }
 
