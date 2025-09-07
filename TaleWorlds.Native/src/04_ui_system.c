@@ -20539,58 +20539,61 @@ undefined8 DestroyUIComponentManager(undefined8 *manager_ptr,ulonglong flags,und
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-  处理UI输入事件
- 处理UI系统的输入事件，包括事件数据读取、状态更新和资源管理。
- * 使用加密保护机制确保事件处理的安全性，支持多线程环境下的并发访问。
-  uiContext UI上下文指针，包含UI系统的状态信息
- *  dataSource 数据源指针，包含事件相关的输入数据
-  void
+  /**
+ * @brief 处理UI输入事件
  * 
-  原始函数名：FUN_18004c890
-  该函数涉及线程安全操作，使用锁机制保护共享资源
+ * 处理UI系统的输入事件，包括事件数据读取、状态更新和资源管理。
+ * 使用加密保护机制确保事件处理的安全性，支持多线程环境下的并发访问。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含事件相关的输入数据
+ * @return void
+ * 
+ * @note 原始函数名：FUN_18004c890
+ * @note 该函数涉及线程安全操作，使用锁机制保护共享资源
  */
 void HandleUIInputEvent(longlong uiContext,longlong dataSource)
 
 {
-  uint *eventDataPtr;                   事件数据指针
-  undefined4 *semaphoreHandlePtr;       信号量句柄指针
-  uint eventStatus;                     事件状态
-  longlong dataSourceOffset;             数据源偏移量
-  char componentType;                   组件类型
-  longlong componentOffset;              组件偏移量
-  undefined4 *componentDataPtr;         组件数据指针
-  int eventIndex;                       事件索引
-  undefined4 eventParam1;                   事件参数1
-  undefined4 eventParam2;                   事件参数2
-  undefined4 eventParam3;                   事件参数3
-  undefined4 eventParam4;                   事件参数4
-  undefined4 eventParam5;                   事件参数5
-  undefined4 eventParam6;                   事件参数6
-  undefined4 eventParam7;                   事件参数7
-  undefined4 eventParam8;                   事件参数8
-  ulonglong encryptedData;                 加密数据
+  uint *eventDataPtr;                   // 事件数据指针
+  undefined4 *semaphoreHandlePtr;       // 信号量句柄指针
+  uint eventStatus;                     // 事件状态
+  longlong dataSourceOffset;             // 数据源偏移量
+  char componentType;                   // 组件类型
+  longlong componentOffset;              // 组件偏移量
+  undefined4 *componentDataPtr;         // 组件数据指针
+  int eventIndex;                       // 事件索引
+  undefined4 eventParam1;               // 事件参数1
+  undefined4 eventParam2;               // 事件参数2
+  undefined4 eventParam3;               // 事件参数3
+  undefined4 eventParam4;               // 事件参数4
+  undefined4 eventParam5;               // 事件参数5
+  undefined4 eventParam6;               // 事件参数6
+  undefined4 eventParam7;               // 事件参数7
+  undefined4 eventParam8;               // 事件参数8
+  ulonglong encryptedData;              // 加密数据
   
-   初始化加密数据
+   // 初始化加密数据
   encryptedData = XorEncryptionKey ^ (ulonglong)&eventParam1;
   componentType = *(char *)(uiContext + 0xa4);
   eventIndex = 0;
   
-   检查组件类型是否有效
+  // 检查组件类型是否有效
   if (componentType != -1) {
     componentDataPtr = (undefined4 *)(uiContext + 0x130);
     do {
-       检查事件索引是否超出范围
+      // 检查事件索引是否超出范围
       if (*(char *)(uiContext + 0xa6) <= eventIndex) break;
       
-       初始化组件数据
+      // 初始化组件数据
       *(undefined8 *)(componentDataPtr + -0x20) = 0x3f800000;
       *(undefined8 *)(componentDataPtr + -0x1e) = 0;
       
-       获取数据源偏移量
+      // 获取数据源偏移量
       dataSourceOffset = *(longlong *)(dataSource + 0x18);
       componentOffset = (longlong)componentType * 0x100;
       
-       使用锁机制保护共享资源访问
+       // 使用锁机制保护共享资源访问
       do {
         LOCK();
         eventDataPtr = (uint *)(componentOffset + dataSourceOffset);
@@ -20628,56 +20631,59 @@ void HandleUIInputEvent(longlong uiContext,longlong dataSource)
 
 
 
-  渲染UI组件
- 渲染UI组件，处理组件的位置更新和边界检查。
- * 根据数据源的值和UI上下文的状态，动态调整组件的渲染参数。
-  uiContext UI上下文指针，包含渲染状态信息
- *  dataSource 数据源值，用于计算渲染参数
- *  targetBuffer 目标缓冲区，用于存储渲染结果
-  void
+  /**
+ * @brief 渲染UI组件
  * 
-  原始函数名：FUN_18004c9a0
-  该函数涉及浮点数计算和边界检查逻辑
+ * 渲染UI组件，处理组件的位置更新和边界检查。
+ * 根据数据源的值和UI上下文的状态，动态调整组件的渲染参数。
+ * 
+ * @param uiContext UI上下文指针，包含渲染状态信息
+ * @param dataSource 数据源值，用于计算渲染参数
+ * @param targetBuffer 目标缓冲区，用于存储渲染结果
+ * @return void
+ * 
+ * @note 原始函数名：FUN_18004c9a0
+ * @note 该函数涉及浮点数计算和边界检查逻辑
  */
 void RenderUIComponent(longlong uiContext,float dataSource,undefined8 targetBuffer)
 
 {
-  float currentThreshold;                当前阈值
-  float minBoundary;                      最小边界值
-  float maxBoundary;                      最大边界值
-  float zeroValue;                        零值基准
+  float currentThreshold;                // 当前阈值
+  float minBoundary;                      // 最小边界值
+  float maxBoundary;                      // 最大边界值
+  float zeroValue;                        // 零值基准
   
-   获取当前阈值和边界值
+   // 获取当前阈值和边界值
   currentThreshold = *(float *)(uiContext + 0x1d0);
   zeroValue = 0.0;
   
-   检查是否需要验证UI组件
+  // 检查是否需要验证UI组件
   if ((currentThreshold == 0.0) && (0.0 < *(float *)(uiContext + 0x1d4))) {
     ValidateUIComponent(currentThreshold, targetBuffer);
     currentThreshold = *(float *)(uiContext + 0x1d0);
   }
   
-   获取最大边界值
+  // 获取最大边界值
   maxBoundary = *(float *)(uiContext + 0x1d4);
   
-   检查是否需要更新阈值
+  // 检查是否需要更新阈值
   if (currentThreshold != maxBoundary) {
-     根据数据源计算调整值
+    // 根据数据源计算调整值
     float adjustmentFactor = dataSource * *(float *)(uiContext + 0x1d8);
     float boundaryDifference = maxBoundary - currentThreshold;
     
-     检查是否在调整范围内
+    // 检查是否在调整范围内
     if ((-adjustmentFactor <= boundaryDifference) && (boundaryDifference < adjustmentFactor)) {
       *(float *)(uiContext + 0x1d0) = maxBoundary;
       return;
     }
     
-     根据差值符号调整方向
+    // 根据差值符号调整方向
     if (boundaryDifference < zeroValue) {
       adjustmentFactor = -adjustmentFactor;
     }
     
-     更新当前阈值
+     // 更新当前阈值
     *(float *)(uiContext + 0x1d0) = adjustmentFactor + currentThreshold;
   }
   return;
