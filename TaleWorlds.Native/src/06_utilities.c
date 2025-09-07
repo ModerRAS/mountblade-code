@@ -6937,18 +6937,18 @@ void* DataBufferCleanupPointer;           // uRam0000000180d49d58 - 数据缓冲
 void* DefaultExceptionHandlerBPointer;     // 默认异常处理器B指针
 
 // 异常处理器指针变量声明
-void* ExceptionHandlerPointerA;         // 异常处理器指针A
-void* ExceptionHandlerPointerB;         // 异常处理器指针B
-void* ExceptionHandlerPointerC;         // 异常处理器指针C
-void* ExceptionHandlerPointerD;         // 异常处理器指针D
-void* ExceptionHandlerPointerE;         // 异常处理器指针E
-void* ExceptionHandlerPointerF;         // 异常处理器指针F
-void* ExceptionHandlerPointerG;         // 异常处理器指针G
-void* ExceptionHandlerPointerH;         // 异常处理器指针H
-void* ExceptionHandlerPointerI;         // 异常处理器指针I
-void* ExceptionHandlerPointerJ;         // 异常处理器指针J
-void* ExceptionHandlerPointerK;         // 异常处理器指针K
-void* ExceptionHandlerPointerL;         // 异常处理器指针L
+void* PrimaryExceptionHandler;         // 主异常处理器指针
+void* SecondaryExceptionHandler;        // 备用异常处理器指针
+void* TertiaryExceptionHandler;         // 第三异常处理器指针
+void* QuaternaryExceptionHandler;       // 第四异常处理器指针
+void* DefaultExceptionHandler;          // 默认异常处理器指针
+void* FallbackExceptionHandler;         // 回退异常处理器指针
+void* CriticalExceptionHandler;         // 关键异常处理器指针
+void* MemoryExceptionHandler;           // 内存异常处理器指针
+void* IoExceptionHandler;              // 输入输出异常处理器指针
+void* SystemExceptionHandler;           // 系统异常处理器指针
+void* UserExceptionHandler;             // 用户异常处理器指针
+void* SecurityExceptionHandler;         // 安全异常处理器指针
 
 // 系统函数表指针变量声明
 void* SystemFunctionTablePointer;       // 系统函数表指针
@@ -9078,12 +9078,12 @@ uint8_t MemoryPoolAllocatorA;
 uint8_t SystemMemoryManagementBlockPrimaryData;
 uint8_t SystemMemoryManagementBlockSecondaryData;
 uint8_t SystemMemoryManagementBlockTertiaryData;
-uint8_t SystemMemoryManagementBlockA4;
+uint8_t SystemMemoryManagementBlockQuaternaryData;
 // 系统全局数据指针
 uint8_t SystemGlobalDataPointer;
-// 系统内存管理数据块B
-uint8_t SystemMemoryManagementBlockB1;
-uint8_t SystemMemoryManagementBlockB2;
+// 系统内存管理数据块状态
+uint8_t SystemMemoryManagementBlockStatus;
+uint8_t SystemMemoryManagementBlockFlags;
 // 全局系统数据指针
 int64_t GlobalSystemDataPointer;
 // 系统健康状态指示器
@@ -9129,11 +9129,11 @@ uint8_t SystemThreadManagementBlock17;
 uint8_t SystemThreadManagementBlock18;
 uint8_t SystemThreadManagementBlock19;
 uint8_t SystemThreadManagementBlock20;
-// 系统内存管理数据块C
-uint8_t SystemMemoryManagementBlockC1;
-uint8_t SystemMemoryManagementBlockC2;
-uint8_t SystemMemoryManagementBlockC3;
-uint8_t SystemMemoryManagementBlockC4;
+// 系统内存管理数据块控制
+uint8_t SystemMemoryManagementBlockControl;
+uint8_t SystemMemoryManagementBlockHandler;
+uint8_t SystemMemoryManagementBlockAllocator;
+uint8_t SystemMemoryManagementBlockDeallocator;
 // 系统状态标志变量
 uint8_t UtilitySystemStatusFlagPrimary;
 uint8_t UtilitySystemStatusFlagSecondary;
