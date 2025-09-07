@@ -9808,8 +9808,15 @@ DataWord GetSystemStatus(void)
 
 
 
-// 函数: void EmergencyShutdown(void)
-// 功能：紧急关闭系统
+/**
+ * @brief 紧急系统关闭函数
+ * 
+ * 在系统遇到严重错误或紧急情况时调用，执行资源释放并立即关闭系统。
+ * 这是一个紧急处理函数，用于处理无法恢复的系统错误。
+ * 
+ * @note 原始函数名：EmergencyShutdown
+ * @warning 此函数不会返回，会直接终止程序执行
+ */
 void EmergencyShutdown(void)
 
 {
@@ -70171,7 +70178,7 @@ void Unwind_18090a7a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a7b0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteCallbackAndSetExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x48) != (int64_t *)0x0) {
