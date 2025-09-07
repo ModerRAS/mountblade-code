@@ -53048,31 +53048,31 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   SystemMemoryPointer168 = (long long *)0x0;
   pLocalDataStructure160 = (long long *)0x0;
   SystemStackValue158 = 3;
-  InitializeSystemDataStructureA(&lStack_170,(long long)StringComparisonResult7);
+  InitializeSystemDataStructureA(&StackOffset170,(long long)StringComparisonResult7);
   MemoryAddressMask1 = UnicodeCodePoint6;
-  uStackX_20 = MemoryAllocationIndex8;
+  StackOffset20 = MemoryAllocationIndex8;
   if (0 < (long long)MemoryAllocationIndex8) {
     do {
-      BufferStatus3 = lStack_170;
+      BufferStatus3 = StackOffset170;
       ReferenceCountPointer3 = (int *)0x0;
       BufferStatus1 = *(long long *)(CharacterCode + 0x90);
       MemoryBlockIndex1 = (unsigned long long)*(uint *)(BufferStatus1 + UnicodeCodePoint6) * 0x20;
-      pStringComparisonResult0 = *(int **)(MemoryBlockIndex1 + 8 + lStack_170);
+      pStringComparisonResult0 = *(int **)(MemoryBlockIndex1 + 8 + StackOffset170);
       StringComparisonResult7 = (int)MemoryAddressMask1;
-      if (pStringComparisonResult0 < *(int **)(MemoryBlockIndex1 + 0x10 + lStack_170)) {
-        *(int **)(MemoryBlockIndex1 + 8 + lStack_170) = pStringComparisonResult0 + 1;
+      if (pStringComparisonResult0 < *(int **)(MemoryBlockIndex1 + 0x10 + StackOffset170)) {
+        *(int **)(MemoryBlockIndex1 + 8 + StackOffset170) = pStringComparisonResult0 + 1;
         *pStringComparisonResult0 = StringComparisonResult7;
       }
       else {
-        ReferenceCountPointer5 = *(int **)(MemoryBlockIndex1 + lStack_170);
+        ReferenceCountPointer5 = *(int **)(MemoryBlockIndex1 + StackOffset170);
         CharacterTableIterator = (long long)pStringComparisonResult0 - (long long)ReferenceCountPointer5 >> 2;
         if (CharacterTableIterator == 0) {
           CharacterTableIterator = 1;
 CharacterTableAllocationLoop:
           ReferenceCountPointer3 = (int *)BufferAllocate(MemoryPoolManager,CharacterTableIterator * 4,
-                                         *(uint8_t *)(MemoryBlockIndex1 + 0x18 + lStack_170));
-          pStringComparisonResult0 = *(int **)(MemoryBlockIndex1 + 8 + BufferStatus3);
-          ReferenceCountPointer5 = *(int **)(MemoryBlockIndex1 + BufferStatus3);
+                                         *(uint8_t *)(MemoryBlockIndex1 + 0x18 + StackOffset170));
+          pStringComparisonResult0 = *(int **)(MemoryBlockIndex1 + 8 + StackOffset170);
+          ReferenceCountPointer5 = *(int **)(MemoryBlockIndex1 + StackOffset170);
         }
         else {
           CharacterTableIterator = CharacterTableIterator * 2;
@@ -53164,9 +53164,9 @@ ReferenceCountAllocationLoop:
         *(int **)(BufferStatus1 + 0x10 + BufferStatus3) = ReferenceCountPointer5 + MemoryBlockIndex1;
       }
       UnicodeCodePoint6 = UnicodeCodePoint6 + 0xc;
-      uStackX_20 = uStackX_20 - 1;
+      StackOffset20 = StackOffset20 - 1;
       MemoryAddressMask1 = (unsigned long long)(StringComparisonResult7 + 1);
-    } while (uStackX_20 != 0);
+    } while (StackOffset20 != 0);
   }
   Utf16Char9 = 0;
   StackProcessingConfigurationFlag = 0;
