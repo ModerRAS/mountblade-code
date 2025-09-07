@@ -217699,10 +217699,27 @@ ConfigureSystemUnknownDataNodes(uint64_t *SystemContextPointer,unsigned long lon
 
 
 
+/**
+ * @brief 初始化系统数据上下文
+ * 
+ * 该函数负责初始化系统数据上下文，分配内存并设置各种数据节点模板和参数。
+ * 函数会创建一个包含多个数据节点引用的上下文结构，并调用初始化函数。
+ * 
+ * @param SystemContextPointer 系统上下文指针，用于访问系统状态
+ * @param Utf8BufferSize UTF-8缓冲区指针，将被设置为初始化后的上下文
+ * @param Utf16InputPointer UTF-16输入指针，用于初始化操作
+ * @param Utf16EndPointer UTF-16结束指针，用于初始化操作
+ * 
+ * @return uint64_t* 返回初始化后的UTF-8缓冲区指针
+ * 
+ * @note 此函数分配0x70字节的内存用于系统上下文
+ * @note 设置多个数据节点模板和浮点数值
+ * @note 调用两个初始化函数进行完整的初始化过程
+ */
 uint64_t *
-FUN_180194d10(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+InitializeSystemDataContext(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
-  long long *SystemContextPointer;
+  long long *DataContextPointer;
   
   SystemContextPointer = (long long *)MemoryAllocate(MemoryPoolManager,0x70,8,3,0,0xfffffffffffffffe);
   *SystemContextPointer = (long long)&DataNodeTemplateA;
