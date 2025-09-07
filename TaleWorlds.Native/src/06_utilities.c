@@ -14206,9 +14206,9 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 // 功能：转换和处理数据
 #define ConvertAndValidateDataA0 FUN_1808975e0
 
-// 原始函数名：FUN_1808995c0 - 数据验证函数A2
+// 数据验证函数A2
 // 功能：验证数据和状态
-#define ValidateDataWithSecurityCheckA2 ValidateDataWithSecurityCheck
+#define ValidateDataWithSecurityCheckA2 FUN_1808995c0
 
 // 原始函数名：FUN_180899090 - 数据块处理函数A1
 // 功能：处理多个数据块
