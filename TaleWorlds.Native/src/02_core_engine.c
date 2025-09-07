@@ -201246,7 +201246,7 @@ void CopySystemEventDataStructure(uint64_t SystemContextPointer,uint64_t Utf8Buf
   MemoryAddressMask = 0xfffffffffffffffe;
   systemEventTemplatePointer = PrimaryProcessingStatusFlag;
   FUN_1803456e0(PrimaryProcessingStatusFlag,Utf8BufferSize,SystemContextPointer);
-  *systemEventTemplatePointer = &UNK_180a1d230;
+  *systemEventTemplatePointer = &SystemEventTemplateSecondary;
   systemEventTemplatePointer[0xe] = 0;
   *(uint32_t *)(systemEventTemplatePointer + 0xf) = 0x3f800000;
   pSystemOperationFlag90 = &SystemNullTemplate;
@@ -201307,7 +201307,7 @@ void CopySystemEventDataStructure(uint64_t SystemContextPointer,uint64_t Utf8Buf
   PrimaryProcessingStatusFlag = StatusBuffer;
   EventVariablePointer = StatusBuffer;
   FUN_1803456e0(StatusBuffer,Utf8BufferSize,SystemContextPointer);
-  *PrimaryProcessingStatusFlag = &UNK_180a1d3f0;
+  *PrimaryProcessingStatusFlag = &SystemProcessingStatusFlagPrimary;
   *(uint16_t *)(PrimaryProcessingStatusFlag + 0x12) = 0;
   *(uint8_t *)((long long)PrimaryProcessingStatusFlag + 0x92) = 0;
   *(bool *)((long long)PrimaryProcessingStatusFlag + 0x93) = *(char *)(Utf8BufferSize + 0x2e5) == '\0';
@@ -201321,35 +201321,35 @@ void CopySystemEventDataStructure(uint64_t SystemContextPointer,uint64_t Utf8Buf
   DataProcessingBuffer = aDataProcessingFlags;
   aDataProcessingFlags[0] = 0;
   BufferInitializationFlag = 8;
-  strcpy_s(aDataProcessingFlags,0x10,&UNK_180a18cc8);
+  strcpy_s(aDataProcessingFlags,0x10,&SystemDataProcessingFlags);
   FUN_1803460a0(StatusBuffer,&memoryAllocationBuffer,StatusBuffer + 0x12,3);
   memoryAllocationBuffer = &ThreadLocalStorageTemplate;
   CoreEnginePointerBuffer110 = &RenderConfigManager;
   pProcessingCounter = aSystemFlagB;
   aSystemFlagB[0] = 0;
   SystemFlagA = 0x13;
-  strcpy_s(aSystemFlagB,0x20,&UNK_180a1d3d0);
+  strcpy_s(aSystemFlagB,0x20,&SystemFlagSecondary);
   FUN_1803460a0(StatusBuffer,&CoreEnginePointerBuffer110,(long long)StatusBuffer + 0x92,3);
   CoreEnginePointerBuffer110 = &ThreadLocalStorageTemplate;
   pSystemFlagF = &RenderConfigManager;
   pSystemFlagG = aCoreEngineValueC0;
   aCoreEngineValueC0[0] = 0;
   SystemFlagH = 0x11;
-  strcpy_s(aCoreEngineValueC0,0x20,&UNK_180a1d3b8);
+  strcpy_s(aCoreEngineValueC0,0x20,&SystemCoreEngineValue);
   FUN_1803460a0(StatusBuffer,&pSystemFlagF,(long long)StatusBuffer + 0x8c,2);
   pSystemFlagF = &ThreadLocalStorageTemplate;
   StackTempPointer = &RenderConfigManager;
   pSystemOperationFlag98 = aStackValidationData;
   aStackValidationData[0] = 0;
   SystemOperationFlag90 = 0xf;
-  strcpy_s(aStackValidationData,0x20,&UNK_180a1d3a8);
+  strcpy_s(aStackValidationData,0x20,&SystemStackValidationData);
   FUN_1803460a0(StatusBuffer,&StackTempPointer,StatusBuffer + 0x11,2);
   StackTempPointer = &ThreadLocalStorageTemplate;
   EnginePointerBuffer = &RenderConfigManager;
   CoreEnginePointerBuffer60 = aSystemKeyPointer;
   aSystemKeyPointer[0] = 0;
   SystemTimeoutCounter = 9;
-  strcpy_s(aSystemKeyPointer,0x20,&UNK_180a1d398);
+  strcpy_s(aSystemKeyPointer,0x20,&SystemKeyPointerBuffer);
   FUN_1803460a0(StatusBuffer,&EnginePointerBuffer,StatusBuffer + 0xf,5);
   EnginePointerBuffer = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
@@ -201376,7 +201376,7 @@ void CopySystemEventDataStructure(uint64_t SystemContextPointer,uint64_t Utf8Buf
   CalculatedCodePoint = 0xfffffffffffffffe;
   pMemoryAddressMask = systemEventTemplatePointer;
   FUN_1803456e0(systemEventTemplatePointer,Utf8BufferSize,SystemContextPointer);
-  *pMemoryAddressMask = &UNK_180a1d590;
+  *pMemoryAddressMask = &SystemMemoryAddressMaskPrimary;
   StatusBuffer = pMemoryAddressMask + 0xe;
   *StatusBuffer = &ThreadLocalStorageTemplate;
   pMemoryAddressMask[0xf] = 0;
@@ -201423,7 +201423,7 @@ void CopySystemEventDataStructure(uint64_t SystemContextPointer,uint64_t Utf8Buf
   CalculatedCodePoint = 0xfffffffffffffffe;
   systemEventTemplatePointer = (void *)MemoryAllocate(MemoryPoolManager,0x178,8,3,0xfffffffffffffffe);
   FUN_1803624e0(systemEventTemplatePointer,Utf8BufferSize,SystemContextPointer);
-  *systemEventTemplatePointer = &UNK_180a1d700;
+  *systemEventTemplatePointer = &SystemEventTemplateTertiary;
   SystemContextPointer = systemEventTemplatePointer + 0x2a;
   *SystemContextPointer = (long long)&ThreadLocalStorageTemplate;
   systemEventTemplatePointer[0x2b] = 0;
@@ -201474,7 +201474,7 @@ void CopySystemEventDataStructure(uint64_t SystemContextPointer,uint64_t Utf8Buf
   FunctionAddress = 0xfffffffffffffffe;
   systemEventTemplatePointer = PrimaryProcessingStatusFlag;
   FUN_1803456e0(PrimaryProcessingStatusFlag,Utf8BufferSize,SystemContextPointer);
-  *systemEventTemplatePointer = &UNK_180a1d9a0;
+  *systemEventTemplatePointer = &SystemEventTemplateQuaternary;
   InitializeSystemResourceStructure(systemEventTemplatePointer + 0xe,0x20,4,ManageSystemResourceAndRelease,ReleaseSystemResource);
   InitializeSystemResourceStructure(PrimaryProcessingStatusFlag + 0x1e,0x20,4,ManageSystemResourceAndRelease,ReleaseSystemResource);
   PrimaryProcessingStatusFlag[0x2f] = 0;
@@ -201520,7 +201520,7 @@ void CopySystemEventDataStructure(uint64_t SystemContextPointer,uint64_t Utf8Buf
   SystemStackFlag = 0xfffffffffffffffe;
   SecondaryProcessingStatusFlag = ValidationValuePointer;
   FUN_1803456e0(ValidationValuePointer,Utf8BufferSize,SystemContextPointer);
-  *SecondaryProcessingStatusFlag = &UNK_180a1dbc0;
+  *SecondaryProcessingStatusFlag = &SystemProcessingStatusFlagSecondary;
   SystemContextPointer = SecondaryProcessingStatusFlag + 0xe;
   *SystemContextPointer = (long long)&ThreadLocalStorageTemplate;
   SecondaryProcessingStatusFlag[0xf] = 0;
@@ -201587,7 +201587,7 @@ uint64_t * FUN_18017cac0(uint64_t SystemContextPointer,uint64_t Utf8BufferSize
   
   StatusBuffer = (void *)MemoryAllocate(MemoryPoolManager,0x70,8,3,0xfffffffffffffffe);
   FUN_1803456e0(StatusBuffer,Utf8BufferSize,SystemContextPointer);
-  *StatusBuffer = &UNK_180a09fb8;
+  *StatusBuffer = &SystemStatusBufferSecondary;
   return StatusBuffer;
 }
 
