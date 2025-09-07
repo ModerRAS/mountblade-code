@@ -3767,6 +3767,24 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_18012dcb6 - UTF-8缓冲区处理函数
 #define ProcessUtf8Buffer FUN_18012dcb6
 
+// 原始函数名：FUN_180123d70 - Unicode代码点处理函数
+#define ProcessUnicodeCodePoint FUN_180123d70
+
+// 原始函数名：FUN_18012e4f6 - UTF-8到UTF-16转换处理函数
+#define ConvertUtf8ToUtf16AndProcess FUN_18012e4f6
+
+// 原始函数名：FUN_18012e63a - 字符编码和浮点处理函数
+#define ProcessCharacterEncodingAndFloat FUN_18012e63a
+
+// 原始函数名：FUN_18012e6e8 - 系统状态处理函数
+#define ProcessSystemStatus FUN_18012e6e8
+
+// 原始函数名：FUN_18012e706 - 系统事件处理函数
+#define ProcessSystemEventEx FUN_18012e706
+
+// 原始函数名：FUN_18012e910 - 系统初始化函数
+#define InitializeSystemComponentsEx FUN_18012e910
+
 const void* const SystemStackBufferA = (void*)0x18010cb70;
 const void* const SystemStackBufferB = (void*)0x18010cb60;
 const void* const SystemLocalDataBuffer = (void*)0x180103b59;
@@ -145271,7 +145289,14 @@ void ProcessSystemDataValidation(uint64_t CharacterCode)
 
 
 
-e3b0(voidvoid FUN_18012e3b0(void
+/**
+ * @brief 处理系统次要事件句柄
+ * 
+ * 该函数负责处理系统次要事件句柄的管理和操作
+ * 
+ * @note 原始函数名：FUN_18012e3b0
+ */
+void ProcessSystemSecondaryEventHandle(void)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
