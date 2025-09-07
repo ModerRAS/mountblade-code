@@ -90088,7 +90088,7 @@ void ProcessSystemDataValidation(long long SystemContextPointer,long long Utf8Bu
           StackParameter0 = unaff_XMM15_Dc;
           StackParameter3 = unaff_XMM12_Da;
           StackParameter6 = unaff_XMM12_Dc;
-          in_stack_000000c0 = unaff_XMM9_Da;
+          in_stack_000000c0 = AuxiliaryFloat9;
           in_stack_000000c8 = unaff_XMM9_Dc;
           do {
             SystemContextFloat20 = SystemContextFloat20 + SystemContextFloat19;
@@ -90316,7 +90316,7 @@ void ValidateSystemDataStructureIntegrity(uint64_t SystemContextPointer
   float SystemContextFloat13;
   float SystemContextFloat14;
   float FloatRegisterX8;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   float SystemFloatValue;
   uint32_t unaff_XMM9_Dc;
   float SystemContextFloat16;
@@ -90378,7 +90378,7 @@ void ValidateSystemDataStructureIntegrity(uint64_t SystemContextPointer
       StackParameter0 = unaff_XMM15_Dc;
       StackParameter3 = unaff_XMM12_Da;
       StackParameter6 = unaff_XMM12_Dc;
-      in_stack_000000c0 = unaff_XMM9_Da;
+      in_stack_000000c0 = AuxiliaryFloat9;
       in_stack_000000c8 = unaff_XMM9_Dc;
       do {
         SystemFloatValue = SystemFloatValue + SystemContextFloat1;
@@ -90479,7 +90479,7 @@ void ResetSystemDataStatus(void
   float FloatingPointRegisterA;
   float SystemContextFloat12;
   float FloatRegisterX8;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   float SystemContextFloat13;
   uint32_t unaff_XMM9_Dc;
   float AuxiliaryFloat10;
@@ -90533,7 +90533,7 @@ void ResetSystemDataStatus(void
     StackParameter0 = unaff_XMM15_Dc;
     StackParameter3 = unaff_XMM12_Da;
     StackParameter6 = unaff_XMM12_Dc;
-    in_stack_000000c0 = unaff_XMM9_Da;
+    in_stack_000000c0 = AuxiliaryFloat9;
     in_stack_000000c8 = unaff_XMM9_Dc;
     do {
       SystemContextFloat13 = SystemContextFloat13 + AuxiliaryFloat10;
@@ -92140,7 +92140,7 @@ unsigned long long ProcessDataStructureAndFloatCalculation(uint32_t SystemContex
   uint32_t XMMRegister8_Db;
   uint32_t unaff_XMM8_Dc;
   uint32_t unaff_XMM8_Dd;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Db;
   uint32_t unaff_XMM9_Dc;
   uint32_t unaff_XMM9_Dd;
@@ -92157,7 +92157,7 @@ unsigned long long ProcessDataStructureAndFloatCalculation(uint32_t SystemContex
   *(uint32_t *)(in_R11 + -0x54) = XMMRegister8_Db;
   *(uint32_t *)(in_R11 + -0x50) = unaff_XMM8_Dc;
   *(uint32_t *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
-  *(uint32_t *)(in_R11 + -0x68) = unaff_XMM9_Da;
+  *(uint32_t *)(in_R11 + -0x68) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -100) = unaff_XMM9_Db;
   *(uint32_t *)(in_R11 + -0x60) = unaff_XMM9_Dc;
   *(uint32_t *)(in_R11 + -0x5c) = unaff_XMM9_Dd;
@@ -92983,7 +92983,7 @@ uint8_t ProcessDataStructureWithMemory(uint32_t SystemContextPointer,float *Utf8
   uint32_t XMMRegister8_Db;
   uint32_t unaff_XMM8_Dc;
   uint32_t unaff_XMM8_Dd;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   float SystemContextFloat24;
   uint32_t unaff_XMM9_Db;
   uint32_t unaff_XMM9_Dc;
@@ -93002,7 +93002,7 @@ uint8_t ProcessDataStructureWithMemory(uint32_t SystemContextPointer,float *Utf8
   *(uint32_t *)(in_RAX + -100) = XMMRegister8_Db;
   *(uint32_t *)(in_RAX + -0x60) = unaff_XMM8_Dc;
   *(uint32_t *)(in_RAX + -0x5c) = unaff_XMM8_Dd;
-  *(uint32_t *)(in_RAX + -0x78) = unaff_XMM9_Da;
+  *(uint32_t *)(in_RAX + -0x78) = AuxiliaryFloat9;
   *(uint32_t *)(in_RAX + -0x74) = unaff_XMM9_Db;
   *(uint32_t *)(in_RAX + -0x70) = unaff_XMM9_Dc;
   *(uint32_t *)(in_RAX + -0x6c) = unaff_XMM9_Dd;
@@ -93682,7 +93682,7 @@ void ProcessSystemMemoryAllocation(void)
       SystemContextFloat12 = StackVariable3c - StackVariable34;
       SystemFloatValue = *(float *)(SystemContext + 100);
     }
-    SystemContextFloat11 = SystemContextFloat11 - unaff_XMM9_Da;
+    SystemContextFloat11 = SystemContextFloat11 - AuxiliaryFloat9;
     SystemContextFloat13 = SystemFloatValue;
     if (SystemFloatValue <= SystemContextFloat11) {
       SystemContextFloat13 = SystemContextFloat11;
@@ -93850,7 +93850,7 @@ void ValidateSystemMemoryOperation(void)
   float FloatRegisterX8;
   float SystemContextFloat11;
   float SystemContextFloat12;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float SystemContextFloat13;
   float AuxiliaryFloat10;
   float AuxiliaryFloat11;
@@ -93910,7 +93910,7 @@ void ValidateSystemMemoryOperation(void)
     SystemContextFloat12 = StackVariable3c - StackVariable34;
     SystemFloatValue = *(float *)(SystemContext + 100);
   }
-  SystemContextFloat11 = SystemContextFloat11 - unaff_XMM9_Da;
+  SystemContextFloat11 = SystemContextFloat11 - AuxiliaryFloat9;
   SystemContextFloat13 = SystemFloatValue;
   if (SystemFloatValue <= SystemContextFloat11) {
     SystemContextFloat13 = SystemContextFloat11;
@@ -94062,14 +94062,14 @@ void InitializeSystemMemoryCache(void)
   long long DataIndex;
   float FloatingPointRegisterA;
   float BaseFloatValue;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   uint32_t UnsignedStackParameter28;
   float fStack0000000000000030;
   float TertiaryDataStorage;
   
   fStack0000000000000030 = (TertiaryDataStorage - FloatingPointRegisterA) * BaseFloatValue + FloatingPointRegisterA;
-  TertiaryDataStorage = unaff_XMM9_Da + fStack0000000000000030;
-  if (*(float *)(RegisterFramePointer + 0x77) <= unaff_XMM9_Da + fStack0000000000000030) {
+  TertiaryDataStorage = AuxiliaryFloat9 + fStack0000000000000030;
+  if (*(float *)(RegisterFramePointer + 0x77) <= AuxiliaryFloat9 + fStack0000000000000030) {
     TertiaryDataStorage = *(float *)(RegisterFramePointer + 0x77);
   }
   uStack0000000000000028 = 0xf;
@@ -94279,7 +94279,7 @@ unsigned long long ProcessSystemContextAndMemoryManagement(void
   uint32_t XMMRegister8_Db;
   uint32_t unaff_XMM8_Dc;
   uint32_t unaff_XMM8_Dd;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Db;
   uint32_t unaff_XMM9_Dc;
   uint32_t unaff_XMM9_Dd;
@@ -94300,7 +94300,7 @@ unsigned long long ProcessSystemContextAndMemoryManagement(void
   *(uint32_t *)(in_R11 + -100) = XMMRegister8_Db;
   *(uint32_t *)(in_R11 + -0x60) = unaff_XMM8_Dc;
   *(uint32_t *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
-  *(uint32_t *)(in_R11 + -0x78) = unaff_XMM9_Da;
+  *(uint32_t *)(in_R11 + -0x78) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -0x74) = unaff_XMM9_Db;
   *(uint32_t *)(in_R11 + -0x70) = unaff_XMM9_Dc;
   *(uint32_t *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
@@ -95087,7 +95087,7 @@ char ProcessSystemMemoryBufferSecondary(void
   int RegisterGeneral14D;
   float NormalizedParameter;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float AuxiliaryFloat11;
   float SystemContextFloat10;
   float AuxiliaryFloat13;
@@ -95156,7 +95156,7 @@ char ProcessSystemMemoryBufferSecondary(void
     }
     ProcessSystemConfigurationAndTarget(&TertiaryDataBuffer,TertiaryProcessingStatusFlag,0);
   }
-  if (FloatRegisterX8 < unaff_XMM9_Da) {
+  if (FloatRegisterX8 < AuxiliaryFloat9) {
     ProcessSystemConfigurationAndStack(DataStorageValue);
   }
   return OperationStatus;
@@ -95595,7 +95595,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *SystemContextPo
   uint32_t unaff_XMM7_Dc;
   uint32_t unaff_XMM7_Dd;
   float FloatRegisterX8;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   float SystemContextFloat10;
   uint32_t unaff_XMM9_Db;
   uint32_t unaff_XMM9_Dc;
@@ -95639,7 +95639,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *SystemContextPo
   *(uint32_t *)(in_R11 + -0x34) = FloatRegisterX7_Hi;
   *(uint32_t *)(in_R11 + -0x30) = unaff_XMM7_Dc;
   *(uint32_t *)(in_R11 + -0x2c) = unaff_XMM7_Dd;
-  *(uint32_t *)(in_R11 + -0x58) = unaff_XMM9_Da;
+  *(uint32_t *)(in_R11 + -0x58) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -0x54) = unaff_XMM9_Db;
   *(uint32_t *)(in_R11 + -0x50) = unaff_XMM9_Dc;
   *(uint32_t *)(in_R11 + -0x4c) = unaff_XMM9_Dd;
@@ -95789,7 +95789,7 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
   float BaseFloatValue;
   float FloatValue8;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float NormalizedParameter;
   float AuxiliaryFloat11;
   float SystemContextFloat10;
@@ -95833,7 +95833,7 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
                 CONCAT44(fStack0000000000000054,TemporaryFloatStack50),MemoryAddressMask,1,ProcessStringBuffer);
   SystemStatusCode = (uint32_t)((unsigned long long)ProcessStringBuffer >> 0x20);
   fStack0000000000000054 = -*(float *)(SystemContext + 0x1668);
-  NormalizedParameter = unaff_XMM9_Da - fStack0000000000000054;
+  NormalizedParameter = AuxiliaryFloat9 - fStack0000000000000054;
   FloatValue8 = BaseFloatValue + fStack0000000000000054;
   SystemContextFloat10 = AuxiliaryFloat11 - fStack0000000000000054;
   fStack0000000000000054 = unaff_XMM12_Da + fStack0000000000000054;
@@ -95909,8 +95909,8 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
   
   SystemContextFloat2 = FloatingPointRegisterA + *(float *)(SystemContext + 0x166c);
   TemporaryStackValue6c = 0x3f000000;
-  fStack0000000000000040 = unaff_XMM9_Da;
-  if ((unaff_XMM9_Da <= SystemContextFloat2) &&
+  fStack0000000000000040 = AuxiliaryFloat9;
+  if ((AuxiliaryFloat9 <= SystemContextFloat2) &&
      (fStack0000000000000040 = (BaseFloatValue - Utf8BufferSize) - *(float *)(SystemContext + 0x1674),
      SystemContextFloat2 <= fStack0000000000000040)) {
     fStack0000000000000040 = SystemContextFloat2;
@@ -96284,7 +96284,7 @@ void SystemDataValidationAndProcessing(void)
   *(uint32_t *)(in_R11 + -0x34) = XMMRegister8_Db;
   *(uint32_t *)(in_R11 + -0x30) = unaff_XMM8_Dc;
   *(uint32_t *)(in_R11 + -0x2c) = unaff_XMM8_Dd;
-  *(uint32_t *)(in_R11 + -0x48) = unaff_XMM9_Da;
+  *(uint32_t *)(in_R11 + -0x48) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -0x44) = unaff_XMM9_Db;
   *(uint32_t *)(in_R11 + -0x40) = unaff_XMM9_Dc;
   *(uint32_t *)(in_R11 + -0x3c) = unaff_XMM9_Dd;
@@ -97139,7 +97139,7 @@ void ProcessSystemFloatDataTransferAndConfiguration(void)
   float SystemContextFloat18;
   float FloatingPointRegisterA;
   float SystemContextFloat19;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float AuxiliaryFloat10;
   float unaff_XMM12_Da;
   unsigned long long StackParameter1;
@@ -97253,7 +97253,7 @@ void ProcessSystemFloatDataTransferAndConfiguration(void)
                     CONCAT44(TemporaryStackValue6c,TemporaryFloatStack68),StringBuffer6);
     }
   }
-  if (unaff_XMM9_Da < unaff_XMM12_Da) {
+  if (AuxiliaryFloat9 < unaff_XMM12_Da) {
     ProcessSystemConfigurationAndStack(CONCAT44(SecondaryFloatValue + *(float *)(DataIndex + 0x1660),
                            SystemContextFloat18 + *(float *)(DataIndex + 0x1674)),
                   *(void *)(RegisterFramePointer + -0x70),0,1);
@@ -97327,12 +97327,12 @@ void ProcessSystemFloatDataTransferAndConfiguration(void)
       if (((*(char *)(SystemContextValue + 0xb6) == '\0') || (*(int *)(SystemContextValue + 0xdc) != 0)) ||
          (*(int *)(SystemContextValue + 0xd8) < 1)) {
         SystemContextFloat18 = *(float *)(SystemContextValue + 0x68);
-        if (SystemContextFloat18 == unaff_XMM9_Da) {
+        if (SystemContextFloat18 == AuxiliaryFloat9) {
           SystemContextFloat18 = (*(float *)(SystemContextValue + 0x118) - *(float *)(SystemContextValue + 0x40)) +
                    *(float *)(SystemContextValue + 0x8c);
         }
         SecondaryFloatValue = *(float *)(SystemContextValue + 0x6c);
-        if (SecondaryFloatValue == unaff_XMM9_Da) {
+        if (SecondaryFloatValue == AuxiliaryFloat9) {
           SecondaryFloatValue = (*(float *)(SystemContextValue + 0x11c) - *(float *)(SystemContextValue + 0x44)) +
                    *(float *)(SystemContextValue + 0x90);
         }
@@ -97409,7 +97409,7 @@ void ProcessSystemDataComparison(uint64_t SystemContextPointer,char *Utf8BufferS
   float NormalizedParameter;
   float SystemContextFloat10;
   float BaseFloatValue;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float AuxiliaryFloat10;
   float AuxiliaryFloat11;
   float unaff_XMM12_Da;
@@ -97446,7 +97446,7 @@ void ProcessSystemDataComparison(uint64_t SystemContextPointer,char *Utf8BufferS
                     CONCAT44(TemporaryStackValue6c,uStack0000000000000068),pSystemStatusChar);
     }
   }
-  if (unaff_XMM9_Da < unaff_XMM12_Da) {
+  if (AuxiliaryFloat9 < unaff_XMM12_Da) {
     ProcessSystemConfigurationAndStack(CONCAT44(BaseFloatValue + *(float *)(DataIndex + 0x1660),
                            AuxiliaryFloat11 + *(float *)(DataIndex + 0x1674)),
                   *(void *)(RegisterFramePointer + -0x70),0,1);
@@ -97520,11 +97520,11 @@ void ProcessSystemDataComparison(uint64_t SystemContextPointer,char *Utf8BufferS
       if (((*(char *)(DataConfigurationCounter + 0xb6) == '\0') || (*(int *)(DataConfigurationCounter + 0xdc) != 0)) ||
          (*(int *)(DataConfigurationCounter + 0xd8) < 1)) {
         SystemContextFloat10 = *(float *)(DataConfigurationCounter + 0x68);
-        if (SystemContextFloat10 == unaff_XMM9_Da) {
+        if (SystemContextFloat10 == AuxiliaryFloat9) {
           SystemContextFloat10 = (*(float *)(DataConfigurationCounter + 0x118) - *(float *)(DataConfigurationCounter + 0x40)) + *(float *)(DataConfigurationCounter + 0x8c          ;
         }
         NormalizedParameter = *(float *)(DataConfigurationCounter + 0x6c);
-        if (NormalizedParameter == unaff_XMM9_Da) {
+        if (NormalizedParameter == AuxiliaryFloat9) {
           NormalizedParameter = (*(float *)(DataConfigurationCounter + 0x11c) - *(float *)(DataConfigurationCounter + 0x44)) + *(float *)(DataConfigurationCounter + 0x90);
         }
         TemporaryFloatStack50 = (float)(int)SystemContextFloat10 + *(float *)(DataConfigurationCounter + 0x70);
@@ -97683,11 +97683,11 @@ void InitializeSystemResourceAndData(void)
       if (((*(char *)(DataConfigurationCounter + 0xb6) == '\0') || (*(int *)(DataConfigurationCounter + 0xdc) != 0)) ||
          (*(int *)(DataConfigurationCounter + 0xd8) < 1)) {
         NormalizedParameter = *(float *)(DataConfigurationCounter + 0x68);
-        if (NormalizedParameter == unaff_XMM9_Da) {
+        if (NormalizedParameter == AuxiliaryFloat9) {
           NormalizedParameter = (*(float *)(DataConfigurationCounter + 0x118) - *(float *)(DataConfigurationCounter + 0x40)) + *(float *)(DataConfigurationCounter + 0x8c);
         }
         FloatValue8 = *(float *)(DataConfigurationCounter + 0x6c);
-        if (FloatValue8 == unaff_XMM9_Da) {
+        if (FloatValue8 == AuxiliaryFloat9) {
           FloatValue8 = (*(float *)(DataConfigurationCounter + 0x11c) - *(float *)(DataConfigurationCounter + 0x44)) + *(float *)(DataConfigurationCounter + 0x90);
         }
         TemporaryFloatStack50 = (float)(int)NormalizedParameter + *(float *)(DataConfigurationCounter + 0x70);
@@ -106441,7 +106441,7 @@ unsigned long long ProcessSystemContextWithUint32Parameters(uint32_t SystemConte
   float SystemContextFloat23;
   float SystemContextFloat24;
   float SystemContextFloat25;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   float SystemContextFloat26;
   uint32_t unaff_XMM9_Db;
   uint32_t unaff_XMM9_Dc;
@@ -106464,7 +106464,7 @@ unsigned long long ProcessSystemContextWithUint32Parameters(uint32_t SystemConte
   float InputDataBuffer;
   
   MemoryAllocationIndex = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
-  *(uint32_t *)(in_R11 + -0x78) = unaff_XMM9_Da;
+  *(uint32_t *)(in_R11 + -0x78) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -0x74) = unaff_XMM9_Db;
   *(uint32_t *)(in_R11 + -0x70) = unaff_XMM9_Dc;
   *(uint32_t *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
@@ -111995,7 +111995,7 @@ uint8_t FUN_18011d36f(float SystemContextPointer,float Utf8BufferSize,unsigned l
   uint64_t MemoryAllocationIndex3;
   float FloatingPointRegisterA;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float SystemContextFloat24;
   uint32_t AuxiliaryFloat11;
   float unaff_XMM12_Da;
@@ -112013,7 +112013,7 @@ uint8_t FUN_18011d36f(float SystemContextPointer,float Utf8BufferSize,unsigned l
   float TemporaryFloatStack68;
   
   Utf16Char4 = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
-  SystemContextFloat24 = unaff_XMM9_Da - Utf8BufferSize;
+  SystemContextFloat24 = AuxiliaryFloat9 - Utf8BufferSize;
   Utf8BufferSize = unaff_XMM14_Da + Utf8BufferSize;
   TemporaryFloatStack64 = SystemContextPointer + *(float *)(DataIndex + 0x1660);
   *(float *)(RegisterFramePointer + -0x7d) = RegisterValueR12[3];
@@ -113779,7 +113779,7 @@ LAB_18011f326:
   CalculatedFilterValue = (float)FUN_18011f9b0(SystemContextPointer,*RegisterSourceIndex);
   SystemContextFloat2 = *(float *)(RegisterGeneral14 + 0xc);
   FloatVariable4 = *(float *)(RegisterGeneral14 + 4);
-  CalculatedFilterValue = (unaff_XMM9_Da - AuxiliaryFloat11) * FloatValue3 + AuxiliaryFloat11;
+  CalculatedFilterValue = (AuxiliaryFloat9 - AuxiliaryFloat11) * FloatValue3 + AuxiliaryFloat11;
   *StackParameter6 = FloatValue3 - unaff_XMM12_Da;
   StackParameter6[1] = FloatVariable4 + AuxiliaryFloat13;
   StackParameter6[2] = FloatValue3 + unaff_XMM12_Da;
@@ -113807,7 +113807,7 @@ uint8_t ProcessAdvancedDataFiltering(uint64_t SystemContextPointer
   long long RegisterGeneral14;
   uint8_t RegisterValueR15B;
   float CalculatedFilterValue;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float AuxiliaryFloat11;
   float unaff_XMM12_Da;
   float AuxiliaryFloat13;
@@ -113816,7 +113816,7 @@ uint8_t ProcessAdvancedDataFiltering(uint64_t SystemContextPointer
   CalculatedFilterValue = (float)FUN_18011f9b0(SystemContextPointer,*RegisterSourceIndex);
   SystemContextFloat1 = *(float *)(RegisterGeneral14 + 0xc);
   SystemContextFloat2 = *(float *)(RegisterGeneral14 + 4);
-  CalculatedFilterValue = (unaff_XMM9_Da - AuxiliaryFloat11) * FloatValue3 + AuxiliaryFloat11;
+  CalculatedFilterValue = (AuxiliaryFloat9 - AuxiliaryFloat11) * FloatValue3 + AuxiliaryFloat11;
   *StackParameter6 = FloatValue3 - unaff_XMM12_Da;
   StackParameter6[1] = SystemContextFloat2 + AuxiliaryFloat13;
   StackParameter6[2] = FloatValue3 + unaff_XMM12_Da;
@@ -116822,7 +116822,7 @@ void ValidateSystemDataStructure(long long SystemContextPointer,float *Utf8Buffe
   long long RegisterFramePointer;
   long long DataIndex;
   long long RegisterValueR13;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   
   SystemContextFloat2 = Utf8BufferSize[1];
   CalculatedFilterValue = *(float *)(Utf16InputPointer + 4);
@@ -116854,8 +116854,8 @@ void ValidateSystemDataStructure(long long SystemContextPointer,float *Utf8Buffe
       if (*(float *)(RegisterFramePointer + -0x55) < SystemContextFloat2) {
         *(float *)(RegisterFramePointer + -0x55) = SystemContextFloat2;
       }
-      if (unaff_XMM9_Da <= *(float *)(RegisterFramePointer + -0x51)) {
-        *(float *)(RegisterFramePointer + -0x51) = unaff_XMM9_Da;
+      if (AuxiliaryFloat9 <= *(float *)(RegisterFramePointer + -0x51)) {
+        *(float *)(RegisterFramePointer + -0x51) = AuxiliaryFloat9;
       }
       if (FloatValue3 <= *(float *)(RegisterFramePointer + -0x4d)) {
         *(float *)(RegisterFramePointer + -0x4d) = FloatValue3;
@@ -116885,7 +116885,7 @@ void ValidateSystemDataStructure(long long SystemContextPointer,float *Utf8Buffe
   long long DataIndex;
   long long RegisterValueR13;
   float FloatingPointRegisterA;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   
   SystemContextFloat2 = *(float *)(Utf16InputPointer + 4);
   CalculatedFilterValue = *Utf8BufferSize;
@@ -116916,8 +116916,8 @@ void ValidateSystemDataStructure(long long SystemContextPointer,float *Utf8Buffe
       if (*(float *)(RegisterFramePointer + -0x55) < FloatingPointRegisterA) {
         *(float *)(RegisterFramePointer + -0x55) = FloatingPointRegisterA;
       }
-      if (unaff_XMM9_Da <= *(float *)(RegisterFramePointer + -0x51)) {
-        *(float *)(RegisterFramePointer + -0x51) = unaff_XMM9_Da;
+      if (AuxiliaryFloat9 <= *(float *)(RegisterFramePointer + -0x51)) {
+        *(float *)(RegisterFramePointer + -0x51) = AuxiliaryFloat9;
       }
       if (SystemContextFloat2 <= *(float *)(RegisterFramePointer + -0x4d)) {
         *(float *)(RegisterFramePointer + -0x4d) = SystemContextFloat2;
@@ -117676,11 +117676,11 @@ void ProcessSystemDataConcatenation(uint64_t SystemContextPointer,uint64_t Utf8B
   float BaseFloatValue;
   float SystemContextFloat10;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float SystemContextFloat11;
   float unaff_XMM14_Da;
   
-  SystemContextFloat11 = unaff_XMM9_Da - SystemContextPointer;
+  SystemContextFloat11 = AuxiliaryFloat9 - SystemContextPointer;
   SystemContextFloat10 = BaseFloatValue + SystemContextPointer;
   NormalizedParameter = FloatingPointRegisterA + SystemContextPointer;
   SystemContextPointer = FloatRegisterX8 - SystemContextPointer;
@@ -117771,13 +117771,13 @@ void ProcessSystemDataConcatenation(uint64_t SystemContextPointer,uint64_t Utf8B
   float BaseFloatValue;
   float SystemContextFloat10;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float unaff_XMM14_Da;
   
   SystemContextFloat10 = BaseFloatValue + SystemContextPointer;
   NormalizedParameter = FloatingPointRegisterA + SystemContextPointer;
   SystemContextPointer = FloatRegisterX8 - SystemContextPointer;
-  if ((((unaff_XMM9_Da < Utf16EndPointer) || (SystemContextPointer < Utf16InputPointer)) || (Utf8BufferSize < SystemContextFloat10)) ||
+  if ((((AuxiliaryFloat9 < Utf16EndPointer) || (SystemContextPointer < Utf16InputPointer)) || (Utf8BufferSize < SystemContextFloat10)) ||
      (*(float *)(SystemContext + 0x234) <= NormalizedParameter && NormalizedParameter != *(float *)(SystemContext + 0x234))) {
     hasMemoryBoundaryChanged = false;
   }
@@ -117785,7 +117785,7 @@ void ProcessSystemDataConcatenation(uint64_t SystemContextPointer,uint64_t Utf8B
     hasMemoryBoundaryChanged = true;
   }
   if (!hasMemoryBoundaryChanged) {
-    FUN_180291b40(*(void *)(SystemContext + 0x2e8),CONCAT44(SystemContextPointer,unaff_XMM9_Da),
+    FUN_180291b40(*(void *)(SystemContext + 0x2e8),CONCAT44(SystemContextPointer,AuxiliaryFloat9),
                   CONCAT44(NormalizedParameter,SystemContextFloat10),0);
   }
   MemoryBlockSize = SystemDataConfiguration;
@@ -117801,7 +117801,7 @@ void ProcessSystemDataConcatenation(uint64_t SystemContextPointer,uint64_t Utf8B
   *(float *)(RegisterFramePointer + 0x77) = BaseFloatValue + 3.0;
   *(float *)(RegisterFramePointer + 0x7b) = FloatingPointRegisterA + 3.0;
   *(float *)(RegisterFramePointer + 0x83) = FloatRegisterX8 - 3.0;
-  *(float *)(RegisterFramePointer + 0x7f) = unaff_XMM9_Da + unaff_XMM14_Da;
+  *(float *)(RegisterFramePointer + 0x7f) = AuxiliaryFloat9 + unaff_XMM14_Da;
   if ((ProcessingStatusFlag & 0xff000000) != 0) {
     FUN_180293e80(*(void *)(SystemContext + 0x2e8),RegisterFramePointer + 0x7f,RegisterFramePointer + 0x77,ProcessingStatusFlag);
   }
@@ -117833,7 +117833,7 @@ void ProcessSystemDataConcatenation(uint64_t SystemContextPointer,uint64_t Utf8B
       }
       *(float *)(RegisterFramePointer + 0x77) = SystemContextFloat10;
       *(float *)(RegisterFramePointer + 0x7b) = NormalizedParameter;
-      *(float *)(RegisterFramePointer + 0x7f) = unaff_XMM9_Da + 0.5;
+      *(float *)(RegisterFramePointer + 0x7f) = AuxiliaryFloat9 + 0.5;
       *(float *)(RegisterFramePointer + 0x83) = SystemContextPointer + 0.5;
       FUN_1802939e0(bufferAllocationStatus,RegisterFramePointer + 0x7f,RegisterFramePointer + 0x77);
       ProcessSystemConfigurationEx(bufferAllocationStatus,*(void *)(bufferAllocationStatus + 0x88),*(uint32_t *)(bufferAllocationStatus + 0x80),ProcessingStatusFlag,1);
@@ -117865,7 +117865,7 @@ void ProcessSystemDataConcatenation(uint64_t SystemContextPointer,uint64_t Utf8B
   float BaseFloatValue;
   float FloatValue8;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   uint32_t UnsignedStackParameter28;
   uint32_t UnsignedStackParameter30;
   
@@ -117900,7 +117900,7 @@ void ProcessSystemDataConcatenation(uint64_t SystemContextPointer,uint64_t Utf8B
       }
       *(float *)(RegisterFramePointer + 0x77) = FloatValue8;
       *(float *)(RegisterFramePointer + 0x7b) = FloatVariable7;
-      *(float *)(RegisterFramePointer + 0x7f) = unaff_XMM9_Da + 0.5;
+      *(float *)(RegisterFramePointer + 0x7f) = AuxiliaryFloat9 + 0.5;
       *(float *)(RegisterFramePointer + 0x83) = FloatRegisterX8 + 0.5;
       FUN_1802939e0(bufferAllocationStatus,RegisterFramePointer + 0x7f,RegisterFramePointer + 0x77);
       ProcessSystemConfigurationEx(bufferAllocationStatus,*(void *)(bufferAllocationStatus + 0x88),*(uint32_t *)(bufferAllocationStatus + 0x80),DataSize,1);
@@ -117930,7 +117930,7 @@ void ProcessSystemDataConcatenation(uint64_t SystemContextPointer,uint64_t Utf8B
   float BaseFloatValue;
   float FloatValue8;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   
   ReferenceCountPointer = (int *)(*(long long *)(SystemContext + 0x2e8) + 0x60);
   *ReferenceCountPointer = *ReferenceCountPointer + -1;
@@ -117958,7 +117958,7 @@ void ProcessSystemDataConcatenation(uint64_t SystemContextPointer,uint64_t Utf8B
       }
       *(float *)(RegisterFramePointer + 0x77) = FloatValue8;
       *(float *)(RegisterFramePointer + 0x7b) = FloatVariable7;
-      *(float *)(RegisterFramePointer + 0x7f) = unaff_XMM9_Da + 0.5;
+      *(float *)(RegisterFramePointer + 0x7f) = AuxiliaryFloat9 + 0.5;
       *(float *)(RegisterFramePointer + 0x83) = FloatRegisterX8 + 0.5;
       FUN_1802939e0(bufferAllocationStatus,RegisterFramePointer + 0x7f,RegisterFramePointer + 0x77);
       ProcessSystemConfigurationEx(bufferAllocationStatus,*(void *)(bufferAllocationStatus + 0x88),*(uint32_t *)(bufferAllocationStatus + 0x80),DataSize,1);
@@ -119348,7 +119348,7 @@ LAB_180124eff:
   float SystemContextFloat1;
   float in_XMM4_Da;
   float SystemContextFloat2;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   
   SystemContextFloat2 = in_XMM4_Da + in_XMM1_Da;
   if ((SystemContextPointer <= SystemContextFloat2) && (SystemContextPointer = SystemContextFloat2, 2.5 <= SystemContextFloat2)) {
@@ -119368,7 +119368,7 @@ LAB_180124eff:
   *(float *)(Utf16InputPointer + 0x4c) = SystemContextPointer * *(float *)(Utf16InputPointer + 0x4c);
   *(float *)(Utf16InputPointer + 0x54) = SystemContextPointer * *(float *)(Utf16InputPointer + 0x54);
   *(float *)(Utf16InputPointer + 0x50) = SystemContextPointer * *(float *)(Utf16InputPointer + 0x50);
-  if (((*(float *)(Utf8BufferSize + 300) != unaff_XMM9_Da) && (Utf16EndPointer == 0)) &&
+  if (((*(float *)(Utf8BufferSize + 300) != AuxiliaryFloat9) && (Utf16EndPointer == 0)) &&
      (*(char *)(Utf8BufferSize + 0x134) == '\0')) {
     SystemContextFloat2 = *(float *)(in_RCX + 0x8c);
     SystemContextFloat1 = SystemContextFloat2 - *(float *)(Utf8BufferSize + 0x19fc) * *(float *)(in_RCX + 0x2d8) *
@@ -119388,7 +119388,7 @@ LAB_180124eff:
   float SystemContextFloat2;
   float CalculatedFilterValue;
   float in_XMM4_Da;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   
   if (Utf16EndPointer == 0) {
     SystemContextFloat2 = *(float *)(Utf8BufferSize + 0x19fc) * *(float *)(SystemContextPointer + 0x2d8) * *(float *)(SystemContextPointer + 0x2dc            * 5.0;
@@ -119402,7 +119402,7 @@ LAB_180124eff:
     *(float *)(SystemContextPointer + 0x90) = FloatValue3;
     *(float *)(SystemContextPointer + 0x11c) = (SystemContextFloat1 + *(float *)(SystemContextPointer + 0x11c)) - FloatValue3;
   }
-  if (((*(float *)(Utf8BufferSize + 300) != unaff_XMM9_Da) && (Utf16EndPointer == 0)) &&
+  if (((*(float *)(Utf8BufferSize + 300) != AuxiliaryFloat9) && (Utf16EndPointer == 0)) &&
      (*(char *)(Utf8BufferSize + 0x134) == '\0')) {
     SystemContextFloat1 = *(float *)(SystemContextPointer + 0x8c);
     CalculatedFilterValue = SystemContextFloat1 - *(float *)(Utf8BufferSize + 0x19fc) * *(float *)(SystemContextPointer + 0x2d8) *
@@ -124270,7 +124270,7 @@ LAB_180127fd0:
   uint32_t XMMRegister8_Db;
   uint32_t unaff_XMM8_Dc;
   uint32_t unaff_XMM8_Dd;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Db;
   uint32_t unaff_XMM9_Dc;
   uint32_t unaff_XMM9_Dd;
@@ -124296,7 +124296,7 @@ LAB_180127fd0:
   *(uint32_t *)(in_RAX + -0x44) = XMMRegister8_Db;
   *(uint32_t *)(in_RAX + -0x40) = unaff_XMM8_Dc;
   *(uint32_t *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
-  *(uint32_t *)(in_RAX + -0x58) = unaff_XMM9_Da;
+  *(uint32_t *)(in_RAX + -0x58) = AuxiliaryFloat9;
   *(uint32_t *)(in_RAX + -0x54) = unaff_XMM9_Db;
   *(uint32_t *)(in_RAX + -0x50) = unaff_XMM9_Dc;
   *(uint32_t *)(in_RAX + -0x4c) = unaff_XMM9_Dd;
@@ -124421,7 +124421,7 @@ LAB_180127fd0:
   uint32_t XMMRegister8_Db;
   uint32_t unaff_XMM8_Dc;
   uint32_t unaff_XMM8_Dd;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Db;
   uint32_t unaff_XMM9_Dc;
   uint32_t unaff_XMM9_Dd;
@@ -124444,7 +124444,7 @@ LAB_180127fd0:
   *(uint32_t *)(in_RAX + -0x44) = XMMRegister8_Db;
   *(uint32_t *)(in_RAX + -0x40) = unaff_XMM8_Dc;
   *(uint32_t *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
-  *(uint32_t *)(in_RAX + -0x58) = unaff_XMM9_Da;
+  *(uint32_t *)(in_RAX + -0x58) = AuxiliaryFloat9;
   *(uint32_t *)(in_RAX + -0x54) = unaff_XMM9_Db;
   *(uint32_t *)(in_RAX + -0x50) = unaff_XMM9_Dc;
   *(uint32_t *)(in_RAX + -0x4c) = unaff_XMM9_Dd;
@@ -124558,7 +124558,7 @@ LAB_180127fd0:
   float FloatingPointRegisterA;
   float BaseFloatValue;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float PrimaryScalingFactor;
   float SecondaryScalingFactor;
   
@@ -124575,9 +124575,9 @@ LAB_180127fd0:
       SecondaryScalingFactor = (float)((unsigned long long)*(void *)(ThreadLocalStorageData + 0x240) >> 0x20);
       if ((*(uint *)(loopCounter + 0xc) & 0x1000002) == 0) {
         FloatVariable5 = FloatVariable5 - FloatRegisterX8;
-        CalculatedDistance = CalculatedDistance - unaff_XMM9_Da;
+        CalculatedDistance = CalculatedDistance - AuxiliaryFloat9;
         PrimaryScalingFactor = PrimaryScalingFactor + FloatRegisterX8;
-        SecondaryScalingFactor = SecondaryScalingFactor + unaff_XMM9_Da;
+        SecondaryScalingFactor = SecondaryScalingFactor + AuxiliaryFloat9;
       }
       else {
         FloatVariable5 = FloatVariable5 - FloatingPointRegisterA;
@@ -125148,7 +125148,7 @@ uint8_t FUN_180128336(void
   float in_XMM5_Da;
   float BaseFloatValue;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   
   MemoryBlockSize = SystemDataConfiguration;
   if ((*(char *)(SystemContext + 0x17d) == '\0') || ((*(uint *)(SystemContext + 0xc) & 0x800000) != 0)) {
@@ -125163,7 +125163,7 @@ uint8_t FUN_180128336(void
     *(uint32_t *)(CurrentMemoryBlockAddress + 0x154) = CalculatedCodePoint;
     *(uint32_t *)(CurrentMemoryBlockAddress + 0x158) = DataSize;
     bufferAllocationStatus = *(long long *)(MemoryBlockSize + 0x1af8);
-    if (((*(float *)(bufferAllocationStatus + 0x22c) <= unaff_XMM9_Da && unaff_XMM9_Da != *(float *)(bufferAllocationStatus + 0x22c)        && (((BaseFloatValue < *(float *)(bufferAllocationStatus + 0x234) &&
+    if (((*(float *)(bufferAllocationStatus + 0x22c) <= AuxiliaryFloat9 && AuxiliaryFloat9 != *(float *)(bufferAllocationStatus + 0x22c)        && (((BaseFloatValue < *(float *)(bufferAllocationStatus + 0x234) &&
              (*(float *)(bufferAllocationStatus + 0x228) <= in_XMM5_Da && in_XMM5_Da != *(float *)(bufferAllocationStatus + 0x228))            && (FloatRegisterX8 < *(float *)(bufferAllocationStatus + 0x230))))) || (*(char *)(MemoryBlockSize + 0x2e38) != '\0'       ) {
       SystemStatusChar = ValidateAndProcessSystemFlags(RegisterFramePointer + -0x50,RegisterFramePointer + -0x48,1);
       if (SystemStatusChar != '\0') {
@@ -142332,14 +142332,14 @@ e63a(uint32_t SystemContextPointer,float Utf8BufferSizevoid FUN_18012e63a(uint32
   uint32_t unaff_XMM6_Dd;
   float BaseFloatValue;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   uint8_t auStackX_20 [8];
   float fStack0000000000000080;
   float fStack0000000000000084;
   
   fStack0000000000000080 = Utf8BufferSize - BaseFloatValue;
   *(uint32_t *)(in_R10 + 0x128) = SystemContextPointer;
-  fStack0000000000000084 = unaff_XMM9_Da - FloatRegisterX8;
+  fStack0000000000000084 = AuxiliaryFloat9 - FloatRegisterX8;
   ProcessSystemBuffer(fStack0000000000000084,*(uint32_t *)(RegisterSourceIndex + -0x10 + SystemContext * 8));
   loopCounter = *(long long *)(in_R11 + 0x1af8);
   *(void *)(ThreadLocalStorageData + 0x144) = 0;
@@ -142348,7 +142348,7 @@ e63a(uint32_t SystemContextPointer,float Utf8BufferSizevoid FUN_18012e63a(uint32
   *(uint32_t *)(ThreadLocalStorageData + 0x154) = FloatingPointRegisterC;
   *(uint32_t *)(ThreadLocalStorageData + 0x158) = unaff_XMM6_Dd;
   bufferAllocationStatus = *(long long *)(in_R11 + 0x1af8);
-  if (((((*(float *)(bufferAllocationStatus + 0x22c) <= unaff_XMM9_Da && unaff_XMM9_Da != *(float *)(bufferAllocationStatus + 0x22c)        && (FloatRegisterX8 < *(float *)(bufferAllocationStatus + 0x234))) &&
+  if (((((*(float *)(bufferAllocationStatus + 0x22c) <= AuxiliaryFloat9 && AuxiliaryFloat9 != *(float *)(bufferAllocationStatus + 0x22c)        && (FloatRegisterX8 < *(float *)(bufferAllocationStatus + 0x234))) &&
        (*(float *)(bufferAllocationStatus + 0x228) <= in_XMM5_Da && in_XMM5_Da != *(float *)(bufferAllocationStatus + 0x228))) &&
       (BaseFloatValue < *(float *)(bufferAllocationStatus + 0x230))) || (*(char *)(in_R11 + 0x2e38) != '\0')) {
     OperationStatus = ValidateAndProcessSystemFlags(auStackX_20,&EmergencyStackBuffer,1);
@@ -144510,7 +144510,7 @@ LAB_180130808:
   uint32_t XMMRegister8_Db;
   uint32_t unaff_XMM8_Dc;
   uint32_t unaff_XMM8_Dd;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Dc;
   float fStack0000000000000030;
   float StackVariable34;
@@ -144572,7 +144572,7 @@ LAB_180130808:
   *(unsigned long long *)(SystemContext + 0x1c78) = RegisterSourceIndex;
   *(unsigned long long *)(SystemContext + 0x1c80) = RegisterSourceIndex;
   Utf16Char5 = RegisterSourceIndex;
-  CalculatedCodePoint = unaff_XMM9_Da;
+  CalculatedCodePoint = AuxiliaryFloat9;
   DataSize = unaff_XMM9_Dc;
   SystemByteValue = BaseFloatValue;
   ProcessingStatusFlag = unaff_XMM7_Dc;
@@ -146346,7 +146346,7 @@ unsigned long long FUN_180131331(uint64_t SystemContextPointer,float Utf8BufferS
   float FloatingPointRegisterA;
   float BaseFloatValue;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float AuxiliaryFloat10;
   float AuxiliaryFloat11;
   float unaff_XMM12_Da;
@@ -146360,7 +146360,7 @@ unsigned long long FUN_180131331(uint64_t SystemContextPointer,float Utf8BufferS
       AuxiliaryFloat10 = FloatRegisterX8;
     }
     else {
-      unaff_XMM9_Da = Utf8BufferSize;
+      AuxiliaryFloat9 = Utf8BufferSize;
       if (AuxiliaryFloat11 <= unaff_XMM12_Da) {
         hasMemoryBoundaryChanged = AuxiliaryFloat10 == Utf16InputPointer;
         shouldReturnSource = AuxiliaryFloat10 < Utf16InputPointer;
@@ -146372,7 +146372,7 @@ unsigned long long FUN_180131331(uint64_t SystemContextPointer,float Utf8BufferS
   else {
     in_XMM4_Da = Utf16EndPointer;
     AuxiliaryFloat10 = in_XMM5_Da;
-    unaff_XMM9_Da = BaseFloatValue;
+    AuxiliaryFloat9 = BaseFloatValue;
     if (AuxiliaryFloat13 <= unaff_XMM14_Da) {
       hasMemoryBoundaryChanged = in_XMM5_Da == Utf16InputPointer;
       shouldReturnSource = in_XMM5_Da < Utf16InputPointer;
@@ -146409,7 +146409,7 @@ LAB_180131395:
       }
     }
   }
-  if ((((*(float *)(in_R11 + 0x10) != 3.4028235e+38) || (*(float *)(in_R11 + 0x18) <= unaff_XMM9_Da       ) || (*(int *)(in_R8 + 0x1cfc) != 1)) ||
+  if ((((*(float *)(in_R11 + 0x10) != 3.4028235e+38) || (*(float *)(in_R11 + 0x18) <= AuxiliaryFloat9       ) || (*(int *)(in_R8 + 0x1cfc) != 1)) ||
      ((*(uint *)(*(long long *)(in_R8 + 0x1c98) + 0xc) & 0x10000000) != 0)) goto LAB_18013148a;
   StringComparisonResult = *(int *)(in_R8 + 0x1d2c);
   if (StringComparisonResult == 0) {
@@ -146424,7 +146424,7 @@ joined_r0x000180131473:
     }
     if (in_XMM4_Da <= Utf16InputPointer) goto LAB_18013148a;
   }
-  *(float *)(in_R11 + 0x18) = unaff_XMM9_Da;
+  *(float *)(in_R11 + 0x18) = AuxiliaryFloat9;
   hasComparisonResult = 1;
 LAB_18013148a:
   return (unsigned long long)hasComparisonResult;
@@ -146444,7 +146444,7 @@ uint8_t FUN_1801313c6(uint64_t SystemContextPointer,uint8_t Utf8BufferSize,float
   float FloatingPointRegisterA;
   float BaseFloatValue;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   
   if (BaseFloatValue < *(float *)(in_R11 + 0x10)) {
     *(float *)(in_R11 + 0x10) = BaseFloatValue;
@@ -146470,7 +146470,7 @@ uint8_t FUN_1801313c6(uint64_t SystemContextPointer,uint8_t Utf8BufferSize,float
       }
     }
     if ((((*(float *)(in_R11 + 0x10) == 3.4028235e+38) &&
-         (unaff_XMM9_Da < *(float *)(in_R11 + 0x18))) && (*(int *)(in_R8 + 0x1cfc) == 1)) &&
+         (AuxiliaryFloat9 < *(float *)(in_R11 + 0x18))) && (*(int *)(in_R8 + 0x1cfc) == 1)) &&
        ((*(uint *)(*(long long *)(in_R8 + 0x1c98) + 0xc) & 0x10000000) == 0)) {
       IntegerValue = *(int *)(in_R8 + 0x1d2c);
       if (IntegerValue == 0) {
@@ -146496,7 +146496,7 @@ uint8_t FUN_1801313c6(uint64_t SystemContextPointer,uint8_t Utf8BufferSize,float
           return Utf8BufferSize;
         }
       }
-      *(float *)(in_R11 + 0x18) = unaff_XMM9_Da;
+      *(float *)(in_R11 + 0x18) = AuxiliaryFloat9;
       Utf8BufferSize = 1;
     }
   }
@@ -147074,13 +147074,13 @@ float * FUN_180131be4(uint64_t SystemContextPointer,float Utf8BufferSize,uint64_
 {
   long long in_RAX;
   float FloatRegisterX8;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   float StackParameter3;
   
   if (FloatRegisterX8 < *(float *)(in_RAX + 0x370)) {
-    Utf8BufferSize = Utf8BufferSize * unaff_XMM9_Da;
+    Utf8BufferSize = Utf8BufferSize * AuxiliaryFloat9;
     Utf16EndPointer[1] = Utf8BufferSize;
-    *Utf16EndPointer = unaff_XMM9_Da * *Utf16EndPointer;
+    *Utf16EndPointer = AuxiliaryFloat9 * *Utf16EndPointer;
   }
   if ((StackParameter3 != FloatRegisterX8) && (FloatRegisterX8 < *(float *)(in_RAX + 0x374))) {
     Utf16EndPointer[1] = Utf8BufferSize * StackParameter3;
@@ -147961,7 +147961,7 @@ LAB_180132de6:
   uint32_t FloatingPointRegisterC;
   uint32_t unaff_XMM6_Dd;
   float SystemContextFloat29;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Db;
   uint32_t unaff_XMM9_Dc;
   uint32_t unaff_XMM9_Dd;
@@ -147983,7 +147983,7 @@ LAB_180132de6:
   *(uint32_t *)(in_RAX + -0x24) = unaff_XMM6_Db;
   *(uint32_t *)(in_RAX + -0x20) = FloatingPointRegisterC;
   *(uint32_t *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
-  *(uint32_t *)(in_RAX + -0x58) = unaff_XMM9_Da;
+  *(uint32_t *)(in_RAX + -0x58) = AuxiliaryFloat9;
   *(uint32_t *)(in_RAX + -0x54) = unaff_XMM9_Db;
   *(uint32_t *)(in_RAX + -0x50) = unaff_XMM9_Dc;
   *(uint32_t *)(in_RAX + -0x4c) = unaff_XMM9_Dd;
@@ -148997,7 +148997,7 @@ LAB_180132de6:
   float SystemContextFloat11;
   float BaseFloatValue;
   float FloatRegisterX8;
-  uint unaff_XMM9_Da;
+  uint AuxiliaryFloat9;
   uint64_t uStack0000000000000030;
   uint64_t uStack0000000000000038;
   
@@ -149021,10 +149021,10 @@ LAB_180132de6:
       if (FloatVariable4 <= NormalizedParameter - SystemContextFloat11) {
         CalculatedDistance = FloatVariable4;
       }
-      FloatValue8 = FloatValue8 - (float)((uint)FloatVariable7 ^ unaff_XMM9_Da);
-      SystemContextFloat11 = SystemContextFloat11 - (float)((uint)CalculatedDistance ^ unaff_XMM9_Da);
-      NormalizedParameter = NormalizedParameter + (float)((uint)CalculatedDistance ^ unaff_XMM9_Da);
-      SystemContextFloat10 = SystemContextFloat10 + (float)((uint)FloatVariable7 ^ unaff_XMM9_Da);
+      FloatValue8 = FloatValue8 - (float)((uint)FloatVariable7 ^ AuxiliaryFloat9);
+      SystemContextFloat11 = SystemContextFloat11 - (float)((uint)CalculatedDistance ^ AuxiliaryFloat9);
+      NormalizedParameter = NormalizedParameter + (float)((uint)CalculatedDistance ^ AuxiliaryFloat9);
+      SystemContextFloat10 = SystemContextFloat10 + (float)((uint)FloatVariable7 ^ AuxiliaryFloat9);
       if (FloatValue8 <= *(float *)(bufferAllocationStatus + 0x3d4)) {
         FloatValue8 = *(float *)(bufferAllocationStatus + 0x3d4);
       }
@@ -149108,7 +149108,7 @@ LAB_180132de6:
   float SystemContextFloat11;
   float BaseFloatValue;
   float FloatRegisterX8;
-  uint unaff_XMM9_Da;
+  uint AuxiliaryFloat9;
   uint64_t uStack0000000000000030;
   uint64_t uStack0000000000000038;
   
@@ -149129,10 +149129,10 @@ LAB_180132de6:
     if (FloatVariable4 <= NormalizedParameter - SystemContextFloat11) {
       CalculatedDistance = FloatVariable4;
     }
-    FloatValue8 = FloatValue8 - (float)((uint)FloatVariable7 ^ unaff_XMM9_Da);
-    SystemContextFloat11 = SystemContextFloat11 - (float)((uint)CalculatedDistance ^ unaff_XMM9_Da);
-    NormalizedParameter = NormalizedParameter + (float)((uint)CalculatedDistance ^ unaff_XMM9_Da);
-    SystemContextFloat10 = SystemContextFloat10 + (float)((uint)FloatVariable7 ^ unaff_XMM9_Da);
+    FloatValue8 = FloatValue8 - (float)((uint)FloatVariable7 ^ AuxiliaryFloat9);
+    SystemContextFloat11 = SystemContextFloat11 - (float)((uint)CalculatedDistance ^ AuxiliaryFloat9);
+    NormalizedParameter = NormalizedParameter + (float)((uint)CalculatedDistance ^ AuxiliaryFloat9);
+    SystemContextFloat10 = SystemContextFloat10 + (float)((uint)FloatVariable7 ^ AuxiliaryFloat9);
     if (FloatValue8 <= *(float *)(in_RAX + 0x3d4)) {
       FloatValue8 = *(float *)(in_RAX + 0x3d4);
     }
@@ -154178,7 +154178,7 @@ void ConfigureSystemRenderingParameters(void
   float FloatVariable4;
   float FloatVariable5;
   float CalculatedDistance;
-  float unaff_XMM9_Da;
+  float AuxiliaryFloat9;
   uint8_t uStack0000000000000110;
   
   if ((*(char *)(SystemContext + 9) == '\0') && (ValidationCode = 0, 0 < in_EAX + 1)) {
@@ -154194,7 +154194,7 @@ void ConfigureSystemRenderingParameters(void
   ValidationCode = RegisterGeneral14D + -1;
   uStack0000000000000110 = 1;
   bufferAllocationStatus = *(long long *)(*(long long *)(DataIndex + 0x1af8) + 0x210);
-  CalculatedDistance = ((*(float *)(DataIndex + 0x118) - *(float *)(DataIndex + 0x1b48)) + unaff_XMM9_Da) -
+  CalculatedDistance = ((*(float *)(DataIndex + 0x118) - *(float *)(DataIndex + 0x1b48)) + AuxiliaryFloat9) -
           *(float *)(*(long long *)(DataIndex + 0x1af8) + 0x40);
   if (MemoryMatchResult < 0) {
     ValidationCode = *(int *)(bufferAllocationStatus + 0xc);
@@ -225872,7 +225872,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
   float FloatValue39;
   uint32_t unaff_XMM8_Dd;
   float FloatVariable40;
-  uint32_t unaff_XMM9_Da;
+  uint32_t AuxiliaryFloat9;
   float FloatVariable41;
   uint32_t unaff_XMM9_Db;
   float FloatVariable42;
@@ -225937,7 +225937,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
   *(uint32_t *)(in_R11 + -0x74) = XMMRegister8_Db;
   *(uint32_t *)(in_R11 + -0x70) = unaff_XMM8_Dc;
   *(uint32_t *)(in_R11 + -0x6c) = unaff_XMM8_Dd;
-  *(uint32_t *)(in_R11 + -0x88) = unaff_XMM9_Da;
+  *(uint32_t *)(in_R11 + -0x88) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -0x84) = unaff_XMM9_Db;
   *(uint32_t *)(in_R11 + -0x80) = unaff_XMM9_Dc;
   *(uint32_t *)(in_R11 + -0x7c) = unaff_XMM9_Dd;
