@@ -2584,6 +2584,15 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 原始函数名：FUN_180122b10 - 数据结构处理和验证函数
 #define ProcessDataStructureAndValidate FUN_180122b10
 
+// 原始函数名：FUN_18012fa7d - 系统浮点数据寄存器初始化函数
+#define InitializeSystemFloatDataRegister FUN_18012fa7d
+
+// 原始函数名：FUN_18012fa9e - 系统堆栈帧数据处理函数
+#define ProcessSystemStackFrameData FUN_18012fa9e
+
+// 原始函数名：FUN_18012faae - UTF-8输入缓冲区数据处理函数
+#define ProcessUtf8InputBufferData FUN_18012faae
+
 // 已定义：CalculateSystemFloatAndProcess
 
 

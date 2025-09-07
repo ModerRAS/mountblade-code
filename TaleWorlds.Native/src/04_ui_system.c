@@ -64397,28 +64397,28 @@ LAB_18069b66c:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18069bfc6(void)
-void FUN_18069bfc6(void)
-
+ // 原始函数名：FUN_18069bfc6 - UI系统临界区资源初始化函数
+// 初始化UI系统的临界区资源，管理线程安全的资源访问
+void InitializeUICriticalSectionResource(void)
 {
-  int operationResult;
-  longlong componentIndex;
-  longlong stringCompareIndex;
-  code *unaff_RDI;
-  bool bVar4;
+  int referenceCount;
+  longlong criticalSectionIndex;
+  longlong newCriticalSection;
+  code *callbackFunction;
+  bool isInitialized;
   
   LOCK();
-  _DAT_180c0c218 = _DAT_180c0c218 + 1;
+  g_UICriticalSectionReferenceCount = g_UICriticalSectionReferenceCount + 1;
   UNLOCK();
-  stringCompareIndex = malloc(0x28);
-  InitializeCriticalSection(stringCompareIndex);
+  newCriticalSection = malloc(0x28);
+  InitializeCriticalSection(newCriticalSection);
   LOCK();
-  bVar4 = _DAT_180c0c210 != 0;
-  componentIndex = stringCompareIndex;
-  if (bVar4) {
-    componentIndex = _DAT_180c0c210;
+  isInitialized = g_UICriticalSectionInstance != 0;
+  criticalSectionIndex = newCriticalSection;
+  if (isInitialized) {
+    criticalSectionIndex = g_UICriticalSectionInstance;
   }
-  _DAT_180c0c210 = componentIndex;
+  g_UICriticalSectionInstance = criticalSectionIndex;
   UNLOCK();
   if (bVar4) {
     DeleteCriticalSection(stringCompareIndex);
