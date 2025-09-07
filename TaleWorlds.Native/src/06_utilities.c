@@ -6111,14 +6111,22 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define SystemCleanupStatus GlobalSystemCleanupStatus             // 系统清理状态
 
 // 系统资源清理相关变量宏定义
-#define SystemResourceCleanupFlagA0 DAT_180c95ef0      // 系统资源清理标志A0
-#define SystemResourceCleanupFlagA1 DAT_180c96008      // 系统资源清理标志A1
-#define SystemResourceCleanupFlagA2 DAT_180c96028      // 系统资源清理标志A2
-#define SystemResourceCleanupFlagA3 DAT_180c96048      // 系统资源清理标志A3
-#define SystemResourceCleanupFlagA4 DAT_180c96068      // 系统资源清理标志A4
-#define SystemResourceCleanupFlagA5 DAT_180c96098      // 系统资源清理标志A5
-#define SystemResourceCleanupFlagA6 DAT_180c960b8      // 系统资源清理标志A6
-#define SystemResourceCleanupFlagA7 DAT_180c96100      // 系统资源清理标志A7
+// 原始变量名：DAT_180c95ef0 - 系统资源清理标志A0
+#define SystemResourceCleanupFlagA0 GlobalSystemResourceCleanupFlagA0      // 系统资源清理标志A0
+// 原始变量名：DAT_180c96008 - 系统资源清理标志A1
+#define SystemResourceCleanupFlagA1 GlobalSystemResourceCleanupFlagA1      // 系统资源清理标志A1
+// 原始变量名：DAT_180c96028 - 系统资源清理标志A2
+#define SystemResourceCleanupFlagA2 GlobalSystemResourceCleanupFlagA2      // 系统资源清理标志A2
+// 原始变量名：DAT_180c96048 - 系统资源清理标志A3
+#define SystemResourceCleanupFlagA3 GlobalSystemResourceCleanupFlagA3      // 系统资源清理标志A3
+// 原始变量名：DAT_180c96068 - 系统资源清理标志A4
+#define SystemResourceCleanupFlagA4 GlobalSystemResourceCleanupFlagA4      // 系统资源清理标志A4
+// 原始变量名：DAT_180c96098 - 系统资源清理标志A5
+#define SystemResourceCleanupFlagA5 GlobalSystemResourceCleanupFlagA5      // 系统资源清理标志A5
+// 原始变量名：DAT_180c960b8 - 系统资源清理标志A6
+#define SystemResourceCleanupFlagA6 GlobalSystemResourceCleanupFlagA6      // 系统资源清理标志A6
+// 原始变量名：DAT_180c96100 - 系统资源清理标志A7
+#define SystemResourceCleanupFlagA7 GlobalSystemResourceCleanupFlagA7      // 系统资源清理标志A7
 
 #define SystemResourcePointerA0 _DAT_180c95ff0          // 系统资源指针A0
 #define SystemResourcePointerA1 _DAT_180c96010          // 系统资源指针A1
@@ -60268,7 +60276,22 @@ void ValidateExceptionContextState6cb0(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_180906cc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数6cc0
+ * 
+ * 该函数负责清理资源引用计数，管理内存释放和资源生命周期。
+ * 主要功能包括：
+ * - 检查资源指针有效性
+ * - 计算内存偏移量
+ * - 管理引用计数
+ * - 处理异常情况
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源信息
+ * 
+ * @note 原始函数名：Unwind_180906cc0
+ */
+void CleanupResourceReferenceCount6cc0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
