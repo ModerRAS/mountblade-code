@@ -36508,13 +36508,11 @@ void ExceptionUnwindHandlerA17(void)
   LeaveCriticalSection(ExceptionCriticalSection);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                     0x0001808fcc41. Too many branches
-                        ResetEvent(ExceptionEventHandle);
+                          ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBits = (byte)ExceptionEncryptionKey & 0x3f;
-                     0x0001808ffe70. Too many branches
-                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBits |
+                          (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBits |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBits))(ExceptionProcessParameter);
   return;
 }
@@ -36532,13 +36530,11 @@ void ExceptionHandlerA0(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                     0x0001808fcc41. Too many branches
-                        ResetEvent(ExceptionEventHandle);
+                          ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                     0x0001808ffe70. Too many branches
-                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                          (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
@@ -60396,13 +60392,11 @@ void ResetSystemEventState(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                     0x0001808fcc41. Too many branches
-                        ResetEvent(ExceptionEventHandle);
+                          ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBits = (byte)ExceptionEncryptionKey & 0x3f;
-                     0x0001808ffe70. Too many branches
-                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBits |
+                          (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBits |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBits))(0x180c82238);
   return;
 }
@@ -62615,13 +62609,11 @@ void ResetSystemStatusFlag(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                     0x0001808fcc41. Too many branches
-                        ResetEvent(ExceptionEventHandle);
+                          ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                     0x0001808ffe70. Too many branches
-                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                          (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
@@ -66465,13 +66457,11 @@ void Unwind_180908040(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                     0x0001808fcc41. Too many branches
-                        ResetEvent(ExceptionEventHandle);
+                          ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                     0x0001808ffe70. Too many branches
-                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                          (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
@@ -69203,13 +69193,11 @@ void Unwind_180908d30(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                     0x0001808fcc41. Too many branches
-                        ResetEvent(ExceptionEventHandle);
+                          ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                     0x0001808ffe70. Too many branches
-                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                          (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
@@ -73924,13 +73912,11 @@ void Unwind_18090a6e0(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                     0x0001808fcc41. Too many branches
-                        ResetEvent(ExceptionEventHandle);
+                          ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                     0x0001808ffe70. Too many branches
-                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                          (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
@@ -100307,13 +100293,11 @@ void HandleResourceCleanupExceptionAtOffset7d0(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                     0x0001808fcc41. Too many branches
-                        ResetEvent(ExceptionEventHandle);
+                          ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                     0x0001808ffe70. Too many branches
-                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                          (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
@@ -101000,8 +100984,7 @@ void CleanupThreadResources(void)
 
 {
   _Mtx_destroy_in_situ();
-                     0x000180941740. Too many branches
-                      _Cnd_destroy_in_situ();
+                        _Cnd_destroy_in_situ();
   return;
 }
 
@@ -101020,8 +101003,7 @@ void CleanupThreadResources(void)
 void CloseSystemHandle(void)
 
 {
-                     0x0001809417b8. Too many branches
-                      CloseHandle(SystemHandlePointer);
+                          CloseHandle(SystemHandlePointer);
   return;
 }
 

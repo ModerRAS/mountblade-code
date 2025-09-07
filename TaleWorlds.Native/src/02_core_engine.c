@@ -37563,8 +37563,8 @@ void ProcessCoreEngineDataStructure(uint64_t CharacterCode,long long CharacterCo
   CoreEngineUnsignedValue = 0;
   ProcessingContext58 = 0;
   DataStructure50 = 0;
-  ReservedData98 = Utf8InputPointer;
-  ReservedData88 = Utf16EndPointer;
+  Utf8InputDataPointer = Utf8InputPointer;
+  Utf16OutputPointer = Utf16EndPointer;
   ProcessSystemInfoHandler(&ProcessingContext58,0x10,&SystemInfoHandlerTemplate,Utf8InputPointer);
   CurrentMemoryBlockAddress = ProcessTemporaryBuffer(&SystemTempBufferPointer,Utf16EndPointer);
   SystemEventTemplatePointer = &SystemNullTemplate;
@@ -124671,7 +124671,7 @@ void ProcessSystemDataStructure(void)
 
 // 原始函数名：FUN_180127466 - 系统事件队列处理函数
 #define ProcessSystemEventQueue FUN_180127466
-void FUN_180127466(void)
+void ProcessSystemEventQueue(void)
 {
   int *ReferenceCountPointer;
   uint *PrimaryProcessingStatusFlag;
@@ -125046,7 +125046,7 @@ void FUN_180127466(void)
 
 // 原始函数名：FUN_180127648 - 系统内存块处理函数
 #define ProcessSystemMemoryBlock FUN_180127648
-void FUN_180127648(void)
+void ProcessSystemMemoryBlock(void)
 {
   int *ReferenceCountPointer;
   uint32_t MemoryAllocationIndex;
@@ -125232,7 +125232,7 @@ void FUN_180127648(void)
 
 // 原始函数名：FUN_180127733 - 系统内存分配处理函数
 #define ProcessSystemMemoryAllocation FUN_180127733
-void FUN_180127733(void)
+void ProcessSystemMemoryAllocation(void)
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
@@ -125293,7 +125293,7 @@ void FUN_180127733(void)
 
 // 原始函数名：FUN_18012780c - 字符编码处理函数
 #define ProcessCharacterEncoding FUN_18012780c
-void FUN_18012780c(int CharacterCode)
+void ProcessCharacterEncoding(int CharacterCode)
 {
   int LockResult;
   long long SystemContext;
@@ -125315,7 +125315,7 @@ void FUN_18012780c(int CharacterCode)
 
 // 原始函数名：FUN_18012784c - 系统空操作函数
 #define SystemNoOperation FUN_18012784c
-void FUN_18012784c(void)
+void SystemNoOperation(void)
 {
   return;
 }
@@ -125326,7 +125326,7 @@ void FUN_18012784c(void)
 
 // 原始函数名：FUN_180127860 - 系统状态缓冲区处理函数
 #define ProcessSystemStatusBuffer FUN_180127860
-void FUN_180127860(void)
+void ProcessSystemStatusBuffer(void)
 {
   int *ReferenceCountPointer;
   unsigned long long MemoryAllocationIndex;
@@ -126350,7 +126350,7 @@ LAB_180127fd0:
 
 // 原始函数名：FUN_180128031 - 系统寄存器处理函数
 #define ProcessSystemRegister FUN_180128031
-void FUN_180128031(void)
+void ProcessSystemRegister(void)
 {
   long long in_R11;
   uint64_t GeneralRegister14;
@@ -146193,7 +146193,7 @@ LAB_180130808:
 
 // 原始函数名：FUN_180130027 - 系统缓冲区状态处理函数
 #define ProcessSystemBufferStatus FUN_180130027
-void FUN_180130027(void)
+void ProcessSystemBufferStatus(void)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
