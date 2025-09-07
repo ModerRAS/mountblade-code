@@ -117,6 +117,26 @@
 #define TemporaryExceptionHandlerOffset 0x218
 #define ExceptionHandlerOffset170 0x170
 #define ResourceCleanupOffset190 0x1b0
+
+// 系统引用计数管理常量
+#define SystemReferenceCountOffset28 0x28
+#define SystemReferenceCountOffset30 0x30
+#define SystemReferenceCountOffset34 0x34
+
+// 事件处理器配置常量
+#define EventHandlerConfigOffset18 0x18
+#define EventHandlerConfigOffset1c 0x1c
+#define EventHandlerConfigOffset2c 0x2c
+
+// 权限请求上下文常量
+#define RequestDataOffset18 0x18
+#define PermissionContextOffset8 0x8
+#define PermissionDataOffset78 0x78
+
+// 系统操作上下文常量
+#define SystemContextOffset28 0x28
+#define SystemContextOffset30 0x30
+#define SystemContextOffset34 0x34
 #define MemoryReferenceCleanupOffset1D0 0x1d0
 #define MemoryReferenceCleanupOffset1F0 0x1f0
 #define MemoryReferenceCleanupOffset210 0x210
@@ -14527,7 +14547,7 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
   if (eventProcessingResult == 0) {
     *(DataWord *)(eventPointer + ResourceDescriptorPrimaryOffset) = *(DataWord *)(systemEventData + SystemEventDataOffset);
     *(DataWord *)(eventPointer + ResourceDescriptorQuaternaryOffset) = *(DataWord *)(systemEventData + SystemEventDataSecondaryOffset);
-    ProcessSystemEventB0(*(DataBuffer *)(contextPointer + 0x98),eventPointer);
+    ProcessSystemEventB0(*(DataBuffer *)(contextPointer + SystemOperationDataOffset98),eventPointer);
   }
   return;
 }
@@ -15602,9 +15622,9 @@ void InitializePrimarySystemEventHandler(int64_t eventHandlerConfig,int64_t call
   
   systemOperationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventHandlerConfig + ExceptionHandlerCallbackOffset10),&systemContextDataBuffer);
   if (systemOperationResult == 0) {
-    systemOperationResult = ProcessDataOperationA0(systemContextDataBuffer,eventHandlerConfig + 0x18);
+    systemOperationResult = ProcessDataOperationA0(systemContextDataBuffer,eventHandlerConfig + EventHandlerConfigOffset18);
     if (systemOperationResult == 0) {
-      ProcessSystemEventB0(*(DataBuffer *)(callbackTable + 0x98),eventHandlerConfig);
+      ProcessSystemEventB0(*(DataBuffer *)(callbackTable + SystemOperationDataOffset98),eventHandlerConfig);
     }
   }
   return;
@@ -15629,7 +15649,7 @@ void InitializePrimarySystemEventHandler(int64_t eventHandlerConfig,int64_t call
 //   无
 //
 // 注意事项：
-//   - 函数内部包含条件分支逻辑，根据eventHandlerConfig + 0x2c位置的值决定执行路径
+//   - 函数内部包含条件分支逻辑，根据eventHandlerConfig + EventHandlerConfigOffset2c位置的值决定执行路径
 //   - 如果条件不满足，会调用CleanupSystemEventA0函数（该函数不返回）
 //   - 调用前确保参数有效性，避免未定义行为
 //
@@ -15639,16 +15659,16 @@ void InitializeSecondarySystemEventHandler(int64_t eventHandlerConfig,int64_t ca
   int validationStatus;
   DataBuffer systemDataBuffer;
   
-  if (*(int *)(eventHandlerConfig + 0x2c) == 0) {
-    validationStatus = QuerySystemDataA0(callbackTable,eventHandlerConfig + 0x1c,&systemDataBuffer);
+  if (*(int *)(eventHandlerConfig + EventHandlerConfigOffset2c) == 0) {
+    validationStatus = QuerySystemDataA0(callbackTable,eventHandlerConfig + EventHandlerConfigOffset1c,&systemDataBuffer);
     if (validationStatus == 0) {
-      validationStatus = ValidateAndProcessSystemResourceA0(systemDataBuffer,eventHandlerConfig + 0x2c);
+      validationStatus = ValidateAndProcessSystemResourceA0(systemDataBuffer,eventHandlerConfig + EventHandlerConfigOffset2c);
       if (validationStatus == 0) goto ValidationCheckpoint;
     }
     return;
   }
 ValidationCheckpoint:
-    CleanupSystemEventA0(*(DataBuffer *)(callbackTable + 0x98),eventHandlerConfig);
+    CleanupSystemEventA0(*(DataBuffer *)(callbackTable + SystemOperationDataOffset98),eventHandlerConfig);
 }
 
 
@@ -15667,10 +15687,10 @@ DataBuffer ValidateSystemStatusAndContext(int64_t contextHandle,int64_t eventMan
     if (*(int *)(systemContext + 0x34) != 0) {
       return SystemOperationFailure;
     }
-    referenceCount = *(int *)(systemContext + 0x28);
-    *(int *)(systemContext + 0x28) = referenceCount + 1;
+    referenceCount = *(int *)(systemContext + SystemContextOffset28);
+    *(int *)(systemContext + SystemContextOffset28) = referenceCount + 1;
     if (referenceCount == 0) {
-        CleanupSystemEventA0(*(DataBuffer *)(eventManager + 0x98),contextHandle);
+        CleanupSystemEventA0(*(DataBuffer *)(eventManager + SystemOperationDataOffset98),contextHandle);
     }
     queryResult = 0;
   }
@@ -15711,8 +15731,8 @@ void ResetSystemStateAndCleanup(int64_t systemConfig,int64_t cleanupContext)
   
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemConfig + ExceptionHandlerCallbackOffset10),&systemContext);
   if (operationResult == 0) {
-    *(DataWord *)(systemContext + 0x30) = 0;
-      CleanupSystemEventA0(*(DataBuffer *)(cleanupContext + 0x98),systemConfig);
+    *(DataWord *)(systemContext + SystemContextOffset30) = 0;
+      CleanupSystemEventA0(*(DataBuffer *)(cleanupContext + SystemOperationDataOffset98),systemConfig);
   }
   return;
 }
@@ -16719,7 +16739,7 @@ void CheckSystemConditionAndExecute(void)
   validationStatus = ValidateAndProcessSystemResourceA0();
   if (validationStatus == 0) {
     // 如果验证成功，处理系统事件
-    ProcessSystemEventB0(*(DataBuffer *)(contextPointer + 0x98));
+    ProcessSystemEventB0(*(DataBuffer *)(contextPointer + SystemOperationDataOffset98));
   }
   return;
 }
@@ -17494,7 +17514,7 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
   if ((validationBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  if (systemContext + 0x28 != 0) {
+  if (systemContext + SystemContextOffset28 != 0) {
     operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemContext + ExceptionHandlerCallbackOffset10),&systemContextBuffer);
     if ((int)operationResult != 0) {
       return operationResult;
@@ -17508,7 +17528,7 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
       return ResourceNotFoundCode;
     }
     validationBuffer[0] = 0;
-    operationResult = ExecuteSystemOperationA0(dataBuffer,resourceHandle,systemContext + 0x28,validationBuffer);
+    operationResult = ExecuteSystemOperationA0(dataBuffer,resourceHandle,systemContext + SystemContextOffset28,validationBuffer);
     if ((int)memoryRegionBase != 0) {
       return memoryRegionBase;
     }
@@ -17857,7 +17877,7 @@ DataBuffer GetSystemStatusA0(void)
       } while ((int)inputRegisterR9D < *(int *)(registerContext + 0x18));
     }
   }
-    CleanupSystemEventA0(*(DataBuffer *)(contextPointer + 0x98));
+    CleanupSystemEventA0(*(DataBuffer *)(contextPointer + SystemOperationDataOffset98));
 }
 
 
@@ -20239,7 +20259,7 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
   ReleaseSystemResourceDJ0(systemContext + 0x70);
   
   // 释放另一个系统资源DJ0
-  operationResult = ReleaseSystemResourceDJ0(systemContext + 0x28);
+  operationResult = ReleaseSystemResourceDJ0(systemContext + SystemContextOffset28);
   if ((operationResult == 0) && (operationResult = ConfigureSystemParameterDK0(systemContext + 0x38), operationResult == 0)) {
     // 设置系统参数标志
     *(DataWord *)(systemContext + 0x48) = SystemCleanupFlag;
@@ -20250,7 +20270,7 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
   ConfigureSystemParameterDK0(systemContext + 0x38);
   
   // 释放系统资源DJ0
-  ReleaseSystemResourceDJ0(systemContext + 0x28);
+  ReleaseSystemResourceDJ0(systemContext + SystemContextOffset28);
   
   // 初始化系统组件DL0
   InitializeSystemComponentDL0(systemContext + 0x18);
@@ -26731,7 +26751,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
   DataWord floatResultF;
   DataWord statusCounter;
   
-  systemOperationStatus = *(int *)(systemContext + 0x28);
+  systemOperationStatus = *(int *)(systemContext + SystemContextOffset28);
   *(int *)(registerBackupPointer + 0x20) = systemOperationStatus;
   pointerOperationResult = (**(FunctionPointer**)*systemDataPointer)(systemDataPointer,operationParameter,4);
   validationStatus = 0;
@@ -26758,7 +26778,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
       systemStatusCounter = normalizedFloatValue;
       if (0 < systemOperationStatus) {
         do {
-          systemOperationResult = ProcessDataPointerA0(systemStatusCounter,(int64_t)(int)systemOperationResult * 0x10 + *(int64_t *)(systemContext + 0x30))
+          systemOperationResult = ProcessDataPointerA0(systemStatusCounter,(int64_t)(int)systemOperationResult * 0x10 + *(int64_t *)(systemContext + SystemContextOffset30))
           ;
           if (systemOperationResult != 0) {
             return;
@@ -29884,7 +29904,7 @@ DataProcessLabelA:
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
           ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
-           (operationResult = ValidateDataIntegrityA1(systemContext + 0x30), (int)operationResult == 0)))))))))) {
+           (operationResult = ValidateDataIntegrityA1(systemContext + SystemContextOffset30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + 0x18) == 0) {
@@ -30037,7 +30057,7 @@ DataProcessSectionA:
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
           ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
-           (operationResult = ValidateDataIntegrityA1(systemContext + 0x30), (int)operationResult == 0)))))))))) {
+           (operationResult = ValidateDataIntegrityA1(systemContext + SystemContextOffset30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + 0x18) == 0) {
@@ -30186,7 +30206,7 @@ DataProcessLabelA:
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
           ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
-           (operationResult = ValidateDataIntegrityA1(systemContext + 0x30), (int)operationResult == 0)))))))))) {
+           (operationResult = ValidateDataIntegrityA1(systemContext + SystemContextOffset30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + 0x18) == 0) {
