@@ -23981,13 +23981,13 @@ uint64_t ProcessBinaryDataA0(void)
   uint *destinationIndexRegister;
   DataBuffer in_R9;
   DataWord floatResultA;
-  uint uStack0000000000000068;
+  uint operationCounter;
   unsigned int stackOperationStatus;
   unsigned int stackDataSize;
   
   if (0 < register_EBX) {
     do {
-      uStack0000000000000068 = *destinationIndexRegister;
+      operationCounter = *destinationIndexRegister;
       systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
                         (*(DataBuffer **)(systemContext + 8),&stack0x00000068,4);
       if ((int)systemDataBuffer != 0) {
@@ -26476,15 +26476,15 @@ void CheckSystemStatusB0(void)
   int register_R12D;
   int64_t register_R15;
   unsigned int stackValidationFlag;
-  uint uStack0000000000000068;
+  uint validationFlagParameter;
   
-  uStack0000000000000068 = in_EAX;
+  validationFlagParameter = in_EAX;
   inputParameter = ExecuteDataValidationOperation();
   if (inputParameter != 0) {
     return;
   }
   validationStatus = (int)*(uint *)(register_R15 + 0x1c) >> 0x1f;
-  memoryBaseAddress = uStack0000000000000068 >> 1;
+  memoryBaseAddress = validationFlagParameter >> 1;
   if (((int)((*(uint *)(register_R15 + 0x1c) ^ validationStatus) - validationStatus) < (int)memoryBaseAddress) &&
      (inputParameter = QuerySystemInformationA0(register_R15 + 0x10,memoryBaseAddress), inputParameter != 0)) {
     return;
@@ -34297,6 +34297,11 @@ void ExceptionUnwindHandler3(DataBuffer exceptionContext, int64_t unwindContext)
  * @note 该函数设置三个异常数据表的指针链
  * @warning 异常数据表的顺序很重要，错误的顺序可能导致异常处理失败
  */
+/**
+ * @brief 异常展开处理器A0
+ * @param exceptionContext 异常上下文
+ * @param unwindParam 展开参数
+ */
 void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
 
 {
@@ -34311,17 +34316,11 @@ void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
 
 
 
-// 函数: void ExceptionUnwindHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
-// 
-// 异常展开处理函数A1
-// 设置异常展开指针链A1，处理异常状态恢复
-// 
-// 参数:
-//   operationBase - 异常处理上下文
-//   dataBuffer - 异常展开参数
-// 
-// 返回值:
-//   无
+/**
+ * @brief 异常展开处理器A1
+ * @param exceptionContext 异常上下文
+ * @param unwindParam 展开参数
+ */
 void ExceptionUnwindHandlerA1(DataBuffer exceptionContext, int64_t unwindParam)
 
 {
@@ -97887,5 +97886,46 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @note 原始函数名：FUN_1807d3e20
  */
 #define InitializeSystemComponentA0 FUN_1807d3e20
+
+// 数据验证错误信息常量定义
+// 原始变量名：UNK_1809832b8 - 数据验证基础错误信息
+// 功能：基础数据验证失败时的错误信息
+#define DataValidationErrorBase UNK_1809832b8
+
+// 原始变量名：UNK_180983738 - 浮点数据验证错误信息A
+// 功能：浮点数据验证失败时的错误信息
+#define FloatingPointValidationErrorA UNK_180983738
+
+// 原始变量名：UNK_1809837c0 - 浮点数据验证错误信息B
+// 功能：浮点数据验证失败时的错误信息
+#define FloatingPointValidationErrorB UNK_1809837c0
+
+// 原始变量名：UNK_1809839d8 - 数据处理验证错误信息
+// 功能：数据处理验证失败时的错误信息
+#define DataProcessingValidationError UNK_1809839d8
+
+// 原始变量名：UNK_180983950 - 系统状态验证错误信息
+// 功能：系统状态验证失败时的错误信息
+#define SystemStatusValidationError UNK_180983950
+
+// 原始变量名：UNK_180983be8 - 数据完整性验证错误信息A
+// 功能：数据完整性验证失败时的错误信息
+#define DataIntegrityValidationErrorA UNK_180983be8
+
+// 原始变量名：UNK_180983a60 - 数据完整性验证错误信息B
+// 功能：数据完整性验证失败时的错误信息
+#define DataIntegrityValidationErrorB UNK_180983a60
+
+// 原始变量名：UNK_180983ae8 - 数据完整性验证错误信息C
+// 功能：数据完整性验证失败时的错误信息
+#define DataIntegrityValidationErrorC UNK_180983ae8
+
+// 原始变量名：UNK_180983b68 - 数据完整性验证错误信息D
+// 功能：数据完整性验证失败时的错误信息
+#define DataIntegrityValidationErrorD UNK_180983b68
+
+// 原始变量名：UNK_180983cf8 - 数据完整性验证错误信息E
+// 功能：数据完整性验证失败时的错误信息
+#define DataIntegrityValidationErrorE UNK_180983cf8
 
 
