@@ -1016,7 +1016,7 @@
 /**
  * @brief 系统状态处理函数A0
  * 
- * 处理系统状态A0
+ * 处理系统状态A0，负责系统状态的监控、管理和状态转换
  * 
  * @note 原始函数名：FUN_1808a54c0
  */
@@ -1025,7 +1025,7 @@
 /**
  * @brief 系统参数验证函数A0
  * 
- * 验证系统参数A0
+ * 验证系统参数A0，负责验证系统配置参数的有效性和安全性
  * 
  * @note 原始函数名：FUN_180883750
  */
@@ -1034,7 +1034,7 @@
 /**
  * @brief 系统数据处理函数A0
  * 
- * 处理系统数据A0
+ * 处理系统数据A0，负责系统数据的处理、验证和管理
  * 
  * @note 原始函数名：ProcessSystemDataWithValidation
  */
@@ -1043,7 +1043,7 @@
 /**
  * @brief 系统状态验证函数A0
  * 
- * 验证系统状态A0
+ * 验证系统状态A0，负责验证系统当前状态的正确性和一致性
  * 
  * @note 原始函数名：FUN_1808af8b0
  */
@@ -1052,7 +1052,7 @@
 /**
  * @brief 系统上下文验证函数A0
  * 
- * 验证系统上下文A0
+ * 验证系统上下文A0，负责验证系统上下文的有效性和安全性
  * 
  * @note 原始函数名：FUN_1808af280
  */
@@ -1061,7 +1061,7 @@
 /**
  * @brief 数据数组处理函数A0
  * 
- * 处理数据数组A0
+ * 处理数据数组A0，负责数据数组的处理、验证和管理
  * 
  * @note 原始函数名：FUN_1808acb90
  */
@@ -1070,7 +1070,7 @@
 /**
  * @brief 数据初始化函数A0
  * 
- * 该函数用于初始化数据
+ * 该函数用于初始化数据缓冲区，设置数据缓冲区的初始状态
  * 
  * @note 原始函数名：func_0x000180060150
  */
@@ -1079,36 +1079,227 @@
 /**
  * @brief 系统操作函数A0
  * 
- * 该函数用于执行系统操作
+ * 该函数用于执行系统操作，负责系统命令的执行和管理
  * 
  * @note 原始函数名：func_0x00018006d490
  */
 #define ExecuteSystemCommand ExecuteSystemCommand
 
 // 全局指针设置函数宏定义
+/**
+ * @brief 全局数据指针初始化函数A0
+ * 
+ * 初始化系统核心模块的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerSystemCore
+ */
 #define InitializeGlobalDataPointerA0 InitializeGlobalDataPointerSystemCore
+
+/**
+ * @brief 全局数据指针初始化函数A1
+ * 
+ * 初始化内存管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerMemoryManager
+ */
 #define InitializeGlobalDataPointerA1 InitializeGlobalDataPointerMemoryManager
+
+/**
+ * @brief 全局数据指针设置函数A2
+ * 
+ * 设置资源管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerResourceManager
+ */
 #define SetGlobalDataPointerA2 InitializeGlobalDataPointerResourceManager
+
+/**
+ * @brief 全局数据指针设置函数A3
+ * 
+ * 设置文件系统的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerFileSystem
+ */
 #define SetGlobalDataPointerA3 InitializeGlobalDataPointerFileSystem
+
+/**
+ * @brief 全局数据指针设置函数A4
+ * 
+ * 设置网络管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerNetworkManager
+ */
 #define SetGlobalDataPointerA4 InitializeGlobalDataPointerNetworkManager
+
+/**
+ * @brief 全局数据指针设置函数A5
+ * 
+ * 设置音频管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerAudioManager
+ */
 #define SetGlobalDataPointerA5 InitializeGlobalDataPointerAudioManager
+
+/**
+ * @brief 全局数据指针设置函数A6
+ * 
+ * 设置输入管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerInputManager
+ */
 #define SetGlobalDataPointerA6 InitializeGlobalDataPointerInputManager
+
+/**
+ * @brief 全局数据指针设置函数A7
+ * 
+ * 设置物理引擎的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerPhysicsManager
+ */
 #define SetGlobalDataPointerA7 InitializeGlobalDataPointerPhysicsManager
+
+/**
+ * @brief 全局数据指针设置函数A8
+ * 
+ * 设置动画管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerAnimationManager
+ */
 #define SetGlobalDataPointerA8 InitializeGlobalDataPointerAnimationManager
+
+/**
+ * @brief 全局数据指针设置函数A9
+ * 
+ * 设置辅助资源管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerResourceManagerSecondary
+ */
 #define SetGlobalDataPointerA9 InitializeGlobalDataPointerResourceManagerSecondary
+
+/**
+ * @brief 全局数据指针设置函数A10
+ * 
+ * 设置场景管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerSceneManager
+ */
 #define SetGlobalDataPointerA10 InitializeGlobalDataPointerSceneManager
+
+/**
+ * @brief 全局数据指针设置函数A11
+ * 
+ * 设置UI管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerUIManager
+ */
 #define SetGlobalDataPointerA11 InitializeGlobalDataPointerUIManager
+
+/**
+ * @brief 全局数据指针设置函数A12
+ * 
+ * 设置脚本管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerScriptManager
+ */
 #define SetGlobalDataPointerA12 InitializeGlobalDataPointerScriptManager
+
+/**
+ * @brief 全局数据指针设置函数A13
+ * 
+ * 设置数据库管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerDatabaseManager
+ */
 #define SetGlobalDataPointerA13 InitializeGlobalDataPointerDatabaseManager
+
+/**
+ * @brief 全局数据指针设置函数A14
+ * 
+ * 设置辅助网络管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerNetworkManagerSecondary
+ */
 #define SetGlobalDataPointerA14 InitializeGlobalDataPointerNetworkManagerSecondary
+
+/**
+ * @brief 全局数据指针设置函数A15
+ * 
+ * 设置序列化管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerSerializationManager
+ */
 #define SetGlobalDataPointerA15 InitializeGlobalDataPointerSerializationManager
+
+/**
+ * @brief 全局数据指针设置函数A16
+ * 
+ * 设置本地化管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerLocalizationManager
+ */
 #define SetGlobalDataPointerA16 InitializeGlobalDataPointerLocalizationManager
+
+/**
+ * @brief 全局数据指针设置函数A17
+ * 
+ * 设置分析管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerAnalyticsManager
+ */
 #define SetGlobalDataPointerA17 InitializeGlobalDataPointerAnalyticsManager
+
+/**
+ * @brief 全局数据指针设置函数A18
+ * 
+ * 设置平台管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerPlatformManager
+ */
 #define SetGlobalDataPointerA18 InitializeGlobalDataPointerPlatformManager
+
+/**
+ * @brief 全局数据指针设置函数A19
+ * 
+ * 设置成就管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerAchievementManager
+ */
 #define SetGlobalDataPointerA19 InitializeGlobalDataPointerAchievementManager
+
+/**
+ * @brief 全局数据指针设置函数A20
+ * 
+ * 设置DLC管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerDLCManager
+ */
 #define SetGlobalDataPointerA20 InitializeGlobalDataPointerDLCManager
+
+/**
+ * @brief 全局数据指针设置函数A21
+ * 
+ * 设置Mod管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerModManager
+ */
 #define SetGlobalDataPointerA21 InitializeGlobalDataPointerModManager
+
+/**
+ * @brief 全局数据指针设置函数A22
+ * 
+ * 设置云服务管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerCloudManager
+ */
 #define SetGlobalDataPointerA22 InitializeGlobalDataPointerCloudManager
+
+/**
+ * @brief 全局数据指针设置函数A23
+ * 
+ * 设置安全管理器的全局数据指针
+ * 
+ * @note 原始函数名：InitializeGlobalDataPointerSecurityManager
+ */
 #define SetGlobalDataPointerA23 InitializeGlobalDataPointerSecurityManager
 
 // 数据处理函数宏定义 (D系列)

@@ -47,22 +47,10 @@
 
 #define ValidateUIComponent ValidateUIComponent
 
-/**
- * @brief 处理UI组件状态
- * 
- * 该函数负责处理UI组件的状态变化和更新
- * 
- * @param componentPtr 组件指针
- * @param stateDataPtr 状态数据指针
- * @return 处理结果状态码
- * @note 原始函数名: ProcessUIComponentState
- */
 #define ProcessUIComponentState ProcessUIComponentState
 
-/**
- * @brief 设置UI组件状态
- * 
- * 该函数负责设置UI组件的状态标志
+ 设置UI组件状态
+ 设置UI组件的状态标志
  * 
  * @param componentPtr 组件指针
  * @param stateType 状态类型
@@ -72,10 +60,8 @@
  */
 #define SetUIComponentState SetUIComponentState
 
-/**
- * @brief 读取UI数据
- * 
- * 该函数负责从指定的内存地址读取UI系统数据
+ 读取UI数据
+ 从指定的内存地址读取UI系统数据
  * 
  * @param dataContext 数据上下文
  * @param dataSource 数据源地址
@@ -85,10 +71,8 @@
  */
 #define ReadUIData ReadUIData
 
-/**
- * @brief 获取字体渲染数据
- * 
- * 该函数负责从特定地址获取字体渲染所需的数据
+ 获取字体渲染数据
+ 从特定地址获取字体渲染所需的数据
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源指针，用于存储获取的数据
@@ -96,10 +80,8 @@
  */
 #define GetFontRenderData FUN_180722340
 
-/**
- * @brief 计算字体度量数据
- * 
- * 该函数负责根据字体度量表计算字符的位置和尺寸信息
+ 计算字体度量数据
+ 根据字体度量表计算字符的位置和尺寸信息
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源指针，用于存储计算结果
@@ -107,10 +89,8 @@
  */
 #define CalculateFontMetricData FUN_180722370
 
-/**
- * @brief 计算UI组件边界
- * 
- * 该函数负责计算UI组件的边界框和尺寸信息
+ 计算UI组件边界
+ 计算UI组件的边界框和尺寸信息
  * 
  * @param componentPtr 组件指针
  * @param param2 参数2
@@ -120,10 +100,8 @@
  */
 #define CalculateUIComponentBounds CalculateUIComponentBounds
 
-/**
- * @brief 刷新UI组件
- * 
- * 该函数负责刷新UI组件的显示内容和状态
+ 刷新UI组件
+ 刷新UI组件的显示内容和状态
  * 
  * @param componentPtr 组件指针
  * @param param2 参数2
@@ -134,10 +112,8 @@
  */
 #define RefreshUIComponent RefreshUIComponent
 
-/**
- * @brief 更新UI组件
- * 
- * 该函数负责更新UI组件的数据和状态
+ 更新UI组件
+ 更新UI组件的数据和状态
  * 
  * @param componentPtr 组件指针
  * @param param2 参数2
@@ -147,19 +123,15 @@
  */
 #define UpdateUIComponent UpdateUIComponent
 
-/**
- * @brief 清理UI缓冲区
- * 
- * 该函数负责清理UI系统的缓冲区资源
+ 清理UI缓冲区
+ 清理UI系统的缓冲区资源
  * 
  * @note 原始函数名: CleanupUIBuffers
  */
 #define CleanupUIBuffers CleanupUIBuffers
 
-/**
- * @brief 处理UI组件
- * 
- * 该函数负责处理UI组件的通用操作
+ 处理UI组件
+ 处理UI组件的通用操作
  * 
  * @param componentPtr 组件指针
  * @param param2 参数2
@@ -169,20 +141,16 @@
  */
 #define HandleUIComponent HandleUIComponent
 
-/**
- * @brief 释放UI内存池
- * 
- * 该函数负责释放UI系统的内存池资源
+ 释放UI内存池
+ 释放UI系统的内存池资源
  * 
  * @param param1 可选参数，指定要释放的资源
  * @note 原始函数名: ReleaseUIMemoryPool
  */
 #define ReleaseUIMemoryPool ReleaseUIMemoryPool
 
-/**
- * @brief 分配UI内存
- * 
- * 该函数负责为UI组件分配内存资源
+ 分配UI内存
+ 为UI组件分配内存资源
  * 
  * @param size 内存大小
  * @param type 内存类型
@@ -191,20 +159,16 @@
  */
 #define AllocateUIMemory AllocateUIMemory
 
-/**
- * @brief 重置UI组件
- * 
- * 该函数负责重置UI组件到初始状态
+ 重置UI组件
+ 重置UI组件到初始状态
  * 
  * @param componentPtr 组件指针
  * @note 原始函数名: ResetUIComponent
  */
 #define ResetUIComponent ResetUIComponent
 
-/**
- * @brief 获取UI资源
- * 
- * 该函数负责获取UI系统所需的资源
+ 获取UI资源
+ 获取UI系统所需的资源
  * 
  * @param contextPtr 上下文指针
  * @return 资源句柄
@@ -212,20 +176,16 @@
  */
 #define AcquireUIResource AcquireUIResource
 
-/**
- * @brief 初始化UI状态
- * 
- * 该函数负责初始化UI系统的状态信息
+ 初始化UI状态
+ 初始化UI系统的状态信息
  * 
  * @return 初始化结果状态码
  * @note 原始函数名: InitializeUIState
  */
 #define InitializeUIState InitializeUIState
 
-/**
- * @brief 处理UI事件
- * 
- * 该函数负责处理UI系统的事件
+ 处理UI事件
+ 处理UI系统的事件
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -235,10 +195,8 @@
  */
 #define ProcessUIEvent ProcessUIEvent
 
-/**
- * @brief 渲染UI组件
- * 
- * 该函数负责渲染UI组件到显示设备
+ 渲染UI组件
+ 渲染UI组件到显示设备
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -248,10 +206,8 @@
  */
 #define RenderUIComponent RenderUIComponent
 
-/**
- * @brief 验证UI资源
- * 
- * 该函数负责验证UI资源的有效性和完整性
+ 验证UI资源
+ 验证UI资源的有效性和完整性
  * 
  * @param resourcePtr 资源指针
  * @param flags 验证标志
@@ -260,10 +216,8 @@
  */
 #define ValidateUIResource ValidateUIResource
 
-/**
- * @brief 处理UI渲染批次
- * 
- * 该函数负责处理UI渲染的批次数据
+ 处理UI渲染批次
+ 处理UI渲染的批次数据
  * 
  * @param batchPtr 批次数据指针
  * @param outputPtr 输出数据指针
@@ -272,10 +226,8 @@
  */
 #define ProcessUIRenderBatch ProcessUIRenderBatch
 
-/**
- * @brief 计算UI布局
- * 
- * 该函数负责计算UI元素的布局参数
+ 计算UI布局
+ 计算UI元素的布局参数
  * 
  * @param layoutPtr 布局指针
  * @param configPtr 配置指针
@@ -285,10 +237,8 @@
  */
 #define CalculateUILayout CalculateUILayout
 
-/**
- * @brief 处理UI渲染数据
- * 
- * 该函数负责处理UI渲染所需的数据，包括顶点数据、纹理坐标等
+ 处理UI渲染数据
+ 处理UI渲染所需的数据，包括顶点数据、纹理坐标等
  * 
  * @param renderDataPtr 渲染数据指针
  * @param dataSource 数据源指针
@@ -299,19 +249,15 @@
  */
 #define ProcessUIRenderData FUN_18069bd60
 
-/**
- * @brief 清空UI渲染缓冲区
- * 
- * 该函数负责清空UI渲染的缓冲区，准备下一次渲染
+ 清空UI渲染缓冲区
+ 清空UI渲染的缓冲区，准备下一次渲染
  * 
  * @note 原始函数名: FUN_1806984b0
  */
 #define ClearUIRenderBuffer FUN_1806984b0
 
-/**
- * @brief 更新UI渲染状态
- * 
- * 该函数负责更新UI渲染的状态信息，包括渲染模式、混合状态等
+ 更新UI渲染状态
+ 更新UI渲染的状态信息，包括渲染模式、混合状态等
  * 
  * @param renderContext 渲染上下文指针
  * @param stateData 状态数据指针
@@ -322,10 +268,8 @@
  */
 #define UpdateUIRenderState FUN_1806986d0
 
-/**
- * @brief 完成UI渲染数据处理
- * 
- * 该函数负责完成UI渲染数据的处理，进行最后的清理和优化
+ 完成UI渲染数据处理
+ 完成UI渲染数据的处理，进行最后的清理和优化
  * 
  * @param renderDataPtr 渲染数据指针
  * @return 完成结果状态码
@@ -333,10 +277,8 @@
  */
 #define FinalizeUIRenderData FUN_18069beb0
 
-/**
- * @brief 清理UI渲染数据
- * 
- * 该函数负责清理UI渲染过程中产生的临时数据
+ 清理UI渲染数据
+ 清理UI渲染过程中产生的临时数据
  * 
  * @param renderDataPtr 渲染数据指针
  * @return 清理结果状态码
@@ -344,10 +286,8 @@
  */
 #define CleanupUIRenderData FUN_18069bc50
 
-/**
- * @brief 更新UI上下文
- * 
- * 该函数负责更新UI系统的上下文信息，包括当前状态、资源引用等
+ 更新UI上下文
+ 更新UI系统的上下文信息，包括当前状态、资源引用等
  * 
  * @param uiContext UI上下文指针
  * @return 更新结果状态码
@@ -355,10 +295,8 @@
  */
 #define UpdateUIContext FUN_18069ec80
 
-/**
- * @brief 比较UI事件数据
- * 
- * 该函数负责比较两个UI事件数据是否相同
+ 比较UI事件数据
+ 比较两个UI事件数据是否相同
  * 
  * @param eventData1 事件数据1指针
  * @param eventData2 事件数据2指针
@@ -368,10 +306,8 @@
  */
 #define CompareUIEventData FUN_18069ed90
 
-/**
- * @brief 验证UI组件
- * 
- * 该函数负责验证UI组件的有效性和完整性
+ 验证UI组件
+ 验证UI组件的有效性和完整性
  * 
  * @param componentPtr 组件指针
  * @return 验证结果状态码
@@ -379,10 +315,8 @@
  */
 #define ValidateUIComponent FUN_180699f40
 
-/**
- * @brief 分配UI组件内存
- * 
- * 该函数负责为UI组件分配内存资源
+ 分配UI组件内存
+ 为UI组件分配内存资源
  * 
  * @param memoryPtr 内存指针
  * @param size 内存大小
@@ -391,10 +325,8 @@
  */
 #define AllocateUIComponentMemory FUN_18069bbd0
 
-/**
- * @brief 比较UI字符串数据
- * 
- * 该函数负责比较UI系统中的字符串数据
+ 比较UI字符串数据
+ 比较UI系统中的字符串数据
  * 
  * @param stringIndex 字符串索引
  * @param stringBuffer 字符串缓冲区指针
@@ -403,10 +335,8 @@
  */
 #define CompareUIStringData FUN_18069a210
 
-/**
- * @brief 处理UI数据验证
- * 
- * 该函数负责处理UI系统中的数据验证操作
+ 处理UI数据验证
+ 处理UI系统中的数据验证操作
  * 
  * @param contextPtr 上下文指针
  * @param dataSource 数据源指针
@@ -416,10 +346,8 @@
  */
 #define ProcessUIDataValidation FUN_180699e30
 
-/**
- * @brief 释放UI组件内存
- * 
- * 该函数负责释放UI组件占用的内存资源
+ 释放UI组件内存
+ 释放UI组件占用的内存资源
  * 
  * @param memoryPtr 内存指针
  * @return 释放结果状态码
@@ -428,8 +356,7 @@
 #define ReleaseUIComponentMemory FUN_18069bb20
 
 // SIMD图像处理函数宏定义
-/**
- * @brief 使用AVX2指令计算图像绝对差值和
+ 使用AVX2指令计算图像绝对差值和
  * 
  * 该函数使用AVX2指令集计算两个图像缓冲区之间的绝对差值和
  * 主要用于图像比较和差异检测
@@ -444,8 +371,7 @@
  */
 #define CalculateImageAbsoluteDifferenceSum CalculateImageAbsoluteDifferenceSum
 
-/**
- * @brief 使用AVX2指令计算图像块绝对差值和
+ 使用AVX2指令计算图像块绝对差值和
  * 
  * 该函数使用AVX2指令集计算图像块的绝对差值和
  * 用于图像处理中的块匹配和运动估计
@@ -459,8 +385,7 @@
  */
 #define CalculateImageBlockAbsoluteDifference FUN_180697340
 
-/**
- * @brief 使用AVX2指令计算图像加权绝对差值和
+ 使用AVX2指令计算图像加权绝对差值和
  * 
  * 该函数使用AVX2指令集计算加权绝对差值和
  * 用于图像处理中的加权比较和特征匹配
@@ -474,8 +399,7 @@
  */
 #define CalculateImageWeightedAbsoluteDifference FUN_1806973c0
 
-/**
- * @brief 使用AVX2指令计算图像像素平均值
+ 使用AVX2指令计算图像像素平均值
  * 
  * 该函数使用AVX2指令集计算图像像素的平均值
  * 用于图像处理中的亮度计算和统计分析
@@ -489,8 +413,7 @@
  */
 #define CalculateImagePixelAverage FUN_180697460
 
-/**
- * @brief 使用AVX2指令计算图像像素方差
+ 使用AVX2指令计算图像像素方差
  * 
  * 该函数使用AVX2指令集计算图像像素的方差
  * 用于图像处理中的纹理分析和质量控制
@@ -504,8 +427,7 @@
  */
 #define CalculateImagePixelVariance FUN_1806974e0
 
-/**
- * @brief 使用AVX2指令计算图像像素标准差
+ 使用AVX2指令计算图像像素标准差
  * 
  * 该函数使用AVX2指令集计算图像像素的标准差
  * 用于图像处理中的噪声评估和质量检测
@@ -519,8 +441,7 @@
  */
 #define CalculateImagePixelStandardDeviation FUN_180697580
 
-/**
- * @brief 使用AVX2指令计算图像像素中值
+ 使用AVX2指令计算图像像素中值
  * 
  * 该函数使用AVX2指令集计算图像像素的中值
  * 用于图像处理中的中值滤波和异常值检测
@@ -534,8 +455,7 @@
  */
 #define CalculateImagePixelMedian FUN_180697600
 
-/**
- * @brief 使用AVX2指令计算图像像素最大值
+ 使用AVX2指令计算图像像素最大值
  * 
  * 该函数使用AVX2指令集计算图像像素的最大值
  * 用于图像处理中的亮度分析和范围检测
@@ -549,8 +469,7 @@
  */
 #define CalculateImagePixelMaximum FUN_180697680
 
-/**
- * @brief 使用AVX2指令计算图像像素最小值
+ 使用AVX2指令计算图像像素最小值
  * 
  * 该函数使用AVX2指令集计算图像像素的最小值
  * 用于图像处理中的阴影分析和范围检测
@@ -564,8 +483,7 @@
  */
 #define CalculateImagePixelMinimum FUN_1806976f0
 
-/**
- * @brief 使用AVX2指令计算图像像素和
+ 使用AVX2指令计算图像像素和
  * 
  * 该函数使用AVX2指令集计算图像像素的和
  * 用于图像处理中的积分图计算和统计分析
@@ -579,8 +497,7 @@
  */
 #define CalculateImagePixelSum FUN_180697770
 
-/**
- * @brief 使用AVX2指令计算图像像素方差
+ 使用AVX2指令计算图像像素方差
  * 
  * 该函数使用AVX2指令集计算图像像素的方差值
  * 用于图像处理中的统计分析和质量评估
@@ -596,8 +513,7 @@
  */
 #define CalculateImagePixelVariance FUN_1806978b0
 
-/**
- * @brief 使用高级指令计算图像块绝对差值
+ 使用高级指令计算图像块绝对差值
  * 
  * 该函数使用高级指令集计算图像块的绝对差值
  * 用于图像处理中的块匹配和运动估计
@@ -613,8 +529,7 @@
  */
 #define CalculateImageBlockAbsoluteDifferenceAdvanced FUN_1806968e0
 
-/**
- * @brief 使用高级指令计算图像加权绝对差值
+ 使用高级指令计算图像加权绝对差值
  * 
  * 该函数使用高级指令集计算图像的加权绝对差值
  * 用于图像处理中的权重分析和质量评估
@@ -630,8 +545,7 @@
  */
 #define CalculateImageWeightedAbsoluteDifferenceAdvanced FUN_180696a60
 
-/**
- * @brief 使用高级指令计算图像像素平均值
+ 使用高级指令计算图像像素平均值
  * 
  * 该函数使用高级指令集计算图像像素的平均值
  * 用于图像处理中的亮度分析和统计计算
@@ -647,8 +561,7 @@
  */
 #define CalculateImagePixelAverageAdvanced FUN_180696be0
 
-/**
- * @brief 使用高级指令计算图像像素标准差
+ 使用高级指令计算图像像素标准差
  * 
  * 该函数使用高级指令集计算图像像素的标准差
  * 用于图像处理中的对比度分析和质量评估
@@ -664,8 +577,7 @@
  */
 #define CalculateImagePixelStandardDeviationAdvanced FUN_180696d90
 
-/**
- * @brief 使用高级指令计算图像像素中位数
+ 使用高级指令计算图像像素中位数
  * 
  * 该函数使用高级指令集计算图像像素的中位数
  * 用于图像处理中的中值滤波和统计分析
@@ -681,8 +593,7 @@
  */
 #define CalculateImagePixelMedianAdvanced FUN_180696f40
 
-/**
- * @brief 使用高级指令计算图像像素最大值
+ 使用高级指令计算图像像素最大值
  * 
  * 该函数使用高级指令集计算图像像素的最大值
  * 用于图像处理中的亮度分析和范围检测
@@ -698,8 +609,7 @@
  */
 #define CalculateImagePixelMaximumAdvanced FUN_1806970f0
 
-/**
- * @brief 使用高级指令计算图像像素最小值
+ 使用高级指令计算图像像素最小值
  * 
  * 该函数使用高级指令集计算图像像素的最小值
  * 用于图像处理中的阴影分析和范围检测
@@ -715,8 +625,7 @@
  */
 #define CalculateImagePixelMinimumAdvanced FUN_180697dd0
 
-/**
- * @brief 使用高级指令计算图像像素和
+ 使用高级指令计算图像像素和
  * 
  * 该函数使用高级指令集计算图像像素的和
  * 用于图像处理中的积分图计算和统计分析
@@ -1375,40 +1284,32 @@ void* UIGestureCoordinates;
 #define ProcessUIDataBuffer FUN_180679b20
 
 // UI系统渲染状态管理函数
-/**
- * @brief UI系统渲染状态重置函数
- * 
- * 该函数负责重置UI系统的渲染状态到初始值
+ UI系统渲染状态重置函数
+ 重置UI系统的渲染状态到初始值
  * 主要用于渲染过程中的状态清理和重置操作
  * 
  * @note 原始函数名: FUN_180694c40
  */
 #define ResetUIRenderState FUN_180694c40
 
-/**
- * @brief UI系统布局状态重置函数
- * 
- * 该函数负责重置UI系统的布局状态
+ UI系统布局状态重置函数
+ 重置UI系统的布局状态
  * 主要用于布局计算过程中的状态清理
  * 
  * @note 原始函数名: FUN_180694040
  */
 #define ResetUILayoutState FUN_180694040
 
-/**
- * @brief UI系统上下文初始化函数
- * 
- * 该函数负责初始化UI系统的上下文环境
+ UI系统上下文初始化函数
+ 初始化UI系统的上下文环境
  * 设置初始状态和参数
  * 
  * @note 原始函数名: FUN_1806905c0
  */
 #define InitializeUIContext FUN_1806905c0
 
-/**
- * @brief UI系统数据验证函数
- * 
- * 该函数负责验证UI系统数据的有效性和完整性
+ UI系统数据验证函数
+ 验证UI系统数据的有效性和完整性
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源指针
@@ -1424,10 +1325,8 @@ void* UIGestureCoordinates;
  */
 #define ValidateUIDataStructure FUN_180690800
 
-/**
- * @brief UI系统数据比较函数
- * 
- * 该函数负责比较两个UI数据块的相似性
+ UI系统数据比较函数
+ 比较两个UI数据块的相似性
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源指针
@@ -1443,8 +1342,7 @@ void* UIGestureCoordinates;
  */
 #define CompareUIDataBlocks FUN_180691080
 
-/**
- * @brief UI系统渲染更新触发函数
+ UI系统渲染更新触发函数
  * 
  * 该函数触发UI系统的渲染更新流程
  * 调用ProcessUIRenderingUpdate函数进行实际的渲染更新操作
@@ -1454,8 +1352,7 @@ void* UIGestureCoordinates;
  */
 #define TriggerUIRenderingUpdate FUN_1806979e0
 
-/**
- * @brief UI系统渲染更新函数
+ UI系统渲染更新函数
  * 
  * 该函数执行UI系统的渲染更新操作
  * 更新渲染状态和缓冲区
@@ -1467,8 +1364,7 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIRenderingUpdate FUN_180698800
 
-/**
- * @brief UI系统空闲处理函数
+ UI系统空闲处理函数
  * 
  * 该函数在UI系统空闲时执行清理和优化操作
  * 
@@ -1476,10 +1372,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIIdleTasks FUN_180698a50
 
-/**
- * @brief UI系统资源加载函数
- * 
- * 该函数负责加载UI系统所需的资源
+ UI系统资源加载函数
+ 加载UI系统所需的资源
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识
@@ -1489,10 +1383,8 @@ void* UIGestureCoordinates;
  */
 #define LoadUIResource FUN_180698b00
 
-/**
- * @brief UI系统数据流处理函数
- * 
- * 该函数负责处理UI系统的数据流
+ UI系统数据流处理函数
+ 处理UI系统的数据流
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源指针
@@ -1504,10 +1396,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIDataStream FUN_180698bb0
 
-/**
- * @brief UI系统上下文清理函数
- * 
- * 该函数负责清理UI系统的上下文环境
+ UI系统上下文清理函数
+ 清理UI系统的上下文环境
  * 释放资源并重置状态
  * 
  * @param uiContext UI上下文指针
@@ -1618,10 +1508,8 @@ void* UIGestureCoordinates;
 // 原始函数名：FUN_18068fe10 - UI系统复杂数据处理函数
 #define ProcessUIComplexData FUN_18068fe10
 
-/**
- * @brief 处理UI批量数据
- * 
- * 该函数负责处理UI系统中的批量数据操作，包括多个数据源的验证和处理
+ 处理UI批量数据
+ 处理UI系统中的批量数据操作，包括多个数据源的验证和处理
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -1634,10 +1522,8 @@ void* UIGestureCoordinates;
  * @note 原始函数名: FUN_18068f9a0
  */
 
-/**
- * @brief 验证UI数据（版本1）
- * 
- * 该函数负责验证UI系统数据的完整性和有效性（版本1实现）
+ 验证UI数据（版本1）
+ 验证UI系统数据的完整性和有效性（版本1实现）
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -1650,10 +1536,8 @@ void* UIGestureCoordinates;
  * @note 原始函数名: FUN_18068fb30
  */
 
-/**
- * @brief 验证UI数据（版本2）
- * 
- * 该函数负责验证UI系统数据的完整性和有效性（版本2实现）
+ 验证UI数据（版本2）
+ 验证UI系统数据的完整性和有效性（版本2实现）
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -1666,10 +1550,8 @@ void* UIGestureCoordinates;
  * @note 原始函数名: FUN_18068fba0
  */
 
-/**
- * @brief 验证UI数据（版本3）
- * 
- * 该函数负责验证UI系统数据的完整性和有效性（版本3实现）
+ 验证UI数据（版本3）
+ 验证UI系统数据的完整性和有效性（版本3实现）
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -1682,10 +1564,8 @@ void* UIGestureCoordinates;
  * @note 原始函数名: FUN_18068fc10
  */
 
-/**
- * @brief 验证UI数据（版本4）
- * 
- * 该函数负责验证UI系统数据的完整性和有效性（版本4实现）
+ 验证UI数据（版本4）
+ 验证UI系统数据的完整性和有效性（版本4实现）
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -1698,10 +1578,8 @@ void* UIGestureCoordinates;
  * @note 原始函数名: FUN_18068fc80
  */
 
-/**
- * @brief 验证UI数据（版本5）
- * 
- * 该函数负责验证UI系统数据的完整性和有效性（版本5实现）
+ 验证UI数据（版本5）
+ 验证UI系统数据的完整性和有效性（版本5实现）
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -1714,10 +1592,8 @@ void* UIGestureCoordinates;
  * @note 原始函数名: FUN_18068fcf0
  */
 
-/**
- * @brief 验证UI数据（版本6）
- * 
- * 该函数负责验证UI系统数据的完整性和有效性（版本6实现）
+ 验证UI数据（版本6）
+ 验证UI系统数据的完整性和有效性（版本6实现）
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -1730,10 +1606,8 @@ void* UIGestureCoordinates;
  * @note 原始函数名: FUN_18068fd60
  */
 
-/**
- * @brief 处理UI复杂数据
- * 
- * 该函数负责处理UI系统中的复杂数据操作，包括信号量管理和内存分配
+ 处理UI复杂数据
+ 处理UI系统中的复杂数据操作，包括信号量管理和内存分配
  * 
  * @param uiContext UI上下文指针数组
  * @param dataSource 数据源标识符
@@ -1765,30 +1639,24 @@ void* UIGestureCoordinates;
 
 // UI系统数学计算函数
 
-/**
- * @brief 计算UI角度
- * 
- * 该函数负责计算UI系统中的角度值，用于旋转和方向计算
+ 计算UI角度
+ 计算UI系统中的角度值，用于旋转和方向计算
  * 
  * @param angleData 角度数据指针
  * @return 计算后的角度值
  */
 #define CalculateUIAngle CalculateUIAngleInternal
 
-/**
- * @brief 计算UI变换
- * 
- * 该函数负责计算UI系统的变换矩阵，用于位置、旋转和缩放变换
+ 计算UI变换
+ 计算UI系统的变换矩阵，用于位置、旋转和缩放变换
  * 
  * @param transformData 变换数据指针
  * @return 计算后的变换矩阵
  */
 #define ComputeUITransform ComputeUITransformInternal
 
-/**
- * @brief 处理UI浮点数值
- * 
- * 该函数负责处理UI系统中的浮点数值运算
+ 处理UI浮点数值
+ 处理UI系统中的浮点数值运算
  * 
  * @param floatValue 浮点数值
  * @param operationType 操作类型
@@ -1796,28 +1664,22 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIFloatValue ProcessUIFloatValueInternal
 
-/**
- * @brief 获取UI资源处理器
- * 
- * 该函数负责获取UI系统的资源处理器，用于管理UI资源
+ 获取UI资源处理器
+ 获取UI系统的资源处理器，用于管理UI资源
  * 
  * @return 资源处理器指针
  */
 #define GetUIResourceHandler GetUIResourceHandlerInternal
 
-/**
- * @brief 获取UI渲染处理器
- * 
- * 该函数负责获取UI系统的渲染处理器，用于处理渲染操作
+ 获取UI渲染处理器
+ 获取UI系统的渲染处理器，用于处理渲染操作
  * 
  * @return 渲染处理器指针
  */
 #define GetUIRenderHandler GetUIRenderHandlerInternal
 
-/**
- * @brief 计算图像块绝对差异
- * 
- * 该函数负责计算图像块之间的绝对差异，用于图像比较和处理
+ 计算图像块绝对差异
+ 计算图像块之间的绝对差异，用于图像比较和处理
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源指针
@@ -1827,10 +1689,8 @@ void* UIGestureCoordinates;
  */
 #define CalculateImageBlockAbsoluteDifference FUN_18072dde7
 
-/**
- * @brief 计算图像加权绝对差异
- * 
- * 该函数负责计算图像块之间的加权绝对差异，用于高级图像处理
+ 计算图像加权绝对差异
+ 计算图像块之间的加权绝对差异，用于高级图像处理
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源指针
@@ -1842,20 +1702,16 @@ void* UIGestureCoordinates;
 
 // UI系统组件操作函数
 
-/**
- * @brief 验证UI组件
- * 
- * 该函数负责验证UI组件的有效性和完整性，确保组件可以正常使用
+ 验证UI组件
+ 验证UI组件的有效性和完整性，确保组件可以正常使用
  * 
  * @param componentPtr 组件指针
  * @return 验证结果状态码
  */
 #define ValidateUIComponent ValidateUIComponentInternal
 
-/**
- * @brief 处理UI组件数据
- * 
- * 该函数负责处理UI组件的数据，包括数据的更新和同步
+ 处理UI组件数据
+ 处理UI组件的数据，包括数据的更新和同步
  * 
  * @param componentPtr 组件指针
  * @param dataBuffer 数据缓冲区
@@ -1863,10 +1719,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIComponentData ProcessUIComponentDataInternal
 
-/**
- * @brief 处理UI组件事件
- * 
- * 该函数负责处理UI组件的事件，包括用户输入和系统事件
+ 处理UI组件事件
+ 处理UI组件的事件，包括用户输入和系统事件
  * 
  * @param componentPtr 组件指针
  * @param eventData 事件数据指针
@@ -1874,10 +1728,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIComponentEvent ProcessUIComponentEventInternal
 
-/**
- * @brief 更新UI组件变换
- * 
- * 该函数负责更新UI组件的变换状态，包括位置、旋转和缩放
+ 更新UI组件变换
+ 更新UI组件的变换状态，包括位置、旋转和缩放
  * 
  * @param componentPtr 组件指针
  * @param transformData 变换数据
@@ -1885,10 +1737,8 @@ void* UIGestureCoordinates;
  */
 #define UpdateUIComponentTransform UpdateUIComponentTransformInternal
 
-/**
- * @brief 更新UI组件
- * 
- * 该函数负责更新UI组件的数据和状态，处理颜色和尺寸信息
+ 更新UI组件
+ 更新UI组件的数据和状态，处理颜色和尺寸信息
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源指针
@@ -1898,10 +1748,8 @@ void* UIGestureCoordinates;
  */
 #define UpdateUIComponent FUN_180679bf0
 
-/**
- * @brief 分配UI组件内存
- * 
- * 该函数负责为UI组件分配内存，初始化组件的数据结构
+ 分配UI组件内存
+ 为UI组件分配内存，初始化组件的数据结构
  * 
  * @param componentSize 组件大小
  * @param componentType 组件类型
@@ -1948,10 +1796,8 @@ void* UIGestureCoordinates;
 #define InitializeUIComponent InitializeUIComponentInternal
 
 // UI系统内存管理函数
-/**
- * @brief 初始化UI系统内存锁
- * 
- * 该函数负责初始化UI系统的内存锁机制，确保多线程安全
+ 初始化UI系统内存锁
+ 初始化UI系统的内存锁机制，确保多线程安全
  * 使用临界区来保护共享资源的访问
  * 
  * @param initCallback 初始化回调函数指针
@@ -1959,8 +1805,7 @@ void* UIGestureCoordinates;
  */
 #define InitializeUIMemoryLock FUN_18066e230
 
-/**
- * @brief UI系统内存锁包装函数
+ UI系统内存锁包装函数
  * 
  * 该函数是UI系统内存锁的包装函数，提供统一的锁管理接口
  * 处理临界区的初始化和引用计数
@@ -1969,10 +1814,8 @@ void* UIGestureCoordinates;
  */
 #define UIMemoryLockWrapper FUN_18066e246
 
-/**
- * @brief UI系统内存锁初始化检查函数
- * 
- * 该函数负责检查UI系统内存锁的初始化状态
+ UI系统内存锁初始化检查函数
+ 检查UI系统内存锁的初始化状态
  * 执行必要的初始化操作
  * 
  * @return 初始化状态标志
@@ -1980,10 +1823,8 @@ void* UIGestureCoordinates;
  */
 #define CheckUIMemoryLockInit FUN_18066e2a3
 
-/**
- * @brief 获取UI系统内存锁状态
- * 
- * 该函数负责获取UI系统内存锁的当前状态
+ 获取UI系统内存锁状态
+ 获取UI系统内存锁的当前状态
  * 返回锁的初始化和引用状态信息
  * 
  * @return 内存锁状态标志
@@ -1991,10 +1832,8 @@ void* UIGestureCoordinates;
  */
 #define GetUIMemoryLockStatus FUN_18066e300
 
-/**
- * @brief UI系统资源清理函数
- * 
- * 该函数负责清理UI系统占用的资源，包括内存分配和临界区
+ UI系统资源清理函数
+ 清理UI系统占用的资源，包括内存分配和临界区
  * 执行必要的资源释放操作
  * 
  * @param context UI系统上下文指针
@@ -2002,10 +1841,8 @@ void* UIGestureCoordinates;
  */
 #define CleanupUIResources FUN_18066e730
 
-/**
- * @brief UI系统内存释放函数
- * 
- * 该函数负责释放UI系统分配的内存资源
+ UI系统内存释放函数
+ 释放UI系统分配的内存资源
  * 清理相关的数据结构和缓冲区
  * 
  * @param context UI系统上下文指针
@@ -2013,10 +1850,8 @@ void* UIGestureCoordinates;
  */
 #define ReleaseUIMemory ReleaseUIMemoryInternal
 
-/**
- * @brief UI系统内存分配函数
- * 
- * 该函数负责为UI系统分配内存资源
+ UI系统内存分配函数
+ 为UI系统分配内存资源
  * 根据指定的参数分配适当的内存空间
  * 
  * @param size 分配大小
@@ -2026,50 +1861,40 @@ void* UIGestureCoordinates;
  */
 #define AllocateUIMemory AllocateUIMemoryInternal
 
-/**
- * @brief UI系统内存锁重置函数
- * 
- * 该函数负责重置UI系统内存锁的状态
+ UI系统内存锁重置函数
+ 重置UI系统内存锁的状态
  * 清理锁相关的数据和状态信息
  * 
  * @note 原始函数名: FUN_18066e90c
  */
 #define ResetUIMemoryLock FUN_18066e90c
 
-/**
- * @brief UI系统内存锁初始化函数
- * 
- * 该函数负责初始化UI系统内存锁的基础设施
+ UI系统内存锁初始化函数
+ 初始化UI系统内存锁的基础设施
  * 设置锁的初始状态和参数
  * 
  * @note 原始函数名: FUN_18066e938
  */
 #define SetupUIMemoryLock FUN_18066e938
 
-/**
- * @brief UI系统事件队列初始化函数
- * 
- * 该函数负责初始化UI系统的事件队列
+ UI系统事件队列初始化函数
+ 初始化UI系统的事件队列
  * 设置事件处理的基础设施和队列管理
  * 
  * @note 原始函数名: FUN_18066ec06
  */
 #define InitializeUIEventQueue FUN_18066ec06
 
-/**
- * @brief UI系统渲染管道初始化函数
- * 
- * 该函数负责初始化UI系统的渲染管道
+ UI系统渲染管道初始化函数
+ 初始化UI系统的渲染管道
  * 设置渲染状态和管道配置
  * 
  * @note 原始函数名: FUN_18066ec63
  */
 #define InitializeUIRenderPipeline FUN_18066ec63
 
-/**
- * @brief UI系统组件验证函数
- * 
- * 该函数负责验证UI系统组件的有效性
+ UI系统组件验证函数
+ 验证UI系统组件的有效性
  * 检查组件状态和数据完整性
  * 
  * @param component 组件指针
@@ -2079,10 +1904,8 @@ void* UIGestureCoordinates;
  */
 #define ValidateUIComponentData ValidateUIComponentDataInternal
 
-/**
- * @brief UI系统组件释放函数
- * 
- * 该函数负责释放UI系统组件占用的资源
+ UI系统组件释放函数
+ 释放UI系统组件占用的资源
  * 清理组件相关的数据和内存
  * 
  * @param component 组件指针
@@ -2090,10 +1913,8 @@ void* UIGestureCoordinates;
  */
 #define ReleaseUIComponent ReleaseUIComponentInternal
 
-/**
- * @brief UI系统组件数据处理函数
- * 
- * 该函数负责处理UI系统组件的数据操作
+ UI系统组件数据处理函数
+ 处理UI系统组件的数据操作
  * 包括数据的读取、写入和验证
  * 
  * @param component 组件指针
@@ -2104,10 +1925,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIComponentData HandleUIComponent
 
-/**
- * @brief UI系统组件状态更新函数
- * 
- * 该函数负责更新UI系统组件的状态信息
+ UI系统组件状态更新函数
+ 更新UI系统组件的状态信息
  * 同步组件的状态变化和属性更新
  * 
  * @param component 组件指针
@@ -2118,10 +1937,8 @@ void* UIGestureCoordinates;
  */
 #define UpdateUIComponentState UpdateUIComponent
 
-/**
- * @brief UI组件状态刷新器
- * 
- * 该函数负责刷新UI组件的状态信息，包括组件的显示状态、交互状态等。
+ UI组件状态刷新器
+ 刷新UI组件的状态信息，包括组件的显示状态、交互状态等。
  * 主要用于组件状态的实时更新和同步。
  * 
  * @param componentHandle 组件句柄
@@ -2133,10 +1950,8 @@ void* UIGestureCoordinates;
  */
 #define RefreshUIComponentState RefreshUIComponent
 
-/**
- * @brief UI组件资源清理器
- * 
- * 该函数负责清理UI组件占用的资源，包括内存、句柄和缓存等。
+ UI组件资源清理器
+ 清理UI组件占用的资源，包括内存、句柄和缓存等。
  * 主要用于组件销毁时的资源释放。
  * 
  * @param componentData 组件数据指针
@@ -2144,10 +1959,8 @@ void* UIGestureCoordinates;
  */
 #define CleanupUIComponentResources FUN_18066d310
 
-/**
- * @brief UI组件内存分配器
- * 
- * 该函数负责为UI组件分配内存资源。
+ UI组件内存分配器
+ 为UI组件分配内存资源。
  * 主要用于组件初始化和动态内存分配。
  * 
  * @param allocationSize 分配大小
@@ -2157,10 +1970,8 @@ void* UIGestureCoordinates;
  */
 #define AllocateUIComponentMemory AllocateUIMemory
 
-/**
- * @brief UI组件内存释放器
- * 
- * 该函数负责释放UI组件占用的内存资源。
+ UI组件内存释放器
+ 释放UI组件占用的内存资源。
  * 主要用于组件销毁时的内存释放。
  * 
  * @param componentData 组件数据指针
@@ -2168,20 +1979,16 @@ void* UIGestureCoordinates;
  */
 #define ReleaseUIComponentMemory ReleaseUIMemoryPool
 
-/**
- * @brief UI系统资源清理函数
- * 
- * 该函数负责清理UI系统占用的资源
+ UI系统资源清理函数
+ 清理UI系统占用的资源
  * 释放内存和重置系统状态
  * 
  * @note 原始函数名: FUN_180698140
  */
 #define CleanupUISystemResources FUN_180698140
 
-/**
- * @brief UI系统上下文清理函数
- * 
- * 该函数负责清理UI系统的上下文数据
+ UI系统上下文清理函数
+ 清理UI系统的上下文数据
  * 释放上下文相关的资源
  * 
  * @param uiContext UI上下文指针
@@ -2189,30 +1996,24 @@ void* UIGestureCoordinates;
  */
 #define CleanupUIContext FUN_1806980f0
 
-/**
- * @brief UI系统状态重置函数
- * 
- * 该函数负责重置UI系统的状态
+ UI系统状态重置函数
+ 重置UI系统的状态
  * 将系统恢复到初始状态
  * 
  * @note 原始函数名: func_0x0001806980d0
  */
 #define ResetUISystemState FUN_1806980d0
 
-/**
- * @brief UI系统输入状态更新函数
- * 
- * 该函数负责更新UI系统的输入状态
+ UI系统输入状态更新函数
+ 更新UI系统的输入状态
  * 处理输入设备的状态变化和事件
  * 
  * @note 原始函数名: FUN_18066f715
  */
 #define UpdateUIInputState UpdateUIInputStateInternal
 
-/**
- * @brief UI系统渲染配置函数
- * 
- * 该函数负责配置UI系统的渲染参数
+ UI系统渲染配置函数
+ 配置UI系统的渲染参数
  * 设置渲染选项和渲染状态
  * 
  * @param renderContext 渲染上下文
@@ -2222,10 +2023,8 @@ void* UIGestureCoordinates;
  */
 #define ConfigureUIRendering RenderUIComponent
 
-/**
- * @brief UI系统渲染参数设置函数
- * 
- * 该函数负责设置UI系统的渲染参数
+ UI系统渲染参数设置函数
+ 设置UI系统的渲染参数
  * 配置渲染缓冲区和渲染状态
  * 
  * @param renderContext 渲染上下文
@@ -2235,10 +2034,8 @@ void* UIGestureCoordinates;
  */
 #define SetUIRenderingParameters SetUIRenderingParametersInternal
 
-/**
- * @brief UI系统事件处理函数
- * 
- * 该函数负责处理UI系统的各种事件
+ UI系统事件处理函数
+ 处理UI系统的各种事件
  * 包括鼠标、键盘、触摸等输入事件
  * 
  * @param eventData 事件数据
@@ -2248,30 +2045,24 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIEvents ProcessUIEventsInternal
 
-/**
- * @brief UI系统缓冲区初始化函数
- * 
- * 该函数负责初始化UI系统的各种缓冲区
+ UI系统缓冲区初始化函数
+ 初始化UI系统的各种缓冲区
  * 设置缓冲区的参数和状态
  * 
  * @note 原始函数名: FUN_1806704b6
  */
 #define InitializeUIBuffers InitializeUIBuffersInternal
 
-/**
- * @brief UI系统缓冲区配置函数
- * 
- * 该函数负责配置UI系统的缓冲区
+ UI系统缓冲区配置函数
+ 配置UI系统的缓冲区
  * 设置缓冲区的大小和属性
  * 
  * @note 原始函数名: FUN_1806704db
  */
 #define ConfigureUIBuffers ConfigureUIBuffersInternal
 
-/**
- * @brief UI系统缓冲区分配函数
- * 
- * 该函数负责分配UI系统的缓冲区资源
+ UI系统缓冲区分配函数
+ 分配UI系统的缓冲区资源
  * 根据指定的参数分配适当的缓冲区空间
  * 
  * @param allocatedMemory 缓冲区上下文
@@ -2282,10 +2073,8 @@ void* UIGestureCoordinates;
  */
 #define AllocateUIBuffers AllocateUIBuffersInternal
 
-/**
- * @brief UI系统缓冲区数据更新函数
- * 
- * 该函数负责更新UI系统缓冲区的数据
+ UI系统缓冲区数据更新函数
+ 更新UI系统缓冲区的数据
  * 同步缓冲区内容和状态信息
  * 
  * @param allocatedMemory 缓冲区上下文
@@ -2296,20 +2085,16 @@ void* UIGestureCoordinates;
  */
 #define UpdateUIBufferData UpdateUIBufferDataInternal
 
-/**
- * @brief UI系统缓冲区同步函数
- * 
- * 该函数负责同步UI系统的缓冲区状态
+ UI系统缓冲区同步函数
+ 同步UI系统的缓冲区状态
  * 确保缓冲区数据的一致性和完整性
  * 
  * @note 原始函数名: FUN_1806707c6
  */
 #define SynchronizeUIBuffers SynchronizeUIBuffersInternal
 
-/**
- * @brief UI系统组件数据更新函数
- * 
- * 该函数负责更新UI系统组件的数据
+ UI系统组件数据更新函数
+ 更新UI系统组件的数据
  * 处理组件数据的变更和同步
  * 
  * @param component 组件指针
@@ -2318,19 +2103,15 @@ void* UIGestureCoordinates;
  */
 #define UpdateUIComponentData UpdateUIComponentDataInternal
 
-/**
- * @brief UI组件数据缓冲区初始化函数
- * 
- * 该函数负责初始化UI组件的数据缓冲区，分配内存并设置初始状态
+ UI组件数据缓冲区初始化函数
+ 初始化UI组件的数据缓冲区，分配内存并设置初始状态
  * 
  * @note 原始函数名: FUN_180670ede
  */
 #define InitializeUIComponentDataBuffer InitializeUIComponentDataBufferInternal
 
-/**
- * @brief UI系统数据转换处理函数
- * 
- * 该函数负责处理UI系统中的数据转换操作
+ UI系统数据转换处理函数
+ 处理UI系统中的数据转换操作
  * 包括数据格式转换、单位转换和坐标转换
  * 
  * @param inputData 输入数据
@@ -2341,10 +2122,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIDataConversion ProcessUIDataConversion
 
-/**
- * @brief UI系统数据分配和结构化处理函数
- * 
- * 该函数负责分配UI系统数据结构并进行结构化处理
+ UI系统数据分配和结构化处理函数
+ 分配UI系统数据结构并进行结构化处理
  * 包括内存分配、数据结构初始化和组织
  * 
  * @param dataSource 数据源
@@ -2355,10 +2134,8 @@ void* UIGestureCoordinates;
  */
 #define AllocateAndStructureUIData AllocateAndStructureUIData
 
-/**
- * @brief UI系统复杂数据处理函数
- * 
- * 该函数负责处理UI系统中的复杂数据操作
+ UI系统复杂数据处理函数
+ 处理UI系统中的复杂数据操作
  * 包括复杂数据结构处理、多参数数据处理
  * 
  * @param param1 参数1
@@ -2369,10 +2146,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIComplexData ProcessUIComplexData
 
-/**
- * @brief UI系统数据配置处理函数
- * 
- * 该函数负责处理UI系统中的数据配置操作
+ UI系统数据配置处理函数
+ 处理UI系统中的数据配置操作
  * 包括数据配置初始化、参数设置等
  * 
  * @param configData 配置数据
@@ -2383,10 +2158,8 @@ void* UIGestureCoordinates;
  */
 #define ConfigureUIData ConfigureUIData
 
-/**
- * @brief 处理UI渲染数据
- * 
- * 该函数负责处理UI系统的渲染数据，包括纹理、颜色等信息
+ 处理UI渲染数据
+ 处理UI系统的渲染数据，包括纹理、颜色等信息
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2396,10 +2169,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIRenderData ProcessUIRenderData
 
-/**
- * @brief 处理UI向量数据
- * 
- * 该函数负责处理UI系统中的向量数据操作
+ 处理UI向量数据
+ 处理UI系统中的向量数据操作
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2408,10 +2179,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIVectorData ProcessUIVectorData
 
-/**
- * @brief 处理UI浮点数据
- * 
- * 该函数负责处理UI系统中的浮点数据计算和转换
+ 处理UI浮点数据
+ 处理UI系统中的浮点数据计算和转换
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2420,10 +2189,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIFloatData ProcessUIFloatData
 
-/**
- * @brief 处理UI矩阵数据
- * 
- * 该函数负责处理UI系统中的矩阵变换数据
+ 处理UI矩阵数据
+ 处理UI系统中的矩阵变换数据
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2433,10 +2200,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIMatrixData ProcessUIMatrixData
 
-/**
- * @brief 处理UI缓冲区数据
- * 
- * 该函数负责处理UI系统中的缓冲区数据操作
+ 处理UI缓冲区数据
+ 处理UI系统中的缓冲区数据操作
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2446,10 +2211,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIBufferData ProcessUIBufferData
 
-/**
- * @brief 获取UI渲染缓冲区
- * 
- * 该函数负责获取UI系统的渲染缓冲区
+ 获取UI渲染缓冲区
+ 获取UI系统的渲染缓冲区
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2459,10 +2222,8 @@ void* UIGestureCoordinates;
  */
 #define GetUIRenderBuffer GetUIRenderBuffer
 
-/**
- * @brief 处理UI组件队列
- * 
- * 该函数负责处理UI组件的队列操作
+ 处理UI组件队列
+ 处理UI组件的队列操作
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2471,10 +2232,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIComponentQueue ProcessUIComponentQueueInternal
 
-/**
- * @brief 获取UI队列索引
- * 
- * 该函数负责获取UI队列的索引值，用于队列管理和状态同步
+ 获取UI队列索引
+ 获取UI队列的索引值，用于队列管理和状态同步
  * 
  * @param queueContext 队列上下文指针
  * @return 队列索引值
@@ -2482,20 +2241,16 @@ void* UIGestureCoordinates;
  */
 #define GetUIQueueIndex func_0x00018066eb80
 
-/**
- * @brief 清理UI系统资源
- * 
- * 该函数负责清理UI系统的资源
+ 清理UI系统资源
+ 清理UI系统的资源
  * 
  * @param memoryBlock 内存块指针
  * @note 原始函数名: FUN_180697ed0
  */
 #define CleanupUISystemResources FUN_180697ed0
 
-/**
- * @brief 处理UI组件浮点数计算
- * 
- * 该函数负责处理UI组件的浮点数计算，用于UI元素的变换和渲染
+ 处理UI组件浮点数计算
+ 处理UI组件的浮点数计算，用于UI元素的变换和渲染
  * 
  * @param componentPtr 组件指针
  * @param param1 参数1
@@ -2508,10 +2263,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIComponentFloatCalculation func_0x000180669850
 
-/**
- * @brief 处理UI结果指针
- * 
- * 该函数负责处理UI操作的结果指针，用于数据管理和状态同步
+ 处理UI结果指针
+ 处理UI操作的结果指针，用于数据管理和状态同步
  * 
  * @param resultPointer 结果指针
  * @param param 参数
@@ -2520,40 +2273,32 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIResultPointer func_0x000180435420
 
-/**
- * @brief 获取UI系统状态
- * 
- * 该函数负责获取UI系统的当前状态信息
+ 获取UI系统状态
+ 获取UI系统的当前状态信息
  * 
  * @return 系统状态值
  * @note 原始函数名: func_0x000180435400
  */
 #define GetUISystemStatus func_0x000180435400
 
-/**
- * @brief 释放UI分配的内存
- * 
- * 该函数负责释放UI系统分配的内存资源
+ 释放UI分配的内存
+ 释放UI系统分配的内存资源
  * 
  * @param memoryPtr 内存指针
  * @note 原始函数名: func_0x0001804aabb0
  */
 #define FreeUIMemory func_0x0001804aabb0
 
-/**
- * @brief 处理UI缓冲区数据
- * 
- * 该函数负责处理UI系统的缓冲区数据，用于数据同步和管理
+ 处理UI缓冲区数据
+ 处理UI系统的缓冲区数据，用于数据同步和管理
  * 
  * @param bufferPtr 缓冲区指针
  * @note 原始函数名: func_0x00018022b430
  */
 #define ProcessUIBufferData func_0x00018022b430
 
-/**
- * @brief 初始化UI信号量
- * 
- * 该函数负责初始化UI系统的信号量，用于线程同步和资源管理
+ 初始化UI信号量
+ 初始化UI系统的信号量，用于线程同步和资源管理
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2563,10 +2308,8 @@ void* UIGestureCoordinates;
  */
 #define InitializeUISemaphore func_0x00018022b3c0
 
-/**
- * @brief 创建UI系统资源
- * 
- * 该函数负责创建UI系统的资源，用于资源管理和分配
+ 创建UI系统资源
+ 创建UI系统的资源，用于资源管理和分配
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2576,10 +2319,8 @@ void* UIGestureCoordinates;
  */
 #define CreateUIResource func_0x00018022b490
 
-/**
- * @brief 处理UI系统配置
- * 
- * 该函数负责处理UI系统的配置信息，用于系统初始化和设置
+ 处理UI系统配置
+ 处理UI系统的配置信息，用于系统初始化和设置
  * 
  * @param configPtr 配置指针
  * @param param2 参数2
@@ -2588,10 +2329,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIConfiguration func_0x0001803812e0
 
-/**
- * @brief 验证UI上下文
- * 
- * 该函数负责验证UI上下文的有效性和完整性
+ 验证UI上下文
+ 验证UI上下文的有效性和完整性
  * 
  * @param contextPtr 上下文指针
  * @return 验证结果
@@ -2599,10 +2338,8 @@ void* UIGestureCoordinates;
  */
 #define ValidateUIContext func_0x0001806673d0
 
-/**
- * @brief 初始化UI纹理
- * 
- * 该函数负责初始化UI系统的纹理资源
+ 初始化UI纹理
+ 初始化UI系统的纹理资源
  * 
  * @param texturePtr 纹理指针
  * @param param2 参数2
@@ -2612,10 +2349,8 @@ void* UIGestureCoordinates;
  */
 #define InitializeUITexture func_0x0001800f8f10
 
-/**
- * @brief 处理UI信号量操作
- * 
- * 该函数负责处理UI系统的信号量操作，用于线程同步
+ 处理UI信号量操作
+ 处理UI系统的信号量操作，用于线程同步
  * 
  * @param semaphorePtr 信号量指针
  * @param param2 参数2
@@ -2625,10 +2360,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUISemaphoreOperation func_0x000180085850
 
-/**
- * @brief 更新UI组件数据
- * 
- * 该函数负责更新UI组件的数据
+ 更新UI组件数据
+ 更新UI组件的数据
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2639,10 +2372,8 @@ void* UIGestureCoordinates;
  */
 #define UpdateUIComponentData UpdateUIComponentDataInternal
 
-/**
- * @brief 处理UI组件渲染
- * 
- * 该函数负责处理UI组件的渲染操作
+ 处理UI组件渲染
+ 处理UI组件的渲染操作
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2653,20 +2384,16 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIComponentRender ProcessUIComponentRenderInternal
 
-/**
- * @brief 清理UI组件
- * 
- * 该函数负责清理UI组件的资源
+ 清理UI组件
+ 清理UI组件的资源
  * 
  * @param param1 参数1
  * @note 原始函数名: FUN_18069de90
  */
 #define CleanupUIComponent CleanupUIComponentInternal
 
-/**
- * @brief 配置UI组件
- * 
- * 该函数负责配置UI组件的参数
+ 配置UI组件
+ 配置UI组件的参数
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2677,10 +2404,8 @@ void* UIGestureCoordinates;
  */
 #define ConfigureUIComponent ConfigureUIComponentInternal
 
-/**
- * @brief 处理UI组件缓冲区
- * 
- * 该函数负责处理UI组件的缓冲区操作
+ 处理UI组件缓冲区
+ 处理UI组件的缓冲区操作
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2691,10 +2416,8 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIComponentBuffer ProcessUIComponentBufferInternal
 
-/**
- * @brief 渲染UI按钮
- * 
- * 该函数负责渲染UI按钮组件
+ 渲染UI按钮
+ 渲染UI按钮组件
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2704,10 +2427,8 @@ void* UIGestureCoordinates;
  */
 #define RenderUIButton RenderUIButtonInternal
 
-/**
- * @brief 渲染UI文本
- * 
- * 该函数负责渲染UI文本组件
+ 渲染UI文本
+ 渲染UI文本组件
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2717,10 +2438,8 @@ void* UIGestureCoordinates;
  */
 #define RenderUIText RenderUITextInternal
 
-/**
- * @brief 渲染UI图像
- * 
- * 该函数负责渲染UI图像组件
+ 渲染UI图像
+ 渲染UI图像组件
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2730,10 +2449,8 @@ void* UIGestureCoordinates;
  */
 #define RenderUIImage RenderUIImageInternal
 
-/**
- * @brief 渲染UI面板
- * 
- * 该函数负责渲染UI面板组件
+ 渲染UI面板
+ 渲染UI面板组件
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2743,10 +2460,8 @@ void* UIGestureCoordinates;
  */
 #define RenderUIPanel RenderUIPanelInternal
 
-/**
- * @brief 渲染UI滑块
- * 
- * 该函数负责渲染UI滑块组件
+ 渲染UI滑块
+ 渲染UI滑块组件
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2756,10 +2471,8 @@ void* UIGestureCoordinates;
  */
 #define RenderUISlider RenderUISliderInternal
 
-/**
- * @brief 渲染UI复选框
- * 
- * 该函数负责渲染UI复选框组件
+ 渲染UI复选框
+ 渲染UI复选框组件
  * 
  * @param param1 参数1
  * @param param2 参数2
@@ -2788,49 +2501,39 @@ void* UIGestureCoordinates;
 #define ResetUISystemState func_0x0001806980d0
 #define ReleaseUIResourceHandle func_0x00018066e940
 
-/**
- * @brief 清理UI系统临界区资源
- * 
- * 该函数负责清理UI系统的临界区资源，包括释放临界区对象和相关内存
+ 清理UI系统临界区资源
+ 清理UI系统的临界区资源，包括释放临界区对象和相关内存
  * 
  * @note 原始函数名: FUN_18069c023
  */
 #define CleanupUICriticalSection FUN_18069c023
 
-/**
- * @brief 处理UI组件数据加密和渲染任务
- * 
- * 该函数负责处理UI组件数据的加密操作，并执行相应的渲染任务
+ 处理UI组件数据加密和渲染任务
+ 处理UI组件数据的加密操作，并执行相应的渲染任务
  * 使用XOR加密密钥对数据进行保护，然后调用渲染任务执行器
  * 
  * @note 原始函数名: FUN_18069c080
  */
 #define ProcessUIComponentDataEncryption FUN_18069c080
 
-/**
- * @brief 处理UI组件内存操作和数据复制
- * 
- * 该函数负责处理UI组件的内存操作，包括内存清零、数据复制和内存移动
+ 处理UI组件内存操作和数据复制
+ 处理UI组件的内存操作，包括内存清零、数据复制和内存移动
  * 用于UI组件的初始化、数据更新和内存管理
  * 
  * @note 原始函数名: FUN_18069c3b0
  */
 #define ProcessUIComponentMemoryOperations FUN_18069c3b0
 
-/**
- * @brief 处理UI组件队列数据操作
- * 
- * 该函数负责处理UI组件队列的数据操作，包括内存设置、数据复制和队列管理
+ 处理UI组件队列数据操作
+ 处理UI组件队列的数据操作，包括内存设置、数据复制和队列管理
  * 用于UI组件队列的初始化和数据传输
  * 
  * @note 原始函数名: FUN_18069c3f3
  */
 #define ProcessUIComponentQueueOperations FUN_18069c3f3
 
-/**
- * @brief 执行UI组件内存复制操作
- * 
- * 该函数负责执行UI组件的内存复制操作，用于数据传输和内存管理
+ 执行UI组件内存复制操作
+ 执行UI组件的内存复制操作，用于数据传输和内存管理
  * 这是一个基础的内存操作函数，为UI系统提供数据复制功能
  * 
  * @note 原始函数名: FUN_18069c4ff
@@ -2850,10 +2553,8 @@ void* UIGestureCoordinates;
 #define TriggerUIRenderingUpdate TriggerUIRenderingUpdateInternal
 #define ProcessUIAudioData ProcessUIAudioDataInternal
 
-/**
- * @brief UI渲染数据处理器
- * 
- * 该函数负责处理UI系统的渲染数据，包括数据转换、缓冲区操作和渲染任务执行。
+ UI渲染数据处理器
+ 处理UI系统的渲染数据，包括数据转换、缓冲区操作和渲染任务执行。
  * 主要用于UI渲染管线中的数据处理阶段。
  * 
  * @param uiContext UI上下文句柄
@@ -2868,8 +2569,7 @@ void* UIGestureCoordinates;
  */
 #define ProcessUIRenderDataProcessor FUN_18072bc75
 
-/**
- * @brief UI系统空操作函数1
+ UI系统空操作函数1
  * 
  * 该函数是UI系统的一个空操作函数，用于系统初始化和状态管理。
  * 
@@ -2877,8 +2577,7 @@ void* UIGestureCoordinates;
  */
 #define UINoOperationHandler1 FUN_18072bf1a
 
-/**
- * @brief UI系统空操作函数2
+ UI系统空操作函数2
  * 
  * 该函数是UI系统的另一个空操作函数，用于渲染更新处理。
  * 
@@ -2886,19 +2585,15 @@ void* UIGestureCoordinates;
  */
 #define UINoOperationHandler2 FUN_18072bf40
 
-/**
- * @brief UI内存区域清理器
- * 
- * 该函数负责清理UI系统的内存区域，用于内存管理和资源释放。
+ UI内存区域清理器
+ 清理UI系统的内存区域，用于内存管理和资源释放。
  * 
  * @note 原始函数名: FUN_18072c44d
  */
 #define ClearUIMemoryRegion FUN_18072c44d
 
-/**
- * @brief UI数据验证器
- * 
- * 该函数负责验证UI系统的数据完整性和有效性，包括组件验证和状态检查。
+ UI数据验证器
+ 验证UI系统的数据完整性和有效性，包括组件验证和状态检查。
  * 
  * @note 原始函数名: FUN_18072c8e6
  */
@@ -4707,8 +4402,7 @@ undefined8 GetUIStatusFlag(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @brief UI系统图像混合优化函数
+ UI系统图像混合优化函数
  * 
  * 该函数使用SIMD指令集优化图像缓冲区的混合操作，实现高性能的像素级图像混合。
  * 通过向量化的并行处理，大幅提升图像处理性能。
@@ -4971,10 +4665,8 @@ ulonglong BlendImageBuffersSIMD(ulonglong destBuffer,uint *srcBuffer1,uint *srcB
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 初始化UI系统
- * 
- * 该函数负责初始化UI系统的核心组件和状态。它会检查UI缓冲区的状态，
+  初始化UI系统
+ 初始化UI系统的核心组件和状态。它会检查UI缓冲区的状态，
  * 分配必要的资源，并设置系统回调函数。初始化过程包括：
  * - 检查UI缓冲区索引的有效性
  * - 分配缓冲区空间
@@ -5016,10 +4708,8 @@ void InitializeUISystem(code *systemCallback)
 
 
 
-/**
- * @brief 清理UI系统
- * 
- * 该函数负责清理UI系统占用的所有资源，包括内存缓冲区、事件处理器和渲染器等。
+ 清理UI系统
+ 清理UI系统占用的所有资源，包括内存缓冲区、事件处理器和渲染器等。
  * 它会确保所有资源都被正确释放，以避免内存泄漏。清理过程包括：
  * - 释放UI缓冲区内存
  * - 清理事件处理器
@@ -5044,10 +4734,8 @@ void CleanupUISystem(void)
 
 
 
-/**
- * @brief 重置UI系统到初始状态
- * 
- * 该函数负责清除所有UI组件和状态，恢复系统到默认配置
+ 重置UI系统到初始状态
+ 清除所有UI组件和状态，恢复系统到默认配置
  * 触发错误处理器并执行系统调用重置系统状态
  * 
  * @note 原始函数名: ResetUISystem
@@ -5068,10 +4756,8 @@ void ResetUISystem(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI组件的主函数
- * 
- * 该函数负责处理UI组件的生命周期管理，包括组件的初始化、更新和销毁。
+ 处理UI组件的主函数
+ 处理UI组件的生命周期管理，包括组件的初始化、更新和销毁。
  * 它会检查UI系统是否已初始化，然后根据传入的组件参数进行相应的处理。
  * 
  * @param componentPointer UI组件的指针，包含组件的状态和数据信息
@@ -5247,10 +4933,8 @@ void ProcessUIParameters(undefined8 uiContext,undefined8 dataSource,undefined8 t
 
 
 
- /**
- * @brief 设置UI系统状态
- * 
- * 该函数负责设置UI系统的状态信息，包括线程本地标志和资源管理器
+  设置UI系统状态
+ 设置UI系统的状态信息，包括线程本地标志和资源管理器
  * 主要用于UI系统的状态初始化和更新
  * 
  * @param uiContext UI上下文指针
@@ -5290,10 +4974,8 @@ void ProcessUIInitialization(void)
 
 
 
-/**
- * @brief 渲染UI组件
- * 
- * 该函数负责渲染UI组件到指定的目标缓冲区。它将UI组件的数据源
+ 渲染UI组件
+ 渲染UI组件到指定的目标缓冲区。它将UI组件的数据源
  * 信息传递给渲染系统，并在目标缓冲区中生成最终的渲染结果。
  * 
  * @param uiContext UI上下文，包含渲染所需的UI系统状态信息
@@ -5320,10 +5002,8 @@ void RenderUIComponent(undefined8 uiContext,undefined8 dataSource,undefined8 tar
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 更新UI组件
- * 
- * 该函数负责更新UI组件的状态和内容。它会检查渲染器是否已初始化，
+ 更新UI组件
+ 更新UI组件的状态和内容。它会检查渲染器是否已初始化，
  * 如果未初始化则先初始化渲染器，然后提交更新任务到渲染队列。
  * 
  * @param uiContext UI上下文，包含更新所需的UI系统状态信息
@@ -5360,10 +5040,8 @@ void UpdateUIComponent(undefined8 uiContext,undefined8 dataSource,undefined8 tar
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 绘制UI元素
- * 
- * 该函数负责绘制UI元素到指定的目标缓冲区。它会检查三级渲染器和主渲染器
+ 绘制UI元素
+ 绘制UI元素到指定的目标缓冲区。它会检查三级渲染器和主渲染器
  * 的初始化状态，确保至少有一个可用的渲染器，然后管理渲染作业队列。
  * 
  * @param uiContext UI上下文，包含绘制所需的UI系统状态信息
@@ -5653,10 +5331,8 @@ LAB_UIRenderTaskExecution:
 
 
 
- /**
- * @brief 清理UI资源
- * 
- * 该函数负责清理UI系统占用的各种资源，包括内存、缓冲区、
+  清理UI资源
+ 清理UI系统占用的各种资源，包括内存、缓冲区、
  * 事件处理器等。它会确保所有资源都被正确释放，避免内存泄漏。
  * 
  * @return 无返回值
@@ -5674,10 +5350,8 @@ void CleanupUIResources(void)
 
 
 
- /**
- * @brief 验证UI系统状态
- * 
- * 该函数负责验证UI系统的当前状态是否有效。它会解析状态字符串，
+  验证UI系统状态
+ 验证UI系统的当前状态是否有效。它会解析状态字符串，
  * 根据不同的单位标识符（K、M、G）对验证结果进行相应的处理。
  * 主要用于确保UI系统在运行过程中的状态一致性。
  * 
@@ -5735,10 +5409,8 @@ void ValidateUIState(void)
 
 
 
- /**
- * @brief 刷新UI显示
- * 
- * 该函数负责刷新UI系统的显示内容，检查渲染器初始化状态
+  刷新UI显示
+ 刷新UI系统的显示内容，检查渲染器初始化状态
  * 并执行相应的渲染任务
  * 
  * @note 原始函数名: RefreshUIDisplay
@@ -5833,8 +5505,7 @@ bool CheckUIGeometry(float *uiContext,float *dataSource,float *targetBuffer,floa
 
 
 
-/**
- * @brief 计算UI变换矩阵
+ 计算UI变换矩阵
  * 
  * 该函数根据输入的变换参数计算UI元素的变换矩阵
  * 
@@ -5901,10 +5572,8 @@ void ProcessUIMessages(void)
 
 
 
-/**
- * @brief 处理UI布局
- * 
- * 该函数负责处理UI元素的布局计算和路径处理
+ 处理UI布局
+ 处理UI元素的布局计算和路径处理
  * 
  * @param layoutContext 布局上下文指针
  * @param targetBuffer 目标缓冲区指针
@@ -5996,10 +5665,8 @@ void CreateUIComponent(undefined8 uiContext,undefined8 dataSource,undefined8 tar
 
 
 
-/**
- * @brief 复制UI数据
- * 
- * 该函数负责将UI数据从源位置复制到目标位置，包括各种UI组件的状态和属性
+ 复制UI数据
+ 将UI数据从源位置复制到目标位置，包括各种UI组件的状态和属性
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源指针
@@ -6264,8 +5931,7 @@ void ProcessUIComponentList(undefined8 uiContext,undefined8 *dataSource,undefine
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @brief 处理UI系统消息
+ 处理UI系统消息
  * @param uiContext UI上下文句柄
  * @param dataSource 数据源指针
  * @param targetBuffer 目标缓冲区
@@ -6522,10 +6188,8 @@ void InitializeUIComponent(longlong uiContext,undefined8 dataSource)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI组件数据验证
- * 
- * 该函数负责处理UI组件的数据验证和错误处理，包括组件状态的验证、
+ 处理UI组件数据验证
+ 处理UI组件的数据验证和错误处理，包括组件状态的验证、
  * 数据完整性的检查以及错误情况的处理。主要用于UI系统的数据安全处理。
  * 
  * @param ComponentContext UI组件上下文，包含组件的状态和配置信息
@@ -6709,8 +6373,7 @@ void ValidateUIComponent(void)
 
 
 
-/**
- * @brief 设置UI组件完成标志
+ 设置UI组件完成标志
  * 
  * 标记指定的UI组件为已完成状态。
  * 此函数用于指示UI组件的处理已完成。
@@ -6746,8 +6409,7 @@ undefined8 SetUIComponentDataPointer(longlong componentManager,undefined8 dataPo
 
 
 
-/**
- * @brief 处理UI组件数据验证
+ 处理UI组件数据验证
  * 
  * 验证和处理UI组件的数据，包括数据类型检查和内存操作。
  * 此函数用于确保UI组件数据的完整性和正确性。
@@ -6822,8 +6484,7 @@ ValidationFailed:
 
 
 
-/**
- * @brief 执行UI组件渲染操作
+ 执行UI组件渲染操作
  * 
  * 调用UI组件的渲染函数指针来执行渲染操作。
  * 此函数用于触发UI组件的渲染过程。
@@ -6848,8 +6509,7 @@ undefined8 ExecuteUIComponentRenderOperation(longlong RenderContext, longlong Co
 
 
 
-/**
- * @brief 执行UI组件更新操作
+ 执行UI组件更新操作
  * 
  * 调用UI组件的更新函数指针来执行更新操作。
  * 此函数用于触发UI组件的更新过程。
@@ -7105,10 +6765,8 @@ LAB_UIContextInitialize:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 清理UI组件资源
- * 
- * 该函数负责清理UI组件使用的各种资源，包括内存缓冲区、加密数据等。
+  清理UI组件资源
+ 清理UI组件使用的各种资源，包括内存缓冲区、加密数据等。
  * 执行必要的清理操作以释放系统资源。
  * 
  * @return 无返回值
@@ -7134,10 +6792,8 @@ void CleanupUIComponent(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 处理UI组件数据
- * 
- * 该函数负责处理UI组件的数据，包括数据验证、配置处理和渲染准备。
+  处理UI组件数据
+ 处理UI组件的数据，包括数据验证、配置处理和渲染准备。
  * 使用线程安全的方式处理数据，确保在多线程环境下的数据一致性。
  * 
  * @param uiContext UI上下文指针
@@ -7182,8 +6838,7 @@ void ProcessUIComponentData(undefined8 uiContext,longlong *dataSource)
 
 
 
-/**
- * @brief 处理UI组件几何变换
+ 处理UI组件几何变换
  * @param uiContext UI上下文指针
  * @param dataSource 数据源指针
  * @param targetBuffer 目标缓冲区
@@ -7256,10 +6911,8 @@ ProcessUIComponentGeometry(longlong *uiContext,undefined8 *dataSource,undefined8
 
 
 
- /**
- * @brief 更新UI组件几何信息
- * 
- * 该函数负责更新UI组件的几何信息，包括位置、尺寸等属性
+  更新UI组件几何信息
+ 更新UI组件的几何信息，包括位置、尺寸等属性
  * 主要用于UI布局和渲染的几何计算
  * 
  * @param uiContext UI上下文指针
@@ -7322,10 +6975,8 @@ void ExecuteUISystemInterrupt(void)
 
 
 
-/**
- * @brief 转换UI字符串
- * 
- * 该函数负责转换UI系统中的字符串数据，包括字符编码转换
+ 转换UI字符串
+ 转换UI系统中的字符串数据，包括字符编码转换
  * 和缓冲区管理。主要用于多语言支持和字符串处理
  * 
  * @param uiContext UI上下文指针
@@ -7451,10 +7102,8 @@ void SetupUIMemoryAllocator(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 初始化UI纹理系统
- * 
- * 该函数负责初始化UI系统中使用的所有纹理资源，包括纹理缓存、纹理池和纹理管理器。
+ 初始化UI纹理系统
+ 初始化UI系统中使用的所有纹理资源，包括纹理缓存、纹理池和纹理管理器。
  * 函数会创建必要的Mono程序集，设置纹理数据缓冲区，并配置纹理组件。
  * 
  * 功能包括：
@@ -7584,10 +7233,8 @@ void* InitializeUIString(undefined8 uiContext,undefined8 *dataSource,undefined8 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 调整UI系统动态数组大小
- * 
- * 该函数负责调整UI系统动态数组的大小，以适应新的数据需求。
+ 调整UI系统动态数组大小
+ 调整UI系统动态数组的大小，以适应新的数据需求。
  * 当数组容量不足时，会重新分配更大的内存空间，并复制原有数据。
  * 
  * @param arrayInfo 数组信息指针
@@ -7785,10 +7432,8 @@ void UpdateUIComponentPosition(longlong uiContext,undefined8 dataSource,undefine
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 验证UI组件句柄的有效性
- * 
- * 该函数负责验证UI组件句柄的有效性，检查句柄是否为空以及系统是否已初始化
+ 验证UI组件句柄的有效性
+ 验证UI组件句柄的有效性，检查句柄是否为空以及系统是否已初始化
  * 确保组件句柄可以安全使用
  * 
  * @param componentHandle 指向UI组件句柄的指针
@@ -7990,8 +7635,7 @@ LAB_UIComponentWriteHeader:
 
 
 
-/**
- * @brief 释放UI系统资源
+ 释放UI系统资源
  * @param resourcePointer 指向要释放的资源指针
  * @param flags 释放标志位
  * @param unusedParam 未使用的参数
@@ -8015,8 +7659,7 @@ FreeUIResource(undefined8 *resourcePointer, ulonglong flags, undefined8 unusedPa
 
 
 
-/**
- * @brief 重置UI组件数据
+ 重置UI组件数据
  * @param componentId UI组件ID
  * @param componentData 指向组件数据的指针
  * @return 返回重置后的组件数据指针
@@ -10388,10 +10031,8 @@ LAB_1806588f2:
 
 
 
-/**
- * @brief 处理UI元素变换
- * 
- * 该函数负责处理UI元素的变换操作，包括平移、旋转、缩放等变换计算
+ 处理UI元素变换
+ 处理UI元素的变换操作，包括平移、旋转、缩放等变换计算
  * 
  * @param uiContext UI上下文指针，包含变换矩阵和状态信息
  * @param dataSource 变换数据源，包含位置、旋转、缩放等信息
@@ -11011,8 +10652,7 @@ undefined8 InitializeUIElementContext(longlong *uiContext)
 
 
 
-/**
- * @brief 处理UI元素的3D边界框碰撞检测
+ 处理UI元素的3D边界框碰撞检测
  * 
  * 该函数用于计算和检测UI元素在3D空间中的边界框碰撞。
  * 它执行复杂的几何计算，包括距离计算、边界框验证和碰撞响应。
@@ -15670,8 +15310,7 @@ LAB_18065a765:
 
 
 
-/**
- * @brief 计算UI变换矩阵
+ 计算UI变换矩阵
  * 
  * 根据输入参数计算UI元素的变换矩阵，包括缩放、旋转和平移操作。
  * 此函数用于处理UI元素的几何变换和渲染前的矩阵计算。
@@ -20370,10 +20009,8 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
 // @note 原始函数名为ValidateUIComponent，现已重命名
 #define ValidateUIComponentPreconditions ValidateUIComponent
 
-/**
- * @brief UI组件状态检查器
- * 
- * 该函数负责检查UI组件的状态信息，包括组件的当前状态、属性和配置。
+ UI组件状态检查器
+ 检查UI组件的状态信息，包括组件的当前状态、属性和配置。
  * 主要用于组件状态验证和状态更新。
  * 
  * @param componentId 组件ID
@@ -20385,10 +20022,8 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
  */
 #define CheckUIComponentState InitializeUIMemoryPool
 
-/**
- * @brief UI组件数据验证器
- * 
- * 该函数负责验证UI组件的数据完整性和有效性。
+ UI组件数据验证器
+ 验证UI组件的数据完整性和有效性。
  * 主要用于组件数据的验证和完整性检查。
  * 
  * @param componentData 组件数据指针
@@ -20398,10 +20033,8 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
  */
 #define ValidateUIComponentDataIntegrity ProcessUIComponentState
 
-/**
- * @brief UI组件数据更新器
- * 
- * 该函数负责更新UI组件的数据，包括组件属性、状态和配置信息。
+ UI组件数据更新器
+ 更新UI组件的数据，包括组件属性、状态和配置信息。
  * 主要用于组件数据的动态更新和同步。
  * 
  * @param componentData 组件数据指针
@@ -20411,10 +20044,8 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
  */
 #define UpdateUIComponentData SetUIComponentState
 
-/**
- * @brief UI组件事件处理器
- * 
- * 该函数负责处理UI组件的事件，包括用户交互事件、系统事件和组件内部事件。
+ UI组件事件处理器
+ 处理UI组件的事件，包括用户交互事件、系统事件和组件内部事件。
  * 主要用于组件事件的分发和处理。
  * 
  * @param componentData 组件数据指针
@@ -20425,10 +20056,8 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
  */
 #define HandleUIComponentEvent CalculateUIComponentBounds
 
-/**
- * @brief UI组件变换矩阵处理器
- * 
- * 该函数负责处理UI组件的变换矩阵计算，包括旋转、缩放、平移等变换操作。
+ UI组件变换矩阵处理器
+ 处理UI组件的变换矩阵计算，包括旋转、缩放、平移等变换操作。
  * 通过计算4x4变换矩阵来实现UI组件的各种变换效果。
  * 
  * @param componentHandle 组件句柄
@@ -20588,10 +20217,8 @@ DestroyUIComponentManager(undefined8 *manager_ptr,ulonglong flags,undefined8 tar
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 计算UI组件的变换矩阵
- * 
- * 该函数负责计算UI组件的位置、旋转和缩放变换，生成最终的变换矩阵。
+ 计算UI组件的变换矩阵
+ 计算UI组件的位置、旋转和缩放变换，生成最终的变换矩阵。
  * 支持三维空间中的复杂变换计算，包括矩阵乘法、向量归一化和角度计算。
  * 
  * @param component_ptr UI组件指针，包含组件的变换配置信息
@@ -20846,10 +20473,8 @@ void CalculateUIComponentTransform(longlong component_ptr,longlong transform_mat
 
 
  void HandleUIInputEvent(longlong uiContext,longlong dataSource)
-/**
- * @brief 处理UI输入事件
- * 
- * 该函数负责处理UI系统的输入事件，包括事件数据读取、状态更新和资源管理。
+ 处理UI输入事件
+ 处理UI系统的输入事件，包括事件数据读取、状态更新和资源管理。
  * 使用加密保护机制确保事件处理的安全性，支持多线程环境下的并发访问。
  * 
  * @param uiContext UI上下文指针，包含UI系统的状态信息
@@ -20939,10 +20564,8 @@ void HandleUIInputEvent(longlong uiContext,longlong dataSource)
 
 
  void RenderUIComponent(longlong uiContext,float dataSource,undefined8 targetBuffer)
-/**
- * @brief 渲染UI组件
- * 
- * 该函数负责渲染UI组件，处理组件的位置更新和边界检查。
+ 渲染UI组件
+ 渲染UI组件，处理组件的位置更新和边界检查。
  * 根据数据源的值和UI上下文的状态，动态调整组件的渲染参数。
  * 
  * @param uiContext UI上下文指针，包含渲染状态信息
@@ -23673,10 +23296,8 @@ void InitializeUITheme(void)
 
 
  void ProcessUIAngleDataInitialization(void)
-/**
- * @brief UI角度数据初始化处理器
- * 
- * 该函数负责初始化和处理UI系统中的角度数据，通过循环批量处理数据块，
+ UI角度数据初始化处理器
+ 初始化和处理UI系统中的角度数据，通过循环批量处理数据块，
  * 最后调用角度值处理函数完成初始化流程。用于UI组件的角度计算和旋转处理。
  */
 void ProcessUIAngleDataInitialization(void)
@@ -24149,10 +23770,8 @@ LAB_18066a567:
 
 
  void ProcessUIComponentCollisionDetection(longlong uiContext,longlong dataSource,float *targetBuffer,float *bufferSize,char resultPointer,
-/**
- * @brief UI组件碰撞检测处理器
- * 
- * 该函数负责处理UI组件的碰撞检测和边界计算，包括组件间的相交测试、
+ UI组件碰撞检测处理器
+ 处理UI组件的碰撞检测和边界计算，包括组件间的相交测试、
  * 边界框计算和碰撞响应处理。支持多线程安全的碰撞检测操作。
  * 
  * @param componentId 组件ID
@@ -24288,10 +23907,8 @@ void ProcessUIComponentCollisionDetection(longlong uiContext,longlong dataSource
 
 
  void UpdateUIComponentRenderState(ulonglong uiContext,longlong dataSource,float *targetBuffer,undefined8 bufferSize,
-/**
- * @brief UI组件渲染状态更新器
- * 
- * 该函数负责更新UI组件的渲染状态，包括位置、旋转、缩放等变换属性的更新。
+ UI组件渲染状态更新器
+ 更新UI组件的渲染状态，包括位置、旋转、缩放等变换属性的更新。
  * 支持多种渲染参数的设置和状态同步，确保UI组件的渲染效果正确。
  * 
  * @param componentId 组件ID
@@ -25483,10 +25100,8 @@ void InitializeUIComponentSystem(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI组件数据
- * 
- * 该函数负责处理UI组件的数据操作，包括组件状态更新、数据验证和组件初始化
+ 处理UI组件数据
+ 处理UI组件的数据操作，包括组件状态更新、数据验证和组件初始化
  * 支持多种组件类型的处理和状态管理
  * 
  * @param componentData 组件数据指针
@@ -25888,10 +25503,8 @@ void SetupUIComponentConfiguration(longlong uiContext,longlong *dataSource)
 
 
 
-/**
- * @brief UI组件布局验证器
- * 
- * 该函数负责验证UI组件的布局参数，包括尺寸、位置和对齐方式。
+ UI组件布局验证器
+ 验证UI组件的布局参数，包括尺寸、位置和对齐方式。
  * 确保布局参数的有效性和一致性。
  * 
  * @param layoutContext 布局上下文
@@ -25942,10 +25555,8 @@ undefined8 ValidateUIComponentLayout(longlong layoutContext,undefined8 *layoutPa
 
 
 
-/**
- * @brief UI组件渲染参数验证器
- * 
- * 该函数负责验证UI组件的渲染参数，包括颜色、透明度、变换矩阵等。
+ UI组件渲染参数验证器
+ 验证UI组件的渲染参数，包括颜色、透明度、变换矩阵等。
  * 确保渲染参数的正确性和兼容性。
  * 
  * @param renderContext 渲染上下文
@@ -25996,10 +25607,8 @@ undefined8 ValidateUIComponentRenderParams(longlong renderContext,undefined8 *re
 
 
 
-/**
- * @brief UI组件数据队列管理器
- * 
- * 该函数负责管理UI组件的数据队列，包括数据的添加、删除和队列状态维护。
+ UI组件数据队列管理器
+ 管理UI组件的数据队列，包括数据的添加、删除和队列状态维护。
  * 支持队列容量的动态管理和数据的有效性检查。
  * 
  * @param queueManager 队列管理器指针
@@ -26052,10 +25661,8 @@ undefined8 ManageUIComponentDataQueue(longlong queueManager,longlong dataItem,in
 
 
  void ProcessUIDataEncryption(byte *dataBuffer,uint bufferSize,longlong contextPtr,code *encryptionCallback,undefined8 encryptionKey)
-/**
- * @brief UI数据加密处理器
- * 
- * 该函数负责处理UI系统中的数据加密和解密操作，包括数据验证、
+ UI数据加密处理器
+ 处理UI系统中的数据加密和解密操作，包括数据验证、
  * 密钥处理和加密回调函数的调用。用于保护UI敏感数据的安全性。
  * 
  * @param dataBuffer 数据缓冲区指针，包含需要加密/解密的数据
@@ -26096,10 +25703,8 @@ void ProcessUIDataEncryption(byte *dataBuffer,uint bufferSize,longlong contextPt
 
 
 
-/**
- * @brief UI组件资源释放器
- * 
- * 该函数负责释放UI组件占用的资源，包括内存、句柄和回调函数的清理。
+ UI组件资源释放器
+ 释放UI组件占用的资源，包括内存、句柄和回调函数的清理。
  * 确保资源的正确释放和内存的回收。
  * 
  * @param resourceHandle 资源句柄指针
@@ -26127,10 +25732,8 @@ undefined8 ReleaseUIComponentResource(undefined8 *resourceHandle)
 
 
  void InitializeUIComponentData(undefined4 *componentData,undefined4 initialValue,longlong contextId,undefined8 systemFlags)
-/**
- * @brief UI组件数据初始化器
- * 
- * 该函数负责初始化UI组件的数据结构，设置初始值和状态标志。
+ UI组件数据初始化器
+ 初始化UI组件的数据结构，设置初始值和状态标志。
  * 用于组件创建时的数据准备工作。
  * 
  * @param componentData 组件数据指针，指向需要初始化的数据结构
@@ -26237,10 +25840,8 @@ void ResetUIComponentState(void)
 
 
  void InitializeUILock(CodePointer InitializationCallback)
-/**
- * @brief 初始化UI系统锁
- * 
- * 该函数负责初始化UI系统的临界区锁，确保线程安全。
+ 初始化UI系统锁
+ 初始化UI系统的临界区锁，确保线程安全。
  * 使用引用计数来管理锁的生命周期，当引用计数降为0时清理资源。
  * 
  * @param InitializationCallback 初始化回调函数指针
@@ -26299,10 +25900,8 @@ void InitializeUILock(CodePointer InitializationCallback)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 初始化UI系统锁（无参数版本）
- * 
- * 该函数负责初始化UI系统的临界区锁，确保线程安全。
+ 初始化UI系统锁（无参数版本）
+ 初始化UI系统的临界区锁，确保线程安全。
  * 使用引用计数来管理锁的生命周期，当引用计数降为0时清理资源。
  * 此版本为无参数版本，通过寄存器传递初始化回调函数。
  * 
@@ -26361,8 +25960,7 @@ void InitializeUILockWithRegisterCallback(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 执行UI系统初始化回调并释放锁
+ 执行UI系统初始化回调并释放锁
  * 
  * 该函数执行UI系统的初始化回调函数，设置初始化标志，
  * 然后释放临界区锁并减少引用计数。如果引用计数降为0，
@@ -26490,10 +26088,8 @@ void InitializeCPUFunctionPointers(void)
 
 
  void InitializeUIThreadLock(code *initializationCallback)
-/**
- * @brief 初始化UI系统线程锁
- * 
- * 该函数负责初始化UI系统的线程锁机制，确保多线程环境下的安全访问。
+ 初始化UI系统线程锁
+ 初始化UI系统的线程锁机制，确保多线程环境下的安全访问。
  * 使用临界区来保护共享资源，防止并发访问冲突。
  * 
  * @param initializationCallback 初始化回调函数指针
@@ -26550,10 +26146,8 @@ void InitializeUIThreadLock(code *initializationCallback)
 
 
  void SetupUIThreadLock(void)
-/**
- * @brief UI线程锁初始化器
- * 
- * 该函数负责初始化UI系统的线程锁机制，包括临界区的创建、
+ UI线程锁初始化器
+ 初始化UI系统的线程锁机制，包括临界区的创建、
  * 引用计数的管理和线程安全的初始化过程。
  * 
  * @return 无返回值
@@ -26609,10 +26203,8 @@ void SetupUIThreadLock(void)
 
 
  void ReleaseUIThreadLock(void)
-/**
- * @brief UI线程锁清理器
- * 
- * 该函数负责清理UI系统的线程锁资源，包括临界区的删除、
+ UI线程锁清理器
+ 清理UI系统的线程锁资源，包括临界区的删除、
  * 引用计数的更新和内存的释放。
  * 
  * @return 无返回值
@@ -27247,10 +26839,8 @@ uint GetUIMemoryLockStatus(void)
 
 
 
-/**
- * @brief 初始化UI组件布局数据
- * 
- * 该函数负责初始化UI组件的布局数据，包括内存分配、数据结构设置和布局参数配置
+ 初始化UI组件布局数据
+ 初始化UI组件的布局数据，包括内存分配、数据结构设置和布局参数配置
  * 支持多种布局模式和尺寸参数
  * 
  * @param componentData 组件数据指针
@@ -27326,10 +26916,8 @@ LAB_18066e704:
 
 
 
- /**
- * @brief 清理UI系统资源
- * 
- * 该函数负责清理UI系统的所有资源，包括系统资源、上下文和状态重置
+  清理UI系统资源
+ 清理UI系统的所有资源，包括系统资源、上下文和状态重置
  * 
  * @param uiContext UI上下文指针
  */
@@ -27353,10 +26941,8 @@ void CleanupUIResources(longlong uiContext)
 
 
 
- /**
- * @brief 释放UI内存
- * 
- * 该函数负责释放UI系统占用的内存资源，包括内存块和组件内存
+  释放UI内存
+ 释放UI系统占用的内存资源，包括内存块和组件内存
  * 
  * @param uiContext UI上下文指针
  */
@@ -27389,8 +26975,7 @@ void ReleaseUIMemory(longlong uiContext)
 
 
 
-/**
- * @brief 释放UI内存（thunk版本）
+ 释放UI内存（thunk版本）
  * 
  * 该函数是ReleaseUIMemory的thunk版本，功能与ReleaseUIMemory相同
  * 
@@ -27426,10 +27011,8 @@ void ReleaseUIMemoryThunk(longlong uiContext)
 
 
 
- /**
- * @brief 分配UI内存
- * 
- * 该函数负责为UI系统分配内存资源，并进行内存对齐和初始化
+  分配UI内存
+ 为UI系统分配内存资源，并进行内存对齐和初始化
  * 
  * @param elementSize 元素大小
  * @param elementCount 元素数量
@@ -27453,10 +27036,8 @@ void AllocateUIMemory(longlong elementSize, longlong elementCount)
 
 
 
- /**
- * @brief 重置UI内存锁
- * 
- * 该函数负责重置UI系统的内存锁状态
+  重置UI内存锁
+ 重置UI系统的内存锁状态
  */
 void ResetUIMemoryLock(void)
 
@@ -27499,10 +27080,8 @@ ulonglong UIMemoryAllocateAligned(longlong alignmentSize,longlong allocationSize
 
 
 
-/**
- * @brief 处理UI元素队列状态更新
- * 
- * 该函数负责处理UI元素的队列状态更新，包括队列计数器管理和状态标志设置
+ 处理UI元素队列状态更新
+ 处理UI元素的队列状态更新，包括队列计数器管理和状态标志设置
  * 主要用于UI系统的队列管理和状态同步
  * 
  * @param uiContext UI上下文指针，包含UI系统的状态信息
@@ -27536,10 +27115,8 @@ uint64_t ProcessUIQueueStateUpdate(void* uiContext)
 
 
 
-/**
- * @brief 处理UI队列元素状态重置
- * 
- * 该函数负责重置UI队列元素的状态，包括计数器更新和状态标志设置
+ 处理UI队列元素状态重置
+ 重置UI队列元素的状态，包括计数器更新和状态标志设置
  * 主要用于UI系统的队列状态管理和同步操作
  * 
  * @param uiContext UI上下文指针，包含UI系统的状态信息
@@ -27569,8 +27146,7 @@ uint64_t ResetUIQueueElementState(void* uiContext)
 
 
 
-/**
- * @brief 获取UI系统默认状态标志
+ 获取UI系统默认状态标志
  * 
  * 该函数返回UI系统的默认状态标志，用于初始化和状态检查
  * 主要用于UI系统的状态管理和初始化过程
@@ -27587,10 +27163,8 @@ uint64_t GetUIDefaultStatusFlag(void)
 
 
 
-/**
- * @brief 初始化UI系统内存缓冲区
- * 
- * 该函数负责初始化UI系统的内存缓冲区，分配对齐的内存块并进行清零操作
+ 初始化UI系统内存缓冲区
+ 初始化UI系统的内存缓冲区，分配对齐的内存块并进行清零操作
  * 主要用于UI系统的内存管理和初始化过程
  * 
  * @return 内存分配结果，0表示失败，非0表示成功
@@ -27616,10 +27190,8 @@ uint64_t InitializeUIMemoryBuffer(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 初始化UI系统核心组件
- * 
- * 该函数负责初始化UI系统的核心组件，包括系统服务和基础功能模块
+ 初始化UI系统核心组件
+ 初始化UI系统的核心组件，包括系统服务和基础功能模块
  * 主要用于UI系统的一次性初始化过程
  * 
  * @note 原始函数名: FUN_18066ebc0
@@ -27640,10 +27212,8 @@ void InitializeUISystemCoreComponents(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 执行UI系统线程安全初始化
- * 
- * 该函数负责执行UI系统的线程安全初始化，使用临界区确保初始化过程的原子性
+ 执行UI系统线程安全初始化
+ 执行UI系统的线程安全初始化，使用临界区确保初始化过程的原子性
  * 主要用于UI系统的线程安全初始化和资源管理
  * 
  * @param initializationCallback 初始化回调函数指针
@@ -27752,10 +27322,8 @@ void InitializeUIEventQueue(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 清理UI系统临界区和资源
- * 
- * 该函数负责清理UI系统的临界区和相关资源，包括：
+ 清理UI系统临界区和资源
+ 清理UI系统的临界区和相关资源，包括：
  * - 调用清理回调函数
  * - 设置清理标志
  * - 释放临界区资源
@@ -27788,10 +27356,8 @@ void CleanupUICriticalSectionAndResources(void)
 
 
 
-/**
- * @brief 初始化UI资源句柄
- * 
- * 该函数负责初始化UI资源句柄，包括：
+ 初始化UI资源句柄
+ 初始化UI资源句柄，包括：
  * - 检查句柄是否已初始化
  * - 创建新的资源句柄
  * - 设置资源属性
@@ -27820,10 +27386,8 @@ uint32_t InitializeUIResourceHandle(int *resourceHandlePtr, int64_t contextParam
 
 
 
-/**
- * @brief 释放UI资源句柄
- * 
- * 该函数负责释放UI资源句柄和相关资源，包括：
+ 释放UI资源句柄
+ 释放UI资源句柄和相关资源，包括：
  * - 检查句柄是否有效
  * - 清理资源数据
  * - 调用释放回调函数
@@ -27854,10 +27418,8 @@ uint32_t ReleaseUIResourceHandle(int *resourceHandlePtr)
 
 
 
-/**
- * @brief 处理UI元素事件回调
- * 
- * 该函数负责处理UI元素的事件回调，包括：
+ 处理UI元素事件回调
+ 处理UI元素的事件回调，包括：
  * - 检查事件状态
  * - 设置事件标志
  * - 准备回调参数
@@ -27890,10 +27452,8 @@ ProcessUIElementEventCallback(int64_t elementContext, uint64_t eventData, uint64
 
 
 
-/**
- * @brief 验证并处理UI状态数据
- * 
- * 该函数负责验证并处理UI状态数据，包括：
+ 验证并处理UI状态数据
+ 验证并处理UI状态数据，包括：
  * - 根据状态类型获取状态索引
  * - 验证状态数据的完整性
  * - 调用状态处理函数
@@ -28015,10 +27575,8 @@ LAB_18066f254:
 
 
 
-/**
- * @brief 验证UI组件状态并更新引用计数
- * 
- * 该函数负责验证UI组件的状态信息，包括参数验证和状态匹配检查。
+ 验证UI组件状态并更新引用计数
+ 验证UI组件的状态信息，包括参数验证和状态匹配检查。
  * 如果验证通过，会更新组件的引用计数和状态数据。
  * 
  * @param context UI系统上下文指针
@@ -28079,10 +27637,8 @@ validation_error_handler:
 
 
  void HandleUIComponentEvent(longlong componentId,longlong eventContext)
-/**
- * @brief UI组件事件处理器
- * 
- * 该函数负责处理UI组件的各种事件，包括点击、悬停、拖拽等交互事件。
+ UI组件事件处理器
+ 处理UI组件的各种事件，包括点击、悬停、拖拽等交互事件。
  * 根据事件类型和组件状态执行相应的事件处理逻辑，更新组件状态。
  * 
  * @param componentId 组件ID
@@ -29866,10 +29422,8 @@ LAB_18066fdc2:
 
 
  void InitializeUIBuffers(void)
-/**
- * @brief 初始化UI缓冲区
- * 
- * 该函数负责初始化UI系统的缓冲区，包括渲染缓冲区、数据缓冲区等。
+ 初始化UI缓冲区
+ 初始化UI系统的缓冲区，包括渲染缓冲区、数据缓冲区等。
  * 确保UI系统有足够的内存空间来存储渲染数据。
  * 
  * @return void 无返回值
@@ -29892,10 +29446,8 @@ void InitializeUIBuffers(void)
 
 
 
-/**
- * @brief 配置UI缓冲区
- * 
- * 该函数负责配置UI系统的缓冲区参数，包括缓冲区大小、格式等。
+ 配置UI缓冲区
+ 配置UI系统的缓冲区参数，包括缓冲区大小、格式等。
  * 确保缓冲区能够正确处理UI渲染需求。
  * 
  * @note 原始函数名: FUN_1806704db
@@ -30059,10 +29611,8 @@ void ConfigureUIBufferData(longlong renderContext, longlong dataSource, longlong
 
 
 
-/**
- * @brief 更新UI缓冲区数据
- * 
- * 该函数负责更新UI缓冲区的数据内容，包括渲染数据、组件数据等。
+ 更新UI缓冲区数据
+ 更新UI缓冲区的数据内容，包括渲染数据、组件数据等。
  * 确保缓冲区中的数据与UI系统状态保持同步。
  * 
  * @param bufferManager 缓冲区管理器
@@ -30209,10 +29759,8 @@ void UpdateUIBufferData(longlong bufferManager,undefined8 updateFlags,longlong b
 
 
 
-/**
- * @brief 同步UI缓冲区
- * 
- * 该函数负责同步UI系统的缓冲区数据，确保多个缓冲区之间的数据一致性。
+ 同步UI缓冲区
+ 同步UI系统的缓冲区数据，确保多个缓冲区之间的数据一致性。
  * 在多线程环境中确保数据同步的正确性。
  * 
  * @return void 无返回值
@@ -30244,10 +29792,8 @@ void SynchronizeUIBuffers(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 更新UI组件数据
- * 
- * 该函数负责更新UI组件的数据内容，包括位置、大小、颜色等属性。
+ 更新UI组件数据
+ 更新UI组件的数据内容，包括位置、大小、颜色等属性。
  * 确保组件数据与UI系统状态保持同步。
  * 
  * @param componentData 组件数据指针
@@ -30289,10 +29835,8 @@ void UpdateUIComponentData(int *componentData)
 
 
 
- /**
- * @brief 重置UI缓冲区状态
- * 
- * 该函数负责重置UI系统的缓冲区状态
+  重置UI缓冲区状态
+ 重置UI系统的缓冲区状态
  * 确保缓冲区处于正确的初始状态
  * 
  * @note 原始函数名: FUN_180670833
@@ -30324,10 +29868,8 @@ void ResetUIBufferState(void)
 
 
 
- /**
- * @brief 初始化UI缓冲区配置
- * 
- * 该函数负责初始化UI系统的缓冲区配置
+  初始化UI缓冲区配置
+ 初始化UI系统的缓冲区配置
  * 设置缓冲区的初始参数和状态
  * 
  * @note 原始函数名: FUN_18067088e
@@ -30345,10 +29887,8 @@ void InitializeUIBufferConfiguration(void)
 
 
 
- /**
- * @brief 验证UI缓冲区数据
- * 
- * 该函数负责验证UI系统缓冲区的数据完整性和有效性
+  验证UI缓冲区数据
+ 验证UI系统缓冲区的数据完整性和有效性
  * 确保缓冲区数据符合预期的格式和约束
  * 
  * @param bufferData 缓冲区数据指针
@@ -30714,10 +30254,8 @@ void CleanupUIResourceManager(void)
 // @note 原始函数名: FUN_180670c40
 #define ProcessUIComponentEvent FUN_180670c40
 
-/**
- * @brief 计算UI渲染坐标
- * 
- * 该函数负责计算UI渲染时的坐标变换和优化，处理纹理坐标、
+ 计算UI渲染坐标
+ 计算UI渲染时的坐标变换和优化，处理纹理坐标、
  * 顶点坐标和渲染参数的计算，用于优化UI渲染性能
  * 
  * @param renderContext 渲染上下文指针
@@ -30891,10 +30429,8 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,undefined4 targe
 
 
 
-/**
- * @brief UI缓冲区初始化函数
- * 
- * 该函数负责初始化UI系统的各种缓冲区，包括主缓冲区、辅助缓冲区和索引缓冲区。
+ UI缓冲区初始化函数
+ 初始化UI系统的各种缓冲区，包括主缓冲区、辅助缓冲区和索引缓冲区。
  * 根据不同的大小要求分配适当的内存空间，并设置相关的缓冲区指针。
  * 
  * @param allocatedMemory 缓冲区上下文
@@ -31057,10 +30593,8 @@ void InitializeUIBuffers(undefined8 allocatedMemory, undefined8 memoryManager, u
 
 
 
-/**
- * @brief UI缓冲区配置函数
- * 
- * 该函数负责配置UI系统的缓冲区参数，包括内存对齐、缓冲区大小设置等。
+ UI缓冲区配置函数
+ 配置UI系统的缓冲区参数，包括内存对齐、缓冲区大小设置等。
  * 根据不同的缓冲区大小需求，设置相应的缓冲区参数。
  */
 void ConfigureUIBuffers(void)
@@ -31220,10 +30754,8 @@ void ConfigureUIBuffers(void)
 
 
  void OptimizeUIBuffers(void)
-/**
- * @brief UI缓冲区优化函数
- * 
- * 该函数负责优化UI系统的缓冲区配置，包括内存对齐优化、缓冲区大小优化等。
+ UI缓冲区优化函数
+ 优化UI系统的缓冲区配置，包括内存对齐优化、缓冲区大小优化等。
  * 根据不同的性能需求，设置最优的缓冲区参数。
  */
 void OptimizeUIBuffers(void)
@@ -31382,10 +30914,8 @@ void OptimizeUIBuffers(void)
 
 
 
-/**
- * @brief 初始化UI资源表
- * 
- * 该函数负责初始化UI系统的资源表，包括内存分配、数据结构初始化等。
+ 初始化UI资源表
+ 初始化UI系统的资源表，包括内存分配、数据结构初始化等。
  * 这是UI系统启动时的关键初始化步骤。
  * 
  * @note 原始函数名: FUN_180670ede
@@ -31463,10 +30993,8 @@ void InitializeUIResourceTable(void)
 
 
  void CleanupUIResourcePool(void)
-/**
- * @brief UI资源池清理函数
- * 
- * 该函数负责清理UI系统的资源池，释放不再使用的资源内存，
+ UI资源池清理函数
+ 清理UI系统的资源池，释放不再使用的资源内存，
  * 重置资源状态，并清理相关的数据结构。
  * 
  * @return void 无返回值
@@ -31522,10 +31050,8 @@ void CleanupUIResourcePool(void)
 
 
 
-/**
- * @brief UI资源表重置函数
- * 
- * 该函数负责重置UI系统的资源表，清理所有资源条目，
+ UI资源表重置函数
+ 重置UI系统的资源表，清理所有资源条目，
  * 重置资源索引，并准备资源表用于下一次初始化。
  * 
  * @return void 无返回值
@@ -31560,8 +31086,7 @@ void ResetUIResourceTable(void)
 
 
 
-/**
- * @brief UI系统空操作函数
+ UI系统空操作函数
  * 
  * 该函数是一个空操作函数，用于保持UI系统函数表的完整性，
  * 在某些情况下作为占位符使用。
@@ -31578,10 +31103,8 @@ void UINoOperation(void)
 
 
  void CleanupUIBuffers(longlong uiContext,int dataSource)
-/**
- * @brief UI缓冲区清理函数
- * 
- * 该函数负责清理UI系统的缓冲区资源，释放已分配的内存空间。
+ UI缓冲区清理函数
+ 清理UI系统的缓冲区资源，释放已分配的内存空间。
  * 遍历所有缓冲区并释放相应的内存资源。
  * 
  * @param allocatedMemory 缓冲区上下文
@@ -31677,10 +31200,8 @@ void CleanupUIBuffers(longlong allocatedMemory,int bufferCount)
 
 
 
-/**
- * @brief 清理UI系统资源句柄
- * 
- * 该函数负责清理UI系统中的各种资源句柄，包括：
+ 清理UI系统资源句柄
+ 清理UI系统中的各种资源句柄，包括：
  * - 清理基础资源句柄数组
  * - 清理次要资源句柄数组  
  * - 清理主要资源句柄数组
@@ -31780,8 +31301,7 @@ void CleanupUIResourceHandles(void)
 
 
 
-/**
- * @brief UI系统空操作函数
+ UI系统空操作函数
  * 
  * 该函数是一个空操作函数，可能用于占位或未来扩展
  * 
@@ -31798,10 +31318,8 @@ void UINoOperation(void)
 
 
 
-/**
- * @brief 初始化UI系统组件
- * 
- * 该函数负责初始化UI系统的核心组件，包括：
+ 初始化UI系统组件
+ 初始化UI系统的核心组件，包括：
  * - 检查初始化状态
  * - 分配UI缓冲区
  * - 释放信号量
@@ -31844,10 +31362,8 @@ void InitializeUIComponents(longlong context, undefined8 initParams)
 
 
 
-/**
- * @brief 渲染UI组件
- * 
- * 该函数负责渲染UI系统的组件，包括：
+ 渲染UI组件
+ 渲染UI系统的组件，包括：
  * - 处理组件尺寸和位置
  * - 管理渲染状态
  * - 处理渲染参数
@@ -32023,10 +31539,8 @@ int RenderUIComponent(longlong renderContext, longlong componentData, longlong t
 
 
  void RenderUIComponentsAlt(longlong uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,short *resultPointer,
-/**
- * @brief UI渲染器初始化函数
- * 
- * 该函数负责初始化UI系统的渲染器，包括设置渲染参数、初始化渲染缓冲区等。
+ UI渲染器初始化函数
+ 初始化UI系统的渲染器，包括设置渲染参数、初始化渲染缓冲区等。
  * 配置渲染管线和相关的渲染状态。
  * 
  * @param renderContext 渲染上下文
@@ -32246,10 +31760,8 @@ void InitializeUIRenderer(longlong renderContext,longlong renderTarget,longlong 
 
 
 
-/**
- * @brief 计算UI渲染坐标
- * 
- * 该函数负责计算UI元素的渲染坐标和位置信息
+ 计算UI渲染坐标
+ 计算UI元素的渲染坐标和位置信息
  * 
  * @param renderContext 渲染上下文指针
  * @param transformData 变换数据指针
@@ -32370,10 +31882,8 @@ int CalculateUIRenderCoordinates(longlong renderContext,longlong transformData,l
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI布局变换
- * 
- * 该函数负责处理UI元素的布局变换，包括位置、大小、旋转等变换操作。
+ 处理UI布局变换
+ 处理UI元素的布局变换，包括位置、大小、旋转等变换操作。
  * 支持多种变换类型的组合处理。
  * 
  * @param uiContext UI元素句柄
@@ -32541,10 +32051,8 @@ void ProcessUILayoutTransform(longlong uiContext,longlong dataSource,longlong ta
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 验证UI布局数据
- * 
- * 该函数负责验证UI布局数据的有效性和完整性，确保布局数据符合系统要求。
+ 验证UI布局数据
+ 验证UI布局数据的有效性和完整性，确保布局数据符合系统要求。
  * 检查数据的边界条件、类型匹配和依赖关系。
  * 
  * @param uiContext 布局数据指针
@@ -33018,10 +32526,8 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
 
 
 
-/**
- * @brief 更新UI组件状态
- * 
- * 该函数负责更新UI组件的状态信息，包括可见性、启用状态、焦点状态等。
+ 更新UI组件状态
+ 更新UI组件的状态信息，包括可见性、启用状态、焦点状态等。
  * 状态更新会触发相应的UI重绘和事件处理。
  * 
  * @param uiContext UI组件句柄
@@ -33268,8 +32774,7 @@ void UpdateUIComponentState(longlong uiContext,longlong *dataSource)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI变换矩阵计算
+ 处理UI变换矩阵计算
  * 
  * 该函数用于计算UI元素的变换矩阵，包括平移、旋转、缩放等变换操作。
  * 它接收UI上下文参数和输出缓冲区，通过一系列向量运算和矩阵乘法，
@@ -33648,10 +33153,8 @@ void ProcessUITransformMatrix(longlong UiContext, longlong *OutputBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI事件队列
- * 
- * 该函数负责处理UI系统的事件队列，包括鼠标点击、键盘输入、触摸事件等。
+ 处理UI事件队列
+ 处理UI系统的事件队列，包括鼠标点击、键盘输入、触摸事件等。
  * 事件处理会触发相应的UI响应和状态更新。
  * 
  * @param uiContext 事件队列句柄
@@ -33865,8 +33368,7 @@ void ProcessUIEventQueue(longlong uiContext,longlong *dataSource)
 
 
  void ProcessUITransformVector(longlong TransformContext,longlong *VectorData)
-/**
- * @brief 处理UI变换向量
+ 处理UI变换向量
  * 
  * 该函数使用SIMD指令对UI向量进行变换计算，包括向量的平移、旋转和缩放操作
  * 主要用于UI元素的位置变换和动画效果处理
@@ -34202,10 +33704,8 @@ void ProcessUITransformVector(longlong TransformContext,longlong *VectorData)
 
 
  void ProcessUIRenderData(longlong uiContext,int dataSource,int targetBuffer,int bufferSize,undefined8 resultPointer,
-/**
- * @brief UI渲染数据处理函数
- * 
- * 该函数负责处理UI系统的渲染数据，包括数据格式转换、加密处理等。
+ UI渲染数据处理函数
+ 处理UI系统的渲染数据，包括数据格式转换、加密处理等。
  * 根据不同的渲染模式和参数，处理相应的渲染数据。
  * 
  * @param renderData 渲染数据指针
@@ -34259,10 +33759,8 @@ LAB_180673f27:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI输入事件
- * 
- * 该函数负责处理用户界面输入事件，包括鼠标点击、键盘输入、触摸事件等。
+ 处理UI输入事件
+ 处理用户界面输入事件，包括鼠标点击、键盘输入、触摸事件等。
  * 根据不同的参数组合，函数会选择不同的处理路径来处理各种类型的输入事件。
  * 
  * @param uiContext 输入事件上下文指针，包含事件相关的状态信息
@@ -34319,10 +33817,8 @@ void ProcessUIInputEvent(longlong uiContext,undefined8 dataSource,int targetBuff
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI事件分发
- * 
- * 该函数负责处理用户界面事件的分发，将事件分发给相应的处理程序。
+ 处理UI事件分发
+ 处理用户界面事件的分发，将事件分发给相应的处理程序。
  * 它根据参数中的标识符和状态信息，选择合适的处理路径来处理事件。
  * 
  * @param uiContext 事件上下文指针，包含事件相关的状态信息
@@ -34367,10 +33863,8 @@ void HandleUIEventDispatch(longlong uiContext,int dataSource,int targetBuffer,in
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 批量渲染UI元素
- * 
- * 该函数负责批量渲染UI元素，优化渲染性能，减少绘制调用次数。
+ 批量渲染UI元素
+ 批量渲染UI元素，优化渲染性能，减少绘制调用次数。
  * 支持多种UI元素类型的批量渲染处理。
  * 
  * @param uiContext 渲染数据缓冲区
@@ -34713,10 +34207,8 @@ void ProcessUIComponentsBatch(longlong componentDataStart, undefined8 renderCont
 
 
  void TriggerUIRenderingUpdate(void)
-/**
- * @brief UI渲染更新触发函数
- * 
- * 该函数负责触发UI系统的渲染更新流程。
+ UI渲染更新触发函数
+ 触发UI系统的渲染更新流程。
  * 调用ProcessUIRenderingUpdate函数来处理渲染更新。
  */
 void TriggerUIRenderingUpdate(void)
@@ -34899,10 +34391,8 @@ void CleanupUIResources(void)
 
 
 
-/**
- * @brief 批量处理UI数据
- * 
- * 该函数负责批量处理UI系统的数据，根据不同的数据大小
+ 批量处理UI数据
+ 批量处理UI系统的数据，根据不同的数据大小
  * 采用不同的处理策略，优化处理性能
  * 
  * @param dataSource 数据源指针
@@ -35002,10 +34492,8 @@ void ProcessUIDataBatch(longlong uiContext,longlong dataSource,longlong targetBu
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI像素数据转换
- * 
- * 该函数负责处理UI系统中的像素数据转换，包括颜色空间转换、
+ 处理UI像素数据转换
+ 处理UI系统中的像素数据转换，包括颜色空间转换、
  * 像素格式转换和位操作处理
  * 
  * @param pixelData 像素数据指针
@@ -35239,10 +34727,8 @@ void ProcessUIPixelConversion(ulonglong *uiContext,longlong dataSource,undefined
 
 
 
-/**
- * @brief 触发UI渲染更新
- * 
- * 该函数负责触发UI系统的渲染更新流程，调用ProcessUIRenderingUpdate
+ 触发UI渲染更新
+ 触发UI系统的渲染更新流程，调用ProcessUIRenderingUpdate
  * 函数来处理渲染更新操作
  * 
  * @note 原始函数名: FUN_180675430
@@ -35261,10 +34747,8 @@ void TriggerUIRenderingUpdate(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI加密像素数据
- * 
- * 该函数负责处理UI系统中的加密像素数据，包括数据解密、
+ 处理UI加密像素数据
+ 处理UI系统中的加密像素数据，包括数据解密、
  * 像素格式转换和颜色处理
  * 
  * @param dataSource 数据源指针
@@ -35525,10 +35009,8 @@ void ProcessUIEncryptedPixels(longlong uiContext,longlong dataSource,longlong ta
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI像素块数据
- * 
- * 该函数负责处理UI系统中的像素块数据，包括数据读取、
+ 处理UI像素块数据
+ 处理UI系统中的像素块数据，包括数据读取、
  * 格式转换和颜色处理
  * 
  * @param blockData 块数据指针
@@ -35785,10 +35267,8 @@ void ProcessUIPixelBlock(longlong uiContext,longlong dataSource)
 
 
  void ExecuteUIRenderTaskTermination(void)
-/**
- * @brief 执行UI渲染任务终止函数
- * 
- * 该函数负责终止UI渲染任务的执行，通常用于异常处理或系统关闭
+ 执行UI渲染任务终止函数
+ 终止UI渲染任务的执行，通常用于异常处理或系统关闭
  * 
  * @note 原始函数名: FUN_1806757f1
  */
@@ -35806,10 +35286,8 @@ void ExecuteUIRenderTaskTermination(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 执行UI渲染任务
- * 
- * 该函数负责执行UI渲染任务，处理渲染数据和参数
+ 执行UI渲染任务
+ 执行UI渲染任务，处理渲染数据和参数
  * 
  * @param renderContext 渲染上下文指针
  * @param renderData 渲染数据指针
@@ -36181,10 +35659,8 @@ void ExecuteUIRenderTask(longlong renderContext,longlong renderData,longlong tra
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief UI系统数据处理处理器
- * 
- * 该函数负责处理UI系统中的数据操作，包括数据的读取、转换和写入
+ UI系统数据处理处理器
+ 处理UI系统中的数据操作，包括数据的读取、转换和写入
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源
@@ -36609,10 +36085,8 @@ void ProcessUIDataHandler(longlong uiContext,longlong dataSource,char *targetBuf
 
 
  void ResetUIRenderState(void)
-/**
- * @brief UI渲染状态重置函数
- * 
- * 该函数负责重置UI系统的渲染状态，清除渲染缓冲区，
+ UI渲染状态重置函数
+ 重置UI系统的渲染状态，清除渲染缓冲区，
  * 重置各种渲染参数和状态标志，为下一次渲染做准备。
  * 
  * @return void 无返回值
@@ -37068,8 +36542,7 @@ void ResetUIRenderState(void)
 
 
  void InitializeUISystemNoOperation(void)
-/**
- * @brief 初始化UI系统空操作函数
+ 初始化UI系统空操作函数
  * 
  * 该函数是一个空操作函数，用于UI系统初始化时的占位符
  * 
@@ -37086,10 +36559,8 @@ void InitializeUISystemNoOperation(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI像素数据转换函数
- * 
- * 该函数负责处理UI像素数据的转换和优化，使用SIMD指令进行高效处理
+ 处理UI像素数据转换函数
+ 处理UI像素数据的转换和优化，使用SIMD指令进行高效处理
  * 
  * @param imageDataPtr 图像数据指针
  * @param strideData 步长数据
@@ -37258,10 +36729,8 @@ void ProcessUIPixelDataConversion(longlong imageDataPtr,longlong strideData,unde
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief UI系统数据传输处理器
- * 
- * 该函数负责在UI系统中传输数据，包括数据复制和转换操作
+ UI系统数据传输处理器
+ 在UI系统中传输数据，包括数据复制和转换操作
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源
@@ -37438,10 +36907,8 @@ void UINoOperation(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief UI系统数据转换处理器
- * 
- * 该函数负责在UI系统中转换数据格式和类型
+ UI系统数据转换处理器
+ 在UI系统中转换数据格式和类型
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源
@@ -38077,10 +37544,8 @@ void UIEmptyOperation(void)
 
 
  void ProcessUIComponentBatchBasic(longlong uiContext,undefined8 dataSource,longlong targetBuffer,undefined8 bufferSize,
-/**
- * @brief UI组件批处理基础版本
- * 
- * 该函数负责以基础方式处理UI组件的批处理操作，根据不同的数据量大小
+ UI组件批处理基础版本
+ 以基础方式处理UI组件的批处理操作，根据不同的数据量大小
  * 采用不同的处理策略，优化处理效率。
  * 
  * @param uiContext UI上下文
@@ -38165,10 +37630,8 @@ void ProcessUIComponentBatchBasic(longlong uiContext,undefined8 dataSource,longl
 
 
 
-/**
- * @brief UI系统数据优化处理器
- * 
- * 该函数负责优化UI系统中的数据处理操作
+ UI系统数据优化处理器
+ 优化UI系统中的数据处理操作
  */
 void ProcessUIDataOptimization(void)
 
@@ -38180,10 +37643,8 @@ void ProcessUIDataOptimization(void)
 
 
 
-/**
- * @brief UI系统数据验证处理器
- * 
- * 该函数负责验证UI系统中的数据完整性和有效性
+ UI系统数据验证处理器
+ 验证UI系统中的数据完整性和有效性
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源
@@ -38272,10 +37733,8 @@ void ProcessUIDataValidation(longlong uiContext,longlong dataSource,longlong tar
 
 
  void ProcessUIRendererData4(longlong uiContext,undefined8 dataSource,longlong targetBuffer,undefined8 bufferSize,
-/**
- * @brief UI渲染数据4处理函数
- * 
- * 该函数负责处理UI系统中的渲染数据4，支持不同的批处理模式。
+ UI渲染数据4处理函数
+ 处理UI系统中的渲染数据4，支持不同的批处理模式。
  * 根据数据特性选择最优的处理方式。
  * 
  * @param uiContext UI上下文指针
@@ -38372,10 +37831,8 @@ void ProcessUIMainData(void)
 
 
  void ProcessUIRendererData5Basic(longlong uiContext,longlong dataSource,longlong targetBuffer,undefined8 bufferSize,
-/**
- * @brief UI渲染数据5处理函数基础版本
- * 
- * 该函数负责以基础方式处理UI系统中的渲染数据5，支持不同的批处理模式。
+ UI渲染数据5处理函数基础版本
+ 以基础方式处理UI系统中的渲染数据5，支持不同的批处理模式。
  * 根据数据量大小选择最优的处理策略，提高处理效率。
  * 
  * @param uiContext UI上下文
@@ -38473,10 +37930,8 @@ void ProcessUIRendererData5Basic(longlong uiContext,longlong dataSource,longlong
 
 
  void ProcessUIRendererData4Optimized(longlong uiContext,longlong dataSource,undefined4 *targetBuffer,longlong bufferSize,
-/**
- * @brief UI渲染数据4处理函数优化版本
- * 
- * 该函数负责以优化方式处理UI系统中的渲染数据4，使用更高效的算法
+ UI渲染数据4处理函数优化版本
+ 以优化方式处理UI系统中的渲染数据4，使用更高效的算法
  * 和数据结构来处理大批量数据，提高渲染性能。
  * 
  * @param uiContext UI上下文
@@ -38591,10 +38046,8 @@ void ProcessUIRendererData4Optimized(longlong uiContext,longlong dataSource,unde
 
 
  void ProcessUIDataFiltering(longlong uiContext,longlong dataSource,undefined8 *targetBuffer,longlong bufferSize,
-/**
- * @brief UI数据过滤处理函数
- * 
- * 该函数负责对UI系统中的数据进行过滤处理，根据特定的条件
+ UI数据过滤处理函数
+ 对UI系统中的数据进行过滤处理，根据特定的条件
  * 和规则筛选数据，确保数据质量和处理效率。
  * 
  * @param uiContext UI上下文
@@ -39082,10 +38535,8 @@ void ProcessUIMainDataOptimized(void)
 
 
  void ProcessUIRendererData4Optimized(longlong uiContext,undefined8 dataSource,longlong targetBuffer,undefined8 bufferSize,
-/**
- * @brief UI渲染数据5处理函数优化版本
- * 
- * 该函数负责以优化方式处理UI系统中的渲染数据5，使用高级算法
+ UI渲染数据5处理函数优化版本
+ 以优化方式处理UI系统中的渲染数据5，使用高级算法
  * 和数据结构来处理大批量数据，显著提高渲染性能。
  * 
  * @param uiContext UI上下文
@@ -39171,10 +38622,8 @@ void ProcessUIRendererData5Optimized(longlong uiContext,undefined8 dataSource,lo
 
 
  void ProcessUIDataOptimizationAdvanced(longlong uiContext,longlong dataSource,longlong targetBuffer,undefined8 bufferSize,
-/**
- * @brief UI数据高级优化处理函数
- * 
- * 该函数负责对UI系统中的数据进行高级优化处理，使用复杂的算法
+ UI数据高级优化处理函数
+ 对UI系统中的数据进行高级优化处理，使用复杂的算法
  * 和数据结构来处理大规模数据，最大化性能提升。
  * 
  * @param uiContext UI上下文
@@ -39430,8 +38879,7 @@ void ProcessUIRendererData6(longlong uiContext,longlong dataSource,undefined1 (*
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief UI系统SIMD向量数据处理函数（优化版本）
+ UI系统SIMD向量数据处理函数（优化版本）
  * 
  * 该函数使用AVX2指令集对UI系统的向量数据进行高效处理
  * 主要处理像素数据、颜色值和其他需要并行计算的UI元素
@@ -39673,10 +39121,8 @@ void ProcessColorDataRGB(undefined1 *outputBuffer,longlong stride,byte *colorDat
 
 
 
-/**
- * @brief 处理UI上下文数据转换
- * 
- * 该函数负责处理UI上下文中的数据转换和编码操作
+ 处理UI上下文数据转换
+ 处理UI上下文中的数据转换和编码操作
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源索引
@@ -39736,10 +39182,8 @@ void ProcessUIContextDataConversion(undefined1 *uiContext, longlong dataSource, 
 
 
  void ProcessUINullHandler(undefined1 *uiContext,longlong dataSource,byte *targetBuffer,byte *bufferSize)
-/**
- * @brief UI图像颜色处理函数
- * 
- * 该函数负责处理UI系统的图像颜色数据，包括颜色空间转换、颜色插值等。
+ UI图像颜色处理函数
+ 处理UI系统的图像颜色数据，包括颜色空间转换、颜色插值等。
  * 对图像数据进行颜色处理和优化。
  * 
  * @param imageData 图像数据指针
@@ -39811,10 +39255,8 @@ void ProcessUIColorData(undefined1 *imageData,longlong imageWidth,byte *colorDat
 
 
  void ProcessUIDefaultHandler(undefined1 *uiContext,longlong dataSource,byte *targetBuffer,byte *bufferSize)
-/**
- * @brief UI系统默认处理器函数
- * 
- * 该函数负责处理UI系统的默认操作，包括数据平滑处理和插值计算。
+ UI系统默认处理器函数
+ 处理UI系统的默认操作，包括数据平滑处理和插值计算。
  * 对数据进行平均化处理以提高显示质量。
  * 
  * @param uiContext UI上下文指针
@@ -39887,10 +39329,8 @@ void ProcessUIDefaultHandler(undefined1 *uiContext,longlong dataSource,byte *tar
 
 
  void ProcessUIErrorHandler(undefined1 *uiContext,longlong dataSource,byte *targetBuffer,byte *bufferSize)
-/**
- * @brief UI系统错误处理器函数
- * 
- * 该函数负责处理UI系统的错误情况，包括数据异常、缓冲区溢出等。
+ UI系统错误处理器函数
+ 处理UI系统的错误情况，包括数据异常、缓冲区溢出等。
  * 对错误数据进行修正和恢复处理。
  * 
  * @param uiContext UI上下文指针
@@ -39950,10 +39390,8 @@ void ProcessUIErrorHandler(undefined1 *uiContext,longlong dataSource,byte *targe
 
 
 
-/**
- * @brief 初始化UIDataProcessor
- * 
- * 该函数负责初始化UI系统的数据处理器，用于处理UI组件的数据流
+ 初始化UIDataProcessor
+ 初始化UI系统的数据处理器，用于处理UI组件的数据流
  * 
  * @param uiContext 参数1指针
  * @param dataSource 数据源
@@ -40018,10 +39456,8 @@ void InitializeUIDataProcessor(undefined1 *uiContext,longlong dataSource,byte *t
 
 
 
-/**
- * @brief 初始化UIEventDispatcher
- * 
- * 该函数负责初始化UI系统的事件分发器，用于分发UI组件的事件
+ 初始化UIEventDispatcher
+ 初始化UI系统的事件分发器，用于分发UI组件的事件
  * 
  * @param uiContext 参数1
  * @param dataSource 数据源
@@ -40091,10 +39527,8 @@ void InitializeUIEventDispatcher(longlong uiContext,longlong dataSource,undefine
 
 
 
-/**
- * @brief 初始化UIRenderer
- * 
- * 该函数负责初始化UI系统的渲染器，用于渲染UI组件
+ 初始化UIRenderer
+ 初始化UI系统的渲染器，用于渲染UI组件
  * 
  * @param uiContext 参数1指针
  * @param dataSource 数据源
@@ -40166,10 +39600,8 @@ void InitializeUIRenderer(undefined1 *uiContext,longlong dataSource,undefined8 t
 
 
  void ProcessUIData(undefined1 *uiContext,longlong dataSource,undefined8 targetBuffer,byte *bufferSize)
-/**
- * @brief UI系统数据处理函数
- * 
- * 该函数负责处理UI系统的核心数据，包括数据转换、格式化和优化。
+ UI系统数据处理函数
+ 处理UI系统的核心数据，包括数据转换、格式化和优化。
  * 对数据进行批量处理以提高效率。
  * 
  * @param uiContext UI上下文指针
@@ -40439,10 +39871,8 @@ void ProcessUIColorConversion(undefined1 *uiContext,longlong dataSource,byte *ta
 
 
  void RenderUIFont(longlong uiContext,longlong dataSource,longlong targetBuffer)
-/**
- * @brief UI字体渲染函数
- * 
- * 该函数负责渲染UI系统中的字体，处理字体数据的缓冲和显示。
+ UI字体渲染函数
+ 渲染UI系统中的字体，处理字体数据的缓冲和显示。
  * 通过循环处理字体数据，进行适当的缩放和转换。
  * 
  * @param uiContext UI上下文
@@ -40474,10 +39904,8 @@ void RenderUIFont(longlong uiContext,longlong dataSource,longlong targetBuffer)
 
 
  void ManageUIShader(longlong uiContext,longlong dataSource,longlong targetBuffer)
-/**
- * @brief UI纹理处理函数
- * 
- * 该函数负责处理UI系统中的纹理数据，包括纹理的缩放和缓冲。
+ UI纹理处理函数
+ 处理UI系统中的纹理数据，包括纹理的缩放和缓冲。
  * 通过循环处理纹理数据，进行适当的缩放和转换。
  * 
  * @param uiContext UI上下文
@@ -40508,10 +39936,8 @@ void ProcessUITexture(longlong uiContext,longlong dataSource,longlong targetBuff
 
 
 
-/**
- * @brief UI动画数据处理函数
- * 
- * 该函数负责处理UI系统的动画数据，包括动画帧插值、过渡效果计算等。
+ UI动画数据处理函数
+ 处理UI系统的动画数据，包括动画帧插值、过渡效果计算等。
  * 对动画数据进行平滑处理以实现流畅的动画效果。
  * 
  * @param animationContext 动画上下文指针
@@ -40522,10 +39948,8 @@ void ProcessUITexture(longlong uiContext,longlong dataSource,longlong targetBuff
 #define ProcessUIAnimationData FUN_1806795f0
 
  void ManageUIAnimation(undefined1 *uiContext,longlong dataSource,byte *targetBuffer)
-/**
- * @brief 处理UI动画数据
- * 
- * 该函数负责处理UI系统中的动画数据，对动画帧进行插值和平滑处理。
+ 处理UI动画数据
+ 处理UI系统中的动画数据，对动画帧进行插值和平滑处理。
  * 通过计算相邻帧的平均值来实现动画的平滑过渡。
  * 
  * @param uiContext UI上下文指针
@@ -40583,10 +40007,8 @@ void ProcessUIAnimationData(undefined1 *uiContext,longlong dataSource,byte *targ
 
 
 
-/**
- * @brief UI布局数据处理函数
- * 
- * 该函数负责处理UI系统的布局数据，包括元素定位、尺寸计算和布局优化。
+ UI布局数据处理函数
+ 处理UI系统的布局数据，包括元素定位、尺寸计算和布局优化。
  * 对布局数据进行精确计算以确保UI元素正确显示。
  * 
  * @param layoutContext 布局上下文指针
@@ -40596,10 +40018,8 @@ void ProcessUIAnimationData(undefined1 *uiContext,longlong dataSource,byte *targ
  */
 #define ProcessUILayoutData FUN_1806796f0
 
- /**
- * @brief 处理UI布局数据
- * 
- * 该函数负责处理UI系统中的布局数据，对布局参数进行插值和平滑处理。
+  处理UI布局数据
+ 处理UI系统中的布局数据，对布局参数进行插值和平滑处理。
  * 通过计算相邻布局值的平均值来实现布局的平滑过渡。
  * 
  * @param uiContext UI上下文指针
@@ -40644,10 +40064,8 @@ void ProcessUILayoutData(undefined1 *uiContext,longlong dataSource,byte *targetB
 
 
 
-/**
- * @brief UI输入数据处理函数
- * 
- * 该函数负责处理UI系统的输入数据，包括用户输入事件处理和输入验证。
+ UI输入数据处理函数
+ 处理UI系统的输入数据，包括用户输入事件处理和输入验证。
  * 对输入数据进行预处理和分发到相应的处理模块。
  * 
  * @param inputContext 输入上下文指针
@@ -40710,10 +40128,8 @@ void ProcessUIInputData(undefined1 *uiContext,longlong dataSource,byte *targetBu
 
 
  void ProcessUIEventQueue(undefined8 uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined1 *bufferSize)
-/**
- * @brief 初始化UI事件队列缓冲区
- * 
- * 该函数负责初始化UI事件队列的缓冲区，设置初始状态。
+ 初始化UI事件队列缓冲区
+ 初始化UI事件队列的缓冲区，设置初始状态。
  * 使用memset将指定大小的内存区域设置为0x10。
  * 
  * @param uiContext UI上下文指针
@@ -40735,10 +40151,8 @@ void InitializeUIEventQueueBuffer(undefined8 uiContext,undefined8 dataSource,und
 
 
  void ProcessUIDataBuffer(undefined8 uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined1 *bufferSize)
-/**
- * @brief 初始化UI数据缓冲区
- * 
- * 该函数负责初始化UI数据缓冲区，设置初始状态。
+ 初始化UI数据缓冲区
+ 初始化UI数据缓冲区，设置初始状态。
  * 使用memset将指定大小的内存区域设置为0x20。
  * 
  * @param uiContext UI上下文指针
@@ -40800,10 +40214,8 @@ void UpdateUIComponent(undefined1 *uiContext,longlong dataSource,longlong target
 
 
 
-/**
- * @brief UI焦点数据处理函数
- * 
- * 该函数负责处理UI系统的焦点数据，包括焦点管理、焦点切换和焦点事件处理。
+ UI焦点数据处理函数
+ 处理UI系统的焦点数据，包括焦点管理、焦点切换和焦点事件处理。
  * 对焦点数据进行精确控制以确保用户交互的准确性。
  * 
  * @param focusContext 焦点上下文指针
@@ -40844,10 +40256,8 @@ void ProcessUIFocusData(undefined4 *uiContext,longlong dataSource,byte *targetBu
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief UI事件处理器函数
- * 
- * 该函数负责处理UI系统的事件处理，包括事件分发、事件过滤和事件响应。
+ UI事件处理器函数
+ 处理UI系统的事件处理，包括事件分发、事件过滤和事件响应。
  * 对事件进行高效处理以确保系统的响应性和稳定性。
  * 
  * @param eventContext 事件上下文指针
@@ -44659,20 +44069,16 @@ void ProcessUIEventProcessor(longlong uiContext,undefined8 *dataSource,int targe
 
 
 
-/**
- * @brief UI渲染更新触发函数
- * 
- * 该函数负责触发UI系统的渲染更新，强制刷新UI显示。
+ UI渲染更新触发函数
+ 触发UI系统的渲染更新，强制刷新UI显示。
  * 在需要更新UI显示时调用此函数。
  * 
  * @note 原始函数名: FUN_18067c470
  */
 #define TriggerUIRenderingUpdate FUN_18067c470
 
-/**
- * @brief UI数据源处理函数
- * 
- * 该函数负责处理UI系统的数据源，包括数据解析、转换和存储。
+ UI数据源处理函数
+ 处理UI系统的数据源，包括数据解析、转换和存储。
  * 根据不同的数据类型进行相应的处理操作。
  * 
  * @param uiContext UI上下文指针
@@ -44681,10 +44087,8 @@ void ProcessUIEventProcessor(longlong uiContext,undefined8 *dataSource,int targe
  */
 #define ProcessUIDataSource FUN_18069f770
 
-/**
- * @brief UI系统初始化函数
- * 
- * 该函数负责初始化UI系统的基本组件和状态。
+ UI系统初始化函数
+ 初始化UI系统的基本组件和状态。
  * 设置系统参数和初始值。
  * 
  * @note 原始函数名: FUN_18069f7a6
@@ -44703,8 +44107,7 @@ void ProcessUIEventProcessor(longlong uiContext,undefined8 *dataSource,int targe
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 执行UI图像变换处理
+  执行UI图像变换处理
  * 
  * 该函数使用SIMD指令对UI图像数据进行复杂的变换处理
  * 包括图像缩放、旋转、平移等操作
@@ -45330,10 +44733,8 @@ void ProcessUIImageTransform(undefined1 (*uiContext) [16],undefined1 (*dataSourc
 
 
 
- /**
- * @brief 触发UI渲染更新
- * 
- * 该函数负责触发UI渲染更新操作
+  触发UI渲染更新
+ 触发UI渲染更新操作
  * 
  * @note 原始函数名: FUN_1806844a0
  */
@@ -45347,10 +44748,8 @@ void TriggerUIRenderingUpdateAlt(void)
 
 
 
- /**
- * @brief 触发UI系统更新
- * 
- * 该函数负责触发UI系统的更新操作
+  触发UI系统更新
+ 触发UI系统的更新操作
  * 
  * @note 原始函数名: FUN_18068b080
  */
@@ -45364,10 +44763,8 @@ void TriggerUISystemUpdate(void)
 
 
 
- /**
- * @brief 处理UI渲染队列
- * 
- * 该函数负责处理UI系统中的渲染队列，管理渲染任务和资源分配。
+  处理UI渲染队列
+ 处理UI系统中的渲染队列，管理渲染任务和资源分配。
  * 通过信号量机制确保线程安全的渲染操作。
  * 
  * @param uiContext UI上下文数组
@@ -45652,8 +45049,7 @@ void ProcessUIRenderQueue(undefined1 (*uiContext) [16],int dataSource,undefined1
 
 
 
-/**
- * @brief 获取UI渲染状态
+ 获取UI渲染状态
  * 
  * 该函数用于获取UI系统的当前渲染状态，返回状态标志位
  * 
@@ -45671,10 +45067,8 @@ undefined4 GetUIRenderingStatus(void)
 
 
 
-/**
- * @brief 处理UI数据操作
- * 
- * 该函数负责处理UI系统中的数据操作，包括数据验证、缓冲区管理和结果计算
+ 处理UI数据操作
+ 处理UI系统中的数据操作，包括数据验证、缓冲区管理和结果计算
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -45700,10 +45094,8 @@ int ProcessUIDataOperation(undefined8 uiContext,int dataSource,undefined8 target
 
 
 
-/**
- * @brief 执行UI数据处理
- * 
- * 该函数负责执行UI系统中的数据处理操作，包括数据转换、格式化和结果计算
+ 执行UI数据处理
+ 执行UI系统中的数据处理操作，包括数据转换、格式化和结果计算
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -45857,10 +45249,8 @@ longlong OptimizeUIMemoryUsage(longlong uiContext,int dataSource,ulonglong targe
 
 
 
-/**
- * @brief 处理UI数据缓冲区操作
- * 
- * 该函数负责处理UI系统中的数据缓冲区操作，包括数据验证、缓冲区管理和结果计算
+ 处理UI数据缓冲区操作
+ 处理UI系统中的数据缓冲区操作，包括数据验证、缓冲区管理和结果计算
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -45897,10 +45287,8 @@ longlong ProcessUIDataBufferOperation(longlong uiContext,int dataSource,ulonglon
 
 
 
-/**
- * @brief 处理UI数据流操作
- * 
- * 该函数负责处理UI系统中的数据流操作，包括数据验证、流管理和结果计算
+ 处理UI数据流操作
+ 处理UI系统中的数据流操作，包括数据验证、流管理和结果计算
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -45937,10 +45325,8 @@ longlong ProcessUIDataStreamOperation(longlong uiContext,int dataSource,ulonglon
 
 
 
-/**
- * @brief 处理UI数据包操作
- * 
- * 该函数负责处理UI系统中的数据包操作，包括数据验证、包管理和结果计算
+ 处理UI数据包操作
+ 处理UI系统中的数据包操作，包括数据验证、包管理和结果计算
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -45977,10 +45363,8 @@ longlong ProcessUIDataPacketOperation(longlong uiContext,int dataSource,ulonglon
 
 
 
-/**
- * @brief 验证UI数据完整性
- * 
- * 该函数负责验证UI系统中的数据完整性，包括数据校验和完整性检查
+ 验证UI数据完整性
+ 验证UI系统中的数据完整性，包括数据校验和完整性检查
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -46195,10 +45579,8 @@ int ValidateUIResourceIntegrity(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief 处理UI数据操作类型1
- * 
- * 该函数负责处理UI系统中的数据操作，包括数据源处理、目标缓冲区管理和结果计算
+ 处理UI数据操作类型1
+ 处理UI系统中的数据操作，包括数据源处理、目标缓冲区管理和结果计算
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -46225,10 +45607,8 @@ int ProcessUIDataOperationType1(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief 处理UI数据操作类型2
- * 
- * 该函数负责处理UI系统中的数据操作，使用不同的算法参数进行数据处理
+ 处理UI数据操作类型2
+ 处理UI系统中的数据操作，使用不同的算法参数进行数据处理
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -46255,8 +45635,7 @@ int ProcessUIDataOperationType2(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据操作处理器类型A
+ UI数据操作处理器类型A
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46282,8 +45661,7 @@ int ProcessUIDataOperationTypeA(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据操作处理器类型B
+ UI数据操作处理器类型B
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46309,8 +45687,7 @@ int ProcessUIDataOperationTypeB(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据操作处理器类型C
+ UI数据操作处理器类型C
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46336,8 +45713,7 @@ int ProcessUIDataOperationTypeC(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据操作处理器类型D
+ UI数据操作处理器类型D
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46362,8 +45738,7 @@ int ProcessUIDataOperationTypeD(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据操作处理器类型E
+ UI数据操作处理器类型E
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46388,8 +45763,7 @@ int ProcessUIDataOperationTypeE(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据操作处理器类型F
+ UI数据操作处理器类型F
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46414,8 +45788,7 @@ longlong ProcessUIDataOperationTypeF(undefined8 uiContext,int dataSource,undefin
 
 
 
-/**
- * @brief UI数据操作处理器类型G
+ UI数据操作处理器类型G
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46440,8 +45813,7 @@ longlong ProcessUIDataOperationTypeG(undefined8 uiContext,int dataSource,undefin
 
 
 
-/**
- * @brief UI数据操作处理器类型H
+ UI数据操作处理器类型H
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46466,8 +45838,7 @@ int ProcessUIDataOperationTypeH(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据操作处理器类型I
+ UI数据操作处理器类型I
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46492,8 +45863,7 @@ int ProcessUIDataOperationTypeI(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据操作处理器类型J（双缓冲区处理）
+ UI数据操作处理器类型J（双缓冲区处理）
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46525,8 +45895,7 @@ longlong ProcessUIDataOperationTypeJ(longlong uiContext,int dataSource,ulonglong
 
 
 
-/**
- * @brief UI数据操作处理器类型K（双缓冲区处理）
+ UI数据操作处理器类型K（双缓冲区处理）
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46558,8 +45927,7 @@ longlong ProcessUIDataOperationTypeK(longlong uiContext,int dataSource,ulonglong
 
 
 
-/**
- * @brief UI数据操作处理器类型L（双缓冲区处理）
+ UI数据操作处理器类型L（双缓冲区处理）
  * @param uiContext UI上下文
  * @param dataSource 数据源
  * @param targetBuffer 目标缓冲区
@@ -46591,8 +45959,7 @@ longlong ProcessUIDataOperationTypeL(longlong uiContext,int dataSource,ulonglong
 
 
 
-/**
- * @brief UI数据差异计算器A0
+ UI数据差异计算器A0
  * 
  * 该函数计算UI数据的差异值，通过双重验证操作确保数据准确性
  * 使用0x20操作码进行数据处理，并返回基于操作结果的差异值
@@ -46628,8 +45995,7 @@ longlong CalculateUIDataDifferenceA0(longlong uiContext,int dataSource,ulonglong
 
 
 
-/**
- * @brief UI数据差异计算器A1
+ UI数据差异计算器A1
  * 
  * 该函数计算UI数据的差异值，通过双重验证操作确保数据准确性
  * 使用0x40操作码进行数据处理，并返回基于操作结果的差异值
@@ -46665,8 +46031,7 @@ longlong CalculateUIDataDifferenceA1(longlong uiContext,int dataSource,ulonglong
 
 
 
-/**
- * @brief UI数据差异计算器A2
+ UI数据差异计算器A2
  * 
  * 该函数计算UI数据的差异值，通过双重验证操作确保数据准确性
  * 使用0x20操作码进行数据处理，并返回基于操作结果的差异值
@@ -46702,8 +46067,7 @@ longlong CalculateUIDataDifferenceA2(longlong uiContext,int dataSource,ulonglong
 
 
 
-/**
- * @brief UI数据差异计算器A3
+ UI数据差异计算器A3
  * 
  * 该函数计算UI数据的差异值，通过单一验证操作确保数据准确性
  * 使用4字节操作码进行数据处理，并返回基于操作结果的差异值
@@ -46732,8 +46096,7 @@ int CalculateUIDataDifferenceA3(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据差异计算器A4
+ UI数据差异计算器A4
  * 
  * 该函数计算UI数据的差异值，通过单一验证操作确保数据准确性
  * 使用4字节操作码进行数据处理，并返回基于操作结果的差异值
@@ -46762,8 +46125,7 @@ int CalculateUIDataDifferenceA4(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据差异计算器A5
+ UI数据差异计算器A5
  * 
  * 该函数计算UI数据的差异值，通过单一验证操作确保数据准确性
  * 使用8字节操作码进行数据处理，并返回基于操作结果的差异值
@@ -46792,8 +46154,7 @@ int CalculateUIDataDifferenceA5(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据差异计算器A6
+ UI数据差异计算器A6
  * 
  * 该函数计算UI数据的差异值，通过单一验证操作确保数据准确性
  * 使用8字节操作码进行数据处理，并返回基于操作结果的差异值
@@ -46822,8 +46183,7 @@ int CalculateUIDataDifferenceA6(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief UI数据差异计算器A7
+ UI数据差异计算器A7
  * 
  * 该函数计算UI数据的差异值，通过四重验证操作确保数据准确性
  * 使用0x20操作码进行数据处理，并返回基于操作结果的差异值
@@ -46868,8 +46228,7 @@ longlong CalculateUIDataDifferenceA7(longlong uiContext,int dataSource,ulonglong
 
 
 
-/**
- * @brief UI数据差异计算器A8
+ UI数据差异计算器A8
  * 
  * 该函数计算UI数据的差异值，通过四重验证操作确保数据准确性
  * 使用0x20操作码进行数据处理，并返回基于操作结果的差异值
@@ -46914,10 +46273,8 @@ longlong CalculateUIDataDifferenceA8(longlong uiContext,int dataSource,ulonglong
 
 
 
-/**
- * @brief 处理UI系统数据验证操作
- * 
- * 该函数负责处理UI系统中的数据验证操作，包括多个阶段的验证和结果计算
+ 处理UI系统数据验证操作
+ 处理UI系统中的数据验证操作，包括多个阶段的验证和结果计算
  * 
  * @param uiContext UI上下文句柄
  * @param dataSource 数据源标识符
@@ -46960,10 +46317,8 @@ longlong ProcessUIDataValidationOperation(longlong uiContext,int dataSource,ulon
 
 
 
-/**
- * @brief 处理UI数据操作（并行模式）
- * 
- * 该函数负责处理UI系统中的数据操作，使用并行处理模式
+ 处理UI数据操作（并行模式）
+ 处理UI系统中的数据操作，使用并行处理模式
  * 执行多个数据源的并行处理，并汇总处理结果
  * 
  * @param uiContext UI上下文指针
@@ -47006,10 +46361,8 @@ longlong ProcessUIDataOperationParallel(longlong uiContext,int dataSource,ulongl
 
 
 
-/**
- * @brief 处理UI数据操作（快速模式）
- * 
- * 该函数负责处理UI系统中的数据操作，使用快速处理模式
+ 处理UI数据操作（快速模式）
+ 处理UI系统中的数据操作，使用快速处理模式
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -47036,10 +46389,8 @@ int ProcessUIDataOperationFast(undefined8 uiContext,int dataSource,undefined8 ta
 
 
 
-/**
- * @brief 处理UI数据操作（标准模式）
- * 
- * 该函数负责处理UI系统中的数据操作，使用标准处理模式
+ 处理UI数据操作（标准模式）
+ 处理UI系统中的数据操作，使用标准处理模式
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -47066,10 +46417,8 @@ int ProcessUIDataOperationStandard(undefined8 uiContext,int dataSource,undefined
 
 
 
-/**
- * @brief 处理UI数据操作（模式4）
- * 
- * 该函数负责处理UI系统中的数据操作，使用模式4处理
+ 处理UI数据操作（模式4）
+ 处理UI系统中的数据操作，使用模式4处理
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -47096,10 +46445,8 @@ int ProcessUIDataOperationMode4(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief 处理UI数据操作（模式4标准）
- * 
- * 该函数负责处理UI系统中的数据操作，使用模式4标准处理
+ 处理UI数据操作（模式4标准）
+ 处理UI系统中的数据操作，使用模式4标准处理
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -47126,10 +46473,8 @@ int ProcessUIDataOperationMode4Standard(undefined8 uiContext,int dataSource,unde
 
 
 
-/**
- * @brief 处理UI数据操作（模式8）
- * 
- * 该函数负责处理UI系统中的数据操作，使用模式8处理
+ 处理UI数据操作（模式8）
+ 处理UI系统中的数据操作，使用模式8处理
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -47156,10 +46501,8 @@ int ProcessUIDataOperationMode8(undefined8 uiContext,int dataSource,undefined8 t
 
 
 
-/**
- * @brief 处理UI数据操作（模式8标准）
- * 
- * 该函数负责处理UI系统中的数据操作，使用模式8标准处理
+ 处理UI数据操作（模式8标准）
+ 处理UI系统中的数据操作，使用模式8标准处理
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源标识符
@@ -47186,8 +46529,7 @@ int ProcessUIDataOperationMode8Standard(undefined8 uiContext,int dataSource,unde
 
 
 
-/**
- * @brief 执行UI系统初始化检查并返回状态值
+ 执行UI系统初始化检查并返回状态值
  * @return 系统状态检查结果
  * @note 原始函数名: FUN_18068fdd0
  */
@@ -47203,10 +46545,8 @@ int PerformUIInitializationCheck(void)
 
 
 
-/**
- * @brief 处理UI系统上下文数据操作
- * 
- * 该函数负责处理UI系统中的上下文数据操作，包括数据验证、内存分配和结果计算
+ 处理UI系统上下文数据操作
+ 处理UI系统中的上下文数据操作，包括数据验证、内存分配和结果计算
  * 
  * @param uiContext UI上下文指针数组
  * @param dataSource 数据源标识符
@@ -47507,10 +46847,8 @@ ulonglong ProcessUIContextDataOperation(undefined1 (*uiContext) [16],int dataSou
 
 
 
-/**
- * @brief 处理UI系统数据操作（扩展模式）
- * 
- * 该函数负责处理UI系统中的数据操作，使用扩展模式处理
+ 处理UI系统数据操作（扩展模式）
+ 处理UI系统中的数据操作，使用扩展模式处理
  * 
  * @param uiContext UI上下文句柄
  * @param dataSource 数据源标识符
@@ -47823,10 +47161,8 @@ ulonglong ProcessUIDataOperationExtended(longlong uiContext,int dataSource,longl
 
 
 
-/**
- * @brief 处理UI系统数据操作（模式2）
- * 
- * 该函数负责处理UI系统中的数据操作，使用模式2处理
+ 处理UI系统数据操作（模式2）
+ 处理UI系统中的数据操作，使用模式2处理
  * 
  * @param uiContext UI上下文句柄
  * @param dataSource 数据源标识符
@@ -48139,10 +47475,8 @@ ulonglong ProcessUIDataOperationMode2(longlong uiContext,int dataSource,longlong
 
 
 
-/**
- * @brief 处理UI系统数据操作（模式3）
- * 
- * 该函数负责处理UI系统中的数据操作，使用模式3处理
+ 处理UI系统数据操作（模式3）
+ 处理UI系统中的数据操作，使用模式3处理
  * 
  * @param uiContext UI上下文句柄
  * @param dataSource 数据源标识符
@@ -48455,10 +47789,8 @@ ulonglong ProcessUIDataOperationMode3(longlong uiContext,int dataSource,longlong
 
 
 
-/**
- * @brief 计算UI系统校验值
- * 
- * 该函数负责计算UI系统的校验值，用于数据完整性验证。
+ 计算UI系统校验值
+ 计算UI系统的校验值，用于数据完整性验证。
  * 通过调用内部函数并进行数学运算来生成校验结果。
  * 
  * @return 计算得到的校验值
@@ -48479,8 +47811,7 @@ int CalculateUIChecksum(void)
 
 
  void CalculateUIImageAbsoluteDifferenceAVX2(undefined1 (*uiContext) [16],int dataSource,undefined1 (*targetBuffer) [16],int bufferSize,
-/**
- * @brief 计算UI图像绝对差异（AVX2优化版本）
+ 计算UI图像绝对差异（AVX2优化版本）
  * 
  * 该函数使用AVX2指令集计算两个图像缓冲区之间的绝对差异。
  * 主要用于图像比较、变化检测等UI图像处理操作。
@@ -48568,8 +47899,7 @@ void CalculateUIImageAbsoluteDifferenceAVX2(undefined1 (*uiContext) [16],int dat
 
 
  void CalculateUIImageSquareDifferenceSumAVX2(undefined1 (*uiContext) [32],int dataSource,undefined1 (*targetBuffer) [32],int bufferSize,
-/**
- * @brief 计算UI图像平方差异和（AVX2优化版本）
+ 计算UI图像平方差异和（AVX2优化版本）
  * 
  * 该函数使用AVX2指令集计算两个图像缓冲区之间的平方差异和。
  * 主要用于图像质量评估、相似度计算等UI图像处理操作。
@@ -48644,8 +47974,7 @@ void CalculateUIImageSquareDifferenceSumAVX2(undefined1 (*uiContext) [32],int da
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @brief 高级UI图像差异计算函数（多模式AVX2优化）
+ 高级UI图像差异计算函数（多模式AVX2优化）
  * 
  * 该函数使用AVX2指令集计算两个图像缓冲区之间的差异，支持多种处理模式。
  * 主要用于高级图像质量评估、多尺度差异计算等UI图像处理操作。
@@ -49041,8 +48370,7 @@ int CalculateUIImageAdvancedDifferenceAVX2(undefined1 (*uiContext) [32],int data
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @brief 计算UI图像块差异值
+ 计算UI图像块差异值
  * 
  * 该函数使用AVX2指令集计算两个UI图像块之间的差异值，支持多种像素处理模式。
  * 主要用于UI渲染系统中的图像比较和质量评估。
@@ -49412,8 +48740,7 @@ int CalculateUIImageBlockDifference(undefined1 (*uiContext) [32],int dataSource,
 
  /**
  * UI系统事件分发器初始化函数
- * 
- * 该函数负责初始化UI系统的事件分发器，设置事件处理的基本参数和状态。
+ 初始化UI系统的事件分发器，设置事件处理的基本参数和状态。
  * 主要用于处理UI事件的分发机制，确保事件能够正确传递到相应的处理器。
  * 
  * @param uiContext UI上下文数组，包含UI系统的状态信息
@@ -50575,8 +49902,7 @@ void InitializeUIEventDispatcher(undefined1 (*uiContext) [16],ulonglong *dataSou
 
  /**
  * UI系统状态更新器初始化函数
- * 
- * 该函数负责初始化UI系统的状态更新器，设置状态更新的参数和缓冲区。
+ 初始化UI系统的状态更新器，设置状态更新的参数和缓冲区。
  * 主要用于处理UI组件的状态变化和更新机制。
  * 
  * @param uiContext UI上下文数组，包含UI系统的状态信息
@@ -51628,8 +50954,7 @@ void InitializeUIStateUpdater(undefined1 (*uiContext) [16],ulonglong *dataSource
 
  /**
  * UI系统数据流处理器初始化函数
- * 
- * 该函数负责初始化UI系统的数据流处理器，设置数据流的处理参数和缓冲区。
+ 初始化UI系统的数据流处理器，设置数据流的处理参数和缓冲区。
  * 主要用于处理UI数据的流动和转换。
  * 
  * @param uiContext UI上下文数组，包含UI系统的状态信息
@@ -55526,8 +54851,7 @@ void InitializeUIDataStreamProcessor(undefined1 (*uiContext) [16],int dataSource
  void InitializeUIRenderDataProcessor(undefined8 *uiContext,int dataSource,undefined1 (*targetBuffer) [16],
 /**
  * UI系统渲染数据处理器初始化函数
- * 
- * 该函数负责初始化UI系统的渲染数据处理器，设置渲染数据的处理参数和缓冲区。
+ 初始化UI系统的渲染数据处理器，设置渲染数据的处理参数和缓冲区。
  * 主要用于处理UI渲染相关的数据和操作。
  * 
  * @param uiContext UI上下文指针，包含UI系统的状态信息
@@ -57556,8 +56880,7 @@ void InitializeUIRenderDataProcessor(undefined8 *uiContext,int dataSource,undefi
 
 
  void ProcessUIMainRenderer(void)
-/**
- * @brief UI系统主渲染器函数
+ UI系统主渲染器函数
  * 
  * 该函数是UI系统的主渲染器入口点，根据条件选择不同的渲染路径。
  * 当参数为1时调用FUN_1806935a0，否则调用FUN_1806922f0。
@@ -57587,8 +56910,7 @@ void ProcessUIMainRenderer(void)
 
  /**
  * UI系统缓冲区管理器初始化函数
- * 
- * 该函数负责初始化UI系统的缓冲区管理器，设置缓冲区的处理参数和管理策略。
+ 初始化UI系统的缓冲区管理器，设置缓冲区的处理参数和管理策略。
  * 主要用于处理UI缓冲区的分配、释放和管理操作。
  * 
  * @param uiContext UI上下文数组，包含UI系统的状态信息
@@ -58170,8 +57492,7 @@ void InitializeUIBufferManager(undefined1 (*uiContext) [16],int dataSource,undef
 
  /**
  * UI系统内存管理器初始化函数
- * 
- * 该函数负责初始化UI系统的内存管理器，设置内存分配和释放的参数。
+ 初始化UI系统的内存管理器，设置内存分配和释放的参数。
  * 主要用于处理UI系统的内存分配、释放和管理操作。
  * 
  * @param uiContext UI上下文指针，包含UI系统的状态信息
@@ -58625,8 +57946,7 @@ void InitializeUIMemoryManager(undefined8 *uiContext,int dataSource,undefined1 *
 
 
 
- /**
- * @brief 切换UI渲染模式
+  切换UI渲染模式
  * 
  * 该函数根据输入参数切换UI系统的渲染模式，
  * 在不同的渲染函数之间进行选择。
@@ -58649,8 +57969,7 @@ void SwitchUIRenderMode(void)
 
 
 
-/**
- * @brief 获取UI布局状态
+ 获取UI布局状态
  * 
  * 该函数用于获取UI系统的当前布局状态，返回布局状态标志位
  * 
@@ -58747,10 +58066,8 @@ int CalculateUIRenderBufferSize(void)
 
 
 
-/**
- * @brief UI图像差异计算器（基础模式）
- * 
- * 该函数负责计算UI图像的差异值，使用基础计算模式
+ UI图像差异计算器（基础模式）
+ 计算UI图像的差异值，使用基础计算模式
  * 主要用于简单的图像差异计算和质量评估
  * 
  * @return 计算得到的差异值
@@ -58770,10 +58087,8 @@ longlong CalculateUIImageDifferenceBasic(void)
 
 
 
-/**
- * @brief UI图像差异计算器（循环模式）
- * 
- * 该函数负责计算UI图像的差异值，使用循环计算模式
+ UI图像差异计算器（循环模式）
+ 计算UI图像的差异值，使用循环计算模式
  * 通过多次迭代计算图像差异，适用于批量图像处理
  * 
  * @param uiContext UI上下文指针
@@ -58811,10 +58126,8 @@ longlong CalculateUIImageDifferenceIterative(longlong uiContext,int dataSource,l
 
 
 
-/**
- * @brief UI图像差异计算器（高级模式）
- * 
- * 该函数负责计算UI图像的差异值，使用高级计算模式
+ UI图像差异计算器（高级模式）
+ 计算UI图像的差异值，使用高级计算模式
  * 通过双重循环计算图像差异，适用于复杂的图像处理场景
  * 
  * @param uiContext UI上下文指针
@@ -58869,8 +58182,7 @@ longlong CalculateUIImageDifferenceAdvanced(longlong uiContext,int dataSource,lo
 
 
 
-/**
- * @brief UI图像差异计算和统计分析函数
+ UI图像差异计算和统计分析函数
  * 
  * 该函数计算两个图像缓冲区之间的差异，并进行统计分析。
  * 主要用于图像质量评估、相似度计算等UI图像处理操作。
@@ -58932,8 +58244,7 @@ longlong CalculateUIImageDifferenceStatistics(longlong uiContext,int dataSource,
 
  /**
  * UI系统像素处理器初始化函数
- * 
- * 该函数负责初始化UI系统的像素处理器，设置像素处理的参数和缓冲区。
+ 初始化UI系统的像素处理器，设置像素处理的参数和缓冲区。
  * 主要用于处理UI图像的像素操作和颜色处理。
  * 
  * @param uiContext UI上下文，包含UI系统的状态信息
@@ -59486,8 +58797,7 @@ void InitializeUIPixelProcessor(longlong uiContext,longlong dataSource,int targe
 
  /**
  * UI系统图像数据处理器初始化函数
- * 
- * 该函数负责初始化UI系统的图像数据处理器，设置图像数据处理的参数和缓冲区。
+ 初始化UI系统的图像数据处理器，设置图像数据处理的参数和缓冲区。
  * 主要用于处理UI图像的数据操作和转换。
  * 
  * @param uiContext UI上下文，包含UI系统的状态信息
@@ -60029,8 +59339,7 @@ void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,und
 
  /**
  * UI系统图像处理器初始化函数
- * 
- * 该函数负责初始化UI系统的图像处理器，设置图像处理的参数和状态。
+ 初始化UI系统的图像处理器，设置图像处理的参数和状态。
  * 主要用于处理UI图像的基本操作和变换。
  * 
  * @param uiContext UI上下文，包含UI系统的状态信息
@@ -60225,8 +59534,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
 
  /**
  * UI系统纹理处理器初始化函数
- * 
- * 该函数负责初始化UI系统的纹理处理器，设置纹理处理的参数和缓冲区。
+ 初始化UI系统的纹理处理器，设置纹理处理的参数和缓冲区。
  * 主要用于处理UI纹理的加载、管理和渲染。
  * 
  * @param uiContext UI上下文，包含UI系统的状态信息
@@ -60360,8 +59668,7 @@ void InitializeUITextureProcessor(longlong uiContext,int dataSource,longlong tar
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief UI系统像素数据处理器函数
+  UI系统像素数据处理器函数
  * 
  * 该函数处理UI系统的像素数据，包括数据验证、转换和统计操作。
  * 主要用于UI图像处理、像素级操作和数据管理。
@@ -60497,8 +59804,7 @@ void ProcessUIPixelData(longlong uiContext,int dataSource,longlong targetBuffer,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief UI系统高级像素数据处理器函数
+  UI系统高级像素数据处理器函数
  * 
  * 该函数处理UI系统的高级像素数据操作，包括复杂的数据验证、转换和统计。
  * 主要用于高级UI图像处理、像素级优化操作和数据管理。
@@ -60634,8 +59940,7 @@ void ProcessUIAdvancedPixelData(longlong uiContext,int dataSource,longlong targe
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief UI系统无符号整数像素数据处理器函数
+  UI系统无符号整数像素数据处理器函数
  * 
  * 该函数处理UI系统的无符号整数像素数据，包括数据验证、转换和统计操作。
  * 主要用于UI图像处理、无符号像素级操作和数据管理。
@@ -60746,8 +60051,7 @@ void ProcessUIUnsignedPixelData(uint *uiContext,int dataSource,uint *targetBuffe
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 计算图像加权绝对差值（高级版本）
+  计算图像加权绝对差值（高级版本）
  * 
  * 该函数使用SIMD指令计算两个图像数据之间的加权绝对差值
  * 使用向量化处理提高计算效率
@@ -60857,8 +60161,7 @@ void CalculateImageWeightedAbsoluteDifferenceOptimized(uint *uiContext,int dataS
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 计算图像像素平均值（高级版本）
+  计算图像像素平均值（高级版本）
  * 
  * 该函数使用SIMD指令计算图像像素的平均值
  * 使用向量化处理提高计算效率
@@ -60988,8 +60291,7 @@ void CalculateImagePixelAverageOptimized(uint *uiContext,int dataSource,uint *ta
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 计算图像像素标准差（高级版本）
+  计算图像像素标准差（高级版本）
  * 
  * 该函数使用SIMD指令计算图像像素的标准差
  * 使用向量化处理提高计算效率
@@ -61119,8 +60421,7 @@ void CalculateImagePixelStandardDeviationOptimized(uint *uiContext,int dataSourc
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 计算图像像素中位数（高级版本）
+  计算图像像素中位数（高级版本）
  * 
  * 该函数使用SIMD指令计算图像像素的中位数
  * 使用向量化处理提高计算效率
@@ -61250,8 +60551,7 @@ void CalculateImagePixelMedianOptimized(uint *uiContext,int dataSource,uint *tar
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 计算UI数据差值和
+  计算UI数据差值和
  * 
  * 该函数计算UI上下文和目标缓冲区之间的数据差值和。
  * 使用SIMD指令进行高效的数据处理，主要用于图像比较和差异检测。
@@ -61443,8 +60743,7 @@ CalculateImageBlockAbsoluteDifference(undefined1 (*uiContext) [32],int dataSourc
 
 
 
-/**
- * @brief 使用AVX2指令计算图像加权绝对差异
+ 使用AVX2指令计算图像加权绝对差异
  * 
  * 该函数使用AVX2指令集计算两个图像缓冲区之间的加权绝对差异
  * 用于图像处理中的差异分析和质量控制
@@ -61520,8 +60819,7 @@ CalculateImagePixelAverage(undefined1 (*uiContext) [32],int dataSource,undefined
 
 
 
-/**
- * @brief 使用AVX2指令计算图像像素方差
+ 使用AVX2指令计算图像像素方差
  * 
  * 该函数使用AVX2指令集计算图像像素的方差
  * 用于图像处理中的纹理分析和质量控制
@@ -61567,8 +60865,7 @@ CalculateImagePixelVariance(undefined1 (*uiContext) [32],int dataSource,undefine
 
 
 
-/**
- * @brief 使用AVX2指令计算图像像素标准差
+ 使用AVX2指令计算图像像素标准差
  * 
  * 该函数使用AVX2指令集计算图像像素的标准差
  * 用于图像处理中的质量评估和噪声分析
@@ -61610,8 +60907,7 @@ CalculateImagePixelStandardDeviation(undefined1 (*uiContext) [32],int dataSource
 
 
 
-/**
- * @brief 使用AVX2指令计算图像像素中位数
+ 使用AVX2指令计算图像像素中位数
  * 
  * 该函数使用AVX2指令集计算图像像素的中位数
  * 用于图像处理中的中心趋势分析和滤波处理
@@ -61657,8 +60953,7 @@ CalculateImagePixelMedian(undefined1 (*uiContext) [32],int dataSource,undefined1
 
 
 
-/**
- * @brief 使用AVX2指令计算图像像素最大值
+ 使用AVX2指令计算图像像素最大值
  * 
  * 该函数使用AVX2指令集计算图像像素的最大值
  * 用于图像处理中的亮度分析和阈值检测
@@ -61699,8 +60994,7 @@ CalculateImagePixelMaximum(undefined1 (*uiContext) [32],int dataSource,undefined
 
 
 
-/**
- * @brief 使用AVX2指令计算图像像素最小值
+ 使用AVX2指令计算图像像素最小值
  * 
  * 该函数使用AVX2指令集计算图像像素的最小值
  * 用于图像处理中的暗部分析和阴影检测
@@ -61746,8 +61040,7 @@ CalculateImagePixelMinimum(undefined1 (*uiContext) [32],int dataSource,undefined
 
 
 
-/**
- * @brief 使用AVX2指令计算图像像素总和
+ 使用AVX2指令计算图像像素总和
  * 
  * 该函数使用AVX2指令集计算图像像素的总和
  * 用于图像处理中的积分图计算和统计分析
@@ -61789,8 +61082,7 @@ CalculateImagePixelSum(undefined1 (*uiContext) [32],int dataSource,undefined1 (*
 
 
 
- /**
- * @brief 使用AVX2指令处理图像变换操作
+  使用AVX2指令处理图像变换操作
  * 
  * 该函数使用AVX2指令集处理图像的变换操作
  * 用于图像处理中的几何变换和坐标映射
@@ -61925,8 +61217,7 @@ void ProcessUIImageScaling(undefined1 (*uiContext) [32],int dataSource,longlong 
 
 
  void FUN_1806979e0(void)
-/**
- * @brief UI渲染更新触发函数
+ UI渲染更新触发函数
  * 
  * 该函数触发UI系统的渲染更新流程。
  * 调用ProcessUIRenderingUpdate函数进行实际的渲染更新操作。
@@ -62052,8 +61343,7 @@ void ProcessUIConvolutionFilter(void)
 
 
  void InitializeUIPlaceholder(void)
-/**
- * @brief 初始化UI占位符
+ 初始化UI占位符
  * 
  * 该函数是一个占位符函数，用于初始化UI系统的占位符组件。
  * 目前该函数为空实现，保留用于后续扩展。
@@ -62201,10 +61491,8 @@ void ProcessUIFilterOperation(void)
 
 
  void CleanupUITemporaryResources(void)
-/**
- * @brief 清理UI临时资源
- * 
- * 该函数负责清理UI系统中的临时资源，释放不再使用的内存和对象。
+ 清理UI临时资源
+ 清理UI系统中的临时资源，释放不再使用的内存和对象。
  * 目前该函数为空实现，保留用于后续资源管理功能。
  * 
  * @note 原始函数名: FUN_180697dc2
@@ -62220,10 +61508,8 @@ void CleanupUITemporaryResources(void)
 
 
  void TriggerUIUpdateSequence(void)
-/**
- * @brief 触发UI更新序列
- * 
- * 该函数负责触发UI系统的更新序列，调用渲染更新函数。
+ 触发UI更新序列
+ 触发UI系统的更新序列，调用渲染更新函数。
  * 主要用于启动UI系统的更新流程，确保UI元素及时更新。
  * 
  * @note 原始函数名: FUN_180697dd0
@@ -62238,10 +61524,8 @@ void TriggerUIUpdateSequence(void)
 
 
 
-/**
- * @brief 分配UI组件内存
- * 
- * 该函数负责分配UI组件的内存空间，包括内存清理和初始化
+ 分配UI组件内存
+ 分配UI组件的内存空间，包括内存清理和初始化
  * 如果组件已有活动资源，会先释放资源再清理内存
  * 
  * @param uiContext 组件内存指针
@@ -62263,10 +61547,8 @@ undefined8 AllocateUIComponentMemory(longlong uiContext)
 
 
 
-/**
- * @brief 销毁UI资源对象
- * 
- * 该函数负责安全地销毁UI资源对象，释放相关资源。
+ 销毁UI资源对象
+ 安全地销毁UI资源对象，释放相关资源。
  * 首先检查资源对象是否有效，然后清理内部的渲染资源，
  * 最后重置内存并返回成功状态。
  * 
@@ -62287,10 +61569,8 @@ uint64_t DestroyUIResourceObject(void* resourceObject)
 
 
 
-/**
- * @brief 处理UI组件内存分配
- * 
- * 该函数负责处理UI组件的内存分配操作，包括内存对齐、大小计算和地址分配
+ 处理UI组件内存分配
+ 处理UI组件的内存分配操作，包括内存对齐、大小计算和地址分配
  * 主要用于为UI组件分配符合要求的内存空间
  * 
  * @param uiContext 组件内存指针数组
@@ -62365,10 +61645,8 @@ undefined8 ProcessUIComponentAllocation(uint *uiContext,uint dataSource,uint tar
 
 
 
-/**
- * @brief 初始化UI纹理缓冲区
- * 
- * 该函数负责初始化UI系统的纹理缓冲区，包括内存分配、参数计算和缓冲区配置
+ 初始化UI纹理缓冲区
+ 初始化UI系统的纹理缓冲区，包括内存分配、参数计算和缓冲区配置
  * 主要用于UI纹理渲染的准备工作
  * 
  * @param contextPtr UI系统上下文指针
@@ -62464,10 +61742,8 @@ uint64_t InitializeUITextureBuffer(void* contextPtr, uint32_t textureWidth, int3
 
 
 
-/**
- * @brief 初始化UI系统上下文数据
- * 
- * 该函数负责初始化UI系统的上下文数据结构，设置相关的缓冲区和参数
+ 初始化UI系统上下文数据
+ 初始化UI系统的上下文数据结构，设置相关的缓冲区和参数
  * 
  * @param uiContext UI上下文标识符
  * @param dataSource 数据源标识符
@@ -62518,8 +61794,7 @@ undefined8 InitializeUIContextData(undefined4 uiContext,int dataSource,int targe
 
 
 
-/**
- * @brief 获取UI系统错误代码
+ 获取UI系统错误代码
  * 
  * 该函数返回UI系统的错误代码，用于错误处理和诊断
  * 
@@ -62538,10 +61813,8 @@ undefined8 GetUISystemErrorCode(void)
 // WARNING: Removing unreachable block (ram,0x00018069818a)
 // WARNING: Removing unreachable block (ram,0x000180698174)
 
-/**
- * @brief 检测CPU特性并设置UI处理器标志
- * 
- * 该函数负责检测CPU的特性支持情况，包括SSE、AVX等指令集，
+ 检测CPU特性并设置UI处理器标志
+ 检测CPU的特性支持情况，包括SSE、AVX等指令集，
  * 并根据检测结果设置UI系统的处理器特性标志。这些标志用于
  * 优化UI渲染和数据处理性能。
  * 
@@ -62613,10 +61886,8 @@ uint DetectCPUFeaturesAndSetUIProcessorFlags(longlong uiContext)
 
 
 
- /**
- * @brief UI系统数据处理函数
- * 
- * 该函数负责处理UI系统的数据传输和缓冲区操作
+  UI系统数据处理函数
+ 处理UI系统的数据传输和缓冲区操作
  * 包含数据验证、缓冲区管理和状态更新
  * 
  * @param uiContext UI上下文指针
@@ -62740,10 +62011,8 @@ void ProcessUIDataTransferHandler(longlong uiContext,longlong dataSource,int tar
 
 
 
- /**
- * @brief 重置UI系统状态
- * 
- * 该函数负责重置UI系统的状态，清除缓冲区数据并重新初始化相关组件
+  重置UI系统状态
+ 重置UI系统的状态，清除缓冲区数据并重新初始化相关组件
  * 
  * @param uiContext UI上下文指针
  * @note 原始函数名: FUN_180698440
@@ -62761,10 +62030,8 @@ void ResetUISystemState(longlong uiContext)
 
 
 
- /**
- * @brief 渲染UI组件
- * 
- * 该函数负责渲染各种UI组件，包括按钮、文本、图像和面板
+  渲染UI组件
+ 渲染各种UI组件，包括按钮、文本、图像和面板
  * 根据数据源和目标缓冲区的不同配置来调用相应的渲染函数
  * 
  * @param uiContext UI上下文指针
@@ -62839,10 +62106,8 @@ void RenderUIComponents(longlong uiContext,byte *dataSource,int targetBuffer,und
 
 
 
- /**
- * @brief 初始化UI字符匹配系统
- * 
- * 该函数负责初始化UI系统中的字符匹配功能
+  初始化UI字符匹配系统
+ 初始化UI系统中的字符匹配功能
  * 用于文本渲染和字符处理
  * 
  * @note 原始函数名: FUN_1806984f1
@@ -62941,8 +62206,7 @@ void InitializeUICharacterMatchSystem(void)
 
 
 
- /**
- * @brief 空操作函数
+  空操作函数
  * 
  * 该函数是一个空操作函数，不执行任何操作，直接返回。
  * 通常用作占位符或默认的空实现。
@@ -62958,10 +62222,8 @@ void PerformNoOperation(void)
 
 
 
- /**
- * @brief 处理UI组件渲染
- * 
- * 该函数负责处理UI组件的渲染流程，包括滑块和复选框的渲染。
+  处理UI组件渲染
+ 处理UI组件的渲染流程，包括滑块和复选框的渲染。
  * 根据组件类型和渲染条件，调用相应的渲染函数进行绘制。
  * 
  * @param uiContext UI上下文指针
@@ -63022,8 +62284,7 @@ void ProcessUIComponentRendering(longlong uiContext,byte *componentData,int rend
 
 
 
- /**
- * @brief 处理UI组件渲染的优化版本
+  处理UI组件渲染的优化版本
  * 
  * 该函数是ProcessUIComponentRendering的优化版本，使用寄存器变量提高性能。
  * 负责处理UI组件的渲染流程，包括滑块和复选框的渲染。
@@ -63080,8 +62341,7 @@ void ProcessUIComponentRenderingOptimized(void)
 
 
 
- /**
- * @brief UI系统空操作函数
+  UI系统空操作函数
  * 
  * 该函数是一个空操作函数，不执行任何操作。
  * 可能用于占位或特定的同步需求。
@@ -63098,10 +62358,8 @@ void UINullOperation(void)
 
 
 
- /**
- * @brief 初始化UI内存缓冲区
- * 
- * 该函数负责初始化UI系统的内存缓冲区，根据数据源大小计算合适的操作结果，
+  初始化UI内存缓冲区
+ 初始化UI系统的内存缓冲区，根据数据源大小计算合适的操作结果，
  * 然后使用memset填充指定大小的内存区域。
  * 
  * @param uiContext UI上下文指针
@@ -63130,10 +62388,8 @@ void InitializeUIMemoryBuffer(longlong uiContext,int dataSource)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief UI数据加密处理函数
- * 
- * 该函数负责对UI系统中的敏感数据进行加密处理，使用数学运算和随机数生成
+  UI数据加密处理函数
+ 对UI系统中的敏感数据进行加密处理，使用数学运算和随机数生成
  * 来确保数据的安全性。函数会生成加密密钥并对UI上下文数据进行加密。
  * 
  * @param uiContext UI上下文指针，包含需要加密的UI数据
@@ -63222,10 +62478,8 @@ void ProcessUIDataEncryption(int *uiContext,int dataSource,int targetBuffer)
 
 
 
- /**
- * @brief UI系统寄存器状态保存函数
- * 
- * 该函数负责保存UI系统相关的寄存器状态，包括XMM寄存器和通用寄存器。
+  UI系统寄存器状态保存函数
+ 保存UI系统相关的寄存器状态，包括XMM寄存器和通用寄存器。
  * 这是一个底层系统函数，用于在UI操作过程中保存和恢复CPU寄存器状态。
  * 
  * @param uiContext UI上下文指针
@@ -63359,10 +62613,8 @@ void SaveUIRegisterState(int *uiContext,int dataSource,int targetBuffer)
 
 
 
- /**
- * @brief UI系统栈操作函数
- * 
- * 该函数负责处理UI系统中的栈操作，包括寄存器状态保存和栈管理。
+  UI系统栈操作函数
+ 处理UI系统中的栈操作，包括寄存器状态保存和栈管理。
  * 这是一个底层系统函数，用于UI系统的栈操作和状态管理。
  * 
  * @note 原始函数名: FUN_180698a50
@@ -63418,10 +62670,8 @@ void ProcessUIStackOperations(void)
 
 
 
- /**
- * @brief UI资源加载器
- * 
- * 该函数负责加载UI系统资源，根据数据源计算资源参数并调用相应的加载函数。
+  UI资源加载器
+ 加载UI系统资源，根据数据源计算资源参数并调用相应的加载函数。
  * 主要用于UI初始化和动态资源加载。
  * 
  * @param uiContext UI上下文指针
@@ -63460,10 +62710,8 @@ void LoadUIResource(undefined4 *uiContext,int dataSource)
 
 
 
- /**
- * @brief UI数据流处理器
- * 
- * 该函数负责处理UI系统的数据流，包括数据复制、缓冲区操作和内存管理。
+  UI数据流处理器
+ 处理UI系统的数据流，包括数据复制、缓冲区操作和内存管理。
  * 根据缓冲区大小计算处理参数，并执行相应的数据操作。
  * 
  * @param uiContext UI上下文指针
@@ -63529,10 +62777,8 @@ void ProcessUIDataStream(longlong uiContext,undefined4 *dataSource,longlong targ
 
 
 
- /**
- * @brief UI上下文清理器
- * 
- * 该函数负责清理UI系统的上下文资源，释放内存并重置系统状态。
+  UI上下文清理器
+ 清理UI系统的上下文资源，释放内存并重置系统状态。
  * 主要用于UI系统关闭或重启时的资源清理。
  * 
  * @param uiContext UI上下文指针
@@ -63582,10 +62828,8 @@ void CleanupUIContext(undefined8 uiContext)
 
 
 
- /**
- * @brief 处理UI组件队列
- * 
- * 该函数负责处理UI系统中的组件队列，确保所有UI组件按正确顺序处理
+  处理UI组件队列
+ 处理UI系统中的组件队列，确保所有UI组件按正确顺序处理
  * 
  * @note 原始函数名: FUN_180698e02
  */
@@ -63597,10 +62841,8 @@ void ProcessUIComponentQueue(void)
 
 
 
-/**
- * @brief 处理UI系统渲染数据
- * 
- * 该函数负责处理UI系统的渲染数据，包括缓冲区管理、数据传输和状态更新
+ 处理UI系统渲染数据
+ 处理UI系统的渲染数据，包括缓冲区管理、数据传输和状态更新
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源指针
@@ -63764,10 +63006,8 @@ undefined8 ProcessUIRendererData(longlong uiContext,undefined8 *dataSource,uint 
 
 
 
-/**
- * @brief 初始化UI系统渲染上下文
- * 
- * 该函数负责初始化UI系统的渲染上下文，分配必要的内存和资源
+ 初始化UI系统渲染上下文
+ 初始化UI系统的渲染上下文，分配必要的内存和资源
  * 
  * @param uiContext UI上下文指针
  * @return undefined8 初始化结果状态码
@@ -64066,10 +63306,8 @@ void ProcessUIDataSource(undefined8 uiContext,longlong dataSource)
 
 
 
- /**
- * @brief UI系统空闲任务处理器
- * 
- * 该函数负责处理UI系统的空闲任务，包括组件管理、缓冲区操作和内存清理。
+  UI系统空闲任务处理器
+ 处理UI系统的空闲任务，包括组件管理、缓冲区操作和内存清理。
  * 主要用于系统空闲时的资源管理和优化。
  * 
  * @note 原始函数名: FUN_1806993a0
@@ -64169,10 +63407,8 @@ void ProcessUIIdleTasks(void)
 
 
 
- /**
- * @brief UI系统状态重置器
- * 
- * 该函数负责重置UI系统的状态，清理组件和缓冲区。
+  UI系统状态重置器
+ 重置UI系统的状态，清理组件和缓冲区。
  * 主要用于系统重启或状态重置时的清理工作。
  * 
  * @note 原始函数名: FUN_180699508
@@ -64228,10 +63464,8 @@ void ResetUISystemState(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief UI系统初始化和配置函数
- * 
- * 该函数负责初始化UI系统的各个组件，包括：
+  UI系统初始化和配置函数
+ 初始化UI系统的各个组件，包括：
  * - 分配和配置UI内存区域
  * - 设置UI组件的初始状态
  * - 初始化UI事件处理系统
@@ -64678,10 +63912,8 @@ uint FUN_180699e5f(void)
 
 
 
-/**
- * @brief 验证UI系统状态标志
- * 
- * 该函数负责验证UI系统的状态标志，检查系统状态的有效性
+ 验证UI系统状态标志
+ 验证UI系统的状态标志，检查系统状态的有效性
  * 并根据验证结果设置相应的标志位
  * 
  * @return 验证结果状态码，返回负值表示验证状态
@@ -64702,10 +63934,8 @@ int ValidateUIStatusFlags(void)
 
 
 
-/**
- * @brief 检查UI系统状态
- * 
- * 该函数负责检查UI系统的当前状态，返回状态检查结果
+ 检查UI系统状态
+ 检查UI系统的当前状态，返回状态检查结果
  * 主要用于系统状态监控和诊断
  * 
  * @return 状态检查结果，返回系统状态码
@@ -64727,10 +63957,8 @@ int CheckUISystemStatus(void)
 
 
 
- /**
- * @brief 设置UI系统状态标志
- * 
- * 该函数负责设置UI系统的状态标志，用于标记系统状态变化
+  设置UI系统状态标志
+ 设置UI系统的状态标志，用于标记系统状态变化
  * 
  * @note 原始函数名: FUN_180699f21
  */
@@ -64747,10 +63975,8 @@ void SetUISystemStatusFlag(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief UI系统渲染器配置函数
- * 
- * 该函数负责配置UI系统的渲染器和数据处理组件，包括：
+  UI系统渲染器配置函数
+ 配置UI系统的渲染器和数据处理组件，包括：
  * - 初始化UI渲染器数据结构
  * - 设置信号量和同步机制
  * - 配置UI系统缓冲区和指针
@@ -64825,10 +64051,8 @@ void ConfigureUIRenderer(longlong uiContext)
 
 
 
-/**
- * @brief UI数据处理与缓冲区管理器
- * 
- * 该函数负责处理UI系统中的数据转换和缓冲区管理操作。
+ UI数据处理与缓冲区管理器
+ 处理UI系统中的数据转换和缓冲区管理操作。
  * 主要功能包括数据源验证、缓冲区大小检查、数据处理和结果返回。
  * 适用于复杂的UI数据处理场景，包括数据转换和内存管理。
  * 
@@ -64878,10 +64102,8 @@ ulonglong ProcessUIDataAndBufferManager(longlong uiContext,longlong dataSource,u
 
 
 
- /**
- * @brief UI组件状态比较和匹配函数
- * 
- * 该函数负责比较和匹配UI组件的状态，包括：
+  UI组件状态比较和匹配函数
+ 比较和匹配UI组件的状态，包括：
  * - 比较UI组件的状态标志
  * - 执行字符匹配操作
  * - 处理UI组件的索引和偏移量
@@ -65006,10 +64228,8 @@ LAB_18069a35d:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief UI组件数据解析和状态设置函数
- * 
- * 该函数负责解析UI组件数据并设置相应的状态，包括：
+  UI组件数据解析和状态设置函数
+ 解析UI组件数据并设置相应的状态，包括：
  * - 解析UI组件的数据缓冲区
  * - 设置UI组件的状态标志
  * - 处理UI组件的配置参数
@@ -65927,10 +65147,8 @@ LAB_18069b66c:
 
 
 
- /**
- * @brief UI系统数据表初始化函数
- * 
- * 该函数负责初始化UI系统的数据表，包括：
+  UI系统数据表初始化函数
+ 初始化UI系统的数据表，包括：
  * - 初始化UI资源数据表
  * - 设置UI系统的各种参数
  * - 配置UI系统的缓冲区
@@ -65971,10 +65189,8 @@ void InitializeUIDataTables(longlong uiContext)
 
 
 
-/**
- * @brief 验证UI资源数据
- * 
- * 该函数负责验证UI资源数据的有效性和完整性
+ 验证UI资源数据
+ 验证UI资源数据的有效性和完整性
  * 
  * @param resourceHandle 资源句柄
  * @param dataSource 数据源
@@ -66011,10 +65227,8 @@ bool ValidateUIResourceData(longlong resourceHandle, int dataSource)
 
 
 
- /**
- * @brief 复制UI缓冲区数据
- * 
- * 该函数负责复制UI系统中的缓冲区数据，包括多个不同
+  复制UI缓冲区数据
+ 复制UI系统中的缓冲区数据，包括多个不同
  * 内存区域的数据复制操作。
  * 
  * @param uiContext UI上下文指针
@@ -66055,10 +65269,8 @@ void CopyUIBufferData(longlong uiContext)
 
 
 
- /**
- * @brief 清零UI内存区域
- * 
- * 该函数负责将指定的UI内存区域清零，使用memset操作
+  清零UI内存区域
+ 将指定的UI内存区域清零，使用memset操作
  * 来初始化内存空间。
  * 
  * @param uiContext UI上下文指针
@@ -66076,10 +65288,8 @@ void ClearUIMemoryRegion(longlong uiContext,undefined1 *dataSource)
 
 
 
- /**
- * @brief 移动UI缓冲区数据
- * 
- * 该函数负责移动UI系统中的缓冲区数据，执行多个不同
+  移动UI缓冲区数据
+ 移动UI系统中的缓冲区数据，执行多个不同
  * 内存区域的数据移动操作。
  * 
  * @param uiContext UI上下文指针
@@ -66119,10 +65329,8 @@ void MoveUIBufferData(longlong uiContext)
 
 
 
- /**
- * @brief 处理UI数据缓冲区的内存操作
- * 
- * 该函数负责处理UI数据缓冲区的内存复制和重新排列操作，
+  处理UI数据缓冲区的内存操作
+ 处理UI数据缓冲区的内存复制和重新排列操作，
  * 主要用于优化UI数据的存储布局和访问性能。
  * 
  * @param uiContext UI上下文指针
@@ -66162,10 +65370,8 @@ void ProcessUIDataBufferMemoryOperations(longlong uiContext)
 
 
 
- /**
- * @brief 执行UI内存复制操作
- * 
- * 该函数负责执行UI系统中的内存复制操作，
+  执行UI内存复制操作
+ 执行UI系统中的内存复制操作，
  * 用于数据传输和缓冲区管理。
  * 
  * @return 无返回值
@@ -66183,10 +65389,8 @@ void ExecuteUIMemoryCopyOperation(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 初始化UI上下文并管理关键区域
- * 
- * 该函数负责初始化UI上下文，管理关键区域的创建和销毁，
+  初始化UI上下文并管理关键区域
+ 初始化UI上下文，管理关键区域的创建和销毁，
  * 确保UI系统的线程安全性。
  * 
  * @param uiContext UI上下文指针
@@ -66295,10 +65499,8 @@ void FUN_18069bfc6(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 清理UI系统临界区资源
- * 
- * 该函数负责清理UI系统的临界区资源，包括释放临界区对象和相关内存
+  清理UI系统临界区资源
+ 清理UI系统的临界区资源，包括释放临界区对象和相关内存
  * 
  * @note 原始函数名: FUN_18069c023
  */
@@ -66330,10 +65532,8 @@ void CleanupUICriticalSection(void)
 
 
  void FUN_18069c080(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined1 *bufferSize,
-/**
- * @brief 处理UI组件数据加密和渲染任务
- * 
- * 该函数负责处理UI组件数据的加密操作，并执行相应的渲染任务
+ 处理UI组件数据加密和渲染任务
+ 处理UI组件数据的加密操作，并执行相应的渲染任务
  * 使用XOR加密密钥对数据进行保护，然后调用渲染任务执行器
  * 
  * @param uiContext UI上下文指针
@@ -66448,10 +65648,8 @@ void ProcessUIComponentRender(longlong uiContext,undefined8 dataSource,undefined
 
 
  void FUN_18069c3b0(undefined1 *uiContext,int dataSource,int targetBuffer,int bufferSize,int resultPointer,int param_6,
-/**
- * @brief 处理UI组件内存操作和数据复制
- * 
- * 该函数负责处理UI组件的内存操作，包括内存清零、数据复制和内存移动
+ 处理UI组件内存操作和数据复制
+ 处理UI组件的内存操作，包括内存清零、数据复制和内存移动
  * 用于UI组件的初始化、数据更新和内存管理
  * 
  * @param uiContext UI上下文指针
@@ -66491,10 +65689,8 @@ void ProcessUIComponentMemoryOperations(undefined1 *uiContext,int dataSource,int
 
 
 
- /**
- * @brief 处理UI组件队列数据操作
- * 
- * 该函数负责处理UI组件队列的数据操作，包括内存设置、数据复制和队列管理
+  处理UI组件队列数据操作
+ 处理UI组件队列的数据操作，包括内存设置、数据复制和队列管理
  * 用于UI组件队列的初始化和数据传输
  * 
  * @param uiContext UI上下文指针
@@ -66537,10 +65733,8 @@ void ProcessUIComponentQueueOperations(int uiContext,int dataSource,undefined8 t
 
 
 
- /**
- * @brief 执行UI组件内存复制操作
- * 
- * 该函数负责执行UI组件的内存复制操作，用于数据传输和内存管理
+  执行UI组件内存复制操作
+ 执行UI组件的内存复制操作，用于数据传输和内存管理
  * 这是一个基础的内存操作函数，为UI系统提供数据复制功能
  * 
  * @note 原始函数名: FUN_18069c4ff
@@ -66588,10 +65782,8 @@ void ProcessUIComponentQueue(int *uiContext,int *dataSource)
 
 
  void FUN_18069c640(int *uiContext)
-/**
- * @brief UI组件布局更新函数
- * 
- * 该函数负责更新UI组件的布局信息，包括组件的位置、大小等布局参数。
+ UI组件布局更新函数
+ 更新UI组件的布局信息，包括组件的位置、大小等布局参数。
  * 根据组件的状态数据重新计算布局信息。
  * 
  * @param componentData 组件数据指针
@@ -67518,10 +66710,8 @@ void RenderUIButtonInternal(undefined8 uiContext,longlong dataSource,undefined8 
 
 
 
-/**
- * @brief 解码UI状态数据
- * 
- * 该函数负责解码UI系统中的状态数据，包括数据解压缩、
+ 解码UI状态数据
+ 解码UI系统中的状态数据，包括数据解压缩、
  * 状态转换和结果计算。函数通过复杂的位操作和循环
  * 处理来解码UI状态信息。
  * 
@@ -67664,10 +66854,8 @@ ulonglong DecodeUIStateData(longlong uiContext,longlong dataSource,int targetBuf
 
 
 
-/**
- * @brief 处理UI组件布局数据
- * 
- * 该函数负责处理UI组件的布局数据，包括特殊布局检测、
+ 处理UI组件布局数据
+ 处理UI组件的布局数据，包括特殊布局检测、
  * 布局配置处理和结果计算。函数通过两个循环处理不同
  * 的布局数据段，并返回处理结果的总和。
  * 
@@ -68463,10 +67651,8 @@ void FUN_18069dfe0(int uiContext,int dataSource,int targetBuffer,undefined8 buff
 
 
 
-/**
- * @brief 处理UI上下文数据验证
- * 
- * 该函数负责处理UI上下文数据的验证操作，包括数据完整性检查
+ 处理UI上下文数据验证
+ 处理UI上下文数据的验证操作，包括数据完整性检查
  * 和状态标志的设置。根据上下文类型执行不同的验证逻辑
  * 
  * @param uiContext UI上下文指针，包含系统状态信息
@@ -68542,10 +67728,8 @@ int ProcessUIContextValidation(byte *uiContext,uint *dataSource)
 
 
 
-/**
- * @brief 批量处理UI数据验证
- * 
- * 该函数负责批量处理UI数据的验证操作，对多个数据源进行
+ 批量处理UI数据验证
+ 批量处理UI数据的验证操作，对多个数据源进行
  * 并行验证，确保数据的一致性和完整性
  * 
  * @param uiContext UI上下文指针，包含系统状态信息
@@ -68598,10 +67782,8 @@ int ProcessUIBatchValidation(undefined8 uiContext,uint *dataSource,undefined8 ta
 
 
 
-/**
- * @brief 初始化UI上下文状态
- * 
- * 该函数负责初始化UI上下文的状态信息，设置系统的初始状态
+ 初始化UI上下文状态
+ 初始化UI上下文的状态信息，设置系统的初始状态
  * 和必要的配置参数
  * 
  * @param uiContext UI上下文指针，用于初始化状态信息
@@ -69138,10 +68320,8 @@ void UpdateUIContext(longlong *uiContext)
 
 
 undefined4
-/**
- * @brief 处理UI上下文数据
- * 
- * 该函数负责处理UI上下文中的数据转换和操作
+ 处理UI上下文数据
+ 处理UI上下文中的数据转换和操作
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 数据源指针
@@ -69590,10 +68770,8 @@ void FUN_18069f682(void)
 
 
 
-/**
- * @brief 解码UI字符数据
- * 
- * 该函数负责解码UI系统中的字符数据，处理字符映射和
+ 解码UI字符数据
+ 解码UI系统中的字符数据，处理字符映射和
  * 状态表转换，支持多种字符编码格式
  * 
  * @param uiContext UI上下文指针，包含解码所需的状态信息
@@ -69637,10 +68815,8 @@ int DecodeUICharacterData(longlong uiContext,longlong dataSource)
 
 
 
- /**
- * @brief UI数据源处理函数
- * 
- * 该函数负责处理UI系统的数据源，包括数据解析、转换和存储。
+  UI数据源处理函数
+ 处理UI系统的数据源，包括数据解析、转换和存储。
  * 根据不同的数据类型进行相应的处理操作。
  * 
  * @param uiContext UI上下文指针
@@ -69728,10 +68904,8 @@ LAB_18069f85f:
 
 
 
- /**
- * @brief UI系统组件初始化函数
- * 
- * 该函数负责初始化UI系统的基本组件，包括信号量处理和系统状态设置。
+  UI系统组件初始化函数
+ 初始化UI系统的基本组件，包括信号量处理和系统状态设置。
  * 为UI系统准备运行环境。
  * 
  * @note 原始函数名: FUN_18069f7a6
@@ -69776,10 +68950,8 @@ void FUN_18069f8cb(void)
 
 
 
-/**
- * @brief 处理UI字符映射
- * 
- * 该函数负责处理UI系统中的字符映射操作，将字符数据
+ 处理UI字符映射
+ 处理UI系统中的字符映射操作，将字符数据
  * 转换为内部表示形式，支持字符表查找和映射
  * 
  * @param uiContext UI上下文指针，包含映射所需的状态信息
@@ -70388,10 +69560,8 @@ LAB_1806a011c:
 
 
 
-/**
- * @brief 验证UI系统资源数据
- * 
- * 该函数负责验证UI系统资源数据的完整性和有效性，
+ 验证UI系统资源数据
+ 验证UI系统资源数据的完整性和有效性，
  * 检查资源数据的格式和内容是否符合要求
  * 
  * @return 验证结果状态码，成功返回验证通过的资源数量
@@ -70418,10 +69588,8 @@ int ValidateUISystemResourceData(void)
 
 
 
-/**
- * @brief 检查UI资源状态
- * 
- * 该函数负责检查UI系统资源的当前状态，返回资源
+ 检查UI资源状态
+ 检查UI系统资源的当前状态，返回资源
  * 状态检查结果，用于资源管理和调度
  * 
  * @return 资源状态检查结果，返回资源状态码
@@ -70443,10 +69611,8 @@ int CheckUIResourceStatus(void)
 
 
 
- /**
- * @brief 处理UI变换数据
- * 
- * 该函数负责处理UI变换数据的计算和转换
+  处理UI变换数据
+ 处理UI变换数据的计算和转换
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源
@@ -70652,10 +69818,8 @@ void ProcessUITransformData(longlong uiContext, longlong dataSource, int targetB
 
 
 
- /**
- * @brief 处理UI上下文同步
- * 
- * 该函数负责处理UI上下文的同步操作
+  处理UI上下文同步
+ 处理UI上下文的同步操作
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源
@@ -70833,10 +69997,8 @@ void ProcessUIContextSync(undefined4 uiContext, undefined8 dataSource, longlong 
 
 
 
- /**
- * @brief 处理UI渲染数据
- * 
- * 该函数负责处理UI渲染数据的计算和转换
+  处理UI渲染数据
+ 处理UI渲染数据的计算和转换
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源
@@ -71002,10 +70164,8 @@ void FUN_180701330(longlong uiContext,int dataSource,longlong targetBuffer,longl
 
 
 
-/**
- * @brief 计算UI布局参数
- * 
- * 该函数负责计算UI系统的布局参数，包括位置、尺寸、
+ 计算UI布局参数
+ 计算UI系统的布局参数，包括位置、尺寸、
  * 缩放等属性的计算和调整，支持多种布局模式
  * 
  * @param uiContext UI上下文指针，包含布局计算所需的状态信息
@@ -72847,10 +72007,8 @@ void FUN_180706ba7(void)
 
 
 
-/**
- * @brief 处理UI上下文数据复制和验证
- * 
- * 该函数负责验证和复制UI上下文数据，处理信号量操作，
+ 处理UI上下文数据复制和验证
+ 验证和复制UI上下文数据，处理信号量操作，
  * 确保数据传输的完整性和安全性。
  * 
  * @param uiContext UI上下文指针
@@ -72895,10 +72053,8 @@ undefined8 ProcessUIContextDataCopy(byte *uiContext,byte *dataSource,int targetB
 
 
 
-/**
- * @brief UI缓冲区数据复制处理器
- * 
- * 该函数负责处理UI系统中的缓冲区数据复制操作。
+ UI缓冲区数据复制处理器
+ 处理UI系统中的缓冲区数据复制操作。
  * 主要功能包括数据源和目标缓冲区的验证、数据复制操作、内存管理等。
  * 适用于UI系统中的批量数据处理和内存复制场景。
  * 
@@ -73359,8 +72515,7 @@ int FUN_180706f00(undefined8 uiContext,undefined8 dataSource,longlong targetBuff
 
 
 
-/**
- * @brief 获取UI系统错误代码
+ 获取UI系统错误代码
  * 
  * 该函数返回UI系统的错误代码，用于错误处理和状态检查。
  * 
@@ -75479,10 +74634,8 @@ void FUN_18070ba50(longlong *uiContext,int dataSource,undefined4 targetBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 处理UI上下文数据
- * 
- * 该函数负责处理UI上下文中的数据，包括内存分配、数据验证、
+  处理UI上下文数据
+ 处理UI上下文中的数据，包括内存分配、数据验证、
  * 缓冲区管理等操作。它会根据传入的参数来处理UI系统的各种数据。
  * 
  * @param uiContext UI上下文指针，包含UI系统的状态和数据
@@ -75791,8 +74944,7 @@ int FUN_18070e140(int uiContext)
 
 
 
-/**
- * @brief 验证UI缓冲区参数并清理内存
+ 验证UI缓冲区参数并清理内存
  * 
  * 该函数验证UI缓冲区参数，并在满足条件时清理指定内存区域。
  * 主要用于UI系统的内存管理和参数验证。
@@ -75830,8 +74982,7 @@ undefined4 ValidateUIBufferAndClearMemory(longlong uiContext,undefined8 dataSour
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 触发UI渲染更新
+  触发UI渲染更新
  * 
  * 该函数执行UI渲染更新操作，包含简单的加密密钥处理。
  * 主要用于触发UI系统的渲染更新流程。
@@ -75854,8 +75005,7 @@ void TriggerUIRenderingUpdate(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 处理UI渲染数据并触发更新
+  处理UI渲染数据并触发更新
  * 
  * 该函数处理UI渲染相关的数据，包括缓冲区数据读取、位移计算等操作，
  * 然后触发UI渲染更新流程。
@@ -75899,8 +75049,7 @@ void ProcessUIRenderingDataAndUpdate(longlong uiContext,undefined8 dataSource,un
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- /**
- * @brief 执行UI渲染任务调度
+  执行UI渲染任务调度
  * 
  * 该函数根据参数条件调度UI渲染任务，包括内存对齐计算、
  * 条件判断和任务执行等功能。
@@ -76383,10 +75532,8 @@ uint FUN_18070f3b3(undefined8 uiContext,undefined8 dataSource,int targetBuffer)
 
 
 
-/**
- * @brief 计算UI布局参数
- * 
- * 该函数负责计算UI元素的布局参数和尺寸信息
+ 计算UI布局参数
+ 计算UI元素的布局参数和尺寸信息
  * 
  * @param layoutHandle 布局句柄
  * @param dataSource 数据源
@@ -76420,10 +75567,8 @@ int CalculateUILayoutParameters(longlong layoutHandle, longlong dataSource, byte
 
 
 
-/**
- * @brief 处理UI数据流
- * 
- * 该函数负责处理UI数据流，进行数据验证和转换操作
+ 处理UI数据流
+ 处理UI数据流，进行数据验证和转换操作
  * 
  * @param dataStreamPtr 数据流指针
  * @return void 无返回值
@@ -76472,10 +75617,8 @@ void ProcessUIDataStream(longlong *dataStreamPtr)
 
 
 
-/**
- * @brief 处理UI数据流扩展
- * 
- * 该函数负责处理UI数据流的扩展操作，包括数据验证和转换
+ 处理UI数据流扩展
+ 处理UI数据流的扩展操作，包括数据验证和转换
  * 
  * @param dataStreamPtr 数据流指针
  * @param dataSource 数据源
@@ -76693,8 +75836,7 @@ uint FUN_18070f57b(undefined8 uiContext,uint dataSource)
 
 
 
-/**
- * @brief 设置UI系统标志位
+ 设置UI系统标志位
  * 
  * 该函数用于设置UI系统的特定标志位，通常用于初始化或状态控制。
  * 函数会在指定位置设置标志位为1，并返回当前值。
@@ -77196,8 +76338,7 @@ int FUN_18070fb8e(void)
 
 
 
-/**
- * @brief 获取UI系统最大值
+ 获取UI系统最大值
  * 
  * 该函数返回UI系统的最大值常量，通常用于边界检查或初始化。
  * 
@@ -84546,10 +83687,8 @@ ulonglong FUN_180717fa0(int *uiContext,float *dataSource,uint targetBuffer,undef
 
 
 undefined8
-/**
- * @brief 处理UI浮点数据符号
- * 
- * 该函数负责处理UI系统中的浮点数据，根据条件设置正负符号
+ 处理UI浮点数据符号
+ 处理UI系统中的浮点数据，根据条件设置正负符号
  * 
  * @param uiContext UI上下文指针
  * @param dataSource 源数据浮点数组
@@ -85811,10 +84950,8 @@ ulonglong FUN_180718f58(void)
 
 
 undefined1
-/**
- * @brief 处理UI数据缓冲区
- * 
- * 该函数负责处理UI数据缓冲区的操作和管理
+ 处理UI数据缓冲区
+ 处理UI数据缓冲区的操作和管理
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源
@@ -88263,8 +87400,7 @@ undefined8 FUN_18071c23f(undefined8 uiContext,longlong dataSource,longlong targe
 
 
 
-/**
- * @brief 获取UI系统空值
+ 获取UI系统空值
  * 
  * 该函数返回UI系统的空值，通常用于初始化或重置操作。
  * 
@@ -100485,10 +99621,8 @@ void FUN_18072aac5(int uiContext,undefined8 dataSource,uint targetBuffer,int buf
 
 
 
- /**
- * @brief 处理UI缓冲区位运算和累加操作
- * 
- * 该函数负责处理UI缓冲区的位运算操作，包括位移计算和累加操作
+  处理UI缓冲区位运算和累加操作
+ 处理UI缓冲区的位运算操作，包括位移计算和累加操作
  * 主要用于UI数据的处理和优化
  * 
  * @param uiContext UI上下文参数
@@ -100552,10 +99686,8 @@ void ProcessUIBufferBitwiseOperation(int uiContext, uint64_t dataSource, uint ta
 
 
 
- /**
- * @brief 处理UI缓冲区平方运算和位移操作
- * 
- * 该函数负责处理UI缓冲区的平方运算和位移操作
+  处理UI缓冲区平方运算和位移操作
+ 处理UI缓冲区的平方运算和位移操作
  * 主要用于UI数据的数学运算和优化
  * 
  * @param uiContext UI上下文参数
@@ -101495,10 +100627,8 @@ void FUN_18072b540(double *uiContext,longlong dataSource,float targetBuffer,int 
 
 
 
- /**
- * @brief 计算UI缓冲区参数
- * 
- * 该函数负责计算UI缓冲区的数学参数和变换
+  计算UI缓冲区参数
+ 计算UI缓冲区的数学参数和变换
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源
@@ -112784,10 +111914,8 @@ int FUN_180738630(undefined4 *uiContext,undefined4 *dataSource,int targetBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @brief UI系统配置验证和初始化函数
- * 
- * 该函数负责验证UI系统的配置状态，并根据传入的参数进行相应的初始化设置。
+ UI系统配置验证和初始化函数
+ 验证UI系统的配置状态，并根据传入的参数进行相应的初始化设置。
  * 主要用于UI系统的启动配置和参数验证。
  * 
  * @param uiContext UI上下文参数
@@ -112865,10 +111993,8 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @brief UI系统上下文创建函数
- * 
- * 该函数负责创建UI系统的上下文对象，包括内存分配、信号量处理和验证操作。
+ UI系统上下文创建函数
+ 创建UI系统的上下文对象，包括内存分配、信号量处理和验证操作。
  * 主要用于UI系统的初始化和上下文管理。
  * 
  * @param uiContext UI上下文指针，用于返回创建的上下文
@@ -113002,8 +112128,7 @@ undefined8 FUN_1807389a0(void)
 
 
 
-/**
- * @brief 获取UI组件默认大小
+ 获取UI组件默认大小
  * 
  * 该函数返回UI组件的默认大小值，用于初始化组件时的基准大小。
  * 
@@ -125778,8 +124903,7 @@ void FUN_1807435ef(void)
 
 
  void ReleaseUIComponent(longlong uiContext)
-/**
- * @brief 释放UI组件资源
+ 释放UI组件资源
  * @param uiContext UI组件的内存地址
  * @note 原始函数名：FUN_180743660
  */
@@ -125805,8 +124929,7 @@ void ReleaseUIComponent(longlong uiContext)
 
 
  ulonglong AllocateUIMemory(longlong uiContext, undefined8 *dataSource, int targetBuffer, char bufferSize)
-/**
- * @brief 为UI系统分配内存
+ 为UI系统分配内存
  * @param uiContext UI系统上下文
  * @param dataSource 输出参数，返回分配的内存地址
  * @param targetBuffer 需要分配的内存大小
@@ -125881,8 +125004,7 @@ void FUN_1807437a4(void)
 
 
 
-/**
- * @brief 验证UI内存指针
+ 验证UI内存指针
  * 
  * 该函数用于验证UI上下文中的内存指针是否有效。
  * 如果指针无效，会触发相应的错误处理。
@@ -126208,10 +125330,8 @@ undefined8 FUN_180743cc0(longlong uiContext,undefined1 dataSource)
 
 
 
-/**
- * @brief 释放UI资源临界区
- * 
- * 该函数负责释放UI资源操作中的临界区，确保线程安全。
+ 释放UI资源临界区
+ 释放UI资源操作中的临界区，确保线程安全。
  * 首先检查资源是否有效，然后离开临界区并返回状态。
  * 
  * @param resourceArray 资源数组指针
@@ -126236,10 +125356,8 @@ uint32_t ReleaseUIResourceCriticalSection(void* resourceArray, int32_t resourceI
 
 
 
-/**
- * @brief 销毁UI资源管理器
- * 
- * 该函数负责销毁UI资源管理器，如果资源管理器已经初始化，
+ 销毁UI资源管理器
+ 销毁UI资源管理器，如果资源管理器已经初始化，
  * 则调用相应的销毁函数进行清理。
  * 
  * @param resourceManager 资源管理器指针
@@ -129777,8 +128895,7 @@ ulonglong FUN_180747c73(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 处理UI元素数据操作
+ 处理UI元素数据操作
  * @param uiContext 第一个参数标识符
  * @param dataSource 第二个参数标识符  
  * @param targetBuffer 数据指针
@@ -129794,8 +128911,7 @@ void ProcessUIElementData(undefined4 uiContext,undefined4 dataSource,undefined8 
 
 
 
-/**
- * @brief 分配并初始化UI元素内存块
+ 分配并初始化UI元素内存块
  * @param uiContext 基础内存地址
  * @param dataSource 偏移量指针
  * @param targetBuffer 输出参数，返回分配的内存块地址
@@ -202292,10 +201408,8 @@ undefined8 * FUN_18078d220(undefined8 *uiContext,ulonglong dataSource)
 // WARNING: Type propagation algorithm not settling
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @brief 处理UI数据操作
- * 
- * 该函数负责处理UI系统的数据操作，包括验证、缓冲区管理和数据处理
+ 处理UI数据操作
+ 处理UI系统的数据操作，包括验证、缓冲区管理和数据处理
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源
@@ -221135,10 +220249,8 @@ void UpdateUISystemState(longlong uiContext,byte dataSource)
 
 
  void ToggleUISystemState(void)
-/**
- * @brief 切换UI系统状态
- * 
- * 该函数负责切换UI系统的状态，在不同的状态之间进行切换。
+ 切换UI系统状态
+ 切换UI系统的状态，在不同的状态之间进行切换。
  * 会更新系统上下文中的各个组件状态。
  * 
  * @note 原始函数名: FUN_1808008fb
@@ -221177,10 +220289,8 @@ void ToggleUISystemState(void)
 
 
  void TriggerUISystemCallback(void)
-/**
- * @brief 触发UI系统回调
- * 
- * 该函数负责触发UI系统的回调函数，用于处理系统级别的回调事件。
+ 触发UI系统回调
+ 触发UI系统的回调函数，用于处理系统级别的回调事件。
  * 
  * @note 原始函数名: FUN_1808009a3
  */
@@ -221193,10 +220303,8 @@ void TriggerUISystemCallback(void)
 
 
 
-/**
- * @brief 处理UI数据请求
- * 
- * 该函数负责处理UI系统的数据请求，包括数据获取、处理和返回。
+ 处理UI数据请求
+ 处理UI系统的数据请求，包括数据获取、处理和返回。
  * 
  * @param uiContext UI上下文
  * @param dataSource 数据源
@@ -222591,10 +221699,8 @@ LAB_18080177e:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @brief 初始化UI系统全局状态
- * 
- * 该函数负责初始化UI系统的全局状态，调用核心初始化函数
+ 初始化UI系统全局状态
+ 初始化UI系统的全局状态，调用核心初始化函数
  * 确保UI系统在启动时处于正确的初始状态
  * 
  * @return 初始化结果，0表示成功
@@ -300011,10 +299117,8 @@ void FUN_18084fcba(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-/**
- * @brief 在UI上下文中查找并处理组件
- * 
- * 该函数负责在UI上下文中根据特定的哈希值查找组件，
+ 在UI上下文中查找并处理组件
+ 在UI上下文中根据特定的哈希值查找组件，
  * 并处理组件的索引、字符串比较和内存管理操作。
  * 
  * @param uiContext UI上下文指针，包含组件状态和索引信息
@@ -373580,10 +372684,8 @@ undefined8 FUN_18088fff0(longlong uiContext)
 
 
 
-/**
- * @brief 设置UI元素状态字节
- * 
- * 该函数负责设置UI元素的状态字节，用于控制UI元素的显示和行为状态
+ 设置UI元素状态字节
+ 设置UI元素的状态字节，用于控制UI元素的显示和行为状态
  * 通过元素ID和状态值来更新UI元素的内部状态
  * 
  * @param elementContext 元素上下文指针
@@ -373609,10 +372711,8 @@ uint64_t SetUIElementStatusByte(void* elementContext)
 
 
 
-/**
- * @brief 设置UI元素状态字
- * 
- * 该函数负责设置UI元素的状态字，用于控制UI元素的显示和行为状态
+ 设置UI元素状态字
+ 设置UI元素的状态字，用于控制UI元素的显示和行为状态
  * 通过元素ID和状态值来更新UI元素的内部状态
  * 
  * @param elementContext 元素上下文指针
@@ -373641,10 +372741,8 @@ uint64_t SetUIElementStatusWord(void* elementContext)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-/**
- * @brief 执行UI元素渲染任务
- * 
- * 该函数负责执行UI元素的渲染任务，包括任务调度、资源管理和渲染执行
+ 执行UI元素渲染任务
+ 执行UI元素的渲染任务，包括任务调度、资源管理和渲染执行
  * 使用加密密钥进行安全验证，确保渲染任务的安全性
  * 
  * @param elementContext 元素上下文指针
@@ -373702,10 +372800,8 @@ void ExecuteUIElementRenderTask(void* elementContext, void* renderTaskContext)
 
 
 
-/**
- * @brief 执行UI渲染任务处理器
- * 
- * 该函数负责执行UI渲染任务的处理逻辑，包括任务队列管理、验证和执行
+ 执行UI渲染任务处理器
+ 执行UI渲染任务的处理逻辑，包括任务队列管理、验证和执行
  * 使用寄存器传递参数，确保高效的渲染任务处理
  * 
  * @note 原始函数名: FUN_18089011d
@@ -394584,10 +393680,8 @@ undefined8 FUN_18089f0b0(longlong uiContext,longlong *dataSource)
 
 
 
-/**
- * @brief 处理UI状态码返回
- * 
- * 该函数负责处理UI状态码的返回逻辑，根据不同的状态值进行相应的处理
+ 处理UI状态码返回
+ 处理UI状态码的返回逻辑，根据不同的状态值进行相应的处理
  * 
  * @return 处理结果状态码
  * 
@@ -394742,20 +393836,16 @@ undefined8 ProcessUIStatusCodeReturn(void)
 
 
 
- /**
- * @brief 处理UI缓冲区操作
- * 
- * 该函数负责处理UI缓冲区的操作，包括缓冲区大小检查、验证和处理
+  处理UI缓冲区操作
+ 处理UI缓冲区的操作，包括缓冲区大小检查、验证和处理
  * 
  * @note 原始函数名：FUN_18089f31e
  */
 #define ProcessUIBufferOperation FUN_18089f31e
 
 void ProcessUIBufferOperation(void)
-/**
- * @brief 处理UI缓冲区操作
- * 
- * 该函数负责处理UI缓冲区的操作，包括缓冲区大小检查、验证和处理
+ 处理UI缓冲区操作
+ 处理UI缓冲区的操作，包括缓冲区大小检查、验证和处理
  * 
  * @note 原始函数名：FUN_18089f31e
  */
@@ -395388,10 +394478,8 @@ undefined8 FUN_18089fc50(longlong uiContext,undefined8 *dataSource)
 
 
 
-/**
- * @brief 处理UI系统数据配置和验证
- * 
- * 该函数负责处理UI系统的数据配置和验证操作，包括数据缓冲区处理、
+ 处理UI系统数据配置和验证
+ 处理UI系统的数据配置和验证操作，包括数据缓冲区处理、
  * 事件验证和配置应用等核心功能
  * 
  * @param uiContext UI系统上下文参数
@@ -395477,10 +394565,8 @@ uint64_t ProcessUIDataConfigurationAndValidation(longlong uiContext, longlong *d
 
 
 
-/**
- * @brief 处理UI系统数据验证
- * 
- * 该函数负责处理UI系统数据的验证操作
+ 处理UI系统数据验证
+ 处理UI系统数据的验证操作
  * 
  * @param dataSource 数据源参数
  * @param contextData 上下文数据参数
@@ -395490,10 +394576,8 @@ uint64_t ProcessUIDataConfigurationAndValidation(longlong uiContext, longlong *d
  */
 #define ProcessUIDataValidation FUN_180899ef0
 
-/**
- * @brief 处理UI系统数据提取
- * 
- * 该函数负责处理UI系统数据的提取操作
+ 处理UI系统数据提取
+ 处理UI系统数据的提取操作
  * 
  * @param dataSource 数据源参数
  * @param contextData 上下文数据参数
@@ -395503,10 +394587,8 @@ uint64_t ProcessUIDataConfigurationAndValidation(longlong uiContext, longlong *d
  */
 #define ProcessUIDataExtraction FUN_180898eb0
 
-/**
- * @brief 处理UI系统配置应用
- * 
- * 该函数负责处理UI系统配置的应用操作
+ 处理UI系统配置应用
+ 处理UI系统配置的应用操作
  * 
  * @param dataSource 数据源参数
  * @param contextData 上下文数据参数
@@ -395517,10 +394599,8 @@ uint64_t ProcessUIDataConfigurationAndValidation(longlong uiContext, longlong *d
  */
 #define ProcessUIConfigurationApply FUN_1808a7c90
 
-/**
- * @brief 处理UI系统事件验证和配置
- * 
- * 该函数负责处理UI系统的事件验证逻辑，包括事件处理、配置验证和状态管理
+ 处理UI系统事件验证和配置
+ 处理UI系统的事件验证逻辑，包括事件处理、配置验证和状态管理
  * 
  * @param context UI系统上下文参数
  * @param eventDataArray 事件数据参数数组
@@ -395556,10 +394636,8 @@ uint64_t ProcessUIEventValidationAndConfiguration(longlong SystemContext, uint64
 
 
 
-/**
- * @brief 处理UI系统事件验证
- * 
- * 该函数负责处理UI系统的事件验证逻辑
+ 处理UI系统事件验证
+ 处理UI系统的事件验证逻辑
  * 用于验证UI事件的有效性和处理流程
  * 
  * @param eventHandler 事件处理器指针
