@@ -50007,7 +50007,7 @@ void ProcessDataStructureValidation(long long *SystemContextPointer
     *(uint8_t *)((long long)SystemContextPointer + 0x15) = 0;
     UNLOCK();
   }
-LAB_1800802aa:
+SystemUtilityExecution:
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)aBufferTypeFlag);
 }
