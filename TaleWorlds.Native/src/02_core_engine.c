@@ -129953,7 +129953,7 @@ LAB_18012b82d:
   MemoryAllocationIndex = 0;
   *(uint32_t *)(pSystemMemoryOffset238 + 0x41) = 0;
   *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x20c) = 0;
-  FUN_18010e7a0(pSystemMemoryOffset238);
+  GetSystemParameters(pSystemMemoryOffset238);
   GetSystemFloatValue(pSystemMemoryOffset238);
   QuaternaryReturnCode = ValidateSystemDataStructure(&uStack_1d8,
                                *(float *)((long long)pSystemMemoryOffset238 + 0x20c) +
@@ -129973,13 +129973,13 @@ LAB_18012b82d:
   *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x134) = 0;
   *(uint32_t *)(pSystemMemoryOffset238 + 0x25) = 0;
   *(uint8_t *)((long long)pSystemMemoryOffset238 + 0x17c) = 0;
-  FloatValue33 = (float)FUN_1801293c0(pSystemMemoryOffset238);
+  FloatValue33 = (float)CalculateSystemFloatValue(pSystemMemoryOffset238);
   *(bool *)((long long)pSystemMemoryOffset238 + 0x17d) = 0.0 < FloatValue33;
   *(int *)((long long)pSystemMemoryOffset238 + 0x174) = (int)pSystemMemoryOffset238[0x2f];
   *(uint32_t *)(pSystemMemoryOffset238 + 0x2f) = 0;
   *(uint8_t *)((long long)pSystemMemoryOffset238 + 0x17e) = 0;
   *(float *)(pSystemMemoryOffset238 + 0x27) = *(float *)((long long)pSystemMemoryOffset238 + 0x104) - 9999.0;
-  FUN_18013e200(pSystemMemoryOffset238 + 0x31,0);
+  ExecuteSystemMemoryCleanupAndOptimization(pSystemMemoryOffset238 + 0x31,0);
   SystemContextValue = lStack_158;
   *(uint32_t *)(pSystemMemoryOffset238 + 0x34) = 1;
   if (lStack_158 == 0) {
@@ -129995,18 +129995,18 @@ LAB_18012b82d:
   *(uint32_t *)(pSystemMemoryOffset238 + 0x35) = MemoryAllocationIndex;
   *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x1ac) = *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x284);
   *(uint32_t *)(pSystemMemoryOffset238 + 0x36) = 0xbf800000;
-  FUN_18013e340(pSystemMemoryOffset238 + 0x37,0);
-  FUN_18013e2f0(pSystemMemoryOffset238 + 0x39,0);
-  FUN_18013e2f0(pSystemMemoryOffset238 + 0x3b,0);
+  ExecuteSystemMemoryManagementAndConfiguration(pSystemMemoryOffset238 + 0x37,0);
+  ExecuteSystemMemoryDataProcessingAndCleanup(pSystemMemoryOffset238 + 0x39,0);
+  ExecuteSystemMemoryDataProcessingAndCleanup(pSystemMemoryOffset238 + 0x3b,0);
   pSystemMemoryOffset238[0x42] = 0;
   *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x13c) = 0;
   *(uint32_t *)(pSystemMemoryOffset238 + 0x28) = 0;
   pSystemMemoryOffset238[0x33] = (long long)(pSystemMemoryOffset238 + 0x57);
-  FUN_18013db40(pSystemMemoryOffset238 + 0x3d,0);
-  FUN_18011a9d0(pSystemMemoryOffset238 + 0x51,3);
+  ExecuteSystemMemoryBufferManagementAndOptimization(pSystemMemoryOffset238 + 0x3d,0);
+  ProcessSystemArrayData(pSystemMemoryOffset238 + 0x51,3);
   if ((DataProcessingFlags != 0) && ((int)pSystemMemoryOffset238[0x35] != *(int *)(SystemContextValue + 0x1a8))) {
     *(int *)(pSystemMemoryOffset238 + 0x35) = *(int *)(SystemContextValue + 0x1a8);
-    FUN_18011d940(pSystemMemoryOffset238 + 0x37,pSystemMemoryOffset238 + 0x35);
+    HandleSystemStringProcessing(pSystemMemoryOffset238 + 0x37,pSystemMemoryOffset238 + 0x35);
   }
   if (0 < *(int *)((long long)pSystemMemoryOffset238 + 0xc4)) {
     *(int *)((long long)pSystemMemoryOffset238 + 0xc4) = *(int *)((long long)pSystemMemoryOffset238 + 0xc4) + -1;
@@ -130016,7 +130016,7 @@ LAB_18012b82d:
   }
   if ((char)ProcessingStatusFlag != '\0') {
     ValidateSystemDataTablePointer(pSystemMemoryOffset238);
-    FUN_180131810(pSystemMemoryOffset238,0);
+    InitializeSystemAndConfigure(pSystemMemoryOffset238,0);
   }
   CharacterCodePointer = CoreEnginePointerBuffer150;
   if ((((CoreEnginePointerBuffer150 != (uint8_t *)0x0) &&
