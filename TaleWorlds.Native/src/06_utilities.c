@@ -80019,23 +80019,42 @@ void CleanupResourceReferenceCountAtOffset00(DataBuffer operationBase,int64_t da
 
 
 
-void SetupExceptionHandlerAtOffset10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理器在偏移量10处
+ * 
+ * 该函数负责在数据缓冲区的指定偏移量处设置异常处理器。
+ * 它会检查当前线程ID与输入线程ID是否匹配，如果不匹配则更新系统状态标志。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * 
+ * @note 原始函数名：SetupExceptionHandlerAtOffset10
+ */
+void SetupExceptionHandlerAtThreadContextOffset(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  int threadIdInput;
+  int inputThreadId;
   int currentThreadId;
   
-  threadIdInput = *(int *)(**(int64_t **)(SystemInputParameterTable + 8) + 0x48);
+  inputThreadId = *(int *)(**(int64_t **)(SystemInputParameterTable + ThreadLocalStorageOffset) + ComponentHandleOffset);
   currentThreadId = _Thrd_id();
-  if (currentThreadId != threadIdInput) {
-    SystemStatusFlagA = *(DataWord *)(dataBuffer + 0x90);
+  if (currentThreadId != inputThreadId) {
+    SystemStatusFlagA = *(DataWord *)(dataBuffer + SystemContextOffset90);
   }
   return;
 }
 
 
 
-void ExecuteExceptionCallbacksAtOffset20(void)
+/**
+ * @brief 执行异常处理器回调在偏移量20处
+ * 
+ * 该函数负责在指定偏移量处执行异常处理器回调。
+ * 它会销毁互斥锁，清理线程同步资源。
+ * 
+ * @note 原始函数名：ExecuteExceptionCallbacksAtOffset20
+ */
+void ExecuteExceptionCallbacksAtSystemCleanup(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -112013,12 +112032,28 @@ void HandleMultipleExceptionContextsAndCleanup(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_1809125a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常上下文引用计数递减的异常处理函数（简化版本）
+ * 
+ * 该函数是异常处理过程中管理异常上下文引用计数的简化版本。
+ * 与HandleExceptionContextReferenceCountDecrement函数功能相同，
+ * 但操作的是固定的偏移量0x48。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_1809125a0
+ * @warning 此函数调用不返回，会直接进入异常处理流程
+ * @see HandleSystemException
+ */
+void HandleExceptionContextReferenceCountDecrementSimplified(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x48);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset48);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
@@ -120412,6 +120447,10 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：重置异常上下文并配置异常处理器
 #define ResetExceptionContextAndConfigureHandlers Unwind_1809107a0
 
+// 异常上下文引用计数递减函数（简化版本）
+// 功能：处理异常上下文引用计数递减的简化版本
+#define HandleExceptionContextReferenceCountDecrementSimplified Unwind_1809125a0
+
 /**
  * @file 06_utilities.c 总结
  * 
@@ -120430,7 +120469,7 @@ uint8_t SystemExceptionHandlerStateTable;
  * 
  * 美化进度：
  * - 已修复格式问题：5个
- * - 已美化变量名：35个
+ * - 已美化变量名：42个
  * - 已美化参数名：4个
  * - 已添加文档注释：完整
  * - 已美化异常处理器指针：26个
@@ -120456,6 +120495,10 @@ uint8_t SystemExceptionHandlerStateTable;
  * - 为默认异常处理器函数添加了语义化的名称（SetDefaultExceptionHandlerAtOffsetf0）
  * - 更新了相应的宏定义，确保函数名与宏定义保持一致
  * - 为每个函数添加了详细的功能描述、参数说明和注意事项
+ * - 美化了栈数据缓冲区变量名，包括SystemInitializationDataBuffer、MemoryPoolDataBuffer等
+ * - 美化了数据处理临时变量名，包括DataProcessingTemporaryWord等
+ * - 为Unwind_1809125a0函数添加了语义化名称HandleExceptionContextReferenceCountDecrementSimplified
+ * - 为简化版异常上下文引用计数递减函数添加了详细的文档注释
  */
 
 // 额外的Unwind_函数语义化定义
