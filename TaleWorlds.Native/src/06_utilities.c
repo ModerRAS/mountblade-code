@@ -58697,7 +58697,7 @@ void Unwind_180907710(DataBuffer operationBase,int64_t dataBuffer)
   resourcePointer[0xe] = 0;
   *(DataWord *)(resourcePointer + 0x10) = 0;
   resourcePointer[0xd] = &DefaultExceptionHandlerB;
-  FUN_180179f00(resourcePointer + 7,resourcePointer[9]);
+  ProcessResourceA0(resourcePointer + 7,resourcePointer[9]);
   *resourcePointer = &UNK_180a14c60;
   return;
 }
@@ -58749,7 +58749,7 @@ void Unwind_180907740(DataBuffer operationBase,int64_t dataBuffer)
   resourcePointer[0xe] = 0;
   *(DataWord *)(resourcePointer + 0x10) = 0;
   resourcePointer[0xd] = &DefaultExceptionHandlerB;
-  FUN_180179f00(resourcePointer + 7,resourcePointer[9]);
+  ProcessResourceA0(resourcePointer + 7,resourcePointer[9]);
   *resourcePointer = &UNK_180a14c60;
   return;
 }
@@ -59368,7 +59368,7 @@ void Unwind_1809079d0(DataBuffer operationBase,int64_t dataBuffer)
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1800ba100(calculatedOffset + 0x78);
+  CalculateSystemValue(calculatedOffset + 0x78);
   if ((1 < *(uint64_t *)(calculatedOffset + 0x88)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 0x80), resourcePointer != (DataBuffer *)0x0)) {
     memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
@@ -60705,7 +60705,7 @@ void Unwind_180907fb0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180047e40(dataBuffer + 0x480);
+    ValidateSystemParametersA0(dataBuffer + 0x480);
   }
   return;
 }
@@ -61715,7 +61715,7 @@ void CleanupExceptionResourcesA2(DataBuffer exceptionContext,int64_t unwindInfo)
   cleanupFlag = SystemCleanupFlagfffffffe;
   *(int64_t *)(contextBase + 0x15d8) =
        *(int64_t *)(&ExceptionDataTable1 + (int64_t)*(int *)(contextBase + 0x15e0) * 8) + -100000;
-  FUN_180090b80((int64_t *)(contextBase + 0x8b0));
+  ValidateSystemContextA0((int64_t *)(contextBase + 0x8b0));
   *(DataWord *)(contextBase + 0x15e8) = 0;
   resourcePointer = *(int64_t **)(contextBase + 0x15d0);
   *(DataBuffer *)(contextBase + 0x15d0) = 0;
@@ -62820,7 +62820,7 @@ void Unwind_180908a90(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908aa0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x170);
+  ProcessDataArrayA0(dataBuffer + 0x170);
   return;
 }
 
@@ -62937,7 +62937,7 @@ void Unwind_180908ad0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908ae0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x170);
+  ProcessDataArrayA0(dataBuffer + 0x170);
   return;
 }
 
@@ -62946,7 +62946,7 @@ void Unwind_180908ae0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908af0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0x170);
+  ProcessDataArrayA0(dataBuffer + 0x170);
   return;
 }
 
@@ -63427,7 +63427,7 @@ void Unwind_180908d40(void)
 void Unwind_180908d50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0xc0);
+  ProcessDataArrayA0(dataBuffer + 0xc0);
   return;
 }
 
@@ -63436,7 +63436,7 @@ void Unwind_180908d50(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908d60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0xc0);
+  ProcessDataArrayA0(dataBuffer + 0xc0);
   return;
 }
 
@@ -63445,7 +63445,7 @@ void Unwind_180908d60(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908d70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180057010(dataBuffer + 0xc0);
+  ProcessDataArrayA0(dataBuffer + 0xc0);
   return;
 }
 
@@ -63916,7 +63916,7 @@ void Unwind_180908f30(DataBuffer operationBase,int64_t dataBuffer)
     **(int **)(calculatedOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
-    FUN_1800a19c0(pmemoryBaseAddress);
+    InitializeDataBuffer(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -64041,7 +64041,7 @@ void Unwind_180909010(DataBuffer operationBase,int64_t dataBuffer)
        &UNK_180a01630;
   operationResult = *(int *)(*(int64_t *)(dataBuffer + 0x80) + 4);
   *(int *)((int64_t)operationResult + -0xac + validationContext) = operationResult + -0xa8;
-  FUN_18009fb60(dataBuffer + 0x88);
+  ExecuteSystemCommand(dataBuffer + 0x88);
   __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(dataBuffer + 0x90);
                     // WARNING: Could not recover jumptable at 0x00018009fc52. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -64092,7 +64092,7 @@ void Unwind_180909080(DataBuffer operationBase,int64_t dataBuffer)
     **(int **)(dataBuffer + 0xd8) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(dataBuffer + 0x104) != '\0') {
-    FUN_1800a19c0(validationStatusPointer);
+    InitializeDataBuffer(validationStatusPointer);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -64147,7 +64147,7 @@ void Unwind_1809090a0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x1d50) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x1d50) + 0x38))();
   }
-  FUN_1800ad6f0();
+  ProcessSystemOperations();
   if (*(int64_t **)(validationContext + 0x1cd0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x1cd0) + 0x38))();
   }
@@ -72060,7 +72060,7 @@ void Unwind_18090c240(DataBuffer operationBase,int64_t dataBuffer)
     **(int **)(calculatedOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
-    FUN_1800a19c0(pmemoryBaseAddress);
+    InitializeDataBuffer(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -72320,7 +72320,7 @@ void Unwind_18090c380(DataBuffer operationBase,int64_t dataBuffer)
     **(int **)(calculatedOffset + 0x68) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(calculatedOffset + 0x94) != '\0') {
-    FUN_1800a19c0(pmemoryBaseAddress);
+    InitializeDataBuffer(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -85994,7 +85994,7 @@ void Unwind_180910580(DataBuffer operationBase,int64_t dataBuffer)
     **(int **)(calculatedOffset + 0x60) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(calculatedOffset + 0x8c) != '\0') {
-    FUN_1800a19c0(pmemoryBaseAddress);
+    InitializeDataBuffer(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -86203,7 +86203,7 @@ void Unwind_1809106a0(DataBuffer operationBase,int64_t dataBuffer)
     **(int **)(calculatedOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
-    FUN_1800a19c0(pmemoryBaseAddress);
+    InitializeDataBuffer(pmemoryBaseAddress);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
