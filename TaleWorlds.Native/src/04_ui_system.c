@@ -5352,14 +5352,14 @@ void FinalizeUIFrame(void)
   undefined8 ModuleHandle;
   longlong SnapshotHandle;
   undefined1 encryptionKeyBuffer [128];
-  undefined8 uStack_348;
-  undefined8 uStack_340;
-  undefined1 auStack_324 [748];
-  ulonglong uStack_38;
+  undefined8 memoryAlignmentFlag;
+  undefined8 mutexId;
+  undefined1 processSnapshotBuffer [748];
+  ulonglong xorKeyResult;
   
-  uStack_348 = 0xfffffffffffffffe;
-  uStack_38 = XorEncryptionKey ^ (ulonglong)auStack_3c8;
-  uStack_340 = UI_SYSTEM_MUTEX_ID;
+  memoryAlignmentFlag = 0xfffffffffffffffe;
+  xorKeyResult = XorEncryptionKey ^ (ulonglong)encryptionKeyBuffer;
+  mutexId = UI_SYSTEM_MUTEX_ID;
   operationResult = _Mtx_lock(UI_SYSTEM_MUTEX_ID);
   if (operationResult != 0) {
     __Throw_C_error_std__YAXH_Z(operationResult);
@@ -5370,7 +5370,7 @@ void FinalizeUIFrame(void)
   while( true ) {
     if (SnapshotHandle != -1) {
                     // WARNING: Subroutine does not return
-      memset(auStack_324,0,0x234);
+      memset(processSnapshotBuffer,0,0x234);
     }
     operationResult = GetLastError();
     if (operationResult != 0x18) break;
