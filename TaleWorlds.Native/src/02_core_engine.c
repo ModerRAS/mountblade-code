@@ -120,6 +120,16 @@
 #define ProcessSystemDataStructureSetup FUN_18013c4e0        // 处理系统数据结构设置
 #define GetSystemCharacterDataStatus FUN_1801210b0           // 获取系统字符数据状态
 #define GetSystemConfigurationHandlePath FUN_180121300        // 获取系统配置句柄路径
+#define AllocateSystemConfigurationString FUN_18013cfa8        // 分配系统配置字符串
+#define ProcessUtf8InputBufferAllocation FUN_180141660         // 处理UTF-8输入缓冲区分配
+#define ProcessSystemDataBufferAllocation FUN_18014a1b0        // 处理系统数据缓冲区分配
+#define ProcessSystemMemoryBufferSetup FUN_18014a900          // 处理系统内存缓冲区设置
+#define ProcessCharacterCodeMemoryAllocation FUN_18014acf0   // 处理字符代码内存分配
+#define ProcessUtf8ToUtf16BufferConversion FUN_18014c570      // 处理UTF-8到UTF-16缓冲区转换
+#define ProcessSystemDataBufferManagement FUN_18014c850       // 处理系统数据缓冲区管理
+#define ProcessSystemMemoryDataAllocation FUN_18014e160       // 处理系统内存数据分配
+#define ProcessSystemMemoryPoolAllocation FUN_18014e700       // 处理系统内存池分配
+#define ProcessSystemCharacterEncodingConversion FUN_18014f980 // 处理系统字符编码转换
 
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
@@ -170748,7 +170758,7 @@ uint64_t * ProcessUtf16CharacterEncodingConversion(uint64_t CharacterCode,uint64
 
 
 
-uint64_t * FUN_18013cfa8(void
+uint64_t * AllocateSystemConfigurationString(void
 {
   uint32_t *CharacterStatusBuffer;
   byte SystemHighByte;
