@@ -142984,22 +142984,31 @@ ce5d(voidvoid FUN_18012ce5d(void
 
 
 
-cf49(uint32_t CharacterCodevoid ProcessCharacterCodeValidation(uint32_t CharacterCode
+/**
+ * @brief 处理字符代码验证
+ * 
+ * 该函数负责验证和处理输入的字符代码，根据系统状态设置相应的标志位
+ * 
+ * @param CharacterCode 输入的字符代码
+ * 
+ * @note 原始函数名：FUN_18012cf49
+ */
+void ProcessCharacterCodeValidation(uint32_t CharacterCode
 {
-  long long ProcessingResult;
-  char StringBuffer;
-  uint8_t MemoryAllocationIndex;
-  long long FrameRegisterPointer;
-  long long StackParameter2;
+  long long EventDataStructure;
+  char StatusFlag;
+  uint8_t ValidationIndex;
+  long long ContextFramePointer;
+  long long SystemStackParameter;
   
-  *(uint32_t *)(ProcessingResult + 0xd8) = CharacterCode;
-  if ((*(int *)(StackParameter2 + 0xd8) < 1) && (*(int *)(StackParameter2 + 0xdc) < 1)) {
-    StringBuffer = '\0';
+  *(uint32_t *)(EventDataStructure + 0xd8) = CharacterCode;
+  if ((*(int *)(SystemStackParameter + 0xd8) < 1) && (*(int *)(SystemStackParameter + 0xdc) < 1)) {
+    StatusFlag = '\0';
   }
   else {
-    StringBuffer = '\x01';
+    StatusFlag = '\x01';
   }
-  *(char *)(StackParameter2 + 0xb6) = StringBuffer;
+  *(char *)(SystemStackParameter + 0xb6) = StatusFlag;
   if ((((*(char *)(StackParameter2 + 0xb2) == '\0') &&
        (*(char *)(StackParameter2 + 0xaf) != '\0')) && (StringBuffer == '\0')) ||
      (((0 < *(int *)(StackParameter2 + 0xc4) || (0 < *(int *)(StackParameter2 + 200))) ||
