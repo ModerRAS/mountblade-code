@@ -125635,13 +125635,13 @@ void ProcessSystemMemoryCleanupAndValidation(void)
   *(int *)(DataNodeIndex + 0x1a9c) = ValidationResult;
   *(void *)(DataNodeIndex + 0x39c) = 0;
   *(uint32_t *)(DataNodeIndex + 0x398) = 0;
-  CharacterTablePointer8 = 2;
+  TableEntryCount = 2;
   UnicodeCharacterCode = PrimaryReturnCode;
-  QuaternaryReturnCode = PrimaryReturnCode;
+  LoopCounter = PrimaryReturnCode;
   if (*(int *)(DataNodeIndex + 0x1c68) != 0) {
     do {
-      StatusBuffer = (uint32_t *)(*(long long *)(QuaternaryReturnCode + *(long long *)(DataNodeIndex + 0x1c70)) + 0xb8);
-      CharacterTablePointer4 = CharacterTablePointer8;
+      StatusBuffer = (uint32_t *)(*(long long *)(LoopCounter + *(long long *)(DataNodeIndex + 0x1c70)) + 0xb8);
+      CharacterTablePointer = TableEntryCount;
       do {
         ValidationResult = StatusBuffer[1];
         if (ValidationResult < 0) {
@@ -125654,28 +125654,28 @@ void ProcessSystemMemoryCleanupAndValidation(void)
         }
         *StatusBuffer = 0;
         StatusBuffer = StatusBuffer + 4;
-        CharacterTablePointer4 = CharacterTablePointer4 + -1;
-      } while (CharacterTablePointer4 != 0);
+        CharacterTablePointer = CharacterTablePointer + -1;
+      } while (CharacterTablePointer != 0);
       MemoryAddressMask = (int)UnicodeCharacterCode + 1;
       UnicodeCharacterCode = (unsigned long long)MemoryAddressMask;
-      QuaternaryReturnCode = QuaternaryReturnCode + 8;
+      LoopCounter = LoopCounter + 8;
     } while (MemoryAddressMask != *(uint *)(DataNodeIndex + 0x1c68));
   }
-  CharacterTablePointer4 = *(long long *)(DataNodeIndex + 0x1cd8);
+  CharacterTablePointer = *(long long *)(DataNodeIndex + 0x1cd8);
   UnicodeCharacterCode = PrimaryReturnCode;
-  if ((CharacterTablePointer4 != 0) && ((*(uint *)(CharacterTablePointer4 + 0xc) & 0x2000) == 0)) {
-    UnicodeCharacterCode = *(unsigned long long *)(CharacterTablePointer4 + 0x3a0);
+  if ((CharacterTablePointer != 0) && ((*(uint *)(CharacterTablePointer + 0xc) & 0x2000) == 0)) {
+    UnicodeCharacterCode = *(unsigned long long *)(CharacterTablePointer + 0x3a0);
   }
-  uStackX_20 = UnicodeCharacterCode;
-  QuaternaryReturnCode = PrimaryReturnCode;
-  if (CharacterTablePointer4 != 0) {
-    QuaternaryReturnCode = *(unsigned long long *)(DataNodeIndex + 0x1ce8);
+  StackVariable = UnicodeCharacterCode;
+  LoopCounter = PrimaryReturnCode;
+  if (CharacterTablePointer != 0) {
+    LoopCounter = *(unsigned long long *)(DataNodeIndex + 0x1ce8);
   }
   SystemMemoryAllocationResult = PrimaryReturnCode;
-  Utf16CharacterCode5 = PrimaryReturnCode;
+  Utf16CharacterCode = PrimaryReturnCode;
   if (*(int *)(DataNodeIndex + 0x1aa0) != 0) {
     do {
-      MemoryAllocationIndex = *(unsigned long long *)(Utf16CharacterCode5 + *(long long *)(DataNodeIndex + 0x1aa8));
+      MemoryAllocationIndex = *(unsigned long long *)(Utf16CharacterCode + *(long long *)(DataNodeIndex + 0x1aa8));
       if ((((*(char *)(MemoryAllocationIndex + 0xaf) != '\0') && (*(char *)(MemoryAllocationIndex + 0xb6) == '\0')) &&
           ((*(uint *)(MemoryAllocationIndex + 0xc) >> 0x18 & 1) == 0)) && ((MemoryAllocationIndex != UnicodeCharacterCode && (MemoryAllocationIndex != QuaternaryReturnCode)))      {
         ProcessMemoryAllocation(MemoryAllocationIndex,*(uint *)(MemoryAllocationIndex + 0xc) >> 0x19 & 1);
