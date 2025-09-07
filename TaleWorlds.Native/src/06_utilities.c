@@ -70013,7 +70013,7 @@ void Unwind_1809083f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908420(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteDataValidationOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x108,8,0x20,ValidateDataHandler);
@@ -70022,21 +70022,21 @@ void Unwind_180908420(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessValidationCallbacks(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
-  int64_t *pdataContext;
+  int64_t *validationContext;
   DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
-  pdataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x388);
+  validationContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x388);
   memoryBaseAddress = SystemCleanupFlagAlternative;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x390);
-  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
+  for (validationStatusPointer = (DataBuffer *)*validationContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
-  if (*pdataContext == 0) {
+  if (*validationContext == 0) {
     return;
   }
     TerminateSystemE0();
