@@ -73748,164 +73748,169 @@ void InitializeUILayoutSystem(void)
 
 
 
- void FUN_180707a74(void)
-void FUN_180707a74(void)
+ /**
+ * 验证UI布局 - 验证UI布局的完整性和正确性
+ * 该函数检查UI元素的布局参数，确保它们符合预期约束
+ * 并计算布局相关的数值用于后续渲染
+ */
+void ValidateUILayout(void)
+void ValidateUILayout(void)
 
 {
-  ulonglong result;
-  UIHandle *psemaphoreHandle;
-  UIHandle EventTypeCode;
-  int localInt4;
-  int localInt5;
-  longlong contextData;
-  longlong localLong7;
-  float *plocalFloat8;
-  int localInt9;
-  ulonglong result0;
-  int uiOperationResult1;
-  longlong unmodifiedRBP;
-  int uiOperationResult2;
-  int uiOperationResult3;
-  ulonglong result4;
-  uint result5;
-  int unmodifiedR12D;
-  bool isCharacterMatch7;
-  float floatResult8;
-  float floatResult9;
-  float localFloat20;
-  UIHandle *stackParam000000d8;
-  ulonglong result6;
+  ulonglong validationResult;
+  UIHandle *layoutHandlePtr;
+  UIHandle layoutEventType;
+  int layoutIndexDiff;
+  int maxLayoutIndex;
+  longlong layoutContextData;
+  longlong layoutOffset;
+  float *layoutFloatPtr;
+  int currentLayoutIndex;
+  ulonglong iterationResult;
+  int layoutOperationResult1;
+  longlong baseFramePointer;
+  int layoutOperationResult2;
+  int layoutOperationResult3;
+  ulonglong loopCounter;
+  uint layoutParameter;
+  int frameOffset;
+  bool isValidLayout;
+  float minValue;
+  float maxValue;
+  float accumulatedValue;
+  UIHandle *layoutDataArray;
+  ulonglong arrayIndex;
   
-  *(UIDword *)stackParam000000d8 = 0;
-  localInt9 = *(int *)(unmodifiedRBP + 0x2054);
-  localInt5 = *(int *)(unmodifiedRBP + 0x2050);
-  localInt4 = localInt5 - localInt9;
-  uiOperationResult2 = localInt4 + 100;
-  if (-1 < localInt4) {
-    uiOperationResult2 = localInt4;
+  *(UIDword *)layoutDataArray = 0;
+  currentLayoutIndex = *(int *)(baseFramePointer + 0x2054);
+  maxLayoutIndex = *(int *)(baseFramePointer + 0x2050);
+  layoutIndexDiff = maxLayoutIndex - currentLayoutIndex;
+  layoutOperationResult2 = layoutIndexDiff + 100;
+  if (-1 < layoutIndexDiff) {
+    layoutOperationResult2 = layoutIndexDiff;
   }
-  result4 = 0;
-  localInt4 = 0;
-  if (((*(int *)(unmodifiedRBP + 8) / 0x32 < unmodifiedR12D) && (localInt9 != localInt5)) &&
-     (localInt9 = localInt9 + 1, localInt9 == 100)) {
-    localInt9 = 0;
+  loopCounter = 0;
+  layoutIndexDiff = 0;
+  if (((*(int *)(baseFramePointer + 8) / 0x32 < frameOffset) && (currentLayoutIndex != maxLayoutIndex)) &&
+     (currentLayoutIndex = currentLayoutIndex + 1, currentLayoutIndex == 100)) {
+    currentLayoutIndex = 0;
   }
-  uiOperationResult1 = 1;
-  uiOperationResult3 = localInt9 + -1;
-  if (localInt9 != localInt5) {
-    uiOperationResult3 = localInt9;
+  layoutOperationResult1 = 1;
+  layoutOperationResult3 = currentLayoutIndex + -1;
+  if (currentLayoutIndex != maxLayoutIndex) {
+    layoutOperationResult3 = currentLayoutIndex;
   }
-  if (uiOperationResult3 < 0) {
-    uiOperationResult3 = 99;
+  if (layoutOperationResult3 < 0) {
+    layoutOperationResult3 = 99;
   }
-  result0 = (ulonglong)uiOperationResult3;
-  contextData = result0 * 0x38;
-  psemaphoreHandle = (UIHandle *)(contextData + 0x206c + unmodifiedRBP);
-  EventTypeCode = psemaphoreHandle[1];
-  *stackParam000000d8 = *psemaphoreHandle;
-  stackParam000000d8[1] = EventTypeCode;
-  psemaphoreHandle = (UIHandle *)(contextData + 0x207c + unmodifiedRBP);
-  EventTypeCode = psemaphoreHandle[1];
-  stackParam000000d8[2] = *psemaphoreHandle;
-  stackParam000000d8[3] = EventTypeCode;
-  psemaphoreHandle = (UIHandle *)(contextData + 0x208c + unmodifiedRBP);
-  EventTypeCode = psemaphoreHandle[1];
-  stackParam000000d8[4] = *psemaphoreHandle;
-  stackParam000000d8[5] = EventTypeCode;
-  stackParam000000d8[6] = *(UIHandle *)(contextData + 0x209c + unmodifiedRBP);
-  localFloat20 = *(float *)((longlong)stackParam000000d8 + 4);
-  result6 = result4;
-  floatResult8 = localFloat20;
+  iterationResult = (ulonglong)layoutOperationResult3;
+  layoutContextData = iterationResult * 0x38;
+  layoutHandlePtr = (UIHandle *)(layoutContextData + 0x206c + baseFramePointer);
+  layoutEventType = layoutHandlePtr[1];
+  *layoutDataArray = *layoutHandlePtr;
+  layoutDataArray[1] = layoutEventType;
+  layoutHandlePtr = (UIHandle *)(layoutContextData + 0x207c + baseFramePointer);
+  layoutEventType = layoutHandlePtr[1];
+  layoutDataArray[2] = *layoutHandlePtr;
+  layoutDataArray[3] = layoutEventType;
+  layoutHandlePtr = (UIHandle *)(layoutContextData + 0x208c + baseFramePointer);
+  layoutEventType = layoutHandlePtr[1];
+  layoutDataArray[4] = *layoutHandlePtr;
+  layoutDataArray[5] = layoutEventType;
+  layoutDataArray[6] = *(UIHandle *)(layoutContextData + 0x209c + baseFramePointer);
+  accumulatedValue = *(float *)((longlong)layoutDataArray + 4);
+  arrayIndex = loopCounter;
+  minValue = accumulatedValue;
   do {
-    isCharacterMatch7 = result0 != 99;
-    result = result0 + 1;
-    result0 = result4;
-    if (isCharacterMatch7) {
-      result0 = result;
+    isValidLayout = iterationResult != 99;
+    validationResult = iterationResult + 1;
+    iterationResult = loopCounter;
+    if (isValidLayout) {
+      iterationResult = validationResult;
     }
-    floatResult9 = floatResult8;
-    if (result0 == (longlong)*(int *)(unmodifiedRBP + 0x2050)) break;
-    uiOperationResult1 = uiOperationResult1 + 1;
-    result5 = (int)result6 + 1;
-    result6 = (ulonglong)result5;
-    floatResult9 = *(float *)(result0 * 0x38 + 0x2070 + unmodifiedRBP);
-    localFloat20 = localFloat20 + floatResult9;
-    if (floatResult9 <= floatResult8) {
-      floatResult9 = floatResult8;
+    maxValue = minValue;
+    if (iterationResult == (longlong)*(int *)(baseFramePointer + 0x2050)) break;
+    layoutOperationResult1 = layoutOperationResult1 + 1;
+    layoutParameter = (int)arrayIndex + 1;
+    arrayIndex = (ulonglong)layoutParameter;
+    maxValue = *(float *)(iterationResult * 0x38 + 0x2070 + baseFramePointer);
+    accumulatedValue = accumulatedValue + maxValue;
+    if (maxValue <= minValue) {
+      maxValue = minValue;
     }
-    floatResult8 = floatResult9;
-  } while ((int)result5 < 3);
-  floatResult8 = localFloat20 / (float)uiOperationResult1;
-  if (localFloat20 / (float)uiOperationResult1 <= floatResult9 - 0.2) {
-    floatResult8 = floatResult9 - 0.2;
+    minValue = maxValue;
+  } while ((int)layoutParameter < 3);
+  minValue = accumulatedValue / (float)layoutOperationResult1;
+  if (accumulatedValue / (float)layoutOperationResult1 <= maxValue - 0.2) {
+    minValue = maxValue - 0.2;
   }
-  *(float *)((longlong)stackParam000000d8 + 4) = floatResult8;
-  *(int *)(unmodifiedRBP + 0x2058) =
-       *(int *)(unmodifiedRBP + 0x2058) + unmodifiedR12D / (*(int *)(unmodifiedRBP + 8) / 400);
-  localInt9 = *(int *)(unmodifiedRBP + 0x2058);
-  localInt5 = *(int *)(unmodifiedRBP + 0x2054);
-  if (7 < localInt9) {
+  *(float *)((longlong)layoutDataArray + 4) = minValue;
+  *(int *)(baseFramePointer + 0x2058) =
+       *(int *)(baseFramePointer + 0x2058) + frameOffset / (*(int *)(baseFramePointer + 8) / 400);
+  currentLayoutIndex = *(int *)(baseFramePointer + 0x2058);
+  maxLayoutIndex = *(int *)(baseFramePointer + 0x2054);
+  if (7 < currentLayoutIndex) {
     do {
-      localInt9 = localInt9 + -8;
+      currentLayoutIndex = currentLayoutIndex + -8;
       uiElementIndex = uiElementIndex + 1;
-    } while (7 < localInt9);
-    *(int *)(unmodifiedRBP + 0x2054) = localInt5;
-    *(int *)(unmodifiedRBP + 0x2058) = localInt9;
+    } while (7 < currentLayoutIndex);
+    *(int *)(baseFramePointer + 0x2054) = maxLayoutIndex;
+    *(int *)(baseFramePointer + 0x2058) = currentLayoutIndex;
   }
-  if (99 < localInt5) {
-    *(int *)(unmodifiedRBP + 0x2054) = localInt5 + -100;
+  if (99 < maxLayoutIndex) {
+    *(int *)(baseFramePointer + 0x2054) = maxLayoutIndex + -100;
   }
-  localFloat20 = 0.0;
-  localInt9 = uiOperationResult2 + -1;
-  if (uiOperationResult2 + -1 < 1) {
-    localInt9 = localInt4;
+  accumulatedValue = 0.0;
+  currentLayoutIndex = layoutOperationResult2 + -1;
+  if (layoutOperationResult2 + -1 < 1) {
+    currentLayoutIndex = layoutIndexDiff;
   }
-  contextData = (longlong)(100 - localInt9);
-  if (3 < contextData) {
-    plocalFloat8 = (float *)(unmodifiedRBP + 0x1eb4);
-    localLong7 = (contextData - 4U >> 2) + 1;
-    localInt4 = (int)localLong7 * 4;
-    result4 = localLong7 * 4;
+  layoutContextData = (longlong)(100 - currentLayoutIndex);
+  if (3 < layoutContextData) {
+    layoutFloatPtr = (float *)(baseFramePointer + 0x1eb4);
+    layoutOffset = (layoutContextData - 4U >> 2) + 1;
+    layoutIndexDiff = (int)layoutOffset * 4;
+    loopCounter = layoutOffset * 4;
     do {
-      localFloat20 = localFloat20 + plocalFloat8[-1] + *plocalFloat8 + plocalFloat8[1] + plocalFloat8[2];
-      plocalFloat8 = plocalFloat8 + 4;
-      localLong7 = localLong7 + -1;
-    } while (localLong7 != 0);
+      accumulatedValue = accumulatedValue + layoutFloatPtr[-1] + *layoutFloatPtr + layoutFloatPtr[1] + layoutFloatPtr[2];
+      layoutFloatPtr = layoutFloatPtr + 4;
+      layoutOffset = layoutOffset + -1;
+    } while (layoutOffset != 0);
   }
-  if ((longlong)result4 < contextData) {
-    contextData = contextData - result4;
-    plocalFloat8 = (float *)(unmodifiedRBP + 0x1eb0 + result4 * 4);
-    localInt4 = localInt4 + (int)contextData;
+  if ((longlong)loopCounter < layoutContextData) {
+    layoutContextData = layoutContextData - loopCounter;
+    layoutFloatPtr = (float *)(baseFramePointer + 0x1eb0 + loopCounter * 4);
+    layoutIndexDiff = layoutIndexDiff + (int)layoutContextData;
     do {
-      localFloat20 = localFloat20 + *plocalFloat8;
-      plocalFloat8 = plocalFloat8 + 1;
-      contextData = contextData + -1;
-    } while (contextData != 0);
+      accumulatedValue = accumulatedValue + *layoutFloatPtr;
+      layoutFloatPtr = layoutFloatPtr + 1;
+      layoutContextData = layoutContextData + -1;
+    } while (layoutContextData != 0);
   }
-  contextData = (longlong)localInt4;
-  if (contextData < 100) {
-    if (3 < 100 - contextData) {
-      plocalFloat8 = (float *)(unmodifiedRBP + 0x1d24 + contextData * 4);
-      localLong7 = (0x60U - contextData >> 2) + 1;
-      contextData = contextData + localLong7 * 4;
+  layoutContextData = (longlong)layoutIndexDiff;
+  if (layoutContextData < 100) {
+    if (3 < 100 - layoutContextData) {
+      layoutFloatPtr = (float *)(baseFramePointer + 0x1d24 + layoutContextData * 4);
+      layoutOffset = (0x60U - layoutContextData >> 2) + 1;
+      layoutContextData = layoutContextData + layoutOffset * 4;
       do {
-        localFloat20 = localFloat20 + plocalFloat8[-1] + *plocalFloat8 + plocalFloat8[1] + plocalFloat8[2];
-        plocalFloat8 = plocalFloat8 + 4;
-        localLong7 = localLong7 + -1;
-      } while (localLong7 != 0);
+        accumulatedValue = accumulatedValue + layoutFloatPtr[-1] + *layoutFloatPtr + layoutFloatPtr[1] + layoutFloatPtr[2];
+        layoutFloatPtr = layoutFloatPtr + 4;
+        layoutOffset = layoutOffset + -1;
+      } while (layoutOffset != 0);
     }
-    if (contextData < 100) {
-      localLong7 = 100 - contextData;
-      plocalFloat8 = (float *)(unmodifiedRBP + 0x1d20 + contextData * 4);
+    if (layoutContextData < 100) {
+      layoutOffset = 100 - layoutContextData;
+      layoutFloatPtr = (float *)(baseFramePointer + 0x1d20 + layoutContextData * 4);
       do {
-        localFloat20 = localFloat20 + *plocalFloat8;
-        plocalFloat8 = plocalFloat8 + 1;
-        localLong7 = localLong7 + -1;
-      } while (localLong7 != 0);
+        accumulatedValue = accumulatedValue + *layoutFloatPtr;
+        layoutFloatPtr = layoutFloatPtr + 1;
+        layoutOffset = layoutOffset + -1;
+      } while (layoutOffset != 0);
     }
   }
-  *(float *)((longlong)stackParam000000d8 + 0x14) =
-       (1.0 - localFloat20) * *(float *)(unmodifiedRBP + 0x2040) + localFloat20 * *(float *)(unmodifiedRBP + 0x2044);
+  *(float *)((longlong)layoutDataArray + 0x14) =
+       (1.0 - accumulatedValue) * *(float *)(baseFramePointer + 0x2040) + accumulatedValue * *(float *)(baseFramePointer + 0x2044);
   return;
 }
 

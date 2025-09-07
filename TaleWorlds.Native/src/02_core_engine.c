@@ -274,6 +274,13 @@
 #define LabelSystemConfiguration LAB_18008917c              // 系统配置标签
 #define LabelFinalProcessing LAB_1800892ba                    // 最终处理标签
 
+// 系统事件处理标签
+#define LabelSystemEventProcessingStart LAB_180071c1a        // 系统事件处理开始标签
+#define LabelSystemEventProcessingContinue LAB_180071d1f      // 系统事件处理继续标签
+#define LabelThreadStatusCheck LAB_180072d7b                  // 线程状态检查标签
+#define LabelDataSizeValidation LAB_1800721e1                 // 数据大小验证标签
+#define LabelMemoryAddressValidation LAB_1800729bd            // 内存地址验证标签
+
 // 浮点变量语义化映射
 #define FloatVariable7 PrimaryFloatCoefficient              // 主浮点系数
 #define MatrixTransformMultiplier2 SecondaryFloatCoefficient            // 次浮点系数  
@@ -41990,7 +41997,7 @@ SystemEventDataProcessingComplete: // 原始标签：LAB_180071b69
         }
         else {
           ProcessCurrentCharacter = CalculationFunctionAddress;
-          if (SystemStatusCode <= (uint)StackProcessingUnsignedValue78) goto LAB_180071c1a;
+          if (SystemStatusCode <= (uint)StackProcessingUnsignedValue78) goto LabelSystemEventProcessingStart;
           CalculationFunctionAddress = MemoryAllocationIndex;
           SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,SystemStatusCode,0x10,0x13);
         }
@@ -42032,7 +42039,7 @@ MemoryAllocationProcessingStart:
       *SystemEventPointer = 0;
     }
     else {
-      if (SystemStatusCode <= (uint)StackProcessingUnsignedValue78) goto LAB_180071d1f;
+      if (SystemStatusCode <= (uint)StackProcessingUnsignedValue78) goto LabelSystemEventProcessingContinue;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,SystemStatusCode,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
@@ -42233,7 +42240,7 @@ void ProcessSystemDataStructureValidation(uint64_t CharacterCode,long long Syste
   SystemUnsignedValue116 = 0;
   SystemStackRegisterFlagB0 = Utf8SourcePointer;
   SystemCurrentCharacterPointer = Utf16EndPointer;
-  if ((CoreEngineThreadStatus != '\0') || (EngineThreadCurrentCharacter != '\0')) goto LAB_180072d7b;
+  if ((CoreEngineThreadStatus != '\0') || (EngineThreadCurrentCharacter != '\0')) goto LabelThreadStatusCheck;
   BufferOffset = 0;
   SystemKeyPointer = 0;
   FormatSystemString(&BufferOffset,0x10,&SystemInfoHandlerTemplate,Utf8SourcePointer);
@@ -42291,7 +42298,7 @@ MemoryDataCopyStart:
           *CharacterStatusBuffer = 0;
         }
         else {
-          if (DataSize <= PrimaryReturnCode) goto LAB_1800721e1;
+          if (DataSize <= PrimaryReturnCode) goto LabelDataSizeValidation;
           CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
           CharacterStatusBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,CharacterStatusBuffer,DataSize,0x10);
         }
@@ -42597,7 +42604,7 @@ DataProcessingCompleteLabel:
           *DataProcessingBuffer = 0;
         }
         else {
-          if (MemoryAddressMask <= (uint)DataProcessingFlags) goto LAB_1800729bd;
+          if (MemoryAddressMask <= (uint)DataProcessingFlags) goto LabelMemoryAddressValidation;
           CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
           DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,MemoryAddressMask,0x10);
         }
