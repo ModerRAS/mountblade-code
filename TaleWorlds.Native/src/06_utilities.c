@@ -8302,16 +8302,16 @@ uint8_t SystemSecurityValidationFlagA202;    // UNK_180a3a820
 uint8_t SystemSecurityValidationFlagA203;    // UNK_180a3a830
 uint8_t SystemSecurityValidationFlagA204;    // UNK_180a3a850
 uint8_t SystemSecurityValidationFlagA205;    // UNK_180a3a860
-uint8_t UNK_180a3a870;
-uint8_t UNK_180a3a880;
-uint8_t UNK_180a3a898;
-uint8_t UNK_180a3a8b0;
-uint8_t UNK_180a3a8c0;
-uint8_t UNK_180a3a8d8;
-uint8_t UNK_180a3a8f0;
-uint8_t UNK_180a3a900;
-uint8_t UNK_180a3a910;
-uint8_t UNK_180a3a920;
+uint8_t SystemSecurityValidationFlagA206;    // UNK_180a3a870
+uint8_t SystemSecurityValidationFlagA207;    // UNK_180a3a880
+uint8_t SystemSecurityValidationFlagA208;    // UNK_180a3a898
+uint8_t SystemSecurityValidationFlagA209;    // UNK_180a3a8b0
+uint8_t SystemSecurityValidationFlagA210;    // UNK_180a3a8c0
+uint8_t SystemSecurityValidationFlagA211;    // UNK_180a3a8d8
+uint8_t SystemSecurityValidationFlagA212;    // UNK_180a3a8f0
+uint8_t SystemSecurityValidationFlagA213;    // UNK_180a3a900
+uint8_t SystemSecurityValidationFlagA214;    // UNK_180a3a910
+uint8_t SystemSecurityValidationFlagA215;    // UNK_180a3a920
 uint8_t UNK_180a3a938;
 uint8_t UNK_180a3a948;
 uint8_t UNK_180a3a960;
@@ -24124,17 +24124,17 @@ DataBuffer ExecuteDataCleanupA0(void)
     calculatedIndex = systemContext;
     if (0 < operationResult) {
       do {
-        sVar1 = *(short *)(*(int64_t *)(destinationIndexRegister + 600) + systemContext + 0x114);
+        short dataValidationFlag = *(short *)(*(int64_t *)(destinationIndexRegister + 600) + systemContext + 0x114);
         validationStatus = ProcessDataPointerA0();
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
         validationStatus = (**(FunctionPointer**)**(DataBuffer **)(registerContext + 8))
-                          (*(DataBuffer **)(registerContext + 8),&stack0x00000020,1,in_R9,sVar1 != 0);
+                          (*(DataBuffer **)(registerContext + 8),&stack0x00000020,1,in_R9,dataValidationFlag != 0);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        if ((sVar1 != 0) && (validationStatus = ValidateDataIntegrityA3(), (int)validationStatus != 0)) {
+        if ((dataValidationFlag != 0) && (validationStatus = ValidateDataIntegrityA3(), (int)validationStatus != 0)) {
           return validationStatus;
         }
         calculatedIndex = calculatedIndex + 1;
@@ -24213,10 +24213,10 @@ DataBuffer ValidateDataStreamA0(DataBuffer *operationBase,DataBuffer dataBuffer)
   DataBuffer operationResult;
   int operationStatus;
   int64_t systemContext;
-  int iStack0000000000000030;
+  int stackParameterCopy;
   
   inputParameter = *(int *)(systemContext + 0x18);
-  iStack0000000000000030 = inputParameter;
+  stackParameterCopy = inputParameter;
   operationResult = (**(FunctionPointer**)*operationBase)(operationBase,dataBuffer,4);
   if ((int)operationResult == 0) {
     operationStatus = 0;
