@@ -100014,71 +100014,78 @@ void FUN_18072b380(void)
 
 
 
-double FUN_18072b3a0(longlong uiContext,int dataSource)
-
+/**
+ * 计算浮点数数组的平方和
+ * 用于UI系统中向量长度计算或数据标准化处理
+ * 
+ * @param uiContext UI上下文指针，包含浮点数数组
+ * @param dataSource 数据源大小（字节数）
+ * @return 数组中所有浮点数的平方和
+ */
+double CalculateFloatArraySquareSum(longlong uiContext, int dataSource)
 {
-  float *pfloatResult;
-  float *plocalFloat2;
-  float *plocalFloat3;
+  float *currentFloatPtr;
+  float *previousFloatPtr;
+  float *nextFloatPtr;
   undefined8 *bufferPtr;
-  float localFloat5;
-  uint MaxProcessingCount;
-  longlong localLong7;
-  float *plocalFloat8;
-  int localInt9;
-  undefined8 *ptrResult0;
-  ulonglong result1;
-  double dVar12;
-  double dVar13;
-  double dVar14;
-  double dVar15;
-  double dVar16;
-  double dVar17;
-  double dVar18;
+  float currentFloatValue;
+  uint processCount;
+  longlong remainingCount;
+  float *arrayStartPtr;
+  int currentOffset;
+  undefined8 *dataBufferPtr;
+  ulonglong loopCounter;
+  double partialSum1;
+  double partialSum2;
+  double partialSum3;
+  double partialSum4;
+  double totalSquareSum;
+  double tempSum1;
+  double tempSum2;
   
-  localInt9 = 0;
-  dVar16 = 0.0;
+  currentOffset = 0;
+  totalSquareSum = 0.0;
   if (0 < dataSource + -3) {
-    plocalFloat8 = (float *)(uiContext + 8);
-    MaxProcessingCount = (dataSource - 4U >> 2) + 1;
-    result1 = (ulonglong)MaxProcessingCount;
-    localInt9 = MaxProcessingCount * 4;
+    arrayStartPtr = (float *)(uiContext + 8);
+    processCount = (dataSource - 4U >> 2) + 1;
+    loopCounter = (ulonglong)processCount;
+    currentOffset = processCount * 4;
     do {
-      pfloatResult = plocalFloat8 + -1;
-      plocalFloat2 = plocalFloat8 + -2;
-      localFloat5 = *plocalFloat8;
-      plocalFloat3 = plocalFloat8 + 1;
-      plocalFloat8 = plocalFloat8 + 4;
-      dVar16 = dVar16 + (double)*plocalFloat2 * (double)*plocalFloat2 + (double)*pfloatResult * (double)*pfloatResult +
-                        (double)localFloat5 * (double)localFloat5 + (double)*plocalFloat3 * (double)*plocalFloat3;
-      result1 = result1 - 1;
-    } while (result1 != 0);
+      currentFloatPtr = arrayStartPtr + -1;
+      previousFloatPtr = arrayStartPtr + -2;
+      currentFloatValue = *arrayStartPtr;
+      nextFloatPtr = arrayStartPtr + 1;
+      arrayStartPtr = arrayStartPtr + 4;
+      totalSquareSum = totalSquareSum + (double)*previousFloatPtr * (double)*previousFloatPtr + (double)*currentFloatPtr * (double)*currentFloatPtr +
+                        (double)currentFloatValue * (double)currentFloatValue + (double)*nextFloatPtr * (double)*nextFloatPtr;
+      loopCounter = loopCounter - 1;
+    } while (loopCounter != 0);
   }
-  if (localInt9 < dataSource) {
-    if (3 < (uint)(dataSource - localInt9)) {
-      MaxProcessingCount = dataSource - localInt9 & 0x80000003;
-      if ((int)MaxProcessingCount < 0) {
-        MaxProcessingCount = (MaxProcessingCount - 1 | 0xfffffffc) + 1;
+  if (currentOffset < dataSource) {
+    if (3 < (uint)(dataSource - currentOffset)) {
+      processCount = dataSource - currentOffset & 0x80000003;
+      if ((int)processCount < 0) {
+        processCount = (processCount - 1 | 0xfffffffc) + 1;
       }
-      dVar14 = 0.0;
-      dVar15 = 0.0;
-      dVar17 = 0.0;
-      dVar18 = 0.0;
-      ptrResult0 = (undefined8 *)(uiContext + (longlong)localInt9 * 4);
+      partialSum1 = 0.0;
+      partialSum2 = 0.0;
+      partialSum3 = 0.0;
+      partialSum4 = 0.0;
+      dataBufferPtr = (undefined8 *)(uiContext + (longlong)currentOffset * 4);
       do {
-        localInt9 = localInt9 + 4;
-        dVar12 = (double)(float)*ptrResult0;
-        dVar13 = (double)(float)((ulonglong)*ptrResult0 >> 0x20);
-        bufferPtr = ptrResult0 + 1;
-        ptrResult0 = ptrResult0 + 2;
-        dVar14 = dVar14 + dVar12 * dVar12;
-        dVar15 = dVar15 + dVar13 * dVar13;
-        dVar12 = (double)(float)*bufferPtr;
-        dVar13 = (double)(float)((ulonglong)*bufferPtr >> 0x20);
-        dVar17 = dVar17 + dVar12 * dVar12;
-        dVar18 = dVar18 + dVar13 * dVar13;
-      } while (localInt9 < (int)(dataSource - MaxProcessingCount));
-      dVar16 = dVar16 + dVar14 + dVar17 + dVar15 + dVar18;
+        currentOffset = currentOffset + 4;
+        tempSum1 = (double)(float)*dataBufferPtr;
+        tempSum2 = (double)(float)((ulonglong)*dataBufferPtr >> 0x20);
+        bufferPtr = dataBufferPtr + 1;
+        dataBufferPtr = dataBufferPtr + 2;
+        partialSum1 = partialSum1 + tempSum1 * tempSum1;
+        partialSum2 = partialSum2 + tempSum2 * tempSum2;
+        tempSum1 = (double)(float)*bufferPtr;
+        tempSum2 = (double)(float)((ulonglong)*bufferPtr >> 0x20);
+        partialSum3 = partialSum3 + tempSum1 * tempSum1;
+        partialSum4 = partialSum4 + tempSum2 * tempSum2;
+      } while (currentOffset < (int)(dataSource - processCount));
+      totalSquareSum = totalSquareSum + partialSum1 + partialSum3 + partialSum2 + partialSum4;
     }
     if (localInt9 < dataSource) {
       if (3 < dataSource - localInt9) {
