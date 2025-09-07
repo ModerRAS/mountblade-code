@@ -198,7 +198,25 @@
 #define ExceptionHandlerContextStateOffset 0x58        // 异常处理上下文状态偏移量
 #define ExceptionStatePrimaryOffset 0x20               // 异常状态主偏移量
 #define ExceptionStateSecondaryOffset 0x28             // 异常状态次偏移量
-#define ExceptionHandlerCallbackOffset10 0x10          // 异常处理器回调偏移量10
+
+// 组件上下文相关偏移量常量定义
+#define ComponentContextDataOffset 0xc                 // 组件上下文数据偏移量
+#define ComponentContextStatusOffset 0x1c             // 组件上下文状态偏移量
+#define ComponentContextCounterOffset 0x24             // 组件上下文计数器偏移量
+
+// 缓冲区相关偏移量常量定义
+#define BufferDataOffset 0xc                           // 缓冲区数据偏移量
+#define BufferStatusOffset 0x1c                       // 缓冲区状态偏移量
+#define BufferCounterOffset 0x24                      // 缓冲区计数器偏移量
+
+// 异常处理相关偏移量常量定义
+#define ExceptionHandlingBufferOffset 7               // 异常处理缓冲区偏移量
+#define ExceptionHandlerContextOffset260 0x260         // 异常处理上下文偏移量260
+#define ExceptionHandlerContextOffset268 0x268         // 异常处理上下文偏移量268
+
+// 数据处理相关偏移量常量定义
+#define DataProcessingFlagValue 3                      // 数据处理标志值
+#define DataProcessingArrayMultiplier 4                 // 数据处理数组乘数
 #define ExceptionHandlerCallbackOffset30 0x30          // 异常处理器回调偏移量30
 #define ExceptionHandlerCallbackOffsetD0 0xd0          // 异常处理器回调偏移量D0
 #define ExceptionHandlerContextOffsetC0 0xc0           // 异常处理上下文偏移量C0
