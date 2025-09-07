@@ -19999,31 +19999,31 @@ DataBuffer AllocateAndInitializeMemory(DataBuffer memoryManager,int memorySize)
   int bufferSize;             // 缓冲区大小
   
   newBuffer = (DataBuffer *)0x0;
-  if (registerValueEDI == 0) {
+  if (bufferSize == 0) {
 CalculationLabel:
-    if ((0 < *(int *)((int64_t)registerContext + 0xc)) && (*registerContext != 0)) {
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*registerContext,&SystemMemoryPoolB,0x100,1);
+    if ((0 < *(int *)((int64_t)bufferPointer + 0xc)) && (*bufferPointer != 0)) {
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*bufferPointer,&SystemMemoryPoolB,0x100,1);
     }
-    *registerContext = (int64_t)validationStatusPointer;
-    *(int *)((int64_t)registerContext + 0xc) = registerValueEDI;
+    *bufferPointer = (int64_t)newBuffer;
+    *(int *)((int64_t)bufferPointer + 0xc) = bufferSize;
     return 0;
   }
-  if (dataBuffer * 0xc - 1U < MaxSafeBufferSize) {
-    validationStatusPointer = (DataBuffer *)
-             AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),dataBuffer * 0xc,&SystemMemoryPoolB,0xf4
+  if (memorySize * 0xc - 1U < MaxSafeBufferSize) {
+    newBuffer = (DataBuffer *)
+             AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),memorySize * 0xc,&SystemMemoryPoolB,0xf4
                            ,0);
-    if (validationStatusPointer != (DataBuffer *)0x0) {
-      inputParameter = (int)registerContext[1];
-      calculatedIndex = (int64_t)inputParameter;
-      if ((inputParameter != 0) && (dataContext = *registerContext, 0 < inputParameter)) {
-        poperationResult = validationStatusPointer;
+    if (newBuffer != (DataBuffer *)0x0) {
+      itemCount = (int)bufferPointer[1];
+      itemsToCopy = (int64_t)itemCount;
+      if ((itemCount != 0) && (sourceBuffer = *bufferPointer, 0 < itemCount)) {
+        destinationPointer = newBuffer;
         do {
-          *poperationResult = *(DataBuffer *)((dataContext - (int64_t)validationStatusPointer) + (int64_t)poperationResult);
-          *(DataWord *)(poperationResult + 1) =
-               *(DataWord *)((dataContext - (int64_t)validationStatusPointer) + 8 + (int64_t)poperationResult);
-          poperationResult = (DataBuffer *)((int64_t)poperationResult + 0xc);
-          calculatedIndex = calculatedIndex + -1;
-        } while (calculatedIndex != 0);
+          *destinationPointer = *(DataBuffer *)((sourceBuffer - (int64_t)newBuffer) + (int64_t)destinationPointer);
+          *(DataWord *)(destinationPointer + 1) =
+               *(DataWord *)((sourceBuffer - (int64_t)newBuffer) + 8 + (int64_t)destinationPointer);
+          destinationPointer = (DataBuffer *)((int64_t)destinationPointer + 0xc);
+          itemsToCopy = itemsToCopy + -1;
+        } while (itemsToCopy != 0);
       }
       goto MemoryCleanupLabel;
     }
@@ -20051,19 +20051,20 @@ DataBuffer QuerySystemStatus(void)
 DataBuffer ValidateParameters(int64_t *contextPointer,int validationCount)
 
 {
-  int64_t exceptionHandlerContext;
+  int64_t allocatedMemory;
+  int memorySize;
   
-  if (dataBuffer < (int)operationBase[1]) {
+  if (validationCount < (int)contextPointer[1]) {
     return ResourceInvalidErrorCode;
   }
-  exceptionHandlerContext = 0;
-  if (dataBuffer != 0) {
-    if (dataBuffer * 0xc - 1U < MaxSafeBufferSize) {
-      exceptionHandlerContext = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),dataBuffer * 0xc,&SystemMemoryPoolB,
+  allocatedMemory = 0;
+  if (validationCount != 0) {
+    if (validationCount * 0xc - 1U < MaxSafeBufferSize) {
+      allocatedMemory = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),validationCount * 0xc,&SystemMemoryPoolB,
                             0xf4,0,0,1);
-      if (exceptionHandlerContext != 0) {
-        if ((int)operationBase[1] != 0) {
-            memcpy(exceptionHandlerContext,*operationBase,(int64_t)(int)operationBase[1] * 0xc);
+      if (allocatedMemory != 0) {
+        if ((int)contextPointer[1] != 0) {
+            memcpy(allocatedMemory,*contextPointer,(int64_t)(int)contextPointer[1] * 0xc);
         }
         goto ResourceReleaseLabel;
       }
@@ -20071,11 +20072,11 @@ DataBuffer ValidateParameters(int64_t *contextPointer,int validationCount)
     return 0x26;
   }
 DataTransferLabel:
-  if ((0 < *(int *)((int64_t)operationBase + 0xc)) && (*operationBase != 0)) {
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*operationBase,&SystemMemoryPoolB,0x100,1);
+  if ((0 < *(int *)((int64_t)contextPointer + 0xc)) && (*contextPointer != 0)) {
+      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*contextPointer,&SystemMemoryPoolB,0x100,1);
   }
-  *operationBase = exceptionHandlerContext;
-  *(int *)((int64_t)operationBase + 0xc) = dataBuffer;
+  *contextPointer = allocatedMemory;
+  *(int *)((int64_t)contextPointer + 0xc) = validationCount;
   return 0;
 }
 
