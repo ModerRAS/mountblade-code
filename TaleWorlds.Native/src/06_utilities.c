@@ -24071,7 +24071,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
                 if ((int)memoryBaseAddress != 0) {
                   return memoryBaseAddress;
                 }
-                if ((sVar1 != 0) && (memoryBaseAddress = ValidateDataIntegrityA3(operationBase,memoryPointer + 0x10), (int)memoryBaseAddress != 0))
+                if ((statusFlag != 0) && (memoryBaseAddress = ValidateDataIntegrityA3(operationBase,memoryPointer + 0x10), (int)memoryBaseAddress != 0))
                 {
                   return memoryBaseAddress;
                 }
@@ -42612,7 +42612,7 @@ void InitializeMemoryPoolExceptionHandler(DataBuffer exceptionContext,int64_t me
  * @param operationFlagB 操作标志B
  * @note 原始函数名：Unwind_180903760
  */
-void Unwind_180903760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionDataA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -42661,7 +42661,7 @@ void Unwind_180903760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
  * @param operationFlagB 操作标志B
  * @note 原始函数名：Unwind_180903770
  */
-void Unwind_180903770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionDataA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
