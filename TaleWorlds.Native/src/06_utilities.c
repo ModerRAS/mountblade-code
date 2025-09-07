@@ -12405,7 +12405,7 @@ void ProcessUtilityOperation(int64_t operationParams,uint64_t systemContext)
   ParamValue = *(uint32_t *)(operationParams + 0x18);
   OperationParams[0] = 2;
   resourceDescriptor = operationParams;
-  OperationResult = ExecuteSystemOperation(systemContext,OperationParams,*(uint32_t *)(resourceDescriptor + 0x1c),CallbackData);
+  OperationResult = ExecuteSystemOperation(systemContext,OperationParams,*(uint32_t *)(resourceDescriptor + ResourceDescriptorValidationOffset),CallbackData);
   if (OperationResult == 0) {
     ExecuteCallbackA0(systemContext,CallbackData[0]);
   }
@@ -16449,7 +16449,7 @@ RangeValidationSuccess:
     calculatedOffset = LocalStackOffset + -8;
   }
   *(DataWord *)(calculatedOffset + 0xa4 + (int64_t)*(int *)(operationBase + 0x18) * 4) =
-       *(DataWord *)(resourceDescriptor + 0x1c);
+       *(DataWord *)(resourceDescriptor + ResourceDescriptorValidationOffset);
   calculatedOffset = *(int64_t *)(dataBuffer + 0x98);
   if ((*(int *)(calculatedOffset + 0x180) != 0) || (*(int *)(calculatedOffset + 0x184) != 0)) {
     LocalStackOffset = 0;
@@ -16498,7 +16498,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
     dataContext = transferSize + -8;
   }
   *(DataWord *)(dataContext + 0x94 + (int64_t)*(int *)(dataDescriptor + 0x18) * 4) =
-       *(DataWord *)(resourceDescriptor + 0x1c);
+       *(DataWord *)(resourceDescriptor + ResourceDescriptorValidationOffset);
   dataContext = *(int64_t *)(systemContext + 0x98);
   if ((*(int *)(dataContext + 0x180) != 0) || (*(int *)(dataContext + 0x184) != 0)) {
     transferSize = 0;
@@ -32400,7 +32400,7 @@ void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
           *(DataWord *)(DataContext + 0x200) = *(DataWord *)(DataContext + ExceptionHandlerCallbackOffset10);
           *(DataWord *)(DataContext + 0x204) = *(DataWord *)(DataContext + 0x14);
           *(DataWord *)(DataContext + 0x208) = *(DataWord *)(DataContext + 0x18);
-          *(DataWord *)(DataContext + 0x20c) = *(DataWord *)(resourceDescriptor + 0x1c);
+          *(DataWord *)(DataContext + 0x20c) = *(DataWord *)(resourceDescriptor + ResourceDescriptorValidationOffset);
             ExecutePortControlOperation(SecurityBuffer,portControlBuffer);
         }
       }
