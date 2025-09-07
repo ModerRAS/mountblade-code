@@ -10189,8 +10189,8 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
         }
         allocatedMemory5 = (longlong)((validationResult1 + 1) % operationResult8);
         if ((!bVar5) ||
-           ((fVar31 = (*pfloatResult7 - *(float *)(lVar4 + 4 + allocatedMemory5 * 8)) * (fStackX_18 - pfloatResult7[-1]) -
-                      (fStackX_1c - *pfloatResult7) * (pfloatResult7[-1] - *(float *)(lVar4 + allocatedMemory5 * 8)),
+           ((fVar31 = (*pfloatResult7 - *(float *)(lVar4 + 4 + allocatedMemory5 * 8)) * (rotationAngleX - pfloatResult7[-1]) -
+                      (rotationAngleY - *pfloatResult7) * (pfloatResult7[-1] - *(float *)(lVar4 + allocatedMemory5 * 8)),
             fVar31 <= 0.0 && (fVar31 < 0.0)))) {
           bVar5 = false;
         }
