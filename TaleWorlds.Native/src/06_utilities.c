@@ -18900,7 +18900,7 @@ SecurityValidationLabel:
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
+          puStack_2f8 = &SystemValidationDataTableA4;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -18909,7 +18909,7 @@ SecurityValidationLabel:
         loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
+          puStack_2f8 = &SystemValidationDataTableA5;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -18947,7 +18947,7 @@ SecurityValidationLabel:
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
+          puStack_2f8 = &SystemValidationDataTableA4;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -18956,7 +18956,7 @@ SecurityValidationLabel:
         loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
+          puStack_2f8 = &SystemValidationDataTableA5;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -18994,7 +18994,7 @@ SecurityValidationLabel:
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
+          puStack_2f8 = &SystemValidationDataTableA4;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -19003,7 +19003,7 @@ SecurityValidationLabel:
         loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
+          puStack_2f8 = &SystemValidationDataTableA5;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -19041,7 +19041,7 @@ SecurityValidationLabel:
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
+          puStack_2f8 = &SystemValidationDataTableA4;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -19050,7 +19050,7 @@ SecurityValidationLabel:
         loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
+          puStack_2f8 = &SystemValidationDataTableA5;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -40271,6 +40271,17 @@ void CleanupExceptionPointers140(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * 线程内存清理函数 - 清理线程相关的内存资源
+ * 
+ * 该函数负责清理线程执行过程中分配的内存资源，包括：
+ * - 验证线程上下文的有效性
+ * - 释放线程特定的内存分配
+ * - 清理线程局部存储数据
+ * 
+ * @param operationBase 操作基址，包含系统操作相关的数据结构
+ * @param dataBuffer 数据缓冲区指针，包含线程相关的数据信息
+ */
 void CleanupThreadMemory150(DataBuffer operationBase,int64_t dataBuffer)
 
 {
