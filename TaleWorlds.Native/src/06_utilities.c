@@ -60048,7 +60048,20 @@ void SetDefaultExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907320(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器A1
+ * 
+ * 在异常处理时设置默认的异常处理器B，确保系统能够正确处理异常。
+ * 该函数将数据缓冲区中的异常处理器指针设置为默认异常处理器B。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常处理器指针信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907320
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void SetDefaultExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x130) = &DefaultExceptionHandlerB;
@@ -60057,7 +60070,20 @@ void Unwind_180907320(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907330(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放排他锁A0
+ * 
+ * 在异常处理时释放排他锁，确保系统能够正确处理资源锁定状态。
+ * 该函数检查数据缓冲区中的锁状态，如果锁被占用则释放排他锁。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含锁状态信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907330
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void ReleaseExclusiveLockA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x30) != '\0') {
@@ -60068,7 +60094,20 @@ void Unwind_180907330(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907340(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放排他锁A1
+ * 
+ * 在异常处理时释放排他锁，确保系统能够正确处理资源锁定状态。
+ * 该函数检查数据缓冲区中的锁状态，如果锁被占用则释放排他锁。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含锁状态信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907340
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void ReleaseExclusiveLockA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x30) != '\0') {
