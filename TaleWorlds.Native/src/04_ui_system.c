@@ -22139,12 +22139,12 @@ void CreateUIWidget(longlong uiContext,longlong dataSource,undefined8 targetBuff
   undefined1 *psemaphoreHandle2;
   char widgetValidationFlag;
   longlong widgetLayoutIndex;
-  ulonglong semaphoreHandle5;
-  int uiValidationResult6;
-  ulonglong semaphoreHandle7;
-  longlong componentIndex8;
-  byte IsEventProcessingActive9;
-  byte bVar30;
+  ulonglong widgetRenderSemaphore;
+  int widgetValidationResult;
+  ulonglong widgetEventSemaphore;
+  longlong widgetAnimationIndex;
+  byte widgetEventProcessingFlag;
+  byte widgetAnimationFlag;
   longlong stringCompareIndex1;
   int uiCompareResult2;
   int uiCompareResult3;
