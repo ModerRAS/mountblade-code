@@ -18597,7 +18597,7 @@ DataBuffer UtilityNoOperationK(void)
 
 {
   int64_t exceptionHandlerContext;
-  int inputAccumulatorRegisterEAX;      // 输入累加器寄存器EAX
+  int InputAccumulator;      // 输入累加器寄存器EAX
   DataBuffer operationResult;
   uint64_t validationStatus;
   int64_t calculatedIndex;
@@ -18609,12 +18609,12 @@ DataBuffer UtilityNoOperationK(void)
   uint64_t securityCheckResult;
   uint64_t statusCounter;
   
-  if (validationStatus == inputAccumulatorRegisterEAX) {
+  if (validationStatus == InputAccumulator) {
     calculatedValue = validationStatus * 2;
     if (calculatedValue < 4) {
       calculatedValue = 4;
     }
-    if (((calculatedValue <= inputAccumulatorRegisterEAX) || ((int)registerContext[3] != inputAccumulatorRegisterEAX)) || ((int)registerContext[4] != -1)) {
+    if (((calculatedValue <= InputAccumulator) || ((int)registerContext[3] != InputAccumulator)) || ((int)registerContext[4] != -1)) {
       return ResourceInvalidErrorCode;
     }
     operationResult = (int)*(uint *)((int64_t)registerContext + 0x1c) >> 0x1f;
@@ -19231,7 +19231,7 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
 
 {
   int64_t exceptionHandlerContext;
-  int inputAccumulatorRegisterEAX;
+  int InputAccumulator;
   int operationResult;
   int operationStatus;
   DataBuffer memoryBaseAddress;
@@ -19247,8 +19247,8 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
   DataWord *contextPointer;
   DataBuffer systemContextBuffer;
   
-  referenceCountPointer1 = (int *)(*DestinationContext + (int64_t)inputAccumulatorRegisterEAX * 4);
-  operationResult = *(int *)(*DestinationContext + (int64_t)inputAccumulatorRegisterEAX * 4);
+  referenceCountPointer1 = (int *)(*DestinationContext + (int64_t)InputAccumulator * 4);
+  operationResult = *(int *)(*DestinationContext + (int64_t)InputAccumulator * 4);
   if (operationResult != -1) {
     exceptionHandlerContext = DestinationContext[2];
     do {
@@ -25877,7 +25877,7 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
   char *sourceCharacterPointer;
   code *validationFlag;
   char validationResult;
-  DataWord inputAccumulatorRegisterEAX;
+  DataWord InputAccumulator;
   ByteTriple dataFlags;
   int LoopCounter;
   DataWord AddressRegister;
@@ -25886,8 +25886,8 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
   int *StackIntegerPointerD;
   DataWord memoryBaseAddress;
   
-  dataFlags = (ByteTriple)((uint)inputAccumulatorRegisterEAX >> 8);
-  validationResult = (char)inputAccumulatorRegisterEAX + -0x57 + carryFlag;
+  dataFlags = (ByteTriple)((uint)InputAccumulator >> 8);
+  validationResult = (char)InputAccumulator + -0x57 + carryFlag;
   memoryBaseAddress = CONCAT31(dataFlags,validationResult);
   *(DataWord *)CONCAT44(AddressRegister,memoryBaseAddress) = memoryBaseAddress;
   *(uint *)(operationBase + -0x565dff77) = *(uint *)(operationBase + -0x565dff77) & StackFrameRegister;
@@ -26118,14 +26118,14 @@ DataBuffer ResetDataCacheA0(void)
 
 {
   float ValidationFloatValue;
-  int inputAccumulatorRegisterEAX;
+  int InputAccumulator;
   DataBuffer operationResult;
   DataBuffer *validationStatusPointer;
   int64_t registerContext;
   DataBuffer StackFrameContext;
   int64_t DestinationContext;
   
-  if (inputAccumulatorRegisterEAX == 0x1b) {
+  if (InputAccumulator == 0x1b) {
     if (*(uint *)(registerContext + 0x40) < 0x3b) {
       operationResult = ProcessDataOperationA5();
       if ((int)operationResult != 0) {
@@ -26156,7 +26156,7 @@ DataBuffer ResetDataCacheA0(void)
       return 0xd;
     }
   }
-  else if ((inputAccumulatorRegisterEAX == 0x12) && (*(uint *)(registerContext + 0x40) < 0x40)) {
+  else if ((InputAccumulator == 0x12) && (*(uint *)(registerContext + 0x40) < 0x40)) {
     operationResult = QuerySystemDataA2();
     if ((int)operationResult != 0) {
       return operationResult;
@@ -26269,7 +26269,7 @@ uint64_t GetSystemValidationContext(void)
   operationResult = 0;
   dataFlags = 0;
   validationOutcome = 0;
-  if (inputAccumulatorRegisterEAX < 0x8c) {
+  if (InputAccumulator < 0x8c) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return (uint64_t)registerValueEDI;
     }
@@ -26299,10 +26299,10 @@ DataCheckpointB:
       return (uint64_t)validationStatus;
     }
     *(uint *)(StackFrameContext + 0xc4) = (*(uint *)(StackFrameContext + 0xc4) | dataFlags) & ~operationResult;
-    inputAccumulatorRegisterEAX = *(uint *)(registerContext + 8);
+    InputAccumulator = *(uint *)(registerContext + 8);
   }
   memoryBaseAddress = operationResult;
-  if (0x8b < inputAccumulatorRegisterEAX) {
+  if (0x8b < InputAccumulator) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
       memoryBaseAddress = OperateDataO0(*registerContext,StackFrameContext + 0xc4,4);
     }
@@ -28294,7 +28294,7 @@ DataProcessLabelC:
 void CheckSystemStatusB0(void)
 
 {
-  uint inputAccumulatorRegisterEAX;
+  uint InputAccumulator;
   int inputParameter;
   int operationResult;
   uint validationStatus;
@@ -28306,7 +28306,7 @@ void CheckSystemStatusB0(void)
   unsigned int stackValidationFlag;
   uint validationFlagParameter;
   
-  validationFlagParameter = inputAccumulatorRegisterEAX;
+  validationFlagParameter = InputAccumulator;
   inputParameter = ExecuteDataValidationOperation();
   if (inputParameter != 0) {
     return;
@@ -29937,7 +29937,7 @@ uint64_t ProcessSystemDataD0(void)
 {
   int64_t *exceptionHandlerContextPointer;
   int64_t dataContext;
-  int inputAccumulatorRegisterEAX;
+  int InputAccumulator;
   uint validationStatus;
   uint64_t memoryBaseAddress;
   int64_t *registerContext;
@@ -29962,7 +29962,7 @@ uint64_t ProcessSystemDataD0(void)
   float floatResultA_09;
   uint64_t validationOutcome;
   
-  operationResult = inputAccumulatorRegisterEAX + 4;
+  operationResult = InputAccumulator + 4;
   validationOutcome = 0;
   dataFlags = 0;
   memoryBaseAddress = validationOutcome;
@@ -31547,7 +31547,7 @@ uint64_t ProcessSystemDataCleanup(void)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  uint inputAccumulatorRegisterEAX;
+  uint InputAccumulator;
   uint operationResult;
   uint64_t registerContext;
   int64_t *DestinationContext;
@@ -31557,7 +31557,7 @@ uint64_t ProcessSystemDataCleanup(void)
   uint stackDataSize;
   
   operationResult = (uint)registerContext;
-  if (2 < inputAccumulatorRegisterEAX) goto ProcessCheckpointValidationExit;
+  if (2 < InputAccumulator) goto ProcessCheckpointValidationExit;
   if (*(uint *)(DestinationContext[1] + 0x18) != (uint)contextPointer) goto ProcessCheckpointValidationError2;
   exceptionHandlerContextPointer = (int64_t *)*DestinationContext;
   if (*exceptionHandlerContextPointer != 0) {
@@ -34319,7 +34319,7 @@ uint64_t ValidateDataBufferWithParameters(DataBuffer bufferA,DataBuffer bufferB,
 {
   int64_t *exceptionHandlerContextPointer;
   int64_t dataContext;
-  uint inputAccumulatorRegisterEAX;
+  uint InputAccumulator;
   uint validationStatus;
   uint64_t memoryBaseAddress;
   uint64_t operationResult;
@@ -34332,7 +34332,7 @@ uint64_t ValidateDataBufferWithParameters(DataBuffer bufferA,DataBuffer bufferB,
   bool isValidationComplete;
   
   operationResult = 0x1c;
-  if (0x7e < inputAccumulatorRegisterEAX) goto ProcessCheckpointValidationExit2;
+  if (0x7e < InputAccumulator) goto ProcessCheckpointValidationExit2;
   if (*(int *)(DestinationContext[1] + 0x18) != (int)operationFlagA) {
     return ResourceInvalidErrorCode;
   }
@@ -34589,9 +34589,9 @@ ProcessCheckpointValidationError9:
     loopCounter = (DataWord)operationFlagA;
   }
   *(DataWord *)(contextPointer + 0x38) = loopCounter;
-  inputAccumulatorRegisterEAX = *(uint *)(DestinationContext + 8);
+  InputAccumulator = *(uint *)(DestinationContext + 8);
 ProcessCheckpointValidationExit2:
-  if (inputAccumulatorRegisterEAX < 0x7f) {
+  if (InputAccumulator < 0x7f) {
     operationResult = operationFlagA & SystemCleanupFlag;
   }
   else if (*(int *)(DestinationContext[1] + 0x18) == 0) {
@@ -35082,7 +35082,7 @@ DataBuffer ReturnFixedStatusCodeA3(void)
 void ConfigureSystemOptionsC1(void)
 
 {
-  int inputAccumulatorRegisterEAX;
+  int InputAccumulator;
   int inputParameter;
   int operationResult;
   int64_t *registerContext;
@@ -35090,7 +35090,7 @@ void ConfigureSystemOptionsC1(void)
   int64_t systemContext;
   DataWord InputParamB0;
   
-  if (inputAccumulatorRegisterEAX == 0x1b) {
+  if (InputAccumulator == 0x1b) {
     if (*(uint *)(registerContext + 8) < 0x3b) {
       inputParameter = GetInputParameterStatus();
       if (inputParameter != 0) {
@@ -35099,7 +35099,7 @@ void ConfigureSystemOptionsC1(void)
       goto ProcessCheckpointValidationCase;
     }
   }
-  else if ((inputAccumulatorRegisterEAX == 0x12) && (*(uint *)(registerContext + 8) < 0x40)) {
+  else if ((InputAccumulator == 0x12) && (*(uint *)(registerContext + 8) < 0x40)) {
     inputParameter = ExecuteDataBufferOperation();
     if (inputParameter != 0) {
       return;
@@ -60788,7 +60788,21 @@ void ManageResourceReferenceCountAtOffset88(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_180906b60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 批量重置异常数据缓冲区处理器
+ * 
+ * 该函数负责批量重置异常数据缓冲区中的处理器。它会遍历数据缓冲区中的每个异常处理器，
+ * 将其设置为临时异常处理器，然后重置状态，最后设置为默认异常处理器B。
+ * 如果发现异常状态，会调用系统终止函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906b60
+ * @note 这是一个异常展开（unwind）处理函数，用于批量重置异常处理器
+ * @warning 如果异常数据缓冲区状态异常，会调用系统终止函数
+ */
+void BatchResetExceptionDataBufferHandlers(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
