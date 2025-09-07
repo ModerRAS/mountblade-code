@@ -19696,9 +19696,9 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   int loopIndex;
   uint8_t **ppdataFlags;
   int calculatedValue;
-  ByteFlag EncryptionKeyBufferA [32];
-  DataWord systemConfigurationWord;
-  float colorDataArray [3];
+  ByteFlag PrimaryEncryptionKeyBuffer [32];
+  DataWord systemConfigurationData;
+  float rgbColorData [3];
   uint8_t *securityValidationContext;
   int cleanupStepIndex;
   DataBuffer memoryOperationBufferA;
@@ -19724,9 +19724,9 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   uint validationFlagB;
   DataWord validationFlagC;
   ByteFlag DataProcessingBufferA [520];
-  uint64_t colorDataWord;
+  uint64_t colorProcessingData;
   
-  colorDataWord = ExceptionEncryptionKey ^ (uint64_t)EncryptionKeyBufferA;
+  colorProcessingData = ExceptionEncryptionKey ^ (uint64_t)PrimaryEncryptionKeyBuffer;
   loopIndex = 0;
   if (operationFlagA != 0) {
     operationStatus = *(int *)(dataBuffer + 0x220);

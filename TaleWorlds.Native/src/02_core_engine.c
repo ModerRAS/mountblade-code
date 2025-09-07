@@ -83662,26 +83662,26 @@ LAB_180103c39:
     }
     InitializeEngineStatusBuffer(&StackUnsignedValue20,OutputBufferPointer,&EngineInitializationBufferConfig);
     OutputBuffer = CoreEngineMemoryContext;
-    if (lStack_18 == 0) {
+    if (StackSignedValue18 == 0) {
       DataSize = 3;
     }
     else {
       SystemCheckResult = (**(code **)(*CoreEngineMemoryContext + 0x28))(CoreEngineMemoryContext);
       if (SystemCheckResult != '\0') {
-        ConfigureEngineMemoryContext(OutputBuffer,&StackUnsigned20);
+        ConfigureEngineMemoryContext(OutputBuffer,&StackUnsignedValue20);
       }
-      if (lStack_18 != 0) {
+      if (StackSignedValue18 != 0) {
         fclose();
-        lStack_18 = 0;
+        StackSignedValue18 = 0;
         LOCK();
         EngineReferenceCounter = EngineReferenceCounter + -1;
         UNLOCK();
         DataSize = 0;
       }
     }
-    if (lStack_18 != 0) {
+    if (StackSignedValue18 != 0) {
       fclose();
-      lStack_18 = 0;
+      StackSignedValue18 = 0;
       LOCK();
       EngineReferenceCounter = EngineReferenceCounter + -1;
       UNLOCK();
