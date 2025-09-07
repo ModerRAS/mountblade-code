@@ -4719,7 +4719,7 @@ undefined8 GetUIStatusFlag(void)
   ulonglong currentBufferIndex;
   longlong stringLength;
   longlong remainingChars;
-  undefined1 *bufferPointer;
+  undefined1 *uiBufferPointer;
   
   if (UIRendererInitialized == '\0') {
     _cputs();
@@ -4739,7 +4739,7 @@ undefined8 GetUIStatusFlag(void)
         if (UIBufferIndex + stringLength < 0x8000) {
           remainingChars = stringLength;
         }
-        bufferPointer = (undefined1 *)(UIBufferIndex + UI_SYSTEM_CALLBACK_ID);
+        uiBufferPointer = (undefined1 *)(UIBufferIndex + UI_SYSTEM_CALLBACK_ID);
         UIBufferIndex = currentBufferIndex;
         if (UISystemEnabled == '\0') {
                      WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
@@ -4749,9 +4749,9 @@ undefined8 GetUIStatusFlag(void)
           return;
         }
         for (; remainingChars != 0; remainingChars = remainingChars + -1) {
-          *bufferPointer = *componentPointer;
+          *uiBufferPointer = *componentPointer;
           componentPointer = componentPointer + 1;
-          bufferPointer = bufferPointer + 1;
+          uiBufferPointer = uiBufferPointer + 1;
         }
         return;
       }
@@ -4860,30 +4860,30 @@ void ProcessUIParameters(undefined8 uiContext,undefined8 dataSource,undefined8 t
                   undefined8 resultPointer)
 
 {
-  ulonglong *ptrResult;
+  ulonglong *processingResult;
   char *threadLocalStorageFlag;
-  uint8_t TempBuffer1 [32];
+  uint8_t uiTempBuffer [32];
    UI渲染状态变量
-  uint64_t RenderStateValue1;
-  uint64_t RenderStateValue2;
-  uint8_t RenderDataBuffer [512];
-  uint64_t EncryptionKey;
+  uint64_t uiRenderStateValue1;
+  uint64_t uiRenderStateValue2;
+  uint8_t uiRenderDataBuffer [512];
+  uint64_t uiEncryptionKey;
   
   if (bufferSize != 0) {
-    EncryptionKey = XorEncryptionKey ^ (ulonglong)encryptionKeyParameter;
+    uiEncryptionKey = XorEncryptionKey ^ (ulonglong)encryptionKeyParameter;
     threadLocalStorageFlag = (char *)(*(longlong *)
                        ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 8);
     if (*threadLocalStorageFlag == '\0') {
       *threadLocalStorageFlag = '\x01';
-      ptrResult = (ulonglong *)GetUIResourceManager();
-      RenderStateValue2 = resultPointer;
-      RenderStateValue1 = 0;
-      __stdio_common_vsprintf(*ptrResult | 2,RenderDataBuffer,0x1ff,bufferSize);
+      processingResult = (ulonglong *)GetUIResourceManager();
+      uiRenderStateValue2 = resultPointer;
+      uiRenderStateValue1 = 0;
+      __stdio_common_vsprintf(*processingResult | 2,uiRenderDataBuffer,0x1ff,bufferSize);
       *threadLocalStorageFlag = '\0';
-      ProcessUIRenderRequest(uiContext,dataSource,targetBuffer,RenderDataBuffer);
+      ProcessUIRenderRequest(uiContext,dataSource,targetBuffer,uiRenderDataBuffer);
     }
                      WARNING: Subroutine does not return
-    ExecuteUIRenderTask(EncryptionKey ^ (ulonglong)astackUInt278);
+    ExecuteUIRenderTask(uiEncryptionKey ^ (ulonglong)astackUInt278);
   }
   return;
 }
@@ -4901,20 +4901,20 @@ void SetUIState(longlong uiContext)
 
 {
   longlong registerAX;
-  ulonglong *ptrResult;
+  ulonglong *processingResult;
   char *threadLocalStorageFlag;
-  ulonglong stackParam00000230;
+  ulonglong uiStackParam;
   
   threadLocalStorageFlag = (char *)(*(longlong *)(registerAX + uiContext * 8) + 8);
   if (*threadLocalStorageFlag == '\0') {
     *threadLocalStorageFlag = '\x01';
-    ptrResult = (ulonglong *)GetUIResourceManager();
-    __stdio_common_vsprintf(*ptrResult | 2,UIStackRenderContext,0x1ff);
+    processingResult = (ulonglong *)GetUIResourceManager();
+    __stdio_common_vsprintf(*processingResult | 2,UIStackRenderContext,0x1ff);
     *threadLocalStorageFlag = '\0';
     ProcessUIRenderRequest();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000230 ^ (ulonglong)UIStackBufferBase);
+  ExecuteUIRenderTask(uiStackParam ^ (ulonglong)UIStackBufferBase);
 }
 
 
