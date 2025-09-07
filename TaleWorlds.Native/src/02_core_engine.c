@@ -171830,18 +171830,25 @@ void ResetCharacterEncodingState(void)
 
 
 
-long long FUN_18013d540(void
-{
-  ushort *CharacterStatusBuffer;
-  ushort MemoryAllocationIndex;
-  int MemoryMatchResult;
+/**
+ * @brief 处理剪贴板数据的UTF-16到UTF-8转换
+ * 
+ * 该函数负责从剪贴板获取数据并进行UTF-16到UTF-8的转换处理。
+ * 主要用于处理系统剪贴板中的文本数据转换。
+ * 
+ * @return 转换后的UTF-8数据指针，失败时返回0
+ */
+long long ProcessClipboardUtf16ToUtf8Conversion(void) {
+  ushort *CharacterBufferPointer;
+  ushort CharacterValue;
+  int Utf8ByteCount;
   int EncodingValidationResult;
-  uint CalculatedCodePoint;
-  long long MemoryBoundaryEnd;
-  ushort *StringProcessingStatus;
-  long long secondaryLoopCounter;
-  uint SystemMemoryAllocationResult;
-  uint MemoryAllocationIndex;
+  uint MemoryAllocationSize;
+  long long ClipboardDataHandle;
+  ushort *ClipboardDataPointer;
+  long long ProcessingIndex;
+  uint TotalUtf8Length;
+  uint NewBufferSize;
   
   if ((*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (unsigned long long)__tls_index * 8) +
                0x48) < SecondarySystemStatusValue) && (CheckRenderParameterStatus(SystemSecondaryStatusData), SecondarySystemStatusValue == -1)) {
@@ -171850,63 +171857,63 @@ long long FUN_18013d540(void
     FUN_1808fc820(SystemCoreDataStructure);
     ProcessSystemResourceAndConfigure(SystemSecondaryStatusData);
   }
-  MemoryBoundaryEnd = MemoryEndAddressConstant;
+  ClipboardDataHandle = MemoryEndAddressConstant;
   if (MemoryEndAddressConstant == 0) {
     DataStringLength = OpenClipboard(0);
     if (DataStringLength != 0) {
-      MemoryBoundaryEnd = GetClipboardData(0xd);
-      if (MemoryBoundaryEnd != 0) {
-        StringProcessingStatus = (ushort *)GlobalLock(MemoryBoundaryEnd);
-        if (StringProcessingStatus != (ushort *)0x0) {
-          MemoryAllocationIndex = *StringProcessingStatus;
-          CharacterStatusBuffer = StringProcessingStatus;
+      ClipboardDataHandle = GetClipboardData(0xd);
+      if (ClipboardDataHandle != 0) {
+        ClipboardDataPointer = (ushort *)GlobalLock(ClipboardDataHandle);
+        if (ClipboardDataPointer != (ushort *)0x0) {
+          CharacterValue = *ClipboardDataPointer;
+          CharacterBufferPointer = ClipboardDataPointer;
           DataStringLength = 0;
-          while (MemoryAllocationIndex != 0) {
-            CharacterStatusBuffer = CharacterStatusBuffer + 1;
-            if (MemoryAllocationIndex < 0x80) {
-              EncodingValidationResult = 1;
+          while (CharacterValue != 0) {
+            CharacterBufferPointer = CharacterBufferPointer + 1;
+            if (CharacterValue < 0x80) {
+              Utf8ByteCount = 1;
             }
-            else if (MemoryAllocationIndex < 0x800) {
-              EncodingValidationResult = 2;
+            else if (CharacterValue < 0x800) {
+              Utf8ByteCount = 2;
             }
             else {
-              EncodingValidationResult = 0;
-              if (0x3ff < (ushort)(MemoryAllocationIndex + 0x2400)) {
-                EncodingValidationResult = ((ushort)(MemoryAllocationIndex + 0x2800) < 0x400) + 3;
+              Utf8ByteCount = 0;
+              if (0x3ff < (ushort)(CharacterValue + 0x2400)) {
+                Utf8ByteCount = ((ushort)(CharacterValue + 0x2800) < 0x400) + 3;
               }
             }
-            DataStringLength = DataStringLength + EncodingValidationResult;
-            MemoryAllocationIndex = *CharacterStatusBuffer;
+            DataStringLength = DataStringLength + Utf8ByteCount;
+            CharacterValue = *CharacterBufferPointer;
           }
-          SystemMemoryAllocationResult = DataStringLength + 1;
-          if (AllocatedMemorySize < (int)SystemMemoryAllocationResult) {
+          TotalUtf8Length = DataStringLength + 1;
+          if (AllocatedMemorySize < (int)TotalUtf8Length) {
             if (AllocatedMemorySize == 0) {
-              CalculatedCodePoint = 8;
+              MemoryAllocationSize = 8;
             }
             else {
-              CalculatedCodePoint = AllocatedMemorySize / 2 + AllocatedMemorySize;
+              MemoryAllocationSize = AllocatedMemorySize / 2 + AllocatedMemorySize;
             }
-            MemoryAllocationIndex = SystemMemoryAllocationResult;
-            if ((int)SystemMemoryAllocationResult < (int)CalculatedCodePoint) {
-              MemoryAllocationIndex = CalculatedCodePoint;
+            NewBufferSize = TotalUtf8Length;
+            if ((int)TotalUtf8Length < (int)MemoryAllocationSize) {
+              NewBufferSize = MemoryAllocationSize;
             }
-            if (AllocatedMemorySize < (int)MemoryAllocationIndex) {
+            if (AllocatedMemorySize < (int)NewBufferSize) {
               if (SystemConfigurationHandle != 0) {
                 *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
               }
-              SystemDataTablePointer = SystemCallMemoryAccess((long long)(int)MemoryAllocationIndex,SystemMemoryPoolBase);
+              SystemDataTablePointer = SystemCallMemoryAccess((long long)(int)NewBufferSize,SystemMemoryPoolBase);
               if (MemoryEndAddressConstant != 0) {
                     // WARNING: Subroutine does not return
                 memcpy(SystemDataTablePointer,MemoryEndAddressConstant,(long long)SecondarySystemDataSize);
               }
-              SecondarySystemDataSize = (unsigned long long)MemoryAllocationIndex << 0x20;
+              SecondarySystemDataSize = (unsigned long long)NewBufferSize << 0x20;
               MemoryEndAddressConstant = SystemDataTablePointer;
             }
           }
-          SecondarySystemDataSize = CONCAT44(AllocatedMemorySize,SystemMemoryAllocationResult);
-          ConvertUtf16ToUtf8Character(MemoryEndAddressConstant,SystemMemoryAllocationResult,StringProcessingStatus,0);
+          SecondarySystemDataSize = CONCAT44(AllocatedMemorySize,TotalUtf8Length);
+          ConvertUtf16ToUtf8Character(MemoryEndAddressConstant,TotalUtf8Length,ClipboardDataPointer,0);
         }
-        GlobalUnlock(MemoryBoundaryEnd);
+        GlobalUnlock(ClipboardDataHandle);
         CloseClipboard();
         return MemoryEndAddressConstant;
       }
@@ -171919,13 +171926,25 @@ long long FUN_18013d540(void
     *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  InitializeSystemMemoryPool(MemoryBoundaryEnd,SystemMemoryPoolBase);
+  InitializeSystemMemoryPool(ClipboardDataHandle,SystemMemoryPoolBase);
 }
 
 
 
 
-3d7b0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18013d7b0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理字符编码转换和剪贴板操作
+ * 
+ * 该函数负责处理字符编码的转换操作，包括UTF-8到UTF-16的转换，
+ * 同时处理剪贴板数据的读取和写入操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long 返回处理结果状态码
+ */
+long long ProcessCharacterEncodingAndClipboardOperation(uint64_t CharacterCode, uint64_t Utf8BufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
@@ -171988,7 +172007,12 @@ void InitializeCharacterDataBuffer(void)
 
 
 
-3d853(voidvoid FUN_18013d853(void
+/**
+ * @brief 系统空操作函数
+ * 
+ * 执行空操作，用于系统初始化或清理流程中的占位符
+ */
+void PerformSystemNoOperationEx(void)
 {
   return;
 }
