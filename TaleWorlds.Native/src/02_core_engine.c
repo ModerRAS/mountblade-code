@@ -122795,7 +122795,15 @@ void ManageSystemMemoryReferenceCount(void)
 
 
 
-6e40(voidvoid FUN_180126e40(void
+/**
+ * @brief 处理系统数据结构和矩阵运算
+ * 
+ * 该函数负责处理系统中的数据结构遍历、矩阵运算和数据处理。
+ * 包括遍历数据结构、执行矩阵变换、验证数据和处理系统事件。
+ * 
+ * @note 原始函数名：FUN_180126e40
+ */
+void ProcessSystemDataStructureAndMatrix(void)
 {
   float *pSystemContextPrimaryFloat;
   long long BufferStatus;
@@ -123007,7 +123015,15 @@ LAB_180126e9d:
 
 
 
-6eb2(voidvoid FUN_180126eb2(void
+/**
+ * @brief 管理系统内存分配和状态
+ * 
+ * 该函数负责管理系统的内存分配、处理状态标志和系统配置。
+ * 包括内存分配、状态验证、数据处理和系统事件处理。
+ * 
+ * @note 原始函数名：FUN_180126eb2
+ */
+void ManageSystemMemoryAllocationAndStatus(void)
 {
   float *pSystemContextPrimaryFloat;
   uint32_t *PrimaryProcessingStatusFlag;
