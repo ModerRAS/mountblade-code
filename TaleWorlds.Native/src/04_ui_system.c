@@ -62568,15 +62568,22 @@ void RenderUIComponents(longlong uiContext,byte *dataSource,int targetBuffer,und
 
 
 
- void FUN_1806984f1(void)
-void FUN_1806984f1(void)
+ /**
+ * @brief 初始化UI字符匹配系统
+ * 
+ * 该函数负责初始化UI系统中的字符匹配功能
+ * 用于文本渲染和字符处理
+ * 
+ * @note 原始函数名: FUN_1806984f1
+ */
+void InitializeUICharacterMatchSystem(void)
 
 {
   byte isCharacterMatch;
-  bool bVar2;
-  undefined4 uVar3;
+  bool isMatchFound;
+  undefined4 matchResult;
   longlong in_RAX;
-  ulonglong uVar4;
+  ulonglong characterIndex;
   undefined8 context;
   longlong lVar5;
   undefined8 unaff_RBP;
