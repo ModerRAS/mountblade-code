@@ -71448,7 +71448,19 @@ void IterateAndExecuteExceptionHandlers(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_1809087e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0xc0处理异常上下文
+ * 
+ * 此函数负责在指定偏移量处理异常上下文，执行以下操作：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 如果指针有效，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809087e0
+ */
+void ProcessExceptionContextAtOffsetC0Alt(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xc0) != (int64_t *)0x0) {
@@ -71459,7 +71471,19 @@ void Unwind_1809087e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809087f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0xd0处理异常上下文
+ * 
+ * 此函数负责在指定偏移量处理异常上下文，执行以下操作：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 如果指针有效，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809087f0
+ */
+void ProcessExceptionContextAtOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xd0) != (int64_t *)0x0) {
@@ -79982,7 +80006,19 @@ void Unwind_18090b550(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b570(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0xa0处理异常上下文指针
+ * 
+ * 此函数负责处理异常上下文指针，执行以下操作：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 如果指针有效，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b570
+ */
+void ProcessExceptionContextAtOffsetA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80010,7 +80046,19 @@ void Unwind_18090b590(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b5b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0xa8处理异常上下文指针
+ * 
+ * 此函数负责处理异常上下文指针，执行以下操作：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 如果指针有效，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b5b0
+ */
+void ProcessExceptionContextAtOffsetA8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80024,7 +80072,19 @@ void Unwind_18090b5b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b5d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0xb8处理异常上下文指针
+ * 
+ * 此函数负责处理异常上下文指针，执行以下操作：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 如果指针有效，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b5d0
+ */
+void ProcessExceptionContextAtOffsetB8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80038,7 +80098,19 @@ void Unwind_18090b5d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b5f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0xc0处理异常上下文指针
+ * 
+ * 此函数负责处理异常上下文指针，执行以下操作：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 如果指针有效，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b5f0
+ */
+void ProcessExceptionContextAtOffsetC0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80052,7 +80124,19 @@ void Unwind_18090b5f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b610(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量200处理异常上下文指针
+ * 
+ * 此函数负责处理异常上下文指针，执行以下操作：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 如果指针有效，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b610
+ */
+void ProcessExceptionContextAtOffset200(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80066,7 +80150,19 @@ void Unwind_18090b610(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b630(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0xe8处理异常上下文指针
+ * 
+ * 此函数负责处理异常上下文指针，执行以下操作：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 如果指针有效，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b630
+ */
+void ProcessExceptionContextAtOffsetE8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80080,7 +80176,19 @@ void Unwind_18090b630(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b650(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0xf0执行内存操作
+ * 
+ * 此函数负责在指定偏移量执行内存操作，执行以下操作：
+ * - 从数据缓冲区获取内存操作地址
+ * - 调用内存操作函数处理数据验证
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b650
+ */
+void ExecuteMemoryOperationAtOffsetF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xf0,8,0x10,ValidateDataHandler);
@@ -80089,7 +80197,19 @@ void Unwind_18090b650(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b690(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0x170执行内存操作
+ * 
+ * 此函数负责在指定偏移量执行内存操作，执行以下操作：
+ * - 从数据缓冲区获取内存操作地址
+ * - 调用内存操作函数处理数据验证
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b690
+ */
+void ExecuteMemoryOperationAtOffset170(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x170,8,0x10,ValidateDataHandler);
