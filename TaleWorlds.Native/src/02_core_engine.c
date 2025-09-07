@@ -168093,7 +168093,15 @@ LAB_180142973:
 
 
 
-42990(long long SystemContextPointervoid FUN_180142990(long long SystemContextPointer
+42990(long long SystemContextPointer/**
+ * @brief 清理系统状态缓冲区
+ * 
+ * 该函数负责系统状态缓冲区的清理，包括状态的重置、内存的释放
+ * 和系统上下文的初始化等操作。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ */
+void CleanupSystemStatusBuffer(long long SystemContextPointer)
 {
   uint64_t *StatusBuffer;
   
@@ -168115,7 +168123,13 @@ LAB_180142973:
 
 
 
-429a6(voidvoid FUN_1801429a6(void
+429a6(void/**
+ * @brief 初始化系统并启动服务
+ * 
+ * 该函数负责系统的初始化和服务的启动，包括系统状态的清理、
+ * 服务的初始化和系统事件的处理等操作。
+ */
+void InitializeSystemAndStartServices(void)
 {
   ProcessSystemMemoryStatusCleanup();
   CoreEngineInitializeSystemServices();
