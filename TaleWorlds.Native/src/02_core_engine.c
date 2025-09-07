@@ -20003,7 +20003,8 @@ void CoreEngineUnlockMutex(uint64_t *MutexHandle
 
 
 
- uint64_t CoreEngineWaitConditionVariable(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer/**
+ uint64_t CoreEngineWaitConditionVariable(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+{
  * @brief 等待条件变量并处理同步
  * 
  * 该函数负责等待条件变量的信号，处理线程同步操作。
@@ -151009,11 +151010,11 @@ void ValidateSystemData(void)
   SystemByteFlag = *(byte *)(SystemConfigurationHandle + 8) & 1;
   SystemStatusPointer = (byte *)(SystemConfigurationHandle + 8);
   *(uint8_t *)(SystemConfigurationHandle + 0x38f) = 0;
-  if (((*pCurrentByteValue & 2) == 0) || ((*(byte *)(MemoryPoolBlockSize + 0xc) & 1) == 0)) {
-    shouldReturnSource = false;
+  if (((*SystemStatusPointer & 2) == 0) || ((*(byte *)(SystemMemoryPool + 0xc) & 1) == 0)) {
+    ShouldReturnSourceData = false;
   }
   else {
-    shouldReturnSource = true;
+    ShouldReturnSourceData = true;
     if ((((0.0 < *(float *)(MemoryPoolBlockSize + 0x338)) || (0.0 < *(float *)(MemoryPoolBlockSize + 0x340))) ||
         (0.0 < *(float *)(MemoryPoolBlockSize + 0x33c))) || (0.0 < *(float *)(MemoryPoolBlockSize + 0x344))) {
       *(uint32_t *)(MemoryPoolBlockSize + 0x1cc0) = 4;
