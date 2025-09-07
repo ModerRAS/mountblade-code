@@ -1861,6 +1861,89 @@
  */
 #define ProcessFloatingPointArrayA0 FUN_180892cc0
 
+// Unwind_函数宏定义扩展 (18090a8c0-18090a940系列)
+
+/**
+ * @brief 异常处理函数C0
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a8c0
+ */
+#define ExceptionHandlerC0 Unwind_18090a8c0
+
+/**
+ * @brief 异常处理函数C1
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a8d0
+ */
+#define ExceptionHandlerC1 Unwind_18090a8d0
+
+/**
+ * @brief 异常处理函数C2
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a8e0
+ */
+#define ExceptionHandlerC2 Unwind_18090a8e0
+
+/**
+ * @brief 异常处理函数C3
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a8f0
+ */
+#define ExceptionHandlerC3 Unwind_18090a8f0
+
+/**
+ * @brief 异常处理函数C4
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a900
+ */
+#define ExceptionHandlerC4 Unwind_18090a900
+
+/**
+ * @brief 异常处理函数C5
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a910
+ */
+#define ExceptionHandlerC5 Unwind_18090a910
+
+/**
+ * @brief 异常处理函数C6
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a920
+ */
+#define ExceptionHandlerC6 Unwind_18090a920
+
+/**
+ * @brief 异常处理函数C7
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a930
+ */
+#define ExceptionHandlerC7 Unwind_18090a930
+
+/**
+ * @brief 异常处理函数C8
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_18090a940
+ */
+#define ExceptionHandlerC8 Unwind_18090a940
+
 // 请求和数据处理函数宏定义 (F系列)
 
 /**
