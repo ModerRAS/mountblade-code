@@ -69130,21 +69130,29 @@ void ValidateAndProcessPointer(DataBuffer CleanupContext, int64_t PointerContext
 
 /**
  * @brief 资源状态重置函数
- * @details 重置资源状态并清理相关的数据结构
- * @param resetContext 重置上下文参数
- * @param resourceContext 资源上下文指针
- * @return 无
+ * 
+ * 该函数负责重置资源状态并清理相关的数据结构：
+ * - 临时设置异常处理器
+ * - 验证资源状态的有效性
+ * - 清理资源相关的数据
+ * - 恢复默认异常处理器
+ * 
+ * @param ResetContext 重置上下文，包含重置操作的相关信息
+ * @param ResourceContext 资源上下文，包含需要重置的资源信息
+ * 
+ * @note 该函数会检查资源上下文偏移量0xa8处的状态
+ * @warning 当检测到无效状态时会调用系统终止函数
  */
-void Unwind_180907f90(DataBuffer resetContext, int64_t resourceContext)
+void ResetResourceState(DataBuffer ResetContext, int64_t ResourceContext)
 
 {
-  *(DataBuffer *)(resourceContext + 0xa0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(resourceContext + 0xa8) != 0) {
+  *(DataBuffer *)(ResourceContext + 0xa0) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(ResourceContext + 0xa8) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(resourceContext + 0xa8) = 0;
-  *(DataWord *)(resourceContext + 0xb8) = 0;
-  *(DataBuffer *)(resourceContext + 0xa0) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(ResourceContext + 0xa8) = 0;
+  *(DataWord *)(ResourceContext + 0xb8) = 0;
+  *(DataBuffer *)(ResourceContext + 0xa0) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -69558,7 +69566,7 @@ void ProcessExceptionDataBuffer(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @see ProcessSystemParametersWithValidation
  */
-void Unwind_1809080d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessSystemParametersWithValidationWrapper(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x78) + 0x30,
@@ -69586,7 +69594,7 @@ void Unwind_1809080d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
  * 
  * @see ProcessSystemResourcesWithCleanup, TerminateSystemE0
  */
-void Unwind_1809080e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionDataAtOffset78(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -79991,7 +79999,19 @@ void Unwind_18090bd20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bd30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调函数Z0
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作，使用特定的偏移地址
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_18090bd30
+ */
+void ExecuteExceptionHandlerCallbackZ0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x58) != (code *)0x0) {
