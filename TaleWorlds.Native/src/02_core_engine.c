@@ -186593,8 +186593,20 @@ LAB_180162395:
 
 
 
+/**
+ * 处理输出数据
+ * 原始函数名: FUN_1801624e0
+ * 
+ * 处理系统的输出数据，管理输出缓冲区和数据传输。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小指针
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回处理结果指针
+ */
 uint64_t *
-FUN_1801624e0(long long SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+HandleOutputData(long long SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;

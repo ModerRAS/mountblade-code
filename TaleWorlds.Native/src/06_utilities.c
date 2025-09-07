@@ -49997,8 +49997,21 @@ void Unwind_180905100(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 异常资源清理函数A1
+ * 
+ * 该函数负责清理异常处理相关的资源。它会遍历数据缓冲区中的资源指针，
+ * 调用每个资源的清理函数，并在必要时执行系统终止操作。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含需要清理的资源信息
+ * @param operationFlagA 操作标志A，用于控制清理行为
+ * @param operationFlagB 操作标志B，用于控制清理行为
+ * 
+ * @note 原始函数名：Unwind_180905110
+ * @warning 函数执行过程中可能会调用系统终止函数
+ */
+void CleanupExceptionResourcesA1(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   DataBuffer *exceptionDataBuffer;
   DataBuffer *resourcePointer;
@@ -50007,19 +50020,32 @@ void Unwind_180905110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   validationStatus = SystemCleanupFlagAlternative;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x148); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer, 0, operationFlagA, operationFlagB, validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x148) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   TerminateSystemE0();
 }
 
 
 
-void Unwind_180905120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 异常资源清理函数A2
+ * 
+ * 该函数负责清理异常处理相关的资源，使用预定义的偏移量常量。
+ * 它会遍历数据缓冲区中的资源指针，调用每个资源的清理函数，
+ * 并在必要时执行系统终止操作。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含需要清理的资源信息
+ * @param operationFlagA 操作标志A，用于控制清理行为
+ * @param operationFlagB 操作标志B，用于控制清理行为
+ * 
+ * @note 原始函数名：Unwind_180905120
+ * @warning 函数执行过程中可能会调用系统终止函数
+ */
+void CleanupExceptionResourcesA2(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   DataBuffer *exceptionDataBuffer;
   DataBuffer *resourcePointer;
@@ -50028,19 +50054,28 @@ void Unwind_180905120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   validationStatus = SystemCleanupFlagAlternative;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffset);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + ResourcePointerStartOffset); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + ResourcePointerStep) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer, 0, operationFlagA, operationFlagB, validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x208) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   TerminateSystemE0();
 }
 
 
 
-void Unwind_180905130(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器配置函数A0
+ * 
+ * 该函数负责配置异常处理器。它会将默认异常处理器B的地址
+ * 存储到数据缓冲区的指定偏移量位置。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * 
+ * @note 原始函数名：Unwind_180905130
+ */
+void ConfigureExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(uint8_t **)(dataBuffer + 0x278) = &DefaultExceptionHandlerB;
   return;
