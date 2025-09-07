@@ -4484,10 +4484,13 @@ extern void* SystemPrimaryResourceTable;
 // 功能：配置系统并返回配置结果
 #define ConfigureSystemA0 FUN_1808998a0
 
-// 数据配置表A1-A4
-// 功能：存储系统数据配置的多级配置表和参数
-#define DataConfigurationTableA1 UNK_180986508
-#define DataConfigurationTableA2 UNK_180986550
+// 数据配置表A1
+// 功能：存储系统数据配置的第一级配置表和参数
+#define DataConfigurationTableA1 DataConfigurationTableFirstLevel
+
+// 数据配置表A2
+// 功能：存储系统数据配置的第二级配置表和参数
+#define DataConfigurationTableA2 DataConfigurationTableSecondLevel
 #define DataConfigurationTableA3 UNK_180986590
 #define DataConfigurationTableA4 UNK_1809865f0
 
