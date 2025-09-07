@@ -68878,7 +68878,7 @@ void Unwind_180909fe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a000(DataBuffer operationBase,int64_t dataBuffer)
+void ExceptionHandlerD0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -68892,7 +68892,7 @@ void Unwind_18090a000(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a020(DataBuffer operationBase,int64_t dataBuffer)
+void ExceptionHandlerD1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xc60,8,0x14,ValidateDataHandler);
@@ -68901,7 +68901,7 @@ void Unwind_18090a020(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a060(DataBuffer operationBase,int64_t dataBuffer)
+void ExceptionHandlerD2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -68924,7 +68924,7 @@ void Unwind_18090a060(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a080(DataBuffer operationBase,int64_t dataBuffer)
+void ExceptionHandlerD3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),8,10,ValidateDataHandler);
@@ -68933,7 +68933,7 @@ void Unwind_18090a080(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExceptionHandlerD4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
@@ -68943,7 +68943,7 @@ void Unwind_18090a0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a0c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExceptionHandlerD5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
@@ -68953,7 +68953,7 @@ void Unwind_18090a0c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a0d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExceptionHandlerD6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -68970,7 +68970,7 @@ void Unwind_18090a0d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExceptionHandlerD7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -68987,7 +68987,7 @@ void Unwind_18090a0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExceptionHandlerD8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
@@ -68997,7 +68997,7 @@ void Unwind_18090a0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExceptionHandlerD9(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),

@@ -185835,8 +185835,20 @@ ValidateSystemState(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,long 
 
 
 
+/**
+ * 检查系统完整性
+ * 原始函数名: FUN_1801614d0
+ * 
+ * 检查系统的完整性，验证系统组件和数据的一致性。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回完整性检查结果指针
+ */
 uint64_t *
-FUN_1801614d0(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+CheckSystemIntegrity(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   
@@ -185870,8 +185882,20 @@ FUN_1801614d0(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Ut
 
 
 
+/**
+ * 处理输入缓冲区
+ * 原始函数名: FUN_1801615a0
+ * 
+ * 处理系统的输入缓冲区，管理和验证输入数据。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回处理结果指针
+ */
 uint64_t *
-FUN_1801615a0(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t *Utf16InputPointer,uint64_t Utf16EndPointer
+ProcessInputBuffer(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t *Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   uint64_t *StatusBuffer;
   code *pSystemCheckResult;
