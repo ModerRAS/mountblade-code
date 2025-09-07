@@ -265304,14 +265304,14 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
  */
 int CheckSystemStatusPatternMatch(void)
 {
-  int LockResult;
-  long long BufferStatus;
-  int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  int SystemLockResult;
+  long long SystemBufferStatus;
+  int SystemInputDataLength;
+  long long SystemPatternIndex;
+  long long SystemMemoryOffset;
   long long SystemDataNode;
   
-  if (InputDataLength == 4) {
+  if (SystemInputDataLength == 4) {
     SearchStartIndex = 0;
     while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(SystemDataNode + 8) + PatternMatchStatus) == (&SystemStatusValueVigintenary)[PatternMatchStatus]
           ) {
@@ -266308,22 +266308,30 @@ int CheckSystemStatusPatternMatchVariantC(void)
  * 
  * @return int 匹配成功返回对应的标识码，失败返回0
  */
-int FUN_1802256e7(void
+/**
+ * @brief 系统状态模式匹配检测函数
+ * 
+ * 该函数根据输入数据长度匹配不同的系统状态模式，通过字符串比较
+ * 和模式匹配来确定系统状态类型。主要用于系统状态识别和分类。
+ * 
+ * @return 匹配成功返回对应的模式代码，失败返回0
+ */
+int DetectSystemStatusPatternMatch(void)
 {
-  int ComparisonResult;
-  long long PatternMatchStatus;
-  int InputDataLength;
-  long long SearchStartIndex;
-  long long MemoryOffset;
-  long long SystemDataNode;
+  int comparisonResult;
+  long long patternMatchStatus;
+  int inputDataLength;
+  long long searchStartIndex;
+  long long memoryOffset;
+  long long systemDataNode;
   
-  if (InputDataLength == 4) {
-    SearchStartIndex = 0;
-    while (PatternMatchStatus = SearchStartIndex, *(char *)(*(long long *)(SystemDataNode + 8) + PatternMatchStatus) == (&SystemStatusValueSexdecenary)[PatternMatchStatus]
+  if (inputDataLength == 4) {
+    searchStartIndex = 0;
+    while (patternMatchStatus = searchStartIndex, *(char *)(*(long long *)(systemDataNode + 8) + patternMatchStatus) == (&SystemStatusValueSexdecenary)[patternMatchStatus]
           ) {
-      SearchStartIndex = PatternMatchStatus + 1;
-      if (PatternMatchStatus + 1 == 5) {
-        return (int)PatternMatchStatus + 0xe;
+      searchStartIndex = patternMatchStatus + 1;
+      if (patternMatchStatus + 1 == 5) {
+        return (int)patternMatchStatus + 0xe;
       }
     }
   }
