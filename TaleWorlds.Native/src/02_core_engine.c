@@ -173965,7 +173965,12 @@ void ProcessUtf8CharacterCodeConversion(long long CharacterCode)
 
 
 
-3ea70(voidvoid FUN_18013ea70(void
+/**
+ * @brief 释放UTF-8处理资源
+ * @return 无返回值
+ * @note 原始函数名：FUN_18013ea70
+ */
+void ReleaseUtf8ProcessingResources(void)
 {
                     // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();
@@ -173974,7 +173979,13 @@ void ProcessUtf8CharacterCodeConversion(long long CharacterCode)
 
 
 
-3f090(long long CharacterCodevoid FUN_18013f090(long long CharacterCode
+/**
+ * @brief 处理字符代码内存管理
+ * @param CharacterCode 字符代码
+ * @return 处理结果
+ * @note 原始函数名：FUN_18013f090
+ */
+long long ProcessCharacterCodeMemoryManagement(long long CharacterCode)
 {
   long long *Utf8InputBuffer;
   long long BufferStatus;
@@ -255093,13 +255104,19 @@ LAB_18021943e:
 
 
 
-194d6(voidvoid FUN_1802194d6(void
+/**
+ * @brief 系统字符状态缓冲区处理函数
+ * 
+ * 该函数负责处理系统字符状态缓冲区的操作，包括状态更新和内存管理
+ * 主要用于维护系统字符状态的正确性和一致性
+ */
+void ProcessCharacterStatusBuffer(void)
 {
   long long StackFrameAddressPointer;
   uint64_t *CharacterStatusBuffer;
   long long RegisterR13Value;
   uint64_t *CharacterLimit;
-  uint64_t uStack0000000000000070;
+  uint64_t StackFrameTemporaryValue;
   
   if (1 < StackFrameAddressPointer) {
     CharacterStatusBuffer = (void *)(RegisterR13Value + -8);
