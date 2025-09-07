@@ -31049,12 +31049,12 @@ uint64_t QuerySystemDataD(int64_t operationBase,DataBuffer *dataBuffer)
   uint systemDataBuffer;
   uint64_t operationResult;
   uint64_t validationStatus;
-  ByteFlag ainputDataWord [32];
-  ByteFlag auStack_28 [32];
+  ByteFlag inputDataBuffer [32];
+  ByteFlag securityValidationBuffer [32];
   
-  operationResult = ExecuteSecurityValidation(dataBuffer,auStack_28,1,0x46464550);
+  operationResult = ExecuteSecurityValidation(dataBuffer,securityValidationBuffer,1,0x46464550);
   if (((((int)operationResult != 0) ||
-       (operationResult = ExecuteSecurityValidation(dataBuffer,ainputDataWord,0,0x42464550), (int)operationResult != 0)) ||
+       (operationResult = ExecuteSecurityValidation(dataBuffer,inputDataBuffer,0,0x42464550), (int)operationResult != 0)) ||
       (operationResult = ValidatePortControlRequest(dataBuffer,operationBase + 0x10), (int)operationResult != 0)) ||
      ((*(uint *)(dataBuffer + 8) < 0x5b &&
       (operationResult = GetContextData(dataBuffer,operationBase + 0x44), (int)operationResult != 0)))) {
@@ -31504,34 +31504,34 @@ DataBuffer ValidateDataIntegrityA1(int64_t operationBase,DataBuffer *dataBuffer)
 void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
 
 {
-  int inputParameter;
-  ByteFlag ainputDataWord [32];
-  ByteFlag auStack_28 [32];
+  int securityValidationResult;
+  ByteFlag portControlBuffer [32];
+  ByteFlag stackValidationBuffer [32];
   
-  inputParameter = ExecuteSecurityValidation(SecurityBuffer,auStack_28,1,0x4a4f5250);
-  if (((inputParameter == 0) && (inputParameter = ExecuteSecurityValidation(SecurityBuffer,ainputDataWord,0,0x494b4e42), inputParameter == 0)) &&
-     (inputParameter = ValidatePortControlRequest(SecurityBuffer,DataContext + 0x10), inputParameter == 0)) {
+  securityValidationResult = ExecuteSecurityValidation(SecurityBuffer,stackValidationBuffer,1,0x4a4f5250);
+  if (((securityValidationResult == 0) && (securityValidationResult = ExecuteSecurityValidation(SecurityBuffer,portControlBuffer,0,0x494b4e42), securityValidationResult == 0)) &&
+     (securityValidationResult = ValidatePortControlRequest(SecurityBuffer,DataContext + 0x10), securityValidationResult == 0)) {
     if (*(uint *)(SecurityBuffer + 8) < 0x37) {
-      inputParameter = 0;
+      securityValidationResult = 0;
     }
     else if (*(int *)(SecurityBuffer[1] + 0x18) == 0) {
-      inputParameter = OperateDataO0(*SecurityBuffer,DataContext + 0x210,8);
+      securityValidationResult = OperateDataO0(*SecurityBuffer,DataContext + 0x210,8);
     }
     else {
-      inputParameter = 0x1c;
+      securityValidationResult = 0x1c;
     }
-    if (inputParameter == 0) {
+    if (securityValidationResult == 0) {
       *(DataWord *)(DataContext + 0x218) = *(DataWord *)(SecurityBuffer + 8);
       if (*(uint *)(SecurityBuffer + 8) < 0x41) {
-        inputParameter = 0;
+        securityValidationResult = 0;
       }
       else if (*(int *)(SecurityBuffer[1] + 0x18) == 0) {
-        inputParameter = OperateDataO0(*SecurityBuffer,DataContext + 0x2f4,4);
+        securityValidationResult = OperateDataO0(*SecurityBuffer,DataContext + 0x2f4,4);
       }
       else {
-        inputParameter = 0x1c;
+        securityValidationResult = 0x1c;
       }
-      if (inputParameter == 0) {
+      if (securityValidationResult == 0) {
         if (*(uint *)(dataBuffer + 8) < 0x4d) {
           inputParameter = 0;
         }

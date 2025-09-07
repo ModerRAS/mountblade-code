@@ -157184,7 +157184,15 @@ LAB_180136c0c:
 
 
 
-36f60(long long OutputBuffer,long long OutputBufferSizevoid FUN_180136f60(long long OutputBuffer,long long OutputBufferSize
+/**
+ * @brief 处理字符串转换
+ * 
+ * 该函数负责处理字符串的转换和编码操作
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小
+ */
+void ProcessStringConversion(long long OutputBuffer, long long OutputBufferSize)
 {
   int *ReferenceCountPointer;
   long long bufferAllocationStatus;
