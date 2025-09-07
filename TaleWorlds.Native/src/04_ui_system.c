@@ -65577,7 +65577,7 @@ void ParseUIComponentDataAndSetState(longlong uiContext)
   stringCompareIndex4 = lStack_80;
   *(undefined4 *)(stringCompareIndex1 + 0xbe4) = functionResult8;
   if ((int)pbStack_88 != 0) {
-    FUN_18069bb20(lStack_80);
+    ReleaseUIComponentMemory(lStack_80);
   }
   func_0x00018069ba40(stringCompareIndex4,stringCompareIndex4);
   if (*(int *)(stringCompareIndex1 + 0xba4) != 0) {
