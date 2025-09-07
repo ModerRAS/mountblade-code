@@ -246438,10 +246438,10 @@ uint8_t FUN_1802164d6(void
     ContextSecondaryFloat = 1.0;
   }
   if (ContextSecondaryFloat != *(float *)(CharacterCode + 0x208)) {
-    FUN_180847310(*(void *)(CharacterCode + 0x368),&UNK_180a10ad0,aSystemRegisterFlagX8);
+    FUN_180847310(*(void *)(CharacterCode + 0x368),&SystemEventConfigurationTemplate,aSystemRegisterFlagX8);
     IntegerValue = FUN_18084ab60(aSystemRegisterFlagX8[0],ContextSecondaryFloat);
     if (LockResult != 0) {
-      ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10a58);
+      ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemConfigValidationData);
     }
     *(float *)(CharacterCode + 0x208) = ContextSecondaryFloat;
   }
@@ -246463,7 +246463,7 @@ uint8_t FUN_1802164d6(void
     ContextSecondaryFloat = 1.0;
   }
   if (ContextSecondaryFloat != *(float *)(CharacterCode + 0x20c)) {
-    FUN_180847310(*(void *)(CharacterCode + 0x368),&UNK_180a10a90,aSystemRegisterFlagX8);
+    FUN_180847310(*(void *)(CharacterCode + 0x368),&SystemEventProcessingTemplate,aSystemRegisterFlagX8);
     IntegerValue = FUN_18084ab60(aSystemRegisterFlagX8[0],ContextSecondaryFloat);
     if (LockResult != 0) {
       ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10b88);

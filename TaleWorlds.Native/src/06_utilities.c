@@ -60828,7 +60828,20 @@ void BatchResetExceptionDataBufferHandlers(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_180906b70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统清理和回调函数处理
+ * 
+ * 该函数负责执行系统清理操作并调用多个回调函数。它会检查不同偏移量处的函数指针，
+ * 如果有效则调用相应的回调函数。这是一个系统资源清理和回调处理的综合函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含各种回调函数指针
+ * 
+ * @note 原始函数名：Unwind_180906b70
+ * @note 这是一个异常展开（unwind）处理函数，用于系统清理和回调处理
+ * @note 函数会检查0x30、0x58、0x38偏移量处的函数指针并调用
+ */
+void ExecuteSystemCleanupAndCallbacks(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -90000,7 +90013,19 @@ void Unwind_18090f210(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f230(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数A0
+ * 
+ * 该函数负责清理指定偏移量处的资源引用计数。它会检查资源指针的有效性，
+ * 计算内存偏移量，并在引用计数归零时调用异常处理函数。
+ * 这是异常处理机制中的重要组成部分，用于确保资源的正确释放。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_18090f230
+ */
+void CleanupResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -90036,7 +90061,19 @@ void Unwind_18090f230(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f250(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数A1
+ * 
+ * 该函数负责清理指定偏移量处的资源引用计数。与CleanupResourceReferenceCountA0类似，
+ * 但操作的是不同的偏移量（0x100）。这是异常处理机制中的重要组成部分，
+ * 用于确保资源的正确释放。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_18090f250
+ */
+void CleanupResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -90072,7 +90109,19 @@ void Unwind_18090f250(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f270(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数A2
+ * 
+ * 该函数负责清理指定偏移量处的资源引用计数。与前两个函数类似，
+ * 但操作的是偏移量0x120。这是异常处理机制中的重要组成部分，
+ * 用于确保资源的正确释放。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_18090f270
+ */
+void CleanupResourceReferenceCountA2(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -90988,7 +91037,19 @@ void Unwind_18090f890(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f8a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调A0
+ * 
+ * 该函数检查并执行指定偏移量处的异常处理器回调函数。
+ * 它会验证函数指针的有效性，并在存在有效回调时执行。
+ * 这是异常处理机制中的重要组成部分。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_18090f8a0
+ */
+void ExecuteExceptionHandlerCallbackA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x130) != (int64_t *)0x0) {
