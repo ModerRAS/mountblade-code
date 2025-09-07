@@ -66294,7 +66294,18 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809078a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统状态更新A1
+ * 
+ * 该函数遍历异常处理上下文并更新系统状态。通过循环处理数据上下文中的异常处理器，
+ * 确保系统状态的一致性和正确性。如果数据上下文为空，则直接返回。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809078a0
+ */
+void ProcessSystemStatusUpdateA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -105061,7 +105072,6 @@ void SetDefaultExceptionHandler10(void)
 
 
 
-9423a0(void)
 /**
  * @brief 设置默认异常处理器11
  * 
@@ -105081,7 +105091,6 @@ void SetDefaultExceptionHandler11(void)
 
 
 
-9423c0(void)
 /**
  * @brief 设置默认异常处理器12
  * 
