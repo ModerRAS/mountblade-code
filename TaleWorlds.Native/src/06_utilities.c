@@ -46814,7 +46814,15 @@ void InitializeSystemExceptionHandlerF(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180904110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理回调函数执行器B
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180904110
+ */
+void ExecuteExceptionHandlerCallbackB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -46828,7 +46836,13 @@ void Unwind_180904110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904120(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据缓冲区清理函数A
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180904120
+ */
+void CleanupExceptionDataBufferA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -60011,7 +60025,16 @@ void Unwind_180907180(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907190(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统终止检查函数A0
+ * 
+ * 该函数检查数据缓冲区的特定偏移量，如果不为0则终止系统。
+ * 这是一个系统安全检查函数，确保系统状态正确。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ */
+void CheckSystemTerminationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x30) != 0) {
@@ -60023,7 +60046,16 @@ void Unwind_180907190(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809071a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 函数指针调用检查函数A0
+ * 
+ * 该函数检查特定的函数指针是否存在，如果存在则调用该函数。
+ * 这是一个系统回调函数处理机制。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ */
+void ExecuteFunctionPointerCallbackA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x88) != (int64_t *)0x0) {
@@ -60034,7 +60066,16 @@ void Unwind_1809071a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809071b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统数据处理调用函数A0
+ * 
+ * 该函数调用系统数据处理函数A1来处理指定偏移量的数据。
+ * 这是一个数据处理的包装函数。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ */
+void ProcessSystemDataWithOffsetA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessSystemDataA1(dataBuffer + 0x38);
@@ -60043,7 +60084,18 @@ void Unwind_1809071b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809071c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 函数指针调用检查函数A1
+ * 
+ * 该函数检查特定的函数指针是否存在，如果存在则调用该函数。
+ * 这是一个系统回调函数处理机制，带有操作标志参数。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ExecuteFunctionPointerCallbackA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x48) != (code *)0x0) {
@@ -60065,7 +60117,16 @@ void Unwind_1809071d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809071e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统终止检查函数A1
+ * 
+ * 该函数检查嵌套指针的特定偏移量，如果不为0则终止系统。
+ * 这是一个系统安全检查函数，确保系统状态正确。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ */
+void CheckSystemTerminationA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x20) + 0x18) != 0) {
