@@ -70670,24 +70670,24 @@ void InitializeUIContext(longlong *uiContext)
         *(uint *)(uiContext + 1)) {
       *(undefined1 *)((ulonglong)*(uint *)((longlong)uiContext + 0x1c) + *uiContext) = 0xff;
       *(int *)((longlong)uiContext + 0x1c) = *(int *)((longlong)uiContext + 0x1c) + 1;
-      uVar6 = 0;
+      contextFlags = 0;
     }
     else {
-      uVar6 = 0xffffffff;
+      contextFlags = 0xffffffff;
     }
-    *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | uVar6;
-    pallocatedMemory = uiContext + 5;
-    *(int *)pallocatedMemory = (int)*pallocatedMemory + -1;
-    compareResult = (int)*pallocatedMemory;
+    *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | contextFlags;
+    allocatedMemory = uiContext + 5;
+    *(int *)allocatedMemory = (int)*allocatedMemory + -1;
+    bitPosition = (int)*allocatedMemory;
   }
   *(undefined4 *)((longlong)uiContext + 0x2c) = 0;
 LAB_1807053b0:
-  uVar6 = *(uint *)(uiContext + 2);
+  contextFlags = *(uint *)(uiContext + 2);
   if ((int)*(uint *)((longlong)uiContext + 0x14) < 8) {
     eventTypeCode = *(uint *)(uiContext + 6);
   }
   else {
-    uVar5 = (ulonglong)(*(uint *)((longlong)uiContext + 0x14) >> 3);
+    allocationSize = (ulonglong)(*(uint *)((longlong)uiContext + 0x14) >> 3);
     do {
       if ((uint)(*(int *)((longlong)uiContext + 0x1c) + *(int *)((longlong)uiContext + 0xc)) <
           *(uint *)(uiContext + 1)) {

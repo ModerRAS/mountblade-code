@@ -1674,6 +1674,9 @@
 #define SystemNodeDataOffset 6
 #define SystemNodeCallbackOffset 10
 
+// 系统内存分配偏移量常量
+#define SystemMemoryAllocationOffset 0x20
+
 // 系统节点标识常量
 const long long SystemNodeIdentifierPrimary = 0x45425dc186a5d575;
 const long long SystemNodeIdentifierSecondary = 0xfab48faa65382fa5;
@@ -9204,7 +9207,7 @@ void InitializeCoreEngineDataStructure(void) {
   }
   if ((SystemTraversalNode == SystemRootNode) || (DataComparisonResult = memcmp(&SystemComparisonDataPrimary, SystemTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), DataComparisonResult < 0)) {
     SystemMemoryOffset = CoreEngineAllocateMemory(EngineSystemContext);
-    CoreEngineSetupDataStructure(EngineSystemContext, &CreatedSystemNode, SystemTraversalNode, SystemMemoryOffset + 0x20, SystemMemoryOffset);
+    CoreEngineSetupDataStructure(EngineSystemContext, &CreatedSystemNode, SystemTraversalNode, SystemMemoryOffset + SystemMemoryAllocationOffset, SystemMemoryOffset);
     SystemTraversalNode = CreatedSystemNode;
   }
   SystemTraversalNode[6] = SystemNodeIdentifierPrimary;
@@ -9271,7 +9274,7 @@ void InitializeCoreEngineRenderingSystem(void) {
   }
   if ((RenderingTraversalNode == RenderingSystemRootNode) || (RenderingDataComparisonResult = memcmp(&SystemComparisonDataSecondary, RenderingTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), RenderingDataComparisonResult < 0)) {
     RenderingSystemMemoryOffset = CoreEngineAllocateMemory(RenderingSystemContext);
-    CoreEngineSetupDataStructure(RenderingSystemContext, &CreatedRenderingNode, RenderingTraversalNode, RenderingSystemMemoryOffset + 0x20, RenderingSystemMemoryOffset);
+    CoreEngineSetupDataStructure(RenderingSystemContext, &CreatedRenderingNode, RenderingTraversalNode, RenderingSystemMemoryOffset + SystemMemoryAllocationOffset, RenderingSystemMemoryOffset);
     RenderingTraversalNode = CreatedRenderingNode;
   }
   RenderingTraversalNode[6] = SystemNodeIdentifierTertiary;
@@ -40027,13 +40030,13 @@ void ProcessDataStructureWithSemaphore(uint64_t CharacterCode,uint64_t Utf8Buffe
   uint64_t BufferOffset;
   void *TertiaryMemoryPointer;
   bool IsValidSystem;
-  void *StackProcessingVariable70;
+  void *SystemConfigurationContext;
   void *StackPointer;
-  uint32_t StackProcessingVariable60;
+  uint32_t SystemStatusFlag;
   uint64_t SystemTimeout;
   void *SystemKeyPointer;
-  long long StackProcessingVariable48;
-  uint32_t StackProcessingVariable38;
+  long long SystemEventState;
+  uint32_t SystemValidationState;
   
   MemoryAllocationSize = WaitForSingleObject(SemaphoreHandle,0);
   if (MemoryAllocationSize != 0) {
@@ -40060,7 +40063,7 @@ void ProcessDataStructureWithSemaphore(uint64_t CharacterCode,uint64_t Utf8Buffe
     *(void *)(AllocatedMemorySize + 8) = 0;
     *(void *)(AllocatedMemorySize + 0x18) = 0;
     SystemKeyPointer = &SystemNullTemplate;
-    if (StackProcessingVariable48 != 0) {
+    if (SystemEventState != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
@@ -169147,7 +169150,21 @@ void PerformSystemNoOperation(void)
 
 
 
-long long FUN_18013ce40(long long *Utf8InputBuffer
+/**
+ * @brief 处理UTF-8输入缓冲区并验证编码
+ * 
+ * 该函数负责处理UTF-8编码的输入缓冲区，验证编码的有效性，并处理相关的数据操作。
+ * 函数会检查缓冲区状态、验证字符编码、处理字符串长度计算，并执行必要的数据清理工作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针，用于存储处理后的数据
+ * @return long long 返回处理结果状态码，0表示成功，非0值表示错误状态
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的UTF-8编码验证和处理逻辑
+ * @warning 简化实现仅执行基本的缓冲区操作，不进行实际的UTF-8编码验证
+ * 
+ * @see SystemConfigurationHandle, StringLength, ProcessStringComparison
+ */
+long long ProcessUtf8InputBufferAndValidate(long long *Utf8InputBuffer
 {
   int *ReferenceCountPointer;
   long long BufferStatus;

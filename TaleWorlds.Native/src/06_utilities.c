@@ -74828,28 +74828,64 @@ void ExecuteSystemUpgradeA0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180909150(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 处理系统维护执行操作
+ * 
+ * 该函数负责执行系统维护操作，处理系统维护相关的异常处理任务。
+ * 主要功能包括：
+ * 1. 获取异常处理上下文指针
+ * 2. 验证上下文指针的有效性
+ * 3. 执行异常处理回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 此函数是系统维护模块的核心执行函数
+ * @warning 函数包含异常处理操作，需要确保回调函数的安全性
+ * 
+ * @see FunctionPointer, ExceptionHandlerContext
+ */
+void ExecuteSystemMaintenanceA0(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionHandlerContextPointer;   // 异常处理上下文指针
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x1c88);
+  // 获取异常处理上下文指针
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + 0x68);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    // 执行异常处理回调函数
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + SystemComponentContextOffset))();
   }
   return;
 }
 
 
 
-void Unwind_180909170(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 处理系统监控执行操作
+ * 
+ * 该函数负责执行系统监控操作，处理系统监控相关的异常处理任务。
+ * 主要功能包括：
+ * 1. 获取异常处理上下文指针
+ * 2. 验证上下文指针的有效性
+ * 3. 执行异常处理回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 此函数是系统监控模块的核心执行函数
+ * @warning 函数包含异常处理操作，需要确保回调函数的安全性
+ * 
+ * @see FunctionPointer, ExceptionHandlerContext
+ */
+void ExecuteSystemMonitoringA0(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionHandlerContextPointer;   // 异常处理上下文指针
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x1c90);
+  // 获取异常处理上下文指针
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + 0x70);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    // 执行异常处理回调函数
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + SystemComponentContextOffset))();
   }
   return;
 }
