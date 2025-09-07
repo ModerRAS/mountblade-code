@@ -131,6 +131,11 @@
 #define SystemMemoryBufferSize 0x10
 #define SystemStringBufferSize 0x20
 
+// 系统缓冲区偏移量常量
+#define SystemBufferLengthOffset 0x10
+#define SystemBufferDataOffset 8
+#define SystemMemoryCleanupFlag 0xfffffffffffffffe
+
 // 系统节点标识常量
 const long long SystemNodeIdentifierPrimary = 0x45425dc186a5d575;
 const long long SystemNodeIdentifierSecondary = 0xfab48faa65382fa5;
@@ -3276,6 +3281,8 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define CalculateSystemDistance FUN_18011f690
 // 原始函数名：FUN_18011f9b0 - 系统浮点数处理函数
 #define ProcessSystemFloatEx FUN_18011f9b0
+// 原始函数名：FUN_18011f740 - 系统参数计算函数
+#define CalculateSystemParameters FUN_18011f740
 
 #define ConfigureSystemDataStructureWithGraphics FUN_18010cd70
 #define ConfigureSystemDataStructureWithRendering FUN_18010cdf0
@@ -18474,24 +18481,24 @@ void CoreEngineMemoryTransfer(long long destinationBuffer,long long sourceData
   long long dataLength;
   
   if (sourceData == 0) {
-    *(uint32_t *)(destinationBuffer + 0x10) = 0;
-    **(uint8_t **)(destinationBuffer + 8) = 0;
+    *(uint32_t *)(destinationBuffer + SystemBufferLengthOffset) = 0;
+    **(uint8_t **)(destinationBuffer + SystemBufferDataOffset) = 0;
     return;
   }
   dataLength = -1;
   do {
     dataLength = dataLength + 1;
   } while (*(char *)(sourceData + dataLength) != '\0');
-  if ((int)dataLength < 0x20) {
-    *(int *)(destinationBuffer + 0x10) = (int)dataLength;
+  if ((int)dataLength < SystemMinimumAllocationSize) {
+    *(int *)(destinationBuffer + SystemBufferLengthOffset) = (int)dataLength;
                     // WARNING: Could not recover jumptable at 0x0001800463b7. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(void *)(destinationBuffer + 8),0x20);
+    strcpy_s(*(void *)(destinationBuffer + SystemBufferDataOffset),SystemMinimumAllocationSize);
     return;
   }
-  CoreEngineInitializeMemoryBuffer(&SystemMemoryBuffer,0x20,sourceData);
-  *(uint32_t *)(destinationBuffer + 0x10) = 0;
-  **(uint8_t **)(destinationBuffer + 8) = 0;
+  CoreEngineInitializeMemoryBuffer(&SystemMemoryBuffer,SystemMinimumAllocationSize,sourceData);
+  *(uint32_t *)(destinationBuffer + SystemBufferLengthOffset) = 0;
+  **(uint8_t **)(destinationBuffer + SystemBufferDataOffset) = 0;
   return;
 }
 
@@ -18506,12 +18513,12 @@ void CoreEngineMemoryTransfer(long long destinationBuffer,long long sourceData
  */
 void CoreEngineMemoryTransferWithSize(long long destinationBuffer,uint64_t sourceData,int transferSize
 {
-  if (transferSize + 1 < 0x20) {
+  if (transferSize + 1 < SystemMinimumAllocationSize) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(destinationBuffer + 8),sourceData,(long long)transferSize);
+    memcpy(*(uint8_t **)(destinationBuffer + SystemBufferDataOffset),sourceData,(long long)transferSize);
   }
-  **(uint8_t **)(destinationBuffer + 8) = 0;
-  *(uint32_t *)(destinationBuffer + 0x10) = 0;
+  **(uint8_t **)(destinationBuffer + SystemBufferDataOffset) = 0;
+  *(uint32_t *)(destinationBuffer + SystemBufferLengthOffset) = 0;
   return;
 }
 
@@ -18542,10 +18549,10 @@ void CoreEngineMemoryTransferComplete(void
  */
 void CoreEngineResetSystemStringBuffer(uint8_t *SystemStringBuffer
 {
-  long long RegisterRDI;
+  long long bufferPointer;
   
   *SystemStringBuffer = 0;
-  *(uint32_t *)(RegisterRDI + 0x10) = 0;
+  *(uint32_t *)(bufferPointer + SystemBufferLengthOffset) = 0;
   return;
 }
 
@@ -114325,7 +114332,7 @@ LabelSystemDataConfiguration:
     }
     if (AdditionalParameter1.LowPart == 0.0) goto LabelUtfEncodingProcessing;
     NormalizedParameter = AdditionalParameter1.LowPart;
-    CalculatedFloatValue2 = (float)FUN_18011f9b0(RegisterXMM0Value,*Utf16EndPointer,SystemContextSecondaryFloat,SystemStatusCode);
+    CalculatedFloatValue2 = (float)ProcessSystemFloatEx(RegisterXMM0Value,*Utf16EndPointer,SystemContextSecondaryFloat,SystemStatusCode);
     MutexLockResult = ProcessValidationCheck(AdditionalParameter3);
     CalculatedFloatValue1 = 1.0;
     RegisterXMM0Value = RegisterXMM0Output;
@@ -114360,7 +114367,7 @@ LabelSystemDataConfiguration:
       SystemContextPrimaryFloat1 = 1.0;
     }
   }
-  RegisterXMM0Value = (double)FUN_18011f740(AdditionalParameter3,SystemContextPrimaryFloat0,
+  RegisterXMM0Value = (double)CalculateSystemParameters(AdditionalParameter3,SystemContextPrimaryFloat0,
                                      SUB84((SystemDoubleValue6 - DoubleValue2) * (double)SystemContextPrimaryFloat1 + DoubleValue2,0));
   if (RegisterXMM0Value != *Utf16EndPointer) {
     *Utf16EndPointer = RegisterXMM0Value;
@@ -125791,7 +125798,22 @@ uint8_t CheckMemorySystemStatus(void
 
 
 
-83f0(long long OutputBuffer,int OutputBufferSize,float *Utf8InputPointer,uint64_t Utf16EndPointer,uint AdditionalParameter1void ProcessSystemBufferAndValidateParameters(long long OutputBuffer,int OutputBufferSize,float *Utf8InputPointer,uint64_t Utf16EndPointer,uint AdditionalParameter1
+/**
+ * @brief 处理系统缓冲区并验证参数
+ * 
+ * 该函数负责处理系统缓冲区操作，包括参数验证、内存分配和数据处理
+ * 主要用于系统级的缓冲区管理和参数校验
+ * 
+ * @param OutputBuffer 输出缓冲区指针
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_1801283f0
+ */
+void ProcessSystemBufferAndValidateParameters(long long OutputBuffer,int OutputBufferSize,float *Utf8InputPointer,uint64_t Utf16EndPointer,uint AdditionalParameter1
 {
   uint32_t Utf16Char;
   uint MemoryAllocationIndex;
