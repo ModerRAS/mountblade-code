@@ -44742,6 +44742,16 @@ void Unwind_180903cc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 设置临时异常处理器到验证上下文
+ * 
+ * 该函数将临时异常处理器设置到验证上下文的指定位置，
+ * 并在特定条件下终止系统运行。这是异常处理系统的重要组成部分。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
 void Unwind_180903cd0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -79849,6 +79859,15 @@ void Unwind_18090d420(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 资源引用计数管理器E0
+ * 
+ * 该函数用于管理资源的引用计数，使用0x350偏移量
+ * 主要用于内存管理和资源清理
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ */
 void Unwind_18090d430(DataBuffer operationBase,int64_t dataBuffer)
 
 {
