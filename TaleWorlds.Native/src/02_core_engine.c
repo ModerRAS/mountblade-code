@@ -115443,7 +115443,17 @@ uint ValidateSystemDataAndProcessOperation(byte *SystemContextPointer,long long 
 
 
 
-1300(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_180121300(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 分配缓冲区并检查状态
+ * 
+ * 该函数负责缓冲区的分配和状态检查，确保内存分配的正确性。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void AllocateBufferAndCheckStatus(uint64_t SystemContextPointer, uint64_t Utf8BufferSize, uint64_t Utf16InputPointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
