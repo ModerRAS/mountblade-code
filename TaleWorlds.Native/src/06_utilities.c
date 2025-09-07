@@ -8388,7 +8388,7 @@ uint8_t GlobalDataPointerFinalCache;
 
 // 全局数据指针Final验证缓冲区
 // 功能：存储全局数据指针Final的验证信息
-#define GlobalDataPointerFinalValidationBuffer UNK_180a23000
+#define GlobalDataPointerFinalValidationBuffer GlobalDataPointerFinalValidationBufferPointer
 uint8_t GlobalDataPointerFinalValidationBuffer;
 
 // 原始函数名：FUN_180942440 - 全局指针设置函数Extended
@@ -14011,11 +14011,11 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 数据块指针表A0
 // 功能：存储数据块指针的表结构
-#define DataBlockPointerTableA0 UNK_180986350
+#define DataBlockPointerTableA0 DataBlockPointerTableAPointer
 
 // 数据块指针表A1
 // 功能：存储数据块指针的表结构
-#define DataBlockPointerTableA1 UNK_180986370
+#define DataBlockPointerTableA1 DataBlockPointerTableAPointerSecondary
 
 /**
  * @brief 数据和指针处理函数A0
@@ -71158,7 +71158,17 @@ void DestroyMutexResource(void)
 
 
 
-void Unwind_180908760(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 销毁条件互斥锁
+ * 
+ * 该函数负责销毁指定数据缓冲区中的条件互斥锁，
+ * 释放同步资源并清理相关状态。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含互斥锁信息
+ * @return 无返回值
+ */
+void DestroyConditionalMutex(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x60));
@@ -111458,38 +111468,38 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define SystemMemoryBaseExtendedTable _DAT_180bfc180
 
 // 系统资源列表管理表定义
-#define SystemResourceAllocationEndTable _DAT_180bfa2f0
-#define SystemResourceCurrentAllocationTable _DAT_180bfa2e8
-#define SystemResourceAllocationEndTableSecondary _DAT_180bfa310
-#define SystemResourceCurrentAllocationTableSecondary _DAT_180bfa308
-#define SystemResourceAllocationEndTableTertiary _DAT_180bfa330
-#define SystemResourceCurrentAllocationTableTertiary _DAT_180bfa328
+#define SystemResourceAllocationEndTable SystemResourceAllocationEndTablePointer
+#define SystemResourceCurrentAllocationTable SystemResourceCurrentAllocationTablePointer
+#define SystemResourceAllocationEndTableSecondary SystemResourceAllocationEndTableSecondaryPointer
+#define SystemResourceCurrentAllocationTableSecondary SystemResourceCurrentAllocationTableSecondaryPointer
+#define SystemResourceAllocationEndTableTertiary SystemResourceAllocationEndTableTertiaryPointer
+#define SystemResourceCurrentAllocationTableTertiary SystemResourceCurrentAllocationTableTertiaryPointer
 
 // 系统异常处理器指针表定义
-#define SystemExceptionHandlerManagementTable _DAT_180bf9bd0
-#define SystemExceptionHandlerPointerTablePrimary _DAT_180bf9f30
-#define SystemExceptionHandlerPointerTableSecondary _DAT_180bf9f90
-#define SystemExceptionHandlerPointerTableTertiary _DAT_180bf9ff0
-#define SystemExceptionHandlerPointerTableQuaternary _DAT_180bfa290
+#define SystemExceptionHandlerManagementTable SystemExceptionHandlerManagementTablePointer
+#define SystemExceptionHandlerPointerTablePrimary SystemExceptionHandlerPointerTablePrimaryPointer
+#define SystemExceptionHandlerPointerTableSecondary SystemExceptionHandlerPointerTableSecondaryPointer
+#define SystemExceptionHandlerPointerTableTertiary SystemExceptionHandlerPointerTableTertiaryPointer
+#define SystemExceptionHandlerPointerTableQuaternary SystemExceptionHandlerPointerTableQuaternaryPointer
 // 系统资源和异常处理状态表定义
-#define SystemResourceDataTable _DAT_180c92498
-#define SystemResourceDataTableSecondary _DAT_180c92488
-#define DefaultExceptionHandlerBPointerTable _DAT_180bf6558
-#define SystemExceptionHandlerStateTable _DAT_180d49f80
+#define SystemResourceDataTable SystemResourceDataTablePointer
+#define SystemResourceDataTableSecondary SystemResourceDataTableSecondaryPointer
+#define DefaultExceptionHandlerBPointerTable DefaultExceptionHandlerBPointerTablePointer
+#define SystemExceptionHandlerStateTable SystemExceptionHandlerStateTablePointer
 // 系统配置数据表定义
-#define SystemConfigurationDataTablePrimary _DAT_180d49ff8
-#define SystemConfigurationDataTableSecondary _DAT_180c92510
-#define SystemGlobalStatusFlag _DAT_180bf66d8
-#define SystemGlobalDataTableSecondary _DAT_180c96858
+#define SystemConfigurationDataTablePrimary SystemConfigurationDataTablePrimaryPointer
+#define SystemConfigurationDataTableSecondary SystemConfigurationDataTableSecondaryPointer
+#define SystemGlobalStatusFlag SystemGlobalStatusFlagPointer
+#define SystemGlobalDataTableSecondary SystemGlobalDataTableSecondaryPointer
 // 系统缓冲区数据表定义
-#define SystemBufferDataTablePrimary _DAT_180bfbf64
-#define SystemBufferDataTableSecondary _DAT_180bfbf7c
-#define SystemBufferDataTableTertiary _DAT_180bfbf60
-#define SystemConfigurationDataTableTertiary _DAT_180bf7308
-#define SystemBufferDataTableQuaternary _DAT_180bfbf78
-#define SystemConfigurationDataTableQuaternary _DAT_180bf72a8
+#define SystemBufferDataTablePrimary SystemBufferDataTablePrimaryPointer
+#define SystemBufferDataTableSecondary SystemBufferDataTableSecondaryPointer
+#define SystemBufferDataTableTertiary SystemBufferDataTableTertiaryPointer
+#define SystemConfigurationDataTableTertiary SystemConfigurationDataTableTertiaryPointer
+#define SystemBufferDataTableQuaternary SystemBufferDataTableQuaternaryPointer
+#define SystemConfigurationDataTableQuaternary SystemConfigurationDataTableQuaternaryPointer
 // 系统管理数据表定义
-#define SystemManagementDataTablePrimary _DAT_180bfbd80
+#define SystemManagementDataTablePrimary SystemManagementDataTablePrimaryPointer
 
 // 异常处理执行函数定义
 #define ExecuteExceptionHandlerPrimary Unwind_180911160
