@@ -17525,11 +17525,11 @@ MemoryCopyLabel:
       }
       else {
         if ((validationResult != '\x02') || ((*(byte *)(operationBase + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
-        uStack_6f4 = *(DataWord *)(dataPointer + 0x20);
-        arrayIndex = ValidateAndProcessDataFlags(operationBase,arrayIndex,&uStack_6f4);
+        DataProcessingBuffer = *(DataWord *)(dataPointer + 0x20);
+        arrayIndex = ValidateAndProcessDataFlags(operationBase,arrayIndex,&DataProcessingBuffer);
         if (arrayIndex != 0) GOTO_ValidationFailed;
-        arrayIndex = QueryAndRetrieveSystemDataA0(uStack_6f4,alStack_6b0);
-        if ((arrayIndex != 0) || (*(int *)(alStack_6b0[0] + 0x30) != 2)) goto MemoryCopyLabel;
+        arrayIndex = QueryAndRetrieveSystemDataA0(DataProcessingBuffer,ValidationContextBuffer);
+        if ((arrayIndex != 0) || (*(int *)(ValidationContextBuffer[0] + 0x30) != 2)) goto MemoryCopyLabel;
       }
     }
     *dataBuffer = 0;
