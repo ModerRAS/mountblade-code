@@ -19356,7 +19356,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
     iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&uStack_1a0);
     if (iterationCount == 0) {
       uStack_170 = 0;
-      puStack_178 = &UNK_1809832b8;
+      puStack_178 = &DataValidationErrorBase;
       uStack_160 = uStack_1c8;
       uStack_168 = uStack_1a0;
       iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_178);
@@ -19422,7 +19422,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
           if (iterationCount == 0) {
             if (fStack_19c != 1.0) {
               fStack_1a8 = fStack_19c;
-              puStack_1c0 = &UNK_180983738;
+              puStack_1c0 = &FloatingPointValidationErrorA;
               uStack_1b0 = uStack_1c8;
               uStack_1b8 = 0;
               iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
@@ -19432,7 +19432,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
             if (iterationCount == 0) {
               if (afStack_198[0] != 1.0) {
                 fStack_1a8 = afStack_198[0];
-                puStack_1c0 = &UNK_1809837c0;
+                puStack_1c0 = &FloatingPointValidationErrorB;
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
@@ -19444,7 +19444,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 if (*floatArrayPointer != 0.0) {
                   uStack_1b0 = uStack_1c8;
                   uStack_1b8 = 0;
-                  puStack_1c0 = &UNK_1809839d8;
+                  puStack_1c0 = &DataProcessingValidationError;
                   fStack_1a8 = loopCounter;
                   fStack_1a4 = *floatArrayPointer;
                   iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
@@ -19460,7 +19460,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 if (floatValue != *floatArrayPointer) {
                   uStack_1b0 = uStack_1c8;
                   uStack_1b8 = 0;
-                  puStack_1c0 = &UNK_180983950;
+                  puStack_1c0 = &SystemStatusValidationError;
                   fStack_1a8 = loopCounter;
                   fStack_1a4 = floatValue;
                   iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
@@ -19471,7 +19471,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               } while ((int)loopCounter < 6);
               validationOutcome = ValidateParameters(dataBuffer + 200);
               if ((float)(validationOutcome / 0x30) != 0.0) {
-                puStack_1c0 = &UNK_180983be8;
+                puStack_1c0 = &DataIntegrityValidationErrorA;
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 fStack_1a8 = (float)(validationOutcome / 0x30);
@@ -19480,7 +19480,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               }
               if ((*(uint *)(dataBuffer + 0x2d8) >> 1 & 1) != 0) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &UNK_180983a60;
+                puStack_1c0 = &DataIntegrityValidationErrorB;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
                 iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
@@ -19489,7 +19489,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               iterationCount = ProcessUtilityOperation(dataBuffer);
               if (iterationCount != 2) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &UNK_180983ae8;
+                puStack_1c0 = &DataIntegrityValidationErrorC;
                 uStack_1b0 = uStack_1c8;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;

@@ -209058,7 +209058,7 @@ long long * FUN_180189c50(long long *SystemContextPointer,long long *Utf8BufferS
   
   StackConfigurationFlag = FUN_1801836e0(*Utf8BufferSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&UNK_180a0a9b0,&StackConfigurationFlag);
+  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&SystemConfigurationParameterPrimary,&StackConfigurationFlag);
   return;
 }
 
@@ -209073,7 +209073,7 @@ long long * FUN_180189c50(long long *SystemContextPointer,long long *Utf8BufferS
   
   StackConfigurationFlag = FUN_1801836e0(*Utf8BufferSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&UNK_180a0aa20,&StackConfigurationFlag);
+  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&SystemConfigurationParameterSecondary,&StackConfigurationFlag);
   return;
 }
 
@@ -209088,7 +209088,7 @@ long long * FUN_180189c50(long long *SystemContextPointer,long long *Utf8BufferS
   
   StackConfigurationFlag = FUN_1801836e0(*Utf8BufferSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&UNK_180a0aa58,&StackConfigurationFlag);
+  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&SystemConfigurationParameterTertiary,&StackConfigurationFlag);
   return;
 }
 
@@ -209103,7 +209103,7 @@ long long * FUN_180189c50(long long *SystemContextPointer,long long *Utf8BufferS
   
   StackConfigurationFlag = FUN_1801836e0(*Utf8BufferSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&UNK_180a0aa40,&StackConfigurationFlag);
+  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&SystemConfigurationParameterQuaternary,&StackConfigurationFlag);
   return;
 }
 
@@ -209118,7 +209118,7 @@ long long * FUN_180189c50(long long *SystemContextPointer,long long *Utf8BufferS
   
   StackConfigurationFlag = FUN_1801836e0(*Utf8BufferSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&UNK_180a0aa90,&StackConfigurationFlag);
+  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&SystemConfigurationParameterQuinary,&StackConfigurationFlag);
   return;
 }
 
@@ -209133,7 +209133,7 @@ long long * FUN_180189c50(long long *SystemContextPointer,long long *Utf8BufferS
   
   StackConfigurationFlag = FUN_1801836e0(*Utf8BufferSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&UNK_180a0aa70,&StackConfigurationFlag);
+  FUN_180061f80(SystemConfigurationPointer,0,0xffffffff00000000,0xd,&SystemConfigurationParameterSenary,&StackConfigurationFlag);
   return;
 }
 
