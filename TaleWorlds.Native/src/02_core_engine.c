@@ -146,6 +146,69 @@
 #define GetSystemFloatValue2 GetSystemFloatValue2
 
 /**
+ * @brief 系统浮点数过滤和验证函数
+ * 
+ * 该函数负责处理系统浮点数的过滤和验证操作，包括：
+ * - 计算过滤值
+ * - 验证系统上下文
+ * - 处理内存分配和引用计数
+ * 
+ * @note 原始函数名：FUN_1801348d8
+ */
+#define ProcessSystemFloatFilterAndValidation FUN_1801348d8
+
+/**
+ * @brief 系统上下文处理和迭代函数
+ * 
+ * 该函数负责处理系统上下文和迭代操作，包括：
+ * - 系统浮点数处理
+ * - 内存分配和验证
+ * - 迭代计算和结果处理
+ * 
+ * @note 原始函数名：FUN_1801348ee
+ */
+#define ProcessSystemContextAndIteration FUN_1801348ee
+
+/**
+ * @brief 字符编码处理和内存管理函数
+ * 
+ * 该函数负责处理字符编码和内存管理操作，包括：
+ * - 字符字节计数和验证
+ * - 内存分配和大小计算
+ * - 锁操作和内存匹配
+ * 
+ * @param CharacterCode 字符编码指针
+ * 
+ * @note 原始函数名：FUN_180134b4f
+ */
+#define ProcessCharacterEncodingAndMemoryManagement FUN_180134b4f
+
+/**
+ * @brief 系统状态缓冲区处理函数
+ * 
+ * 该函数负责处理系统状态缓冲区，包括：
+ * - 状态缓冲区管理
+ * - 内存地址掩码计算
+ * - 上下文浮点数处理
+ * 
+ * @note 原始函数名：FUN_180134c48
+ */
+#define ProcessSystemStatusBuffer FUN_180134c48
+
+/**
+ * @brief 系统字符处理和状态管理函数
+ * 
+ * 该函数负责处理系统字符和状态管理，包括：
+ * - 字符表处理和迭代
+ * - 状态缓冲区管理
+ * - 内存分配和验证
+ * - 浮点数计算和参数处理
+ * 
+ * @note 原始函数名：FUN_180134c57
+ */
+#define ProcessSystemCharacterAndStatusManagement FUN_180134c57
+
+/**
  * @brief 系统数据处理器
  * 
  * 该函数负责处理系统数据，包括数据验证和转换
