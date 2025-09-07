@@ -138,6 +138,13 @@
 #define ResourceHandleDataOffset 8
 #define ResourceCountThreshold 1
 
+// 异常上下文偏移量常量定义
+#define ExceptionContextOffset 0x60                  // 异常上下文偏移量
+#define ExceptionHandlerOffset 0x18                  // 异常处理器偏移量
+#define ExceptionStateOffset 0x20                     // 异常状态偏移量
+#define ExceptionStatusOffset 0x30                    // 异常状态寄存器偏移量
+#define ExceptionHandlerCallbackOffset10 0xd0         // 异常处理器回调偏移量10
+
 // 数据集合处理常量定义
 #define DataCollectionItemSize 0x14               // 数据集合中每个项目的大小
 #define DataCollectionContextOffset 8             // 数据集合上下文偏移量
@@ -50013,23 +50020,23 @@ void ResetBasicExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
  * 重置异常上下文处理器的状态，包括设置临时异常处理器、清理状态标志
  * 并最终设置默认异常处理器B。这是异常处理过程中的关键清理函数。
  * 
- * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区指针
+ * @param systemContext 系统上下文数据缓冲区
+ * @param exceptionContextData 异常上下文数据指针
  * @note 原始函数名：Unwind_1809046d0
  */
-void ResetExceptionContextOffset18(DataBuffer operationBase,int64_t dataBuffer)
+void ResetExceptionContextOffset18(DataBuffer systemContext,int64_t exceptionContextData)
 
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
-  *(DataBuffer *)(exceptionHandlerContext + 0x18) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x20) != 0) {
+  exceptionHandlerContext = *(int64_t *)(exceptionContextData + ExceptionContextOffset);
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerOffset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionStateOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x20) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x30) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x18) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionStateOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionStatusOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -50041,20 +50048,22 @@ void ResetExceptionContextOffset18(DataBuffer operationBase,int64_t dataBuffer)
  * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
  * 并执行相应的异常处理操作，使用不同的偏移地址
  * 
- * @param operationBase 操作基础数据
- * @param dataBuffer 数据缓冲区指针
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * @param systemContext 系统上下文数据
+ * @param exceptionContext 异常上下文指针
+ * @param callbackFlagA 回调标志A
+ * @param callbackFlagB 回调标志B
  * @note 原始函数名：Unwind_1809046e0
  */
-void ExecuteExceptionHandlerCallbackD(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallbackD(DataBuffer systemContext,int64_t exceptionContext,DataBuffer callbackFlagA,DataBuffer callbackFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
+  int64_t exceptionDataPtr;
   
-  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0xd0);
+  exceptionDataPtr = *(int64_t *)(exceptionContext + ExceptionDataPtrOffset);
+  exceptionHandlerCallback = *(FunctionPointer**)(exceptionDataPtr + ExceptionHandlerCallbackOffset10);
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x40) + 0xc0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(exceptionDataPtr + ExceptionHandlerOffset,0,0,callbackFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }

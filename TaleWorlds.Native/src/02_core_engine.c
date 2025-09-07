@@ -97359,6 +97359,9 @@ unsigned long long ProcessDataStructureAndSystemConfiguration(uint64_t Character
   uint32_t SystemParameter2;
   float StackParameter0;
   float StackParameter3;
+  uint32_t ModuleConfigurationFlags;
+  uint32_t ModuleConfigurationData;
+  uint32_t ModuleConfigurationParameter;
   
   SystemOperationResult = ValidateSystemDataAndProcessOperation(CharacterCode,Utf8BufferSize,*(uint32_t *)(ProcessingResult + -4 + Utf8SourcePointer * 4));
   if (*(int *)(SourceIndex + 0x1b2c) == IntegerValue9) {
@@ -97474,8 +97477,8 @@ unsigned long long ProcessDataStructureAndSystemConfiguration(uint64_t Character
         ContextPrimaryFloat9 = ContextSecondaryFloat2;
       }
       ContextPrimaryFloat9 = (float)(int)(ContextPrimaryFloat9 * 0.16666667);
-      uStack0000000000000060 = *(uint32_t *)(SystemConfigurationHandle + 0x17e8);
-      uStack0000000000000064 = *(uint32_t *)(SystemConfigurationHandle + 0x17ec);
+      ModuleConfigurationFlags = *(uint32_t *)(SystemConfigurationHandle + 0x17e8);
+      ModuleConfigurationData = *(uint32_t *)(SystemConfigurationHandle + 0x17ec);
       StackParameter0 = *(float *)(SystemConfigurationHandle + 0x17f0);
       if (ContextPrimaryFloat9 <= 1.0) {
         ContextPrimaryFloat9 = 1.0;
@@ -97578,9 +97581,9 @@ char ProcessSystemMemoryBufferSecondary(void
       NormalizedParameterValue = unaff_XMM15_Da;
     }
     NormalizedParameterValue = (float)(int)(NormalizedParameterValue * 0.16666667);
-    uStack0000000000000060 = *(uint32_t *)(SystemConfigurationHandle + 0x17e8);
-    uStack0000000000000064 = *(uint32_t *)(SystemConfigurationHandle + 0x17ec);
-    uStack0000000000000068 = *(uint32_t *)(SystemConfigurationHandle + 0x17f0);
+    ModuleConfigurationFlags = *(uint32_t *)(SystemConfigurationHandle + 0x17e8);
+    ModuleConfigurationData = *(uint32_t *)(SystemConfigurationHandle + 0x17ec);
+    ModuleConfigurationParameter = *(uint32_t *)(SystemConfigurationHandle + 0x17f0);
     if (NormalizedParameterValue <= 1.0) {
       NormalizedParameterValue = 1.0;
     }
@@ -154820,7 +154823,13 @@ LAB_180133d4a:
 
 
 
-3396e(voidvoid FUN_18013396e(void
+/**
+ * @brief 系统状态和内存管理处理器
+ * 
+ * 该函数负责处理系统状态、内存分配和浮点数值计算。
+ * 原始函数名: FUN_18013396e
+ */
+void CoreEngineProcessSystemStatusAndMemory(void)
 {
   unsigned long long *StatusBuffer;
   unsigned long long MemoryAllocationIndex;
@@ -155055,7 +155064,13 @@ LAB_180133d4a:
 
  (ram,0x000180133a60 (ram,0x000180133a69
 
-33a2f(voidvoid FUN_180133a2f(void
+/**
+ * @brief 系统操作状态处理器
+ * 
+ * 该函数负责处理系统操作状态、浮点变量和数据大小管理。
+ * 原始函数名: FUN_180133a2f
+ */
+void CoreEngineProcessSystemOperationStatus(void)
 {
   unsigned long long *StatusBuffer;
   unsigned long long MemoryAllocationIndex;
@@ -155240,7 +155255,13 @@ LAB_180133d4a:
 
 
 
-33a9b(voidvoid FUN_180133a9b(void
+/**
+ * @brief 系统缓冲区状态处理器
+ * 
+ * 该函数负责处理系统缓冲区状态、Unicode码点和浮点处理状态。
+ * 原始函数名: FUN_180133a9b
+ */
+void CoreEngineProcessSystemBufferStatus(void)
 {
   unsigned long long *StatusBuffer;
   long long BufferStatus;
@@ -155415,7 +155436,13 @@ LAB_180133d4a:
 
 
 
-33b38(float CharacterCodevoid FUN_180133b38(float CharacterCode
+/**
+ * @brief 字符代码处理器
+ * 
+ * 该函数负责处理字符代码、内存偏移和浮点处理状态。
+ * 原始函数名: FUN_180133b38
+ */
+void CoreEngineProcessCharacterCode(float CharacterCode)
 {
   unsigned long long *StatusBuffer;
   float ContextSecondaryFloat;
