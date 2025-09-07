@@ -106364,19 +106364,23 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define SystemMemoryCapacityTable _DAT_180bfc118
 #define SystemMemoryBaseTable _DAT_180bfc110
 #define SystemMemoryContextHighByteTable SecondaryMemoryContextHighByte
+// 系统内存扩展表定义
 #define SystemMemoryContextExtendedTable _DAT_180bfc188
 #define SystemMemoryBaseExtendedTable _DAT_180bfc180
+// 系统资源列表管理表定义
 #define SystemResourceListEndTable _DAT_180bfa2f0
 #define SystemResourceCurrentTable _DAT_180bfa2e8
 #define SystemResourceListEndTableA1 _DAT_180bfa310
 #define SystemResourceCurrentTableA1 _DAT_180bfa308
 #define SystemResourceListEndTableA2 _DAT_180bfa330
 #define SystemResourceCurrentTableA2 _DAT_180bfa328
+// 系统异常处理器指针表定义
 #define SystemExceptionHandlerPointerTable _DAT_180bf9bd0
 #define SystemExceptionHandlerPointerTableA1 _DAT_180bf9f30
 #define SystemExceptionHandlerPointerTableA2 _DAT_180bf9f90
 #define SystemExceptionHandlerPointerTableA3 _DAT_180bf9ff0
 #define SystemExceptionHandlerPointerTableA4 _DAT_180bfa290
+// 系统资源和异常处理状态表定义
 #define SystemResourceDataTable _DAT_180c92498
 #define SystemResourceDataTableA1 _DAT_180c92488
 #define DefaultExceptionHandlerBPointerTable _DAT_180bf6558

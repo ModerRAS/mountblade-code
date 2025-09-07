@@ -272247,9 +272247,9 @@ int ProcessAudioSignalWithWeights(int AudioSignalData,int SignalBufferSize,char 
   
   ProcessingStatusFlag = (unsigned long long)SignalBufferSize;
   SampleCounter = 1;
-  RemainingSpace = 1 << ((byte)CharacterCodeSize & 0x1f);
+  RemainingSpace = 1 << ((byte)SignalBufferSize & 0x1f);
   DataSize = RemainingSpace / 2;
-  if (0 < (int)CharacterCodeSize) {
+  if (0 < (int)SignalBufferSize) {
     do {
       IntegerValue3 = 0;
       if (0 < (int)uStackX_10) {
