@@ -172582,7 +172582,15 @@ void ProcessCharacterStatusBufferAndSystemData(void)
 
 
 
-3dd05(voidvoid FUN_18013dd05(void
+/**
+ * @brief 处理字符释放操作
+ * 
+ * 该函数负责释放字符处理过程中分配的内存资源，
+ * 确保系统内存管理的正确性和稳定性。
+ * 
+ * @note 原始函数名：FUN_18013dd05
+ */
+void ProcessCharacterReleaseOperation(void)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
@@ -172751,7 +172759,16 @@ void HandleUtf8InputBufferSizeAdjustment(int *Utf8InputBuffer,int Utf8BufferSize
 
 
 
-3deaa(int CharacterCodevoid FUN_18013deaa(int CharacterCode
+/**
+ * @brief 处理字符验证操作
+ * 
+ * 该函数负责验证字符数据的完整性和正确性，
+ * 确保字符处理系统输入数据的有效性。
+ * 
+ * @param CharacterCode 要验证的字符代码
+ * @note 原始函数名：FUN_18013deaa
+ */
+int ProcessCharacterValidateOperation(int CharacterCode)
 {
   int LockResult;
   uint64_t MemoryAllocationIndex;

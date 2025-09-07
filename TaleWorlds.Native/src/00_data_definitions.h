@@ -12949,16 +12949,16 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
   if (OperationFlag1 != '\0') {
     (**(code **)(**(longlong **)(OperationType + 0x10) + 0x30))(*(longlong **)(OperationType + 0x10),NetworkPacketBuffer)
     ;
-    MemoryAllocationResult = AllocateNetworkResources(NetworkOperationResult,NetworkDataBuffer,LongOffset,
+    MemoryAllocationResult = AllocateNetworkResources(NetworkOperationResult,NetworkDataBuffer,NetworkDataLength,
                           *(uint32_t *)(*(longlong *)(OperationType + 0x10) + 0xb4));
     if ((int)MemoryAllocationResult != 0) {
       return MemoryAllocationResult;
     }
   }
-  NetworkOperationResult = ProcessNetworkCommunication(NetworkOperationResult,*(uint64_t *)(OperationType + 0x10),LongOffset,*ResponseDataPointer,UnsignedSize,0,0,&NetworkResponseBuffer);
+  NetworkOperationResult = ProcessNetworkCommunication(NetworkOperationResult,*(uint64_t *)(OperationType + 0x10),NetworkDataLength,*ResponseDataPointer,UnsignedSize,0,0,&NetworkResponseBuffer);
   if ((int)NetworkOperationResult == 0) {
     if (OperationFlag2 != (char)NetworkOperationResult) {
-      SetMemoryOffset(NetworkResponseBuffer,LongOffset);
+      SetMemoryOffset(NetworkResponseBuffer,NetworkDataLength);
     }
     NetworkStatusFlag = (byte)(*(uint *)(OperationType + 0x1c) >> 4) & 1;
     *(uint *)(NetworkResponseBuffer + 0x4c) =
@@ -13511,7 +13511,7 @@ bool SystemAudioIsInitialized(void)
   longlong LongLoop;
   uint64_t memoryValidationResult;
   longlong SystemStateValue;
-  longlong LongOffset;
+  longlong PathCharacterOffset;
   longlong LongAddress;
   char unaff_SIL;
   longlong SystemContextPointer;
