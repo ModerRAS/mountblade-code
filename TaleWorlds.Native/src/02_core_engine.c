@@ -193,6 +193,14 @@
  */
 #define ManageSystemMemory FUN_18010e610
 
+/**
+ * @brief 系统状态验证器
+ * 
+ * 该函数负责验证系统状态，包括状态码检查和处理
+ * 
+ * @note 原始函数名：FUN_180131750
+ */
+#define ValidateSystemStatus FUN_180131750
 
 /**
  * @brief 验证系统数据结构
@@ -100046,20 +100054,20 @@ ProcessCharacterDataIteration(uint64_t CharacterCode,int *Utf8InputBufferSize,ui
   int ProcessIterationCount;
   unsigned long long ProcessingStatusFlag;
   void *TemporaryBuffer;
-  uint64_t aStackConfigurationFlag [2];
-  uint64_t aSystemStackFlag [2];
+  uint64_t StackConfigurationFlagArray [2];
+  uint64_t SystemStackFlagArray [2];
   
   DataSize = 0;
   CharacterByteCount = *Utf8InputBufferSize;
-  aStackConfigurationFlag[0] = 0;
+  StackConfigurationFlagArray[0] = 0;
   if ((-1 < CharacterByteCount) && (CharacterByteCount < AdditionalParameter1)) {
-    ProcessCharacterData(Utf16EndPointer,CharacterByteCount,aStackConfigurationFlag);
+    ProcessCharacterData(Utf16EndPointer,CharacterByteCount,StackConfigurationFlagArray);
   }
-  MemoryAddressMask = ProcessSystemAddressMask(CharacterCode,aStackConfigurationFlag[0],0);
+  MemoryAddressMask = ProcessSystemAddressMask(CharacterCode,StackConfigurationFlagArray[0],0);
   if ((char)MemoryAddressMask != '\0') {
     MemoryAddressMask = 0;
     if (0 < AdditionalParameter1) {
-      aSystemStackFlag[0] = 0;
+      SystemStackFlagArray[0] = 0;
       ProcessingStatusFlag = DataSize;
       do {
         HandleSystemEvent(DataSize);
@@ -100071,7 +100079,7 @@ ProcessCharacterDataIteration(uint64_t CharacterCode,int *Utf8InputBufferSize,ui
           CharacterCodePointer = TemporaryBuffer;
         }
         TemporaryBuffer = CharacterCodePointer;
-        OperationStatus = ValidateSystemDataAndCheckStatus(CharacterCodePointer,MutexLockResult == CharacterByteCount,0,aSystemStackFlag);
+        OperationStatus = ValidateSystemDataAndCheckStatus(CharacterCodePointer,MutexLockResult == CharacterByteCount,0,SystemStackFlagArray);
         if (OperationStatus != '\0') {
           MemoryAddressMask = 1;
           *Utf8InputBufferSize = MutexLockResult;
@@ -101030,8 +101038,8 @@ void FormatDataStructureToString(float *Utf8InputBuffer,int Utf8BufferSize,uint6
   int ComputedLength;
   bool IsFormatSpecifier;
   uint8_t MemoryOffsetArray [32];
-  uint64_t SystemOperationFlag98;
-  uint64_t SystemOperationFlag90;
+  uint64_t SystemConfigurationFlag98;
+  uint64_t SystemValidationFlag90;
   uint64_t StackValidationData;
   float FloatDifference1;
   float FloatDifference2;
@@ -119989,17 +119997,17 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t Utf8BufferSi
   uint64_t SystemStackOffset48;
   uint64_t SystemPriorityLevel;
   float fStack_38;
-  float fStack_34;
+  float StackFloatVariable34;
   uint32_t ProcessingFlags;
-  float fStack_2c;
+  float StackFloatVariable2c;
   
   SystemContextPrimaryFloat = *(float *)(SystemConfigurationHandle + 0x1668);
   BufferStatus = *(long long *)(SystemConfigurationHandle + 0x1af8);
   if (0.0 < SystemContextPrimaryFloat) {
     fStack_38 = *(float *)(SystemConfigurationHandle + 0x1728);
-    fStack_34 = *(float *)(SystemConfigurationHandle + 0x172c);
+    StackFloatVariable34 = *(float *)(SystemConfigurationHandle + 0x172c);
     ProcessingFlags = *(uint32_t *)(SystemConfigurationHandle + 0x1730);
-    fStack_2c = *(float *)(SystemConfigurationHandle + 0x1734) * *(float *)(SystemConfigurationHandle + 0x1628);
+    StackFloatVariable2c = *(float *)(SystemConfigurationHandle + 0x1734) * *(float *)(SystemConfigurationHandle + 0x1628);
     SystemDataStructureRegistry = SystemConfigurationHandle;
     SystemStackFlag = Utf8BufferSize;
     SystemPriorityLevel = CharacterCode;
@@ -120013,9 +120021,9 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t Utf8BufferSi
       SystemDataStructureRegistry = SystemConfigurationHandle;
     }
     fStack_38 = *(float *)(SystemDataStructureRegistry + 0x1718);
-    fStack_34 = *(float *)(SystemDataStructureRegistry + 0x171c);
+    StackFloatVariable34 = *(float *)(SystemDataStructureRegistry + 0x171c);
     ProcessingFlags = *(uint32_t *)(SystemDataStructureRegistry + 0x1720);
-    fStack_2c = *(float *)(SystemDataStructureRegistry + 0x1724) * *(float *)(SystemDataStructureRegistry + 0x1628);
+    StackFloatVariable2c = *(float *)(SystemDataStructureRegistry + 0x1724) * *(float *)(SystemDataStructureRegistry + 0x1628);
     UnicodeCodePoint = ValidateSystemData(&fStack_38);
     if ((UnicodeCodePoint & 0xff000000) != 0) {
       ConfigureSystemData(*(void *)(BufferStatus + 0x2e8),&SystemPriorityLevel,&SystemStackFlag,UnicodeCodePoint,Utf8SourcePointer,0xf,SystemContextPrimaryFloat);
@@ -148921,7 +148929,7 @@ LAB_1801308eb:
     }
     else {
       piStack_38 = piStackX_8;
-      pRemainingSpace = (int *)FUN_18011fd90(piStackX_8);
+      pRemainingSpace = (int *)ProcessSystemContextData(piStackX_8);
     }
     *pRemainingSpace = Utf8BufferSize;
     pRemainingSpace[0x14] = *(int *)(MemoryBlockIndex + 0x1c68);
@@ -149023,7 +149031,7 @@ void ProcessCharacterEncodingConversion(long long CharacterCode)
     }
   }
   if (*(int *)(AllocatedMemorySize + 0x1bec) != 0) {
-    TemporaryBuffer = (uint32_t *)FUN_18012fb00(*(uint32_t *)(AllocatedMemorySize + 0x1c3c));
+    TemporaryBuffer = (uint32_t *)GetMemoryPoolBlockSize(*(uint32_t *)(AllocatedMemorySize + 0x1c3c));
     *(uint32_t **)(CharacterCode + 0x28) = TemporaryBuffer;
     *(uint32_t *)(CharacterCode + 0x30) = *(uint32_t *)(AllocatedMemorySize + 0x1c3c);
     goto LAB_180130c8e;
@@ -149223,7 +149231,7 @@ void ValidateCharacterEncodingData(uint64_t CharacterCode)
     }
   }
   if (*(int *)(DataNodeIndex + 0x1bec) != IntegerValue0) {
-    AllocatedMemorySize = FUN_18012fb00(*(uint32_t *)(DataNodeIndex + 0x1c3c));
+    AllocatedMemorySize = GetMemoryPoolBlockSize(*(uint32_t *)(DataNodeIndex + 0x1c3c));
     *(long long *)(SystemContext + 0x28) = AllocatedMemorySize;
     *(uint32_t *)(SystemContext + 0x30) = *(uint32_t *)(DataNodeIndex + 0x1c3c);
     CharacterCode = extraout_XMM0_Qa_01;
@@ -151356,7 +151364,7 @@ float * ApplySourcePointerScalingToUtf16Data(uint64_t CharacterCode, float Utf8B
             *(uint32_t *)(MemoryPoolBlockSize + 0x1ca0) = 0;
           }
           else {
-            FUN_180131750(0);
+            ValidateSystemStatus(0);
           }
         }
         else if ((*(uint *)(*(long long *                             (*(long long *)(MemoryPoolBlockSize + 0x1bb8) + -0x28 + (long long)IntegerValue2 * 0x30) + 0xc
@@ -153950,7 +153958,7 @@ LAB_180133d4a:
         *(uint32_t *)(SystemContextValue + 0x3cc) = 0;
       }
     }
-    FUN_180131750(SystemChecksumValue);
+    ValidateSystemStatus(SystemChecksumValue);
   }
   return;
 }
@@ -154732,7 +154740,7 @@ LAB_180133d4a:
         *(int *)(Utf16Char4 + 0x3cc) = MutexLockResult;
       }
     }
-    FUN_180131750(ProcessStringBuffer);
+    ValidateSystemStatus(ProcessStringBuffer);
   }
   return;
 }
@@ -197994,6 +198002,22 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
 
 
 
+/**
+ * @brief 系统内存分配和数据节点处理函数
+ * 
+ * 该函数负责处理系统内存分配和数据节点相关的操作，包括：
+ * - 内存块分配和初始化
+ * - 数据节点模板设置
+ * - 系统寄存器指针管理
+ * - 内存池管理器操作
+ * 
+ * @param CharacterCode 字符代码参数，用于标识处理的字符类型
+ * @param Utf8BufferSize UTF-8缓冲区大小参数
+ * @return 返回操作状态码，0表示失败，非0表示成功
+ * 
+ * @note 原始函数名：FUN_1801716e0
+ * @note 该函数处理系统级别的内存分配和数据节点操作
+ */
 uint64_t FUN_1801716e0(long long CharacterCode,long long Utf8BufferSize
 {
   uint64_t *StatusBuffer;
@@ -275013,6 +275037,18 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 // 系统浮点数上下文处理函数
 // 原始函数名：FUN_180131aa0 - 系统浮点数上下文处理函数
 #define AllocateSystemFloatArray FUN_180131aa0
+
+// 系统编码密钥处理函数
+// 原始函数名：FUN_180171610 - 系统编码密钥处理函数
+#define ProcessSystemEncodingKey FUN_180171610
+
+// 系统字符编码处理函数
+// 原始函数名：FUN_180170da0 - 系统字符编码处理函数
+#define ProcessCharacterEncodingData FUN_180170da0
+
+// 系统UTF-8缓冲区处理函数
+// 原始函数名：FUN_1801720a0 - 系统UTF-8缓冲区处理函数
+#define ProcessUtf8Buffer FUN_1801720a0
 
 // 系统数据验证和处理函数
 // 原始函数名：FUN_18011cf80 - 系统数据验证和处理函数
