@@ -23312,9 +23312,9 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
 int64_t CoreEngineCopyDataStructure(int64_t TargetStructure,int64_t SourceStructure,uint64_t UnusedParam1,uint64_t UnusedParam2
 {
   uint64_t *CharacterStatusBuffer;
-  uint32_t StructureField1;
-  uint32_t StructureField2;
-  uint32_t StructureField3;
+  uint32_t StructureStatusFlag;
+  uint32_t StructureReferenceCount;
+  uint32_t StructureVersionNumber;
   uint64_t StructurePointer;
   void *CurrentNode;
   void *PreviousNode;
