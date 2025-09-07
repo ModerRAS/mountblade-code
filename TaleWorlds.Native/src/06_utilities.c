@@ -85034,7 +85034,18 @@ void ResetExceptionHandlersD0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ec00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器D1
+ * 
+ * 该函数负责处理异常上下文，包括异常处理器的重置和状态管理
+ * 主要用于异常处理过程中的上下文管理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ec00
+ */
+void ProcessExceptionContextD1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
