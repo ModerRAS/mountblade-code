@@ -158727,7 +158727,7 @@ uint64_t * FUN_180135420(uint64_t *Utf8InputBuffer
 
 
 
-35510(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180135510(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+35510(long long systemContext,uint64_t bufferSize,uint64_t sourceData,uint64_t endMarker)void ProcessSystemCharacterTableValidation(long long systemContext,uint64_t bufferSize,uint64_t sourceData,uint64_t endMarker)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -158738,7 +158738,7 @@ uint64_t * FUN_180135420(uint64_t *Utf8InputBuffer
   uint64_t SystemChecksumValue;
   
   SystemChecksumValue = 0xfffffffffffffffe;
-  pValidationResult = *(int **)(CharacterCode + 0x2df8);
+  pValidationResult = *(int **)(systemContext + 0x2df8);
   UnicodeCodePoint = 0;
   CalculatedCodePoint = UnicodeCodePoint;
   if (0 < *pValidationResult) {
@@ -158755,7 +158755,7 @@ uint64_t * FUN_180135420(uint64_t *Utf8InputBuffer
             *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
           }
                     // WARNING: Subroutine does not return
-          InitializeSystemMemoryPool(LoopCounter,SystemMemoryPoolBase,Utf8SourcePointer,Utf16EndPointer,SystemChecksumValue);
+          InitializeSystemMemoryPool(LoopCounter,SystemMemoryPoolBase,sourceData,endMarker,SystemChecksumValue);
         }
         if (SystemConfigurationHandle != 0) {
           *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
