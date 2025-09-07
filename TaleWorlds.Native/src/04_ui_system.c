@@ -72553,27 +72553,41 @@ void CalculateUIRenderDataWeightedSum(float *uiContext, float *dataSource, longl
 
 
 
- void FUN_180707457(float *uiContext,float *dataSource,longlong targetBuffer)
-void FUN_180707457(float *uiContext,float *dataSource,longlong targetBuffer)
+ /**
+ * @brief 处理UI纹理数据
+ * 
+ * 处理UI系统中的纹理数据操作，包括：
+ * - 纹理坐标计算
+ * - 纹理数据变换
+ * - 纹理缓冲区管理
+ * - 纹理映射处理
+ * 
+ * @param uiContext UI上下文指针，包含纹理处理状态信息
+ * @param dataSource 数据源指针，提供输入纹理数据
+ * @param targetBuffer 目标缓冲区指针，存储处理结果
+ * 
+ * @note 原始函数名: FUN_180707457
+ */
+void ProcessUITextureData(float *uiContext,float *dataSource,longlong targetBuffer)
 
 {
-  float *pfloatResult;
-  float localFloat2;
-  float *plocalFloat3;
-  longlong context;
-  longlong unmodifiedRDI;
-  longlong register10;
-  longlong register11;
+  float *transformResult;
+  float textureValue;
+  float *textureDataPtr;
+  longlong contextOffset;
+  longlong baseAddress;
+  longlong startIndex;
+  longlong endIndex;
   
-  if (register10 < targetBuffer) {
-    plocalFloat3 = (float *)(unmodifiedRDI + register10 * 4);
-    targetBuffer = targetBuffer - register10;
+  if (startIndex < targetBuffer) {
+    textureDataPtr = (float *)(baseAddress + startIndex * 4);
+    targetBuffer = targetBuffer - startIndex;
     do {
-      *uiContext = *(float *)((register11 - unmodifiedRDI) + (longlong)plocalFloat3) * *plocalFloat3 + *uiContext;
-      pfloatResult = (float *)((longlong)plocalFloat3 + (context - unmodifiedRDI));
-      localFloat2 = *plocalFloat3;
-      plocalFloat3 = plocalFloat3 + 1;
-      *dataSource = *pfloatResult * localFloat2 + *dataSource;
+      *uiContext = *(float *)((endIndex - baseAddress) + (longlong)textureDataPtr) * *textureDataPtr + *uiContext;
+      transformResult = (float *)((longlong)textureDataPtr + (contextOffset - baseAddress));
+      textureValue = *textureDataPtr;
+      textureDataPtr = textureDataPtr + 1;
+      *dataSource = *transformResult * textureValue + *dataSource;
       targetBuffer = targetBuffer + -1;
     } while (targetBuffer != 0);
   }
@@ -72627,39 +72641,39 @@ void ProcessUIDataTransformation(float *uiContext,int64_t dataSource,float *targ
   float transformResultW;
   
   vectorComponentX = *targetBuffer;
-  floatResult5 = targetBuffer[1];
-  floatResult6 = targetBuffer[2];
-  floatResult7 = targetBuffer[3];
-  uiOperationResult1 = 0;
-  floatResult8 = 0.0;
-  floatResult9 = 0.0;
-  localFloat20 = 0.0;
-  localFloat21 = 0.0;
+  vectorComponentY = targetBuffer[1];
+  vectorComponentZ = targetBuffer[2];
+  vectorComponentW = targetBuffer[3];
+  matrixOperationCount = 0;
+  transformAccumulatorX = 0.0;
+  transformAccumulatorY = 0.0;
+  transformAccumulatorZ = 0.0;
+  transformAccumulatorW = 0.0;
   if (0 < bufferSize + -3) {
-    uVar9 = (bufferSize - 4U >> 2) + 1;
-    result2 = (ulonglong)uVar9;
-    uiOperationResult1 = uVar9 * 4;
-    pfloatResult3 = uiContext;
+    matrixBatchCount = (bufferSize - 4U >> 2) + 1;
+    batchIterations = (ulonglong)matrixBatchCount;
+    matrixOperationCount = matrixBatchCount * 4;
+    pMatrixData = uiContext;
     do {
-      localFloat3 = *pfloatResult3;
-      localFloat4 = pfloatResult3[1];
-      localFloat5 = pfloatResult3[2];
-      localFloat6 = pfloatResult3[3];
-      pfloatResult = (float *)((dataSource - (longlong)uiContext) + (longlong)pfloatResult3);
-      localFloat7 = pfloatResult[2];
-      plocalFloat2 = (float *)((dataSource - (longlong)uiContext) + 0xc + (longlong)pfloatResult3);
-      localFloat8 = plocalFloat2[1];
-      pfloatResult3 = pfloatResult3 + 4;
-      vectorComponentX = vectorComponentX + localFloat3 * *pfloatResult + localFloat7 * localFloat5;
-      floatResult5 = floatResult5 + localFloat3 * pfloatResult[1] + pfloatResult[3] * localFloat5;
-      floatResult6 = floatResult6 + localFloat3 * localFloat7 + localFloat8 * localFloat5;
-      floatResult7 = floatResult7 + localFloat3 * pfloatResult[3] + plocalFloat2[2] * localFloat5;
-      floatResult8 = floatResult8 + pfloatResult[1] * localFloat4 + localFloat6 * *plocalFloat2;
-      floatResult9 = floatResult9 + localFloat7 * localFloat4 + localFloat6 * localFloat8;
-      localFloat20 = localFloat20 + *plocalFloat2 * localFloat4 + localFloat6 * plocalFloat2[2];
-      localFloat21 = localFloat21 + localFloat8 * localFloat4 + localFloat6 * plocalFloat2[3];
-      result2 = result2 - 1;
-    } while (result2 != 0);
+      matrixValue1 = *pMatrixData;
+      matrixValue2 = pMatrixData[1];
+      matrixValue3 = pMatrixData[2];
+      matrixValue4 = pMatrixData[3];
+      pTransformSource = (float *)((dataSource - (longlong)uiContext) + (longlong)pMatrixData);
+      matrixValue5 = pTransformSource[2];
+      pTransformTarget = (float *)((dataSource - (longlong)uiContext) + 0xc + (longlong)pMatrixData);
+      matrixValue6 = pTransformTarget[1];
+      pMatrixData = pMatrixData + 4;
+      vectorComponentX = vectorComponentX + matrixValue1 * *pTransformSource + matrixValue5 * matrixValue3;
+      vectorComponentY = vectorComponentY + matrixValue1 * pTransformSource[1] + pTransformSource[3] * matrixValue3;
+      vectorComponentZ = vectorComponentZ + matrixValue1 * matrixValue5 + matrixValue6 * matrixValue3;
+      vectorComponentW = vectorComponentW + matrixValue1 * pTransformSource[3] + pTransformTarget[2] * matrixValue3;
+      transformAccumulatorX = transformAccumulatorX + pTransformSource[1] * matrixValue2 + matrixValue4 * *pTransformTarget;
+      transformAccumulatorY = transformAccumulatorY + matrixValue5 * matrixValue2 + matrixValue4 * matrixValue6;
+      transformAccumulatorZ = transformAccumulatorZ + *pTransformTarget * matrixValue2 + matrixValue4 * pTransformTarget[2];
+      transformAccumulatorW = transformAccumulatorW + matrixValue6 * matrixValue2 + matrixValue4 * pTransformTarget[3];
+      batchIterations = batchIterations - 1;
+    } while (batchIterations != 0);
   }
   if (uiOperationResult1 < bufferSize) {
     uiOperationResult0 = uiOperationResult1 + 1;
