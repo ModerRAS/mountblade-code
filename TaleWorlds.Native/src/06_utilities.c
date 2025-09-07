@@ -9255,16 +9255,16 @@ uint8_t ExceptionHandlerDataP;
 uint8_t ExceptionHandlerDataQ;
 uint8_t ExceptionHandlerDataR;
 // 系统安全验证标志位A0 - 用于验证系统安全状态
-uint8_t SecurityValidationFlagA0;     // UNK_180a395c0
-uint8_t SecurityValidationFlagA1;     // UNK_180a395e0
-uint8_t SecurityValidationFlagA2;     // UNK_180a39600
-uint8_t SecurityValidationFlagA3;     // UNK_180a39628
-uint8_t SecurityValidationFlagA4;     // UNK_180a39640
-uint8_t SecurityValidationFlagA5;     // UNK_180a39660
-uint8_t SecurityValidationFlagA6;     // UNK_180a39688
-uint8_t SecurityValidationFlagA7;     // UNK_180a396b0
-uint8_t SecurityValidationFlagA8;     // UNK_180a396c8
-uint8_t SecurityValidationFlagA9;     // UNK_180a396f0
+uint8_t SystemSecurityValidationFlagA0;     // UNK_180a395c0
+uint8_t SystemSecurityValidationFlagA1;     // UNK_180a395e0
+uint8_t SystemSecurityValidationFlagA2;     // UNK_180a39600
+uint8_t SystemSecurityValidationFlagA3;     // UNK_180a39628
+uint8_t SystemSecurityValidationFlagA4;     // UNK_180a39640
+uint8_t SystemSecurityValidationFlagA5;     // UNK_180a39660
+uint8_t SystemSecurityValidationFlagA6;     // UNK_180a39688
+uint8_t SystemSecurityValidationFlagA7;     // UNK_180a396b0
+uint8_t SystemSecurityValidationFlagA8;     // UNK_180a396c8
+uint8_t SystemSecurityValidationFlagA9;     // UNK_180a396f0
 uint8_t SecurityValidationFlagA10;    // UNK_180a39710
 uint8_t SecurityValidationFlagA11;    // UNK_180a39728
 uint8_t SecurityValidationFlagA12;    // UNK_180a39740
@@ -106803,3 +106803,91 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 原始函数名：Unwind_1809059b0 - 异常处理回调函数9b0
 // 功能：执行异常处理回调函数，从数据缓冲区的0x148偏移量获取回调函数指针
 #define ExecuteExceptionHandlerCallback9B0 Unwind_1809059b0
+
+// 原始函数名：Unwind_18090cb30 - 异常处理器设置函数B30
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandlerB30 Unwind_18090cb30
+
+// 原始函数名：Unwind_18090cb40 - 异常处理器设置函数B40
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandlerB40 Unwind_18090cb40
+
+// 原始函数名：Unwind_18090cb50 - 系统资源计数器递减函数B50
+// 功能：递减系统资源计数器并执行系统函数表操作
+#define DecrementSystemResourceCounterB50 Unwind_18090cb50
+
+// 原始函数名：Unwind_18090cb60 - 异常上下文处理函数B60
+// 功能：处理异常上下文，设置默认异常处理器B
+#define ProcessExceptionContextB60 Unwind_18090cb60
+
+// 原始函数名：Unwind_18090cbd0 - 异常上下文处理函数BD0
+// 功能：处理异常上下文，设置默认异常处理器B
+#define ProcessExceptionContextBD0 Unwind_18090cbd0
+
+// 原始函数名：Unwind_18090cbe0 - 异常处理器设置函数BE0
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandlerBE0 Unwind_18090cbe0
+
+// 原始函数名：Unwind_18090cbf0 - 系统资源计数器递减函数BF0
+// 功能：递减系统资源计数器并执行系统函数表操作
+#define DecrementSystemResourceCounterBF0 Unwind_18090cbf0
+
+// 原始函数名：Unwind_1809064b0 - 异常处理器设置函数4B0
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler4B0 Unwind_1809064b0
+
+// 原始函数名：Unwind_1809064c0 - 异常处理器设置函数4C0
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler4C0 Unwind_1809064c0
+
+// 原始函数名：Unwind_1809064d0 - 异常处理器设置函数4D0
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler4D0 Unwind_1809064d0
+
+// 原始函数名：Unwind_1809064e0 - 异常处理器设置函数4E0
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler4E0 Unwind_1809064e0
+
+// 原始函数名：Unwind_1809064f0 - 异常处理器设置函数4F0
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler4F0 Unwind_1809064f0
+
+// 原始函数名：Unwind_180906500 - 异常处理器设置函数500
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler500 Unwind_180906500
+
+// 原始函数名：Unwind_180906510 - 异常处理器设置函数510
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler510 Unwind_180906510
+
+// 原始函数名：Unwind_180906520 - 异常处理器设置函数520
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler520 Unwind_180906520
+
+// 原始函数名：Unwind_180906530 - 异常处理器设置函数530
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler530 Unwind_180906530
+
+// 原始函数名：Unwind_180906540 - 异常处理器设置函数540
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler540 Unwind_180906540
+
+// 原始函数名：Unwind_180906550 - 异常处理器设置函数550
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler550 Unwind_180906550
+
+// 原始函数名：Unwind_180906560 - 异常处理器设置函数560
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler560 Unwind_180906560
+
+// 原始函数名：Unwind_180906570 - 异常处理器设置函数570
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler570 Unwind_180906570
+
+// 原始函数名：Unwind_180906580 - 异常处理器设置函数580
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler580 Unwind_180906580
+
+// 原始函数名：Unwind_180906590 - 异常处理器设置函数590
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler590 Unwind_180906590
