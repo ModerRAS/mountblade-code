@@ -12858,9 +12858,10 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
  * @param operationSize 操作大小
  * @return DataBuffer 操作结果状态码
  * 
- * @note 原始函数名：FUN_1808aed00
+ * @note 原始函数名：FUN_1808aed00 - 数据操作函数O0
+ * 功能：执行数据操作，支持不同大小的数据块处理
  */
-#define OperateDataO0 FUN_1808aed00
+#define ExecuteDataOperation FUN_1808aed00
 
 // 原始函数名：FUN_1808a5a90 - 系统验证函数A0
 // 功能：执行系统验证操作，检查数据完整性
@@ -23031,6 +23032,22 @@ void ProcessMultiSegmentDataA0(DataBuffer SystemContext,int64_t DataBuffer)
  * @see ProcessDataBlockOperationA1, ValidateSystemDataD0
  */
 void ProcessDataBlockOperationA0(DataBuffer operationBase,int64_t dataBuffer)
+{
+  int ProcessingResult;
+  
+  ProcessingResult = ValidateSystemDataD0();
+  if (ProcessingResult == 0) {
+    ProcessingResult = ValidateSystemDataD0(operationBase,dataBuffer + 0xc);
+    if (ProcessingResult == 0) {
+      ProcessingResult = ValidateSystemDataD0(operationBase,dataBuffer + 0x18);
+      if (ProcessingResult == 0) {
+        ValidateSystemDataD0(operationBase,dataBuffer + 0x24);
+      }
+    }
+  }
+  return;
+}
+
 /**
  * @brief 处理系统数据D0
  * 
