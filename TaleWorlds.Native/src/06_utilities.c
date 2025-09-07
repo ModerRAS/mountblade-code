@@ -8352,7 +8352,7 @@ uint8_t CloudServiceConfig;
 // 全局数据指针A35缓存区
 // 功能：存储全局数据指针A35的缓存数据
 #define GlobalDataPointerA35Cache GlobalDataCacheBuffer
-uint8_t GlobalDataPointerA35Cache;
+uint8_t CloudServiceCache;
 
 // 全局指针设置函数A36
 // 功能：设置全局数据指针A36到指定地址
@@ -8361,12 +8361,12 @@ uint8_t GlobalDataPointerA35Cache;
 // 全局数据指针A36配置缓冲区
 // 功能：存储全局数据指针A36的配置信息
 #define GlobalDataPointerA36ConfigBuffer GlobalDataSecondaryConfigBuffer
-uint8_t GlobalDataPointerA36ConfigBuffer;
+uint8_t SecurityServiceConfigBuffer;
 
 // 全局数据指针A36存储区
 // 功能：存储全局数据指针A36的相关信息
 #define GlobalDataPointerA36Storage GlobalDataSecondaryStorage
-uint8_t GlobalDataPointerA36Storage;
+uint8_t SecurityServiceStorage;
 
 // 全局数据指针A36状态区
 // 功能：存储全局数据指针A36的状态信息
