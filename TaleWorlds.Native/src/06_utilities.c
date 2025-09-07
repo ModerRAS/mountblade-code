@@ -119518,12 +119518,22 @@ uint8_t SystemExceptionHandlerStateTable;
  */
 #define ExecuteSystemTerminationA0 Unwind_180909890
 
-// 原始函数名：Unwind_1809098a0 - 系统退出处理函数A0
-// 功能：处理系统退出操作，包括系统退出和清理
+/**
+ * @brief 系统退出处理函数A0
+ * 
+ * 处理系统退出操作，包括系统退出和清理
+ * 
+ * @note 原始函数名：Unwind_1809098a0
+ */
 #define ProcessSystemExitA0 Unwind_1809098a0
 
-// 原始函数名：Unwind_1809098b0 - 系统退出执行函数A0
-// 功能：执行系统退出操作，处理系统退出流程
+/**
+ * @brief 系统退出执行函数A0
+ * 
+ * 执行系统退出操作，处理系统退出流程
+ * 
+ * @note 原始函数名：Unwind_1809098b0
+ */
 #define ExecuteSystemExitA0 Unwind_1809098b0
 
 // 原始函数名：Unwind_1809098c0 - 系统中止处理函数A0
