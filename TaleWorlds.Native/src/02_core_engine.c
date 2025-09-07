@@ -37487,12 +37487,13 @@ LAB_ProcessSystemStatusBuffer:
           *memoryAllocationBuffer = 0;
         }
         else {
-          if (DataSize <= (uint)BufferInitializationFlag) goto LAB_1800710b8;
+          if (DataSize <= (uint)BufferInitializationFlag) goto SystemStringCopyComplete;
           memoryAllocationBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,memoryAllocationBuffer,DataSize,0x10);
         }
         SystemByteValue = GetMemoryAllocationInfo(memoryAllocationBuffer);
         BufferInitializationFlag = CONCAT44(BufferInitializationFlag.HighPart,SystemByteValue);
       }
+SystemStringCopyComplete: // 原始标签：LAB_1800710b8
 LAB_CopyMemoryData:
                     // WARNING: Subroutine does not return
       memcpy(memoryAllocationBuffer + BufferOffset,loopCounter5,(long long)((int)LoopCounter7 + 2));
