@@ -19083,7 +19083,7 @@ SecurityValidationLabel:
         loopIndex = arrayIndex;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &UNK_1809844c8;
+          puStack_2f8 = &SystemValidationDataTableA7;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = calculatedValue;
           calculatedValue = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -19174,7 +19174,7 @@ void ProcessFloatingPointDataA0(void)
         floatValue = StackFloat24;
         if (StackFloat24 != 1.0) {
           StackParameter48 = StackFloat24;
-          StackBuffer30 = &UNK_1809842e0;
+          StackBuffer30 = &SystemValidationDataTableA3;
           stackParameterOffset = StackParameter20;
           StackParameter38 = calculatedSize;
           calculatedSize = ValidateDataIntegrityA0(StackFloat24,&StackBuffer30);
@@ -19183,7 +19183,7 @@ void ProcessFloatingPointDataA0(void)
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           StackParameter38 = 0;
-          StackBuffer30 = &UNK_180984358;
+          StackBuffer30 = &SystemValidationDataTableA4;
           stackParameterOffset = StackParameter20;
           StackParameter48 = (float)CONCAT31(StackParameter48._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&StackBuffer30);
@@ -19192,7 +19192,7 @@ void ProcessFloatingPointDataA0(void)
         }
         if (*(char *)(dataContext + 0x29) != '\0') {
           StackParameter38 = 0;
-          StackBuffer30 = &UNK_1809843d0;
+          StackBuffer30 = &SystemValidationDataTableA5;
           stackParameterOffset = StackParameter20;
           StackParameter48 = (float)CONCAT31(StackParameter48._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&StackBuffer30);
@@ -19227,7 +19227,7 @@ void ProcessFloatingPointDataA0(void)
         floatValue = StackFloat24;
         if (StackFloat24 != 1.0) {
           StackParameter48 = StackFloat24;
-          StackBuffer30 = &UNK_1809842e0;
+          StackBuffer30 = &SystemValidationDataTableA3;
           stackParameterOffset = StackParameter20;
           StackParameter38 = calculatedSize;
           calculatedSize = ValidateDataIntegrityA0(StackFloat24,&StackBuffer30);
@@ -19236,7 +19236,7 @@ void ProcessFloatingPointDataA0(void)
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           StackParameter38 = 0;
-          StackBuffer30 = &UNK_180984358;
+          StackBuffer30 = &SystemValidationDataTableA4;
           stackParameterOffset = StackParameter20;
           StackParameter48 = (float)CONCAT31(StackParameter48._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&StackBuffer30);
@@ -19245,7 +19245,7 @@ void ProcessFloatingPointDataA0(void)
         }
         if (*(char *)(dataContext + 0x29) != '\0') {
           StackParameter38 = 0;
-          StackBuffer30 = &UNK_1809843d0;
+          StackBuffer30 = &SystemValidationDataTableA5;
           stackParameterOffset = StackParameter20;
           StackParameter48 = (float)CONCAT31(StackParameter48._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&StackBuffer30);
@@ -19280,7 +19280,7 @@ void ProcessFloatingPointDataA0(void)
         floatValue = StackFloat24;
         if (StackFloat24 != 1.0) {
           StackParameter48 = StackFloat24;
-          StackBuffer30 = &UNK_1809842e0;
+          StackBuffer30 = &SystemValidationDataTableA3;
           stackParameterOffset = StackParameter20;
           StackParameter38 = calculatedSize;
           calculatedSize = ValidateDataIntegrityA0(StackFloat24,&StackBuffer30);
@@ -19289,7 +19289,7 @@ void ProcessFloatingPointDataA0(void)
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           StackParameter38 = 0;
-          StackBuffer30 = &UNK_180984358;
+          StackBuffer30 = &SystemValidationDataTableA4;
           stackParameterOffset = StackParameter20;
           StackParameter48 = (float)CONCAT31(StackParameter48._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&StackBuffer30);
@@ -19298,7 +19298,7 @@ void ProcessFloatingPointDataA0(void)
         }
         if (*(char *)(dataContext + 0x29) != '\0') {
           StackParameter38 = 0;
-          StackBuffer30 = &UNK_1809843d0;
+          StackBuffer30 = &SystemValidationDataTableA5;
           stackParameterOffset = StackParameter20;
           StackParameter48 = (float)CONCAT31(StackParameter48._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&StackBuffer30);
@@ -19333,7 +19333,7 @@ void ProcessFloatingPointDataA0(void)
         floatValue = StackFloat24;
         if (StackFloat24 != 1.0) {
           StackParameter48 = StackFloat24;
-          StackBuffer30 = &UNK_1809842e0;
+          StackBuffer30 = &SystemValidationDataTableA3;
           stackParameterOffset = StackParameter20;
           StackParameter38 = calculatedSize;
           calculatedSize = ValidateDataIntegrityA0(StackFloat24,&StackBuffer30);
@@ -19342,7 +19342,7 @@ void ProcessFloatingPointDataA0(void)
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           StackParameter38 = 0;
-          StackBuffer30 = &UNK_180984358;
+          StackBuffer30 = &SystemValidationDataTableA4;
           stackParameterOffset = StackParameter20;
           StackParameter48 = (float)CONCAT31(StackParameter48._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&StackBuffer30);
@@ -19351,7 +19351,7 @@ void ProcessFloatingPointDataA0(void)
         }
         if (*(char *)(dataContext + 0x29) != '\0') {
           StackParameter38 = 0;
-          StackBuffer30 = &UNK_1809843d0;
+          StackBuffer30 = &SystemValidationDataTableA5;
           stackParameterOffset = StackParameter20;
           StackParameter48 = (float)CONCAT31(StackParameter48._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&StackBuffer30);
@@ -19387,7 +19387,7 @@ void ProcessFloatingPointDataA0(void)
         if ((validationErrorCode != 0) || (validationErrorCode = ValidateDataA2(dataContext,&StackFloat24,0), validationErrorCode != 0)) break;
         if (StackFloat24 != 1.0) {
           StackParameter48 = StackFloat24;
-          StackBuffer30 = &UNK_1809844c8;
+          StackBuffer30 = &SystemValidationDataTableA7;
           stackParameterOffset = StackParameter20;
           StackParameter38 = validationErrorCode;
           validationErrorCode = ValidateDataIntegrityA0(StackFloat24,&StackBuffer30);
@@ -67243,7 +67243,7 @@ void Unwind_180909f80(void)
 void Unwind_180909fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9270(*(int64_t *)(dataBuffer + 0x40) + 0xba8,
+  ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x40) + 0xba8,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 3000),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -67329,7 +67329,7 @@ void Unwind_18090a080(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090a0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9270(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
+  ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -67339,7 +67339,7 @@ void Unwind_18090a0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a0c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9270(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
+  ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -67457,7 +67457,7 @@ void Unwind_18090a140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9270(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -67467,7 +67467,7 @@ void Unwind_18090a150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9270(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -67808,7 +67808,7 @@ void Unwind_18090a470(void)
 void Unwind_18090a490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9270(*(int64_t *)(dataBuffer + 0x60) + 0xba8,
+  ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x60) + 0xba8,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 3000),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -68075,7 +68075,7 @@ void Unwind_18090a5e0(void)
 void Unwind_18090a5f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9270(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
+  ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -68085,7 +68085,7 @@ void Unwind_18090a5f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9270(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
+  ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -68733,7 +68733,7 @@ void Unwind_18090a930(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x40);
-  FUN_1800ba100();
+  CalculateSystemValue();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
     memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
@@ -68771,7 +68771,7 @@ void Unwind_18090a940(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x40);
-  FUN_1800ba100();
+  CalculateSystemValue();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
     memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
@@ -68809,7 +68809,7 @@ void Unwind_18090a950(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x40);
-  FUN_1800ba100();
+  CalculateSystemValue();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
     memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
@@ -68847,7 +68847,7 @@ void Unwind_18090a960(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x50);
-  FUN_1800ba100();
+  CalculateSystemValue();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
     memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
@@ -68885,7 +68885,7 @@ void Unwind_18090a970(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x50);
-  FUN_1800ba100();
+  CalculateSystemValue();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
     memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
