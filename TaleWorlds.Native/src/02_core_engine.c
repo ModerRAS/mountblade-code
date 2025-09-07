@@ -26,6 +26,13 @@
 #define ProcessedFloatValueOffset 0x378                    // 处理浮点值偏移量
 #define NormalizedParameterOffset 900                       // 归一化参数偏移量
 
+// 系统节点和内存管理常量
+#define SystemNodeHeaderSize 4                              // 系统节点头大小
+#define SystemNodeStatusOffset 0                            // 系统节点状态偏移量
+#define SystemDataStructureSize 0x10                        // 系统数据结构大小
+#define SystemMemoryAllocationOffset 0x20                   // 系统内存分配偏移量
+#define NetworkMemoryAllocationOffset 0x20                  // 网络内存分配偏移量
+
 // 变量名语义化宏定义
 #define Utf16CharacterValue Utf16Char4                    // UTF-16字符值
 
@@ -10005,7 +10012,7 @@ void CoreEngineInitializeNetworkMessageQueue(void)
     PreviousNode = NextNode;
     IsNodeInitialized = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((CurrentNode == RootNode) || (ComparisonResult = memcmp(&SystemComparisonDataSextenary,CurrentNode + 4,0x10), ComparisonResult < 0)) {
+  if ((CurrentNode == RootNode) || (ComparisonResult = memcmp(&SystemComparisonDataSextenary,CurrentNode + SystemNodeHeaderSize,SystemDataStructureSize), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
     CoreEngineSetupNetworkQueue(SystemHandle,&NewNode,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
     CurrentNode = NewNode;
@@ -95887,7 +95894,22 @@ uint8_t SetDataStructureValue(uint64_t CharacterCode, uint8_t Utf8BufferSize)
 
 
 
-unsigned long long ValidateSystemProcessingStatusFlag(char *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint Utf8SourcePointer
+/**
+ * @brief 验证系统处理状态标志
+ * 
+ * 该函数负责验证和处理系统状态标志，包括：
+ * - 字符输入缓冲区的验证
+ * - UTF-8缓冲区大小的处理
+ * - 源指针的验证和转换
+ * - 系统内存分配的验证
+ * - 数据结构的处理和更新
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return unsigned long long 验证结果状态码
+ */
+unsigned long long ValidateSystemProcessingStatusFlag(char *InputStringBuffer,uint64_t *BufferSizePointer,uint SourcePointer
 {
   uint *CharacterStatusBuffer;
   float ContextSecondaryFloat;
@@ -95901,25 +95923,25 @@ unsigned long long ValidateSystemProcessingStatusFlag(char *Utf8InputBuffer,uint
   char *InputStringBuffer0;
   long long SystemStringIndex;
   float SystemContextPrimaryFloat2;
-  float fStackX_20;
-  float fStackX_24;
-  uint64_t in_stack_ffffffffffffff48;
-  uint64_t ValidationResult;
-  uint32_t Utf16Char4;
-  char acStack_98 [8];
+  float StackFloatValue20;
+  float StackFloatValue24;
+  uint64_t StackParameter48;
+  uint64_t ValidationResult2;
+  uint32_t Utf16Char;
+  char StackArray98 [8];
   float MatrixElementO;
   float MatrixElementP;
-  float fStack_88;
-  float fStack_84;
-  float fStack_80;
-  float fStack_7c;
-  float fStack_78;
-  float fStack_74;
-  float fStack_70;
-  float fStack_6c;
+  float StackFloatValue88;
+  float StackFloatValue84;
+  float StackFloatValue80;
+  float StackFloatValue7c;
+  float StackFloatValue78;
+  float StackFloatValue74;
+  float StackFloatValue70;
+  float StackFloatValue6c;
   
   SystemDataRegistry = SystemConfigurationHandle;
-  Utf16Char4 = (uint32_t)((unsigned long long)in_stack_ffffffffffffff48 >> 0x20);
+  Utf16Char = (uint32_t)((unsigned long long)StackParameter48 >> 0x20);
   ProcessingStatusFlag = *(unsigned long long *)(SystemConfigurationHandle + 0x1af8);
   *(uint8_t *)(ProcessingStatusFlag + 0xb1) = 1;
   SystemStringIndex = *(long long *)(SystemDataRegistry + 0x1af8);
@@ -168061,28 +168083,40 @@ LAB_18013b999:
 
 
 
-void FUN_18013b88a(void)
+/**
+ * @brief 初始化系统内存和字符编码处理
+ * 
+ * 该函数负责初始化系统的内存管理模块和字符编码处理系统。
+ * 主要功能包括：
+ * - 设置内存块和字符表指针
+ * - 初始化系统上下文和状态标志
+ * - 配置字符编码参数和验证机制
+ * - 处理系统数据表的分配和初始化
+ * 
+ * @note 原始函数名：FUN_18013b88a
+ */
+void InitializeSystemMemoryAndCharacterEncoding(void)
 {
-  uint Utf16Char;
-  int *pStringComparisonResult;
-  byte LowByte;
+  uint CharacterEncodingValue;
+  int *StringComparisonResult;
+  byte SystemStatusByte;
   uint16_t MemoryAddressMask;
-  uint32_t CalculatedCodePoint;
-  int *pValidationResult;
+  uint32_t UnicodeCodePoint;
+  int *ValidationResult;
   uint SystemChecksum;
-  long long secondaryLoopCounter;
+  long long ProcessingCounter;
   uint64_t *SystemContext;
-  int IntegerValue9;
-  unsigned long long StackFrameAddressPointer;
-  unsigned long long Utf16Char;
-  long long PatternComparisonIndex;
+  int SystemRegister;
+  unsigned long long StackFrameAddress;
+  unsigned long long Utf16CharacterValue;
+  long long PatternIndex;
   long long DataNodePointer;
-  byte IsMemoryBlockEqual;
+  byte MemoryBlockStatus;
   long long CharacterLimit;
-  uint8_t *StackProcessingParameter58;
+  uint8_t *ProcessingParameter;
   
-  *(void *)(DataNodePointer + 0x1bf4) = *(void *)(PatternComparisonIndex + 0x38);
-  *(unsigned long long *)(DataNodePointer + 0x1bfc) = StackFrameAddressPointer;
+  *(void *)(DataNodePointer + 0x1bf4) = *(void *)(PatternIndex + 0x38);
+  *(unsigned long long *)(DataNodePointer + 0x1bfc) = StackFrameAddress;
   *(uint32_t *)(DataNodePointer + 0x1bd0) = 1;
   *(uint8_t *)(DataNodePointer + 0x1c14) = 1;
   *(void *)(DataNodePointer + 0x1c04) = *(void *)(PatternComparisonIndex + 0x40);
