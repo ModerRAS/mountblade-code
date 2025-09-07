@@ -56874,7 +56874,16 @@ void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t thread
 
 
 
-void Unwind_180905cb0(void)
+/**
+ * @brief 销毁条件变量A
+ * 
+ * 该函数调用 _Cnd_destroy_in_situ() 来销毁条件变量。
+ * 这是一个简单的线程同步资源清理函数。
+ * 
+ * @note 原始函数名：Unwind_180905cb0
+ * @note 简化实现：销毁条件变量
+ */
+void DestroyConditionVariableA(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -56883,7 +56892,16 @@ void Unwind_180905cb0(void)
 
 
 
-void Unwind_180905cd0(void)
+/**
+ * @brief 销毁互斥量B
+ * 
+ * 该函数调用 _Mtx_destroy_in_situ() 来销毁互斥量。
+ * 这是一个简单的线程同步资源清理函数。
+ * 
+ * @note 原始函数名：Unwind_180905cd0
+ * @note 简化实现：销毁互斥量
+ */
+void DestroyMutexB(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -64228,7 +64246,16 @@ void Unwind_180907750(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180907770(void)
+/**
+ * @brief 设置默认异常处理器A0
+ * 
+ * 该函数将异常处理器指针A0设置为默认异常处理器B。
+ * 这是一个简单的异常处理器重置函数。
+ * 
+ * @note 原始函数名：Unwind_180907770
+ * @note 简化实现：设置默认异常处理器
+ */
+void SetDefaultExceptionHandlerA0(void)
 
 {
   ExceptionHandlerPointerA0 = &DefaultExceptionHandlerB;
@@ -64239,7 +64266,16 @@ void Unwind_180907770(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180907780(void)
+/**
+ * @brief 设置默认异常处理器A1
+ * 
+ * 该函数将异常处理器指针A1设置为默认异常处理器B。
+ * 这是一个简单的异常处理器重置函数。
+ * 
+ * @note 原始函数名：Unwind_180907780
+ * @note 简化实现：设置默认异常处理器
+ */
+void SetDefaultExceptionHandlerA1(void)
 
 {
   ExceptionHandlerPointerA1 = &DefaultExceptionHandlerB;
@@ -80033,7 +80069,17 @@ void Unwind_18090caa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cab0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器A0
+ * 
+ * 该函数负责配置异常处理器，设置默认异常处理器到数据缓冲区的0x5a0偏移量处
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，用于存储异常处理器地址
+ * 
+ * @note 原始函数名：Unwind_18090cab0
+ */
+void ConfigureExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x5a0) = &DefaultExceptionHandlerB;
@@ -80044,7 +80090,14 @@ void Unwind_18090cab0(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_18090cac0(void)
+/**
+ * @brief 系统资源清理函数C0
+ * 
+ * 该函数负责系统资源清理，减少系统资源计数器并调用系统函数表中的清理函数
+ * 
+ * @note 原始函数名：Unwind_18090cac0
+ */
+void CleanupSystemResourcesC0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
