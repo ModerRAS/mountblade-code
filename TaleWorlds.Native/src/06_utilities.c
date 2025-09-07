@@ -10273,7 +10273,7 @@ DataBuffer UpdateResourceReferenceCount(int64_t resourceHandle)
   if (systemContextBuffer[0] != 0) {
     systemContextBuffer[0] = systemContextBuffer[0] + -8;
   }
-  resourcePointer = *(int64_t *)(systemContextBuffer[0] + ResourceDataOffset);
+  resourcePointer = *(int64_t *)(systemContextBuffer[ResourceHandleArrayIndex] + ResourceDataOffset);
   if (resourcePointer != 0) {
     *(int *)(resourcePointer + ReferenceCountOffset) = *(int *)(resourcePointer + ReferenceCountOffset) + 1;
     if ((*(char *)(resourcePointer + ResourceStatusOffset) != '\0') && (validationStatus = QuerySystemStatus(), (int)validationStatus != 0)) {
