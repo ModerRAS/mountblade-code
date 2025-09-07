@@ -116523,7 +116523,16 @@ void UpdateSystemDataTable(int *SystemContextPointer,uint Utf8BufferSize,uint Ut
 
 
 
-2160(int *SystemContextPointer,uint Utf8BufferSize,uint64_t Utf16InputPointervoid FUN_180122160(int *SystemContextPointer,uint Utf8BufferSize,uint64_t Utf16InputPointer
+/**
+ * @brief 执行系统安全验证
+ * 
+ * 该函数负责系统安全验证操作，包括代码点计算和数据验证。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ */
+void ExecuteSystemSecurityValidation(int *SystemContextPointer, uint Utf8BufferSize, uint64_t Utf16InputPointer)
 {
   int LockResult;
   uint *PrimaryProcessingStatusFlag;
@@ -116628,7 +116637,17 @@ void UpdateSystemDataTable(int *SystemContextPointer,uint Utf8BufferSize,uint Ut
 
 
 
-227a(int SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,int Utf16EndPointervoid FUN_18012227a(int SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,int Utf16EndPointer
+/**
+ * @brief 处理系统线程操作
+ * 
+ * 该函数负责系统线程的操作和管理，包括线程同步和数据访问。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessSystemThreadOperation(int SystemContextPointer, uint64_t Utf8BufferSize, uint64_t Utf16InputPointer, int Utf16EndPointer)
 {
   int LockResult;
   int CharacterByteCount;
@@ -214679,7 +214698,21 @@ LAB_180190603:
 
 
 
-uint64_t * FUN_180190630(long long *SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统事件和内存分配
+ * 
+ * 该函数负责处理系统事件队列和内存分配操作，
+ * 管理系统上下文和事件处理流程。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回处理结果的指针
+ * 
+ * @note 原始函数名：FUN_180190630
+ */
+uint64_t * ProcessSystemEventAndMemoryAllocation(long long *SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   long long *SystemContextPointer;
   uint32_t MemoryAllocationIndex;
