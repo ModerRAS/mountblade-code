@@ -54784,19 +54784,15 @@ uint8_t ProcessSystemMemoryAllocation(long long *Utf8InputBuffer,uint64_t Utf8Bu
  */
 long long ProcessCoreEngineDataStructureOperation(long long *TargetDataPointer, long long *SourceDataPointer, int OperationType
 {
-  uint64_t *statusBuffer;
-  long long *BufferStatus;
-  long long memoryOffset;
-  uint64_t *memoryAddressMask;
   
-  if (Utf8SourcePointer == 3) {
+  if (OperationType == 3) {
     return 0x180bfdd20;
   }
-  if (Utf8SourcePointer == 4) {
-    return *Utf8InputBuffer;
+  if (OperationType == 4) {
+    return *TargetDataPointer;
   }
-  if (Utf8SourcePointer == 0) {
-    MemoryBlockIndex = *Utf8InputBuffer;
+  if (OperationType == 0) {
+    long long MemoryBlockIndex = *TargetDataPointer;
     if (MemoryBlockIndex != 0) {
       if (*(long long **)(MemoryBlockIndex + 0x18) != (long long *)0x0) {
         (**(code **)(**(long long **)(MemoryBlockIndex + 0x18) + 0x38))();
@@ -54809,27 +54805,27 @@ long long ProcessCoreEngineDataStructureOperation(long long *TargetDataPointer, 
     }
   }
   else {
-    if (Utf8SourcePointer == 1) {
-      pMemoryAddressMask = (void *)MemoryAllocate(MemoryPoolManager,0x20,8,MemoryAllocationFlags,0xfffffffffffffffe);
-      StatusBuffer = (void *)*Utf8InputBufferSize;
-      *pMemoryAddressMask = *StatusBuffer;
-      *(uint8_t *)(pMemoryAddressMask + 1) = *(uint8_t *)(StatusBuffer + 1);
-      BufferAllocationStatus = (long long *)StatusBuffer[2];
-      pMemoryAddressMask[2] = BufferAllocationStatus;
-      if (BufferAllocationStatus != (long long *)0x0) {
-        (**(code **)(*BufferAllocationStatus + 0x28))();
+    if (OperationType == 1) {
+      uint64_t *AllocatedMemoryBlock = (void *)MemoryAllocate(MemoryPoolManager,0x20,8,MemoryAllocationFlags,0xfffffffffffffffe);
+      uint64_t *SourceBuffer = (void *)*SourceDataPointer;
+      *AllocatedMemoryBlock = *SourceBuffer;
+      *(uint8_t *)(AllocatedMemoryBlock + 1) = *(uint8_t *)(SourceBuffer + 1);
+      long long *ReferencePointer1 = (long long *)SourceBuffer[2];
+      AllocatedMemoryBlock[2] = ReferencePointer1;
+      if (ReferencePointer1 != (long long *)0x0) {
+        (**(code **)(*ReferencePointer1 + 0x28))();
       }
-      BufferAllocationStatus = (long long *)StatusBuffer[3];
-      pMemoryAddressMask[3] = BufferAllocationStatus;
-      if (BufferAllocationStatus != (long long *)0x0) {
-        (**(code **)(*BufferAllocationStatus + 0x28))();
+      long long *ReferencePointer2 = (long long *)SourceBuffer[3];
+      AllocatedMemoryBlock[3] = ReferencePointer2;
+      if (ReferencePointer2 != (long long *)0x0) {
+        (**(code **)(*ReferencePointer2 + 0x28))();
       }
-      *Utf8InputBuffer = (long long)pMemoryAddressMask;
+      *TargetDataPointer = (long long)AllocatedMemoryBlock;
       return 0;
     }
-    if (Utf8SourcePointer == 2) {
-      *Utf8InputBuffer = *Utf8InputBufferSize;
-      *Utf8InputBufferSize = 0;
+    if (OperationType == 2) {
+      *TargetDataPointer = *SourceDataPointer;
+      *SourceDataPointer = 0;
       return 0;
     }
   }

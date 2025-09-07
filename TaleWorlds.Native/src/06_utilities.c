@@ -157,6 +157,18 @@
 // 资源描述符偏移量常量
 #define ResourceDescriptorValidationOffset 0x1c    // 资源描述符验证偏移量
 #define ResourceDescriptorDataOffset 0x20         // 资源描述符数据偏移量
+
+// 数据处理偏移量常量定义
+#define DataBufferOffset8 8                        // 数据缓冲区偏移量8
+#define DataBufferOffsetC 0xc                      // 数据缓冲区偏移量0xc
+#define DataBufferOffsetE 0xe                      // 数据缓冲区偏移量0xe
+#define DataBufferOffset12 0x12                    // 数据缓冲区偏移量0x12
+#define DataBufferOffset16 0x16                    // 数据缓冲区偏移量0x16
+
+// 数据处理乘数常量定义
+#define DataProcessingMultiplier6C 0x6c           // 数据处理乘数0x6c
+#define DataProcessingMultiplier10 0x10            // 数据处理乘数0x10
+#define DataProcessingMultiplier4 4                 // 数据处理乘数4
 #define ArrayDescriptorValidationOffset 0x1c      // 数组描述符验证偏移量
 
 // 异常处理上下文偏移量常量
@@ -24799,7 +24811,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
         memoryBaseAddress = dataFlags;
         if (0 < inputParameter) {
           do {
-            operationResult = ValidateDataParametersA0(operationBase,(int64_t)(int)memoryBaseAddress * 0x6c + *(int64_t *)(dataBuffer + 8));
+            operationResult = ValidateDataParametersA0(operationBase,(int64_t)(int)memoryBaseAddress * DataProcessingMultiplier6C + *(int64_t *)(dataBuffer + DataBufferOffset8));
             if (operationResult != 0) {
               return;
             }
@@ -24807,16 +24819,16 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
             memoryBaseAddress = (uint64_t)validationStatus;
           } while ((int)validationStatus < inputParameter);
         }
-        inputParameter = dataBuffer[0xe];
+        inputParameter = dataBuffer[DataBufferOffsetE];
         temporaryDataBuffer = CONCAT44(temporaryDataBuffer._4_4_,inputParameter);
-        operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                          (*(DataBuffer **)(operationBase + 8),&temporaryDataBuffer,4);
+        operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
+                          (*(DataBuffer **)(operationBase + DataBufferOffset8),&temporaryDataBuffer,DataProcessingMultiplier4);
         if (operationResult == 0) {
           memoryBaseAddress = dataFlags;
           if (0 < inputParameter) {
             do {
-              operationResult = ProcessDataPointerA0(operationBase,(int64_t)(int)memoryBaseAddress * 0x10 +
-                                            *(int64_t *)(dataBuffer + 0xc));
+              operationResult = ProcessDataPointerA0(operationBase,(int64_t)(int)memoryBaseAddress * DataProcessingMultiplier10 +
+                                            *(int64_t *)(dataBuffer + DataBufferOffsetC));
               if (operationResult != 0) {
                 return;
               }
