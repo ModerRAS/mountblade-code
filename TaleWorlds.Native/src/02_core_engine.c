@@ -104836,13 +104836,13 @@ unsigned long long ProcessSystemContextWithUtf8Conversion(char *SystemContextPoi
 {
   float SystemContextFloat1;
   float SystemContextFloat2;
-  float *pFloatValue3;
-  bool BooleanOperationFlag4;
-  long long MemoryAllocationSize;
-  char CharacterValidationCode;
+  float *pFilterValue;
+  bool IsComparisonResult;
+  long long SystemDataConfiguration;
+  char CharacterStatus;
   uint8_t SystemByteValue;
   uint ProcessingStatusFlag;
-  int IntegerValue9;
+  int ValidationResult;
   uint32_t MemoryAllocationIndex;
   long long SystemStringIndex;
   int IntegerValue2;
@@ -107790,7 +107790,7 @@ a9a4(voidvoid CoreEngineProcessStringBuffer(void
 
 
 
-unsigned long long FUN_18011aad0(char *SystemContextPointer,unsigned long long Utf8BufferSize,char Utf16InputPointer,uint64_t Utf16EndPointer
+unsigned long long ProcessSystemContextWithFullParameters(char *SystemContextPointer,unsigned long long Utf8BufferSize,char Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   float SystemContextFloat1;
   float SystemContextFloat2;
@@ -109535,7 +109535,7 @@ int * ProcessSystemContextPointer(int *SystemContextPointer
 
 
 
-unsigned long long FUN_18011c120(int *SystemContextPointer
+unsigned long long ProcessSystemContextWithIntPointer(int *SystemContextPointer
 {
   long long PrimaryDataSize;
   void *SystemContext;
