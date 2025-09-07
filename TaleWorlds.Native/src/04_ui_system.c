@@ -48581,32 +48581,32 @@ int CalculateUIImageBlockDifference(undefined1 (*uiContext) [32],int dataSource,
     targetBuffer = targetBuffer << 5;
     if (bufferSize == 0) {
       if (0 < (int)param_7) {
-        functionResult = (ulonglong)param_7;
+        pixelCount = (ulonglong)param_7;
         do {
-          auVar9 = vpunpcklbw_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
-          auVar9 = vpmaddubsw_avx2(auVar9,*(undefined1 (*) [32])(&g_uiRenderLookupTable + targetBuffer));
-          auVar9 = vpaddw_avx2(auVar9,_DAT_180948080);
-          auVar6 = vpunpckhbw_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
-          auVar5 = vpsraw_avx2(auVar9,4);
-          auVar9 = vpunpcklbw_avx2(*resultPointer,auVar3);
-          auVar5 = vpsubw_avx2(auVar5,auVar9);
-          auVar9 = vpmaddubsw_avx2(auVar6,*(undefined1 (*) [32])(&g_uiRenderLookupTable + targetBuffer));
-          auVar9 = vpaddw_avx2(auVar9,_DAT_180948080);
-          auVar6 = vpsraw_avx2(auVar9,4);
-          auVar9 = vpunpckhbw_avx2(*resultPointer,auVar3);
-          auVar6 = vpsubw_avx2(auVar6,auVar9);
-          auVar9 = vpaddw_avx2(auVar5,afunctionResult0._0_32_);
-          auVar9 = vpaddw_avx2(auVar9,auVar6);
-          afunctionResult0 = ZEXT3264(auVar9);
-          auVar5 = vpmaddwd_avx2(auVar5,auVar5);
+          tempVector9 = vpunpcklbw_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
+          tempVector9 = vpmaddubsw_avx2(tempVector9,*(undefined1 (*) [32])(&g_uiRenderLookupTable + targetBuffer));
+          tempVector9 = vpaddw_avx2(tempVector9,_DAT_180948080);
+          tempVector6 = vpunpckhbw_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
+          tempVector5 = vpsraw_avx2(tempVector9,4);
+          tempVector9 = vpunpcklbw_avx2(*resultPointer,zeroVector);
+          tempVector5 = vpsubw_avx2(tempVector5,tempVector9);
+          tempVector9 = vpmaddubsw_avx2(tempVector6,*(undefined1 (*) [32])(&g_uiRenderLookupTable + targetBuffer));
+          tempVector9 = vpaddw_avx2(tempVector9,_DAT_180948080);
+          tempVector6 = vpsraw_avx2(tempVector9,4);
+          tempVector9 = vpunpckhbw_avx2(*resultPointer,zeroVector);
+          tempVector6 = vpsubw_avx2(tempVector6,tempVector9);
+          tempVector9 = vpaddw_avx2(tempVector5,sumResult0._0_32_);
+          tempVector9 = vpaddw_avx2(tempVector9,tempVector6);
+          sumResult0 = ZEXT3264(tempVector9);
+          tempVector5 = vpmaddwd_avx2(tempVector5,tempVector5);
           uiContext = (undefined1 (*) [32])(*uiContext + dataSource);
           resultPointer = (undefined1 (*) [32])(*resultPointer + param_6);
-          auVar5 = vpaddd_avx2(auVar5,afunctionResult1._0_32_);
-          auVar6 = vpmaddwd_avx2(auVar6,auVar6);
-          auVar5 = vpaddd_avx2(auVar5,auVar6);
-          afunctionResult1 = ZEXT3264(auVar5);
-          functionResult = functionResult - 1;
-        } while (functionResult != 0);
+          tempVector5 = vpaddd_avx2(tempVector5,sumResult1._0_32_);
+          tempVector6 = vpmaddwd_avx2(tempVector6,tempVector6);
+          tempVector5 = vpaddd_avx2(tempVector5,tempVector6);
+          sumResult1 = ZEXT3264(tempVector5);
+          pixelCount = pixelCount - 1;
+        } while (pixelCount != 0);
       }
     }
     else {
