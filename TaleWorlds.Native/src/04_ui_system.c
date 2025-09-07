@@ -1062,6 +1062,9 @@ void* UIGestureCoordinates;
 // 原始函数名：FUN_18069bb20 - UI系统数据初始化函数
 #define InitializeUIData FUN_18069bb20
 
+// 原始函数名：FUN_18069bbd0 - UI系统资源数据验证函数
+#define ValidateUIResourceData FUN_18069bbd0
+
 // 原始函数名：FUN_18068d2b0 - UI系统渲染队列函数
 #define ProcessUIRenderQueue FUN_18068d2b0
 // 原始函数名：FUN_1806917c0 - UI系统事件分发器初始化函数
@@ -45850,8 +45853,24 @@ longlong CalculateUIDataDifferenceA8(longlong uiContext,int dataSource,ulonglong
 
 
 
-longlong FUN_18068f810(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
-                      longlong resultPointer,int param_6,uint *param_7)
+/**
+ * @brief 处理UI系统数据验证操作
+ * 
+ * 该函数负责处理UI系统中的数据验证操作，包括多个阶段的验证和结果计算
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param operationFlag 操作标志
+ * @param outputParameter 输出参数（用于返回处理结果）
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18068f810
+ */
+longlong ProcessUIDataValidationOperation(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
+                      longlong resultPointer,int operationFlag,uint *outputParameter)
 
 {
   int operationResult;
@@ -65665,7 +65684,7 @@ ulonglong DecodeUIStateData(longlong uiContext,longlong dataSource,int targetBuf
   
   bufferPosition = (ulonglong)bufferSize;
   dataPointer = (undefined1 *)((bufferPosition * 3 + (longlong)targetBuffer) * 0xb + dataSource);
-  decodeResult = FUN_18069bbd0(uiContext,*dataPointer);
+  decodeResult = ValidateUIResourceData(uiContext,*dataPointer);
   loopCounter = bufferPosition;
   if ((int)decodeResult == 0) {
     return decodeResult;
@@ -65689,27 +65708,27 @@ ulonglong DecodeUIStateData(longlong uiContext,longlong dataSource,int targetBuf
     *(ulonglong *)(uiContext + 0x10) = functionResult4 << (bVar1 & 0x3f);
     *(uint *)(uiContext + 0x1c) = functionResult3 << (bVar1 & 0x1f);
     if (bVar16) {
-      iVar5 = FUN_18069bbd0(uiContext,puVar9[2]);
+      iVar5 = ValidateUIResourceData(uiContext,puVar9[2]);
       if (iVar5 == 0) {
         allocatedMemory0 = dataSource + 0xb;
         sVar11 = 1;
       }
       else {
-        iVar5 = FUN_18069bbd0(uiContext,puVar9[3]);
+        iVar5 = ValidateUIResourceData(uiContext,puVar9[3]);
         if (iVar5 == 0) {
-          iVar5 = FUN_18069bbd0(uiContext,puVar9[4]);
+          iVar5 = ValidateUIResourceData(uiContext,puVar9[4]);
           if (iVar5 == 0) {
             sVar11 = 2;
           }
           else {
-            sVar11 = FUN_18069bbd0(uiContext,puVar9[5]);
+            sVar11 = ValidateUIResourceData(uiContext,puVar9[5]);
             sVar11 = sVar11 + 3;
           }
         }
         else {
-          iVar5 = FUN_18069bbd0(uiContext,puVar9[6]);
+          iVar5 = ValidateUIResourceData(uiContext,puVar9[6]);
           if (iVar5 == 0) {
-            iVar5 = FUN_18069bbd0(uiContext,puVar9[7]);
+            iVar5 = ValidateUIResourceData(uiContext,puVar9[7]);
             if (iVar5 == 0) {
               sVar11 = FUN_18069bbd0(uiContext,0x9f);
               sVar11 = sVar11 + 5;
@@ -65757,7 +65776,7 @@ ulonglong DecodeUIStateData(longlong uiContext,longlong dataSource,int targetBuf
       *(int *)(bufferData + 0x1c) = *(int *)(bufferData + 0x1c) * 2;
       *(longlong *)(bufferData + 0x10) = *(longlong *)(bufferData + 0x10) * 2;
       *(short *)(resultPointer + (ulonglong)bVar1 * 2) = sVar11;
-      if ((uVar7 == 0x10) || (iVar5 = FUN_18069bbd0(uiContext,*puVar9), iVar5 == 0)) {
+      if ((uVar7 == 0x10) || (iVar5 = ValidateUIResourceData(uiContext,*puVar9), iVar5 == 0)) {
         return (ulonglong)functionResult2;
       }
     }
@@ -84939,8 +84958,8 @@ int FUN_18071a480(longlong uiContext,int dataSource,int targetBuffer,longlong bu
   }
   fVar4 = uiContext4;
   if (iVar8 == 0) {
-    fVar21 = *(float *)(&UNK_180953570 + (longlong)uiContext2 * 4);
-    fVar20 = *(float *)(&UNK_180953560 + (longlong)uiContext2 * 4);
+    fVar21 = *(float *)(&RenderFloatDataY + (longlong)uiContext2 * 4);
+    fVar20 = *(float *)(&RenderFloatDataX + (longlong)uiContext2 * 4);
   }
   else {
     fVar21 = 0.1499939;
@@ -85527,8 +85546,8 @@ void FUN_18071ad00(longlong uiContext,int dataSource,int targetBuffer,longlong b
   allocatedMemory = (longlong)resultPointer + lVar6 * 2;
   floatResult2 = 0.0;
   if (resultPointer == 0) {
-    floatResult1 = *(float *)(&UNK_180953570 + lVar6 * 4);
-    floatResult2 = *(float *)(&UNK_180953560 + lVar6 * 4);
+    floatResult1 = *(float *)(&RenderFloatDataY + lVar6 * 4);
+    floatResult2 = *(float *)(&RenderFloatDataX + lVar6 * 4);
   }
   else {
     floatResult1 = 0.1499939;
@@ -85996,7 +86015,7 @@ void FUN_18071bfe0(undefined8 uiContext,char *dataSource)
 {
   longlong allocatedMemory;
   
-  FUN_1807054a0(uiContext,dataSource[2] * 5 + (int)dataSource[5],&UNK_180953610,8);
+  FUN_1807054a0(uiContext,dataSource[2] * 5 + (int)dataSource[5],&UiControlData,8);
   allocatedMemory = 2;
   do {
     FUN_1807054a0(uiContext,(int)*dataSource,&UNK_1809535b4,8);
@@ -91255,7 +91274,7 @@ void FUN_180722370(undefined8 uiContext,int *dataSource)
   ulonglong uStack_20;
   
   uStack_20 = XorEncryptionKey ^ (ulonglong)auStack_58;
-  iStack_24 = FUN_18070f3e0(uiContext,&UNK_180953610,8);
+  iStack_24 = FUN_18070f3e0(uiContext,&UiControlData,8);
   psVar3 = asStack_34;
   lVar4 = 2;
   iStack_30 = iStack_24 / 5;
