@@ -65251,7 +65251,22 @@ void MutexUnlockerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809085d0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_1809085d0 - 数据验证处理器A1
+// 功能：执行数据验证相关的资源处理操作
+#define DataValidationHandlerA1 Unwind_1809085d0
+
+/**
+ * @brief 数据验证处理器A1
+ * 
+ * 该函数负责在异常展开时执行数据验证相关的资源处理操作
+ * 确保数据完整性检查被正确执行
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 此函数在异常处理过程中自动调用
+ */
+void DataValidationHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 8,8,4,ValidateDataHandler);
