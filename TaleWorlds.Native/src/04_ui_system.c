@@ -30018,8 +30018,14 @@ void UpdateUIComponentData(int *componentData)
 
 
 
- 重置UI缓冲区状态
-// @note 原始函数名: FUN_180670833
+ /**
+ * @brief 重置UI缓冲区状态
+ * 
+ * 该函数负责重置UI系统的缓冲区状态
+ * 确保缓冲区处于正确的初始状态
+ * 
+ * @note 原始函数名: FUN_180670833
+ */
 #define ResetUIBufferState FUN_180670833
 void ResetUIBufferState(void)
 
@@ -30047,8 +30053,14 @@ void ResetUIBufferState(void)
 
 
 
- 初始化UI缓冲区配置
-// @note 原始函数名: FUN_18067088e
+ /**
+ * @brief 初始化UI缓冲区配置
+ * 
+ * 该函数负责初始化UI系统的缓冲区配置
+ * 设置缓冲区的初始参数和状态
+ * 
+ * @note 原始函数名: FUN_18067088e
+ */
 #define InitializeUIBufferConfiguration FUN_18067088e
 void InitializeUIBufferConfiguration(void)
 
