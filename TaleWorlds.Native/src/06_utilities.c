@@ -4118,19 +4118,19 @@ extern uint64_t ExceptionOffsetDataValue;
 
 // 主默认异常处理器
 // 功能：系统主要的默认异常处理器入口点
-#define PrimaryDefaultExceptionHandler PrimaryDefaultExceptionHandler
+extern void* PrimaryDefaultExceptionHandler;
 
 // 系统主状态标志
 // 功能：存储系统主要运行状态标志
-#define SystemMainStatusFlag SystemMainStatusFlag
+extern uint32_t SystemMainStatusFlag;
 
 // 系统完整性验证标志
 // 功能：存储系统完整性验证状态标志
-#define SystemIntegrityValidationFlag SystemIntegrityValidationFlag
+extern uint32_t SystemIntegrityValidationFlag;
 
 // 系统主资源表
 // 功能：存储系统主要资源分配表
-#define SystemPrimaryResourceTable SystemPrimaryResourceTable
+extern void* SystemPrimaryResourceTable;
 
 // 全局异常处理器指针A1
 // 功能：存储全局异常处理器A1的指针
