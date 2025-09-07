@@ -336,6 +336,26 @@
 #define MemoryAllocationLabel MemoryAllocationLabel
 #define ProcessCompleteLabel ProcessCompleteLabel
 
+// 异常处理器常用偏移量常量定义
+#define ExceptionHandlerContextOffset 0x60
+#define ExceptionHandlerDataOffset 0x20
+#define ExceptionHandlerStatusOffset 0x28
+#define ExceptionHandlerStateOffset 0x38
+#define ExceptionHandlerPointerOffset 0x50
+#define ExceptionHandlerCleanupOffset 0x58
+#define ExceptionHandlerCallbackOffset 0x68
+#define ExceptionHandlerValidationOffset 0x70
+#define ExceptionHandlerResourceOffset 0x78
+#define ExceptionHandlerMemoryOffset 0x80
+#define ExceptionHandlerSystemOffset 0x88
+#define ExceptionHandlerSecurityOffset 0x90
+#define ExceptionHandlerConfigOffset 0x98
+#define ExceptionHandlerControlOffset 0xa0
+#define ExceptionHandlerFlagOffset 0xb0
+#define ExceptionHandlerBufferOffset 0xc0
+#define ExceptionHandlerStackOffset 0xd0
+#define ExceptionHandlerThreadOffset 0xe0
+
 /**
  * @brief 数据加密处理函数
  * @note 原始函数名：func_0x00018074be80
@@ -50193,14 +50213,14 @@ void ResetExceptionContextOffset20(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
-  *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset);
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerDataOffset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerStatusOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x20) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerStatusOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerStateOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerDataOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -50219,7 +50239,7 @@ void ResetExceptionContextOffset20(DataBuffer operationBase,int64_t dataBuffer)
 void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x60) = &DefaultExceptionHandlerB;
+  **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -67037,7 +67057,19 @@ void ManageResourceReferenceCountA50(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180907a60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理函数A60
+ * 
+ * 该函数管理资源的引用计数，处理内存地址计算和资源释放。
+ * 它会获取资源指针，计算内存基地址，管理引用计数，并在适当的时候释放资源。
+ * 主要用于异常处理过程中的资源生命周期管理。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180907a60
+ */
+#define ManageResourceReferenceCountA60 Unwind_180907a60
+void ManageResourceReferenceCountA60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -67073,7 +67105,20 @@ void Unwind_180907a60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907a70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数A70
+ * 
+ * 该函数执行异常处理回调，检查并调用位于特定偏移量的函数指针。
+ * 主要用于异常处理过程中的回调执行和资源清理。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907a70
+ */
+#define ExecuteExceptionHandlerCallbacksA70 Unwind_180907a70
+void ExecuteExceptionHandlerCallbacksA70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(dataBuffer + 0xe8,*(DataBuffer *)(dataBuffer + 0xf8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
@@ -67082,7 +67127,20 @@ void Unwind_180907a70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数A80
+ * 
+ * 该函数执行异常处理回调，检查并调用位于特定偏移量的函数指针。
+ * 主要用于异常处理过程中的回调执行和资源清理。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907a80
+ */
+#define ExecuteExceptionHandlerCallbacksA80 Unwind_180907a80
+void ExecuteExceptionHandlerCallbacksA80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(dataBuffer + 0xe8,*(DataBuffer *)(dataBuffer + 0xf8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
@@ -67091,7 +67149,18 @@ void Unwind_180907a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907a90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理函数A90
+ * 
+ * 该函数管理资源的引用计数，处理内存地址计算和资源释放。
+ * 主要用于异常处理过程中的资源生命周期管理。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180907a90
+ */
+#define ManageResourceReferenceCountA90 Unwind_180907a90
+void ManageResourceReferenceCountA90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -68370,7 +68439,18 @@ void HandleExceptionA3(DataBuffer ContextParameter, int64_t SystemContext)
 
 
 
-void Unwind_180908040(void)
+/**
+ * @brief 系统状态重置函数
+ * 
+ * 该函数重置系统状态，包括异常状态标志和事件处理。
+ * 它会进入临界区，重置异常状态标志，离开临界区，然后处理异常事件。
+ * 如果存在异常事件句柄，会重置事件；否则会执行加密相关的操作。
+ * 主要用于系统级别的状态管理和异常处理。
+ * 
+ * @note 原始函数名：Unwind_180908040
+ */
+#define ResetSystemStatusFlags Unwind_180908040
+void ResetSystemStatusFlags(void)
 
 {
   byte encryptionShiftBitCount;
