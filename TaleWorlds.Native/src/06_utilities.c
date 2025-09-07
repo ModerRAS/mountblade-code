@@ -98,6 +98,7 @@
 
 // 异常处理相关常量定义
 #define ExceptionCallbackOffset 0xb0
+#define ModuleResourceAllocationStatus 0x1e
 
 // 异常资源清理函数E0相关常量
 #define ExceptionResourceCountOffset 0x50
@@ -10082,7 +10083,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
       return ResourceInvalidErrorCode;
     }
   }
-  if (moduleInitializationStatus == 0x1e) {
+  if (moduleInitializationStatus == ModuleResourceAllocationStatus) {
     return 0;
   }
   return systemModuleOperationResult;
