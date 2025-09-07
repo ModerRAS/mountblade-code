@@ -69532,7 +69532,7 @@ void Unwind_180909ca0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180909cb0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,0x98,9,FUN_1802ab7f0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,0x98,9,ProcessSystemOperationsA0);
   return;
 }
 
@@ -70029,7 +70029,15 @@ void ExceptionHandler_SystemConfigurationA0(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_18090a120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理函数 - 系统配置处理A1
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_18090a120
+ */
+void ExceptionHandler_SystemConfigurationA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
@@ -70105,7 +70113,7 @@ void Unwind_18090a170(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090a1a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 8,0x98,9,FUN_1802ab7f0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 8,0x98,9,ProcessSystemOperationsA0);
   return;
 }
 
@@ -70156,7 +70164,7 @@ void Unwind_18090a1f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090a210(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 0x5a0,0x20,9,FUN_18004c030);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 0x5a0,0x20,9,ProcessMemoryOperationA0);
   return;
 }
 
@@ -81271,8 +81279,8 @@ void Unwind_18090d660(DataBuffer operationBase,int64_t dataBuffer)
   ExecuteMemoryOperation(validationContext + 0xea0,8,2,ValidateDataHandler,operationResult);
   ExecuteMemoryOperation(validationContext + 0xe90,8,2,ValidateDataHandler);
   ExecuteMemoryOperation(validationContext + 0xe80,8,2,ValidateDataHandler);
-  ExecuteMemoryOperation(validationContext + 0xc28,0x128,2,FUN_1801b9690);
-  ExecuteMemoryOperation(validationContext + 0x9d0,0x128,2,FUN_1801b9690);
+  ExecuteMemoryOperation(validationContext + 0xc28,0x128,2,ProcessMemoryOperationA1);
+  ExecuteMemoryOperation(validationContext + 0x9d0,0x128,2,ProcessMemoryOperationA1);
   ExecuteMemoryOperation(validationContext + 0xb8,0x488,2,FUN_1800e7ca0);
   return;
 }
@@ -81611,7 +81619,7 @@ void Unwind_18090d9c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090d9e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x1598,0x238,2,FUN_180051d00);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x1598,0x238,2,InitializeSystemDataA0);
   return;
 }
 
@@ -82045,8 +82053,8 @@ void Unwind_18090de80(DataBuffer operationBase,int64_t dataBuffer)
   ExecuteMemoryOperation(validationContext + 0xea0,8,2,ValidateDataHandler,operationResult);
   ExecuteMemoryOperation(validationContext + 0xe90,8,2,ValidateDataHandler);
   ExecuteMemoryOperation(validationContext + 0xe80,8,2,ValidateDataHandler);
-  ExecuteMemoryOperation(validationContext + 0xc28,0x128,2,FUN_1801b9690);
-  ExecuteMemoryOperation(validationContext + 0x9d0,0x128,2,FUN_1801b9690);
+  ExecuteMemoryOperation(validationContext + 0xc28,0x128,2,ProcessMemoryOperationA1);
+  ExecuteMemoryOperation(validationContext + 0x9d0,0x128,2,ProcessMemoryOperationA1);
   ExecuteMemoryOperation(validationContext + 0xb8,0x488,2,FUN_1800e7ca0);
   return;
 }
@@ -82385,7 +82393,7 @@ void Unwind_18090e1e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e200(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x1598,0x238,2,FUN_180051d00);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x1598,0x238,2,InitializeSystemDataA0);
   return;
 }
 
@@ -82644,6 +82652,30 @@ void Unwind_18090e400(DataBuffer operationBase,int64_t dataBuffer)
 // 原始函数名：FUN_1800e7be0 - 内存操作处理函数A6
 // 功能：处理内存操作和数据验证
 #define ProcessMemoryOperationA6 FUN_1800e7be0
+
+// 原始函数名：FUN_180051d00 - 系统数据初始化函数A0
+// 功能：初始化系统数据和配置
+#define InitializeSystemDataA0 FUN_180051d00
+
+// 原始函数名：FUN_18011d900 - 系统资源管理函数A0
+// 功能：管理系统资源和内存分配
+#define ManageSystemResourcesA0 FUN_18011d900
+
+// 原始函数名：FUN_1802ab7f0 - 系统操作处理函数A0
+// 功能：处理系统操作和状态管理
+#define ProcessSystemOperationsA0 FUN_1802ab7f0
+
+// 原始函数名：FUN_1801b9690 - 内存操作处理函数A1
+// 功能：处理内存操作和数据验证
+#define ProcessMemoryOperationA1 FUN_1801b9690
+
+// 原始函数名：FUN_1800edc10 - 系统数据清理函数A0
+// 功能：清理系统数据和缓冲区
+#define CleanupSystemDataA0 FUN_1800edc10
+
+// 原始函数名：FUN_1800f88f0 - 系统状态检查函数A0
+// 功能：检查系统状态和标志位
+#define CheckSystemStatusA0 FUN_1800f88f0
 
 void Unwind_18090e410(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -84814,7 +84846,7 @@ void Unwind_18090ef80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090ef90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x70) + 0x30,0x30,0xe,FUN_1800edc10);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x70) + 0x30,0x30,0xe,CleanupSystemDataA0);
   return;
 }
 
@@ -88103,7 +88135,7 @@ void Unwind_180910160(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910190(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),0x58,2,FUN_1800f88f0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),0x58,2,CheckSystemStatusA0);
   return;
 }
 
@@ -94172,7 +94204,7 @@ void Unwind_180911b90(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180911bb0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0xb8,0x10,2,FUN_18011d900,SystemCleanupFlagAlternative);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0xb8,0x10,2,ManageSystemResourcesA0,SystemCleanupFlagAlternative);
   return;
 }
 
@@ -94181,7 +94213,7 @@ void Unwind_180911bb0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180911bd0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x58),0x10,2,FUN_18011d900);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x58),0x10,2,ManageSystemResourcesA0);
   return;
 }
 
@@ -94190,7 +94222,7 @@ void Unwind_180911bd0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180911c00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),0x10,2,FUN_18011d900);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),0x10,2,ManageSystemResourcesA0);
   return;
 }
 
@@ -96441,7 +96473,7 @@ void Unwind_180912710(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180912740(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(dataBuffer + 0x98,0x10,2,FUN_18011d900);
+  ExecuteMemoryOperation(dataBuffer + 0x98,0x10,2,ManageSystemResourcesA0);
   return;
 }
 
@@ -96741,7 +96773,7 @@ void Unwind_180912810(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180912830(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xb8,0x10,2,FUN_18011d900,SystemCleanupFlagAlternative);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xb8,0x10,2,ManageSystemResourcesA0,SystemCleanupFlagAlternative);
   return;
 }
 
@@ -96750,7 +96782,7 @@ void Unwind_180912830(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180912850(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x10,2,FUN_18011d900);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x10,2,ManageSystemResourcesA0);
   return;
 }
 
