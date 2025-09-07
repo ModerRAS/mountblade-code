@@ -52416,7 +52416,21 @@ void ProcessExceptionResourceCleanupCallbacksC(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_180904fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常资源清理回调D
+ * 
+ * 该函数在异常处理过程中遍历资源指针数组，对每个资源执行清理回调函数。
+ * 使用0x28和0x20偏移量获取资源指针数组，并在数组为空时终止系统。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含资源指针数组信息
+ * @param operationFlagA 操作标志A，传递给回调函数
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180904fa0
+ * @note 简化实现：遍历资源数组并执行回调，数组为空时终止系统
+ */
+void ProcessExceptionResourceCleanupCallbacksD(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -52437,7 +52451,19 @@ void Unwind_180904fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904fb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理内存资源引用计数A
+ * 
+ * 该函数负责管理内存资源的引用计数。它检查资源指针的内存基址，
+ * 计算偏移量并管理引用计数。如果引用计数降为0，则调用异常处理函数。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180904fb0
+ * @note 简化实现：管理资源引用计数，计数为0时处理异常
+ */
+void ManageMemoryResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -52473,7 +52499,19 @@ void Unwind_180904fb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904fc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置临时异常处理器A
+ * 
+ * 该函数将临时异常处理器重置为默认处理器，清理相关标志位。
+ * 如果特定条件不满足，则终止系统运行。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180904fc0
+ * @note 简化实现：重置异常处理器和标志位
+ */
+void ResetTemporaryExceptionHandlerA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0xb8) = &TemporaryExceptionHandler;
@@ -52489,7 +52527,21 @@ void Unwind_180904fc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常资源清理回调E
+ * 
+ * 该函数在异常处理过程中遍历资源指针数组，对每个资源执行清理回调函数。
+ * 使用0xa0和0x98偏移量获取资源指针数组，并在数组为空时终止系统。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含资源指针数组信息
+ * @param operationFlagA 操作标志A，传递给回调函数
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180904fd0
+ * @note 简化实现：遍历资源数组并执行回调，数组为空时终止系统
+ */
+void ProcessExceptionResourceCleanupCallbacksE(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89945,7 +89997,20 @@ void Unwind_18090f7f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理数据缓冲区A6
+ * 
+ * 该函数调用ProcessDataBufferA6函数处理数据缓冲区，使用0x40偏移量获取参数。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含处理参数
+ * @param operationFlagA 操作标志A，传递给处理函数
+ * @param operationFlagB 操作标志B，传递给处理函数
+ * 
+ * @note 原始函数名：Unwind_18090f800
+ * @note 简化实现：调用ProcessDataBufferA6处理数据缓冲区
+ */
+void ProcessDataBufferA6Wrapper(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA6(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
@@ -89955,7 +90020,19 @@ void Unwind_18090f800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f810(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作验证
+ * 
+ * 该函数调用ExecuteMemoryOperation函数执行内存操作，使用0x40偏移量获取参数。
+ * 操作类型为0xd，大小为8字节，使用ValidateDataHandler处理器。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含内存操作参数
+ * 
+ * @note 原始函数名：Unwind_18090f810
+ * @note 简化实现：调用ExecuteMemoryOperation执行内存验证操作
+ */
+void ExecuteMemoryValidationOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),8,0xd,ValidateDataHandler);
@@ -89964,7 +90041,20 @@ void Unwind_18090f810(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理数据缓冲区A7
+ * 
+ * 该函数调用ProcessDataBufferA7函数处理数据缓冲区，使用0x40偏移量获取参数。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含处理参数
+ * @param operationFlagA 操作标志A，传递给处理函数
+ * @param operationFlagB 操作标志B，传递给处理函数
+ * 
+ * @note 原始函数名：Unwind_18090f840
+ * @note 简化实现：调用ProcessDataBufferA7处理数据缓冲区
+ */
+void ProcessDataBufferA7Wrapper(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA7(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),

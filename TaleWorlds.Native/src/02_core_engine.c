@@ -150119,77 +150119,77 @@ void ProcessSystemMatrixTransformation(uint64_t CharacterCode, uint32_t Characte
   float MatrixCoefficient2;
   int ProcessingCounter;
   
-  FloatValue8 = (float)CalculateCharacterCodeFloatValue(CharacterCodeSize);
-  CharacterStatus1 = (char)RegisterGeneral14;
-  MutexLockResult = (int)RegisterGeneral14;
-  if (*(int *)(SystemContext + 0x1d2c) == -1) {
-    if (*(char *)(SystemContext + 0x1d21) != CharacterStatus1) goto LAB_180132ba2;
+  SystemFloatParameter = (float)CalculateCharacterCodeFloatValue(CharacterCodeSize);
+  CharacterValidationStatus = (char)SystemRegisterValue;
+  MutexLockResult = (int)SystemRegisterValue;
+  if (*(int *)(SystemContextPointer + 0x1d2c) == -1) {
+    if (*(char *)(SystemContextPointer + 0x1d21) != CharacterValidationStatus) goto LAB_180132ba2;
   }
   else {
-    *(uint8_t *)(SystemContext + 0x1d21) = 1;
-    *(int *)(SystemContext + 0x1d30) = *(int *)(SystemContext + 0x1d2c);
+    *(uint8_t *)(SystemContextPointer + 0x1d21) = 1;
+    *(int *)(SystemContextPointer + 0x1d30) = *(int *)(SystemContextPointer + 0x1d2c);
 LAB_180132ba2:
-    if (*(int *)(SystemContext + 0x1ca0) == MutexLockResult) {
-      *(uint16_t *)(SystemContext + 0x1d09) = 0x101;
-      *(int *)(SystemContext + 0x1d0c) = MutexLockResult;
-      *(char *)(SystemContext + 0x1d06) = CharacterStatus1;
+    if (*(int *)(SystemContextPointer + 0x1ca0) == MutexLockResult) {
+      *(uint16_t *)(SystemContextPointer + 0x1d09) = 0x101;
+      *(int *)(SystemContextPointer + 0x1d0c) = MutexLockResult;
+      *(char *)(SystemContextPointer + 0x1d06) = CharacterValidationStatus;
     }
   }
-  if ((*(char *)(DataNodeIndex + 0x1d21) == CharacterStatus1) && (*(char *)(DataNodeIndex + 0x1d09) == CharacterStatus1)) {
-    UnicodeCodePoint = 0;
+  if ((*(char *)(DataNodePointer + 0x1d21) == CharacterValidationStatus) && (*(char *)(DataNodePointer + 0x1d09) == CharacterValidationStatus)) {
+    CharacterCodeFlag = 0;
   }
   else {
-    UnicodeCodePoint = 1;
+    CharacterCodeFlag = 1;
   }
-  *(uint8_t *)(DataNodeIndex + 0x1d08) = UnicodeCodePoint;
-  BufferStatus = *(long long *)(SystemContext + 0x1c98);
-  if (((BufferStatus == 0) || ((*(uint *)(BufferStatus + 0xc) & 0x40000) != 0)) ||
-     (*(long long *)(SystemContext + 0x1cd8) != RegisterGeneral14)) goto LAB_180132de6;
-  SystemContextPrimaryFloat8 = (float)(int)(*(float *)(DataNodeIndex + 0x19fc) * *(float *)(BufferStatus + 0x2d8) *
-                        *(float *)(BufferStatus + 0x2dc) * 100.0 * *(float *)(SystemContext + 0x18) + 0.5);
-  if (((*(int *)(BufferStatus + 0x174) == MutexLockResult) && (*(char *)(BufferStatus + 0x17d) != CharacterStatus1)) &&
-     (*(char *)(SystemContext + 0x1d21) != CharacterStatus1)) {
-    validationResult = *(int *)(SystemContext + 0x1d2c);
-    if (validationResult == 0) {
-      NormalizedParameter = -SystemContextPrimaryFloat8;
+  *(uint8_t *)(DataNodePointer + 0x1d08) = CharacterCodeFlag;
+  BufferPointer = *(long long *)(SystemContextPointer + 0x1c98);
+  if (((BufferPointer == 0) || ((*(uint *)(BufferPointer + 0xc) & 0x40000) != 0)) ||
+     (*(long long *)(SystemContextPointer + 0x1cd8) != SystemRegisterValue)) goto LAB_180132de6;
+  TertiaryMatrixFloat = (float)(int)(*(float *)(DataNodePointer + 0x19fc) * *(float *)(BufferPointer + 0x2d8) *
+                        *(float *)(BufferPointer + 0x2dc) * 100.0 * *(float *)(SystemContextPointer + 0x18) + 0.5);
+  if (((*(int *)(BufferPointer + 0x174) == MutexLockResult) && (*(char *)(BufferPointer + 0x17d) != CharacterValidationStatus)) &&
+     (*(char *)(SystemContextPointer + 0x1d21) != CharacterValidationStatus)) {
+    ConfigurationValidationResult = *(int *)(SystemContextPointer + 0x1d2c);
+    if (ConfigurationValidationResult == 0) {
+      NormalizedValue = -TertiaryMatrixFloat;
 LAB_180132c8d:
-      SystemContextPrimaryFloat0 = *(float *)(BufferStatus + 0x8c);
-      NormalizedParameter = (float)(int)(NormalizedParameter + SystemContextPrimaryFloat0);
-      *(float *)(BufferStatus + 0x8c) = NormalizedParameter;
-      *(float *)(BufferStatus + 0x118) = (SystemContextPrimaryFloat0 + *(float *)(BufferStatus + 0x118)) - NormalizedParameter;
-      validationResult = *(int *)(SystemContext + 0x1d2c);
+      MatrixTransformX = *(float *)(BufferPointer + 0x8c);
+      NormalizedValue = (float)(int)(NormalizedValue + MatrixTransformX);
+      *(float *)(BufferPointer + 0x8c) = NormalizedValue;
+      *(float *)(BufferPointer + 0x118) = (MatrixTransformX + *(float *)(BufferPointer + 0x118)) - NormalizedValue;
+      ConfigurationValidationResult = *(int *)(SystemContextPointer + 0x1d2c);
     }
     else {
-      NormalizedParameter = SystemContextPrimaryFloat8;
-      if (validationResult == 1) goto LAB_180132c8d;
+      NormalizedValue = TertiaryMatrixFloat;
+      if (ConfigurationValidationResult == 1) goto LAB_180132c8d;
     }
-    if (validationResult == 2) {
-      NormalizedParameter = -SystemContextPrimaryFloat8;
+    if (ConfigurationValidationResult == 2) {
+      NormalizedValue = -TertiaryMatrixFloat;
     }
     else {
-      NormalizedParameter = SystemContextPrimaryFloat8;
-      if (validationResult != 3) goto LAB_180132d15;
+      NormalizedValue = TertiaryMatrixFloat;
+      if (ConfigurationValidationResult != 3) goto LAB_180132d15;
     }
-    SystemContextPrimaryFloat0 = *(float *)(BufferStatus + 0x90);
-    NormalizedParameter = (float)(int)(NormalizedParameter + SystemContextPrimaryFloat0);
-    *(float *)(BufferStatus + 0x90) = NormalizedParameter;
-    *(float *)(BufferStatus + 0x11c) = (SystemContextPrimaryFloat0 + *(float *)(BufferStatus + 0x11c)) - NormalizedParameter;
+    MatrixTransformX = *(float *)(BufferPointer + 0x90);
+    NormalizedValue = (float)(int)(NormalizedValue + MatrixTransformX);
+    *(float *)(BufferPointer + 0x90) = NormalizedValue;
+    *(float *)(BufferPointer + 0x11c) = (MatrixTransformX + *(float *)(BufferPointer + 0x11c)) - NormalizedValue;
   }
 LAB_180132d15:
   FUN_180131aa0(&stack0x000000b0,4,0,0x3dcccccd,0x41200000);
-  if ((MatrixRow2Col1 != FloatingPointRegisterA) && (*(char *)(BufferStatus + 0xac) != CharacterStatus1)) {
-    NormalizedParameter = *(float *)(BufferStatus + 0x8c);
-    SystemContextPrimaryFloat0 = (float)(int)(MatrixRow2Col1 * SystemContextPrimaryFloat8 + NormalizedParameter);
-    *(float *)(BufferStatus + 0x8c) = SystemContextPrimaryFloat0;
-    *(float *)(BufferStatus + 0x118) = (NormalizedParameter + *(float *)(BufferStatus + 0x118)) - SystemContextPrimaryFloat0;
-    *(uint8_t *)(SystemContext + 0x1d20) = 1;
+  if ((MatrixCoefficient1 != ReferenceFloatValue) && (*(char *)(BufferPointer + 0xac) != CharacterValidationStatus)) {
+    NormalizedValue = *(float *)(BufferPointer + 0x8c);
+    MatrixTransformX = (float)(int)(MatrixCoefficient1 * TertiaryMatrixFloat + NormalizedValue);
+    *(float *)(BufferPointer + 0x8c) = MatrixTransformX;
+    *(float *)(BufferPointer + 0x118) = (NormalizedValue + *(float *)(BufferPointer + 0x118)) - MatrixTransformX;
+    *(uint8_t *)(SystemContextPointer + 0x1d20) = 1;
   }
-  if (MatrixRow2Col2 != FloatingPointRegisterA) {
-    NormalizedParameter = *(float *)(BufferStatus + 0x90);
-    SystemContextPrimaryFloat8 = (float)(int)(MatrixRow2Col2 * SystemContextPrimaryFloat8 + NormalizedParameter);
-    *(float *)(BufferStatus + 0x90) = SystemContextPrimaryFloat8;
-    *(float *)(BufferStatus + 0x11c) = (NormalizedParameter + *(float *)(BufferStatus + 0x11c)) - SystemContextPrimaryFloat8;
-    *(uint8_t *)(SystemContext + 0x1d20) = 1;
+  if (MatrixCoefficient2 != ReferenceFloatValue) {
+    NormalizedValue = *(float *)(BufferPointer + 0x90);
+    TertiaryMatrixFloat = (float)(int)(MatrixCoefficient2 * TertiaryMatrixFloat + NormalizedValue);
+    *(float *)(BufferPointer + 0x90) = TertiaryMatrixFloat;
+    *(float *)(BufferPointer + 0x11c) = (NormalizedValue + *(float *)(BufferPointer + 0x11c)) - TertiaryMatrixFloat;
+    *(uint8_t *)(SystemContextPointer + 0x1d20) = 1;
   }
 LAB_180132de6:
   *(void *)(SystemContext + 0x1d54) = 0x7f7fffff7f7fffff;
