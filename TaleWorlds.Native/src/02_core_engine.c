@@ -52571,7 +52571,7 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
         CharacterTableIterator = (long long)pStringComparisonResult0 - (long long)ReferenceCountPointer5 >> 2;
         if (CharacterTableIterator == 0) {
           CharacterTableIterator = 1;
-LAB_180079c12:
+CharacterTableAllocationLoop:
           ReferenceCountPointer3 = (int *)BufferAllocate(MemoryPoolManager,CharacterTableIterator * 4,
                                          *(uint8_t *)(MemoryBlockIndex1 + 0x18 + lStack_170));
           pStringComparisonResult0 = *(int **)(MemoryBlockIndex1 + 8 + BufferStatus3);
@@ -52579,7 +52579,7 @@ LAB_180079c12:
         }
         else {
           CharacterTableIterator = CharacterTableIterator * 2;
-          if (CharacterTableIterator != 0) goto LAB_180079c12;
+          if (CharacterTableIterator != 0) goto CharacterTableAllocationLoop;
         }
         if (ReferenceCountPointer5 != pStringComparisonResult0) {
                     // WARNING: Subroutine does not return
@@ -52607,7 +52607,7 @@ LAB_180079c12:
         CharacterTableIterator = (long long)pStringComparisonResult0 - (long long)ReferenceCountPointer5 >> 2;
         if (CharacterTableIterator == 0) {
           CharacterTableIterator = 1;
-LAB_180079cd7:
+CharacterTableAllocationLoopVariant:
           ReferenceCountPointer3 = (int *)BufferAllocate(MemoryPoolManager,CharacterTableIterator * 4,
                                          *(uint8_t *)(MemoryBlockIndex1 + 0x18 + lStack_170));
           pStringComparisonResult0 = *(int **)(MemoryBlockIndex1 + 8 + BufferStatus3);
@@ -52615,7 +52615,7 @@ LAB_180079cd7:
         }
         else {
           CharacterTableIterator = CharacterTableIterator * 2;
-          if (CharacterTableIterator != 0) goto LAB_180079cd7;
+          if (CharacterTableIterator != 0) goto CharacterTableAllocationLoopVariant;
         }
         if (ReferenceCountPointer5 != pStringComparisonResult0) {
                     // WARNING: Subroutine does not return
@@ -170984,7 +170984,7 @@ void ProcessUtf8InputBufferSize(long long CharacterCode, uint64_t *Utf8InputBuff
   
   ValidationResult = 0;
   SystemOperationResult = 0;
-  Utf16Char4 = ValidationResult;
+  Utf16CharValue = ValidationResult;
   PrimaryReturnCode = ValidationResult;
   if (*(int *)(CharacterCode + 0x1aa0) != 0) {
     do {

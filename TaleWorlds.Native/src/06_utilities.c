@@ -80072,7 +80072,19 @@ void ExecuteValidatorCleanupF2(DataBuffer systemHandle, int64_t validatorArray)
 
 
 
-void Unwind_18090a580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统配置A5
+ * 
+ * 该函数负责处理系统配置操作，调用系统配置处理函数A5
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090a580
+ */
+void ProcessSystemConfigurationA5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + DataContextOffset68),*(DataBuffer *)(*(int64_t *)(dataBuffer + DataContextOffset68) + ExceptionHandlerCallbackOffset10),
@@ -80082,7 +80094,19 @@ void Unwind_18090a580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统配置A6
+ * 
+ * 该函数负责处理系统配置操作，调用系统配置处理函数A6
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090a590
+ */
+void ProcessSystemConfigurationA6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + DataContextOffset68),*(DataBuffer *)(*(int64_t *)(dataBuffer + DataContextOffset68) + ExceptionHandlerCallbackOffset10),
@@ -80092,7 +80116,19 @@ void Unwind_18090a590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a5a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据清理和系统终止A0
+ * 
+ * 该函数负责处理异常数据的清理操作，释放相关资源并终止系统
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090a5a0
+ */
+void ProcessExceptionDataCleanupAndSystemTerminationA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
