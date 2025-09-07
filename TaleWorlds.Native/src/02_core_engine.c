@@ -10227,46 +10227,46 @@ void InitializeCoreEngineDataStructure(void) {
  * @return void 无返回值
  */
 void InitializeCoreEngineRenderingSystem(void) {
-  char RenderingNodeInitializedFlag;
-  void *RenderingSystemRootNode;
+  char IsRenderingNodeInitialized;
+  void *RenderingRootNodePointer;
   int RenderingDataComparisonResult;
-  long long *RenderingSystemContext;
-  long long RenderingSystemMemoryOffset;
-  void *RenderingSearchNode;
-  void *RenderingTraversalNode;
-  void *RenderingNextNodeInChain;
-  void *CreatedRenderingNode;
-  void (*RenderingSystemInitializer)(void);
+  long long *RenderingEngineSystemContext;
+  long long RenderingMemoryOffset;
+  void *RenderingSearchPointer;
+  void *RenderingTraversalPointer;
+  void *RenderingNextChainPointer;
+  void *NewRenderingNode;
+  void (*RenderingInitializationCallback)(void);
   
-  RenderingSystemContext = (long long *)CoreEngineGetSystemHandle();
-  RenderingSystemRootNode = (void *)*RenderingSystemContext;
-  RenderingNodeInitializedFlag = *(char *)((long long)RenderingSystemRootNode[1] + SystemNodeStatusOffset);
-  RenderingSystemInitializer = CoreEngineGetRenderingInitializer();
-  RenderingTraversalNode = RenderingSystemRootNode;
-  RenderingSearchNode = (void *)RenderingSystemRootNode[1];
-  while (RenderingNodeInitializedFlag == '\0') {
-    RenderingDataComparisonResult = memcmp(RenderingSearchNode + SystemNodeHeaderSize, &SystemComparisonDataSecondary, SystemDataStructureSize);
+  RenderingEngineSystemContext = (long long *)CoreEngineGetSystemHandle();
+  RenderingRootNodePointer = (void *)*RenderingEngineSystemContext;
+  IsRenderingNodeInitialized = *(char *)((long long)RenderingRootNodePointer[1] + SystemNodeStatusOffset);
+  RenderingInitializationCallback = CoreEngineGetRenderingInitializer();
+  RenderingTraversalPointer = RenderingRootNodePointer;
+  RenderingSearchPointer = (void *)RenderingRootNodePointer[1];
+  while (IsRenderingNodeInitialized == '\0') {
+    RenderingDataComparisonResult = memcmp(RenderingSearchPointer + SystemNodeHeaderSize, &SystemComparisonDataSecondary, SystemDataStructureSize);
     if (RenderingDataComparisonResult < 0) {
-      RenderingNextNodeInChain = (void *)RenderingSearchNode[2];
-      RenderingSearchNode = RenderingTraversalNode;
+      RenderingNextChainPointer = (void *)RenderingSearchPointer[2];
+      RenderingSearchPointer = RenderingTraversalPointer;
     }
     else {
-      RenderingNextNodeInChain = (void *)*RenderingSearchNode;
+      RenderingNextChainPointer = (void *)*RenderingSearchPointer;
     }
-    RenderingTraversalNode = RenderingSearchNode;
-    RenderingSearchNode = RenderingNextNodeInChain;
-    RenderingNodeInitializedFlag = *(char *)((long long)RenderingNextNodeInChain + SystemNodeStatusOffset);
+    RenderingTraversalPointer = RenderingSearchPointer;
+    RenderingSearchPointer = RenderingNextChainPointer;
+    IsRenderingNodeInitialized = *(char *)((long long)RenderingNextChainPointer + SystemNodeStatusOffset);
   }
-  if ((RenderingTraversalNode == RenderingSystemRootNode) || (RenderingDataComparisonResult = memcmp(&SystemComparisonDataSecondary, RenderingTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), RenderingDataComparisonResult < 0)) {
-    RenderingSystemMemoryOffset = CoreEngineAllocateMemory(RenderingSystemContext);
-    CoreEngineSetupDataStructure(RenderingSystemContext, &CreatedRenderingNode, RenderingTraversalNode, RenderingSystemMemoryOffset + SystemMemoryAllocationOffset, RenderingSystemMemoryOffset);
-    RenderingTraversalNode = CreatedRenderingNode;
+  if ((RenderingTraversalPointer == RenderingRootNodePointer) || (RenderingDataComparisonResult = memcmp(&SystemComparisonDataSecondary, RenderingTraversalPointer + SystemNodeHeaderSize, SystemDataStructureSize), RenderingDataComparisonResult < 0)) {
+    RenderingMemoryOffset = CoreEngineAllocateMemory(RenderingEngineSystemContext);
+    CoreEngineSetupDataStructure(RenderingEngineSystemContext, &NewRenderingNode, RenderingTraversalPointer, RenderingMemoryOffset + SystemMemoryAllocationOffset, RenderingMemoryOffset);
+    RenderingTraversalPointer = NewRenderingNode;
   }
-  RenderingTraversalNode[6] = SystemNodeIdentifierTertiary;
-  RenderingTraversalNode[7] = SystemNodeIdentifierQuaternary;
-  RenderingTraversalNode[8] = &SystemDataTemplatePhysics;
-  RenderingTraversalNode[9] = 1;
-  RenderingTraversalNode[10] = RenderingSystemInitializer;
+  RenderingTraversalPointer[6] = SystemNodeIdentifierTertiary;
+  RenderingTraversalPointer[7] = SystemNodeIdentifierQuaternary;
+  RenderingTraversalPointer[8] = &SystemDataTemplatePhysics;
+  RenderingTraversalPointer[9] = 1;
+  RenderingTraversalPointer[10] = RenderingInitializationCallback;
   return;
 }
 
