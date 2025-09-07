@@ -2222,7 +2222,11 @@
 
 // 原始函数名：HandleSystemException - 异常处理函数
 // 功能：处理系统异常和清理操作
-#define HandleSystemException HandleSystemException
+#define HandleSystemException FUN_180059ba0
+
+// 原始函数名：CalculateSystemOffset - 系统偏移计算函数
+// 功能：计算和验证系统偏移量
+#define CalculateSystemOffset CalculateSystemOffset
 
 // 原始函数名：FUN_180893d8f - 数据同步处理函数A0
 // 功能：处理数据同步操作
