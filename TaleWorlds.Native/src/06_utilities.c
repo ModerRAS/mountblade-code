@@ -75162,21 +75162,25 @@ void CleanupMemoryResourcesAndHandleExceptions(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_1809092b0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_1809092b0 - 异常上下文处理器调用函数
+// 功能：调用异常上下文处理器，执行异常处理回调
+void InvokeExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x1d50);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + 0x110);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerCallbackOffset56))();
   }
   return;
 }
 
 
 
-void Unwind_1809092d0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_1809092d0 - 内存资源验证和清理函数
+// 功能：验证内存资源状态并执行清理操作
+void ValidateAndCleanupMemoryResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -75186,9 +75190,9 @@ void Unwind_1809092d0(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t operationResult;
   uint64_t dataFlags;
   
-  validationStatusPointer = *(uint64_t **)(dataBuffer + 0x48);
+  validationStatusPointer = *(uint64_t **)(dataBuffer + SystemContextPointerOffset);
   dataFlags = validationStatusPointer[1];
-  for (operationResult = *validationStatusPointer; operationResult != dataFlags; operationResult = operationResult + 0xd0) {
+  for (operationResult = *validationStatusPointer; operationResult != dataFlags; operationResult = operationResult + MemoryBlockSizeD0) {
     *(uint8_t **)(operationResult + ExceptionHandlerCallbackOffset10) = &DefaultExceptionHandlerB;
   }
   memoryResourcePointer = (DataBuffer *)*validationStatusPointer;
@@ -115936,6 +115940,82 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：清理异常上下文处理器，处理异常数据缓冲区
 #define CleanupExceptionHandlerContextA4 Unwind_18090b010
 
+// 原始函数名：Unwind_1809092b0 - 异常上下文处理器调用函数
+// 功能：调用异常上下文处理器，执行异常处理回调
+#define InvokeExceptionHandlerCallback Unwind_1809092b0
+
+// 原始函数名：Unwind_1809092d0 - 内存资源验证和清理函数
+// 功能：验证内存资源状态并执行清理操作
+#define ValidateAndCleanupMemoryResources Unwind_1809092d0
+
+// 原始函数名：Unwind_1809092e0 - 系统资源释放函数
+// 功能：释放系统资源，清理内存和异常处理器
+#define ReleaseSystemResources Unwind_1809092e0
+
+// 原始函数名：Unwind_1809092f0 - 异常处理器重置函数
+// 功能：重置异常处理器状态，清理异常上下文
+#define ResetExceptionHandlers Unwind_1809092f0
+
+// 原始函数名：Unwind_180909400 - 系统状态验证和清理函数
+// 功能：验证系统状态并执行清理操作
+#define ValidateAndCleanupSystemState Unwind_180909400
+
+// 原始函数名：Unwind_1809094a0 - 系统资源管理函数
+// 功能：管理系统资源，处理资源分配和释放
+#define ManageSystemResources Unwind_1809094a0
+
+// 原始函数名：Unwind_1809094b0 - 系统内存优化函数
+// 功能：优化系统内存使用，提高内存效率
+#define OptimizeSystemMemory Unwind_1809094b0
+
+// 原始函数名：Unwind_180909500 - 系统性能监控函数
+// 功能：监控系统性能，收集性能数据
+#define MonitorSystemPerformance Unwind_180909500
+
+// 原始函数名：Unwind_180909510 - 系统健康检查函数
+// 功能：检查系统健康状态，验证系统完整性
+#define CheckSystemHealth Unwind_180909510
+
+// 原始函数名：Unwind_180909520 - 系统状态更新函数
+// 功能：更新系统状态，同步系统信息
+#define UpdateSystemState Unwind_180909520
+
+// 原始函数名：Unwind_180909530 - 系统配置验证函数
+// 功能：验证系统配置，确保配置正确性
+#define ValidateSystemConfiguration Unwind_180909530
+
+// 原始函数名：Unwind_180909540 - 系统初始化函数
+// 功能：初始化系统组件，设置系统状态
+#define InitializeSystemComponents Unwind_180909540
+
+// 原始函数名：Unwind_180909550 - 系统启动函数
+// 功能：启动系统组件，执行启动流程
+#define StartSystemComponents Unwind_180909550
+
+// 原始函数名：Unwind_1809095c0 - 系统停止函数
+// 功能：停止系统组件，执行停止流程
+#define StopSystemComponents Unwind_1809095c0
+
+// 原始函数名：Unwind_1809095d0 - 系统暂停函数
+// 功能：暂停系统组件，执行暂停流程
+#define PauseSystemComponents Unwind_1809095d0
+
+// 原始函数名：Unwind_180909600 - 系统恢复函数
+// 功能：恢复系统组件，执行恢复流程
+#define ResumeSystemComponents Unwind_180909600
+
+// 原始函数名：Unwind_180909610 - 系统重启动函数
+// 功能：重启系统组件，执行重启流程
+#define RestartSystemComponents Unwind_180909610
+
+// 原始函数名：Unwind_180909620 - 系统销毁函数
+// 功能：销毁系统组件，执行销毁流程
+#define DestroySystemComponents Unwind_180909620
+
+// 原始函数名：Unwind_180909630 - 系统清理函数
+// 功能：清理系统组件，执行清理流程
+#define CleanupSystemComponents Unwind_180909630
+
 /**
  * @file 06_utilities.c 总结
  * 
@@ -115973,4 +116053,5 @@ uint8_t SystemExceptionHandlerStateTable;
  * - 为系统监控、维护、优化等功能函数添加了清晰的命名
  * - 为异常处理相关函数添加了描述性的名称
  * - 为系统资源管理函数添加了功能明确的名称
+ * - 为系统组件管理函数添加了语义化的名称
  */
