@@ -171250,7 +171250,7 @@ void FUN_18013d22f(uint64_t CharacterCode)
 
 
 
-3d36b(uint32_t CharacterCodevoid FUN_18013d36b(uint32_t CharacterCode
+void FUN_18013d36b(uint32_t CharacterCode)
 {
   short SystemShortValue1;
   long long BufferStatus;
