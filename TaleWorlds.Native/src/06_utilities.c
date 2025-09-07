@@ -70826,7 +70826,16 @@ void ExceptionCallbackExecutorA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908650(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理函数8650
+ * 
+ * 管理资源的引用计数，当引用计数为0时调用异常处理函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908650
+ */
+void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -70862,7 +70871,16 @@ void Unwind_180908650(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908660(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统清理和资源管理函数8660
+ * 
+ * 执行系统清理操作，包括销毁互斥锁、清理系统资源和执行内存操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908660
+ */
+void CleanupSystemAndManageResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -80146,7 +80164,16 @@ void InvokeExceptionHandlerAtOffset328(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090b950(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器调用函数B950
+ * 
+ * 调用异常上下文处理器，处理系统数据偏移量330处的异常处理逻辑
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090b950
+ */
+void InvokeExceptionHandlerAtOffset330(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80160,7 +80187,16 @@ void Unwind_18090b950(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b970(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器调用函数B970
+ * 
+ * 调用异常上下文处理器，处理系统数据偏移量338处的异常处理逻辑
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090b970
+ */
+void InvokeExceptionHandlerAtOffset338(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80174,7 +80210,16 @@ void Unwind_18090b970(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b990(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器调用函数B990
+ * 
+ * 调用异常上下文处理器，处理系统数据偏移量340处的异常处理逻辑
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090b990
+ */
+void InvokeExceptionHandlerAtOffset340(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80188,7 +80233,16 @@ void Unwind_18090b990(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b9b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器调用函数B9B0
+ * 
+ * 调用异常上下文处理器，处理系统数据偏移量348处的异常处理逻辑
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090b9b0
+ */
+void InvokeExceptionHandlerAtOffset348(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
