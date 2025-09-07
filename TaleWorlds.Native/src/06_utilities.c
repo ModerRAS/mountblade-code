@@ -82847,7 +82847,7 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer
  * @note 原始函数名：Unwind_18090a7f0
  * @note 该函数在异常展开过程中被调用，用于批量处理数据上下文的清理操作
  */
-void Unwind_18090a7f0(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessDataContextCallbacksAndValidateState(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   int64_t *dataContext;
