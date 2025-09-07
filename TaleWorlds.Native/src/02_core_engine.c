@@ -200305,7 +200305,7 @@ void ProcessSystemLoopAndTriggerEvent(long long *SystemContextPointer
   
   loopCounter = SystemContextPointer[1];
   for (bufferAllocationStatus = *SystemContextPointer; bufferAllocationStatus != LoopCounter; bufferAllocationStatus = bufferAllocationStatus + 0x68) {
-    FUN_18017a9c0(bufferAllocationStatus);
+    ProcessSystemDataTable(bufferAllocationStatus);
   }
   if (*SystemContextPointer == 0) {
     return;
@@ -200364,7 +200364,7 @@ void ProcessUtf16EncodingAndSystemEventAlt(long long SystemContextPointer, uint6
   pMemoryAddressMask = (void *)SystemContextPointer[8];
   TemporaryBuffer = SystemContextPointer + 6;
   if ((void *)SystemContextPointer[8] == NULL) {
-LAB_18017a342:
+LAB_18017a342:  // 内存地址掩码处理标签
     pMemoryAddressMask = (void *)SystemContextPointer[2];
     TemporaryBuffer = SystemContextPointer;
     if ((void *)SystemContextPointer[2] != NULL) {
@@ -200394,7 +200394,7 @@ LAB_18017a342:
       pMemoryAddressMask = ValidationValuePointer;
     } while (ValidationValuePointer != NULL);
     if ((TemporaryBuffer == SystemContextPointer + 6) || (Utf8BufferSize < (long long *)TemporaryBuffer[4])) goto LAB_18017a342;
-LAB_18017a372:
+LAB_18017a372:  // 临时缓冲区验证标签
     CurrentByteValue2 = false;
   }
   Utf16Char5 = 0;
@@ -200478,7 +200478,7 @@ LAB_18017a372:
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(SystemDataTablePointer);
   }
-LAB_18017a58d:
+LAB_18017a58d:  // 内存分配索引设置标签
   if ((pMemoryAddressMask == SystemContextPointer) || (*StatusBuffer < (unsigned long long)pMemoryAddressMask[4])) {
     MemoryAllocationIndex = 0;
   }
@@ -200578,7 +200578,7 @@ void ProcessSystemContextDataEncoding(long long SystemContextPointer,long long *
     MemoryPoolBlockSize = *(long long *)(SystemContextPointer + 0x60);
     if (MemoryPoolBlockSize != CurrentMemoryBlockAddress) {
       do {
-        FUN_18017a9c0(MemoryPoolBlockSize);
+        ProcessSystemDataTable(MemoryPoolBlockSize);
         MemoryPoolBlockSize = MemoryPoolBlockSize + 0x68;
       } while (MemoryPoolBlockSize != CurrentMemoryBlockAddress);
       MemoryPoolBlockSize = *(long long *)(SystemContextPointer + 0x60);
@@ -200913,7 +200913,7 @@ void CleanupSystemDataTable(long long *SystemContextPointer
       }
       else {
         do {
-          FUN_18017a9c0(SystemDataTablePointer);
+          ProcessSystemDataTable(SystemDataTablePointer);
           SystemDataTablePointer = SystemDataTablePointer + 0x68;
         } while (SystemDataTablePointer != AllocatedMemorySize);
         *(void *)(SystemContextPointer + 0x68) = *(void *)(SystemContextPointer + 0x60);
@@ -201238,7 +201238,7 @@ long long * FUN_18017b240(long long *SystemContextPointer,long long *Utf8BufferS
   
   loopCounter = SystemContextPointer[1];
   for (bufferAllocationStatus = *SystemContextPointer; bufferAllocationStatus != LoopCounter; bufferAllocationStatus = bufferAllocationStatus + 0x68) {
-    FUN_18017a9c0(bufferAllocationStatus);
+    ProcessSystemDataTable(bufferAllocationStatus);
   }
   if (*SystemContextPointer == 0) {
     return;
