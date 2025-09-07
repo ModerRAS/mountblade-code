@@ -6911,6 +6911,15 @@ void ProcessUIComponentData(undefined8 uiContext,longlong *dataSource)
 
 
 
+/**
+ * @brief 处理UI组件几何变换
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return undefined8* 返回处理结果
+ * @note 该函数负责处理UI组件的几何变换，包括位置、大小和旋转等属性
+ */
 undefined8 *
 ProcessUIComponentGeometry(longlong *uiContext,undefined8 *dataSource,undefined8 targetBuffer,undefined8 bufferSize)
 
