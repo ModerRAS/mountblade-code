@@ -782,7 +782,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param resourceParams 资源参数指针
  * @return 初始化结果状态码
  */
-#define InitializeSystemResourceStructure FUN_1808fc838
+#define InitializeSystemResourceStructure InitializeCoreEngineSystemResources
 
 /**
  * @brief 管理系统资源并释放不再使用的资源
@@ -792,7 +792,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param resourceHandle 资源句柄
  * @return 资源管理结果状态码
  */
-#define ManageSystemResourceAndRelease FUN_180627850
+#define ManageSystemResourceAndRelease ManageCoreEngineResourcesAndCleanup
 
 /**
  * @brief 验证系统参数并检查系统状态
@@ -803,7 +803,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param statusFlags 状态标志位
  * @return 验证结果状态码
  */
-#define ValidateSystemParametersAndCheckStatus FUN_180116560
+#define ValidateSystemParametersAndCheckStatus ValidateCoreEngineParametersAndStatus
 
 /**
  * @brief 获取系统引用计数
@@ -813,7 +813,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param objectHandle 对象句柄
  * @return 引用计数值
  */
-#define GetSystemReferenceCount FUN_18011c120
+#define GetSystemReferenceCount GetCoreEngineReferenceCount
 
 /**
  * @brief 验证系统引用计数
@@ -824,7 +824,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param expectedCount 预期引用计数值
  * @return 验证结果状态码
  */
-#define ValidateSystemReferenceCount FUN_18011bd30
+#define ValidateSystemReferenceCount ValidateCoreEngineReferenceCount
 
 /**
  * @brief 初始化系统数据
@@ -834,7 +834,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param dataConfig 数据配置指针
  * @return 初始化结果状态码
  */
-#define InitializeSystemData FUN_18011da00
+#define InitializeSystemData InitializeCoreEngineData
 
 /**
  * @brief 检查系统内存分配大小
@@ -99401,7 +99401,7 @@ byte ProcessSystemMemoryAllocationAndStatusManagement(void
   uint32_t SystemByteValue;
   
   do {
-    FUN_18012e2d0(ValidationCode);
+    ProcessSystemIteration(ValidationCode);
     OperationStatus = ProcessSystemFloatDataAndTexture(&SystemTextureDataTable,4,DataIndex);
     AccumulatorStatus = AccumulatorStatus | OperationStatus;
     InitializeFloatConstants(0,*(uint32_t *)(RegisterGeneral14 + 0x1674));
