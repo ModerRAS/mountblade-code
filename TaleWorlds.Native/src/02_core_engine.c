@@ -101929,13 +101929,13 @@ LAB_180116f3b:
       if ((*(char *)(MemoryBlockIndex9 + 0x410) == '\0') || (*(char *)(MemoryBlockIndex9 + 0x2d19) != '\0')) {
         if (((*(char *)(MemoryBlockIndex9 + 0x120) != '\0') && (*(char *)(MemoryBlockIndex9 + 0x2d19) == '\0')) &&
            ((*(float *)(MemoryBlockIndex9 + 0x3ac) != 0.0 || (*(float *)(MemoryBlockIndex9 + 0x3b0) != 0.0)))) {
-          FUN_180115190(bufferAllocationStatus8,MemoryBlockIndex9 + 0x1ef0);
+          ProcessSystemResource(bufferAllocationStatus8,MemoryBlockIndex9 + 0x1ef0);
           *(uint32_t *)(MemoryBlockIndex9 + 0x2d14) = 0xbe99999a;
           *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 1;
         }
       }
       else if (StringBuffer7 != '\0') {
-        FUN_180115130(bufferAllocationStatus8,MemoryBlockIndex9 + 0x1ef0);
+        InitializeSystemComponent(bufferAllocationStatus8,MemoryBlockIndex9 + 0x1ef0);
         *(uint32_t *)(MemoryBlockIndex9 + 0x2d14) = 0xbe99999a;
       }
     }
