@@ -15015,7 +15015,7 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
   int64_t arrayIndex;
   int64_t systemContext;
   int operationResultBuffer [2];
-  int64_t stackBuffer;
+  int64_t queryContextBuffer;
   
   if (dataParameter + 0x28 != 0) {
     memoryBaseAddress = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataParameter + 0x10),&stackBuffer);
@@ -27967,34 +27967,34 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
     goto ProcessCheckpointCalculationResult;
   }
   if (*(uint *)(dataBuffer + 8) < 0x6a) {
-    puStack_88 = (DataBuffer *)0x0;
-    uStack_80 = 0;
-    dataFlags = ProcessDataFlagsA0(dataBuffer,&puStack_88,0);
+    stackDataPointer = (DataBuffer *)0x0;
+    stackDataBuffer = 0;
+    dataFlags = ProcessDataFlagsA0(dataBuffer,&stackDataPointer,0);
     validationOutcome = (uint64_t)dataFlags;
     if (dataFlags != 0) {
 ValidationLabelB:
-      dataFlags = uStack_80._4_4_;
-      if ((int64_t)uStack_80 < 0) {
-        dataFlags = -uStack_80._4_4_;
+      dataFlags = stackDataBuffer._4_4_;
+      if ((int64_t)stackDataBuffer < 0) {
+        dataFlags = -stackDataBuffer._4_4_;
       }
-      inputParameter3 = (int)uStack_80;
-      statusCounter = uStack_80._4_4_;
+      inputParameter3 = (int)stackDataBuffer;
+      statusCounter = stackDataBuffer._4_4_;
       if ((int)dataFlags < 0) {
-        if (0 < (int)uStack_80) {
+        if (0 < (int)stackDataBuffer) {
           return validationOutcome;
         }
-        if ((0 < (int)uStack_80._4_4_) && (puStack_88 != (DataBuffer *)0x0)) {
+        if ((0 < (int)stackDataBuffer._4_4_) && (stackDataPointer != (DataBuffer *)0x0)) {
                     // WARNING: Subroutine does not return
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),puStack_88,&SystemMemoryPoolB,0x100,1);
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),stackDataPointer,&SystemMemoryPoolB,0x100,1);
         }
-        puStack_88 = (DataBuffer *)0x0;
-        uStack_80 = uStack_80 & SystemCleanupFlag;
+        stackDataPointer = (DataBuffer *)0x0;
+        stackDataBuffer = stackDataBuffer & SystemCleanupFlag;
         statusCounter = operationResult;
       }
       if (inputParameter3 < 0) {
         exceptionHandlerContext2 = (int64_t)-inputParameter3;
         if (inputParameter3 < 0) {
-          exceptionHandlerContext1 = (int64_t)inputParameter3 * 0x18 + 0x14 + (int64_t)puStack_88;
+          exceptionHandlerContext1 = (int64_t)inputParameter3 * 0x18 + 0x14 + (int64_t)stackDataPointer;
           do {
             psecurityCheckResult = (DataWord *)ExecuteSystemResourceOperation();
             operationResult = psecurityCheckResult[1];
@@ -28008,33 +28008,33 @@ ValidationLabelB:
             exceptionHandlerContext2 = exceptionHandlerContext2 + -1;
             exceptionHandlerContext1 = exceptionHandlerContext1 + 0x18;
           } while (exceptionHandlerContext2 != 0);
-          statusCounter = uStack_80._4_4_;
+          statusCounter = stackDataBuffer._4_4_;
         }
       }
-      uStack_80 = uStack_80 & SystemCleanupFlag00000000;
+      stackDataBuffer = stackDataBuffer & SystemCleanupFlag00000000;
       if ((int)statusCounter < 0) {
         statusCounter = -statusCounter;
       }
       if (statusCounter == 0) {
         return validationOutcome;
       }
-      CleanupDataResourcesA0(&puStack_88,0);
+      CleanupDataResourcesA0(&stackDataPointer,0);
       return validationOutcome;
     }
-    if ((int)uStack_80 == 0) {
+    if ((int)stackDataBuffer == 0) {
       inputParameter3 = 0;
     }
     else {
       dataFlags = (int)*(uint *)(operationBase + 0x54) >> 0x1f;
-      ploopCounter = puStack_88;
-      if ((int)((*(uint *)(operationBase + 0x54) ^ dataFlags) - dataFlags) < (int)uStack_80) {
-        dataFlags = CheckSystemStatusA0(operationBase + 0x48,uStack_80 & SystemCleanupFlag);
+      ploopCounter = stackDataPointer;
+      if ((int)((*(uint *)(operationBase + 0x54) ^ dataFlags) - dataFlags) < (int)stackDataBuffer) {
+        dataFlags = CheckSystemStatusA0(operationBase + 0x48,stackDataBuffer & SystemCleanupFlag);
         validationOutcome = (uint64_t)dataFlags;
-        ploopCounter = puStack_88;
+        ploopCounter = stackDataPointer;
         if (dataFlags != 0) goto ProcessCheckpointStatusValidation;
       }
-      for (; (inputParameter3 = (int)uStack_80, puStack_88 <= ploopCounter &&
-             (ploopCounter < puStack_88 + (int64_t)inputParameter3 * 3)); ploopCounter = ploopCounter + 3) {
+      for (; (inputParameter3 = (int)stackDataBuffer, stackDataPointer <= ploopCounter &&
+             (ploopCounter < stackDataPointer + (int64_t)inputParameter3 * 3)); ploopCounter = ploopCounter + 3) {
         puStackX_18 = (DataBuffer *)0x0;
         dataFlags = ValidateDataSecurityA1(operationBase + 0x48,&puStackX_18);
         validationOutcome = (uint64_t)dataFlags;
@@ -47192,7 +47192,15 @@ void ResetExceptionHandlerB3(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器设置函数C0 - 带回调函数的异常处理器设置
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180904180
+ */
+void SetupExceptionHandlersWithCallbackC0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -47206,7 +47214,13 @@ void Unwind_180904180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809041a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器重置函数C0 - 重置0xa0偏移处的异常处理器
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809041a0
+ */
+void ResetExceptionHandlerC0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -49884,7 +49898,16 @@ void ExceptionUnwindHandlerF0(DataBuffer exceptionContext, int64_t unwindContext
 
 
 
-void Unwind_180904a70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理文件句柄
+ * 
+ * 该函数负责清理文件句柄，释放系统资源
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180904a70
+ */
+void CleanupFileHandle(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CloseHandle(**(DataBuffer **)(dataBuffer + 0x78));
