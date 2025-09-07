@@ -8530,7 +8530,7 @@ undefined4 * CreateUIColorBuffer(undefined4 *uiContext)
 
 {
   undefined4 functionResult;
-  longlong *plVar2;
+  longlong *colorBufferPointer;
   undefined4 uStack_20;
   undefined4 uStack_1c;
   undefined4 uStack_14;
