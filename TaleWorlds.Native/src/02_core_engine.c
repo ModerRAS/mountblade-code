@@ -425,6 +425,8 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ExecuteSystemValidation FUN_180120a30
 #define HandleSystemDataTransfer FUN_180120a70
 #define ProcessSystemContextData FUN_180120b10
+#define ProcessSystemResourceCleanup FUN_18011fa30
+#define ProcessSystemStatusReset FUN_18010e520
 #define CleanupSystemResources FUN_180120d00
 #define InitializeSystemComponents FUN_1801210b0
 #define ProcessSystemEvents FUN_180121300
@@ -113588,7 +113590,7 @@ uint8_t ProcessEngineDataInterpolation(float *SystemContextPointer,int Utf8Buffe
   }
   else {
     if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto LAB_18011e808;
-    ProcessingStatusFlag = FUN_180131aa0(&AdditionalParameter2,3,5,0,0);
+    ProcessingStatusFlag = AllocateSystemMemoryBuffer(&AdditionalParameter2,3,5,0,0);
     if ((*(int *)(DataStructureCounter + 0x1cac) == Utf8BufferSize) && (*(char *)(DataStructureCounter + 0x1b3c) == '\0')) {
       *(bool *)(DataStructureCounter + 0x1b3c) = *(int *)(DataStructureCounter + 0x1b2c) != 0;
       if (*(int *)(DataStructureCounter + 0x1b2c) != 0) {
@@ -214714,18 +214716,18 @@ LAB_180190603:
  */
 uint64_t * ProcessSystemEventAndMemoryAllocation(long long *SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer)
 {
-  long long *SystemContextPointer;
-  uint32_t MemoryAllocationIndex;
-  uint32_t UnicodeCodePoint;
-  uint32_t MemoryAddressMask;
-  uint64_t CalculatedCodePoint;
-  void *CurrentNode;
-  void *PreviousNode;
-  long long secondaryLoopCounter;
-  long long systemLoopCounter;
-  long long SystemOffsetValue;
+  long long *ContextPointer;
+  uint32_t AllocationIndex;
+  uint32_t CodePointValue;
+  uint32_t AddressMask;
+  uint64_t ProcessedCodePoint;
+  void *EventNode;
+  void *PreviousEventNode;
+  long long SecondaryCounter;
+  long long SystemCounter;
+  long long ContextOffsetValue;
   
-  SecondaryProcessingStatusFlag = (void *)SystemContextPointer[1];
+  void *EventProcessingFlag = (void *)SystemContextPointer[1];
   if (SecondaryProcessingStatusFlag < (void *)SystemContextPointer[2]) {
     SystemContextPointer[1] = (long long)(SecondaryProcessingStatusFlag + 0x69);
     *SecondaryProcessingStatusFlag = &SystemSecondaryProcessingStatusFlagAddress;
