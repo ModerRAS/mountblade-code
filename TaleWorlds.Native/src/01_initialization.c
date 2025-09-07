@@ -15200,10 +15200,10 @@ void InitializeSystemResourceManagerPrimary(void)
 
 
 
-// 函数: void InitializeSystemResourceManagerB(void)
-// 功能: 初始化系统资源管理器B，用于管理特定类型的系统资源
+// 函数: void InitializeSystemResourceManagerSecondary(void)
+// 功能: 初始化系统资源管理器Secondary，用于管理特定类型的系统资源
 // 该函数会创建系统节点并设置资源管理相关的回调函数
-void InitializeSystemResourceManagerB(void)
+void InitializeSystemResourceManagerSecondary(void)
 
 {
   char NodeActiveFlag;
@@ -15252,10 +15252,10 @@ void InitializeSystemResourceManagerB(void)
 
 
 
-// 函数: void InitializeSystemResourceManagerC(void)
-// 功能: 初始化系统资源管理器C，用于管理特定类型的系统资源
+// 函数: void InitializeSystemResourceManagerTertiary(void)
+// 功能: 初始化系统资源管理器Tertiary，用于管理特定类型的系统资源
 // 该函数会创建系统节点并设置资源管理相关的配置参数
-void InitializeSystemResourceManagerC(void)
+void InitializeSystemResourceManagerTertiary(void)
 
 {
   char NodeActiveFlag;
@@ -15304,10 +15304,10 @@ void InitializeSystemResourceManagerC(void)
 
 
 
-// 函数: void InitializeSystemResourceManagerD(void)
+// 函数: void InitializeSystemResourceManagerQuaternary(void)
 // 功能: 初始化系统资源管理器D，用于管理特定类型的系统资源
 // 该函数会创建系统节点并设置资源管理相关的处理函数
-void InitializeSystemResourceManagerD(void)
+void InitializeSystemResourceManagerQuaternary(void)
 
 {
   char NodeActiveFlag;
@@ -15369,7 +15369,7 @@ void InitializeSystemResourceManagerD(void)
  * 
  * @return 无返回值
  */
-void InitializeSystemResourceManagerE(void)
+void InitializeSystemResourceManagerQuinary(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
@@ -15431,7 +15431,7 @@ void InitializeSystemResourceManagerE(void)
  * 
  * @return 无返回值
  */
-void InitializeSystemResourceManagerF(void)
+void InitializeSystemResourceManagerSenary(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
