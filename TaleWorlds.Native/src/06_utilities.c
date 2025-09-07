@@ -50280,13 +50280,13 @@ void ClearExceptionHandlingState(DataBuffer operationBase,int64_t dataBuffer)
 void ResetExceptionContextOffset50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x50) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + 0x58) != 0) {
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerPointerOffset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(dataBuffer + ExceptionHandlerCleanupOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(dataBuffer + 0x58) = 0;
-  *(DataWord *)(dataBuffer + 0x68) = 0;
-  *(DataBuffer *)(dataBuffer + 0x50) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerCleanupOffset) = 0;
+  *(DataWord *)(dataBuffer + ExceptionHandlerCallbackOffset) = 0;
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerPointerOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -67222,7 +67222,20 @@ void ExecuteExceptionHandlerCallbacksAB0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180907ac0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数AC0
+ * 
+ * 该函数执行异常处理回调，处理异常相关的数据结构和状态。
+ * 主要用于异常处理过程中的回调执行和资源清理。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907ac0
+ */
+#define ExecuteExceptionHandlerCallbacksAC0 Unwind_180907ac0
+void ExecuteExceptionHandlerCallbacksAC0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1e0) != (code *)0x0) {
