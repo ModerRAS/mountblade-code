@@ -333,31 +333,51 @@
 #define CleanupSystemDataPointer FUN_18064e900
 
 /**
- * @brief 上下文处理函数
+ * @brief 系统上下文处理函数
+ * 
+ * 该函数负责处理系统上下文信息，包括上下文的创建、维护和清理。
+ * 它会验证上下文的有效性，并确保上下文数据的一致性。
+ * 
  * @note 原始函数名：ProcessContext
  */
 #define ProcessSystemContext FUN_18007f840
 
 /**
- * @brief 数据转换函数A0
+ * @brief 数据类型转换函数
+ * 
+ * 该函数负责在不同数据类型之间进行转换，确保数据格式的一致性和正确性。
+ * 支持基本数据类型之间的转换，并会进行有效性验证。
+ * 
  * @note 原始函数名：ConvertData
  */
 #define ConvertDataType FUN_18007f6a0
 
 /**
- * @brief 内存管理函数A0
+ * @brief 系统内存管理函数
+ * 
+ * 该函数负责管理系统内存资源，包括内存分配、释放和优化。
+ * 会监控内存使用情况，并在必要时进行内存整理操作。
+ * 
  * @note 原始函数名：ManageMemory
  */
 #define ManageSystemMemory FUN_18013ea00
 
 /**
- * @brief 系统清理函数A0
+ * @brief 系统资源清理函数
+ * 
+ * 该函数负责清理系统资源，包括释放内存、关闭文件句柄和清理临时数据。
+ * 确保系统资源被正确释放，避免资源泄漏。
+ * 
  * @note 原始函数名：CleanupSystem
  */
 #define CleanupSystemResources FUN_1808fc5ac
 
 /**
- * @brief 系统配置函数A0
+ * @brief 系统参数配置函数
+ * 
+ * 该函数负责配置系统参数，包括系统设置、环境变量和运行时配置。
+ * 会验证参数的有效性，并在配置失败时提供错误信息。
+ * 
  * @note 原始函数名：ConfigureSystemA0
  */
 #define ConfigureSystemParameters FUN_1808fc51c
@@ -3914,6 +3934,30 @@
 // 原始函数名：Unwind_180906e60 - 回调函数执行器A4
 // 功能：执行系统回调函数A4
 #define ExecuteCallbackFunctionA4 Unwind_180906e60
+
+// 原始函数名：Unwind_180906af0 - 异常上下文回调执行器A0
+// 功能：执行异常上下文中的回调函数
+#define ExecuteExceptionHandlerContextCallbackA0 Unwind_180906af0
+
+// 原始函数名：Unwind_180906b00 - 带标志的回调函数执行器A0
+// 功能：执行带操作标志的回调函数
+#define ExecuteCallbackWithFlagsA0 Unwind_180906b00
+
+// 原始函数名：Unwind_180906b10 - 异常数据缓冲区处理器A0
+// 功能：处理异常数据缓冲区并设置异常处理器
+#define ProcessExceptionDataBufferA0 Unwind_180906b10
+
+// 原始函数名：Unwind_180906b20 - 嵌套异常上下文回调执行器A0
+// 功能：执行嵌套异常上下文中的回调函数
+#define ExecuteNestedExceptionHandlerContextCallbackA0 Unwind_180906b20
+
+// 原始函数名：Unwind_180906b30 - 带标志的回调函数执行器A1
+// 功能：执行带操作标志的回调函数（备用实现）
+#define ExecuteCallbackWithFlagsA1 Unwind_180906b30
+
+// 原始函数名：Unwind_180906b40 - 异常数据缓冲区处理器A1
+// 功能：处理异常数据缓冲区并设置异常处理器（备用实现）
+#define ProcessExceptionDataBufferA1 Unwind_180906b40
 
 // 原始变量名：0x180c91910 - 互斥锁对象指针
 // 功能：存储互斥锁对象的指针
@@ -57924,7 +57968,18 @@ void ExceptionCleanupWithMutexDestructionB(DataBuffer exceptionHandlerContext,in
 
 
 
-void Unwind_180906090(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常清理与互斥体销毁函数B
+ * 
+ * 该函数用于清理异常状态并销毁相关的互斥体资源
+ * 从数据缓冲区的0x60偏移量获取异常处理上下文，并在需要时终止系统
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906090
+ */
+void ExceptionCleanupWithMutexDestructionB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -57942,7 +57997,18 @@ void Unwind_180906090(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809060b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文验证与终止函数
+ * 
+ * 该函数验证异常处理上下文的有效性，如果上下文指针不匹配则终止系统
+ * 从数据缓冲区的0x68偏移量获取异常处理上下文进行验证
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809060b0
+ */
+void ValidateExceptionContextAndTerminate(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -57957,7 +58023,14 @@ void Unwind_1809060b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809060c0(void)
+/**
+ * @brief 销毁互斥锁的异常处理函数A2
+ * 
+ * 该函数在异常处理过程中销毁互斥锁资源，确保系统异常时能正确释放锁资源
+ * 
+ * @note 原始函数名：Unwind_1809060c0
+ */
+void DestroyMutexInSituA2(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -57966,7 +58039,18 @@ void Unwind_1809060c0(void)
 
 
 
-void Unwind_1809060d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文验证与终止函数B
+ * 
+ * 该函数验证异常处理上下文的有效性，如果上下文指针不匹配则终止系统
+ * 从数据缓冲区的0x70偏移量获取异常处理上下文进行验证
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809060d0
+ */
+void ValidateExceptionContextAndTerminateB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -57981,7 +58065,14 @@ void Unwind_1809060d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809060e0(void)
+/**
+ * @brief 销毁互斥锁的异常处理函数A3
+ * 
+ * 该函数在异常处理过程中销毁互斥锁资源，确保系统异常时能正确释放锁资源
+ * 
+ * @note 原始函数名：Unwind_1809060e0
+ */
+void DestroyMutexInSituA3(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -57990,7 +58081,17 @@ void Unwind_1809060e0(void)
 
 
 
-void Unwind_1809060f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 销毁互斥锁的异常处理函数（偏移量0x70）
+ * 
+ * 该函数在异常处理过程中销毁与数据缓冲区0x70偏移量关联的互斥锁资源
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要销毁的互斥锁信息
+ * 
+ * @note 原始函数名：Unwind_1809060f0
+ */
+void DestroyMutexInSituOffset70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x70));
@@ -57999,7 +58100,18 @@ void Unwind_1809060f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906100(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 解锁互斥锁的异常处理函数（偏移量0x70）
+ * 
+ * 该函数在异常处理过程中解锁与数据缓冲区0x70偏移量关联的互斥锁资源
+ * 如果解锁失败，会抛出C标准错误异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要解锁的互斥锁信息
+ * 
+ * @note 原始函数名：Unwind_180906100
+ */
+void UnlockMutexInSituOffset70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int inputParameter;
@@ -58013,7 +58125,18 @@ void Unwind_180906100(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906110(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文验证与终止函数C
+ * 
+ * 该函数验证异常处理上下文的有效性，如果上下文指针不匹配则终止系统
+ * 从数据缓冲区的0x40偏移量获取异常处理上下文进行验证
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906110
+ */
+void ValidateExceptionContextAndTerminateC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -58028,7 +58151,14 @@ void Unwind_180906110(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906120(void)
+/**
+ * @brief 销毁互斥锁的异常处理函数A4
+ * 
+ * 该函数在异常处理过程中销毁互斥锁资源，确保系统异常时能正确释放锁资源
+ * 
+ * @note 原始函数名：Unwind_180906120
+ */
+void DestroyMutexInSituA4(void)
 
 {
   _Mtx_destroy_in_situ();
