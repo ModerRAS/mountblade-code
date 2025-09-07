@@ -194,10 +194,24 @@
 #define ProcessSystemOperations ProcessSystemOperations
 #define ProcessSystemA0 ProcessSystemOperations
 
-// 原始函数名：FUN_180069530 - 数据掩码处理函数
+/**
+ * @brief 数据掩码处理函数
+ * 
+ * 使用指定的掩码对数据进行处理，常用于数据加密、解密或格式转换操作。
+ * 该函数会根据提供的掩码值对输入数据进行位运算处理。
+ * 
+ * @note 原始函数名：FUN_180069530
+ */
 #define ProcessDataWithMask FUN_180069530
 
-// 原始函数名：FUN_180074a80 - 系统初始化函数A0
+/**
+ * @brief 系统初始化函数A0
+ * 
+ * 执行系统的初始化操作，包括内存分配、组件初始化、系统参数设置等。
+ * 该函数是系统启动过程中的关键函数，确保系统处于可用状态。
+ * 
+ * @note 原始函数名：FUN_180074a80
+ */
 #define InitializeSystemA0 FUN_180074a80
 
 // 原始函数名：FUN_180080060 - 系统终止函数A0

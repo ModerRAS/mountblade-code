@@ -103534,7 +103534,7 @@ LAB_1801177f4:
               validationResult0 = *(int *)(RegisterSourceIndex + 0x1ee4);
             }
             SetSystemDataStatus(RegisterSourceIndex + 0x1ed0,(validationResult0 - ValidationCode2) * 4 + 1);
-            FUN_180121c40(*(void *)(RegisterSourceIndex + 0x1ed8),*(uint32_t *)(RegisterSourceIndex + 0x1ed0),
+            ConvertUtf16Character(*(void *)(RegisterSourceIndex + 0x1ed8),*(uint32_t *)(RegisterSourceIndex + 0x1ed0),
                           *(long long *)(RegisterSourceIndex + 0x1eb8) + (long long)ValidationCode2 * 2,
                           *(long long *)(RegisterSourceIndex + 0x1eb8) + (long long)validationResult0 * 2);
             if (*(code **)(SystemDataConfiguration + 0x100) != (code *)0x0) {
@@ -103661,7 +103661,7 @@ LAB_1801177b9:
 LAB_180117b4d:
       if (in_stack_00000058 != '\0') {
         SetSystemDataStatus(RegisterSourceIndex + 0x1ed0,*(int *)(RegisterSourceIndex + 0x1eb0) * 4 + 1);
-        FUN_180121c40(*(void *)(RegisterSourceIndex + 0x1ed8),*(uint32_t *)(RegisterSourceIndex + 0x1ed0),
+        ConvertUtf16Character(*(void *)(RegisterSourceIndex + 0x1ed8),*(uint32_t *)(RegisterSourceIndex + 0x1ed0),
                       *(void *)(RegisterSourceIndex + 0x1eb8),0);
       }
       if (((uint)FloatVariable51 & 0x1c0) == 0) {
@@ -217564,19 +217564,20 @@ LAB_180194acf:
 
 
 /**
- * @brief 初始化系统内存块
+ * @brief 初始化系统内存块并设置回调
  * 
  * 该函数负责初始化系统内存块，为系统运行准备必要的内存空间。
- * 函数会调用底层内存初始化函数，设置内存块的大小和属性。
+ * 函数会调用底层内存初始化函数，设置内存块的大小和属性，
+ * 并在初始化完成后调用回调函数进行后续处理。
  * 
- * @param SystemContextPointer 系统上下文指针，用于访问系统状态和配置
+ * @param systemContext 系统上下文指针，用于访问系统状态和配置
  * 
  * @note 此函数是系统初始化过程中的重要步骤
  * @note 内存块大小设置为0x30字节
- * @note 使用FUN_18004a130作为初始化回调函数
+ * @note 使用初始化回调函数进行后续处理
  */
-void FUN_180194b30(uint64_t SystemContextPointer) {
-  InitializeSystemMemoryBlock(SystemContextPointer,0x30,4,FUN_18004a130,0xfffffffffffffffe);
+void InitializeSystemMemoryBlockWithCallback(uint64_t systemContext) {
+  InitializeSystemMemoryBlock(systemContext, 0x30, 4, InitializeMemoryCallback, 0xfffffffffffffffe);
   return;
 }
 
