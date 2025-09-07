@@ -2224,9 +2224,29 @@
 // 功能：处理系统异常和清理操作
 #define HandleSystemException FUN_180059ba0
 
-// 原始函数名：CalculateSystemOffset - 系统偏移计算函数
+// 原始函数名：FUN_1800f8930 - 系统偏移计算函数
 // 功能：计算和验证系统偏移量
-#define CalculateSystemOffset CalculateSystemOffset
+#define CalculateSystemOffset FUN_1800f8930
+
+// 原始函数名：CheckSystemStatus - 系统状态检查函数
+// 功能：检查系统状态和标志位
+#define CheckSystemStatus CheckSystemStatus
+
+// 原始函数名：FUN_18009fb60 - 系统命令执行函数
+// 功能：执行系统命令和操作
+#define ExecuteSystemCommand FUN_18009fb60
+
+// 原始函数名：FUN_1800f7260 - 数据处理函数A0
+// 功能：处理数据和缓冲区操作
+#define ProcessDataOperationA0 FUN_1800f7260
+
+// 原始函数名：FUN_1800f7320 - 数据处理函数A1
+// 功能：处理数据和验证操作
+#define ProcessDataOperationA1 FUN_1800f7320
+
+// 原始函数名：FUN_180058210 - 数据验证函数A0
+// 功能：验证数据完整性和状态
+#define ValidateDataIntegrityA0 FUN_180058210
 
 // 原始函数名：FUN_180893d8f - 数据同步处理函数A0
 // 功能：处理数据同步操作
