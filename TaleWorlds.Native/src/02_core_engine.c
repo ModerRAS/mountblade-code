@@ -128767,7 +128767,7 @@ float * ProcessSystemFloatDataAndInitializeBuffer(float *Utf8InputBuffer,long lo
   *(float *)(pSystemMemoryOffset238 + 0x30) = FloatValue33;
   *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x184) = *(uint32_t *)(DataStructureCounter + 0x1c5c);
   if (((ProcessingStatusFlag & 0x21) == 0) && ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) == 0)) {
-    FUN_180120c80(pSystemMemoryOffset238,&SystemFlagB);
+    ValidateSystemMemory(pSystemMemoryOffset238,&SystemFlagB);
     if ((((*(long long **)(DataStructureCounter + 0x1b00) == pSystemMemoryOffset238) && (*(int *)(DataStructureCounter + 0x1b18) == 0)) &&
         (*(int *)(DataStructureCounter + 0x1b20) == 0)) &&
        ((CharacterStatus1 = ValidateAndProcessSystemFlags(&SystemFlagB,&OperationStatus,1), CharacterStatus1 != '\0' &&
@@ -146141,19 +146141,19 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
         *Utf8InputBuffer = *(void *)(Utf8BufferSize + 0x40);
       }
       else {
-        FloatVariable5 = *(float *)(SystemConfigurationHandle + 0x16bc);
-        MemoryBlockIndex = SystemConfigurationHandle;
-        FUN_180131890(&fStackX_10);
-        FUN_18012f580(aSystemStackFlag,Utf8BufferSize);
-        if (((*(char *)(MemoryBlockIndex + 0x1d06) == '\0') && (*(char *)(MemoryBlockIndex + 0x1d07) != '\0')) &&
-           ((*(byte *)(MemoryBlockIndex + 8) & 4) == 0)) {
-          StackFloat50 = fStackX_10 + 16.0;
-          fStack_4c = fStackX_14 + 8.0;
+        CharacterScaleFactor = *(float *)(SystemConfigurationHandle + 0x16bc);
+        SystemConfigurationHandle = SystemConfigurationHandle;
+        ProcessCharacterPositionData(&HorizontalOffset);
+        ProcessUtf8CharacterEncoding(SystemStackFlag, Utf8BufferSize);
+        if (((*(char *)(SystemConfigurationHandle + 0x1d06) == '\0') && (*(char *)(SystemConfigurationHandle + 0x1d07) != '\0')) &&
+           ((*(byte *)(SystemConfigurationHandle + 8) & 4) == 0)) {
+          StackFloat50 = HorizontalOffset + 16.0;
+          StackVerticalAdjustment = VerticalOffset + 8.0;
         }
         else {
-          FloatVariable5 = FloatVariable5 * 24.0;
-          StackFloat50 = FloatVariable5 + fStackX_10;
-          fStack_4c = FloatVariable5 + fStackX_14;
+          CharacterScaleFactor = CharacterScaleFactor * 24.0;
+          StackFloat50 = CharacterScaleFactor + HorizontalOffset;
+          StackVerticalAdjustment = CharacterScaleFactor + VerticalOffset;
         }
         StackFloat54 = fStackX_14 - 8.0;
         StackFloat58 = fStackX_10 - 16.0;
@@ -200092,7 +200092,17 @@ uint64_t * FUN_1801754b0(uint64_t *Utf8InputBuffer
 
 
 
-75a30(long long CharacterCodevoid FUN_180175a30(long long CharacterCode
+/**
+ * @brief 清理系统缓冲区和内存资源
+ * 
+ * 该函数负责清理系统中的缓冲区和内存资源，
+ * 释放已分配的内存并重置相关指针。
+ * 
+ * @param CharacterCode 系统字符代码指针
+ * 
+ * @note 原始函数名：FUN_180175a30
+ */
+void CleanupSystemBuffersAndMemory(long long CharacterCode)
 {
   long long *Utf8InputBuffer;
   long long *BufferAllocationStatus;
