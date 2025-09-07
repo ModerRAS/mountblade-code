@@ -25038,9 +25038,20 @@ DataBuffer ExecuteDataCleanupA0(void)
 
 
 
-89a685(void)
-// 空操作函数
-// 不执行任何操作，仅作为占位符或桩函数使用
+/**
+ * @brief 空操作函数K
+ * 
+ * 该函数是一个空操作函数，不执行任何操作。
+ * 主要用于以下场景：
+ * - 作为占位符函数
+ * - 作为桩函数使用
+ * - 保持函数指针表的结构完整性
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数直接返回，不执行任何操作
+ * @warning 此函数不应被删除，可能被其他代码引用
+ */
 void UtilityNoOperationK(void)
 
 {
@@ -25118,9 +25129,20 @@ DataBuffer ValidateDataStreamA0(DataBuffer *operationBase,DataBuffer dataBuffer)
 
 
 
-89a73c(void)
-// 空操作函数
-// 不执行任何操作，仅作为占位符或桩函数使用
+/**
+ * @brief 空操作函数L
+ * 
+ * 该函数是一个空操作函数，不执行任何操作。
+ * 主要用于以下场景：
+ * - 作为占位符函数
+ * - 作为桩函数使用
+ * - 保持函数指针表的结构完整性
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数直接返回，不执行任何操作
+ * @warning 此函数不应被删除，可能被其他代码引用
+ */
 void UtilityNoOperationL(void)
 
 {
@@ -49447,7 +49469,18 @@ void DestroyMutexOnException(void)
 
 
 
-void Unwind_1809047a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * 销毁基于数据缓冲区的条件变量的异常处理函数（偏移量0x20）
+ * 
+ * 该函数在异常处理过程中销毁与特定数据缓冲区关联的条件变量资源
+ * 从数据缓冲区的0x20偏移量处获取条件变量指针进行销毁
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要销毁的条件变量信息
+ * 
+ * @note 原始函数名：Unwind_1809047a0
+ */
+void DestroyConditionFromBufferOffset20OnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Cnd_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x20));
@@ -49492,7 +49525,14 @@ void Unwind_1809047d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809047e0(void)
+/**
+ * 销毁互斥锁资源的异常处理函数（备用实现）
+ * 
+ * 该函数在异常处理过程中销毁互斥锁资源，是DestroyMutexOnException的备用实现
+ * 
+ * @note 原始函数名：Unwind_1809047e0
+ */
+void DestroyMutexOnExceptionAlt(void)
 
 {
   _Mtx_destroy_in_situ();
