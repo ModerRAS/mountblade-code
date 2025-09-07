@@ -117637,10 +117637,10 @@ void ProcessSystemContextFloatCalculationAndValidation(void)
         ValidationResultCode = ValidationStatusBuffer[3];
         DataStructureSize = *(void *)(*(long long *)(RegisterR13Value + 0x38) + 8);
         *(uint32_t *)(FramePointerRegister + -0x59) = *ValidationStatusBuffer;
-        *(uint32_t *)(RegisterFramePointer + -0x55) = SystemByteValue;
-        *(uint32_t *)(RegisterFramePointer + -0x51) = ProcessingStatusFlag;
-        *(uint32_t *)(RegisterFramePointer + -0x4d) = QuaternaryReturnCode;
-        ProcessMemoryAllocationAndData(DataSize);
+        *(uint32_t *)(FramePointerRegister + -0x55) = SystemStatusCode;
+        *(uint32_t *)(FramePointerRegister + -0x51) = ProcessingStateFlag;
+        *(uint32_t *)(FramePointerRegister + -0x4d) = ValidationResultCode;
+        ProcessMemoryAllocationAndData(DataStructureSize);
       }
     }
   }
