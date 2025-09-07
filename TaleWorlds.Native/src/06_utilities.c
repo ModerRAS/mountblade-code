@@ -26180,6 +26180,20 @@ void UtilityNoOperationK(void)
 
 
 
+/**
+ * @brief 处理数据流A0
+ * 
+ * 该函数用于处理数据流，包括数据验证、内存操作和状态管理。
+ * 函数会处理输入数据缓冲区，执行必要的验证操作，并返回处理结果。
+ * 
+ * @param operationBase 操作基础地址，包含操作所需的上下文信息
+ * @param dataBuffer 数据缓冲区指针，指向待处理的数据
+ * @return DataBuffer 操作结果，包含处理状态和返回数据
+ * 
+ * @note 原始函数名可能包含Ghidra生成的变量名
+ * @note 函数使用栈缓冲区进行临时数据存储
+ * @note 包含多层验证机制确保数据完整性
+ */
 DataBuffer ProcessDataStreamA0(int64_t operationBase,DataWord *dataBuffer)
 
 {
@@ -26218,6 +26232,20 @@ DataBuffer ProcessDataStreamA0(int64_t operationBase,DataWord *dataBuffer)
 
 
 
+/**
+ * @brief 验证数据流A0
+ * 
+ * 该函数用于验证数据流的完整性和安全性，执行多层验证确保数据正确性。
+ * 函数会检查输入参数，执行系统级别的验证操作，并返回验证结果。
+ * 
+ * @param operationBase 操作基础指针，包含验证所需的函数指针和上下文
+ * @param dataBuffer 数据缓冲区，包含待验证的数据
+ * @return DataBuffer 验证结果，包含验证状态和错误信息
+ * 
+ * @note 原始函数名可能包含Ghidra生成的变量名
+ * @note 函数使用系统上下文进行验证操作
+ * @note 包含参数复制和多层验证机制
+ */
 DataBuffer ValidateDataStreamA0(DataBuffer *operationBase,DataBuffer dataBuffer)
 
 {
@@ -73435,7 +73463,7 @@ void ExecuteDataValidationMemoryOperation(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_180908d30(void)
+void ResetExceptionStatusAndTriggerEvent(void)
 
 {
   byte encryptionShiftBitCount;
@@ -99985,7 +100013,7 @@ void Unwind_180910b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ResetExceptionHandlerContextLayer1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100013,7 +100041,7 @@ void Unwind_180910b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ResetExceptionHandlerContextLayer2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100041,7 +100069,7 @@ void Unwind_180910b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ResetExceptionHandlerContextLayer3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
