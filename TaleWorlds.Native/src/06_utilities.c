@@ -27652,7 +27652,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
   int loopIndex;
   uint dataFlags;
   uint validationOutcome;
-  uint auStackX_18 [2];
+  uint securityValidationBuffer [2];
   uint stackByteBuffer [2];
   ByteFlag ainputDataWord [32];
   
