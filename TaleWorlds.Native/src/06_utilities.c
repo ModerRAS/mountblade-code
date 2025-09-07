@@ -24005,20 +24005,20 @@ DataBuffer ProcessDataBlockOperationA1(int64_t *systemContext,DataWord *dataBuff
   int64_t exceptionHandlerContext;
   DataBuffer *resourcePointer;
   DataBuffer validationStatus;
-  DataWord primaryParameterBuffer [2];
-  DataWord secondaryParameterBuffer [4];
+  DataWord firstParameterBuffer [2];
+  DataWord secondParameterBuffer [4];
   
   if (*(int *)(systemContext[1] + 0x18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  primaryParameterBuffer[0] = *dataBuffer;
+  firstParameterBuffer[0] = *dataBuffer;
   exceptionHandlerContext = *systemContext;
   resourcePointer = *(DataBuffer **)(exceptionHandlerContext + 8);
-  validationStatus = (**(FunctionPointer**)*resourcePointer)(resourcePointer,primaryParameterBuffer,4);
+  validationStatus = (**(FunctionPointer**)*resourcePointer)(resourcePointer,firstParameterBuffer,4);
   if ((int)validationStatus == 0) {
     resourcePointer = *(DataBuffer **)(exceptionHandlerContext + 8);
-    secondaryParameterBuffer[0] = dataBuffer[1];
-    validationStatus = (**(FunctionPointer**)*resourcePointer)(resourcePointer,secondaryParameterBuffer,4);
+    secondParameterBuffer[0] = dataBuffer[1];
+    validationStatus = (**(FunctionPointer**)*resourcePointer)(resourcePointer,secondParameterBuffer,4);
   }
   return validationStatus;
 }
@@ -71269,15 +71269,25 @@ void CleanupSystemData(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809087c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理系统内存
+ * 
+ * 该函数负责管理系统内存分配和释放。
+ * 它会处理资源的引用计数，并在适当时机释放内存资源。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含内存管理信息
+ * @return 无返回值
+ */
+void ManageSystemMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int *referenceCountPointer;
-  DataBuffer *resourcePointer;
-  int64_t calculatedOffset;
-  uint64_t memoryBaseAddress;
+  int *resourceReferenceCount;
+  DataBuffer *memoryResourcePointer;
+  int64_t memoryBlockOffset;
+  uint64_t memoryRegionBase;
   
-  resourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffsetA0);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffsetA0);
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
