@@ -16874,17 +16874,17 @@ DataBuffer ProcessMemoryReleaseA0(int64_t memoryDescriptor,int64_t systemContext
 {
   int64_t ValidationContext;
   DataBuffer OperationResult;
-  DataWord MemoryOffset1;
-  DataWord MemoryOffset2;
-  DataWord MemoryOffset3;
+  DataWord MemoryOffsetPrimary;
+  DataWord MemoryOffsetSecondary;
+  DataWord MemoryOffsetTertiary;
   DataWord MemoryFlags;
   
-  MemoryOffset1 = *(DataWord *)(memoryDescriptor + ExceptionHandlerCallbackOffset10);
-  MemoryOffset2 = *(DataWord *)(memoryDescriptor + 0x14);
-  MemoryOffset3 = *(DataWord *)(memoryDescriptor + 0x18);
+  MemoryOffsetPrimary = *(DataWord *)(memoryDescriptor + ExceptionHandlerCallbackOffset10);
+  MemoryOffsetSecondary = *(DataWord *)(memoryDescriptor + 0x14);
+  MemoryOffsetTertiary = *(DataWord *)(memoryDescriptor + 0x18);
   MemoryFlags = *(DataWord *)(memoryDescriptor + 0x1c);
   ValidationContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
-                    (*(int64_t **)(systemContext + 800),&MemoryOffset1,1);
+                    (*(int64_t **)(systemContext + 800),&MemoryOffsetPrimary,1);
   if ((ValidationContext == 0) || (*(int64_t *)(ValidationContext + 0x2e8) == 0)) {
     OperationResult = 0x4a;
   }
@@ -16906,17 +16906,17 @@ DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
 {
   int64_t ValidationContext;
   DataBuffer OperationResult;
-  DataWord MemoryOffset1;
-  DataWord MemoryOffset2;
-  DataWord MemoryOffset3;
+  DataWord MemoryOffsetPrimary;
+  DataWord MemoryOffsetSecondary;
+  DataWord MemoryOffsetTertiary;
   DataWord MemoryFlags;
   
-  memoryOffset1 = *(DataWord *)(memoryDescriptor + ExceptionHandlerCallbackOffset10);
-  memoryOffset2 = *(DataWord *)(memoryDescriptor + 0x14);
-  memoryOffset3 = *(DataWord *)(memoryDescriptor + 0x18);
+  memoryOffsetPrimary = *(DataWord *)(memoryDescriptor + ExceptionHandlerCallbackOffset10);
+  memoryOffsetSecondary = *(DataWord *)(memoryDescriptor + 0x14);
+  memoryOffsetTertiary = *(DataWord *)(memoryDescriptor + 0x18);
   memoryFlags = *(DataWord *)(memoryDescriptor + 0x1c);
   exceptionHandlerContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
-                    (*(int64_t **)(systemContext + 800),&memoryOffset1,1);
+                    (*(int64_t **)(systemContext + 800),&memoryOffsetPrimary,1);
   if ((exceptionHandlerContext == 0) || (*(int64_t *)(exceptionHandlerContext + 0x2e8) == 0)) {
     return 0x4a;
   }
@@ -20184,16 +20184,16 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
   DataWord *stackDataPointer5;
   DataWord *stackDataPointer6;
   DataWord *stackDataPointer7;
-  DataWord stackDataOffset1;
-  DataWord stackDataOffset2;
-  DataWord stackDataOffset3;
-  DataWord stackDataOffset4;
-  DataWord stackDataOffset5;
-  DataWord stackDataOffset6;
-  DataWord stackDataOffset7;
-  DataWord stackDataOffset8;
-  DataWord stackDataOffset9;
-  DataWord stackDataOffset10;
+  DataWord stackDataOffsetPrimary;
+  DataWord stackDataOffsetSecondary;
+  DataWord stackDataOffsetTertiary;
+  DataWord stackDataOffsetQuaternary;
+  DataWord stackDataOffsetQuinary;
+  DataWord stackDataOffsetSenary;
+  DataWord stackDataOffsetSeptenary;
+  DataWord stackDataOffsetOctonary;
+  DataWord stackDataOffsetNonary;
+  DataWord stackDataOffsetDenary;
   
   securityCheckResult = *(uint *)(operationBase + 0x6c);
   dataFlags = 0;
@@ -21976,19 +21976,19 @@ ValidateDataSecurity:
   DataWord systemDataBuffer1;
   char statusChar;
   int functionInputParameter3;
-  uint systemDataBuffer4;
+  uint systemDataBufferIndex4;
   int64_t inputAccumulatorRegister;
-  int64_t exceptionHandlerContext5;
-  DataBuffer systemDataBuffer6;
-  DataBuffer systemDataBuffer7;
-  uint8_t *exceptionDataBuffer8;
-  float processingValue19;
-  uint64_t operationResult0;
-  float *poutputValue21;
+  int64_t exceptionHandlerContextIndex5;
+  DataBuffer systemDataBufferIndex6;
+  DataBuffer systemDataBufferIndex7;
+  uint8_t *exceptionDataBufferIndex8;
+  float processingValueIndex19;
+  uint64_t operationResultInitial;
+  float *outputValuePointer21;
   DataBuffer *StackFrameContext;
   int64_t systemContext;
   DataBuffer *DataBufferRegister;
-  float dataPointerD;
+  float dataValuePointerD;
   int64_t systemContext;
   uint64_t operationResult2;
   int64_t contextPointer;
@@ -29268,14 +29268,10 @@ uint64_t * ValidateSystemDataProcessing(void)
   int64_t SystemContext;
   DataBuffer *DestinationIndexRegister;
   int64_t ValidationContext8;
-  int InputParameter9;
+  int InputParameterIndex9;
   DataWord FloatResultA;
   DataWord OperationResult0;
-  float FloatResultA_00;
-  float FloatResultA_01;
-  float FloatResultA_02;
-  float FloatResultA_03;
-  float FloatResultA_04;
+  float FloatResultA_Array[5];
   float CalculatedFloatValue;
   
   if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
@@ -30071,27 +30067,27 @@ uint64_t ProcessSystemDataA0(int64_t systemContext, int64_t *exceptionHandlerCon
 
 {
   int64_t *exceptionHandlerContextPointer;
-  uint validationStatus2;
+  uint validationStatusSecondary;
   uint64_t validationStatus;
   DataWord memoryBaseAddress;
   uint operationResult;
   uint validationOutcome;
   uint securityCheckResult;
-  uint dataFlags1;
-  uint validationBuffer1 [2];
-  uint validationBuffer2 [2];
+  uint dataFlagsPrimary;
+  uint validationBufferPrimary [2];
+  uint validationBufferSecondary [2];
   uint stackValidationResult;
   uint stackOperationFlag;
-  ByteFlag securityBuffer1 [32];
-  ByteFlag securityBuffer2 [40];
+  ByteFlag securityBufferPrimary [32];
+  ByteFlag securityBufferSecondary [40];
   uint64_t dataFlags;
   
   operationResult = 1;
-  validationStatus = ExecuteSecurityValidation(exceptionHandlerContext,securityBuffer2,1,0x4d524150);
+  validationStatus = ExecuteSecurityValidation(exceptionHandlerContext,securityBufferSecondary,1,0x4d524150);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  validationStatus = ExecuteSecurityValidation(exceptionHandlerContext,securityBuffer1,0,0x424d5250);
+  validationStatus = ExecuteSecurityValidation(exceptionHandlerContext,securityBufferPrimary,0,0x424d5250);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -31072,7 +31068,7 @@ uint64_t ValidateSystemDataIntegrity(void)
   int primaryInputParameter;
   int64_t dataPointer;
   int systemContextD;
-  int inputParameter1;
+  int inputParameterFirst;
   float floatResultA;
   float calculatedFloatValue;
   float normalizedFloatValue;
@@ -31080,7 +31076,7 @@ uint64_t ValidateSystemDataIntegrity(void)
   float validationFloatValue;
   float accumulatedFloatValue;
   float processedFloatValue;
-  float calculationValue12;
+  float calculationResult12;
   float transformedFloatValue;
   DataWord floatResultA_07;
   DataWord floatResultA_08;
@@ -31327,10 +31323,10 @@ uint64_t ProcessFloatDataValidation(float inputValue)
   int validationErrorCode;
   uint loopCounter;
   uint64_t DestinationContext;
-  int inputParameter1;
+  int inputParameterFirst;
   int64_t dataPointer;
   int systemContextD;
-  int inputParameter2;
+  int inputParameterSecond;
   bool carryFlag;
   float floatResultA;
   float calculatedFloatValue;
@@ -100019,7 +100015,25 @@ void Unwind_180910ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器状态重置函数
+ * 
+ * 该函数负责重置异常处理器的状态，执行以下操作：
+ * 1. 获取异常处理上下文
+ * 2. 执行异常处理器回调（如果存在）
+ * 3. 重置异常处理器状态，设置为临时处理器
+ * 4. 清理异常处理相关状态位
+ * 5. 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910ee0
+ * @warning 此函数包含系统终止调用，确保在调用前系统状态稳定
+ */
+void ResetExceptionHandlerStates(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -113468,6 +113482,15 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define SetExceptionDataTablePointersA0 Unwind_180909990
 #define CleanupDataBufferAtOffsetE0A0 Unwind_1809099a0
 #define ProcessSystemStatusUpdateA0 Unwind_180907800
+
+// 异常处理器状态管理函数定义
+// 原始函数名：Unwind_180910ee0 - 异常处理器状态重置函数
+// 功能：重置异常处理器的状态，清理异常处理上下文并设置默认处理器
+#define ResetExceptionHandlerStates Unwind_180910ee0
+
+// 原始函数名：Unwind_180910f00 - 异常处理器上下文清理函数
+// 功能：清理异常处理器上下文，重置相关状态和处理器指针
+#define CleanupExceptionHandlerContext Unwind_180910f00
 
 // 工具系统异常处理函数定义
 // 原始函数名：Unwind_180908730 - 异常处理器迭代执行函数
