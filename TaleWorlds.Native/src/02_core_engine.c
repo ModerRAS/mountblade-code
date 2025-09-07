@@ -24039,7 +24039,7 @@ void CoreEngineSetThreadInputStringBuffer(long long ThreadContext, unsigned char
 void CoreEngineExecuteConditionVariableTimedWait(uint64_t CharacterCode, uint64_t *Utf8InputBufferSize, long long *Utf8SourcePointer
 {
   int LockResult;
-  uint MemoryAllocationIndex;
+  uint SystemTicks;
   long long MemoryOffset;
   uint8_t BufferOffset [32];
   long long TimeoutSeconds;
@@ -24090,7 +24090,7 @@ void CoreEngineExecuteConditionVariableTimedWait(uint64_t CharacterCode, uint64_
  */
 uint8_t CoreEngineNotifyConditionVariableAndProcessSyncState(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  uint8_t ConditionInputStringBuffer;
+  uint8_t ConditionStatusFlag;
   int LockResult;
   uint64_t StackProcessingParameter;
   uint64_t TimeoutFlag;
@@ -24109,8 +24109,8 @@ uint8_t CoreEngineNotifyConditionVariableAndProcessSyncState(long long Character
     ConditionInputStringBuffer = 1;
   }
   else {
-    StackProcessingParameter = 1;
-    CoreEngineExecuteConditionVariableTimedWait(CharacterCode,&MutexPointer,&StackProcessingParameter,Utf16EndPointer,TimeoutFlag);
+    WaitTimeoutParameter = 1;
+    CoreEngineExecuteConditionVariableTimedWait(CharacterCode,&MutexPointer,&WaitTimeoutParameter,Utf16EndPointer,TimeoutFlag);
     ConditionInputStringBuffer = *(uint8_t *)(CharacterCode + 0x98);
   }
   *(uint8_t *)(CharacterCode + 0x98) = 0;
@@ -169888,12 +169888,12 @@ void ProcessUtf8CharacterDataCopy(long long CharacterCode, long long Utf8BufferS
 
 
 
-3cbab(voidvoid FUN_18013cbab(void
+void ProcessSystemDataSynchronize(void)
 {
   char *InputStringBuffer;
   byte SystemHighByte;
-  char *FunctionPointer;
-  uint MemoryAddressMask;
+  char *LineEndPointer;
+  uint HashValue;
   uint8_t *Utf8InputBufferPointer;
   long long MemoryBoundaryEnd;
   int ProcessIterationCount;
@@ -169903,18 +169903,18 @@ void ProcessUtf8CharacterDataCopy(long long CharacterCode, long long Utf8BufferS
   byte *ByteBufferPointer9;
   char *DataNodePointer;
   byte *CurrentBytePointer0;
-  char *RegisterR12Value;
+  char *BufferEndPointer;
   long long StackProcessingParameter58;
   
   do {
-    for (; (*DataNodePointer == '\n' || (FunctionPointer = DataNodePointer, *DataNodePointer == '\r'));
+    for (; (*DataNodePointer == '\n' || (LineEndPointer = DataNodePointer, *DataNodePointer == '\r'));
         DataNodePointer = DataNodePointer + 1) {
     }
-    for (; ((FunctionPointer < RegisterR12Value && (*FunctionPointer != '\n')) && (*FunctionPointer != '\r')); FunctionPointer = FunctionPointer + 1) {
+    for (; ((LineEndPointer < BufferEndPointer && (*LineEndPointer != '\n')) && (*LineEndPointer != '\r')); LineEndPointer = LineEndPointer + 1) {
     }
-    *FunctionPointer = '\0';
+    *LineEndPointer = '\0';
     if (*DataNodePointer != ';') {
-      if (((*DataNodePointer == '[') && (DataNodePointer < FunctionPointer)) && (InputStringBuffer = FunctionPointer + -1, FunctionPointer[-1] == ']'         ) {
+      if (((*DataNodePointer == '[') && (DataNodePointer < LineEndPointer)) && (InputStringBuffer = LineEndPointer + -1, LineEndPointer[-1] == ']'         ) {
         pIsSystemContextValid = (byte *)(DataNodePointer + 1);
         *InputStringBuffer = '\0';
         CharacterCodeTablePointer = (uint8_t *)memchr(pIsSystemContextValid,0x5d,(long long)InputStringBuffer - (long long)pIsSystemContextValid);
