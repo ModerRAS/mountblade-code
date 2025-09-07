@@ -9250,7 +9250,7 @@ LAB_1806572f9:
                      WARNING: Subroutine does not return
             memmove(ptrLocal6,ptrLocal8,(longlong)peventTypeCode - (longlong)ptrLocal8);
           }
-          *ptrLocal6 = uVar4;
+          *ptrLocal6 = eventDataBuffer;
           if (*uiContext != 0) {
                      WARNING: Subroutine does not return
             DestroyUIComponent();
@@ -9483,7 +9483,7 @@ undefined8 ProcessUIComponentEx(ulonglong uiContext,undefined8 *dataSource,undef
 
 {
   byte isCharacterMatch;
-  bool bVar2;
+  bool isProcessingComplete;
   undefined8 *ptrLocal3;
   longlong *plocalLong4;
   byte *StringDataPointer;

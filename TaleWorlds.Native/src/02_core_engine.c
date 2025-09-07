@@ -246054,7 +246054,19 @@ void ValidateSystemMemoryAllocation(long long CharacterCode,uint64_t Utf8BufferS
 
 
 
-0dae0(uint CharacterCode,int Utf8BufferSize,long long *Utf8SourcePointervoid FUN_18020dae0(uint CharacterCode,int Utf8BufferSize,long long *Utf8SourcePointer
+/**
+ * @brief 处理字符代码和UTF-8缓冲区遍历
+ * 
+ * 该函数负责遍历字符代码范围，处理UTF-8缓冲区数据，
+ * 并管理系统内存分配和键值处理。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_18020dae0
+ */
+void ProcessCharacterCodeAndUtf8BufferTraversal(uint CharacterCode,int Utf8BufferSize,long long *Utf8SourcePointer)
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
