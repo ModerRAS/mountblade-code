@@ -3766,6 +3766,9 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ProcessStringData FUN_18011a9d0
 #define CalculateDistance FUN_18012ddc0
 #define TransformObjectData FUN_18012ddc0
+
+// 系统矩阵运算函数
+#define ProcessSystemMatrixOperation FUN_180298890
 #define RotateObjectData FUN_18012ddc0
 #define AllocateVertexBuffer FUN_18012ddc0
 #define ValidateBufferAllocation FUN_18012ddc0
@@ -10012,11 +10015,11 @@ void CoreEngineInitializeNetworkDataStreamManager(void
  */
 void InitializeNetworkConnectionPool(void)
 {
-  char ConnectionStringBuffer;                           // 连接状态标志
+  char ConnectionStatusFlag;                           // 连接状态标志
   uint64_t *SystemContext;                             // 系统上下文指针
   int MemoryComparisonResult;                          // 内存比较结果
   long long *EngineSystemContext;                      // 引擎系统上下文指针
-  long long AllocatedMemorySizeSize;                       // 已分配内存大小
+  long long AllocatedMemorySize;                       // 已分配内存大小
   uint64_t *LeftTraverseNode;                          // 左遍历节点指针
   uint64_t *RightTraverseNode;                         // 右遍历节点指针
   uint64_t *NextNodePointer;                           // 下一个节点指针
@@ -10025,33 +10028,33 @@ void InitializeNetworkConnectionPool(void)
   
   EngineSystemContext = (long long *)CoreEngineGetSystemContext();
   SystemContext = (uint64_t *)*EngineSystemContext;
-  ConnectionStringBuffer = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
+  ConnectionStatusFlag = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
   NetworkAuthenticationHandler = CoreEngineProcessNetworkAuthentication;
-  TertiaryNode = PrimaryStatusBlock;
-  SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (StringBuffer == '\0') {
-    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataNonary,0x10);
+  LeftTraverseNode = PrimaryStatusBlock;
+  RightTraverseNode = (void *)PrimaryProcessingStatusFlag[1];
+  while (ConnectionStatusFlag == '\0') {
+    MemoryComparisonResult = memcmp(RightTraverseNode + 4,&SystemComparisonDataNonary,0x10);
     if (MemoryComparisonResult < 0) {
-      NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      NextNodePointer = (void *)CurrentNode[2];
+      RightTraverseNode = LeftTraverseNode;
     }
     else {
-      NextNode = (void *)*CurrentNode;
+      NextNodePointer = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
-    CurrentNode = NextNode;
-    StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    LeftTraverseNode = RightTraverseNode;
+    CurrentNode = NextNodePointer;
+    ConnectionStatusFlag = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataNonary,TertiaryProcessingStatusFlag + 4,0x10), MemoryComparisonResult < 0)) {
-    AllocatedMemorySizeSize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySizeSize + 0x20,AllocatedMemorySizeSize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+  if ((LeftTraverseNode == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataNonary,LeftTraverseNode + 4,0x10), MemoryComparisonResult < 0)) {
+    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
+    CoreEngineSetupMemoryNode(SystemContext,&TemporaryBuffer,LeftTraverseNode,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    LeftTraverseNode = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x40db4257e97d3df8;
-  TertiaryProcessingStatusFlag[7] = 0x81d539e33614429f;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateF;
-  TertiaryProcessingStatusFlag[9] = 4;
-  TertiaryProcessingStatusFlag[10] = FunctionCallback;
+  LeftTraverseNode[6] = 0x40db4257e97d3df8;
+  LeftTraverseNode[7] = 0x81d539e33614429f;
+  LeftTraverseNode[8] = &SystemConnectionTemplateF;
+  LeftTraverseNode[9] = 4;
+  LeftTraverseNode[10] = NetworkAuthenticationHandler;
   return;
 }
 
@@ -124479,7 +124482,14 @@ void ResetSystemStatus(void)
 
 
 
-// 原始函数名：FUN_180127440 - 系统数据结构处理函数
+/**
+ * @brief 处理系统数据结构
+ * 
+ * 该函数负责管理和处理系统的核心数据结构，包括内存分配、数据验证、
+ * 字符串处理和系统状态维护。通过复杂的算法确保数据的完整性和一致性。
+ * 
+ * @note 原始函数名：FUN_180127440
+ */
 #define ProcessSystemDataStructure FUN_180127440
 void ProcessSystemDataStructure(void)
 {
@@ -124669,7 +124679,14 @@ void ProcessSystemDataStructure(void)
 
 
 
-// 原始函数名：FUN_180127466 - 系统事件队列处理函数
+/**
+ * @brief 处理系统事件队列
+ * 
+ * 该函数负责管理系统事件队列，包括事件的接收、处理和分发。
+ * 确保系统事件的有序处理和及时响应。
+ * 
+ * @note 原始函数名：FUN_180127466
+ */
 #define ProcessSystemEventQueue FUN_180127466
 void ProcessSystemEventQueue(void)
 {
