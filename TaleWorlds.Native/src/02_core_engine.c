@@ -2063,6 +2063,19 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 
 // 处理系统数据验证并返回结果的函数，确保数据完整性和正确性
 #define ProcessSystemDataValidationAndReturn FUN_180294610
+
+// 系统数据初始化和配置函数组
+// 原始函数名：FUN_18013e340 - 系统数据初始化函数
+#define InitializeSystemData FUN_18013e340
+
+// 原始函数名：FUN_18013e2f0 - 系统数据重置函数
+#define ResetSystemData FUN_18013e2f0
+
+// 原始函数名：FUN_18013db40 - 系统数据配置函数
+#define ConfigureSystemData FUN_18013db40
+
+// 原始函数名：FUN_18011a9d0 - 系统参数设置函数
+#define SetSystemParameters FUN_18011a9d0
 /**
  * @brief 处理系统数据缓冲区并复制数据
  * 
@@ -38148,13 +38161,13 @@ SystemMemoryProcessingComplete:
       *SystemEventPointer = 0;
     }
     else {
-      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto LAB_180071eb0;
+      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto SystemStringBufferValidation;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,ProcessStringBuffer,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
-LAB_180071eb0:
+SystemStringBufferValidation:
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   FunctionAddress80 = MemoryAllocationIndex + 0xe;
   ConfigureSystemMemory(SystemConfigurationPointer,5,0xffffffff00000000,&SystemMemoryBufferPrimaryData);
@@ -145266,7 +145279,19 @@ faae(uint64_t *OutputBuffer,long long OutputBufferSizevoid FUN_18012faae(uint64_
 
 
 
-uint64_t FUN_18012fbd0(long long OutputBuffer,uint32_t *OutputBufferSize
+/**
+ * @brief 处理系统数据结构和缓冲区验证
+ * 
+ * 该函数负责验证系统数据结构的完整性和缓冲区的有效性，
+ * 通过比较浮点数值和检查状态标志来确保数据一致性。
+ * 
+ * @param OutputBuffer 输出缓冲区指针
+ * @param OutputBufferSize 输出缓冲区大小指针
+ * @return uint64_t 返回操作状态，1表示成功，0表示失败
+ * 
+ * @note 原始函数名：FUN_18012fbd0
+ */
+uint64_t ProcessSystemDataStructureAndBufferValidation(long long OutputBuffer,uint32_t *OutputBufferSize
 {
   float SystemContextPrimaryFloat;
   int CharacterByteCount;
