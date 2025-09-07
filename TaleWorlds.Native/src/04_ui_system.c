@@ -68277,6 +68277,17 @@ void InitializeUIEventSystem(longlong uiContext)
 
 
 
+ /**
+ * @brief 初始化UI组件内存分配
+ * 
+ * 该函数负责初始化UI系统组件的内存分配，包括：
+ * - 分配UI组件所需的内存空间
+ * - 设置内存管理参数
+ * - 初始化组件状态标志
+ * - 配置内存访问权限
+ * 
+ * @note 原始函数名: FUN_18069f51a
+ */
  void FUN_18069f51a(void)
 void ProcessUIComponentMemoryAllocation(void)
 
@@ -68359,6 +68370,17 @@ void ProcessUIComponentMemoryAllocation(void)
 
 
 
+ /**
+ * @brief 执行UI系统空操作
+ * 
+ * 该函数执行UI系统的空操作，用于：
+ * - 系统状态同步
+ * - 空闲时间处理
+ * - 系统资源检查
+ * - 后台任务调度
+ * 
+ * @note 原始函数名: FUN_18069f682
+ */
  void FUN_18069f682(void)
 void UIEmptyOperation(void)
 
@@ -68886,6 +68908,20 @@ LAB_18069fefd:
 
 
 
+/**
+ * @brief 获取UI组件状态
+ * 
+ * 该函数从指定的UI上下文和数据源中获取组件状态信息：
+ * - 读取组件状态标志
+ * - 验证数据源有效性
+ * - 返回状态码
+ * - 处理异常情况
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @return 组件状态码
+ * @note 原始函数名: FUN_18069ff30
+ */
 uint FUN_18069ff30(longlong uiContext,undefined1 *dataSource)
 
 {
