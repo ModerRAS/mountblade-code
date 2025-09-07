@@ -100107,7 +100107,25 @@ void CleanupExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffer,
 
 
 
-void Unwind_180910f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器最终清理函数
+ * 
+ * 该函数负责执行异常处理器的最终清理操作，执行以下操作：
+ * 1. 获取异常处理上下文
+ * 2. 执行异常处理器回调（如果存在）
+ * 3. 重置异常处理器状态，设置为临时处理器
+ * 4. 清理异常处理相关状态位
+ * 5. 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910f20
+ * @warning 此函数包含系统终止调用，确保在调用前系统状态稳定
+ */
+void FinalizeExceptionHandlerCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -113509,6 +113527,10 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 原始函数名：Unwind_180910f00 - 异常处理器上下文清理函数
 // 功能：清理异常处理器上下文，重置相关状态和处理器指针
 #define CleanupExceptionHandlerContext Unwind_180910f00
+
+// 原始函数名：Unwind_180910f20 - 异常处理器最终清理函数
+// 功能：执行异常处理器的最终清理操作，重置状态并设置默认处理器
+#define FinalizeExceptionHandlerCleanup Unwind_180910f20
 
 // 工具系统异常处理函数定义
 // 原始函数名：Unwind_180908730 - 异常处理器迭代执行函数
