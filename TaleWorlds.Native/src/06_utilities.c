@@ -57762,7 +57762,14 @@ void Unwind_180905ff0(void)
 
 
 
-void Unwind_180906010(void)
+/**
+ * @brief 销毁互斥锁的异常处理函数A0
+ * 
+ * 该函数在异常处理过程中销毁互斥锁资源，确保系统异常时能正确释放锁资源
+ * 
+ * @note 原始函数名：Unwind_180906010
+ */
+void DestroyMutexInSituA0(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -57771,7 +57778,17 @@ void Unwind_180906010(void)
 
 
 
-void Unwind_180906030(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 销毁条件变量的异常处理函数（偏移量0x80）
+ * 
+ * 该函数在异常处理过程中销毁与数据缓冲区0x80偏移量关联的条件变量资源
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要销毁的条件变量信息
+ * 
+ * @note 原始函数名：Unwind_180906030
+ */
+void DestroyConditionInSituOffset80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Cnd_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x80));
@@ -57780,7 +57797,14 @@ void Unwind_180906030(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906040(void)
+/**
+ * @brief 销毁互斥锁的异常处理函数A1
+ * 
+ * 该函数在异常处理过程中销毁互斥锁资源，确保系统异常时能正确释放锁资源
+ * 
+ * @note 原始函数名：Unwind_180906040
+ */
+void DestroyMutexInSituA1(void)
 
 {
   _Mtx_destroy_in_situ();
