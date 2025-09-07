@@ -208275,7 +208275,15 @@ void ConvertUtf8CharacterEncoding(uint32_t CharacterCode)
 
 
 
-79a7a(voidvoid FUN_180179a7a(void
+/**
+ * @brief 系统数据节点初始化函数
+ * 
+ * 该函数负责初始化系统数据节点，设置字符限制参数，
+ * 为后续的字符处理操作做准备。
+ * 
+ * @return void 无返回值
+ */
+void InitializeSystemDataNode(void)
 {
   uint64_t SystemDataNode;
   uint64_t *CharacterLimit;
