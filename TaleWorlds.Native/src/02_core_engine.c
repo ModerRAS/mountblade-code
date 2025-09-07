@@ -25,7 +25,7 @@
 #define ProcessUtf8StringConversion FUN_18013a3d0           // 处理UTF8字符串转换
 #define CleanupCharacterCodeTable FUN_1801372f0              // 清理字符代码表
 #define ValidateCharacterBuffer FUN_18011bc70                // 验证字符缓冲区
-#define ProcessCharacterTableCleanup FUN_180136f68            // 处理字符表清理
+#define ProcessCharacterTableCleanup ProcessCharacterTableCleanup   // 处理字符表清理
 #define ProcessCharacterDataValidation FUN_180136fa8          // 处理字符数据验证
 #define ResetSystemCharacterState ResetSystemCharacterState   // 重置系统字符状态
 #define TemporaryProcessingStatus TemporaryStackValue58    // 临时处理状态
@@ -162021,7 +162021,16 @@ void HandleStringCopyOperation(long long CharacterCode, long long Utf8BufferSize
 
 
 
-36f68(long long CharacterCode,long long Utf8BufferSizevoid FUN_180136f68(long long CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理字符表清理
+ * 
+ * 清理字符表并处理相关的内存管理操作，包括字符代码和UTF-8缓冲区的处理
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return void 无返回值
+ */
+void ProcessCharacterTableCleanup(long long CharacterCode, long long Utf8BufferSize)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
