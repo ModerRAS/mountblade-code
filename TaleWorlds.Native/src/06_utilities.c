@@ -52350,7 +52350,19 @@ void ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180904f80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理器
+ * 
+ * 该函数负责设置异常处理器，先设置临时处理器，然后切换到默认处理器。
+ * 如果异常数据缓冲区的第二个元素不为0，则终止系统。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_180904f80
+ * @note 简化实现：设置临时异常处理器，检查状态后切换到默认处理器
+ */
+void SetupExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -100108,7 +100120,19 @@ void PerformFunctionPointerSecurityCheckA(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_180912600(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行函数指针调用安全检查函数B
+ * 
+ * 该函数对函数指针调用进行安全检查，确保调用目标的合法性和安全性。
+ * 与函数A类似，但使用不同的偏移量来获取检查参数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要检查的函数指针信息
+ * 
+ * @note 原始函数名：Unwind_180912600
+ * @see _guard_check_icall, PerformFunctionPointerSecurityCheckA
+ */
+void PerformFunctionPointerSecurityCheckB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + 0x28),**(ByteFlag **)(dataBuffer + 0x30),
@@ -100118,7 +100142,19 @@ void Unwind_180912600(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180912630(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行函数指针调用安全检查函数C
+ * 
+ * 该函数对函数指针调用进行安全检查，确保调用目标的合法性和安全性。
+ * 使用不同的偏移量配置来适应不同的函数指针检查场景。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要检查的函数指针信息
+ * 
+ * @note 原始函数名：Unwind_180912630
+ * @see _guard_check_icall, PerformFunctionPointerSecurityCheckA, PerformFunctionPointerSecurityCheckB
+ */
+void PerformFunctionPointerSecurityCheckC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + 0xa8),**(ByteFlag **)(dataBuffer + 0xa0),
@@ -100128,9 +100164,23 @@ void Unwind_180912630(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-void Unwind_180912660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理间接异常上下文引用计数递减的异常处理函数B
+ * 
+ * 该函数通过间接引用获取异常上下文，并在异常处理过程中管理其引用计数。
+ * 从数据缓冲区的0xa8偏移量处获取异常上下文指针，然后递减其引用计数。
+ * 与函数HandleIndirectExceptionContextReferenceCountDecrement类似，但使用不同的偏移量。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息的间接引用
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_180912660
+ * @warning 此函数调用不返回，会直接进入异常处理流程
+ * @see HandleSystemException, HandleIndirectExceptionContextReferenceCountDecrement
+ */
+void HandleIndirectExceptionContextReferenceCountDecrementB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
