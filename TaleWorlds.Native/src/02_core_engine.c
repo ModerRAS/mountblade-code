@@ -54770,14 +54770,19 @@ uint8_t ProcessSystemMemoryAllocation(long long *Utf8InputBuffer,uint64_t Utf8Bu
  * @brief 处理核心引擎数据结构操作
  * 
  * 该函数负责处理核心引擎的数据结构操作，包括内存分配、释放和复制
- * 根据不同的参数值执行不同的操作类型
+ * 根据不同的操作类型参数执行不同的操作：
+ * - 操作类型0：释放内存块
+ * - 操作类型1：分配新内存并复制数据
+ * - 操作类型2：移动数据指针
+ * - 操作类型3：返回固定地址
+ * - 操作类型4：返回目标指针
  * 
- * @param CharacterCode 目标数据结构指针
- * @param Utf8BufferSize 源数据结构指针
- * @param Utf8SourcePointer 操作类型参数
+ * @param TargetDataPointer 目标数据结构指针
+ * @param SourceDataPointer 源数据结构指针
+ * @param OperationType 操作类型参数 (0-4)
  * @return long long 返回操作结果或内存地址
  */
-long long ProcessCoreEngineDataStructureOperation(long long *Utf8InputBuffer, long long *Utf8InputBufferSize, int Utf8SourcePointer
+long long ProcessCoreEngineDataStructureOperation(long long *TargetDataPointer, long long *SourceDataPointer, int OperationType
 {
   uint64_t *statusBuffer;
   long long *BufferStatus;

@@ -90081,7 +90081,17 @@ void ExecuteMemoryOperationA3(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e520(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调函数A0
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e520
+ */
+void ExecuteExceptionHandlerCallbackA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
