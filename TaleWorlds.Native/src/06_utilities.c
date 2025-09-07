@@ -101963,6 +101963,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 数据清理函数A0
  * 
  * 该函数负责清理数据和资源
+ * 包括内存释放、资源回收和状态重置操作
  * 
  * @note 原始函数名：FUN_1808aef40
  */

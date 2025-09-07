@@ -214583,23 +214583,23 @@ LAB_18018fa06:
  */
 bool ValidateSystemStringBufferComparison(uint64_t SystemContextPointer,long long Utf8BufferSize,long long Utf16InputPointer)
 {
-  byte *pCurrentByteValue;
-  long long bufferAllocationStatus;
-  long long MemoryOffset;
-  byte *ValidationBytePointer;
-  void *OutputBufferPointer;
-  int ValidationResult;
+  byte *CurrentBytePointer;
+  long long FirstBufferSearchResult;
+  long long SecondBufferSearchResult;
+  byte *StringValidationPointer;
+  void *BufferOutputPointer;
+  int StringComparisonResult;
   
-  OutputBufferPointer = &CoreEngineDataTemplate;
+  BufferOutputPointer = &CoreEngineDataTemplate;
   if (*(void **)(Utf8BufferSize + 0x10) != NULL) {
-    OutputBufferPointer = *(void **)(Utf8BufferSize + 0x10);
+    BufferOutputPointer = *(void **)(Utf8BufferSize + 0x10);
   }
-  bufferAllocationStatus = strstr(OutputBufferPointer,&SystemMemoryBoundaryCheck6);
-  OutputBufferPointer = &CoreEngineDataTemplate;
+  FirstBufferSearchResult = (long long)strstr(BufferOutputPointer,&SystemMemoryBoundaryCheck6);
+  BufferOutputPointer = &CoreEngineDataTemplate;
   if (*(void **)(Utf16InputPointer + 0x10) != NULL) {
-    OutputBufferPointer = *(void **)(Utf16InputPointer + 0x10);
+    BufferOutputPointer = *(void **)(Utf16InputPointer + 0x10);
   }
-  MemoryBlockIndex = strstr(OutputBufferPointer,&SystemMemoryBoundaryCheck6);
+  SecondBufferSearchResult = (long long)strstr(BufferOutputPointer,&SystemMemoryBoundaryCheck6);
   if (bufferAllocationStatus == 0) {
     if ((MemoryBlockIndex != 0) || (*(int *)(Utf16InputPointer + 0x18) == 0)) {
       return false;
