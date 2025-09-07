@@ -80118,7 +80118,22 @@ void InvokeFunctionPointerAtOffset160(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_18090c750(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0x180处调用函数指针
+ * 
+ * 该函数检查数据缓冲区偏移量0x180处是否存在有效的函数指针，
+ * 如果存在则调用该函数指针指向的函数。这是异常处理机制中的
+ * 一个关键函数，用于在特定条件下执行回调操作。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含函数指针引用
+ * 
+ * @note 该函数是异常处理系统的一部分，用于执行清理或恢复操作
+ * @note 函数指针通常指向系统清理或状态恢复相关的函数
+ * 
+ * @see InvokeFunctionPointerAtOffset130, InvokeFunctionPointerAtOffset150
+ */
+void InvokeFunctionPointerAtOffset180(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x180) != (int64_t *)0x0) {
@@ -80129,7 +80144,24 @@ void Unwind_18090c750(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行操作回调函数并传递清理标志
+ * 
+ * 该函数检查数据缓冲区偏移量0x110处是否存在有效的函数指针，
+ * 如果存在则调用该回调函数，并传递特定的参数包括系统清理标志。
+ * 这个函数通常用于在异常处理或系统清理过程中执行特定的操作。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含回调函数指针
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 该函数使用SystemCleanupFlagAlternative（0xfffffffe）作为清理标志
+ * @note 回调函数接收5个参数，包括数据缓冲区偏移量、零值和清理标志
+ * 
+ * @see SystemCleanupFlagAlternative, ExecuteOperationCallbackWithFlags
+ */
+void ExecuteOperationCallbackWithCleanupFlags(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x110) != (code *)0x0) {
@@ -80140,7 +80172,22 @@ void Unwind_18090c760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090c770(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0x158处调用函数指针
+ * 
+ * 该函数检查数据缓冲区偏移量0x158处是否存在有效的函数指针，
+ * 如果存在则调用该函数指针指向的函数。这是异常处理机制中的
+ * 一个关键函数，用于在特定条件下执行回调操作。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含函数指针引用
+ * 
+ * @note 该函数是异常处理系统的一部分，用于执行清理或恢复操作
+ * @note 函数指针通常指向系统清理或状态恢复相关的函数
+ * 
+ * @see InvokeFunctionPointerAtOffset130, InvokeFunctionPointerAtOffset150
+ */
+void InvokeFunctionPointerAtOffset158(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x158) != (int64_t *)0x0) {
