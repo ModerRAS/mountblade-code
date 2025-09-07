@@ -5671,15 +5671,6 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define UpdateSystemStatusEx ProcessThreadLocalStorageOperation
 
 // 其他高频函数 (调用次数: 7-8次)
-/**
- * @brief 初始化系统组件
- * 
- * 该函数负责系统组件的初始化，设置初始状态
- * 配置系统参数
- * 
- * @note 原始函数名：FUN_18013b0f0
- */
-#define InitializeSystemComponent FUN_18013b0f0
 
 /**
  * @brief 处理系统配置
@@ -159465,7 +159456,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode)
           long long AllocatedMemorySize = *(long long *)(CharacterTablePointer5 + 0x30 + EncodingConversionResult);
           if (AllocatedMemorySize == 0) {
             if (*(long long *)(CharacterTablePointer5 + 0x38 + EncodingConversionResult) != 0) {
-              FUN_180136850(CharacterCode);
+              ProcessCharacterEncodingEx(CharacterCode);
             }
           }
           else {
@@ -159563,7 +159554,7 @@ void ProcessCharacterDataValidation(long long CharacterCode
         long long AllocatedMemorySize = *(long long *)(EncodingConversionResult + 0x30 + SystemDataStructureRegistry);
         if (AllocatedMemorySize == 0) {
           if (*(long long *)(EncodingConversionResult + 0x38 + SystemDataStructureRegistry) != 0) {
-            FUN_180136850();
+            ProcessCharacterEncodingEx();
           }
         }
         else {
@@ -159644,7 +159635,7 @@ void ProcessCharacterCodeConversion(void
         MemoryBlockIndex = *(long long *)(CharacterLimit + 0x30 + SystemDataStructureRegistry);
         if (MemoryBlockIndex == 0) {
           if (*(long long *)(CharacterLimit + 0x38 + SystemDataStructureRegistry) != 0) {
-            FUN_180136850();
+            ProcessCharacterEncodingEx();
           }
         }
         else {
@@ -159719,7 +159710,7 @@ void ProcessCharacterCodeConversion(void
         MemoryBlockIndex = *(long long *)(DataSize + 0x30 + BufferStatus);
         if (MemoryBlockIndex == 0) {
           if (*(long long *)(DataSize + 0x38 + BufferStatus) != 0) {
-            FUN_180136850();
+            ProcessCharacterEncodingEx();
           }
         }
         else {
@@ -159773,7 +159764,7 @@ void ProcessCharacterCodeConversion(void
         BufferStatus = *(long long *)(CharacterLimit + 0x30 + CharacterTablePointer);
         if (BufferStatus == 0) {
           if (*(long long *)(CharacterLimit + 0x38 + CharacterTablePointer) != 0) {
-            FUN_180136850();
+            ProcessCharacterEncodingEx();
           }
         }
         else {
@@ -159831,7 +159822,7 @@ void ProcessSystemMemoryManagementAndBufferStatus(void)
         BufferStatus = *(long long *)(CharacterLimit + 0x30 + CharacterTablePointer);
         if (BufferStatus == 0) {
           if (*(long long *)(CharacterLimit + 0x38 + CharacterTablePointer) != 0) {
-            FUN_180136850();
+            ProcessCharacterEncodingEx();
           }
         }
         else {
@@ -160360,7 +160351,7 @@ uint32_t * ProcessUtf8ToUtf16ConversionStatus(long long CharacterCode,int Utf8Bu
           (*(int *)(CharacterCode + 0x1a90) + -1 <= *(int *)(CharacterTablePointer + 0x280))) &&
          (*(long long *)(CharacterTablePointer + 0x408) == 0)) {
         MemoryAllocationIndex = FindSystemData(*(void *)(CharacterCode + 0x2df8));
-        FUN_180136b10(MemoryAllocationIndex,LoopCounter,1);
+        ProcessMemoryAllocationEx(MemoryAllocationIndex, LoopCounter, 1);
       }
       MemoryAllocationSize = MemoryAllocationSize + 1;
       SystemDataStructureRegistry = SystemDataStructureRegistry + 8;
@@ -160387,7 +160378,7 @@ uint32_t * ProcessUtf8ToUtf16ConversionStatus(long long CharacterCode,int Utf8Bu
         (*(int *)(DataNodeIndex + 0x1a90) + -1 <= *(int *)(CharacterTablePointer + 0x280))) &&
        (*(long long *)(CharacterTablePointer + 0x408) == 0)) {
       MemoryAllocationIndex = FindSystemData(*(void *)(DataNodeIndex + 0x2df8));
-      FUN_180136b10(MemoryAllocationIndex,LoopCounter,1);
+      ProcessMemoryAllocationEx(MemoryAllocationIndex, LoopCounter, 1);
     }
     CharacterTablePointer = CharacterTablePointer + 1;
     UnicodeCodePoint = UnicodeCodePoint + 8;
@@ -160464,7 +160455,7 @@ void CoreEngineInitializeNetworkSystem(void
     CharacterCodeTablePointer[7] = *(void *)(MemoryPoolBlockSize + 0x40);
     CharacterCodeTablePointer[8] = *(void *)(MemoryPoolBlockSize + 0x48);
     if (*(long long *)(MemoryPoolBlockSize + 0x410) == 0) {
-      FUN_180136b10(CharacterCodeTablePointer,MemoryPoolBlockSize,1);
+      ProcessMemoryAllocationEx(CharacterCodeTablePointer, MemoryPoolBlockSize, 1);
       StatusBuffer = (uint *)(*(long long *)(CharacterCodeTablePointer[6] + 8) + 4);
       *StatusBuffer = *StatusBuffer & 0xffbfffff;
       *(byte *)(MemoryPoolBlockSize + 0x432) = *(byte *)(MemoryPoolBlockSize + 0x432) | 1;
@@ -160529,7 +160520,7 @@ void CoreEngineInitializeNetworkSystem(void
       if (MemoryBoundaryEnd != 0) {
         EncodingValidationResult = *(int *)(MemoryBoundaryEnd + 0x418);
         StatusBuffer2[0xe] = MemoryBoundaryEnd;
-        FUN_180136b10(StatusBuffer2,MemoryBoundaryEnd,1);
+        ProcessMemoryAllocationEx(StatusBuffer2, MemoryBoundaryEnd, 1);
         if (EncodingValidationResult != 0) {
           ValidateStringOperation(EncodingValidationResult,*(uint32_t *)StatusBuffer2);
         }
@@ -160585,7 +160576,18 @@ void CoreEngineInitializeNetworkSystem(void
 
 
 
-36850(long long CharacterCode,uint32_t *Utf8InputBufferSizevoid FUN_180136850(long long CharacterCode,uint32_t *Utf8InputBufferSize
+/**
+ * @brief 处理字符编码扩展
+ * 
+ * 该函数负责扩展处理字符编码，包括UTF-8输入缓冲区管理、
+ * 系统数据结构注册和Unicode码点处理
+ * 
+ * @param CharacterCode 字符代码，用于编码处理
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * 
+ * @note 原始函数名：FUN_180136850
+ */
+void ProcessCharacterEncodingEx(long long CharacterCode, uint32_t *Utf8InputBufferSize)
 {
   long long *Utf8InputBuffer;
   long long BufferStatus;
@@ -161128,7 +161130,7 @@ void HandleStringCopyOperation(long long CharacterCode, long long Utf8BufferSize
       }
       *(byte *)(MemoryBlockIndex + 0x432) = *(byte *)(MemoryBlockIndex + 0x432) & 0xfe;
       *(void *)(MemoryBlockIndex + 0x408) = 0;
-      FUN_180136b10(CharacterCode,MemoryBlockIndex,hasMemoryBoundaryChanged ^ 1);
+      ProcessMemoryAllocationEx(CharacterCode, MemoryBlockIndex, hasMemoryBoundaryChanged ^ 1);
       SystemChecksum = (int)ProcessingStatusFlag + 1;
       ProcessingStatusFlag = (unsigned long long)SystemChecksum;
       MemoryAddressMask = MemoryAddressMask + 0x28;
@@ -161194,7 +161196,7 @@ void HandleStringCopyOperation(long long CharacterCode, long long Utf8BufferSize
       }
       *(byte *)(MemoryBlockIndex + 0x432) = *(byte *)(MemoryBlockIndex + 0x432) & 0xfe;
       *(void *)(MemoryBlockIndex + 0x408) = 0;
-      FUN_180136b10(CharacterCode,MemoryBlockIndex,hasMemoryBoundaryChanged ^ 1);
+      ProcessMemoryAllocationEx(CharacterCode, MemoryBlockIndex, hasMemoryBoundaryChanged ^ 1);
       SystemChecksum = (int)ProcessingStatusFlag + 1;
       ProcessingStatusFlag = (unsigned long long)SystemChecksum;
       MemoryAddressMask = MemoryAddressMask + 0x28;
@@ -161250,7 +161252,7 @@ void HandleStringCopyOperation(long long CharacterCode, long long Utf8BufferSize
     }
     *(byte *)(BufferStatus + 0x432) = *(byte *)(BufferStatus + 0x432) & 0xfe;
     *(long long *)(BufferStatus + 0x408) = SystemDataStructureRegistry;
-    FUN_180136b10();
+    ProcessMemoryAllocationEx();
     BufferStatus = SystemConfigurationHandle;
     NullPointerD = NullPointerD + 1;
     Utf8SourcePointer = Utf8SourcePointer + 0x28;
@@ -165607,7 +165609,17 @@ void ProcessCharacterEncodingBufferOperation(long long CharacterCode, int Utf8Bu
 
 
 
-3b0f0(int CharacterCodevoid FUN_18013b0f0(int CharacterCode
+/**
+ * @brief 处理内存地址掩码
+ * 
+ * 该函数负责处理内存地址掩码计算和管理，包括字符编码转换、
+ * 系统数据结构注册、状态缓冲区处理和引用计数管理
+ * 
+ * @param CharacterCode 字符代码，用于地址掩码计算
+ * 
+ * @note 原始函数名：FUN_18013b0f0
+ */
+void ProcessMemoryAddressMask(int CharacterCode)
 {
   int *ReferenceCountPointer;
   int *pCharacterByteCount;
@@ -165998,7 +166010,7 @@ LAB_18013b1d6:
       }
       goto LAB_18013b83c;
     }
-    FUN_180136b10(StringOffset,CharacterCode,1);
+    ProcessMemoryAllocationEx(StringOffset, CharacterCode, 1);
     CharacterTablePointer6 = SystemConfigurationHandle;
     *(void *)(SystemConfigurationHandle + 0x1bf4) = Utf8InputBuffer[8];
     *(void *)(CharacterTablePointer6 + 0x1bfc) = 0;
@@ -166163,7 +166175,7 @@ LAB_18013b83c:
       }
       goto LAB_18013b83c;
     }
-    FUN_180136b10(MemoryPoolBlockSize);
+    ProcessMemoryAllocationEx(MemoryPoolBlockSize);
     DataNodeIndex = SystemConfigurationHandle;
     *(void *)(SystemConfigurationHandle + 0x1bf4) = SystemContext[8];
     *(unsigned long long *)(DataNodeIndex + 0x1bfc) = StackFrameAddressPointer;
@@ -166350,7 +166362,7 @@ LAB_18013b83c:
       }
       goto LAB_18013b83c;
     }
-    FUN_180136b10(MemoryPoolBlockSize);
+    ProcessMemoryAllocationEx(MemoryPoolBlockSize);
     DataNodeIndex = SystemConfigurationHandle;
     *(void *)(SystemConfigurationHandle + 0x1bf4) = SystemContext[8];
     *(void *)(DataNodeIndex + 0x1bfc) = 0;
