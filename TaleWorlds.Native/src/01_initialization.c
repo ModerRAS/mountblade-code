@@ -1057,7 +1057,7 @@ long long ResourceSystemLastUpdateTime;
  */
 void* ResourceMemoryRegionHotfix;
 
-void* GameDataTableManagerInitializer;
+void* GameDataTableManagerInitializer;                      // 游戏数据表管理器初始化器
 /**
  * @brief 系统内存区域扩展A
  */
@@ -1066,7 +1066,7 @@ void* SystemMemoryRegionExpansionAlpha;
  * @brief 系统内存区域扩展B
  */
 void* SystemMemoryRegionExpansionBeta;
-void* SystemDataTableEmergency;                  // 紧急系统数据表
+void* SystemDataTableEmergency;                              // 紧急系统数据表
 /**
  * @brief 系统内存区域扩展C
  */
@@ -1101,15 +1101,15 @@ void* SystemMemoryRegionExpansionHotel;
  * @brief 系统内存区域扩展I
  */
 void* SystemMemoryRegionExpansionIndia;
-void* SystemDataTableHotfix;                     // 热修复系统数据表
-void* SystemMemoryRegionExpansionJuliet;
-void* SystemMemoryRegionExpansionKilo;
-void* SystemMemoryRegionExpansionLima;
-void* SystemMemoryRegionExpansionMike;
-void* SystemMemoryRegionExpansionPrimary;
-void* SystemMemoryRegionExpansionTertiary;
-void* SystemMemoryRegionExpansionQuaternary;
-void* SystemDataTableLegacy;                     // 遗留系统数据表
+void* SystemDataTableHotfix;                                  // 热修复系统数据表
+void* SystemMemoryRegionExpansionJuliet;                     // 系统内存区域扩展Juliet
+void* SystemMemoryRegionExpansionKilo;                      // 系统内存区域扩展Kilo
+void* SystemMemoryRegionExpansionLima;                      // 系统内存区域扩展Lima
+void* SystemMemoryRegionExpansionMike;                      // 系统内存区域扩展Mike
+void* SystemMemoryRegionExpansionPrimary;                    // 系统内存区域扩展主区域
+void* SystemMemoryRegionExpansionTertiary;                   // 系统内存区域扩展第三区域
+void* SystemMemoryRegionExpansionQuaternary;                 // 系统内存区域扩展第四区域
+void* SystemDataTableLegacy;                                  // 遗留系统数据表
 void* SystemMemoryRegionExpansionSecondary;
 void* SystemMemoryRegionExpansionQuinary;
 void* SystemMemoryRegionExpansionSierra;
@@ -53291,7 +53291,7 @@ ResourceAllocationComplete:
           SystemDataBufferPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemDataBufferPointer,ResourceHash,0x10);
         }
         pUnsignedStackFlagSecondary = SystemDataBufferPointer;
-        EncryptionOffsetSecondary._0_4_ = StartSystemThread(SystemDataBufferPointer);
+        SystemEncryptionContext._0_4_ = StartSystemThread(SystemDataBufferPointer);
       }
 MemoryPoolInitialized:
         memcpy(SystemDataBufferPointer + SystemContextReference,ConfigurationDataPointer,(long long)((int)ResourceDataOffset + 2));
@@ -54114,7 +54114,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   void* *pUnsignedStackFlagSecondary;
   uint8_t *pEncryptionOffset;
   uint EncryptionOffsetSecondary;
-  void* MemoryBufferPointer;
+  void* SystemMemoryContext;
   void* *SystemResourceHandlePrimary;
   long long SystemMemoryAllocationContext;
   uint32_t SystemMemoryAllocatorStatus;
@@ -54210,7 +54210,7 @@ SystemOperationSetup:
           SystemDataBufferPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemDataBufferPointer,ResourceHash,0x10);
         }
         pEncryptionOffset = SystemDataBufferPointer;
-        MemoryBufferPointer._0_4_ = StartSystemThread(SystemDataBufferPointer);
+        SystemMemoryBuffer._0_4_ = StartSystemThread(SystemDataBufferPointer);
       }
 SystemResourceSetup:
         /* 系统资源设置：复制配置数据到系统数据缓冲区 */

@@ -30473,7 +30473,14 @@ uint64_t ProcessDataAndValidationB(void)
 
 
 
-uint64_t FUN_18089dda2(void)
+/**
+ * @brief 系统状态验证函数
+ * 
+ * 验证系统数据结构的完整性和安全性，执行多层次的数据验证操作
+ * 
+ * @return uint64_t 验证状态码，0表示成功，非0表示错误码
+ */
+uint64_t ValidateSystemDataStructure(void)
 
 {
   DataBuffer dataValue;
@@ -30546,7 +30553,14 @@ uint64_t FUN_18089dda2(void)
 
 
 
-uint64_t FUN_18089de39(void)
+/**
+ * @brief 系统数据完整性检查函数
+ * 
+ * 检查系统数据的完整性和安全性，确保数据结构的一致性
+ * 
+ * @return uint64_t 检查状态码，0表示成功，非0表示错误码
+ */
+uint64_t CheckSystemDataIntegrity(void)
 
 {
   DataBuffer dataValue;
@@ -30916,7 +30930,16 @@ DataBuffer ProcessDataStreamA1(int64_t param_1,DataBuffer *param_2)
 
 
 
-uint64_t FUN_18089e230(int64_t param_1,int64_t *param_2)
+/**
+ * @brief 端口控制验证函数
+ * 
+ * 验证端口控制操作的合法性和安全性，执行多阶段的安全检查
+ * 
+ * @param param_1 端口控制参数的基地址
+ * @param param_2 验证上下文指针数组
+ * @return uint64_t 验证状态码，0表示成功，非0表示错误码
+ */
+uint64_t ValidatePortControlOperation(int64_t param_1,int64_t *param_2)
 
 {
   int64_t *validationContextPointer;
@@ -31033,7 +31056,14 @@ ValidationCompleteHandler2:
 
 
 
-uint64_t FUN_18089e297(void)
+/**
+ * @brief 系统验证处理函数
+ * 
+ * 执行系统级别的验证操作，检查系统状态和数据完整性
+ * 
+ * @return uint64_t 验证状态码，0表示成功，非0表示错误码
+ */
+uint64_t ProcessSystemValidation(void)
 
 {
   int64_t *validationContextPointer;
@@ -31137,7 +31167,14 @@ ValidationCompleteHandler2:
 
 
 
-uint64_t FUN_18089e2be(void)
+/**
+ * @brief 系统完整性验证函数
+ * 
+ * 验证系统的完整性和一致性，确保系统数据结构未损坏
+ * 
+ * @return uint64_t 验证状态码，0表示成功，非0表示错误码
+ */
+uint64_t ValidateSystemIntegrity(void)
 
 {
   int64_t *validationContextPointer;
@@ -31969,7 +32006,14 @@ ProcessCheckpointValidationExit2:
 
 
 
-uint64_t FUN_18089e87d(void)
+/**
+ * @brief 系统数据验证处理函数
+ * 
+ * 执行系统数据的验证操作，确保数据的有效性和完整性
+ * 
+ * @return uint64_t 验证状态码，0表示成功，非0表示错误码
+ */
+uint64_t ProcessSystemDataValidation(void)
 
 {
   int64_t validationContext;
