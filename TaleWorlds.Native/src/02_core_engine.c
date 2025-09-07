@@ -53915,24 +53915,24 @@ void ProcessSystemDataInitialization(uint64_t CharacterCode,long long *Utf8Input
  * @note 函数内部会处理内存分配失败的情况
  * @note 使用系统全局变量来跟踪分配状态
  */
-void InitializeCoreEngineDataStructure(long long CharacterCode, long long *Utf8InputBufferSize{
+void InitializeCoreEngineDataStructure(long long CharacterCode, long long *Utf8InputBufferSize) {
   int LockResult;
   uint64_t MemoryAllocationIndex;
   long long *MemoryBlockIndex;
   long long SystemDataStructureRegistry;
-  uint8_t aSystemFlagF [32];
+  uint8_t SystemEncryptionKey[32];
   uint32_t MemoryOffsetValue;
-  long long *plStack_b0;
-  long long *plStack_a8;
+  long long *SecondaryMemoryPoolPointer;
+  long long *PrimaryMemoryPoolPointer;
   uint64_t CoreEngineUnsignedValueA0;
-  void *pSystemOperationFlag98;
-  uint8_t *pSystemOperation90;
+  void *SystemOperationFlagPointer;
+  uint8_t *SystemOperationBuffer;
   uint32_t StackValidationData;
-  uint8_t StackBuffer80 [72];
+  uint8_t SystemStackBuffer[72];
   unsigned long long FunctionAddress;
   
   CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemFlagF;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
   MemoryOffsetValue = 0;
   IntegerValue = **(int **)(CharacterCode + 8);
   *(int **)(CharacterCode + 8) = *(int **)(CharacterCode + 8) + 1;
@@ -54008,7 +54008,7 @@ void ProcessCoreEngineDataSynchronization(long long CharacterCode,long long *Utf
   unsigned long long FunctionAddress;
   
   CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemFlagF;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
   MemoryOffsetValue = 0;
   IntegerValue = **(int **)(CharacterCode + 8);
   *(int **)(CharacterCode + 8) = *(int **)(CharacterCode + 8) + 1;
@@ -54084,7 +54084,7 @@ void ValidateCoreEngineDataIntegrity(long long CharacterCode,long long *Utf8Inpu
   unsigned long long FunctionAddress;
   
   CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemFlagF;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
   MemoryOffsetValue = 0;
   EncodingValidationResult = **(int **)(CharacterCode + 8);
   *(int **)(CharacterCode + 8) = *(int **)(CharacterCode + 8) + 1;
@@ -54160,7 +54160,7 @@ void OptimizeCoreEngineDataPerformance(long long CharacterCode,long long *Utf8In
   unsigned long long FunctionAddress;
   
   CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemFlagF;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
   MemoryOffsetValue = 0;
   IntegerValue = **(int **)(CharacterCode + 8);
   *(int **)(CharacterCode + 8) = *(int **)(CharacterCode + 8) + 1;
@@ -54236,7 +54236,7 @@ void CleanupCoreEngineDataResources(long long CharacterCode,long long *Utf8Input
   unsigned long long FunctionAddress;
   
   CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemFlagF;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
   MemoryOffsetValue = 0;
   IntegerValue = **(int **)(CharacterCode + 8);
   *(int **)(CharacterCode + 8) = *(int **)(CharacterCode + 8) + 1;
@@ -54398,7 +54398,7 @@ void ProcessCoreEngineExtendedMemoryAllocation(long long CharacterCode,long long
   unsigned long long FunctionAddress;
   
   CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemFlagF;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
   MemoryOffsetValue = 0;
   IntegerValue = **(int **)(CharacterCode + 8);
   *(int **)(CharacterCode + 8) = *(int **)(CharacterCode + 8) + 1;
@@ -210511,7 +210511,7 @@ LAB_180183f13:
   unsigned long long FunctionAddress;
   
   CoreEngineValueA8 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemFlagF;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
   MemoryOffsetValue = 0;
   pCoreEngineSignedValueA0 = Utf8BufferSize;
   MemoryBlockIndex = AllocateSystemMemoryPool(0x48);
@@ -211158,7 +211158,7 @@ LAB_180184aa5:
   unsigned long long FunctionAddress;
   
   CoreEngineValueA8 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemFlagF;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemEncryptionKey;
   MemoryOffsetValue = 0;
   pCoreEngineSignedValueA0 = Utf8BufferSize;
   MemoryBlockIndex = AllocateSystemMemoryPool(0x48);

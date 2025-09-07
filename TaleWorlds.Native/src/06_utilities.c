@@ -72941,7 +72941,17 @@ void ExecuteExceptionHandlerCallbackOffset88_Alt(DataBuffer operationBase,int64_
 
 
 
-void Unwind_180908b80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数偏移量0x30
+ * 
+ * 该函数负责调用异常处理器，通过偏移量0x30获取异常处理上下文指针
+ * 并执行相应的异常处理操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908b80
+ */
+void CallExceptionHandlerOffset30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100013,7 +100023,19 @@ void Unwind_180910be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器状态重置函数偏移量0x1950
+ * 
+ * 该函数负责重置异常处理器的状态，清理异常处理上下文并设置默认处理器
+ * 使用偏移量0x1950进行异常处理器的配置
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180910c00
+ */
+void ResetExceptionHandlerStateOffset1950(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100041,7 +100063,19 @@ void Unwind_180910c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器状态重置函数偏移量0x19c0
+ * 
+ * 该函数负责重置异常处理器的状态，清理异常处理上下文并设置默认处理器
+ * 使用偏移量0x19c0进行异常处理器的配置
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180910c20
+ */
+void ResetExceptionHandlerStateOffset19c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100069,7 +100103,19 @@ void Unwind_180910c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器状态重置函数偏移量0x1a30
+ * 
+ * 该函数负责重置异常处理器的状态，清理异常处理上下文并设置默认处理器
+ * 使用偏移量0x1a30进行异常处理器的配置
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180910c40
+ */
+void ResetExceptionHandlerStateOffset1a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100097,7 +100143,19 @@ void Unwind_180910c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器状态重置函数偏移量0x1aa0
+ * 
+ * 该函数负责重置异常处理器的状态，清理异常处理上下文并设置默认处理器
+ * 使用偏移量0x1aa0进行异常处理器的配置
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180910c60
+ */
+void ResetExceptionHandlerStateOffset1aa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100125,7 +100183,19 @@ void Unwind_180910c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器状态重置函数偏移量0x1b10
+ * 
+ * 该函数负责重置异常处理器的状态，清理异常处理上下文并设置默认处理器
+ * 使用偏移量0x1b10进行异常处理器的配置
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180910c80
+ */
+void ResetExceptionHandlerStateOffset1b10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100153,7 +100223,19 @@ void Unwind_180910c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器状态重置函数偏移量0x1b80
+ * 
+ * 该函数负责重置异常处理器的状态，清理异常处理上下文并设置默认处理器
+ * 使用偏移量0x1b80进行异常处理器的配置
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180910ca0
+ */
+void ResetExceptionHandlerStateOffset1b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100181,7 +100263,19 @@ void Unwind_180910ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器状态重置函数偏移量0x1bf0
+ * 
+ * 该函数负责重置异常处理器的状态，清理异常处理上下文并设置默认处理器
+ * 使用偏移量0x1bf0进行异常处理器的配置
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180910cc0
+ */
+void ResetExceptionHandlerStateOffset1bf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100237,7 +100331,19 @@ void Unwind_180910ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器状态重置函数偏移量0x1cd0
+ * 
+ * 该函数负责重置异常处理器的状态，清理异常处理上下文并设置默认处理器
+ * 使用偏移量0x1cd0进行异常处理器的配置
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180910d00
+ */
+void ResetExceptionHandlerStateOffset1cd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
