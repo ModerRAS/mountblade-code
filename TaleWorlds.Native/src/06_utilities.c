@@ -196,7 +196,7 @@
  * 
  * @note 原始函数名：ManageMemory
  */
-#define ManageSystemMemory ManageSystemMemory
+#define ManageSystemMemory FUN_18013ea00
 
 /**
  * @brief 系统清理函数A0
@@ -205,7 +205,7 @@
  * 
  * @note 原始函数名：CleanupSystem
  */
-#define CleanupSystemResources CleanupSystemResources
+#define CleanupSystemResources FUN_1808fc5ac
 
 /**
  * @brief 系统配置函数A0
@@ -214,7 +214,7 @@
  * 
  * @note 原始函数名：ConfigureSystemA0
  */
-#define ConfigureSystemParameters ConfigureSystemParameters
+#define ConfigureSystemParameters FUN_1808fc51c
 
 /**
  * @brief 系统处理函数A0
