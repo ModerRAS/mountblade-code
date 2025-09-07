@@ -765,6 +765,8 @@
 #define ExceptionHandlerLevel4_TemporaryHandlerSecondaryOffset 0xdc8
 #define ExceptionHandlerLevel4_TemporaryStatusSecondaryOffset 0xdd0
 #define ExceptionHandlerLevel4_TemporaryStateSecondaryOffset 0xde0
+#define ExceptionHandlerLevel4_FunctionPointerTertiaryOffset 0xe20
+#define ExceptionHandlerLevel4_CallbackParamTertiaryOffset 0xe10
 
 #define ExceptionHandlerLevel5_FunctionPointerOffset 0x11b0
 #define ExceptionHandlerLevel5_CallbackParamOffset 0x11a0
@@ -50064,12 +50066,12 @@ void CleanupExceptionHandlersLevel3(DataBuffer operationBase,int64_t dataBuffer,
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerLevel3_TemporaryStateSecondaryOffset) = 0;
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel3_TemporaryHandlerSecondaryOffset) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel3_SecondaryHandlerOffset) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xd60) != 0) {
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerLevel3_SecondaryStatusOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xd60) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xd70) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xd58) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel3_SecondaryStatusOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerLevel3_SecondaryStateOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel3_SecondaryHandlerOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
