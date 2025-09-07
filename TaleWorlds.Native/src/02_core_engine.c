@@ -224451,7 +224451,7 @@ LAB_180190f00:
       SystemDataTablePointer = SystemDataTablePointer + -0x348;
       FUN_18018e7e0(auStack_378,SystemDataTablePointer);
       FUN_1801917b0(CharacterCode,EncodingConversionResult,SystemDataRegistry,EncodingConversionResult,auStack_378,Utf16EndPointer);
-      FUN_1801431d0(auStack_378);
+      ProcessCharacterInitializeSystem(auStack_378);
     } while (EncodingConversionResult != 0);
   }
   if (Utf8BufferSize < Utf8SourcePointer) {
@@ -224513,7 +224513,7 @@ LAB_18019144a:
         FUN_18018e7e0(auStack_378,pStringOffset + -2);
         FUN_18018d8f0(pStringOffset + -2,CharacterCode);
         FUN_1801917b0(CharacterCode,0,SystemDataRegistry,0,auStack_378,Utf16EndPointer);
-        FUN_1801431d0(auStack_378);
+        ProcessCharacterInitializeSystem(auStack_378);
       }
       CharacterCode = pStringOffset + 0x67;
       pStringOffset = pStringOffset + 0x69;
@@ -224524,7 +224524,7 @@ LAB_18019144a:
       FUN_18018e7e0(auStack_378,SystemStringIndex + CharacterCode + -0x348);
       FUN_18018d8f0(SystemStringIndex + CharacterCode + -0x348,CharacterCode);
       FUN_1801917b0(CharacterCode,0,SystemStringIndex / 0x348 + -1,0,auStack_378,Utf16EndPointer);
-      FUN_1801431d0(auStack_378);
+      ProcessCharacterInitializeSystem(auStack_378);
       SystemStringIndex = SystemStringIndex + -0x348;
     } while (0x68f < SystemStringIndex);
   }
@@ -224634,7 +224634,7 @@ LAB_18019173a:
       FUN_18018e7e0(auStack_358,CharacterCode);
       FUN_18018d8f0(CharacterCode,Utf8BufferSize);
       FUN_18018d8f0(Utf8BufferSize,auStack_358);
-      FUN_1801431d0(auStack_358);
+      ProcessCharacterInitializeSystem(auStack_358);
       CharacterCode = CharacterCode + 0x348;
     }
     if (IsSystemContextValid) {
@@ -229242,8 +229242,8 @@ LAB_18019797c:
     CoreEngineProcessSystemEvent();
   }
   FUN_180397770(CharacterCode + 0x6d6);
-  FUN_1801431d0(CharacterCode + 0x66d);
-  FUN_1801431d0(CharacterCode + 0x603);
+  ProcessCharacterInitializeSystem(CharacterCode + 0x66d);
+  ProcessCharacterInitializeSystem(CharacterCode + 0x603);
   FUN_18038bfe0(CharacterCode + 0x54d);
   _Mtx_destroy_in_situ();
   if (Utf8InputBuffer[0x53e] != 0) {
