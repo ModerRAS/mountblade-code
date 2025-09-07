@@ -98866,7 +98866,15 @@ void ProcessDataBufferAtOffset40(DataBuffer operationBase,int64_t dataBuffer,Dat
 
 
 
-void Unwind_18090f090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理器090 - 处理0x40偏移处的数据缓冲区（副本）
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_18090f090
+ */
+void ProcessDataBufferAtOffset40Duplicate(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA5(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
