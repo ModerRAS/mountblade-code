@@ -1144,8 +1144,11 @@ void* UIGestureCoordinates;
 // 原始函数名：FUN_18069d9e0 - UI系统数据缓冲区处理函数
 #define ProcessUIDataBuffer FUN_18069d9e0
 
-// 原始函数名：FUN_18069dc30 - UI系统内存数据传输函数
-#define TransferUIMemoryData FUN_18069dc30
+// 原始函数名：ProcessUIRenderCommand - UI系统内存数据传输函数
+#define TransferUIMemoryData ProcessUIRenderCommand
+
+// 原始函数名：FUN_18069dfe0 - UI系统上下文数据验证处理函数
+#define ProcessUIContextDataValidation FUN_18069dfe0
 
 // 原始函数名：FUN_18069de90 - UI系统上下文渲染处理函数
 #define ProcessUIContextRendering FUN_18069de90
@@ -2445,16 +2448,16 @@ void* UIGestureCoordinates;
 #define InitializeUIEventQueueProcessor FUN_1806979e0
 
 // UI系统资源验证函数
-// 原始函数名: FUN_180743660
-#define ValidateUIResource FUN_180743660
+// 原始函数名: CheckUIMemoryStatus
+#define ValidateUIResource CheckUIMemoryStatus
 
 // UI系统信号量操作函数
-// 原始函数名: FUN_1807682e0
-#define OperateUISemaphore FUN_1807682e0
+// 原始函数名: InitializeUIContextState
+#define OperateUISemaphore InitializeUIContextState
 
 // UI系统内存分配函数
-// 原始函数名: FUN_180743160
-#define AllocateUIMemory FUN_180743160
+// 原始函数名: ValidateUIMemoryOperation
+#define AllocateUIMemory ValidateUIMemoryOperation
 
 // UI系统事件处理函数
 // 原始函数名: FUN_18075ec10
@@ -66495,7 +66498,7 @@ void ProcessUIDataBuffer(longlong uiContext,undefined1 *dataSource,int targetBuf
  * @param resultPointer 结果指针
  * @param param_6 附加参数
  * 
- * @note 原始函数名：FUN_18069dc30
+ * @note 原始函数名：ProcessUIRenderCommand
  */
 void TransferUIMemoryData(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
                          undefined4 resultPointer,undefined4 param_6)
@@ -66743,27 +66746,45 @@ void ClearUIMemoryRegion(int *uiContext)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18069dfe0(int uiContext,int dataSource,int targetBuffer,undefined8 bufferSize,undefined8 resultPointer,
-void FUN_18069dfe0(int uiContext,int dataSource,int targetBuffer,undefined8 bufferSize,undefined8 resultPointer,
+ /**
+ * 处理UI上下文数据验证
+ * 处理UI上下文数据的验证操作，包括数据完整性检查和状态标志的设置。
+ * 根据上下文类型执行不同的验证逻辑，支持两种不同的处理模式。
+ * 
+ * @param uiContext UI上下文标识符，决定处理模式
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6 - 备用数据源
+ * @param param_7 参数7 - 处理标志
+ * @param param_8 参数8 - 处理标志
+ * @param param_9 参数9 - 备用目标缓冲区
+ * @param uiContext0 UI上下文0 - 目标上下文
+ * @param uiContext1 UI上下文1 - 备用目标上下文
+ * @param uiContext2 UI上下文2 - 验证上下文
+ * @param uiContext3 UI上下文3 - 处理上下文
+ */
+void ProcessUIContextDataValidation(int uiContext,int dataSource,int targetBuffer,undefined8 bufferSize,undefined8 resultPointer,
                   undefined8 param_6,undefined4 param_7,undefined4 param_8,undefined8 param_9,
                   undefined8 uiContext0,undefined8 uiContext1,undefined4 uiContext2,undefined4 uiContext3)
 
 {
   bool isCharacterMatch;
-  byte bVar2;
+  byte validationFlag;
   int compareResult;
-  uint uVar4;
-  uint uVar5;
-  uint uVar6;
-  int iVar7;
-  uint uVar8;
-  int aiStackX_10 [2];
+  uint calculatedSize;
+  uint stackValue1;
+  uint sizeCalculation;
+  int contextShift;
+  uint validationValue;
+  int stackBuffer[2];
   uint bufferValidation;
-  undefined8 uStackX_20;
-  undefined4 functionResult0;
-  int *piVar9;
-  uint uStack_68;
-  uint uStack_60;
+  undefined8 storedBufferSize;
+  undefined4 functionResult;
+  int *bufferPointer;
+  uint stackValidation1;
+  uint stackValidation2;
   
   iVar7 = uiContext >> 1;
   uStackX_20 = bufferSize;
@@ -74673,49 +74694,50 @@ uint ProcessUIDataStream(longlong *uiContext,uint dataSource)
 
 
 
-uint FUN_18070f378(longlong uiContext,undefined8 dataSource,int targetBuffer,uint bufferSize)
+uint ProcessUIBufferData(longlong uiContext,undefined8 dataSource,int targetBuffer,uint bufferSize)
 
 {
-  uint functionResult;
-  byte bVar2;
-  uint uVar3;
+  uint dataValue;
+  byte bitShift;
+  uint bufferData;
   int allocationFlags;
-  longlong *in_R10;
-  uint in_R11D;
+  longlong *contextPointer;
+  uint bitMask;
   
-  functionResult = *(uint *)(uiContext + 8);
+  dataValue = *(uint *)(uiContext + 8);
   do {
-    if (bufferSize < functionResult) {
+    if (bufferSize < dataValue) {
       bufferSize = bufferSize + 1;
-      *(uint *)((longlong)in_R10 + 0xc) = bufferSize;
-      uVar3 = (uint)*(byte *)((ulonglong)(functionResult - bufferSize) + *in_R10);
+      *(uint *)((longlong)contextPointer + 0xc) = bufferSize;
+      bufferData = (uint)*(byte *)((ulonglong)(dataValue - bufferSize) + *contextPointer);
     }
     else {
-      uVar3 = 0;
+      bufferData = 0;
     }
-    bVar2 = (byte)targetBuffer;
+    bitShift = (byte)targetBuffer;
     targetBuffer = targetBuffer + 8;
-    in_R11D = in_R11D | uVar3 << (bVar2 & 0x1f);
+    bitMask = bitMask | bufferData << (bitShift & 0x1f);
   } while (targetBuffer < 0x19);
-  *(int *)(in_R10 + 3) = (int)in_R10[3] + allocationFlags;
-  *(uint *)(in_R10 + 2) = in_R11D >> ((byte)allocationFlags & 0x1f);
-  *(int *)((longlong)in_R10 + 0x14) = targetBuffer - allocationFlags;
-  return (1 << ((byte)allocationFlags & 0x1f)) - 1U & in_R11D;
+  *(int *)(contextPointer + 3) = (int)contextPointer[3] + allocationFlags;
+  *(uint *)(contextPointer + 2) = bitMask >> ((byte)allocationFlags & 0x1f);
+  *(int *)((longlong)contextPointer + 0x14) = targetBuffer - allocationFlags;
+  return (1 << ((byte)allocationFlags & 0x1f)) - 1U & bitMask;
 }
 
 
 
-uint FUN_18070f3b3(undefined8 uiContext,undefined8 dataSource,int targetBuffer)
+uint UpdateUIResourceAllocation(undefined8 uiContext,undefined8 dataSource,int targetBuffer)
 
 {
   int allocationFlags;
-  longlong in_R10;
-  uint in_R11D;
+  longlong contextHandle;
+  uint resourceMask;
   
-  *(int *)(in_R10 + 0x18) = *(int *)(in_R10 + 0x18) + allocationFlags;
-  *(uint *)(in_R10 + 0x10) = in_R11D >> ((byte)allocationFlags & 0x1f);
-  *(int *)(in_R10 + 0x14) = targetBuffer - allocationFlags;
-  return (1 << ((byte)allocationFlags & 0x1f)) - 1U & in_R11D;
+  // 更新UI资源分配状态
+  *(int *)(contextHandle + 0x18) = *(int *)(contextHandle + 0x18) + allocationFlags;
+  *(uint *)(contextHandle + 0x10) = resourceMask >> ((byte)allocationFlags & 0x1f);
+  *(int *)(contextHandle + 0x14) = targetBuffer - allocationFlags;
+  return (1 << ((byte)allocationFlags & 0x1f)) - 1U & resourceMask;
 }
 
 
@@ -78530,29 +78552,30 @@ void FUN_180711810(int *uiContext,undefined8 dataSource,undefined8 targetBuffer,
 
 
 
-undefined8 FUN_180712260(int uiContext,int dataSource,undefined4 *targetBuffer)
+undefined8 ProcessUITargetBuffer(int uiContext,int dataSource,undefined4 *targetBuffer)
 
 {
-  int *poperationResult;
-  int validationResult;
-  int compareResult;
+  int *operationResult;
+  int validationIndex;
+  int compareIndex;
   undefined8 *bufferPtr;
   
+  // 处理UI目标缓冲区，查找匹配的UI上下文和数据源
   bufferPtr = (undefined8 *)&UiDataBuffer;
-  compareResult = 0;
+  compareIndex = 0;
   do {
-    poperationResult = (int *)*bufferPtr;
-    validationResult = 0;
+    operationResult = (int *)*bufferPtr;
+    validationIndex = 0;
     do {
-      if ((uiContext == *poperationResult) && (dataSource << ((byte)validationResult & 0x1f) == poperationResult[0xb] * poperationResult[0xc])) {
+      if ((uiContext == *operationResult) && (dataSource << ((byte)validationIndex & 0x1f) == operationResult[0xb] * operationResult[0xc])) {
         if (targetBuffer != (undefined4 *)0x0) {
           *targetBuffer = 0;
         }
-        return *(undefined8 *)(&UiDataBuffer + (longlong)compareResult * 8);
+        return *(undefined8 *)(&UiDataBuffer + (longlong)compareIndex * 8);
       }
-      validationResult = validationResult + 1;
-    } while (validationResult < 4);
-    compareResult = compareResult + 1;
+      validationIndex = validationIndex + 1;
+    } while (validationIndex < 4);
+    compareIndex = compareIndex + 1;
     bufferPtr = bufferPtr + 1;
     if (0x1809530e7 < (longlong)bufferPtr) {
       if (targetBuffer != (undefined4 *)0x0) {
@@ -78566,8 +78589,8 @@ undefined8 FUN_180712260(int uiContext,int dataSource,undefined4 *targetBuffer)
 
 
 
- void FUN_180712340(longlong uiContext,longlong dataSource,uint targetBuffer,uint bufferSize,int resultPointer,
-void FUN_180712340(longlong uiContext,longlong dataSource,uint targetBuffer,uint bufferSize,int resultPointer,
+ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBuffer,uint bufferSize,int resultPointer,
+void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBuffer,uint bufferSize,int resultPointer,
                   float param_6,float param_7,int param_8,int param_9,longlong uiContext0,int uiContext1
                   )
 
@@ -110996,15 +111019,15 @@ int FUN_180738630(undefined4 *uiContext,undefined4 *dataSource,int targetBuffer)
         validationResult = FUN_180743c40(allocatedMemory);
         stringCompareIndex = 0;
         if ((validationResult != 0) ||
-           ((validationResult = FUN_180743160(allocatedMemory,1), stringCompareIndex = allocatedMemory, validationResult != 0 ||
-            (validationResult = FUN_180743660(allocatedMemory), validationResult != 0)))) {
+           ((validationResult = ValidateUIMemoryOperation(allocatedMemory,1), stringCompareIndex = allocatedMemory, validationResult != 0 ||
+            (validationResult = CheckUIMemoryStatus(allocatedMemory), validationResult != 0)))) {
           if (stringCompareIndex == 0) {
             return validationResult;
           }
-          FUN_180743d80(stringCompareIndex);
+          ReleaseUIMemoryResource(stringCompareIndex);
           return validationResult;
         }
-        FUN_180743d80(allocatedMemory);
+        ReleaseUIMemoryResource(allocatedMemory);
       }
       lVar4 = lVar4 + 8;
     } while (lVar4 < 0x1a0);
@@ -111346,7 +111369,7 @@ void FUN_180738c00(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_180738d3d:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -111396,7 +111419,7 @@ void FUN_180738c1d(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_180738d3d:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -111436,7 +111459,7 @@ void FUN_180738d3d(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -111451,7 +111474,7 @@ void FUN_180738d67(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -111492,7 +111515,7 @@ void FUN_180738d90(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_180738e7f:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -111536,7 +111559,7 @@ void FUN_180738dad(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_180738e7f:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -111571,7 +111594,7 @@ void FUN_180738e7f(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -111586,7 +111609,7 @@ void FUN_180738ea1(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -111627,7 +111650,7 @@ void FUN_180738ed0(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_180738fbf:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -111671,7 +111694,7 @@ void FUN_180738eed(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_180738fbf:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -111706,7 +111729,7 @@ void FUN_180738fbf(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -111721,7 +111744,7 @@ void FUN_180738fe1(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -111762,7 +111785,7 @@ void FUN_180739010(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_1807390fd:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -111806,7 +111829,7 @@ void FUN_18073902d(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_1807390fd:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -111842,7 +111865,7 @@ void FUN_1807390fd(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -111857,7 +111880,7 @@ void FUN_18073911f(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -111898,7 +111921,7 @@ void FUN_180739140(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073922d:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -111942,7 +111965,7 @@ void FUN_18073915d(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073922d:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -111978,7 +112001,7 @@ void FUN_18073922d(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -111993,7 +112016,7 @@ void FUN_18073924f(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -112068,7 +112091,7 @@ void FUN_180739350(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_1807393ea:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -112126,7 +112149,7 @@ void FUN_180739420(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_1807395df:
   if (lStack_168 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_58 ^ (ulonglong)auStack_198);
@@ -112189,7 +112212,7 @@ void FUN_18073943d(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_1807395df:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -112237,7 +112260,7 @@ void FUN_1807395df(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -112252,7 +112275,7 @@ void FUN_180739619(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -112297,7 +112320,7 @@ void FUN_180739640(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_180739773:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -112346,7 +112369,7 @@ void FUN_18073965d(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_180739773:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -112385,7 +112408,7 @@ void FUN_180739773(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -112400,7 +112423,7 @@ void FUN_18073979d(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -112437,7 +112460,7 @@ void FUN_1807397c0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073985a:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -112572,7 +112595,7 @@ void FUN_180739a50(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_180739b3f:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -112616,7 +112639,7 @@ void FUN_180739a6d(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_180739b3f:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -112651,7 +112674,7 @@ void FUN_180739b3f(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -112666,7 +112689,7 @@ void FUN_180739b61(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -112707,7 +112730,7 @@ void FUN_180739b90(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_180739c7d:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -112751,7 +112774,7 @@ void FUN_180739bad(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_180739c7d:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -112787,7 +112810,7 @@ void FUN_180739c7d(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -112802,7 +112825,7 @@ void FUN_180739c9f(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -112843,7 +112866,7 @@ void FUN_180739cc0(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_180739dad:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -112887,7 +112910,7 @@ void FUN_180739cdd(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_180739dad:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -112923,7 +112946,7 @@ void FUN_180739dad(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -112938,7 +112961,7 @@ void FUN_180739dcf(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -112977,7 +113000,7 @@ void FUN_180739df0(undefined8 uiContext,undefined4 dataSource,undefined4 targetB
   }
 LAB_180739e8e:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -113015,7 +113038,7 @@ void FUN_180739ec0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_180739f5a:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -113069,7 +113092,7 @@ void FUN_180739f90(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 LAB_18073a089:
   if (lStack_178 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_58 ^ (ulonglong)auStack_1c8);
@@ -113209,7 +113232,7 @@ void FUN_18073a2c0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073a35a:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -113251,7 +113274,7 @@ void FUN_18073a390(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073a47d:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -113295,7 +113318,7 @@ void FUN_18073a3ad(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073a47d:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -113331,7 +113354,7 @@ void FUN_18073a47d(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -113346,7 +113369,7 @@ void FUN_18073a49f(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -113383,7 +113406,7 @@ void FUN_18073a4c0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073a55a:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -113429,7 +113452,7 @@ void FUN_18073a590(undefined8 uiContext,undefined4 dataSource,undefined4 targetB
   }
 FUN_18073a6c1:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -113478,7 +113501,7 @@ void FUN_18073a5ad(undefined8 uiContext,undefined4 dataSource,undefined4 targetB
   }
 FUN_18073a6c1:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -113519,7 +113542,7 @@ void FUN_18073a6c1(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -113534,7 +113557,7 @@ void FUN_18073a6eb(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -113575,7 +113598,7 @@ void FUN_18073a710(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073a7fd:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -113619,7 +113642,7 @@ void FUN_18073a72d(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073a7fd:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -113655,7 +113678,7 @@ void FUN_18073a7fd(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -113670,7 +113693,7 @@ void FUN_18073a81f(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -113721,7 +113744,7 @@ void FUN_18073a840(undefined8 uiContext,undefined4 *dataSource,undefined4 *targe
     FUN_180749ef0(operationResult,1,uiContext,&UNK_1809571a8);
   }
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -113776,7 +113799,7 @@ void FUN_18073a85d(undefined8 uiContext,undefined4 *dataSource,undefined4 *targe
     FUN_180749ef0(operationResult,1,uiContext,&UNK_1809571a8,&stack0x00000040);
   }
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -113815,7 +113838,7 @@ void FUN_18073a98b(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -113830,7 +113853,7 @@ void FUN_18073a9b5(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -113867,7 +113890,7 @@ void FUN_18073a9e0(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 LAB_18073aa6e:
   if (lStack_138 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_28 ^ (ulonglong)auStack_168);
@@ -113905,7 +113928,7 @@ void FUN_18073aab0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073ab4a:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -114021,7 +114044,7 @@ void FUN_18073acc0(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073adad:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -114065,7 +114088,7 @@ void FUN_18073acdd(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073adad:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -114101,7 +114124,7 @@ void FUN_18073adad(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -114116,7 +114139,7 @@ void FUN_18073adcf(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -114167,7 +114190,7 @@ void FUN_18073adf0(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_18073af6d:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -114224,7 +114247,7 @@ void FUN_18073ae0d(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_18073af6d:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -114268,7 +114291,7 @@ void FUN_18073af6d(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -114283,7 +114306,7 @@ void FUN_18073af9f(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -114334,7 +114357,7 @@ void FUN_18073afc0(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_18073b13d:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -114391,7 +114414,7 @@ void FUN_18073afdd(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_18073b13d:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -114435,7 +114458,7 @@ void FUN_18073b13d(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -114450,7 +114473,7 @@ void FUN_18073b16f(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -114495,7 +114518,7 @@ void FUN_18073b190(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073b2c4:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -114544,7 +114567,7 @@ void FUN_18073b1ad(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073b2c4:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -114585,7 +114608,7 @@ void FUN_18073b2c4(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -114600,7 +114623,7 @@ void FUN_18073b2ee(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -114637,7 +114660,7 @@ void FUN_18073b310(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073b3a8:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -114679,7 +114702,7 @@ void FUN_18073b3e0(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_18073b4cf:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -114723,7 +114746,7 @@ void FUN_18073b3fd(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_18073b4cf:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -114758,7 +114781,7 @@ void FUN_18073b4cf(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -114773,7 +114796,7 @@ void FUN_18073b4f1(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -114804,7 +114827,7 @@ LAB_18073b573:
       lStack_128 = 0;
     }
     else {
-      operationResult = FUN_180743d80();
+      operationResult = ReleaseUIMemoryResource();
       if (operationResult == 0) goto LAB_18073b573;
     }
     operationResult = FUN_180748500(uStack_120);
@@ -114818,7 +114841,7 @@ LAB_18073b573:
   }
 LAB_18073b5be:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -114876,7 +114899,7 @@ void FUN_18073b5f0(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073b7af:
   if (lStack_168 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_58 ^ (ulonglong)auStack_198);
@@ -114939,7 +114962,7 @@ void FUN_18073b60d(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073b7af:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -114987,7 +115010,7 @@ void FUN_18073b7af(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -115002,7 +115025,7 @@ void FUN_18073b7e9(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -115039,7 +115062,7 @@ void FUN_18073b810(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073b8a8:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -115077,7 +115100,7 @@ void FUN_18073b8e0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073b97a:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -115119,7 +115142,7 @@ void FUN_18073b9b0(undefined8 uiContext,undefined8 dataSource,undefined4 targetB
   }
 FUN_18073ba9f:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -115163,7 +115186,7 @@ void FUN_18073b9cd(undefined8 uiContext,undefined8 dataSource,undefined4 targetB
   }
 FUN_18073ba9f:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -115199,7 +115222,7 @@ void FUN_18073ba9f(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -115214,7 +115237,7 @@ void FUN_18073bac1(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -115255,7 +115278,7 @@ void FUN_18073baf0(undefined8 uiContext,undefined4 dataSource,undefined4 targetB
   }
 FUN_18073bbdd:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -115299,7 +115322,7 @@ void FUN_18073bb0d(undefined8 uiContext,undefined4 dataSource,undefined4 targetB
   }
 FUN_18073bbdd:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -115336,7 +115359,7 @@ void FUN_18073bbdd(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -115351,7 +115374,7 @@ void FUN_18073bbff(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -115388,7 +115411,7 @@ void FUN_18073bc20(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073bcb8:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -115426,7 +115449,7 @@ void FUN_18073bcf0(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073bd88:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -115464,7 +115487,7 @@ void FUN_18073bdc0(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073be58:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -115502,7 +115525,7 @@ void FUN_18073be90(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073bf28:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -115540,7 +115563,7 @@ void FUN_18073bf60(undefined8 uiContext)
   }
 LAB_18073bfe2:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -115582,7 +115605,7 @@ void FUN_18073c020(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073c111:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -115626,7 +115649,7 @@ void FUN_18073c03d(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073c111:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -115662,7 +115685,7 @@ void FUN_18073c111(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -115677,7 +115700,7 @@ void FUN_18073c133(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -115719,7 +115742,7 @@ void FUN_18073c160(undefined8 uiContext,longlong dataSource,undefined4 targetBuf
   }
 FUN_18073c258:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -115770,7 +115793,7 @@ void FUN_18073c17d(undefined8 uiContext,longlong dataSource,undefined4 targetBuf
   }
 FUN_18073c258:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -115805,7 +115828,7 @@ void FUN_18073c258(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -115820,7 +115843,7 @@ void FUN_18073c27a(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -115857,7 +115880,7 @@ void FUN_18073c2a0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073c33b:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -115899,7 +115922,7 @@ void FUN_18073c380(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073c471:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -115943,7 +115966,7 @@ void FUN_18073c39d(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073c471:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -115979,7 +116002,7 @@ void FUN_18073c471(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -115994,7 +116017,7 @@ void FUN_18073c493(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -116111,7 +116134,7 @@ void FUN_18073c5f0(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_18073c6e3:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -116155,7 +116178,7 @@ void FUN_18073c60d(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_18073c6e3:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -116190,7 +116213,7 @@ void FUN_18073c6e3(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -116205,7 +116228,7 @@ void FUN_18073c705(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -116258,7 +116281,7 @@ void FUN_18073c730(undefined8 uiContext,ulonglong *dataSource,ulonglong *targetB
   }
 FUN_18073c87f:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -116315,7 +116338,7 @@ void FUN_18073c74d(undefined8 uiContext,ulonglong *dataSource,ulonglong *targetB
   }
 FUN_18073c87f:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -116354,7 +116377,7 @@ void FUN_18073c87f(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -116369,7 +116392,7 @@ void FUN_18073c8a9(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -116406,7 +116429,7 @@ void FUN_18073c8d0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073c96e:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -116444,7 +116467,7 @@ void FUN_18073c9b0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073ca4b:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -116482,7 +116505,7 @@ void FUN_18073ca90(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073cb2b:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -116549,7 +116572,7 @@ void FUN_18073cc30(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073cccb:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -116590,7 +116613,7 @@ void FUN_18073cd10(undefined8 uiContext,undefined1 *dataSource)
   }
 LAB_18073cdb6:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -116628,7 +116651,7 @@ void FUN_18073cdf0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073ce8e:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -116672,7 +116695,7 @@ void FUN_18073ced0(undefined8 uiContext,longlong dataSource,longlong targetBuffe
   }
 FUN_18073cfcb:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -116718,7 +116741,7 @@ void FUN_18073ceed(undefined8 uiContext,longlong dataSource,longlong targetBuffe
   }
 FUN_18073cfcb:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -116753,7 +116776,7 @@ void FUN_18073cfcb(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -116768,7 +116791,7 @@ void FUN_18073cfed(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -116809,7 +116832,7 @@ void FUN_18073d010(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_18073d103:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -116853,7 +116876,7 @@ void FUN_18073d02d(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_18073d103:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -116888,7 +116911,7 @@ void FUN_18073d103(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -116903,7 +116926,7 @@ void FUN_18073d125(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -116940,7 +116963,7 @@ void FUN_18073d150(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073d1f1:
   if (lStack_138 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_28 ^ (ulonglong)auStack_168);
@@ -116988,7 +117011,7 @@ void FUN_18073d230(undefined8 uiContext,longlong dataSource,longlong targetBuffe
   }
 FUN_18073d372:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -117039,7 +117062,7 @@ void FUN_18073d24d(undefined8 uiContext,longlong dataSource,longlong targetBuffe
   }
 FUN_18073d372:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -117079,7 +117102,7 @@ void FUN_18073d372(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -117094,7 +117117,7 @@ void FUN_18073d39c(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -117136,7 +117159,7 @@ void FUN_18073d3c0(undefined8 uiContext,longlong dataSource,undefined4 targetBuf
   }
 FUN_18073d4b8:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -117187,7 +117210,7 @@ void FUN_18073d3dd(undefined8 uiContext,longlong dataSource,undefined4 targetBuf
   }
 FUN_18073d4b8:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -117222,7 +117245,7 @@ void FUN_18073d4b8(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -117237,7 +117260,7 @@ void FUN_18073d4da(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -117290,7 +117313,7 @@ void FUN_18073d500(undefined8 uiContext,undefined8 dataSource,undefined4 targetB
   }
 FUN_18073d683:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -117351,7 +117374,7 @@ void FUN_18073d51d(undefined8 uiContext,undefined8 dataSource,undefined4 targetB
   }
 FUN_18073d683:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -117397,7 +117420,7 @@ void FUN_18073d683(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -117412,7 +117435,7 @@ void FUN_18073d6b5(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -117449,7 +117472,7 @@ void FUN_18073d6e0(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073d77c:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -117487,7 +117510,7 @@ void FUN_18073d7c0(undefined8 uiContext,undefined1 dataSource)
   }
 LAB_18073d85d:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -117525,7 +117548,7 @@ void FUN_18073d8a0(undefined8 uiContext,undefined1 dataSource)
   }
 LAB_18073d93d:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -117563,7 +117586,7 @@ void FUN_18073d980(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073da1e:
   if (lStack_138 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_28 ^ (ulonglong)auStack_168);
@@ -117605,7 +117628,7 @@ void FUN_18073da60(undefined8 uiContext,undefined4 dataSource,undefined4 targetB
   }
 FUN_18073db4f:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -117655,7 +117678,7 @@ void FUN_18073da7d(undefined8 uiContext,undefined4 dataSource,undefined4 targetB
   }
 FUN_18073db4f:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -117691,7 +117714,7 @@ void FUN_18073db4f(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -117706,7 +117729,7 @@ void FUN_18073db71(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -117743,7 +117766,7 @@ void FUN_18073dba0(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073dc41:
   if (lStack_138 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_28 ^ (ulonglong)auStack_168);
@@ -117781,7 +117804,7 @@ void FUN_18073dc80(undefined8 uiContext,undefined1 dataSource)
   }
 LAB_18073dd1d:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -117819,7 +117842,7 @@ void FUN_18073dd60(undefined8 uiContext)
   }
 LAB_18073dde3:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -118817,7 +118840,7 @@ void FUN_18073ebd0(undefined8 uiContext)
       validationResult = FUN_180743c40(allocatedMemory);
       if (validationResult == 0) {
         validationResult = (**(code **)(*aplStack_128[0] + 0x18))(aplStack_128[0],1);
-        FUN_180743d80(allocatedMemory);
+        ReleaseUIMemoryResource(allocatedMemory);
       }
       if (validationResult == 0) goto LAB_18073ec81;
     }
@@ -119248,7 +119271,7 @@ void FUN_18073f130(undefined8 uiContext,undefined8 dataSource,undefined1 targetB
   }
 LAB_18073f20b:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -119290,7 +119313,7 @@ void FUN_18073f240(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073f32d:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -119334,7 +119357,7 @@ void FUN_18073f25d(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073f32d:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -119370,7 +119393,7 @@ void FUN_18073f32d(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -119385,7 +119408,7 @@ void FUN_18073f34f(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -119426,7 +119449,7 @@ void FUN_18073f370(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073f45d:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -119470,7 +119493,7 @@ void FUN_18073f38d(undefined8 uiContext,undefined4 dataSource,undefined8 targetB
   }
 FUN_18073f45d:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -119506,7 +119529,7 @@ void FUN_18073f45d(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -119521,7 +119544,7 @@ void FUN_18073f47f(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -119558,7 +119581,7 @@ void FUN_18073f4a0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073f53a:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -119596,7 +119619,7 @@ void FUN_18073f570(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073f60a:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -119634,7 +119657,7 @@ void FUN_18073f640(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073f6da:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -119672,7 +119695,7 @@ void FUN_18073f710(undefined8 uiContext)
   }
 LAB_18073f792:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -119711,7 +119734,7 @@ void FUN_18073f8b0(undefined8 uiContext,undefined8 *dataSource)
     FUN_180749ef0(operationResult,2,uiContext,&UNK_180957ba8);
   }
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -119752,7 +119775,7 @@ void FUN_18073f990(undefined8 uiContext,undefined4 *dataSource)
   }
 LAB_18073fa2f:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -119797,7 +119820,7 @@ void FUN_18073fa70(undefined8 uiContext,undefined4 *dataSource,undefined4 target
   }
 FUN_18073fb64:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -119844,7 +119867,7 @@ void FUN_18073fa8d(undefined8 uiContext,undefined4 *dataSource,undefined4 target
   }
 FUN_18073fb64:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -119880,7 +119903,7 @@ void FUN_18073fb64(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -119895,7 +119918,7 @@ void FUN_18073fb86(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -119935,7 +119958,7 @@ void FUN_18073fbb0(undefined8 uiContext,undefined1 *dataSource)
   }
 LAB_18073fc56:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -119973,7 +119996,7 @@ void FUN_18073fc90(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18073fd2a:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -120011,7 +120034,7 @@ void FUN_18073fd60(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073fdf8:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -120053,7 +120076,7 @@ void FUN_18073fe30(undefined8 uiContext,undefined4 dataSource,undefined4 targetB
   }
 FUN_18073ff1d:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -120097,7 +120120,7 @@ void FUN_18073fe4d(undefined8 uiContext,undefined4 dataSource,undefined4 targetB
   }
 FUN_18073ff1d:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -120134,7 +120157,7 @@ void FUN_18073ff1d(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -120149,7 +120172,7 @@ void FUN_18073ff3f(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -120186,7 +120209,7 @@ void FUN_18073ff60(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_18073fff8:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -120235,7 +120258,7 @@ void FUN_180740030(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 LAB_180740150:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -120277,7 +120300,7 @@ void FUN_180740190(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_180740283:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -120321,7 +120344,7 @@ void FUN_1807401ad(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_180740283:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -120356,7 +120379,7 @@ void FUN_180740283(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -120371,7 +120394,7 @@ void FUN_1807402a5(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -120412,7 +120435,7 @@ void FUN_1807402d0(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_1807403bf:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -120456,7 +120479,7 @@ void FUN_1807402ed(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_1807403bf:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -120491,7 +120514,7 @@ void FUN_1807403bf(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -120506,7 +120529,7 @@ void FUN_1807403e1(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -120543,7 +120566,7 @@ void FUN_180740410(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_1807404aa:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -120585,7 +120608,7 @@ void FUN_1807404e0(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_1807405cf:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -120629,7 +120652,7 @@ void FUN_1807404fd(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
 FUN_1807405cf:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -120664,7 +120687,7 @@ void FUN_1807405cf(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -120679,7 +120702,7 @@ void FUN_1807405f1(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -121025,7 +121048,7 @@ void FUN_180740c00(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_180740c9a:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -121092,7 +121115,7 @@ void FUN_180740d90(undefined8 uiContext)
   }
 LAB_180740e13:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -121130,7 +121153,7 @@ void FUN_180740e50(undefined8 uiContext)
   }
 LAB_180740ed2:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -121168,7 +121191,7 @@ void FUN_180740f10(undefined8 uiContext,undefined1 dataSource)
   }
 LAB_180740faf:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -121206,7 +121229,7 @@ void FUN_180740ff0(undefined8 uiContext,undefined1 dataSource)
   }
 LAB_18074108c:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -121244,7 +121267,7 @@ void FUN_1807410d0(undefined8 uiContext,undefined8 dataSource)
   }
 LAB_18074116a:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -121290,7 +121313,7 @@ void FUN_1807411a0(undefined8 uiContext,undefined4 dataSource,undefined4 targetB
   }
 FUN_1807412d1:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_188);
@@ -121339,7 +121362,7 @@ void FUN_1807411bd(undefined8 uiContext,undefined4 dataSource,undefined4 targetB
   }
 FUN_1807412d1:
   if (param_6 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -121381,7 +121404,7 @@ void FUN_1807412d1(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -121396,7 +121419,7 @@ void FUN_1807412fb(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -121437,7 +121460,7 @@ void FUN_180741320(undefined8 uiContext,undefined1 dataSource,undefined1 targetB
   }
 FUN_180741413:
   if (lStack_148 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_178);
@@ -121481,7 +121504,7 @@ void FUN_18074133d(undefined8 uiContext,undefined1 dataSource,undefined1 targetB
   }
 FUN_180741413:
   if (lStack0000000000000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -121518,7 +121541,7 @@ void FUN_180741413(void)
   ulonglong in_stack_00000140;
   
   if (in_stack_00000030 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
@@ -121533,7 +121556,7 @@ void FUN_180741435(void)
 {
   ulonglong in_stack_00000140;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
@@ -121842,7 +121865,7 @@ void FUN_1807418b0(undefined8 uiContext,undefined4 dataSource)
   }
 LAB_180741958:
   if (lStack_138 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_28 ^ (ulonglong)auStack_168);
@@ -121898,7 +121921,7 @@ void FUN_1807419a0(undefined8 uiContext,undefined8 dataSource,undefined4 targetB
   }
 FUN_180741b27:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_198);
@@ -121960,7 +121983,7 @@ void FUN_1807419bd(undefined8 uiContext,undefined8 dataSource,undefined4 targetB
   }
 FUN_180741b27:
   if (lStack0000000000000040 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
@@ -122006,7 +122029,7 @@ void FUN_180741b27(void)
   ulonglong in_stack_00000150;
   
   if (in_stack_00000040 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
@@ -122021,7 +122044,7 @@ void FUN_180741b59(void)
 {
   ulonglong in_stack_00000150;
   
-  FUN_180743d80();
+  ReleaseUIMemoryResource();
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
 }
@@ -122074,15 +122097,15 @@ undefined8 FUN_180741c20(int *uiContext)
   undefined8 functionResult;
   
   if (*uiContext == 0) {
-    functionResult = FUN_1807682e0(uiContext + 0x48,0);
+    functionResult = InitializeUIContextState(uiContext + 0x48,0);
     if ((int)functionResult != 0) {
       return functionResult;
     }
-    functionResult = FUN_1807682e0(uiContext + 0x46,0);
+    functionResult = InitializeUIContextState(uiContext + 0x46,0);
     if ((int)functionResult != 0) {
       return functionResult;
     }
-    functionResult = FUN_1807682e0(uiContext + 0x4a,0);
+    functionResult = InitializeUIContextState(uiContext + 0x4a,0);
     if ((int)functionResult != 0) {
       return functionResult;
     }
@@ -122218,13 +122241,13 @@ void FUN_180741e10(longlong uiContext,int dataSource,undefined8 targetBuffer,und
   uStack_58 = XorEncryptionKey ^ (ulonglong)auStack_198;
   lVar5 = (longlong)dataSource;
   if (*(longlong *)(bufferData + 0x378) == 0) {
-    validationResult = FUN_1807682e0(uiContext + 0x378,1);
+    validationResult = InitializeUIContextState(uiContext + 0x378,1);
     if (validationResult != 0) {
                     // WARNING: Subroutine does not return
       ExecuteUIRenderTask(uStack_58 ^ (ulonglong)auStack_198);
     }
   }
-  FUN_180768360(*(undefined8 *)(uiContext + 0x378));
+  CleanupUIContextState(*(undefined8 *)(uiContext + 0x378));
   if (*(code **)(uiContext + 0x358) == (code *)0x0) {
     if ((*(byte *)(uiContext + 0x330) & 1) == 0) {
       piVar4 = (int *)FUN_18076c8c0(*(undefined8 *)(uiContext + 0x370),lVar5);
@@ -122394,10 +122417,10 @@ void FUN_180742250(longlong *uiContext,int *dataSource)
   bool isCharacterMatch3;
   
   functionResult0 = 0;
-  if ((uiContext[0x6f] == 0) && (operationResult = FUN_1807682e0(uiContext + 0x6f,1), operationResult != 0)) {
+  if ((uiContext[0x6f] == 0) && (operationResult = InitializeUIContextState(uiContext + 0x6f,1), operationResult != 0)) {
     return;
   }
-  FUN_180768360(uiContext[0x6f]);
+  CleanupUIContextState(uiContext[0x6f]);
   if (uiContext[0x6b] == 0) {
     if ((*(byte *)(uiContext + 0x66) & 1) == 0) {
       operationResult = func_0x00018076c250(dataSource);
@@ -122529,7 +122552,7 @@ FUN_180742460(longlong uiContext,longlong dataSource,int targetBuffer,undefined4
   *(undefined8 *)(uiContext + 0x358) = 0;
   *(undefined8 *)(uiContext + 0x360) = 0;
   *(undefined8 *)(uiContext + 0x368) = 0;
-  semaphoreHandle = FUN_1807682e0(uiContext + 0x378,
+  semaphoreHandle = InitializeUIContextState(uiContext + 0x378,
                         CONCAT31((uint3)(*(uint *)(uiContext + 0x330) >> 9),
                                  ~(byte)(*(uint *)(uiContext + 0x330) >> 1)) & 0xffffff01);
   return semaphoreHandle;
@@ -122628,9 +122651,9 @@ FUN_180742aca:
                     // WARNING: Subroutine does not return
     ExecuteUIRenderTask(uStack_58 ^ (ulonglong)auStack_1b8);
   }
-  if ((uiContext[0x6f] == 0) && (validationResult = FUN_1807682e0(uiContext + 0x6f,1), validationResult != 0))
+  if ((uiContext[0x6f] == 0) && (validationResult = InitializeUIContextState(uiContext + 0x6f,1), validationResult != 0))
   goto FUN_180742aca;
-  FUN_180768360(uiContext[0x6f]);
+  CleanupUIContextState(uiContext[0x6f]);
   if ((uiContext[0x6b] == 0) && ((*(byte *)(uiContext + 0x66) & 1) == 0)) {
     functionResult1 = 0;
     validationResult = func_0x00018076c250(dataSource);
@@ -122806,11 +122829,11 @@ void FUN_1807426bf(void)
   bool isCharacterMatch4;
   ulonglong in_stack_00000160;
   
-  if ((in_ZF) && (operationResult = FUN_1807682e0(context + 0x6f,1), operationResult != 0)) {
+  if ((in_ZF) && (operationResult = InitializeUIContextState(context + 0x6f,1), operationResult != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteUIRenderTask(in_stack_00000160 ^ (ulonglong)&stack0x00000000);
   }
-  FUN_180768360(context[0x6f]);
+  CleanupUIContextState(context[0x6f]);
   if ((context[0x6b] == 0) && ((*(byte *)(context + 0x66) & 1) == 0)) {
     uVar9 = 0;
     operationResult = func_0x00018076c250();
@@ -123279,7 +123302,7 @@ undefined8 FUN_180743010(longlong uiContext)
 
 
 
-undefined8 FUN_180743160(longlong uiContext,char dataSource)
+undefined8 ValidateUIMemoryOperation(longlong uiContext,char dataSource)
 
 {
   int operationResult;
@@ -124007,7 +124030,7 @@ void FUN_1807435ef(void)
  void ReleaseUIComponent(longlong uiContext)
  释放UI组件资源
  *  uiContext UI组件的内存地址
-  原始函数名：FUN_180743660
+  原始函数名：CheckUIMemoryStatus
  void ReleaseUIComponent(longlong uiContext)
 
 {
@@ -124048,7 +124071,7 @@ void FUN_1807435ef(void)
   if ((bufferSize == '\0') || (semaphoreHandle = func_0x000180743c20(uiContext,1), (int)semaphoreHandle == 0)) {
     uVar4 = targetBuffer + 7U & 0xfffffff8;
     if (((int)(*(int *)(bufferData + 0x10780) + uVar4) < 0x10001) ||
-       (functionResult = FUN_180743160(uiContext,1), functionResult == 0)) {
+       (functionResult = ValidateUIMemoryOperation(uiContext,1), functionResult == 0)) {
       puVar3 = (uint *)(uiContext + 0x780 + (longlong)*(int *)(bufferData + 0x10780));
       *puVar3 = *puVar3 & 0xff;
       *puVar3 = *puVar3 | uVar4 << 8;
@@ -124077,7 +124100,7 @@ int FUN_180743741(int uiContext)
   int allocationFlags;
   undefined8 *unaff_R14;
   
-  if ((uiContext + allocationFlags < 0x10001) || (operationResult = FUN_180743160(), operationResult == 0)) {
+  if ((uiContext + allocationFlags < 0x10001) || (operationResult = ValidateUIMemoryOperation(), operationResult == 0)) {
     psemaphoreHandle = (uint *)(context + 0x780 + (longlong)*(int *)(context + 0x10780));
     *psemaphoreHandle = *psemaphoreHandle & 0xff;
     *psemaphoreHandle = *psemaphoreHandle | allocationFlags << 8;
@@ -124387,7 +124410,7 @@ undefined8 FUN_180743c40(longlong uiContext)
     if (*(longlong *)(bufferData + 0x11598) == 0) {
       return 0x1c;
     }
-    functionResult = FUN_180768360();
+    functionResult = CleanupUIContextState();
     if ((int)functionResult != 0) {
       return functionResult;
     }
@@ -124403,7 +124426,7 @@ undefined8 FUN_180743cc0(longlong uiContext,undefined1 dataSource)
   undefined8 functionResult;
   
   if (*(longlong *)(bufferData + 0x115a8) != 0) {
-    functionResult = FUN_180768360();
+    functionResult = CleanupUIContextState();
     if ((int)functionResult != 0) {
       return functionResult;
     }
@@ -124457,7 +124480,7 @@ undefined8 FUN_180743cc0(longlong uiContext,undefined1 dataSource)
  * 则调用相应的销毁函数进行清理。
   resourceManager 资源管理器指针
   操作结果状态码，0表示成功
-  原始函数名: FUN_180743d80
+  原始函数名: ReleaseUIMemoryResource
  uint64_t DestroyUIResourceManager(void* resourceManager)
 {
   if (*(int64_t *)(resourceManager + 0x11598) != 0) {
@@ -124499,10 +124522,10 @@ undefined8 FUN_180743e10(longlong uiContext)
 
 {
   if (*(longlong *)(bufferData + 0x11538) != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   if (*(longlong *)(bufferData + 0x11548) != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   return 0;
 }
@@ -125267,7 +125290,7 @@ ulonglong FUN_180744ee0(ulonglong uiContext,char dataSource)
   }
   FUN_18078c0a0(uiContext,0);
   if (uVar6 != 0) {
-    FUN_180743d80(uVar6);
+    ReleaseUIMemoryResource(uVar6);
   }
   uVar6 = functionResult1;
   eventTypeCode = functionResult1;
@@ -125305,8 +125328,8 @@ ulonglong FUN_180744ee0(ulonglong uiContext,char dataSource)
       uVar6 = (ulonglong)functionResult0;
     } while ((int)functionResult0 < *(int *)(bufferData + 0x1e0));
   }
-  FUN_180743d80(uiContext);
-  FUN_180743160(uiContext,1);
+  ReleaseUIMemoryResource(uiContext);
+  ValidateUIMemoryOperation(uiContext,1);
   FUN_18078c0a0(uiContext,0);
   if (*(char *)(uiContext + 0x12370) != '\0') {
     FUN_180767ad0(uiContext + 0x12220);
@@ -125444,7 +125467,7 @@ ulonglong FUN_180744ee0(ulonglong uiContext,char dataSource)
           *(undefined8 *)(uiContext + 0x11418) = 0;
           *(undefined1 *)(uiContext + 9) = 0;
         }
-        FUN_180743160(uiContext,1);
+        ValidateUIMemoryOperation(uiContext,1);
         FUN_18078c0a0(uiContext,0);
       }
       if ((*(longlong *)(bufferData + 0x107b8) != 0) &&
@@ -125453,8 +125476,8 @@ ulonglong FUN_180744ee0(ulonglong uiContext,char dataSource)
         FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar8,&UNK_180958000,0x343,1);
       }
       uVar6 = FUN_1807437c0(uiContext);
-      if ((((int)uVar6 == 0) && (uVar6 = FUN_180743160(uiContext,1), (int)uVar6 == 0)) &&
-         (uVar6 = FUN_180743660(uiContext), (int)uVar6 == 0)) {
+      if ((((int)uVar6 == 0) && (uVar6 = ValidateUIMemoryOperation(uiContext,1), (int)uVar6 == 0)) &&
+         (uVar6 = CheckUIMemoryStatus(uiContext), (int)uVar6 == 0)) {
         func_0x00018078a4c0(uiContext + 0x720,auStackX_8);
         uVar6 = FUN_18078a260(uiContext + 0x720);
         if ((((int)uVar6 == 0) && (uVar6 = FUN_180742070(uiContext + 0x10848), (int)uVar6 == 0)) &&
@@ -125573,7 +125596,7 @@ undefined8 FUN_1807455f0(longlong uiContext)
     *(undefined4 *)(plVar5 + 9) = 1;
     plVar5[0x14] = 0;
     plVar5[0x15] = 0;
-    compareResult = FUN_1807682e0(plVar5 + 7,0);
+    compareResult = InitializeUIContextState(plVar5 + 7,0);
     if ((compareResult != 0) || (compareResult = (**(code **)(*colorBufferPointer + 8))(colorBufferPointer,plVar5), compareResult != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),contextData,&UNK_18095b500,0xb8,1);
@@ -125797,7 +125820,7 @@ ulonglong FUN_180745870(longlong uiContext,longlong dataSource,uint targetBuffer
   if (uVar3 == 0) {
     lVar4 = *(longlong *)(plVar5[0x21] + 0x10);
     eventTypeCode = *(undefined8 *)(lVar4 + 0x168);
-    FUN_180768360(eventTypeCode);
+    CleanupUIContextState(eventTypeCode);
     *(longlong **)(plVar5[0x21] + 0x28) = plVar5;
     allocatedMemory = plVar5[0x21];
     plVar5 = (longlong *)(allocatedMemory + 0x18);
@@ -125953,7 +125976,7 @@ ulonglong FUN_1807458a3(undefined4 uiContext,undefined4 dataSource,undefined8 ta
   if (uVar3 == 0) {
     lVar4 = *(longlong *)(plVar5[0x21] + 0x10);
     eventTypeCode = *(undefined8 *)(lVar4 + 0x168);
-    FUN_180768360(eventTypeCode);
+    CleanupUIContextState(eventTypeCode);
     *(longlong **)(plVar5[0x21] + 0x28) = plVar5;
     allocatedMemory = plVar5[0x21];
     plVar5 = (longlong *)(allocatedMemory + 0x18);
@@ -126184,7 +126207,7 @@ ulonglong FUN_180745946(undefined4 uiContext,undefined4 dataSource)
     if (uVar5 == 0) {
       contextData = *(longlong *)(plVar7[0x21] + 0x10);
       uVar9 = *(undefined8 *)(contextData + 0x168);
-      FUN_180768360(uVar9);
+      CleanupUIContextState(uVar9);
       *(longlong **)(plVar7[0x21] + 0x28) = plVar7;
       allocatedMemory0 = plVar7[0x21];
       plVar7 = (longlong *)(allocatedMemory0 + 0x18);
@@ -126280,7 +126303,7 @@ void FUN_180745cff(void)
   
   allocatedMemory = *(longlong *)(*(longlong *)(unaff_RSI + 0x108) + 0x10);
   semaphoreHandle = *(undefined8 *)(allocatedMemory + 0x168);
-  FUN_180768360(semaphoreHandle);
+  CleanupUIContextState(semaphoreHandle);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x108) + 0x28) = unaff_RSI;
   stringCompareIndex = *(longlong *)(unaff_RSI + 0x108);
   plVar4 = (longlong *)(stringCompareIndex + 0x18);
@@ -126778,7 +126801,7 @@ ulonglong FUN_180746bf0(longlong uiContext,uint dataSource,uint targetBuffer,und
   uVar5 = functionResult1;
   uStackX_20 = bufferSize;
   do {
-    uVar4 = FUN_1807682e0(uiContext + ((longlong)(int)uVar5 + 0x22a6) * 8,0);
+    uVar4 = InitializeUIContextState(uiContext + ((longlong)(int)uVar5 + 0x22a6) * 8,0);
     functionResult3 = (undefined4)((ulonglong)in_stack_ffffffffffffff60 >> 0x20);
     if ((int)uVar4 != 0) {
       return uVar4;
@@ -126946,7 +126969,7 @@ ulonglong FUN_180746bf0(longlong uiContext,uint dataSource,uint targetBuffer,und
                             (ulonglong)poperationResult2 & 0xffffffff00000000);
       if ((lVar9 != 0) &&
          (pcontextData = (longlong *)func_0x000180754f90(lVar9), pcontextData != (longlong *)0x0)) {
-        FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+        CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
         lVar9 = *(longlong *)(bufferData + 0x11740);
         pcontextData[1] = uiContext + 0x11740;
         *pcontextData = lVar9;
@@ -126998,7 +127021,7 @@ ulonglong FUN_180746c35(void)
   functionResult5 = 0;
   uVar9 = functionResult5;
   do {
-    uVar8 = FUN_1807682e0(unaff_RDI + ((longlong)(int)uVar9 + 0x22a6) * 8,0);
+    uVar8 = InitializeUIContextState(unaff_RDI + ((longlong)(int)uVar9 + 0x22a6) * 8,0);
     if ((int)uVar8 != 0) {
       return uVar8;
     }
@@ -127161,7 +127184,7 @@ ulonglong FUN_180746c35(void)
                              (ulonglong)pfunctionResult2 & 0xffffffff00000000);
       if ((allocatedMemory3 != 0) &&
          (pallocatedMemory0 = (longlong *)func_0x000180754f90(allocatedMemory3), pallocatedMemory0 != (longlong *)0x0)) {
-        FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+        CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
         allocatedMemory3 = *(longlong *)(uiContext + 0x11740);
         pallocatedMemory0[1] = unaff_RDI + 0x11740;
         *pallocatedMemory0 = allocatedMemory3;
@@ -127330,7 +127353,7 @@ int FUN_180746d01(void)
                             CONCAT44(uVar5,functionResult1));
       if ((lVar7 != 0) &&
          (plVar9 = (longlong *)func_0x000180754f90(lVar7), plVar9 != (longlong *)0x0)) {
-        FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+        CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
         lVar7 = *(longlong *)(uiContext + 0x11740);
         plVar9[1] = unaff_RDI + 0x11740;
         *plVar9 = lVar7;
@@ -129858,7 +129881,7 @@ LAB_18078c477:
       FUN_180743d60(uiContext,7);
     }
   }
-  iVar5 = FUN_180743660(uiContext);
+  iVar5 = CheckUIMemoryStatus(uiContext);
   if (iVar5 == 0) {
     if (uiContext != 0) {
       func_0x000180743c20(uiContext,6);
@@ -135590,7 +135613,7 @@ undefined8 FUN_180750240(longlong uiContext)
   if ((*(longlong *)(bufferData + 0x108) != 0) &&
      (((*(int *)(bufferData + 0x110) != 0 && (*(int *)(bufferData + 0x110) != 2)) ||
       (*(char *)(uiContext + 0x5c) != '\0')))) {
-    FUN_180768360(*(undefined8 *)(*(longlong *)(*(longlong *)(bufferData + 0x108) + 0x10) + 0x168));
+    CleanupUIContextState(*(undefined8 *)(*(longlong *)(*(longlong *)(bufferData + 0x108) + 0x10) + 0x168));
     allocatedMemory = *(longlong *)(bufferData + 0x108);
     colorBufferPointer = (longlong *)(allocatedMemory + 0x18);
     **(longlong **)(allocatedMemory + 0x20) = *colorBufferPointer;
@@ -135615,7 +135638,7 @@ void FUN_18075027d(void)
   longlong *colorBufferPointer;
   longlong context;
   
-  FUN_180768360(*(undefined8 *)(*(longlong *)(in_RAX + 0x10) + 0x168));
+  CleanupUIContextState(*(undefined8 *)(*(longlong *)(in_RAX + 0x10) + 0x168));
   allocatedMemory = *(longlong *)(context + 0x108);
   colorBufferPointer = (longlong *)(allocatedMemory + 0x18);
   **(longlong **)(allocatedMemory + 0x20) = *colorBufferPointer;
@@ -135955,7 +135978,7 @@ undefined8 FUN_180750bc0(longlong uiContext,int dataSource,undefined8 *targetBuf
          ((*(uint *)(plVar7 + 0xb) >> 4 & 1) != 0)) {
         componentIndex = *(longlong *)(plVar7[0x21] + 0x10);
         uVar6 = *(undefined8 *)(componentIndex + 0x168);
-        FUN_180768360(uVar6);
+        CleanupUIContextState(uVar6);
         *(int *)(plVar7 + 0x18) = dataSource;
         LOCK();
         *(undefined4 *)(plVar7 + 0x22) = 5;
@@ -136069,7 +136092,7 @@ FUN_180750bf2(longlong uiContext,undefined8 dataSource,undefined8 *targetBuffer,
          ((*(uint *)(plVar7 + 0xb) >> 4 & 1) != 0)) {
         componentIndex = *(longlong *)(plVar7[0x21] + 0x10);
         uVar6 = *(undefined8 *)(componentIndex + 0x168);
-        FUN_180768360(uVar6);
+        CleanupUIContextState(uVar6);
         *(int *)(plVar7 + 0x18) = iVar5;
         LOCK();
         *(undefined4 *)(plVar7 + 0x22) = 5;
@@ -136111,7 +136134,7 @@ void FUN_180750caa(void)
   
   allocatedMemory = *(longlong *)(in_RAX + 0x10);
   semaphoreHandle = *(undefined8 *)(allocatedMemory + 0x168);
-  FUN_180768360(semaphoreHandle);
+  CleanupUIContextState(semaphoreHandle);
   *(undefined4 *)(unaff_RSI + 0xc0) = unaff_EBP;
   LOCK();
   *(undefined4 *)(unaff_RSI + 0x110) = 5;
@@ -136763,7 +136786,7 @@ int FUN_180751800(undefined8 *uiContext)
       if ((uiContext[0x21] != 0) &&
          (((*(int *)(bufferData + 0x22) != 0 && (*(int *)(bufferData + 0x22) != 2)) ||
           (*(char *)((longlong)uiContext + 0x5c) != '\0')))) {
-        FUN_180768360(*(undefined8 *)(*(longlong *)(uiContext[0x21] + 0x10) + 0x168));
+        CleanupUIContextState(*(undefined8 *)(*(longlong *)(uiContext[0x21] + 0x10) + 0x168));
         lVar5 = uiContext[0x21];
         plVar9 = (longlong *)(lVar5 + 0x18);
         **(longlong **)(lVar5 + 0x20) = *plVar9;
@@ -136919,7 +136942,7 @@ int FUN_180751800(undefined8 *uiContext)
         }
         if (uiContext[7] == 0) {
           uiContext[6] = 0;
-          FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+          CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
           plVar9 = uiContext + 1;
           *(longlong *)uiContext[2] = *plVar9;
           *(undefined8 *)(*plVar9 + 8) = uiContext[2];
@@ -136994,7 +137017,7 @@ int FUN_180751811(undefined8 *uiContext)
       if ((uiContext[0x21] != 0) &&
          (((*(int *)(bufferData + 0x22) != 0 && (*(int *)(bufferData + 0x22) != 2)) ||
           (*(char *)((longlong)uiContext + 0x5c) != '\0')))) {
-        FUN_180768360(*(undefined8 *)(*(longlong *)(uiContext[0x21] + 0x10) + 0x168));
+        CleanupUIContextState(*(undefined8 *)(*(longlong *)(uiContext[0x21] + 0x10) + 0x168));
         lVar5 = uiContext[0x21];
         plVar9 = (longlong *)(lVar5 + 0x18);
         **(longlong **)(lVar5 + 0x20) = *plVar9;
@@ -137150,7 +137173,7 @@ int FUN_180751811(undefined8 *uiContext)
         }
         if (uiContext[7] == 0) {
           uiContext[6] = 0;
-          FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+          CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
           plVar9 = uiContext + 1;
           *(longlong *)uiContext[2] = *plVar9;
           *(undefined8 *)(*plVar9 + 8) = uiContext[2];
@@ -137343,7 +137366,7 @@ void FUN_1807519a8(undefined8 uiContext,longlong *dataSource)
   }
   if (context[7] == 0) {
     context[6] = 0;
-    FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+    CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
     plVar4 = context + 1;
     *(longlong *)context[2] = *plVar4;
     *(undefined8 *)(*plVar4 + 8) = context[2];
@@ -137422,7 +137445,7 @@ void FUN_180751d7a(longlong uiContext)
   }
   if (context[7] == 0) {
     context[6] = CONCAT44(unaff_0000003c,allocationFlags);
-    FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+    CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
     pallocatedMemory = context + 1;
     *(longlong *)context[2] = *pallocatedMemory;
     *(undefined8 *)(*pallocatedMemory + 8) = context[2];
@@ -137799,7 +137822,7 @@ void FUN_1807526e0(undefined8 *uiContext,longlong dataSource)
       *(undefined8 *)(lVar4 + 0x118) = *(undefined8 *)(uiContext[0x1b] + 0x11720);
     }
   }
-  FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+  CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
   pallocatedMemory = uiContext + 0x24;
   *(longlong *)uiContext[0x25] = *pallocatedMemory;
   *(undefined8 *)(*pallocatedMemory + 8) = uiContext[0x25];
@@ -140422,7 +140445,7 @@ undefined4 FUN_180754fe0(longlong uiContext,int *dataSource)
   undefined8 *pfunctionResult;
   
   if (dataSource != (int *)0x0) {
-    FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+    CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
     pfunctionResult = *(undefined8 **)(uiContext + 0x28);
     *dataSource = 0;
     for (; pfunctionResult != (undefined8 *)(uiContext + 0x28); pfunctionResult = (undefined8 *)*pfunctionResult) {
@@ -140451,7 +140474,7 @@ undefined8 FUN_180755070(longlong *uiContext)
   }
   if (*(longlong **)(uiContext[3] + 0x11720) == (longlong *)0x0) {
     if (uiContext[0xc] == 0) {
-      FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+      CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
       *(longlong *)uiContext[1] = *uiContext;
       *(longlong *)(*uiContext + 8) = uiContext[1];
       uiContext[1] = (longlong)uiContext;
@@ -140482,7 +140505,7 @@ undefined8 FUN_180755070(longlong *uiContext)
     *pallocatedMemory = (longlong)pallocatedMemory;
     pallocatedMemory = pstringCompareIndex;
   }
-  FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+  CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
   pallocatedMemory = uiContext + 5;
   colorBufferPointer = (longlong *)*pallocatedMemory;
   while (colorBufferPointer != pallocatedMemory) {
@@ -140531,7 +140554,7 @@ void FUN_1807550a5(void)
       in_R10 = colorBufferPointer;
     } while (colorBufferPointer != in_R11);
   }
-  FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+  CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
   pallocatedMemory = (longlong *)(unaff_RDI + 0x28);
   colorBufferPointer = (longlong *)*pallocatedMemory;
   while (colorBufferPointer != pallocatedMemory) {
@@ -140559,7 +140582,7 @@ void FUN_1807551c2(void)
                     // WARNING: Subroutine does not return
     FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),unaff_RDI[0xc],&UNK_1809586e0,0xb7,1);
   }
-  FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+  CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
   *(longlong *)unaff_RDI[1] = *unaff_RDI;
   *(longlong *)(*unaff_RDI + 8) = unaff_RDI[1];
   unaff_RDI[1] = (longlong)unaff_RDI;
@@ -140581,7 +140604,7 @@ void FUN_180755270(longlong *uiContext)
                     // WARNING: Subroutine does not return
     FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uiContext[0xc],&UNK_1809586e0,0xb7,1);
   }
-  FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+  CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
   *(longlong *)uiContext[1] = *uiContext;
   *(longlong *)(*uiContext + 8) = uiContext[1];
   uiContext[1] = (longlong)uiContext;
@@ -141775,7 +141798,7 @@ void FUN_180756aa0(longlong *uiContext,longlong *dataSource,longlong targetBuffe
              (iVar5 = (**(code **)(*(longlong *)uiContext[0x3b] + 0x30))(), iVar5 == 0)) {
             *(int *)(dataSource + 0x27) = (int)dataSource[0x27] + 1;
             if ((dataSource[0x23] != 0) && ((*(uint *)(uiContext[0x3b] + 0x3c) & 0x10000) == 0)) {
-              FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+              CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
               pallocatedMemory = (longlong *)dataSource[0x23];
               *(longlong *)pallocatedMemory[1] = *pallocatedMemory;
               *(longlong *)(*pallocatedMemory + 8) = pallocatedMemory[1];
@@ -141875,7 +141898,7 @@ void FUN_180756b90(void)
      (iVar5 = (**(code **)(*(longlong *)context[0x3b] + 0x30))(), iVar5 == 0)) {
     *(int *)(unaff_RDI + 0x27) = (int)unaff_RDI[0x27] + 1;
     if ((unaff_RDI[0x23] != 0) && ((*(uint *)(context[0x3b] + 0x3c) & 0x10000) == 0)) {
-      FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+      CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
       pallocatedMemory = (longlong *)unaff_RDI[0x23];
       *(longlong *)pallocatedMemory[1] = *pallocatedMemory;
       *(longlong *)(*pallocatedMemory + 8) = pallocatedMemory[1];
@@ -144299,7 +144322,7 @@ ulonglong FUN_1807594d0(ulonglong uiContext,ulonglong dataSource,int targetBuffe
       componentIndex = *(longlong *)(uStackX_8 + 0xa8);
       isCharacterMatch8 = false;
       if (param_6 != '\0') {
-        FUN_180743160(componentIndex,1);
+        ValidateUIMemoryOperation(componentIndex,1);
         isCharacterMatch8 = componentIndex != 0;
         if (isCharacterMatch8) {
           func_0x000180743c20(componentIndex,1);
@@ -144369,7 +144392,7 @@ LAB_1807595e2:
   componentIndex = *(longlong *)(bufferData + 0xa8);
   isCharacterMatch8 = false;
   if (param_6 != '\0') {
-    FUN_180743160(componentIndex,1);
+    ValidateUIMemoryOperation(componentIndex,1);
     isCharacterMatch8 = componentIndex != 0;
     if (isCharacterMatch8) {
       func_0x000180743c20(componentIndex,1);
@@ -144425,7 +144448,7 @@ LAB_180759661:
   if ((int)uVar5 == 0) {
     if (bufferSize == 0) {
       if (param_6 != '\0') {
-        FUN_180743160(*(undefined8 *)(uiContext + 0xa8),1);
+        ValidateUIMemoryOperation(*(undefined8 *)(uiContext + 0xa8),1);
         func_0x000180743c20(*(undefined8 *)(uiContext + 0xa8),1);
       }
       sVar1 = *(short *)(uiContext + 0x1ae);
@@ -144496,7 +144519,7 @@ LAB_180759661:
         componentIndex = *(longlong *)(uVar5 + 0xa8);
         isCharacterMatch8 = false;
         if (param_6 != '\0') {
-          FUN_180743160(componentIndex,1);
+          ValidateUIMemoryOperation(componentIndex,1);
           isCharacterMatch8 = componentIndex != 0;
           if (isCharacterMatch8) {
             func_0x000180743c20(componentIndex,1);
@@ -144552,7 +144575,7 @@ LAB_180759a33:
       }
       else {
         if (param_6 != '\0') {
-          FUN_180743160(*(undefined8 *)(uVar5 + 0xa8),1);
+          ValidateUIMemoryOperation(*(undefined8 *)(uVar5 + 0xa8),1);
           func_0x000180743c20(*(undefined8 *)(uVar5 + 0xa8),1);
         }
         sVar1 = *(short *)(uVar5 + 0x1ac);
@@ -144621,7 +144644,7 @@ LAB_180759a33:
           *(undefined8 *)(dataSource + 8) = *(undefined8 *)(uVar5 + 8);
           *(undefined8 *)(dataSource + 0x10) = *(undefined8 *)(uVar5 + 0x10);
           componentIndex = *(longlong *)(dataSource + 0xa8);
-          if ((param_6 != '\0') && (FUN_180743160(componentIndex,1), componentIndex != 0)) {
+          if ((param_6 != '\0') && (ValidateUIMemoryOperation(componentIndex,1), componentIndex != 0)) {
             func_0x000180743c20(componentIndex,1);
             isCharacterMatch8 = true;
           }
@@ -149281,7 +149304,7 @@ undefined8 FUN_18075d7f0(longlong uiContext,char dataSource,char targetBuffer,ch
     iVar7 = 0;
     functionResult0 = -(uint)(bufferSize != '\0') & 5;
     if (resultPointer != '\0') {
-      FUN_180743160(*(undefined8 *)(uiContext + 0xa8),1);
+      ValidateUIMemoryOperation(*(undefined8 *)(uiContext + 0xa8),1);
       func_0x000180743c20(*(undefined8 *)(uiContext + 0xa8));
     }
     if (bufferSize == '\0') {
@@ -149351,7 +149374,7 @@ LAB_18075d910:
     iVar7 = 0;
     functionResult0 = -(uint)(bufferSize != '\0') & 5;
     if (resultPointer != '\0') {
-      FUN_180743160(*(undefined8 *)(uiContext + 0xa8),1);
+      ValidateUIMemoryOperation(*(undefined8 *)(uiContext + 0xa8),1);
       func_0x000180743c20(*(undefined8 *)(uiContext + 0xa8));
     }
     if (bufferSize == '\0') {
@@ -149503,7 +149526,7 @@ ulonglong FUN_18075dcc0(longlong uiContext,longlong dataSource,ulonglong targetB
   bVar4 = false;
   if (dataSource == 0) {
     if (resultPointer != '\0') {
-      FUN_180743160(componentIndex,1);
+      ValidateUIMemoryOperation(componentIndex,1);
       func_0x000180743c20(*(undefined8 *)(uiContext + 0xa8),1);
     }
     sVar1 = *(short *)(uiContext + 0x1a8);
@@ -149590,7 +149613,7 @@ LAB_18075dfdf:
           stringCompareIndex = *(longlong *)(bufferData + 0xa8);
           isCharacterMatch5 = false;
           if (resultPointer != '\0') {
-            FUN_180743160(stringCompareIndex,1);
+            ValidateUIMemoryOperation(stringCompareIndex,1);
             isCharacterMatch5 = stringCompareIndex != 0;
             if (isCharacterMatch5) {
               func_0x000180743c20(stringCompareIndex,1);
@@ -149806,7 +149829,7 @@ ulonglong FUN_18075dcce(longlong uiContext,longlong dataSource,ulonglong targetB
   lStack0000000000000030 = allocatedMemory2;
   if (dataSource == 0) {
     if (in_stack_000000a0 != '\0') {
-      FUN_180743160(allocatedMemory2,1);
+      ValidateUIMemoryOperation(allocatedMemory2,1);
       func_0x000180743c20(*(undefined8 *)(uiContext + 0xa8),1);
     }
     sVar1 = *(short *)(uiContext + 0x1a8);
@@ -149893,7 +149916,7 @@ LAB_18075dfdf:
           allocatedMemory2 = *(longlong *)(bufferData + 0xa8);
           isCharacterMatch3 = false;
           if (in_stack_000000a0 != '\0') {
-            FUN_180743160(allocatedMemory2,1);
+            ValidateUIMemoryOperation(allocatedMemory2,1);
             isCharacterMatch3 = allocatedMemory2 != 0;
             if (isCharacterMatch3) {
               func_0x000180743c20(allocatedMemory2,1);
@@ -150128,7 +150151,7 @@ ulonglong FUN_18075e059(void)
         componentIndex = *(longlong *)(context + 0xa8);
         isCharacterMatch0 = false;
         if (in_stack_000000a0 != '\0') {
-          FUN_180743160(componentIndex,1);
+          ValidateUIMemoryOperation(componentIndex,1);
           isCharacterMatch0 = componentIndex != 0;
           if (isCharacterMatch0) {
             func_0x000180743c20(componentIndex,1);
@@ -150465,7 +150488,7 @@ ulonglong FUN_18075e740(longlong uiContext,int dataSource,ulonglong *targetBuffe
   isCharacterMatch1 = false;
   eventTypeCode = 0;
   if (param_6 != '\0') {
-    FUN_180743160(allocatedMemory,1);
+    ValidateUIMemoryOperation(allocatedMemory,1);
     isCharacterMatch1 = allocatedMemory != 0;
     if (isCharacterMatch1) {
       func_0x000180743c20(allocatedMemory,1);
@@ -150726,7 +150749,7 @@ undefined4 FUN_18075eb70(longlong uiContext,int *dataSource,char targetBuffer,ch
   }
   else {
     if (bufferSize != '\0') {
-      FUN_180743160(*(undefined8 *)(uiContext + 0xa8),1);
+      ValidateUIMemoryOperation(*(undefined8 *)(uiContext + 0xa8),1);
       func_0x000180743c20(*(undefined8 *)(uiContext + 0xa8),1);
     }
     if (targetBuffer == '\0') {
@@ -150758,7 +150781,7 @@ undefined4 FUN_18075ec10(longlong uiContext,int *dataSource,char targetBuffer,ch
   }
   else {
     if (bufferSize != '\0') {
-      FUN_180743160(*(undefined8 *)(uiContext + 0xa8),1);
+      ValidateUIMemoryOperation(*(undefined8 *)(uiContext + 0xa8),1);
       func_0x000180743c20(*(undefined8 *)(uiContext + 0xa8),1);
     }
     if (targetBuffer == '\0') {
@@ -150942,7 +150965,7 @@ ulonglong FUN_18075ef40(longlong uiContext,int dataSource,ulonglong *targetBuffe
   isCharacterMatch1 = false;
   eventTypeCode = 0;
   if (param_6 != '\0') {
-    FUN_180743160(allocatedMemory,1);
+    ValidateUIMemoryOperation(allocatedMemory,1);
     isCharacterMatch1 = allocatedMemory != 0;
     if (isCharacterMatch1) {
       func_0x000180743c20(allocatedMemory,1);
@@ -151368,7 +151391,7 @@ ulonglong FUN_18075f970(longlong uiContext)
       return uVar4;
     }
     if ((*(uint *)(uiContext + 100) & 0x300) != 0) {
-      FUN_180743160(*(undefined8 *)(uiContext + 0xa8),1);
+      ValidateUIMemoryOperation(*(undefined8 *)(uiContext + 0xa8),1);
       uVar4 = FUN_18075dcc0(uiContext,0,0,1,1,4);
       if ((int)uVar4 != 0) {
         return uVar4;
@@ -151884,7 +151907,7 @@ ulonglong FUN_18075fdb0(longlong uiContext,longlong dataSource,char targetBuffer
   ulonglong functionResult3;
   
   if (targetBuffer != '\0') {
-    FUN_180743160(*(undefined8 *)(uiContext + 0xa8),1);
+    ValidateUIMemoryOperation(*(undefined8 *)(uiContext + 0xa8),1);
     func_0x000180743c20(*(undefined8 *)(uiContext + 0xa8),1);
   }
   sVar1 = *(short *)(uiContext + 0x1ae);
@@ -152135,7 +152158,7 @@ LAB_18075feb6:
       allocatedMemory = *(longlong *)(unaff_R14 + 0xa8);
       functionResult3 = 0;
       isCharacterMatch4 = false;
-      if ((unaff_BPL != '\0') && (FUN_180743160(allocatedMemory,1), allocatedMemory != 0)) {
+      if ((unaff_BPL != '\0') && (ValidateUIMemoryOperation(allocatedMemory,1), allocatedMemory != 0)) {
         func_0x000180743c20(allocatedMemory,1);
         isCharacterMatch4 = true;
       }
@@ -152194,7 +152217,7 @@ LAB_180760204:
         isCharacterMatch4 = false;
         allocatedMemory = *(longlong *)(unaff_R13 + 0xa8);
         if (in_stack_000000b0 != '\0') {
-          FUN_180743160(allocatedMemory,1);
+          ValidateUIMemoryOperation(allocatedMemory,1);
           isCharacterMatch4 = allocatedMemory != 0;
           if (isCharacterMatch4) {
             func_0x000180743c20(allocatedMemory,1);
@@ -152277,7 +152300,7 @@ LAB_180760306:
   allocatedMemory = *(longlong *)(unaff_R13 + 0xa8);
   functionResult3 = 0;
   isCharacterMatch4 = false;
-  if ((unaff_BPL != '\0') && (FUN_180743160(allocatedMemory,1), allocatedMemory != 0)) {
+  if ((unaff_BPL != '\0') && (ValidateUIMemoryOperation(allocatedMemory,1), allocatedMemory != 0)) {
     func_0x000180743c20(allocatedMemory,1);
     isCharacterMatch4 = true;
   }
@@ -152333,7 +152356,7 @@ LAB_18075ffc4:
       uVar3 = 0;
       allocatedMemory = *(longlong *)(in_stack_000000a0 + 0xa8);
       isCharacterMatch4 = false;
-      if ((in_stack_000000b0 != '\0') && (FUN_180743160(allocatedMemory,1), allocatedMemory != 0)) {
+      if ((in_stack_000000b0 != '\0') && (ValidateUIMemoryOperation(allocatedMemory,1), allocatedMemory != 0)) {
         func_0x000180743c20(allocatedMemory,1);
         isCharacterMatch4 = true;
       }
@@ -152442,7 +152465,7 @@ LAB_18075feb6:
     allocatedMemory = *(longlong *)(unaff_R14 + 0xa8);
     functionResult3 = 0;
     isCharacterMatch4 = false;
-    if ((unaff_BPL != '\0') && (FUN_180743160(allocatedMemory,1), allocatedMemory != 0)) {
+    if ((unaff_BPL != '\0') && (ValidateUIMemoryOperation(allocatedMemory,1), allocatedMemory != 0)) {
       func_0x000180743c20(allocatedMemory,1);
       isCharacterMatch4 = true;
     }
@@ -152501,7 +152524,7 @@ LAB_180760204:
       isCharacterMatch4 = false;
       allocatedMemory = *(longlong *)(unaff_R13 + 0xa8);
       if (in_stack_000000b0 != '\0') {
-        FUN_180743160(allocatedMemory,1);
+        ValidateUIMemoryOperation(allocatedMemory,1);
         isCharacterMatch4 = allocatedMemory != 0;
         if (isCharacterMatch4) {
           func_0x000180743c20(allocatedMemory,1);
@@ -152587,7 +152610,7 @@ LAB_180760306:
   allocatedMemory = *(longlong *)(unaff_R13 + 0xa8);
   functionResult3 = 0;
   isCharacterMatch4 = false;
-  if ((unaff_BPL != '\0') && (FUN_180743160(allocatedMemory,1), allocatedMemory != 0)) {
+  if ((unaff_BPL != '\0') && (ValidateUIMemoryOperation(allocatedMemory,1), allocatedMemory != 0)) {
     func_0x000180743c20(allocatedMemory,1);
     isCharacterMatch4 = true;
   }
@@ -152643,7 +152666,7 @@ LAB_18075ffc4:
       uVar3 = 0;
       allocatedMemory = *(longlong *)(in_stack_000000a0 + 0xa8);
       isCharacterMatch4 = false;
-      if ((in_stack_000000b0 != '\0') && (FUN_180743160(allocatedMemory,1), allocatedMemory != 0)) {
+      if ((in_stack_000000b0 != '\0') && (ValidateUIMemoryOperation(allocatedMemory,1), allocatedMemory != 0)) {
         func_0x000180743c20(allocatedMemory,1);
         isCharacterMatch4 = true;
       }
@@ -160640,7 +160663,7 @@ undefined8 FUN_180768280(undefined1 *uiContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_1807682e0(longlong *uiContext,char dataSource)
+undefined4 InitializeUIContextState(longlong *uiContext,char dataSource)
 
 {
   longlong allocatedMemory;
@@ -160662,7 +160685,7 @@ undefined4 FUN_1807682e0(longlong *uiContext,char dataSource)
 
 
 
-undefined4 FUN_180768360(longlong uiContext)
+undefined4 CleanupUIContextState(longlong uiContext)
 
 {
   if (uiContext == 0) {
@@ -161574,7 +161597,7 @@ undefined4 FUN_180769080(longlong *uiContext)
     }
   }
   if (uiContext[0x31] != 0) {
-    FUN_180768360(*(undefined8 *)(uiContext[0x31] + 0x198));
+    CleanupUIContextState(*(undefined8 *)(uiContext[0x31] + 0x198));
     pallocatedMemory = uiContext + 1;
     if (pallocatedMemory == *(longlong **)(uiContext[0x31] + 400)) {
       *(longlong *)(uiContext[0x31] + 400) = *pallocatedMemory;
@@ -161650,7 +161673,7 @@ undefined8 FUN_180769220(longlong uiContext,uint dataSource,longlong targetBuffe
       if ((int)eventTypeCode != 0) {
         return eventTypeCode;
       }
-      FUN_180768360(*(undefined8 *)(*(longlong *)(bufferData + 0x188) + 0x198));
+      CleanupUIContextState(*(undefined8 *)(*(longlong *)(bufferData + 0x188) + 0x198));
       pallocatedMemory = (longlong *)(uiContext + 8);
       plVar8 = (longlong *)(*(longlong *)(bufferData + 0x188) + 0x170);
       contextData = *plVar8;
@@ -161950,7 +161973,7 @@ undefined8 FUN_180769860(longlong uiContext)
   semaphoreHandle = *(undefined8 *)(uiContext + 0x198);
   *(undefined4 *)(plVar5 + 0x34) = uVar6;
   *(char *)((longlong)plVar5 + 0x1a4) = cVar8;
-  iVar4 = FUN_1807682e0(plVar5 + 0x33,0);
+  iVar4 = InitializeUIContextState(plVar5 + 0x33,0);
   if (iVar4 == 0) {
     eventTypeCode = 0;
     if (cVar8 != '\0') {
@@ -162944,7 +162967,7 @@ undefined8 FUN_18076a800(longlong uiContext)
   if (*(char *)(uiContext + 0x168) == '\0') {
     return 0;
   }
-  FUN_180768360(*(undefined8 *)(uiContext + 0x198));
+  CleanupUIContextState(*(undefined8 *)(uiContext + 0x198));
   pfunctionResult = *(undefined8 **)(uiContext + 0x170);
   *(undefined8 **)(uiContext + 0x188) = pfunctionResult;
   while( true ) {
@@ -162971,7 +162994,7 @@ void FUN_18076a81f(void)
   undefined8 *pfunctionResult;
   longlong unaff_R14;
   
-  FUN_180768360();
+  CleanupUIContextState();
   pfunctionResult = *(undefined8 **)(unaff_R14 + 0x170);
   *(undefined8 **)(unaff_R14 + 0x188) = pfunctionResult;
   while( true ) {
@@ -163040,7 +163063,7 @@ undefined8 FUN_18076abd0(int uiContext)
 
 {
   if (uiContext != 0) {
-    FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x118));
+    CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x118));
     *(undefined4 *)(_DAT_180be12f0 + 4) = 1;
     return 0;
   }
@@ -163077,7 +163100,7 @@ void FUN_18076ac40(int uiContext,longlong *dataSource)
     ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_188);
   }
   uVar3 = *(undefined8 *)(_DAT_180be12f0 + 0x128);
-  FUN_180768360(uVar3);
+  CleanupUIContextState(uVar3);
   if (*colorBufferPointer == 0) {
     uStack_168 = 0x200000;
     lVar5 = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x178,&UNK_180958cb0);
@@ -163092,7 +163115,7 @@ void FUN_18076ac40(int uiContext,longlong *dataSource)
     *(undefined8 *)(lVar5 + 0x160) = 0;
     *(undefined8 *)(lVar5 + 0x168) = 0;
     *(int *)(lVar5 + 0x170) = uiContext;
-    iVar4 = FUN_1807682e0((undefined8 *)(lVar5 + 0x168),0);
+    iVar4 = InitializeUIContextState((undefined8 *)(lVar5 + 0x168),0);
     if (iVar4 == 0) {
                     // WARNING: Subroutine does not return
       FUN_18076b390(auStack_138,0x100,&UNK_180958c88,*(undefined4 *)(lVar5 + 0x170));
@@ -163121,7 +163144,7 @@ undefined8 FUN_18076ade0(void)
   if (*(longlong *)(_DAT_180be12f0 + 0x128) == 0) {
     return 0;
   }
-  FUN_180768360();
+  CleanupUIContextState();
   pstringCompareIndex = (longlong *)0x180c0c728;
   componentIndex = 5;
   do {
@@ -163155,7 +163178,7 @@ void FUN_18076adfb(void)
   longlong componentIndex;
   longlong *pstringCompareIndex;
   
-  FUN_180768360();
+  CleanupUIContextState();
   pstringCompareIndex = (longlong *)0x180c0c728;
   componentIndex = 5;
   do {
@@ -163193,7 +163216,7 @@ void FUN_18076aee0(longlong uiContext)
 {
   longlong *pallocatedMemory;
   
-  FUN_180768360(*(undefined8 *)(uiContext + 0x168));
+  CleanupUIContextState(*(undefined8 *)(uiContext + 0x168));
   pallocatedMemory = *(longlong **)(uiContext + 0x150);
   if (pallocatedMemory != (longlong *)(uiContext + 0x150)) {
     *(longlong *)pallocatedMemory[1] = *pallocatedMemory;
@@ -191196,7 +191219,7 @@ void FUN_180785b10(longlong uiContext,longlong dataSource,undefined4 *targetBuff
   operationResult = FUN_180758ed0(dataSource,&lStackX_20,0);
   if (operationResult == 0) {
     semaphoreHandle = *(undefined8 *)(uiContext + 0x170);
-    FUN_180768360(semaphoreHandle);
+    CleanupUIContextState(semaphoreHandle);
     pstringCompareIndex = (longlong *)
              ((longlong)*(int *)(lStackX_20 + 0x1d0) * 0x40 + *(longlong *)(bufferData + 0x150));
   }
@@ -191206,7 +191229,7 @@ void FUN_180785b10(longlong uiContext,longlong dataSource,undefined4 *targetBuff
       return;
     }
     semaphoreHandle = *(undefined8 *)(uiContext + 0x170);
-    FUN_180768360(semaphoreHandle);
+    CleanupUIContextState(semaphoreHandle);
     pstringCompareIndex = (longlong *)(alStack_18[0] + 0x208);
   }
   if ((int)pstringCompareIndex[3] != 1) {
@@ -191253,7 +191276,7 @@ void FUN_180785c10(longlong uiContext,undefined8 *dataSource,undefined8 *targetB
   uStack_60 = XorEncryptionKey ^ (ulonglong)auStack_b8;
   if (*(longlong *)(bufferData + 0x1a0) != 0) {
     functionResult = *(undefined8 *)(uiContext + 400);
-    FUN_180768360(functionResult);
+    CleanupUIContextState(functionResult);
     componentIndex = *(longlong *)(bufferData + 0x1b0);
     *(undefined8 *)(uiContext + 0x1b0) = 0;
     while (componentIndex != 0) {
@@ -191315,7 +191338,7 @@ void FUN_180785c52(longlong uiContext)
   undefined8 in_stack_00000050;
   
   functionResult = *(undefined8 *)(uiContext + 400);
-  FUN_180768360(functionResult);
+  CleanupUIContextState(functionResult);
   componentIndex = *(longlong *)(unaff_RBP + 0x1b0);
   *(undefined8 *)(unaff_RBP + 0x1b0) = 0;
   while (componentIndex != 0) {
@@ -191496,7 +191519,7 @@ void FUN_180785e40(longlong uiContext)
   uStack_10 = XorEncryptionKey ^ (ulonglong)auStack_58;
   FUN_180772cd0(**(longlong **)(uiContext + 0x178) + 0x125f8);
   semaphoreHandle = *(undefined8 *)(uiContext + 0x170);
-  FUN_180768360(semaphoreHandle);
+  CleanupUIContextState(semaphoreHandle);
   pallocatedMemory = (longlong *)(uiContext + 0x158);
   pstringCompareIndex = (longlong *)*pallocatedMemory;
   if ((pstringCompareIndex != pallocatedMemory) || (*(longlong **)(uiContext + 0x160) != pallocatedMemory)) {
@@ -193759,7 +193782,7 @@ LAB_180787ee9:
   semaphoreHandle = *(undefined8 *)(allocatedMemory6 + 0x48);
   *(longlong **)((longlong)register0x00000020 + 0x68) = unaff_RBP;
   *(undefined8 *)((longlong)register0x00000020 + -8) = 0x180787f0e;
-  iVar9 = FUN_180743160(semaphoreHandle,0);
+  iVar9 = ValidateUIMemoryOperation(semaphoreHandle,0);
   if (iVar9 == 0) {
     contextData = *unaff_R14;
     if ((contextData != 0) && (*(char *)((longlong)unaff_R14 + 0xc) == '\0')) {
@@ -193851,7 +193874,7 @@ int FUN_180787e70(longlong uiContext,undefined4 dataSource,longlong *targetBuffe
   if (bVar5) {
     func_0x000180743c20(allocatedMemory,2);
   }
-  iVar4 = FUN_180743160(*(undefined8 *)(uiContext + 0x48),0);
+  iVar4 = ValidateUIMemoryOperation(*(undefined8 *)(uiContext + 0x48),0);
   if (iVar4 == 0) {
     if ((*bufferSize != 0) && (*(char *)((longlong)bufferSize + 0xc) == '\0')) {
       func_0x000180743c20(*bufferSize,(int)bufferSize[1]);
@@ -193926,7 +193949,7 @@ int FUN_180787e7e(longlong uiContext,undefined4 dataSource,undefined8 targetBuff
   if (bVar4) {
     func_0x000180743c20();
   }
-  compareResult = FUN_180743160(*(undefined8 *)(uiContext + 0x48),0);
+  compareResult = ValidateUIMemoryOperation(*(undefined8 *)(uiContext + 0x48),0);
   if (compareResult == 0) {
     if ((*bufferSize != 0) && (*(char *)((longlong)bufferSize + 0xc) == '\0')) {
       func_0x000180743c20(*bufferSize,(int)bufferSize[1]);
@@ -195470,7 +195493,7 @@ undefined8 FUN_180789470(longlong uiContext,uint dataSource,char targetBuffer)
      ((dataSource & dataSource - 1) != 0)) {
     return 0x1f;
   }
-  uVar3 = FUN_1807682e0(uiContext + 0x60,0);
+  uVar3 = InitializeUIContextState(uiContext + 0x60,0);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -195493,7 +195516,7 @@ undefined8 FUN_180789470(longlong uiContext,uint dataSource,char targetBuffer)
         return 0x26;
       }
       *(ulonglong *)(uiContext + 0x28) = lVar4 + 0xfU & 0xfffffffffffffff0;
-      uVar3 = FUN_1807682e0(uiContext + 0x68,0);
+      uVar3 = InitializeUIContextState(uiContext + 0x68,0);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -195549,7 +195572,7 @@ undefined8 FUN_1807894bb(longlong uiContext)
   uint uVar8;
   ulonglong unaff_R15;
   
-  uVar3 = FUN_1807682e0(uiContext + 0x60);
+  uVar3 = InitializeUIContextState(uiContext + 0x60);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -195574,7 +195597,7 @@ undefined8 FUN_1807894bb(longlong uiContext)
         return 0x26;
       }
       *(ulonglong *)(unaff_RSI + 0x28) = lVar4 + 0xfU & 0xfffffffffffffff0;
-      uVar3 = FUN_1807682e0(unaff_RSI + 0x68,0);
+      uVar3 = InitializeUIContextState(unaff_RSI + 0x68,0);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
@@ -195662,7 +195685,7 @@ undefined8 FUN_1807894e0(longlong uiContext)
         return 0x26;
       }
       *(ulonglong *)(unaff_RSI + 0x28) = stringCompareIndex + 0xfU & 0xfffffffffffffff0;
-      uVar5 = FUN_1807682e0(unaff_RSI + 0x68,0);
+      uVar5 = InitializeUIContextState(unaff_RSI + 0x68,0);
       if ((int)uVar5 != 0) {
         return uVar5;
       }
@@ -195907,7 +195930,7 @@ FUN_1807897b0(longlong uiContext,longlong dataSource,undefined8 targetBuffer,lon
     return 0x1f;
   }
   functionResult = *(undefined8 *)(uiContext + 0x60);
-  FUN_180768360(functionResult);
+  CleanupUIContextState(functionResult);
   iVar4 = *(int *)(bufferData + 0x18);
   pfVar2 = *(float **)(uiContext + 0x20);
   if (resultPointer == 1) {
@@ -195996,7 +196019,7 @@ void FUN_1807897f7(longlong uiContext)
   float *pfVar6;
   
   functionResult = *(undefined8 *)(uiContext + 0x60);
-  FUN_180768360(functionResult);
+  CleanupUIContextState(functionResult);
   iVar4 = *(int *)(context + 0x18);
   pfVar2 = *(float **)(context + 0x20);
   if (unaff_ESI == 1) {
@@ -196100,7 +196123,7 @@ FUN_180789a00(longlong uiContext,undefined8 dataSource,undefined4 *targetBuffer,
   lVar4 = (longlong)resultPointer;
   if (resultPointer != 0) {
     functionResult = *(undefined8 *)(uiContext + 0x68);
-    FUN_180768360(functionResult);
+    CleanupUIContextState(functionResult);
     (**(code **)(_DAT_180c108d0 + 0x18))
               (dataSource,*(undefined8 *)(uiContext + 0x28),*(undefined8 *)(uiContext + 0x30),
                *(undefined4 *)(bufferData + 0x18));
@@ -196224,7 +196247,7 @@ void FUN_180789a48(longlong uiContext)
   undefined8 functionResult1;
   
   functionResult = *(undefined8 *)(uiContext + 0x68);
-  functionResult1 = FUN_180768360(functionResult);
+  functionResult1 = CleanupUIContextState(functionResult);
   (**(code **)(_DAT_180c108d0 + 0x18))
             (functionResult1,*(undefined8 *)(context + 0x28),*(undefined8 *)(context + 0x30),
              *(undefined4 *)(context + 0x18));
@@ -198368,7 +198391,7 @@ ulonglong FUN_18078b6a0(longlong uiContext)
   
   semaphoreHandle = FUN_18078c0a0(uiContext,0);
   if ((int)semaphoreHandle == 0) {
-    semaphoreHandle = FUN_180743160(uiContext,1);
+    semaphoreHandle = ValidateUIMemoryOperation(uiContext,1);
     eventTypeCode = semaphoreHandle & 0xffffffff;
     if ((int)semaphoreHandle == 0) {
       uVar8 = 0;
@@ -198444,7 +198467,7 @@ ulonglong FUN_18078b6ba(void)
   ulonglong eventTypeCode;
   ulonglong uVar8;
   
-  semaphoreHandle = FUN_180743160();
+  semaphoreHandle = ValidateUIMemoryOperation();
   eventTypeCode = semaphoreHandle & 0xffffffff;
   if ((int)semaphoreHandle == 0) {
     uVar8 = 0;
@@ -199143,7 +199166,7 @@ LAB_18078c477:
       FUN_180743d60(uiContext,7);
     }
   }
-  iVar5 = FUN_180743660(uiContext);
+  iVar5 = CheckUIMemoryStatus(uiContext);
   if (iVar5 == 0) {
     if (uiContext != 0) {
       func_0x000180743c20(uiContext,6);
@@ -199406,7 +199429,7 @@ LAB_18078c477:
       FUN_180743d60(functionResult2,7);
     }
   }
-  iVar5 = FUN_180743660();
+  iVar5 = CheckUIMemoryStatus();
   if (iVar5 == 0) {
     functionResult2 = extraout_XMM0_Da_06;
     if (context != 0) {
@@ -199620,7 +199643,7 @@ LAB_18078c477:
       FUN_180743d60(functionResult2,7);
     }
   }
-  iVar5 = FUN_180743660();
+  iVar5 = CheckUIMemoryStatus();
   if (iVar5 == 0) {
     functionResult2 = extraout_XMM0_Da_05;
     if (context != 0) {
@@ -199704,7 +199727,7 @@ void FUN_18078c760(longlong uiContext,int dataSource)
   float fVar8;
   int aiStackX_8 [2];
   
-  FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+  CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
   colorBufferPointer = *(longlong **)(uiContext + 0x11728);
   do {
     while( true ) {
@@ -202068,7 +202091,7 @@ LAB_18078fd4b:
             pallocatedMemory7 = in_stack_00000068;
             pstringCompareIndex2 = *(longlong **)unaff_RBP[-9];
             if (*(char *)(unaff_RBP + 0x868) != '\0') {
-              FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+              CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
               colorBufferPointer9 = pstringCompareIndex2 + 1;
               pstringCompareIndex1 = (longlong *)(allocatedMemory5 + 0x88);
               if (allocatedMemory5 == -0x80) {
@@ -202821,7 +202844,7 @@ LAB_18078fd4b:
   }
   pallocatedMemory0 = *(longlong **)unaff_RBP[-9];
   if (*(char *)(unaff_RBP + 0x868) != cVar21) {
-    FUN_180768360(*(undefined8 *)(_DAT_180be12f0 + 0x120));
+    CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
     plVar7 = pallocatedMemory0 + 1;
     colorBufferPointer3 = (longlong *)(in_stack_00000070 + 0x88);
     if (in_stack_00000070 == -0x80) {
@@ -203104,7 +203127,7 @@ undefined8 FUN_1807902d0(longlong uiContext,longlong *dataSource)
         }
       }
       (**(code **)(*dataSource + 0xc0))(dataSource,aiStackX_8,0,0,0);
-      if ((aiStackX_8[0] == 6) && (uVar5 = FUN_180743160(uiContext,1), (int)uVar5 != 0)) {
+      if ((aiStackX_8[0] == 6) && (uVar5 = ValidateUIMemoryOperation(uiContext,1), (int)uVar5 != 0)) {
         return uVar5;
       }
       cVar4 = (**(code **)*dataSource)(dataSource);
@@ -203193,7 +203216,7 @@ undefined8 FUN_18079033d(void)
         }
       }
       (**(code **)(*context + 0xc0))();
-      if ((in_stack_00000060 == 6) && (uVar4 = FUN_180743160(), (int)uVar4 != 0)) {
+      if ((in_stack_00000060 == 6) && (uVar4 = ValidateUIMemoryOperation(), (int)uVar4 != 0)) {
         return uVar4;
       }
       cVar2 = (**(code **)*context)();
@@ -203415,7 +203438,7 @@ FUN_180790610(longlong *uiContext,undefined8 dataSource,longlong targetBuffer,lo
     return 0x1f;
   }
   semaphoreHandle = *(undefined8 *)(in_stack_00000008 + 0x60);
-  FUN_180768360(semaphoreHandle);
+  CleanupUIContextState(semaphoreHandle);
   iVar4 = *(int *)(in_stack_00000008 + 0x18);
   pfloatResult = *(float **)(in_stack_00000008 + 0x20);
   if (param_6 == 1) {
@@ -203521,7 +203544,7 @@ FUN_180790680(longlong *uiContext,undefined8 dataSource,longlong targetBuffer,un
       lVar4 = (longlong)param_6;
       if (param_6 != 0) {
         semaphoreHandle = *(undefined8 *)(in_stack_00000008 + 0x68);
-        FUN_180768360(semaphoreHandle);
+        CleanupUIContextState(semaphoreHandle);
         (**(code **)(_DAT_180c108d0 + 0x18))
                   (targetBuffer,*(undefined8 *)(in_stack_00000008 + 0x28),
                    *(undefined8 *)(in_stack_00000008 + 0x30),
@@ -220957,7 +220980,7 @@ void FUN_1808025c0(longlong uiContext,int dataSource,undefined8 targetBuffer,int
     }
     allocatedMemory6 = allocatedMemory6 * 0x3c;
     *param_7 = 5;
-    iVar7 = FUN_1807682e0(uiContext + 0x4a8,0);
+    iVar7 = InitializeUIContextState(uiContext + 0x4a8,0);
     if (iVar7 == 0) {
       pvalidationResult = (int *)(uiContext + 0x450);
       allocatedMemory2 = *pallocatedMemory + 0x2c + allocatedMemory6;
@@ -221213,7 +221236,7 @@ void FUN_180802653(void)
   }
   allocatedMemory8 = unaff_RDI * 0x3c;
   *unaff_R13 = 5;
-  iVar7 = FUN_1807682e0(context + 0x4a8,0);
+  iVar7 = InitializeUIContextState(context + 0x4a8,0);
   if (iVar7 == 0) {
     psemaphoreHandle = (undefined8 *)(context + 0x450);
     allocatedMemory1 = *pallocatedMemory + 0x2c + allocatedMemory8;
@@ -221928,7 +221951,7 @@ void FUN_180802fa0(longlong uiContext)
   if (uiContext == 0) {
     puVar3 = (undefined8 *)0x4a8;
   }
-  FUN_180768360(*puVar3);
+  CleanupUIContextState(*puVar3);
   psemaphoreHandle = (undefined8 *)(uiContext + 0x4a8);
   if (uiContext == 0) {
     psemaphoreHandle = (undefined8 *)0x4b0;
@@ -222021,7 +222044,7 @@ void FUN_180803120(longlong uiContext,int dataSource)
   int operationResult4;
   ulonglong functionResult5;
   
-  FUN_180768360(*(undefined8 *)(uiContext + 0x4a8));
+  CleanupUIContextState(*(undefined8 *)(uiContext + 0x4a8));
   allocatedMemory3 = *(longlong *)(bufferData + 0x4b0);
   functionResult0 = 0;
   if (allocatedMemory3 != 0) {
@@ -243899,7 +243922,7 @@ void FUN_18081b2d0(longlong uiContext,int dataSource)
   undefined8 functionResult;
   
   functionResult = *(undefined8 *)(uiContext + 0x20);
-  FUN_180768360(functionResult);
+  CleanupUIContextState(functionResult);
   if ((dataSource != 0) &&
      (*(int *)(bufferData + 0x10) = *(int *)(bufferData + 0x10) + dataSource,
      *(int *)(bufferData + 0x10) == *(int *)(bufferData + 0xc))) {
@@ -243922,7 +243945,7 @@ void FUN_18081b330(longlong uiContext,int *dataSource)
   
   operationResult = *dataSource;
   semaphoreHandle = *(undefined8 *)(uiContext + 0x540);
-  FUN_180768360(semaphoreHandle);
+  CleanupUIContextState(semaphoreHandle);
   if ((operationResult != 0) &&
      (*(int *)(bufferData + 0x530) = *(int *)(bufferData + 0x530) + operationResult,
      *(int *)(bufferData + 0x530) == *(int *)(bufferData + 0x52c))) {
@@ -243946,7 +243969,7 @@ void FUN_18081b390(longlong uiContext,undefined8 dataSource,undefined8 targetBuf
   *(undefined8 *)(uiContext + 0x18) = targetBuffer;
   operationResult = FUN_18081b490(uiContext + 0x4d8,0x20000,1);
   if ((((operationResult == 0) && (operationResult = FUN_18081b490(uiContext + 0x520,0x20000,4), operationResult == 0)) &&
-      (operationResult = FUN_1807682e0(uiContext + 0x28,0), operationResult == 0)) &&
+      (operationResult = InitializeUIContextState(uiContext + 0x28,0), operationResult == 0)) &&
      ((operationResult = FUN_18081bd90(uiContext,0,0,0xffffffff), operationResult == 0 &&
       (operationResult = FUN_180767c00(uiContext + 0x30,&UNK_18097fb88,FUN_18081bc60,uiContext,7,0,0,0,0),
       operationResult == 0)))) {
@@ -244012,7 +244035,7 @@ undefined8 FUN_18081b490(longlong *uiContext,undefined8 dataSource,undefined4 ta
     *(undefined4 *)((longlong)uiContext + 0x14) = 0;
     *(undefined1 *)(uiContext + 3) = 0;
     *(undefined4 *)(bufferData + 8) = targetBuffer;
-    semaphoreHandle = FUN_1807682e0(uiContext + 4,0);
+    semaphoreHandle = InitializeUIContextState(uiContext + 4,0);
     if ((int)semaphoreHandle == 0) {
       semaphoreHandle = FUN_1807688b0(uiContext + 5);
       if ((int)semaphoreHandle == 0) {
@@ -244065,7 +244088,7 @@ LAB_18081b5e5:
       }
       if ((bVar2) && ((*(int *)(pcVar4 + 3) == -1 || ((char)in_RAX != '\0')))) {
         functionResult = *(undefined8 *)(uiContext + 0x4f8);
-        FUN_180768360(functionResult);
+        CleanupUIContextState(functionResult);
                     // WARNING: Subroutine does not return
         FUN_180768400(functionResult);
       }
@@ -244092,7 +244115,7 @@ void FUN_18081b670(longlong uiContext)
   undefined1 *componentContextPtr;
   
   functionResult = *(undefined8 *)(uiContext + 0x28);
-  FUN_180768360(functionResult);
+  CleanupUIContextState(functionResult);
   if (*(char *)(uiContext + 0x2d0) == '\0') {
     uVar4 = 0;
     componentContextPtr = (undefined1 *)(uiContext + 0x2d5);
@@ -244130,7 +244153,7 @@ void FUN_18081b67c(longlong uiContext)
   uint uVar3;
   undefined1 *bufferPtr;
   
-  FUN_180768360();
+  CleanupUIContextState();
   if (*(char *)(uiContext + 0x2d0) == '\0') {
     uVar3 = 0;
     bufferPtr = (undefined1 *)(uiContext + 0x2d5);
@@ -244177,7 +244200,7 @@ void FUN_18081b7c0(longlong uiContext)
   int compareResult;
   
   functionResult = *(undefined8 *)(uiContext + 0x20);
-  FUN_180768360(functionResult);
+  CleanupUIContextState(functionResult);
   if (0 < *(int *)(bufferData + 0x3c)) {
     compareResult = 0;
     do {
@@ -244204,7 +244227,7 @@ void FUN_18081b830(longlong uiContext)
   int compareResult;
   
   functionResult = *(undefined8 *)(uiContext + 0x20);
-  FUN_180768360(functionResult);
+  CleanupUIContextState(functionResult);
   compareResult = 0;
   if (0 < *(int *)(bufferData + 0x38)) {
     do {
@@ -244355,12 +244378,12 @@ LAB_18081babb:
       if (*(char *)((longlong)puStack_70 + 9) != '\0') {
 LAB_18081bb51:
         validationResult = uStack_50._4_4_ + validationResult;
-        FUN_180768360(*(undefined8 *)(uiContext + 0x540));
+        CleanupUIContextState(*(undefined8 *)(uiContext + 0x540));
         functionResult = *(undefined8 *)(uiContext + 0x540);
         if (validationResult != 0) {
           *(int *)(bufferData + 0x52c) = *(int *)(bufferData + 0x52c) + validationResult;
         }
-        FUN_180768360(functionResult);
+        CleanupUIContextState(functionResult);
         if (0 < *(int *)(bufferData + 0x558)) {
           do {
             validationResult = FUN_180768910(*(undefined8 *)(uiContext + 0x548));
@@ -244413,7 +244436,7 @@ undefined8 FUN_18081bc60(longlong uiContext)
     return uVar3;
   }
   uVar3 = *(undefined8 *)(uiContext + 0x28);
-  FUN_180768360(uVar3);
+  CleanupUIContextState(uVar3);
   if (*(char *)(uiContext + 0x2d0) == '\0') {
     uVar4 = 0;
     componentContextPtr = (undefined1 *)(uiContext + 0x2d5);
@@ -244498,7 +244521,7 @@ void FUN_18081bd90(longlong uiContext,char dataSource,char targetBuffer,undefine
   uint uVar5;
   
   functionResult = *(undefined8 *)(uiContext + 0x28);
-  FUN_180768360(functionResult);
+  CleanupUIContextState(functionResult);
   if (*(char *)(uiContext + 0x2d0) == '\0') {
     uVar5 = 0;
     pcVar3 = (char *)(uiContext + 0x2d5);
@@ -244587,7 +244610,7 @@ undefined8 FUN_18081c0c0(longlong uiContext)
     return uVar3;
   }
   uVar3 = *(undefined8 *)(uiContext + 0x28);
-  FUN_180768360(uVar3);
+  CleanupUIContextState(uVar3);
   if (*(char *)(uiContext + 0x2d0) == '\0') {
     uVar4 = 0;
     componentContextPtr = (undefined1 *)(uiContext + 0x2d5);
@@ -244627,7 +244650,7 @@ undefined8 FUN_18081c0f0(longlong *uiContext,char dataSource,longlong *targetBuf
   
   if ((char)uiContext[3] == '\0') {
     lVar5 = 0;
-    functionResult = FUN_180768360(uiContext[4]);
+    functionResult = CleanupUIContextState(uiContext[4]);
     if ((int)functionResult != 0) {
       return functionResult;
     }
@@ -244678,7 +244701,7 @@ undefined8 FUN_18081c2d0(longlong *uiContext,int dataSource,char targetBuffer,lo
     return 0;
   }
   iVar6 = 0;
-  uVar3 = FUN_180768360(uiContext[4]);
+  uVar3 = CleanupUIContextState(uiContext[4]);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -244687,7 +244710,7 @@ undefined8 FUN_18081c2d0(longlong *uiContext,int dataSource,char targetBuffer,lo
     if (validationResult < dataSource) {
       allocatedMemory = uiContext[4];
       *(int *)((longlong)uiContext + 0x14) = dataSource;
-      FUN_180768360(allocatedMemory);
+      CleanupUIContextState(allocatedMemory);
       if (0 < (int)uiContext[7]) {
         do {
           validationResult = FUN_180768910(uiContext[5]);
@@ -296520,7 +296543,7 @@ ulonglong FUN_18084f040(longlong *uiContext)
   
   stringCompareIndex = uiContext[5];
   if (stringCompareIndex != 0) {
-    FUN_180768360(stringCompareIndex);
+    CleanupUIContextState(stringCompareIndex);
   }
   uVar8 = 0;
   if (*(int *)((longlong)uiContext + 0x24) != 0) {
@@ -296570,7 +296593,7 @@ LAB_18084f0bc:
   }
   lVar9 = uiContext[5];
   if (lVar9 != 0) {
-    FUN_180768360(lVar9);
+    CleanupUIContextState(lVar9);
   }
   uVar8 = FUN_180744cc0(uiContext);
   if ((int)uVar8 == 0) {
@@ -296638,7 +296661,7 @@ ulonglong FUN_18084f04a(longlong *uiContext)
   uint uStack000000000000003c;
   
   if (unaff_RBP != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   uVar8 = 0;
   if (*(int *)((longlong)uiContext + 0x24) != 0) {
@@ -296692,7 +296715,7 @@ LAB_18084f0bc:
   }
   stringCompareIndex = uiContext[5];
   if (stringCompareIndex != 0) {
-    FUN_180768360(stringCompareIndex);
+    CleanupUIContextState(stringCompareIndex);
   }
   uVar8 = FUN_180744cc0(uiContext);
   if ((int)uVar8 == 0) {
@@ -296785,7 +296808,7 @@ ulonglong FUN_18084f2d0(longlong *uiContext)
   
   stringCompareIndex = uiContext[5];
   if (stringCompareIndex != 0) {
-    FUN_180768360(stringCompareIndex);
+    CleanupUIContextState(stringCompareIndex);
   }
   uVar8 = 0;
   if (*(int *)((longlong)uiContext + 0x24) != 0) {
@@ -296835,7 +296858,7 @@ LAB_18084f34c:
   }
   lVar9 = uiContext[5];
   if (lVar9 != 0) {
-    FUN_180768360(lVar9);
+    CleanupUIContextState(lVar9);
   }
   uVar8 = FUN_180744cc0(uiContext);
   if ((int)uVar8 == 0) {
@@ -296903,7 +296926,7 @@ ulonglong FUN_18084f2da(longlong *uiContext)
   uint uStack000000000000003c;
   
   if (unaff_RBP != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   uVar8 = 0;
   if (*(int *)((longlong)uiContext + 0x24) != 0) {
@@ -296957,7 +296980,7 @@ LAB_18084f34c:
   }
   stringCompareIndex = uiContext[5];
   if (stringCompareIndex != 0) {
-    FUN_180768360(stringCompareIndex);
+    CleanupUIContextState(stringCompareIndex);
   }
   uVar8 = FUN_180744cc0(uiContext);
   if ((int)uVar8 == 0) {
@@ -297050,7 +297073,7 @@ ulonglong FUN_18084f560(longlong *uiContext)
   
   stringCompareIndex = uiContext[5];
   if (stringCompareIndex != 0) {
-    FUN_180768360(stringCompareIndex);
+    CleanupUIContextState(stringCompareIndex);
   }
   uVar8 = 0;
   if (*(int *)((longlong)uiContext + 0x24) != 0) {
@@ -297100,7 +297123,7 @@ LAB_18084f5dc:
   }
   lVar9 = uiContext[5];
   if (lVar9 != 0) {
-    FUN_180768360(lVar9);
+    CleanupUIContextState(lVar9);
   }
   uVar8 = FUN_180744cc0(uiContext);
   if ((int)uVar8 == 0) {
@@ -297168,7 +297191,7 @@ ulonglong FUN_18084f56a(longlong *uiContext)
   uint uStack000000000000003c;
   
   if (unaff_RBP != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   uVar8 = 0;
   if (*(int *)((longlong)uiContext + 0x24) != 0) {
@@ -297222,7 +297245,7 @@ LAB_18084f5dc:
   }
   stringCompareIndex = uiContext[5];
   if (stringCompareIndex != 0) {
-    FUN_180768360(stringCompareIndex);
+    CleanupUIContextState(stringCompareIndex);
   }
   uVar8 = FUN_180744cc0(uiContext);
   if ((int)uVar8 == 0) {
@@ -297335,12 +297358,12 @@ int FUN_18084f7f0(longlong *uiContext)
   
   componentIndex = uiContext[5];
   if (componentIndex != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   do {
     lVar8 = uiContext[0xb];
     if (lVar8 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if (lVar8 != 0) {
                     // WARNING: Subroutine does not return
@@ -297377,7 +297400,7 @@ LAB_18084f88c:
       lVar8 = 0;
     }
     else {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     uVar4 = uStack_5c;
     uVar5 = uStack_60;
@@ -297414,7 +297437,7 @@ LAB_18084f933:
     }
     lVar8 = uiContext[0xb];
     if (lVar8 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if ((int)uiContext[7] != 0) {
       lVar9 = (longlong)(int)((functionResult ^ uStack_64 ^ uVar5 ^ uVar4) & (int)uiContext[7] - 1U);
@@ -297580,12 +297603,12 @@ int FUN_18084f800(longlong *uiContext)
   *(undefined8 *)(in_RAX + -0x20) = unaff_R14;
   *(undefined8 *)(in_RAX + -0x28) = unaff_R15;
   if (unaff_RSI != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   do {
     lVar7 = uiContext[0xb];
     if (lVar7 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if (lVar7 != 0) {
                     // WARNING: Subroutine does not return
@@ -297622,7 +297645,7 @@ LAB_18084f88c:
       lVar7 = 0;
     }
     else {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     uVar3 = uStack000000000000003c;
     uVar4 = uStack0000000000000038;
@@ -297660,7 +297683,7 @@ LAB_18084f933:
     }
     lVar7 = uiContext[0xb];
     if (lVar7 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if ((int)uiContext[7] != 0) {
       lVar8 = (longlong)
@@ -297832,12 +297855,12 @@ void FUN_18084fcba(void)
   
   componentIndex = uiContext[5];
   if (componentIndex != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   do {
     lVar8 = uiContext[0xb];
     if (lVar8 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if (lVar8 != 0) {
                     // WARNING: Subroutine does not return
@@ -297874,7 +297897,7 @@ LAB_18084fd6c:
       lVar8 = 0;
     }
     else {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     uVar4 = uStack_5c;
     uVar5 = uStack_60;
@@ -297911,7 +297934,7 @@ LAB_18084fe13:
     }
     lVar8 = uiContext[0xb];
     if (lVar8 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if ((int)uiContext[7] != 0) {
       lVar9 = (longlong)(int)((functionResult ^ uStack_64 ^ uVar5 ^ uVar4) & (int)uiContext[7] - 1U);
@@ -298077,12 +298100,12 @@ int FUN_18084fce0(longlong *uiContext)
   *(undefined8 *)(in_RAX + -0x20) = unaff_R14;
   *(undefined8 *)(in_RAX + -0x28) = unaff_R15;
   if (unaff_RSI != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   do {
     lVar7 = uiContext[0xb];
     if (lVar7 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if (lVar7 != 0) {
                     // WARNING: Subroutine does not return
@@ -298119,7 +298142,7 @@ LAB_18084fd6c:
       lVar7 = 0;
     }
     else {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     uVar3 = uStack000000000000003c;
     uVar4 = uStack0000000000000038;
@@ -298157,7 +298180,7 @@ LAB_18084fe13:
     }
     lVar7 = uiContext[0xb];
     if (lVar7 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if ((int)uiContext[7] != 0) {
       lVar8 = (longlong)
@@ -298324,12 +298347,12 @@ int FUN_1808501b0(longlong *uiContext)
   
   componentIndex = uiContext[5];
   if (componentIndex != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   do {
     lVar8 = uiContext[0xb];
     if (lVar8 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if (lVar8 != 0) {
                     // WARNING: Subroutine does not return
@@ -298366,7 +298389,7 @@ LAB_18085024c:
       lVar8 = 0;
     }
     else {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     uVar4 = uStack_5c;
     uVar5 = uStack_60;
@@ -298403,7 +298426,7 @@ LAB_1808502f3:
     }
     lVar8 = uiContext[0xb];
     if (lVar8 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if ((int)uiContext[7] != 0) {
       lVar9 = (longlong)(int)((functionResult ^ uStack_64 ^ uVar5 ^ uVar4) & (int)uiContext[7] - 1U);
@@ -298569,12 +298592,12 @@ int FUN_1808501c0(longlong *uiContext)
   *(undefined8 *)(in_RAX + -0x20) = unaff_R14;
   *(undefined8 *)(in_RAX + -0x28) = unaff_R15;
   if (unaff_RSI != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   do {
     lVar7 = uiContext[0xb];
     if (lVar7 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if (lVar7 != 0) {
                     // WARNING: Subroutine does not return
@@ -298611,7 +298634,7 @@ LAB_18085024c:
       lVar7 = 0;
     }
     else {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     uVar3 = uStack000000000000003c;
     uVar4 = uStack0000000000000038;
@@ -298649,7 +298672,7 @@ LAB_1808502f3:
     }
     lVar7 = uiContext[0xb];
     if (lVar7 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if ((int)uiContext[7] != 0) {
       lVar8 = (longlong)
@@ -298816,12 +298839,12 @@ int FUN_180850690(longlong *uiContext)
   
   componentIndex = uiContext[5];
   if (componentIndex != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   do {
     lVar8 = uiContext[0xb];
     if (lVar8 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if (lVar8 != 0) {
                     // WARNING: Subroutine does not return
@@ -298858,7 +298881,7 @@ LAB_18085072c:
       lVar8 = 0;
     }
     else {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     uVar4 = uStack_5c;
     uVar5 = uStack_60;
@@ -298895,7 +298918,7 @@ LAB_1808507d3:
     }
     lVar8 = uiContext[0xb];
     if (lVar8 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if ((int)uiContext[7] != 0) {
       lVar9 = (longlong)(int)((functionResult ^ uStack_64 ^ uVar5 ^ uVar4) & (int)uiContext[7] - 1U);
@@ -299061,12 +299084,12 @@ int FUN_1808506a0(longlong *uiContext)
   *(undefined8 *)(in_RAX + -0x20) = unaff_R14;
   *(undefined8 *)(in_RAX + -0x28) = unaff_R15;
   if (unaff_RSI != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   do {
     lVar7 = uiContext[0xb];
     if (lVar7 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if (lVar7 != 0) {
                     // WARNING: Subroutine does not return
@@ -299103,7 +299126,7 @@ LAB_18085072c:
       lVar7 = 0;
     }
     else {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     uVar3 = uStack000000000000003c;
     uVar4 = uStack0000000000000038;
@@ -299141,7 +299164,7 @@ LAB_1808507d3:
     }
     lVar7 = uiContext[0xb];
     if (lVar7 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     if ((int)uiContext[7] != 0) {
       lVar8 = (longlong)
@@ -300250,7 +300273,7 @@ undefined8 FUN_180851740(longlong uiContext)
     lVar5 = 0;
   }
   else {
-    FUN_180768360(lVar5);
+    CleanupUIContextState(lVar5);
   }
   psemaphoreHandle = (undefined8 *)func_0x000180851be0();
   if (psemaphoreHandle == (undefined8 *)0x0) {
@@ -300713,7 +300736,7 @@ undefined8 FUN_180851c50(longlong uiContext,undefined8 dataSource,uint targetBuf
   
   allocatedMemory = *(longlong *)(bufferData + 0x28);
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   pstringCompareIndex = (longlong *)func_0x000180851be0(uiContext + 0x30,dataSource);
   if (pstringCompareIndex == (longlong *)0x0) {
@@ -302145,7 +302168,7 @@ int FUN_180852d40(longlong *uiContext,undefined4 *dataSource,undefined8 *targetB
   }
   lVar5 = pallocatedMemory2[5];
   if (lVar5 != 0) {
-    FUN_180768360(lVar5);
+    CleanupUIContextState(lVar5);
   }
   puVar6 = (undefined8 *)func_0x000180851be0(pallocatedMemory2,dataSource);
   if (lVar5 != 0) {
@@ -302191,7 +302214,7 @@ int FUN_180852d40(longlong *uiContext,undefined4 *dataSource,undefined8 *targetB
   lVar5 = pallocatedMemory2[5];
   pbufferValidation = puVar6;
   if (lVar5 != 0) {
-    FUN_180768360(lVar5);
+    CleanupUIContextState(lVar5);
   }
   operationResult0 = FUN_180851a40(pallocatedMemory2);
   if (operationResult0 == 0) {
@@ -302285,7 +302308,7 @@ int FUN_180852d79(void)
   }
   allocatedMemory = pallocatedMemory2[5];
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   puVar6 = (undefined8 *)func_0x000180851be0(pallocatedMemory2);
   if (allocatedMemory != 0) {
@@ -302331,7 +302354,7 @@ int FUN_180852d79(void)
   allocatedMemory = pallocatedMemory2[5];
   in_stack_000000a0 = puVar6;
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   operationResult0 = FUN_180851a40(pallocatedMemory2);
   if (operationResult0 == 0) {
@@ -302579,7 +302602,7 @@ void FUN_180853230(longlong uiContext)
   }
 LAB_18073d93d:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    ReleaseUIMemoryResource();
   }
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_18 ^ (ulonglong)auStack_158);
@@ -302765,7 +302788,7 @@ longlong * FUN_180853560(longlong *uiContext,undefined8 *dataSource)
   
   allocatedMemory = uiContext[5];
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   contextData = (**(code **)*dataSource)(dataSource);
   pallocatedMemory2 = (longlong *)0x0;
@@ -302900,7 +302923,7 @@ void FUN_180853840(longlong uiContext,undefined8 dataSource)
   
   allocatedMemory = *(longlong *)(bufferData + 0x28);
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   func_0x0001808534b0(uiContext,dataSource);
   if (allocatedMemory != 0) {
@@ -317524,7 +317547,7 @@ LAB_1808607eb:
             functionResult8 = *(uint *)(uiContext + 0x2dc);
             allocatedMemory4 = *(longlong *)(lVar7 + 0x130);
             if (allocatedMemory4 != 0) {
-              FUN_180768360(allocatedMemory4);
+              CleanupUIContextState(allocatedMemory4);
             }
             plVar9 = (longlong *)func_0x000180851be0(lVar7 + 0x138,pallocatedMemory9);
             if (plVar9 == (longlong *)0x0) {
@@ -318218,7 +318241,7 @@ LAB_1808607eb:
           functionResult7 = *(uint *)(unaff_R12 + 0x2dc);
           contextData = *(longlong *)(allocatedMemory4 + 0x130);
           if (contextData != 0) {
-            FUN_180768360(contextData);
+            CleanupUIContextState(contextData);
           }
           plVar7 = (longlong *)func_0x000180851be0(allocatedMemory4 + 0x138,pallocatedMemory8);
           if (plVar7 == (longlong *)0x0) {
@@ -341723,13 +341746,13 @@ void FUN_180874760(longlong *uiContext)
   
   componentIndex = uiContext[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar6 = 0;
   if (*(int *)((longlong)uiContext + 0x24) == 0) {
     lVar7 = uiContext[5];
     if (lVar7 != 0) {
-      FUN_180768360(lVar7);
+      CleanupUIContextState(lVar7);
     }
     iVar4 = FUN_180744cc0(uiContext);
     if ((iVar4 == 0) && (iVar4 = FUN_1808744f0(uiContext + 2), iVar4 == 0)) {
@@ -341810,13 +341833,13 @@ undefined8 FUN_180874940(longlong *uiContext)
   
   contextData = uiContext[5];
   if (contextData != 0) {
-    FUN_180768360(contextData);
+    CleanupUIContextState(contextData);
   }
   compareResult = *(int *)((longlong)uiContext + 0x24);
   if (compareResult == 0) {
     lVar4 = uiContext[5];
     if (lVar4 != 0) {
-      FUN_180768360(lVar4);
+      CleanupUIContextState(lVar4);
     }
     uVar5 = FUN_180744cc0(uiContext);
     if (((int)uVar5 == 0) && (uVar5 = FUN_1808744f0(uiContext + 2), (int)uVar5 == 0)) {
@@ -341900,13 +341923,13 @@ undefined8 FUN_18087494c(longlong *uiContext)
   *(undefined8 *)(in_RAX + -0x10) = unaff_R14;
   *(undefined8 *)(in_RAX + -0x18) = unaff_R15;
   if (unaff_RBP != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   compareResult = *(int *)((longlong)uiContext + 0x24);
   if (compareResult == 0) {
     contextData = uiContext[5];
     if (contextData != 0) {
-      FUN_180768360(contextData);
+      CleanupUIContextState(contextData);
     }
     uVar5 = FUN_180744cc0(uiContext);
     if (((int)uVar5 == 0) && (uVar5 = FUN_1808744f0(uiContext + 2), (int)uVar5 == 0)) {
@@ -342032,7 +342055,7 @@ undefined8 FUN_180874aba(void)
   
   allocatedMemory = *(longlong *)(context + 0x28);
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   semaphoreHandle = FUN_180744cc0();
   if ((int)semaphoreHandle == 0) {
@@ -342145,14 +342168,14 @@ undefined8 FUN_180874b30(longlong uiContext)
     *(undefined8 *)(uiContext + 0xac0) = 0;
     stringCompareIndex = *(longlong *)(bufferData + 0x8c0);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
                     // WARNING: Subroutine does not return
       FUN_180768400(stringCompareIndex);
     }
     do {
       stringCompareIndex = *(longlong *)(bufferData + 0x8c0);
       if (stringCompareIndex != 0) {
-        FUN_180768360(stringCompareIndex);
+        CleanupUIContextState(stringCompareIndex);
       }
       if (stringCompareIndex != 0) {
                     // WARNING: Subroutine does not return
@@ -342355,14 +342378,14 @@ undefined8 FUN_180874ce3(void)
   undefined4 in_stack_00000040;
   
   if (unaff_RDI != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
                     // WARNING: Subroutine does not return
     FUN_180768400();
   }
   while( true ) {
     componentIndex = *(longlong *)(context + 0x8c0);
     if (componentIndex != 0) {
-      FUN_180768360(componentIndex);
+      CleanupUIContextState(componentIndex);
     }
     if (componentIndex != 0) {
                     // WARNING: Subroutine does not return
@@ -343729,7 +343752,7 @@ joined_r0x000180876529:
         allocatedMemory0 = *(longlong *)(bufferData + 0xa0);
         puStack_970 = psemaphoreHandle;
         if (allocatedMemory0 != 0) {
-          FUN_180768360(allocatedMemory0);
+          CleanupUIContextState(allocatedMemory0);
         }
         uStack_9a0 = *(undefined8 *)(uiContext + 0xad0);
         pplStack_9a8 = ppallocatedMemory4;
@@ -343774,7 +343797,7 @@ LAB_180876796:
               allocatedMemory0 = *(longlong *)(bufferData + 0xa0);
               lStack_968 = allocatedMemory0;
               if (allocatedMemory0 != 0) {
-                FUN_180768360(allocatedMemory0);
+                CleanupUIContextState(allocatedMemory0);
               }
               plStack_980 = (longlong *)(uiContext + 0x778);
               pplStack_978 = (longlong **)0xffffffffffffffff;
@@ -343853,7 +343876,7 @@ LAB_180876b83:
           if (psemaphoreHandle[0x5c] != 0) {
             allocatedMemory0 = *(longlong *)(bufferData + 0xa0);
             if (allocatedMemory0 != 0) {
-              FUN_180768360();
+              CleanupUIContextState();
             }
             plVar4 = psemaphoreHandle + 4;
             if (plVar4 == (longlong *)0x0) {
@@ -343950,7 +343973,7 @@ LAB_1808769aa:
   if (iVar7 == 0) {
     allocatedMemory0 = *(longlong *)(bufferData + 0xa0);
     if (allocatedMemory0 != 0) {
-      FUN_180768360(allocatedMemory0);
+      CleanupUIContextState(allocatedMemory0);
     }
     plStack_980 = (longlong *)(uiContext + 0x898);
     pplStack_978 = (longlong **)0xffffffffffffffff;
@@ -344115,7 +344138,7 @@ void FUN_180876428(void)
   lVar8 = *(longlong *)(unaff_R14 + 0xa0);
   _iStack0000000000000058 = unaff_RSI;
   if (lVar8 != 0) {
-    functionResult5 = FUN_180768360(lVar8);
+    functionResult5 = CleanupUIContextState(lVar8);
   }
   iVar5 = FUN_1808787d0(functionResult5,unaff_R14 + 0x898,unaff_R14 + 0x4a8,unaff_R14 + 0x4d8,pfunctionResult1);
   if (iVar5 != 0) {
@@ -344146,7 +344169,7 @@ void FUN_180876428(void)
       lVar8 = *(longlong *)(unaff_R14 + 0xa0);
       in_stack_00000060 = lVar8;
       if (lVar8 != 0) {
-        FUN_180768360(lVar8);
+        CleanupUIContextState(lVar8);
       }
       in_stack_00000048 = (longlong *)(unaff_R14 + 0x778);
       _iStack0000000000000050 = (undefined8 *)0xffffffffffffffff;
@@ -344223,7 +344246,7 @@ LAB_1808768bc:
   if (unaff_RSI[0x5c] != 0) {
     lVar8 = *(longlong *)(unaff_R14 + 0xa0);
     if (lVar8 != 0) {
-      FUN_180768360();
+      CleanupUIContextState();
     }
     pstringCompareIndex = unaff_RSI + 4;
     if (pstringCompareIndex == (longlong *)0x0) {
@@ -344304,7 +344327,7 @@ LAB_1808769aa:
   if (iVar5 == 0) {
     lVar8 = *(longlong *)(unaff_R14 + 0xa0);
     if (lVar8 != 0) {
-      FUN_180768360(lVar8);
+      CleanupUIContextState(lVar8);
     }
     in_stack_00000048 = (longlong *)(unaff_R14 + 0x898);
     _iStack0000000000000050 = (undefined8 *)0xffffffffffffffff;
@@ -347424,7 +347447,7 @@ longlong FUN_180879970(longlong *uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)((longlong)uiContext + 0x24) != 0) && ((int)uiContext[1] != 0)) &&
      (iVar4 = *(int *)(*uiContext +
@@ -348519,7 +348542,7 @@ longlong FUN_18087aa90(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x70c) != 0) && (*(int *)(lVar5 + 0x6f0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x6e8) +
@@ -348563,7 +348586,7 @@ longlong FUN_18087aab3(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x70c) != 0) && (*(int *)(unaff_RDI + 0x6f0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x6e8) +
@@ -348647,7 +348670,7 @@ longlong FUN_18087aba0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar6 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(allocatedMemory1 + 0x43c) != 0) && (*(int *)(allocatedMemory1 + 0x420) != 0)) {
     operationResult0 = *(int *)(*(longlong *)(allocatedMemory1 + 0x418) +
@@ -348695,7 +348718,7 @@ longlong FUN_18087abba(longlong uiContext,undefined8 dataSource,char targetBuffe
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(context + 0x43c) != 0) && (*(int *)(context + 0x420) != 0)) {
     uStackX_24 = (uint)((ulonglong)uiContext >> 0x20);
@@ -348770,7 +348793,7 @@ longlong FUN_18087acb0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x5bc) != 0) && (*(int *)(lVar5 + 0x5a0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x598) +
@@ -348814,7 +348837,7 @@ longlong FUN_18087acd3(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x5bc) != 0) && (*(int *)(unaff_RDI + 0x5a0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x598) +
@@ -348886,7 +348909,7 @@ longlong FUN_18087adc0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x73c) != 0) && (*(int *)(lVar5 + 0x720) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x718) +
@@ -348930,7 +348953,7 @@ longlong FUN_18087ade3(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x73c) != 0) && (*(int *)(unaff_RDI + 0x720) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x718) +
@@ -349002,7 +349025,7 @@ longlong FUN_18087aed0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x85c) != 0) && (*(int *)(lVar5 + 0x840) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x838) +
@@ -349046,7 +349069,7 @@ longlong FUN_18087aef3(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x85c) != 0) && (*(int *)(unaff_RDI + 0x840) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x838) +
@@ -349118,7 +349141,7 @@ longlong FUN_18087afe0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x58c) != 0) && (*(int *)(lVar5 + 0x570) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x568) +
@@ -349162,7 +349185,7 @@ longlong FUN_18087b003(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x58c) != 0) && (*(int *)(unaff_RDI + 0x570) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x568) +
@@ -349234,7 +349257,7 @@ longlong FUN_18087b110(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x67c) != 0) && (*(int *)(lVar5 + 0x660) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x658) +
@@ -349278,7 +349301,7 @@ longlong FUN_18087b133(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x67c) != 0) && (*(int *)(unaff_RDI + 0x660) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x658) +
@@ -349350,7 +349373,7 @@ longlong FUN_18087b200(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x79c) != 0) && (*(int *)(lVar5 + 0x780) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x778) +
@@ -349394,7 +349417,7 @@ longlong FUN_18087b223(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x79c) != 0) && (*(int *)(unaff_RDI + 0x780) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x778) +
@@ -349478,7 +349501,7 @@ longlong FUN_18087b310(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar6 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(allocatedMemory1 + 0x37c) != 0) && (*(int *)(allocatedMemory1 + 0x360) != 0)) {
     operationResult0 = *(int *)(*(longlong *)(allocatedMemory1 + 0x358) +
@@ -349526,7 +349549,7 @@ longlong FUN_18087b32a(longlong uiContext,undefined8 dataSource,char targetBuffe
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(context + 0x37c) != 0) && (*(int *)(context + 0x360) != 0)) {
     uStackX_24 = (uint)((ulonglong)uiContext >> 0x20);
@@ -349613,7 +349636,7 @@ longlong FUN_18087b420(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar6 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(allocatedMemory1 + 0x34c) != 0) && (*(int *)(allocatedMemory1 + 0x330) != 0)) {
     operationResult0 = *(int *)(*(longlong *)(allocatedMemory1 + 0x328) +
@@ -349661,7 +349684,7 @@ longlong FUN_18087b43a(longlong uiContext,undefined8 dataSource,char targetBuffe
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(context + 0x34c) != 0) && (*(int *)(context + 0x330) != 0)) {
     uStackX_24 = (uint)((ulonglong)uiContext >> 0x20);
@@ -349736,7 +349759,7 @@ longlong FUN_18087b530(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x6dc) != 0) && (*(int *)(lVar5 + 0x6c0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x6b8) +
@@ -349780,7 +349803,7 @@ longlong FUN_18087b553(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x6dc) != 0) && (*(int *)(unaff_RDI + 0x6c0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x6b8) +
@@ -349852,7 +349875,7 @@ longlong FUN_18087b640(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x88c) != 0) && (*(int *)(lVar5 + 0x870) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x868) +
@@ -349896,7 +349919,7 @@ longlong FUN_18087b663(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x88c) != 0) && (*(int *)(unaff_RDI + 0x870) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x868) +
@@ -349980,7 +350003,7 @@ longlong FUN_18087b750(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar6 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(allocatedMemory1 + 0x3dc) != 0) && (*(int *)(allocatedMemory1 + 0x3c0) != 0)) {
     operationResult0 = *(int *)(*(longlong *)(allocatedMemory1 + 0x3b8) +
@@ -350028,7 +350051,7 @@ longlong FUN_18087b76a(longlong uiContext,undefined8 dataSource,char targetBuffe
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(context + 0x3dc) != 0) && (*(int *)(context + 0x3c0) != 0)) {
     uStackX_24 = (uint)((ulonglong)uiContext >> 0x20);
@@ -350103,7 +350126,7 @@ longlong FUN_18087b860(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x76c) != 0) && (*(int *)(lVar5 + 0x750) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x748) +
@@ -350147,7 +350170,7 @@ longlong FUN_18087b883(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x76c) != 0) && (*(int *)(unaff_RDI + 0x750) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x748) +
@@ -350219,7 +350242,7 @@ longlong FUN_18087b970(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x61c) != 0) && (*(int *)(lVar5 + 0x600) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x5f8) +
@@ -350263,7 +350286,7 @@ longlong FUN_18087b993(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x61c) != 0) && (*(int *)(unaff_RDI + 0x600) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x5f8) +
@@ -350347,7 +350370,7 @@ longlong FUN_18087ba80(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar6 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(allocatedMemory1 + 0x40c) != 0) && (*(int *)(allocatedMemory1 + 0x3f0) != 0)) {
     operationResult0 = *(int *)(*(longlong *)(allocatedMemory1 + 1000) +
@@ -350395,7 +350418,7 @@ longlong FUN_18087ba9a(longlong uiContext,undefined8 dataSource,char targetBuffe
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(context + 0x40c) != 0) && (*(int *)(context + 0x3f0) != 0)) {
     uStackX_24 = (uint)((ulonglong)uiContext >> 0x20);
@@ -350470,7 +350493,7 @@ longlong FUN_18087bbb0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x82c) != 0) && (*(int *)(lVar5 + 0x810) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x808) +
@@ -350514,7 +350537,7 @@ longlong FUN_18087bbd3(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x82c) != 0) && (*(int *)(unaff_RDI + 0x810) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x808) +
@@ -350586,7 +350609,7 @@ longlong FUN_18087bca0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x7fc) != 0) && (*(int *)(lVar5 + 0x7e0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x7d8) +
@@ -350630,7 +350653,7 @@ longlong FUN_18087bcc3(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x7fc) != 0) && (*(int *)(unaff_RDI + 0x7e0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x7d8) +
@@ -350714,7 +350737,7 @@ longlong FUN_18087bdd0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar6 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(allocatedMemory1 + 0x46c) != 0) && (*(int *)(allocatedMemory1 + 0x450) != 0)) {
     operationResult0 = *(int *)(*(longlong *)(allocatedMemory1 + 0x448) +
@@ -350762,7 +350785,7 @@ longlong FUN_18087bdea(longlong uiContext,undefined8 dataSource,char targetBuffe
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(context + 0x46c) != 0) && (*(int *)(context + 0x450) != 0)) {
     uStackX_24 = (uint)((ulonglong)uiContext >> 0x20);
@@ -350837,7 +350860,7 @@ longlong FUN_18087bee0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x55c) != 0) && (*(int *)(lVar5 + 0x540) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x538) +
@@ -350881,7 +350904,7 @@ longlong FUN_18087bf03(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x55c) != 0) && (*(int *)(unaff_RDI + 0x540) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x538) +
@@ -350965,7 +350988,7 @@ longlong FUN_18087bff0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar6 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(allocatedMemory1 + 0x3ac) != 0) && (*(int *)(allocatedMemory1 + 0x390) != 0)) {
     operationResult0 = *(int *)(*(longlong *)(allocatedMemory1 + 0x388) +
@@ -351013,7 +351036,7 @@ longlong FUN_18087c00a(longlong uiContext,undefined8 dataSource,char targetBuffe
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(context + 0x3ac) != 0) && (*(int *)(context + 0x390) != 0)) {
     uStackX_24 = (uint)((ulonglong)uiContext >> 0x20);
@@ -351088,7 +351111,7 @@ longlong FUN_18087c140(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x64c) != 0) && (*(int *)(lVar5 + 0x630) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x628) +
@@ -351132,7 +351155,7 @@ longlong FUN_18087c163(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x64c) != 0) && (*(int *)(unaff_RDI + 0x630) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x628) +
@@ -351216,7 +351239,7 @@ longlong FUN_18087c250(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar6 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(allocatedMemory1 + 0x49c) != 0) && (*(int *)(allocatedMemory1 + 0x480) != 0)) {
     operationResult0 = *(int *)(*(longlong *)(allocatedMemory1 + 0x478) +
@@ -351264,7 +351287,7 @@ longlong FUN_18087c26a(longlong uiContext,undefined8 dataSource,char targetBuffe
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(context + 0x49c) != 0) && (*(int *)(context + 0x480) != 0)) {
     uStackX_24 = (uint)((ulonglong)uiContext >> 0x20);
@@ -351351,7 +351374,7 @@ longlong FUN_18087c360(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar6 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(allocatedMemory1 + 0x4cc) != 0) && (*(int *)(allocatedMemory1 + 0x4b0) != 0)) {
     operationResult0 = *(int *)(*(longlong *)(allocatedMemory1 + 0x4a8) +
@@ -351399,7 +351422,7 @@ longlong FUN_18087c37a(longlong uiContext,undefined8 dataSource,char targetBuffe
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if ((*(int *)(context + 0x4cc) != 0) && (*(int *)(context + 0x4b0) != 0)) {
     uStackX_24 = (uint)((ulonglong)uiContext >> 0x20);
@@ -351474,7 +351497,7 @@ longlong FUN_18087c470(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x5ec) != 0) && (*(int *)(lVar5 + 0x5d0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x5c8) +
@@ -351518,7 +351541,7 @@ longlong FUN_18087c493(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x5ec) != 0) && (*(int *)(unaff_RDI + 0x5d0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x5c8) +
@@ -351590,7 +351613,7 @@ longlong FUN_18087c580(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x7cc) != 0) && (*(int *)(lVar5 + 0x7b0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x7a8) +
@@ -351634,7 +351657,7 @@ longlong FUN_18087c5a3(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x7cc) != 0) && (*(int *)(unaff_RDI + 0x7b0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x7a8) +
@@ -351706,7 +351729,7 @@ longlong FUN_18087c690(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x52c) != 0) && (*(int *)(lVar5 + 0x510) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x508) +
@@ -351750,7 +351773,7 @@ longlong FUN_18087c6b3(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x52c) != 0) && (*(int *)(unaff_RDI + 0x510) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x508) +
@@ -351822,7 +351845,7 @@ longlong FUN_18087c7a0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x4fc) != 0) && (*(int *)(lVar5 + 0x4e0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x4d8) +
@@ -351866,7 +351889,7 @@ longlong FUN_18087c7c3(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x4fc) != 0) && (*(int *)(unaff_RDI + 0x4e0) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x4d8) +
@@ -351938,7 +351961,7 @@ longlong FUN_18087c8b0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(lVar5 + 0x6ac) != 0) && (*(int *)(lVar5 + 0x690) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(lVar5 + 0x688) +
@@ -351982,7 +352005,7 @@ longlong FUN_18087c8d3(undefined8 uiContext,undefined8 dataSource,char targetBuf
   }
   else {
     bVar2 = true;
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (((*(int *)(unaff_RDI + 0x6ac) != 0) && (*(int *)(unaff_RDI + 0x690) != 0)) &&
      (iVar4 = *(int *)(*(longlong *)(uiContext + 0x688) +
@@ -352183,7 +352206,7 @@ int FUN_18087cbd0(longlong uiContext,undefined4 dataSource,ulonglong targetBuffe
   goto LAB_18087dbb3;
   isCharacterMatch4 = ~(byte)(functionResult0 >> 2) & 1;
   iVar4 = FUN_18088c380(*(undefined4 *)(bufferData + 0x18),*(undefined4 *)(bufferData + 0x2c8));
-  if ((iVar4 != 0) || (iVar4 = FUN_1807682e0(uiContext + 0xa0,0), iVar4 != 0)) goto LAB_18087dbb3;
+  if ((iVar4 != 0) || (iVar4 = InitializeUIContextState(uiContext + 0xa0,0), iVar4 != 0)) goto LAB_18087dbb3;
   func_0x00018088a120(uiContext);
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   functionResult1 = 0;
@@ -354473,7 +354496,7 @@ int FUN_1808801f0(longlong *uiContext,uint *dataSource,undefined8 targetBuffer,l
   allocatedMemory = uiContext[5];
   abufferValidation[0] = targetBuffer;
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   iVar6 = 0;
   if (bufferSize == (longlong *)0x0) {
@@ -355891,7 +355914,7 @@ void FUN_180881fa0(longlong uiContext,undefined8 dataSource,undefined4 *targetBu
   uStack_40 = XorEncryptionKey ^ (ulonglong)auStack_78;
   allocatedMemory = *(longlong *)(bufferData + 0xa0);
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   iVar6 = func_0x00018076b420(dataSource,&UNK_180985f78);
   if ((iVar6 == 0) && (lVar8 = *(longlong *)(bufferData + 0xad0), lVar8 != 0)) {
@@ -355981,7 +356004,7 @@ void FUN_180881fbc(longlong uiContext,undefined8 dataSource,undefined4 *targetBu
   undefined8 uStackX_20;
   
   if (unaff_R15 != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   iVar5 = func_0x00018076b420(dataSource,&UNK_180985f78);
   if ((iVar5 == 0) && (lVar7 = *(longlong *)(bufferData + 0xad0), lVar7 != 0)) {
@@ -356146,7 +356169,7 @@ int FUN_180882160(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
   
   allocatedMemory = *(longlong *)(bufferData + 0xa0);
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   uStack_50 = 0xffffffffffffffff;
   aiStack_48[0] = -1;
@@ -356228,7 +356251,7 @@ int FUN_18088217c(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
   *(undefined8 *)(in_RAX + -0x20) = unaff_RDI;
   *(undefined8 *)(in_RAX + -0x30) = unaff_R13;
   if (unaff_R15 != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   param_7 = 0xffffffffffffffff;
   param_8 = -1;
@@ -356661,7 +356684,7 @@ undefined8 FUN_180882610(longlong uiContext,ulonglong *dataSource)
   componentIndex = (**(code **)(**(longlong **)(uiContext + 800) + 0x10))();
   uVar3 = (**(code **)(**(longlong **)(uiContext + 800) + 0x10))();
   if (componentIndex != 0) {
-    FUN_180768360(uVar3);
+    CleanupUIContextState(uVar3);
   }
   componentContextPtr = (undefined4 *)*dataSource;
   contextData = 0;
@@ -358535,7 +358558,7 @@ ulonglong FUN_180883a80(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -358612,7 +358635,7 @@ LAB_180883b5e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -358660,7 +358683,7 @@ LAB_180883b5e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -358747,7 +358770,7 @@ ulonglong FUN_180883e00(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -358824,7 +358847,7 @@ LAB_180883ede:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -358872,7 +358895,7 @@ LAB_180883ede:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -358959,7 +358982,7 @@ ulonglong FUN_180884180(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -359036,7 +359059,7 @@ LAB_18088425e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -359084,7 +359107,7 @@ LAB_18088425e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -359171,7 +359194,7 @@ ulonglong FUN_180884500(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -359248,7 +359271,7 @@ LAB_1808845de:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -359296,7 +359319,7 @@ LAB_1808845de:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -359383,7 +359406,7 @@ ulonglong FUN_180884880(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -359460,7 +359483,7 @@ LAB_18088495e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -359508,7 +359531,7 @@ LAB_18088495e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -359595,7 +359618,7 @@ ulonglong FUN_180884c00(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -359672,7 +359695,7 @@ LAB_180884cde:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -359720,7 +359743,7 @@ LAB_180884cde:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -359807,7 +359830,7 @@ ulonglong FUN_180884f80(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -359884,7 +359907,7 @@ LAB_18088505e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -359932,7 +359955,7 @@ LAB_18088505e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -360019,7 +360042,7 @@ ulonglong FUN_180885300(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -360096,7 +360119,7 @@ LAB_1808853de:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -360144,7 +360167,7 @@ LAB_1808853de:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -360231,7 +360254,7 @@ ulonglong FUN_180885680(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -360308,7 +360331,7 @@ LAB_18088575e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -360356,7 +360379,7 @@ LAB_18088575e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -360443,7 +360466,7 @@ ulonglong FUN_180885a00(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -360520,7 +360543,7 @@ LAB_180885ade:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -360568,7 +360591,7 @@ LAB_180885ade:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -360655,7 +360678,7 @@ ulonglong FUN_180885d80(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -360732,7 +360755,7 @@ LAB_180885e5e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -360780,7 +360803,7 @@ LAB_180885e5e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -360867,7 +360890,7 @@ ulonglong FUN_180886100(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -360944,7 +360967,7 @@ LAB_1808861de:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -360992,7 +361015,7 @@ LAB_1808861de:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -361079,7 +361102,7 @@ ulonglong FUN_180886480(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -361156,7 +361179,7 @@ LAB_18088655e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -361204,7 +361227,7 @@ LAB_18088655e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -361291,7 +361314,7 @@ ulonglong FUN_180886800(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -361368,7 +361391,7 @@ LAB_1808868de:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -361416,7 +361439,7 @@ LAB_1808868de:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -361503,7 +361526,7 @@ ulonglong FUN_180886b80(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -361580,7 +361603,7 @@ LAB_180886c5e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -361628,7 +361651,7 @@ LAB_180886c5e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -361715,7 +361738,7 @@ ulonglong FUN_180886f00(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -361792,7 +361815,7 @@ LAB_180886fde:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -361840,7 +361863,7 @@ LAB_180886fde:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -361927,7 +361950,7 @@ ulonglong FUN_180887280(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -362004,7 +362027,7 @@ LAB_18088735e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -362052,7 +362075,7 @@ LAB_18088735e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -362139,7 +362162,7 @@ ulonglong FUN_180887600(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -362216,7 +362239,7 @@ LAB_1808876de:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -362264,7 +362287,7 @@ LAB_1808876de:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -362351,7 +362374,7 @@ ulonglong FUN_180887980(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -362428,7 +362451,7 @@ LAB_180887a5e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -362476,7 +362499,7 @@ LAB_180887a5e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -362563,7 +362586,7 @@ ulonglong FUN_180887d00(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -362640,7 +362663,7 @@ LAB_180887dde:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -362688,7 +362711,7 @@ LAB_180887dde:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -362775,7 +362798,7 @@ ulonglong FUN_180888080(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -362852,7 +362875,7 @@ LAB_18088815e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -362900,7 +362923,7 @@ LAB_18088815e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -362987,7 +363010,7 @@ ulonglong FUN_180888400(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -363064,7 +363087,7 @@ LAB_1808884de:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -363112,7 +363135,7 @@ LAB_1808884de:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -363199,7 +363222,7 @@ ulonglong FUN_180888780(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -363276,7 +363299,7 @@ LAB_18088885e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -363324,7 +363347,7 @@ LAB_18088885e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -363411,7 +363434,7 @@ ulonglong FUN_180888b00(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -363488,7 +363511,7 @@ LAB_180888bde:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -363536,7 +363559,7 @@ LAB_180888bde:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -363623,7 +363646,7 @@ ulonglong FUN_180888e80(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -363700,7 +363723,7 @@ LAB_180888f5e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -363748,7 +363771,7 @@ LAB_180888f5e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -363835,7 +363858,7 @@ ulonglong FUN_180889200(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -363912,7 +363935,7 @@ LAB_1808892de:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -363960,7 +363983,7 @@ LAB_1808892de:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -364047,7 +364070,7 @@ ulonglong FUN_180889580(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -364124,7 +364147,7 @@ LAB_18088965e:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -364172,7 +364195,7 @@ LAB_18088965e:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -364259,7 +364282,7 @@ ulonglong FUN_180889900(longlong *uiContext,longlong *dataSource,undefined8 *tar
   plStackX_8 = uiContext;
   plStackX_10 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   functionResult2 = uVar6;
@@ -364336,7 +364359,7 @@ LAB_1808899de:
   pallocatedMemory = (longlong *)plStackX_8[1];
   componentIndex = pallocatedMemory[5];
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   if (*(int *)((longlong)pallocatedMemory + 0x24) != 0) {
     if ((int)pallocatedMemory[1] == 0) {
@@ -364384,7 +364407,7 @@ LAB_1808899de:
   componentIndex = pallocatedMemory[5];
   plStackX_8 = dataSource;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   uVar3 = FUN_180851a40(pallocatedMemory);
   if (uVar3 == 0) {
@@ -364467,7 +364490,7 @@ undefined4 FUN_180889ce0(longlong uiContext)
   iStack_70 = 0;
   iStack_6c = 0;
   if (componentIndex != 0) {
-    FUN_180768360(componentIndex);
+    CleanupUIContextState(componentIndex);
   }
   iVar8 = iStack_6c;
   plStack_68 = (longlong *)(uiContext + 0x898);
@@ -364586,7 +364609,7 @@ undefined4 FUN_180889cf9(longlong uiContext)
   *(ulonglong *)(unaff_RBP + -0x50) = in_RAX;
   *(longlong *)(unaff_RBP + 0x30) = unaff_RDI;
   if (unaff_RDI != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
     functionResult0 = (ulonglong)*(uint *)(unaff_RBP + -0x4c);
   }
   *(undefined8 *)(unaff_RBP + -0x40) = 0xffffffffffffffff;
@@ -365068,7 +365091,7 @@ int FUN_18088a1f0(longlong uiContext)
   
   allocatedMemory = *(longlong *)(bufferData + 0x28);
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   if (*(int *)(bufferData + 0x24) == 0) {
     validationResult = FUN_180744cc0(uiContext);
@@ -365096,7 +365119,7 @@ int FUN_18088a1fa(longlong uiContext)
   longlong unaff_RSI;
   
   if (unaff_RSI != 0) {
-    FUN_180768360();
+    CleanupUIContextState();
   }
   if (*(int *)(bufferData + 0x24) == 0) {
     operationResult = FUN_180744cc0(uiContext);
@@ -365137,7 +365160,7 @@ ulonglong FUN_18088a270(longlong uiContext)
   
   stringCompareIndex = *(longlong *)(bufferData + 0x350);
   if (stringCompareIndex != 0) {
-    FUN_180768360(stringCompareIndex);
+    CleanupUIContextState(stringCompareIndex);
   }
   if (*(int *)(bufferData + 0x34c) == 0) {
     functionResult = FUN_180744cc0(uiContext + 0x328);
@@ -365162,7 +365185,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x380);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x37c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x358);
@@ -365181,7 +365204,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x3b0);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x3ac) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x388);
@@ -365200,7 +365223,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x3e0);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x3dc) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x3b8);
@@ -365219,7 +365242,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x410);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x40c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 1000);
@@ -365238,7 +365261,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x440);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x43c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x418);
@@ -365257,7 +365280,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x470);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x46c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x448);
@@ -365276,7 +365299,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x4a0);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x49c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x478);
@@ -365295,7 +365318,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x4d0);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x4cc) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x4a8);
@@ -365314,7 +365337,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x500);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x4fc) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x4d8);
@@ -365333,7 +365356,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x530);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x52c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x508);
@@ -365352,7 +365375,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x560);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x55c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x538);
@@ -365371,7 +365394,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x590);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x58c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x568);
@@ -365390,7 +365413,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x5c0);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x5bc) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x598);
@@ -365409,7 +365432,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x620);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x61c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x5f8);
@@ -365428,7 +365451,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x650);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x64c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x628);
@@ -365447,7 +365470,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x680);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x67c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x658);
@@ -365470,7 +365493,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x6e0);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x6dc) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x6b8);
@@ -365489,7 +365512,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x710);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x70c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x6e8);
@@ -365508,7 +365531,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x740);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x73c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x718);
@@ -365527,7 +365550,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x770);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x76c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x748);
@@ -365546,7 +365569,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x7a0);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x79c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x778);
@@ -365565,7 +365588,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 2000);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x7cc) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x7a8);
@@ -365584,7 +365607,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x800);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x7fc) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x7d8);
@@ -365603,7 +365626,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x830);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x82c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x808);
@@ -365622,7 +365645,7 @@ LAB_18088a2ee:
     }
     stringCompareIndex = *(longlong *)(bufferData + 0x860);
     if (stringCompareIndex != 0) {
-      FUN_180768360(stringCompareIndex);
+      CleanupUIContextState(stringCompareIndex);
     }
     if (*(int *)(bufferData + 0x85c) == 0) {
       functionResult = FUN_180744cc0(uiContext + 0x838);
@@ -367568,7 +367591,7 @@ void FUN_18088d0c0(longlong uiContext)
   ulonglong uStack_48;
   
   uStack_48 = XorEncryptionKey ^ (ulonglong)auStack_138;
-  FUN_180768360(**(undefined8 **)(uiContext + 0x1e0));
+  CleanupUIContextState(**(undefined8 **)(uiContext + 0x1e0));
   uStack_f8 = 0;
   uStack_f0 = 0;
   uStack_e8 = 0;
@@ -368241,7 +368264,7 @@ void FUN_18088dbf0(longlong uiContext,undefined8 *dataSource)
   uVar5 = dataSource[3];
   uVar6 = dataSource[4];
   eventTypeCode = dataSource[5];
-  FUN_180768360(functionResult);
+  CleanupUIContextState(functionResult);
   functionResult1 = (int)*(uint *)(uiContext + 0x21c) >> 0x1f;
   iVar9 = *(int *)(bufferData + 0x218) + 1;
   iVar8 = (*(uint *)(uiContext + 0x21c) ^ functionResult1) - functionResult1;
@@ -368294,7 +368317,7 @@ undefined8 FUN_18088dcf0(longlong uiContext)
       return 0x23;
     }
   }
-  FUN_180768360(*(undefined8 *)(uiContext + 0x160));
+  CleanupUIContextState(*(undefined8 *)(uiContext + 0x160));
   return 0;
 }
 
@@ -368602,7 +368625,7 @@ void FUN_18088e220(longlong uiContext)
   ulonglong uStack_20;
   
   uStack_20 = XorEncryptionKey ^ (ulonglong)auStack_b8;
-  FUN_180768360(*(undefined8 *)(uiContext + 0x168));
+  CleanupUIContextState(*(undefined8 *)(uiContext + 0x168));
   auStack_98[0] = 0;
   operationResult = FUN_18088c740(auStack_98,*(undefined8 *)(uiContext + 0x158));
   if (operationResult != 0) {
@@ -368631,11 +368654,11 @@ undefined8 FUN_18088e480(longlong uiContext,longlong dataSource,undefined1 targe
   *(undefined1 *)(uiContext + 0x188) = targetBuffer;
   *(undefined4 *)(bufferData + 0x17c) = *(undefined4 *)(dataSource + 0x18);
   lVar4 = *(longlong *)(dataSource + 0x78);
-  uVar3 = FUN_1807682e0(uiContext + 0x160,0);
+  uVar3 = InitializeUIContextState(uiContext + 0x160,0);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
-  uVar3 = FUN_1807682e0(uiContext + 0x168,0);
+  uVar3 = InitializeUIContextState(uiContext + 0x168,0);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -368680,7 +368703,7 @@ undefined8 FUN_18088e480(longlong uiContext,longlong dataSource,undefined1 targe
     return uVar3;
   }
   if ((*(longlong *)(bufferData + 0x220) == 0) && (*(longlong *)(bufferData + 0x228) == 0)) {
-    uVar3 = FUN_1807682e0((longlong *)(uiContext + 0x220),0);
+    uVar3 = InitializeUIContextState((longlong *)(uiContext + 0x220),0);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -368759,7 +368782,7 @@ undefined8 FUN_18088e4e4(void)
     return uVar3;
   }
   if ((*(longlong *)(context + 0x220) == 0) && (*(longlong *)(context + 0x228) == 0)) {
-    uVar3 = FUN_1807682e0((longlong *)(context + 0x220),0);
+    uVar3 = InitializeUIContextState((longlong *)(context + 0x220),0);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -370247,7 +370270,7 @@ longlong * FUN_18088f810(undefined8 uiContext,longlong dataSource)
     uVar6 = *(uint *)(allocatedMemory1 + 0x1c);
     allocatedMemory1 = *(longlong *)(allocatedMemory1 + 0x18);
     if (componentIndex != 0) {
-      FUN_180768360(componentIndex);
+      CleanupUIContextState(componentIndex);
     }
     plVar8 = (longlong *)0x0;
     if (((*(int *)(allocatedMemory + 0x15c) != 0) && (*(int *)(allocatedMemory + 0x140) != 0)) &&
@@ -370351,7 +370374,7 @@ longlong * FUN_18088f832(void)
   uStack0000000000000028 = *(uint *)(componentIndex + 0x18);
   uStack000000000000002c = *(uint *)(componentIndex + 0x1c);
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   plVar9 = (longlong *)0x0;
   if (((*(int *)(context + 0x15c) != 0) && (*(int *)(context + 0x140) != 0)) &&
@@ -370460,7 +370483,7 @@ longlong FUN_18088fa00(undefined8 uiContext,longlong dataSource)
     allocatedMemory = *(longlong *)(stringCompareIndex + 0x200);
     lVar7 = *(longlong *)(lStackX_18 + 0x10);
     if (allocatedMemory != 0) {
-      FUN_180768360(allocatedMemory);
+      CleanupUIContextState(allocatedMemory);
     }
     plVar4 = (longlong *)func_0x000180851be0(stringCompareIndex + 0x208,lVar7 + 0x10);
     if (plVar4 == (longlong *)0x0) {
@@ -370529,7 +370552,7 @@ longlong FUN_18088fa22(void)
   allocatedMemory = *(longlong *)(context + 0x200);
   lVar7 = *(longlong *)(in_stack_00000040 + 0x10);
   if (allocatedMemory != 0) {
-    FUN_180768360(allocatedMemory);
+    CleanupUIContextState(allocatedMemory);
   }
   pstringCompareIndex = (longlong *)func_0x000180851be0(context + 0x208,lVar7 + 0x10);
   if (pstringCompareIndex == (longlong *)0x0) {
