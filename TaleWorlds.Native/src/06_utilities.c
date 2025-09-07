@@ -46508,7 +46508,19 @@ void ResetExceptionHandlersA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
 
 
 
-void Unwind_180903f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器设置和清理函数A1
+ * 
+ * 该函数负责设置临时异常处理器，清理系统状态，
+ * 并在完成后恢复默认异常处理器。处理多个内存偏移量的异常处理。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180903f90
+ */
+void SetupAndCleanupExceptionHandlersA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -46562,7 +46574,19 @@ void Unwind_180903f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器设置和清理函数A2
+ * 
+ * 该函数负责设置临时异常处理器，清理系统状态，
+ * 并在完成后恢复默认异常处理器。处理多个内存偏移量的异常处理。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180903fb0
+ */
+void SetupAndCleanupExceptionHandlersA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -46592,7 +46616,19 @@ void Unwind_180903fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器设置和清理函数A4
+ * 
+ * 该函数负责设置临时异常处理器，清理系统状态，
+ * 并在完成后恢复默认异常处理器。处理多个内存偏移量的异常处理。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180903fd0
+ */
+void SetupAndCleanupExceptionHandlersA4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -46622,7 +46658,19 @@ void Unwind_180903fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器设置和清理函数A5
+ * 
+ * 该函数负责设置临时异常处理器，清理系统状态，
+ * 并在完成后恢复默认异常处理器。处理多个内存偏移量的异常处理。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180903ff0
+ */
+void SetupAndCleanupExceptionHandlersA5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -46806,7 +46854,19 @@ void ExceptionHandlerA77(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
 
 
 
-void Unwind_1809040b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器迭代执行函数
+ * 
+ * 该函数负责迭代执行异常处理器链中的所有回调函数，
+ * 遍历验证状态指针并调用相应的异常处理函数。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_1809040b0
+ */
+void ExecuteExceptionHandlersChain(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -46829,7 +46889,17 @@ void Unwind_1809040b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809040d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器重置函数
+ * 
+ * 该函数负责重置异常处理器状态，设置临时异常处理器，
+ * 清理系统状态，并在完成后恢复默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809040d0
+ */
+void ResetExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -46848,7 +46918,19 @@ void Unwind_1809040d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809040e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理回调执行函数
+ * 
+ * 该函数负责执行异常处理回调函数，检查是否存在有效的异常处理器，
+ * 如果存在则调用相应的回调函数进行异常处理。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_1809040e0
+ */
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
