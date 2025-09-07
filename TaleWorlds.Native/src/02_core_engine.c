@@ -1045,6 +1045,12 @@
 // 原始函数名：FUN_180179410 - UTF-8编码系统初始化函数
 #define InitializeUtf8EncodingSystem FUN_180179410
 
+// 原始函数名：FUN_18016f7d0 - UTF-8编码状态更新函数
+#define UpdateUtf8EncodingStatus FUN_18016f7d0
+
+// 原始函数名：FUN_1801659e0 - UTF-16字符值获取函数
+#define GetUtf16CharacterValue FUN_1801659e0
+
 // 系统核心函数语义化定义
 // 原始函数名：FUN_180179770 - 系统缓冲区处理函数
 #define ProcessSystemBufferEx FUN_180179770
@@ -200043,8 +200049,20 @@ FUN_18016f720(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8Sou
 
 
 
+/**
+ * @brief 更新UTF-8编码状态
+ * 
+ * 该函数负责更新UTF-8编码的处理状态，包括字符代码转换和临时缓冲区处理。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 返回处理后的字符代码
+ * @note 原始函数名：FUN_18016f7d0
+ */
 uint64_t
-FUN_18016f7d0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+UpdateUtf8EncodingStatus(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   uint32_t MemoryAllocationIndex;
@@ -200052,7 +200070,7 @@ FUN_18016f7d0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8Source
   
   UnicodeCodePoint = 0xfffffffffffffffe;
   MemoryAllocationIndex = 0;
-  Utf16Char = FUN_1801659e0();
+  Utf16Char = GetUtf16CharacterValue();
   ProcessTemporaryBuffer(CharacterCode,Utf16Char,Utf8SourcePointer,Utf16EndPointer,MemoryAllocationIndex,UnicodeCodePoint);
   return CharacterCode;
 }
