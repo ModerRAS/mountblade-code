@@ -33116,10 +33116,10 @@ uint64_t ValidateAndProcessDataOperation(int64_t operationBase,DataBuffer *dataB
      (memoryBaseAddress = ValidatePortControlRequest(dataBuffer,operationBase + 0x10), (int)memoryBaseAddress == 0)) {
     poperationResult = (DataWord *)ExecuteSystemResourceOperation();
     memoryBaseAddress = 0;
-    uStack_78 = *poperationResult;
-    uStack_74 = poperationResult[1];
-    uStack_70 = poperationResult[2];
-    uStack_6c = poperationResult[3];
+    operationResultValue0 = *poperationResult;
+    operationResultValue1 = poperationResult[1];
+    operationResultValue2 = poperationResult[2];
+    operationResultValue3 = poperationResult[3];
     if (*(uint *)(dataBuffer + 8) < 0x6d) {
       if (*(int *)(dataBuffer[1] + 0x18) == 0) {
         operationResult = *dataBuffer;
