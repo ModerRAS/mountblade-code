@@ -38173,7 +38173,7 @@ void SystemCallHandlerCleanupFunc5(DataBuffer operationBase,int64_t dataBuffer,D
 void SystemCallHandlerCleanupFunc6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058420(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
+  ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -38196,7 +38196,7 @@ void SystemCallHandlerCleanupFunc6(DataBuffer operationBase,int64_t dataBuffer,D
 void SystemCallHandlerCleanupFunc7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058420(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
+  ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -38721,7 +38721,7 @@ void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x38);
   validationStatus = SystemCleanupFlagfffffffe;
   *exceptionDataBuffer = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
     characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
@@ -47567,7 +47567,7 @@ void Unwind_180904ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x160);
   validationStatus = SystemCleanupFlagfffffffe;
   *exceptionDataBuffer = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
     characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
@@ -47635,7 +47635,7 @@ void Unwind_180904af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x50);
   validationStatus = SystemCleanupFlagfffffffe;
   *exceptionDataBuffer = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
     characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
@@ -47983,7 +47983,7 @@ void Unwind_180904e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x30);
   validationStatus = SystemCleanupFlagfffffffe;
   *exceptionDataBuffer = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
     characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
