@@ -177278,7 +177278,20 @@ uint64_t * ProcessSystemMemoryBufferSetup(uint64_t *CharacterCode
 
 
 
-4a9d0(uint64_t *CharacterCodevoid FUN_18014a9d0(uint64_t *CharacterCode
+/**
+ * @brief 处理字符编码和系统初始化
+ * 
+ * 该函数负责处理字符编码相关的系统初始化操作，包括内存分配、
+ * 缓冲区设置和系统事件处理。函数会检查字符代码的有效性，
+ * 并在必要时触发系统事件处理。
+ * 
+ * @param CharacterCode 字符代码指针，用于存储字符编码信息
+ * @return void 无返回值
+ * 
+ * @note 此函数是字符处理系统的重要组成部分
+ * @note 如果字符代码[1]不为0，会触发系统事件处理
+ */
+void ProcessCharacterEncodingAndSystemInitialization(uint64_t *CharacterCode)
 {
   ProcessCharacterWithSystemOperations();
   ProcessCharacterWithMemoryOperations();
@@ -267403,7 +267416,15 @@ int IdentifySystemIdentifierByPatternVariantT(void
 
 
 
-int FUN_1802257e7(void
+/**
+ * 识别系统标识符 - 根据输入数据长度和内容匹配系统关键字
+ * 
+ * 此函数通过比较输入数据的长度和内容与预定义的系统关键字模式，
+ * 来识别和分类系统标识符。支持多种长度的数据匹配，并返回相应的标识符代码。
+ * 
+ * @return 返回匹配的系统标识符代码，如果没有匹配则返回默认值
+ */
+int IdentifySystemIdentifierByLengthAndContent(void
 {
   int LockResult;
   long long BufferStatus;
@@ -267594,7 +267615,15 @@ int FUN_1802257e7(void
 
 
 
-int FUN_180225827(void
+/**
+ * 识别系统标识符模式变体V
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为5和3的字符串匹配，以及其他特定长度的模式。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantV(void
 {
   int LockResult;
   long long BufferStatus;
@@ -267775,7 +267804,15 @@ int FUN_180225827(void
 
 
 
-int FUN_180225867(void
+/**
+ * 识别系统标识符模式变体W
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为5、3、4的字符串匹配，以及其他特定长度的模式。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantW(void
 {
   int LockResult;
   long long BufferStatus;
@@ -267948,7 +267985,15 @@ int FUN_180225867(void
 
 
 
-int FUN_1802258a7(void
+/**
+ * 识别系统标识符模式变体X
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为5、3、4的字符串匹配，以及其他特定长度的模式。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantX(void
 {
   int LockResult;
   long long BufferStatus;
@@ -268111,7 +268156,15 @@ int FUN_1802258a7(void
 
 
 
-int FUN_1802258e7(void
+/**
+ * 识别系统标识符模式变体Y
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为5、3、4的字符串匹配，以及其他特定长度的模式。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantY(void
 {
   int LockResult;
   long long BufferStatus;
@@ -268266,7 +268319,15 @@ int FUN_1802258e7(void
 
 
 
-int FUN_180225927(void
+/**
+ * 识别系统标识符模式变体Z
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为5、3、4的字符串匹配，以及其他特定长度的模式。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantZ(void
 {
   int LockResult;
   long long BufferStatus;
@@ -268413,7 +268474,15 @@ int FUN_180225927(void
 
 
 
-int FUN_180225967(void
+/**
+ * 识别系统标识符模式变体AA
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为5、3、4的字符串匹配，以及其他特定长度的模式。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantAA(void
 {
   int LockResult;
   long long BufferStatus;
@@ -268550,7 +268619,15 @@ int FUN_180225967(void
 
 
 
-int FUN_180225993(void
+/**
+ * 识别系统标识符模式变体AB
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为5、3、4的字符串匹配，以及其他特定长度的模式。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantAB(void
 {
   int LockResult;
   long long BufferStatus;
@@ -268683,7 +268760,15 @@ int FUN_180225993(void
 
 
 
-int FUN_1802259bf(void
+/**
+ * 识别系统标识符模式变体AC
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为5、3、4的字符串匹配，以及其他特定长度的模式。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantAC(void
 {
   int LockResult;
   long long BufferStatus;
@@ -268812,7 +268897,15 @@ int FUN_1802259bf(void
 
 
 
-int FUN_1802259eb(void
+/**
+ * 识别系统标识符模式变体AD
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为5、3、4的字符串匹配，以及其他特定长度的模式。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantAD(void
 {
   int LockResult;
   long long BufferStatus;
