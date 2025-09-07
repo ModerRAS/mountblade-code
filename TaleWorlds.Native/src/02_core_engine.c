@@ -3752,6 +3752,21 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_1800c1420 - 系统向量寄存器和数据处理函数
 #define ProcessVectorRegisterAndData FUN_1800c1420
 
+// 原始函数名：FUN_18012d740 - 系统字符编码处理函数
+#define ProcessCharacterEncoding FUN_18012d740
+
+// 原始函数名：FUN_18013d860 - 系统数据表处理函数
+#define ProcessDataTableOperation FUN_18013d860
+
+// 原始函数名：FUN_180128350 - 系统缓冲区获取函数
+#define GetSystemBuffer FUN_180128350
+
+// 原始函数名：FUN_18012daef - UTF-8字符编码处理函数
+#define ProcessUtf8CharacterEncodingEx FUN_18012daef
+
+// 原始函数名：FUN_18012dcb6 - UTF-8缓冲区处理函数
+#define ProcessUtf8Buffer FUN_18012dcb6
+
 const void* const SystemStackBufferA = (void*)0x18010cb70;
 const void* const SystemStackBufferB = (void*)0x18010cb60;
 const void* const SystemLocalDataBuffer = (void*)0x180103b59;
