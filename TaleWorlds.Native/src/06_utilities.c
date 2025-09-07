@@ -21453,7 +21453,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)TertiaryEncryptionKeyBuffer;
   dataContext = *(int64_t *)(dataBuffer + 0x80);
   exceptionHandlerContext4 = 0;
-  StackDataWordA = 0;
+  TemporaryDataWordA = 0;
   bufferPointer = dataContext + 8;
   if (dataContext == 0) {
     bufferPointer = exceptionHandlerContext4;
