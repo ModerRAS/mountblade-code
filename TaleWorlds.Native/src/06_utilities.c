@@ -4832,11 +4832,11 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define TemporaryExceptionHandler GlobalTemporaryExceptionHandler         // 临时异常处理器
 
 // 系统清理相关变量宏定义
-#define SystemCleanupFlag DAT_180c91d50               // 系统清理标志
-#define SystemCleanupCounter _DAT_180c91d30            // 系统清理计数器
-#define SystemCleanupPointer _DAT_180c91d28            // 系统清理指针
-#define SystemCleanupHandler _DAT_180c91d18            // 系统清理处理器
-#define SystemCleanupStatus _DAT_180c91cf0             // 系统清理状态
+#define SystemCleanupFlag GlobalSystemCleanupFlag               // 系统清理标志
+#define SystemCleanupCounter GlobalSystemCleanupCounter            // 系统清理计数器
+#define SystemCleanupPointer GlobalSystemCleanupPointer            // 系统清理指针
+#define SystemCleanupHandler GlobalSystemCleanupHandler            // 系统清理处理器
+#define SystemCleanupStatus GlobalSystemCleanupStatus             // 系统清理状态
 
 // 系统资源清理相关变量宏定义
 #define SystemResourceCleanupFlagA0 DAT_180c95ef0      // 系统资源清理标志A0
@@ -18104,9 +18104,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
         } while ((stackIntBuffer[0] != -1) &&
                 (stackIntBuffer[0] = *(int *)(validationContextPointer3[2] + 4 + validationContext5 * 0x10), stackIntBuffer[0] != -1));
         calculatedValue = inputParameter1 + 1;
-        bVar17 = inputParameter1 != -1;
+        isInputParameterValid = inputParameter1 != -1;
         inputParameter1 = 0;
-        if (bVar17) {
+        if (isInputParameterValid) {
           inputParameter1 = calculatedValue;
         }
         if (inputParameter1 != (int)validationContextPointer3[1]) {
@@ -18176,8 +18176,8 @@ ProcessCompleteLabel:
   if (0 < *(int *)(operationBase + 0x20)) {
     do {
       securityCheckResult = (int)loopCounter + 1;
-      pbVar1 = (byte *)(dataFlags + 0xb + *(int64_t *)(operationBase + 0x18));
-      *pbVar1 = *pbVar1 & 0xfe;
+      dataFlagPointer = (byte *)(dataFlags + 0xb + *(int64_t *)(operationBase + 0x18));
+      *dataFlagPointer = *dataFlagPointer & 0xfe;
       dataFlags = dataFlags + 0xc;
       loopCounter = (uint64_t)securityCheckResult;
     } while ((int)securityCheckResult < *(int *)(operationBase + 0x20));
@@ -20710,9 +20710,9 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
                 } while ((iterationCount != -1) &&
                         (iterationCount = *(int *)(validationContextPointer4[2] + 4 + (int64_t)iterationCount * 0x10), iterationCount != -1));
                 iterationCount = calculatedValue + 1;
-                bVar20 = calculatedValue != -1;
+                isCalculatedValueValid = calculatedValue != -1;
                 calculatedValue = 0;
-                if (bVar20) {
+                if (isCalculatedValueValid) {
                   calculatedValue = iterationCount;
                 }
                 if (calculatedValue != (int)validationContextPointer4[1]) {
