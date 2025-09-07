@@ -488,6 +488,12 @@
 #define ProcessCharacterWithValidationEx FUN_18014cb90     // 处理字符验证扩展
 #define ProcessCharacterWithEncodingConversion FUN_18014f980 // 处理字符编码转换
 #define ProcessCharacterWithSystemCleanup FUN_18014ccf0   // 处理系统清理
+
+// 系统初始化和状态管理函数
+#define InitializeSystemPriorityManager FUN_180160d00      // 初始化系统优先级管理器
+#define ProcessSystemPriorityAllocation FUN_180160800      // 处理系统优先级分配
+#define ProcessSystemPriorityValidation FUN_1801607a0      // 处理系统优先级验证
+#define ProcessSystemPriorityAndFlags FUN_180160860        // 处理系统优先级和标志
 #define ProcessCharacterWithSystemBufferEx5 FUN_18014e4d0
 #define ProcessCharacterWithSystemBufferEx6 FUN_18014e570
 #define ProcessCharacterWithSystemBufferEx7 FUN_18014e610
@@ -179139,7 +179145,18 @@ void ProcessUtf8ToUtf16ConversionWithValidation(uint64_t CharacterCode,uint64_t 
 
 
 
-4b470(long long *CharacterCode,uint64_t *CharacterCodeSizevoid FUN_18014b470(long long *CharacterCode,uint64_t *CharacterCodeSize
+/**
+ * @brief 分配内存并管理缓冲区
+ * 
+ * 该函数负责系统内存分配和缓冲区管理，包括内存块分配、
+ * 内存地址掩码处理和系统数据结构初始化
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * 
+ * @note 原始函数名：FUN_18014b470
+ */
+void AllocateMemoryAndManageBuffer(long long *CharacterCode,uint64_t *CharacterCodeSize)
 {
   long long *CharacterCode;
   unsigned long long MemoryAllocationIndex;
@@ -181953,7 +181970,18 @@ long long FUN_18014e960(long long CharacterCode,long long SystemBufferSize
 
 
 
-4eb80(long long *CharacterCode,unsigned long long SystemBufferSizevoid FUN_18014eb80(long long *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 处理字符高级验证
+ * 
+ * 该函数负责字符数据的高级验证处理，包括缓冲区状态检查、
+ * Unicode码点处理和系统数据注册管理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18014eb80
+ */
+void ProcessCharacterWithAdvancedValidation(long long *CharacterCode,unsigned long long SystemBufferSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -190427,105 +190455,105 @@ uint64_t FUN_18015c320(uint64_t CharacterCode,unsigned long long SystemBufferSiz
   uStack_18 = EncodingDecodingKey ^ (unsigned long long)auStack_e18;
   lStack_de0 = CharacterCode;
   ProcessingFlags = CharacterCode;
-  FUN_180160d00();
+  InitializeSystemPriorityManager();
   CharacterTablePointer = CharacterCode + 0x20;
   SystemPriorityLevel.LowPart = 3;
   ProcessingFlags = LoopCounter;
-  FUN_180160800(LoopCounter,&SystemPriorityLevel);
+  ProcessSystemPriorityAllocation(LoopCounter,&SystemPriorityLevel);
   ProcessingFlags = CharacterCode + 0x50;
   SystemPriorityLevel.LowPart = 3;
-  FUN_1801607a0(ProcessingFlags,&SystemPriorityLevel);
+  ProcessSystemPriorityValidation(ProcessingFlags,&SystemPriorityLevel);
   SystemPriorityLevel.LowPart = 0;
   lStack_df8 = 0;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x19;
   SystemPriorityLevel.LowPart = 2;
   lStack_df8 = 2;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x2d;
   SystemPriorityLevel.LowPart = 1;
   lStack_df8 = 1;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x2c;
   SystemPriorityLevel.LowPart = 3;
   lStack_df8 = 3;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x14;
   SystemPriorityLevel.LowPart = 4;
   lStack_df8 = 4;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x2f;
   SystemPriorityLevel.LowPart = 5;
   lStack_df8 = 5;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x15;
   SystemPriorityLevel.LowPart = 7;
   lStack_df8 = 7;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x39;
   SystemPriorityLevel.LowPart = 6;
   lStack_df8 = 6;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x2e;
   SystemPriorityLevel.LowPart = 8;
   lStack_df8 = 8;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x13;
   SystemPriorityLevel.LowPart = 9;
   lStack_df8 = 9;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0xe0;
   SystemPriorityLevel.LowPart = 10;
   lStack_df8 = 10;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x22;
   SystemPriorityLevel.LowPart = 0xb;
   lStack_df8 = 0xb;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x16;
   SystemPriorityLevel.LowPart = 0xc;
   lStack_df8 = 0xc;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x31;
   SystemPriorityLevel.LowPart = 0xd;
   lStack_df8 = 0xd;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x30;
   SystemPriorityLevel.LowPart = 0xe;
   lStack_df8 = 0xe;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x11;
   SystemPriorityLevel.LowPart = 0xf;
   lStack_df8 = 0xf;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x1e;
   SystemPriorityLevel.LowPart = 0x10;
   lStack_df8 = 0x10;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x1f;
   SystemPriorityLevel.LowPart = 0x11;
   lStack_df8 = 0x11;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x20;
   SystemPriorityLevel.LowPart = 0x12;
   lStack_df8 = 0x12;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x12;
   SystemPriorityLevel.LowPart = 0x13;
   lStack_df8 = 0x13;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x10;
   SystemPriorityLevel.LowPart = 0x14;
   lStack_df8 = 0x14;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x21;
   SystemPriorityLevel.LowPart = 0x15;
   lStack_df8 = 0x15;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x17;
   SystemPriorityLevel = CONCAT44(SystemPriorityLevel.HighPart,0x16);
   lStack_df8 = 0x16;
-  FUN_180160860(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
+  ProcessSystemPriorityAndFlags(LoopCounter,&ProcessingFlags,uStack_de8,&SystemPriorityLevel);
   *(uint32_t *)(ProcessingFlags + 4) = 0x25;
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0x11;

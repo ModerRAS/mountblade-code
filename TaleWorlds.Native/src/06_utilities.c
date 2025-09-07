@@ -12338,18 +12338,31 @@ DataBuffer ValidateResourcePointerAccess(int64_t resourceDescriptor)
 /**
  * @brief 处理浮点数组资源
  * 
- * 该函数处理包含浮点数数组的资源，进行数据验证和转换操作。
- * 函数首先查询系统数据，然后验证浮点数组的每个元素，最后根据验证结果
- * 执行必要的数据转换和上下文更新。
+ * 该函数负责处理浮点数数组资源，执行以下操作：
+ * 1. 查询系统数据并获取资源上下文
+ * 2. 验证浮点数数组的有效性
+ * 3. 遍历数组元素并进行浮点数验证
+ * 4. 执行浮点数转换和处理
+ * 5. 更新验证上下文和状态标志
+ * 
+ * @details 函数执行流程：
+ * - 首先通过QueryAndRetrieveSystemDataA0获取系统上下文
+ * - 然后获取异常处理上下文和输入浮点数值
+ * - 遍历浮点数组，对每个元素调用ProcessFloatingPointDataValidationA0进行验证
+ * - 检查验证上下文状态和处理标志
+ * - 使用SIMD指令进行浮点数转换和处理
+ * - 调用ConvertFloatingPointDataA0转换浮点数据
+ * - 更新验证上下文并设置状态标志
  * 
  * @param resourceDescriptor 资源描述符指针，包含浮点数据和数组信息
  * @return uint64_t 处理结果状态码：
  *         - 0: 处理成功
- *         - 0x1c: 资源无效或处理失败
+ *         - ResourceInvalidErrorCode: 资源无效错误
  *         - 其他值: 具体的错误代码
  * 
  * @note 原始函数名：FUN_1808936a0
  * @warning 确保传入的资源描述符有效，否则可能导致未定义行为
+ * @warning 该函数使用SIMD指令进行浮点数处理，需要CPU支持SIMD指令集
  * @see QueryAndRetrieveSystemDataA0, ProcessFloatingPointDataValidationA0
  * @see ConvertFloatingPointDataA0, UpdateValidationContextA0
  */
@@ -12435,17 +12448,31 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
 /**
  * @brief 处理批量数据操作
  * 
- * 该函数处理批量数据操作，包括验证和处理多个数据项。函数遍历数据数组，
- * 对每个数据项进行验证和处理，确保所有数据都符合系统要求。
+ * 该函数负责处理批量数据操作，执行以下操作：
+ * 1. 查询系统数据并获取处理上下文
+ * 2. 设置数据指针数组和处理参数
+ * 3. 遍历批量数据项进行验证和处理
+ * 4. 对每个数据项调用相应的处理函数
+ * 5. 更新处理状态和计数器
+ * 
+ * @details 函数执行流程：
+ * - 首先通过QueryAndRetrieveSystemDataA0获取系统上下文
+ * - 设置数据指针数组和基础地址
+ * - 初始化处理计数器和循环参数
+ * - 遍历批量数据项，对每个项进行验证
+ * - 调用相应的处理函数处理每个数据项
+ * - 更新处理状态和成功计数
+ * - 返回最终的处理结果状态
  * 
  * @param batchDataDescriptor 批量数据描述符，包含数据项信息和处理参数
  * @return uint64_t 处理结果状态码：
  *         - 0: 处理成功
- *         - 0x1c: 数据无效或处理失败
+ *         - ResourceInvalidErrorCode: 数据无效或处理失败
  *         - 其他值: 具体的错误代码
  * 
  * @note 原始函数名：FUN_1808936e0
  * @warning 确保批量数据描述符有效，否则可能导致未定义行为
+ * @warning 该函数会处理大量数据项，需要注意性能影响
  * @see QueryAndRetrieveSystemDataA0, ProcessFloatingPointDataValidationA0
  */
 uint64_t ProcessBatchDataOperations(int64_t batchDataDescriptor)
@@ -12563,20 +12590,6 @@ uint64_t ProcessUtilitySystemInitialization(void)
 
 
 
-// 函数: void InitializeMemoryPool(void)
-// 
-// 初始化内存池系统
-// 执行空操作，用于系统初始化或占位
-// 
-/**
- * @brief 初始化内存池
- * 
- * 初始化系统内存池，为后续的内存分配操作做准备。这是一个初始化函数，
- * 在系统启动时调用，确保内存管理系统的正常运行。
- * 
- * @param void 无参数
- * @return void 无返回值
- */
 /**
  * @brief 初始化系统内存池
  * 
@@ -12633,14 +12646,30 @@ DataBuffer ReturnResourceInvalidErrorCode(void)
 /**
  * @brief 验证数据数组的有效性和完整性
  * 
- * 对数据数组进行全面验证，包括内存地址验证、数据完整性检查和浮点数验证。
- * 该函数确保数组中的每个元素都符合预期的格式和内存布局要求。
+ * 该函数负责对数据数组进行全面验证，执行以下操作：
+ * 1. 查询系统数据并获取验证上下文
+ * 2. 验证内存地址的有效性和可访问性
+ * 3. 检查数据完整性和格式正确性
+ * 4. 验证浮点数数据的有效性
+ * 5. 返回验证结果状态码
+ * 
+ * @details 函数执行流程：
+ * - 首先通过QueryAndRetrieveSystemDataA0获取系统上下文
+ * - 设置验证数据上下文和比较上下文
+ * - 验证内存地址的有效性，确保地址可访问
+ * - 检查数据完整性，包括数据格式和布局
+ * - 对浮点数数据进行特殊验证
+ * - 更新验证状态和计数器
+ * - 返回最终的验证结果状态码
  * 
  * @param arrayDescriptor 数组描述符，包含数组信息和验证参数
- * 
- * @return 验证状态码，0表示成功，非0表示错误
+ * @return uint64_t 验证状态码：
+ *         - 0: 验证成功
+ *         - ResourceInvalidErrorCode: 资源无效错误
+ *         - 其他值: 具体的错误代码
  * 
  * @note 原始函数名：FUN_1808909d0
+ * @warning 确保传入的数组描述符有效，否则可能导致未定义行为
  * @see QueryAndRetrieveSystemDataA0, ValidateMemoryAddressA0, ProcessFloatingPointDataValidationA0
  */
 #define ValidateDataArray FUN_1808909d0
