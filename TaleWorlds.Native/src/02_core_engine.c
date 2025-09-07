@@ -37953,14 +37953,14 @@ SystemEventValidationLabel:
     FunctionAddress80 = MemoryAllocationIndex;
     SystemEventPointer = (uint8_t *)BufferAllocate(MemoryPoolManager,0x15,0x13);
     *SystemEventPointer = 0;
-LAB_180071c93:
+MemoryAllocationInfoProcessing:
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
   else if ((uint)StackUnsigned78 < 0x15) {
     FunctionAddress80 = MemoryAllocationIndex;
     SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,0x15,0x10,0x13);
-    goto LAB_180071c93;
+    goto MemoryAllocationInfoProcessing;
   }
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 0x3a;
   FunctionAddress80 = 0x14;
@@ -37977,13 +37977,13 @@ LAB_180071c93:
       *SystemEventPointer = 0;
     }
     else {
-      if (SystemStatusCode <= (uint)StackUnsigned78) goto LAB_180071d1f;
+      if (SystemStatusCode <= (uint)StackUnsigned78) goto EventPointerSizeValidation;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,SystemStatusCode,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
-LAB_180071d1f:
+EventPointerSizeValidation:
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   SystemStatusCode = MemoryAllocationIndex + 0xd;
   FunctionAddress80 = ProcessStringBuffer;
@@ -37997,13 +37997,13 @@ LAB_180071d1f:
       *SystemEventPointer = 0;
     }
     else {
-      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto LAB_180071d94;
+      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto StringBufferAllocationCheck;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,ProcessStringBuffer,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
-LAB_180071d94:
+StringBufferAllocationCheck:
   TertiaryProcessingStatusFlag = (void *)(SystemEventPointer + FunctionAddress80);
   *TertiaryProcessingStatusFlag = 0x6973736572707845;
   *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0x203a6e6f;
@@ -38027,13 +38027,13 @@ LAB_180071d94:
           *SystemEventPointer = 0;
         }
         else {
-          if (MemoryAllocationIndex <= (uint)StackUnsigned78) goto LAB_180071e34;
+          if (MemoryAllocationIndex <= (uint)StackUnsigned78) goto MemoryPoolExpansionComplete;
           SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,MemoryAllocationIndex,0x10,0x13);
         }
         UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
         StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
       }
-LAB_180071e34:
+MemoryPoolExpansionComplete:
                     // WARNING: Subroutine does not return
       memcpy(SystemEventPointer + FunctionAddress80,Utf16EndPointer,(long long)((int)SystemOffsetValue + 2));
     }
@@ -38048,13 +38048,13 @@ LAB_180071e34:
       *SystemEventPointer = 0;
     }
     else {
-      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto LAB_180071eb0;
+      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto SystemEventProcessingComplete;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,ProcessStringBuffer,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
-LAB_180071eb0:
+SystemEventProcessingComplete:
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   FunctionAddress80 = MemoryAllocationIndex + 0xe;
   ConfigureSystemMemory(SystemConfigurationPointer,5,0xffffffff00000000,&SystemMemoryBufferPrimaryData);
@@ -38193,7 +38193,7 @@ void ProcessSystemDataStructureValidation(uint64_t SystemContextPointer,long lon
   Utf16Char9 = (unsigned long long)DataSize;
   MemoryAddressMask = 0;
   if (*(long long *)(CurrentMemoryBlockAddress + 8) == 0) {
-LAB_180072120:
+MemoryCopyOperation:
     PrimaryReturnCode = MemoryAddressMask;
     if (DataSize != 0) {
                     // WARNING: Subroutine does not return
@@ -116614,7 +116614,19 @@ void ExecuteSystemSecurityValidation(int *SystemContextPointer, uint Utf8BufferS
 
 
 
-2210(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_180122210(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 系统缓冲区配置处理
+ * 
+ * 该函数负责处理系统缓冲区的配置和初始化操作
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180122210
+ */
+void ConfigureSystemBuffer(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   uint64_t ReservedStackSpace;
   uint64_t uStackX_20;
@@ -116725,7 +116737,14 @@ void ProcessSystemThreadOperation(int SystemContextPointer, uint64_t Utf8BufferS
 
 
 
-2310(voidvoid FUN_180122310(void
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于系统初始化或占位
+ * 
+ * @note 原始函数名：FUN_180122310
+ */
+void SystemNullOperation(void)
 {
   return;
 }
@@ -116734,7 +116753,19 @@ void ProcessSystemThreadOperation(int SystemContextPointer, uint64_t Utf8BufferS
 
 
 
-2320(uint64_t SystemContextPointer,char *Utf8BufferSize,char *Utf16InputPointer,char Utf16EndPointervoid ProcessSystemConfigurationAndStack(uint64_t SystemContextPointer,char *Utf8BufferSize,char *Utf16InputPointer,char Utf16EndPointer
+/**
+ * @brief 处理系统配置和堆栈操作
+ * 
+ * 该函数负责处理系统配置和堆栈相关的操作，包括字符串处理和内存管理
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180122320
+ */
+void ProcessSystemConfigurationAndStack(uint64_t SystemContextPointer,char *Utf8BufferSize,char *Utf16InputPointer,char Utf16EndPointer
 {
   uint32_t *StatusBuffer;
   long long bufferAllocationStatus;
@@ -116961,7 +116992,18 @@ void ValidateSystemDataStructure(long long SystemContextPointer,float *Utf8Buffe
 
 
 
-2503(uint64_t SystemContextPointer,float *Utf8BufferSize,float *Utf16InputPointervoid FUN_180122503(uint64_t SystemContextPointer,float *Utf8BufferSize,float *Utf16InputPointer
+/**
+ * @brief 处理系统浮点数计算
+ * 
+ * 该函数负责处理系统中的浮点数计算操作，包括坐标变换和插值计算
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * 
+ * @note 原始函数名：FUN_180122503
+ */
+void ProcessSystemFloatCalculation(uint64_t SystemContextPointer,float *Utf8BufferSize,float *Utf16InputPointer
 {
   uint64_t *StatusBuffer;
   float SystemContextSecondaryFloat;
