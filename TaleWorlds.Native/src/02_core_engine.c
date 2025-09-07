@@ -497,6 +497,7 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ProcessSystemCodePointCalculation FUN_18011f5c0
 #define ProcessSystemCoordinateCalculation FUN_18011f690
 #define ProcessSystemCoordinateTransformation FUN_18011f940
+#define ProcessSystemFloatCalculation FUN_18011f740
 #define ValidateSystemDataStructure FUN_18011f3e0
 
 // 系统数据结构和图形配置函数
@@ -17584,6 +17585,7 @@ uint32_t SystemShutdownAndCleanup(void
   uint64_t CleanupFlags;
   long long *****SystemContext;
   long long ****FinalContext;
+  long long ****PrimaryCleanupContext;
   
   CleanupFlags = 0xfffffffffffffffe;
   if (DataLinkedListHead != (uint64_t *)0x0) {
@@ -17700,7 +17702,7 @@ uint32_t SystemShutdownAndCleanup(void
   }
   TimeoutValueStorage = 0;
   *(uint32_t *)(SystemStringBuffer + 0x2d) = 2;
-  StackContext1 = FinalContext;
+  PrimaryCleanupContext = FinalContext;
   if (FinalContext == (long long ****)0x0) {
     SystemStringBuffer = (long long ****)0x0;
     WaitForSingleObject(SemaphoreHandle,0xffffffff);
@@ -114195,7 +114197,7 @@ LabelSystemDataConfiguration:
     }
     if (AdditionalParameter1.LowPart == 0.0) goto LabelUtfEncodingProcessing;
     NormalizedParameter = AdditionalParameter1.LowPart;
-    CalculatedFloatValue2 = (float)FUN_18011f9b0(RegisterXMM0Value,*Utf16EndPointer,SystemContextSecondaryFloat,SystemStatusCode);
+    CalculatedFloatValue2 = (float)ProcessSystemFloatEx(RegisterXMM0Value,*Utf16EndPointer,SystemContextSecondaryFloat,SystemStatusCode);
     MutexLockResult = ProcessValidationCheck(AdditionalParameter3);
     CalculatedFloatValue1 = 1.0;
     RegisterXMM0Value = RegisterXMM0Output;
@@ -114230,14 +114232,14 @@ LabelSystemDataConfiguration:
       SystemContextPrimaryFloat1 = 1.0;
     }
   }
-  RegisterXMM0Value = (double)FUN_18011f740(AdditionalParameter3,SystemContextPrimaryFloat0,
+  RegisterXMM0Value = (double)ProcessSystemFloatCalculation(AdditionalParameter3,SystemContextPrimaryFloat0,
                                      SUB84((SystemDoubleValue6 - DoubleValue2) * (double)SystemContextPrimaryFloat1 + DoubleValue2,0));
   if (RegisterXMM0Value != *Utf16EndPointer) {
     *Utf16EndPointer = RegisterXMM0Value;
     ProcessingStatusFlag = 1;
   }
 LabelUtfEncodingProcessing:
-  NormalizedParameter = (float)FUN_18011f9b0(RegisterXMM0Value,*Utf16EndPointer,SystemContextSecondaryFloat,SystemStatusCode);
+  NormalizedParameter = (float)ProcessSystemFloatEx(RegisterXMM0Value,*Utf16EndPointer,SystemContextSecondaryFloat,SystemStatusCode);
   SystemContextSecondaryFloat = CharacterCode[3];
   SystemContextPrimaryFloat0 = CharacterCode[1];
   SystemContextPrimaryFloat3 = (((SystemContextPrimaryFloat - 2.0) - SystemContextPrimaryFloat4) - SystemContextPrimaryFloat3) * NormalizedParameter + SystemContextPrimaryFloat3;
@@ -114326,7 +114328,7 @@ LAB_18011f1e4:
     }
     if (in_stack_000000f0 == 0.0) goto LAB_18011f326;
     SystemContextSecondaryFloat = in_stack_000000f0;
-    FloatVariable4 = (float)FUN_18011f9b0(CharacterCode,*RegisterSourceIndex);
+    FloatVariable4 = (float)ProcessSystemFloatEx(CharacterCode,*RegisterSourceIndex);
     IntegerValue = ProcessValidationCheck(in_stack_00000100);
     CharacterCodeSize = 0x3f800000;
     CharacterCode = extraout_XMM0_Qa;
@@ -114376,7 +114378,7 @@ LAB_18011f1e4:
     RegisterValueR15B = '\x01';
   }
 LAB_18011f326:
-  CalculatedFilterValue = (float)FUN_18011f9b0(CharacterCode,*RegisterSourceIndex);
+  CalculatedFilterValue = (float)ProcessSystemFloatEx(CharacterCode,*RegisterSourceIndex);
   SystemContextSecondaryFloat = *(float *)(RegisterGeneral14 + 0xc);
   FloatVariable4 = *(float *)(RegisterGeneral14 + 4);
   CalculatedFilterValue = (AuxiliaryFloat9 - AuxiliaryFloat11) * FloatValue3 + AuxiliaryFloat11;
