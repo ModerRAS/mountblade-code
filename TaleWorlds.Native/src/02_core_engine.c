@@ -5052,6 +5052,165 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ProcessSystemMemoryLockOperation FUN_1801230e0
 
 // =============================================================================
+// 高频FUN_函数语义化定义 - 基于使用频率分析
+// =============================================================================
+
+// 字符串处理相关函数 (调用次数: 95次)
+/**
+ * @brief 处理字符串格式化操作
+ * 
+ * 该函数是核心的字符串格式化引擎，负责各种字符串格式化操作
+ * 在多个上下文中处理不同类型的字符串格式化
+ * 
+ * @note 原始函数名：FUN_180122210
+ */
+#define ProcessStringFormattingOperation FUN_180122210
+
+// 内存管理相关函数 (调用次数: 26次)
+/**
+ * @brief 处理内存数据传输
+ * 
+ * 该函数负责内存数据传输操作，处理内存块之间的数据移动
+ * 与系统缓冲区管理密切相关
+ * 
+ * @note 原始函数名：FUN_180136d40
+ */
+#define ProcessMemoryDataTransfer FUN_180136d40
+
+/**
+ * @brief 清理系统资源
+ * 
+ * 该函数负责系统资源清理和释放，包括线程本地存储数据管理
+ * 处理临时对象的生命周期管理
+ * 
+ * @note 原始函数名：FUN_18013ea00
+ */
+#define CleanupSystemResourcesEx FUN_18013ea00
+
+/**
+ * @brief 处理字符串复制操作
+ * 
+ * 该函数负责字符串复制和内存操作，处理字符串缓冲区的复制
+ * 与字符串编码转换相关
+ * 
+ * @note 原始函数名：FUN_180136f60
+ */
+#define ProcessStringCopyOperation FUN_180136f60
+
+// 字符编码相关函数 (调用次数: 11次)
+/**
+ * @brief 处理字符编码转换
+ * 
+ * 该函数负责字符编码转换处理，包括UTF-8/UTF-16相关操作
+ * 处理多字节字符转换
+ * 
+ * @note 原始函数名：FUN_18013a5e0
+ */
+#define ProcessCharacterEncodingConversion FUN_18013a5e0
+
+/**
+ * @brief 验证字符串操作
+ * 
+ * 该函数负责字符串操作验证，包括内存边界检查
+ * 确保字符串操作的完整性
+ * 
+ * @note 原始函数名：FUN_18013bf60
+ */
+#define ValidateStringOperation FUN_18013bf60
+
+/**
+ * @brief 最终化字符编码处理
+ * 
+ * 该函数负责字符编码处理的最终化，包括编码转换的收尾工作
+ * 更新编码状态信息
+ * 
+ * @note 原始函数名：FUN_18013a920
+ */
+#define FinalizeCharacterEncoding FUN_18013a920
+
+// 系统管理相关函数 (调用次数: 9次)
+/**
+ * @brief 处理系统上下文清理
+ * 
+ * 该函数负责系统上下文清理，包括线程本地存储管理
+ * 重置系统状态
+ * 
+ * @note 原始函数名：FUN_180291cf0
+ */
+#define ProcessSystemContextCleanup FUN_180291cf0
+
+/**
+ * @brief 处理内存分配
+ * 
+ * 该函数负责内存分配操作，包括缓冲区管理
+ * 处理内存块的分配和释放
+ * 
+ * @note 原始函数名：FUN_180136b10
+ */
+#define ProcessMemoryAllocationEx FUN_180136b10
+
+/**
+ * @brief 更新系统状态
+ * 
+ * 该函数负责系统状态更新，包括状态标志管理
+ * 更新系统配置信息
+ * 
+ * @note 原始函数名：FUN_180292160
+ */
+#define UpdateSystemStatusEx FUN_180292160
+
+// 其他高频函数 (调用次数: 7-8次)
+/**
+ * @brief 初始化系统组件
+ * 
+ * 该函数负责系统组件的初始化，设置初始状态
+ * 配置系统参数
+ * 
+ * @note 原始函数名：FUN_18013b0f0
+ */
+#define InitializeSystemComponent FUN_18013b0f0
+
+/**
+ * @brief 处理系统配置
+ * 
+ * 该函数负责系统配置的处理，包括参数设置
+ * 配置系统选项
+ * 
+ * @note 原始函数名：FUN_180136210
+ */
+#define ProcessSystemConfigurationEx FUN_180136210
+
+/**
+ * @brief 验证系统操作
+ * 
+ * 该函数负责系统操作的验证，确保操作的正确性
+ * 检查系统状态
+ * 
+ * @note 原始函数名：FUN_180136440
+ */
+#define ValidateSystemOperation FUN_180136440
+
+/**
+ * @brief 处理字符编码
+ * 
+ * 该函数负责字符编码的处理，包括编码转换
+ * 处理字符数据
+ * 
+ * @note 原始函数名：FUN_180136850
+ */
+#define ProcessCharacterEncodingEx FUN_180136850
+
+/**
+ * @brief 处理字符编码操作
+ * 
+ * 该函数负责字符编码的具体操作，包括编码处理
+ * 转换字符数据
+ * 
+ * @note 原始函数名：FUN_18013a860
+ */
+#define ProcessCharacterEncodingOperation FUN_18013a860
+
+// =============================================================================
 // 函数声明
 // =============================================================================
 /**
