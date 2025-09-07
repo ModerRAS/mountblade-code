@@ -7609,11 +7609,11 @@ uint8_t HashUtilityDataA0;
 #define ChecksumUtilityDataA0 FUN_180942340
 
 uint8_t ChecksumUtilityDataA0;
-uint8_t UtilityChecksumBufferA;
-uint8_t UtilityChecksumBufferB;
-uint8_t UtilityChecksumBufferC;
-uint8_t UtilityChecksumBufferD;
-uint8_t UtilityChecksumStatusA;
+uint8_t UtilityChecksumPrimaryBuffer;
+uint8_t UtilityChecksumSecondaryBuffer;
+uint8_t UtilityChecksumTertiaryBuffer;
+uint8_t UtilityChecksumQuaternaryBuffer;
+uint8_t UtilityChecksumStatus;
 uint8_t UtilityChecksumResult;
 
 // 原始函数名：FUN_180942360 - 数据转换函数A0
