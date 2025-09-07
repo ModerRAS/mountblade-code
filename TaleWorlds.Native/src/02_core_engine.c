@@ -98,6 +98,7 @@
 #define GetSystemConfigurationHandle FUN_180121300               // 获取系统配置句柄
 #define GetSystemStringIndex FUN_180624c70                       // 获取系统字符串索引
 #define ProcessSystemDataTable FUN_180627ce0                     // 处理系统数据表
+#define InitializeCharacterCodePointer FUN_180184700              // 初始化字符代码指针
 #define GetCharacterBuffer80 FUN_18014f810                       // 获取字符缓冲区80
 #define GetProcessingPointer88 FUN_18014f840                     // 获取处理指针88
 #define ProcessCharacterCodeData FUN_18019c480                    // 处理字符代码数据
@@ -146,9 +147,11 @@
 #define ProcessSystemMemoryDataAllocation FUN_18014e160       // 处理系统内存数据分配
 #define ProcessSystemMemoryPoolAllocation FUN_18014e700       // 处理系统内存池分配
 #define ProcessSystemCharacterEncodingConversion FUN_18014f980 // 处理系统字符编码转换
-#define ProcessCharacterCodeWithSystemBufferManagement FUN_18014b7f0 // 处理字符代码和系统缓冲区管理
-#define ProcessCharacterCodeWithUtf8BufferValidation FUN_18014c430 // 处理字符代码和UTF8缓冲区验证
+#define ProcessCharacterCodeWithSystemBufferManagement ProcessCharacterEncodingAndMemoryManagement // 处理字符代码和系统缓冲区管理
+#define ProcessCharacterCodeWithUtf8BufferValidation ProcessCharacterCodeWithUtf8BufferValidation // 处理字符代码和UTF8缓冲区验证
 #define ProcessCharacterCodeWithMemoryAllocation FUN_18014cb90 // 处理字符代码和内存分配
+#define ProcessCharacterCodeWithSystemCleanup FUN_18014d6a0 // 处理字符代码和系统清理
+#define ProcessCharacterCodeWithSystemContext FUN_18014d790 // 处理字符代码和系统上下文
 
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
@@ -179323,7 +179326,26 @@ LAB_18014b72a:
 
 
 
-void FUN_18014b7f0(long long CharacterCode,uint64_t SystemBufferSize)
+/**
+ * @brief 处理字符编码转换和内存管理的核心函数
+ * 
+ * 该函数负责处理字符编码转换、内存缓冲区管理和数据表操作。
+ * 主要功能包括：
+ * - 初始化系统缓冲区和处理状态
+ * - 分配和管理字符代码表内存
+ * - 处理UTF-16字符编码转换
+ * - 管理字符数据缓冲区和状态标志
+ * - 执行系统内存清理和资源释放
+ * - 更新系统状态和处理结果
+ * 
+ * @param CharacterCode 字符代码上下文指针，包含字符处理所需的系统信息
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配和边界检查
+ * 
+ * @note 原始函数名：FUN_18014b7f0
+ * @warning 此函数涉及大量内存操作，需要确保内存分配和释放的正确性
+ * @warning 函数执行过程中会创建多个临时缓冲区，需要妥善管理内存生命周期
+ */
+void ProcessCharacterEncodingAndMemoryManagement(long long CharacterCode,uint64_t SystemBufferSize)
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
@@ -179861,7 +179883,26 @@ LAB_18014c263:
 
 
 
-void FUN_18014c430(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理字符代码和UTF8缓冲区验证的核心函数
+ * 
+ * 该函数负责验证和处理UTF8缓冲区中的字符代码，执行以下操作：
+ * - 初始化系统数据验证和缓冲区管理
+ * - 处理字符代码的引用计数和统计
+ * - 验证编码的有效性和完整性
+ * - 管理内存分配和资源释放
+ * - 更新系统状态和处理结果
+ * 
+ * @param CharacterCode 字符代码指针数组，包含字符处理所需的系统信息
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配和边界检查
+ * @param Utf8SourcePointer UTF8源数据指针，指向要处理的UTF8数据
+ * @param Utf16EndPointer UTF16结束指针，标记转换数据的结束位置
+ * 
+ * @note 原始函数名：FUN_18014c430
+ * @warning 此函数涉及复杂的内存管理和数据处理操作
+ * @warning 函数执行过程中会创建临时缓冲区，需要确保正确的内存释放
+ */
+void ProcessCharacterCodeWithUtf8BufferValidation(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   int LockResult;
   long long BufferStatus;
@@ -180637,7 +180678,7 @@ void ProcessSystemCharacterEncoding(long long *CharacterCode,long long SystemBuf
 
 
 
-4d6a0(long long CharacterCodevoid FUN_18014d6a0(long long CharacterCode
+void FUN_18014d6a0(long long CharacterCode)
 {
   *(void *)(CharacterCode + 0x28) = &SystemNullTemplate;
   if (*(long long *)(CharacterCode + 0x30) != 0) {
@@ -180681,7 +180722,7 @@ long long ManageSystemBufferSize(long long CharacterCode,unsigned long long Syst
 
 
 
-4d790(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18014d790(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void FUN_18014d790(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -214072,12 +214113,27 @@ uint64_t * FUN_180183970(uint64_t *CharacterCode,unsigned long long SystemBuffer
 
 
 
-uint64_t *
-FUN_1801839a0(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 释放字符代码资源
+ * 
+ * 该函数负责释放字符代码相关的资源，包括内存释放和系统资源清理。
+ * 函数会根据不同的条件执行相应的资源释放操作。
+ * 
+ * @param CharacterCode 字符代码指针数组
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回字符代码指针
+ * 
+ * @note 函数会检查CharacterCode[1]和CharacterCode[2]的状态
+ * @note 当SystemBufferSize为奇数时执行内存释放
+ * @note 使用0xfffffffffffffffe作为特殊的释放标志
+ */
+uint64_t *ReleaseCharacterCodeResources(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  uint64_t Utf16Char;
+  uint64_t ReleaseFlag;
   
-  Utf16Char = 0xfffffffffffffffe;
+  ReleaseFlag = 0xfffffffffffffffe;
   *CharacterCode = &SystemMemoryAddressSecondary;
   if (CharacterCode[1] != 0) {
     NVGSDK_Release();
@@ -214087,7 +214143,7 @@ FUN_1801839a0(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64
   }
   *CharacterCode = &SystemMemoryAddressMaskPrimary;
   if ((SystemBufferSize & 1) != 0) {
-    free(CharacterCode,0x18,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
+    free(CharacterCode,0x18,Utf8SourcePointer,Utf16EndPointer,ReleaseFlag);
   }
   return CharacterCode;
 }
@@ -214659,8 +214715,23 @@ uint64_t * FUN_1801846d0(uint64_t *CharacterCode,unsigned long long SystemBuffer
 
 
 
+/**
+ * @brief 初始化字符代码指针
+ * 
+ * 初始化字符代码指针并设置系统内存地址，根据缓冲区大小进行相应的内存管理操作。
+ * 该函数用于字符处理系统的初始化阶段。
+ * 
+ * @param CharacterCode 字符代码指针，用于存储处理后的字符代码
+ * @param SystemBufferSize 系统缓冲区大小，用于判断内存分配策略
+ * @param Utf8SourcePointer UTF-8源指针，指向源数据
+ * @param Utf16EndPointer UTF-16结束指针，标记数据结束位置
+ * @return uint64_t* 返回初始化后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_180184700
+ * @warning 如果缓冲区大小为奇数，会执行特殊的内存释放操作
+ */
 uint64_t *
-FUN_180184700(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+InitializeCharacterCodePointer(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   *CharacterCode = &SystemMemoryAddressTertiary;
   if ((SystemBufferSize & 1) != 0) {
