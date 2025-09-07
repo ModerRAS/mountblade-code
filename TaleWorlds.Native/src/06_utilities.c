@@ -59670,7 +59670,17 @@ void ExecuteExceptionCallbackA5(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907570(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行验证上下文回调A6
+ * 
+ * 执行验证上下文回调A6，调用验证上下文相关的回调函数。
+ * 当验证上下文指针不为空时，执行相应的回调操作。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void ExecuteValidationContextCallbackA6(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -59684,7 +59694,17 @@ void Unwind_180907570(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907580(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行验证上下文回调A7
+ * 
+ * 执行验证上下文回调A7，调用验证上下文相关的回调函数。
+ * 当验证上下文指针不为空时，执行相应的回调操作。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void ExecuteValidationContextCallbackA7(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
