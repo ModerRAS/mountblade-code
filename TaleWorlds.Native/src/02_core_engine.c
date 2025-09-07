@@ -147756,6 +147756,19 @@ LAB_18013148a:
 
 
 
+/**
+ * @brief 处理系统数据配置和参数
+ * 
+ * 该函数负责处理系统数据配置和参数设置，支持浮点数参数
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return 返回配置结果
+ * 
+ * @note 原始函数名：FUN_180131331
+ */
 unsigned long long FUN_180131331(uint64_t CharacterCode,float CharacterCodeSize,float Utf8InputPointer,float Utf16EndPointer
 {
   uint Utf16Char;
