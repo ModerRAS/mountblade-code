@@ -50290,7 +50290,12 @@ void DestroyMutexA2(void)
 
 
 
-void Unwind_180905590(void)
+/**
+ * @brief 互斥量销毁函数A3
+ * 
+ * 销毁互斥量资源
+ */
+void DestroyMutexA3(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -50299,7 +50304,15 @@ void Unwind_180905590(void)
 
 
 
-void Unwind_1809055b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理函数A1
+ * 
+ * 管理资源的引用计数，当引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void ManageResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
