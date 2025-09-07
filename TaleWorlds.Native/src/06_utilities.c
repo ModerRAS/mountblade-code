@@ -22920,8 +22920,23 @@ void ExecuteSecurityCheckAndTerminateA1(void)
 
 
 
-// 原始函数名：FUN_180897b0e - 安全检查执行函数A2
-// 功能：执行安全检查并在检查失败时终止程序
+/**
+ * @brief 安全检查执行函数A2
+ * 
+ * 该函数是ExecuteSecurityCheckAndTerminateA1的变体版本，负责执行安全检查
+ * 并在检查失败时终止程序。它会从栈帧上下文中获取安全检查参数，并与安全
+ * 缓冲区进行异或操作，然后执行安全检查。如果检查失败，函数会终止程序执行。
+ * 
+ * @details 函数执行流程：
+ * 1. 从栈帧上下文中获取安全检查参数
+ * 2. 将参数与安全缓冲区地址进行异或操作
+ * 3. 执行安全检查
+ * 4. 根据检查结果决定是否终止程序
+ * 
+ * @warning 此函数在安全检查失败时会终止程序执行
+ * @note 原始函数名：FUN_180897b0e
+ * @see ExecuteSecurityCheck, ExecuteSecurityCheckAndTerminateA1, StackFrameContext, securityBuffer
+ */
 #define ExecuteSecurityCheckAndTerminateA2 FUN_180897b0e
 
 void ExecuteSecurityCheckAndTerminateA2(void)
