@@ -177168,11 +177168,11 @@ void ProcessCharacterCodeSystemCheckAndDataRegistry(long long CharacterCode, cha
       CharacterCode = *(long long **)(*(long long *)(CharacterCode + 0xa8) + 0x88);
       CharacterPointer = *(code **)(*CharacterCode + 0x70);
       SystemDataRegistry = ProcessCharacterWithSystemData(aCoreEngineValueA8,&lStack_148);
-      AllocatedMemorySize = FUN_18014aa50(StackBuffer80,SystemDataRegistry);
+      AllocatedMemorySize = ProcessCharacterWithSystemData(StackBuffer80,SystemDataRegistry);
       pcStack_110 = FUN_18014f3f0;
       pProcessingCounter = &SystemProcessingCounter;
       UnicodeCodePoint = MemoryAllocate(MemoryPoolManager,0x28,8,MemoryAllocationFlags);
-      FUN_18014aa50(UnicodeCodePoint,AllocatedMemorySize);
+      ProcessCharacterWithSystemData(UnicodeCodePoint,AllocatedMemorySize);
       aDataProcessingFlags[0] = UnicodeCodePoint;
       if (*(code **)(AllocatedMemorySize + 0x18) != (code *)0x0) {
         (**(code **)(AllocatedMemorySize + 0x18))(AllocatedMemorySize + 8,0,0);
@@ -177180,7 +177180,7 @@ void ProcessCharacterCodeSystemCheckAndDataRegistry(long long CharacterCode, cha
       if (*(code **)(SystemDataRegistry + 0x18) != (code *)0x0) {
         (**(code **)(SystemDataRegistry + 0x18))(SystemDataRegistry + 8,0,0);
       }
-      UnicodeCodePoint = FUN_18014aa50(aBufferOffset,&lStack_100);
+      UnicodeCodePoint = ProcessCharacterWithSystemData(aBufferOffset,&lStack_100);
       FUN_18014e700(aSystemFlagF,UnicodeCodePoint);
       (*CharacterPointer)(CharacterCode,&SystemComparisonDataPrimary,*(long long *)(CharacterCode + 0xa8) + 0xc,0,aSystemFlagF,aDataProcessingFlags);
       if (pcStack_c8 != (code *)0x0) {
@@ -177193,7 +177193,7 @@ void ProcessCharacterCodeSystemCheckAndDataRegistry(long long CharacterCode, cha
     else {
       CharacterCode = *(long long **)(*(long long *)(CharacterCode + 0xa8) + 0x88);
       CharacterPointer = *(code **)(*CharacterCode + 0x60);
-      UnicodeCodePoint = FUN_18014aa50(aSystemFlagF,&lStack_100);
+      UnicodeCodePoint = ProcessCharacterWithSystemData(aSystemFlagF,&lStack_100);
       FUN_18014e700(aDataProcessingFlags,UnicodeCodePoint);
       SystemCheckResult = (*CharacterPointer)(CharacterCode,&SystemComparisonDataPrimary,*(long long *)(CharacterCode + 0xa8) + 0xc,0,aDataProcessingFlags);
       if (pcStack_110 != (code *)0x0) {
@@ -181273,11 +181273,11 @@ uint64_t * FUN_18014e700(uint64_t *CharacterCode,long long SystemBufferSize
   uint8_t aSystemPriorityLevel [40];
   
   MemoryAllocationIndex = 0xfffffffffffffffe;
-  CharacterTablePointer = FUN_18014aa50(aSystemPriorityLevel);
+  CharacterTablePointer = ProcessCharacterWithSystemData(aSystemPriorityLevel);
   CharacterCode[2] = FUN_18014f520;
   CharacterCode[3] = &SystemQuaternaryFunctionPointer;
   MemoryAllocationIndex = MemoryAllocate(MemoryPoolManager,0x28,8,MemoryAllocationFlags,MemoryAllocationIndex);
-  FUN_18014aa50(MemoryAllocationIndex,CharacterTablePointer);
+  ProcessCharacterWithSystemData(MemoryAllocationIndex,CharacterTablePointer);
   *CharacterCode = MemoryAllocationIndex;
   if (*(code **)(CharacterTablePointer + 0x18) != (code *)0x0) {
     (**(code **)(CharacterTablePointer + 0x18))(CharacterTablePointer + 8,0,0);
@@ -182127,7 +182127,7 @@ long long FUN_18014f3f0(long long *CharacterCode,long long *CharacterCodeSize,in
   else {
     if (Utf8SourcePointer == 1) {
       CharacterTablePointer = MemoryAllocate(MemoryPoolManager,0x28,8,MemoryAllocationFlags);
-      FUN_18014aa50(LoopCounter,*CharacterCodeSize);
+      ProcessCharacterWithSystemData(LoopCounter,*CharacterCodeSize);
       *CharacterCode = LoopCounter;
       return 0;
     }
@@ -182166,7 +182166,7 @@ long long FUN_18014f520(long long *CharacterCode,long long *CharacterCodeSize,in
   else {
     if (Utf8SourcePointer == 1) {
       CharacterTablePointer = MemoryAllocate(MemoryPoolManager,0x28,8,MemoryAllocationFlags);
-      FUN_18014aa50(LoopCounter,*CharacterCodeSize);
+      ProcessCharacterWithSystemData(LoopCounter,*CharacterCodeSize);
       *CharacterCode = LoopCounter;
       return 0;
     }
