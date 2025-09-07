@@ -11977,38 +11977,38 @@ uint64_t ValidateDataArray(int64_t arrayDescriptor)
   uint32_t *ValidationDataContext;
   uint32_t EntryCounter;
   uint64_t AdjustedMemoryAddress;
-  int64_t dataBuffer;
-  uint64_t LoopCounter;
+  int64_t systemContextBuffer;
+  uint64_t elementIndex;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(arrayDescriptor + ExceptionHandlerCallbackOffset10),&dataBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(arrayDescriptor + ExceptionHandlerCallbackOffset10),&systemContextBuffer);
   if ((int)validationStatus == 0) {
-    LoopCounter = 0;
-    AdjustedMemoryAddress = dataBuffer - 8;
-    if (dataBuffer == 0) {
-      AdjustedMemoryAddress = LoopCounter;
+    elementIndex = 0;
+    AdjustedMemoryAddress = systemContextBuffer - 8;
+    if (systemContextBuffer == 0) {
+      AdjustedMemoryAddress = elementIndex;
     }
     ValidationDataContext = (uint32_t *)(arrayDescriptor + DataPointerOffset + (int64_t)*(int *)(arrayDescriptor + ArrayCountOffset) * 8);
     DataComparisonContext = (int *)(arrayDescriptor + ArrayDataOffset);
     if (0 < *(int *)(arrayDescriptor + ArrayCountOffset)) {
       do {
         if ((*DataComparisonContext != MemoryValidationConstantA) || (DataComparisonContext[1] != MemoryValidationConstantB)) {
-          dataBuffer = 0;
-          validationStatus = ValidateMemoryAddressA0(AdjustedMemoryAddress,(int *)(arrayDescriptor + ArrayDataOffset) + (int64_t)(int)LoopCounter * 2,&dataBuffer)
+          systemContextBuffer = 0;
+          validationStatus = ValidateMemoryAddressA0(AdjustedMemoryAddress,(int *)(arrayDescriptor + ArrayDataOffset) + (int64_t)(int)elementIndex * 2,&systemContextBuffer)
           ;
           if ((int)validationStatus != 0) {
             return validationStatus;
           }
-          if (*(int64_t *)(dataBuffer + 8) == 0) {
+          if (*(int64_t *)(systemContextBuffer + 8) == 0) {
             return ResourceInvalidErrorCode;
           }
-          validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(dataBuffer + 8),*ValidationDataContext,*(uint8_t *)(arrayDescriptor + ArrayDescriptorValidationOffset)
+          validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(systemContextBuffer + 8),*ValidationDataContext,*(uint8_t *)(arrayDescriptor + ArrayDescriptorValidationOffset)
                                );
           if ((int)validationStatus != 0) {
             return validationStatus;
           }
         }
-        EntryCounter = (int)LoopCounter + 1;
-        LoopCounter = (uint64_t)EntryCounter;
+        EntryCounter = (int)elementIndex + 1;
+        elementIndex = (uint64_t)EntryCounter;
         ValidationDataContext = ValidationDataContext + 1;
         DataComparisonContext = DataComparisonContext + 2;
       } while ((int)EntryCounter < *(int *)(arrayDescriptor + ArrayCountOffset));
