@@ -162322,7 +162322,7 @@ LAB_180137cc2:
       (*(long long *)(DataNodeIndex + 2) == 0)) &&
      ((*(long long *)(RegisterR13Value + 0x1b78) == 0 ||
       (*(unsigned long long *)(*(long long *)(RegisterR13Value + 0x1b78) + 0x3a0) != PrimaryReturnCode)))) {
-    FUN_18013baf0(PrimaryReturnCode);
+    ProcessCharacterEncodingAndCleanup(PrimaryReturnCode);
   }
   DataNodeIndex[0x23] = *(uint32_t *)(RegisterR13Value + 0x1a90);
   if (PrimaryReturnCode != 0) {
@@ -162670,7 +162670,7 @@ LAB_180137cc2:
       (*(long long *)(DataNodeIndex + 2) == 0)) &&
      ((*(long long *)(RegisterR13Value + 0x1b78) == 0 ||
       (*(unsigned long long *)(*(long long *)(RegisterR13Value + 0x1b78) + 0x3a0) != PrimaryReturnCode)))) {
-    FUN_18013baf0(PrimaryReturnCode);
+    ProcessCharacterEncodingAndCleanup(PrimaryReturnCode);
   }
   DataNodeIndex[0x23] = *(uint32_t *)(RegisterR13Value + 0x1a90);
   if (PrimaryReturnCode != 0) {

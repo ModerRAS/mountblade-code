@@ -73922,21 +73922,44 @@ void CleanupSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行系统清理和验证操作
+ * 
+ * 该函数负责执行系统的清理和验证操作，包括：
+ * - 销毁互斥锁资源
+ * - 处理系统参数验证
+ * - 验证系统数据缓冲区
+ * - 清理系统资源和内存
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于参数验证
+ * @param operationFlagB 操作标志B，用于参数验证
+ * 
+ * @note 原始函数名：Unwind_180908e80
+ * @note 这是一个系统清理和验证函数，用于异常处理后的资源清理
+ */
+void ExecuteSystemCleanupAndValidation(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
   DataBuffer operationResult;
   
+  // 获取异常处理器上下文
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
   operationResult = SystemCleanupFlagAlternative;
+  
+  // 销毁互斥锁
   _Mtx_destroy_in_situ();
-  ProcessSystemParametersWithValidation(exceptionHandlerContext + 0x110,*(DataBuffer *)(exceptionHandlerContext + 0x120),operationFlagA,operationFlagB,operationResult);
-  ProcessSystemParametersWithValidation(exceptionHandlerContext + 0xe0,*(DataBuffer *)(exceptionHandlerContext + 0xf0));
-  ProcessSystemParametersWithValidation(exceptionHandlerContext + 0xb0,*(DataBuffer *)(exceptionHandlerContext + 0xc0));
-  ValidateSystemDataBufferAndProcess(exceptionHandlerContext + 0x80,*(DataBuffer *)(exceptionHandlerContext + 0x90));
-  CleanupSystemResourcesAndMemory(exceptionHandlerContext + 0x50,*(DataBuffer *)(exceptionHandlerContext + 0x60));
-  ValidateSystemDataBufferAndProcess(exceptionHandlerContext + ExceptionHandlerContextDataOffset,*(DataBuffer *)(exceptionHandlerContext + 0x30));
+  
+  // 执行系统参数验证和清理操作
+  ProcessSystemParametersWithValidation(exceptionHandlerContext + 0x110, *(DataBuffer *)(exceptionHandlerContext + 0x120), operationFlagA, operationFlagB, operationResult);
+  ProcessSystemParametersWithValidation(exceptionHandlerContext + 0xe0, *(DataBuffer *)(exceptionHandlerContext + 0xf0));
+  ProcessSystemParametersWithValidation(exceptionHandlerContext + 0xb0, *(DataBuffer *)(exceptionHandlerContext + 0xc0));
+  ValidateSystemDataBufferAndProcess(exceptionHandlerContext + 0x80, *(DataBuffer *)(exceptionHandlerContext + 0x90));
+  CleanupSystemResourcesAndMemory(exceptionHandlerContext + 0x50, *(DataBuffer *)(exceptionHandlerContext + 0x60));
+  ValidateSystemDataBufferAndProcess(exceptionHandlerContext + ExceptionHandlerContextDataOffset, *(DataBuffer *)(exceptionHandlerContext + 0x30));
+  
   return;
 }
 
