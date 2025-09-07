@@ -211091,8 +211091,20 @@ void ProcessUtf8EncodingConversion(uint64_t CharacterCode,uint64_t Utf8BufferSiz
 
 
 
+/**
+ * @brief UTF-8编码转换系统上下文初始化函数
+ * 
+ * 该函数负责初始化UTF-8编码转换的系统上下文，设置系统上下文缓冲区，
+ * 并根据缓冲区大小进行相应的内存处理和清理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回字符代码指针
+ */
 uint64_t *
-FUN_18017cde0(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+InitializeUtf8SystemContext(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t Utf16Char;
   
@@ -211109,7 +211121,17 @@ FUN_18017cde0(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
 
 
 
-7ce30(uint64_t CharacterCode,uint64_t Utf8BufferSizevoid FUN_18017ce30(uint64_t CharacterCode,uint64_t Utf8BufferSize
+/**
+ * @brief UTF-8编码转换内存管理函数
+ * 
+ * 该函数负责处理UTF-8编码转换过程中的内存管理操作，
+ * 包括内存分配、地址掩码设置和处理状态标志管理。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return void 无返回值
+ */
+void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
 {
   long long *Utf8InputBuffer;
   uint32_t MemoryAllocationIndex;
