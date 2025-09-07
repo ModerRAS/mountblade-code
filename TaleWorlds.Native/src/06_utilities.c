@@ -12116,18 +12116,23 @@ DataWord GetSystemStatus(void)
 
 {
   int64_t systemContext;
-  int64_t memoryResourcePointer;
+  int64_t resourcePointer;
   
+  // 计算资源指针偏移
   if (systemContext == 0) {
-    memoryResourcePointer = 0;
+    resourcePointer = 0;
   }
   else {
-    memoryResourcePointer = systemContext + -8;
+    resourcePointer = systemContext - 8;
   }
-  if (*(int64_t *)(memoryResourcePointer + ExceptionHandlerCallbackOffset10) == 0) {
+  
+  // 验证资源有效性
+  if (*(int64_t *)(resourcePointer + ExceptionHandlerCallbackOffset10) == 0) {
     return ResourceInvalidErrorCode;
   }
-    ReleaseResource(*(int64_t *)(memoryResourcePointer + ExceptionHandlerCallbackOffset10),1);
+  
+  // 释放系统资源
+  ReleaseResource(*(int64_t *)(resourcePointer + ExceptionHandlerCallbackOffset10), 1);
 }
 
 
@@ -12265,35 +12270,43 @@ DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
 DataBuffer ValidateResourcePointerAccess(int64_t resourceDescriptor)
 
 {
-  uint64_t validationStatus;
-  int64_t resourceInfo [2];
-  int64_t accessInfo [2];
+  uint64_t validationResult;
+  int64_t resourceData [2];
+  int64_t accessContext [2];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + ExceptionHandlerCallbackOffset10),resourceInfo);
-  if ((int)validationStatus == 0) {
-    if (resourceInfo[0] == 0) {
-      resourceInfo[0] = 0;
+  // 查询系统数据获取资源信息
+  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + ExceptionHandlerCallbackOffset10), resourceData);
+  if ((int)validationResult == 0) {
+    // 调整资源指针
+    if (resourceData[0] == 0) {
+      resourceData[0] = 0;
     }
     else {
-      resourceInfo[0] = resourceInfo[0] + ResourcePointerAdjustment;
+      resourceData[0] = resourceData[0] + ResourcePointerAdjustment;
     }
-    accessInfo[0] = 0;
-    validationStatus = ValidateResourceAccess(resourceInfo[0],resourceDescriptor + ResourceDescriptorSecondaryOffset,accessInfo);
-    if ((int)validationStatus == 0) {
-      if (accessInfo[0] != 0) {
-        if (*(int64_t *)(accessInfo[0] + PointerDataOffset) == 0) {
+    
+    // 初始化访问上下文
+    accessContext[0] = 0;
+    validationResult = ValidateResourceAccess(resourceData[0], resourceDescriptor + ResourceDescriptorSecondaryOffset, accessContext);
+    if ((int)validationResult == 0) {
+      if (accessContext[0] != 0) {
+        // 验证指针数据有效性
+        if (*(int64_t *)(accessContext[0] + PointerDataOffset) == 0) {
           return ResourceInvalidErrorCode;
         }
-        validationStatus = ProcessResourceData(*(int64_t *)(accessInfo[0] + PointerDataOffset),*(DataWord *)(resourceDescriptor + ResourceDescriptorPrimaryOffset),
-                              *(ByteFlag *)(resourceDescriptor + ResourceDescriptorQuaternaryOffset));
-        if ((int)validationStatus != 0) {
-          return validationStatus;
+        
+        // 处理资源数据
+        validationResult = ProcessResourceData(*(int64_t *)(accessContext[0] + PointerDataOffset), 
+                                             *(DataWord *)(resourceDescriptor + ResourceDescriptorPrimaryOffset),
+                                             *(ByteFlag *)(resourceDescriptor + ResourceDescriptorQuaternaryOffset));
+        if ((int)validationResult != 0) {
+          return validationResult;
         }
       }
-      validationStatus = 0;
+      validationResult = 0;
     }
   }
-  return validationStatus;
+  return validationResult;
 }
 
 
