@@ -24602,6 +24602,15 @@ DataBuffer ProcessDataWithMultipleAttempts(DataBuffer *contextHandle,int64_t dat
 
 
 
+/**
+ * @brief 执行数据验证操作A0
+ * 
+ * 验证数据缓冲区的完整性和安全性，执行必要的数据处理操作。
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return DataBuffer 操作结果状态码
+ */
 DataBuffer ExecuteDataValidationA0(DataBuffer *operationBase,int64_t *dataBuffer)
 
 {
@@ -24610,6 +24619,8 @@ DataBuffer ExecuteDataValidationA0(DataBuffer *operationBase,int64_t *dataBuffer
   uint *validationStatusPointer;
   int stackContextBuffer [2];
   unsigned int stackParameterBuffer [2];
+  int stackIntBuffer [2];          // 栈整数缓冲区
+  unsigned int stackUIntBuffer [2]; // 栈无符号整数缓冲区
   
   stackIntBuffer[0] = *(int *)(operationBase + 1);
   if (*dataBuffer == 0) {

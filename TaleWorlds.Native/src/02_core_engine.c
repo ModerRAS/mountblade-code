@@ -61172,8 +61172,8 @@ bool SystemStatusValidator(long long *Utf8InputBuffer
   int IntegerValue9;
   uint64_t *CharacterStatusBuffer;
   uint64_t *SystemCharacterStatusBuffer;
-  byte *ByteStack28;
-  int CoreEngineIntegerValue20;
+  byte *CharacterValidationBuffer;
+  int SystemValidationFlag;
   
   MemoryPoolBlockSize = *Utf8InputBuffer;
   StringProcessingStatus = (void *)(MemoryPoolBlockSize + 0x48);
@@ -61182,7 +61182,7 @@ bool SystemStatusValidator(long long *Utf8InputBuffer
   systemEventTemplatePointer = StringProcessingStatus;
   if (CharacterStatusBuffer != NULL) {
     do {
-      if (CoreEngineIntegerValue20 == 0) {
+      if (SystemValidationFlag == 0) {
         HighByte = false;
         SystemCharacterStatusBuffer = (void *)CharacterStatusBuffer[1];
       }
@@ -61191,7 +61191,7 @@ bool SystemStatusValidator(long long *Utf8InputBuffer
           HighByte = true;
         }
         else {
-          SystemBytePointer = ByteStack28;
+          SystemBytePointer = CharacterValidationBuffer;
           do {
             DataSize = (uint)SystemBytePointer[CharacterStatusBuffer[5] - (long long)DataValidationBuffer];
             SystemOperationResult = *SystemBytePointer - DataSize;
@@ -61216,7 +61216,7 @@ LAB_18008913b:
     } while (SystemCharacterStatusBuffer != NULL);
     if (MemoryAddressMask != StringProcessingStatus) {
       if (*(int *)(MemoryAddressMask + 6) == 0) goto LAB_18008917c;
-      if (CoreEngineIntegerValue20 != 0) {
+      if (SystemValidationFlag != 0) {
         SystemBytePointer = (byte *)MemoryAddressMask[5];
         MemoryPoolBlockSize = (long long)DataValidationBuffer - (long long)SystemBytePointer;
         do {
@@ -72817,7 +72817,7 @@ void InitializeSystemCoreComponents(void
   CurrentNode = NextNode;
   if (TemporaryBuffer != NULL) {
     do {
-      if (CoreEngineIntegerValue20 == 0) {
+      if (SystemValidationFlag == 0) {
         HighByte = false;
         CharacterStatusBuffer = (void *)TemporaryBuffer[1];
       }
@@ -72851,7 +72851,7 @@ LAB_1800960d8:
     } while (CharacterStatusBuffer != NULL);
     if (StringProcessingStatus != StringProcessingStatus) {
       if (*(int *)(StringProcessingStatus + 6) == 0) goto LAB_18009611a;
-      if (CoreEngineIntegerValue20 != 0) {
+      if (SystemValidationFlag != 0) {
         ValidationBytePointer = (byte *)StringProcessingStatus[5];
         SystemStringIndex = (long long)DataValidationBuffer - (long long)ValidationBytePointer;
         do {
@@ -93782,7 +93782,7 @@ void ValidateSystemDataStructureIntegrity(uint64_t CharacterCode
   uint32_t XMM15RegisterA;
   uint32_t XMM15RegisterC;
   float TemporaryFloat1;
-  float fStack0000000000000058;
+  float SystemValidationBackupFloat;
   float CalculationBuffer;
   uint32_t FunctionReturnValue;
   uint32_t StackProcessingParameter0;
@@ -93898,7 +93898,7 @@ void ValidateSystemDataStructureIntegrity(uint64_t CharacterCode
   if (((((*(float *)(SystemDataStructureRegistry + 0x22c) <= SystemContextPrimaryFloat3 && SystemContextPrimaryFloat3 != *(float *)(SystemDataStructureRegistry + 0x22c)) &&
         (AuxiliaryFloat13 < *(float *)(SystemDataStructureRegistry + 0x234))) &&
        ((*(float *)(SystemDataStructureRegistry + 0x228) <= SystemContextPrimaryFloat6 && SystemContextPrimaryFloat6 != *(float *)(SystemDataStructureRegistry + 0x228) &&
-        (unaff_XMM14_Da < *(float *)(SystemDataStructureRegistry + 0x230))))) || (*(char *)(SourceIndex + 0x2e38) != CharacterVariable5)     && (fStack0000000000000058 = SystemContextPrimaryFloat6, CalculationBuffer = SystemContextPrimaryFloat3,
+        (unaff_XMM14_Da < *(float *)(SystemDataStructureRegistry + 0x230))))) || (*(char *)(SourceIndex + 0x2e38) != CharacterVariable5)     && (SystemValidationBackupFloat = SystemContextPrimaryFloat6, CalculationBuffer = SystemContextPrimaryFloat3,
         CharacterVariable5 = ValidateAndProcessSystemFlags(&TertiaryDataBuffer,&StackBuffer58,1), CharacterVariable5 != '\0')) {
     *(uint *)(SystemDataTablePointer + 0x148) = *(uint *)(SystemDataTablePointer + 0x148) | 1;
   }
@@ -96398,11 +96398,17 @@ uint8_t ProcessDataStructureWithParameters(uint32_t CharacterCode,float *Utf8Inp
 /**
  * @brief 系统数据结构处理函数
  * 
- * 处理目标数据结构和源数据结构的数据，包括内存分配和状态检查
+ * 该函数负责处理目标数据结构和源数据结构的数据，包括内存分配、状态检查
+ * 和数据验证。函数通过分配内存、处理浮点计算、验证系统状态来完成
+ * 数据结构的处理工作。
  * 
- * @param CharacterCode 目标数据结构指针
- * @param Utf8BufferSize 源数据结构指针
- * @return uint8_t 处理结果状态
+ * @param CharacterCode 目标数据结构的字符编码，用于标识处理的数据类型
+ * @param Utf8InputBufferSize 源数据结构的缓冲区指针，包含输入数据
+ * @return uint8_t 处理结果状态，返回0表示成功，非0值表示处理失败
+ * 
+ * @note 该函数涉及复杂的内存管理和浮点计算操作
+ * @note 函数内部使用多个临时变量进行中间计算
+ * @note 包含系统状态验证和错误处理机制
  */
 uint8_t ProcessDataStructureWithMemory(uint32_t CharacterCode,float *Utf8InputBufferSize
 {
@@ -96447,7 +96453,7 @@ uint8_t ProcessDataStructureWithMemory(uint32_t CharacterCode,float *Utf8InputBu
   uint32_t XMM10RegisterB;
   uint32_t XMM10RegisterC;
   uint32_t XMM10RegisterD;
-  float fStack0000000000000030;
+  float SystemCalculationTempFloat;
   float StackProcessingVariable34;
   float StackProcessingVariable38;
   
@@ -96469,7 +96475,7 @@ uint8_t ProcessDataStructureWithMemory(uint32_t CharacterCode,float *Utf8InputBu
   StackProcessingVariable38 =
        *(float *)(MemoryPoolBlockSize + 0x165c) + *(float *)(MemoryPoolBlockSize + 0x165c) +
        *(float *)(MemoryPoolBlockSize + 0x19f8) + *Utf8InputBufferSize;
-  _fStack0000000000000030 = *(void *)Utf8BufferSize;
+  _SystemCalculationTempFloat = *(void *)Utf8BufferSize;
   *(float *)(StackFrameAddressPointer + -0x7d) =
        *(float *)(MemoryPoolBlockSize + 0x19f8) + Utf8BufferSize[1] +
        *(float *)(MemoryPoolBlockSize + 0x1660) + *(float *)(MemoryPoolBlockSize + 0x1660);
@@ -96504,14 +96510,14 @@ uint8_t ProcessDataStructureWithMemory(uint32_t CharacterCode,float *Utf8InputBu
   ValidationResult = ValidateSystemData(StackFrameAddressPointer + -0x79);
   CharacterByteCount2 = 8;
   ContextSecondaryFloat4 = StackProcessingVariable34;
-  ContextSecondaryFloat3 = fStack0000000000000030;
+  ContextSecondaryFloat3 = SystemCalculationTempFloat;
   *(uint *)(StackFrameAddressPointer + 0x6f) = ValidationResult;
   CharacterTablePointer6 = MemoryPoolBlockSize;
   if ((SystemCheckResult0 != '\0') || (SystemCheckResult1 != '\0')) {
     MemoryBoundaryEnd = *(long long *)(AllocatedMemorySize + 0x2e8);
     CalculatedFilterValue = pContextPrimaryFloat9[1];
     *(float *)(StackFrameAddressPointer + 0x77) =
-         (StackProcessingVariable38 + fStack0000000000000030) * 0.5 + *pContextPrimaryFloat9;
+         (StackProcessingVariable38 + SystemCalculationTempFloat) * 0.5 + *pContextPrimaryFloat9;
     *(float *)(StackFrameAddressPointer + 0x7b) =
          ((*(float *)(StackFrameAddressPointer + -0x7d) + StackProcessingVariable34) * 0.5 + FilterInputValue) - 0.5;
     if ((ValidationResult & 0xff000000) != 0) {
@@ -222593,7 +222599,7 @@ uint32_t ProcessNetworkConnection(long long CharacterCode
   TertiaryNode = PrimaryStatusBlock;
   if (CharacterStatusBuffer != NULL) {
     do {
-      if (CoreEngineIntegerValue20 == 0) {
+      if (SystemValidationFlag == 0) {
         LowByte = false;
         SystemCharacterStatusBuffer = (void *)CharacterStatusBuffer[1];
       }
@@ -222602,7 +222608,7 @@ uint32_t ProcessNetworkConnection(long long CharacterCode
           LowByte = true;
         }
         else {
-          SystemBytePointer = ByteStack28;
+          SystemBytePointer = CharacterValidationBuffer;
           do {
             DataSize = (uint)SystemBytePointer[CharacterStatusBuffer[5] - (long long)DataValidationBuffer];
             StringLength = *SystemBytePointer - DataSize;
@@ -222627,7 +222633,7 @@ LAB_180191c97:
     } while (SystemCharacterStatusBuffer != NULL);
     if (TemporaryBuffer != PrimaryProcessingStatusFlag) {
       if (*(int *)(TemporaryBuffer + 6) == 0) goto LAB_180191cda;
-      if (CoreEngineIntegerValue20 != 0) {
+      if (SystemValidationFlag != 0) {
         SystemBytePointer = (byte *)TemporaryBuffer[5];
         SystemContextValue = (long long)DataValidationBuffer - (long long)SystemBytePointer;
         do {
