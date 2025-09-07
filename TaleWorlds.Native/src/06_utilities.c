@@ -61789,7 +61789,19 @@ void DecrementResourceReferenceCountAtOffset260(DataBuffer operationBase,int64_t
 
 
 
-void Unwind_180906d10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 减少资源引用计数（偏移量0x260重复版本）
+ * 
+ * 该函数与DecrementResourceReferenceCountAtOffset260功能相同，从数据缓冲区的偏移量0x260处获取资源指针，
+ * 减少其引用计数。可能是异常处理过程中的重复检查机制。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源指针信息
+ * 
+ * @note 原始函数名：Unwind_180906d10
+ * @note 这是一个异常展开（unwind）处理函数，用于资源引用计数管理
+ */
+void DecrementResourceReferenceCountAtOffset260Duplicate(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -61825,7 +61837,20 @@ void Unwind_180906d10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906d20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证异常处理上下文状态（偏移量0xd8-0xe0）
+ * 
+ * 该函数遍历数据缓冲区中偏移量0xd8到0xe0之间的异常处理上下文指针，
+ * 检查每个指针是否为非零值，如果发现任何非零值则终止系统。
+ * 这是一个系统完整性检查函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906d20
+ * @note 这是一个异常展开（unwind）处理函数，用于异常处理上下文状态验证
+ */
+void ValidateExceptionHandlerContextState(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -61844,7 +61869,19 @@ void Unwind_180906d20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906d30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 减少资源引用计数（偏移量0xd8）
+ * 
+ * 该函数从数据缓冲区的偏移量0xd8处获取资源指针，减少其引用计数。
+ * 如果引用计数降至0，则触发异常处理。这是资源管理的另一个关键函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源指针信息
+ * 
+ * @note 原始函数名：Unwind_180906d30
+ * @note 这是一个异常展开（unwind）处理函数，用于资源引用计数管理
+ */
+void DecrementResourceReferenceCountAtOffsetD8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;

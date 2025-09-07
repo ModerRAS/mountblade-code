@@ -761,7 +761,54 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ProcessUtf8ToUtf16CharacterEncodingEx7 FUN_18016d870
 #define ProcessUtf8ToUtf16CharacterEncodingEx8 FUN_18016d910
 #define ProcessUtf8ToUtf16CharacterEncodingEx9 FUN_18016dbb0
+
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换（变体11）
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换操作（第11个变体版本）。
+ * 函数会初始化系统事件，处理字符编码，并管理状态缓冲区。
+ * 
+ * @param Utf8InputBuffer UTF8输入缓冲区指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return uint64_t* 返回处理后的缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18016e320
+ */
 #define ProcessUtf8ToUtf16CharacterEncodingEx10 FUN_18016de20
+
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换（变体12）
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换操作（第12个变体版本）。
+ * 函数会处理函数地址，设置本地处理状态标志，并管理系统事件。
+ * 
+ * @param Utf8InputBuffer UTF8输入缓冲区指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return uint64_t* 返回处理后的缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18016e320
+ */
+#define ProcessUtf8ToUtf16CharacterEncodingEx11 FUN_18016e320
+
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换（变体13）
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换操作（第13个变体版本）。
+ * 函数会处理缓冲区管理和字符编码转换。
+ * 
+ * @param Utf8InputBuffer UTF8输入缓冲区指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return uint64_t* 返回处理后的缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18016e450
+ */
+#define ProcessUtf8ToUtf16CharacterEncodingEx12 FUN_18016e450
 
 const void* const SystemKeyStringAngularDamping = (void*)0x180a0b198;
 
@@ -39174,7 +39221,7 @@ SystemMemoryManagerProcessing:
         MemoryAllocationSize = *(int *)(**(long long **)(TimeoutValueStorage + 8) + 0x48);
         RemainingSpace = _Thrd_id();
         SystemTertiaryFlag = RemainingSpace == MemoryAllocationSize;
-        if ((bool)SystemTertiaryFlag) goto LAB_1800722f5;
+        if ((bool)SystemTertiaryFlag) goto SystemMemoryManagerProcessing;
       }
       if (SystemCheckResult != '\0') {
         if ((AdditionalParameter2 == '\0') || (*(int *)(CoreEngineSystemContext + 0x340) == 2)) {
@@ -39243,7 +39290,7 @@ BufferChecksumProcessing:
         BufferInitializationFlag = 0x15;
         DataProcessingBuffer = (uint8_t *)BufferAllocate(MemoryPoolManager,0x17,0x13);
         *DataProcessingBuffer = 0;
-LAB_1800725ac:
+BufferExtendedChecksum:
         SystemChecksumValue = GetMemoryAllocationInfo(DataProcessingBuffer);
         DataProcessingFlags = CONCAT44(DataProcessingFlags.HighPart,SystemChecksumValue);
       }
@@ -39251,7 +39298,7 @@ LAB_1800725ac:
         CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
         BufferInitializationFlag = 0x15;
         DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,0x17,0x10);
-        goto LAB_1800725ac;
+        goto BufferExtendedChecksum;
       }
       *(uint16_t *)(DataProcessingBuffer + BufferInitializationFlag) = 10;
       BufferInitializationFlag = 0x16;
@@ -39276,7 +39323,7 @@ LAB_1800725ac:
             }
             else {
               MemoryAddressMask = BufferInitializationFlag;
-              if (PrimaryReturnCode <= (uint)DataProcessingFlags) goto LAB_180072662;
+              if (PrimaryReturnCode <= (uint)DataProcessingFlags) goto BufferDataCopy;
               CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
               BufferInitializationFlag = DataSize;
               DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,PrimaryReturnCode,0x10);
@@ -39303,7 +39350,7 @@ BufferAllocationChecksum:
         CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
         BufferInitializationFlag = DataSize;
         DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,0x18,0x10);
-        goto LAB_1800726e7;
+        goto BufferAllocationChecksum;
       }
       *(uint16_t *)(DataProcessingBuffer + BufferInitializationFlag) = 0x3a;
       BufferInitializationFlag = 0x17;
@@ -39320,7 +39367,7 @@ BufferAllocationChecksum:
           *DataProcessingBuffer = 0;
         }
         else {
-          if (PrimaryReturnCode <= (uint)DataProcessingFlags) goto LAB_180072780;
+          if (PrimaryReturnCode <= (uint)DataProcessingFlags) goto BufferDataWrite;
           CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
           DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,PrimaryReturnCode,0x10);
         }
@@ -50005,7 +50052,7 @@ LAB_180079d9b:
   Utf16Char9 = 0;
   StackConfigurationFlag = 0;
   if (*ReferenceCountPointer < 1) {
-LAB_18007a5ac:
+SystemDataRelease:
     ReleaseSystemDataStructure(&lStack_170);
     BufferStatus1 = (long long)iStack_1e8;
     uStack_1d8 = (unsigned long long)*(ushort *)(CharacterCode + 0xc0);
@@ -50211,7 +50258,7 @@ LAB_18007a5ac:
                   BufferStatus1 = ((long long)paUnicodeCodePoint7 - (long long)paUnicodeCodePoint5) / 0x14;
                   if (BufferStatus1 == 0) {
                     uStackX_20 = 1;
-LAB_18007ac04:
+UnicodeBufferAllocation:
                     paMemoryAddressMask2 = (uint8_t (*) [16]                               BufferAllocate(MemoryPoolManager,uStackX_20 * 0x14,
                                              (char)piStack_218[MemoryAddressMask1 * 8 + 6]);
                     paUnicodeCodePoint7 = *(uint8_t (**) [16])(ReferenceCountPointer + MemoryAddressMask1 * 8 + 2);
