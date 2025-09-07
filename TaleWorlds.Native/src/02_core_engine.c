@@ -182624,8 +182624,22 @@ unsigned long long FUN_18015acc0(long long *CharacterCode,int CharacterCodeSize,
 
 
 5af90(uint64_t CharacterCode,long long CharacterCodeSize,int Utf8InputPointer,uint64_t Utf16EndPointer,
-void FUN_18015af90(uint64_t CharacterCode,long long CharacterCodeSize,int Utf8InputPointer,uint64_t Utf16EndPointer,
-                  uint32_t *AdditionalParameter1
+/**
+ * @brief 处理字符编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，包括内存分配、
+ * 缓冲区管理和数据转换等操作
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * 
+ * @note 原始函数名：FUN_18015af90
+ */
+void ProcessCharacterEncodingConversion(uint64_t CharacterCode,long long CharacterCodeSize,int Utf8InputPointer,uint64_t Utf16EndPointer,
+                                       uint32_t *AdditionalParameter1
 {
   long long PrimaryDataSize;
   uint32_t MemoryAllocationIndex;
