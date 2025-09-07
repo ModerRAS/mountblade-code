@@ -7085,10 +7085,10 @@ void CoreEngineInitializeNetworkEventHandler(void)
     CurrentNode = NewNode;
   }
   CurrentNode[6] = 0x4384dcc4b6d3f417;
-  CurrentEventHandler[7] = 0x92a15d52fe2679bd;
-  CurrentEventHandler[8] = &SystemConnectionTemplateC;
-  CurrentEventHandler[9] = 0;
-  CurrentEventHandler[10] = EventCallbackFunction;
+  CurrentNode[7] = 0x92a15d52fe2679bd;
+  CurrentNode[8] = &SystemConnectionTemplateC;
+  CurrentNode[9] = 0;
+  CurrentNode[10] = EventCallbackFunction;
   return;
 }
 
@@ -125223,7 +125223,15 @@ void ProcessSystemMemoryBlock(void)
 
 
 
-770c(voidvoid FUN_18012770c(void
+/**
+ * @brief 系统内存引用计数管理器
+ * 
+ * 该函数负责管理系统内存的引用计数，包括内存块的分配、释放和计数管理。
+ * 它会检查内存池的状态，更新引用计数，并在必要时重新分配内存。
+ * 
+ * @note 原始函数名：FUN_18012770c
+ */
+void SystemMemoryReferenceCountManager(void)
 {
   int *ReferenceCountPointer;
   uint32_t MemoryAllocationIndex;
