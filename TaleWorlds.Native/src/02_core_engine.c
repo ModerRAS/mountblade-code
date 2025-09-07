@@ -126748,7 +126748,20 @@ uint8_t CheckMemorySystemStatus(void
 
 
 
-83f0(long long CharacterCode,int Utf8BufferSize,float *Utf8SourcePointer,uint64_t Utf16EndPointer,uint AdditionalParameter1void FUN_1801283f0(long long CharacterCode,int Utf8BufferSize,float *Utf8SourcePointer,uint64_t Utf16EndPointer,uint AdditionalParameter1
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换
+ * 
+ * 该函数负责处理UTF-8字符串到UTF-16字符串的编码转换操作，
+ * 包括字符编码处理、内存分配、校验和计算等。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数
+ * @note 原始函数名：FUN_1801283f0
+ */
+void ProcessUtf8ToUtf16CharacterEncodingConversion(long long CharacterCode, int Utf8BufferSize, float *Utf8SourcePointer, uint64_t Utf16EndPointer, uint AdditionalParameter1)
 {
   uint32_t Utf16Char;
   uint MemoryAllocationIndex;
