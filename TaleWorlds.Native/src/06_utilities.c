@@ -13932,29 +13932,57 @@ void ExecuteUtilitySystemCleanup(int64_t systemHandle, int64_t cleanupContext)
  * @warning 如果数据元素数量为0，函数会直接返回0
  * @warning 验证失败时会立即返回错误代码
  */
-DataBuffer ValidateDataIntegrity(int64_t dataStructure,int64_t exceptionHandlerContext)
-
+/**
+ * @brief 验证数据完整性
+ * 
+ * 该函数负责验证数据的完整性和一致性，通过检查数据结构中的关键标识符
+ * 和调用验证函数来确保数据的有效性。
+ * 
+ * @param dataStructure 数据结构指针，包含数据元素数组和验证标志
+ * @param exceptionHandlerContext 验证上下文指针，包含验证函数参数
+ * @return DataBuffer 验证结果状态码：0表示成功，其他值表示错误代码
+ * 
+ * @note 函数会遍历所有数据元素进行验证
+ * @note 使用ProcessDataIndexA0进行单个元素的验证
+ * @note 使用全局常量作为验证基准
+ * 
+ * @warning 如果数据元素数量为0，函数会直接返回0
+ * @warning 验证失败时会立即返回错误代码
+ */
+DataBuffer ValidateDataIntegrity(int64_t dataStructure, int64_t exceptionHandlerContext)
 {
   DataBuffer validationResult;
-  int *DataElementContext;
+  int *dataElementContext;
   DataWord *validationFlagPointer;
   int elementIndex;
   
+  // 数据结构偏移量常量
+  const int DataElementCountOffset = ExceptionHandlerCallbackOffset10;
+  const int DataElementArrayOffset = 0x18;
+  const int DataValidationFlagOffset = 0x14;
+  const int ExceptionHandlerContextOffset = 0x60;
+  const int DataElementSize = 2;  // 每个元素2个int
+  
   elementIndex = 0;
-  validationFlagPointer = (DataWord *)(dataStructure + SystemContextDataOffset + (int64_t)*(int *)(dataStructure + ExceptionHandlerCallbackOffset10) * 8);
-  DataElementContext = (int *)(dataStructure + 0x18);
-  if (0 < *(int *)(dataStructure + ExceptionHandlerCallbackOffset10)) {
+  validationFlagPointer = (DataWord *)(dataStructure + SystemContextDataOffset + (int64_t)*(int *)(dataStructure + DataElementCountOffset) * 8);
+  dataElementContext = (int *)(dataStructure + DataElementArrayOffset);
+  
+  if (0 < *(int *)(dataStructure + DataElementCountOffset)) {
     do {
-      if (((*DataElementContext != MemoryValidationConstantA) || (DataElementContext[1] != MemoryValidationConstantB)) &&
-         (validationResult = ProcessDataIndexA0(exceptionHandlerContext + 0x60,(int *)(dataStructure + 0x18) + (int64_t)elementIndex * 2,*validationFlagPointer
-                                ,*(ByteFlag *)(dataStructure + 0x14)), (int)validationResult != 0)) {
+      if (((*dataElementContext != MemoryValidationConstantA) || (dataElementContext[1] != MemoryValidationConstantB)) &&
+         (validationResult = ProcessDataIndexA0(exceptionHandlerContext + ExceptionHandlerContextOffset, 
+                                                  (int *)(dataStructure + DataElementArrayOffset) + (int64_t)elementIndex * DataElementSize, 
+                                                  *validationFlagPointer,
+                                                  *(ByteFlag *)(dataStructure + DataValidationFlagOffset)), 
+          (int)validationResult != 0)) {
         return validationResult;
       }
       elementIndex = elementIndex + 1;
       validationFlagPointer = validationFlagPointer + 1;
-      DataElementContext = DataElementContext + 2;
-    } while (elementIndex < *(int *)(dataStructure + ExceptionHandlerCallbackOffset10));
+      dataElementContext = dataElementContext + DataElementSize;
+    } while (elementIndex < *(int *)(dataStructure + DataElementCountOffset));
   }
+  
   return 0;
 }
 
