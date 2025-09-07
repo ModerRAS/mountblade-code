@@ -119851,7 +119851,7 @@ uint64_t ExecuteMemoryBufferCommands(long long CharacterCode,uint64_t CharacterC
       if (((*(uint *)(SystemDataTablePointer + 0xc) & 0x100) == 0) && (*(float *)(AllocatedMemorySize + 0x2e04) <= 0.0)) {
         *(uint32_t *)(AllocatedMemorySize + 0x2e04) = *(uint32_t *)(AllocatedMemorySize + 0x1c);
       }
-      FUN_18012ddc0(SystemDataTablePointer,&SystemRegisterFlagX8,1);
+      CopySystemData(SystemDataTablePointer,&SystemRegisterFlagX8,1);
       if (*(char *)(SystemDataTablePointer + 0xae) != '\0') {
         *(void *)(*(long long *)(SystemDataTablePointer + 0x28) + 8) = SystemRegisterFlagX8;
       }
@@ -119909,7 +119909,7 @@ uint64_t ExecuteMemoryBufferCommands(long long CharacterCode,uint64_t CharacterC
         } while (-1 < AllocatedMemorySize);
       }
       if ((*(uint *)(SystemDataTablePointer + 0xc) & 0x2000) == 0) {
-        FUN_18012d230(SystemDataTablePointer);
+        ProcessSystemDataEx2(SystemDataTablePointer);
       }
     }
     return;
@@ -120481,7 +120481,7 @@ LAB_180124eff:
   bool CurrentByteValue2;
   
   DataStructureCounter = SystemDataConfiguration;
-  FUN_180127d70();
+  CheckSystemStatusEx();
   MemoryAllocationIndex = 0;
   SystemByteValue = MemoryAllocationIndex;
   if (0 < *(int *)(DataStructureCounter + 0x1bb0)) {
@@ -120692,9 +120692,9 @@ void ProcessSystemMemoryAllocationAndConfiguration(uint64_t CharacterCode,uint64
   if (*(char *)(MemoryBlockIndex + 0x2e00) == '\0') {
     if (*(long long *)(MemoryBlockIndex + 0x20) != 0) {
       aSystemRegisterFlagX8[0] = 0;
-      DataStructureCounter = FUN_180121420(*(long long *)(MemoryBlockIndex + 0x20),CharacterCodeSize,aSystemRegisterFlagX8);
+      DataStructureCounter = ProcessSystemDataStructureEx(*(long long *)(MemoryBlockIndex + 0x20),CharacterCodeSize,aSystemRegisterFlagX8);
       if (DataStructureCounter != 0) {
-        FUN_18013cb20(DataStructureCounter,aSystemRegisterFlagX8[0]);
+        ProcessSystemConfigurationAndHandling(DataStructureCounter,aSystemRegisterFlagX8[0]);
         if (SystemDataConfiguration != 0) {
           *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + -1;
         }
@@ -120711,7 +120711,7 @@ void ProcessSystemMemoryAllocationAndConfiguration(uint64_t CharacterCode,uint64
       *(uint8_t *)(MemoryBlockIndex + 0x390) = 1;
     }
     else {
-      FUN_18013cdc0();
+      CleanupSystemEx();
     }
     *(uint32_t *)(MemoryBlockIndex + 0x2e04) = 0;
   }
@@ -120721,7 +120721,7 @@ void ProcessSystemMemoryAllocationAndConfiguration(uint64_t CharacterCode,uint64
   *(uint32_t *)(MemoryBlockIndex + 0x1af0) = 0;
   *(uint32_t *)(MemoryBlockIndex + 0x19e8) = *(uint32_t *)(MemoryBlockIndex + 8);
   *(double *)(MemoryBlockIndex + 0x1a88) = (double)*(float *)(MemoryBlockIndex + 0x18) + *(double *)(MemoryBlockIndex + 0x1a88);
-  FUN_180130010();
+  InitializeSystemEx();
   DataStructureCounter = SystemDataConfiguration;
   **(uint8_t **)(MemoryBlockIndex + 0xa0) = 1;
   FloatProcessingStatusFlag = *(float **)(DataStructureCounter + 0xb0);
@@ -120878,9 +120878,9 @@ LAB_180125a82:
   if (*(char *)(SystemContext + 0x2e00) == '\0') {
     if (*(long long *)(SystemContext + 0x20) != 0) {
       FunctionReturnValue = 0;
-      MemoryBlockIndex = FUN_180121420(*(long long *)(SystemContext + 0x20),CharacterCodeSize,&DataTransferStackBuffer);
+      MemoryBlockIndex = ProcessSystemDataStructureEx(*(long long *)(SystemContext + 0x20),CharacterCodeSize,&DataTransferStackBuffer);
       if (MemoryBlockIndex != 0) {
-        FUN_18013cb20(MemoryBlockIndex,FunctionReturnValue);
+        ProcessSystemConfigurationAndHandling(MemoryBlockIndex,FunctionReturnValue);
         if (SystemDataConfiguration != 0) {
           *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + -1;
         }
@@ -120897,7 +120897,7 @@ LAB_180125a82:
       *(uint8_t *)(SystemContext + 0x390) = 1;
     }
     else {
-      FUN_18013cdc0();
+      CleanupSystemEx();
     }
     *(uint32_t *)(SystemContext + 0x2e04) = 0;
   }
@@ -120908,7 +120908,7 @@ LAB_180125a82:
   *(uint32_t *)(SystemContext + 0x19e8) = *(uint32_t *)(SystemContext + 8);
   *(double *)(SystemContext + 0x1a88) =
        (double)*(float *)(SystemContext + 0x18) + *(double *)(SystemContext + 0x1a88);
-  FUN_180130010();
+  InitializeSystemEx();
   MemoryBlockIndex = SystemDataConfiguration;
   **(uint8_t **)(SystemContext + 0xa0) = 1;
   pFloatVariable5 = *(float **)(MemoryBlockIndex + 0xb0);
@@ -121535,7 +121535,7 @@ LAB_180125a82:
   if (*CharacterCode != '\0') {
     if ((CharacterCode[0x2e00] != '\0') && (*(long long *)(CharacterCode + 0x20) != 0)) {
       SystemDataConfiguration = CharacterCode;
-      FUN_18013cdc0();
+      CleanupSystemEx();
     }
     CalculatedCodePoint = DataSize;
     SystemByteValue = DataSize;
@@ -125176,7 +125176,7 @@ ExecuteCharacterDataProcessing(uint64_t *CharacterCode,char *CharacterCodeSize,c
 
 
 
-7d70(voidvoid FUN_180127d70(void
+7d70(voidvoid CheckSystemStatusEx(void
 {
   float SystemContextPrimaryFloat;
   float SystemContextSecondaryFloat;
@@ -127240,7 +127240,7 @@ float * FUN_1801296e0(float *CharacterCode,long long CharacterCodeSize,int Utf8I
     if ((ProcessingStatusFlag == 0) ||
        (*(float *)(DataStructureCounter + 0x1bfc) * *(float *)(DataStructureCounter + 0x1bfc) +
         *(float *)(DataStructureCounter + 0x1c00) * *(float *)(DataStructureCounter + 0x1c00) <= 1e-05)) {
-      FUN_18012ddc0(plStack_238,DataStructureCounter + 0x1bf4);
+      CopySystemData(plStack_238,DataStructureCounter + 0x1bf4);
     }
     else {
       plStack_238[0x1e] = *(long long *)(DataStructureCounter + 0x1bf4);
@@ -127661,7 +127661,7 @@ LAB_18012a70f:
       FloatValue33 = *(float *)(DataStructureCounter + 0x16b8);
     }
     CoreEngineUnsignedValue208 = CONCAT44(FloatValue33,FloatValue34);
-    FUN_18012ddc0(plStack_238,&CoreEngineUnsignedValue208,0);
+    CopySystemData(plStack_238,&CoreEngineUnsignedValue208,0);
   }
   if (*(int *)((long long)plStack_238 + 0x3c) < 0) {
 LAB_18012aa37:
@@ -127740,7 +127740,7 @@ LAB_18012aa45:
                               *(float *)(**(long long **)(DataStructureCounter + 0x1c70) + 0xc),
                               *(float *)(**(long long **)(DataStructureCounter + 0x1c70) + 8) +
                               *(float *)(DataStructureCounter + 0x16ac));
-        FUN_18012ddc0(plStack_238,&CoreEngineUnsignedValue208,1);
+        CopySystemData(plStack_238,&CoreEngineUnsignedValue208,1);
       }
       else {
         LoopCounter7 = (long long)*(short *)(plStack_238[5] + 0x74);
@@ -128928,7 +128928,7 @@ LAB_18012ce0f:
     if ((MemoryAllocationIndex == 0) ||
        (*(float *)(MemoryPoolBlockSize + 0x1bfc) * *(float *)(MemoryPoolBlockSize + 0x1bfc) +
         *(float *)(MemoryPoolBlockSize + 0x1c00) * *(float *)(MemoryPoolBlockSize + 0x1c00) <= 1e-05)) {
-      FUN_18012ddc0(StackParameter2,MemoryPoolBlockSize + 0x1bf4);
+      CopySystemData(StackParameter2,MemoryPoolBlockSize + 0x1bf4);
     }
     else {
       StackParameter2[0x1e] = *(long long *)(MemoryPoolBlockSize + 0x1bf4);
@@ -129384,7 +129384,7 @@ LAB_18012a70f:
       FloatValue33 = *(float *)(MemoryPoolBlockSize + 0x16b8);
     }
     _fStack0000000000000070 = CONCAT44(FloatValue33,FloatValue35);
-    FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,0);
+    CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,0);
   }
   if (*(int *)((long long)StackParameter2 + 0x3c) < 0) {
 LAB_18012aa37:
@@ -129474,7 +129474,7 @@ LAB_18012ac57:
       _fStack0000000000000070 =
            CONCAT44(*(float *)(MemoryPoolBlockSize + 0x16b0) + *(float *)(**(long long **)(MemoryPoolBlockSize + 0x1c70) + 0xc),
                     *(float *)(**(long long **)(MemoryPoolBlockSize + 0x1c70) + 8) + *(float *)(MemoryPoolBlockSize + 0x16ac));
-      FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,1);
+      CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,1);
     }
   }
   *(float *)(StackParameter2 + 8) = (float)(int)*(float *)(StackParameter2 + 8);
@@ -130766,7 +130766,7 @@ LAB_18012ce0f:
     if ((SystemMemoryAllocationResult == 0) ||
        (*(float *)(RegisterSourceIndex + 0x1bfc) * *(float *)(RegisterSourceIndex + 0x1bfc) +
         *(float *)(RegisterSourceIndex + 0x1c00) * *(float *)(RegisterSourceIndex + 0x1c00) <= 1e-05)) {
-      FUN_18012ddc0(StackParameter2,RegisterSourceIndex + 0x1bf4);
+      CopySystemData(StackParameter2,RegisterSourceIndex + 0x1bf4);
     }
     else {
       StackParameter2[0x1e] = *(long long *)(RegisterSourceIndex + 0x1bf4);
@@ -131224,7 +131224,7 @@ LAB_18012a70f:
       FloatValue32 = *(float *)(RegisterSourceIndex + 0x16b8);
     }
     _fStack0000000000000070 = CONCAT44(FloatValue32,FloatValue34);
-    FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,0);
+    CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,0);
   }
   if (*(int *)((long long)StackParameter2 + 0x3c) < 0) {
 LAB_18012aa37:
@@ -131316,7 +131316,7 @@ LAB_18012ac57:
                     *(float *)(**(long long **)(RegisterSourceIndex + 0x1c70) + 0xc),
                     *(float *)(**(long long **)(RegisterSourceIndex + 0x1c70) + 8) +
                     *(float *)(RegisterSourceIndex + 0x16ac));
-      FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,1);
+      CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,1);
     }
   }
   *(float *)(StackParameter2 + 8) = (float)(int)*(float *)(StackParameter2 + 8);
@@ -132916,7 +132916,7 @@ LAB_18012a70f:
       FloatValue30 = *(float *)(RegisterSourceIndex + 0x16b8);
     }
     _fStack0000000000000070 = CONCAT44(FloatValue30,FloatValue32);
-    FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,0);
+    CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,0);
   }
   if (*(int *)((long long)StackParameter2 + 0x3c) < 0) {
 LAB_18012aa37:
@@ -133009,7 +133009,7 @@ LAB_18012ac57:
                     *(float *)(**(long long **)(RegisterSourceIndex + 0x1c70) + 0xc),
                     *(float *)(**(long long **)(RegisterSourceIndex + 0x1c70) + 8) +
                     *(float *)(RegisterSourceIndex + 0x16ac));
-      FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,1);
+      CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,1);
     }
   }
   *(float *)(StackParameter2 + 8) = (float)(int)*(float *)(StackParameter2 + 8);
@@ -134529,7 +134529,7 @@ LAB_18012a70f:
       FloatValue31 = *(float *)(RegisterSourceIndex + 0x16b8);
     }
     _fStack0000000000000070 = CONCAT44(FloatValue31,FloatValue32);
-    FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,0);
+    CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,0);
   }
   if (*(int *)((long long)StackParameter2 + 0x3c) < 0) {
 LAB_18012aa37:
@@ -134622,7 +134622,7 @@ LAB_18012ac57:
                     *(float *)(**(long long **)(RegisterSourceIndex + 0x1c70) + 0xc),
                     *(float *)(**(long long **)(RegisterSourceIndex + 0x1c70) + 8) +
                     *(float *)(RegisterSourceIndex + 0x16ac));
-      FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,1);
+      CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,1);
     }
   }
   *(float *)(StackParameter2 + 8) = (float)(int)*(float *)(StackParameter2 + 8);
@@ -136216,7 +136216,7 @@ LAB_18012a70f:
       FloatValue30 = *(float *)(RegisterSourceIndex + 0x16b8);
     }
     _fStack0000000000000070 = CONCAT44(FloatValue30,FloatValue32);
-    FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,0);
+    CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,0);
   }
   if (*(int *)((long long)StackParameter2 + 0x3c) < 0) {
 LAB_18012aa37:
@@ -136309,7 +136309,7 @@ LAB_18012ac57:
                     *(float *)(**(long long **)(RegisterSourceIndex + 0x1c70) + 0xc),
                     *(float *)(**(long long **)(RegisterSourceIndex + 0x1c70) + 8) +
                     *(float *)(RegisterSourceIndex + 0x16ac));
-      FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,1);
+      CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,1);
     }
   }
   *(float *)(StackParameter2 + 8) = (float)(int)*(float *)(StackParameter2 + 8);
@@ -137789,7 +137789,7 @@ LAB_18012a70f:
       SystemContextSecondaryFloat9 = *(float *)(RegisterSourceIndex + 0x16b8);
     }
     _fStack0000000000000070 = CONCAT44(SystemContextSecondaryFloat9,FloatValue30);
-    FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,0);
+    CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,0);
   }
   if (*(int *)(StackParameter2 + 0x3c) < 0) {
 LAB_18012aa37:
@@ -137887,7 +137887,7 @@ LAB_18012ac57:
                     *(float *)(**(long long **)(RegisterSourceIndex + 0x1c70) + 0xc),
                     *(float *)(**(long long **)(RegisterSourceIndex + 0x1c70) + 8) +
                     *(float *)(RegisterSourceIndex + 0x16ac));
-      FUN_18012ddc0(StackParameter2,&MemoryAllocationStackBuffer,1);
+      CopySystemData(StackParameter2,&MemoryAllocationStackBuffer,1);
     }
   }
   *(float *)(StackParameter2 + 0x40) = (float)(int)*(float *)(StackParameter2 + 0x40);
@@ -142155,7 +142155,7 @@ d1ed(long long CharacterCodevoid FUN_18012d1ed(long long CharacterCode
 
 
 
-d230(long long CharacterCodevoid FUN_18012d230(long long CharacterCode
+d230(long long CharacterCodevoid ProcessSystemDataEx2(long long CharacterCode
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -142246,7 +142246,7 @@ d2e0(long long CharacterCodevoid FUN_18012d2e0(long long CharacterCode
       } while (-1 < MemoryBlockIndex);
     }
     if ((*(uint *)(CharacterCode + 0xc) & 0x2000) == 0) {
-      FUN_18012d230(CharacterCode);
+      ProcessSystemDataEx2(CharacterCode);
     }
   }
   return;
@@ -145159,7 +145159,7 @@ uint64_t FUN_18012fbd0(long long CharacterCode,uint32_t *CharacterCodeSize
       *(uint32_t **)(CharacterCode + 0x28) = CharacterCodeSize;
       *(uint32_t *)(CharacterCode + 0x30) = *CharacterCodeSize;
       *(bool *)(CharacterCode + 0xae) = *(long long *)(CharacterCodeSize + 0x1e) == CharacterCode;
-      FUN_18012d230(CharacterCode);
+      ProcessSystemDataEx2(CharacterCode);
       return 1;
     }
   }
@@ -145259,7 +145259,7 @@ long long FUN_18012fe00(uint64_t CharacterCode
 
 
 
-30010(voidvoid FUN_180130010(void
+30010(voidvoid InitializeSystemEx(void
 {
   uint64_t Utf16Char;
   long long BufferStatus;
@@ -164383,7 +164383,7 @@ uint64_t * FUN_18013ca47(int CharacterCode
 
 
 
-3cb20(long long CharacterCode,long long CharacterCodeSizevoid FUN_18013cb20(long long CharacterCode,long long CharacterCodeSize
+3cb20(long long CharacterCode,long long CharacterCodeSizevoid ProcessSystemConfigurationAndHandling(long long CharacterCode,long long CharacterCodeSize
 {
   uint64_t Utf16Char;
   
