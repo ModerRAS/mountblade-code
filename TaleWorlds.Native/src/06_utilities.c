@@ -71836,7 +71836,14 @@ void UnlockMutexAtOffset240(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809088d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理表A2
+ * @details 在验证结果偏移处设置异常处理表A2、表3和表6
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_1809088d0
+ */
+void SetExceptionHandleTableA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -71850,7 +71857,14 @@ void Unwind_1809088d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809088e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理表B3
+ * @details 在验证结果偏移处设置异常处理表3和表6
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_1809088e0
+ */
+void SetExceptionHandleTableB3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -71863,7 +71877,14 @@ void Unwind_1809088e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809088f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理表C6
+ * @details 在验证结果偏移处设置异常处理表6
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_1809088f0
+ */
+void SetExceptionHandleTableC6(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + ValidationResultOffset) = &ExceptionDataTable6;
@@ -72156,7 +72177,14 @@ void ReleaseMutexLockA10(DataBuffer exceptionContext, int64_t stackFrame)
 
 
 
-void Unwind_180908a20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理内存资源引用
+ * @details 释放内存资源引用计数并清理相关内存块
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_180908a20
+ */
+void CleanupMemoryResourceReference(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -72192,7 +72220,14 @@ void Unwind_180908a20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908a30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源引用A
+ * @details 减少内存资源引用计数，如果计数为0则释放资源
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_180908a30
+ */
+void ReleaseMemoryResourceReferenceA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -72228,7 +72263,14 @@ void Unwind_180908a30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908a40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源引用B
+ * @details 减少内存资源引用计数，如果计数为0则释放资源
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_180908a40
+ */
+void ReleaseMemoryResourceReferenceB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
