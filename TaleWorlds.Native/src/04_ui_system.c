@@ -2276,6 +2276,17 @@ void* UIGestureCoordinates;
 // 原始函数名: FUN_180701920
 #define ProcessUIDataEncryption FUN_180701920
 
+// UI系统浮点数绝对值计算函数
+// 计算UI系统中浮点数数据的绝对值总和，用于数值分析和处理
+// 包括多个浮点数组的绝对值累加和加权计算
+// uiContext UI上下文，包含浮点数数组
+// dataSource 数据源大小，指定要处理的数据数量
+// targetBuffer 目标缓冲区，用于加权计算
+// bufferSize 缓冲区大小参数，用于结果缩放
+// 计算结果，浮点数绝对值的总和
+// 原始函数名: FUN_180702f80
+#define CalculateUIFloatAbsoluteSum FUN_180702f80
+
 // UI系统func函数宏定义
 #define CleanupUIContext func_0x0001806980f0
 #define ResetUISystemState func_0x0001806980d0
