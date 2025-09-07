@@ -80063,7 +80063,15 @@ void ExecuteExceptionCallbacksAtSystemCleanup(void)
 
 
 
-void CleanupResourceReferenceCountAtOffset30(void)
+/**
+ * @brief 清理资源引用计数在偏移量30处
+ * 
+ * 该函数负责在指定偏移量处清理资源引用计数。
+ * 它会销毁互斥锁，确保资源的正确释放。
+ * 
+ * @note 原始函数名：CleanupResourceReferenceCountAtOffset30
+ */
+void CleanupResourceReferenceCountAtPrimaryOffset(void)
 
 {
   _Mtx_destroy_in_situ();
