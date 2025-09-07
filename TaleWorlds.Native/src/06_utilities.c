@@ -4277,6 +4277,39 @@
 // 功能：设置全局数据指针A38到指定地址
 #define SetGlobalDataPointerA38 FUN_180942440
 
+// Unwind函数语义化宏定义
+// 原始函数名：Unwind_18090fc10 - 释放SRW锁函数
+// 功能：在数据缓冲区中释放SRW排他锁
+#define ReleaseSrwLockExclusiveUnwind Unwind_18090fc10
+
+// 原始函数名：Unwind_18090fc20 - 数据验证标志清理函数
+// 功能：清理数据验证标志并调用验证处理器
+#define ClearDataValidationFlag Unwind_18090fc20
+
+// 原始函数名：Unwind_18090fc50 - 数据验证标志清理函数B
+// 功能：清理第二种数据验证标志并调用验证处理器
+#define ClearDataValidationFlagB Unwind_18090fc50
+
+// 原始函数名：Unwind_18090fc80 - SRW锁释放函数C
+// 功能：在指定偏移处释放SRW排他锁
+#define ReleaseSrwLockExclusiveC Unwind_18090fc80
+
+// 原始函数名：Unwind_18090fc90 - SRW锁释放函数D
+// 功能：在指定偏移处释放SRW排他锁
+#define ReleaseSrwLockExclusiveD Unwind_18090fc90
+
+// 原始函数名：Unwind_18090fca0 - SRW锁释放函数E
+// 功能：在指定偏移处释放SRW排他锁
+#define ReleaseSrwLockExclusiveE Unwind_18090fca0
+
+// 原始函数名：Unwind_18090fcb0 - 默认异常处理器设置函数F
+// 功能：在指定偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerF Unwind_18090fcb0
+
+// 原始函数名：Unwind_18090fcc0 - 默认异常处理器设置函数G
+// 功能：在指定偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerG Unwind_18090fcc0
+
 // 原始函数名：FUN_180942460 - 全局指针设置函数A39
 // 功能：设置全局数据指针A39到指定地址
 #define SetGlobalDataPointerA39 FUN_180942460
@@ -100013,7 +100046,18 @@ void SetDefaultExceptionHandlerB2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fc10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放SRW排他锁的Unwind函数
+ * 
+ * 该函数负责在数据缓冲区中释放SRW排他锁，用于异常处理时的资源清理。
+ * 当指定偏移处的字符不为空时，释放对应的SRW锁。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁的状态信息
+ * 
+ * @note 原始函数名：Unwind_18090fc10
+ */
+void ReleaseSrwLockExclusiveUnwind(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x88) != '\0') {
