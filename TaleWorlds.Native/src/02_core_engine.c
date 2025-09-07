@@ -119973,7 +119973,7 @@ LAB_1801256ac:
 
 
 
-5780(uint64_t SystemContextPointer,uint64_t Utf8BufferSizevoid FUN_180125780(uint64_t SystemContextPointer,uint64_t Utf8BufferSize
+5780(uint64_t SystemContextPointer,uint64_t Utf8BufferSizevoid ProcessSystemMemoryAllocationAndConfiguration(uint64_t SystemContextPointer,uint64_t Utf8BufferSize
 {
   int LockResult;
   long long bufferAllocationStatus;
@@ -120057,7 +120057,7 @@ LAB_1801256ac:
   MemoryAllocationIndex = *(uint *)(MemoryBlockIndex + 0x1c68);
   if (0 < (int)MemoryAllocationIndex) {
     MemoryPoolBlockSizePointer = *(long long **)(MemoryBlockIndex + 0x1c70);
-    SystemVariable9 = (unsigned long long)MemoryAllocationIndex;
+    MemoryAllocationLoopCounter = (unsigned long long)MemoryAllocationIndex;
     SystemContextFloat11 = SystemContextFloat12;
     SystemContextFloat14 = SystemContextFloat13;
     do {
@@ -120094,7 +120094,7 @@ LAB_1801256ac:
       *(void *)(bufferAllocationStatus + 0x9c) = 0;
       *(uint32_t *)(bufferAllocationStatus + 0x98) = 0;
       ProcessingStatusFlag = ProcessingStatusFlag + 8;
-      SystemVariable9 = (unsigned long long)MemoryAllocationIndex;
+      MemoryAllocationLoopCounter = (unsigned long long)MemoryAllocationIndex;
     } while ((int)MemoryAllocationIndex < *(int *)(MemoryBlockIndex + 0x1c68));
   }
   if ((*(char *)(MemoryBlockIndex + 0x1dd0) != '\0') &&
@@ -135008,7 +135008,20 @@ LAB_18012b510:
 
 
 
-a002(voidvoid FUN_18012a002(void
+/**
+ * @brief 系统状态处理和验证函数
+ * 
+ * 该函数负责处理系统状态验证、数据转换和资源管理操作。
+ * 主要功能包括：
+ * - 验证系统状态和上下文数据
+ * - 处理UTF-16字符编码转换
+ * - 管理系统资源和内存分配
+ * - 执行浮点数运算和数据验证
+ * - 处理系统事件和状态更新
+ * 
+ * @note 原始函数名：FUN_18012a002
+ */
+void ProcessSystemStatusAndValidation(void
 {
   uint16_t *StatusBuffer;
   int *pStringComparisonResult;
@@ -179423,7 +179436,7 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t SystemContextPoin
   lStack_50 = 0;
   SystemStackFlag = 0;
   MemoryAllocationIndex = *(uint *)(Utf8BufferSize + 0x10);
-  SystemVariable9 = (unsigned long long)MemoryAllocationIndex;
+  MemoryAllocationLoopCounter = (unsigned long long)MemoryAllocationIndex;
   if (*(long long *)(Utf8BufferSize + 8) != 0) {
     CoreEngineProcessSystemEvent(&pSystemTimeoutCounter,SystemVariable9);
   }
@@ -200304,9 +200317,11 @@ void ProcessSystemLoopAndTriggerEvent(long long *SystemContextPointer
 
 
 
-7a290(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_18017a290(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+// UTF-16编码处理和系统事件备用函数 - 备用的UTF-16到UTF-8编码处理函数
+// 原始函数名：FUN_18017a290
+void ProcessUtf16EncodingAndSystemEventAlt(long long SystemContextPointer, uint64_t Utf8BufferSize, uint64_t Utf16InputPointer, uint64_t Utf16EndPointer)
 {
-  ConvertUtf16ToUtf8MainProcessor(SystemContextPointer,*(void *)(SystemContextPointer + 0x10),Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
+  ConvertUtf16ToUtf8MainProcessor(SystemContextPointer, *(void *)(SystemContextPointer + 0x10), Utf16InputPointer, Utf16EndPointer, 0xfffffffffffffffe);
   return;
 }
 
