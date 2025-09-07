@@ -90085,7 +90085,18 @@ void ProcessMemoryOperationAtOffset2378(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_18090e280(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理函数2810 - 在偏移量0x2810处处理内存操作
+ * 
+ * 该函数负责在偏移量0x2810处执行内存操作处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e280
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessMemoryOperationAtOffset2810(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x2810,0x248,2,ProcessMemoryOperationA0,SystemCleanupFlagAlternative);
