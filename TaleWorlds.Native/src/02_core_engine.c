@@ -2599,8 +2599,49 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 原始函数名：FUN_1801306c9 - 系统上下文和Unicode代码点处理函数
 #define ProcessSystemContextAndUnicodeCodePoint FUN_1801306c9
 
-// 已定义：CalculateSystemFloatAndProcess
+// 原始函数名：FUN_180130ca8 - 系统浮点数据处理和状态检查函数
+#define ProcessSystemFloatDataAndCheckStatus FUN_180130ca8
 
+// 原始函数名：FUN_1801314fb - UTF-8字符编码和缓冲区处理函数
+#define ProcessUtf8CharacterEncodingAndBuffer FUN_1801314fb
+
+// 原始函数名：FUN_1801315b4 - UTF-8字符处理和输入缓冲区管理函数
+#define ProcessUtf8CharacterAndInputBuffer FUN_1801315b4
+
+// 原始函数名：FUN_18013161b - UTF-8数据编码和源指针处理函数
+#define ProcessUtf8DataEncodingAndSourcePointer FUN_18013161b
+
+// 原始函数名：FUN_18012fa7d - 浮点数据索引计算函数
+#define CalculateFloatingPointDataIndex FUN_18012fa7d
+
+// 原始函数名：FUN_18012fa9e - 数据节点索引获取函数
+#define GetDataNodeIndex FUN_18012fa9e
+
+// 原始函数名：FUN_18012faae - UTF-8输入缓冲区处理函数
+#define ProcessUtf8InputBuffer FUN_18012faae
+
+// 原始函数名：FUN_1801306f3 - 系统事件清理函数
+#define CleanupSystemEventHandler FUN_1801306f3
+
+// 原始函数名：FUN_180131701 - UTF-8字符编码处理函数
+#define ProcessUtf8CharacterEncoding FUN_180131701
+
+// 原始函数名：FUN_180131d90 - 系统数据验证函数
+#define ValidateSystemData FUN_180131d90
+
+// 原始函数名：FUN_180131dad - 系统状态检查函数
+#define CheckSystemStatus FUN_180131dad
+
+// 原始函数名：FUN_180132ec4 - 系统内存初始化函数
+#define InitializeSystemMemory FUN_180132ec4
+
+// 原始函数名：FUN_180132fdb - 系统缓冲区处理函数
+#define ProcessSystemBuffer FUN_180132fdb
+
+// 原始函数名：FUN_180132ffd - 字符代码处理函数
+#define ProcessCharacterCode FUN_180132ffd
+
+// 已定义：CalculateSystemFloatAndProcess
 
 // 原始函数名：SUB_18013d940 - 系统数据结构处理函数
 #define ProcessSystemDataStructure SUB_18013d940
@@ -147583,7 +147624,15 @@ void ProcessSystemDataFiltering(float FilterInputValue)
 
 
 
-void FUN_18012fa7d(void)
+/**
+ * @brief 计算浮点数据索引值
+ * 
+ * 该函数负责计算浮点数据索引值，将两个浮点数组合成一个64位索引
+ * 主要用于系统数据结构的索引计算和内存访问
+ * 
+ * @note 原始函数名：FUN_18012fa7d
+ */
+void CalculateFloatingPointDataIndex(void)
 {
   uint64_t *DataNodeIndex;
   float FloatingPointRegisterA;
@@ -147596,7 +147645,15 @@ void FUN_18012fa7d(void)
 
 
 
-void FUN_18012fa9e(void)
+/**
+ * @brief 获取数据节点索引
+ * 
+ * 该函数负责从栈帧指针中获取数据节点索引
+ * 主要用于系统数据结构的访问和索引管理
+ * 
+ * @note 原始函数名：FUN_18012fa9e
+ */
+void GetDataNodeIndex(void)
 {
   long long StackFramePointer;
   uint64_t *DataNodeIndex;
@@ -147608,7 +147665,17 @@ void FUN_18012fa9e(void)
 
 
 
-faae(uint64_t *Utf8InputBuffer,long long Utf8BufferSizevoid FUN_18012faae(uint64_t *Utf8InputBuffer,long long Utf8BufferSize
+/**
+ * @brief 处理UTF-8输入缓冲区
+ * 
+ * 该函数负责处理UTF-8输入缓冲区，从指定偏移量获取数据
+ * 主要用于字符编码处理和缓冲区管理
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @note 原始函数名：FUN_18012faae
+ */
+void ProcessUtf8InputBuffer(uint64_t *Utf8InputBuffer,long long Utf8BufferSize)
 {
   *Utf8InputBuffer = *(void *)(Utf8BufferSize + 0x40);
   return;
@@ -148762,7 +148829,15 @@ LAB_180130808:
 
 
 
-306f3(voidvoid FUN_1801306f3(void
+/**
+ * @brief 清理系统事件处理器
+ * 
+ * 该函数负责清理系统事件处理器，重置相关寄存器状态
+ * 主要用于系统资源管理和事件处理清理
+ * 
+ * @note 原始函数名：FUN_1801306f3
+ */
+void CleanupSystemEventHandler(void)
 {
   long long SystemContext;
   uint64_t RegisterValueR12;
@@ -148896,7 +148971,7 @@ LAB_1801308eb:
 
 
 
-30a80(long long CharacterCodevoid FUN_180130a80(long long CharacterCode
+void ProcessCharacterEncodingConversion(long long CharacterCode)
 {
   uint Utf16Char;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -149093,7 +149168,7 @@ LAB_180130e8e:
 
 
 
-void FUN_180130ae3(uint64_t CharacterCode)
+void ValidateCharacterEncodingData(uint64_t CharacterCode)
 {
   bool CurrentByteValue;
   bool HighByte;
@@ -149298,7 +149373,7 @@ LAB_180130e8e:
 
 
 
-30ca8(voidvoid FUN_180130ca8(void
+void ProcessSystemFloatDataAndCheckStatus(void)
 {
   uint64_t Utf16Char;
   bool HighByte;
@@ -149391,7 +149466,7 @@ LAB_180130dd5:
  * 
  * @note 原始函数名：FUN_180130ec0
  */
-unsigned long long FUN_180130ec0(float *Utf8InputBuffer
+unsigned long long ProcessUtf8InputBufferAndMatchCharacter(float *Utf8InputBuffer
 {
   long long PrimaryDataSize;
   float ContextSecondaryFloat;
@@ -149858,7 +149933,7 @@ uint8_t GetSystemInitializationStatus(void)
  * 
  * @note 原始函数名：FUN_180131148
  */
-unsigned long long FUN_180131148(float CharacterCode,float Utf8BufferSize,long long Utf8SourcePointer,long long Utf16EndPointer
+unsigned long long ProcessSystemFloatCalculation(float CharacterCode,float Utf8BufferSize,long long Utf8SourcePointer,long long Utf16EndPointer
 {
   uint Utf16Char;
   int CharacterByteCount;
@@ -150020,7 +150095,7 @@ LAB_18013148a:
  * 
  * @note 原始函数名：FUN_180131331
  */
-unsigned long long FUN_180131331(uint64_t CharacterCode,float Utf8BufferSize,float Utf8SourcePointer,float Utf16EndPointer
+unsigned long long ProcessSystemDataConfigurationAndParameters(uint64_t CharacterCode,float Utf8BufferSize,float Utf8SourcePointer,float Utf16EndPointer
 {
   uint Utf16Char;
   int CharacterByteCount;
@@ -150313,7 +150388,7 @@ uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t U
 
 
 
-314fb(int CharacterCode,float *Utf8InputBufferSize,int Utf8SourcePointer,int Utf16EndPointervoid FUN_1801314fb(int CharacterCode,float *Utf8InputBufferSize,int Utf8SourcePointer,int Utf16EndPointer
+void ProcessUtf8CharacterEncodingAndBuffer(int CharacterCode,float *Utf8InputBufferSize,int Utf8SourcePointer,int Utf16EndPointer)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -150415,7 +150490,7 @@ uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t U
 
 
 
-315b4(uint CharacterCode,uint32_t *Utf8InputBufferSize,long long Utf8SourcePointervoid FUN_1801315b4(uint CharacterCode,uint32_t *Utf8InputBufferSize,long long Utf8SourcePointer
+void ProcessUtf8CharacterAndInputBuffer(uint CharacterCode,uint32_t *Utf8InputBufferSize,long long Utf8SourcePointer)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -150502,7 +150577,7 @@ uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t U
 
 
 
-3161b(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointervoid FUN_18013161b(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer
+void ProcessUtf8DataEncodingAndSourcePointer(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer)
 {
   uint32_t *StatusBuffer;
   float ContextSecondaryFloat;
@@ -150567,7 +150642,18 @@ uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t U
 
 
 
-31701(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointervoid FUN_180131701(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码
+ * 
+ * 该函数负责处理UTF-8字符编码，管理字符编码状态和缓冲区
+ * 主要用于字符编码转换和状态管理
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @note 原始函数名：FUN_180131701
+ */
+void ProcessUtf8CharacterEncoding(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer)
 {
   uint32_t *StatusBuffer;
   long long SystemContext;
