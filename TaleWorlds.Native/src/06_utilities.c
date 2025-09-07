@@ -44488,7 +44488,22 @@ void ValidateContextExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_180903c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 验证上下文异常处理器A1
+ * 
+ * 该函数负责处理验证上下文的异常情况。它会检查验证上下文中的函数指针，
+ * 如果存在则调用相应的处理函数，然后设置临时异常处理器，检查状态标志，
+ * 清除相关标志位，并最终设置默认异常处理器。该函数使用不同的偏移量来处理异常。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含验证上下文信息
+ * @param operationFlagA 操作标志A，用于控制处理行为
+ * @param operationFlagB 操作标志B，用于控制处理行为
+ * 
+ * @note 原始函数名：Unwind_180903c00
+ * @warning 函数执行过程中可能会调用系统终止函数
+ */
+void ValidateContextExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -44518,7 +44533,22 @@ void Unwind_180903c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 验证上下文异常处理器A2
+ * 
+ * 该函数负责处理验证上下文的异常情况。它会检查验证上下文中的函数指针，
+ * 如果存在则调用相应的处理函数，然后设置临时异常处理器，检查状态标志，
+ * 清除相关标志位，并最终设置默认异常处理器。该函数使用不同的偏移量来处理异常。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含验证上下文信息
+ * @param operationFlagA 操作标志A，用于控制处理行为
+ * @param operationFlagB 操作标志B，用于控制处理行为
+ * 
+ * @note 原始函数名：Unwind_180903c20
+ * @warning 函数执行过程中可能会调用系统终止函数
+ */
+void ValidateContextExceptionHandlerA2(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
