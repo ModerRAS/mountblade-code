@@ -3900,17 +3900,17 @@ extern uint64_t ExceptionOffsetValue;
 // 功能：存储异常数据的初始化信息
 #define ExceptionDataInitializationTable ExceptionDataInitializationTable
 
-// 原始变量名：UNK_18009ee10 - 主默认异常处理器
+// 主默认异常处理器
 // 功能：系统主要的默认异常处理器入口点
-#define PrimaryDefaultExceptionHandler UNK_18009ee10
+#define PrimaryDefaultExceptionHandler PrimaryDefaultExceptionHandler
 
-// 原始变量名：UNK_1800a127e - 系统主状态标志
+// 系统主状态标志
 // 功能：存储系统主要运行状态标志
-#define SystemMainStatusFlag UNK_1800a127e
+#define SystemMainStatusFlag SystemMainStatusFlag
 
-// 原始变量名：UNK_180a01630 - 系统完整性验证标志
+// 系统完整性验证标志
 // 功能：存储系统完整性验证状态标志
-#define SystemIntegrityValidationFlag UNK_180a01630
+#define SystemIntegrityValidationFlag SystemIntegrityValidationFlag
 
 // 原始变量名：UNK_180a17010 - 系统主资源表
 // 功能：存储系统主要资源分配表
