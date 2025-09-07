@@ -18664,12 +18664,12 @@ uint64_t CoreEngineWaitForConditionVariable(int64_t SyncObject,uint64_t Timeout,
 int64_t CoreEngineProcessDataPacket(uint32_t *DataPacket,uint32_t *ProtocolData
 {
   uint32_t PacketHeader;
-  bool ProcessingResult;
+  bool OperationProcessingResult;
   void *ErrorHandler;
   
   if (*(int64_t *)(DataPacket + 0x18) != 0) {
-    ProcessingResult = (**(code **)(DataPacket + 0x1a))(ProtocolData,DataPacket + 0x14);
-    if (ProcessingResult == false) {
+    OperationProcessingResult = (**(code **)(DataPacket + 0x1a))(ProtocolData,DataPacket + 0x14);
+    if (OperationProcessingResult == false) {
       if (CoreEngineThreadStatus == '\0') {
         ErrorHandler = &DefaultErrorHandler;
         if (*(void **)(DataPacket + 4) != NULL) {
@@ -19936,7 +19936,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
   int StringLengthValue;
   void *SystemProcessingStatusFlagSecondary;
   void *SystemProcessingStatusFlagPrimary;
-  uint SystemDataNodeIndex;
+  uint SystemDataStructureIndex;
   uint64_t SystemDataValue;
   void *SystemProcessingStatusFlagTertiary;
   char *SystemCharPointer;
