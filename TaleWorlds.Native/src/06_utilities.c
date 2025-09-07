@@ -8311,7 +8311,7 @@ uint8_t GlobalDataPointerA36Config;
 
 // 全局数据指针Cache缓存区
 // 功能：存储全局数据指针Cache的缓存数据
-#define GlobalDataPointerCacheCache DAT_180bfa128
+#define GlobalDataPointerCacheCache GlobalDataPointerCacheStorage
 uint8_t GlobalDataPointerCacheCache;
 
 // 全局数据指针Cache验证缓冲区
