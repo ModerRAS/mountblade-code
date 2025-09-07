@@ -100090,20 +100090,23 @@ void ReleaseSystemResourceReferenceEx(void)
   int64_t referenceValue;
   int64_t *resourceHandlePointer;
   
-  LOCK();
-  referenceContextPointer = resourceHandlePointer + 1;
-  referenceValue = *referenceContextPointer;
-  *(int *)referenceContextPointer = (int)*referenceContextPointer + -1;
-  UNLOCK();
-  if ((int)referenceValue == 1) {
-    (**(FunctionPointer**)*resourceHandlePointer)();
+  resourceHandlePointer = SystemResourceDataTableA1;
+  if (SystemResourceDataTableA1 != (int64_t *)0x0) {
     LOCK();
-    operationResultPointer = (int *)((int64_t)resourceHandlePointer + 0xc);
-    operationCount = *operationResultPointer;
-    *operationResultPointer = *operationResultPointer + -1;
+    referenceContextPointer = resourceHandlePointer + 1;
+    referenceValue = *referenceContextPointer;
+    *(int *)referenceContextPointer = (int)*referenceContextPointer + -1;
     UNLOCK();
-    if (operationCount == 1) {
-      (**(FunctionPointer**)(*resourceHandlePointer + 8))();
+    if ((int)referenceValue == 1) {
+      (**(FunctionPointer**)*resourceHandlePointer)();
+      LOCK();
+      operationResultPointer = (int *)((int64_t)resourceHandlePointer + 0xc);
+      operationCount = *operationResultPointer;
+      *operationResultPointer = *operationResultPointer + -1;
+      UNLOCK();
+      if (operationCount == 1) {
+        (**(FunctionPointer**)(*resourceHandlePointer + 8))();
+      }
     }
   }
   return;
