@@ -52792,8 +52792,8 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   int StackOffsetX10;
   unsigned long long StackProcessingConfigurationFlag;
   unsigned long long StackValueX20;
-  int *StackPointer218;
-  int *StackPointer210;
+  int *ReferenceCountPointer218;
+  int *ReferenceCountPointer210;
   int *CoreEngineLoopCounter08;
   uint32_t ProcessingCounter0;
   int *StackPointer1f8;
@@ -53216,27 +53216,27 @@ SystemDataRelease:
           else {
             lStack_1d0 = 0;
             do {
-              ReferenceCountPointer = piStack_218;
+              ReferenceCountPointer = ReferenceCountPointer218;
               MemoryBlockIndex1 = 0;
               systemEventTemplatePointer2 = (uint *)((long long)*(int *)(SystemUnsignedValue180 + lStack_1d0 * 4) * 0x5c +
                                 *(long long *)(CharacterCode + 0x68));
               hasDataBeenUpdated = false;
-              CharacterTableIterator = (long long                       (int)((*(long long *)((long long)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8) + 8) -
-                             *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8)) / 0x14);
+              CharacterTableIterator = (long long                       (int)((*(long long *)((long long)(ReferenceCountPointer218 + (unsigned long long)*systemEventTemplatePointer2 * 8) + 8) -
+                             *(long long *)(ReferenceCountPointer218 + (unsigned long long)*systemEventTemplatePointer2 * 8)) / 0x14);
               BufferStatus1 = MemoryBlockIndex1;
               if (3 < CharacterTableIterator) {
                 BufferStatus4 = (CharacterTableIterator - 4U >> 2) + 1;
                 BufferStatus1 = BufferStatus4 * 4;
                 do {
                   UnicodeCodePoint3 = *systemEventTemplatePointer2;
-                  if ((*(uint *)(*(long long *)(piStack_218 + (unsigned long long)UnicodeCodePoint3 * 8) + MemoryBlockIndex1) &
+                  if ((*(uint *)(*(long long *)(ReferenceCountPointer218 + (unsigned long long)UnicodeCodePoint3 * 8) + MemoryBlockIndex1) &
                       Utf16Char9) != 0) {
-                    PrimaryProcessingStatusFlag = (uint *)(MemoryBlockIndex1 + *(long long *)(piStack_218 + (unsigned long long)UnicodeCodePoint3 * 8));
+                    PrimaryProcessingStatusFlag = (uint *)(MemoryBlockIndex1 + *(long long *)(ReferenceCountPointer218 + (unsigned long long)UnicodeCodePoint3 * 8));
                     *PrimaryProcessingStatusFlag = *PrimaryProcessingStatusFlag | Utf16Char9;
                     MemoryBufferC = *MemoryBlockIndex9;
                     MatrixTransformMultiplier18 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
                     MatrixTransformMultiplier22 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
-                    SystemContextValue = *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
+                    SystemContextValue = *(long long *)(ReferenceCountPointer218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
                     *(float *)(SystemContextValue + 4 + MemoryBlockIndex1) =
                          *(float *)(SystemContextValue + 4 + MemoryBlockIndex1) + *(float *)(BufferStatus3 + MemoryBufferC);
                     *(float *)(SystemContextValue + 8 + MemoryBlockIndex1) = MatrixTransformMultiplier22 + *(float *)(SystemContextValue + 8 + MemoryBlockIndex1);
@@ -53244,14 +53244,14 @@ SystemDataRelease:
                     hasDataBeenUpdated = true;
                     UnicodeCodePoint3 = *systemEventTemplatePointer2;
                   }
-                  if ((*(uint *)(*(long long *)(piStack_218 + (unsigned long long)UnicodeCodePoint3 * 8) + 0x14 + MemoryBlockIndex1                      & Utf16Char9) != 0) {
-                    PrimaryProcessingStatusFlag = (uint *)(*(long long *)(piStack_218 + (unsigned long long)UnicodeCodePoint3 * 8) + 0x14 +
+                  if ((*(uint *)(*(long long *)(ReferenceCountPointer218 + (unsigned long long)UnicodeCodePoint3 * 8) + 0x14 + MemoryBlockIndex1                      & Utf16Char9) != 0) {
+                    PrimaryProcessingStatusFlag = (uint *)(*(long long *)(ReferenceCountPointer218 + (unsigned long long)UnicodeCodePoint3 * 8) + 0x14 +
                                      MemoryBlockIndex1);
                     *PrimaryProcessingStatusFlag = *PrimaryProcessingStatusFlag | Utf16Char9;
                     MemoryBufferC = *MemoryBlockIndex9;
                     MatrixTransformMultiplier18 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
                     MatrixTransformMultiplier22 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
-                    SystemContextValue = *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
+                    SystemContextValue = *(long long *)(ReferenceCountPointer218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
                     *(float *)(SystemContextValue + 0x18 + MemoryBlockIndex1) =
                          *(float *)(SystemContextValue + 0x18 + MemoryBlockIndex1) + *(float *)(BufferStatus3 + MemoryBufferC);
                     *(float *)(SystemContextValue + 0x1c + MemoryBlockIndex1) = MatrixTransformMultiplier22 + *(float *)(SystemContextValue + 0x1c + MemoryBlockIndex1                    ;
@@ -53259,14 +53259,14 @@ SystemDataRelease:
                     hasDataBeenUpdated = true;
                     UnicodeCodePoint3 = *systemEventTemplatePointer2;
                   }
-                  if ((*(uint *)(*(long long *)(piStack_218 + (unsigned long long)UnicodeCodePoint3 * 8) + 0x28 + MemoryBlockIndex1                      & Utf16Char9) != 0) {
-                    PrimaryProcessingStatusFlag = (uint *)(*(long long *)(piStack_218 + (unsigned long long)UnicodeCodePoint3 * 8) + 0x28 +
+                  if ((*(uint *)(*(long long *)(ReferenceCountPointer218 + (unsigned long long)UnicodeCodePoint3 * 8) + 0x28 + MemoryBlockIndex1                      & Utf16Char9) != 0) {
+                    PrimaryProcessingStatusFlag = (uint *)(*(long long *)(ReferenceCountPointer218 + (unsigned long long)UnicodeCodePoint3 * 8) + 0x28 +
                                      MemoryBlockIndex1);
                     *PrimaryProcessingStatusFlag = *PrimaryProcessingStatusFlag | Utf16Char9;
                     MemoryBufferC = *MemoryBlockIndex9;
                     MatrixTransformMultiplier18 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
                     MatrixTransformMultiplier22 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
-                    SystemContextValue = *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
+                    SystemContextValue = *(long long *)(ReferenceCountPointer218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
                     *(float *)(SystemContextValue + 0x2c + MemoryBlockIndex1) =
                          *(float *)(SystemContextValue + 0x2c + MemoryBlockIndex1) + *(float *)(BufferStatus3 + MemoryBufferC);
                     *(float *)(SystemContextValue + 0x30 + MemoryBlockIndex1) = MatrixTransformMultiplier22 + *(float *)(SystemContextValue + 0x30 + MemoryBlockIndex1                    ;
@@ -53274,13 +53274,13 @@ SystemDataRelease:
                     hasDataBeenUpdated = true;
                   }
                   UnicodeCodePoint3 = *(uint *)(MemoryBlockIndex1 + 0x3c +
-                                    *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8));
+                                    *(long long *)(ReferenceCountPointer218 + (unsigned long long)*systemEventTemplatePointer2 * 8));
                   if ((Utf16Char9 & UnicodeCodePoint3) != 0) {
-                    *(uint *)(*(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8) + 0x3c + MemoryBlockIndex1                         = UnicodeCodePoint3 | Utf16Char9;
+                    *(uint *)(*(long long *)(ReferenceCountPointer218 + (unsigned long long)*systemEventTemplatePointer2 * 8) + 0x3c + MemoryBlockIndex1                         = UnicodeCodePoint3 | Utf16Char9;
                     MemoryBufferC = *MemoryBlockIndex9;
                     MatrixTransformMultiplier18 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
                     MatrixTransformMultiplier22 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
-                    SystemContextValue = *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
+                    SystemContextValue = *(long long *)(ReferenceCountPointer218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
                     *(float *)(SystemContextValue + 0x40 + MemoryBlockIndex1) =
                          *(float *)(SystemContextValue + 0x40 + MemoryBlockIndex1) + *(float *)(BufferStatus3 + MemoryBufferC);
                     *(float *)(SystemContextValue + 0x44 + MemoryBlockIndex1) = MatrixTransformMultiplier22 + *(float *)(SystemContextValue + 0x44 + MemoryBlockIndex1                    ;
@@ -53296,14 +53296,14 @@ SystemDataRelease:
                 MemoryBlockIndex1 = BufferStatus1 * 0x14;
                 CharacterTableIterator = CharacterTableIterator - BufferStatus1;
                 do {
-                  UnicodeCodePoint3 = *(uint *)(MemoryBlockIndex1 + *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8));
+                  UnicodeCodePoint3 = *(uint *)(MemoryBlockIndex1 + *(long long *)(ReferenceCountPointer218 + (unsigned long long)*systemEventTemplatePointer2 * 8));
                   if ((Utf16Char9 & UnicodeCodePoint3) != 0) {
-                    *(uint *)(MemoryBlockIndex1 + *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8)) =
+                    *(uint *)(MemoryBlockIndex1 + *(long long *)(ReferenceCountPointer218 + (unsigned long long)*systemEventTemplatePointer2 * 8)) =
                          UnicodeCodePoint3 | Utf16Char9;
                     BufferStatus1 = *MemoryBlockIndex9;
                     MatrixTransformMultiplier18 = *(float *)(BufferStatus3 + 8 + BufferStatus1);
                     MatrixTransformMultiplier22 = *(float *)(BufferStatus3 + 4 + BufferStatus1);
-                    BufferStatus4 = *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
+                    BufferStatus4 = *(long long *)(ReferenceCountPointer218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
                     *(float *)(MemoryBlockIndex1 + 4 + BufferStatus4) =
                          *(float *)(MemoryBlockIndex1 + 4 + BufferStatus4) + *(float *)(BufferStatus3 + BufferStatus1);
                     *(float *)(MemoryBlockIndex1 + 8 + BufferStatus4) = MatrixTransformMultiplier22 + *(float *)(MemoryBlockIndex1 + 8 + BufferStatus4);
@@ -53323,10 +53323,10 @@ SystemDataRelease:
                 StackProcessingVariable = (int *)CONCAT44(0x7f7fffff,StackProcessingVariable1B8.HighPart);
                 piStack_1b0 = (int *)CONCAT44(piStack_1b0.HighPart,0x7f7fffff);
                 MemoryAddressMask1 = (unsigned long long)*systemEventTemplatePointer2;
-                paUnicodeCodePoint7 = *(uint8_t (**) [16])(piStack_218 + MemoryAddressMask1 * 8 + 2);
+                paUnicodeCodePoint7 = *(uint8_t (**) [16])(ReferenceCountPointer218 + MemoryAddressMask1 * 8 + 2);
                 SystemStackValue1c0 = Utf16Char9;
-                if (paUnicodeCodePoint7 < *(uint8_t (**) [16])(piStack_218 + MemoryAddressMask1 * 8 + 4)) {
-                  *(uint8_t **)(piStack_218 + MemoryAddressMask1 * 8 + 2) = paUnicodeCodePoint7[1] + 4;
+                if (paUnicodeCodePoint7 < *(uint8_t (**) [16])(ReferenceCountPointer218 + MemoryAddressMask1 * 8 + 4)) {
+                  *(uint8_t **)(ReferenceCountPointer218 + MemoryAddressMask1 * 8 + 2) = paUnicodeCodePoint7[1] + 4;
                   aProcessingStatusFlag.HighPart = SystemStackValue1bc;
                   aProcessingStatusFlag.LowPart = Utf16Char9;
                   aProcessingStatusFlag.ValueField = (uint32_t)StackProcessingVariable1B8;
@@ -53335,13 +53335,13 @@ SystemDataRelease:
                   *(uint32_t *)paUnicodeCodePoint7[1] = 0x7f7fffff;
                 }
                 else {
-                  paUnicodeCodePoint5 = *(uint8_t (**) [16])(piStack_218 + MemoryAddressMask1 * 8);
+                  paUnicodeCodePoint5 = *(uint8_t (**) [16])(ReferenceCountPointer218 + MemoryAddressMask1 * 8);
                   BufferStatus1 = ((long long)paUnicodeCodePoint7 - (long long)paUnicodeCodePoint5) / 0x14;
                   if (BufferStatus1 == 0) {
                     uStackX_20 = 1;
 UnicodeBufferAllocation:
                     paMemoryAddressMask2 = (uint8_t (*) [16]                               BufferAllocate(MemoryPoolManager,uStackX_20 * 0x14,
-                                             (char)piStack_218[MemoryAddressMask1 * 8 + 6]);
+                                             (char)ReferenceCountPointer218[MemoryAddressMask1 * 8 + 6]);
                     paUnicodeCodePoint7 = *(uint8_t (**) [16])(ReferenceCountPointer + MemoryAddressMask1 * 8 + 2);
                     paUnicodeCodePoint5 = *(uint8_t (**) [16])(ReferenceCountPointer + MemoryAddressMask1 * 8);
                   }
@@ -53383,13 +53383,13 @@ UnicodeBufferAllocation:
       MemoryBlockIndex1 = BufferStatus1;
       if (0 < BufferStatus1) {
         do {
-          StringComparisonResult7 = (int)((*(long long *)(BufferStatus3 + 8 + (long long)piStack_218) -
-                         *(long long *)(BufferStatus3 + (long long)piStack_218)) / 0x14);
+          StringComparisonResult7 = (int)((*(long long *)(BufferStatus3 + 8 + (long long)ReferenceCountPointer218) -
+                         *(long long *)(BufferStatus3 + (long long)ReferenceCountPointer218)) / 0x14);
           MemoryBufferC = (long long)StringComparisonResult7;
           BufferStatus4 = CharacterTableIterator;
           if (0 < StringComparisonResult7) {
             do {
-              SystemContextValue = *(long long *)(BufferStatus3 + (long long)piStack_218);
+              SystemContextValue = *(long long *)(BufferStatus3 + (long long)ReferenceCountPointer218);
               MatrixTransformMultiplier18 = *(float *)(SystemContextValue + 8 + BufferStatus4);
               MatrixTransformMultiplier22 = *(float *)(SystemContextValue + 4 + BufferStatus4);
               MatrixTransformMultiplier21 = *(float *)(SystemContextValue + 0xc + BufferStatus4);
@@ -53422,11 +53422,11 @@ UnicodeBufferAllocation:
             SystemContextValue = (long long)*(int *)(CharacterTableIterator + BufferStatus1) * 0x5c;
             MemoryBufferC = (long long)*(int *)(*(long long *)(CharacterCode + 0x68) + SystemContextValue);
             BufferStatus4 = 0;
-            StringComparisonResult7 = (int)((*(long long *)(piStack_218 + MemoryBufferC * 8 + 2) -
-                           *(long long *)(piStack_218 + MemoryBufferC * 8)) / 0x14);
+            StringComparisonResult7 = (int)((*(long long *)(ReferenceCountPointer218 + MemoryBufferC * 8 + 2) -
+                           *(long long *)(ReferenceCountPointer218 + MemoryBufferC * 8)) / 0x14);
             MemoryBlockIndex1 = -1;
             if (0 < StringComparisonResult7) {
-              systemEventTemplatePointer2 = *(uint **)(piStack_218 + MemoryBufferC * 8);
+              systemEventTemplatePointer2 = *(uint **)(ReferenceCountPointer218 + MemoryBufferC * 8);
               do {
                 MemoryBlockIndex1 = BufferStatus4;
                 if ((*systemEventTemplatePointer2 & Utf16Char9) != 0) break;
@@ -53435,7 +53435,7 @@ UnicodeBufferAllocation:
                 MemoryBlockIndex1 = -1;
               } while (BufferStatus4 < StringComparisonResult7);
             }
-            BufferStatus4 = *(long long *)(piStack_218 + MemoryBufferC * 8);
+            BufferStatus4 = *(long long *)(ReferenceCountPointer218 + MemoryBufferC * 8);
             systemEventTemplatePointer = (void *)(BufferStatus4 + 4 + MemoryBlockIndex1 * 0x14);
             DataSize = *systemEventTemplatePointer;
             SystemChecksum = systemEventTemplatePointer[1];
@@ -53460,11 +53460,11 @@ UnicodeBufferAllocation:
             SystemContextValue = SystemDataRegistry0 * 0x5c;
             MemoryBufferC = (long long)*(int *)(*(long long *)(CharacterCode + 0x68) + SystemContextValue);
             BufferStatus4 = 0;
-            StringComparisonResult7 = (int)((*(long long *)(piStack_218 + MemoryBufferC * 8 + 2) -
-                           *(long long *)(piStack_218 + MemoryBufferC * 8)) / 0x14);
+            StringComparisonResult7 = (int)((*(long long *)(ReferenceCountPointer218 + MemoryBufferC * 8 + 2) -
+                           *(long long *)(ReferenceCountPointer218 + MemoryBufferC * 8)) / 0x14);
             MemoryBlockIndex1 = -1;
             if (0 < StringComparisonResult7) {
-              systemEventTemplatePointer2 = *(uint **)(piStack_218 + MemoryBufferC * 8);
+              systemEventTemplatePointer2 = *(uint **)(ReferenceCountPointer218 + MemoryBufferC * 8);
               do {
                 MemoryBlockIndex1 = BufferStatus4;
                 if ((*systemEventTemplatePointer2 & Utf16Char9) != 0) break;
@@ -53473,7 +53473,7 @@ UnicodeBufferAllocation:
                 MemoryBlockIndex1 = -1;
               } while (BufferStatus4 < StringComparisonResult7);
             }
-            BufferStatus4 = *(long long *)(piStack_218 + MemoryBufferC * 8);
+            BufferStatus4 = *(long long *)(ReferenceCountPointer218 + MemoryBufferC * 8);
             systemEventTemplatePointer = (void *)(BufferStatus4 + 4 + MemoryBlockIndex1 * 0x14);
             DataSize = *systemEventTemplatePointer;
             SystemChecksum = systemEventTemplatePointer[1];
@@ -53498,11 +53498,11 @@ UnicodeBufferAllocation:
             SystemDataRegistry3 = SystemDataRegistry0 * 0x5c;
             SystemContextValue = (long long)*(int *)(SystemDataRegistry3 + *(long long *)(CharacterCode + 0x68));
             BufferStatus4 = 0;
-            MemoryBufferC = (long long                     (int)((*(long long *)(piStack_218 + SystemContextValue * 8 + 2) -
-                           *(long long *)(piStack_218 + SystemContextValue * 8)) / 0x14);
+            MemoryBufferC = (long long                     (int)((*(long long *)(ReferenceCountPointer218 + SystemContextValue * 8 + 2) -
+                           *(long long *)(ReferenceCountPointer218 + SystemContextValue * 8)) / 0x14);
             MemoryBlockIndex1 = -1;
             if (0 < MemoryBufferC) {
-              systemEventTemplatePointer2 = *(uint **)(piStack_218 + SystemContextValue * 8);
+              systemEventTemplatePointer2 = *(uint **)(ReferenceCountPointer218 + SystemContextValue * 8);
               do {
                 MemoryBlockIndex1 = BufferStatus4;
                 if ((*systemEventTemplatePointer2 & Utf16Char9) != 0) break;
@@ -53511,7 +53511,7 @@ UnicodeBufferAllocation:
                 MemoryBlockIndex1 = -1;
               } while (BufferStatus4 < MemoryBufferC);
             }
-            BufferStatus4 = *(long long *)(piStack_218 + SystemContextValue * 8);
+            BufferStatus4 = *(long long *)(ReferenceCountPointer218 + SystemContextValue * 8);
             aMemoryAddressMask7 = *(uint8_t (*) [16])(BufferStatus4 + 4 + MemoryBlockIndex1 * 0x14);
             if (StackProcessingConfigurationFlag == -1) {
               *(uint8_t (*) [16])(SystemDataRegistry3 + 4 + *(long long *)(CharacterCode + 0x68)) = aMemoryAddressMask7;
@@ -53532,7 +53532,7 @@ UnicodeBufferAllocation:
         } while (BufferStatus3 < (long long)MemoryAllocationIndex8);
         BufferStatus1 = (long long)iStack_1e8;
       }
-      InitializeSystemDataStructureB(&piStack_218);
+      InitializeSystemDataStructureB(&ReferenceCountPointer218);
       StackProcessingConfigurationFlag = StackProcessingConfigurationFlag + 1;
       if ((long long)SystemStackData <= (long long)StackProcessingConfigurationFlag) {
         ReleaseSystemDataStructure(StackDataBuffer150);
@@ -53574,8 +53574,8 @@ MemoryAddressProcessingLoop:
       ReferenceCountPointer4 = (int *)BufferAllocate(MemoryPoolManager,4,CONCAT71((uint7)(uint3)(StackProcessingConfigurationFlag >> 8),3));
       *ReferenceCountPointer4 = *pStringComparisonResult0;
       pStringComparisonResult0 = ReferenceCountPointer4 + 1;
-      piStack_218 = (int *)0x0;
-      piStack_210 = (int *)0x0;
+      ReferenceCountPointer218 = (int *)0x0;
+      ReferenceCountPointer210 = (int *)0x0;
       ReferenceCountPointer3 = (int *)0x0;
       pCoreEngineLoopCounter08 = (int *)0x0;
       ProcessingCounter0 = 3;
@@ -53589,14 +53589,14 @@ MemoryAddressProcessingLoop:
         uStackX_20 = 4;
         pStringComparisonResult5 = (int *)0x0;
         do {
-          pStringComparisonResult6 = piStack_210;
+          pStringComparisonResult6 = ReferenceCountPointer210;
           ReferenceCountPointer6 = (int *)0x0;
-          if (piStack_210 < ReferenceCountPointer3) {
-            *piStack_210 = *(int *)(uStackX_20 + (long long)piStack_1f8);
+          if (ReferenceCountPointer210 < ReferenceCountPointer3) {
+            *ReferenceCountPointer210 = *(int *)(uStackX_20 + (long long)piStack_1f8);
             ReferenceCountPointer6 = pStringComparisonResult5;
           }
           else {
-            SystemStackData = (long long)piStack_210 - (long long)pStringComparisonResult5;
+            SystemStackData = (long long)ReferenceCountPointer210 - (long long)pStringComparisonResult5;
             if ((long long)SystemStackData >> 2 == 0) {
               piStack_1f0 = (int *)0x1;
 ReferenceCountBufferAllocation:
@@ -53618,11 +53618,11 @@ ReferenceCountBufferAllocation:
             }
             ReferenceCountPointer3 = ReferenceCountPointer6 + (long long)piStack_1f0;
             paMemoryAddressMask2 = pStackDataBuffer1e0;
-            piStack_218 = ReferenceCountPointer6;
+            ReferenceCountPointer218 = ReferenceCountPointer6;
             pCoreEngineLoopCounter08 = ReferenceCountPointer3;
-            piStack_210 = ReferenceCountPointer6;
+            ReferenceCountPointer210 = ReferenceCountPointer6;
           }
-          piStack_210 = piStack_210 + 1;
+          ReferenceCountPointer210 = ReferenceCountPointer210 + 1;
           iStackX_10 = iStackX_10 + 1;
           uStackX_20 = uStackX_20 + 4;
           piStack_1f8 = *(int **)(*paMemoryAddressMask2 + lStack_170);
@@ -53640,13 +53640,13 @@ ReferenceCountBufferAllocation:
         hasDataBeenUpdated = false;
         IsSystemContextValid = false;
         UnicodeCodePoint3 = 0;
-        SystemUnsignedValue180 = (long long)piStack_210 - (long long)piStack_218 >> 2;
+        SystemUnsignedValue180 = (long long)ReferenceCountPointer210 - (long long)ReferenceCountPointer218 >> 2;
         pStringComparisonResult6 = (int *)0x0;
         pStringComparisonResult5 = (int *)0x0;
         ReferenceCountPointer6 = pStringComparisonResult5;
         ValidationResultPointer4 = ReferenceCountPointer3;
-        ReferenceCountPointer0 = piStack_218;
-        piStack_1f8 = piStack_210;
+        ReferenceCountPointer0 = ReferenceCountPointer218;
+        piStack_1f8 = ReferenceCountPointer210;
         if (SystemUnsignedValue180 != 0) {
           do {
             piStack_1f0 = ReferenceCountPointer0;
@@ -53739,19 +53739,19 @@ ReferenceCountAllocation:
           } while ((unsigned long long)(long long)(int)UnicodeCodePoint3 < SystemUnsignedValue180);
         }
         MemoryBlockIndex9 = plStack_168;
-        SystemStackValue1c0 = (uint)piStack_218;
-        SystemStackValue1bc = (uint32_t)((unsigned long long)piStack_218 >> 0x20);
+        SystemStackValue1c0 = (uint)ReferenceCountPointer218;
+        SystemStackValue1bc = (uint32_t)((unsigned long long)ReferenceCountPointer218 >> 0x20);
         StackProcessingVariable1B8.LowPart = SUB84(piStack_1f8,0);
         StackProcessingVariable1B8.HighPart = (uint32_t)((unsigned long long)piStack_1f8 >> 0x20);
         piStack_1b0 = pCoreEngineLoopCounter08;
         ProcessingCounter0 = 3;
         SystemValue1a8 = 3;
-        piStack_210 = pStringComparisonResult6;
+        ReferenceCountPointer210 = pStringComparisonResult6;
         pCoreEngineLoopCounter08 = ReferenceCountPointer3;
         piStack_1f8 = pStringComparisonResult6;
         if ((((long long)pStringComparisonResult6 - (long long)ReferenceCountPointer6 & 0xfffffffffffffffcU) == 0) || (!hasDataBeenUpdated)        goto SystemEventProcessing;
-        hasDataBeenUpdated = piStack_218 != (int *)0x0;
-        piStack_218 = ReferenceCountPointer6;
+        hasDataBeenUpdated = ReferenceCountPointer218 != (int *)0x0;
+        ReferenceCountPointer218 = ReferenceCountPointer6;
         if (hasDataBeenUpdated) {
                     // WARNING: Subroutine does not return
           CoreEngineProcessSystemEvent();
@@ -53761,13 +53761,13 @@ ReferenceCountAllocation:
   }
   goto LoopContinuation;
 SystemEventProcessing:
-  if (piStack_218 != (int *)0x0) {
-    piStack_218 = ReferenceCountPointer6;
+  if (ReferenceCountPointer218 != (int *)0x0) {
+    ReferenceCountPointer218 = ReferenceCountPointer6;
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
   ReferenceCountPointer3 = *(int **)(*pStackDataBuffer1e0 + lStack_170);
-  piStack_218 = ReferenceCountPointer6;
+  ReferenceCountPointer218 = ReferenceCountPointer6;
   if (((*(long long *)(*pStackDataBuffer1e0 + lStack_170 + 8) - (long long)ReferenceCountPointer3 ^
        (long long)pStringComparisonResult0 - (long long)ReferenceCountPointer4) & 0xfffffffffffffffcU) != 0) {
     *(int **)(*pStackDataBuffer1e0 + lStack_170) = ReferenceCountPointer4;
@@ -53799,9 +53799,9 @@ SystemEventProcessing:
       MemoryBlockIndex9[1] = *MemoryBlockIndex9;
     }
     else {
-      ExecuteSystemDataTransfer(&lStack_170,&piStack_218);
-      pStringComparisonResult6 = piStack_210;
-      ReferenceCountPointer6 = piStack_218;
+      ExecuteSystemDataTransfer(&lStack_170,&ReferenceCountPointer218);
+      pStringComparisonResult6 = ReferenceCountPointer210;
+      ReferenceCountPointer6 = ReferenceCountPointer218;
     }
     BufferStatus3 = lStack_1d0;
     StringComparisonResult7 = *ReferenceCountPointer;
