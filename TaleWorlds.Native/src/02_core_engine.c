@@ -3697,6 +3697,36 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 // 原始函数名：ProcessSystemDataStructureAndContextOperation - 系统数据结构和上下文处理函数
 #define ProcessSystemDataStructureAndContextOperation ProcessSystemDataStructureAndContextOperation
 
+// 原始函数名：FUN_180123105 - 系统浮点数处理和内存操作函数
+#define ProcessSystemFloatAndMemoryOperation FUN_180123105
+
+// 原始函数名：FUN_180123121 - 系统浮点数计算和内存管理函数
+#define CalculateSystemFloatAndManageMemory FUN_180123121
+
+// 原始函数名：FUN_1801231cf - 系统浮点数转换和处理函数
+#define ConvertAndProcessSystemFloat FUN_1801231cf
+
+// 原始函数名：FUN_1801231dc - 系统浮点数数据处理函数
+#define ProcessSystemFloatDataConversion FUN_1801231dc
+
+// 原始函数名：FUN_1801232da - 系统状态检查函数
+#define CheckSystemStatusAndInitialize FUN_1801232da
+
+// 原始函数名：FUN_18012331b - 系统参数验证函数
+#define ValidateSystemParametersAndInitialize FUN_18012331b
+
+// 原始函数名：FUN_180123460 - 系统内存地址处理函数
+#define ProcessSystemMemoryAddressAndData FUN_180123460
+
+// 原始函数名：FUN_180123960 - 系统数据传输和处理函数
+#define TransferAndProcessSystemData FUN_180123960
+
+// 原始函数名：FUN_180123a60 - 系统数据指针处理函数
+#define ProcessSystemDataPointerAndMemory FUN_180123a60
+
+// 原始函数名：FUN_180123bc0 - 系统数据块处理函数
+#define ProcessSystemDataBlockAndMemory FUN_180123bc0
+
 // 原始函数名：FUN_180291a50 - 系统数据表清理函数
 #define CleanupSystemDataTable FUN_180291a50
 
@@ -71937,7 +71967,24 @@ void TerminateSystemProcess(void
 
 
 
-a4b0(uint64_t CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,long long Utf16EndPointer,
+/**
+ * @brief 系统数据处理器
+ * 
+ * 该函数负责处理系统数据，包括：
+ * - 数据结构的初始化和配置
+ * - 内存分配和数据复制
+ * - 网络事件的队列处理
+ * - 系统上下文的管理
+ * 
+ * @param CharacterCode 字符编码标识符
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 附加参数1
+ * @param AdditionalParameter2 附加参数2
+ * 
+ * @note 原始函数名：a4b0
+ */
 /**
  * @brief 系统数据处理器
  * 
