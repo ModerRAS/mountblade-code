@@ -47181,7 +47181,7 @@ LAB_180077fcf:
 
 
 
-8051(uint64_t CharacterCode,uint64_t Utf8BufferSize,float Utf8SourcePointer,float Utf16EndPointer/**
+/**
  * @brief 处理浮点数数据结构和参数计算
  * 
  * 该函数负责处理浮点数数据结构和参数计算，包括：
@@ -47199,7 +47199,7 @@ LAB_180077fcf:
  * @note 这是一个浮点数数据处理函数，涉及复杂的数学计算
  * @note 用于核心引擎的数据结构和参数处理
  */
-void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, uint64_t Utf8BufferSize, float Utf8SourcePointer, float Utf16EndPointer
+void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, uint64_t Utf8BufferSize, float Utf8SourcePointer, float Utf16EndPointer)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -150823,22 +150823,40 @@ float * ProcessSystemFloatContext(float *Utf8InputBuffer,uint Utf8BufferSize,uin
 
 
 
-float * FUN_180131aac(float *Utf8InputBuffer,uint Utf8BufferSize,uint Utf8SourcePointer,float Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16编码转换
+ * 
+ * 该函数负责将UTF-8编码的数据转换为UTF-16编码格式。
+ * 主要功能包括：
+ * - 根据缓冲区大小标志位处理不同的转换模式
+ * - 应用缩放因子到UTF-16数据
+ * - 处理字符编码和内存映射
+ * - 返回转换后的字符代码指针
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 返回转换后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_180131aac
+ */
+float * ConvertUtf8ToUtf16Encoding(float *Utf8InputBuffer, uint Utf8BufferSize, uint Utf8SourcePointer, float Utf16EndPointer)
 {
-  long long PrimaryDataSize;
-  uint64_t ProcessingResult;
-  unsigned long long MemoryAllocationIndex;
+  long long CharacterDataSize;
+  uint64_t EncodingResult;
+  unsigned long long MemoryAllocationSize;
   unsigned long long UnicodeCodePoint;
-  float FloatVariable4;
-  float FloatVariable5;
-  float CalculatedDistance;
-  float FloatVariable7;
-  float StackParameter3;
+  float ScalingFactor1;
+  float ScalingFactor2;
+  float CalculatedOffset;
+  float AccumulatedResult;
+  float ConfigurationParameter;
   
   UnicodeCodePoint = (unsigned long long)Utf8SourcePointer;
-  MemoryAllocationIndex = (unsigned long long)Utf8BufferSize;
-  *(void *)CharacterCode = ProcessingResult;
-  FloatVariable7 = 0.0;
+  MemoryAllocationSize = (unsigned long long)Utf8BufferSize;
+  *(void *)CharacterCode = EncodingResult;
+  AccumulatedResult = 0.0;
   if ((Utf8BufferSize & 1) != 0) {
     FloatVariable7 = (float)PerformSystemCalculation((int)ProcessingResult + 0x14,Utf8SourcePointer);
     FloatVariable4 = (float)PerformSystemCalculation(0x13);

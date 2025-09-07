@@ -1,0 +1,176 @@
+#!/bin/bash
+
+# 美化06_utilities.c文件中的剩余DAT_变量名
+# 这个脚本将处理文件中剩余的未语义化DAT_变量名
+
+INPUT_FILE="/dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c"
+TEMP_FILE="/tmp/utilities_temp.c"
+
+# 备份原文件
+cp "$INPUT_FILE" "$INPUT_FILE.bak"
+
+# 查找所有DAT_变量并统计
+echo "=== DAT_变量统计 ==="
+grep -o "DAT_180[0-9a-f]\{4,5\}" "$INPUT_FILE" | sort | uniq -c | sort -nr
+
+# 处理常见的高频DAT_变量
+cat << 'EOF' > /tmp/dat_replacements.txt
+# 全局数据指针变量模式
+DAT_180bfa0b0	GlobalDataPointerA35Storage
+DAT_180bfa0b8	GlobalDataPointerA35Status  
+DAT_180bfa0c0	GlobalDataPointerA35Config
+DAT_180bfa0c8	GlobalDataPointerA35Cache
+DAT_180bfa110	GlobalDataPointerA36Storage
+DAT_180bfa118	GlobalDataPointerA36Status
+DAT_180bfa120	GlobalDataPointerA36Config
+DAT_180bfa128	GlobalDataPointerA36Cache
+DAT_180bfa170	GlobalDataPointerFinalStorage
+DAT_180bfa178	GlobalDataPointerFinalStatus
+DAT_180bfa180	GlobalDataPointerFinalConfig
+DAT_180bfa188	GlobalDataPointerFinalCache
+DAT_180bfa230	GlobalDataPointerExtendedStorage
+DAT_180bfa238	GlobalDataPointerExtendedStatus
+DAT_180bfa240	GlobalDataPointerExtendedConfig
+DAT_180bfa248	GlobalDataPointerExtendedCache
+DAT_180bfa3e8	GlobalDataPointerA39Storage
+DAT_180bfa3f0	GlobalDataPointerA39Status
+DAT_180bfa3f8	GlobalDataPointerA39Config
+DAT_180bfa400	GlobalDataPointerA39Cache
+DAT_180bfa480	GlobalDataPointerA40Storage
+DAT_180bfa488	GlobalDataPointerA40Status
+DAT_180bfa490	GlobalDataPointerA40Config
+DAT_180bfa498	GlobalDataPointerA40Cache
+DAT_180bfa518	GlobalDataPointerA41Storage
+DAT_180bfa520	GlobalDataPointerA41Status
+DAT_180bfa528	GlobalDataPointerA41Config
+DAT_180bfa530	GlobalDataPointerA41Cache
+DAT_180bfa5b0	GlobalDataPointerA42Storage
+DAT_180bfa5b8	GlobalDataPointerA42Status
+DAT_180bfa5c0	GlobalDataPointerA42Config
+DAT_180bfa5c8	GlobalDataPointerA42Cache
+DAT_180bfa648	GlobalDataPointerA43Storage
+DAT_180bfa650	GlobalDataPointerA43Status
+DAT_180bfa658	GlobalDataPointerA43ValidationBuffer
+DAT_180bfa660	GlobalDataPointerA43ExtraData
+DAT_180bfa6e0	GlobalDataPointerA44Storage
+DAT_180bfa6e8	GlobalDataPointerA44Status
+DAT_180bfa6f0	GlobalDataPointerA44Config
+DAT_180bfa6f8	GlobalDataPointerA44Cache
+DAT_180bfa780	GlobalDataPointerA45Storage
+DAT_180bfa788	GlobalDataPointerA45Status
+DAT_180bfa790	GlobalDataPointerA45Config
+DAT_180bfa798	GlobalDataPointerA45Cache
+DAT_180bfa818	GlobalDataPointerA46Storage
+DAT_180bfa820	GlobalDataPointerA46Status
+DAT_180bfa828	GlobalDataPointerA46Config
+DAT_180bfa830	GlobalDataPointerA46Cache
+DAT_180bfa8b0	GlobalDataPointerA47Storage
+DAT_180bfa8b8	GlobalDataPointerA47Status
+DAT_180bfa8c0	GlobalDataPointerA47Config
+DAT_180bfa8c8	GlobalDataPointerA47Cache
+DAT_180bfa948	GlobalDataPointerA48Storage
+DAT_180bfa950	GlobalDataPointerA48Status
+DAT_180bfa958	GlobalDataPointerA48Config
+DAT_180bfa960	GlobalDataPointerA48Cache
+DAT_180bfa9e0	GlobalDataPointerA49Storage
+DAT_180bfa9e8	GlobalDataPointerA49Status
+DAT_180bfa9f0	GlobalDataPointerA49Config
+DAT_180bfa9f8	GlobalDataPointerA49Cache
+DAT_180bfaa78	GlobalDataPointerA50Storage
+
+# 异常处理器指针
+DAT_180bf9390	GlobalExceptionHandlerPointerA1
+DAT_180bf93f0	GlobalExceptionHandlerPointerA2
+DAT_180bf9450	GlobalExceptionHandlerPointerA3
+DAT_180bf94b0	GlobalExceptionHandlerPointerA4
+DAT_180bf9510	GlobalExceptionHandlerPointerA5
+DAT_180bf9570	GlobalExceptionHandlerPointerA6
+DAT_180bf95d0	GlobalExceptionHandlerPointerA7
+DAT_180bf9630	GlobalExceptionHandlerPointerA8
+DAT_180bf9690	GlobalExceptionHandlerPointerA9
+DAT_180bf96f0	GlobalExceptionHandlerPointerA10
+DAT_180bf9750	GlobalExceptionHandlerPointerA11
+DAT_180bf97b0	GlobalExceptionHandlerPointerA12
+DAT_180c92050	DefaultExceptionHandlerPointerA0
+DAT_180bfaef0	DefaultExceptionHandlerPointerA1
+DAT_180bfb310	DefaultExceptionHandlerPointerA2
+DAT_180bfb730	DefaultExceptionHandlerPointerA3
+
+# 系统表和缓冲区
+DAT_180c91d14	SystemConfigurationDataStorage
+DAT_180d49ff8	SystemDataTableA0
+DAT_180c92510	SystemConfigurationDataTableA0
+DAT_180c96858	SystemDataTableA1
+DAT_180bfbf64	SystemBufferDataTableA0
+DAT_180bfbf7c	SystemBufferDataTableA1
+DAT_180bfbf60	SystemBufferDataTableA2
+DAT_180bf7308	SystemConfigurationDataTableA1
+DAT_180bfbf78	SystemBufferDataTableA3
+DAT_180bf72a8	SystemConfigurationDataTableA2
+DAT_180bfbd80	SystemManagementDataTableA0
+DAT_180c4eaa0	SystemValidationBaseConstantA0
+DAT_180c4eaa4	SystemValidationBaseConstantA1
+
+# 系统资源管理表
+_DAT_180c86938	SystemResourceIteratorTable
+_DAT_180c86968	SystemFunctionPointerTable
+_DAT_180c82868	SystemInputParameterTable
+_DAT_180bfc171	SystemMemoryContextTable
+_DAT_180bfc170	SystemMemoryPointerTable
+_DAT_180bfc118	SystemMemoryCapacityTable
+_DAT_180bfc110	SystemMemoryBaseTable
+_DAT_180bfc188	SystemMemoryContextExtendedTable
+_DAT_180bfc180	SystemMemoryBaseExtendedTable
+_DAT_180bfa2f0	SystemResourceListEndTable
+_DAT_180bfa2e8	SystemResourceCurrentTable
+_DAT_180bfa310	SystemResourceListEndTableA1
+_DAT_180bfa308	SystemResourceCurrentTableA1
+_DAT_180bfa330	SystemResourceListEndTableA2
+_DAT_180bfa328	SystemResourceCurrentTableA2
+_DAT_180bf9bd0	SystemExceptionHandlerPointerTable
+_DAT_180bf9f30	SystemExceptionHandlerPointerTableA1
+_DAT_180bf9f90	SystemExceptionHandlerPointerTableA2
+_DAT_180bf9ff0	SystemExceptionHandlerPointerTableA3
+_DAT_180bfa290	SystemExceptionHandlerPointerTableA4
+_DAT_180c92498	SystemResourceDataTable
+_DAT_180c92488	SystemResourceDataTableA1
+_DAT_180bf6558	DefaultExceptionHandlerBPointerTable
+_DAT_180d49f80	SystemExceptionHandlerStateTable
+_DAT_180d49ff8	SystemConfigurationDataTableA0
+_DAT_180c92510	SystemConfigurationDataTableA1
+_DAT_180bf66d8	SystemFlagA0
+_DAT_180c96858	SystemDataTableA1
+_DAT_180bfbf64	SystemBufferDataTableA0
+_DAT_180bfbf7c	SystemBufferDataTableA1
+_DAT_180bfbf60	SystemBufferDataTableA2
+_DAT_180bf7308	SystemConfigurationDataTableA1
+_DAT_180bfbf78	SystemBufferDataTableA3
+_DAT_180bf72a8	SystemConfigurationDataTableA2
+_DAT_180bfbd80	SystemManagementDataTableA0
+
+# 系统组件和状态
+DAT_180bf5c30	UtilitySystemExceptionHandlerPointer5
+DAT_180bf6080	UtilitySystemExceptionHandlerPointer6
+DAT_180c91900	SystemHandlePointer
+DAT_180bf66d8	SystemFlagA0
+DAT_180bfbd80	SystemManagementDataTableA0
+EOF
+
+# 应用替换
+echo "=== 应用DAT_变量替换 ==="
+while IFS=$'\t' read -r old_name new_name; do
+    # 跳过注释行和空行
+    [[ "$old_name" =~ ^#.*$ ]] && continue
+    [[ -z "$old_name" ]] && continue
+    
+    # 替换变量名
+    sed -i "s/\b${old_name}\b/${new_name}/g" "$INPUT_FILE"
+    echo "替换: $old_name -> $new_name"
+done < /tmp/dat_replacements.txt
+
+# 统计替换后的结果
+echo "=== 替换后统计 ==="
+echo "剩余DAT_变量数量:"
+grep -c "DAT_180[0-9a-f]" "$INPUT_FILE" || echo "0"
+
+echo "替换完成！"

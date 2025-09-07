@@ -1,30 +1,49 @@
 #!/bin/bash
 
 # 美化99_unmatched_functions.c文件中的变量名
-# 这个脚本将替换Ghidra自动生成的变量名为语义化名称
+# 作者: Claude Code
+# 日期: 2025-09-07
 
-FILE_PATH="/dev/shm/mountblade-code/TaleWorlds.Native/src/99_unmatched_functions.c"
+INPUT_FILE="99_unmatched_functions.c"
+TEMP_FILE="${INPUT_FILE}.temp"
+BACKUP_FILE="${INPUT_FILE}.backup.$(date +%Y%m%d_%H%M%S)"
 
-# 备份原始文件
-cp "$FILE_PATH" "$FILE_PATH.backup"
+# 创建备份
+cp "$INPUT_FILE" "$BACKUP_FILE"
+echo "已创建备份文件: $BACKUP_FILE"
 
-# 美化DAT_变量名（系统全局变量）
-sed -i 's/_DAT_180d48d28/SystemGlobalStatusFlag/g' "$FILE_PATH"
-sed -i 's/_DAT_180bf5218/NetworkConnectionStatus/g' "$FILE_PATH"
-sed -i 's/_DAT_180c8ed60/ResourceReferenceCounter/g' "$FILE_PATH"
-sed -i 's/_DAT_180c8ed64/ResourceAllocationCounter/g' "$FILE_PATH"
-sed -i 's/_DAT_180c9105c/ThreadIdentifier/g' "$FILE_PATH"
+# 第一阶段：处理lStack_xxx变量
+echo "处理lStack_xxx变量..."
+sed -i 's/\blStack_\([0-9]\+\)\b/LongStackValue_\1/g' "$INPUT_FILE"
 
-# 美化UNK_变量名（未知数据）
-sed -i 's/UNK_1809fcc28/SystemStackBufferBaseAddress/g' "$FILE_PATH"
+# 第二阶段：处理iVarX变量
+echo "处理iVarX变量..."
+sed -i 's/\biVar\([0-9]\+\)\b/IntegerVariable_\1/g' "$INPUT_FILE"
 
-# 美化其他常见的Ghidra生成变量名
-sed -i 's/auVar\([0-9]\+\)/EncodedDataBuffer\1/g' "$FILE_PATH"
-sed -i 's/aEncodedData\([0-9]\+\)/EncodedDataArray\1/g' "$FILE_PATH"
-sed -i 's/lVar\([0-9]\+\)/LongVariable\1/g' "$FILE_PATH"
-sed -i 's/fVar\([0-9]\+\)/FloatVariable\1/g' "$FILE_PATH"
-sed -i 's/uVar\([0-9]\+\)/UnsignedVariable\1/g' "$FILE_PATH"
-sed -i 's/iVar\([0-9]\+\)/IntegerVariable\1/g' "$FILE_PATH"
-sed -i 's/pVar\([0-9]\+\)/PointerVariable\1/g' "$FILE_PATH"
+# 第三阶段：处理uVarX变量
+echo "处理uVarX变量..."
+sed -i 's/\buVar\([0-9]\+\)\b/UnsignedVariable_\1/g' "$INPUT_FILE"
 
-echo "变量名美化完成"
+# 第四阶段：处理piVarX变量
+echo "处理piVarX变量..."
+sed -i 's/\bpiVar\([0-9]\+\)\b/PointerInteger_\1/g' "$INPUT_FILE"
+
+# 第五阶段：处理puStack_xxx变量
+echo "处理puStack_xxx变量..."
+sed -i 's/\bpuStack_\([0-9a-fA-F]\+\)\b/PointerStack_\1/g' "$INPUT_FILE"
+
+# 第六阶段：处理ppuStack_xxx变量
+echo "处理ppuStack_xxx变量..."
+sed -i 's/\bppuStack_\([0-9a-fA-F]\+\)\b/PointerPointerStack_\1/g' "$INPUT_FILE"
+
+# 第七阶段：处理uStack_xxx变量
+echo "处理uStack_xxx变量..."
+sed -i 's/\buStack_\([0-9a-fA-F]\+\)\b/UnsignedStack_\1/g' "$INPUT_FILE"
+
+# 第八阶段：处理iStack_xxx变量
+echo "处理iStack_xxx变量..."
+sed -i 's/\biStack_\([0-9a-fA-F]\+\)\b/IntegerStack_\1/g' "$INPUT_FILE"
+
+echo "变量名美化完成！"
+echo "处理后的文件: $INPUT_FILE"
+echo "备份文件: $BACKUP_FILE"

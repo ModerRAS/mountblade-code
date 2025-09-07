@@ -8471,31 +8471,31 @@ bool SystemStatusControlFlag5;
 void* SystemDataBufferPrimary;
 void* SystemDataBufferSecondary;
 // 全局数据指针A45相关变量
-void* GlobalDataPointerA45Storage;    // DAT_180bfa780
-void* GlobalDataPointerA45Status;     // DAT_180bfa788
-void* GlobalDataPointerA45Config;     // DAT_180bfa790
-void* GlobalDataPointerA45Cache;      // DAT_180bfa798
+void* GlobalDataPointerA45Storage;    
+void* GlobalDataPointerA45Status;     
+void* GlobalDataPointerA45Config;     
+void* GlobalDataPointerA45Cache;      
 // 全局数据指针A46相关变量
-void* GlobalDataPointerA46Storage;    // DAT_180bfa818
-void* GlobalDataPointerA46Status;     // DAT_180bfa820
-void* GlobalDataPointerA46Config;     // DAT_180bfa828
-void* GlobalDataPointerA46Cache;      // DAT_180bfa830
+void* GlobalDataPointerA46Storage;    
+void* GlobalDataPointerA46Status;     
+void* GlobalDataPointerA46Config;     
+void* GlobalDataPointerA46Cache;      
 // 全局数据指针A47相关变量
-void* GlobalDataPointerA47Storage;    // DAT_180bfa8b0
-void* GlobalDataPointerA47Status;     // DAT_180bfa8b8
-void* GlobalDataPointerA47Config;     // DAT_180bfa8c0
-void* GlobalDataPointerA47Cache;      // DAT_180bfa8c8
+void* GlobalDataPointerA47Storage;    
+void* GlobalDataPointerA47Status;     
+void* GlobalDataPointerA47Config;     
+void* GlobalDataPointerA47Cache;      
 // 全局数据指针A48相关变量
-void* GlobalDataPointerA48Storage;    // DAT_180bfa948
-void* GlobalDataPointerA48Status;     // DAT_180bfa950
-void* GlobalDataPointerA48Config;     // DAT_180bfa958
-void* GlobalDataPointerA48Cache;      // DAT_180bfa960
+void* GlobalDataPointerA48Storage;    
+void* GlobalDataPointerA48Status;     
+void* GlobalDataPointerA48Config;     
+void* GlobalDataPointerA48Cache;      
 // 全局数据指针A49相关变量
-void* GlobalDataPointerA49Storage;    // DAT_180bfa9e0
-void* GlobalDataPointerA49Status;     // DAT_180bfa9e8
-void* GlobalDataPointerA49Config;     // DAT_180bfa9f0
-void* GlobalDataPointerA49Cache;      // DAT_180bfa9f8
-void* GlobalDataPointerA50Storage;    // DAT_180bfaa78
+void* GlobalDataPointerA49Storage;    
+void* GlobalDataPointerA49Status;     
+void* GlobalDataPointerA49Config;     
+void* GlobalDataPointerA49Cache;      
+void* GlobalDataPointerA50Storage;    
 uint8_t SystemDataBufferController;
 uint8_t SystemDataBufferManager;
 uint8_t SystemDataBufferHandler;
@@ -9526,7 +9526,8 @@ uint8_t SystemDataProcessingAreaA2;
 // 功能：用于处理系统数据的区域
 uint8_t SystemDataProcessingAreaA3;
 // 系统配置数据存储
-uint8_t SystemConfigurationDataStorage;  // DAT_180c91d14
+#define SystemConfigurationDataStorage DAT_180c91d14
+uint8_t SystemConfigurationDataStorage;  
 // 系统清理处理器数据存储
 uint8_t SystemCleanupHandlerDataStore;
 // 系统异常处理相关变量
