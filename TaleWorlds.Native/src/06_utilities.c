@@ -8353,29 +8353,29 @@ uint8_t GlobalDataPointerCacheValidationBuffer;
 // 功能：设置全局数据指针A37到指定地址
 #define SetGlobalDataPointerA37 FUN_180942420
 
-// 原始变量名：DAT_180bfa170 - 全局数据指针Final存储区
+// 全局数据指针Final存储区
 // 功能：存储全局数据指针Final的相关信息
-#define GlobalDataPointerFinalStorage GlobalDataFinalStorageArea
+#define GlobalDataPointerFinalStorage DAT_180bfa170
 uint8_t GlobalDataPointerFinalStorage;
 
-// 原始变量名：DAT_180bfa178 - 全局数据指针Final状态区
+// 全局数据指针Final状态区
 // 功能：存储全局数据指针Final的状态信息
-#define GlobalDataPointerFinalStatus GlobalDataFinalStatusFlags
+#define GlobalDataPointerFinalStatus DAT_180bfa178
 uint8_t GlobalDataPointerFinalStatus;
 
-// 原始变量名：DAT_180bfa180 - 全局数据指针Final配置区
+// 全局数据指针Final配置区
 // 功能：存储全局数据指针Final的配置信息
-#define GlobalDataPointerFinalConfig GlobalDataFinalConfigurationSettings
+#define GlobalDataPointerFinalConfig DAT_180bfa180
 uint8_t GlobalDataPointerFinalConfig;
 
-// 原始变量名：DAT_180bfa188 - 全局数据指针Final缓存区
+// 全局数据指针Final缓存区
 // 功能：存储全局数据指针Final的缓存数据
-#define GlobalDataPointerFinalCache GlobalDataFinalCacheBuffer
+#define GlobalDataPointerFinalCache DAT_180bfa188
 uint8_t GlobalDataPointerFinalCache;
 
-// 原始变量名：UNK_180a23000 - 全局数据指针Final验证缓冲区
+// 全局数据指针Final验证缓冲区
 // 功能：存储全局数据指针Final的验证信息
-#define GlobalDataPointerFinalValidationBuffer GlobalDataFinalValidationStorage
+#define GlobalDataPointerFinalValidationBuffer UNK_180a23000
 uint8_t GlobalDataPointerFinalValidationBuffer;
 
 // 原始函数名：FUN_180942440 - 全局指针设置函数Extended
@@ -21069,18 +21069,13 @@ void ProcessFloatingPointDataA0(void)
   int ValidationErrorCode;
   DataWord SystemRegisterEBX;
   int64_t SystemStackFramePointer;
-  int SystemRegisterR12;
+  int SystemRegisterValueR12;
   int64_t DataContextPointer;
-  char SystemRegisterR15B;
-  float FloatResultA;
-  float ProcessedFloatResult00;
-  float ProcessedFloatResult01;
-  float ProcessedFloatResult02;
-  float ProcessedFloatResult03;
-  float ProcessedFloatResult04;
-  float ProcessedFloatResult05;
-  float ProcessedFloatResult06;
-  float FloatValue;
+  char SystemRegisterValueR15B;
+  float CalculatedFloatResultA;
+  float ProcessedFloatResultArray[6];
+  float ProcessedFloatResultSpecial;
+  float CalculatedFloatValue;
   DataWord SystemOperationResult;     // 系统操作结果
   float NormalizedParameterValue;    // 标准化参数值
   uint8_t *ValidationDataBuffer;    // 验证数据缓冲区
@@ -22764,7 +22759,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   uint8_t *pointerStackBuffer2d8;
   DataWord validationStackData2d0;
   float floatStackValue2c8;
-  uint resultStackValue2c4;
+  uint calculatedResultStackValue;
   DataWord flagStackData2c0;
   DataWord flagStackData2bc;
   DataWord flagStackData2b8;
@@ -22775,7 +22770,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   DataWord resultStackData29c;
   DataWord resultStackData298;
   int64_t offsetStackData294;
-  uint indexStackData28c;
+  uint arrayIndexStackData;
   ByteFlag flagStackData288;
   ByteFlag dataTransferBufferA [512];
   uint64_t securityValidationStack38;
@@ -60013,34 +60008,34 @@ void CleanupExceptionContextChain(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t *pdataContext;
-  int64_t *pcalculatedOffset;
+  int64_t *dataContext;
+  int64_t *calculatedOffset;
   
-  pdataContext = *(int64_t **)(dataBuffer + 0x40);
-  exceptionHandlerContextPointer = (int64_t *)pdataContext[1];
-  pcalculatedOffset = (int64_t *)*pdataContext;
+  dataContext = *(int64_t **)(dataBuffer + 0x40);
+  exceptionHandlerContextPointer = (int64_t *)dataContext[1];
+  calculatedOffset = (int64_t *)*dataContext;
   while( true ) {
-    if (pcalculatedOffset == exceptionHandlerContextPointer) {
-      if (*pdataContext != 0) {
+    if (calculatedOffset == exceptionHandlerContextPointer) {
+      if (*dataContext != 0) {
           TerminateSystemE0();
       }
       return;
     }
-    if (*(int64_t *)((int64_t)pcalculatedOffset + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)calculatedOffset + 0x12) != 0) {
         TerminateSystemE0();
     }
-    *(DataBuffer *)((int64_t)pcalculatedOffset + 0x12) = 0;
-    if (*(int64_t *)((int64_t)pcalculatedOffset + 0x1a) != 0) break;
-    *(DataBuffer *)((int64_t)pcalculatedOffset + 0x1a) = 0;
-    if (*pcalculatedOffset != 0) {
+    *(DataBuffer *)((int64_t)calculatedOffset + 0x12) = 0;
+    if (*(int64_t *)((int64_t)calculatedOffset + 0x1a) != 0) break;
+    *(DataBuffer *)((int64_t)calculatedOffset + 0x1a) = 0;
+    if (*calculatedOffset != 0) {
         TerminateSystemE0();
     }
-    *pcalculatedOffset = 0;
-    if (pcalculatedOffset[1] != 0) {
+    *calculatedOffset = 0;
+    if (calculatedOffset[1] != 0) {
         TerminateSystemE0();
     }
-    pcalculatedOffset[1] = 0;
-    pcalculatedOffset = (int64_t *)((int64_t)pcalculatedOffset + 0x24);
+    calculatedOffset[1] = 0;
+    calculatedOffset = (int64_t *)((int64_t)calculatedOffset + 0x24);
   }
     TerminateSystemE0();
 }
@@ -71093,21 +71088,34 @@ void InvokeExceptionHandlerAtOffset1858(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180908730(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调链
+ * 
+ * 该函数负责遍历异常处理器回调链，执行每个有效的回调函数。
+ * 它会检查每个回调函数的有效性，并调用相应的处理逻辑。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180908730
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void ExecuteExceptionHandlerCallbackChain(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t *pdataContext;
-  int64_t *pcalculatedOffset;
+  int64_t *dataContext;
+  int64_t *currentHandler;
   
-  pdataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x50) + 0x1868);
+  dataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x50) + 0x1868);
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x1870);
-  for (pcalculatedOffset = (int64_t *)*pdataContext; pcalculatedOffset != exceptionHandlerContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
-    if ((int64_t *)*pcalculatedOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*pcalculatedOffset + 0x38))();
+  for (currentHandler = (int64_t *)*dataContext; currentHandler != exceptionHandlerContextPointer; currentHandler = currentHandler + 1) {
+    if ((int64_t *)*currentHandler != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*currentHandler + 0x38))();
     }
   }
-  if (*pdataContext == 0) {
+  if (*dataContext == 0) {
     return;
   }
     TerminateSystemE0();
@@ -71115,7 +71123,18 @@ void Unwind_180908730(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908750(void)
+/**
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责销毁互斥锁资源，确保系统能够正确释放同步资源。
+ * 这是一个简单的资源清理函数，用于在异常处理过程中清理互斥锁。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180908750
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void DestroyMutexResource(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -75014,7 +75033,20 @@ void CleanupSystemResourceA3(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909680(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数B1
+ * 
+ * 在异常处理时清理资源引用计数，确保系统能够正确处理内存资源。
+ * 该函数通过减少资源引用计数来管理内存资源，当引用计数为0时调用异常处理函数。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含资源指针和引用计数信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180909680
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void CleanupResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;

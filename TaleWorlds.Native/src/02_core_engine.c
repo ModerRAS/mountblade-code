@@ -8868,15 +8868,6 @@ void CoreEngineInitializeNetworkStatusMonitor(void
  * @return 无
  */
 void CoreEngineInitializePhysicsConfig(void)
- * @brief 初始化游戏物理配置管理器
- * 
- * 该函数负责初始化游戏物理配置系统的管理器，设置物理模拟的
- * 基本参数和回调函数。用于管理游戏中的物理设置和参数。
- * 
- * @param 无
- * @return void
- */
-void CoreEngineInitializePhysicsConfig(void
 {
   bool ConnectionPoolActive;
   uint64_t *ConnectionPoolPointer;
