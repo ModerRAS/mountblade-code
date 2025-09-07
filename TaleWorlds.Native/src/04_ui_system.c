@@ -80455,19 +80455,28 @@ void FUN_180712943(float uiContext,undefined8 dataSource,float targetBuffer,long
 
 
 
- void FUN_180712aba(void)
-void FUN_180712aba(void)
+ /**
+ * UI内存块移动函数
+ * 在UI系统中移动内存块，用于数据重新排列或缓冲区管理
+ * 
+ * @param targetAddress 目标内存地址
+ * @param sourceAddress 源内存地址
+ * @param elementOffset 元素偏移量
+ * @param elementCount 元素数量
+ */
+void MoveUIMemoryBlock(void)
+void MoveUIMemoryBlock(void)
 
 {
   int unmodifiedESI;
-  longlong register9;
-  longlong register10;
-  longlong register11;
-  int stackParam000001c0;
+  longlong targetAddress;
+  longlong sourceAddress;
+  longlong elementOffset;
+  int elementCount;
   
-  if (register10 != register11) {
+  if (sourceAddress != targetAddress) {
                      WARNING: Subroutine does not return
-    memmove(register11 + register9 * 4,register10 + register9 * 4,(longlong)(stackParam000001c0 - unmodifiedESI) << 2);
+    memmove(targetAddress + elementOffset * 4,sourceAddress + elementOffset * 4,(longlong)(elementCount - unmodifiedESI) << 2);
   }
   return;
 }
@@ -80475,8 +80484,12 @@ void FUN_180712aba(void)
 
 
 
- void FUN_180712b39(void)
-void FUN_180712b39(void)
+ /**
+ * UI空操作函数
+ * 用作占位符或默认操作处理器
+ */
+void UINoOperationHandler(void)
+void UINoOperationHandler(void)
 
 {
   return;
