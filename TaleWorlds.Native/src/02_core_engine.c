@@ -44018,7 +44018,7 @@ void UnlockSystemDataStructure(long long CharacterCode
   if (MemoryAllocationSize != 0) {
     __Throw_C_error_std__YAXH_Z(MemoryAllocationSize);
   }
-  StringBuffer = (char *)(CharacterCode + 0xfc);
+  SystemStringBuffer = (char *)(CharacterCode + 0xfc);
   *StringBuffer = *StringBuffer + -1;
   if (*StringBuffer == '\0') {
     while( true ) {
@@ -49145,7 +49145,7 @@ void CleanupSystemBuffer(void
           MemoryAllocationOffset = (unsigned long long)(UnicodeCharacterCode >> 0xb);
           MemoryAllocationSize = (unsigned long long)(OperationStatus + -1 + UnicodeCharacterCode >> 0xb);
           if (MemoryAllocationOffset <= MemoryAllocationSize) {
-            SystemStringStringBuffer = (char *)((long long)StatusBuffer5 + MemoryAllocationOffset + 0x108);
+            SystemStringSystemStringBuffer = (char *)((long long)StatusBuffer5 + MemoryAllocationOffset + 0x108);
             SystemContextValue = (MemoryAllocationSize - MemoryAllocationOffset) + 1;
             PrimaryProcessingStatusFlag1 = StatusBuffer5 + MemoryAllocationOffset * 2 + 2;
             do {
@@ -70446,7 +70446,7 @@ LAB_180095648:
         StringBuffer = CharacterPointer + LoopIndex;
         if (*CharacterPointer != *StringBuffer) break;
         CharacterPointer = CharacterPointer + 1;
-      } while (*StringBuffer != '\0');
+      } while (*SystemStringBuffer != '\0');
     }
   }
                     // WARNING: Subroutine does not return
@@ -70586,7 +70586,7 @@ LAB_1800958e8:
         StringBuffer = CharacterPointer + LoopIndex;
         if (*CharacterPointer != *StringBuffer) break;
         CharacterPointer = CharacterPointer + 1;
-      } while (*StringBuffer != '\0');
+      } while (*SystemStringBuffer != '\0');
     }
   }
                     // WARNING: Subroutine does not return
@@ -97357,7 +97357,7 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
   }
   StringBuffer = &MemoryAllocationStackBuffer;
   if (&stack0x00000000 != (uint8_t *)0xffffffffffffff8f) {
-    while (*StringBuffer != '\0') {
+    while (*SystemStringBuffer != '\0') {
       if (((*StringBuffer == '#') && (StringBuffer[1] == '#')) ||
          (StringBuffer = StringBuffer + 1, StringBuffer == (char *)0xffffffffffffffff)) break;
     }
@@ -108123,7 +108123,7 @@ LAB_180119eed:
   *(void *)(FrameRegisterPointer + -0x79) = 0;
   StringBuffer = GeneralRegister14;
   if (GeneralRegister14 != (char *)0xffffffffffffffff) {
-    while (*StringBuffer != '\0') {
+    while (*SystemStringBuffer != '\0') {
       if (((*StringBuffer == '#') && (StringBuffer[1] == '#')) ||
          (StringBuffer = StringBuffer + 1, StringBuffer == (char *)0xffffffffffffffff)) break;
     }
@@ -109196,7 +109196,7 @@ a864(voidvoid CoreEngineResetSystemState(void
   *(float *)(FrameRegisterPointer + 0xb4) = AuxiliaryFloat13 + *(float *)(RegisterR15Value + 0x1660);
   StringBuffer = DataNodeIndex;
   if (DataNodeIndex != (char *)0xffffffffffffffff) {
-    while (*StringBuffer != '\0') {
+    while (*SystemStringBuffer != '\0') {
       if (((*StringBuffer == '#') && (StringBuffer[1] == '#')) ||
          (StringBuffer = StringBuffer + 1, StringBuffer == (char *)0xffffffffffffffff)) break;
     }
@@ -127377,7 +127377,7 @@ void ProcessSystemStringAndEncodingConversion(void)
     }
     CurrentMemoryBlockAddress = SystemConfigurationHandle;
     EncodingConversionResult = 0;
-    if (((SystemChecksumValue >> 0x18 & 1) == 0) && (StringBuffer = (char *)(SystemConfigurationHandle + 0x2e38), *StringBuffer != '\0')    {
+    if (((SystemChecksumValue >> 0x18 & 1) == 0) && (SystemStringBuffer = (char *)(SystemConfigurationHandle + 0x2e38), *SystemStringBuffer != '\0')    {
       pSystemPriorityLevel = (void *)0x18012d075;
       CleanupEventAndSystemMaintenance(&SystemDataTableEventCleanup);
       if (*(long long *)(CurrentMemoryBlockAddress + 0x2e40) != 0) {
@@ -143009,51 +143009,58 @@ void ProcessCharacterCodeValidation(uint32_t CharacterCode
     StatusFlag = '\x01';
   }
   *(char *)(SystemStackParameter + 0xb6) = StatusFlag;
-  if ((((*(char *)(StackParameter2 + 0xb2) == '\0') &&
-       (*(char *)(StackParameter2 + 0xaf) != '\0')) && (StringBuffer == '\0')) ||
-     (((0 < *(int *)(StackParameter2 + 0xc4) || (0 < *(int *)(StackParameter2 + 200))) ||
-      (0 < *(int *)(StackParameter2 + 0xdc))))) {
-    MemoryAllocationIndex = 0;
+  if ((((*(char *)(SystemStackParameter + 0xb2) == '\0') &&
+       (*(char *)(SystemStackParameter + 0xaf) != '\0')) && (StatusFlag == '\0')) ||
+     (((0 < *(int *)(SystemStackParameter + 0xc4) || (0 < *(int *)(SystemStackParameter + 200))) ||
+      (0 < *(int *)(SystemStackParameter + 0xdc))))) {
+    ValidationIndex = 0;
   }
   else {
-    MemoryAllocationIndex = 1;
+    ValidationIndex = 1;
   }
-  *(uint8_t *)(StackParameter2 + 0xb4) = MemoryAllocationIndex;
+  *(uint8_t *)(SystemStackParameter + 0xb4) = ValidationIndex;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(FrameRegisterPointer + 0x90) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(ContextFramePointer + 0x90) ^ (unsigned long long)&stack0x00000000);
 }
 
 
 
 
 
-cfe0(voidvoid FUN_18012cfe0(void
+/**
+ * @brief 执行系统配置过滤处理
+ * 
+ * 该函数负责根据系统配置执行过滤和处理操作
+ * 
+ * @note 原始函数名：FUN_18012cfe0
+ */
+void ExecuteSystemConfigurationFilter(void
 {
-  char *StringBuffer;
-  int *pCharacterByteCount;
-  float CalculatedFilterValue;
-  long long DataStructureCounter;
-  long long AllocatedMemorySize;
-  uint DataSize;
-  long long MemoryPoolBlockSize;
-  long long secondaryLoopCounter;
-  long long systemLoopCounter;
-  float ContextPrimaryFloat0;
+  char *SystemStringBuffer;
+  int *CharacterCounterPointer;
+  float FilterResult;
+  long long StructureCounter;
+  long long MemoryBlockSize;
+  uint StructureDataSize;
+  long long PoolBlockSize;
+  long long SecondaryLoopIndex;
+  long long SystemLoopIndex;
+  float ContextPrimaryValue;
   
-  AllocatedMemorySize = SystemConfigurationHandle;
+  MemoryBlockSize = SystemConfigurationHandle;
   if ((1 < *(int *)(SystemConfigurationHandle + 0x1ad0)) || (*(char *)(SystemConfigurationHandle + 2) == '\0')) {
-    DataStructureCounter = *(long long *)(SystemConfigurationHandle + 0x1af8);
-    if (*(long long *)(DataStructureCounter + 0x210) != 0) {
+    StructureCounter = *(long long *)(SystemConfigurationHandle + 0x1af8);
+    if (*(long long *)(StructureCounter + 0x210) != 0) {
       HandleSystemException();
     }
-    DataSize = *(uint *)(DataStructureCounter + 0xc);
-    if ((DataSize >> 0x1d & 1) == 0) {
+    StructureDataSize = *(uint *)(StructureCounter + 0xc);
+    if ((StructureDataSize >> 0x1d & 1) == 0) {
       CleanupSystemData();
-      DataSize = *(uint *)(DataStructureCounter + 0xc);
+      StructureDataSize = *(uint *)(StructureCounter + 0xc);
     }
     SystemDataTablePointer = SystemConfigurationHandle;
     CurrentMemoryBlockAddress = 0;
-    if (((DataSize >> 0x18 & 1) == 0) && (StringBuffer = (char *)(SystemConfigurationHandle + 0x2e38), *StringBuffer != '\0')    {
+    if (((StructureDataSize >> 0x18 & 1) == 0) && (SystemStringBuffer = (char *)(SystemConfigurationHandle + 0x2e38), *SystemStringBuffer != '\0')    {
       CleanupEventAndSystemMaintenance(&SystemDataTableEventCleanup);
       if (*(long long *)(SystemDataTablePointer + 0x2e40) != 0) {
         MemoryPoolBlockSize = __acrt_iob_func(1);
@@ -143156,7 +143163,7 @@ d004(voidvoid FUN_18012d004(void
     SystemContext = SystemConfigurationHandle;
   }
   SystemDataTablePointer = 0;
-  if (((DataSize >> 0x18 & 1) == 0) && (StringBuffer = (char *)(SystemContext + 0x2e38), *StringBuffer != '\0')) {
+  if (((StructureDataSize >> 0x18 & 1) == 0) && (SystemStringBuffer = (char *)(SystemContext + 0x2e38), *SystemStringBuffer != '\0')) {
     CleanupEventAndSystemMaintenance(&SystemDataTableEventCleanup);
     if (*(long long *)(SystemContext + 0x2e40) != 0) {
       MemoryPoolBlockSize = __acrt_iob_func(1);
@@ -143245,7 +143252,7 @@ d04f(voidvoid FUN_18012d04f(void
   long long DataNodeIndex;
   float CalculatedDistance;
   
-  StringBuffer = (char *)(SystemContext + 0x2e38);
+  SystemStringBuffer = (char *)(SystemContext + 0x2e38);
   if (*StringBuffer != (char)RegisterSourceIndex) {
     CleanupEventAndSystemMaintenance(&SystemDataTableEventCleanup);
     if (*(long long *)(SystemContext + 0x2e40) != RegisterSourceIndex) {
@@ -178587,7 +178594,7 @@ uint64_t * FUN_180150ab0(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffer
   
   uStack_170 = 0xfffffffffffffffe;
   StackValidationData = EncodingDecodingKey ^ (unsigned long long)aDataProcessingStatus;
-  SystemStringStringBuffer = (char *)0x0;
+  SystemStringSystemStringBuffer = (char *)0x0;
   SystemValue1a8 = 0;
   if (*(char *)(CoreEngineSystemContext + 0x12f3) != '\0') {
     *(uint8_t *)(CoreEngineSystemContext + 0x12f3) = 0;
@@ -238976,9 +238983,9 @@ long long * FUN_180209980(long long *Utf8InputBuffer,long long *Utf8InputBufferS
       SystemStatusContext = *(uint64_t **)(LoopIterationCounter7 + 0x30);
       if (StatusBuffer3 != NULL) {
 LAB_180209ba0:
-        SystemStringStringBuffer = (char *)*StatusBuffer3;
+        SystemStringSystemStringBuffer = (char *)*StatusBuffer3;
         if (SystemStringStringBuffer == (char *)0x0) {
-          SystemStringStringBuffer = (char *)0x180d48d24;
+          SystemStringSystemStringBuffer = (char *)0x180d48d24;
           StringDataPointer = StringCodeBuffer;
         }
         else {
@@ -239000,7 +239007,7 @@ LAB_180209bd8:
           CharacterPointer = SystemStringStringBuffer;
           SystemStringStringBuffer = CharacterPointer + 1;
         } while (*SystemStringStringBuffer != '\0');
-        for (SystemStringStringBuffer = (char *)StatusBuffer3[6]; StringDataPointer = StringCodeBuffer, SystemStringStringBuffer != (char *)0x0;
+        for (SystemStringSystemStringBuffer = (char *)StatusBuffer3[6]; StringDataPointer = StringCodeBuffer, SystemStringStringBuffer != (char *)0x0;
             SystemStringStringBuffer = *(char **)(SystemStringStringBuffer + 0x58)) {
           pSystemStatusChar = *(char **)SystemStringStringBuffer;
           if (pSystemStatusChar == (char *)0x0) {
@@ -239056,9 +239063,9 @@ LAB_180209cd5:
         } while (*SystemStringStringBuffer != '\0');
         for (SystemStatusContext = *(uint64_t **)(StringDataPointer + 0x30); StatusBuffer3 != NULL;
             SystemStatusContext = (void *)StatusBuffer3[0xb]) {
-          SystemStringStringBuffer = (char *)*StatusBuffer3;
+          SystemStringSystemStringBuffer = (char *)*StatusBuffer3;
           if (SystemStringStringBuffer == (char *)0x0) {
-            SystemStringStringBuffer = (char *)0x180d48d24;
+            SystemStringSystemStringBuffer = (char *)0x180d48d24;
             pSystemStatusChar = StringCodeBuffer;
           }
           else {
@@ -239073,7 +239080,7 @@ LAB_180209d30:
                 CharacterPointer = SystemStringStringBuffer;
                 SystemStringStringBuffer = CharacterPointer + 1;
               } while (*SystemStringStringBuffer != '\0');
-              for (SystemStringStringBuffer = (char *)StatusBuffer3[6]; pSystemStatusChar = StringCodeBuffer, SystemStringStringBuffer != (char *)0x0;
+              for (SystemStringSystemStringBuffer = (char *)StatusBuffer3[6]; pSystemStatusChar = StringCodeBuffer, SystemStringStringBuffer != (char *)0x0;
                   SystemStringStringBuffer = *(char **)(SystemStringStringBuffer + 0x58)) {
                 pSystemValidationChar = *(char **)SystemStringStringBuffer;
                 if (pSystemValidationChar == (char *)0x0) {
@@ -239108,9 +239115,9 @@ joined_r0x000180209daf:
                 } while (*SystemStringStringBuffer != '\0');
                 for (SystemStatusContext = *(uint64_t **)(pSystemStatusChar + 0x40); StatusBuffer3 != NULL;
                     SystemStatusContext = (void *)StatusBuffer3[6]) {
-                  SystemStringStringBuffer = (char *)*StatusBuffer3;
+                  SystemStringSystemStringBuffer = (char *)*StatusBuffer3;
                   if (SystemStringStringBuffer == (char *)0x0) {
-                    SystemStringStringBuffer = (char *)0x180d48d24;
+                    SystemStringSystemStringBuffer = (char *)0x180d48d24;
                     CharacterPointer = (char *)0x0;
                   }
                   else {
@@ -239155,9 +239162,9 @@ LAB_180209e40:
                   } while (*SystemStringStringBuffer != '\0');
                   for (SystemStatusContext = *(uint64_t **)(pSystemStatusChar + 0x40); StatusBuffer3 != NULL;
                       SystemStatusContext = (void *)StatusBuffer3[6]) {
-                    SystemStringStringBuffer = (char *)*StatusBuffer3;
+                    SystemStringSystemStringBuffer = (char *)*StatusBuffer3;
                     if (SystemStringStringBuffer == (char *)0x0) {
-                      SystemStringStringBuffer = (char *)0x180d48d24;
+                      SystemStringSystemStringBuffer = (char *)0x180d48d24;
                       CharacterPointer = (char *)0x0;
                     }
                     else {
@@ -239221,9 +239228,9 @@ LAB_180209f34:
                     } while (*SystemStringStringBuffer != '\0');
                     for (SystemStatusContext = *(uint64_t **)(pSystemStatusChar + 0x40); StatusBuffer3 != NULL;
                         SystemStatusContext = (void *)StatusBuffer3[6]) {
-                      SystemStringStringBuffer = (char *)*StatusBuffer3;
+                      SystemStringSystemStringBuffer = (char *)*StatusBuffer3;
                       if (SystemStringStringBuffer == (char *)0x0) {
-                        SystemStringStringBuffer = (char *)0x180d48d24;
+                        SystemStringSystemStringBuffer = (char *)0x180d48d24;
                         CharacterPointer = (char *)0x0;
                       }
                       else {
@@ -239287,9 +239294,9 @@ LAB_18020a094:
                       } while (*SystemStringStringBuffer != '\0');
                       for (SystemStatusContext = *(uint64_t **)(pSystemStatusChar + 0x40); StatusBuffer3 != NULL;
                           SystemStatusContext = (void *)StatusBuffer3[6]) {
-                        SystemStringStringBuffer = (char *)*StatusBuffer3;
+                        SystemStringSystemStringBuffer = (char *)*StatusBuffer3;
                         if (SystemStringStringBuffer == (char *)0x0) {
-                          SystemStringStringBuffer = (char *)0x180d48d24;
+                          SystemStringSystemStringBuffer = (char *)0x180d48d24;
                           CharacterPointer = (char *)0x0;
                         }
                         else {
@@ -239380,7 +239387,7 @@ LAB_18020a31a:
           }
         }
 LAB_18020a368:
-        SystemStringStringBuffer = (char *)0x0;
+        SystemStringSystemStringBuffer = (char *)0x0;
         StringCodeBuffer = "materials";
         do {
           CharacterPointer = StringCodeBuffer;
@@ -239493,7 +239500,7 @@ LAB_18020a528:
                   }
                   *(uint32_t *)((long long)MemoryBlockListHead + 0x3c) = OperationStatus.HighPart;
                 }
-                SystemStringStringBuffer = (char *)(unsigned long long)((int)SystemStringStringBuffer + 1);
+                SystemStringSystemStringBuffer = (char *)(unsigned long long)((int)SystemStringStringBuffer + 1);
                 StringCodeBuffer = "material";
                 do {
                   CharacterPointer = StringCodeBuffer;
@@ -240075,10 +240082,10 @@ LAB_18020b0af:
   } while (*pSystemCheckResult8 != '\0');
   for (StringProcessingStatus = (void *)ConfigurationString[6]; StringProcessingStatus != NULL;
       StringProcessingStatus = (void *)StringProcessingStatus[0xb]) {
-    StringBuffer = (char *)*StringProcessingStatus;
+    SystemStringBuffer = (char *)*StringProcessingStatus;
     pSystemCheckResult8 = (char *)0x0;
     if (StringBuffer == (char *)0x0) {
-      StringBuffer = (char *)0x180d48d24;
+      SystemStringBuffer = (char *)0x180d48d24;
     }
     else {
       pSystemCheckResult8 = (char *)StringProcessingStatus[2];
@@ -240112,7 +240119,7 @@ LAB_18020b1b3:
     for (pSystemCheckResult8 = (char *)StringProcessingStatus[6]; pSystemCheckResult8 != (char *)0x0; pSystemCheckResult8 = *(char **)(pSystemCheckResult8 + 0x58)    {
       StringBuffer = *(char **)pSystemCheckResult8;
       if (StringBuffer == (char *)0x0) {
-        StringBuffer = (char *)0x180d48d24;
+        SystemStringBuffer = (char *)0x180d48d24;
         pSystemCheckResult1 = (char *)0x0;
       }
       else {
@@ -240148,12 +240155,12 @@ LAB_18020b280:
     do {
       pSystemCheckResult1 = StringBuffer;
       StringBuffer = pSystemCheckResult1 + 1;
-    } while (*StringBuffer != '\0');
+    } while (*SystemStringBuffer != '\0');
     for (StringProcessingStatus = *(uint64_t **)(pSystemCheckResult8 + 0x40); StringProcessingStatus != NULL;
         StringProcessingStatus = (void *)StringProcessingStatus[6]) {
-      StringBuffer = (char *)*StringProcessingStatus;
+      SystemStringBuffer = (char *)*StringProcessingStatus;
       if (StringBuffer == (char *)0x0) {
-        StringBuffer = (char *)0x180d48d24;
+        SystemStringBuffer = (char *)0x180d48d24;
         StringBuffer7 = pSystemCheckResult9;
       }
       else {
@@ -240186,7 +240193,7 @@ LAB_18020b3fb:
       do {
         pSystemCheckResult1 = StringBuffer;
         StringBuffer = pSystemCheckResult1 + 1;
-      } while (*StringBuffer != '\0');
+      } while (*SystemStringBuffer != '\0');
       for (StringBuffer = *(char **)(pSystemCheckResult8 + 0x58); pSystemCheckResult8 = pSystemCheckResult9, StringBuffer != (char *)0x0;
           StringBuffer = *(char **)(StringBuffer + 0x58)) {
         StringBuffer7 = *(char **)StringBuffer;
