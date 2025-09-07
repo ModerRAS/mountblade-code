@@ -168928,7 +168928,7 @@ uint64_t * ProcessUtf8InputBufferAndCreateCharacterStatus(byte *Utf8InputBuffer)
   CharacterStatusBuffer[1] = 0;
   CharacterStatusBuffer[2] = 0;
   CharacterStatusBuffer[3] = 0;
-  *(unsigned long long *)(EncodingConversionResult + 0x30 + SystemDataStructureRegistry) = CONCAT53(uStack_15,0xffff);
+  *(unsigned long long *)(EncodingConversionResult + 0x30 + SystemDataStructureRegistry) = CONCAT53(ChecksumBuffer,0xffff);
   MemoryAllocationSize = *(int *)(MemoryBoundaryEnd + 0x2e28);
   *(int *)(MemoryBoundaryEnd + 0x2e28) = MemoryAllocationSize + 1;
   CharacterStatusBuffer2 = (void *)((long long)MemoryAllocationSize * 0x38 + *(long long *)(MemoryBoundaryEnd + 0x2e30));
@@ -168953,7 +168953,16 @@ uint64_t * ProcessUtf8InputBufferAndCreateCharacterStatus(byte *Utf8InputBuffer)
 
 
 
-uint64_t * FUN_18013c94a(byte *Utf8InputBuffer
+/**
+ * @brief 处理UTF-8输入缓冲区并计算校验和
+ * 
+ * 该函数处理UTF-8输入缓冲区，分配内存并计算校验和，
+ * 用于数据完整性验证。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @return uint64_t* 处理结果缓冲区指针
+ */
+uint64_t * ProcessUtf8InputBufferWithChecksum(byte *Utf8InputBuffer)
 {
   uint32_t *CharacterStatusBuffer;
   byte SystemHighByte;
@@ -168965,17 +168974,17 @@ uint64_t * FUN_18013c94a(byte *Utf8InputBuffer
   int ComputedResult;
   uint64_t ProcessingResult;
   uint64_t SystemMemoryAllocationResult;
-  int IntegerValue0;
+  int ArrayIndex;
   long long SystemStringIndex;
   uint64_t SystemContext;
-  int IntegerValue2;
+  int LoopCounter;
   uint64_t *CharacterStatusBuffer3;
   uint Utf16Char4;
-  long long in_R11;
+  long long RegisterR11;
   uint64_t CharacterLimit;
-  uint64_t uStackX_20;
-  uint64_t in_stack_00000028;
-  uint64_t SystemStringBuffer30;
+  uint64_t StackValue20;
+  uint64_t StackValue28;
+  uint64_t StringBuffer30;
   uint64_t TertiaryDataStorage;
   uint32_t SystemParameter2;
   uint32_t StackDataBuffer1;
