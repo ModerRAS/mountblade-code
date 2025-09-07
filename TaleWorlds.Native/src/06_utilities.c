@@ -98540,7 +98540,8 @@ void HandleDataBufferExceptionAtOffsetE0(DataBuffer operationBase,int64_t dataBu
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x080处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98560,7 +98561,8 @@ void Unwind_180912080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x090处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98580,7 +98582,8 @@ void Unwind_180912090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x0a0处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98600,7 +98603,8 @@ void Unwind_1809120a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x0b0处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98620,7 +98624,8 @@ void Unwind_1809120b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x0d0处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset0d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98640,7 +98645,8 @@ void Unwind_1809120d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x0f0处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98660,7 +98666,8 @@ void Unwind_1809120f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x110处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98680,7 +98687,8 @@ void Unwind_180912110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x130处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98700,7 +98708,8 @@ void Unwind_180912130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x150处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98720,7 +98729,8 @@ void Unwind_180912150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x170处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98740,7 +98750,8 @@ void Unwind_180912170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x180处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98794,7 +98805,8 @@ void Unwind_180912180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809121a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x1a0处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset1a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98814,7 +98826,8 @@ void Unwind_1809121a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809121c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x1c0处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset1c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98834,7 +98847,8 @@ void Unwind_1809121c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809121e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x1e0处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset1e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98854,7 +98868,8 @@ void Unwind_1809121e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x200处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98927,7 +98942,8 @@ void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x220处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98947,7 +98963,8 @@ void Unwind_180912220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 数据缓冲区异常处理函数 - 在偏移量0x240处处理数据缓冲区操作异常
+void HandleDataBufferExceptionAtOffset240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -99252,7 +99269,8 @@ void Unwind_180912360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912370(DataBuffer operationBase,int64_t dataBuffer)
+// 系统上下文异常处理函数 - 在偏移量0x370处处理系统上下文异常
+void HandleSystemContextExceptionAtOffset370(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + 0x58),**(ByteFlag **)(dataBuffer + 0x50),
@@ -99262,7 +99280,8 @@ void Unwind_180912370(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809123a0(DataBuffer operationBase,int64_t dataBuffer)
+// 系统上下文异常处理函数 - 在偏移量0x3a0处处理系统上下文异常
+void HandleSystemContextExceptionAtOffset3a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + 0x68),**(ByteFlag **)(dataBuffer + 0x60),
@@ -99272,7 +99291,8 @@ void Unwind_1809123a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809123d0(DataBuffer operationBase,int64_t dataBuffer)
+// 系统上下文异常处理函数 - 在偏移量0x3d0处处理系统上下文异常
+void HandleSystemContextExceptionAtOffset3d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + 200),**(ByteFlag **)(dataBuffer + 0xc0),
