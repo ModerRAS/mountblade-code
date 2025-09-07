@@ -113720,7 +113720,7 @@ LAB_18011eba2:
     }
     if ((float)AdditionalParameter2 == 0.0) goto LAB_18011ec19;
     SystemContextPrimaryFloat0 = (float)AdditionalParameter2;
-    FUN_18011f8d0(ProcessStringBuffer,*Utf16EndPointer,AdditionalParameter1,MemoryAllocationIndex);
+    ProcessSystemStringEncodingConversionEx(ProcessStringBuffer,*Utf16EndPointer,AdditionalParameter1,MemoryAllocationIndex);
     ValidationCode = ProcessValidationCheck(AdditionalParameter3);
     if (ValidationCode < 1) {
       NormalizedParameter = (float)SystemDataTablePointer;
@@ -113924,7 +113924,7 @@ SystemConfigurationReset:
     ProcessingStatus = 1;
   }
 CoordinateTransformationExit:
-  NormalizedDistance = (float)FUN_18011f940(ContextCoordinate,*OutputCoordinatePointer,InputCoordinate1,InputCoordinate2);
+  NormalizedDistance = (float)ProcessSystemCoordinates(ContextCoordinate,*OutputCoordinatePointer,InputCoordinate1,InputCoordinate2);
   DistanceValue = CoordinateRegisterPointer[3];
   NormalizedDistance = CoordinateRegisterPointer[1];
   ScaledCoordinateValue = (((PrimaryCoordinateValue - 2.0) - LimitedDistanceValue) - ScaledCoordinateValue) * NormalizedDistance + ScaledCoordinateValue;
@@ -114051,7 +114051,7 @@ LAB_18011ee7f:
     StatusFlag = '\x01';
   }
 LAB_18011efb0:
-  CalculatedFilterValue = (float)FUN_18011f940(CharacterCode,*ProcessingStatusFlag);
+  CalculatedFilterValue = (float)ProcessSystemCoordinates(CharacterCode,*ProcessingStatusFlag);
   NormalizedValue = *(float *)(RegisterGeneral14 + 0xc);
   ScaledValue = *(float *)(RegisterGeneral14 + 4);
   CalculatedFilterValue = (VectorRegisterX9 - VectorRegisterX11) * FloatValue3 + VectorRegisterX11;
