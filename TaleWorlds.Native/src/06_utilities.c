@@ -395,18 +395,30 @@
 
 /**
  * @brief 数据掩码处理函数
+ * 
+ * 该函数负责处理数据掩码操作，包括掩码应用、数据过滤和位运算。
+ * 它会根据指定的掩码对数据进行处理，提取或修改特定位的数据。
+ * 
  * @note 原始函数名：FUN_180069530
  */
 #define ProcessDataWithMask FUN_180069530
 
 /**
  * @brief 系统初始化函数A0
+ * 
+ * 该函数负责初始化系统组件，包括内存分配、数据结构初始化和参数设置。
+ * 它会为系统运行准备必要的环境和资源，确保系统能够正常启动。
+ * 
  * @note 原始函数名：FUN_180074a80
  */
 #define InitializeSystemA0 FUN_180074a80
 
 /**
  * @brief 系统终止函数A0
+ * 
+ * 该函数负责终止系统运行，包括资源清理、内存释放和状态重置。
+ * 它会安全地关闭所有系统组件，确保系统能够正常退出。
+ * 
  * @note 原始函数名：FUN_180080060
  */
 #define TerminateSystemA0 FUN_180080060
@@ -90044,7 +90056,17 @@ void SetDefaultExceptionHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fba0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放排他锁A0
+ * 
+ * 该函数负责在指定的条件下释放SRW排他锁
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁状态信息
+ * 
+ * @note 原始函数名：Unwind_18090fba0
+ */
+void ReleaseExclusiveLockA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0xb8) != '\0') {
