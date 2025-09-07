@@ -133346,8 +133346,8 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
   StackRegisterXMM15C = unaff_XMM14_Da;
   StackRegisterXMM15D = unaff_XMM14_Dc;
   StackRegisterParameter1 = unaff_XMM12_Qa;
-  in_stack_000001d8 = unaff_XMM12_Qb;
-  in_stack_000001e0 = AuxiliaryFloatValue11;
+  StackRegisterParameter2 = unaff_XMM12_Qb;
+  StackRegisterParameter3 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;
   in_stack_000001f0 = AuxiliaryFloat10;
   in_stack_000001f8 = XMM10RegisterC;
@@ -134989,8 +134989,8 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
   uint32_t StackRegisterXMM15C;
   uint32_t StackRegisterXMM15D;
   uint64_t StackRegisterParameter1;
-  uint64_t in_stack_000001d8;
-  uint32_t in_stack_000001e0;
+  uint64_t StackRegisterParameter2;
+  uint32_t StackRegisterParameter3;
   uint32_t in_stack_000001e8;
   uint32_t in_stack_000001f0;
   uint32_t in_stack_000001f8;
@@ -135184,8 +135184,8 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
   StackRegisterXMM15C = unaff_XMM14_Da;
   StackRegisterXMM15D = unaff_XMM14_Dc;
   StackRegisterParameter1 = unaff_XMM12_Qa;
-  in_stack_000001d8 = unaff_XMM12_Qb;
-  in_stack_000001e0 = AuxiliaryFloatValue11;
+  StackRegisterParameter2 = unaff_XMM12_Qb;
+  StackRegisterParameter3 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;
   in_stack_000001f0 = AuxiliaryFloat10;
   in_stack_000001f8 = XMM10RegisterC;
@@ -136826,8 +136826,8 @@ void InitializeSystemStringProcessing(void)
   uint32_t StackRegisterXMM15C;
   uint32_t StackRegisterXMM15D;
   uint64_t StackRegisterParameter1;
-  uint64_t in_stack_000001d8;
-  uint32_t in_stack_000001e0;
+  uint64_t StackRegisterParameter2;
+  uint32_t StackRegisterParameter3;
   uint32_t in_stack_000001e8;
   uint32_t in_stack_000001f0;
   uint32_t in_stack_000001f8;
@@ -136881,8 +136881,8 @@ void InitializeSystemStringProcessing(void)
   StackRegisterXMM15C = unaff_XMM14_Da;
   StackRegisterXMM15D = unaff_XMM14_Dc;
   StackRegisterParameter1 = unaff_XMM12_Qa;
-  in_stack_000001d8 = unaff_XMM12_Qb;
-  in_stack_000001e0 = AuxiliaryFloatValue11;
+  StackRegisterParameter2 = unaff_XMM12_Qb;
+  StackRegisterParameter3 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;
   in_stack_000001f0 = AuxiliaryFloat10;
   in_stack_000001f8 = XMM10RegisterC;
@@ -140138,8 +140138,8 @@ void ProcessSystemStatusAndValidation(void
   uint32_t StackRegisterXMM15C;
   uint32_t StackRegisterXMM15D;
   uint64_t StackRegisterParameter1;
-  uint64_t in_stack_000001d8;
-  uint32_t in_stack_000001e0;
+  uint64_t StackRegisterParameter2;
+  uint32_t StackRegisterParameter3;
   uint32_t in_stack_000001e8;
   uint32_t in_stack_000001f0;
   uint32_t in_stack_000001f8;
@@ -140181,8 +140181,8 @@ void ProcessSystemStatusAndValidation(void
   StackRegisterXMM15C = unaff_XMM14_Da;
   StackRegisterXMM15D = unaff_XMM14_Dc;
   StackRegisterParameter1 = unaff_XMM12_Qa;
-  in_stack_000001d8 = unaff_XMM12_Qb;
-  in_stack_000001e0 = AuxiliaryFloatValue11;
+  StackRegisterParameter2 = unaff_XMM12_Qb;
+  StackRegisterParameter3 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;
   in_stack_000001f0 = AuxiliaryFloat10;
   in_stack_000001f8 = XMM10RegisterC;

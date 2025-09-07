@@ -30018,11 +30018,11 @@ DataProcessLabelC:
     operationResult = ProcessDataOperationA0(operationBase,dataBuffer);
   }
   else {
-    operationResult = AllocateMemoryA0(dataBuffer,operationBase + 0x30);
+    operationResult = AllocateMemoryA0(dataBuffer,operationBase + SystemOperationDataOffset);
     if (operationResult != 0) {
       return;
     }
-    operationResult = AllocateMemoryA0(dataBuffer,operationBase + 0x40);
+    operationResult = AllocateMemoryA0(dataBuffer,operationBase + SystemResourceCleanupOffset);
   }
   if (operationResult == 0) {
     InitializeMemory(operationBase);
@@ -30064,18 +30064,18 @@ void CheckSystemStatusB0(void)
   if (SystemParameter != 0) {
     return;
   }
-  MemoryValidationStatus = (int)*(uint *)(SystemContextPointer + 0x1c) >> 0x1f;
+  MemoryValidationStatus = (int)*(uint *)(SystemContextPointer + SystemStateFlagsOffset) >> 0x1f;
   MemoryRegionBase = ValidationParameter >> 1;
-  if (((int)((*(uint *)(SystemContextPointer + 0x1c) ^ MemoryValidationStatus) - MemoryValidationStatus) < (int)MemoryRegionBase) &&
-     (SystemParameter = QuerySystemInformationA0(SystemContextPointer + 0x10,MemoryRegionBase), SystemParameter != 0)) {
+  if (((int)((*(uint *)(SystemContextPointer + SystemStateFlagsOffset) ^ MemoryValidationStatus) - MemoryValidationStatus) < (int)MemoryRegionBase) &&
+     (SystemParameter = QuerySystemInformationA0(SystemContextPointer + ResourceDataOffset,MemoryRegionBase), SystemParameter != 0)) {
     return;
   }
-  SystemParameter = *(int *)(SystemContextPointer + 0x18);
+  SystemParameter = *(int *)(SystemContextPointer + SystemConfigSecondaryOffset);
   if (SystemParameter < (int)MemoryRegionBase) {
-      memset((int64_t)SystemParameter * 0x10 + *(int64_t *)(SystemContextPointer + ExceptionHandlerCallbackOffset10),0,
-           (int64_t)(int)(MemoryRegionBase - SystemParameter) << 4);
+      memset((int64_t)SystemParameter * DataBlockMultiplier + *(int64_t *)(SystemContextPointer + ExceptionHandlerCallbackOffset10),0,
+           (int64_t)(int)(MemoryRegionBase - SystemParameter) << DataBlockShiftBits);
   }
-  *(uint *)(SystemContextPointer + 0x18) = MemoryRegionBase;
+  *(uint *)(SystemContextPointer + SystemConfigSecondaryOffset) = MemoryRegionBase;
   SystemOperationCount = 0;
   SystemParameter = 0;
   if (SystemOperationCount >> 1 != 0) {
