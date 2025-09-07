@@ -642,7 +642,7 @@
 #define ValidateSystemParametersA0 FUN_180047e40
 
 // 原始函数名：ProcessSystemDataA0 - 系统数据处理函数A0
-#define ProcessSystemDataA0 ProcessSystemDataA0
+#define ProcessSystemDataA0 ProcessSystemDataPrimary
 
 // 系统上下文验证函数A0
 // 功能：验证系统上下文的有效性和完整性
@@ -4286,13 +4286,13 @@ extern void* SystemPrimaryResourceTable;
 // 功能：处理异常数据缓冲区并设置异常处理器（备用实现）
 #define ProcessExceptionDataBufferA1 Unwind_180906b40
 
-// 原始变量名：0x180c91910 - 互斥锁对象指针
-// 功能：存储互斥锁对象的指针
-#define MutexObjectPointer 0x180c91910
+// 互斥锁对象指针
+// 功能：存储互斥锁对象的指针，用于线程同步
+#define SystemMutexObjectPtr 0x180c91910
 
-// 原始变量名：0x180c82210 - 异常临界区
-// 功能：异常处理的临界区对象
-#define ExceptionCriticalSection 0x180c82210
+// 异常临界区指针
+// 功能：异常处理的临界区对象，确保线程安全
+#define ExceptionCriticalSectionPtr 0x180c82210
 
 // 原始变量名：0x180c82238 - 异常处理参数
 // 功能：异常处理的函数参数
@@ -109040,7 +109040,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define ValidateSystemParametersA0 FUN_180047e40
 
 // 原始函数名：ProcessSystemDataA0 - 系统数据处理函数A0
-#define ProcessSystemDataA0 ProcessSystemDataA0
+#define ProcessSystemDataA0 ProcessSystemDataPrimary
 
 // 系统上下文验证函数A0
 // 功能：验证系统上下文的有效性和完整性
