@@ -8343,16 +8343,16 @@ uint8_t SystemSecurityValidationFlagA222;    // UNK_180a3a9b0
 uint8_t SystemSecurityValidationFlagA223;    // UNK_180a3a9c8
 uint8_t SystemSecurityValidationFlagA224;    // UNK_180a3a9d8
 uint8_t SystemSecurityValidationFlagA225;    // UNK_180a3a9e0
-uint8_t UNK_180a3a9f0;
-uint8_t UNK_180a3aa08;
-uint8_t UNK_180a3aa20;
-uint8_t UNK_180a3aa38;
-uint8_t UNK_180a3aa50;
-uint8_t UNK_180a3aa70;
-uint8_t UNK_180a3aa98;
-uint8_t UNK_180a3aab0;
-uint8_t UNK_180a3aac0;
-uint8_t UNK_180a3aad8;
+uint8_t SystemSecurityValidationFlagA226;    // UNK_180a3a9f0
+uint8_t SystemSecurityValidationFlagA227;    // UNK_180a3aa08
+uint8_t SystemSecurityValidationFlagA228;    // UNK_180a3aa20
+uint8_t SystemSecurityValidationFlagA229;    // UNK_180a3aa38
+uint8_t SystemSecurityValidationFlagA230;    // UNK_180a3aa50
+uint8_t SystemSecurityValidationFlagA231;    // UNK_180a3aa70
+uint8_t SystemSecurityValidationFlagA232;    // UNK_180a3aa98
+uint8_t SystemSecurityValidationFlagA233;    // UNK_180a3aab0
+uint8_t SystemSecurityValidationFlagA234;    // UNK_180a3aac0
+uint8_t SystemSecurityValidationFlagA235;    // UNK_180a3aad8
 uint8_t UNK_180a3aae8;
 uint8_t UNK_180a3aaf8;
 uint8_t UNK_180a3ab08;
