@@ -119832,7 +119832,7 @@ uint64_t * FUN_180123460(uint64_t *CharacterCode,long long CharacterCodeSize,byt
 
 
 
-3c00(long long CharacterCode,uint64_t CharacterCodeSizevoid FUN_180123c00(long long CharacterCode,uint64_t CharacterCodeSize
+3c00(long long CharacterCode,uint64_t CharacterCodeSizevoid ProcessCharacterCodeSystemCalculation(long long CharacterCode,uint64_t CharacterCodeSize
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
@@ -120269,7 +120269,7 @@ uint64_t ExecuteMemoryBufferCommands(long long CharacterCode,uint64_t CharacterC
 
 
 
-48f0(long long CharacterCodevoid FUN_1801248f0(long long CharacterCode
+48f0(long long CharacterCodevoid ProcessLongCharacterCodeOperation(long long CharacterCode
 {
   float SystemContextPrimaryFloat;
   long long BufferStatus;
@@ -120805,7 +120805,7 @@ LAB_180124eff:
 
 
 
-51b1(uint64_t CharacterCode,long long CharacterCodeSize,long long Utf8InputPointervoid FUN_1801251b1(uint64_t CharacterCode,long long CharacterCodeSize,long long Utf8InputPointer
+51b1(uint64_t CharacterCode,long long CharacterCodeSize,long long Utf8InputPointervoid ProcessCharacterCodeDataConversion(uint64_t CharacterCode,long long CharacterCodeSize,long long Utf8InputPointer
 {
   float SystemContextPrimaryFloat;
   long long BufferStatus;
@@ -120877,7 +120877,7 @@ LAB_180124eff:
 
 
 
-524a(float CharacterCode,long long CharacterCodeSize,long long Utf8InputPointer,int Utf16EndPointervoid FUN_18012524a(float CharacterCode,long long CharacterCodeSize,long long Utf8InputPointer,int Utf16EndPointer
+524a(float CharacterCode,long long CharacterCodeSize,long long Utf8InputPointer,int Utf16EndPointervoid ProcessFloatingPointCharacterCode(float CharacterCode,long long CharacterCodeSize,long long Utf8InputPointer,int Utf16EndPointer
 {
   long long in_RCX;
   float in_XMM1_Da;
@@ -120918,7 +120918,7 @@ LAB_180124eff:
 
 
 
-533c(long long CharacterCode,long long CharacterCodeSize,uint64_t Utf8InputPointer,int Utf16EndPointervoid FUN_18012533c(long long CharacterCode,long long CharacterCodeSize,uint64_t Utf8InputPointer,int Utf16EndPointer
+533c(long long CharacterCode,long long CharacterCodeSize,uint64_t Utf8InputPointer,int Utf16EndPointervoid ProcessLongIntegerCharacterEncoding(long long CharacterCode,long long CharacterCodeSize,uint64_t Utf8InputPointer,int Utf16EndPointer
 {
   float SystemContextPrimaryFloat;
   float SystemContextSecondaryFloat;
@@ -121345,7 +121345,7 @@ LAB_180125a82:
 
 
 
-5793(uint64_t CharacterCode,uint64_t CharacterCodeSizevoid FUN_180125793(uint64_t CharacterCode,uint64_t CharacterCodeSize
+5793(uint64_t CharacterCode,uint64_t CharacterCodeSizevoid Process64BitCharacterCodeOperation(uint64_t CharacterCode,uint64_t CharacterCodeSize
 {
   int LockResult;
   long long BufferStatus;
@@ -121533,7 +121533,7 @@ LAB_180125a82:
 
 
 
-5eb9(uint64_t CharacterCode,int CharacterCodeSizevoid FUN_180125eb9(uint64_t CharacterCode,int CharacterCodeSize
+5eb9(uint64_t CharacterCode,int CharacterCodeSizevoid ProcessIntegerCharacterCodeValidation(uint64_t CharacterCode,int CharacterCodeSize
 {
   int LockResult;
   int *pCharacterByteCount;
@@ -121712,7 +121712,7 @@ LAB_180125a82:
 
 
 
-6002(voidvoid FUN_180126002(void
+6002(voidvoid ExecuteSystemStatusCheck(void
 {
   int LockResult;
   long long BufferStatus;
@@ -121767,7 +121767,7 @@ LAB_180125a82:
 
 
 
-603d(voidvoid FUN_18012603d(void
+603d(voidvoid ExecuteSystemValidationOperation(void
 {
   int LockResult;
   long long BufferStatus;
@@ -121813,7 +121813,7 @@ LAB_180125a82:
 
 
 
-606a(voidvoid FUN_18012606a(void
+606a(voidvoid ExecuteSystemCleanupOperation(void
 {
   long long PrimaryDataSize;
   long long SystemContext;
@@ -121845,7 +121845,7 @@ LAB_180125a82:
 
 
 
-60f0(uint8_t *CharacterCodevoid FUN_1801260f0(uint8_t *CharacterCode
+60f0(uint8_t *CharacterCodevoid Process8BitCharacterCode(uint8_t *CharacterCode
 {
   int *ReferenceCountPointer;
   byte SystemHighByte;
@@ -121966,7 +121966,7 @@ LAB_180125a82:
 
 
 
-6380(char *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180126380(char *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+6380(char *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid ProcessCharacterStringEncoding(char *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
 {
   long long PrimaryDataSize;
   char *pSystemCheckResult;
@@ -122521,7 +122521,7 @@ LAB_180125a82:
 
 
 
-6b00(int *CharacterCode,long long CharacterCodeSizevoid FUN_180126b00(int *CharacterCode,long long CharacterCodeSize
+6b00(int *CharacterCode,long long CharacterCodeSizevoid ProcessIntegerCharacterCodePointer(int *CharacterCode,long long CharacterCodeSize
 {
   int LockResult;
   int CharacterByteCount;
@@ -122567,7 +122567,7 @@ LAB_180125a82:
 
 
 
-6b5b(voidvoid FUN_180126b5b(void
+6b5b(voidvoid ExecuteSystemFinalValidation(void
 {
   int LockResult;
   long long BufferStatus;

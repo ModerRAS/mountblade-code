@@ -315,7 +315,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  * 
  * 表示活跃连接的魔数值，ASCII码为"LIVE"，用于连接状态验证
  */
-#define NetworkMagicLiveConnection 0x4c495645            // "LIVE" - 表示活跃连接魔数
+#define NetworkMagicLiveConnectionIdentifier 0x4c495645            // "LIVE" - 表示活跃连接魔数
 /**
  * @brief 数据包验证魔数
  * 
@@ -327,13 +327,13 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  * 
  * 表示二进制数据的魔数值，ASCII码为"BINE"，用于二进制数据包识别
  */
-#define NetworkMagicBinaryData 0x42494e45                // "BINE" - 表示二进制数据魔数
+#define NetworkMagicBinaryDataIdentifier 0x42494e45                // "BINE" - 表示二进制数据魔数
 /**
  * @brief 事件数据魔数
  * 
  * 表示事件数据的魔数值，ASCII码为"EVNT"，用于事件数据包识别
  */
-#define NetworkMagicEventData 0x45564e54                 // "EVNT" - 表示事件数据魔数
+#define NetworkMagicEventIdentifier 0x45564e54                 // "EVNT" - 表示事件数据魔数
 /**
  * @brief 批处理数据魔数
  * 
