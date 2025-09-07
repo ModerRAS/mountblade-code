@@ -188732,9 +188732,9 @@ LAB_18016612b:
 
 
 uint64_t *
-FUN_1801661b0(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
+ProcessAdvancedCharacterEncodingConversion(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
 {
-  long long PrimaryDataSize;
+  long long PrimaryDataBlockSize;
   void *SystemContext;
   long long *MemoryBlockIndex;
   long long *EngineContext;
@@ -272885,5 +272885,15 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_18013dc40
  */
 #define ProcessCharacterEncodingBuffer FUN_18013dc40
+
+/**
+ * @brief 处理高级字符编码转换
+ * 
+ * 该函数负责处理高级字符编码转换操作，
+ * 支持多种字符集之间的转换和内存管理。
+ * 
+ * @note 原始函数名：FUN_1801661b0
+ */
+#define ProcessAdvancedCharacterEncodingConversion FUN_1801661b0
 
 
