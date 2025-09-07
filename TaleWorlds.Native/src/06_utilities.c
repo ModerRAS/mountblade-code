@@ -9321,27 +9321,38 @@ uint8_t SystemManagementDataTableA0;
 /**
  * @brief 对象数据验证处理函数
  * 
- * 该函数用于处理对象数据并进行验证操作，包括安全检查、资源处理和数据验证
+ * 该函数用于处理对象数据并进行验证操作，包括安全检查、资源处理和数据验证。
+ * 函数执行以下步骤：
+ * 1. 执行栈保护检查，防止栈溢出攻击
+ * 2. 查询和检索系统数据
+ * 3. 验证操作结果并处理数据
+ * 4. 执行核心功能处理
+ * 5. 处理执行结果，包括资源处理和内存清理
+ * 6. 执行最终的安全验证
  * 
  * @param ObjectHandle 对象句柄，用于标识要处理的对象
  * @param DataContext 数据上下文，包含处理所需的数据信息
  * @return 无返回值
- * @note 原始函数名：可能为FUN_开头的函数，已重命名为ProcessObjectDataWithValidation
+ * 
+ * @note 此函数包含安全验证机制，确保数据处理过程的安全性
+ * @warning 函数执行过程中不会返回，最后会调用安全检查
+ * 
+ * @see QueryAndRetrieveSystemDataA0, ExecuteCoreFunction, ProcessUtilityOperation, ReleaseResource, CleanupMemory
  */
 void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 {
   // 资源和操作相关变量
   uint64_t ResourceIdentifier;
   int32_t OperationStatus;
-  int64_t ArrayIterator;
-  int32_t ProcessedItemCount;
+  int64_t ResourceArrayIterator;
+  int32_t ProcessedResourceCount;
   
   // 安全和缓冲区相关变量
   uint8_t SecurityValidationBuffer[32];
   int64_t SystemContextArray[2];
   uint8_t *DataProcessingBuffer;
-  int32_t LoopCounter;
-  uint32_t ProcessingFlags;
+  int32_t ResourceProcessingLoopCounter;
+  uint32_t DataProcessingFlags;
   uint8_t WorkingDataBuffer[512];
   
   // 栈保护变量
@@ -9356,9 +9367,9 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   // 验证操作结果并处理数据
   if ((OperationStatus == 0) && (*(int64_t *)(SystemContextArray[0] + SystemContextOffset) != 0)) {
     DataProcessingBuffer = WorkingDataBuffer;
-    ProcessedItemCount = 0;
-    LoopCounter = 0;
-    ProcessingFlags = ProcessingFlagMask;
+    ProcessedResourceCount = 0;
+    ResourceProcessingLoopCounter = 0;
+    DataProcessingFlags = ProcessingFlagMask;
     
     // 执行核心功能
     OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + DataConfigurationOffset), *(int64_t *)(SystemContextArray[0] + SystemContextOffset),
@@ -9366,18 +9377,18 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
     
     // 处理执行结果
     if (OperationStatus == 0) {
-      if (0 < LoopCounter) {
-        ArrayIterator = 0;
+      if (0 < ResourceProcessingLoopCounter) {
+        ResourceArrayIterator = 0;
         do {
-          ResourceIdentifier = *(uint64_t *)(DataProcessingBuffer + ArrayIterator);
+          ResourceIdentifier = *(uint64_t *)(DataProcessingBuffer + ResourceArrayIterator);
           OperationStatus = ProcessUtilityOperation(ResourceIdentifier);
           if (OperationStatus != 2) {
                     // WARNING: Subroutine does not return
             ReleaseResource(ResourceIdentifier, 1);
           }
-          ProcessedItemCount = ProcessedItemCount + 1;
-          ArrayIterator = ArrayIterator + 8;
-        } while (ProcessedItemCount < LoopCounter);
+          ProcessedResourceCount = ProcessedResourceCount + 1;
+          ResourceArrayIterator = ResourceArrayIterator + 8;
+        } while (ProcessedResourceCount < ResourceProcessingLoopCounter);
       }
       CleanupMemory(&DataProcessingBuffer);
     }
@@ -24337,10 +24348,10 @@ void ProcessSystemDataItem(int64_t SystemContext, DataWord *DataItemPointer)
 
 {
   int inputParameter;
-  DataWord auStackX_8 [2];
+  DataWord parameterBuffer [2];
   
-  auStackX_8[0] = *DataItemPointer;
-  inputParameter = (**(FunctionPointer**)**(DataBuffer **)(SystemContext + 8))(*(DataBuffer **)(SystemContext + 8),auStackX_8,4);
+  parameterBuffer[0] = *DataItemPointer;
+  inputParameter = (**(FunctionPointer**)**(DataBuffer **)(SystemContext + 8))(*(DataBuffer **)(SystemContext + 8),parameterBuffer,4);
   if (((((inputParameter == 0) && (inputParameter = CheckSystemStatusAndReturnO0(SystemContext,DataItemPointer + 1), inputParameter == 0)) &&
        (((*(byte *)(DataItemPointer + 1) & 0x20) == 0 ||
         (inputParameter = ValidateAndProcessDataA0(SystemContext,DataItemPointer + 2), inputParameter == 0)))) &&
@@ -24349,9 +24360,9 @@ void ProcessSystemDataItem(int64_t SystemContext, DataWord *DataItemPointer)
        (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0x10), inputParameter == 0)))) &&
      (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0x11), inputParameter == 0)) {
     if ((DataItemPointer[1] & 0x100) != 0) {
-      auStackX_8[0] = DataItemPointer[0x12];
+      parameterBuffer[0] = DataItemPointer[0x12];
       inputParameter = (**(FunctionPointer**)**(DataBuffer **)(SystemContext + 8))
-                        (*(DataBuffer **)(SystemContext + 8),auStackX_8,4);
+                        (*(DataBuffer **)(SystemContext + 8),parameterBuffer,4);
       if (inputParameter != 0) {
         return;
       }
@@ -25269,7 +25280,7 @@ uint64_t ExecuteDataSynchronizationA0(int64_t operationBase,DataBuffer *dataBuff
   uint *poperationResult;
   int stackContextBuffer [2];
   unsigned int stackParameterBuffer [2];
-  uint auStackX_18 [2];
+  uint synchronizationParameterBuffer [2];
   uint stackByteBuffer [2];
   uint systemBufferA [6];
   
@@ -25298,9 +25309,9 @@ uint64_t ExecuteDataSynchronizationA0(int64_t operationBase,DataBuffer *dataBuff
       default:
         return 0x1c;
       case 0x10:
-        auStackX_18[0] = poperationResult[1];
+        synchronizationParameterBuffer[0] = poperationResult[1];
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                          (*(DataBuffer **)(operationBase + 8),auStackX_18,4);
+                          (*(DataBuffer **)(operationBase + 8),synchronizationParameterBuffer,4);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
