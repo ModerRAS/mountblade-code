@@ -24313,7 +24313,7 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
           return systemDataBuffer;
         }
         operationStatus = operationStatus + 1;
-        pfVar2 = pfVar2 + 1;
+        floatDataPointer = floatDataPointer + 1;
       } while (operationStatus < *(short *)(dataBuffer + 0x104));
     }
     systemDataBuffer = 0;
@@ -29605,12 +29605,12 @@ ValidationContextHandler:
   else if (exceptionHandlerContextPointer[2] == 0) {
 ValidationRetryHandler:
     validationStatus = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,stackFramePointer + 0x77,systemContextD,systemContextD,0);
-    fVar9 = processedFloatValue;
+    secondaryFloatResult = processedFloatValue;
   }
   else {
     *(DataWord *)(stackFramePointer + -0x25) = 0;
     validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x25);
-    fVar9 = accumulatedFloatValue;
+    secondaryFloatResult = accumulatedFloatValue;
     if (validationStatus == 0) {
       if ((uint64_t)*(uint *)(stackFramePointer + -0x25) + 1 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointValidationRetry;
       validationStatus = 0x11;
@@ -29638,8 +29638,8 @@ ValidationErrorHandler2:
     validationStatus = *(uint *)(registerContext + 8);
   }
   if ((validationStatus < 0x87) && ((*(uint *)(dataPointer + 0x34) >> 3 & 1) != 0)) {
-    fVar9 = *(float *)(dataPointer + 0x3c) - 1.0;
-    *(float *)(dataPointer + 0x3c) = fVar9;
+    secondaryFloatResult = *(float *)(dataPointer + 0x3c) - 1.0;
+    *(float *)(dataPointer + 0x3c) = secondaryFloatResult;
     validationStatus = *(uint *)(registerContext + 8);
   }
   if (0x8a < validationStatus) {
@@ -29656,10 +29656,10 @@ ValidationErrorHandler2:
     }
     *(DataWord *)(stackFramePointer + 0x77) = 0;
     memoryBaseAddress = validationOutcome;
-    fVar9 = transformedFloatValue;
+    secondaryFloatResult = transformedFloatValue;
     if (operationResult >> 1 != 0) {
       do {
-        memoryBaseAddress = ExecuteSystemInitializationOperation(fVar9,memoryBaseAddress);
+        memoryBaseAddress = ExecuteSystemInitializationOperation(secondaryFloatResult,memoryBaseAddress);
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
@@ -29684,12 +29684,12 @@ ValidationErrorHandler2:
         securityCheckResult = *(uint *)(stackFramePointer + 0x77) & -(operationResult & 1);
         memoryBaseAddress = (uint64_t)securityCheckResult;
         *(uint *)(stackFramePointer + 0x77) = securityCheckResult;
-        fVar9 = floatResultA_09;
+        secondaryFloatResult = floatResultA_09;
       } while ((int)dataFlags < (int)(operationResult >> 1));
     }
   }
                     // WARNING: Subroutine does not return
-  ExecutePortControlOperation(fVar9,stackFramePointer + -0x21);
+  ExecutePortControlOperation(secondaryFloatResult,stackFramePointer + -0x21);
 }
 
 
