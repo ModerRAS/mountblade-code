@@ -173735,7 +173735,18 @@ void InitializeUtf8MemoryManagement(void)
 
 
 
-3e800(int *Utf8InputBuffer,int Utf8BufferSizevoid FUN_18013e800(int *Utf8InputBuffer,int Utf8BufferSize
+/**
+ * @brief 处理UTF-8缓冲区大小优化
+ * 
+ * 该函数负责处理UTF-8缓冲区大小的优化操作，包括缓冲区大小的动态调整和内存分配。
+ * 用于系统UTF-8缓冲区大小的优化处理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18013e800
+ */
+void ProcessUtf8BufferSizeOptimization(int *Utf8InputBuffer, int Utf8BufferSize)
 {
   int LockResult;
   int StringComparisonResult;
@@ -173779,7 +173790,17 @@ void InitializeUtf8MemoryManagement(void)
 
 
 
-3e81a(int CharacterCodevoid FUN_18013e81a(int CharacterCode
+/**
+ * @brief 验证UTF-8字符代码
+ * 
+ * 该函数负责验证UTF-8字符代码的有效性，包括字符代码的格式检查和内存分配。
+ * 用于系统UTF-8字符代码的验证处理。
+ * 
+ * @param CharacterCode 字符代码
+ * 
+ * @note 原始函数名：FUN_18013e81a
+ */
+void ValidateUtf8CharacterCode(int CharacterCode)
 {
   int LockResult;
   uint64_t MemoryAllocationIndex;
