@@ -72449,41 +72449,49 @@ void ProcessUIRenderBuffer(longlong uiContext,float *dataSource,longlong targetB
 
 
  void FUN_18070737d(float *uiContext,float *dataSource,longlong targetBuffer)
-void FUN_18070737d(float *uiContext,float *dataSource,longlong targetBuffer)
+/**
+ * 计算UI渲染数据的加权累加和
+ * 用于UI系统中的渲染数据预处理，可能涉及矩阵变换或向量计算
+ * 
+ * @param uiContext UI上下文指针，存储计算结果
+ * @param dataSource 数据源指针，包含输入数据
+ * @param targetBuffer 目标缓冲区大小
+ */
+void CalculateUIRenderDataWeightedSum(float *uiContext, float *dataSource, longlong targetBuffer)
 
 {
-  longlong allocatedMemory;
-  float *plocalFloat2;
-  float *plocalFloat3;
-  float localFloat4;
-  float *plocalFloat5;
-  longlong context;
-  longlong contextData;
-  longlong localLong7;
-  longlong unmodifiedRDI;
-  longlong localLong8;
-  longlong register10;
-  longlong register11;
+  longlong processedElements;
+  float *previousFloatPtr;
+  float *nextFloatPtr;
+  float currentFloatValue;
+  float *currentFloatPtr;
+  longlong contextOffset;
+  longlong dataOffset;
+  longlong contextDiff;
+  longlong baseAddress;
+  longlong remainingElements;
+  longlong startIndex;
+  longlong endIndex;
   
-  plocalFloat5 = (float *)(unmodifiedRDI + 4 + register10 * 4);
-  localLong7 = register11 - unmodifiedRDI;
-  contextData = context - unmodifiedRDI;
-  localLong8 = ((targetBuffer - register10) - 4U >> 2) + 1;
-  allocatedMemory = register10 + localLong8 * 4;
+  currentFloatPtr = (float *)(baseAddress + 4 + startIndex * 4);
+  contextDiff = endIndex - baseAddress;
+  dataOffset = contextOffset - baseAddress;
+  remainingElements = ((targetBuffer - startIndex) - 4U >> 2) + 1;
+  processedElements = startIndex + remainingElements * 4;
   do {
-    *uiContext = *(float *)((longlong)plocalFloat5 + localLong7 + -4) * plocalFloat5[-1] + *uiContext;
-    *dataSource = *(float *)((longlong)plocalFloat5 + contextData + -4) * plocalFloat5[-1] + *dataSource;
-    *uiContext = *(float *)(localLong7 + (longlong)plocalFloat5) * *plocalFloat5 + *uiContext;
-    *dataSource = *(float *)((longlong)plocalFloat5 + contextData) * *plocalFloat5 + *dataSource;
-    *uiContext = *(float *)((longlong)plocalFloat5 + localLong7 + 4) * plocalFloat5[1] + *uiContext;
-    *dataSource = *(float *)((longlong)plocalFloat5 + contextData + 4) * plocalFloat5[1] + *dataSource;
-    *uiContext = *(float *)((longlong)plocalFloat5 + localLong7 + 8) * plocalFloat5[2] + *uiContext;
-    plocalFloat3 = (float *)((longlong)plocalFloat5 + contextData + 8);
-    plocalFloat2 = plocalFloat5 + 2;
-    plocalFloat5 = plocalFloat5 + 4;
-    *dataSource = *plocalFloat3 * *plocalFloat2 + *dataSource;
-    localLong8 = localLong8 + -1;
-  } while (localLong8 != 0);
+    *uiContext = *(float *)((longlong)currentFloatPtr + contextDiff + -4) * currentFloatPtr[-1] + *uiContext;
+    *dataSource = *(float *)((longlong)currentFloatPtr + dataOffset + -4) * currentFloatPtr[-1] + *dataSource;
+    *uiContext = *(float *)(contextDiff + (longlong)currentFloatPtr) * *currentFloatPtr + *uiContext;
+    *dataSource = *(float *)((longlong)currentFloatPtr + dataOffset) * *currentFloatPtr + *dataSource;
+    *uiContext = *(float *)((longlong)currentFloatPtr + contextDiff + 4) * currentFloatPtr[1] + *uiContext;
+    *dataSource = *(float *)((longlong)currentFloatPtr + dataOffset + 4) * currentFloatPtr[1] + *dataSource;
+    *uiContext = *(float *)((longlong)currentFloatPtr + contextDiff + 8) * currentFloatPtr[2] + *uiContext;
+    nextFloatPtr = (float *)((longlong)currentFloatPtr + dataOffset + 8);
+    previousFloatPtr = currentFloatPtr + 2;
+    currentFloatPtr = currentFloatPtr + 4;
+    *dataSource = *nextFloatPtr * *previousFloatPtr + *dataSource;
+    remainingElements = remainingElements + -1;
+  } while (remainingElements != 0);
   if (allocatedMemory < targetBuffer) {
     plocalFloat5 = (float *)(unmodifiedRDI + allocatedMemory * 4);
     targetBuffer = targetBuffer - allocatedMemory;
@@ -100087,33 +100095,33 @@ double CalculateFloatArraySquareSum(longlong uiContext, int dataSource)
       } while (currentOffset < (int)(dataSource - processCount));
       totalSquareSum = totalSquareSum + partialSum1 + partialSum3 + partialSum2 + partialSum4;
     }
-    if (localInt9 < dataSource) {
-      if (3 < dataSource - localInt9) {
-        plocalFloat8 = (float *)(uiContext + ((longlong)localInt9 + 2) * 4);
+    if (currentOffset < dataSource) {
+      if (3 < dataSource - currentOffset) {
+        arrayStartPtr = (float *)(uiContext + ((longlong)currentOffset + 2) * 4);
         do {
-          pfloatResult = plocalFloat8 + -2;
-          localInt9 = localInt9 + 4;
-          plocalFloat2 = plocalFloat8 + -1;
-          localFloat5 = *plocalFloat8;
-          plocalFloat3 = plocalFloat8 + 1;
-          plocalFloat8 = plocalFloat8 + 4;
-          dVar16 = (double)*pfloatResult * (double)*pfloatResult + dVar16 + (double)*plocalFloat2 * (double)*plocalFloat2 +
-                   (double)localFloat5 * (double)localFloat5 + (double)*plocalFloat3 * (double)*plocalFloat3;
-        } while (localInt9 < dataSource + -3);
+          currentFloatPtr = arrayStartPtr + -2;
+          currentOffset = currentOffset + 4;
+          previousFloatPtr = arrayStartPtr + -1;
+          currentFloatValue = *arrayStartPtr;
+          nextFloatPtr = arrayStartPtr + 1;
+          arrayStartPtr = arrayStartPtr + 4;
+          totalSquareSum = (double)*currentFloatPtr * (double)*currentFloatPtr + totalSquareSum + (double)*previousFloatPtr * (double)*previousFloatPtr +
+                   (double)currentFloatValue * (double)currentFloatValue + (double)*nextFloatPtr * (double)*nextFloatPtr;
+        } while (currentOffset < dataSource + -3);
       }
-      if (localInt9 < dataSource) {
-        plocalFloat8 = (float *)(uiContext + (longlong)localInt9 * 4);
-        localLong7 = (longlong)(dataSource - localInt9);
+      if (currentOffset < dataSource) {
+        arrayStartPtr = (float *)(uiContext + (longlong)currentOffset * 4);
+        remainingCount = (longlong)(dataSource - currentOffset);
         do {
-          localFloat5 = *plocalFloat8;
-          plocalFloat8 = plocalFloat8 + 1;
-          dVar16 = dVar16 + (double)localFloat5 * (double)localFloat5;
-          localLong7 = localLong7 + -1;
-        } while (localLong7 != 0);
+          currentFloatValue = *arrayStartPtr;
+          arrayStartPtr = arrayStartPtr + 1;
+          totalSquareSum = totalSquareSum + (double)currentFloatValue * (double)currentFloatValue;
+          remainingCount = remainingCount + -1;
+        } while (remainingCount != 0);
       }
     }
   }
-  return dVar16;
+  return totalSquareSum;
 }
 
 

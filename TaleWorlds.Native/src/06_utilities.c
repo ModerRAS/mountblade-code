@@ -22449,12 +22449,12 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
 #define CheckSystemStatusAndReset FUN_1808975a6
 
 {
-  int inputParameter;
+  int systemValidationResult;
   char systemStatus;
   int64_t *DestinationContext;
   uint64_t stackMemoryAddress;
   
-  if ((systemStatus == '\0') && (inputParameter = (**(FunctionPointer**)(*DestinationContext + 0x18))(), inputParameter == 0)) {
+  if ((systemStatus == '\0') && (systemValidationResult = (**(FunctionPointer**)(*DestinationContext + 0x18))(), systemValidationResult == 0)) {
     *(ByteFlag *)(DestinationContext + 4) = 0;
   }
     ExecuteSecurityCheck(securityParameter ^ (uint64_t)&securityBuffer);
