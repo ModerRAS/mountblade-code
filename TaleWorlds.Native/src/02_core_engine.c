@@ -1642,6 +1642,9 @@ const void* const SystemMemoryBlockIndexTertiary = (void*)0x18098d188;
 const void* const SystemStringConstantPrimary = (void*)0x180a063e8;
 const void* const SystemStringConstantSecondary = (void*)0x180a06400;
 const void* const SystemStringConstantTertiary = (void*)0x180a0ff38;
+const void* const SystemStringConstantQuaternary = (void*)0x180a0ee30;
+const void* const SystemStringConstantQuinary = (void*)0x180a0ff48;
+const void* const SystemStringConstantSenary = (void*)0x180a0ff28;
 
 // 系统函数指针常量定义
 const void* const SystemFunctionPointerRenderInitialize = (void*)0x180135af0;
@@ -236323,7 +236326,7 @@ LAB_180209c65:
             pSystemValidationChar = pSystemStatusChar + (long long)pSystemValidationChar;
             CharacterPointer7 = SystemStringStringBuffer;
             if (pSystemValidationChar <= pSystemStatusChar) break;
-            SystemStringIndex = (long long)&UNK_180a0ff38 - (long long)pSystemStatusChar;
+            SystemStringIndex = (long long)&SystemStringConstantTertiary - (long long)pSystemStatusChar;
             while (*pSystemStatusChar == pSystemStatusChar[SystemStringIndex]) {
               pSystemStatusChar = pSystemStatusChar + 1;
               if (pSystemValidationChar <= pSystemStatusChar) goto LAB_180209cd5;
@@ -236409,7 +236412,7 @@ LAB_180209e40:
                       CoreEngineConfigureSystemEvent(&pSystemFlagD,SystemStringIndex);
                       break;
                     }
-                    SystemStringIndex = (long long)&UNK_180a0ee30 - (long long)SystemStringStringBuffer;
+                    SystemStringIndex = (long long)&SystemStringConstantQuaternary - (long long)SystemStringStringBuffer;
                     while (*SystemStringStringBuffer == SystemStringStringBuffer[SystemStringIndex]) {
                       SystemStringStringBuffer = SystemStringStringBuffer + 1;
                       if (CharacterPointer <= SystemStringStringBuffer) goto LAB_180209e40;
@@ -236419,7 +236422,7 @@ LAB_180209e40:
                 ValidationCode = iStack_d8;
                 SystemStringIndex = lStack_e0;
                 if (iStack_d8 == 10) {
-                  StringComparisonResult = strcmp(lStack_e0,&UNK_180a0ff48);
+                  StringComparisonResult = strcmp(lStack_e0,&SystemStringConstantQuinary);
                   CurrentByteValue9 = StringComparisonResult == 0;
                 }
                 else {
@@ -236551,7 +236554,7 @@ LAB_18020a094:
                   }
                   else {
                     if (ValidationCode == 0xb) {
-                      ValidationCode = strcmp(SystemStringIndex,&UNK_180a0ff28);
+                      ValidationCode = strcmp(SystemStringIndex,&SystemStringConstantSenary);
                       CurrentByteValue9 = ValidationCode == 0;
                     }
                     else {
