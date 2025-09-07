@@ -132030,7 +132030,7 @@ LAB_18012b465:
         SystemParameter1 = (void *)CONCAT44(SystemStatusCode,pSecondaryFloatValue[3]);
         RegisterFramePointer[-0x14] = (FilterInputValue5 + ScalingFactor) * *pSecondaryFloatValue + FilterInputValue9;
         RegisterFramePointer[-0x13] = (FilterInputValue5 + ScalingFactor) * FilterInputValue7 + FilterInputValue6;
-        FUN_180293730(BufferStatus4,RegisterFramePointer + -0x14);
+        ConfigureSystemDataEx(BufferStatus4,RegisterFramePointer + -0x14);
         BufferStatus4 = SystemParameter2[0x5d];
         CheckSystemStatusAndProcess(BufferStatus4,*(void *)(BufferStatus4 + 0x88),*(uint32_t *)(BufferStatus4 + 0x80),
                       RegisterFramePointer[CharacterTablePointer5 + 0x20],SystemParameter1);
@@ -133873,7 +133873,7 @@ LAB_18012b465:
         SystemParameter1 = (void *)CONCAT44(ProcessStringBuffer,pSystemContextPrimaryFloat6[3]);
         RegisterFramePointer[-0x14] = (FilterInputValue4 + FilterInputValue2) * *pSystemContextPrimaryFloat6 + FilterInputValue8;
         RegisterFramePointer[-0x13] = (FilterInputValue4 + FilterInputValue2) * FilterInputValue6 + FilterInputValue5;
-        FUN_180293730(BufferStatus3,RegisterFramePointer + -0x14);
+        ConfigureSystemDataEx(BufferStatus3,RegisterFramePointer + -0x14);
         BufferStatus3 = SystemParameter2[0x5d];
         CheckSystemStatusAndProcess(BufferStatus3,*(void *)(BufferStatus3 + 0x88),*(uint32_t *)(BufferStatus3 + 0x80),
                       RegisterFramePointer[LoopIndex + 0x20],SystemParameter1);
@@ -135167,7 +135167,7 @@ LAB_18012b2d2:
       if (CharacterByteCount4 == 4) {
         SystemParameter1 =
              (void *)CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),AuxiliaryFloat13);
-        pSystemFloatValue = (float *)FUN_180131aa0(RegisterFramePointer + 0x18,2,0);
+        pSystemFloatValue = (float *)AllocateSystemFloatArray(RegisterFramePointer + 0x18,2,0);
         FilterInputValue0 = *pSystemFloatValue;
         FilterInputValue2 = pSystemFloatValue[1];
       }
@@ -136778,7 +136778,7 @@ LAB_18012b2d2:
     if (CharacterByteCount4 == 4) {
       SystemParameter1 =
            (void *)CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),AuxiliaryFloat13);
-      pSystemFloatValue = (float *)FUN_180131aa0(RegisterFramePointer + 0x18,2,0);
+      pSystemFloatValue = (float *)AllocateSystemFloatArray(RegisterFramePointer + 0x18,2,0);
       FilterInputValue1 = *pSystemFloatValue;
       FilterInputValue2 = pSystemFloatValue[1];
     }
@@ -138467,7 +138467,7 @@ LAB_18012b2d2:
       if (CharacterByteCount4 == 4) {
         SystemParameter1 =
              (void *)CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),AuxiliaryFloat13);
-        pSystemFloatValue = (float *)FUN_180131aa0(RegisterFramePointer + 0x18,2,0);
+        pSystemFloatValue = (float *)AllocateSystemFloatArray(RegisterFramePointer + 0x18,2,0);
         FilterInputValue0 = *pSystemFloatValue;
         FilterInputValue2 = pSystemFloatValue[1];
       }
@@ -200003,7 +200003,18 @@ uint64_t FUN_180174900(uint64_t CharacterCode,unsigned long long Utf8BufferSize,
 
 
 
-74950(unsigned long long *Utf8InputBuffervoid FUN_180174950(unsigned long long *Utf8InputBuffer
+/**
+ * @brief 处理UTF8输入缓冲区引用计数
+ * 
+ * 该函数负责处理UTF8输入缓冲区的引用计数管理，包括内存分配和释放。
+ * 在核心引擎中用于UTF8字符串处理时的内存管理。
+ * 
+ * @param Utf8InputBuffer UTF8输入缓冲区指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180174950
+ */
+void ProcessUtf8InputBufferReferenceCount(unsigned long long *Utf8InputBuffer)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -200044,7 +200055,18 @@ uint64_t FUN_180174900(uint64_t CharacterCode,unsigned long long Utf8BufferSize,
 
 
 
-749b0(unsigned long long *Utf8InputBuffervoid FUN_1801749b0(unsigned long long *Utf8InputBuffer
+/**
+ * @brief 处理UTF8输入缓冲区内存管理
+ * 
+ * 该函数负责处理UTF8输入缓冲区的内存管理，包括内存块的分配和释放。
+ * 在核心引擎中用于UTF8字符串处理时的内存块管理。
+ * 
+ * @param Utf8InputBuffer UTF8输入缓冲区指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_1801749b0
+ */
+void ProcessUtf8InputBufferMemoryManagement(unsigned long long *Utf8InputBuffer)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -200086,7 +200108,19 @@ uint64_t FUN_180174900(uint64_t CharacterCode,unsigned long long Utf8BufferSize,
 
 
 
-749d0(uint64_t CharacterCode,long long *Utf8InputBufferSizevoid FUN_1801749d0(uint64_t CharacterCode,long long *Utf8InputBufferSize
+/**
+ * @brief 处理UTF8字符编码转换
+ * 
+ * 该函数负责处理UTF8字符的编码转换，包括字符码点计算和缓冲区大小管理。
+ * 在核心引擎中用于UTF8字符编码的处理和转换。
+ * 
+ * @param CharacterCode 字符码点
+ * @param Utf8InputBufferSize UTF8输入缓冲区大小指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_1801749d0
+ */
+void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long *Utf8InputBufferSize)
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
@@ -200673,7 +200707,19 @@ uint64_t * FUN_1801754b0(uint64_t *Utf8InputBuffer
 
 
 
-75700(long long CharacterCode,long long Utf8BufferSizevoid FUN_180175700(long long CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理字符编码和缓冲区大小
+ * 
+ * 该函数负责处理字符编码和缓冲区大小的管理，包括字符码点处理和缓冲区大小计算。
+ * 在核心引擎中用于字符编码的处理和缓冲区管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180175700
+ */
+void ProcessCharacterEncodingAndBufferSize(long long CharacterCode, long long Utf8BufferSize)
 {
   short SystemShortValue1;
   long long BufferStatus;
@@ -274982,5 +275028,76 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_180058830
  */
 #define ProcessSystemStatusFlag FUN_180058830
+
+/**
+ * @brief 处理系统内存池块
+ * 
+ * 该函数负责处理系统内存池块，包括内存池的分配和管理。
+ * 在核心引擎中用于内存池的处理。
+ * 
+ * @param MemoryPoolPointer 内存池指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18006d0b0
+ */
+#define ProcessSystemMemoryPoolBlock FUN_18006d0b0
+
+/**
+ * @brief 处理系统内存池数据
+ * 
+ * 该函数负责处理系统内存池数据，包括内存池数据的处理和管理。
+ * 在核心引擎中用于内存池数据的处理。
+ * 
+ * @param MemoryPoolPointer 内存池指针
+ * @param DataPointer 数据指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18006d6c0
+ */
+#define ProcessSystemMemoryPoolData FUN_18006d6c0
+
+/**
+ * @brief 获取系统内存边界
+ * 
+ * 该函数负责获取系统内存边界，包括内存边界的计算和管理。
+ * 在核心引擎中用于内存边界的处理。
+ * 
+ * @return 内存边界指针
+ * 
+ * @note 原始函数名：FUN_18023a940
+ */
+#define GetSystemMemoryBoundary FUN_18023a940
+
+/**
+ * @brief 处理系统内存分配异常
+ * 
+ * 该函数负责处理系统内存分配异常，包括异常的处理和恢复。
+ * 在核心引擎中用于内存分配异常的处理。
+ * 
+ * @param ErrorCode 错误代码
+ * @param ErrorPointer 错误指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180220810
+ */
+#define ProcessSystemMemoryAllocationException FUN_180220810
+
+/**
+ * @brief 处理系统渲染上下文
+ * 
+ * 该函数负责处理系统渲染上下文，包括渲染上下文的管理和处理。
+ * 在核心引擎中用于渲染上下文的处理。
+ * 
+ * @param RenderContextPointer 渲染上下文指针
+ * @param DataPointer 数据指针
+ * @param Flag1 标志1
+ * @param Flag2 标志2
+ * @param Flag3 标志3
+ * @param FunctionPointer 函数指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18029e450
+ */
+#define ProcessSystemRenderContext FUN_18029e450
 
 

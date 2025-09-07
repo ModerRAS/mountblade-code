@@ -394104,148 +394104,159 @@ undefined8 FUN_18089f0b0(longlong uiContext,longlong *dataSource)
 
 
 
-undefined8 FUN_18089f112(void)
+/**
+ * @brief 处理UI状态码返回
+ * 
+ * 该函数负责处理UI状态码的返回逻辑，根据不同的状态值进行相应的处理
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18089f112
+ */
+#define ProcessUIStatusCodeReturn FUN_18089f112
+
+undefined8 ProcessUIStatusCodeReturn(void)
 
 {
-  longlong in_RAX;
-  undefined8 functionResult;
-  longlong *context;
-  longlong unaff_RSI;
-  undefined4 in_stack_000000b0;
+  longlong registerRAX;
+  undefined8 processingResult;
+  longlong *uiContext;
+  longlong registerRSI;
+  undefined4 statusCode;
   
-  if (*(int *)(in_RAX + 0x18) == 0) {
-    functionResult = FUN_180899ef0(*context,unaff_RSI + 0x10);
-    if (((int)functionResult == 0) &&
-       ((0x5a < *(uint *)(context + 8) || (functionResult = FUN_1808afd90(), (int)functionResult == 0)))) {
-      if (*(int *)(context[1] + 0x18) == 0) {
-        switch(*(undefined4 *)(unaff_RSI + 0x60)) {
+  if (*(int *)(registerRAX + 0x18) == 0) {
+    processingResult = FUN_180899ef0(*uiContext,registerRSI + 0x10);
+    if (((int)processingResult == 0) &&
+       ((0x5a < *(uint *)(uiContext + 8) || (processingResult = FUN_1808afd90(), (int)processingResult == 0)))) {
+      if (*(int *)(uiContext[1] + 0x18) == 0) {
+        switch(*(undefined4 *)(registerRSI + 0x60)) {
         default:
-          in_stack_000000b0 = 0;
+          statusCode = 0;
           break;
         case 1:
-          in_stack_000000b0 = 1;
+          statusCode = 1;
           break;
         case 2:
-          in_stack_000000b0 = 2;
+          statusCode = 2;
           break;
         case 3:
-          in_stack_000000b0 = 3;
+          statusCode = 3;
           break;
         case 4:
-          in_stack_000000b0 = 4;
+          statusCode = 4;
           break;
         case 5:
-          in_stack_000000b0 = 5;
+          statusCode = 5;
           break;
         case 6:
-          in_stack_000000b0 = 6;
+          statusCode = 6;
           break;
         case 7:
-          in_stack_000000b0 = 7;
+          statusCode = 7;
           break;
         case 8:
-          in_stack_000000b0 = 8;
+          statusCode = 8;
           break;
         case 9:
-          in_stack_000000b0 = 9;
+          statusCode = 9;
           break;
         case 10:
-          in_stack_000000b0 = 10;
+          statusCode = 10;
           break;
         case 0xb:
-          in_stack_000000b0 = 0xb;
+          statusCode = 0xb;
           break;
         case 0xc:
-          in_stack_000000b0 = 0xc;
+          statusCode = 0xc;
           break;
         case 0xd:
-          in_stack_000000b0 = 0xd;
+          statusCode = 0xd;
           break;
         case 0xe:
-          in_stack_000000b0 = 0xe;
+          statusCode = 0xe;
           break;
         case 0xf:
-          in_stack_000000b0 = 0xf;
+          statusCode = 0xf;
           break;
         case 0x10:
-          in_stack_000000b0 = 0x10;
+          statusCode = 0x10;
           break;
         case 0x11:
-          in_stack_000000b0 = 0x11;
+          statusCode = 0x11;
           break;
         case 0x12:
-          in_stack_000000b0 = 0x12;
+          statusCode = 0x12;
           break;
         case 0x13:
-          in_stack_000000b0 = 0x13;
+          statusCode = 0x13;
           break;
         case 0x14:
-          in_stack_000000b0 = 0x14;
+          statusCode = 0x14;
           break;
         case 0x15:
-          in_stack_000000b0 = 0x15;
+          statusCode = 0x15;
           break;
         case 0x16:
-          in_stack_000000b0 = 0x16;
+          statusCode = 0x16;
           break;
         case 0x17:
-          in_stack_000000b0 = 0x17;
+          statusCode = 0x17;
           break;
         case 0x18:
-          in_stack_000000b0 = 0x18;
+          statusCode = 0x18;
           break;
         case 0x19:
-          in_stack_000000b0 = 0x19;
+          statusCode = 0x19;
           break;
         case 0x1a:
-          in_stack_000000b0 = 0x1a;
+          statusCode = 0x1a;
           break;
         case 0x1b:
-          in_stack_000000b0 = 0x1b;
+          statusCode = 0x1b;
           break;
         case 0x1c:
-          in_stack_000000b0 = 0x1c;
+          statusCode = 0x1c;
           break;
         case 0x1d:
-          in_stack_000000b0 = 0x1d;
+          statusCode = 0x1d;
           break;
         case 0x1e:
-          in_stack_000000b0 = 0x1e;
+          statusCode = 0x1e;
           break;
         case 0x1f:
-          in_stack_000000b0 = 0x1f;
+          statusCode = 0x1f;
           break;
         case 0x20:
-          in_stack_000000b0 = 0x20;
+          statusCode = 0x20;
           break;
         case 0x21:
-          in_stack_000000b0 = 0x21;
+          statusCode = 0x21;
           break;
         case 0x22:
-          in_stack_000000b0 = 0x22;
+          statusCode = 0x22;
           break;
         case 0x23:
-          in_stack_000000b0 = 0x23;
+          statusCode = 0x23;
           break;
         case 0x24:
-          in_stack_000000b0 = 0x24;
+          statusCode = 0x24;
         }
-        functionResult = (**(code **)**(undefined8 **)(*context + 8))
-                          (*(undefined8 **)(*context + 8),&stack0x000000b0,4);
-        if (((int)functionResult == 0) && (functionResult = FUN_1808a7c90(), (int)functionResult == 0)) {
+        processingResult = (**(code **)**(undefined8 **)(*uiContext + 8))
+                          (*(undefined8 **)(*uiContext + 8),&statusCode,4);
+        if (((int)processingResult == 0) && (processingResult = FUN_1808a7c90(), (int)processingResult == 0)) {
                     // WARNING: Subroutine does not return
           FUN_1808de000();
         }
       }
       else {
-        functionResult = 0x1c;
+        processingResult = 0x1c;
       }
     }
   }
   else {
-    functionResult = 0x1c;
+    processingResult = 0x1c;
   }
-  return functionResult;
+  return processingResult;
 }
 
 
