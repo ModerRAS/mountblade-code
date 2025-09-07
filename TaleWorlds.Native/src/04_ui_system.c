@@ -2255,6 +2255,12 @@ void* UIGestureCoordinates;
 #define ThunkUIVerificationFunction thunk_FUN_1808e3970
 #define ThunkUISystemChecker thunk_FUN_180865550
 
+// UI系统内存初始化函数
+// 初始化UI系统的内存区域，清零指定大小的内存块
+// 用于系统启动时的内存准备和资源清理
+// 原始函数名: FUN_180703200
+#define InitializeUIMemoryArea FUN_180703200
+
 // UI系统func函数宏定义
 #define CleanupUIContext func_0x0001806980f0
 #define ResetUISystemState func_0x0001806980d0
