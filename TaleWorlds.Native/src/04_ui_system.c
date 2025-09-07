@@ -77219,46 +77219,57 @@ LAB_1807100a5:
 
 
 
- void FUN_18070fe0f(void)
-void FUN_18070fe0f(void)
+ /**
+ * UI组件数据处理器
+ * 对UI组件数据进行复杂的数学运算和过滤处理
+ * 用于UI系统中的数据预处理和优化
+ * 
+ * @param componentData 组件数据指针
+ * @param minValue 最小值阈值
+ * @param maxValue 最大值阈值
+ * @param componentCount 组件数量
+ * @param stride 数据步长
+ */
+void ProcessUIComponentData(void)
+void ProcessUIComponentData(void)
 
 {
-  float *pfloatResult;
-  float localFloat2;
-  bool bVar3;
-  int localInt4;
-  uint LoopCounter;
-  int localInt6;
-  int localInt7;
-  longlong localLong8;
-  ulonglong uVar9;
-  float *pfloatResult0;
-  int uiOperationResult1;
-  longlong allocatedMemory2;
-  longlong unmodifiedRBP;
-  longlong allocatedMemory3;
-  int uiOperationResult4;
-  int uiOperationResult5;
-  float *register10;
-  longlong register11;
-  int unmodifiedR13D;
-  int uiOperationResult6;
-  longlong unmodifiedR14;
-  float floatResult7;
-  float floatResult8;
-  float floatResult9;
-  float localFloat20;
-  float in_XMM3_Da;
-  float in_XMM4_Da;
-  longlong componentIndex1;
-  float *stackParam000000c8;
+  float *resultData;
+  float scaleFactor;
+  bool needsProcessing;
+  int dataOffset;
+  uint elementIndex;
+  int processedCount;
+  int tempIndex;
+  longlong tempOffset;
+  ulonglong elementCounter;
+  float *tempResultData;
+  int operationResult;
+  longlong memoryAddress2;
+  longlong contextBase;
+  longlong memoryAddress3;
+  int operationResult2;
+  int operationResult3;
+  float *inputData;
+  longlong dataBase;
+  int maxElements;
+  int componentStride;
+  longlong componentIndex;
+  float resultValue1;
+  float resultValue2;
+  float resultValue3;
+  float accumulatedValue;
+  float minValueThreshold;
+  float maxValueThreshold;
+  longlong currentComponent;
+  float *stackBuffer;
   
-  componentIndex1 = unmodifiedR14;
+  currentComponent = componentIndex;
   do {
-    localFloat2 = *register10;
-    pfloatResult = (float *)(register11 + (longlong)register10);
-    localInt6 = 0;
-    uiOperationResult6 = (int)unmodifiedR14;
+    scaleFactor = *inputData;
+    resultData = (float *)(dataBase + (longlong)inputData);
+    processedCount = 0;
+    componentStride = (int)componentIndex;
     if (3 < unmodifiedR13D) {
       uiOperationResult1 = uiOperationResult6 * 2;
       do {
