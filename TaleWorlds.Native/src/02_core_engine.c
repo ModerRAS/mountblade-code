@@ -169941,7 +169941,7 @@ void ProcessSystemDataSynchronize(void)
         if (0 < *(int *)(SystemConfigurationHandle + 0x2e18)) {
           StringProcessingStatus = (uint *)(*(long long *)(SystemConfigurationHandle + 0x2e20) + 8);
           do {
-            if (*StringProcessingStatus == ~MemoryAddressMask) {
+            if (*StringProcessingStatus == ~HashValue) {
               PatternIndex = (long long)StringLength * 0x30 + *(long long *)(SystemConfigurationHandle + 0x2e20);
               if (PatternIndex == 0) goto LAB_18013ccf1;
               StackFrameAddressPointer = (**(code **)(PatternIndex + 0x10))();
@@ -169960,8 +169960,8 @@ LAB_18013ccf1:
       }
     }
 LAB_18013cd32:
-    DataNodePointer = FunctionPointer + 1;
-    if (RegisterR12Value <= DataNodePointer) {
+    DataNodePointer = LineEndPointer + 1;
+    if (BufferEndPointer <= DataNodePointer) {
       if ((StackProcessingParameter58 != 0) && (SystemConfigurationHandle != 0)) {
         *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
       }

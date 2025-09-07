@@ -102,14 +102,14 @@
 // UI系统变量名美化宏定义
 #define bVar2 IsEventProcessingActive
 #define bVar8 EventProcessingResult
-#define pbVar5 CharacterDataPointer
+#define pIsValidationComplete CharacterDataPointer
 #define localLong9 CharacterDataOffset
 #define uVar3 EventTypeCode
 #define uVar4 ProcessingStatus
 #define localLong5 EventDataIndex
 #define uVar5 LoopCounter
 #define uVar6 MaxProcessingCount
-#define bVar5 IsValidationComplete
+#define IsValidationComplete IsValidationComplete
 #define ProcessUIRenderOperation FUN_180690580
 #define ProcessUIDataTransfer ProcessUIComponentBlend
 #define InitializeUILayoutSystem FUN_180707a56
@@ -10256,7 +10256,7 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
     localFloat29 = transformY;
     localFloat28 = transformX;
     componentIndex3 = 0;
-    bVar5 = true;
+    IsValidationComplete = true;
     uiValidationResult4 = 0;
     if (3 < stackLong1a0) {
       localLong4 = uiContext[0x11];
@@ -10267,43 +10267,43 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
       componentIndex3 = componentIndex2 * 4;
       do {
         allocatedMemory5 = (longlong)((uiValidationResult1 + -1) % uiOperationResult8);
-        if ((!bVar5) ||
+        if ((!IsValidationComplete) ||
            ((localFloat31 = (pfloatResult7[-4] - *(float *)(localLong4 + 4 + allocatedMemory5 * 8))                       (rotationAngleX - pfloatResult7[-5]) -
                       (rotationAngleY - pfloatResult7[-4]) * (pfloatResult7[-5] - *(float *)(localLong4 + allocatedMemory5 * 8)),
             localFloat31 <= 0.0 && (localFloat31 < 0.0)))) {
-          bVar5 = false;
+          IsValidationComplete = false;
         }
         else {
-          bVar5 = true;
+          IsValidationComplete = true;
         }
-        if ((!bVar5) ||
+        if ((!IsValidationComplete) ||
            ((localFloat31 = (pfloatResult7[-2] - *(float *)(localLong4 + 4 + (longlong)(uiValidationResult1 % uiOperationResult8) * 8))                       (rotationAngleX - pfloatResult7[-3]) -
                       (rotationAngleY - pfloatResult7[-2])                       (pfloatResult7[-3] - *(float *)(localLong4 + (longlong)(uiValidationResult1 % uiOperationResult8) * 8)),
             localFloat31 <= 0.0 && (localFloat31 < 0.0)))) {
-          bVar5 = false;
+          IsValidationComplete = false;
         }
         else {
-          bVar5 = true;
+          IsValidationComplete = true;
         }
         allocatedMemory5 = (longlong)((uiValidationResult1 + 1) % uiOperationResult8);
-        if ((!bVar5) ||
+        if ((!IsValidationComplete) ||
            ((localFloat31 = (*pfloatResult7 - *(float *)(localLong4 + 4 + allocatedMemory5 * 8)) * (rotationAngleX - pfloatResult7[-1]) -
                       (rotationAngleY - *pfloatResult7) * (pfloatResult7[-1] - *(float *)(localLong4 + allocatedMemory5 * 8)),
             localFloat31 <= 0.0 && (localFloat31 < 0.0)))) {
-          bVar5 = false;
+          IsValidationComplete = false;
         }
         else {
-          bVar5 = true;
+          IsValidationComplete = true;
         }
         allocatedMemory5 = (longlong)((uiValidationResult1 + 2) % uiOperationResult8);
-        if ((!bVar5) ||
+        if ((!IsValidationComplete) ||
            ((localFloat31 = (pfloatResult7[2] - *(float *)(localLong4 + 4 + allocatedMemory5 * 8)) * (rotationAngleX - pfloatResult7[1])
                       - (rotationAngleY - pfloatResult7[2]) * (pfloatResult7[1] - *(float *)(localLong4 + allocatedMemory5 * 8)),
             localFloat31 <= 0.0 && (localFloat31 < 0.0)))) {
-          bVar5 = false;
+          IsValidationComplete = false;
         }
         else {
-          bVar5 = true;
+          IsValidationComplete = true;
         }
         uiValidationResult1 = uiValidationResult1 + 4;
         pfloatResult7 = pfloatResult7 + 8;
@@ -10314,22 +10314,22 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
       localLong4 = uiContext[0x11];
       do {
         uiValidationResult4 = uiValidationResult4 + 1;
-        if ((!bVar5) ||
+        if ((!IsValidationComplete) ||
            ((localFloat31 = *(float *)(localLong4 + 4 + componentIndex3 * 8), localFloat33 = *(float *)(localLong4 + componentIndex3 * 8),
             localFloat31 = (localFloat31 - *(float *)(localLong4 + 4 + (longlong)(uiValidationResult4 % uiOperationResult8) * 8))                      (rotationAngleX - localFloat33) -
                      (rotationAngleY - localFloat31)                      (localFloat33 - *(float *)(localLong4 + (longlong)(uiValidationResult4 % uiOperationResult8) * 8)), localFloat31 <= 0.0
             && (localFloat31 < 0.0)))) {
-          bVar5 = false;
+          IsValidationComplete = false;
         }
         else {
-          bVar5 = true;
+          IsValidationComplete = true;
         }
         componentIndex3 = componentIndex3 + 1;
       } while (componentIndex3 < stackLong1a0);
     }
     localFloat31 = localFloat28;
     localFloat33 = localFloat29;
-    if (bVar5) {
+    if (IsValidationComplete) {
       if (resultPointer == '\0') {
         if ((0.0 < localFloat25 * localFloat32) ||
            ((localFloat27 = localFloat32 - localFloat25, -1e-05 < localFloat27 && (localFloat27 < 1e-05)))) {
@@ -26149,7 +26149,7 @@ void InitializeUIRenderingFunctions(void)
   longlong componentIndex;
   uint EventTypeCode;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   bool bVar6;
   bool bVar7;
   bool bVar8;
@@ -26158,7 +26158,7 @@ void InitializeUIRenderingFunctions(void)
   ptrResult = (uint *)cpuid_basic_info(0);
   bVar7 = false;
   bVar8 = false;
-  bVar5 = false;
+  IsValidationComplete = false;
   bVar6 = false;
   bVar4 = false;
   if (*ptrResult != 0) {
@@ -26167,15 +26167,15 @@ void InitializeUIRenderingFunctions(void)
     bVar8 = (EventTypeCode & 1) != 0;
     bVar6 = (EventTypeCode >> 9 & 1) != 0;
     bVar7 = (EventTypeCode >> 0x13 & 1) != 0;
-    bVar5 = false;
+    IsValidationComplete = false;
     bVar4 = false;
     if (((EventTypeCode & 0x18000000) == 0x18000000) && ((in_XCR0 & 6) == 6)) {
-      bVar5 = true;
+      IsValidationComplete = true;
       bVar4 = false;
       if ((6 < *ptrResult) &&
          (componentIndex = cpuid_Extended_Feature_Enumeration_info(7), bVar4 = false,
          (*(uint *)(componentIndex + 4) & 0x20) != 0)) {
-        bVar5 = true;
+        IsValidationComplete = true;
         bVar4 = true;
       }
     }
@@ -26329,14 +26329,14 @@ void InitializeUIRenderingFunctions(void)
   if (bVar6) {
     UIPixelProcessorPointer = (code *)&UIPixelProcessorFallbackImplementation;
   }
-  if (bVar5) {
+  if (IsValidationComplete) {
     UIPixelProcessorPointer = (code *)&UIPixelProcessorAlternativeFallbackImplementation;
   }
   UIImageProcessorPointer = InitializeUIImageProcessor;
   if (bVar6) {
     UIImageProcessorPointer = (code *)&UIImageProcessorFallbackImplementation;
   }
-  if (bVar5) {
+  if (IsValidationComplete) {
     UIImageProcessorPointer = (code *)&UIImageProcessorAlternativeFallbackImplementation;
   }
   UIColorProcessorPointer = InitializeUIColorProcessor;
@@ -38821,7 +38821,7 @@ void ProcessColorDataRGB(undefined1 *outputBuffer,longlong stride,byte *colorDat
   byte IsEventProcessingActive;
   byte bVar3;
   byte bVar4;
-  byte bVar5;
+  byte IsValidationComplete;
   byte bVar6;
   byte bVar7;
   byte bVar8;
@@ -38831,7 +38831,7 @@ void ProcessColorDataRGB(undefined1 *outputBuffer,longlong stride,byte *colorDat
   IsEventProcessingActive = *targetBuffer;
   bVar3 = targetBuffer[1];
   bVar4 = targetBuffer[2];
-  bVar5 = *bufferSize;
+  IsValidationComplete = *bufferSize;
   bVar6 = bufferSize[1];
   bVar7 = bufferSize[2];
   result0 = (uint)targetBuffer[-1];
@@ -38847,9 +38847,9 @@ void ProcessColorDataRGB(undefined1 *outputBuffer,longlong stride,byte *colorDat
   uiContext[2] = uVar9;
   uiContext[3] = (char)((int)(bVar4 + 1 + (uint)bVar8) >> 1);
   ptrResult = uiContext + dataSource * 3;
-  *ptrResult = (char)((int)((uint)bVar7 + (bVar6 + 1) * 2 + (uint)bVar5) >> 2);
-  uiContext[dataSource * 2] = (char)((int)(result0 + (bVar5 + 1) * 2 + (uint)bVar6) >> 2);
-  uVar9 = (undefined1)((int)((uint)IsEventProcessingActive + result0 * 2 + bVar5 + 2) >> 2);
+  *ptrResult = (char)((int)((uint)bVar7 + (bVar6 + 1) * 2 + (uint)IsValidationComplete) >> 2);
+  uiContext[dataSource * 2] = (char)((int)(result0 + (IsValidationComplete + 1) * 2 + (uint)bVar6) >> 2);
+  uVar9 = (undefined1)((int)((uint)IsEventProcessingActive + result0 * 2 + IsValidationComplete + 2) >> 2);
   ptrResult[1] = uVar9;
   uiContext[dataSource] = uVar9;
   uVar9 = (undefined1)((int)((uint)bVar3 + (IsEventProcessingActive + 1) * 2 + result0) >> 2);
@@ -39504,7 +39504,7 @@ void ManageUIMemoryInternal(undefined1 *uiContext,longlong dataSource,byte *targ
   byte IsEventProcessingActive;
   byte bVar3;
   byte bVar4;
-  byte bVar5;
+  byte IsValidationComplete;
   byte bVar6;
   undefined1 eventTypeCode;
   uint uVar8;
@@ -39515,13 +39515,13 @@ void ManageUIMemoryInternal(undefined1 *uiContext,longlong dataSource,byte *targ
   uVar9 = (uint)targetBuffer[5];
   bVar3 = targetBuffer[6];
   bVar4 = targetBuffer[1];
-  bVar5 = targetBuffer[2];
+  IsValidationComplete = targetBuffer[2];
   bVar6 = targetBuffer[7];
-  *uiContext = (char)((int)((uint)*targetBuffer + (uint)bVar5 + (bVar4 + 1) * 2) >> 2);
-  eventTypeCode = (undefined1)((int)(uVar8 + (bVar5 + 1) * 2 + (uint)bVar4) >> 2);
+  *uiContext = (char)((int)((uint)*targetBuffer + (uint)IsValidationComplete + (bVar4 + 1) * 2) >> 2);
+  eventTypeCode = (undefined1)((int)(uVar8 + (IsValidationComplete + 1) * 2 + (uint)bVar4) >> 2);
   uiContext[dataSource] = eventTypeCode;
   uiContext[1] = eventTypeCode;
-  eventTypeCode = (undefined1)((int)((uint)IsEventProcessingActive + (uVar8 + 1) * 2 + (uint)bVar5) >> 2);
+  eventTypeCode = (undefined1)((int)((uint)IsEventProcessingActive + (uVar8 + 1) * 2 + (uint)IsValidationComplete) >> 2);
   uiContext[dataSource * 2] = eventTypeCode;
   uiContext[dataSource + 1] = eventTypeCode;
   ptrResult = uiContext + dataSource * 3;
@@ -39557,7 +39557,7 @@ void ProcessUIColorConversion(undefined1 *uiContext,longlong dataSource,byte *ta
   byte IsEventProcessingActive;
   byte bVar3;
   byte bVar4;
-  byte bVar5;
+  byte IsValidationComplete;
   byte bVar6;
   byte bVar7;
   undefined1 uVar8;
@@ -39567,7 +39567,7 @@ void ProcessUIColorConversion(undefined1 *uiContext,longlong dataSource,byte *ta
   bVar3 = targetBuffer[5];
   uVar9 = (uint)targetBuffer[3];
   bVar4 = targetBuffer[6];
-  bVar5 = targetBuffer[7];
+  IsValidationComplete = targetBuffer[7];
   bVar6 = targetBuffer[1];
   bVar7 = targetBuffer[2];
   *uiContext = (char)((int)((uint)*targetBuffer + (uint)bVar7 + (bVar6 + 1) * 2) >> 2);
@@ -39588,10 +39588,10 @@ void ProcessUIColorConversion(undefined1 *uiContext,longlong dataSource,byte *ta
   ptrResult[1] = uVar8;
   uiContext[dataSource * 2 + 2] = uVar8;
   uiContext[dataSource + 3] = uVar8;
-  uVar8 = (undefined1)((int)((uint)bVar5 + (uint)bVar4 * 2 + bVar3 + 2) >> 2);
+  uVar8 = (undefined1)((int)((uint)IsValidationComplete + (uint)bVar4 * 2 + bVar3 + 2) >> 2);
   ptrResult[2] = uVar8;
   uiContext[dataSource * 2 + 3] = uVar8;
-  ptrResult[3] = (char)((int)((uint)bVar4 + (uint)bVar5 * 2 + bVar5 + 2) >> 2);
+  ptrResult[3] = (char)((int)((uint)bVar4 + (uint)IsValidationComplete * 2 + IsValidationComplete + 2) >> 2);
   return;
 }
 
@@ -39797,7 +39797,7 @@ void ProcessUIInputData(undefined1 *uiContext,longlong dataSource,byte *targetBu
   byte IsEventProcessingActive;
   byte bVar3;
   byte bVar4;
-  byte bVar5;
+  byte IsValidationComplete;
   byte bVar6;
   byte bVar7;
   byte bVar8;
@@ -39807,13 +39807,13 @@ void ProcessUIInputData(undefined1 *uiContext,longlong dataSource,byte *targetBu
   IsEventProcessingActive = targetBuffer[2];
   bVar3 = targetBuffer[3];
   bVar4 = targetBuffer[4];
-  bVar5 = targetBuffer[1];
+  IsValidationComplete = targetBuffer[1];
   bVar6 = targetBuffer[5];
   bVar7 = *targetBuffer;
   bVar8 = targetBuffer[6];
   bVar9 = targetBuffer[7];
-  *uiContext = (char)((int)(bVar7 + 1 + (uint)bVar5) >> 1);
-  result0 = (undefined1)((int)(bVar5 + 1 + (uint)IsEventProcessingActive) >> 1);
+  *uiContext = (char)((int)(bVar7 + 1 + (uint)IsValidationComplete) >> 1);
+  result0 = (undefined1)((int)(IsValidationComplete + 1 + (uint)IsEventProcessingActive) >> 1);
   uiContext[dataSource * 2] = result0;
   uiContext[1] = result0;
   result0 = (undefined1)((int)(IsEventProcessingActive + 1 + (uint)bVar3) >> 1);
@@ -39823,9 +39823,9 @@ void ProcessUIInputData(undefined1 *uiContext,longlong dataSource,byte *targetBu
   uiContext[dataSource * 2 + 2] = result0;
   uiContext[3] = result0;
   uiContext[dataSource * 2 + 3] = (char)((int)((uint)bVar8 + (bVar6 + 1) * 2 + (uint)bVar4) >> 2);
-  uiContext[dataSource] = (char)((int)((uint)IsEventProcessingActive + (bVar5 + 1) * 2 + (uint)bVar7) >> 2);
+  uiContext[dataSource] = (char)((int)((uint)IsEventProcessingActive + (IsValidationComplete + 1) * 2 + (uint)bVar7) >> 2);
   ptrResult = uiContext + dataSource * 3;
-  result0 = (undefined1)((int)((uint)IsEventProcessingActive * 2 + 2 + (uint)bVar3 + (uint)bVar5) >> 2);
+  result0 = (undefined1)((int)((uint)IsEventProcessingActive * 2 + 2 + (uint)bVar3 + (uint)IsValidationComplete) >> 2);
   *ptrResult = result0;
   uiContext[dataSource + 1] = result0;
   result0 = (undefined1)((int)((uint)bVar4 + (uint)bVar3 * 2 + IsEventProcessingActive + 2) >> 2);
@@ -81125,7 +81125,7 @@ uint FUN_1807147f0(longlong uiContext,int dataSource,uint targetBuffer,int buffe
   longlong *colorBufferPointer;
   int *puiCompareResult;
   uint *bufferPtr;
-  bool bVar5;
+  bool IsValidationComplete;
   bool bVar6;
   int localInt7;
   longlong localLong8;
@@ -81171,8 +81171,8 @@ uint FUN_1807147f0(longlong uiContext,int dataSource,uint targetBuffer,int buffe
   uiOperationResult1 = 0;
   semaphoreHandle1 = (ulonglong)(int)targetBuffer;
   uiOperationResult3 = uiContext9 * 8;
-  bVar5 = 1 < uiContext9;
-  aProcessingStatus1 = ZEXT116(bVar5);
+  IsValidationComplete = 1 < uiContext9;
+  aProcessingStatus1 = ZEXT116(IsValidationComplete);
   stackLong90 = 6;
   semaphoreHandle2 = semaphoreHandle1;
   uiOperationResult4 = 0x40;
@@ -81513,7 +81513,7 @@ LAB_18071500a:
         uiOperationResult4 = (int)((ulonglong)semaphoreHandle0 / (ulonglong)result7 >> 3);
         *puiCompareResult = uiOperationResult4;
         if (*puiOperationResult2 >> 3 < uiOperationResult4 * uiContext9) {
-          uiOperationResult4 = (*puiOperationResult2 >> bVar5) >> 3;
+          uiOperationResult4 = (*puiOperationResult2 >> IsValidationComplete) >> 3;
           *puiCompareResult = uiOperationResult4;
         }
         uiOperationResult1 = 8;
@@ -81527,7 +81527,7 @@ LAB_18071500a:
       }
       if (0 < uiOperationResult3) {
         uiOperationResult4 = *(int *)(componentIndex4 + (longlong)puiOperationResult2);
-        uiOperationResult1 = uiOperationResult3 >> bVar5 + 3;
+        uiOperationResult1 = uiOperationResult3 >> IsValidationComplete + 3;
         uiOperationResult6 = 8 - uiOperationResult4;
         if (uiOperationResult6 <= uiOperationResult1) {
           uiOperationResult1 = uiOperationResult6;
@@ -81596,7 +81596,7 @@ LAB_18071500a:
     puiOperationResult2 = (int *)(uiContext7 + localLong8 * 4);
     do {
       puiCompareResult = puiOperationResult2 + 1;
-      *puiOperationResult2 = (*(int *)((uiContext6 - uiContext7) + (longlong)puiOperationResult2) >> bVar5) >> 3;
+      *puiOperationResult2 = (*(int *)((uiContext6 - uiContext7) + (longlong)puiOperationResult2) >> IsValidationComplete) >> 3;
       *(undefined4 *)((uiContext6 - uiContext7) + -4 + (longlong)puiCompareResult) = 0;
       *(uint *)((uiContext8 - uiContext7) + -4 + (longlong)puiCompareResult) = (uint)(*puiOperationResult2 < 1);
       componentIndex3 = componentIndex3 + -1;
@@ -81619,7 +81619,7 @@ void FUN_1807152b0(longlong uiContext,longlong dataSource,longlong targetBuffer,
   bool IsEventProcessingActive;
   int uiCompareResult;
   int localInt4;
-  byte bVar5;
+  byte IsValidationComplete;
   int *ptrLocalInt6;
   longlong localLong7;
   int localInt8;
@@ -81642,18 +81642,18 @@ void FUN_1807152b0(longlong uiContext,longlong dataSource,longlong targetBuffer,
   
   if (param_7 < param_8) {
     allocatedMemory3 = (longlong)param_7 * 2;
-    bVar5 = (byte)bufferSize;
-    uiOperationResult6 = 1 << (bVar5 & 0x1f);
+    IsValidationComplete = (byte)bufferSize;
+    uiOperationResult6 = 1 << (IsValidationComplete & 0x1f);
     stackInte8 = resultPointer * param_7;
     ptrLocalInt6 = (int *)(uiContext2 + (longlong)param_7 * 4);
     do {
       result0 = (int)*(short *)(allocatedMemory3 + 2 + *(longlong *)(uiBufferData + 0x20)) -
                (int)*(short *)(allocatedMemory3 + *(longlong *)(uiBufferData + 0x20));
-      dVar19 = (double)exp((double)((float)(int)((*ptrLocalInt6 + 1U) / result0 >> (bVar5 & 0x1f)) * -0.125
+      dVar19 = (double)exp((double)((float)(int)((*ptrLocalInt6 + 1U) / result0 >> (IsValidationComplete & 0x1f)) * -0.125
                                    ) * 0.6931471805599453,
                            (ulonglong)(*ptrLocalInt6 + 1U) % (ulonglong)result0);
       uiOperationResult5 = 0;
-      uiCompareResult = result0 << (bVar5 & 0x1f);
+      uiCompareResult = result0 << (IsValidationComplete & 0x1f);
       uiOperationResult4 = 0;
       asemaphoreHandle2._0_8_ = (double)uiCompareResult;
       asemaphoreHandle2._8_8_ = 0;
@@ -81696,7 +81696,7 @@ void FUN_1807152b0(longlong uiContext,longlong dataSource,longlong targetBuffer,
         in_XMM1 = ZEXT416((uint)localFloat21);
         CharacterDataOffset = dataSource + ((longlong)
                            ((int)*(short *)(allocatedMemory3 + *(longlong *)(uiBufferData + 0x20)) <<
-                           (bVar5 & 0x1f)) + (longlong)uiOperationResult4) * 4;
+                           (IsValidationComplete & 0x1f)) + (longlong)uiOperationResult4) * 4;
         if (0 < uiOperationResult6) {
           result2 = 1;
           do {
@@ -81709,7 +81709,7 @@ void FUN_1807152b0(longlong uiContext,longlong dataSource,longlong targetBuffer,
                   if ((uiContext3 >> 0xf & 1) == 0) {
                     floatResult8 = -localFloat21;
                   }
-                  localInt4 = localInt8 << (bVar5 & 0x1f);
+                  localInt4 = localInt8 << (IsValidationComplete & 0x1f);
                   localInt8 = localInt8 + 1;
                   *(float *)(CharacterDataOffset + (longlong)(localInt4 + uiOperationResult1) * 4) = floatResult8;
                 } while (localInt8 < (int)result0);
@@ -97947,7 +97947,7 @@ void FUN_180728050(longlong uiContext,int dataSource,int targetBuffer,longlong *
   char localChar2;
   int uiCompareResult;
   int localInt4;
-  byte bVar5;
+  byte IsValidationComplete;
   int localInt6;
   int localInt7;
   uint *ptrLocal8;
@@ -98078,11 +98078,11 @@ void FUN_180728050(longlong uiContext,int dataSource,int targetBuffer,longlong *
     return;
   }
   uiOperationResult6 = uiOperationResult6 + -7;
-  bVar5 = (byte)uiOperationResult6;
-  result0 = (result0 >> (bVar5 & 0x1f)) + 1;
+  IsValidationComplete = (byte)uiOperationResult6;
+  result0 = (result0 >> (IsValidationComplete & 0x1f)) + 1;
   uVar9 = result2 / result0;
-  uiOperationResult1 = result0 - (result5 >> (bVar5 & 0x1f));
-  if (result5 >> (bVar5 & 0x1f) == 0) {
+  uiOperationResult1 = result0 - (result5 >> (IsValidationComplete & 0x1f));
+  if (result5 >> (IsValidationComplete & 0x1f) == 0) {
     uVar9 = result2 - (uiOperationResult1 + -1) * uVar9;
   }
   else {
@@ -98111,7 +98111,7 @@ void FUN_180728050(longlong uiContext,int dataSource,int targetBuffer,longlong *
     } while (7 < uiOperationResult1);
   }
   *(int *)(bufferSize + 3) = (int)bufferSize[3] + uiOperationResult6;
-  *(uint *)(bufferSize + 2) = ((1 << (bVar5 & 0x1f)) - 1U & result5) << ((byte)uiOperationResult1 & 0x1f) | result2;
+  *(uint *)(bufferSize + 2) = ((1 << (IsValidationComplete & 0x1f)) - 1U & result5) << ((byte)uiOperationResult1 & 0x1f) | result2;
   *(int *)((longlong)bufferSize + 0x14) = uiOperationResult1 + uiOperationResult6;
   return;
 }
@@ -134315,7 +134315,7 @@ ulonglong FUN_18074d99f(int uiContext,int dataSource)
   longlong unmodifiedRBP;
   undefined8 unmodifiedRSI;
   longlong localLong4;
-  bool bVar5;
+  bool IsValidationComplete;
   
   if (dataSource < uiContext) {
     localLong4 = (longlong)dataSource * 8;
@@ -134337,8 +134337,8 @@ ulonglong FUN_18074d99f(int uiContext,int dataSource)
   }
   *(undefined8 *)(context[2] + (longlong)uiContext * 8) = unmodifiedRSI;
   localLong4 = context[1];
-  bVar5 = localLong4 != 0;
-  if (bVar5) {
+  IsValidationComplete = localLong4 != 0;
+  if (IsValidationComplete) {
     func_0x000180743c20(localLong4,1);
   }
   result = FUN_1807593d0();
@@ -134349,7 +134349,7 @@ ulonglong FUN_18074d99f(int uiContext,int dataSource)
       if (result != 0) goto LAB_18074da75;
       stringCompareIndex = *(longlong *)(unmodifiedRBP + -0x10);
     }
-    if ((bVar5) && (localLong4 != 0)) {
+    if ((IsValidationComplete) && (localLong4 != 0)) {
                      WARNING: Subroutine does not return
       FUN_180743d60(localLong4,1);
     }
@@ -134361,7 +134361,7 @@ ulonglong FUN_18074d99f(int uiContext,int dataSource)
   else {
 LAB_18074da75:
     semaphoreHandle = (ulonglong)result;
-    if ((bVar5) && (localLong4 != 0)) {
+    if ((IsValidationComplete) && (localLong4 != 0)) {
                      WARNING: Subroutine does not return
       FUN_180743d60(localLong4,1);
     }
@@ -143398,7 +143398,7 @@ undefined8 FUN_180758220(longlong *uiContext,byte dataSource)
   int *puiValidationResult;
   longlong stringCompareIndex;
   longlong localLong4;
-  bool bVar5;
+  bool IsValidationComplete;
   char localChar6;
   uint eventTypeCode;
   undefined8 uVar8;
@@ -143501,16 +143501,16 @@ LAB_18075833f:
     return uVar8;
   }
   if (((*(byte *)(uiContext[0x3b] + 0x3c) & 0x40) == 0) || (stringCompareIndex != uiContext[0x3b])) {
-    bVar5 = false;
+    IsValidationComplete = false;
     if ((*(undefined8 **)(stringCompareIndex + 0x28) != (undefined8 *)0x0) &&
        (localChar6 = (**(code **)**(undefined8 **)(stringCompareIndex + 0x28))(), localChar6 != '\0')) {
-      bVar5 = true;
+      IsValidationComplete = true;
       func_0x000180743c20(uiContext[1],8);
     }
     *(undefined8 *)(stringCompareIndex + 0x28) = 0;
     *(undefined8 *)(stringCompareIndex + 0x30) = 0;
     *(undefined8 *)(stringCompareIndex + 0x18) = 0;
-    if (bVar5) {
+    if (IsValidationComplete) {
                      WARNING: Subroutine does not return
       FUN_180743d60(uiContext[1],8);
     }
@@ -143560,7 +143560,7 @@ undefined8 FUN_180758248(undefined8 uiContext)
   int *puiValidationResult;
   longlong stringCompareIndex;
   longlong localLong4;
-  bool bVar5;
+  bool IsValidationComplete;
   char localChar6;
   uint eventTypeCode;
   undefined8 uVar8;
@@ -143663,16 +143663,16 @@ LAB_18075833f:
     return uVar8;
   }
   if (((*(byte *)(context[0x3b] + 0x3c) & 0x40) == 0) || (stringCompareIndex != context[0x3b])) {
-    bVar5 = false;
+    IsValidationComplete = false;
     if ((*(undefined8 **)(stringCompareIndex + 0x28) != (undefined8 *)0x0) &&
        (localChar6 = (**(code **)**(undefined8 **)(stringCompareIndex + 0x28))(), localChar6 != '\0')) {
-      bVar5 = true;
+      IsValidationComplete = true;
       func_0x000180743c20(context[1],8);
     }
     *(undefined8 *)(stringCompareIndex + 0x28) = 0;
     *(undefined8 *)(stringCompareIndex + 0x30) = 0;
     *(undefined8 *)(stringCompareIndex + 0x18) = 0;
-    if (bVar5) {
+    if (IsValidationComplete) {
                      WARNING: Subroutine does not return
       FUN_180743d60(context[1],8);
     }
@@ -144326,7 +144326,7 @@ undefined8 FUN_180758bd0(longlong uiContext,char dataSource)
   longlong componentIndex;
   longlong stringCompareIndex;
   undefined8 *bufferPtr;
-  bool bVar5;
+  bool IsValidationComplete;
   int localInt6;
   longlong *plocalLong7;
   undefined8 uVar8;
@@ -144357,15 +144357,15 @@ LAB_180758c38:
     floatResult = *(float *)(uiContext + 0x22c);
     result0 = uStackX_1c;
     if (dataSource == '\0') {
-      bVar5 = false;
+      IsValidationComplete = false;
       if (((0.0 < floatResult) && (uStackX_1c < *(uint *)(uiContext + 0x1f8))) ||
          ((floatResult < 0.0 && (*(uint *)(uiContext + 0x1f8) < uStackX_1c)))) {
-        bVar5 = true;
+        IsValidationComplete = true;
       }
       while (((floatResult = *(float *)(uiContext + 0x22c), 0.0 < floatResult &&
               (*(uint *)(*(longlong *)(uiBufferData + 0x1f0) + 0x30) < uStackX_1c)) ||
              (((floatResult < 0.0 && (uStackX_1c < *(uint *)(*(longlong *)(uiBufferData + 0x1f0) + 0x30))) ||
-              (bVar5))))) {
+              (IsValidationComplete))))) {
         bufferPtr = *(undefined8 **)(uiContext + 0x1f0);
         if (0.0 < floatResult) {
           ptrLocal9 = bufferPtr;
@@ -144381,8 +144381,8 @@ LAB_180758c38:
             }
             *(undefined8 **)(uiContext + 0x1f0) = ptrLocal9;
           }
-          if ((bVar5) && (ptrLocal9 == *(undefined8 **)(componentIndex + 0xf8))) {
-            bVar5 = false;
+          if ((IsValidationComplete) && (ptrLocal9 == *(undefined8 **)(componentIndex + 0xf8))) {
+            IsValidationComplete = false;
             *(undefined8 *)(uiContext + 0x1f0) = **(undefined8 **)(componentIndex + 0xf0);
           }
         }
@@ -144400,8 +144400,8 @@ LAB_180758c38:
             }
             *(undefined8 **)(uiContext + 0x1f0) = ptrLocal9;
           }
-          if ((bVar5) && (ptrLocal9 == *(undefined8 **)(componentIndex + 0xf0))) {
-            bVar5 = false;
+          if ((IsValidationComplete) && (ptrLocal9 == *(undefined8 **)(componentIndex + 0xf0))) {
+            IsValidationComplete = false;
             *(undefined8 *)(uiContext + 0x1f0) = *(undefined8 *)(*(longlong *)(componentIndex + 0xf8) + 8);
           }
         }
@@ -145136,7 +145136,7 @@ ulonglong FUN_180759d80(longlong uiContext,longlong dataSource,longlong *targetB
   longlong componentIndex;
   bool bVar3;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   char localChar6;
   uint eventTypeCode;
   longlong *plocalLong8;
@@ -145146,7 +145146,7 @@ ulonglong FUN_180759d80(longlong uiContext,longlong dataSource,longlong *targetB
   
   localChar6 = param_7;
   allocatedMemory = *(longlong *)(uiBufferData + 0xa8);
-  bVar5 = false;
+  IsValidationComplete = false;
   bVar4 = false;
   if (dataSource == 0) {
     result0 = 0x1f;
@@ -145157,7 +145157,7 @@ ulonglong FUN_180759d80(longlong uiContext,longlong dataSource,longlong *targetB
       bVar4 = true;
       if (allocatedMemory != 0) {
         func_0x000180743c20(allocatedMemory,1);
-        bVar5 = true;
+        IsValidationComplete = true;
       }
     }
     if (param_6 == 0) {
@@ -145221,7 +145221,7 @@ ulonglong FUN_180759d80(longlong uiContext,longlong dataSource,longlong *targetB
                      WARNING: Subroutine does not return
         FUN_180743d60(allocatedMemory,3);
       }
-      if ((allocatedMemory != 0) && (bVar5)) {
+      if ((allocatedMemory != 0) && (IsValidationComplete)) {
                      WARNING: Subroutine does not return
         FUN_180743d60(allocatedMemory,1);
       }
@@ -145232,7 +145232,7 @@ ulonglong FUN_180759d80(longlong uiContext,longlong dataSource,longlong *targetB
     }
   }
 LAB_180759fd6:
-  if ((bVar5) && (allocatedMemory != 0)) {
+  if ((IsValidationComplete) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
     FUN_180743d60(allocatedMemory,1);
   }
@@ -149931,7 +149931,7 @@ ulonglong FUN_18075dcc0(longlong uiContext,longlong dataSource,ulonglong targetB
   longlong componentIndex;
   longlong stringCompareIndex;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   ulonglong MaxProcessingCount;
   ulonglong eventTypeCode;
   longlong *plocalLong8;
@@ -149944,7 +149944,7 @@ ulonglong FUN_18075dcc0(longlong uiContext,longlong dataSource,ulonglong targetB
   bool isCharacterMatch5;
   
   componentIndex = *(longlong *)(uiBufferData + 0xa8);
-  bVar5 = false;
+  IsValidationComplete = false;
   bVar4 = false;
   if (dataSource == 0) {
     if (resultPointer != '\0') {
@@ -150018,7 +150018,7 @@ LAB_18075dfdf:
   else {
     if ((resultPointer != '\0') && (componentIndex != 0)) {
       func_0x000180743c20(componentIndex,1);
-      bVar5 = true;
+      IsValidationComplete = true;
       if (componentIndex != 0) {
         func_0x000180743c20(componentIndex,3);
         bVar4 = true;
@@ -150164,7 +150164,7 @@ LAB_18075e20f:
                      WARNING: Subroutine does not return
               FUN_180743d60(componentIndex,3);
             }
-            if ((componentIndex != 0) && (bVar5)) {
+            if ((componentIndex != 0) && (IsValidationComplete)) {
                      WARNING: Subroutine does not return
               FUN_180743d60(componentIndex,1);
             }
@@ -150181,7 +150181,7 @@ LAB_18075dffb:
                      WARNING: Subroutine does not return
     FUN_180743d60(componentIndex,3);
   }
-  if ((bVar5) && (componentIndex != 0)) {
+  if ((IsValidationComplete) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
     FUN_180743d60(componentIndex,1);
   }
@@ -153838,7 +153838,7 @@ void FUN_1807609d5(void)
   longlong unmodifiedRBP;
   char *unmodifiedR13;
   undefined4 unmodifiedR14D;
-  bool bVar5;
+  bool IsValidationComplete;
   undefined4 eventTypeCode;
   undefined4 *ptrLocal6;
   undefined4 *puStack0000000000000028;
@@ -153897,7 +153897,7 @@ void FUN_1807609d5(void)
            (undefined4 *)CONCAT44(puStack0000000000000028._4_4_,_uStack00000000000001c8);
       FUN_180760970(*(longlong *)(context + 0x68) + 8);
     }
-    bVar5 = false;
+    IsValidationComplete = false;
     if (((*(uint *)(context + 0x5c) & 0x11) == 0) &&
        (allocatedMemory = *(longlong *)(context + 0x60), *(longlong *)(allocatedMemory + 0x128) != 0)) {
       *(longlong *)(allocatedMemory + 0xb0) = allocatedMemory;
@@ -153905,9 +153905,9 @@ void FUN_1807609d5(void)
       localInt4 = (**(code **)(*(longlong *)(context + 0x60) + 0x128))
                         (*(longlong *)(context + 0x60) + 0xb0,*(undefined2 *)(context + 0x52),0,
                          0,CONCAT44(eventTypeCode,1));
-      bVar5 = localInt4 != 6;
+      IsValidationComplete = localInt4 != 6;
     }
-    if (bVar5 == false) {
+    if (IsValidationComplete == false) {
       LOCK();
       *(uint *)(context + 0x5c) = *(uint *)(context + 0x5c) | 0x20000;
       UNLOCK();
@@ -153918,7 +153918,7 @@ void FUN_1807609d5(void)
       UNLOCK();
     }
     if (unmodifiedR13 != (char *)0x0) {
-      *unmodifiedR13 = bVar5;
+      *unmodifiedR13 = IsValidationComplete;
     }
     if (*(int *)(*(longlong *)(context + 0x60) + 0xf8) != 0) {
       if ((*(uint *)(context + 0x5c) >> 0x14 & 1) == 0) {
@@ -160602,7 +160602,7 @@ void FUN_180767f5c(char *uiContext,char *dataSource,undefined *targetBuffer,unde
   int *puiValidationResult;
   code *plocalChar3;
   code localChar4;
-  byte bVar5;
+  byte IsValidationComplete;
   undefined8 eventTypeCode;
   int localInt8;
   undefined8 *ptrLocal9;
@@ -160650,12 +160650,12 @@ void FUN_180767f5c(char *uiContext,char *dataSource,undefined *targetBuffer,unde
   if (in_ZF || in_OF != in_SF) {
 LAB_180767fd9:
     if (in_ZF || in_OF != in_SF) {
-      bVar5 = *context;
+      IsValidationComplete = *context;
       bVar6 = *context;
       *context = *context + isCharacterMatch6;
       if (*context != 0 && SCARRY1(bVar6,isCharacterMatch6) == (char)*context < '\0') {
         out((short)dataSource,uiOperationResult1);
-        bRam00000001dd01c85c = bRam00000001dd01c85c >> 1 | CARRY1(bVar5,isCharacterMatch6) << 7;
+        bRam00000001dd01c85c = bRam00000001dd01c85c >> 1 | CARRY1(IsValidationComplete,isCharacterMatch6) << 7;
         return;
       }
       localChar12 = *dataSource;
@@ -167116,7 +167116,7 @@ longlong FUN_18076c8c0(uint *uiContext,ulonglong dataSource)
   longlong componentIndex;
   longlong stringCompareIndex;
   byte bVar4;
-  byte bVar5;
+  byte IsValidationComplete;
   uint MaxProcessingCount;
   uint eventTypeCode;
   longlong localLong8;
@@ -167163,8 +167163,8 @@ longlong FUN_18076c8c0(uint *uiContext,ulonglong dataSource)
       result8 = dataSource + 0x17 & 0xfffffffffffffff0;
     }
     semaphoreHandle0 = *uiContext;
-    bVar5 = (byte)(result8 >> 3);
-    bVar4 = bVar5 & 0x1f;
+    IsValidationComplete = (byte)(result8 >> 3);
+    bVar4 = IsValidationComplete & 0x1f;
     MaxProcessingCount = semaphoreHandle0 >> bVar4;
     if ((MaxProcessingCount & 3) != 0) {
       MaxProcessingCount = (int)(result8 >> 3) + (~MaxProcessingCount & 1);
@@ -167186,7 +167186,7 @@ longlong FUN_18076c8c0(uint *uiContext,ulonglong dataSource)
     }
     if (*(ulonglong *)(uiContext + 2) < result8) {
       if (semaphoreHandle0 >> bVar4 != 0) {
-        MaxProcessingCount = (MaxProcessingCount & 0xfffffffe) << (bVar5 & 0x1f);
+        MaxProcessingCount = (MaxProcessingCount & 0xfffffffe) << (IsValidationComplete & 0x1f);
         result4 = (-MaxProcessingCount & MaxProcessingCount) - 1;
         eventTypeCode = result4 >> 0xc & 0x10;
         result4 = result4 >> (sbyte)eventTypeCode;
@@ -170512,7 +170512,7 @@ int FUN_18076f100(longlong uiContext,ulonglong dataSource,ulonglong targetBuffer
   longlong componentIndex;
   longlong *pstringCompareIndex;
   longlong localLong4;
-  bool bVar5;
+  bool IsValidationComplete;
   bool bVar6;
   int localInt7;
   longlong *plocalLong8;
@@ -170523,7 +170523,7 @@ int FUN_18076f100(longlong uiContext,ulonglong dataSource,ulonglong targetBuffer
     func_0x000180743c20(componentIndex,5);
     bVar6 = true;
   }
-  bVar5 = false;
+  IsValidationComplete = false;
   if (targetBuffer < dataSource) {
     localInt7 = 0x1f;
   }
@@ -170544,12 +170544,12 @@ int FUN_18076f100(longlong uiContext,ulonglong dataSource,ulonglong targetBuffer
           plocalLong8[1] = *(longlong *)(localLong4 + 0x10818);
           *plocalLong8 = localLong4 + 0x10810;
           *(longlong **)(localLong4 + 0x10818) = plocalLong8;
-          bVar5 = true;
+          IsValidationComplete = true;
           *(longlong **)plocalLong8[1] = plocalLong8;
         }
         plocalLong8 = pstringCompareIndex;
       } while (pstringCompareIndex != pallocatedMemory);
-      if (bVar5) {
+      if (IsValidationComplete) {
         *(undefined4 *)(uiBufferData + 0x298) = 1;
       }
     }
@@ -170564,7 +170564,7 @@ int FUN_18076f100(longlong uiContext,ulonglong dataSource,ulonglong targetBuffer
         *(undefined4 *)(uiBufferData + 0x2a0) = 0x3f800000;
       }
     }
-    else if ((bVar5) && (localInt7 = func_0x00018076f610(uiContext), localInt7 != 0)) goto LAB_18076f24a;
+    else if ((IsValidationComplete) && (localInt7 = func_0x00018076f610(uiContext), localInt7 != 0)) goto LAB_18076f24a;
     *(undefined4 *)(uiBufferData + 0x2a4) = 0;
     localInt7 = 0;
   }
@@ -170585,16 +170585,16 @@ int FUN_18076f111(longlong uiContext,ulonglong dataSource,undefined8 targetBuffe
   longlong *colorBufferPointer;
   longlong stringCompareIndex;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   int localInt6;
   longlong *plocalLong7;
   longlong unmodifiedRBP;
   ulonglong unmodifiedRDI;
   
-  bVar5 = false;
+  IsValidationComplete = false;
   if ((bufferSize != '\0') && (unmodifiedRBP != 0)) {
     func_0x000180743c20();
-    bVar5 = true;
+    IsValidationComplete = true;
   }
   bVar4 = false;
   if (unmodifiedRDI < dataSource) {
@@ -170642,7 +170642,7 @@ int FUN_18076f111(longlong uiContext,ulonglong dataSource,undefined8 targetBuffe
     localInt6 = 0;
   }
 LAB_18076f24a:
-  if ((bVar5) && (unmodifiedRBP != 0)) {
+  if ((IsValidationComplete) && (unmodifiedRBP != 0)) {
                      WARNING: Subroutine does not return
     FUN_180743d60();
   }
@@ -170972,7 +170972,7 @@ int FUN_18076f670(longlong uiContext)
   longlong *colorBufferPointer;
   ulonglong EventTypeCode;
   ulonglong *bufferPtr;
-  bool bVar5;
+  bool IsValidationComplete;
   uint MaxProcessingCount;
   int localInt7;
   longlong registerAX;
@@ -171012,7 +171012,7 @@ int FUN_18076f670(longlong uiContext)
   floatResult8 = 1.0;
   pallocatedMemory = (longlong *)(uiContext + 0x238);
   result3 = 0;
-  bVar5 = false;
+  IsValidationComplete = false;
   floatResult7 = 1.0;
   localInt7 = 0;
   if (((longlong *)*pallocatedMemory != pallocatedMemory) || (*(longlong **)(uiContext + 0x240) != pallocatedMemory)) {
@@ -171043,10 +171043,10 @@ int FUN_18076f670(longlong uiContext)
       }
       if ((longlong)result0 < 0) {
         fStack0000000000000070 = (float)pallocatedMemory4[2];
-        if (!bVar5) {
+        if (!IsValidationComplete) {
           floatResult7 = fStack0000000000000070;
         }
-        bVar5 = true;
+        IsValidationComplete = true;
         *(longlong **)pallocatedMemory4[1] = colorBufferPointer;
         *(longlong *)(*pallocatedMemory4 + 8) = pallocatedMemory4[1];
         pallocatedMemory4[1] = (longlong)pallocatedMemory4;
@@ -171073,7 +171073,7 @@ int FUN_18076f670(longlong uiContext)
   }
   *(int *)(uiBufferData + 0x29c) = localInt7;
   *(undefined4 *)(uiBufferData + 0x298) = 0;
-  if (bVar5) {
+  if (IsValidationComplete) {
     if (localInt7 == 0) {
       *(undefined4 *)(*(longlong *)(uiBufferData + 0x218) + 0x70) = 0;
       *(float *)(*(longlong *)(uiBufferData + 0x218) + 0x74) = floatResult8;
@@ -171105,7 +171105,7 @@ int FUN_18076f670(longlong uiContext)
       allocatedMemory2 = allocatedMemory2 + -1;
     } while (allocatedMemory2 != 0);
   }
-  if ((localInt7 == 0) && (bVar5)) {
+  if ((localInt7 == 0) && (IsValidationComplete)) {
     if ((floatResult7 == *(float *)(uiContext + 0x230)) && (floatResult7 != floatResult8)) {
       bufferPtr = *(ulonglong **)(uiContext + 0x228);
       MaxProcessingCount = *(uint *)((longlong)bufferPtr + 0x24);
@@ -171138,7 +171138,7 @@ int FUN_18076f67e(float uiContext)
   longlong *colorBufferPointer;
   ulonglong EventTypeCode;
   ulonglong *bufferPtr;
-  bool bVar5;
+  bool IsValidationComplete;
   uint MaxProcessingCount;
   int localInt7;
   longlong registerAX;
@@ -171178,7 +171178,7 @@ int FUN_18076f67e(float uiContext)
   floatResult8 = 1.0;
   pallocatedMemory = (longlong *)(context + 0x238);
   result3 = 0;
-  bVar5 = false;
+  IsValidationComplete = false;
   floatResult7 = 1.0;
   localInt7 = 0;
   if (((longlong *)*pallocatedMemory != pallocatedMemory) || (*(longlong **)(context + 0x240) != pallocatedMemory)) {
@@ -171209,10 +171209,10 @@ int FUN_18076f67e(float uiContext)
       }
       if ((longlong)result0 < 0) {
         fStack0000000000000070 = (float)pallocatedMemory5[2];
-        if (!bVar5) {
+        if (!IsValidationComplete) {
           floatResult7 = fStack0000000000000070;
         }
-        bVar5 = true;
+        IsValidationComplete = true;
         *(longlong **)pallocatedMemory5[1] = colorBufferPointer;
         *(longlong *)(*pallocatedMemory5 + 8) = pallocatedMemory5[1];
         pallocatedMemory5[1] = (longlong)pallocatedMemory5;
@@ -171240,7 +171240,7 @@ int FUN_18076f67e(float uiContext)
   }
   *(int *)(context + 0x29c) = localInt7;
   *(undefined4 *)(context + 0x298) = 0;
-  if (bVar5) {
+  if (IsValidationComplete) {
     if (localInt7 == 0) {
       *(undefined4 *)(*(longlong *)(context + 0x218) + 0x70) = 0;
       *(float *)(*(longlong *)(context + 0x218) + 0x74) = floatResult8;
@@ -171272,7 +171272,7 @@ int FUN_18076f67e(float uiContext)
       allocatedMemory2 = allocatedMemory2 + -1;
     } while (allocatedMemory2 != 0);
   }
-  if ((localInt7 == 0) && (bVar5)) {
+  if ((localInt7 == 0) && (IsValidationComplete)) {
     if ((floatResult7 == *(float *)(context + 0x230)) && (floatResult7 != floatResult8)) {
       bufferPtr = *(ulonglong **)(context + 0x228);
       MaxProcessingCount = *(uint *)((longlong)bufferPtr + 0x24);
@@ -172447,7 +172447,7 @@ longlong * FUN_1807706d0(longlong *uiContext,int dataSource,undefined8 *targetBu
   undefined4 semaphoreHandle;
   undefined4 EventTypeCode;
   undefined8 ProcessingStatus;
-  bool bVar5;
+  bool IsValidationComplete;
   uint MaxProcessingCount;
   int localInt7;
   undefined8 *ptrLocal8;
@@ -172503,7 +172503,7 @@ longlong * FUN_1807706d0(longlong *uiContext,int dataSource,undefined8 *targetBu
   }
   localInt7 = 0;
   if (0 < (int)*(uint *)((longlong)uiContext + 0xc)) {
-    bVar5 = true;
+    IsValidationComplete = true;
     pallocatedMemory0 = (longlong *)0x1c;
     if (*(uint *)((longlong)uiContext + 0xc) == bufferSize) {
       pallocatedMemory0 = pallocatedMemory2;
@@ -172714,7 +172714,7 @@ LAB_18077086b:
               stackLonga0 = stackLonga0 + 1;
             } while (localInt7 < (int)bufferSize);
           }
-          bVar5 = false;
+          IsValidationComplete = false;
           *(int *)(uiBufferData + 1) = dataSource;
           *(uint *)((longlong)uiContext + 0xc) = bufferSize;
           pallocatedMemory0 = (longlong *)0x0;
@@ -172727,14 +172727,14 @@ FUN_180770ccf:
     }
   }
 LAB_180770cd4:
-  bVar5 = true;
+  IsValidationComplete = true;
   pallocatedMemory2 = pallocatedMemory5;
 LAB_180770c67:
   if ((isCharacterMatch6) && (stackLong88 != 0)) {
                      WARNING: Subroutine does not return
     FUN_180743d60(stackLong88,4);
   }
-  if (((bVar5) && (pallocatedMemory2 != (longlong *)0x0)) && (0 < (int)stackUInta8)) {
+  if (((IsValidationComplete) && (pallocatedMemory2 != (longlong *)0x0)) && (0 < (int)stackUInta8)) {
     result1 = (ulonglong)stackUInta8;
     do {
       if ((longlong *)*pallocatedMemory2 != (longlong *)0x0) {
@@ -186133,7 +186133,7 @@ undefined8 FUN_18077e250(longlong uiContext,int dataSource)
   bool IsEventProcessingActive;
   bool bVar3;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   bool bVar6;
   undefined4 eventTypeCode;
   ulonglong uVar8;
@@ -186167,8 +186167,8 @@ undefined8 FUN_18077e250(longlong uiContext,int dataSource)
     }
     uStackX_10 = (ushort)bVar4;
     floatResult5 = *(float *)(uiContext + 0x284);
-    bVar5 = floatResult5 != *(float *)(uiContext + 0x224);
-    if (bVar5) {
+    IsValidationComplete = floatResult5 != *(float *)(uiContext + 0x224);
+    if (IsValidationComplete) {
       *(float *)(uiContext + 0x224) = floatResult5;
       uStackX_10 = CONCAT11(1,bVar4);
     }
@@ -186201,7 +186201,7 @@ undefined8 FUN_18077e250(longlong uiContext,int dataSource)
       ptrResult1 = ptrResult1 + 1;
       plocalChar9 = plocalChar9 + 1;
     } while (uiOperationResult2 < 2);
-    if ((bVar5 || (bVar4 || (bVar3 || IsEventProcessingActive))) || (bVar6)) {
+    if ((IsValidationComplete || (bVar4 || (bVar3 || IsEventProcessingActive))) || (bVar6)) {
       floatResult5 = *(float *)(uiContext + 0x220);
       if (*(float *)(uiContext + 0x220) <= *(float *)(uiContext + 0x224)) {
         floatResult5 = *(float *)(uiContext + 0x224);
@@ -188218,13 +188218,13 @@ byte FUN_1807810c0(longlong uiContext,float *dataSource)
   byte IsEventProcessingActive;
   int uiCompareResult;
   undefined4 *bufferPtr;
-  byte bVar5;
+  byte IsValidationComplete;
   float localFloat6;
   undefined4 eventTypeCode;
   float localFloat8;
   float afStackX_8 [2];
   
-  bVar5 = 0;
+  IsValidationComplete = 0;
   localFloat6 = _DAT_180c0fa90;
   if ((*dataSource < _DAT_180c0fa90) || (localFloat6 = _DAT_180c0fa94, _DAT_180c0fa94 < *dataSource)) {
     *dataSource = localFloat6;
@@ -188242,7 +188242,7 @@ byte FUN_1807810c0(longlong uiContext,float *dataSource)
         uiOperationResult = *(int *)(uiBufferData + 0x818);
         eventTypeCode = powf(0x41200000,((-6e+06 / (dataSource[4] * *dataSource)) * localFloat6 - localFloat8) * 0.05);
         IsEventProcessingActive = FUN_180780eb0(uiContext,eventTypeCode,dataSource[3],(float)uiOperationResult,afStackX_8);
-        bVar5 = bVar5 | IsEventProcessingActive;
+        IsValidationComplete = IsValidationComplete | IsEventProcessingActive;
         bufferPtr[-0x6f] = 1.0 - afStackX_8[0];
       }
       uiCompareResult = uiCompareResult + 1;
@@ -188250,7 +188250,7 @@ byte FUN_1807810c0(longlong uiContext,float *dataSource)
     } while (uiCompareResult < *(int *)(uiBufferData + 0x504));
   }
   FUN_1807814c0(uiContext,uiContext + 0x7e8);
-  return bVar5;
+  return IsValidationComplete;
 }
 
 
@@ -188315,7 +188315,7 @@ byte FUN_1807812d0(longlong uiContext,float *dataSource)
   int uiCompareResult;
   float unmodifiedEBX;
   undefined4 *bufferPtr;
-  byte bVar5;
+  byte IsValidationComplete;
   undefined4 MaxProcessingCount;
   float localFloat7;
   float localFloat8;
@@ -188333,7 +188333,7 @@ byte FUN_1807812d0(longlong uiContext,float *dataSource)
   }
   FUN_1807ed0d0(uiContext + 0x218,localFloat8 * 0.061,0x3fa8f5c3,0x3ac49ba6,0x3fbc28f6,
                 (float)*(int *)(uiBufferData + 0x818));
-  bVar5 = 0;
+  IsValidationComplete = 0;
   localFloat8 = _DAT_180c0fa90;
   if ((*dataSource < _DAT_180c0fa90) || (localFloat8 = _DAT_180c0fa94, _DAT_180c0fa94 < *dataSource)) {
     *dataSource = localFloat8;
@@ -188349,7 +188349,7 @@ byte FUN_1807812d0(longlong uiContext,float *dataSource)
         uiOperationResult = *(int *)(uiBufferData + 0x818);
         MaxProcessingCount = powf();
         IsEventProcessingActive = FUN_180780eb0(uiContext,MaxProcessingCount,dataSource[3],(float)uiOperationResult,&stack0x00000008);
-        bVar5 = bVar5 | IsEventProcessingActive;
+        IsValidationComplete = IsValidationComplete | IsEventProcessingActive;
         bufferPtr[-0x6f] = 1.0 - unmodifiedEBX;
       }
       uiCompareResult = uiCompareResult + 1;
@@ -188357,7 +188357,7 @@ byte FUN_1807812d0(longlong uiContext,float *dataSource)
     } while (uiCompareResult < *(int *)(uiBufferData + 0x504));
   }
   FUN_1807814c0(uiContext,uiContext + 0x7e8);
-  return bVar5;
+  return IsValidationComplete;
 }
 
 
@@ -190633,7 +190633,7 @@ void FUN_180784d10(longlong uiContext,int *dataSource,byte targetBuffer,char buf
   int uiValidationResult;
   undefined8 EventTypeCode;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   int localInt6;
   uint eventTypeCode;
   longlong localLong8;
@@ -191019,10 +191019,10 @@ LAB_180784edc:
           bVar4 = true;
         }
         if ((*(int **)(uiContext + 0x268) == (int *)0x0) || (**(int **)(uiContext + 0x268) == 0)) {
-          bVar5 = false;
+          IsValidationComplete = false;
         }
         else {
-          bVar5 = true;
+          IsValidationComplete = true;
         }
         if ((!bVar4) || (0.0 <= *(float *)(uiContext + 0x2a0))) {
           localFloat21 = 0.0;
@@ -191030,7 +191030,7 @@ LAB_180784edc:
         else {
           localFloat21 = -*(float *)(uiContext + 0x2a0);
         }
-        if ((!bVar5) || (localFloat24 = *(float *)(uiContext + 0x2a0), localFloat24 <= 0.0)) {
+        if ((!IsValidationComplete) || (localFloat24 = *(float *)(uiContext + 0x2a0), localFloat24 <= 0.0)) {
           localFloat24 = 0.0;
         }
         localFloat23 = 1.0 - *(float *)(uiContext + 0x2b8);
@@ -191047,7 +191047,7 @@ LAB_180784edc:
           fStack_320 = localFloat27;
           FUN_180784b00(uiContext,*(undefined8 *)(uiContext + 600),afStack_308 + 8);
         }
-        if ((localFloat23 * localFloat24 != 0.0) && (bVar5)) {
+        if ((localFloat23 * localFloat24 != 0.0) && (IsValidationComplete)) {
           stackUInt340 = *(undefined4 *)(uiBufferData + 0x298);
           stackUInt330 = *(undefined4 *)(uiBufferData + 0x294);
           pfStack_338 = (float *)CONCAT44(pfStack_338._4_4_,*(undefined4 *)(uiBufferData + 0x29c));
@@ -191068,7 +191068,7 @@ LAB_180784edc:
           FUN_1807d6d40(*(undefined8 *)(uiContext + 0x270),*(undefined8 *)(uiContext + 600),
                         *(undefined4 *)(uiBufferData + 0x284),*(undefined4 *)(uiBufferData + 0x288));
         }
-        if (((localFloat25 != 0.0) && (bVar5)) && (bVar4)) {
+        if (((localFloat25 != 0.0) && (IsValidationComplete)) && (bVar4)) {
           fStack_358 = *(float *)(uiContext + 0x28c);
           pfStack_338 = afStack_308 + 8;
           stackUInt330 = 0;
@@ -194174,7 +194174,7 @@ int FUN_180787e40(longlong uiContext,undefined4 dataSource,longlong *targetBuffe
   undefined8 semaphoreHandle;
   longlong *pstringCompareIndex;
   code *plocalChar4;
-  byte bVar5;
+  byte IsValidationComplete;
   longlong contextData;
   longlong localLong7;
   undefined1 *ptrLocal8;
@@ -194232,8 +194232,8 @@ LAB_180787ed7:
     if ((POPCOUNT(localChar11) & 1U) == 0) {
       *(byte *)(uiContext + -1) = *(byte *)(uiContext + -1) & (byte)registerAX;
       pisCharacterMatch = (byte *)(registerAX + -0x75);
-      bVar5 = (byte)uiContext & 7;
-      *pisCharacterMatch = *pisCharacterMatch >> bVar5 | *pisCharacterMatch << 8 - bVar5;
+      IsValidationComplete = (byte)uiContext & 7;
+      *pisCharacterMatch = *pisCharacterMatch >> IsValidationComplete | *pisCharacterMatch << 8 - IsValidationComplete;
       register0x00000020 = (BADSPACEBASE *)(unmodifiedRBP + 1);
       unmodifiedRBP = (longlong *)*unmodifiedRBP;
       goto LAB_180787ecf;
@@ -194369,7 +194369,7 @@ int FUN_180787e70(longlong uiContext,undefined4 dataSource,longlong *targetBuffe
   longlong componentIndex;
   longlong *pstringCompareIndex;
   int localInt4;
-  bool bVar5;
+  bool IsValidationComplete;
   undefined8 uStackX_8;
   
   allocatedMemory = *(longlong *)(uiBufferData + 0x48);
@@ -194380,8 +194380,8 @@ int FUN_180787e70(longlong uiContext,undefined4 dataSource,longlong *targetBuffe
     func_0x000180743c20(*targetBuffer,(int)targetBuffer[1]);
     *(undefined1 *)((longlong)targetBuffer + 0xc) = 1;
   }
-  bVar5 = allocatedMemory != 0;
-  if (bVar5) {
+  IsValidationComplete = allocatedMemory != 0;
+  if (IsValidationComplete) {
     func_0x000180743c20(allocatedMemory,2);
   }
   localInt4 = ValidateUIMemoryOperation(*(undefined8 *)(uiContext + 0x48),0);
@@ -194408,7 +194408,7 @@ int FUN_180787e70(longlong uiContext,undefined4 dataSource,longlong *targetBuffe
       *(int *)(uiBufferData + 0x318) = *(int *)(uiBufferData + 0x318) + 1;
       localInt4 = FUN_180760c90(componentIndex,uStackX_8,dataSource);
     }
-    if ((allocatedMemory != 0) && (bVar5)) {
+    if ((allocatedMemory != 0) && (IsValidationComplete)) {
                      WARNING: Subroutine does not return
       FUN_180743d60(allocatedMemory,2);
     }
@@ -194427,7 +194427,7 @@ int FUN_180787e70(longlong uiContext,undefined4 dataSource,longlong *targetBuffe
     }
   }
 LAB_180788061:
-  if ((bVar5) && (allocatedMemory != 0)) {
+  if ((IsValidationComplete) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
     FUN_180743d60(allocatedMemory,2);
   }
@@ -197096,7 +197096,7 @@ int FUN_18078a0c0(longlong *uiContext,longlong *dataSource,char targetBuffer)
   longlong *colorBufferPointer;
   longlong *pstringCompareIndex;
   longlong localLong4;
-  bool bVar5;
+  bool IsValidationComplete;
   int localInt6;
   char localChar7;
   longlong *plocalLong8;
@@ -197108,7 +197108,7 @@ int FUN_18078a0c0(longlong *uiContext,longlong *dataSource,char targetBuffer)
   if (-1 < localInt6) {
     localInt9 = localInt6;
   }
-  bVar5 = false;
+  IsValidationComplete = false;
   if (allocatedMemory == 0) {
     localInt6 = 0x43;
   }
@@ -197122,7 +197122,7 @@ int FUN_18078a0c0(longlong *uiContext,longlong *dataSource,char targetBuffer)
     }
     if ((localChar7 != '\0') && (allocatedMemory != 0)) {
       func_0x000180743c20(allocatedMemory,localInt9);
-      bVar5 = true;
+      IsValidationComplete = true;
     }
     colorBufferPointer = uiContext + 6;
     if ((((longlong *)*colorBufferPointer != colorBufferPointer) || ((longlong *)uiContext[7] != colorBufferPointer)) ||
@@ -197164,7 +197164,7 @@ int FUN_18078a0c0(longlong *uiContext,longlong *dataSource,char targetBuffer)
     }
   }
 LAB_18078a1be:
-  if ((bVar5) && (allocatedMemory != 0)) {
+  if ((IsValidationComplete) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
     FUN_180743d60(allocatedMemory,localInt9);
   }
@@ -197180,13 +197180,13 @@ int FUN_18078a0d9(undefined8 *uiContext,longlong *dataSource,char targetBuffer,i
   longlong *colorBufferPointer;
   longlong *pstringCompareIndex;
   longlong localLong4;
-  bool bVar5;
+  bool IsValidationComplete;
   int localInt6;
   char localChar7;
   longlong *plocalLong8;
   longlong unmodifiedRBP;
   
-  bVar5 = false;
+  IsValidationComplete = false;
   if (unmodifiedRBP == 0) {
     localInt6 = 0x43;
   }
@@ -197200,7 +197200,7 @@ int FUN_18078a0d9(undefined8 *uiContext,longlong *dataSource,char targetBuffer,i
     }
     if ((localChar7 != '\0') && (unmodifiedRBP != 0)) {
       func_0x000180743c20();
-      bVar5 = true;
+      IsValidationComplete = true;
     }
     ptrResult = uiContext + 6;
     if ((((undefined8 *)*ptrResult != ptrResult) || ((undefined8 *)uiContext[7] != ptrResult)) ||
@@ -197242,7 +197242,7 @@ int FUN_18078a0d9(undefined8 *uiContext,longlong *dataSource,char targetBuffer,i
     }
   }
 LAB_18078a1be:
-  if ((bVar5) && (unmodifiedRBP != 0)) {
+  if ((IsValidationComplete) && (unmodifiedRBP != 0)) {
                      WARNING: Subroutine does not return
     FUN_180743d60();
   }
@@ -199227,7 +199227,7 @@ undefined8 FUN_18078baf0(longlong uiContext,undefined4 dataSource)
   undefined8 *psemaphoreHandle;
   longlong stringCompareIndex;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   bool bVar6;
   char localChar7;
   int localInt8;
@@ -199322,12 +199322,12 @@ LAB_18078bbf0:
               bVar4 = true;
             }
             if ((*(int *)(psemaphoreHandle + 0x22) == 7) || (*(int *)(psemaphoreHandle + 0x22) == 5)) {
-              bVar5 = true;
+              IsValidationComplete = true;
             }
             else {
-              bVar5 = false;
+              IsValidationComplete = false;
             }
-            if ((!bVar4) && (!bVar5)) break;
+            if ((!bVar4) && (!IsValidationComplete)) break;
             pallocatedMemory2 = (longlong *)*pallocatedMemory3;
           }
           pallocatedMemory3 = pallocatedMemory2;
@@ -221439,7 +221439,7 @@ void FUN_1808025c0(longlong uiContext,int dataSource,undefined8 targetBuffer,int
   int *puiValidationResult;
   int *puiCompareResult;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   bool bVar6;
   int localInt7;
   uint uVar8;
@@ -221556,10 +221556,10 @@ void FUN_1808025c0(longlong uiContext,int dataSource,undefined8 targetBuffer,int
             bVar4 = true;
           }
           if ((stackInte0 < 0) && ((param_8 & param_8 - 1) != 0)) {
-            bVar5 = false;
+            IsValidationComplete = false;
           }
           else {
-            bVar5 = true;
+            IsValidationComplete = true;
           }
           if ((stackInte0 < 1) || ((int)param_8 % stackInte0 == 0)) {
             bVar6 = true;
@@ -221567,7 +221567,7 @@ void FUN_1808025c0(longlong uiContext,int dataSource,undefined8 targetBuffer,int
           else {
             bVar6 = false;
           }
-          if (((bVar4) && (bVar5)) && (bVar6)) {
+          if (((bVar4) && (IsValidationComplete)) && (bVar6)) {
             *(uint *)(uiContext + 0x470) = param_8;
           }
           else {
@@ -221697,7 +221697,7 @@ void FUN_180802653(void)
   undefined8 *psemaphoreHandle;
   int *puiCompareResult;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   bool bVar6;
   int bufferSize;
   int localInt7;
@@ -221813,10 +221813,10 @@ void FUN_180802653(void)
           bVar4 = true;
         }
         if ((iStack0000000000000038 < 0) && ((stackParam00000158 & stackParam00000158 - 1) != 0)) {
-          bVar5 = false;
+          IsValidationComplete = false;
         }
         else {
-          bVar5 = true;
+          IsValidationComplete = true;
         }
         if ((iStack0000000000000038 < 1) || ((int)stackParam00000158 % iStack0000000000000038 == 0))
         {
@@ -221825,7 +221825,7 @@ void FUN_180802653(void)
         else {
           bVar6 = false;
         }
-        if (((bVar4) && (bVar5)) && (bVar6)) {
+        if (((bVar4) && (IsValidationComplete)) && (bVar6)) {
           *(uint *)(context + 0x470) = stackParam00000158;
         }
         else {
@@ -221968,7 +221968,7 @@ void FUN_1808027ec(void)
   longlong *colorBufferPointer;
   bool bVar3;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   int localInt6;
   uint eventTypeCode;
   longlong localLong8;
@@ -222024,12 +222024,12 @@ void FUN_1808027ec(void)
       bVar4 = true;
     }
     if ((stackParam00000038 < 1) || ((int)stackParam00000158 % stackParam00000038 == 0)) {
-      bVar5 = true;
+      IsValidationComplete = true;
     }
     else {
-      bVar5 = false;
+      IsValidationComplete = false;
     }
-    if (((bVar3) && (bVar4)) && (bVar5)) {
+    if (((bVar3) && (bVar4)) && (IsValidationComplete)) {
       *(uint *)(context + 0x470) = stackParam00000158;
     }
     else {
@@ -236262,7 +236262,7 @@ FUN_180811820(undefined8 uiContext,longlong dataSource,longlong targetBuffer,lon
   float localFloat2;
   float localFloat3;
   float localFloat4;
-  bool bVar5;
+  bool IsValidationComplete;
   uint MaxProcessingCount;
   longlong localLong7;
   float *plocalFloat8;
@@ -236316,11 +236316,11 @@ FUN_180811820(undefined8 uiContext,longlong dataSource,longlong targetBuffer,lon
     do {
       uiOperationResult4 = *puiOperationResult7;
       result5 = (ulonglong)uiOperationResult4;
-      bVar5 = false;
+      IsValidationComplete = false;
       if (uiOperationResult4 < 4) {
-        bVar5 = IsEventProcessingActive3;
+        IsValidationComplete = IsEventProcessingActive3;
       }
-      IsEventProcessingActive3 = bVar5;
+      IsEventProcessingActive3 = IsValidationComplete;
       if (uiOperationResult4 < 0xc) {
         puiOperationResult2 = (int *)(allocatedMemory1 + (result5 + 0x2d) * 4);
         do {
@@ -236583,7 +236583,7 @@ undefined8 FUN_1808118cd(undefined8 uiContext,longlong dataSource,undefined8 tar
   float localFloat2;
   float localFloat3;
   float localFloat4;
-  bool bVar5;
+  bool IsValidationComplete;
   uint MaxProcessingCount;
   longlong localLong7;
   float *plocalFloat8;
@@ -236612,11 +236612,11 @@ undefined8 FUN_1808118cd(undefined8 uiContext,longlong dataSource,undefined8 tar
   do {
     uiOperationResult2 = *puiOperationResult6;
     result4 = (ulonglong)uiOperationResult2;
-    bVar5 = false;
+    IsValidationComplete = false;
     if (uiOperationResult2 < 4) {
-      bVar5 = isCharacterMatch8;
+      IsValidationComplete = isCharacterMatch8;
     }
-    isCharacterMatch8 = bVar5;
+    isCharacterMatch8 = IsValidationComplete;
     if (uiOperationResult2 < 0xc) {
       puiOperationResult0 = (int *)(dataSource + (result4 + 0x2d) * 4);
       do {
@@ -263332,7 +263332,7 @@ uint FUN_18082d7f0(int *uiContext,uint dataSource)
   int uiValidationResult;
   byte *pbVar3;
   int localInt4;
-  byte bVar5;
+  byte IsValidationComplete;
   uint MaxProcessingCount;
   
   if (dataSource < 0x21) {
@@ -263347,14 +263347,14 @@ uint FUN_18082d7f0(int *uiContext,uint dataSource)
       }
     }
     pbVar3 = *(byte **)(uiContext + 4);
-    bVar5 = (byte)localInt4;
-    MaxProcessingCount = (uint)(*pbVar3 >> (bVar5 & 0x1f));
+    IsValidationComplete = (byte)localInt4;
+    MaxProcessingCount = (uint)(*pbVar3 >> (IsValidationComplete & 0x1f));
     if ((((8 < (int)dataSource) &&
-         (MaxProcessingCount = MaxProcessingCount | (uint)pbVar3[1] << (8 - bVar5 & 0x1f), 0x10 < (int)dataSource)) &&
-        (MaxProcessingCount = MaxProcessingCount | (uint)pbVar3[2] << (0x10 - bVar5 & 0x1f), 0x18 < (int)dataSource)) &&
-       ((MaxProcessingCount = MaxProcessingCount | (uint)pbVar3[3] << (0x18 - bVar5 & 0x1f), 0x20 < (int)dataSource &&
+         (MaxProcessingCount = MaxProcessingCount | (uint)pbVar3[1] << (8 - IsValidationComplete & 0x1f), 0x10 < (int)dataSource)) &&
+        (MaxProcessingCount = MaxProcessingCount | (uint)pbVar3[2] << (0x10 - IsValidationComplete & 0x1f), 0x18 < (int)dataSource)) &&
+       ((MaxProcessingCount = MaxProcessingCount | (uint)pbVar3[3] << (0x18 - IsValidationComplete & 0x1f), 0x20 < (int)dataSource &&
         (localInt4 != 0)))) {
-      MaxProcessingCount = MaxProcessingCount | (uint)pbVar3[4] << (0x20 - bVar5 & 0x1f);
+      MaxProcessingCount = MaxProcessingCount | (uint)pbVar3[4] << (0x20 - IsValidationComplete & 0x1f);
     }
     uiContext[1] = dataSource & 7;
     localInt4 = (int)(dataSource + ((int)dataSource >> 0x1f & 7U)) >> 3;
@@ -264693,7 +264693,7 @@ undefined8 FUN_18082fa20(undefined8 uiContext,longlong *dataSource,longlong *tar
   uint *psemaphoreHandle;
   byte bVar3;
   char localChar4;
-  byte bVar5;
+  byte IsValidationComplete;
   int localInt6;
   undefined8 eventTypeCode;
   uint uVar8;
@@ -264773,9 +264773,9 @@ undefined8 FUN_18082fa20(undefined8 uiContext,longlong *dataSource,longlong *tar
       result2 = (ulonglong)(uint)(*(int *)((longlong)dataSource + 0x2c) - uiOperationResult6);
       pisCharacterMatch7 = (byte *)(dataSource[3] + (longlong)uiOperationResult6 * 4);
       do {
-        bVar5 = *pisCharacterMatch7;
+        IsValidationComplete = *pisCharacterMatch7;
         pisCharacterMatch7 = pisCharacterMatch7 + 4;
-        uiOperationResult3 = uiOperationResult3 - (uint)bVar5;
+        uiOperationResult3 = uiOperationResult3 - (uint)IsValidationComplete;
         *(int *)((longlong)dataSource + 0xc) = uiOperationResult3;
         result2 = result2 - 1;
       } while (result2 != 0);
@@ -264794,12 +264794,12 @@ undefined8 FUN_18082fa20(undefined8 uiContext,longlong *dataSource,longlong *tar
       (isCharacterMatch8 = 0, uiOperationResult6 = uiOperationResult4, uVar8 != 0)))) {
     CharacterDataOffset = 0;
     do {
-      bVar5 = *(byte *)(CharacterDataOffset + 0x1b + allocatedMemory0);
-      allocatedMemory9 = allocatedMemory9 + (ulonglong)bVar5;
-      uiOperationResult5 = uiOperationResult5 - (uint)bVar5;
+      IsValidationComplete = *(byte *)(CharacterDataOffset + 0x1b + allocatedMemory0);
+      allocatedMemory9 = allocatedMemory9 + (ulonglong)IsValidationComplete;
+      uiOperationResult5 = uiOperationResult5 - (uint)IsValidationComplete;
       uiOperationResult4 = uiOperationResult4 + 1;
       uiOperationResult6 = uiOperationResult4;
-      if (bVar5 < 0xff) break;
+      if (IsValidationComplete < 0xff) break;
       CharacterDataOffset = CharacterDataOffset + 1;
     } while (CharacterDataOffset < componentIndex0);
   }
@@ -264809,8 +264809,8 @@ undefined8 FUN_18082fa20(undefined8 uiContext,longlong *dataSource,longlong *tar
     if (allocatedMemory9 < componentIndex0) {
       uiOperationResult6 = *(int *)((longlong)dataSource + 0x2c);
       do {
-        bVar5 = *(byte *)(allocatedMemory9 + 0x1b + allocatedMemory0);
-        *(uint *)(dataSource[3] + (longlong)uiOperationResult6 * 4) = (uint)bVar5;
+        IsValidationComplete = *(byte *)(allocatedMemory9 + 0x1b + allocatedMemory0);
+        *(uint *)(dataSource[3] + (longlong)uiOperationResult6 * 4) = (uint)IsValidationComplete;
         *(undefined8 *)(dataSource[4] + (longlong)*(int *)((longlong)dataSource + 0x2c) * 8) =
              0xffffffffffffffff;
         if (isCharacterMatch8 != 0) {
@@ -264818,13 +264818,13 @@ undefined8 FUN_18082fa20(undefined8 uiContext,longlong *dataSource,longlong *tar
           *psemaphoreHandle = *psemaphoreHandle | 0x100;
           isCharacterMatch8 = 0;
         }
-        if (bVar5 != 0xff) {
+        if (IsValidationComplete != 0xff) {
           uiOperationResult5 = *(int *)((longlong)dataSource + 0x2c);
         }
         uiOperationResult6 = *(int *)((longlong)dataSource + 0x2c) + 1;
         allocatedMemory9 = allocatedMemory9 + 1;
         *(int *)((longlong)dataSource + 0x2c) = uiOperationResult6;
-        if (bVar5 != 0xff) {
+        if (IsValidationComplete != 0xff) {
           *(int *)(dataSource + 6) = uiOperationResult6;
         }
       } while (allocatedMemory9 < componentIndex0);
@@ -265986,7 +265986,7 @@ undefined8 FUN_180830680(longlong *uiContext,longlong *dataSource)
   float localFloat2;
   int *puiCompareResult;
   int *ptrLocalInt4;
-  byte bVar5;
+  byte IsValidationComplete;
   int localInt6;
   int localInt7;
   longlong localLong8;
@@ -266028,9 +266028,9 @@ undefined8 FUN_180830680(longlong *uiContext,longlong *dataSource)
       puiCompareResult[0xd] = -1;
     }
     uiContext[9] = dataSource[9];
-    bVar5 = (byte)uiOperationResult4;
+    IsValidationComplete = (byte)uiOperationResult4;
     if (*dataSource != 0) {
-      isCharacterMatch0 = bVar5 + 1;
+      isCharacterMatch0 = IsValidationComplete + 1;
       uiOperationResult9 = ptrLocalInt4[1] >> (isCharacterMatch0 & 0x1f);
       localInt7 = ptrLocalInt4[(int)uiContext[6]];
       uiOperationResult7 = *ptrLocalInt4;
@@ -266286,7 +266286,7 @@ undefined8 FUN_180830680(longlong *uiContext,longlong *dataSource)
              (((int)((ptrLocalInt4[*(int *)((longlong)uiContext + 0x2c)] >> 0x1f & 3U) +
                     ptrLocalInt4[*(int *)((longlong)uiContext + 0x2c)]) >> 2) +
               ((int)(ptrLocalInt4[(int)uiContext[6]] + (ptrLocalInt4[(int)uiContext[6]] >> 0x1f & 3U)) >> 2) >>
-             (bVar5 & 0x1f)) + localInt6;
+             (IsValidationComplete & 0x1f)) + localInt6;
       }
     }
     componentIndex8 = 0;
@@ -266304,7 +266304,7 @@ undefined8 FUN_180830680(longlong *uiContext,longlong *dataSource)
         uiContext[8] = componentIndex8;
         if (componentIndex8 < *(longlong *)(puiCompareResult + 0xc)) {
           uiOperationResult4 = *(int *)((longlong)uiContext + 0x1c);
-          localInt7 = (int)(*(longlong *)(puiCompareResult + 0xc) - componentIndex8 >> (bVar5 & 0x3f));
+          localInt7 = (int)(*(longlong *)(puiCompareResult + 0xc) - componentIndex8 >> (IsValidationComplete & 0x3f));
           if (*(int *)((longlong)dataSource + 0x3c) == 0) {
             *(int *)(uiBufferData + 4) = (int)uiContext[4] + localInt7;
             if (uiOperationResult4 < (int)uiContext[4]) {
@@ -266330,7 +266330,7 @@ undefined8 FUN_180830680(longlong *uiContext,longlong *dataSource)
            ((uiOperationResult4 = (int)localLong8 - (int)componentIndex8, uiOperationResult4 != 0 &&
             (*(int *)((longlong)dataSource + 0x3c) != 0)))) {
           *(int *)((longlong)uiContext + 0x1c) =
-               *(int *)((longlong)uiContext + 0x1c) - (uiOperationResult4 >> (bVar5 & 0x1f));
+               *(int *)((longlong)uiContext + 0x1c) - (uiOperationResult4 >> (IsValidationComplete & 0x1f));
           componentIndex8 = dataSource[8];
         }
         uiContext[8] = componentIndex8;
@@ -266354,7 +266354,7 @@ undefined8 FUN_1808306e5(longlong uiContext,longlong *dataSource,undefined8 targ
   float localFloat3;
   longlong registerAX;
   longlong localLong4;
-  byte bVar5;
+  byte IsValidationComplete;
   int localInt6;
   undefined4 *peventTypeCode;
   float *plocalFloat8;
@@ -266396,8 +266396,8 @@ undefined8 FUN_1808306e5(longlong uiContext,longlong *dataSource,undefined8 targ
   }
   *(longlong *)(uiBufferData + 0x48) = dataSource[9];
   if (*dataSource != 0) {
-    bVar5 = (char)bufferSize + 1;
-    iStack00000000000000c0 = register11[1] >> (bVar5 & 0x1f);
+    IsValidationComplete = (char)bufferSize + 1;
+    iStack00000000000000c0 = register11[1] >> (IsValidationComplete & 0x1f);
     localInt9 = register11[*(int *)(context + 0x30)];
     iStack00000000000000d0 = *register11;
     *(longlong *)(context + 0x50) =
@@ -266409,14 +266409,14 @@ undefined8 FUN_1808306e5(longlong uiContext,longlong *dataSource,undefined8 targ
     *(longlong *)(context + 0x68) =
          *(longlong *)(context + 0x68) + (longlong)*(int *)((longlong)unmodifiedRSI + 0x84);
     iStack0000000000000028 = 0;
-    iStack00000000000000d0 = iStack00000000000000d0 >> (bVar5 & 0x1f);
+    iStack00000000000000d0 = iStack00000000000000d0 >> (IsValidationComplete & 0x1f);
     localInt6 = *(int *)(context + 0x38);
     uiOperationResult9 = iStack00000000000000c0;
     if (localInt6 == 0) {
       uiOperationResult9 = 0;
       iStack0000000000000028 = iStack00000000000000c0;
     }
-    lStack0000000000000048 = (longlong)(localInt9 >> (bVar5 & 0x1f));
+    lStack0000000000000048 = (longlong)(localInt9 >> (IsValidationComplete & 0x1f));
     allocatedMemory7 = (longlong)iStack00000000000000c0;
     iStack00000000000000d8 = 0;
     allocatedMemory8 = (longlong)iStack00000000000000d0;
@@ -279443,7 +279443,7 @@ void FUN_18083b5a0(undefined1 (*uiContext) [64],undefined1 (*dataSource) [64],in
   bool IsEventProcessingActive;
   bool bVar3;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   bool bVar6;
   bool bVar7;
   bool bVar8;
@@ -279551,7 +279551,7 @@ void FUN_18083b5a0(undefined1 (*uiContext) [64],undefined1 (*dataSource) [64],in
     IsEventProcessingActive = (bool)((byte)(semaphoreHandle1 >> 1) & 1);
     bVar3 = (bool)((byte)(semaphoreHandle1 >> 2) & 1);
     bVar4 = (bool)((byte)(semaphoreHandle1 >> 3) & 1);
-    bVar5 = (bool)((byte)(semaphoreHandle1 >> 4) & 1);
+    IsValidationComplete = (bool)((byte)(semaphoreHandle1 >> 4) & 1);
     bVar6 = (bool)((byte)(semaphoreHandle1 >> 5) & 1);
     bVar7 = (bool)((byte)(semaphoreHandle1 >> 6) & 1);
     bVar8 = (bool)((byte)(semaphoreHandle1 >> 7) & 1);
@@ -279566,7 +279566,7 @@ void FUN_18083b5a0(undefined1 (*uiContext) [64],undefined1 (*dataSource) [64],in
     *(uint *)(*dataSource + 4) = (uint)IsEventProcessingActive * asemaphoreHandle6._4_4_ | !IsEventProcessingActive * asemaphoreHandle5._4_4_;
     *(uint *)(*dataSource + 8) = (uint)bVar3 * asemaphoreHandle6._8_4_ | !bVar3 * asemaphoreHandle5._8_4_;
     *(uint *)(*dataSource + 0xc) = (uint)bVar4 * asemaphoreHandle6._12_4_ | !bVar4 * asemaphoreHandle5._12_4_;
-    *(uint *)(*dataSource + 0x10) = (uint)bVar5 * asemaphoreHandle6._16_4_ | !bVar5 * asemaphoreHandle5._16_4_;
+    *(uint *)(*dataSource + 0x10) = (uint)IsValidationComplete * asemaphoreHandle6._16_4_ | !IsValidationComplete * asemaphoreHandle5._16_4_;
     *(uint *)(*dataSource + 0x14) = (uint)bVar6 * asemaphoreHandle6._20_4_ | !bVar6 * asemaphoreHandle5._20_4_;
     *(uint *)(*dataSource + 0x18) = (uint)bVar7 * asemaphoreHandle6._24_4_ | !bVar7 * asemaphoreHandle5._24_4_;
     *(uint *)(*dataSource + 0x1c) = (uint)bVar8 * asemaphoreHandle6._28_4_ | !bVar8 * asemaphoreHandle5._28_4_;
@@ -279585,7 +279585,7 @@ void FUN_18083b5a0(undefined1 (*uiContext) [64],undefined1 (*dataSource) [64],in
     IsEventProcessingActive = (bool)((byte)(semaphoreHandle2 >> 1) & 1);
     bVar3 = (bool)((byte)(semaphoreHandle2 >> 2) & 1);
     bVar4 = (bool)((byte)(semaphoreHandle2 >> 3) & 1);
-    bVar5 = (bool)((byte)(semaphoreHandle2 >> 4) & 1);
+    IsValidationComplete = (bool)((byte)(semaphoreHandle2 >> 4) & 1);
     bVar6 = (bool)((byte)(semaphoreHandle2 >> 5) & 1);
     bVar7 = (bool)((byte)(semaphoreHandle2 >> 6) & 1);
     bVar8 = (bool)((byte)(semaphoreHandle2 >> 7) & 1);
@@ -279600,7 +279600,7 @@ void FUN_18083b5a0(undefined1 (*uiContext) [64],undefined1 (*dataSource) [64],in
     *(uint *)(*uiContext + 4) = (uint)IsEventProcessingActive * asemaphoreHandle7._4_4_ | !IsEventProcessingActive * asemaphoreHandle4._4_4_;
     *(uint *)(*uiContext + 8) = (uint)bVar3 * asemaphoreHandle7._8_4_ | !bVar3 * asemaphoreHandle4._8_4_;
     *(uint *)(*uiContext + 0xc) = (uint)bVar4 * asemaphoreHandle7._12_4_ | !bVar4 * asemaphoreHandle4._12_4_;
-    *(uint *)(*uiContext + 0x10) = (uint)bVar5 * asemaphoreHandle7._16_4_ | !bVar5 * asemaphoreHandle4._16_4_;
+    *(uint *)(*uiContext + 0x10) = (uint)IsValidationComplete * asemaphoreHandle7._16_4_ | !IsValidationComplete * asemaphoreHandle4._16_4_;
     *(uint *)(*uiContext + 0x14) = (uint)bVar6 * asemaphoreHandle7._20_4_ | !bVar6 * asemaphoreHandle4._20_4_;
     *(uint *)(*uiContext + 0x18) = (uint)bVar7 * asemaphoreHandle7._24_4_ | !bVar7 * asemaphoreHandle4._24_4_;
     *(uint *)(*uiContext + 0x1c) = (uint)bVar8 * asemaphoreHandle7._28_4_ | !bVar8 * asemaphoreHandle4._28_4_;
@@ -288807,7 +288807,7 @@ void FUN_180847550(longlong uiContext,undefined8 *dataSource,undefined1 targetBu
   undefined4 semaphoreHandle;
   undefined4 EventTypeCode;
   char localChar4;
-  byte bVar5;
+  byte IsValidationComplete;
   undefined *ptrLocal6;
   undefined8 eventTypeCode;
   uint uVar8;
@@ -288854,14 +288854,14 @@ void FUN_180847550(longlong uiContext,undefined8 *dataSource,undefined1 targetBu
   }
   uVar9 = (-(uint)(*(int *)(uiBufferData + 0x30) != 0) & 2 | uVar8) & ~uVar9;
   *(uint *)(dataSource + 4) = uVar9;
-  bVar5 = *(byte *)(uiContext + 0x34) & 1;
-  uVar9 = ~((bVar5 ^ 1) << 2) & ((uint)bVar5 << 2 | uVar9);
+  IsValidationComplete = *(byte *)(uiContext + 0x34) & 1;
+  uVar9 = ~((IsValidationComplete ^ 1) << 2) & ((uint)IsValidationComplete << 2 | uVar9);
   *(uint *)(dataSource + 4) = uVar9;
-  bVar5 = (byte)(*(uint *)(uiContext + 0x34) >> 3) & 1;
-  uVar9 = ~((bVar5 ^ 1) << 3) & ((uint)bVar5 << 3 | uVar9);
+  IsValidationComplete = (byte)(*(uint *)(uiContext + 0x34) >> 3) & 1;
+  uVar9 = ~((IsValidationComplete ^ 1) << 3) & ((uint)IsValidationComplete << 3 | uVar9);
   *(uint *)(dataSource + 4) = uVar9;
-  bVar5 = (byte)(*(uint *)(uiContext + 0x34) >> 5) & 1;
-  *(uint *)(dataSource + 4) = ~((bVar5 ^ 1) << 4) & ((uint)bVar5 << 4 | uVar9);
+  IsValidationComplete = (byte)(*(uint *)(uiContext + 0x34) >> 5) & 1;
+  *(uint *)(dataSource + 4) = ~((IsValidationComplete ^ 1) << 4) & ((uint)IsValidationComplete << 4 | uVar9);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt28 ^ (ulonglong)astackUInt58);
 }
@@ -292144,7 +292144,7 @@ void FUN_18084b990(longlong *uiContext,longlong dataSource,longlong *targetBuffe
   byte IsEventProcessingActive;
   byte bVar3;
   byte bVar4;
-  byte bVar5;
+  byte IsValidationComplete;
   byte bVar6;
   byte bVar7;
   byte bVar8;
@@ -292185,7 +292185,7 @@ void FUN_18084b990(longlong *uiContext,longlong dataSource,longlong *targetBuffe
         IsEventProcessingActive = *(byte *)((longlong)ptrResult8 + 0xf);
         bVar3 = *(byte *)((longlong)ptrResult8 + 0xe);
         bVar4 = *(byte *)((longlong)ptrResult8 + 0xd);
-        bVar5 = *(byte *)(ptrResult8 + 3);
+        IsValidationComplete = *(byte *)(ptrResult8 + 3);
         isCharacterMatch = *(byte *)((longlong)ptrResult8 + 0xb);
         bVar6 = *(byte *)((longlong)ptrResult8 + 10);
         bVar7 = *(byte *)((longlong)ptrResult8 + 9);
@@ -292197,7 +292197,7 @@ LAB_18084bb6f:
         stackUInt60 = (uint)IsEventProcessingActive;
         stackUInt68 = (uint)bVar3;
         stackUInt70 = (uint)bVar4;
-        stackUInt78 = (uint)bVar5;
+        stackUInt78 = (uint)IsValidationComplete;
         stackUInt80 = (uint)isCharacterMatch;
         stackUInt88 = (uint)bVar6;
         stackUInt90 = (uint)bVar7;
@@ -292222,7 +292222,7 @@ LAB_18084bb6f:
           IsEventProcessingActive = *(byte *)((longlong)ptrResult7 + 0xf);
           bVar3 = *(byte *)((longlong)ptrResult7 + 0xe);
           bVar4 = *(byte *)((longlong)ptrResult7 + 0xd);
-          bVar5 = *(byte *)(ptrResult7 + 3);
+          IsValidationComplete = *(byte *)(ptrResult7 + 3);
           bVar6 = *(byte *)((longlong)ptrResult7 + 10);
           bVar7 = *(byte *)((longlong)ptrResult7 + 9);
           bVar8 = *(byte *)(ptrResult7 + 2);
@@ -300929,7 +300929,7 @@ undefined8 FUN_18085186c(longlong uiContext,undefined8 dataSource,undefined1 tar
   undefined8 EventTypeCode;
   longlong *plocalLong4;
   longlong unmodifiedRDI;
-  bool bVar5;
+  bool IsValidationComplete;
   undefined8 stackParam00000050;
   undefined8 stackParam00000058;
   
@@ -300965,11 +300965,11 @@ LAB_180851913:
     if (*(longlong *)(uiContext + 0x48) != 0) {
       *(undefined1 *)(*(longlong *)(uiContext + 0x48) + 0x2a) = 0;
     }
-    bVar5 = *(char *)(*(longlong *)(uiContext + 0x40) + 0x74) != '\0';
-    FUN_18073d8a0(*(undefined8 *)(unmodifiedRDI + 0x78),bVar5);
+    IsValidationComplete = *(char *)(*(longlong *)(uiContext + 0x40) + 0x74) != '\0';
+    FUN_18073d8a0(*(undefined8 *)(unmodifiedRDI + 0x78),IsValidationComplete);
     for (ptrResult = *(undefined8 **)(unmodifiedRDI + 0x50);
         (ptrResult != (undefined8 *)(unmodifiedRDI + 0x50) &&
-        (FUN_180853fc0(ptrResult[2],bVar5), ptrResult != (undefined8 *)(unmodifiedRDI + 0x50)));
+        (FUN_180853fc0(ptrResult[2],IsValidationComplete), ptrResult != (undefined8 *)(unmodifiedRDI + 0x50)));
         ptrResult = (undefined8 *)*ptrResult) {
     }
     *(undefined8 *)(unmodifiedRDI + 0x60) = 0;
@@ -302818,7 +302818,7 @@ int FUN_180852d79(void)
   undefined4 semaphoreHandle;
   undefined4 EventTypeCode;
   undefined4 ProcessingStatus;
-  bool bVar5;
+  bool IsValidationComplete;
   undefined8 *ptrLocal6;
   undefined8 *peventTypeCode;
   longlong localLong8;
@@ -302852,7 +302852,7 @@ int FUN_180852d79(void)
                      WARNING: Subroutine does not return
     FUN_180768400(allocatedMemory);
   }
-  bVar5 = false;
+  IsValidationComplete = false;
   peventTypeCode = (undefined8 *)0x0;
   if (ptrLocal6 == (undefined8 *)0x0) {
     peventTypeCode = (undefined8 *)
@@ -302864,7 +302864,7 @@ int FUN_180852d79(void)
     }
     *peventTypeCode = 0;
     peventTypeCode[1] = 0;
-    bVar5 = true;
+    IsValidationComplete = true;
     peventTypeCode[2] = 0;
     peventTypeCode[3] = 0;
     *(undefined4 *)(peventTypeCode + 4) = 0xffffffff;
@@ -302881,7 +302881,7 @@ int FUN_180852d79(void)
   stackParam000000a8 = *(undefined4 *)(unmodifiedR13 + 0xe4);
   uiOperationResult0 = FUN_1807d28c0(ptrLocal6,&stack0x000000a8,&stack0x000000a0);
   if (uiOperationResult0 != 0) goto LAB_180852f9c;
-  if (!bVar5) {
+  if (!IsValidationComplete) {
     return 0;
   }
   uStack0000000000000040 = *(uint *)(ptrLocal6 + 5);
@@ -311409,7 +311409,7 @@ int FUN_18085a5e5(void)
   uint semaphoreHandle;
   int uiCompareResult;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   int localInt6;
   uint eventTypeCode;
   uint uVar8;
@@ -311475,7 +311475,7 @@ LAB_18085a698:
     }
     if (uStack0000000000000048 < eventTypeCode) goto LAB_18085a6ac;
 LAB_18085a6b0:
-    bVar5 = false;
+    IsValidationComplete = false;
   }
   else {
     if (result5 <= result3) {
@@ -311483,11 +311483,11 @@ LAB_18085a6b0:
       goto LAB_18085a6b0;
     }
 LAB_18085a6ac:
-    bVar5 = true;
+    IsValidationComplete = true;
   }
   if (bVar4) {
     allocatedMemory7 = *(longlong *)(unmodifiedRBP + 0x57);
-    if (bVar5) goto LAB_18085a8c1;
+    if (IsValidationComplete) goto LAB_18085a8c1;
     localInt6 = FUN_18085ab70(allocatedMemory7);
     stackParam00000020 = stackParam00000020 & 0xffffffffffffff00;
     localInt6 = FUN_18085f790(*(undefined8 *)(allocatedMemory7 + 0x160),*(undefined8 *)(unmodifiedRBP + 0x5f),
@@ -311503,7 +311503,7 @@ LAB_18085a742:
     result5 = *(uint *)(unmodifiedRBP + -0x7d);
   }
   else {
-    if (bVar5) {
+    if (IsValidationComplete) {
       FUN_18084da10();
       result5 = *(uint *)(unmodifiedRBP + -0x7d);
       if (result3 < semaphoreHandle) {
@@ -320907,7 +320907,7 @@ void FUN_18086226d(longlong uiContext,uint dataSource,char targetBuffer)
   char localChar3;
   uint bufferSize;
   int localInt4;
-  byte bVar5;
+  byte IsValidationComplete;
   longlong unmodifiedRBP;
   longlong unmodifiedRDI;
   longlong contextData;
@@ -320938,9 +320938,9 @@ void FUN_18086226d(longlong uiContext,uint dataSource,char targetBuffer)
     }
   }
   result = *(uint *)(unmodifiedRDI + 0x1c);
-  bVar5 = *(byte *)(unmodifiedRDI + 0x1c) & 1;
+  IsValidationComplete = *(byte *)(unmodifiedRDI + 0x1c) & 1;
   bVar7 = (byte)(result >> 2) & 1;
-  if (((result >> 2 & 1) == 0) && (bVar5 != 0)) {
+  if (((result >> 2 & 1) == 0) && (IsValidationComplete != 0)) {
     IsEventProcessingActive = false;
   }
   else {
@@ -320952,7 +320952,7 @@ void FUN_18086226d(longlong uiContext,uint dataSource,char targetBuffer)
   }
   else if ((bufferSize >> 6 & 1) == 0) {
     if (((((char)dataSource != '\0') || (((bufferSize >> 5 & 1) != 0 && (targetBuffer == '\0')))) &&
-        ((*(uint *)(unmodifiedRDI + 0x1c) = result | 0x40, (bufferSize >> 5 & 1) != 0 || (bVar5 == 0)))) &&
+        ((*(uint *)(unmodifiedRDI + 0x1c) = result | 0x40, (bufferSize >> 5 & 1) != 0 || (IsValidationComplete == 0)))) &&
        ((IsEventProcessingActive || ((result >> 3 & 1) != 0)))) {
       *(undefined8 *)(unmodifiedRBP + -0x70) = *(undefined8 *)(*(longlong *)(uiContext + 0x10) + 0x88);
       FUN_18085bb20(contextData + 200,unmodifiedRBP + -0x58,unmodifiedRBP + -0x70);
@@ -323421,7 +323421,7 @@ ulonglong FUN_1808640c7(undefined4 uiContext)
   int *puiValidationResult;
   longlong stringCompareIndex;
   bool bVar4;
-  byte bVar5;
+  byte IsValidationComplete;
   char localChar6;
   uint bufferSize;
   uint eventTypeCode;
@@ -323454,9 +323454,9 @@ ulonglong FUN_1808640c7(undefined4 uiContext)
   }
   else {
 LAB_1808640fb:
-    bVar5 = (byte)(*(uint *)(unmodifiedRDI + 0x2d8) >> 0xb) & 1;
+    IsValidationComplete = (byte)(*(uint *)(unmodifiedRDI + 0x2d8) >> 0xb) & 1;
     *(uint *)(unmodifiedRDI + 0x2d8) =
-         ((uint)bVar5 << 10 | *(uint *)(unmodifiedRDI + 0x2d8)) & ~((bVar5 ^ 1) << 10) & 0xffffb7ff;
+         ((uint)IsValidationComplete << 10 | *(uint *)(unmodifiedRDI + 0x2d8)) & ~((IsValidationComplete ^ 1) << 10) & 0xffffb7ff;
     eventTypeCode = FUN_180865550(uiContext,0);
     result2 = (ulonglong)eventTypeCode;
     if (eventTypeCode != 0) goto LAB_180864627;
@@ -357023,7 +357023,7 @@ void FUN_180882400(longlong uiContext)
   longlong componentIndex;
   int uiCompareResult;
   int localInt4;
-  bool bVar5;
+  bool IsValidationComplete;
   undefined1 astackUInt98 [32];
   undefined8 stackUInt78;
   undefined8 stackUInt70;
@@ -357047,9 +357047,9 @@ void FUN_180882400(longlong uiContext)
     while (uiCompareResult != 0x4a) {
       if ((int)stackUInt70 == 1) {
         stackUInt70._4_4_ = (int)((ulonglong)stackUInt70 >> 0x20);
-        bVar5 = stackUInt70._4_4_ == 0;
+        IsValidationComplete = stackUInt70._4_4_ == 0;
         uiCompareResult = stackUInt70._4_4_;
-        if (bVar5) {
+        if (IsValidationComplete) {
           uiCompareResult = FUN_1808762b0(uiContext,&stackLong68);
           stackUInt70 = CONCAT44(uiCompareResult,(int)stackUInt70);
         }
@@ -357095,8 +357095,8 @@ LAB_18088254f:
         }
       }
       else {
-        bVar5 = (int)stackUInt70 == 0;
-        if ((bVar5) && (uiCompareResult = FUN_18088ad30(uiContext,stackLong68), uiCompareResult != 0)) break;
+        IsValidationComplete = (int)stackUInt70 == 0;
+        if ((IsValidationComplete) && (uiCompareResult = FUN_18088ad30(uiContext,stackLong68), uiCompareResult != 0)) break;
       }
       uiCompareResult = func_0x0001808e0080(*(undefined8 *)(uiContext + 0xac8));
       if (uiCompareResult != 0) break;
@@ -371173,7 +371173,7 @@ int FUN_18088fb40(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
   int uiValidationResult;
   int uiCompareResult;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   bool bVar6;
   
   *(int *)(uiBufferData + 0x98) = *(int *)(uiBufferData + 0x98) + 1;
@@ -371184,7 +371184,7 @@ int FUN_18088fb40(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
   isCharacterMatch = false;
   bVar4 = false;
   bVar6 = false;
-  bVar5 = false;
+  IsValidationComplete = false;
   uiValidationResult = FUN_1808b6e80(uiContext + 0x3c8,dataSource,*(undefined4 *)(uiBufferData + 0x548),targetBuffer);
   if (uiValidationResult == 0) {
     uiCompareResult = 0x1c;
@@ -371207,7 +371207,7 @@ int FUN_18088fb40(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
           uiValidationResult = 0;
           *(int *)(uiBufferData + 0x168) = *(int *)(uiBufferData + 0x168) + -1;
         }
-        bVar5 = uiValidationResult == 0;
+        IsValidationComplete = uiValidationResult == 0;
       }
       if (uiValidationResult == 0) {
         uiValidationResult = 0;
@@ -371252,7 +371252,7 @@ int FUN_18088fb40(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
     *(undefined4 *)(uiBufferData + 0x238) = 0;
     FUN_18084f560(uiContext + 0x208);
   }
-  if (!bVar5) {
+  if (!IsValidationComplete) {
     *(undefined4 *)(uiBufferData + 0x168) = 0;
     FUN_18084f040(uiContext + 0x138);
   }
@@ -371276,7 +371276,7 @@ int FUN_18088fb47(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
   int uiValidationResult;
   int uiCompareResult;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   bool bVar6;
   
   *(int *)(uiBufferData + 0x98) = *(int *)(uiBufferData + 0x98) + 1;
@@ -371287,7 +371287,7 @@ int FUN_18088fb47(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
   isCharacterMatch = false;
   bVar4 = false;
   bVar6 = false;
-  bVar5 = false;
+  IsValidationComplete = false;
   uiValidationResult = FUN_1808b6e80(uiContext + 0x3c8,dataSource,*(undefined4 *)(uiBufferData + 0x548),targetBuffer);
   if (uiValidationResult == 0) {
     uiCompareResult = 0x1c;
@@ -371310,7 +371310,7 @@ int FUN_18088fb47(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
           uiValidationResult = 0;
           *(int *)(uiBufferData + 0x168) = *(int *)(uiBufferData + 0x168) + -1;
         }
-        bVar5 = uiValidationResult == 0;
+        IsValidationComplete = uiValidationResult == 0;
       }
       if (uiValidationResult == 0) {
         uiValidationResult = 0;
@@ -371355,7 +371355,7 @@ int FUN_18088fb47(longlong uiContext,undefined8 dataSource,undefined8 targetBuff
     *(undefined4 *)(uiBufferData + 0x238) = 0;
     FUN_18084f560(uiContext + 0x208);
   }
-  if (!bVar5) {
+  if (!IsValidationComplete) {
     *(undefined4 *)(uiBufferData + 0x168) = 0;
     FUN_18084f040(uiContext + 0x138);
   }
@@ -371381,13 +371381,13 @@ int FUN_18088fb75(longlong uiContext,undefined8 dataSource)
   longlong unmodifiedRSI;
   int uiCompareResult;
   bool bVar4;
-  bool bVar5;
+  bool IsValidationComplete;
   bool bVar6;
   
   isCharacterMatch = false;
   bVar4 = false;
   bVar6 = false;
-  bVar5 = false;
+  IsValidationComplete = false;
   uiValidationResult = FUN_1808b6e80(uiContext + 0x3c8,dataSource,*(undefined4 *)(uiBufferData + 0x548));
   if (uiValidationResult == 0) {
     uiCompareResult = 0x1c;
@@ -371410,7 +371410,7 @@ int FUN_18088fb75(longlong uiContext,undefined8 dataSource)
           uiValidationResult = 0;
           *(int *)(uiBufferData + 0x168) = *(int *)(uiBufferData + 0x168) + -1;
         }
-        bVar5 = uiValidationResult == 0;
+        IsValidationComplete = uiValidationResult == 0;
       }
       if (uiValidationResult == 0) {
         uiValidationResult = 0;
@@ -371454,7 +371454,7 @@ int FUN_18088fb75(longlong uiContext,undefined8 dataSource)
     *(undefined4 *)(uiBufferData + 0x238) = 0;
     FUN_18084f560(uiContext + 0x208);
   }
-  if (!bVar5) {
+  if (!IsValidationComplete) {
     *(undefined4 *)(uiBufferData + 0x168) = 0;
     FUN_18084f040(uiContext + 0x138);
   }
