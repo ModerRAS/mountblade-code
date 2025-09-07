@@ -281,6 +281,18 @@
 #define ConvertUtf8ToUtf16Character FUN_18016e630
 
 /**
+ * @brief 系统数据配置后清理函数
+ * 
+ * 该函数负责在系统数据配置完成后执行清理操作，包括：
+ * - 资源释放
+ * - 内存清理
+ * - 状态重置
+ * 
+ * @note 原始函数名：CleanupSystemDataConfiguration
+ */
+#define CleanupSystemDataConfiguration CleanupSystemDataConfiguration
+
+/**
  * @brief 处理UTF-8编码缓冲区
  * 
  * 该函数负责处理UTF-8编码的缓冲区操作
@@ -351,6 +363,51 @@
  * @note 原始函数名：FUN_18016e6a0
  */
 #define ProcessUtf8EncodingBuffer FUN_18016e6a0
+
+/**
+ * @brief 缓冲区状态初始化函数
+ * 
+ * 该函数负责初始化缓冲区状态，包括状态设置和数据准备
+ * 
+ * @note 原始函数名：FUN_18013de90
+ */
+#define InitializeBufferStatus FUN_18013de90
+
+/**
+ * @brief 系统资源清理函数
+ * 
+ * 该函数负责清理系统资源，包括内存释放和状态重置
+ * 
+ * @note 原始函数名：FUN_18013b490
+ */
+#define CleanupSystemResources FUN_18013b490
+
+/**
+ * @brief 字符表处理函数
+ * 
+ * 该函数负责处理字符表，包括字符数据处理和状态管理
+ * 
+ * @note 原始函数名：FUN_1801359f0
+ */
+#define ProcessCharacterTable FUN_1801359f0
+
+/**
+ * @brief 内存地址掩码处理函数
+ * 
+ * 该函数负责处理内存地址掩码，包括地址计算和验证
+ * 
+ * @note 原始函数名：FUN_18013b0f0
+ */
+#define ProcessMemoryAddressMask FUN_18013b0f0
+
+/**
+ * @brief 系统清理函数
+ * 
+ * 该函数负责系统清理操作，包括状态清理和资源释放
+ * 
+ * @note 原始函数名：FUN_18013ce40
+ */
+#define ExecuteSystemCleanup FUN_18013ce40
 
 /**
  * @brief 初始化系统资源
@@ -158053,7 +158110,7 @@ void FUN_180134b4f(long long CharacterCode
   pEncodingValidationResult = *(int **)(MemoryBlockIndex + 0x210);
   FinalizeMemoryOperation();
   CleanupSystemData();
-  FUN_180291f60(*(void *)(MemoryBlockIndex + 0x2e8));
+  CleanupSystemDataConfiguration(*(void *)(MemoryBlockIndex + 0x2e8));
   SystemContextPrimaryFloat6 = *(float *)(MemoryBlockIndex + 0x104);
   if (*(float *)(MemoryBlockIndex + 0x104) <= (float)pEncodingValidationResult[8]) {
     SystemContextPrimaryFloat6 = (float)pEncodingValidationResult[8];
@@ -158948,7 +159005,7 @@ long long AllocateSystemMemoryPool(uint64_t CharacterCode,uint64_t *Utf8InputBuf
   BufferStatus = SystemConfigurationHandle;
   strncpy(SystemConfigurationHandle + 0x1df8,SystemStringConstant400,0x21);
   *(uint8_t *)(BufferStatus + 0x1e18) = 0;
-  FUN_18013de90(BufferStatus + 0x1e48,0);
+  InitializeBufferStatus(BufferStatus + 0x1e48,0);
   StatusBuffer = (void *)(BufferStatus + 0x1e58);
   *StatusBuffer = 0;
   *(uint64_t **)(BufferStatus + 0x1de0) = StatusBuffer;
@@ -159643,7 +159700,7 @@ void ProcessCharacterCodeConversion(void
 
 
 
-357e9(voidvoid FUN_1801357e9(void
+357e9(voidvoid ProcessCharacterCodeValidation(void
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -159746,7 +159803,7 @@ void ProcessCharacterCodeConversion(void
 
 
 
-358b4(voidvoid FUN_1801358b4(void
+358b4(voidvoid ProcessCharacterBufferCleanup(void
 {
   return;
 }
@@ -161751,7 +161808,7 @@ LAB_180137c29:
       SystemFlagF = 0;
       ProcessSystemDataAndConfigure(*(void *)(StatusBuffer8 + 0xba),CharacterCode + 0xe,&MatrixElementE,SystemMemoryAllocationResult);
     }
-    FUN_180291f60(*(void *)(StatusBuffer8 + 0xba));
+    CleanupSystemDataConfiguration(*(void *)(StatusBuffer8 + 0xba));
   }
   if ((StatusBuffer8 == (uint32_t *)0x0) || ((int)Utf8InputBuffer[8] < 1)) {
     *(byte *)((long long)CharacterCode + 0xa1) = *(byte *)((long long)CharacterCode + 0xa1) & 0xfd;
@@ -162101,7 +162158,7 @@ LAB_180137cc2:
       SystemStatusCode = ValidateSystemData(StackFramePointer + -0x29);
       ProcessSystemDataAndConfigure(*(void *)(PrimaryReturnCode + 0x2e8),DataNodeIndex + 0xe,StackFramePointer + -0x59,SystemStatusCode,0);
     }
-    CharacterCode = (float)FUN_180291f60(*(void *)(PrimaryReturnCode + 0x2e8));
+    CharacterCode = (float)CleanupSystemDataConfiguration(*(void *)(PrimaryReturnCode + 0x2e8));
   }
   if ((PrimaryReturnCode == 0) || ((int)DataNodeIndex[8] < 1)) {
     *(byte *)((long long)DataNodeIndex + 0xa1) = *(byte *)((long long)DataNodeIndex + 0xa1) & 0xfd;
@@ -162449,7 +162506,7 @@ LAB_180137cc2:
       SystemStatusCode = ValidateSystemData(StackFramePointer + -0x29);
       ProcessSystemDataAndConfigure(*(void *)(PrimaryReturnCode + 0x2e8),DataNodeIndex + 0xe,StackFramePointer + -0x59,SystemStatusCode,0);
     }
-    CharacterCode = (float)FUN_180291f60(*(void *)(PrimaryReturnCode + 0x2e8));
+    CharacterCode = (float)CleanupSystemDataConfiguration(*(void *)(PrimaryReturnCode + 0x2e8));
   }
   if ((PrimaryReturnCode == 0) || ((int)DataNodeIndex[8] < 1)) {
     *(byte *)((long long)DataNodeIndex + 0xa1) = *(byte *)((long long)DataNodeIndex + 0xa1) & 0xfd;
@@ -162645,7 +162702,7 @@ LAB_180137cc2:
       SystemChecksum = ValidateSystemData(StackFramePointer + -0x29);
       ProcessSystemDataAndConfigure(*(void *)(SourceIndex + 0x2e8),DataNodeIndex + 0x38,StackFramePointer + -0x59,SystemChecksum,0);
     }
-    FUN_180291f60(*(void *)(SourceIndex + 0x2e8));
+    CleanupSystemDataConfiguration(*(void *)(SourceIndex + 0x2e8));
   }
   if ((SourceIndex == 0) || (*(int *)(DataNodeIndex + 0x20) < 1)) {
     *(byte *)(DataNodeIndex + 0xa1) = *(byte *)(DataNodeIndex + 0xa1) & 0xfd;
@@ -162723,7 +162780,7 @@ LAB_180137cc2:
   *(float *)(StackFramePointer + -0x4d) = FloatVariable5;
   UnicodeCodePoint = ValidateSystemData();
   ProcessSystemMatrixCalculation(*(void *)(SourceIndex + 0x2e8),StackFramePointer + -0x59,StackFramePointer + -0x49,UnicodeCodePoint);
-  FUN_180291f60(*(void *)(SourceIndex + 0x2e8));
+  CleanupSystemDataConfiguration(*(void *)(SourceIndex + 0x2e8));
   if ((SourceIndex == 0) || (*(int *)(DataNodeIndex + 0x20) < 1)) {
     *(byte *)(DataNodeIndex + 0xa1) = *(byte *)(DataNodeIndex + 0xa1) & 0xfd;
     *(byte *)(DataNodeIndex + 0xa0) = *(byte *)(DataNodeIndex + 0xa0) & 0xf7;
@@ -162824,7 +162881,7 @@ LAB_180137cc2:
     *(float *)(StackFramePointer + -0x55) = SystemContextPrimaryFloat + ContextSecondaryFloat;
     SystemChecksum = ValidateSystemData(StackFramePointer + -0x29);
     ProcessSystemDataAndConfigure(*(void *)(SourceIndex + 0x2e8),DataNodeIndex + 0x38,StackFramePointer + -0x59,SystemChecksum,0);
-    FUN_180291f60(*(void *)(SourceIndex + 0x2e8));
+    CleanupSystemDataConfiguration(*(void *)(SourceIndex + 0x2e8));
   }
   if ((SourceIndex == 0) || (*(int *)(DataNodeIndex + 0x20) < 1)) {
     *(byte *)(DataNodeIndex + 0xa1) = *(byte *)(DataNodeIndex + 0xa1) & 0xfd;
