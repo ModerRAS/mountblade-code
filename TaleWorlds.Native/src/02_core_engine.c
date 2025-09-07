@@ -7096,8 +7096,8 @@ void CoreEngineInitializeNetworkEventHandler(void)
     CoreEngineSetupNetworkEventHandler(SystemHandle,&NewNode,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
     CurrentNode = NewNode;
   }
-  CurrentNode[6] = 0x4384dcc4b6d3f417;
-  CurrentNode[7] = 0x92a15d52fe2679bd;
+  CurrentNode[6] = SystemNetworkEventHandlerIdentifierPrimary;
+  CurrentNode[7] = SystemNetworkEventHandlerIdentifierSecondary;
   CurrentNode[8] = &SystemConnectionTemplateC;
   CurrentNode[9] = 0;
   CurrentNode[10] = EventCallbackFunction;
@@ -7150,8 +7150,8 @@ void CoreEngineInitializeNetworkDataSynchronizer(void)
     CoreEngineSetupNetworkSynchronizer(SystemHandle,&NewSyncPointer,CurrentSyncNode,MemoryOffset + 0x20,MemoryOffset);
     CurrentSyncNode = NewSyncPointer;
   }
-  CurrentSyncNode[6] = 0x4140994454d56503;
-  CurrentSyncNode[7] = 0x399eced9bb5517ad;
+  CurrentSyncNode[6] = SystemNetworkSyncManagerIdentifierPrimary;
+  CurrentSyncNode[7] = SystemNetworkSyncManagerIdentifierSecondary;
   CurrentSyncNode[8] = &SystemConnectionTemplateD;
   CurrentSyncNode[9] = 0;
   CurrentSyncNode[10] = NetworkSyncHandler;
