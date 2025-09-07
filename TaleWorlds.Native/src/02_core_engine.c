@@ -1127,6 +1127,44 @@ const void* const SystemStatusValueDenary = (void*)0x180a0fa80;
 const void* const SystemStatusValueUndenary = (void*)0x180a0faa0;
 const void* const SystemStatusValueDuodenary = (void*)0x180a0fab8;
 const void* const SystemStatusValueTerdenary = (void*)0x180a0fad0;
+
+// 系统字符串数据常量 - 用于替换UNK_180a13158等变量
+const char* const SystemStringDataPrimary = (const char*)0x180a13158;
+const char* const SystemStringDataSecondary = (const char*)0x180a13160;
+
+// 系统事件模板常量 - 用于替换UNK_180a13ad0等变量
+const void* const SystemEventTemplatePrimary = (void*)0x180a13ad0;
+const void* const SystemEventTemplateSecondary = (void*)0x180a13ae8;
+const void* const SystemEventTemplateTertiary = (void*)0x180a13aa8;
+const void* const SystemEventTemplateQuaternary = (void*)0x180a13ab8;
+const void* const SystemEventTemplateQuinary = (void*)0x180a13bb8;
+
+// 系统事件处理常量 - 用于替换UNK_180a13b30等变量
+const void* const SystemEventHandlerPrimary = (void*)0x180a13b30;
+const void* const SystemEventHandlerSecondary = (void*)0x180a13b70;
+
+// 系统字符串模板常量 - 用于替换UNK_180a13c2c等变量
+const char* const SystemStringTemplatePrimary = (const char*)0x180a13c2c;
+const char* const SystemStringTemplateSecondary = (const char*)0x180a13c94;
+const char* const SystemStringTemplateTertiary = (const char*)0x180a13ca0;
+const char* const SystemStringTemplateQuaternary = (const char*)0x180a12ea0;
+const char* const SystemStringTemplateQuinary = (const char*)0x180a13c70;
+const char* const SystemStringTemplateSenary = (const char*)0x180a13c88;
+const char* const SystemStringTemplateSeptenary = (const char*)0x180a13cac;
+
+// 系统处理状态常量 - 用于替换UNK_180a13c08等变量
+const void* const SystemProcessingStatusPrimary = (void*)0x180a13c08;
+const void* const SystemProcessingStatusSecondary = (void*)0x180a13c48;
+
+// 系统内存地址常量 - 用于替换UNK_180a01170等变量
+const void* const SystemMemoryAddressPrimary = (void*)0x180a01170;
+const void* const SystemMemoryAddressSecondary = (void*)0x180a03108;
+
+// 系统错误处理常量 - 用于替换UNK_180a04998等变量
+const void* const SystemErrorHandlerPrimary = (void*)0x180a04998;
+
+// 系统标志常量 - 用于替换UNK_180239520等变量
+const uint32_t* const SystemFlagPrimary = (uint32_t*)0x180239520;
 const void* const SystemStatusValueQuaternaryDenary = (void*)0x180a0fae8;
 const void* const SystemStatusValueQuindenary = (void*)0x180a0fb00;
 const void* const SystemStatusValueSexdenary = (void*)0x180a0fb20;
@@ -127608,7 +127646,7 @@ uint8_t ProcessMemoryAllocationFlags(uint32_t CharacterCode,uint64_t Utf8BufferS
 
 
 
-unsigned long long FUN_180128bd0(uint64_t CharacterCode,uint64_t Utf8BufferSize,unsigned long long Utf8SourcePointer,uint64_t Utf16EndPointer
+unsigned long long ConvertSystemDataAndParameters(uint64_t CharacterCode,uint64_t Utf8BufferSize,unsigned long long Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t Utf16Char;
   int CharacterByteCount;
@@ -127638,11 +127676,11 @@ unsigned long long FUN_180128bd0(uint64_t CharacterCode,uint64_t Utf8BufferSize,
   MatchCounter = 0;
   ProcessingStatusFlag = SystemMemoryAllocationResult;
   if (MemoryPoolBlockSize != 0) {
-    ProcessingStatusFlag = FUN_180123460(MemoryPoolBlockSize,MemoryBlockIndex,CharacterCode);
+    ProcessingStatusFlag = ProcessSystemMemoryAddressAndData(MemoryPoolBlockSize,MemoryBlockIndex,CharacterCode);
   }
   Utf16ConversionContext = (uint)Utf8SourcePointer;
   *(uint *)(ProcessingStatusFlag + 0xc) = Utf16ConversionContext;
-  FUN_180122160(MemoryBlockIndex + 0x1ae0,*(uint32_t *)(ProcessingStatusFlag + 8),ProcessingStatusFlag);
+  ProcessSystemSecurityValidation(MemoryBlockIndex + 0x1ae0,*(uint32_t *)(ProcessingStatusFlag + 8),ProcessingStatusFlag);
   LoopIndex = SystemConfigurationHandle;
   MemoryPoolBlockSize = **(long long **)(SystemConfigurationHandle + 0x1c70);
   SystemContextPrimaryFloat6 = *(float *)(MemoryPoolBlockSize + 0xc);
@@ -128235,7 +128273,7 @@ void ProcessFloatDataCalculation(long long CharacterCode,float *Utf8InputBufferS
 
 
 
-float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8SourcePointer,float Utf16EndPointer,float AdditionalParameter1
+float * ProcessSystemFloatDataAndInitializeBuffer(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8SourcePointer,float Utf16EndPointer,float AdditionalParameter1
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -128405,7 +128443,7 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
   ErrorCode = EncodingDecodingKey ^ (unsigned long long)SystemStatusBuffer;
   CoreEnginePointerBuffer150 = Utf8BufferSize;
   pcStack_100 = CharacterCode;
-  pSystemMemoryOffset238 = (long long *)FUN_180128b60();
+  pSystemMemoryOffset238 = (long long *)AllocateSystemBuffer();
   CharacterByteCount3 = *(int *)(DataStructureCounter + 0x1ad0);
   cStack_22f = pSystemMemoryOffset238 == (long long *)0x0;
   if (pSystemMemoryOffset238 == (long long *)0x0) {
@@ -128417,7 +128455,7 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
       StatusBuffer8 = &uStack_1b0;
       uStack_1b0 = *(long long *)(DataStructureCounter + 0x1c04);
     }
-    pSystemMemoryOffset238 = (long long *)FUN_180128bd0(CharacterCode,*StatusBuffer8,Utf8SourcePointer);
+    pSystemMemoryOffset238 = (long long *)ConvertSystemDataAndParameters(CharacterCode,*StatusBuffer8,Utf8SourcePointer);
   }
   CoreEngineIntegerValue200 = (int)pSystemMemoryOffset238[0x50];
   ProcessingStatusFlag = *(uint *)((long long)pSystemMemoryOffset238 + 0xdc);
