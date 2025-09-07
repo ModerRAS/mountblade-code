@@ -3145,36 +3145,78 @@
 // 功能：验证系统状态并返回验证结果
 #define ValidateSystemState FUN_18089dd78
 
-// 原始函数名：FUN_18089dda2 - 数据缓冲区处理函数
-// 功能：处理数据缓冲区和内存操作
+/**
+ * @brief 数据缓冲区处理函数
+ * 
+ * 该函数负责处理数据缓冲区的读写操作，包括数据验证、缓冲区管理和内存操作。
+ * 它会确保数据在缓冲区中的正确性和完整性。
+ * 
+ * @note 原始函数名：FUN_18089dda2
+ */
 #define ProcessDataBuffer FUN_18089dda2
 
-// 原始函数名：FUN_18089de39 - 内存地址验证函数
-// 功能：验证内存地址的有效性
+/**
+ * @brief 内存地址验证函数
+ * 
+ * 该函数负责验证内存地址的有效性，确保内存访问的安全性。
+ * 它会检查地址的合法性、访问权限和内存保护状态。
+ * 
+ * @note 原始函数名：FUN_18089de39
+ */
 #define ValidateMemoryAddress FUN_18089de39
 
-// 原始函数名：FUN_18089de72 - 系统配置处理函数
-// 功能：处理系统配置和参数设置
+/**
+ * @brief 系统配置处理函数
+ * 
+ * 该函数负责处理系统配置和参数设置，包括系统初始化配置、运行时参数调整
+ * 和配置验证。它会确保系统配置的正确性和一致性。
+ * 
+ * @note 原始函数名：FUN_18089de72
+ */
 #define ProcessSystemConfiguration FUN_18089de72
 
-// 原始函数名：FUN_18089e230 - 系统数据传输函数
-// 功能：处理系统数据传输和指针操作
+/**
+ * @brief 系统数据传输函数
+ * 
+ * 该函数负责处理系统数据传输和指针操作，包括数据复制、内存移动和指针管理。
+ * 它会确保数据传输的安全性和完整性。
+ * 
+ * @note 原始函数名：FUN_18089e230
+ */
 #define ProcessSystemDataTransfer FUN_18089e230
 
-// 原始函数名：FUN_18089e297 - 系统状态获取函数
-// 功能：获取系统状态并返回状态码
+/**
+ * @brief 系统状态获取函数
+ * 
+ * 该函数负责获取系统状态并返回状态码，包括系统运行状态、错误状态和性能状态。
+ * 它会提供系统当前状态的详细信息。
+ * 
+ * @note 原始函数名：FUN_18089e297
+ */
 #define GetSystemStatusCode FUN_18089e297
 
 // 原始函数名：ValidateDataProcessingA0 - 数据验证处理函数A0
 // 功能：验证数据完整性和处理状态
 #define ValidateDataProcessingA0 ValidateDataProcessingA0
 
-// 原始函数名：FUN_1808a54c0 - 数据标志处理函数A0
-// 功能：处理数据标志并返回处理结果
+/**
+ * @brief 数据标志处理函数A0
+ * 
+ * 该函数负责处理数据标志并返回处理结果，包括标志位设置、清除和验证。
+ * 它会确保数据标志的正确性和一致性。
+ * 
+ * @note 原始函数名：FUN_1808a54c0
+ */
 #define ProcessDataFlagsA0 FUN_1808a54c0
 
-// 原始函数名：FUN_1808aef40 - 数据清理函数A0
-// 功能：清理数据缓冲区和相关资源
+/**
+ * @brief 数据清理函数A0
+ * 
+ * 该函数负责清理数据缓冲区和相关资源，包括内存释放、资源清理和状态重置。
+ * 它会确保数据资源的正确释放和清理。
+ * 
+ * @note 原始函数名：FUN_1808aef40
+ */
 #define CleanupDataBufferA0 FUN_1808aef40
 
 // 原始函数名：FUN_180883750 - 内存状态检查函数A0
@@ -9714,18 +9756,7 @@ uint8_t SystemManagementDataTableA0;
  * @see QueryAndRetrieveSystemDataA0, ExecuteCoreFunction, ProcessUtilityOperation
  */
 /**
- * @brief 处理对象数据并执行验证
- * 
- * 该函数负责处理对象数据操作，包括安全验证、资源管理和数据处理
- * 函数会执行栈保护检查，确保操作的安全性
- * 
- * @param ObjectHandle 对象句柄，用于标识要处理的对象
- * @param DataContext 数据上下文，包含处理所需的数据信息
- * 
- * @note 原始函数名：ProcessObjectDataWithValidation
- */
-/**
- * @brief 对象数据验证处理函数
+ * @brief 处理对象数据并进行验证
  * 
  * 该函数用于处理对象数据并进行验证操作，包括安全检查、资源处理和数据验证。
  * 函数执行以下步骤：
@@ -9738,21 +9769,11 @@ uint8_t SystemManagementDataTableA0;
  * 
  * @param ObjectHandle 对象句柄，用于标识要处理的对象
  * @param DataContext 数据上下文，包含处理所需的数据信息
- * @return 无返回值
  * 
  * @note 此函数包含安全验证机制，确保数据处理过程的安全性
  * @warning 函数执行过程中不会返回，最后会调用安全检查
  * 
  * @see QueryAndRetrieveSystemDataA0, ExecuteCoreFunction, ProcessUtilityOperation, ReleaseResource, CleanupMemory
- */
-/**
- * @brief 处理对象数据并进行验证
- * 
- * 该函数负责处理对象数据，执行验证操作，并管理系统资源
- * 包括安全验证、数据处理和资源清理等功能
- * 
- * @param ObjectHandle 对象句柄，用于访问对象数据
- * @param DataContext 数据上下文，提供数据处理环境
  */
 void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 {
@@ -56071,7 +56092,20 @@ void CleanupExceptionHandlingResourcesC30(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_180905c40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源表中的异常处理器
+ * 
+ * 该函数清理异常处理资源表中的所有异常处理器，将每个处理器重置为默认值，
+ * 并在必要时终止系统。该函数主要处理数据缓冲区0x40偏移量处的资源表。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含资源表信息
+ * 
+ * @note 原始函数名：Unwind_180905c40
+ * @note 从数据缓冲区的0x40偏移量获取资源表
+ * @note 处理0x10偏移量的内存基地址和0x18偏移量的清理标志
+ */
+void CleanupExceptionHandlersInResourceTable(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -56105,7 +56139,23 @@ void Unwind_180905c40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905c50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理线程上下文和内存资源
+ * 
+ * 该函数在异常展开过程中清理线程上下文和相关内存资源，包括：
+ * - 销毁互斥锁和条件变量
+ * - 清理验证状态指针
+ * - 处理内存引用计数
+ * - 管理异常处理资源
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含线程上下文信息
+ * 
+ * @note 原始函数名：Unwind_180905c50
+ * @note 从数据缓冲区的0x40偏移量获取线程上下文
+ * @note 处理互斥锁、条件变量、内存管理等多种资源
+ */
+void CleanupThreadContextAndMemoryResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -56166,7 +56216,20 @@ void Unwind_180905c50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905c60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理扩展资源表中的异常处理器
+ * 
+ * 该函数清理扩展异常处理资源表中的所有异常处理器，将每个处理器重置为默认值，
+ * 并在必要时终止系统。该函数主要处理数据缓冲区0x40偏移量处的扩展资源表。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含扩展资源表信息
+ * 
+ * @note 原始函数名：Unwind_180905c60
+ * @note 从数据缓冲区的0x40偏移量获取扩展资源表
+ * @note 处理0x340偏移量的内存基地址和0x348偏移量的清理标志
+ */
+void CleanupExceptionHandlersInExtendedTable(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
