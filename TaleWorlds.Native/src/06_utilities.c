@@ -22,6 +22,14 @@
 #define DataProcessingMultiplier 0xc
 #define OperationFlagMask 0x10000000
 #define MemoryAlignmentMask 0xfbffffff
+#define SystemMemoryCleanupMask 0xffc00000
+#define MemoryOffsetAdjustment 4
+#define MemoryBaseOffset 0x80
+#define MemoryBlockMultiplier 0x50
+#define MemoryReferenceOffset 0x18
+#define MemoryDataOffset 0x20
+#define MemoryExceptionCheckOffset 0xe
+#define MemoryPointerTableOffset 0x70
 
 // 资源管理常量定义
 #define ResourceDataOffset 0x10
