@@ -60002,7 +60002,20 @@ void Unwind_1809072e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907300(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理函数指针调用A0
+ * 
+ * 在异常处理时清理函数指针调用，确保系统能够安全地恢复状态。
+ * 该函数检查数据缓冲区中的函数指针，如果存在则调用相应的清理函数。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含需要清理的函数指针信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907300
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void CleanupFunctionPointerCallA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x20) != (int64_t *)0x0) {
@@ -60013,7 +60026,20 @@ void Unwind_180907300(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907310(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器A0
+ * 
+ * 在异常处理时设置默认的异常处理器B，确保系统能够正确处理异常。
+ * 该函数将数据缓冲区中的异常处理器指针设置为默认异常处理器B。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常处理器指针信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907310
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void SetDefaultExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x130) = &DefaultExceptionHandlerB;
@@ -101763,53 +101789,53 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordV uStack_2e8
 
-// 原始变量名：StackDataWordW - 栈数据字W
+// 原始变量名：uStack_28c - 栈数据字W
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordW StackDataWordW
+#define StackDataWordW uStack_28c
 
-// 原始变量名：StackDataWordX - 栈数据字X
+// 原始变量名：uStack_288 - 栈数据字X
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordX StackDataWordX
+#define StackDataWordX uStack_288
 
-// 原始变量名：StackDataWordY - 栈数据字Y
+// 原始变量名：uStack_284 - 栈数据字Y
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordY StackDataWordY
+#define StackDataWordY uStack_284
 
-// 原始变量名：StackDataWordZ - 栈数据字Z
+// 原始变量名：uStack_280 - 栈数据字Z
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordZ StackDataWordZ
+#define StackDataWordZ uStack_280
 
-// 原始变量名：StackDataWordAA - 栈数据字AA
+// 原始变量名：uStack_27c - 栈数据字AA
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAA StackDataWordAA
+#define StackDataWordAA uStack_27c
 
-// 原始变量名：StackDataWordAB - 栈数据字AB
+// 原始变量名：uStack_298 - 栈数据字AB
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAB StackDataWordAB
+#define StackDataWordAB uStack_298
 
-// 原始变量名：StackPointerBufferG - 栈指针缓冲区G
+// 原始变量名：puStack_2a8 - 栈指针缓冲区G
 // 功能：存储指针数据的栈缓冲区
-#define StackPointerBufferG StackPointerBufferG
+#define StackPointerBufferG puStack_2a8
 
-// 原始变量名：StackIntegerD - 栈整型D
+// 原始变量名：iStack_2a0 - 栈整型D
 // 功能：存储整型数据的栈变量
-#define StackIntegerD StackIntegerD
+#define StackIntegerD iStack_2a0
 
-// 原始变量名：StackIntegerE - 栈整型E
+// 原始变量名：iStack_290 - 栈整型E
 // 功能：存储整型数据的栈变量
-#define StackIntegerE StackIntegerE
+#define StackIntegerE iStack_290
 
-// 原始变量名：StackPointerBufferH - 栈指针缓冲区H
+// 原始变量名：puStack_2f8 - 栈指针缓冲区H
 // 功能：存储指针数据的栈缓冲区
-#define StackPointerBufferH StackPointerBufferH
+#define StackPointerBufferH puStack_2f8
 
-// 原始变量名：StackIntegerF - 栈整型F
+// 原始变量名：iStack_2f0 - 栈整型F
 // 功能：存储整型数据的栈变量
-#define StackIntegerF StackIntegerF
+#define StackIntegerF iStack_2f0
 
-// 原始变量名：StackFloatArrayC - 栈浮点数组C
+// 原始变量名：afStack_304 - 栈浮点数组C
 // 功能：存储浮点数组的栈数据
-#define StackFloatArrayC StackFloatArrayC
+#define StackFloatArrayC afStack_304
 
 // 原始变量名：StackIntegerPointerC - 栈整型指针C
 // 功能：存储整型指针的栈变量
