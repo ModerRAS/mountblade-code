@@ -20053,49 +20053,49 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
     arrayOffset = iterationCount * 3;
     dataPointer = (int64_t)*(int *)(baseAddress + iterationCount * 0xc) + *(int64_t *)(systemContext + 8);
     dataType = *(char *)(baseAddress + 8 + iterationCount * 0xc);
-    if (validationResult == '\x01') {
-      calculatedSize = *(int *)(operationBase + 0xb0);
-      if (arrayIndex < calculatedSize) {
-        *(int *)(operationBase + 0xac) = arrayIndex + 1;
+    if (dataType == '\x01') {
+      int bufferSize = *(int *)(systemContext + 0xb0);
+      if (currentIndex < bufferSize) {
+        *(int *)(systemContext + 0xac) = currentIndex + 1;
         GOTO_ValidationFailed;
       }
-      floatValue = *(float *)(dataPointer + 0x18);
-      calculatedFloatValue = floatValue;
-      if (calculatedSize != -1) {
-        calculatedFloatValue = *(float *)(operationBase + 0xb4);
-        calculatedSize = -1;
-        *(DataWord *)(operationBase + 0xb0) = SystemCleanupFlag;
-        *(DataWord *)(operationBase + 0xb4) = NegativeZeroFloat;
+      float sourceFloatValue = *(float *)(dataPointer + 0x18);
+      float processedFloatValue = sourceFloatValue;
+      if (bufferSize != -1) {
+        processedFloatValue = *(float *)(systemContext + 0xb4);
+        bufferSize = -1;
+        *(DataWord *)(systemContext + 0xb0) = SystemCleanupFlag;
+        *(DataWord *)(systemContext + 0xb4) = NegativeZeroFloat;
       }
-      *(float *)(operationBase + 0xa8) = floatValue;
+      *(float *)(systemContext + 0xa8) = sourceFloatValue;
       memoryOffset = 0;
-      processedFloatValue = (float)*(uint *)(operationBase + 0x68) * floatValue;
-      if ((9.223372e+18 <= processedFloatValue) && (processedFloatValue = processedFloatValue - 9.223372e+18, processedFloatValue < 9.223372e+18)) {
+      float calculatedFloatValue = (float)*(uint *)(systemContext + 0x68) * sourceFloatValue;
+      if ((9.223372e+18 <= calculatedFloatValue) && (calculatedFloatValue = calculatedFloatValue - 9.223372e+18, calculatedFloatValue < 9.223372e+18)) {
         memoryOffset = InvalidMemoryOffset;
       }
-      dataContext = *(int64_t *)(operationBase + 0xa0);
-      memoryPointer = *(int64_t *)(operationBase + 0x98);
+      int64_t dataContext = *(int64_t *)(systemContext + 0xa0);
+      int64_t memoryPointer = *(int64_t *)(systemContext + 0x98);
       if (memoryPointer == 0) {
-        floatCalculatedValue = (float)*(uint *)(operationBase + 0x68) * floatCalculatedValue;
+        float adjustedFloatValue = (float)*(uint *)(systemContext + 0x68) * adjustedFloatValue;
         memoryPointer = 0;
-        if ((9.223372e+18 <= floatCalculatedValue) && (floatCalculatedValue = floatCalculatedValue - 9.223372e+18, floatCalculatedValue < 9.223372e+18)) {
+        if ((9.223372e+18 <= adjustedFloatValue) && (adjustedFloatValue = adjustedFloatValue - 9.223372e+18, adjustedFloatValue < 9.223372e+18)) {
           memoryPointer = InvalidMemoryOffset;
         }
-        memoryPointer = dataContext - ((int64_t)floatCalculatedValue + memoryPointer);
-        *(int64_t *)(operationBase + 0x98) = memoryPointer;
+        memoryPointer = dataContext - ((int64_t)adjustedFloatValue + memoryPointer);
+        *(int64_t *)(systemContext + 0x98) = memoryPointer;
       }
-      byteValidationFlag = *(byte *)(operationBase + OperationBaseOffset6C);
-      if (*(int64_t *)(operationBase + 0xc0) != 0) {
-        operationResult = CleanupAndValidateDataStructure(operationBase);
-        arrayIndex = (**(FunctionPointer**)(operationBase + 0xc0))
-                          (operationResult,arrayIndex,*(DataWord *)(dataPointer + 0x18),*(DataBuffer *)(operationBase + 0xb8)
+      byte validationFlags = *(byte *)(systemContext + OperationBaseOffset6C);
+      if (*(int64_t *)(systemContext + 0xc0) != 0) {
+        int operationResult = CleanupAndValidateDataStructure(systemContext);
+        int resultIndex = (**(FunctionPointer**)(systemContext + 0xc0))
+                          (operationResult,currentIndex,*(DataWord *)(dataPointer + 0x18),*(DataBuffer *)(systemContext + 0xb8)
                           );
-        if (arrayIndex != 0) GOTO_ValidationFailed;
+        if (resultIndex != 0) GOTO_ValidationFailed;
       }
-      if (((((byteValidationFlag & 2) != 0 || (int64_t)floatValue + memoryOffset < dataContext - memoryPointer) &&
-           (arrayIndex = *StackIntegerPointerC, *StackIntegerPointerC = arrayIndex + 1, arrayIndex < 10)) &&
-          ((*(uint *)(operationBase + OperationBaseOffset6C) >> 0x18 & 1) == 0)) &&
-         (((*(uint *)(operationBase + OperationBaseOffset6C) >> 0x19 & 1) != 0 && (calculatedSize == *(int *)(operationBase + 0xb0))))) {
+      if (((((validationFlags & 2) != 0 || (int64_t)sourceFloatValue + memoryOffset < dataContext - memoryPointer) &&
+           (resultIndex = *StackIntegerPointerC, *StackIntegerPointerC = resultIndex + 1, resultIndex < 10)) &&
+          ((*(uint *)(systemContext + OperationBaseOffset6C) >> 0x18 & 1) == 0)) &&
+         (((*(uint *)(systemContext + OperationBaseOffset6C) >> 0x19 & 1) != 0 && (bufferSize == *(int *)(systemContext + 0xb0))))) {
 MemoryCopyLabel:
           memcpy(dataCopyBuffer,dataPointer,(int64_t)*(int *)(dataPointer + 8));
       }
