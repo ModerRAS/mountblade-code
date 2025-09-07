@@ -18755,9 +18755,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
             validationContextPointer3 = systemContextPointer;
             if (arrayIndex == 0) {
               stackDataPointer1 = &SystemValidationDataTableA1;
-              uStack_c8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
-              uStack_d0 = 0;
-              uStack_c0 = 1;
+              StackResourceData = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              StackResourceOffset = 0;
+              StackResourceFlag = 1;
               ProcessSystemDataA2(stackDataPointer1,*(DataBuffer *)(operationBase + 0x58));
               stackDataPointer2 = &SystemValidationDataTableA2;
               uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
