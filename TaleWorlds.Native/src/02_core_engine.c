@@ -110218,9 +110218,9 @@ unsigned long long ProcessSystemContextWithCharacterHandling(char *Utf8InputBuff
   float ContextSecondaryFloat7;
   float ContextSecondaryFloat8;
   uint MemoryAllocationIndex9;
-  uint64_t in_stack_fffffffffffffec8;
+  uint64_t Utf16PointerParameter;
   uint32_t UnicodeCodePoint0;
-  uint64_t in_stack_fffffffffffffed0;
+  uint64_t AdditionalParameter3;
   float fStack_118;
   float fStack_114;
   char cStack_110;
@@ -110241,8 +110241,8 @@ unsigned long long ProcessSystemContextWithCharacterHandling(char *Utf8InputBuff
   float fStack_cc;
   
   SystemDataRegistry = SystemConfigurationHandle;
-  UnicodeCodePoint0 = (uint32_t)((unsigned long long)in_stack_fffffffffffffed0 >> 0x20);
-  SystemMemoryAllocationResult = (uint32_t)((unsigned long long)in_stack_fffffffffffffec8 >> 0x20);
+  UnicodeCodePoint0 = (uint32_t)((unsigned long long)AdditionalParameter3 >> 0x20);
+  SystemMemoryAllocationResult = (uint32_t)((unsigned long long)Utf16PointerParameter >> 0x20);
   *(uint8_t *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0xb1) = 1;
   Utf16Char9 = *(unsigned long long *)(SystemDataRegistry + 0x1af8);
   if (*(char *)(Utf16Char9 + 0xb4) != '\0') {
@@ -110565,7 +110565,7 @@ unsigned long long ProcessSystemContextWithFloatParameters(char *Utf8InputBuffer
   float ContextSecondaryFloat4;
   float ContextSecondaryFloat5;
   uint64_t FloatPointerValue;
-  uint64_t in_stack_fffffffffffffef0;
+  uint64_t SystemCodeParameter;
   uint32_t MemoryAllocationIndexAdditional;
   char cStack_f8;
   char acStack_f7 [7];
