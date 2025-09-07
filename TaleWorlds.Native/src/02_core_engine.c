@@ -176154,7 +176154,7 @@ LAB_18014ccc0:
   int *apiStack_78 [2];
   void *StackPointer;
   void *EncodingBuffer;
-  int *apiStack_58 [2];
+  int *apStringComparisonMode [2];
   void *ContextDataPointer;
   void *pSystemPriorityLevel;
   
@@ -176184,10 +176184,10 @@ LAB_18014ccc0:
       EncodingBuffer = &SystemCoreEnginePointerBuffer;
       apiStack_78[0] = StackIntegerArray;
       FUN_180149ed0(Utf16Char,apiStack_78,&CoreEngineValueA8);
-      ppiStackX_18 = apiStack_58;
+      ppiStackX_18 = apStringComparisonMode;
       ContextDataPointer = &SystemEnginePointerBuffer;
       pSystemPriorityLevel = &SystemCoreEnginePointerBuffer;
-      apiStack_58[0] = StackIntegerArray;
+      apStringComparisonMode[0] = StackIntegerArray;
       FUN_180149bd0(Utf16Char);
     }
     AllocatedMemorySize = GetNextMemoryBlockIndex(AllocatedMemorySize);
@@ -188877,7 +188877,7 @@ UpdateSystemStatus(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long *
   uint32_t ProcessStringBuffer;
   void *StackPointer;
   void *EncodingBuffer;
-  int iStack_58;
+  int StringComparisonMode;
   void *ContextDataPointer;
   long long MemoryOperationStatus;
   uint32_t ProcessingFlags;
@@ -188911,10 +188911,10 @@ UpdateSystemStatus(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long *
       *(void *)((unsigned long long)Utf16Char + BufferStatus) = 0x666f2065756c6156;
       *(uint16_t *)((void *)((unsigned long long)Utf16Char + BufferStatus) + 1) = 0x20;
       *(int *)(CharacterCode + 2) = IntegerValue0;
-      if (0 < iStack_58) {
-        CoreEngineProcessSystemEvent(CharacterCode,IntegerValue0 + iStack_58);
+      if (0 < StringComparisonMode) {
+        CoreEngineProcessSystemEvent(CharacterCode,IntegerValue0 + StringComparisonMode);
                     // WARNING: Subroutine does not return
-        memcpy((unsigned long long)*(uint *)(CharacterCode + 2) + Utf8InputBuffer[1],EncodingBuffer,(long long)(iStack_58 + 1));
+        memcpy((unsigned long long)*(uint *)(CharacterCode + 2) + Utf8InputBuffer[1],EncodingBuffer,(long long)(StringComparisonMode + 1));
       }
       CoreEngineProcessSystemEvent(CharacterCode,IntegerValue9 + 0xd);
       Utf16Char = *(uint *)(CharacterCode + 2);
@@ -189078,7 +189078,7 @@ ValidateSystemState(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long 
   uint32_t ProcessingStatusFlag;
   void *StackPointer;
   void *EncodingBuffer;
-  int iStack_58;
+  int StringComparisonMode;
   void *ContextDataPointer;
   long long MemoryOperationStatus;
   uint32_t ProcessingFlags;
@@ -189143,10 +189143,10 @@ ValidateSystemState(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long 
     *(void *)((unsigned long long)Utf16Char + BufferStatus) = 0x666f2065756c6156;
     *(uint16_t *)((void *)((unsigned long long)Utf16Char + BufferStatus) + 1) = 0x20;
     *(int *)(CharacterCode + 2) = MutexLockResult;
-    if (0 < iStack_58) {
-      CoreEngineProcessSystemEvent(CharacterCode,MutexLockResult + iStack_58);
+    if (0 < StringComparisonMode) {
+      CoreEngineProcessSystemEvent(CharacterCode,MutexLockResult + StringComparisonMode);
                     // WARNING: Subroutine does not return
-      memcpy((unsigned long long)*(uint *)(CharacterCode + 2) + Utf8InputBuffer[1],EncodingBuffer,(long long)(iStack_58 + 1));
+      memcpy((unsigned long long)*(uint *)(CharacterCode + 2) + Utf8InputBuffer[1],EncodingBuffer,(long long)(StringComparisonMode + 1));
     }
     CoreEngineProcessSystemEvent(CharacterCode,ValidationResult + 0xd);
     Utf16Char = *(uint *)(CharacterCode + 2);
@@ -191661,7 +191661,7 @@ ProcessUtf8ToUtf16CharacterEncodingStage5(uint64_t CharacterCode,uint64_t *Utf8I
   unsigned long long StackVariable70;
   void *StackPointer;
   void *EncodingBuffer;
-  int iStack_58;
+  int StringComparisonMode;
   void *SystemValidationPointer;
   void *ContextDataPointer;
   long long MemoryOperationStatus;
@@ -191694,9 +191694,9 @@ ProcessUtf8ToUtf16CharacterEncodingStage5(uint64_t CharacterCode,uint64_t *Utf8I
   EnginePointerBuffer = &SystemNullTemplate;
   SystemValidationPointer = NULL;
   EncodingBuffer = NULL;
-  iStack_58 = 0;
+  StringComparisonMode = 0;
   IntegerValue = *(int *)(ppMemoryAddressMask + 2);
-  iStack_58 = IntegerValue;
+  StringComparisonMode = IntegerValue;
   PrimaryProcessingStatusFlag = ppMemoryAddressMask[1];
   EncodingBuffer = PrimaryProcessingStatusFlag;
   SystemValidationPointer = (void *)((unsigned long long)*(uint *)((long long)ppMemoryAddressMask + 0x1c) << 0x20);
@@ -191797,7 +191797,7 @@ ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t CharacterCode,uint64_t *U
   unsigned long long StackVariable70;
   void *StackPointer;
   void *EncodingBuffer;
-  int iStack_58;
+  int StringComparisonMode;
   void *SystemValidationPointer;
   void *ContextDataPointer;
   long long MemoryOperationStatus;
@@ -191828,9 +191828,9 @@ ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t CharacterCode,uint64_t *U
   EnginePointerBuffer = &SystemNullTemplate;
   SystemValidationPointer = NULL;
   EncodingBuffer = NULL;
-  iStack_58 = 0;
+  StringComparisonMode = 0;
   IntegerValue = *(int *)(ppMemoryAddressMask + 2);
-  iStack_58 = IntegerValue;
+  StringComparisonMode = IntegerValue;
   PrimaryProcessingStatusFlag = ppMemoryAddressMask[1];
   EncodingBuffer = PrimaryProcessingStatusFlag;
   SystemValidationPointer = (void *)((unsigned long long)*(uint *)((long long)ppMemoryAddressMask + 0x1c) << 0x20);
@@ -209314,7 +209314,7 @@ LAB_180184089:
   code *pSystemCheckResult;
   long long MemoryOffset;
   uint8_t aStackUnsigned78 [32];
-  int aiStack_58 [2];
+  int aStringComparisonMode [2];
   long long *plStack_50;
   uint8_t *ContextDataPointer;
   long long aMemoryOperationStatus [2];
@@ -209328,11 +209328,11 @@ LAB_180184089:
   CharacterCode = (long long *)Utf16EndPointer[7];
   plStack_50 = Utf16EndPointer;
   if (CharacterCode != (long long *)0x0) {
-    aiStack_58[0] = Utf8BufferSize;
+    aStringComparisonMode[0] = Utf8BufferSize;
     if (Utf8BufferSize < 0) {
       ContextDataPointer = (uint8_t *)Utf16EndPointer[8];
       aMemoryOperationStatus[0] = 0;
-      (**(code **)(*Utf8InputBuffer + 0x10))(CharacterCode,aiStack_58,aMemoryOperationStatus,&ContextDataPointer);
+      (**(code **)(*Utf8InputBuffer + 0x10))(CharacterCode,aStringComparisonMode,aMemoryOperationStatus,&ContextDataPointer);
     }
     else {
       ProcessingCounter = 0;
@@ -209352,7 +209352,7 @@ LAB_180184089:
         (*pSystemCheckResult)();
         return;
       }
-      (**(code **)(*Utf8InputBuffer + 0x10))(CharacterCode,aiStack_58,&ContextDataPointer,aMemoryOperationStatus);
+      (**(code **)(*Utf8InputBuffer + 0x10))(CharacterCode,aStringComparisonMode,&ContextDataPointer,aMemoryOperationStatus);
       ProcessSystemStackData(ProcessingBuffer);
     }
   }

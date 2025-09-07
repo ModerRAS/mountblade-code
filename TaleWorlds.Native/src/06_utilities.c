@@ -11528,7 +11528,7 @@ DataBuffer ValidateUtilitySystemState(void)
           return ResourceInvalidErrorCode;
         }
         validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(LocalDataStorage + 8),*DataValidationContext,
-                              *(ByteFlag *)(StackFrameContext + 0x1c));
+                              *(ByteFlag *)(StackFrameContext + ResourceDescriptorValidationOffset));
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -12448,9 +12448,9 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
   dataContextPointer = *(int64_t *)(stackTempValue + 8);
   if (dataContextPointer != 0) {
     floatDataValue = *(float *)(resourceHandle + 0x14);
-    for (dataIterator = *(DataBuffer **)(dataContextPointer + 0x48);
-        (*(DataBuffer **)(dataContextPointer + 0x48) <= dataIterator &&
-        (dataIterator < *(DataBuffer **)(dataContextPointer + 0x48) + *(int *)(dataContextPointer + 0x50))); dataIterator = dataIterator + 1) {
+    for (dataIterator = *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset);
+        (*(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) <= dataIterator &&
+        (dataIterator < *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) + *(int *)(dataContextPointer + ExceptionHandlerContextDataOffset))); dataIterator = dataIterator + 1) {
       operationResult = ProcessFloatingPointDataValidationA0(*dataIterator,floatDataValue,0);
       if ((int)operationResult != 0) {
         return operationResult;
