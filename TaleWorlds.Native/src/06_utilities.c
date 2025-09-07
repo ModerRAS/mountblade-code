@@ -60330,6 +60330,18 @@ void InitializeSystemMemoryA2At760(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 重置异常数据缓冲区函数780
+ * 
+ * 该函数负责重置异常数据缓冲区，将异常数据表3和异常数据表6
+ * 设置到指定的数据缓冲区位置，用于异常处理系统的初始化。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常数据表配置信息
+ * 
+ * @note 原始函数名：Unwind_180906780
+ * @note 这是一个异常展开（unwind）处理函数，用于重置异常数据缓冲区
+ */
 void ResetExceptionDataBufferAtOffset780(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -60343,6 +60355,18 @@ void ResetExceptionDataBufferAtOffset780(DataBuffer operationBase,int64_t dataBu
 
 
 
+/**
+ * @brief 设置默认异常处理器函数790
+ * 
+ * 该函数负责在指定位置设置默认异常处理器B，用于异常处理系统的配置。
+ * 它会将默认异常处理器B的地址设置到数据缓冲区的特定偏移量处。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器配置信息
+ * 
+ * @note 原始函数名：Unwind_180906790
+ * @note 这是一个异常展开（unwind）处理函数，用于设置默认异常处理器
+ */
 void SetDefaultExceptionHandlerAtOffset790(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -60352,6 +60376,18 @@ void SetDefaultExceptionHandlerAtOffset790(DataBuffer operationBase,int64_t data
 
 
 
+/**
+ * @brief 设置异常数据表函数7a0
+ * 
+ * 该函数负责设置异常数据表6到指定的数据缓冲区位置，用于异常处理系统的配置。
+ * 它会将异常数据表6的地址设置到数据缓冲区的特定偏移量处。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常数据表配置信息
+ * 
+ * @note 原始函数名：Unwind_1809067a0
+ * @note 这是一个异常展开（unwind）处理函数，用于设置异常数据表
+ */
 void SetExceptionDataTableAtOffset7a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
