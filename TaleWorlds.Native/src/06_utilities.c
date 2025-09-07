@@ -11234,7 +11234,7 @@ DataBuffer ValidateUtilitySystemState(void)
  * 
  * @note 原始函数名：ExecuteNoOperationA0
  */
-void ExecuteNoOperationFunctionA0(void)
+void ExecuteNoOperationFunction(void)
 {
   return;
 }
@@ -11250,7 +11250,7 @@ void ExecuteNoOperationFunctionA0(void)
  * 
  * @note 原始函数名：FUN_180890ac7
  */
-uint64_t ReturnConstantValueA0(void)
+uint64_t ReturnResourceInvalidErrorCode(void)
 {
   return ResourceInvalidErrorCode;
 }

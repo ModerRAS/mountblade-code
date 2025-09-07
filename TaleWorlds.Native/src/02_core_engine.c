@@ -118166,7 +118166,7 @@ void ProcessFloatDataEncodingConversion(uint64_t CharacterCode, float *Character
 
 
 
-27d7(voidvoid FUN_1801227d7(void
+27d7(voidvoid EmptySystemFunction(void
 {
   return;
 }
@@ -118233,7 +118233,7 @@ void ProcessSystemDataTransfer(uint64_t CharacterCode,uint64_t CharacterCodeSize
 
 
 
-2938(voidvoid FUN_180122938(void
+2938(voidvoid ExecuteSystemConfigurationProcessing(void
 {
   ProcessSystemConfigurationAndTarget();
   return;
@@ -119094,7 +119094,7 @@ void ProcessMemoryLock(float *CharacterCode,uint CharacterCodeSize,long long Utf
 
 
 
-32da(voidvoid FUN_1801232da(void
+32da(voidvoid CleanupSystemResourcesAndMemory(void
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -120072,7 +120072,7 @@ uint64_t ExecuteMemoryBufferCommands(long long CharacterCode,uint64_t CharacterC
 
 
 
-4980(voidvoid FUN_180124980(void
+4980(voidvoid ValidateSystemDataAndStatus(void
 {
   uint *StatusBuffer;
   int *pCharacterByteCount;
@@ -120214,7 +120214,7 @@ uint64_t ExecuteMemoryBufferCommands(long long CharacterCode,uint64_t CharacterC
 
 
 
-4b90(voidvoid FUN_180124b90(void
+4b90(voidvoid InitializeSystemDataAndMemory(void
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
@@ -120348,7 +120348,7 @@ LAB_18012edb4:
 
 
 
-4e30(voidvoid FUN_180124e30(void
+4e30(voidvoid ProcessSystemFloatDataAndBuffers(void
 {
   float *pSystemContextPrimaryFloat;
   long long BufferStatus;
@@ -120506,7 +120506,7 @@ LAB_180124eff:
 
 
 
-5180(voidvoid FUN_180125180(void
+5180(voidvoid ProcessSystemDataStructures(void
 {
   long long PrimaryDataSize;
   long long BufferStatus;
