@@ -208236,7 +208236,16 @@ FUN_180179a0a:
 
 
 
-79a0a(uint32_t CharacterCodevoid FUN_180179a0a(uint32_t CharacterCode
+/**
+ * @brief UTF-8字符编码转换辅助函数
+ * 
+ * 该函数负责处理UTF-8字符的编码转换辅助工作，包括内存分配、
+ * 字符数据复制和编码转换状态管理。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @return void 无返回值
+ */
+void ConvertUtf8CharacterEncoding(uint32_t CharacterCode)
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
