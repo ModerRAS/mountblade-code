@@ -77828,7 +77828,17 @@ void ProcessExceptionContextCleanupA3(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180909710(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量98
+ * 
+ * 该函数负责将默认异常处理器B设置到数据缓冲区的偏移量98处
+ * 
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909710
+ */
+void SetDefaultExceptionHandlerToOffset98(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x98) = &DefaultExceptionHandlerB;
@@ -77837,7 +77847,17 @@ void Unwind_180909710(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909720(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到回调偏移量
+ * 
+ * 该函数负责将默认异常处理器B设置到数据缓冲区中指定位置的回调偏移量处
+ * 
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909720
+ */
+void SetDefaultExceptionHandlerToCallbackOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x80) + ExceptionHandlerCallbackOffset10) = &DefaultExceptionHandlerB;
