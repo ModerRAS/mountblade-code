@@ -12846,10 +12846,10 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
         floatDataValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(dataContextPointer + DataContextOffset),floatDataValue);
         if (((*(char *)(dataContextPointer + SecondaryValidationOffset) == '\0') ||
             ((*(uint *)(*(int64_t *)(dataContextPointer + DataContextOffset) + 0x34) >> 1 & 1) == 0)) &&
-           (floatDataValue != *(float *)(dataContextPointer + 0x20))) {
-          *(float *)(dataContextPointer + 0x20) = floatDataValue;
+           (floatDataValue != *(float *)(dataContextPointer + DataValidationOffset))) {
+          *(float *)(dataContextPointer + DataValidationOffset) = floatDataValue;
           UpdateValidationContextA0(dataContextPointer);
-          *(ByteFlag *)(dataContextPointer + 0x35) = 0;
+          *(ByteFlag *)(dataContextPointer + ValidationFlagOffset) = 0;
         }
       }
     }
