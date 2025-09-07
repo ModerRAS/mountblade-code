@@ -6488,13 +6488,13 @@ void* SystemCalculationBaseAddress;    // 系统计算基础地址
 #define StackFloatRegisterC StackFloatRegisterC    // 栈浮点寄存器C
 #define StackFloatRegisterD StackFloatRegisterValueD    // 栈浮点寄存器D
 #define StackPointerRegisterA StackPointerRegisterValueA    // 栈指针寄存器A
-#define StackInputParameterA in_stack_00000068    // 栈输入参数A
-#define StackInputParameterB in_stack_00000050    // 栈输入参数B
-#define StackInputParameterC StackValidationParameterA    // 栈输入参数C
-#define StackInputParameterD StackMemoryBasePointer    // 栈输入参数D
-#define StackInputParameterE in_stack_00000008    // 栈输入参数E
-#define StackFloatValueA in_stack_000001a0    // 栈浮点值A
-#define StackFloatValueB in_stack_000001a8    // 栈浮点值B
+#define StackInputParameterPrimary StackInputParameterA    // 栈输入参数主变量
+#define StackInputParameterSecondary StackInputParameterB    // 栈输入参数次变量
+#define StackInputParameterTertiary StackInputParameterC    // 栈输入参数第三变量
+#define StackInputParameterQuaternary StackInputParameterD    // 栈输入参数第四变量
+#define StackInputParameterValidation StackInputParameterE    // 栈输入参数验证变量
+#define StackFloatValuePrimary StackFloatValueA    // 栈浮点值主变量
+#define StackFloatValueSecondary StackFloatValueB    // 栈浮点值次变量
 #define StackDataBufferA StackDataBufferA    // 栈数据缓冲区A
 #define StackDataBufferB StackDataBufferB    // 栈数据缓冲区B
 #define StackDataBufferC StackDataBufferC    // 栈数据缓冲区C
@@ -106783,20 +106783,20 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 栈变量宏定义
 // 栈验证参数定义
-#define StackValidationParameterA in_stack_0000000000000008
+#define StackValidationParameter StackValidationParameterA
 
 // 栈浮点寄存器定义
-#define StackFloatRegisterA StackFloatRegisterValueA    
-#define StackFloatRegisterB fStack0000000000000049    
-#define StackFloatRegisterC fStack000000000000004a    
-#define StackFloatRegisterD StackFloatRegisterValueD
+#define StackFloatRegisterPrimary StackFloatRegisterA    
+#define StackFloatRegisterSecondary StackFloatRegisterB    
+#define StackFloatRegisterTertiary StackFloatRegisterC    
+#define StackFloatRegisterQuaternary StackFloatRegisterD
 
 // 栈变量宏定义
 // 栈循环计数器定义
-#define StackLoopCounter lStack_0000000000000008
+#define StackLoopCounter StackLoopCounterValue
 
 // 栈验证缓冲区定义
-#define StackValidationBuffer stack_0000000000000010
+#define StackValidationBuffer StackValidationBufferData
 
 // 异常处理器资源释放函数定义
 /**
