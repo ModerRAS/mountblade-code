@@ -100101,8 +100101,21 @@ void Unwind_ExceptionContextCleanupB(DataBuffer operationBase, int64_t dataBuffe
 
 
 
-void Unwind_1809117c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 处理异常上下文清理和异常处理器设置C
+ * 
+ * 该函数负责清理异常上下文并设置异常处理器，与Unwind_ExceptionContextCleanupA和B
+ * 类似，但使用不同的偏移量。它首先调用异常上下文中注册的清理函数，
+ * 然后设置临时异常处理器，执行系统终止操作，最后设置默认异常处理器。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于控制操作流程
+ * @param operationFlagB 操作标志B，用于控制操作流程
+ * 
+ * @note 原始函数名：Unwind_1809117c0
+ */
+void Unwind_ExceptionContextCleanupC(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   int64_t exceptionHandlerContext;
   
@@ -100129,8 +100142,21 @@ void Unwind_1809117c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809117e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 处理异常上下文清理和异常处理器设置D
+ * 
+ * 该函数负责清理异常上下文并设置异常处理器，与Unwind_ExceptionContextCleanupA、B、C
+ * 类似，但使用不同的偏移量。它首先调用异常上下文中注册的清理函数，
+ * 然后设置临时异常处理器，执行系统终止操作，最后设置默认异常处理器。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于控制操作流程
+ * @param operationFlagB 操作标志B，用于控制操作流程
+ * 
+ * @note 原始函数名：Unwind_1809117e0
+ */
+void Unwind_ExceptionContextCleanupD(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   int64_t exceptionHandlerContext;
   
