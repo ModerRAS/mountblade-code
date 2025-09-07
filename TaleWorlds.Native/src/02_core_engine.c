@@ -100026,6 +100026,22 @@ void EmptyReturnFunction(void)
 
 
 
+/**
+ * @brief 处理浮点数据初始化
+ * 
+ * 该函数负责初始化和处理系统中的浮点数据，包括：
+ * - 系统上下文浮点值的读取和处理
+ * - Unicode码点的转换和验证
+ * - 内存池块的分配和管理
+ * - 数据表指针的更新和维护
+ * - 系统渲染数据的更新和同步
+ * 
+ * 函数会根据不同的条件分支处理各种浮点数据操作，
+ * 包括数据验证、内存管理和系统状态更新。
+ * 
+ * @param 无
+ * @return 无
+ */
 void ProcessFloatDataInitialization(void)
 {
   float *pSystemContextPrimaryFloat;
@@ -100137,27 +100153,27 @@ void ProcessFloatDataInitialization(void)
       *(float *)(EncodingConversionResult + 0x154) = SystemContextPrimaryFloat2;
       *(float *)(EncodingConversionResult + 0x158) = SecondaryFloatValue;
       MemoryPoolBlockSize = *(long long *)(SystemDataTablePointer + 0x1af8);
-      fStack_78 = SystemContextPrimaryFloat4;
-      fStack_74 = ContextSecondaryFloat;
-      fStack_70 = SystemContextPrimaryFloat2;
-      fStack_6c = SecondaryFloatValue;
+      StackFloatValue78 = SystemContextPrimaryFloat4;
+      StackFloatValue74 = ContextSecondaryFloat;
+      StackFloatValue70 = SystemContextPrimaryFloat2;
+      StackFloatValue6c = SecondaryFloatValue;
       if (((((*(float *)(MemoryPoolBlockSize + 0x22c) <= SystemContextPrimaryFloat3 && SystemContextPrimaryFloat3 != *(float *)(MemoryPoolBlockSize + 0x22c)) &&
             (ContextSecondaryFloat < *(float *)(MemoryPoolBlockSize + 0x234))) &&
            (*(float *)(MemoryPoolBlockSize + 0x228) <= SystemContextPrimaryFloat6 && SystemContextPrimaryFloat6 != *(float *)(MemoryPoolBlockSize + 0x228))) &&
           (SystemContextPrimaryFloat4 < *(float *)(MemoryPoolBlockSize + 0x230))) || (*(char *)(SystemDataTablePointer + 0x2e38) != '\0')) {
-        CharacterVariable5 = ValidateAndProcessSystemFlags(&fStack_78,&fStack_70,1);
+        CharacterVariable5 = ValidateAndProcessSystemFlags(&StackFloatValue78,&StackFloatValue70,1);
         if (CharacterVariable5 != '\0') {
           *(uint *)(EncodingConversionResult + 0x148) = *(uint *)(EncodingConversionResult + 0x148) | 1;
         }
-        StackProcessingUnsignedValue68 = *(uint32_t *)(SystemDataTablePointer + 0x1878);
+        StackUnsignedValue68 = *(uint32_t *)(SystemDataTablePointer + 0x1878);
         SystemUnsignedValue64 = *(uint32_t *)(SystemDataTablePointer + 0x187c);
-        StackProcessingUnsignedValue60 = *(uint32_t *)(SystemDataTablePointer + 0x1880);
-        fStack_5c = *(float *)(SystemDataTablePointer + 0x1884) * *(float *)(SystemDataTablePointer + 0x1628);
+        StackUnsignedValue60 = *(uint32_t *)(SystemDataTablePointer + 0x1880);
+        StackFloatValue5c = *(float *)(SystemDataTablePointer + 0x1884) * *(float *)(SystemDataTablePointer + 0x1628);
         SystemRegisterFlagX8 = CONCAT44(ContextSecondaryFloat,SystemContextPrimaryFloat6);
-        DataSize = ValidateSystemData(&StackProcessingUnsignedValue68);
-        ProcessSystemRenderDataUpdate(*(void *)(StringOffset + 0x2e8),&fStack_78,&SystemRegisterFlagX8,DataSize,0x3f800000);
+        DataSize = ValidateSystemData(&StackUnsignedValue68);
+        ProcessSystemRenderDataUpdate(*(void *)(StringOffset + 0x2e8),&StackFloatValue78,&SystemRegisterFlagX8,DataSize,0x3f800000);
         if (*(char *)(SystemDataRegistry + 0x2e38) != '\0') {
-          ProcessSystemBufferUpdate(&fStack_78,&SystemRenderDataBuffer,0);
+          ProcessSystemBufferUpdate(&StackFloatValue78,&SystemRenderDataBuffer,0);
         }
         if (*(long long *)(StringOffset + 0x210) != 0) {
           ProcessSystemResourceCleanup();
