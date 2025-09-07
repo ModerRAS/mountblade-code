@@ -176054,7 +176054,7 @@ LAB_1801452ee:
   *systemEventTemplatePointer = 0x736e65645f676f66;
   *(uint32_t *)(systemEventTemplatePointer + 1) = 0x797469;
   SystemPriorityLevel = 0xb;
-  FUN_180632650(pSystemStatusChar,&SystemValidationPointer);
+  ProcessCharacterWithSystemRegister(pSystemStatusChar,&SystemValidationPointer);
   SystemTemplatePointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
   CoreEngineFreeSystemMemory(systemEventTemplatePointer);
@@ -176193,7 +176193,7 @@ LAB_180146a6e:
   systemEventTemplatePointer[2] = 0x7461746f;
   systemEventTemplatePointer[3] = 0x6e6f69;
   SystemPriorityLevel = 0xf;
-  FUN_180632650(pSystemStatusChar,&SystemValidationPointer);
+  ProcessCharacterWithSystemRegister(pSystemStatusChar,&SystemValidationPointer);
   SystemTemplatePointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
   CoreEngineFreeSystemMemory(systemEventTemplatePointer);
