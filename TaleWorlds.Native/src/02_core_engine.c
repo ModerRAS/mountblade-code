@@ -101401,63 +101401,70 @@ void SetupIntegerDataSystem(long long TargetDataStructure,int *DataSourcePointer
 
 
 
-622f(long long SystemContextPointer,long long Utf8BufferSizevoid FUN_18011622f(long long SystemContextPointer,long long Utf8BufferSize
+/**
+ * 处理UTF-16字符转换和内存管理
+ * 将UTF-16字符数据转换为系统内部格式并进行内存管理
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ */
+void ProcessUtf16CharacterConversionAndMemoryManagement(long long SystemContextPointer,long long Utf8BufferSize)
 {
-  uint8_t aUtf16Char [16];
-  short SystemShortValue2;
-  int MemoryMatchResult;
-  long long in_RAX;
-  int validationResult;
-  long long MemoryAllocationSize;
-  int ValidationResult;
-  long long RegisterFramePointer;
-  int *RegisterSourceIndex;
-  int ProcessIterationCount;
-  int ComputedResult;
-  uint64_t SystemVariable9;
-  int IntegerValue0;
-  int iStack000000000000002c;
+  uint8_t Utf16CharacterBuffer [16];
+  short CharacterProcessingIndex;
+  int MemoryComparisonResult;
+  long long RegisterAccumulator;
+  int ValidationStatus;
+  long long AllocatedMemorySize;
+  int ValidationFlag;
+  long long FramePointerRegister;
+  int *SourceIndexRegister;
+  int ProcessingCounter;
+  int CalculatedResult;
+  uint64_t SystemContextData;
+  int InitialIntegerValue;
+  int StackOffsetValue;
   
-  MemoryAllocationSize = SystemContextPointer * 0x10 + Utf8BufferSize;
-  aUtf16Char = *(uint8_t (*) [16])(Utf8BufferSize + 8 + in_RAX * 8);
-  IntegerValue0 = aUtf16Char.LowPart;
-  *(uint32_t *)(MemoryAllocationSize + 0x14) = 0xffffffff;
-  *(int *)(MemoryAllocationSize + 8) = IntegerValue0;
-  SystemVariable9 = aUtf16Char.High64Part;
-  MutexLockResult = aUtf16Char._8_4_;
-  *(int *)(MemoryAllocationSize + 0xc) = MutexLockResult;
-  ValidationCode = aUtf16Char.HighPart;
-  *(int *)(MemoryAllocationSize + 0x10) = ValidationCode;
+  AllocatedMemorySize = SystemContextPointer * 0x10 + Utf8BufferSize;
+  Utf16CharacterBuffer = *(uint8_t (*) [16])(Utf8BufferSize + 8 + RegisterAccumulator * 8);
+  InitialIntegerValue = Utf16CharacterBuffer.LowPart;
+  *(uint32_t *)(AllocatedMemorySize + 0x14) = 0xffffffff;
+  *(int *)(AllocatedMemorySize + 8) = InitialIntegerValue;
+  SystemContextData = Utf16CharacterBuffer.High64Part;
+  int MutexLockResult = Utf16CharacterBuffer._8_4_;
+  *(int *)(AllocatedMemorySize + 0xc) = MutexLockResult;
+  int ValidationCode = Utf16CharacterBuffer.HighPart;
+  *(int *)(AllocatedMemorySize + 0x10) = ValidationCode;
   if (MutexLockResult != 0) {
-    ValidationResult = *(int *)(Utf8BufferSize + 0xe1c) + MutexLockResult;
-    if (ValidationResult < 999) {
-      validationResult = RegisterSourceIndex[0x388];
-      if (validationResult < ValidationResult) {
-        SystemShortValue2 = (short)RegisterSourceIndex[0x386];
+    ValidationFlag = *(int *)(Utf8BufferSize + 0xe1c) + MutexLockResult;
+    if (ValidationFlag < 999) {
+      ValidationStatus = SourceIndexRegister[0x388];
+      if (ValidationStatus < ValidationFlag) {
+        CharacterProcessingIndex = (short)SourceIndexRegister[0x386];
         do {
-          if (SystemShortValue2 == 99) {
+          if (CharacterProcessingIndex == 99) {
             return;
           }
-          if (SystemShortValue2 < 99) {
-            if (-1 < RegisterSourceIndex[0x191]) {
-              validationResult = validationResult + RegisterSourceIndex[399];
-              RegisterSourceIndex[0x388] = validationResult;
+          if (CharacterProcessingIndex < 99) {
+            if (-1 < SourceIndexRegister[0x191]) {
+              ValidationStatus = ValidationStatus + SourceIndexRegister[399];
+              SourceIndexRegister[0x388] = ValidationStatus;
                     // WARNING: Subroutine does not return
-              memmove((long long)RegisterSourceIndex + ((long long)validationResult + 0x324) * 2,
-                      (long long)RegisterSourceIndex +
-                      (((long long)validationResult - (long long)RegisterSourceIndex[399]) + 0x324) * 2,
-                      (long long)(999 - validationResult) * 2);
+              memmove((long long)SourceIndexRegister + ((long long)ValidationStatus + 0x324) * 2,
+                      (long long)SourceIndexRegister +
+                      (((long long)ValidationStatus - (long long)SourceIndexRegister[399]) + 0x324) * 2,
+                      (long long)(999 - ValidationStatus) * 2);
             }
                     // WARNING: Subroutine does not return
-            memmove(RegisterSourceIndex + (long long)SystemShortValue2 * 4 + 6 + 4,RegisterSourceIndex + (long long)SystemShortValue2 * 4 + 6,
-                    (long long)(99 - SystemShortValue2) << 4);
+            memmove(SourceIndexRegister + (long long)CharacterProcessingIndex * 4 + 6 + 4,SourceIndexRegister + (long long)CharacterProcessingIndex * 4 + 6,
+                    (long long)(99 - CharacterProcessingIndex) << 4);
           }
-        } while (validationResult < RegisterSourceIndex[0x387] + MutexLockResult);
+        } while (ValidationStatus < SourceIndexRegister[0x387] + MutexLockResult);
       }
-      ValidationResult = RegisterSourceIndex[0x386];
-      ComputedResult = 0;
-      RegisterSourceIndex[(long long)(short)ValidationResult * 4 + 5] = validationResult - MutexLockResult;
-      RegisterSourceIndex[0x388] = RegisterSourceIndex[0x388] - MutexLockResult;
+      ValidationFlag = SourceIndexRegister[0x386];
+      CalculatedResult = 0;
+      SourceIndexRegister[(long long)(short)ValidationFlag * 4 + 5] = ValidationStatus - MutexLockResult;
+      SourceIndexRegister[0x388] = SourceIndexRegister[0x388] - MutexLockResult;
       if (0 < MutexLockResult) {
         MemoryAllocationSize = (long long)IntegerValue0 * 2;
         do {

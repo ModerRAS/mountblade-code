@@ -18690,9 +18690,9 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   DataWord dataProcessingBufferF;
   DataWord dataProcessingBufferG;
   uint8_t *validationContextPointer;
-  DataWord uStack_270;
-  uint uStack_268;
-  DataWord uStack_264;
+  DataWord validationFlagA;
+  uint validationFlagB;
+  DataWord validationFlagC;
   ByteFlag DataProcessingBufferA [520];
   uint64_t colorDataWord;
   
@@ -18701,7 +18701,7 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   if (operationFlagA != 0) {
     operationStatus = *(int *)(dataBuffer + 0x220);
     if (operationStatus == 0) {
-      validationContextPointer = &SecurityValidationConfigurationTableA;
+      validationContextPointer = &DataValidationFlagTable;
       uStack_270 = 0;
       uStack_264 = 0;
       uStack_268 = operationFlagA;
@@ -18713,7 +18713,7 @@ SecurityValidationLabel:
     else {
       cleanupStepIndex = 0;
       if (1 < operationStatus - 1U) {
-        securityValidationContext = &SecurityValidationConfigurationTableB;
+        securityValidationContext = &DataProcessingStatusTable;
         ppdataFlags = securityValidationContext;
         memoryOperationBufferH = 0;
         memoryOperationBufferA = 0;
@@ -18726,22 +18726,22 @@ SecurityValidationLabel:
         memoryOperationBufferI = operationFlagA;
         goto ProcessCheckpointSystemCleanup;
       }
-      securityValidationContext = &SecurityValidationConfigurationTableC;
+      securityValidationContext = &SystemStatusFlagTable;
       memoryOperationBufferC = (uint64_t)operationFlagA << 0x20;
       memoryOperationBufferA = *(DataBuffer *)(dataBuffer + 0x228);
       memoryOperationBufferB = (uint64_t)CONCAT14(operationStatus != 1,*(DataWord *)(dataBuffer + 0x230));
       operationStatus = ValidateDataIntegrityA0(operationBase,securityValidationContext);
     }
     if (operationStatus != 0) GOTO_SecurityCheckFailed;
-    uStack_298 = *(uint *)(dataBuffer + 0x10);
-    uStack_294 = *(DataWord *)(dataBuffer + 0x14);
-    iStack_290 = *(int *)(dataBuffer + 0x18);
-    uStack_28c = *(DataWord *)(dataBuffer + 0x1c);
-    iStack_2a0 = 0;
-    puStack_2a8 = &UNK_180985a80;
-    uStack_284 = 0;
-    uStack_288 = operationFlagA;
-    operationStatus = ValidateDataIntegrityA0(operationBase,&puStack_2a8);
+    dataProcessingBufferA = *(uint *)(dataBuffer + 0x10);
+    dataProcessingBufferB = *(DataWord *)(dataBuffer + 0x14);
+    dataProcessingBufferC = *(int *)(dataBuffer + 0x18);
+    dataProcessingBufferD = *(DataWord *)(dataBuffer + 0x1c);
+    processingIterationIndex = 0;
+    dataProcessingContext = &SystemConfigurationDataTable;
+    dataProcessingBufferF = 0;
+    dataProcessingBufferE = operationFlagA;
+    operationStatus = ValidateDataIntegrityA0(operationBase,dataProcessingContext);
     if (operationStatus != 0) GOTO_SecurityCheckFailed;
     calculatedValue = 0;
     operationStatus = *(int *)(*(int64_t *)(dataBuffer + 0x2e8) + 0x2c);
