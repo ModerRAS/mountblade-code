@@ -10197,7 +10197,7 @@ void InitializeNetworkConnectionNode(void)
  * 和初始化相关的协议数据结构。函数会遍历协议链表，查找合适的
  * 位置插入新的协议节点，并设置节点的标识符和协议回调函数。
  */
-void InitializeNetworkProtocolNode(void
+void InitializeNetworkProtocolNode(void)
 {
   char StringBuffer;
   void *SystemContext;
@@ -10209,6 +10209,12 @@ void InitializeNetworkProtocolNode(void
   void *NextNode;
   void *TempStackPointer;
   uint64_t ReservedStackSpace;
+  long long *SystemContextPtr;
+  uint64_t *PrimaryProcessingStatusFlag;
+  void *SecondaryProcessingStatusFlag;
+  void *TertiaryProcessingStatusFlag;
+  void *TemporaryBuffer;
+  uint64_t StackConfigurationFlag;
   
   SystemContextPtr = (long long *)CoreEngineGetSystemContext();
   PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
@@ -10219,11 +10225,11 @@ void InitializeNetworkProtocolNode(void
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryMatchResult < 0) {
-      NextNode = (void *)CurrentNode[2];
+      NextNode = (void *)TertiaryProcessingStatusFlag[2];
       SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
     }
     else {
-      NextNode = (void *)*CurrentNode;
+      NextNode = (void *)*SecondaryProcessingStatusFlag;
     }
     TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
