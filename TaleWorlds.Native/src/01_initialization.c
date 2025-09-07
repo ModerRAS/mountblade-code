@@ -21570,36 +21570,36 @@ void InitializeSystemCoreEngine(void)
   strcpy_s(SystemDataBufferArray,0x40,&SystemDataBufferTemplateUndenary);
   InitializeResourceManager(SystemResourceManager,&SystemEncryptionKeyPointer,&LocalStackConfigurationPointer);
   SystemEncryptionKeyPointer = &SystemMemoryAllocatorReference;
-  SystemScaleFactorBuffer = &SystemDataBufferTemplateSecondary;
+  ScaleFactorProcessingBuffer = &SystemDataBufferTemplateSecondary;
   DataBufferPointerSecondary = SystemScaleFactorXBuffer;
   SystemScaleFactorXBuffer[0] = 0;
   ConfigurationFlagsSecondary = 0x18;
   SystemOperationFlags = strcpy_s(SystemScaleFactorXBuffer,0x40,&SystemDataBufferTemplateDenary);
-  SystemScaleFactorXStorage = (float)GetSystemScaleFactor(SystemOperationFlags,&SystemScaleFactorBuffer);
-  SystemScaleFactorXStorage = 1.0 / SystemScaleFactorXStorage;
-  SystemScaleFactorBuffer = &SystemMemoryAllocatorReference;
+  HorizontalScaleFactorStorage = (float)GetSystemScaleFactor(SystemOperationFlags,&ScaleFactorProcessingBuffer);
+  HorizontalScaleFactorStorage = 1.0 / HorizontalScaleFactorStorage;
+  ScaleFactorProcessingBuffer = &SystemMemoryAllocatorReference;
   SystemResolutionFactorBuffer = &SystemDataBufferTemplateSecondary;
   DataBufferScaleFactorYPointer = SystemScaleFactorYBuffer;
   SystemScaleFactorYBuffer[0] = 0;
   ScaleFactorYConfigurationFlags = 0xb;
   SystemOperationFlags = strcpy_s(SystemScaleFactorYBuffer,0x40,&SystemDataBufferTemplateUndenary);
-  SystemScaleFactorYStorage = (float)GetSystemScaleFactor(SystemOperationFlags,&SystemResolutionFactorBuffer);
-  SystemScaleFactorYStorage = 1.0 / SystemScaleFactorYStorage;
+  VerticalScaleFactorStorage = (float)GetSystemScaleFactor(SystemOperationFlags,&SystemResolutionFactorBuffer);
+  VerticalScaleFactorStorage = 1.0 / VerticalScaleFactorStorage;
   SystemResolutionFactorBuffer = &SystemMemoryAllocatorReference;
-  HorizontalResolutionBuffer = &SystemDataBufferTemplateSecondary;
-  HorizontalResolutionPointer = SystemHorizontalResolutionBuffer;
-  SystemHorizontalResolutionBuffer[0] = 0;
+  HorizontalResolutionDataBuffer = &SystemDataBufferTemplateSecondary;
+  HorizontalResolutionPointer = SystemHorizontalResolutionDataBuffer;
+  SystemHorizontalResolutionDataBuffer[0] = 0;
   HorizontalResolutionConfigurationFlags = 0xb;
-  SystemOperationFlags = strcpy_s(SystemHorizontalResolutionBuffer,0x40,&SystemDataBufferTemplateUndenary);
-  horizontalResolutionFactor = (float)GetSystemResolutionFactor(SystemOperationFlags,&HorizontalResolutionBuffer);
-  HorizontalResolutionBuffer = &SystemMemoryAllocatorReference;
-  VerticalResolutionBuffer = &SystemDataBufferTemplateSecondary;
-  VerticalResolutionPointer = SystemVerticalResolutionBuffer;
-  SystemVerticalResolutionBuffer[0] = 0;
+  SystemOperationFlags = strcpy_s(SystemHorizontalResolutionDataBuffer,0x40,&SystemDataBufferTemplateUndenary);
+  HorizontalResolutionFactor = (float)GetSystemResolutionFactor(SystemOperationFlags,&HorizontalResolutionDataBuffer);
+  HorizontalResolutionDataBuffer = &SystemMemoryAllocatorReference;
+  VerticalResolutionDataBuffer = &SystemDataBufferTemplateSecondary;
+  VerticalResolutionPointer = SystemVerticalResolutionDataBuffer;
+  SystemVerticalResolutionDataBuffer[0] = 0;
   VerticalResolutionConfigurationFlags = 0x18;
-  SystemOperationFlags = strcpy_s(SystemVerticalResolutionBuffer,0x40,&SystemDataBufferTemplateDenary);
-  verticalResolutionFactor = (float)GetSystemResolutionFactor(SystemOperationFlags,&VerticalResolutionBuffer);
-  VerticalResolutionBuffer = &SystemMemoryAllocatorReference;
+  SystemOperationFlags = strcpy_s(SystemVerticalResolutionDataBuffer,0x40,&SystemDataBufferTemplateDenary);
+  VerticalResolutionFactor = (float)GetSystemResolutionFactor(SystemOperationFlags,&VerticalResolutionDataBuffer);
+  VerticalResolutionDataBuffer = &SystemMemoryAllocatorReference;
   CurrentThreadIdentifier = GetSystemInitializationStatus();
   if (0 < SystemConfigurationDataQuaternary) {
     InitializeSystemConfiguration(&SystemConfigurationTemplate,&SystemConfigPathBuffer,0,SystemConfigurationDataQuaternary + -1);
@@ -21627,10 +21627,10 @@ void InitializeSystemCoreEngine(void)
     SystemStringProcessor = SystemStringFormatProcessor;
     ResourceArrayTriplePointer[0] = (long long ***)&SystemResourceDataTablePointer;
     ProcessSystemResourceData(ResourceArrayTriplePointer);
-    *(double *)(SystemThreadFlags + 0xa0 + SystemInitializationDataStart) = (double)(1.0 / verticalResolutionFactor);
-    *(double *)(SystemThreadFlags + 0xb8 + SystemInitializationDataStart) = (double)(1.0 / horizontalResolutionFactor);
-    *(int *)(SystemThreadFlags + 0xb0 + SystemInitializationDataStart) = (int)(long long)SystemScaleFactorXStorage;
-    *(int *)(SystemThreadFlags + 200 + SystemInitializationDataStart) = (int)(long long)SystemScaleFactorYStorage;
+    *(double *)(SystemThreadFlags + 0xa0 + SystemInitializationDataStart) = (double)(1.0 / VerticalResolutionFactor);
+    *(double *)(SystemThreadFlags + 0xb8 + SystemInitializationDataStart) = (double)(1.0 / HorizontalResolutionFactor);
+    *(int *)(SystemThreadFlags + 0xb0 + SystemInitializationDataStart) = (int)(long long)HorizontalScaleFactorStorage;
+    *(int *)(SystemThreadFlags + 200 + SystemInitializationDataStart) = (int)(long long)VerticalScaleFactorStorage;
     *(double *)(SystemThreadFlags + 0x20 + SystemInitializationDataStart) = (double)(CurrentThreadIdentifier >> 0x14);
     SystemGlobalDataReference = &SystemGlobalDataReference;
     if (SystemCleanupRequiredFlag != 0) {
@@ -50016,34 +50016,34 @@ void InitializeSystemResourceManagerB(void* *SystemResourceManager)
   
   *SystemResourceManager = &SystemResourceTemplateA;
   ResourceAllocationContext = SystemResourceManager[4];
-  resourceCounter = 0;
+  ResourceCounter = 0;
   ResourceAddress = SystemResourceManager[5];
   for (SystemOperationFlags = ResourceAddress; SystemOperationFlags != ResourceAllocationContext; SystemOperationFlags = SystemOperationFlags + 1) {
     if ((SystemOperationFlags & SystemBitMask32Bit) == 0) {
-      if (resourceCounter != 0) {
+      if (ResourceCounter != 0) {
         SystemThreadFlags = SystemResourceManager[SystemNodeCallbackIndex];
         LOCK();
-        SystemIntegerPointer = (int *)(resourceCounter + 0x3530);
+        SystemIntegerPointer = (int *)(ResourceCounter + 0x3530);
         SystemOperationResult = *SystemIntegerPointer;
         *SystemIntegerPointer = *SystemIntegerPointer + -0x80000000;
         UNLOCK();
         if (SystemOperationResult == 0) {
           SystemMemoryPointer = *(long long *)(SystemThreadFlags + 0x28);
           do {
-            *(long long *)(resourceCounter + 0x3538) = SystemMemoryPointer;
-            *(uint32_t *)(resourceCounter + 0x3530) = 1;
+            *(long long *)(ResourceCounter + 0x3538) = SystemMemoryPointer;
+            *(uint32_t *)(ResourceCounter + 0x3530) = 1;
             SystemLocalContextPointer = (long long *)(SystemThreadFlags + 0x28);
             LOCK();
             LocalDataIndex = *SystemLocalContextPointer;
             IsMemoryAllocationValid = SystemMemoryPointer == LocalDataIndex;
             if (IsMemoryAllocationValid) {
-              *SystemLocalContextPointer = resourceCounter;
+              *SystemLocalContextPointer = ResourceCounter;
               LocalDataIndex = SystemMemoryPointer;
             }
             UNLOCK();
             if (IsMemoryAllocationValid) break;
             LOCK();
-            SystemIntegerPointer = (int *)(resourceCounter + 0x3530);
+            SystemIntegerPointer = (int *)(ResourceCounter + 0x3530);
             SystemOperationResult = *SystemIntegerPointer;
             *SystemIntegerPointer = *SystemIntegerPointer + 0x7fffffff;
             UNLOCK();
@@ -50053,40 +50053,40 @@ void InitializeSystemResourceManagerB(void* *SystemResourceManager)
       }
 ResourceCounterCheck:
       SystemLocalContextPointer = (long long *)SystemResourceManager[0xc];
-      resourceCounter = *(long long *)
+      ResourceCounter = *(long long *)
                (*(long long *)
                  (SystemLocalContextPointer[3] +
                  (((SystemOperationFlags & SystemMemoryOperationAlignmentMask) - **(long long **)(SystemLocalContextPointer[3] + SystemLocalContextPointer[1] * 8) >> 5)
                   + SystemLocalContextPointer[1] & *SystemLocalContextPointer - 1U) * 8) + 8);
     }
-    else if (resourceCounter == 0) goto ResourceCounterCheck;
-    ReleaseSystemResource((ulong long)((uint)SystemOperationFlags & SystemBitMask32Bit) * 0x1a8 + resourceCounter);
+    else if (ResourceCounter == 0) goto ResourceCounterCheck;
+    ReleaseSystemResource((ulong long)((uint)SystemOperationFlags & SystemBitMask32Bit) * 0x1a8 + ResourceCounter);
   }
-  resourceCounter = SystemResourceManager[8];
-  if ((resourceCounter != 0) && ((ResourceAddress != ResourceAllocationContext || ((ResourceAllocationContext & SystemBitMask32Bit) != 0)))) {
+  ResourceCounter = SystemResourceManager[8];
+  if ((ResourceCounter != 0) && ((ResourceAddress != ResourceAllocationContext || ((ResourceAllocationContext & SystemBitMask32Bit) != 0)))) {
     SystemThreadFlags = SystemResourceManager[SystemNodeCallbackIndex];
     LOCK();
-    SystemIntegerPointer = (int *)(resourceCounter + 0x3530);
+    SystemIntegerPointer = (int *)(ResourceCounter + 0x3530);
     SystemOperationResult = *SystemIntegerPointer;
     *SystemIntegerPointer = *SystemIntegerPointer + -0x80000000;
     UNLOCK();
     if (SystemOperationResult == 0) {
       SystemMemoryPointer = *(long long *)(SystemThreadFlags + 0x28);
       do {
-        *(long long *)(resourceCounter + 0x3538) = SystemMemoryPointer;
-        *(uint32_t *)(resourceCounter + 0x3530) = 1;
+        *(long long *)(ResourceCounter + 0x3538) = SystemMemoryPointer;
+        *(uint32_t *)(ResourceCounter + 0x3530) = 1;
         SystemLocalContextPointer = (long long *)(SystemThreadFlags + 0x28);
         LOCK();
         LocalDataIndex = *SystemLocalContextPointer;
         IsMemoryAllocationValid = SystemMemoryPointer == LocalDataIndex;
         if (IsMemoryAllocationValid) {
-          *SystemLocalContextPointer = resourceCounter;
+          *SystemLocalContextPointer = ResourceCounter;
           LocalDataIndex = SystemMemoryPointer;
         }
         UNLOCK();
         if (IsMemoryAllocationValid) break;
         LOCK();
-        SystemIntegerPointer = (int *)(resourceCounter + 0x3530);
+        SystemIntegerPointer = (int *)(ResourceCounter + 0x3530);
         SystemOperationResult = *SystemIntegerPointer;
         *SystemIntegerPointer = *SystemIntegerPointer + 0x7fffffff;
         UNLOCK();
