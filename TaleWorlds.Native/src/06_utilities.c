@@ -60008,7 +60008,23 @@ void Unwind_180906f20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906f30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理函数（偏移量0x10）
+ * 
+ * 该函数负责执行异常处理函数，从数据缓冲区的指定偏移量获取异常处理上下文，
+ * 然后调用相应的异常处理函数。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文指针
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0xb0偏移量获取异常处理上下文
+ * 2. 从上下文的0x10偏移量获取异常处理函数指针
+ * 3. 调用异常处理函数（偏移量0x38）
+ * 
+ * @note 原始函数名：Unwind_180906f30
+ */
+void ExecuteExceptionHandlerOffset10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -60022,7 +60038,23 @@ void Unwind_180906f30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906f40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理函数（偏移量0x18）
+ * 
+ * 该函数负责执行异常处理函数，从数据缓冲区的指定偏移量获取异常处理上下文，
+ * 然后调用相应的异常处理函数。这是ExecuteExceptionHandlerOffset10的变体。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文指针
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0xb0偏移量获取异常处理上下文
+ * 2. 从上下文的0x18偏移量获取异常处理函数指针
+ * 3. 调用异常处理函数（偏移量0x38）
+ * 
+ * @note 原始函数名：Unwind_180906f40
+ */
+void ExecuteExceptionHandlerOffset18(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -60036,7 +60068,23 @@ void Unwind_180906f40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906f50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理函数（偏移量0x88）
+ * 
+ * 该函数负责执行异常处理函数，从数据缓冲区的0x88偏移量获取异常处理上下文，
+ * 然后调用相应的异常处理函数。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文指针
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0x88偏移量获取异常处理上下文
+ * 2. 从上下文获取异常处理函数指针
+ * 3. 调用异常处理函数（偏移量0x38）
+ * 
+ * @note 原始函数名：Unwind_180906f50
+ */
+void ExecuteExceptionHandlerOffset88(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x88) != (int64_t *)0x0) {
@@ -60047,7 +60095,23 @@ void Unwind_180906f50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906f60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化系统资源并执行异常处理函数（偏移量0x40）
+ * 
+ * 该函数首先初始化系统资源，然后执行异常处理函数。
+ * 这是一个组合函数，包含系统初始化和异常处理两个步骤。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文指针
+ * 
+ * 功能说明：
+ * 1. 调用InitializeSystemResourcesI0()初始化系统资源
+ * 2. 从数据缓冲区的0x40偏移量获取异常处理上下文
+ * 3. 调用异常处理函数（偏移量0x38）
+ * 
+ * @note 原始函数名：Unwind_180906f60
+ */
+void InitializeSystemAndExecuteExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemResourcesI0();
@@ -60059,7 +60123,23 @@ void Unwind_180906f60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906f70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理函数（偏移量0x40）
+ * 
+ * 该函数负责执行异常处理函数，从数据缓冲区的0x40偏移量获取异常处理上下文，
+ * 然后调用相应的异常处理函数。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文指针
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0x40偏移量获取异常处理上下文
+ * 2. 从上下文获取异常处理函数指针
+ * 3. 调用异常处理函数（偏移量0x38）
+ * 
+ * @note 原始函数名：Unwind_180906f70
+ */
+void ExecuteExceptionHandlerOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x40) != (int64_t *)0x0) {
@@ -60070,7 +60150,23 @@ void Unwind_180906f70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906f80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理函数（偏移量0x40+0x18）
+ * 
+ * 该函数负责执行异常处理函数，从数据缓冲区的0x40偏移量获取异常处理上下文，
+ * 然后从上下文的0x18偏移量获取异常处理函数指针并调用。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文指针
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0x40偏移量获取异常处理上下文
+ * 2. 从上下文的0x18偏移量获取异常处理函数指针
+ * 3. 调用异常处理函数（偏移量0x38）
+ * 
+ * @note 原始函数名：Unwind_180906f80
+ */
+void ExecuteExceptionHandlerOffset40_18(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
