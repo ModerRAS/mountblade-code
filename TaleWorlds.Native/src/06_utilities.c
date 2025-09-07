@@ -72223,7 +72223,19 @@ void SetDefaultExceptionHandlerToGlobalPointerA1(void)
 
 
 
-void Unwind_180908d50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据数组操作A0
+ * 
+ * 该函数负责处理指定数据缓冲区中的数组数据，通过调用ProcessDataArrayA0函数
+ * 对数据缓冲区偏移0xc0位置的数据进行数组处理操作。
+ * 
+ * @param operationBase 操作基础缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含要处理的数组数据
+ * 
+ * @note 原始函数名：Unwind_180908d50
+ * @see ProcessDataArrayA0
+ */
+void ProcessDataArrayOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + 0xc0);
