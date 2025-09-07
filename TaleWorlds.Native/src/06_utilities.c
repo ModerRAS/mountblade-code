@@ -49132,21 +49132,32 @@ void CleanupExceptionHandlerContextA17(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_1809045b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文处理器清理函数A18
+ * 
+ * 该函数负责清理异常上下文处理器，遍历异常数据缓冲区并执行清理操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_1809045b0
+ */
+void CleanupExceptionHandlerContextA18(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
-  int64_t *pdataContext;
+  int64_t *exceptionContextPointer;
   DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
-  pdataContext = *(int64_t **)(dataBuffer + 0x88);
+  exceptionContextPointer = *(int64_t **)(dataBuffer + 0x88);
   memoryBaseAddress = SystemCleanupFlagAlternative;
-  exceptionDataBuffer = (DataBuffer *)pdataContext[1];
-  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
+  exceptionDataBuffer = (DataBuffer *)exceptionContextPointer[1];
+  for (validationStatusPointer = (DataBuffer *)*exceptionContextPointer; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
-  if (*pdataContext == 0) {
+  if (*exceptionContextPointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -49155,7 +49166,16 @@ void Unwind_1809045b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809045c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作执行函数A
+ * 
+ * 该函数负责执行内存操作，调用系统内存初始化函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_1809045c0
+ */
+void ExecuteMemoryOperationA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x50),0x20,0x400,InitializeSystemMemoryA0);
@@ -49164,7 +49184,16 @@ void Unwind_1809045c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809045f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作执行函数B
+ * 
+ * 该函数负责执行内存操作，调用系统内存初始化函数，带有偏移地址
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_1809045f0
+ */
+void ExecuteMemoryOperationB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0x8000,0x20,0x400,InitializeSystemMemoryA0);
@@ -49173,7 +49202,16 @@ void Unwind_1809045f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904630(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理函数A
+ * 
+ * 该函数负责管理资源的引用计数，处理内存清理和异常处理
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180904630
+ */
+void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -49209,7 +49247,18 @@ void Unwind_180904630(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调函数A
+ * 
+ * 该函数负责调用异常处理器回调函数，处理系统异常情况
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180904650
+ */
+void CallExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
