@@ -181,6 +181,13 @@
 #define ReleaseUtf8ProcessingResources FUN_18013e8e6           // 释放UTF-8处理资源
 #define ProcessUtf8CharacterCodeConversion FUN_18013e910       // 处理UTF-8字符代码转换
 #define ProcessAdvancedUtf8ToUtf16Conversion FUN_18032c0b0      // 处理高级UTF-8到UTF-16转换
+#define ProcessCharacterCodeTableLookup FUN_180213440            // 处理字符代码表查找
+#define ProcessUtf16CharacterConversion FUN_180840490            // 处理UTF-16字符转换
+#define ProcessCharacterCodeStorage FUN_180211a30                // 处理字符代码存储
+#define ProcessCharacterDataBufferManagement FUN_180407630      // 处理字符数据缓冲区管理
+#define ProcessSystemMemoryCleanup FUN_1802164f0                 // 处理系统内存清理
+#define ProcessCharacterDataFinalization FUN_18084a280           // 处理字符数据最终化
+#define ProcessCharacterCodeRetrieval FUN_180406800              // 处理字符代码检索
 #define PrimaryDataBuffer PrimaryDataStorage               // 主要数据缓冲区
 #define SecondaryFloatBuffer SecondaryFloatValue           // 次要浮点缓冲区
 #define DataStructureIndex DataNodePointer                   // 数据结构索引
@@ -249949,7 +249956,7 @@ LAB_180213627:
   if (*(void **)(Utf8BufferSize + 8) != NULL) {
     SecondaryProcessingStatusFlag = *(void **)(Utf8BufferSize + 8);
   }
-  FUN_180211a30(UnicodeCodePoint,SecondaryProcessingStatusFlag);
+  ProcessCharacterCodeStorage(UnicodeCodePoint,SecondaryProcessingStatusFlag);
   if (Utf8SourcePointer == '\0') {
     if (6 < *(uint *)(Utf8BufferSize + 0x10)) {
       do {
@@ -249969,7 +249976,7 @@ LAB_180213627:
     if (*(void **)(Utf8BufferSize + 8) != NULL) {
       SecondaryProcessingStatusFlag = *(void **)(Utf8BufferSize + 8);
     }
-    FUN_180211a30(UnicodeCodePoint,SecondaryProcessingStatusFlag);
+    ProcessCharacterCodeStorage(UnicodeCodePoint,SecondaryProcessingStatusFlag);
   }
   return uStackX_10;
 }
@@ -250040,10 +250047,10 @@ LAB_180213890:
   lStackX_8 = 0;
   MemoryAllocationIndex = FUN_180845d20(*(void *)(CharacterCode + 0x368),
                         (long long)Utf8BufferSize * 0x10 + *(long long *)(CharacterCode + 0x3b8),&lStackX_8);
-  FUN_180211a30(MemoryAllocationIndex,&CoreEngineDataTemplate);
+  ProcessCharacterCodeStorage(MemoryAllocationIndex,&CoreEngineDataTemplate);
   if ((lStackX_8 != 0) && (Utf8SourcePointer != '\0')) {
     MemoryAllocationIndex = FUN_1808496c0(lStackX_8,&SystemEncodingDataPrimary,0xffffffff);
-    FUN_180211a30(MemoryAllocationIndex,&CoreEngineDataTemplate);
+    ProcessCharacterCodeStorage(MemoryAllocationIndex,&CoreEngineDataTemplate);
   }
   return lStackX_8;
 }
@@ -250108,13 +250115,13 @@ LAB_180213aaa:
     CoreEngineFreeSystemMemory(systemEventTemplatePointer);
   }
 LAB_180213b20:
-  CalculatedCodePoint = FUN_180213440(CharacterCode,Utf8BufferSize,0);
-  StringComparisonResult = FUN_180840490(CalculatedCodePoint,&SystemRegisterFlagX8);
+  CalculatedCodePoint = ProcessCharacterCodeTableLookup(CharacterCode,Utf8BufferSize,0);
+  StringComparisonResult = ProcessUtf16CharacterConversion(CalculatedCodePoint,&SystemRegisterFlagX8);
   SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
   if (*(void **)(Utf8BufferSize + 8) != NULL) {
     SecondaryProcessingStatusFlag = *(void **)(Utf8BufferSize + 8);
   }
-  FUN_180211a30(StringComparisonResult,SecondaryProcessingStatusFlag);
+  ProcessCharacterCodeStorage(StringComparisonResult,SecondaryProcessingStatusFlag);
   if (StringComparisonResult != 0) {
     ValidateSystemConfiguration(SystemConfigHandle,0,0,3,&SystemConfigurationTemplatePrimary,SystemRegisterFlagX8,SystemChecksum);
     return 0;
@@ -251399,7 +251406,7 @@ uint32_t FUN_180214cf0(long long CharacterCode
       if (*(void **)(CharacterTablePointer + 0x20) != NULL) {
         SecondaryProcessingStatusFlag = *(void **)(CharacterTablePointer + 0x20);
       }
-      FUN_180211a30(UnicodeCodePoint,SecondaryProcessingStatusFlag);
+      ProcessCharacterCodeStorage(UnicodeCodePoint,SecondaryProcessingStatusFlag);
       *(long long *)(Utf16EndPointer + 8) = lStack_198;
     }
   }
