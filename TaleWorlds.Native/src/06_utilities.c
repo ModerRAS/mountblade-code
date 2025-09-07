@@ -5572,7 +5572,7 @@ extern uint64_t ExceptionOffsetValue;
 
 // 原始函数名：FUN_180895b89 - 安全检查函数A0
 // 功能：执行安全检查
-#define ExecuteSecurityCheckA0 FUN_180895b89
+// 注意：此函数已在前面定义为 ExecuteSecurityCheck
 
 // 原始函数名：FUN_180895c8b - 数据处理函数A8
 // 功能：处理数据操作
@@ -9460,8 +9460,8 @@ uint8_t SecurityValidationFlagA158;  // UNK_180a3a498
 uint8_t SecurityValidationFlagA159;  // UNK_180a3a4a8
 uint8_t SecurityValidationFlagA160;    // UNK_180a3a420
 uint8_t SecurityValidationFlagA161;    // UNK_180a3a438
-uint8_t SecurityValidationFlagA162;
-uint8_t SecurityValidationFlagA163;
+uint8_t SecurityValidationFlagA162;    // UNK_180a3a450
+uint8_t SecurityValidationFlagA163;    // UNK_180a3a468
 uint8_t SecurityValidationFlagA164;
 uint8_t SecurityValidationFlagA165;
 uint8_t SecurityValidationFlagA166;
@@ -70005,7 +70005,7 @@ void Unwind_180908ed0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908ee0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionDataBufferAtOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -100085,7 +100085,20 @@ void Unwind_180912500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x50偏移异常上下文（变体A）
+ * 
+ * 该函数负责处理数据缓冲区0x50偏移量处的异常上下文，执行异常处理操作
+ * 通过计算0x28偏移处的异常上下文地址并处理异常
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912510
+ */
+void HandleExceptionContextAtOffset50VariantA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100103,7 +100116,20 @@ void Unwind_180912510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x50偏移异常上下文（变体B）
+ * 
+ * 该函数负责处理数据缓冲区0x50偏移量处的异常上下文，执行异常处理操作
+ * 通过计算8字节偏移处的异常上下文地址并处理异常
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912520
+ */
+void HandleExceptionContextAtOffset50VariantB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100121,7 +100147,20 @@ void Unwind_180912520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x50偏移异常上下文（变体C）
+ * 
+ * 该函数负责处理数据缓冲区0x50偏移量处的异常上下文，执行异常处理操作
+ * 通过计算0x18偏移处的异常上下文地址并处理异常
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912530
+ */
+void HandleExceptionContextAtOffset50VariantC(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100185,7 +100224,21 @@ void Unwind_180912580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理多重异常上下文并清理资源
+ * 
+ * 该函数负责处理多个异常上下文，包括0x58和0x48偏移处的异常处理
+ * 执行资源清理操作，重置相关指针，并处理异常上下文的生命周期
+ * 这是一个复杂的异常处理函数，涉及多个异常上下文的管理
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含多个异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912590
+ */
+void HandleMultipleExceptionContextsAndCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
