@@ -6287,37 +6287,26 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define SystemCleanupStatus GlobalSystemCleanupStatus             // 系统清理状态
 
 // 系统资源清理相关变量宏定义
-// 原始变量名：DAT_180c95ef0 - 系统资源清理标志A0
-#define SystemResourceCleanupFlagA0 GlobalSystemResourceCleanupFlagA0      // 系统资源清理标志A0
-// 原始变量名：DAT_180c96008 - 系统资源清理标志A1
-#define SystemResourceCleanupFlagA1 GlobalSystemResourceCleanupFlagA1      // 系统资源清理标志A1
-// 原始变量名：DAT_180c96028 - 系统资源清理标志A2
-#define SystemResourceCleanupFlagA2 GlobalSystemResourceCleanupFlagA2      // 系统资源清理标志A2
-// 原始变量名：DAT_180c96048 - 系统资源清理标志A3
-#define SystemResourceCleanupFlagA3 GlobalSystemResourceCleanupFlagA3      // 系统资源清理标志A3
-// 原始变量名：DAT_180c96068 - 系统资源清理标志A4
-#define SystemResourceCleanupFlagA4 GlobalSystemResourceCleanupFlagA4      // 系统资源清理标志A4
-// 原始变量名：DAT_180c96098 - 系统资源清理标志A5
-#define SystemResourceCleanupFlagA5 GlobalSystemResourceCleanupFlagA5      // 系统资源清理标志A5
-// 原始变量名：DAT_180c960b8 - 系统资源清理标志A6
-#define SystemResourceCleanupFlagA6 GlobalSystemResourceCleanupFlagA6      // 系统资源清理标志A6
-// 原始变量名：DAT_180c96100 - 系统资源清理标志A7
-#define SystemResourceCleanupFlagA7 GlobalSystemResourceCleanupFlagA7      // 系统资源清理标志A7
+// 系统资源清理标志变量声明
+uint8_t SystemResourceCleanupFlagA0;      // DAT_180c95ef0 - 系统资源清理标志A0
+uint8_t SystemResourceCleanupFlagA1;      // DAT_180c96008 - 系统资源清理标志A1
+uint8_t SystemResourceCleanupFlagA2;      // DAT_180c96028 - 系统资源清理标志A2
+uint8_t SystemResourceCleanupFlagA3;      // DAT_180c96048 - 系统资源清理标志A3
+uint8_t SystemResourceCleanupFlagA4;      // DAT_180c96068 - 系统资源清理标志A4
+uint8_t SystemResourceCleanupFlagA5;      // DAT_180c96098 - 系统资源清理标志A5
+uint8_t SystemResourceCleanupFlagA6;      // DAT_180c960b8 - 系统资源清理标志A6
+uint8_t SystemResourceCleanupFlagA7;      // DAT_180c96100 - 系统资源清理标志A7
 
-// 原始变量名：_DAT_180c95ff0 - 系统资源指针A0
-#define SystemResourcePointerA0 GlobalSystemResourcePointerA0          // 系统资源指针A0
-// 原始变量名：_DAT_180c96010 - 系统资源指针A1
-#define SystemResourcePointerA1 GlobalSystemResourcePointerA1          // 系统资源指针A1
-// 原始变量名：_DAT_180c96030 - 系统资源指针A2
-#define SystemResourcePointerA2 GlobalSystemResourcePointerA2          // 系统资源指针A2
-// 原始变量名：_DAT_180c96050 - 系统资源指针A3
-#define SystemResourcePointerA3 GlobalSystemResourcePointerA3          // 系统资源指针A3
-// 原始变量名：_DAT_180c96070 - 系统资源指针A4
-#define SystemResourcePointerA4 GlobalSystemResourcePointerA4          // 系统资源指针A4
-// 原始变量名：_DAT_180c960a0 - 系统资源指针A5
-#define SystemResourcePointerA5 GlobalSystemResourcePointerA5          // 系统资源指针A5
-// 原始变量名：DAT_180c960c0 - 系统资源数据缓冲区A0
-#define SystemResourceDataBufferA0 GlobalSystemResourceDataBufferA0         // 系统资源数据缓冲区A0
+// 系统资源指针变量声明
+void* SystemResourcePointerA0;          // _DAT_180c95ff0 - 系统资源指针A0
+void* SystemResourcePointerA1;          // _DAT_180c96010 - 系统资源指针A1
+void* SystemResourcePointerA2;          // _DAT_180c96030 - 系统资源指针A2
+void* SystemResourcePointerA3;          // _DAT_180c96050 - 系统资源指针A3
+void* SystemResourcePointerA4;          // _DAT_180c96070 - 系统资源指针A4
+void* SystemResourcePointerA5;          // _DAT_180c960a0 - 系统资源指针A5
+
+// 系统资源数据缓冲区变量声明
+void* SystemResourceDataBufferA0;         // DAT_180c960c0 - 系统资源数据缓冲区A0
 
 // 系统验证相关变量宏定义
 // 原始变量名：_DAT_180c95f18 - 系统验证上下文指针A0
