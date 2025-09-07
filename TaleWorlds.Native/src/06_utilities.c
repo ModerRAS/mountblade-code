@@ -21191,11 +21191,11 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   DataWord StackDataWordN;
   DataWord StackDataWordO;
   DataWord StackDataWordP;
-  DataWord StackDataWordQ;
+  DataWord SecurityValidationDataQ;
   uint8_t *SecurityValidationBuffer;
   DataWord SecurityCheckValue;
-  DataWord StackDataWordR;
-  DataWord StackDataWordS;
+  DataWord SecurityValidationDataR;
+  DataWord SecurityValidationDataS;
   ByteFlag StackByteFlagA;
   DataBuffer StackDataBufferV;
   ByteFlag ExceptionDataBufferA [136];
@@ -21234,9 +21234,9 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
             statusFlag = CheckSystemStatus(calculatedOffset,1);
             exceptionDataBuffer6 = StackPointerBufferB;
             if ((statusFlag == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(calculatedIndex + 0x28))) {
-              StackDataWordS = *(DataWord *)(exceptionHandlerContext4 + 4 + dataPointer);
+              SecurityValidationDataS = *(DataWord *)(exceptionHandlerContext4 + 4 + dataPointer);
               SecurityValidationBuffer = &SystemMemoryInitializationReference;
-              StackDataWordR = StackDataWordA;
+              SecurityValidationDataR = StackDataWordA;
               SecurityCheckValue = 0;
               dataPointer = (**(FunctionPointer**)*StackPointerBufferB)(StackPointerBufferB);
               StackDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + 0x90) + bufferPointer * 8);
@@ -21275,7 +21275,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               StackDataWordN = *(DataWord *)(dataContext + 0x58);
               StackDataWordO = *(DataWord *)(dataContext + 0x5c);
               StackDataWordP = *(DataWord *)(dataContext + 0x60);
-              StackDataWordQ = *(DataWord *)(dataContext + 100);
+              SecurityValidationDataQ = *(DataWord *)(dataContext + 100);
               StackDataWordI = StackDataWordA;
               iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferD);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
@@ -108304,33 +108304,33 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：存储异常上下文的数据字3
 #define StackExceptionContextData3 uStack_128
 
-// 原始变量名：uStack_124 - 栈数据字M
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordM uStack_124
+// 原始变量名：uStack_124 - 数据上下文偏移54处的数据字
+// 功能：存储数据上下文偏移0x54处的验证数据
+#define DataContextOffset54Data uStack_124
 
-// 原始变量名：uStack_120 - 栈数据字N
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordN uStack_120
+// 原始变量名：uStack_120 - 数据上下文偏移58处的数据字
+// 功能：存储数据上下文偏移0x58处的验证数据
+#define DataContextOffset58Data uStack_120
 
-// 原始变量名：uStack_11c - 栈数据字O
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordO uStack_11c
+// 原始变量名：uStack_11c - 数据上下文偏移5c处的数据字
+// 功能：存储数据上下文偏移0x5c处的验证数据
+#define DataContextOffset5CData uStack_11c
 
 // 原始变量名：uStack_114 - 栈数据字P
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordP uStack_114
 
-// 原始变量名：uStack_f8 - 栈数据字Q
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordQ uStack_f8
+// 原始变量名：uStack_f8 - 安全验证数据字Q
+// 功能：存储数据上下文偏移100处的安全验证数据
+#define SecurityValidationDataQ uStack_f8
 
-// 原始变量名：uStack_f0 - 栈数据字R
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordR uStack_f0
+// 原始变量名：uStack_f0 - 安全验证数据字R
+// 功能：存储安全验证的主要数据字
+#define SecurityValidationDataR uStack_f0
 
-// 原始变量名：uStack_ec - 栈数据字S
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordS uStack_ec
+// 原始变量名：uStack_ec - 安全验证数据字S
+// 功能：存储异常处理上下文中的安全验证数据
+#define SecurityValidationDataS uStack_ec
 
 // 原始变量名：uStack_e8 - 栈字节标志A
 // 功能：存储字节标志的栈变量
