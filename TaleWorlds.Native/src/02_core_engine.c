@@ -154850,7 +154850,7 @@ int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,u
   int MemoryMatchResult;
   uint64_t MemoryAddressMask;
   int *pRemainingSpace;
-  unsigned long long DataSize;
+  unsigned long long SearchIndex;
   long long MemoryPoolBlockSize;
   int ComputedResult;
   long long systemLoopCounter;
@@ -194377,7 +194377,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx7(uint64_t CharacterCode,uint64_t Utf8Buffe
 
 
 uint64_t *
-FUN_18016d910(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,unsigned long long Utf8SourcePointer,unsigned long long Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingEx8(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,unsigned long long Utf8SourcePointer,unsigned long long Utf16EndPointer
 {
   uint32_t *StatusBuffer;
   char *pSystemCheckResult;
