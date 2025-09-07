@@ -24111,7 +24111,7 @@ uint8_t CoreEngineNotifyConditionVariableAndProcessSyncState(long long Character
   else {
     WaitTimeoutParameter = 1;
     CoreEngineExecuteConditionVariableTimedWait(CharacterCode,&MutexPointer,&WaitTimeoutParameter,Utf16EndPointer,TimeoutFlag);
-    ConditionInputStringBuffer = *(uint8_t *)(CharacterCode + 0x98);
+    ConditionStatusFlag = *(uint8_t *)(CharacterCode + 0x98);
   }
   *(uint8_t *)(CharacterCode + 0x98) = 0;
   if (MutexLockStatus != '\0') {
@@ -24120,7 +24120,7 @@ uint8_t CoreEngineNotifyConditionVariableAndProcessSyncState(long long Character
       __Throw_C_error_std__YAXH_Z(LockResult);
     }
   }
-  return ConditionInputStringBuffer;
+  return ConditionStatusFlag;
 }
 
 
@@ -169925,15 +169925,15 @@ void ProcessSystemDataSynchronize(void)
         else {
           *Utf8InputBufferPointer = 0;
         }
-        MemoryAddressMask = 0xffffffff;
+        HashValue = 0xffffffff;
         HighByte = *pIsSystemContextValid;
         while (HighByte != 0) {
           CurrentBytePointer0 = pIsSystemContextValid + 1;
           if (((HighByte == 0x23) && (*CurrentBytePointer0 == 0x23)) && (pIsSystemContextValid[2] == 0x23)) {
-            MemoryAddressMask = 0xffffffff;
+            HashValue = 0xffffffff;
           }
-          MemoryAddressMask = *(uint *)(&SystemXorDataTable + ((unsigned long long)(MemoryAddressMask & 0xff) ^ (unsigned long long)HighByte) * 4) ^
-                  MemoryAddressMask >> 8;
+          HashValue = *(uint *)(&SystemXorDataTable + ((unsigned long long)(HashValue & 0xff) ^ (unsigned long long)HighByte) * 4) ^
+                  HashValue >> 8;
           pIsSystemContextValid = CurrentBytePointer0;
           HighByte = *CurrentBytePointer0;
         }
