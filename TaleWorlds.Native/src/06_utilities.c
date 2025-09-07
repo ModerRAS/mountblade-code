@@ -68423,7 +68423,17 @@ void ManageResourceReferenceCount7d30(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180907d40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到偏移量0x360
+ * 
+ * 该函数将默认异常处理器B设置到数据缓冲区的0x360偏移量位置。
+ * 这是一个简单的异常处理器设置函数，用于初始化异常处理链。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907d40
+ */
+void SetDefaultExceptionHandlerBOffset360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x360) = &DefaultExceptionHandlerB;
@@ -68432,7 +68442,17 @@ void Unwind_180907d40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907d50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除并验证数据偏移量0x30的位1
+ * 
+ * 该函数检查数据缓冲区偏移量0x30处的第1位，如果被设置则清除该位
+ * 并调用数据验证函数验证偏移量0x1f0处的数据。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907d50
+ */
+void ClearAndValidateBit1Offset30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
@@ -68444,7 +68464,17 @@ void Unwind_180907d50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907d80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除并验证数据偏移量0x30的位2
+ * 
+ * 该函数检查数据缓冲区偏移量0x30处的第2位，如果被设置则清除该位
+ * 并调用数据验证函数验证偏移量0x218处的数据。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907d80
+ */
+void ClearAndValidateBit2Offset30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
@@ -68456,7 +68486,17 @@ void Unwind_180907d80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907db0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到偏移量0x218
+ * 
+ * 该函数将默认异常处理器B设置到数据缓冲区的0x218偏移量位置。
+ * 这是一个简单的异常处理器设置函数，用于初始化异常处理链。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907db0
+ */
+void SetDefaultExceptionHandlerBOffset218(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x218) = &DefaultExceptionHandlerB;
