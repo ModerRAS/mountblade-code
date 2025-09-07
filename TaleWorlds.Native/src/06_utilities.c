@@ -79898,7 +79898,17 @@ void SetDefaultExceptionHandlerA2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c0e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数0e0
+ * 
+ * 该函数负责设置默认异常处理器B
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090c0e0
+ */
+void ExceptionContextHandler0e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x300) = &DefaultExceptionHandlerB;
