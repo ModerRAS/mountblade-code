@@ -24085,27 +24085,52 @@ OperationFailedLabel:
  * @note 这是简化实现，实际应用中需要实现完整的安全数据处理逻辑
  * @warning 函数包含安全校验和检查，失败时将触发安全检查
  */
-void ProcessSecureDataA0(int64_t *ContextPointer, DataBuffer DataSource, DataBuffer SecurityParam1, DataBuffer SecurityParam2)
+/**
+ * @brief 安全数据处理函数A0
+ * 
+ * 该函数负责处理安全敏感数据，包括数据加密、安全验证和上下文处理。
+ * 函数使用多层安全机制来确保数据处理的完整性和机密性。
+ * 
+ * @details 函数执行流程：
+ * 1. 初始化安全密钥缓冲区和校验和
+ * 2. 对输入的安全参数进行加密处理
+ * 3. 初始化数据结构并配置处理缓冲区
+ * 4. 通过上下文指针执行数据处理操作
+ * 5. 执行安全检查以验证处理结果的完整性
+ * 
+ * @param contextPointer 上下文指针，指向数据处理上下文结构
+ * @param dataSource 数据源，包含要处理的原始数据
+ * @param securityParam1 安全参数1，用于数据加密和验证
+ * @param securityParam2 安全参数2，用于数据加密和验证
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数处理敏感数据，调用时需确保上下文和参数的安全性
+ * @warning 安全校验和检查失败时可能触发系统安全机制
+ * 
+ * @see InitializeDataStructureA0, ExecuteSecurityCheck
+ */
+void ProcessSecureDataA0(int64_t *contextPointer, DataBuffer dataSource, DataBuffer securityParam1, DataBuffer securityParam2)
 {
-  DataBuffer EncryptedParam1;                                    // 加密参数1
-  DataBuffer EncryptedParam2;                                    // 加密参数2
-  ByteFlag SecurityKeyBuffer [32];                             // 安全密钥缓冲区（32字节）
-  ByteFlag DataProcessingBuffer [1024];                        // 数据处理缓冲区（1KB）
-  uint64_t SecurityChecksum;                                    // 安全校验和
+  DataBuffer encryptedSecurityParam1;                             // 加密后的安全参数1
+  DataBuffer encryptedSecurityParam2;                             // 加密后的安全参数2
+  ByteFlag securityKeyBuffer[32];                                // 安全密钥缓冲区（32字节）
+  ByteFlag dataProcessingBuffer[1024];                            // 数据处理缓冲区（1KB）
+  uint64_t securityValidationChecksum;                            // 安全验证校验和
   
-  // 计算安全校验和
-  SecurityChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)SecurityKeyBuffer;
-  EncryptedParam1 = SecurityParam1;
-  EncryptedParam2 = SecurityParam2;
+  // 计算安全验证校验和，用于数据完整性验证
+  securityValidationChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)securityKeyBuffer;
+  encryptedSecurityParam1 = securityParam1;
+  encryptedSecurityParam2 = securityParam2;
   
-  // 处理数据缓冲区
-  InitializeDataStructureA0(DataProcessingBuffer,0x400,DataSource,&EncryptedParam1);
+  // 初始化数据结构并配置处理缓冲区
+  InitializeDataStructureA0(dataProcessingBuffer, 0x400, dataSource, &encryptedSecurityParam1);
   
-  // 执行上下文处理
-  (**(FunctionPointer**)(*ContextPointer + 8))(ContextPointer,DataProcessingBuffer);
+  // 通过上下文指针执行数据处理操作
+  (**(FunctionPointer**)(*contextPointer + 8))(contextPointer, dataProcessingBuffer);
     
-  // 执行安全检查
-  ExecuteSecurityCheck(SecurityChecksum ^ (uint64_t)SecurityKeyBuffer);
+  // 执行最终安全检查，确保数据处理完整性
+  ExecuteSecurityCheck(securityValidationChecksum ^ (uint64_t)securityKeyBuffer);
 }
 
 
@@ -118049,36 +118074,36 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：存储数据缓冲区指针的栈变量
 #define StackIntegerPointerD StackDataBufferPointer
 
-// 原始变量名：stack0x00000008 - 栈数据缓冲区P
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferP stack0x00000008
+// 系统初始化数据缓冲区
+// 功能：存储系统初始化过程中的数据缓冲区
+#define SystemInitializationDataBuffer stack0x00000008
 
-// 原始变量名：stack0x00000080 - 栈数据缓冲区Q
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferQ stack0x00000080
+// 内存池数据缓冲区
+// 功能：存储内存池管理过程中的数据缓冲区
+#define MemoryPoolDataBuffer stack0x00000080
 
-// 原始变量名：stack0x00000088 - 栈数据缓冲区R
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferR stack0x00000088
+// 资源表数据缓冲区
+// 功能：存储资源表管理过程中的数据缓冲区
+#define ResourceTableDataBuffer stack0x00000088
 
-// 原始变量名：stack0x00000094 - 栈数据缓冲区S
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferS stack0x00000094
+// 异常处理数据缓冲区
+// 功能：存储异常处理过程中的数据缓冲区
+#define ExceptionHandlingDataBuffer stack0x00000094
 
-// 原始变量名：stack0x000000b0 - 栈数据缓冲区T
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferT stack0x000000b0
+// 线程同步数据缓冲区
+// 功能：存储线程同步过程中的数据缓冲区
+#define ThreadSynchronizationDataBuffer stack0x000000b0
 
-// 原始变量名：stack0x000000b8 - 栈数据缓冲区U
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferU stack0x000000b8
+// 系统状态数据缓冲区
+// 功能：存储系统状态管理过程中的数据缓冲区
+#define SystemStatusDataBuffer stack0x000000b8
 
-// 原始变量名：uStack_28 - 栈数据字AC
+// 数据处理临时字
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAC uStack_28
+#define DataProcessingTemporaryWord uStack_28
 
-// 原始变量名：uStack_e8 - 栈数据缓冲区V
-// 功能：存储数据缓冲区的栈变量
+// 临时数据缓冲区V
+// 功能：存储临时数据的栈变量缓冲区
 #define TemporaryDataBufferV uStack_e8
 
 // 原始变量名：puStack_1c0 - 栈指针缓冲区I

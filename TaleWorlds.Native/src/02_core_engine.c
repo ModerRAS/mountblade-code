@@ -21192,19 +21192,19 @@ CheckSystemInfoBounds:
     SystemInfoStackQuaternaryPointer = &SystemInfoPrimaryTemplate;
     CoreEngineApplySystemConfiguration(SystemConfigHandle,5,0xffffffffffffffff,4);
     RenderConfigSystemPointer = &RenderConfigManager;
-    SystemInfoStackQuaternaryPointer2 = SystemInfoSecurityBuffer;
+    SecurityBufferSystemPointer = SystemInfoSecurityBuffer;
     SystemInfoStackProcessingConfigurationFlag = 0;
     SystemInfoSecurityBuffer[0] = 0;
     SystemInfoStackProcessingInitializationFlag = 2;
-    CoreEngineInitializeSystemInfoHandler(&SystemInfoStackQuaternaryPointer1,&SystemInfoHandlerTemplate,0x130a7);
+    CoreEngineInitializeSystemInfoHandler(&RenderConfigSystemPointer,&SystemInfoHandlerTemplate,0x130a7);
     SystemInfoStackTertiaryPointer = &CoreEngineDataTemplate;
-    if (SystemInfoStackQuaternaryPointer2 != NULL) {
-      SystemInfoStackTertiaryPointer = SystemInfoStackQuaternaryPointer2;
+    if (SecurityBufferSystemPointer != NULL) {
+      SystemInfoStackTertiaryPointer = SecurityBufferSystemPointer;
     }
     SystemInfoStackQuaternaryPointer = &SystemInfoSecondaryTemplate;
     CoreEngineApplySystemConfiguration(SystemConfigHandle,5,0xffffffffffffffff,4);
     SystemInfoStackProcessingInitializationFlag = 0;
-    SystemInfoStackQuaternaryPointer1 = &ThreadLocalStorageTemplate;
+    RenderConfigSystemPointer = &ThreadLocalStorageTemplate;
     SystemInfoStackSecondaryPointer = &SystemNullTemplate;
     if (SystemInfoStackAlternativePointer != NULL) {
                     // WARNING: Subroutine does not return
