@@ -111074,25 +111074,25 @@ void ReleaseSystemReferenceCount(void)
 void ReleaseSystemResourceReference(void)
 
 {
-  int64_t *referenceContextPointer;
-  int *operationResultPointer;
-  int operationCount;
-  int64_t referenceValue;
+  int64_t *referenceCountPointer;
+  int *operationStatusPointer;
+  int activeOperationCount;
+  int64_t currentReferenceCount;
   int64_t *resourceHandlePointer;
   
   LOCK();
-  referenceContextPointer = resourceHandlePointer + 1;
-  referenceValue = *referenceContextPointer;
-  *(int *)referenceContextPointer = (int)*referenceContextPointer + -1;
+  referenceCountPointer = resourceHandlePointer + 1;
+  currentReferenceCount = *referenceCountPointer;
+  *(int *)referenceCountPointer = (int)*referenceCountPointer + -1;
   UNLOCK();
-  if ((int)referenceValue == 1) {
+  if ((int)currentReferenceCount == 1) {
     (**(FunctionPointer**)*resourceHandlePointer)();
     LOCK();
-    operationResultPointer = (int *)((int64_t)resourceHandlePointer + 0xc);
-    operationCount = *operationResultPointer;
-    *operationResultPointer = *operationResultPointer + -1;
+    operationStatusPointer = (int *)((int64_t)resourceHandlePointer + 0xc);
+    activeOperationCount = *operationStatusPointer;
+    *operationStatusPointer = *operationStatusPointer + -1;
     UNLOCK();
-    if (operationCount == 1) {
+    if (activeOperationCount == 1) {
       (**(FunctionPointer**)(*resourceHandlePointer + 8))();
     }
   }
@@ -111103,14 +111103,14 @@ void ReleaseSystemResourceReference(void)
 
 
 /**
- * @brief 空操作清理函数
+ * @brief 执行空操作清理函数
  * 
  * 该函数是一个空操作函数，不执行任何操作直接返回。
- * 用作清理操作的占位符或默认回调。
+ * 用作清理操作的占位符或默认回调函数。
  * 
  * @note 原始函数名：FUN_180942928
  */
-void NoOperationCleanupFunction(void)
+void ExecuteNullOperationCleanup(void)
 
 {
   return;
@@ -111789,6 +111789,18 @@ void DestroyMutexC(void)
 
 
 
+/**
+ * @brief 设置默认异常处理器到位置C
+ * 
+ * 该函数负责将默认异常处理器设置到指定的位置C，用于系统异常处理
+ * 主要用于系统初始化和异常处理配置
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数在系统初始化时调用，用于配置异常处理机制
+ * @warning 确保在调用此函数前已正确初始化异常处理系统
+ * @see SetDefaultExceptionHandlerToLocationA, SetDefaultExceptionHandlerToLocationB
+ */
 void SetDefaultExceptionHandlerToLocationC(void)
 
 {
@@ -111800,9 +111812,18 @@ void SetDefaultExceptionHandlerToLocationC(void)
 
 
 
-// 函数: void ResetUtilitySystem(void)
-// 功能：重置工具系统到初始状态
-// 返回值：无
+/**
+ * @brief 重置工具系统
+ * 
+ * 该函数负责将工具系统重置到初始状态，恢复默认配置
+ * 主要用于系统重启、错误恢复或状态重置
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会重置系统信息指针，确保系统恢复到可预测的状态
+ * @warning 确保在调用此函数前已保存必要的状态信息
+ * @see InitializeUtilitySystem, CleanupUtilitySystem
+ */
 void ResetUtilitySystem(void)
 
 {
@@ -111814,9 +111835,18 @@ void ResetUtilitySystem(void)
 
 
 
-// 函数: void InitializeUtilitySystem(void)
-// 功能：初始化工具系统，设置系统状态和控制变量
-// 返回值：无
+/**
+ * @brief 初始化工具系统
+ * 
+ * 该函数负责初始化工具系统，设置系统状态和控制变量
+ * 主要用于系统启动时的初始化配置
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会执行完整的系统初始化流程，包括错误检查和状态重置
+ * @warning 确保在调用此函数前系统处于未初始化状态
+ * @see ResetUtilitySystem, CleanupUtilitySystem
+ */
 void InitializeUtilitySystem(void)
 
 {
@@ -111834,9 +111864,18 @@ void InitializeUtilitySystem(void)
 
 
 
-// 函数: void DestroyMutexInPlace(void)
-// 功能：销毁互斥锁资源，清理线程同步对象
-// 返回值：无
+/**
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责销毁互斥锁资源，清理线程同步对象
+ * 主要用于系统清理和资源释放
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会销毁指定的互斥锁资源，确保系统资源正确释放
+ * @warning 确保在调用此函数前已正确释放所有依赖资源
+ * @see CleanupThreadMutex, DestroyMutexA, DestroyMutexB, DestroyMutexC
+ */
 void DestroyMutexInPlace(void)
 
 {
