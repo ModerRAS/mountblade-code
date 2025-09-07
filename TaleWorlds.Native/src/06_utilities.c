@@ -64725,7 +64725,17 @@ void ResourceReferenceCountCleanerA0(DataBuffer operationBase,int64_t dataBuffer
  * @param dataBuffer 数据缓冲区
  * @return void 无返回值
  */
-void Unwind_1809074e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数和内存管理
+ * 
+ * 该函数处理资源的引用计数管理和内存清理工作。当资源不再需要时，
+ * 减少引用计数，并在计数归零时调用相应的处理函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区，包含资源指针信息
+ * @return void 无返回值
+ */
+void CleanupResourceReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -65082,7 +65092,17 @@ void ExecuteValidationContextCallbackB2(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_1809075e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理回调函数C0
+ * 
+ * 该函数检查并执行异常处理上下文中的回调函数。当异常处理上下文指针有效时，
+ * 调用相应的回调函数来处理异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * @return void 无返回值
+ */
+void ExecuteExceptionHandlerCallbackC0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -65096,7 +65116,17 @@ void Unwind_1809075e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809075f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理回调函数C1
+ * 
+ * 该函数检查并执行异常处理上下文中的回调函数。当异常处理上下文指针有效时，
+ * 调用相应的回调函数来处理异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * @return void 无返回值
+ */
+void ExecuteExceptionHandlerCallbackC1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -65110,7 +65140,17 @@ void Unwind_1809075f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907600(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理回调函数C2
+ * 
+ * 该函数检查并执行异常处理上下文中的回调函数。当异常处理上下文指针有效时，
+ * 调用相应的回调函数来处理异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * @return void 无返回值
+ */
+void ExecuteExceptionHandlerCallbackC2(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -65124,7 +65164,17 @@ void Unwind_180907600(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907610(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理回调函数C3
+ * 
+ * 该函数检查并执行异常处理上下文中的回调函数。当异常处理上下文指针有效时，
+ * 调用相应的回调函数来处理异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * @return void 无返回值
+ */
+void ExecuteExceptionHandlerCallbackC3(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
