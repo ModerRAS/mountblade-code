@@ -138,18 +138,18 @@
  * 
  * 该函数负责清理系统事件处理的资源和状态
  * 
- * @note 原始函数名：FUN_180126e40
+ * @note 原始函数名：InitializeSystemComponentsA0
  */
-#define CleanupSystemEventProcessing FUN_180126e40
+#define CleanupSystemEventProcessing InitializeSystemComponentsA0
 
 /**
  * @brief 清理系统内存分配
  * 
  * 该函数负责清理系统内存分配的相关资源
  * 
- * @note 原始函数名：FUN_180133e10
+ * @note 原始函数名：ProcessSystemConfigurationA0
  */
-#define CleanupSystemMemoryAllocation FUN_180133e10
+#define CleanupSystemMemoryAllocation ProcessSystemConfigurationA0
 
 /**
  * @brief 处理UTF-8到UTF-16字符编码转换
@@ -637,7 +637,7 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 // 系统缓冲区和数据处理函数
 #define ProcessSystemBufferAllocation FUN_1801242c0
 #define HandleSystemCleanupOperation ProcessLongCharacterCodeOperation
-#define ProcessSystemShaderData FUN_18012ea30
+#define ProcessSystemShaderData ProcessSystemFunctionTable
 #define ProcessSystemEventConfiguration ValidateMemoryAddressMask
 #define ProcessSystemMemoryManagement FUN_18013e100
 
@@ -659,9 +659,9 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ProcessSystemCharacterValidation FUN_18010fd40
 
 // 系统数据更新和初始化函数
-#define ProcessSystemDataUpdate FUN_18012ea30
-#define InitializeSystemDataProcessing FUN_180135090
-#define FinalizeSystemDataProcessing FUN_180124b90
+#define ProcessSystemDataUpdate ProcessSystemFunctionTable
+#define InitializeSystemDataProcessing ValidateSystemComponentsA0
+#define FinalizeSystemDataProcessing CleanupSystemResourcesA0
 #define HandleSystemDatabaseOperation FUN_18011dbd0
 #define ProcessSystemDataComparison FUN_18011da00
 
@@ -2036,6 +2036,39 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 原始函数名：FUN_180142b20 - 系统函数调用处理函数
 #define ProcessSystemFunctionCall FUN_180142b20
 
+// 核心引擎函数语义化宏定义 - 矩阵和数据处理函数
+// 原始函数名：FUN_180298890 - 系统矩阵计算和数据处理函数
+// 功能：处理系统矩阵计算，执行元素运算和数据处理
+#define ProcessSystemMatrixCalculation FUN_180298890
+
+// 原始函数名：FUN_180291950 - 系统数据表处理函数
+// 功能：处理系统数据表，执行数据验证和更新操作
+#define ProcessSystemDataTable FUN_180291950
+
+// 原始函数名：FUN_180126de0 - 系统上下文数据获取函数
+// 功能：从系统上下文中获取指定索引的数据指针
+#define GetSystemContextData FUN_180126de0
+
+// 原始函数名：InitializeSystemComponentsA0 - 系统初始化函数A0
+// 功能：初始化系统组件和配置参数
+#define InitializeSystemComponentsA0 InitializeSystemComponentsA0
+
+// 原始函数名：ProcessSystemConfigurationA0 - 系统配置处理函数A0
+// 功能：处理系统配置参数和初始化设置
+#define ProcessSystemConfigurationA0 ProcessSystemConfigurationA0
+
+// 原始函数名：ValidateSystemComponentsA0 - 系统验证函数A0
+// 功能：验证系统组件和配置参数
+#define ValidateSystemComponentsA0 ValidateSystemComponentsA0
+
+// 原始函数名：ProcessSystemFunctionTable - 系统函数表处理函数
+// 功能：处理系统函数表和调用配置
+#define ProcessSystemFunctionTable ProcessSystemFunctionTable
+
+// 原始函数名：CleanupSystemResourcesA0 - 系统清理函数A0
+// 功能：清理系统资源和临时数据
+#define CleanupSystemResourcesA0 CleanupSystemResourcesA0
+
 // 系统数据表常量定义
 const void* const SystemDataTablePointerPrimary = (void*)0x180a064a0;
 const void* const SystemDataTablePointerSecondary = (void*)0x180a064a8;
@@ -2170,8 +2203,8 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_180058710 - 三级数据指针处理函数
 #define ProcessTertiaryProcessingStatusFlag FUN_180058710
 
-// 原始函数名：FUN_18012ea30 - 字符串处理和缓冲区操作函数
-#define ProcessStringAndBufferOperation FUN_18012ea30
+// 原始函数名：ProcessSystemFunctionTable - 字符串处理和缓冲区操作函数
+#define ProcessStringAndBufferOperation ProcessSystemFunctionTable
 
 // 原始函数名：FUN_180121300 - 缓冲区分配和状态检查函数
 #define AllocateBufferAndCheckStatus FUN_180121300
@@ -2438,7 +2471,7 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 
 #define ProcessSystemFloatDataAndTexture FUN_180114450
 #define ProcessSystemStringData FUN_18013c800
-#define ProcessSystemAnimationData FUN_18012ea30
+#define ProcessSystemAnimationData ProcessSystemFunctionTable
 #define ProcessSystemPhysicsData FUN_18010fad0
 #define ProcessSystemShaderData ProcessFloatDataInputAndSystemConfiguration
 
@@ -6552,8 +6585,8 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 // 原始函数名：FUN_18011d200 - 系统数据处理函数
 #define ProcessSystemDataWithParameters FUN_18011d200
 
-// 原始函数名：FUN_18012ea30 - 系统字符串和缓冲区操作函数
-#define ProcessStringAndBufferOperation FUN_18012ea30
+// 原始函数名：ProcessSystemFunctionTable - 系统字符串和缓冲区操作函数
+#define ProcessStringAndBufferOperation ProcessSystemFunctionTable
 
 // 原始函数名：FUN_180126d10 - 系统数据计算函数
 #define CalculateSystemDataEx FUN_180126d10
@@ -122827,7 +122860,7 @@ void ManageSystemMemoryReferenceCount(void)
  * 该函数负责处理系统中的数据结构遍历、矩阵运算和数据处理。
  * 包括遍历数据结构、执行矩阵变换、验证数据和处理系统事件。
  * 
- * @note 原始函数名：FUN_180126e40
+ * @note 原始函数名：InitializeSystemComponentsA0
  */
 void ProcessSystemDataStructureAndMatrix(void)
 {
@@ -124734,9 +124767,9 @@ void ProcessSystemEventQueue(void)
     *(uint8_t *)(DataStructureCounter + 0xaf) = 0;
   }
   FinalizeSystemEventQueue();
-  FUN_180126e40();
+  InitializeSystemComponentsA0();
   if (*(long long *)(SystemContext + 0x1cd8) != 0) {
-    FUN_180133e10();
+    ProcessSystemConfigurationA0();
   }
   DataStructureCounter = SystemDataConfiguration;
   if (*(long long *)(SystemDataConfiguration + 0x1c78) != 0) {
@@ -124753,18 +124786,18 @@ void ProcessSystemEventQueue(void)
       IsSystemContextValid = false;
     }
     if ((*(char *)(SystemContext + 0x1e1a) != '\0') || (IsSystemContextValid)) {
-      FUN_180135090();
+      ValidateSystemComponentsA0();
       StringBuffer3 = *(char *)(SystemContext + 0x1dd0);
     }
     if ((StringBuffer3 != '\0') && (*(int *)(SystemContext + 0x1dd8) < *(int *)(SystemContext + 0x1a90))) {
       *(uint8_t *)(SystemContext + 0x1dd1) = 1;
-      FUN_18012ea30(SystemFunctionTable);
+      ProcessSystemFunctionTable(SystemFunctionTable);
       *(uint8_t *)(SystemContext + 0x1dd1) = 0;
     }
   }
   *(uint32_t *)(SystemContext + 0x1a94) = *(uint32_t *)(SystemContext + 0x1a90);
   *(uint8_t *)(SystemContext + 1) = 0;
-  FUN_180124b90();
+  CleanupSystemResourcesA0();
   DataStructureCounter = SystemDataConfiguration;
   ReferenceCountPointer = (int *)(SystemDataConfiguration + 0x1618);
   *(void *)(SystemDataConfiguration + 0x1610) = **(uint64_t **)(SystemDataConfiguration + 0x1c70);
@@ -124919,10 +124952,10 @@ void ProcessSystemEventQueue(void)
     *(char *)(SystemContextValue + 0xaf) = RegisterValueR12B;
   }
   FinalizeSystemEventQueue();
-  FUN_180126e40();
+  InitializeSystemComponentsA0();
   if (*(long long *)(SystemContext + 0x1cd8) !=
       CONCAT44(SystemStringBufferHigh,CONCAT22(SystemStringBufferMid,CONCAT11(SystemStringBufferLow,RegisterValueR12B)))) {
-    FUN_180133e10();
+    ProcessSystemConfigurationA0();
   }
   SystemContextValue = SystemDataConfiguration;
   if (*(long long *)(SystemDataConfiguration + 0x1c78) !=
@@ -124941,18 +124974,18 @@ void ProcessSystemEventQueue(void)
       isSystemContextNull = false;
     }
     if ((*(char *)(SystemContext + 0x1e1a) != RegisterValueR12B) || (isSystemContextNull)) {
-      FUN_180135090();
+      ValidateSystemComponentsA0();
       StringBuffer0 = *(char *)(SystemContext + 0x1dd0);
     }
     if ((StringBuffer0 != '\0') && (*(int *)(SystemContext + 0x1dd8) < *(int *)(SystemContext + 0x1a90))) {
       *(uint8_t *)(SystemContext + 0x1dd1) = 1;
-      FUN_18012ea30(SystemFunctionTable);
+      ProcessSystemFunctionTable(SystemFunctionTable);
       *(char *)(SystemContext + 0x1dd1) = RegisterValueR12B;
     }
   }
   *(uint32_t *)(SystemContext + 0x1a94) = *(uint32_t *)(SystemContext + 0x1a90);
   *(char *)(SystemContext + 1) = RegisterValueR12B;
-  FUN_180124b90();
+  CleanupSystemResourcesA0();
   SystemContextValue = SystemDataConfiguration;
   ReferenceCountPointer = (int *)(SystemDataConfiguration + 0x1618);
   *(void *)(SystemDataConfiguration + 0x1610) = **(uint64_t **)(SystemDataConfiguration + 0x1c70);
@@ -144231,7 +144264,7 @@ e910(uint64_t CharacterCode,char CharacterCodeSizevoid FUN_18012e910(uint64_t Ch
 
 
 
-ea30(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_18012ea30(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+ea30(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid ProcessSystemFunctionTable(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
 {
   uint64_t uStackX_10;
   uint64_t ReservedStackSpace;
@@ -153382,7 +153415,7 @@ LAB_180133d43:
 
 
 
-33e10(voidvoid FUN_180133e10(void
+33e10(voidvoid ProcessSystemConfigurationA0(void
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -156165,7 +156198,7 @@ void ConfigureSystemRenderingParameters(void
 
 
 
-35090(voidvoid FUN_180135090(void
+35090(voidvoid ValidateSystemComponentsA0(void
 {
   uint64_t Utf16Char;
   long long BufferStatus;
@@ -156223,7 +156256,7 @@ unsigned long long FUN_180135160(void
        ProcessingResult = ProcessingResult & 0xffffffffffffff00,
        FloatVariable5 < *(float *)(DataStructureCounter + 0x474) || FloatVariable5 == *(float *)(DataStructureCounter + 0x474))) {
       if (*(char *)(DataStructureCounter + 0x1dd0) == '\0') {
-        FUN_180135090();
+        ValidateSystemComponentsA0();
         *(int *)(DataStructureCounter + 0x1dec) = IntegerValue;
         *(uint32_t *)(DataStructureCounter + 0x1df0) = MemoryAllocationIndex;
         *(uint8_t *)(DataStructureCounter + 0x1dd0) = 1;
@@ -163910,7 +163943,7 @@ LAB_18013b999:
       FinalizeSystemEventQueue();
     }
     if (*(int *)(loopCounter + 0x1df4) == -1) {
-      FUN_180135090();
+      ValidateSystemComponentsA0();
     }
     *(uint8_t *)(loopCounter + 0x1dd1) = 0;
   }
@@ -163931,7 +163964,7 @@ LAB_18013b999:
     FinalizeSystemEventQueue();
   }
   if (*(int *)(loopCounter + 0x1df4) == -1) {
-    FUN_180135090();
+    ValidateSystemComponentsA0();
   }
   *(uint8_t *)(loopCounter + 0x1dd1) = 0;
   return;
@@ -272590,8 +272623,8 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define AllocateSystemBuffer FUN_1801242c0
 // 原始函数名：FUN_18011d200 - 系统数据验证处理函数
 #define ProcessSystemDataValidation FUN_18011d200
-// 原始函数名：FUN_18012ea30 - 系统数据更新处理函数
-#define ProcessSystemDataUpdate FUN_18012ea30
+// 原始函数名：ProcessSystemFunctionTable - 系统数据更新处理函数
+#define ProcessSystemDataUpdate ProcessSystemFunctionTable
 // 原始函数名：FUN_18011ce30 - 系统字符编码处理函数
 #define ProcessSystemCharacterEncoding FUN_18011ce30
 // 原始函数名：FUN_18011d940 - 系统资源清理函数
