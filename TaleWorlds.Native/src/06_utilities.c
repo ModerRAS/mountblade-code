@@ -79922,12 +79922,22 @@ void UnlockSystemMutexBE0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909bf0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存指针状态管理函数BF0
+ * 
+ * 该函数负责管理内存指针状态，清除标志位并验证数据（BF0变体）
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180909bf0
+ * @note 这是一个内存指针状态管理函数，用于管理内存指针状态并验证数据
+ */
+void ManageMemoryPointerStateBF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
     *(uint *)(dataBuffer + MemoryPointerOffset) = *(uint *)(dataBuffer + MemoryPointerOffset) & 0xfffffffe;
-    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0xb8));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + ResourceAllocationSizeB8));
   }
   return;
 }
@@ -80438,7 +80448,15 @@ void DestroyMutexCleanupA14(void)
 
 
 
-void Unwind_180909f20(void)
+/**
+ * @brief 互斥体销毁函数F20
+ * 
+ * 该函数负责销毁系统互斥体资源
+ * 
+ * @note 原始函数名：Unwind_180909f20
+ * @note 这是一个互斥体销毁函数，用于销毁系统互斥体资源
+ */
+void DestroySystemMutexF20(void)
 
 {
   _Mtx_destroy_in_situ();
