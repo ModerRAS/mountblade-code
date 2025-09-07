@@ -111204,7 +111204,7 @@ void ProcessSystemConfigurationHandle(uint64_t CharacterCode,char *Utf8InputBuff
   float ContextSecondaryFloat2;
   uint64_t ReservedStackSpace;
   uint64_t uStackX_20;
-  uint64_t in_stack_fffffffffffffe88;
+  uint64_t FloatProcessingParameter;
   uint32_t MemoryAllocationBase;
   double TimeDifferenceInSeconds3;
   float fStack_158;
