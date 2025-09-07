@@ -19877,7 +19877,7 @@ ValidateDataSecurity:
         fVar19 = register_R13D;
         do {
           floatValidationValue = *pfVar21;
-          if (fVar1 != 0.0) {
+          if (floatValidationValue != 0.0) {
             StackParameter38 = StackParameter20;
             in_stack_00000028 = &UNK_1809839d8;
             StackBuffer30 = register_R13D;
