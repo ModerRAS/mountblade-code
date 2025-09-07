@@ -174107,7 +174107,7 @@ LAB_18013f327:
       SystemMemoryAllocationResult = (unsigned long long)SystemDataTablePointer & 0xffffffffffffff00;
 LAB_18013f32a:
       if (MemoryBlockListHead != (long long *)0x0) {
-        FUN_18013f4b0(CharacterCode,Utf8BufferSize,MemoryBlockListHead,SystemMemoryAllocationResult,AdditionalParameter1);
+        ProcessSystemMemoryAllocationAndValidation(CharacterCode,Utf8BufferSize,MemoryBlockListHead,SystemMemoryAllocationResult,AdditionalParameter1);
         return Utf8BufferSize;
       }
     }
@@ -174931,7 +174931,7 @@ uint32_t ProcessUtf16CharAndSystemBuffer(long long CharacterCode,uint64_t *Utf8I
     }
     MemoryAllocationIndex = ProcessTemporaryBuffer(&pSystemFlagE,CharacterStatusBuffer3);
     ProcessCurrentCharacter = CoreEngineProcessSystemContext(&pSystemFlagA,&StackTempPointer,1,OperationStatus);
-    SystemDataTablePointer = FUN_180627ce0(MemoryAllocationIndex,&SystemMemoryPointer,ProcessCurrentCharacter);
+    SystemDataTablePointer = ProcessSystemDataTable(MemoryAllocationIndex,&SystemMemoryPointer,ProcessCurrentCharacter);
     if (pSystemFlagB != (uint16_t *)0x0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
@@ -175951,7 +175951,7 @@ LAB_1801436c2:
   *systemEventTemplatePointer = 0x656d616e;
   *(uint8_t *)(systemEventTemplatePointer + 1) = 0;
   CoreEngineUnsignedValue = 4;
-  FUN_180632650(CharacterPointer,&CoreEnginePointerBuffer158);
+  ProcessCharacterWithSystemRegister(CharacterPointer,&CoreEnginePointerBuffer158);
   CoreEnginePointerBuffer158 = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
   CoreEngineFreeSystemMemory(systemEventTemplatePointer);
