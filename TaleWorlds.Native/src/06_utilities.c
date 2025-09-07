@@ -145,6 +145,14 @@
 #define SystemContextValidationFailure 0x1c
 #define ComponentDataValidationFailure 0x1f
 
+// 系统错误代码常量
+#define SystemOperationFailure 0x2e
+#define ResourceAccessDenied 0x4c
+#define SystemResourceBusy 0x4e
+#define SecurityValidationFailed 0x1d
+#define SystemConfigurationError 0x4f
+#define ComponentRegistrationFailed 0x1e
+
 // 组件状态常量
 #define ComponentInactiveStatus -1
 
@@ -983,7 +991,7 @@
  * 
  * @note 原始函数名：FUN_1808997f0
  */
-#define InitializeDataProcessorA0 InitializeDataProcessorA0
+#define InitializeDataProcessorA0 FUN_1808997f0
 
 /**
  * @brief 清理数据处理器
@@ -992,7 +1000,7 @@
  * 
  * @note 原始函数名：FUN_180899816
  */
-#define CleanupDataProcessorA0 CleanupDataProcessorA0
+#define CleanupDataProcessorA0 FUN_180899816
 
 /**
  * @brief 处理数据集合A0
@@ -1001,7 +1009,7 @@
  * 
  * @note 原始函数名：FUN_1808998a0
  */
-#define ProcessDataCollectionA0 ProcessDataCollectionA0
+#define ProcessDataCollectionA0 FUN_1808998a0
 
 /**
  * @brief 验证数据完整性
@@ -1010,7 +1018,7 @@
  * 
  * @note 原始函数名：FUN_1808999d90
  */
-#define ValidateDataIntegrityA0 ValidateDataIntegrityA0
+#define ValidateDataIntegrityA0 FUN_1808999d90
 
 /**
  * @brief 执行系统检查
@@ -1019,7 +1027,7 @@
  * 
  * @note 原始函数名：FUN_180899dc7
  */
-#define ExecuteSystemCheckA0 ExecuteSystemCheckA0
+#define ExecuteSystemCheckA0 FUN_180899dc7
 
 /**
  * @brief 处理高级数据操作
@@ -1028,7 +1036,7 @@
  * 
  * @note 原始函数名：FUN_18089a370
  */
-#define ProcessAdvancedDataOperation ProcessAdvancedDataOperationA0
+#define ProcessAdvancedDataOperationA0 FUN_18089a370
 
 /**
  * @brief 执行数据清理A0
@@ -12217,7 +12225,7 @@ DataBuffer GetUtilityStatusSuccess(void)
 DataBuffer GetUtilityStatusError(void)
 
 {
-  return 0x1f;
+  return ComponentDataValidationFailure;
 }
 
 
@@ -13544,7 +13552,7 @@ DataBuffer ValidateSystemStatusAndContext(int64_t contextHandle,int64_t eventMan
   queryResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&systemContext);
   if ((int)queryResult == 0) {
     if (*(int *)(systemContext + 0x34) != 0) {
-      return 0x2e;
+      return SystemOperationFailure;
     }
     referenceCount = *(int *)(systemContext + 0x28);
     *(int *)(systemContext + 0x28) = referenceCount + 1;
@@ -13628,14 +13636,14 @@ DataBuffer ManageResourceState(int64_t resourceManager,int64_t systemParams)
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceManager + 0x10),&resourceContext);
   if ((int)operationResult == 0) {
     if (*(int *)(resourceContext + 0x34) != 0) {
-      return 0x2e;
+      return SystemOperationFailure;
     }
     resourceCounter = *(int *)(resourceContext + 0x28);
     if (resourceCounter < 0) {
       return ResourceInvalidErrorCode;
     }
     if (resourceCounter == 0) {
-      return 0x4c;
+      return ResourceAccessDenied;
     }
     *(int *)(resourceContext + 0x28) = resourceCounter + -1;
     if (resourceCounter == 1) {
@@ -13671,7 +13679,7 @@ DataBuffer HandlePermissionRequest(int64_t permissionRequestContext,int64_t syst
   permissionResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(permissionRequestContext + 0x10),&permissionContext);
   if ((int)permissionResult == 0) {
     if (*(int64_t *)(permissionContext + 8) == 0) {
-      return 0x4c;
+      return ResourceAccessDenied;
     }
     *(DataBuffer *)(permissionRequestContext + 0x18) = *(DataBuffer *)(*(int64_t *)(permissionContext + 8) + 0x78);
     permissionResult = ProcessSystemEventB0(*(DataBuffer *)(systemParameters + 0x98),permissionRequestContext);
@@ -14304,7 +14312,7 @@ DataBuffer ConfigureUtilityDataA0(int64_t configPointer,int64_t dataPointer)
       systemStackPointer = systemStackPointer + -8;
     }
     if (*(int64_t *)(systemStackPointer + 0x10) == 0) {
-      return 0x4c;
+      return ResourceAccessDenied;
     }
     *(DataBuffer *)(configPointer + 0x18) =
          *(DataBuffer *)(*(int64_t *)(*(int64_t *)(systemStackPointer + 0x10) + 0x2b0) + 0x78);
@@ -14373,7 +14381,7 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
   int64_t systemContextBuffer;
   
   if (resourceContext + 0x1c == 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + 0x10), &systemContextBuffer);
   if ((int)operationResult == 0) {
@@ -14553,7 +14561,7 @@ uint64_t ValidateSystemDataIndexAndProcessResource(int64_t systemContext, int64_
   
   dataIndex = *(int *)(systemContext + 0x18);
   if ((dataIndex < 0) || (*(int *)(systemDataPtr + 0x28) <= dataIndex)) {
-    return 0x1f;  // 索引越界错误
+    return ComponentDataValidationFailure;  // 索引越界错误
   }
   
   if (*(int64_t *)(*(int64_t *)(systemDataPtr + 0x20) + 0x10 + (int64_t)dataIndex * 0x18) == 0) {
@@ -14766,7 +14774,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     secondaryInfinityFlag = 0x1d;
   }
   if ((quaternaryInfinityFlag != 0 || InfinityFlag1 != 0) || InfinityFlag2 != 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   InfinityFlag4 = 0;
   if ((*(uint *)(dataPtr + 0x2c) & FloatInfinityValue) == FloatInfinityValue) {
@@ -14781,7 +14789,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     secondaryInfinityFlag = 0x1d;
   }
   if ((InfinityFlag3 != 0 || InfinityFlag1 != 0) || InfinityFlag2 != 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   InfinityFlag3 = InfinityFlag4;
   if ((*(uint *)(dataPtr + 0x38) & FloatInfinityValue) == FloatInfinityValue) {
@@ -14795,7 +14803,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     quaternaryInfinityFlag = 0x1d;
   }
   if ((InfinityFlag3 != 0 || InfinityFlag1 != 0) || quaternaryInfinityFlag != 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   floatComponentZ = *(float *)(dataPtr + 0x44);
   tertiaryInfinityFlag = 0;
@@ -14816,10 +14824,10 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   if ((InfinityFlag4 == 0 && InfinityFlag1 == 0) && InfinityFlag3 == 0) {
     if (((*(float *)(dataPtr + 0x30) == 0.0) && (*(float *)(dataPtr + 0x34) == 0.0)) &&
        (*(float *)(dataPtr + 0x38) == 0.0)) {
-      return 0x1f;
+      return ComponentDataValidationFailure;
     }
     if (((TemporaryFloat == 0.0) && (*(float *)(dataPtr + 0x40) == 0.0)) && (floatComponentZ == 0.0)) {
-      return 0x1f;
+      return ComponentDataValidationFailure;
     }
     result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataPtr + 0x10),systemContextBuffer);
     if ((int)result != 0) {
@@ -14864,7 +14872,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     }
     return result;
   }
-  return 0x1f;
+  return ComponentDataValidationFailure;
 }
 
 
@@ -14958,7 +14966,7 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
         return 0x1e;
       }
       if ((*(byte *)(dataPointer + 0x34) & 0x11) != 0) {
-        return 0x1f;
+        return ComponentDataValidationFailure;
       }
       inputValue = *(float *)(contextPointer + 0x20);
       rangeValue = *(float *)(dataPointer + 0x38);
@@ -15049,7 +15057,7 @@ DataBuffer ValidateAndProcessFloatingPointNumber(int64_t DataHandle, int64_t Con
             }
             // 检查数据状态标志位
             if ((*(byte *)(ValuePointer + 0x34) & 0x11) != 0) {
-                return 0x1f;
+                return ComponentDataValidationFailure;
             }
             // 执行数据验证操作
             ValidationStatus = ValidateDataRangeAndFlags(ValuePointer, DataHandle + 0x25, DataHandle + 0x20);
@@ -15097,7 +15105,7 @@ DataBuffer QuerySystemStatusE0(void)
     return 0x1e;
   }
   if ((*(byte *)(dataContext + 0x34) & 0x11) != 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   validationStatus = ProcessDataValidationA0(dataContext,destinationIndexRegister + 0x25,destinationIndexRegister + 0x20);
   if ((int)validationStatus == 0) {
@@ -15132,7 +15140,7 @@ DataBuffer InitializeSystemE0(void)
     return 0x1e;
   }
   if ((*(byte *)(dataContext + 0x34) & 0x11) != 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   validationStatus = ProcessDataValidationA0(dataContext,destinationIndexRegister + 0x25,destinationIndexRegister + 0x20);
   if ((int)validationStatus == 0) {
@@ -15162,7 +15170,7 @@ DataBuffer ValidateParametersE0(DataWord parameterFlags)
   int64_t stackPointer;
   
   if ((*(byte *)(contextHandle + 0x34) & 0x11) != 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   validationResult = ProcessDataValidationA0(parameterFlags,dataPointer + 0x25,dataPointer + 0x20);
   if ((int)validationResult == 0) {
@@ -15310,7 +15318,7 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
       CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),dataBuffer);
     }
   }
-  return 0x1f;
+  return ComponentDataValidationFailure;
 }
 
 
@@ -15366,7 +15374,7 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
       return ResourceInvalidErrorCode;
     }
   }
-  return 0x1f;
+  return ComponentDataValidationFailure;
 }
 
 
@@ -15419,7 +15427,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
   }
   operationIndex = *(int *)(DataStructureHandle + 0x18);
   if ((operationIndex < 0) || (*(int *)(dataStructurePointer + 0x28) <= operationIndex)) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   dataStructurePointer = *(int64_t *)(dataStructurePointer + 0x20) + (int64_t)operationIndex * 0x18;
   dataOffset = *(int64_t *)(dataStructurePointer + 0x10);
@@ -15458,7 +15466,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
     }
     return validationStatus;
   }
-  return 0x1f;
+  return ComponentDataValidationFailure;
 }
 
 
@@ -15515,7 +15523,7 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
           return 0x1d;
         }
         if ((arrayIndex < 0) || (arraySize <= arrayIndex)) {
-          return 0x1f;
+          return ComponentDataValidationFailure;
         }
         dataRecordIndex = *(int64_t *)(systemDataFlags + 0x20) + (int64_t)arrayIndex * 0x18;
         if (dataRecordIndex == 0) {
@@ -15526,7 +15534,7 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
           return 0x1e;
         }
         if (*(int *)(dataRecordIndex + 0x30) != 0) {
-          return 0x1f;
+          return ComponentDataValidationFailure;
         }
         rangeMinValue = *(float *)(dataRecordIndex + 0x38);
         if ((*(float *)(dataRecordIndex + 0x38) <= currentValue) &&
@@ -15606,7 +15614,7 @@ DataBuffer GetSystemStatusA0(void)
           return 0x1d;
         }
         if ((arrayIndex < 0) || (validationStatus <= arrayIndex)) {
-          return 0x1f;
+          return ComponentDataValidationFailure;
         }
         dataNodePointer = *(int64_t *)(systemFlags + 0x20) + (int64_t)arrayIndex * 0x18;
         if (dataNodePointer == 0) {
@@ -15617,7 +15625,7 @@ DataBuffer GetSystemStatusA0(void)
           return 0x1e;
         }
         if (*(uint *)(dataNodePointer + 0x30) != inputRegisterR9D) {
-          return 0x1f;
+          return ComponentDataValidationFailure;
         }
         resultValue = *(float *)(dataNodePointer + 0x38);
         if ((*(float *)(dataNodePointer + 0x38) <= inputValue) &&
@@ -15756,7 +15764,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
     return 0x1d;
   }
   if ((floatValue < 0.0) || (3.4028235e+38 <= floatValue)) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(valueContext + 0x10),&stackValue);
   if ((int)operationResult != 0) {
@@ -15822,7 +15830,7 @@ DataBuffer ValidateAndProcessFloatRange(int64_t rangeContext,int64_t exceptionHa
 joined_r0x00018089322a:
     if (inputValue != -1.0) {
 RangeValidationFailure:
-      return 0x1f;
+      return ComponentDataValidationFailure;
     }
   }
 RangeValidationSuccess:
@@ -15869,7 +15877,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
   int64_t transferSize;
   
   if (3 < *(uint *)(dataDescriptor + 0x18)) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   transferSize = CONCAT44(transferSize._4_4_,*(uint *)(dataDescriptor + 0x1c));
   if ((*(uint *)(dataDescriptor + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
@@ -16025,7 +16033,7 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
     return 0x1e;
   }
   if ((*(byte *)(dataHandle + 0x34) & 0x11) != 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   inputValue = *(float *)(allocationContext + 0x14);
   rangeValue = *(float *)(dataHandle + 0x38);
@@ -16290,7 +16298,7 @@ int ValidateAndProcessDataOperation(int64_t dataContext,DataBuffer operationFlag
 DataBuffer ReturnFixedErrorCode(void)
 
 {
-  return 0x1f;
+  return ComponentDataValidationFailure;
 }
 
 
@@ -16362,7 +16370,7 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
     }
     return processResult;
   }
-  return 0x1f;
+  return ComponentDataValidationFailure;
 }
 
 
@@ -16424,7 +16432,7 @@ int ProcessDataByCondition(DataBuffer inputCondition,DataBuffer dataSize)
 DataBuffer ReturnErrorCode31(void)
 
 {
-  return 0x1f;
+  return ComponentDataValidationFailure;
 }
 
 
@@ -16471,7 +16479,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t dataContext,int64_t operationCon
   if ((int)operationResult == 0) {
     rangeData = GetOperationRangeDataA0(operationContext + 0x60,systemContextBuffer[0]);
     if ((*(uint *)(rangeData + 0x34) >> 4 & 1) != 0) {
-      return 0x1f;
+      return ComponentDataValidationFailure;
     }
     inputValue = *(float *)(dataContext + 0x18);
     minValue = *(float *)(rangeData + 0x38);
@@ -16509,7 +16517,7 @@ uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
   if ((int)operationResult == 0) {
     calculatedOffset = GetOperationRangeDataA0(systemContext + 0x60,stackBuffer);
     if ((*(uint *)(calculatedOffset + 0x34) >> 4 & 1) != 0) {
-      return 0x1f;
+      return ComponentDataValidationFailure;
     }
     inputValue = *(float *)(registerContext + 0x18);
     rangeMin = *(float *)(calculatedOffset + 0x38);
@@ -16574,7 +16582,7 @@ DataBuffer ProcessEventA0(int64_t eventContext,int64_t systemContext)
   if ((int)operationResult == 0) {
     dataRangeOffset = GetOperationRangeDataA0(systemContext + 0x60,eventDataBuffer[0]);
     if ((*(uint *)(dataRangeOffset + 0x34) >> 4 & 1) != 0) {
-      return 0x1f;
+      return ComponentDataValidationFailure;
     }
     operationResult = ProcessDataValidationA0(dataRangeOffset,eventContext + 0x1d,eventContext + 0x18);
     if ((int)operationResult == 0) {
@@ -16623,7 +16631,7 @@ DataBuffer ValidateFloatRangeAndProcessSystemCall(void)
   
   resourceHandle = GetSystemResourceHandle();
   if ((*(uint *)(resourceHandle + 0x34) >> 4 & 1) != 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   validationResult = ValidateResourceData(resourceHandle,resourceDescriptor + 0x1d,resourceDescriptor + 0x18);
   if ((int)validationResult == 0) {
@@ -16731,7 +16739,7 @@ DataBuffer SaveSystemConfigurationA0(int64_t configHandle,int64_t systemContext)
   if ((int)operationResult == 0) {
     dataOffset = GetOperationRangeDataA0(systemContext + 0x60,securityBuffer[0]);
     if ((*(uint *)(dataOffset + 0x34) >> 4 & 1) != 0) {
-      return 0x1f;
+      return ComponentDataValidationFailure;
     }
     inputValue = *(float *)(configHandle + 0x10);
     validatedValue = *(float *)(dataOffset + 0x38);
@@ -16768,7 +16776,7 @@ DataBuffer ValidateSystemConfigurationA0(void)
   
   dataContext = GetSystemContextHandle();
   if ((*(uint *)(dataContext + 0x34) >> 4 & 1) != 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   firstFloatValue = *(float *)(registerContext + 0x10);
   secondFloatValue = *(float *)(dataContext + 0x38);
@@ -16849,7 +16857,7 @@ DataBuffer InitializeSystemB0(int64_t systemContext,int64_t operationContext)
   if ((int)operationResult == 0) {
     calculatedOffset = GetOperationRangeDataA0(operationContext + 0x60,operationBuffer[0]);
     if ((*(uint *)(calculatedOffset + 0x34) >> 4 & 1) != 0) {
-      return 0x1f;
+      return ComponentDataValidationFailure;
     }
     operationResult = ProcessDataValidationA0(calculatedOffset,operationBase + 0xa0,operationBase + 0x10);
     if ((int)operationResult == 0) {
@@ -16891,7 +16899,7 @@ DataBuffer CleanupSystemB0(void)
   
   dataContext = GetSystemContextHandle();
   if ((*(uint *)(dataContext + 0x34) >> 4 & 1) != 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   validationStatus = ProcessDataValidationA0(dataContext,destinationIndexRegister + 0xa0,destinationIndexRegister + 0x10);
   if ((int)validationStatus == 0) {
@@ -17865,7 +17873,7 @@ uint32_t ProcessSystemRequestWithValidation(int64_t requestContext,DataBuffer re
   DataBuffer temporaryContext [2];
   
   if (exceptionHandlerContext == 0) {
-    return 0x1f;
+    return ComponentDataValidationFailure;
   }
   contextCount = 0;
   requestFlags = *(uint *)(requestContext + 0x20);
@@ -22726,7 +22734,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
     }
     return processResult;
   }
-  return 0x1f;
+  return ComponentDataValidationFailure;
 }
 
 
@@ -23063,7 +23071,7 @@ DataWord ProcessDataWithOutput(DataBuffer inputDataBuffer,int *outputResult)
 DataBuffer InitializeSystemOperation(void)
 
 {
-  return 0x1f;
+  return ComponentDataValidationFailure;
 }
 
 
