@@ -5097,8 +5097,8 @@ extern void* SystemPrimaryResourceTable;
 #define TerminateSystemE0 FUN_18064e900
 
 // 原始函数名：FUN_180657620 - 资源清理函数E1
-// 功能：清理系统资源
-#define CleanupSystemResourceE1 FUN_180657620
+// 功能：清理系统资源并释放内存
+#define CleanupSystemResourcesE1 FUN_180657620
 
 // 原始函数名：FUN_18064d630 - 异常处理函数E0
 // 功能：处理异常情况
@@ -80094,7 +80094,17 @@ void Unwind_18090c190(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c1a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数1a0
+ * 
+ * 该函数负责处理异常上下文，执行异常处理器的调用
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090c1a0
+ */
+void ExceptionContextHandler1a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80108,7 +80118,17 @@ void Unwind_18090c1a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c1b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数1b0
+ * 
+ * 该函数负责设置系统内存管理器指针
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090c1b0
+ */
+void ExceptionContextHandler1b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x40) = &SystemMemoryManagerPointerA;
@@ -80117,7 +80137,17 @@ void Unwind_18090c1b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c1c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数1c0
+ * 
+ * 该函数负责处理资源引用计数和内存管理
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090c1c0
+ */
+void ExceptionContextHandler1c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
