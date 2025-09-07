@@ -15300,9 +15300,9 @@ void ProcessSystemEventQueueWithBufferManagement(int64_t eventContext,int64_t sy
   if (status != 0) {
     return;
   }
-  currentSize = (int)*(uint *)(queueInfo + 0x2c) >> 0x1f;
-  capacity = (*(uint *)(queueInfo + 0x2c) ^ currentSize) - currentSize;
-  status = *(int *)(queueInfo + 0x28) + 1;
+  currentSize = (int)*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) >> 0x1f;
+  capacity = (*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) ^ currentSize) - currentSize;
+  status = *(int *)(queueInfo + QUEUE_SIZE_OFFSET) + 1;
   if (capacity < status) {
     capacity = (int)((float)capacity * 1.5);
     if (status <= capacity) {
@@ -15311,25 +15311,25 @@ void ProcessSystemEventQueueWithBufferManagement(int64_t eventContext,int64_t sy
     if (status < 8) {
       status = 8;
     }
-    if (status < *(int *)(queueInfo + 0x28)) goto ExitHandler;
+    if (status < *(int *)(queueInfo + QUEUE_SIZE_OFFSET)) goto ExitHandler;
     if (status != 0) {
       if ((MaximumMemoryBufferSize < status * 8 - 1U) ||
          (newBuffer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),status * 8,&SystemMemoryPoolB,
                                 0xf4,0,0,1), newBuffer == 0)) goto ExitHandler;
-      if (*(int *)(queueInfo + 0x28) != 0) {
-          memcpy(newBuffer,*(DataBuffer *)(queueInfo + 0x20),(int64_t)*(int *)(queueInfo + 0x28) << 3);
+      if (*(int *)(queueInfo + QUEUE_SIZE_OFFSET) != 0) {
+          memcpy(newBuffer,*(DataBuffer *)(queueInfo + QUEUE_DATA_POINTER_OFFSET),(int64_t)*(int *)(queueInfo + QUEUE_SIZE_OFFSET) << 3);
       }
     }
-    if ((0 < *(int *)(queueInfo + 0x2c)) && (*(int64_t *)(queueInfo + 0x20) != 0)) {
-        AllocateResourceA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(queueInfo + 0x20),
+    if ((0 < *(int *)(queueInfo + QUEUE_CAPACITY_OFFSET)) && (*(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) != 0)) {
+        AllocateResourceA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET),
                     &SystemMemoryPoolB,0x100,1);
     }
-    *(int64_t *)(queueInfo + 0x20) = newBuffer;
-    *(int *)(queueInfo + 0x2c) = status;
+    *(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) = newBuffer;
+    *(int *)(queueInfo + QUEUE_CAPACITY_OFFSET) = status;
   }
-  *(int64_t *)(*(int64_t *)(queueInfo + 0x20) + (int64_t)*(int *)(queueInfo + 0x28) * 8) =
+  *(int64_t *)(*(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) + (int64_t)*(int *)(queueInfo + QUEUE_SIZE_OFFSET) * 8) =
        eventHandle;
-  *(int *)(queueInfo + 0x28) = *(int *)(queueInfo + 0x28) + 1;
+  *(int *)(queueInfo + QUEUE_SIZE_OFFSET) = *(int *)(queueInfo + QUEUE_SIZE_OFFSET) + 1;
 ExitHandler:
     CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),eventContext);
 }
