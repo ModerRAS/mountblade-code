@@ -20006,8 +20006,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   DataBuffer *exceptionDataBuffer6;
   ByteFlag EncryptionKeyBufferC [32];
   DataWord StackDataWordA;
-  char acStack_1c4 [4];
-  uint8_t *puStack_1c0;
+  char StackCharBufferA [4];
+  uint8_t *StackPointerBufferA;
   DataWord uStack_1b8;
   DataWord uStack_1b0;
   float fStack_1a8;
@@ -50083,8 +50083,18 @@ void ConfigureExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180905140(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器配置函数A1
+ * 
+ * 该函数负责配置异常处理器。它会将默认异常处理器B的地址
+ * 存储到数据缓冲区的指定偏移量位置。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * 
+ * @note 原始函数名：Unwind_180905140
+ */
+void ConfigureExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(uint8_t **)(dataBuffer + 0x250) = &DefaultExceptionHandlerB;
   return;
