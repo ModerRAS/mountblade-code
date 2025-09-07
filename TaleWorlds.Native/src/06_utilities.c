@@ -60080,6 +60080,15 @@ void Unwind_1809077d0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 初始化异常处理器指针A7
+ * 
+ * 初始化异常处理器指针A7，将其设置为默认异常处理器B。
+ * 这个函数在系统初始化期间调用，确保异常处理系统的正常运行。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void Unwind_1809077e0(void)
 
 {
@@ -60091,6 +60100,15 @@ void Unwind_1809077e0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 初始化异常处理器指针A8
+ * 
+ * 初始化异常处理器指针A8，将其设置为默认异常处理器B。
+ * 这个函数在系统初始化期间调用，确保异常处理系统的正常运行。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void Unwind_1809077f0(void)
 
 {
