@@ -176086,7 +176086,14 @@ LAB_1801452ee:
 
 
 
-46180(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_180146180(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * 处理字符代码的系统缓冲区管理
+ * 执行字符代码处理和系统缓冲区管理操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ */
+void ProcessCharacterCodeSystemBufferManagement(uint64_t CharacterCode, long long SystemBufferSize)
 {
   uint32_t Utf16Char;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -176158,7 +176165,14 @@ LAB_180146224:
 
 
 
-469d0(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_1801469d0(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * 处理字符代码的字符串数据管理
+ * 执行字符代码处理和字符串数据管理操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ */
+void ProcessCharacterCodeStringDataManagement(uint64_t CharacterCode, long long SystemBufferSize)
 {
   uint32_t Utf16Char;
   char *SystemValidationFunction;
@@ -176225,7 +176239,14 @@ LAB_180146a6e:
 
 
 
-47920(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_180147920(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * 处理字符代码的后处理效果管理
+ * 执行字符代码处理和后处理效果管理操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ */
+void ProcessCharacterCodePostEffectManagement(uint64_t CharacterCode, long long SystemBufferSize)
 {
   uint32_t Utf16Char;
   char *SystemValidationFunction;
