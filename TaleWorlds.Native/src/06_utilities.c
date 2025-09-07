@@ -9992,11 +9992,15 @@ uint64_t ProcessUtilitySystemInitialization(void)
 // 初始化内存池系统
 // 执行空操作，用于系统初始化或占位
 // 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 初始化内存池
+ * 
+ * 初始化系统内存池，为后续的内存分配操作做准备。这是一个初始化函数，
+ * 在系统启动时调用，确保内存管理系统的正常运行。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void InitializeMemoryPool(void)
 
 {
