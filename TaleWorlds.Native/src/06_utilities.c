@@ -46275,7 +46275,22 @@ void InitializeSystemExceptionHandlerE(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180903f30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 重置系统异常处理器层级B0
+ * 
+ * 在异常处理时重置系统异常处理器层级，确保系统能够正确处理异常。
+ * 该函数重置两个层级的异常处理器，包括临时异常处理器和默认异常处理器。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含验证上下文信息
+ * @param operationFlagA 操作标志A，用于控制操作流程
+ * @param operationFlagB 操作标志B，用于控制操作流程
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180903f30
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void ResetSystemExceptionHandlerHierarchyB0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -46305,7 +46320,22 @@ void Unwind_180903f30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 重置系统异常处理器层级B1
+ * 
+ * 在异常处理时重置系统异常处理器层级，确保系统能够正确处理异常。
+ * 该函数重置异常处理器层级，包括临时异常处理器和默认异常处理器。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含验证上下文信息
+ * @param operationFlagA 操作标志A，用于控制操作流程
+ * @param operationFlagB 操作标志B，用于控制操作流程
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180903f50
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void ResetSystemExceptionHandlerHierarchyB1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -60138,7 +60168,16 @@ void CheckSystemTerminationA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809071f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统终止检查函数A2
+ * 
+ * 该函数检查嵌套指针的特定偏移量，如果不为0则终止系统。
+ * 这是一个系统安全检查函数，确保系统状态正确。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ */
+void CheckSystemTerminationA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x20) + 0x40) != 0) {

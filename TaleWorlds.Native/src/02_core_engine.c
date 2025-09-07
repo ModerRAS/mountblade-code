@@ -1645,6 +1645,9 @@ const void* const SystemStringConstantTertiary = (void*)0x180a0ff38;
 const void* const SystemStringConstantQuaternary = (void*)0x180a0ee30;
 const void* const SystemStringConstantQuinary = (void*)0x180a0ff48;
 const void* const SystemStringConstantSenary = (void*)0x180a0ff28;
+const void* const SystemStringConstantSeptenary = (void*)0x180a0f118;
+const void* const SystemStringConstantOctonary = (void*)0x180a04ec0;
+const void* const SystemStringConstantNonary = (void*)0x180a04ab8;
 
 // 系统函数指针常量定义
 const void* const SystemFunctionPointerRenderInitialize = (void*)0x180135af0;
@@ -109806,7 +109809,7 @@ unsigned long long ProcessSystemContextWithIntPointer(int *SystemContextPointer
   StackUnsigned60 = *(uint32_t *)(SystemDataConfiguration + 0x181c);
   SystemUnsignedValue5C = *(uint32_t *)(SystemDataConfiguration + 0x1820);
   SystemTimeoutCounter = *(uint32_t *)(SystemDataConfiguration + 0x1824);
-  FUN_18013e100(SystemDataConfiguration + 0x1b80,&StackUnsigned68);
+  ProcessSystemContextValidation(SystemDataConfiguration + 0x1b80,&StackUnsigned68);
   *(void *)(ThreadLocalStorageData + 0x1818) = 0;
   *(void *)(ThreadLocalStorageData + 0x1820) = 0;
   StringCodeBuffer = ProcessSystemAddressMask(&SystemTextureDataTable,0,0x41);
@@ -110516,7 +110519,7 @@ LAB_18011c9d9:
     *(float *)(MemoryPoolBlockSize + 0x1b4c) = *(float *)(MemoryPoolBlockSize + 0x1b4c) - (FloatValue30 - FloatValue34);
   }
   else {
-    FUN_1801248f0(AdditionalParameter1);
+    CheckSystemResourceStatus(AdditionalParameter1);
   }
 LAB_18011cbe6:
   HighByte2 = PrimaryScalingFactor._0_1_;
@@ -236657,7 +236660,7 @@ LAB_18020a31a:
                 pSystemFlagD = &ThreadLocalStorageTemplate;
               } while( true );
             }
-            SystemStringIndex = (long long)&UNK_180a0f118 - (long long)SystemStringStringBuffer;
+            SystemStringIndex = (long long)&SystemStringConstantSeptenary - (long long)SystemStringStringBuffer;
             while (*SystemStringStringBuffer == SystemStringStringBuffer[SystemStringIndex]) {
               SystemStringStringBuffer = SystemStringStringBuffer + 1;
               if (pSystemStatusChar <= SystemStringStringBuffer) goto LAB_180209d30;
@@ -236704,7 +236707,7 @@ LAB_18020a3c0:
                   pSystemValidationChar = pSystemStatusChar + (long long)pSystemValidationChar;
                   CharacterPointer7 = StringCodeBuffer;
                   if (pSystemValidationChar <= pSystemStatusChar) break;
-                  SystemStringIndex = (long long)&UNK_180a04ec0 - (long long)pSystemStatusChar;
+                  SystemStringIndex = (long long)&SystemStringConstantOctonary - (long long)pSystemStatusChar;
                   while (*pSystemStatusChar == pSystemStatusChar[SystemStringIndex]) {
                     pSystemStatusChar = pSystemStatusChar + 1;
                     if (pSystemValidationChar <= pSystemStatusChar) goto joined_r0x00018020a436;
@@ -236797,7 +236800,7 @@ LAB_18020a528:
                   if (StringCodeBuffer == CharacterPointer + -0x180a04ebf) {
                     StringCodeBuffer = pSystemStatusChar + (long long)StringCodeBuffer;
                     if (StringCodeBuffer <= pSystemStatusChar) goto LAB_18020a5e9;
-                    SystemStringIndex = (long long)&UNK_180a04ec0 - (long long)pSystemStatusChar;
+                    SystemStringIndex = (long long)&SystemStringConstantOctonary - (long long)pSystemStatusChar;
                     while (*pSystemStatusChar == pSystemStatusChar[SystemStringIndex]) {
                       pSystemStatusChar = pSystemStatusChar + 1;
                       if (StringCodeBuffer <= pSystemStatusChar) goto LAB_18020a5e9;
@@ -236818,7 +236821,7 @@ LAB_18020a5e9:
                 SystemContextPointer8 = plStack_58;
               } while( true );
             }
-            SystemStringIndex = (long long)&UNK_180a04ab8 - (long long)StringCodeBuffer;
+            SystemStringIndex = (long long)&SystemStringConstantNonary - (long long)StringCodeBuffer;
             while (*StringCodeBuffer == StringCodeBuffer[SystemStringIndex]) {
               StringCodeBuffer = StringCodeBuffer + 1;
               if (CharacterPointer7 <= StringCodeBuffer) goto LAB_18020a3c0;
@@ -270884,5 +270887,37 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 // 系统参数处理函数
 // 原始函数名：FUN_180126d10 - 系统参数处理函数
 #define ProcessSystemParameters FUN_180126d10
+
+// 系统数据验证和处理函数
+// 原始函数名：FUN_18011cf80 - 系统数据验证和处理函数
+#define ValidateSystemData FUN_18011cf80
+// 原始函数名：FUN_1801242c0 - 系统缓冲区分配函数
+#define AllocateSystemBuffer FUN_1801242c0
+// 原始函数名：FUN_18011d200 - 系统数据验证处理函数
+#define ProcessSystemDataValidation FUN_18011d200
+// 原始函数名：FUN_18012ea30 - 系统数据更新处理函数
+#define ProcessSystemDataUpdate FUN_18012ea30
+// 原始函数名：FUN_18011ce30 - 系统字符编码处理函数
+#define ProcessSystemCharacterEncoding FUN_18011ce30
+// 原始函数名：FUN_18011d940 - 系统资源清理函数
+#define ProcessSystemResourceCleanup FUN_18011d940
+// 原始函数名：FUN_18010e4b0 - 系统字符串分配函数
+#define ProcessSystemStringAllocation FUN_18010e4b0
+// 原始函数名：FUN_18013e6c0 - 系统数据最终化处理函数
+#define ProcessSystemDataFinalization FUN_18013e6c0
+// 原始函数名：FUN_18013e100 - 系统上下文验证函数
+#define ProcessSystemContextValidation FUN_18013e100
+
+// 系统状态检查函数
+// 原始函数名：FUN_1801248f0 - 系统资源状态检查函数
+#define CheckSystemResourceStatus FUN_1801248f0
+
+// 系统数据处理函数
+// 原始函数名：FUN_18011dc70 - 系统引用计数处理函数
+#define ProcessReferenceCount FUN_18011dc70
+// 原始函数名：FUN_180293730 - 系统缩放因子处理函数
+#define ProcessScalingFactor FUN_180293730
+// 原始函数名：FUN_18011dbd0 - 系统上下文处理函数
+#define ProcessSystemContext FUN_18011dbd0
 
 
