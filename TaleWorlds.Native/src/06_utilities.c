@@ -9462,7 +9462,11 @@ uint8_t SystemSecurityValidationFlagA4;     // 系统安全验证标志A4
 uint8_t SystemSecurityValidationFlagA5;     // 系统安全验证标志A5
 uint8_t SystemSecurityValidationFlagA6;     // 系统安全验证标志A6
 uint8_t SystemSecurityValidationFlagA7;     // 系统安全验证标志A7
+// 系统安全验证标志A8
+// 功能：用于系统安全验证的第8个标志位，控制系统安全检查的状态
 uint8_t SystemSecurityValidationFlagA8;     // UNK_180a396c8
+// 系统安全验证标志A9
+// 功能：用于系统安全验证的第9个标志位，控制系统安全检查的状态
 uint8_t SystemSecurityValidationFlagA9;     // UNK_180a396f0
 uint8_t SecurityValidationFlagA10;    // 系统安全验证标志A10
 uint8_t SecurityValidationFlagA11;    // 系统安全验证标志A11
@@ -9494,8 +9498,14 @@ uint8_t SecurityValidationFlagA36;    // 系统安全验证标志A36
 uint8_t SecurityValidationFlagA37;    // 系统安全验证标志A37
 uint8_t SecurityValidationFlagA38;    // 系统安全验证标志A38
 uint8_t SecurityValidationFlagA39;    // 系统安全验证标志A39
+// 系统安全验证标志A40
+// 功能：用于系统安全验证的第40个标志位，控制系统安全检查的状态
 uint8_t SecurityValidationFlagA40;    // UNK_180a39a28
+// 系统安全验证标志A41
+// 功能：用于系统安全验证的第41个标志位，控制系统安全检查的状态
 uint8_t SecurityValidationFlagA41;    // UNK_180a39a40
+// 系统安全验证标志A42
+// 功能：用于系统安全验证的第42个标志位，控制系统安全检查的状态
 uint8_t SecurityValidationFlagA42;    // UNK_180a39a60
 uint8_t SecurityValidationFlagA43;    // UNK_180a39a70
 uint8_t SecurityValidationFlagA44;    // UNK_180a39a88
@@ -65484,7 +65494,7 @@ void InvokeExceptionHandlerAtOffset20(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180907640(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryOperationAtOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x18,8,0x10,ValidateDataHandler);
@@ -65493,7 +65503,7 @@ void Unwind_180907640(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907670(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryOperationAtOffset50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0x18,8,0x10,ValidateDataHandler);
