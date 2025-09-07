@@ -142984,7 +142984,7 @@ ce5d(voidvoid FUN_18012ce5d(void
 
 
 
-cf49(uint32_t CharacterCodevoid FUN_18012cf49(uint32_t CharacterCode
+cf49(uint32_t CharacterCodevoid ProcessCharacterCodeValidation(uint32_t CharacterCode
 {
   long long ProcessingResult;
   char StringBuffer;
