@@ -94872,7 +94872,7 @@ void ProcessUtilitySystemEvent(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x20) == '\0') {
-    FUN_1808fc914(*(DataBuffer *)(dataBuffer + 0x50),*(DataBuffer *)(dataBuffer + 0x58),
+    ValidateDataWithParams(*(DataBuffer *)(dataBuffer + 0x50),*(DataBuffer *)(dataBuffer + 0x58),
                   *(DataBuffer *)(dataBuffer + 0x28),*(DataBuffer *)(dataBuffer + 0x70));
   }
   return;
@@ -94889,7 +94889,7 @@ void HandleUtilitySystemRequest(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x20) == '\0') {
-    FUN_1808fc914(*(DataBuffer *)(dataBuffer + 0x60),*(DataBuffer *)(dataBuffer + 0x68),
+    ValidateDataWithParams(*(DataBuffer *)(dataBuffer + 0x60),*(DataBuffer *)(dataBuffer + 0x68),
                   *(DataBuffer *)(dataBuffer + 0x70),*(DataBuffer *)(dataBuffer + 0x78));
   }
   return;
@@ -94924,7 +94924,7 @@ void ConditionalExecuteFunctionA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x20) == '\0') {
-    FUN_1808fc914(*(DataBuffer *)(dataBuffer + 0x60),*(DataBuffer *)(dataBuffer + 0x70),
+    ValidateDataWithParams(*(DataBuffer *)(dataBuffer + 0x60),*(DataBuffer *)(dataBuffer + 0x70),
                   *(DataBuffer *)(dataBuffer + 0x28),*(DataBuffer *)(dataBuffer + 0x88));
   }
   return;
