@@ -264571,17 +264571,29 @@ int IdentifySystemIdentifierByPatternVariantC(void)
 
 
 
-int FUN_1802255a3(void
+/**
+ * @brief 系统关键字识别和状态码返回函数
+ * 
+ * 该函数负责识别系统中的关键字字符串，并根据匹配的关键字返回相应的状态码。
+ * 函数通过比较输入字符串与预定义的关键字表来确定匹配结果，返回对应的标识符。
+ * 
+ * @return int 返回匹配关键字的状态码，未匹配时返回0
+ * 
+ * @note 原始函数名：FUN_1802255a3
+ * @note 这是一个关键字模式匹配函数，用于系统命令解析
+ */
+int IdentifySystemKeywordAndReturnStatusCode(void)
 {
-  int LockResult;
+  int ComparisonResult;
   long long BufferStatus;
-  int DataStringLength;
-  long long PatternIndex;
+  int InputStringLength;
+  long long SearchIndex;
   long long MemoryOffset;
   long long DataNodePointer;
+  long long MemoryBlockIndex;
   
-  if (DataStringLength == 4) {
-    MemoryBlockIndex = PatternIndex;
+  if (InputStringLength == 4) {
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&CharacterComparisonStringB)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264589,7 +264601,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 9;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueVigintenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264597,7 +264609,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 10;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNovemdecenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264605,7 +264617,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0xb;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctodecenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264613,7 +264625,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0xc;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptendecenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264621,7 +264633,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0xd;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSexdecenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264630,8 +264642,8 @@ int FUN_1802255a3(void
       }
     }
   }
-  if (DataStringLength == 3) {
-    MemoryBlockIndex = PatternIndex;
+  if (InputStringLength == 3) {
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuindecenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264639,7 +264651,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0x10;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueQuattuordecenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264647,7 +264659,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0x11;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueTredecenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264655,7 +264667,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0x12;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDuodenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264664,8 +264676,8 @@ int FUN_1802255a3(void
       }
     }
   }
-  if (DataStringLength == 5) {
-    MemoryBlockIndex = PatternIndex;
+  if (InputStringLength == 5) {
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueUndenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264673,7 +264685,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0x12;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueDenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264682,8 +264694,8 @@ int FUN_1802255a3(void
       }
     }
   }
-  if (DataStringLength == 3) {
-    MemoryBlockIndex = PatternIndex;
+  if (InputStringLength == 3) {
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueNonary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264691,7 +264703,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0x16;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueOctonary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264699,7 +264711,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0x17;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemStatusValueSeptenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264708,20 +264720,20 @@ int FUN_1802255a3(void
       }
     }
   }
-  if ((DataStringLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemStatusValueSenary), IntegerValue == 0)) {
+  if ((InputStringLength == 0xd) &&
+     (ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemStatusValueSenary), ComparisonResult == 0)) {
     return 0x1e;
   }
-  if ((DataStringLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemStatusValueQuinary), IntegerValue == 0)) {
+  if ((InputStringLength == 0x11) &&
+     (ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemStatusValueQuinary), ComparisonResult == 0)) {
     return 0x34;
   }
-  if ((DataStringLength == 0x12) &&
-     (IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordOctodecenary), IntegerValue == 0)) {
+  if ((InputStringLength == 0x12) &&
+     (ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordOctodecenary), ComparisonResult == 0)) {
     return 0x35;
   }
-  if (DataStringLength == 4) {
-    MemoryBlockIndex = PatternIndex;
+  if (InputStringLength == 4) {
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptendecenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264730,8 +264742,8 @@ int FUN_1802255a3(void
       }
     }
   }
-  if (DataStringLength == 5) {
-    MemoryBlockIndex = PatternIndex;
+  if (InputStringLength == 5) {
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSexdecenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264740,16 +264752,16 @@ int FUN_1802255a3(void
       }
     }
   }
-  if ((DataStringLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordQuindecenary), IntegerValue == 0)) {
+  if ((InputStringLength == 10) &&
+     (ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordQuindecenary), ComparisonResult == 0)) {
     return 0x20;
   }
-  if ((DataStringLength == 0xd) &&
-     (IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordQuattuordecenary), IntegerValue == 0)) {
+  if ((InputStringLength == 0xd) &&
+     (ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordQuattuordecenary), ComparisonResult == 0)) {
     return 0x21;
   }
-  if (DataStringLength == 4) {
-    MemoryBlockIndex = PatternIndex;
+  if (InputStringLength == 4) {
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordTredecenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264757,7 +264769,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0x1e;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDuodenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264765,7 +264777,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0x1f;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordUndenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264773,7 +264785,7 @@ int FUN_1802255a3(void
         return (int)BufferStatus + 0x20;
       }
     }
-    MemoryBlockIndex = PatternIndex;
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordDenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264782,16 +264794,16 @@ int FUN_1802255a3(void
       }
     }
   }
-  if ((DataStringLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+  if ((InputStringLength == 10) &&
+     (ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordNonary), ComparisonResult == 0)) {
     return 0x26;
   }
-  if ((DataStringLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+  if ((InputStringLength == 9) &&
+     (ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordOctonary), ComparisonResult == 0)) {
     return 0x27;
   }
-  if (DataStringLength == 6) {
-    MemoryBlockIndex = PatternIndex;
+  if (InputStringLength == 6) {
+    MemoryBlockIndex = SearchIndex;
     while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodePointer + 8) + BufferStatus) == (&SystemKeywordSeptenary)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
@@ -264800,35 +264812,35 @@ int FUN_1802255a3(void
       }
     }
   }
-  if ((DataStringLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+  if ((InputStringLength == 10) &&
+     (ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordSenary), ComparisonResult == 0)) {
     return 0x31;
   }
-  if (DataStringLength == 6) {
-    while (MemoryBlockIndex = PatternIndex,
+  if (InputStringLength == 6) {
+    while (MemoryBlockIndex = SearchIndex,
           *(char *)(*(long long *)(DataNodePointer + 8) + MemoryBlockIndex) == (&SystemKeywordQuinary)[MemoryBlockIndex]) {
-      PatternIndex = MemoryBlockIndex + 1;
+      SearchIndex = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 7) {
         return (int)MemoryBlockIndex + 0x23;
       }
     }
   }
-  if ((DataStringLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+  if ((InputStringLength == 0x11) &&
+     (ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordQuaternary), ComparisonResult == 0)) {
     return 0x2a;
   }
-  if (DataStringLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+  if (InputStringLength == 0xe) {
+    ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordTertiary);
+    if (ComparisonResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordSecondary);
-    if (IntegerValue == 0) {
+    ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordSecondary);
+    if (ComparisonResult == 0) {
       return 0x2f;
     }
   }
-  if ((DataStringLength == 0xb) &&
-     (IntegerValue = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordPrimary), IntegerValue == 0)) {
+  if ((InputStringLength == 0xb) &&
+     (ComparisonResult = strcmp(*(void *)(DataNodePointer + 8),&SystemKeywordPrimary), ComparisonResult == 0)) {
     return 0x33;
   }
   return 0;

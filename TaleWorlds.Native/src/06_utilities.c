@@ -20041,13 +20041,24 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
   int64_t baseAddress;
   int64_t arrayOffset;
   int64_t tempArray [13];
-  ByteFlag dataBuffer [1536];
+  ByteFlag processingDataBuffer [1536];
   uint64_t securityChecksum;
   
-  securityChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)securityBuffer;
+  // 临时处理变量
+  DataWord inputDataWord;                  // 输入数据字
+  ByteFlag SecurityCheckBufferA [32];     // 安全检查缓冲区A
+  ByteFlag dataCopyBuffer [1024];         // 数据复制缓冲区
+  int64_t *StackIntegerPointerC;          // 栈整数指针C
+  
+  securityChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)securityValidationBuffer;
   currentIndex = *(int *)(systemContext + 0xac);
   iterationCount = (int64_t)currentIndex;
   resultCounterPtr = resultCounter;
+  
+  // 初始化临时处理变量
+  inputDataWord = 0;
+  memset(SecurityCheckBufferA, 0, sizeof(SecurityCheckBufferA));
+  memset(dataCopyBuffer, 0, sizeof(dataCopyBuffer));
   if (currentIndex < *(int *)(systemContext + 0x20)) {
     baseAddress = *(int64_t *)(systemContext + 0x18);
     arrayOffset = iterationCount * 3;
@@ -20076,12 +20087,12 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
       int64_t dataContext = *(int64_t *)(systemContext + 0xa0);
       int64_t memoryPointer = *(int64_t *)(systemContext + 0x98);
       if (memoryPointer == 0) {
-        float adjustedFloatValue = (float)*(uint *)(systemContext + 0x68) * adjustedFloatValue;
+        float memoryAdjustmentFactor = (float)*(uint *)(systemContext + 0x68) * sourceFloatValue;
         memoryPointer = 0;
-        if ((9.223372e+18 <= adjustedFloatValue) && (adjustedFloatValue = adjustedFloatValue - 9.223372e+18, adjustedFloatValue < 9.223372e+18)) {
+        if ((9.223372e+18 <= memoryAdjustmentFactor) && (memoryAdjustmentFactor = memoryAdjustmentFactor - 9.223372e+18, memoryAdjustmentFactor < 9.223372e+18)) {
           memoryPointer = InvalidMemoryOffset;
         }
-        memoryPointer = dataContext - ((int64_t)adjustedFloatValue + memoryPointer);
+        memoryPointer = dataContext - ((int64_t)memoryAdjustmentFactor + memoryPointer);
         *(int64_t *)(systemContext + 0x98) = memoryPointer;
       }
       byte validationFlags = *(byte *)(systemContext + OperationBaseOffset6C);

@@ -12915,7 +12915,7 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
   uint64_t MemoryAllocationResult;
   uint64_t NetworkOperationResult;
   longlong SystemStateValue;
-  longlong LongOffset;
+  longlong NetworkDataLength;
   uint32_t UnsignedSize;
   longlong NetworkResponseBuffer;
   uint8_t NetworkPacketBuffer [16];
@@ -12923,15 +12923,15 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
   pNetworkRequestResult = (uint32_t *)GetStringProcessingResult();
   LongCounter = *TimeoutParameter;
   UnsignedSize = *pNetworkRequestResult;
-  LongOffset = LongCounter;
+  NetworkDataLength = LongCounter;
   if ((*(uint *)(OperationType + 0x1c) >> 1 & 1) != 0) {
-    LongOffset = *RequestDataPointer;
-    SystemStateValue = LongCounter - LongOffset;
+    NetworkDataLength = *RequestDataPointer;
+    SystemStateValue = LongCounter - NetworkDataLength;
     NetworkOperationResult = *(uint64_t *)(NetworkContextPointer + 0x30);
     if (-1 < SystemStateValue) {
       if (SystemStateValue < 1) {
         UnsignedSize = 0;
-        LongOffset = LongCounter;
+        NetworkDataLength = LongCounter;
       }
       else {
         MemoryAddress = *(uint *)(*(longlong *)(*(longlong *)(NetworkContextPointer + 0x38) + 8) + 0x774);
@@ -12942,7 +12942,7 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
           SystemStateValue = 0xffffffff;
         }
         UnsignedSize = (uint32_t)SystemStateValue;
-        LongOffset = LongCounter;
+        NetworkDataLength = LongCounter;
       }
     }
   }
