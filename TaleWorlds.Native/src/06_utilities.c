@@ -60230,7 +60230,7 @@ void DestroySystemMutex(void)
 void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0xd0) = &DefaultExceptionHandlerB;
+  **(DataBuffer **)(dataBuffer + DefaultExceptionHandlerBReferenceOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
