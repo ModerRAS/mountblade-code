@@ -1150,43 +1150,63 @@
  * @brief 系统重置函数A0
  * @note 原始函数名：FUN_180080870
  */
-#define ResetSystemA0 FUN_180080870
+#define ResetSystemA0 ResetSystemStateAndConfiguration
 
 /**
  * @brief 系统数据处理函数A0
  * @note 原始函数名：FUN_18007f840
  */
-#define ProcessSystemDataA1 FUN_18007f840
+#define ProcessSystemDataA1 ProcessSystemDataAndValidation
 
 /**
  * @brief 系统资源处理函数A0
  * @note 原始函数名：FUN_18007f6a0
  */
-#define ProcessSystemResourcesA1 FUN_18007f6a0
+#define ProcessSystemResourcesA1 ProcessSystemResourcesAndMemory
 
 /**
  * @brief 数据缓冲区清理函数
  * @note 原始函数名：FUN_18013ea00
  */
-#define CleanupDataBuffer FUN_18013ea00
+#define CleanupDataBuffer CleanupDataBufferAndMemory
 
 /**
  * @brief 系统状态检查函数
  * @note 原始函数名：FUN_1808fc5ac
  */
-#define CheckSystemStatus FUN_1808fc5ac
+#define CheckSystemStatus CheckSystemStatusAndHealth
 
 /**
  * @brief 工具操作执行函数
+ * 
+ * 该函数负责执行工具系统的各种操作，包括数据处理、资源管理和系统配置。
+ * 它会根据传入的参数执行相应的工具操作，并返回操作结果。
+ * 
+ * @param params 操作参数，包含执行所需的各种配置和数据
+ * @return 执行结果状态码：
+ *         - 0: 操作成功
+ *         - 非0值: 具体的错误代码
+ * 
  * @note 原始函数名：FUN_1808fc51c
+ * @warning 确保传入的参数有效，否则可能导致未定义行为
  */
-#define ExecuteUtilityOperationWithParams FUN_1808fc51c
+#define ExecuteUtilityOperationWithParams ExecuteUtilityOperationWithParameters
 
 /**
  * @brief 数据验证处理函数
+ * 
+ * 该函数负责验证系统数据的完整性和有效性，包括数据格式检查、
+ * 范围验证和一致性检查。确保数据符合系统的要求和标准。
+ * 
+ * @param params 验证参数，包含数据验证所需的配置和条件
+ * @return 验证结果状态码：
+ *         - 0: 验证成功
+ *         - 非0值: 验证失败或错误代码
+ * 
  * @note 原始函数名：FUN_1808fc914
+ * @warning 数据验证失败可能会导致系统异常，需要妥善处理
  */
-#define ValidateDataWithParams FUN_1808fc914
+#define ValidateDataWithParams ValidateDataWithParametersAndValidation
 
 /**
  * @brief 系统验证处理函数
@@ -82422,7 +82442,19 @@ void CleanupExceptionHandlerContextB(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_18090b500(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器上下文C
+ * 
+ * 清理异常处理器上下文和相关数据结构，释放系统资源。
+ * 该函数是异常处理器上下文清理系列的第三个实现。
+ * 
+ * @param operationBase 操作基础指针，包含操作相关信息
+ * @param dataBuffer 数据缓冲区指针，包含需要清理的数据
+ * 
+ * @note 函数从dataBuffer + 0x40位置获取内存块偏移
+ * @note 这是一个异常处理和资源清理的关键函数
+ */
+void CleanupExceptionHandlerContextC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
