@@ -157632,7 +157632,7 @@ void InitializeSystemContextAndMemoryManagement(void)
 
 
 
-348d8(voidvoid FUN_1801348d8(void
+void FUN_1801348d8(void
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
@@ -157762,7 +157762,7 @@ void InitializeSystemContextAndMemoryManagement(void)
 
 
 
-348ee(voidvoid FUN_1801348ee(void
+void FUN_1801348ee(void
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
@@ -157894,7 +157894,7 @@ void InitializeSystemContextAndMemoryManagement(void)
 
 
 
-34b4f(long long CharacterCodevoid FUN_180134b4f(long long CharacterCode
+void FUN_180134b4f(long long CharacterCode
 {
   int LockResult;
   int CharacterByteCount;
@@ -158281,7 +158281,7 @@ void ConfigureSystemRenderingParameters(void
 
 
 
-34c48(voidvoid FUN_180134c48(void
+void FUN_180134c48(void
 {
   uint32_t *StatusBuffer;
   float ContextSecondaryFloat;
@@ -158434,7 +158434,7 @@ void ConfigureSystemRenderingParameters(void
 
 
 
-34c57(voidvoid FUN_180134c57(void
+void FUN_180134c57(void
 {
   uint32_t *StatusBuffer;
   float ContextSecondaryFloat;
