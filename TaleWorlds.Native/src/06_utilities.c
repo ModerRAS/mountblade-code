@@ -22991,34 +22991,34 @@ DataBuffer BinarySearchAndProcessData(int64_t SearchContext,uint *SearchKeyPoint
 DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuffer,ByteFlag *charBuffer,int bufferSize,int *processedCount)
 
 {
-  DataWord *dataPointer;
+  DataWord *dataItemPointer;
   ByteFlag charValue;
-  uint systemDataBuffer;
-  uint3 nodeDataArray;
-  DataWord fieldIndex2;
-  DataWord fieldIndex3;
-  uint nodeIndex;
-  int stringLength;
-  int copyLength;
-  ByteFlag *sourcePointer;
-  ByteFlag *destPointer;
-  uint bufferOffset;
-  int64_t stringAddress;
-  ByteFlag *stringPointer;
-  int remainingLength;
-  DataWord processResult;
-  int totalLength;
+  uint dataBufferValue;
+  uint3 nodeDescriptorArray;
+  DataWord fieldData2;
+  DataWord fieldData3;
+  uint currentNodeIndex;
+  int stringDataLength;
+  int copyDataLength;
+  ByteFlag *sourceDataPointer;
+  ByteFlag *destinationDataPointer;
+  uint currentBufferOffset;
+  int64_t stringDataAddress;
+  ByteFlag *stringDataPointer;
+  int remainingDataLength;
+  DataWord processingResult;
+  int totalProcessedLength;
   
   if ((-1 < itemIndex) && (itemIndex < (int)dataContext[3])) {
     if (outputBuffer != (DataWord *)0x0) {
-      dataPointer = (DataWord *)(dataContext[2] + (int64_t)itemIndex * 0x10);
-      processResult = dataPointer[1];
-      fieldIndex2 = dataPointer[2];
-      fieldIndex3 = dataPointer[3];
-      *outputBuffer = *dataPointer;
-      outputBuffer[1] = processResult;
-      outputBuffer[2] = fieldIndex2;
-      outputBuffer[3] = fieldIndex3;
+      dataItemPointer = (DataWord *)(dataContext[2] + (int64_t)itemIndex * 0x10);
+      processingResult = dataItemPointer[1];
+      fieldData2 = dataItemPointer[2];
+      fieldData3 = dataItemPointer[3];
+      *outputBuffer = *dataItemPointer;
+      outputBuffer[1] = processingResult;
+      outputBuffer[2] = fieldData2;
+      outputBuffer[3] = fieldData3;
     }
     totalLength = 0;
     bufferOffset = 0;
