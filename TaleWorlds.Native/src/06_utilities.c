@@ -78991,7 +78991,16 @@ void DestroyMutexInSituA2(void)
 
 
 
-void Unwind_180909e60(void)
+/**
+ * @brief 销毁系统互斥锁E0
+ * 
+ * 销毁系统中的互斥锁对象，释放相关资源。
+ * 这是一个简单的包装函数，调用标准的互斥锁销毁函数。
+ * 
+ * @note 函数直接调用_Mtx_destroy_in_situ()进行互斥锁销毁
+ * @note 这是异常处理和资源清理的一部分
+ */
+void DestroySystemMutexE0(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -79000,7 +79009,16 @@ void Unwind_180909e60(void)
 
 
 
-void Unwind_180909e80(void)
+/**
+ * @brief 销毁系统互斥锁E1
+ * 
+ * 销毁系统中的互斥锁对象，释放相关资源。
+ * 这是一个简单的包装函数，调用标准的互斥锁销毁函数。
+ * 
+ * @note 函数直接调用_Mtx_destroy_in_situ()进行互斥锁销毁
+ * @note 这是异常处理和资源清理的一部分
+ */
+void DestroySystemMutexE1(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -79009,7 +79027,16 @@ void Unwind_180909e80(void)
 
 
 
-void Unwind_180909ea0(void)
+/**
+ * @brief 销毁系统互斥锁E2
+ * 
+ * 销毁系统中的互斥锁对象，释放相关资源。
+ * 这是一个简单的包装函数，调用标准的互斥锁销毁函数。
+ * 
+ * @note 函数直接调用_Mtx_destroy_in_situ()进行互斥锁销毁
+ * @note 这是异常处理和资源清理的一部分
+ */
+void DestroySystemMutexE2(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -79054,7 +79081,21 @@ void Unwind_180909f20(void)
 
 
 
-void Unwind_180909f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据缓冲区A
+ * 
+ * 处理异常数据缓冲区，执行相关的异常处理操作。
+ * 该函数从数据缓冲区的指定位置获取异常数据缓冲区指针。
+ * 
+ * @param operationBase 操作基础指针，包含操作相关信息
+ * @param dataBuffer 数据缓冲区指针，包含异常数据的位置信息
+ * @param operationFlagA 操作标志A，用于控制操作行为
+ * @param operationFlagB 操作标志B，用于控制操作行为
+ * 
+ * @note 函数从dataBuffer + 0x40 + 0xaa0位置获取异常数据缓冲区指针
+ * @note 这是一个异常数据处理函数
+ */
+void ProcessExceptionDataBufferA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -82364,7 +82405,16 @@ void Unwind_18090b4c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b4d0(void)
+/**
+ * @brief 销毁系统互斥锁副本
+ * 
+ * 销毁系统中的互斥锁对象，释放相关资源。
+ * 这是一个简单的包装函数，调用标准的互斥锁销毁函数。
+ * 
+ * @note 函数直接调用_Mtx_destroy_in_situ()进行互斥锁销毁
+ * @note 这是异常处理和资源清理的一部分
+ */
+void DestroySystemMutexCopy(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -82516,7 +82566,19 @@ void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_18090b520(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调B
+ * 
+ * 执行位于特定偏移位置的异常处理器回调函数。
+ * 该函数与ExecuteExceptionHandlerCallbackA类似，但从不同的偏移位置获取异常处理器指针。
+ * 
+ * @param operationBase 操作基础指针，包含操作相关信息
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器的位置信息
+ * 
+ * @note 函数从dataBuffer + 0x40 + 0x78位置获取异常处理器指针
+ * @note 这是一个异常处理回调执行函数
+ */
+void ExecuteExceptionHandlerCallbackB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -82530,7 +82592,19 @@ void Unwind_18090b520(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b530(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调C
+ * 
+ * 执行位于特定偏移位置的异常处理器回调函数。
+ * 该函数是异常处理器回调执行系列的第三个实现。
+ * 
+ * @param operationBase 操作基础指针，包含操作相关信息
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器的位置信息
+ * 
+ * @note 函数从dataBuffer + 0x40 + 0x80位置获取异常处理器指针
+ * @note 这是一个异常处理回调执行函数
+ */
+void ExecuteExceptionHandlerCallbackC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
