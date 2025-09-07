@@ -21267,7 +21267,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       }
       LoopCounterFloat = (float)((int)LoopCounterFloat + 1);
       FloatArrayPointer = FloatArrayPointer + 1;
-    } while ((int)fVar4 < 6);
+    } while ((int)validationCounter < 6);
     validationStatus = ValidateParameters(systemContext + 200);
     dataFlags = calculatedFloatValue;
     if ((float)(validationStatus / 0x30) != 0.0) {
@@ -28351,13 +28351,13 @@ ValidationLabelB:
         do {
           pValidationFloatValue4 = (float *)ExecuteSystemResourceOperation();
           calculatedFloatValue = *pValidationFloatValue4;
-          fVar5 = pValidationFloatValue4[1];
-          fVar6 = pValidationFloatValue4[2];
-          fVar7 = pValidationFloatValue4[3];
+          secondValidationValue = pValidationFloatValue4[1];
+          thirdValidationValue = pValidationFloatValue4[2];
+          fourthValidationValue = pValidationFloatValue4[3];
           *(float *)(exceptionHandlerContext7 + -0x14) = calculatedFloatValue;
-          *(float *)(exceptionHandlerContext7 + -0x10) = fVar5;
-          *(float *)(exceptionHandlerContext7 + -0xc) = fVar6;
-          *(float *)(exceptionHandlerContext7 + -8) = fVar7;
+          *(float *)(exceptionHandlerContext7 + -0x10) = secondValidationValue;
+          *(float *)(exceptionHandlerContext7 + -0xc) = thirdValidationValue;
+          *(float *)(exceptionHandlerContext7 + -8) = fourthValidationValue;
           *(DataBuffer *)(exceptionHandlerContext7 + -4) = 0;
           exceptionHandlerContext8 = exceptionHandlerContext8 + -1;
           exceptionHandlerContext7 = exceptionHandlerContext7 + 0x18;
@@ -28611,13 +28611,13 @@ ValidationProcessingLabel:
         do {
           pValidationFloatValue4 = (float *)ExecuteSystemResourceOperation();
           calculatedFloatValue = *pValidationFloatValue4;
-          fVar5 = pValidationFloatValue4[1];
-          fVar6 = pValidationFloatValue4[2];
-          fVar7 = pValidationFloatValue4[3];
+          secondValidationValue = pValidationFloatValue4[1];
+          thirdValidationValue = pValidationFloatValue4[2];
+          fourthValidationValue = pValidationFloatValue4[3];
           *(float *)(exceptionHandlerContext7 + -0x14) = calculatedFloatValue;
-          *(float *)(exceptionHandlerContext7 + -0x10) = fVar5;
-          *(float *)(exceptionHandlerContext7 + -0xc) = fVar6;
-          *(float *)(exceptionHandlerContext7 + -8) = fVar7;
+          *(float *)(exceptionHandlerContext7 + -0x10) = secondValidationValue;
+          *(float *)(exceptionHandlerContext7 + -0xc) = thirdValidationValue;
+          *(float *)(exceptionHandlerContext7 + -8) = fourthValidationValue;
           *(DataBuffer *)(exceptionHandlerContext7 + -4) = 0;
           exceptionHandlerContext8 = exceptionHandlerContext8 + -1;
           exceptionHandlerContext7 = exceptionHandlerContext7 + 0x18;
@@ -28814,8 +28814,8 @@ ValidationLabelB:
         *exceptionDataBuffer4 = *exceptionDataBuffer5;
         exceptionDataBuffer4[1] = validationOutcome;
         *(DataWord *)(exceptionDataBuffer4 + 2) = *(DataWord *)(exceptionDataBuffer5 + 2);
-        fVar20 = *(float *)((int64_t)exceptionDataBuffer5 + 0x14) + *(float *)(exceptionDataBuffer5 + 2);
-        *(float *)((int64_t)exceptionDataBuffer4 + 0x14) = fVar20;
+        primaryFloatResult = *(float *)((int64_t)exceptionDataBuffer5 + 0x14) + *(float *)(exceptionDataBuffer5 + 2);
+        *(float *)((int64_t)exceptionDataBuffer4 + 0x14) = primaryFloatResult;
         *(ByteFlag *)(exceptionDataBuffer4 + 3) = 1;
         inputParameter8 = *(int *)(stackFramePointer + -0x21);
         exceptionDataBuffer4 = *(DataBuffer **)(stackFramePointer + -0x29);
@@ -28884,13 +28884,13 @@ ValidationLabelD:
   if ((0x70 < *(uint *)(destinationIndexRegister + 8)) &&
      (securityValidationPassed = *(uint *)(destinationIndexRegister[1] + 0x18) == securityCheckResult, securityCheckResult = contextPointerD, securityValidationPassed)) {
     securityCheckResult = OperateDataO0(*destinationIndexRegister,systemContext + 0x68,4);
-    fVar20 = calculatedFloatValue;
+    primaryFloatResult = calculatedFloatValue;
   }
   if (securityCheckResult != 0) {
     return (uint64_t)securityCheckResult;
   }
                     // WARNING: Subroutine does not return
-  ExecutePortControlOperation(fVar20,stackFramePointer + -9);
+  ExecutePortControlOperation(primaryFloatResult,stackFramePointer + -9);
 }
 
 
@@ -29529,7 +29529,7 @@ OperationLabelD:
     return memoryBaseAddress;
   }
   memoryBaseAddress = validationOutcome;
-  fVar9 = floatResultA;
+  secondaryFloatResult = floatResultA;
   operationResult = dataFlags;
   securityCheckResult = systemContextD;
   if (*(uint *)(registerContext + 8) < 0x70) {
@@ -29542,12 +29542,12 @@ OperationLabelD:
       else if (exceptionHandlerContextPointer[2] == 0) {
 ValidationContextHandler:
         validationStatus = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,stackFramePointer + 0x77,systemContextD,systemContextD,0);
-        fVar9 = normalizedFloatValue;
+        secondaryFloatResult = normalizedFloatValue;
       }
       else {
         *(DataWord *)(stackFramePointer + -0x25) = 0;
         validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x25);
-        fVar9 = calculatedFloatValue;
+        secondaryFloatResult = calculatedFloatValue;
         if (validationStatus == 0) {
           if ((uint64_t)*(uint *)(stackFramePointer + -0x25) + 1 <= (uint64_t)exceptionHandlerContextPointer[2])
           goto ProcessCheckpointValidationContext;
@@ -29575,14 +29575,14 @@ ValidationContextHandler:
     return memoryBaseAddress;
   }
   if ((*(uint *)(registerContext + 8) < 0x60) &&
-     (memoryBaseAddress = ValidateData(), fVar9 = interpolatedFloatValue, (int)memoryBaseAddress != 0)) {
+     (memoryBaseAddress = ValidateData(), secondaryFloatResult = interpolatedFloatValue, (int)memoryBaseAddress != 0)) {
     return memoryBaseAddress;
   }
   memoryBaseAddress = validationOutcome;
   if (0x51 < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
       memoryBaseAddress = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x48);
-      fVar9 = validationFloatValue;
+      secondaryFloatResult = validationFloatValue;
     }
     else {
       memoryBaseAddress = 0x1c;

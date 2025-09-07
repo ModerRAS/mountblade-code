@@ -125777,7 +125777,7 @@ uint8_t CheckMemorySystemStatus(void
 
 
 
-83f0(long long OutputBuffer,int OutputBufferSize,float *Utf8InputPointer,uint64_t Utf16EndPointer,uint AdditionalParameter1void FUN_1801283f0(long long OutputBuffer,int OutputBufferSize,float *Utf8InputPointer,uint64_t Utf16EndPointer,uint AdditionalParameter1
+83f0(long long OutputBuffer,int OutputBufferSize,float *Utf8InputPointer,uint64_t Utf16EndPointer,uint AdditionalParameter1void ProcessSystemBufferAndValidateParameters(long long OutputBuffer,int OutputBufferSize,float *Utf8InputPointer,uint64_t Utf16EndPointer,uint AdditionalParameter1
 {
   uint32_t Utf16Char;
   uint MemoryAllocationIndex;
@@ -126212,7 +126212,7 @@ uint8_t ProcessMemoryAllocationFlags(uint32_t OutputBuffer,uint64_t OutputBuffer
   FUN_18012d9c0(6,*(uint32_t *)(DataStructureCounter + 0x1664));
   FUN_18012d9c0(7,*(uint32_t *)(DataStructureCounter + 0x1668));
   FUN_18012da40(1,DataStructureCounter + 0x165c);
-  SystemByteValue = FUN_1801283f0(0,OutputBuffer,OutputBufferSize);
+  SystemByteValue = ProcessSystemBufferAndValidateParameters(0,OutputBuffer,OutputBufferSize);
   MemoryBoundaryEnd = SystemDataConfiguration;
   SystemDataTablePointer = (long long)*(int *)(SystemDataConfiguration + 0x1b90);
   DataStructureCounter = *(long long *)(SystemDataConfiguration + 0x1b98);
@@ -191236,7 +191236,7 @@ void FUN_18016bdb0(long long ***OutputBuffer,long long OutputBufferSize,uint64_t
       *(uint8_t *)(LoopCounter7 + 0x1b3f) = 1;
     }
     MemoryAllocationOffset = 0x800;
-    FUN_1801283f0(&SystemEventBufferQuaternary,MutexLockResult,&pppSystemRegisterPointerX8);
+    ProcessSystemBufferAndValidateParameters(&SystemEventBufferQuaternary,MutexLockResult,&pppSystemRegisterPointerX8);
     LoopCounter7 = SystemDataConfiguration;
     MutexLockResult = ValidateSystemDataAndProcessOperation(&SystemProcessingStatusFlagB,0,
                           *(uint32_t *                           (*(long long *)(*(long long *)(SystemDataConfiguration + 0x1af8) + 0x220) + -4 +
