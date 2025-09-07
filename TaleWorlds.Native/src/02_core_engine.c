@@ -50080,15 +50080,15 @@ void CleanupSystemBuffer(void)
             *Utf8InputBufferPointer = (long long)SystemDataTablePointer;
           }
         }
-        if (pSystemDataTablePointer != (long long *)0x0) {
-          IntegerValue8 = 0;
-          UnicodeCharacterCode = (uint)OperationStatus;
-          IntegerValue9 = IntegerValue8;
-          if ((0 < IntegerValue6) && (0xf < UnicodeCharacterCode)) {
-            MatchCounter = *(int *)(AllocatedMemorySize + 0x2c);
-            BufferAllocationStatus = (long long *)((long long)pSystemDataTablePointer + (long long)(OperationStatus + -1) * 4);
-            if ((((long long *)(AllocatedMemorySize + 0x2c) < pSystemDataTablePointer) || (BufferAllocationStatus < (long long *)(AllocatedMemorySize + 0x2c))) &&
-               ((CharacterCode < pSystemDataTablePointer || (IntegerValue9 = 0, BufferAllocationStatus < CharacterCode)))) {
+        if (SystemDataTablePointer != (long long *)0x0) {
+          ArrayElementIndex = 0;
+          UnicodeCharacterValue = (uint)BufferOperationStatus;
+          TableIterationIndex = ArrayElementIndex;
+          if ((0 < BufferElementCount) && (0xf < UnicodeCharacterValue)) {
+            DataMatchCounter = *(int *)(AllocatedMemoryBlockSize + 0x2c);
+            BufferAllocationStatusPointer = (long long *)((long long)SystemDataTablePointer + (long long)(BufferOperationStatus + -1) * 4);
+            if ((((long long *)(AllocatedMemoryBlockSize + 0x2c) < SystemDataTablePointer) || (BufferAllocationStatusPointer < (long long *)(AllocatedMemoryBlockSize + 0x2c))) &&
+               ((CharacterCodePointer < SystemDataTablePointer || (TableIterationIndex = 0, BufferAllocationStatusPointer < CharacterCodePointer)))) {
               SystemChecksumValue = UnicodeCharacterCode & 0x8000000f;
               if ((int)SystemChecksumValue < 0) {
                 SystemChecksumValue = (SystemChecksumValue - 1 | 0xfffffff0) + 1;
