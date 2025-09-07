@@ -20194,43 +20194,43 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
 // 原始函数名：FUN_180895d9c - 数据块处理和验证函数
 // 功能：处理数据块并进行验证，确保数据完整性
 #define ProcessAndValidateDataBlock FUN_180895d9c
-DataBuffer ProcessAndValidateDataBlock(DataBuffer dataBuffer,DataWord validationFlags)
+DataBuffer ProcessAndValidateDataBlock(DataBuffer inputDataBlock,DataWord validationFlags)
 
 {
   // 输入参数和结果变量
-  int inputParameterCount;                  // 输入参数数量
+  int currentElementCount;                  // 当前元素数量
   DataBuffer operationResult;               // 操作结果
   DataBuffer *validationStatusPointer;     // 验证状态指针
-  int arrayElementIndex;                    // 数组元素索引
+  int requiredElementIndex;                // 需要的元素索引
   DataWord *operationDataPointer;          // 操作数据指针
   // 数据处理和计算变量
   uint dataProcessingFlags;                 // 数据处理标志
   int calculatedBufferSize;                 // 计算的缓冲区大小
   int *registerContextPointer;             // 寄存器上下文指针
-  int allocatedMemorySize;                  // 分配的内存大小
+  int currentBufferSize;                   // 当前缓冲区大小
   int64_t destinationContext;              // 目标上下文
   DataBuffer *systemContextPointer;        // 系统上下文指针
   DataWord *contextDataPointer;            // 上下文数据指针
   DataBuffer systemContextBuffer;           // 系统上下文缓冲区
   
-  allocatedMemorySize = *(int *)(destinationContext + 0x20);
-  if (allocatedMemorySize == -1) {
+  currentBufferSize = *(int *)(destinationContext + 0x20);
+  if (currentBufferSize == -1) {
     systemContextBuffer = *systemContextPointer;
-    allocatedMemorySize = *(int *)(destinationContext + 0x18);
-    arrayElementIndex = allocatedMemorySize + 1;
+    currentBufferSize = *(int *)(destinationContext + 0x18);
+    requiredElementIndex = currentBufferSize + 1;
     dataProcessingFlags = (int)*(uint *)(destinationContext + 0x1c) >> 0x1f;
-    inputParameterCount = (*(uint *)(destinationContext + 0x1c) ^ dataProcessingFlags) - dataProcessingFlags;
-    if (inputParameterCount < arrayElementIndex) {
-      calculatedBufferSize = (int)((float)inputParameterCount * 1.5);
-      inputParameterCount = arrayElementIndex;
-      if (arrayElementIndex <= calculatedBufferSize) {
-        inputParameterCount = calculatedBufferSize;
+    currentElementCount = (*(uint *)(destinationContext + 0x1c) ^ dataProcessingFlags) - dataProcessingFlags;
+    if (currentElementCount < requiredElementIndex) {
+      calculatedBufferSize = (int)((float)currentElementCount * 1.5);
+      currentElementCount = requiredElementIndex;
+      if (requiredElementIndex <= calculatedBufferSize) {
+        currentElementCount = calculatedBufferSize;
       }
-      if (inputParameterCount < 4) {
+      if (currentElementCount < 4) {
         calculatedBufferSize = 4;
       }
-      else if (calculatedBufferSize < arrayElementIndex) {
-        calculatedBufferSize = arrayElementIndex;
+      else if (calculatedBufferSize < requiredElementIndex) {
+        calculatedBufferSize = requiredElementIndex;
       }
       operationResult = CheckSystemDataA0(destinationContext + 0x10, calculatedBufferSize);
       if ((int)operationResult != 0) {
@@ -20239,18 +20239,18 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer dataBuffer,DataWord validation
     }
     validationStatusPointer = (DataBuffer *)
              ((int64_t)*(int *)(destinationContext + 0x18) * 0x10 + *(int64_t *)(destinationContext + ExceptionHandlerCallbackOffset10));
-    *validationStatusPointer = CONCAT44(SystemCleanupFlag, dataBuffer);
+    *validationStatusPointer = CONCAT44(SystemCleanupFlag, inputDataBlock);
     validationStatusPointer[1] = systemContextBuffer;
     *(int *)(destinationContext + 0x18) = *(int *)(destinationContext + 0x18) + 1;
   }
   else {
-    operationResult = (DataWord *)((int64_t)allocatedMemorySize * 0x10 + *(int64_t *)(destinationContext + ExceptionHandlerCallbackOffset10));
+    operationResult = (DataWord *)((int64_t)currentBufferSize * 0x10 + *(int64_t *)(destinationContext + ExceptionHandlerCallbackOffset10));
     *(DataWord *)(destinationContext + 0x20) = operationResult[1];
     operationResult[1] = SystemCleanupFlag;
     *operationResult = *contextDataPointer;
     *(DataBuffer *)(operationResult + 2) = *systemContextPointer;
   }
-  *registerContextPointer = allocatedMemorySize;
+  *registerContextPointer = currentBufferSize;
   *(int *)(destinationContext + 0x24) = *(int *)(destinationContext + 0x24) + 1;
   return 0;
 }
@@ -20261,12 +20261,12 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer dataBuffer,DataWord validation
 // 功能：将资源数据存储到指定的数据缓冲区中
 // 参数：resourceIndex - 资源索引，resourceHandle - 资源句柄，dataBuffer - 数据缓冲区
 // 返回值：成功返回0，失败返回非0值
-DataBuffer StoreResourceData(int64_t resourceIndex,DataBuffer resourceHandle,int64_t dataBuffer)
+DataBuffer StoreResourceData(int64_t resourceIndex,DataBuffer resourceHandle,int64_t targetDataBuffer)
 
 {
-  DataBuffer *resourceDataPointer;
+  DataBuffer *sourceResourcePointer;
   
-  *(DataBuffer *)(dataBuffer + 8 + resourceIndex * 8) = *resourceDataPointer;
+  *(DataBuffer *)(targetDataBuffer + 8 + resourceIndex * 8) = *sourceResourcePointer;
   return 0;
 }
 
