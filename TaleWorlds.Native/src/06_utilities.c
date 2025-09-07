@@ -79852,14 +79852,24 @@ void InvokeExceptionHandlerB80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909ba0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数BA0
+ * 
+ * 该函数负责调用偏移量0x48处的异常处理器（BA0变体）
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180909ba0
+ * @note 这是一个异常处理器调用函数，用于调用特定偏移量的异常处理器
+ */
+void InvokeExceptionHandlerBA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x48) + 0x28);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset48) + ExceptionHandlerSecondaryOffset);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset))();
   }
   return;
 }

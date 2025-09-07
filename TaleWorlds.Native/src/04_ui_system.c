@@ -370225,9 +370225,9 @@ undefined8 ValidateUIData(undefined8 uiContext,float *dataSource)
         return 0x13;
       }
     }
-    else if (*pcStackX_20 != '\0') {
-      localChar1 = *plocalChar3;
-      contextData = FUN_18076b7c0(plocalChar3,&UNK_180986240);
+    else if (*stackPointer != '\0') {
+      validationFlag = *dataPointer;
+      contextData = FUN_18076b7c0(dataPointer,&UNK_180986240);
       if (contextData == 0) {
         contextData = FUN_18076b7c0(plocalChar3,&UNK_180986244);
         if (contextData == 0) {
