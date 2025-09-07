@@ -59754,7 +59754,7 @@ void CleanupExceptionResourcesWithFlags700(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_180906720(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionContextAtOffset720(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -59810,7 +59810,7 @@ void InitializeSystemMemoryA2At760(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906780(DataBuffer operationBase,int64_t dataBuffer)
+void ResetExceptionDataBufferAtOffset780(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
