@@ -97869,7 +97869,17 @@ void ProcessSystemOperationLoopA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910030(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理上下文内存块A0
+ * 
+ * 该函数负责清理异常处理上下文中的内存块，遍历内存块链表并调用清理函数
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180910030
+ */
+void CleanupExceptionMemoryBlocksA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -97891,7 +97901,17 @@ void Unwind_180910030(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910040(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理上下文内存块A1
+ * 
+ * 该函数负责清理异常处理上下文中的内存块，遍历数据上下文并调用清理函数
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180910040
+ */
+void CleanupExceptionMemoryBlocksA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -97913,7 +97933,17 @@ void Unwind_180910040(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910050(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理上下文内存块A2
+ * 
+ * 该函数负责清理异常处理上下文中的内存块，遍历数据上下文指针并调用清理函数
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180910050
+ */
+void CleanupExceptionMemoryBlocksA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
