@@ -98914,7 +98914,22 @@ void ProcessDataBufferAtOffset40Duplicate(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_18090f0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理函数F0A0 - 处理0x40偏移处的数据缓冲区
+ * 
+ * 该函数负责处理位于0x40偏移处的数据缓冲区，通过调用ProcessDataBufferA3函数
+ * 来执行具体的数据处理操作。使用数据上下文偏移和异常处理器回调偏移来获取参数。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090f0a0
+ * @note 使用偏移量：0x40 和 ExceptionHandlerCallbackOffset10 (0x10)
+ * @note 调用ProcessDataBufferA3函数进行实际的数据处理
+ */
+void ProcessDataBufferAtOffset40A(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA3(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -98924,7 +98939,22 @@ void Unwind_18090f0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理函数F0B0 - 处理0x40偏移处的数据缓冲区（副本）
+ * 
+ * 该函数与ProcessDataBufferAtOffset40A功能相同，也是处理位于0x40偏移处的数据缓冲区。
+ * 通过调用ProcessDataBufferA3函数来执行具体的数据处理操作，使用相同的偏移量和参数。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090f0b0
+ * @note 使用偏移量：0x40 和 ExceptionHandlerCallbackOffset10 (0x10)
+ * @note 功能与ProcessDataBufferAtOffset40A完全相同
+ */
+void ProcessDataBufferAtOffset40B(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA3(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -98934,7 +98964,22 @@ void Unwind_18090f0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f0c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存块处理函数F0C0 - 处理异常处理器上下文中的内存块
+ * 
+ * 该函数负责处理异常处理器上下文中的内存块，包括数据的遍历、处理和清理。
+ * 首先遍历数据上下文中的内存块，对每个内存块调用ProcessDataBufferA4进行处理。
+ * 然后检查异常处理器上下文的状态，确保所有内存块都被正确清理。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090f0c0
+ * @note 内存块步长：0x78字节
+ * @note 内存块大小：0x1e0字节
+ * @note 如果发现未清理的内存块，会调用TerminateSystemE0终止系统
+ */
+void ProcessMemoryBlocksInExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100004,7 +100049,19 @@ void Unwind_18090f650(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f670(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器设置函数F670 - 设置0x4190偏移处的异常处理器
+ * 
+ * 该函数负责在指定偏移处设置异常处理器，用于处理系统异常情况。
+ * 首先设置临时异常处理器，然后检查系统状态，最后恢复默认异常处理器。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090f670
+ * @note 偏移量：0x4190处设置异常处理器
+ */
+void SetupExceptionHandlerAtOffset4190(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -100022,7 +100079,21 @@ void Unwind_18090f670(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f690(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统状态更新循环函数F690 - 循环更新系统状态
+ * 
+ * 该函数负责在内存块中循环执行系统状态更新操作。
+ * 遍历从数据上下文开始到异常处理器上下文结束的所有内存块，
+ * 对每个内存块执行系统状态更新。如果数据上下文为空，则直接返回。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090f690
+ * @note 内存块步长：0x30字节
+ * @note 如果数据上下文为空，函数会提前返回
+ */
+void UpdateSystemStatusInMemoryLoop(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -100042,7 +100113,23 @@ void Unwind_18090f690(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f6a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理函数F6A0 - 处理0x68偏移处的数据缓冲区
+ * 
+ * 该函数负责处理位于0x68偏移处的数据缓冲区，通过调用ProcessDataBufferA6函数
+ * 来执行具体的数据处理操作。该函数使用数据上下文偏移和异常处理器回调偏移
+ * 来获取相应的参数，然后传递给数据处理函数。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090f6a0
+ * @note 使用偏移量：DataContextOffset68 (0x68) 和 ExceptionHandlerCallbackOffset10 (0x10)
+ * @note 调用ProcessDataBufferA6函数进行实际的数据处理
+ */
+void ProcessDataBufferAtOffset68(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA6(*(int64_t *)(dataBuffer + DataContextOffset68),*(DataBuffer *)(*(int64_t *)(dataBuffer + DataContextOffset68) + ExceptionHandlerCallbackOffset10),
@@ -100052,7 +100139,22 @@ void Unwind_18090f6a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f6b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理函数F6B0 - 处理0x68偏移处的数据缓冲区（副本）
+ * 
+ * 该函数与ProcessDataBufferAtOffset68功能相同，也是处理位于0x68偏移处的数据缓冲区。
+ * 通过调用ProcessDataBufferA6函数来执行具体的数据处理操作，使用相同的偏移量和参数。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090f6b0
+ * @note 使用偏移量：DataContextOffset68 (0x68) 和 ExceptionHandlerCallbackOffset10 (0x10)
+ * @note 功能与ProcessDataBufferAtOffset68完全相同
+ */
+void ProcessDataBufferAtOffset68Duplicate(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA6(*(int64_t *)(dataBuffer + DataContextOffset68),*(DataBuffer *)(*(int64_t *)(dataBuffer + DataContextOffset68) + ExceptionHandlerCallbackOffset10),
