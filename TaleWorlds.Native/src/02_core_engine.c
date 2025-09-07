@@ -234787,9 +234787,8 @@ LAB_180206c6d:
 
 
 
-06da0(uint64_t CharacterCode,long long CharacterCodeSize,char *Utf8InputPointer,long long Utf16EndPointer,
 void FUN_180206da0(uint64_t CharacterCode,long long CharacterCodeSize,char *Utf8InputPointer,long long Utf16EndPointer,
-                  uint64_t AdditionalParameter1,long long AdditionalParameter2
+                  uint64_t AdditionalParameter1,long long AdditionalParameter2)
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
