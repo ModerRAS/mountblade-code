@@ -38618,7 +38618,7 @@ void EmptyOperation3(void)
 
 
 
-72b0(void/**
+/**
  * @brief 无效参数处理函数
  * 
  * 该函数用于处理无效参数情况，调用系统的不合规参数处理函数。
@@ -38626,12 +38626,8 @@ void EmptyOperation3(void)
  * 
  * @param 无
  * @return 无
- * 
- * @note 此函数调用系统的不合规参数处理函数
- * @note 不会返回，用于错误处理
- * @note 用于处理参数验证失败的情况
  */
-void CoreEngineInvalidParameterHandler(void
+void HandleInvalidParameter(void)
 {
                     // WARNING: Subroutine does not return
   _invalid_parameter_noinfo_noreturn();
@@ -38640,20 +38636,13 @@ void CoreEngineInvalidParameterHandler(void
 
 
 
-72b7(void/**
+/**
  * @brief 系统调用处理器
  * 
  * 该函数负责处理系统调用，包括资源清理和系统指令执行。
  * 通过软件中断机制执行系统级操作。
- * 
- * @param 无
- * @return 无
- * 
- * @note 此函数执行系统调用
- * @note 涉及资源清理和软件中断
- * @note 用于系统级操作处理
  */
-void CoreEngineSystemCallHandler(void
+void SystemCallHandler(void)
 {
   code *InputStringBuffer;
   
@@ -172021,7 +172010,16 @@ void PerformSystemNoOperationEx(void)
 
 
 
-3d860(int *Utf8InputBuffer,uint64_t *Utf8InputBufferSizevoid ProcessSystemDataTable(int *Utf8InputBuffer,uint64_t *Utf8InputBufferSize
+/**
+ * @brief 处理系统数据表操作
+ * 
+ * 该函数负责处理系统数据表的初始化和管理操作，
+ * 包括UTF-8输入缓冲区的处理和数据表的管理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ */
+void ProcessSystemDataTable(int *Utf8InputBuffer, uint64_t *Utf8InputBufferSize)
 {
   int LockResult;
   int StringComparisonResult;
@@ -172062,7 +172060,13 @@ void PerformSystemNoOperationEx(void)
 
 
 
-3d8a9(voidvoid FUN_18013d8a9(void
+/**
+ * @brief 系统内存管理器
+ * 
+ * 该函数负责管理系统内存的分配和释放操作，
+ * 处理系统资源的管理和清理工作。
+ */
+void SystemMemoryManager(void)
 {
   long long ProcessingResult;
   uint64_t Utf16Char;
