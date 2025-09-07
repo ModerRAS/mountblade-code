@@ -73073,7 +73073,20 @@ void ExecutePrimaryExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908c30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器配置
+ * 
+ * 该函数负责重置异常处理器配置，包括：
+ * - 设置临时异常处理器
+ * - 终止现有的异常处理
+ * - 重置异常处理状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908c30
+ */
+void ResetExceptionHandlerConfiguration(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x48) = &TemporaryExceptionHandler;
@@ -108386,6 +108399,9 @@ void CleanupSystemStateAndResourcesH0(void)
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
     CleanupSystemMemoryA0(0x180c919f0);
+  }
+  return;
+}
 
 /**
  * @brief 设置默认异常处理器B到位置1
