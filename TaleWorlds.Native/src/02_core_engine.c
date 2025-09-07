@@ -1099,6 +1099,24 @@
 // 原始函数名：FUN_180179a0a - 系统状态检查函数
 #define CheckSystemStatus FUN_180179a0a
 
+// 原始函数名：FUN_18014ab60 - 字符编码处理函数
+#define ProcessCharacterEncodingAndBufferManagement FUN_18014ab60
+
+// 原始函数名：FUN_18014ae10 - 字符编码大小处理函数
+#define ProcessCharacterEncodingSizeAndBuffer FUN_18014ae10
+
+// 原始函数名：FUN_18014fb60 - 内存分配和缓冲区管理函数
+#define AllocateMemoryAndManageBuffer FUN_18014fb60
+
+// 原始函数名：FUN_18014e160 - 系统内存数据分配函数
+#define ProcessSystemMemoryDataAllocation FUN_18014e160
+
+// 原始函数名：FUN_18014eff0 - 系统数据同步函数
+#define SynchronizeSystemData FUN_18014eff0
+
+// 原始函数名：FUN_18014ae70 - UTF-8到UTF-16转换函数
+#define ConvertUtf8ToUtf16EncodingEx FUN_18014ae70
+
 // 原始函数名：FUN_180179aa0 - 系统内存管理函数
 #define ManageSystemMemoryEx FUN_180179aa0
 
