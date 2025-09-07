@@ -9459,11 +9459,11 @@ undefined8 ProcessUIComponentEx(ulonglong uiContext,undefined8 *dataSource,undef
         StringDataPointer = *(byte **)(resultPointer + 8);
         pallocatedMemory0 = (longlong *)(_UIDefaultResourceBuffer[5] - (longlong)StringDataPointer);
         do {
-          isCharacterMatch = *pbVar5;
-          uiContext = (ulonglong)pbVar5[(longlong)pallocatedMemory0];
-          eventTypeCode = (uint)pbVar5[(longlong)pallocatedMemory0];
+          isCharacterMatch = *StringDataPointer;
+          uiContext = (ulonglong)StringDataPointer[(longlong)pallocatedMemory0];
+          eventTypeCode = (uint)StringDataPointer[(longlong)pallocatedMemory0];
           if (isCharacterMatch != eventTypeCode) break;
-          pbVar5 = pbVar5 + 1;
+          StringDataPointer = StringDataPointer + 1;
         } while (eventTypeCode != 0);
         if ((int)(isCharacterMatch - eventTypeCode) < 1) goto LAB_1806577f1;
       }

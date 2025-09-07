@@ -59,6 +59,7 @@
 #define ProcessFloatValueConversion FUN_18011ce30              // 处理浮点值转换
 #define ProcessCharacterCodeLookup FUN_180138e60               // 处理字符代码查找
 #define ProcessCharacterDataProcessing FUN_18011cf80           // 处理字符数据处理
+#define ProcessSystemEventEx FUN_18011d200                       // 处理系统事件扩展
 
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
