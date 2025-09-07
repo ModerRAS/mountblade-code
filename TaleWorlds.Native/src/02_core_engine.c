@@ -173478,7 +173478,11 @@ long long ProcessUtf8BufferAllocationAndConfiguration(int *Utf8InputBuffer,long 
 
 
 
-3e620(int *Utf8InputBuffer,int Utf8BufferSizevoid FUN_18013e620(int *Utf8InputBuffer,int Utf8BufferSize
+/**
+ * @brief 处理UTF-8输入缓冲区验证
+ * @note 原始函数名：FUN_18013e620
+ */
+void ProcessUtf8InputBufferValidation(int *Utf8InputBuffer,int Utf8BufferSize)
 {
   uint64_t Utf16Char;
   
@@ -173597,7 +173601,11 @@ void ProcessSystemMemoryAllocationAndCopy64(void)
 
 
 
-3e74d(voidvoid FUN_18013e74d(void
+/**
+ * @brief 清理UTF-8处理资源
+ * @note 原始函数名：FUN_18013e74d
+ */
+void CleanupUtf8ProcessingResources(void)
 {
   return;
 }

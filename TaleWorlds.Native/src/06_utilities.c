@@ -11435,18 +11435,18 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
 uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
 
 {
-  int64_t *exceptionHandlerContextPointer;
-  int64_t *componentDataContext;
-  int64_t *componentInfoContext;
-  int32_t moduleInitializationStatus;
-  uint32_t gameMessageProcessingStatus;
-  uint64_t systemModuleOperationResult;
-  int64_t *resourceInfoContext;
-  int64_t *contextDataContext;
-  int64_t *moduleDataContext;
-  int64_t *baseValidationContext;
-  int64_t localStackMemoryContext;
-  int64_t temporaryStackContext;
+  int64_t *exceptionHandlerContextPointer;     // 异常处理上下文指针
+  int64_t *componentDataContext;              // 组件数据上下文指针
+  int64_t *componentInfoContext;              // 组件信息上下文指针
+  int32_t moduleInitializationStatus;         // 模块初始化状态
+  uint32_t gameMessageProcessingStatus;       // 游戏消息处理状态
+  uint64_t systemModuleOperationResult;        // 系统模块操作结果
+  int64_t *resourceInfoContext;              // 资源信息上下文指针
+  int64_t *contextDataContext;                // 上下文数据上下文指针
+  int64_t *moduleDataContext;                 // 模块数据上下文指针
+  int64_t *baseValidationContext;             // 基础验证上下文指针
+  int64_t localStackMemoryContext;            // 本地栈内存上下文
+  int64_t temporaryStackContext;               // 临时栈上下文
   
   systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&temporaryStackContext);
   moduleInitializationStatus = (int32_t)systemModuleOperationResult;
