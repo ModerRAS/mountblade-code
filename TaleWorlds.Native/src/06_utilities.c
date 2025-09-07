@@ -38701,12 +38701,12 @@ void CleanupThreadResource(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x38);
-  *exceptionDataBuffer = &UNK_1809fcb90;
+  *exceptionDataBuffer = &ExceptionDataTable5;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
-  *exceptionDataBuffer = &UNK_18098bdc8;
+  *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &ExceptionDataTable6;
   return;
 }
 
@@ -38721,7 +38721,7 @@ void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x38);
   validationStatus = SystemCleanupFlagfffffffe;
-  *exceptionDataBuffer = &UNK_180a10098;
+  *exceptionDataBuffer = &ExceptionDataTable7;
   characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
     characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
@@ -38731,7 +38731,7 @@ void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
     _Mtx_destroy_in_situ();
-    FUN_18020f530();
+    UpdateSystemStatusA0();
     if (exceptionDataBuffer[0xe] != 0) {
       *(DataBuffer *)(exceptionDataBuffer[0xe] + 0x10) = 0;
       *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
@@ -39631,8 +39631,8 @@ void CleanupDataResourceA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x948);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40) + 0x938,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(exceptionDataBuffer);
+    ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x40) + 0x938,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ReleaseSystemResourcesA1(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -39648,8 +39648,8 @@ void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x978);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40) + 0x968,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(exceptionDataBuffer);
+    ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x40) + 0x968,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ReleaseSystemResourcesA1(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -39665,8 +39665,8 @@ void ExceptionDataProcessorA1(DataBuffer operationBase,int64_t dataBuffer,DataBu
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(exceptionDataBuffer);
+    ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ReleaseSystemResourcesA1(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -39682,8 +39682,8 @@ void ExceptionDataProcessorA2(DataBuffer operationBase,int64_t dataBuffer,DataBu
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(exceptionDataBuffer);
+    ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ReleaseSystemResourcesA1(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -39759,8 +39759,8 @@ void CleanupExceptionDataBufferWithValidation(DataBuffer operationBase,int64_t d
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(exceptionDataBuffer);
+    ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ReleaseSystemResourcesA1(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -39789,8 +39789,8 @@ void CleanupDataValuePointer(DataBuffer operationBase,int64_t dataBuffer,DataBuf
   DataValuePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (DataValuePointer != (DataBuffer *)0x0) {
     // 调用一系列清理函数处理8位数据值指针
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40),*DataValuePointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(DataValuePointer);
+    ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x40),*DataValuePointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ReleaseSystemResourcesA1(DataValuePointer);
     TerminateSystemE0(DataValuePointer);
   }
   return;
@@ -47684,7 +47684,7 @@ void Unwind_180904ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
     _Mtx_destroy_in_situ();
-    FUN_18020f530();
+    UpdateSystemStatusA0();
     if (exceptionDataBuffer[0xe] != 0) {
       *(DataBuffer *)(exceptionDataBuffer[0xe] + 0x10) = 0;
       *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
@@ -47752,7 +47752,7 @@ void Unwind_180904af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
     _Mtx_destroy_in_situ();
-    FUN_18020f530();
+    UpdateSystemStatusA0();
     if (exceptionDataBuffer[0xe] != 0) {
       *(DataBuffer *)(exceptionDataBuffer[0xe] + 0x10) = 0;
       *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
@@ -48100,7 +48100,7 @@ void Unwind_180904e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
     _Mtx_destroy_in_situ();
-    FUN_18020f530();
+    UpdateSystemStatusA0();
     if (exceptionDataBuffer[0xe] != 0) {
       *(DataBuffer *)(exceptionDataBuffer[0xe] + 0x10) = 0;
       *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
