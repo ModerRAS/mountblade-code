@@ -68486,7 +68486,17 @@ void SetDefaultExceptionHandlerBOffset1C0(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_180907dd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源处理器（条件检查）
+ * 
+ * 检查数据缓冲区状态标志，如果第2位被设置（值4），则清除该标志
+ * 并调用资源清理处理器进行清理操作。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907dd0
+ */
+void CleanupResourceHandlerConditional(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 4) != 0) {
@@ -68498,7 +68508,17 @@ void Unwind_180907dd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907e00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证数据处理器A0（条件检查）
+ * 
+ * 检查数据缓冲区状态标志，如果第3位被设置（值8），则清除该标志
+ * 并调用数据验证函数A0进行数据验证操作。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907e00
+ */
+void ValidateDataHandlerA0Conditional(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 8) != 0) {
@@ -68510,7 +68530,17 @@ void Unwind_180907e00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907e30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B（偏移量0x480）
+ * 
+ * 在数据缓冲区的指定偏移量处设置默认异常处理器B的指针。
+ * 这是一个基础的异常处理器设置函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907e30
+ */
+void SetDefaultExceptionHandlerBOffset480(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x480) = &DefaultExceptionHandlerB;
@@ -68519,7 +68549,17 @@ void Unwind_180907e30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907e40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B（双指针偏移量0x1e8）
+ * 
+ * 在数据缓冲区的指定偏移量处通过双指针设置默认异常处理器B。
+ * 这是一个双指针间接设置的异常处理器函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907e40
+ */
+void SetDefaultExceptionHandlerBDoublePointerOffset1E8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x1e8) = &DefaultExceptionHandlerB;
