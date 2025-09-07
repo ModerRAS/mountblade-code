@@ -169,6 +169,21 @@
 // UI系统函数宏定义 - 获取UI系统标志
 #define GetUISystemFlags FUN_18069ff67
 
+// UI系统函数宏定义 - 处理UI上下文数据验证
+#define ProcessUIContextDataValidation FUN_18069dfe0
+
+// UI系统函数宏定义 - 处理UI组件数据缓冲区
+#define ProcessUIComponentDataBuffer FUN_18069ef30
+
+// UI系统函数宏定义 - 重置UI系统状态
+#define ResetUISystemState FUN_1806a0150
+
+// UI系统函数宏定义 - 处理UI数据初始化
+#define ProcessUIDataInitialization FUN_1806a02d0
+
+// UI系统函数宏定义 - 处理UI数据转换
+#define ProcessUIDataConversion FUN_1806a03a0
+
 // UI系统函数宏定义 - 验证UI缓冲区操作
 #define ValidateUIBufferOperation FUN_1807040a0
 
@@ -72713,78 +72728,118 @@ void ProcessUIDataTransformation(float *uiContext,int64_t dataSource,float *targ
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807075c0(undefined8 uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
-void FUN_1807075c0(undefined8 uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
-                  int resultPointer,int param_6)
+ /**
+ * @brief 处理UI动画
+ * 
+ * 处理UI系统中的动画效果，包括：
+ * - 动画参数计算
+ * - 动画时间插值
+ * - 动画状态管理
+ * - 动画缓冲区处理
+ * 
+ * @param uiContext UI上下文指针，包含动画状态信息
+ * @param dataSource 数据源指针，提供动画数据
+ * @param targetBuffer 目标缓冲区指针，存储动画结果
+ * @param bufferSize 缓冲区大小，指定动画数据量
+ * @param resultPointer 结果指针，用于存储处理结果
+ * @param animationParam 动画参数，控制动画行为
+ * 
+ * @note 原始函数名: FUN_1807075c0
+ */
+void ProcessUIAnimation(undefined8 uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+                        int resultPointer,int animationParam)
 
 {
-  int stackParam00000050;
-  undefined8 stackUInt68;
-  undefined8 stackUInt60;
-  undefined8 stackUInt58;
-  longlong stackLong50;
-  ulonglong stackUInt48;
+  int animationResolution;
+  undefined8 animationTargetBuffer;
+  undefined8 animationBufferSize;
+  undefined8 animationContext;
+  longlong animationDataSize;
+  ulonglong animationStackPointer;
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)&stackUInt68;
-  stackUInt68 = targetBuffer;
-  stackUInt60 = bufferSize;
-  stackUInt58 = uiContext;
+  animationStackPointer = XorEncryptionKey ^ (ulonglong)&animationTargetBuffer;
+  animationTargetBuffer = targetBuffer;
+  animationBufferSize = bufferSize;
+  animationContext = uiContext;
   if (resultPointer == 0) {
                      WARNING: Subroutine does not return
     ExecuteUIRenderTask(0);
   }
-  if (stackParam00000050 == 48000) {
+  if (animationResolution == 48000) {
     resultPointer = resultPointer * 2;
-    param_6 = param_6 * 2;
+    animationParam = animationParam * 2;
   }
-  else if (stackParam00000050 == 16000) {
+  else if (animationResolution == 16000) {
     resultPointer = (resultPointer * 2) / 3;
-    param_6 = param_6 * 2;
-    param_6 = param_6 / 3 + (param_6 >> 0x1f) +
-              (int)(((longlong)param_6 / 3 + ((longlong)param_6 >> 0x3f) & 0xffffffffU) >> 0x1f);
+    animationParam = animationParam * 2;
+    animationParam = animationParam / 3 + (animationParam >> 0x1f) +
+                     (int)(((longlong)animationParam / 3 + ((longlong)animationParam >> 0x3f) & 0xffffffffU) >> 0x1f);
   }
-  stackLong50 = (longlong)resultPointer * 4;
+  animationDataSize = (longlong)resultPointer * 4;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(stackLong50,param_6,0xffffffffffffff0);
+  FUN_1808fd200(animationDataSize,animationParam,0xffffffffffffff0);
 }
 
 
 
 
- void FUN_180707950(longlong uiContext,undefined8 dataSource,longlong targetBuffer,uint bufferSize,int resultPointer,
-void FUN_180707950(longlong uiContext,undefined8 dataSource,longlong targetBuffer,uint bufferSize,int resultPointer,
-                  undefined4 param_6,undefined4 param_7,undefined4 param_8,int param_9,
-                  undefined4 uiContext0,undefined8 uiContext1,undefined8 *uiContext2)
+ /**
+ * @brief 更新UI动画状态
+ * 
+ * 更新UI系统中的动画状态信息，包括：
+ * - 动画帧率计算
+ * - 动插值处理
+ * - 动画状态同步
+ * - 动画缓冲区管理
+ * 
+ * @param uiContext UI上下文指针，包含动画状态信息
+ * @param dataSource 数据源指针，提供动画数据
+ * @param targetBuffer 目标缓冲区指针，存储处理结果
+ * @param bufferSize 缓冲区大小，指定动画数据量
+ * @param resultPointer 结果指针，用于存储处理结果
+ * @param animationParam1 动画参数1
+ * @param animationParam2 动画参数2
+ * @param animationParam3 动画参数3
+ * @param frameRate 帧率参数
+ * @param uiContext0 UI上下文参数0
+ * @param uiContext1 UI上下文参数1
+ * @param uiContext2 UI上下文参数2指针
+ * 
+ * @note 原始函数名: FUN_180707950
+ */
+void UpdateUIAnimationState(longlong uiContext,undefined8 dataSource,longlong targetBuffer,uint bufferSize,int resultPointer,
+                            undefined4 animationParam1,undefined4 animationParam2,undefined4 animationParam3,int frameRate,
+                            undefined4 uiContext0,undefined8 uiContext1,undefined8 *uiContext2)
 
 {
-  ulonglong result;
-  undefined8 *psemaphoreHandle;
-  undefined8 EventTypeCode;
-  int localInt4;
-  longlong EventDataIndex;
-  longlong contextData;
-  float *plocalFloat7;
-  ulonglong uVar8;
-  int localInt9;
-  int uiOperationResult0;
-  int uiOperationResult1;
-  int uiOperationResult2;
-  ulonglong result3;
-  uint result4;
-  int uiOperationResult6;
-  bool isCharacterMatch7;
-  float floatResult8;
-  float floatResult9;
-  float localFloat20;
-  ulonglong result5;
+  ulonglong animationUpdateResult;
+  undefined8 *pAnimationHandle;
+  undefined8 animationEventType;
+  int animationFrameIndex;
+  longlong animationDataIndex;
+  longlong animationContext;
+  float *pAnimationData;
+  ulonglong animationLoopCounter;
+  int animationBufferSize;
+  int animationOperationResult1;
+  int animationOperationResult2;
+  int animationOperationResult3;
+  ulonglong animationIterationCount;
+  uint animationFrameLimit;
+  int animationStatus;
+  bool isAnimationActive;
+  float animationTime1;
+  float animationTime2;
+  float animationDelta;
+  ulonglong animationResult5;
   
   if (targetBuffer != 0) {
-    uiOperationResult6 = *(int *)(uiBufferData + 0x1d1c);
-    result4 = (param_9 * 0x5f) / 0x32;
-    if ((int)(bufferSize & 0xfffffffe) <= (int)result4) {
-      result4 = bufferSize & 0xfffffffe;
+    animationStatus = *(int *)(uiBufferData + 0x1d1c);
+    animationFrameLimit = (frameRate * 0x5f) / 0x32;
+    if ((int)(bufferSize & 0xfffffffe) <= (int)animationFrameLimit) {
+      animationFrameLimit = bufferSize & 0xfffffffe;
     }
-    localInt9 = result4 - uiOperationResult6;
+    animationBufferSize = animationFrameLimit - animationStatus;
     if (0 < localInt9) {
       param_9 = param_9 / 0x32;
       do {
