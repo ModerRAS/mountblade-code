@@ -99,6 +99,7 @@
 #define MemoryReferenceCleanupOffset1F0 0x1f0
 #define MemoryReferenceCleanupOffset210 0x210
 #define ResourceCleanupOffset250 0x250
+#define MemoryReferenceCleanupOffset490 0x490
 
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
