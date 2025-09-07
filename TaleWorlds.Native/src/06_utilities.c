@@ -64663,7 +64663,7 @@ void Unwind_180909320(DataBuffer operationBase,int64_t dataBuffer)
   validationStatusPointer[0x1013] = calculatedIndex;
   resourcePointer = (DataBuffer *)validationStatusPointer[0x1043];
   if (resourcePointer != (DataBuffer *)0x0) {
-    FUN_1800f74f0(validationStatusPointer + 0x1041,*resourcePointer);
+    ValidateAndProcessData(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
     TerminateSystemE0(resourcePointer);
@@ -64679,7 +64679,7 @@ void Unwind_180909320(DataBuffer operationBase,int64_t dataBuffer)
   ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
   calculatedIndex = validationStatusPointer[0xffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
-    FUN_180152b00(resourceIterator);
+    ProcessDataBlocks(resourceIterator);
   }
   if (validationStatusPointer[0xff9] != 0) {
                     // WARNING: Subroutine does not return
@@ -64722,7 +64722,7 @@ void Unwind_180909360(DataBuffer operationBase,uint *dataBuffer)
 {
   if ((*dataBuffer & 1) != 0) {
     *dataBuffer = *dataBuffer & 0xfffffffe;
-    FUN_18005d560(*(DataBuffer *)(dataBuffer + 10));
+    ValidateAndExecuteOperationsA1(*(DataBuffer *)(dataBuffer + 10));
   }
   return;
 }
@@ -64811,7 +64811,7 @@ void Unwind_1809093b0(DataBuffer operationBase,int64_t dataBuffer)
   validationStatusPointer[0x1013] = calculatedIndex;
   resourcePointer = (DataBuffer *)validationStatusPointer[0x1043];
   if (resourcePointer != (DataBuffer *)0x0) {
-    FUN_1800f74f0(validationStatusPointer + 0x1041,*resourcePointer);
+    ValidateAndProcessData(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
     TerminateSystemE0(resourcePointer);
@@ -64827,7 +64827,7 @@ void Unwind_1809093b0(DataBuffer operationBase,int64_t dataBuffer)
   ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
   calculatedIndex = validationStatusPointer[0xffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
-    FUN_180152b00(resourceIterator);
+    ProcessDataBlocks(resourceIterator);
   }
   if (validationStatusPointer[0xff9] != 0) {
                     // WARNING: Subroutine does not return
@@ -64888,7 +64888,7 @@ void Unwind_1809093c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(int64_t *)(calculatedOffset + 0x8098) = calculatedIndex;
   resourcePointer = *(DataBuffer **)(calculatedOffset + 0x8218);
   if (resourcePointer != (DataBuffer *)0x0) {
-    FUN_1800f74f0(calculatedOffset + 0x8208,*resourcePointer);
+    ValidateAndProcessData(calculatedOffset + 0x8208,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
     TerminateSystemE0(resourcePointer);
@@ -64904,7 +64904,7 @@ void Unwind_1809093c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   ExecuteMemoryOperation(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
   calculatedIndex = *(int64_t *)(calculatedOffset + 0x7fd0);
   for (resourceIterator = *(int64_t *)(calculatedOffset + 0x7fc8); resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
-    FUN_180152b00(resourceIterator);
+    ProcessDataBlocks(resourceIterator);
   }
   if (*(int64_t *)(calculatedOffset + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
@@ -65714,7 +65714,7 @@ void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
   validationStatusPointer[0x1013] = calculatedIndex;
   resourcePointer = (DataBuffer *)validationStatusPointer[0x1043];
   if (resourcePointer != (DataBuffer *)0x0) {
-    FUN_1800f74f0(validationStatusPointer + 0x1041,*resourcePointer);
+    ValidateAndProcessData(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
     TerminateSystemE0(resourcePointer);
@@ -65730,7 +65730,7 @@ void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
   ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
   calculatedIndex = validationStatusPointer[0xffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
-    FUN_180152b00(resourceIterator);
+    ProcessDataBlocks(resourceIterator);
   }
   if (validationStatusPointer[0xff9] != 0) {
                     // WARNING: Subroutine does not return
@@ -65791,7 +65791,7 @@ void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(int64_t *)(calculatedOffset + 0x8098) = calculatedIndex;
   resourcePointer = *(DataBuffer **)(calculatedOffset + 0x8218);
   if (resourcePointer != (DataBuffer *)0x0) {
-    FUN_1800f74f0(calculatedOffset + 0x8208,*resourcePointer);
+    ValidateAndProcessData(calculatedOffset + 0x8208,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
     TerminateSystemE0(resourcePointer);
@@ -65807,7 +65807,7 @@ void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   ExecuteMemoryOperation(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
   calculatedIndex = *(int64_t *)(calculatedOffset + 0x7fd0);
   for (resourceIterator = *(int64_t *)(calculatedOffset + 0x7fc8); resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
-    FUN_180152b00(resourceIterator);
+    ProcessDataBlocks(resourceIterator);
   }
   if (*(int64_t *)(calculatedOffset + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
@@ -65953,7 +65953,7 @@ void Unwind_180909780(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180909790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ae2c0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -65963,7 +65963,7 @@ void Unwind_180909790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809097a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ae2c0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -66015,7 +66015,7 @@ void Unwind_1809097d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809097e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ae2c0(*(int64_t *)(dataBuffer + 0x40) + 0x30,
+  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x40) + 0x30,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x40),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -66067,7 +66067,7 @@ void Unwind_180909820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180909840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ae2c0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
+  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -66077,7 +66077,7 @@ void Unwind_180909840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180909850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ae2c0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
+  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -66255,7 +66255,7 @@ void Unwind_180909990(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809099a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1802a07c0(*(int64_t *)(dataBuffer + 0xe0) + 0x10);
+  CleanupDataBufferA0(*(int64_t *)(dataBuffer + 0xe0) + 0x10);
   return;
 }
 
@@ -67060,7 +67060,7 @@ void Unwind_180909f60(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x40);
-  FUN_1802ab380();
+  UpdateSystemStatusA2();
   _Mtx_destroy_in_situ();
   if (*(int64_t *)(calculatedOffset + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
@@ -67625,7 +67625,7 @@ void Unwind_18090a450(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t memoryBaseAddress;
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x60);
-  FUN_1802ab380();
+  UpdateSystemStatusA2();
   _Mtx_destroy_in_situ();
   if (*(int64_t *)(calculatedOffset + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
@@ -83246,7 +83246,7 @@ void Unwind_18090f5f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090f610(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x60) + 0x40e0,
+  ValidateAndProcessData(*(int64_t *)(dataBuffer + 0x60) + 0x40e0,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x40f0),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -83460,7 +83460,7 @@ void Unwind_18090f790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f7a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
+  ValidateAndProcessData(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -83470,7 +83470,7 @@ void Unwind_18090f7a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f7b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
+  ValidateAndProcessData(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -83570,7 +83570,7 @@ void Unwind_18090f850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ValidateAndProcessData(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -83580,7 +83580,7 @@ void Unwind_18090f860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ValidateAndProcessData(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -84058,7 +84058,7 @@ void Unwind_18090fb00(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090fb10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  ValidateAndProcessData(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -84076,7 +84076,7 @@ void Unwind_18090fb20(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090fb30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  ValidateAndProcessData(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -84085,7 +84085,7 @@ void Unwind_18090fb30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090fb40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  ValidateAndProcessData(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -98496,6 +98496,18 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 
 // 原始函数名：FUN_180152b00 - 数据块处理函数
 #define ProcessDataBlocks FUN_180152b00
+
+// 原始函数名：FUN_1800ae2c0 - 数据处理函数A0
+// 功能：处理数据缓冲区和操作标志
+#define ProcessDataBufferA0 FUN_1800ae2c0
+
+// 原始函数名：FUN_1802a07c0 - 数据清理函数A0
+// 功能：清理数据缓冲区和资源
+#define CleanupDataBufferA0 FUN_1802a07c0
+
+// 原始函数名：FUN_1802ab380 - 系统状态更新函数A0
+// 功能：更新系统状态和标志位
+#define UpdateSystemStatusA2 FUN_1802ab380
 
 // 原始函数名：FUN_18005d560 - 验证和执行操作函数A1
 #define ValidateAndExecuteOperationsA1 FUN_18005d560

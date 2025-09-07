@@ -9935,18 +9935,18 @@ void InitializeNetworkValidationNode(void
  * 和初始化相关的会话数据结构。函数会遍历会话链表，查找合适的
  * 位置插入新的会话节点，并设置节点的标识符和会话回调函数。
  */
-void InitializeNetworkSessionNode(void
+void InitializeNetworkSessionNode(void)
 {
-  char StringBuffer;
-  void *SystemContext;
-  int MemoryMatchResult;
-  long long *EngineContext;
-  long long MemoryAllocationSize;
-  void *CurrentNode;
-  void *PreviousNode;
-  void *NextNode;
-  void *TempStackPointer;
-  uint64_t ReservedStackSpace;
+  char statusBuffer;
+  void *systemContext;
+  int memoryMatchResult;
+  long long *engineContext;
+  long long memoryAllocationSize;
+  void *currentNode;
+  void *previousNode;
+  void *nextNode;
+  void *tempStackPointer;
+  uint64_t reservedStackSpace;
   
   SystemContextPtr = (long long *)CoreEngineGetSystemContext();
   PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
