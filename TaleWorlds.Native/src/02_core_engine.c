@@ -116929,7 +116929,18 @@ void ValidateSystemStatus(int *CharacterCode,uint64_t CharacterCodeSize,uint64_t
 
 
 
-227a(int CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,int Utf16EndPointervoid FUN_18012227a(int CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,int Utf16EndPointer
+/**
+ * @brief 处理字符编码转换
+ * 
+ * 该函数负责处理字符编码转换操作，包括UTF-8到UTF-16的转换
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18012227a
+ */
+void ProcessCharacterEncodingConversion(int CharacterCode, uint64_t CharacterCodeSize, uint64_t Utf8InputPointer, int Utf16EndPointer)
 {
   int LockResult;
   int CharacterByteCount;
@@ -116962,7 +116973,14 @@ void ValidateSystemStatus(int *CharacterCode,uint64_t CharacterCodeSize,uint64_t
 
 
 
-2310(voidvoid FUN_180122310(void
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作
+ * 
+ * @note 原始函数名：FUN_180122310
+ */
+void PerformNoOperation(void)
 {
   return;
 }
@@ -116971,7 +116989,18 @@ void ValidateSystemStatus(int *CharacterCode,uint64_t CharacterCodeSize,uint64_t
 
 
 
-2320(uint64_t CharacterCode,char *CharacterCodeSize,char *Utf8InputPointer,char Utf16EndPointervoid ProcessSystemConfigurationAndStack(uint64_t CharacterCode,char *CharacterCodeSize,char *Utf8InputPointer,char Utf16EndPointer
+/**
+ * @brief 处理系统配置和栈操作
+ * 
+ * 该函数负责处理系统配置信息和栈操作，包括内存管理和数据结构处理
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180122320
+ */
+void ProcessSystemConfigurationAndStack(uint64_t CharacterCode, char *CharacterCodeSize, char *Utf8InputPointer, char Utf16EndPointer)
 {
   uint32_t *StatusBuffer;
   long long BufferStatus;
@@ -150304,27 +150333,35 @@ LAB_180132de6:
 
 
 
-32ea3(voidvoid FUN_180132ea3(void
+/**
+ * @brief 处理系统浮点数矩阵运算
+ * 
+ * 该函数负责处理系统中的浮点数矩阵运算，包括坐标变换、
+ * 矩阵运算和数值标准化等操作。
+ * 
+ * @note 原始函数名：FUN_180132ea3
+ */
+void ProcessSystemFloatMatrixOperations(void
 {
-  float *pSystemContextPrimaryFloat;
-  long long BufferStatus;
+  float *SystemFloatPointer;
+  long long BufferPointer;
   long long MemoryOffset;
-  long long SystemContext;
-  long long DataNodeIndex;
-  int RegisterGeneral14D;
-  float FloatVariable4;
-  float FloatVariable5;
-  float CalculatedDistance;
-  float FloatVariable7;
-  float FloatValue8;
-  float NormalizedParameter;
-  float SystemContextPrimaryFloat0;
-  float SystemContextPrimaryFloat1;
-  float BaseFloatValue;
-  float SecondaryFloatValue;
-  uint AuxiliaryFloat9;
-  uint64_t uStack0000000000000030;
-  uint64_t uStack0000000000000038;
+  long long SystemContextPointer;
+  long long DataNodePointer;
+  int SystemRegisterValue;
+  float MatrixCoefficient3;
+  float MatrixCoefficient4;
+  float DistanceCalculation;
+  float MatrixCalculation7;
+  float FloatParameter;
+  float NormalizedMatrixValue;
+  float MatrixTransformX;
+  float MatrixTransformY;
+  float BaseMatrixValue;
+  float SecondaryMatrixValue;
+  uint MatrixOperationFlag;
+  uint64_t StackParameter1;
+  uint64_t StackParameter2;
   
   if ((*(char *)(SystemContext + 0x1d20) != (char)RegisterGeneral14D) &&
      (*(int *)(SystemContext + 0x1cfc) == RegisterGeneral14D)) {
@@ -150639,7 +150676,18 @@ LAB_180132de6:
 
 
 
-33110(voidvoid FUN_180133110(void
+/**
+ * @brief 处理系统配置和参数更新
+ * 
+ * 该函数负责处理系统配置的检查和参数更新，包括：
+ * - 系统配置状态验证
+ * - 浮点数参数的缩放和更新
+ * - 内存边界管理
+ * - 系统数据表的同步操作
+ * 
+ * @note 原始函数名：FUN_180133110
+ */
+void ProcessSystemConfigurationUpdate(void
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -150818,7 +150866,18 @@ LAB_180132de6:
 
 
 
-33320(voidvoid FUN_180133320(void
+/**
+ * @brief 处理系统状态和缓冲区管理
+ * 
+ * 该函数负责处理系统状态和缓冲区的管理操作，包括：
+ * - 状态标志的设置和清除
+ * - 数据结构的计数和更新
+ * - Unicode码点的处理
+ * - 系统参数的同步
+ * 
+ * @note 原始函数名：FUN_180133320
+ */
+void ProcessSystemStatusAndBufferManagement(void
 {
   uint64_t *StatusBuffer;
   int CharacterByteCount;
