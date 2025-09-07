@@ -67950,7 +67950,7 @@ void FUN_18069e6e0(longlong uiContext)
           allocatedMemory0 = lStack_68;
           lVar4 = lStack_78;
           if (functionResult4 == 1) {
-            iVar3 = FUN_18069e4f0(lStack_58,aiStack_40);
+            iVar3 = ProcessUIContextValidation(lStack_58,aiStack_40);
             lVar6 = lStack_80;
           }
           else {
@@ -68130,7 +68130,7 @@ void FUN_18069e7c0(undefined4 uiContext,longlong dataSource,longlong targetBuffe
     if (0 < *(int *)(unaff_RBP + 3000)) {
       do {
         if (in_RAX == 1) {
-          iVar3 = FUN_18069e4f0(unaff_RSI,&stack0x000000d8);
+          iVar3 = ProcessUIContextValidation(unaff_RSI,&stack0x000000d8);
           dataSource = in_stack_00000098;
           targetBuffer = in_stack_00000088;
           bufferSize = in_stack_00000080;
