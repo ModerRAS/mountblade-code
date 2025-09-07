@@ -66611,7 +66611,7 @@ void ProcessUIContextRendering(longlong uiContext)
                   *(undefined4 *)(bufferData + 0xe94));
     return;
   }
-  FUN_18069d310();
+  ProcessUIRenderDataProcessing();
   functionResult5 = (undefined4)((ulonglong)in_stack_ffffffffffffffd0 >> 0x20);
   stringCompareIndex = *(longlong *)(bufferData + 0xea8);
   uVar4 = *(undefined8 *)(uiContext + 0xe18);
