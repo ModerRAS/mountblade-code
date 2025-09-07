@@ -5338,7 +5338,7 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define StackPointerRegisterA puStack0000000000000058    // 栈指针寄存器A
 #define StackInputParameterA in_stack_00000068    // 栈输入参数A
 #define StackInputParameterB in_stack_00000050    // 栈输入参数B
-#define StackInputParameterC in_stack_00000028    // 栈输入参数C
+#define StackInputParameterC StackValidationParameterA    // 栈输入参数C
 #define StackInputParameterD in_stack_00000058    // 栈输入参数D
 #define StackInputParameterE in_stack_00000008    // 栈输入参数E
 #define StackFloatValueA in_stack_000001a0    // 栈浮点值A
@@ -8611,6 +8611,17 @@ uint8_t SystemManagementDataTableA0;
  * 
  * @see QueryAndRetrieveSystemDataA0, ExecuteCoreFunction, ProcessUtilityOperation
  */
+/**
+ * @brief 处理对象数据并执行验证
+ * 
+ * 该函数负责处理对象数据操作，包括安全验证、资源管理和数据处理
+ * 函数会执行栈保护检查，确保操作的安全性
+ * 
+ * @param ObjectHandle 对象句柄，用于标识要处理的对象
+ * @param DataContext 数据上下文，包含处理所需的数据信息
+ * 
+ * @note 原始函数名：ProcessObjectDataWithValidation
+ */
 void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 {
   // 资源和操作相关变量
@@ -10009,8 +10020,17 @@ void InitializeMemoryPool(void)
 
 
 
-// 原始函数名：FUN_1808909ba - 错误状态返回函数
-// 功能：返回固定错误码0x1c
+/**
+ * @brief 返回错误状态
+ * 
+ * 返回固定的错误码0x1c，用于表示系统错误状态。这个函数通常在系统遇到
+ * 不可恢复的错误时调用，为上层应用提供统一的错误码。
+ * 
+ * @param void 无参数
+ * @return DataBuffer 返回错误码0x1c
+ * 
+ * @note 原始函数名：FUN_1808909ba
+ */
 #define ReturnErrorStatus FUN_1808909ba
 
 DataBuffer ReturnErrorStatus(void)
@@ -20257,7 +20277,7 @@ ProcessDataSecurityValidation:
               if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
             }
             if ((*(uint *)(systemContext + 0x2d8) >> 3 & 1) != 0) {
-              in_stack_00000028 = &DataIntegrityValidationErrorE;
+              StackValidationParameterA = &DataIntegrityValidationErrorE;
               StackParameter38 = SystemOperationResult;
               ValidationDataBuffer = register_R13D;
               ValidateDataIntegrityA0(operationResult4,&stack0x00000028);
@@ -20439,7 +20459,7 @@ ValidateDataSecurity:
           floatValidationValue = *floatArrayPointer;
           if (floatValidationValue != 0.0) {
             StackParameter38 = SystemOperationResult;
-            in_stack_00000028 = &DataProcessingValidationError;
+            StackValidationParameterA = &DataProcessingValidationError;
             ValidationDataBuffer = register_R13D;
             fStack0000000000000040 = loopCounterFloat;
             fStack0000000000000044 = floatValidationValue;
@@ -20455,7 +20475,7 @@ ValidateDataSecurity:
           floatValidationValue = *(float *)(register_R15 + -0x180985054 + (int64_t)pcalculatedFloatValue);
           if (floatValidationValue != *pcalculatedFloatValue) {
             StackParameter38 = SystemOperationResult;
-            in_stack_00000028 = &DataProcessingContextA0;
+            StackValidationParameterA = &DataProcessingContextA0;
             ValidationDataBuffer = register_R13D;
             fStack0000000000000040 = loopCounterFloat;
             fStack0000000000000044 = floatValidationValue;
@@ -20504,7 +20524,7 @@ ValidateDataSecurity:
           if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
         if ((*(uint *)(systemContext + 0x2d8) >> 3 & 1) != 0) {
-          in_stack_00000028 = &DataIntegrityValidationErrorE;
+          StackValidationParameterA = &DataIntegrityValidationErrorE;
           StackParameter38 = SystemOperationResult;
           ValidationDataBuffer = register_R13D;
           ValidateDataIntegrityA0(operationResult3,&stack0x00000028);
@@ -20591,7 +20611,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       processedValue = *dataPointer;
       if (ValidationFloatValue != 0.0) {
         StackParameter38 = SystemOperationResult;
-        in_stack_00000028 = &DataProcessingValidationError;
+        StackValidationParameterA = &DataProcessingValidationError;
         ValidationDataBuffer = register_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = floatValidationValue;
@@ -20607,7 +20627,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       ValidationFloatValue = *(float *)(register_R15 + -0x180985054 + (int64_t)pfVar5);
       if (ValidationFloatValue != *pfVar5) {
         StackParameter38 = SystemOperationResult;
-        in_stack_00000028 = &DataProcessingContextA0;
+        StackValidationParameterA = &DataProcessingContextA0;
         ValidationDataBuffer = register_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = floatValidationValue;
@@ -20656,7 +20676,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       if (operationResult != 0) GOTO_ValidationFailure;
     }
     if ((*(uint *)(systemContext + 0x2d8) >> 3 & 1) != 0) {
-      in_stack_00000028 = &DataIntegrityValidationErrorE;
+      StackValidationParameterA = &DataIntegrityValidationErrorE;
       StackParameter38 = SystemOperationResult;
       ValidationDataBuffer = register_R13D;
       ValidateDataIntegrityA0(dataFlags,&stack0x00000028);
@@ -100004,3 +100024,21 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define ExceptionHandlerA78 Unwind_1809040b0
 #define ExceptionHandlerA79 Unwind_1809040d0
 #define SystemExceptionHandlerStateTable _DAT_180d49f80
+
+// 栈变量宏定义 - 美化in_stack变量（补充定义）
+#define StackValidationParameterA StackValidationParameterA    // 栈验证参数A
+
+// 栈变量宏定义 - 美化fStack变量
+#define StackFloatRegisterA fStack0000000000000048    // 栈浮点寄存器A
+#define StackFloatRegisterB fStack0000000000000040    // 栈浮点寄存器B
+#define StackFloatRegisterC fStack0000000000000044    // 栈浮点寄存器C
+#define StackFloatRegisterD fStack000000000000004c    // 栈浮点寄存器D
+
+// 栈变量宏定义 - 美化lStack变量
+#define StackLoopCounter lStack0000000000000060    // 栈循环计数器
+
+// 栈变量宏定义 - 美化stack变量
+#define StackValidationBuffer stack0x00000028    // 栈验证缓冲区
+
+// 栈变量宏定义 - 美化acStack变量
+#define StackSystemStatus acStackX_24    // 栈系统状态
