@@ -48095,7 +48095,7 @@ void CoreEngineProcessSystemContext(void
   int ComparisonResult0;
   unsigned long long MemoryAddressMask1;
   uint *pMemoryAddressMask2;
-  bool in_ZF;
+  bool ZeroFlagValidation;
   bool BooleanValidationFlag43;
   uint32_t stackParameter30;  // 栈参数30，用于存储参数数据
   unsigned long long stackAllocatedMemorySize;  // 栈内存大小，用于内存分配
