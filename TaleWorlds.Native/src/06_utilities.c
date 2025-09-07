@@ -106716,6 +106716,14 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：执行异常处理回调函数，从数据缓冲区的0x110偏移量获取回调函数指针
 #define ExecuteExceptionHandlerCallback460 Unwind_180905460
 
+// 原始函数名：Unwind_18090cae0 - 异常处理器设置函数AE0
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandlerAE0 Unwind_18090cae0
+
+// 原始函数名：Unwind_18090caf0 - 系统资源计数器递减函数AF0
+// 功能：递减系统资源计数器并执行系统函数表操作
+#define DecrementSystemResourceCounterAF0 Unwind_18090caf0
+
 // 原始函数名：Unwind_180905470 - 异常处理回调函数470
 // 功能：执行异常处理回调函数，从数据缓冲区的0x118偏移量获取回调函数指针
 #define ExecuteExceptionHandlerCallback470 Unwind_180905470
