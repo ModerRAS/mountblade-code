@@ -66786,8 +66786,8 @@ void ProcessUIContextDataValidation(int uiContext,int dataSource,int targetBuffe
   uint stackValidation1;
   uint stackValidation2;
   
-  iVar7 = uiContext >> 1;
-  uStackX_20 = bufferSize;
+  contextShift = uiContext >> 1;
+  storedBufferSize = bufferSize;
   if (uiContext == 0x10) {
     compareResult = (*_DAT_180d4a958)();
     uVar8 = compareResult + 0x80U >> 8;
