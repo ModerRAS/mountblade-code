@@ -100034,7 +100034,7 @@ void ProcessFloatDataStructureAndSystemBuffer(float *Utf8InputBuffer,uint64_t Ut
   long long ProcessingResult;
   long long AllocatedMemorySize;
   float CalculatedDistance;
-  float FloatVariable7;
+  float CalculatedSumValue;
   float NormalizedDistanceX;
   float NormalizedDistanceY;
   float StackBufferOffset2c;
@@ -100042,11 +100042,11 @@ void ProcessFloatDataStructureAndSystemBuffer(float *Utf8InputBuffer,uint64_t Ut
   float StackBufferOffset7c;
   
   SystemContextPrimaryFloat = *(float *)(ProcessingResult + 0x100);
-  FloatVariable7 = SystemContextPrimaryFloat + *Utf8InputBuffer;
+  CalculatedSumValue = SystemContextPrimaryFloat + *Utf8InputBuffer;
   ContextSecondaryFloat = *(float *)(ProcessingResult + 0x104);
   CalculatedDistance = ContextSecondaryFloat + Utf8InputBuffer[1];
-  fStack0000000000000078 = FloatVariable7 - SystemContextPrimaryFloat;
-  fStack000000000000007c = CalculatedDistance - ContextSecondaryFloat;
+  StackBufferOffset78 = FloatVariable7 - SystemContextPrimaryFloat;
+  StackBufferOffset7c = CalculatedDistance - ContextSecondaryFloat;
   ProcessSystemBuffer(&SecondaryStackBuffer,0);
   long long AllocatedMemorySize = *(long long *)(Utf16EndPointer + 0x1af8);
   *(void *)(AllocatedMemorySize + 0x144) = 0;
@@ -100059,11 +100059,11 @@ void ProcessFloatDataStructureAndSystemBuffer(float *Utf8InputBuffer,uint64_t Ut
         (ContextSecondaryFloat < *(float *)(MemoryBlockIndex + 0x234))) &&
        (*(float *)(MemoryBlockIndex + 0x228) <= FloatVariable7 && FloatVariable7 != *(float *)(MemoryBlockIndex + 0x228))) &&
       (SystemContextPrimaryFloat < *(float *)(MemoryBlockIndex + 0x230))) || (*(char *)(Utf16EndPointer + 0x2e38) != '\0')) {
-    fStackX_20 = SystemContextPrimaryFloat;
-    fStackX_24 = ContextSecondaryFloat;
+    NormalizedDistanceX = SystemContextPrimaryFloat;
+    NormalizedDistanceY = ContextSecondaryFloat;
     AdditionalParameter1 = FloatVariable7;
-    fStack000000000000002c = CalculatedDistance;
-    OperationStatus = ValidateAndProcessSystemFlags(&fStackX_20,&AdditionalParameter1,1);
+    StackBufferOffset2c = CalculatedDistance;
+    OperationStatus = ValidateAndProcessSystemFlags(&NormalizedDistanceX,&AdditionalParameter1,1);
     if (OperationStatus != '\0') {
       *(uint *)(AllocatedMemorySize + 0x148) = *(uint *)(AllocatedMemorySize + 0x148) | 1;
     }
