@@ -100191,22 +100191,38 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define ExceptionHandlerA77 Unwind_180904090
 #define ExceptionHandlerA78 Unwind_1809040b0
 #define ExceptionHandlerA79 Unwind_1809040d0
+// 原始变量名：_DAT_180d49f80 - 系统异常处理器状态表
+// 功能：存储系统异常处理器的状态信息
 #define SystemExceptionHandlerStateTable _DAT_180d49f80
 
 // 栈变量宏定义 - 美化in_stack变量（补充定义）
-#define StackValidationParameterA StackValidationParameterA    // 栈验证参数A
+// 原始变量名：in_stack_0000000000000008 - 栈验证参数A
+// 功能：存储栈验证参数A
+#define StackValidationParameterA in_stack_0000000000000008
 
 // 栈变量宏定义 - 美化fStack变量
-#define StackFloatRegisterA fStack0000000000000048    // 栈浮点寄存器A
-#define StackFloatRegisterB StackFloatRegisterB    // 栈浮点寄存器B
-#define StackFloatRegisterC StackFloatRegisterC    // 栈浮点寄存器C
-#define StackFloatRegisterD fStack000000000000004c    // 栈浮点寄存器D
+// 原始变量名：fStack0000000000000048 - 栈浮点寄存器A
+// 功能：存储浮点运算的栈寄存器A
+#define StackFloatRegisterA fStack0000000000000048    
+// 原始变量名：fStack0000000000000049 - 栈浮点寄存器B
+// 功能：存储浮点运算的栈寄存器B
+#define StackFloatRegisterB fStack0000000000000049    
+// 原始变量名：fStack000000000000004a - 栈浮点寄存器C
+// 功能：存储浮点运算的栈寄存器C
+#define StackFloatRegisterC fStack000000000000004a    
+// 原始变量名：fStack000000000000004c - 栈浮点寄存器D
+// 功能：存储浮点运算的栈寄存器D
+#define StackFloatRegisterD fStack000000000000004c
 
 // 栈变量宏定义 - 美化lStack变量
-#define StackLoopCounter StackLoopCounter    // 栈循环计数器
+// 原始变量名：lStack_0000000000000008 - 栈循环计数器
+// 功能：存储循环操作的栈计数器
+#define StackLoopCounter lStack_0000000000000008
 
 // 栈变量宏定义 - 美化stack变量
-#define StackValidationBuffer StackValidationBuffer    // 栈验证缓冲区
+// 原始变量名：stack_0000000000000010 - 栈验证缓冲区
+// 功能：存储栈验证操作的缓冲区
+#define StackValidationBuffer stack_0000000000000010
 
 // 栈变量宏定义 - 美化acStack变量
 #define StackSystemStatus acStackX_24    // 栈系统状态
