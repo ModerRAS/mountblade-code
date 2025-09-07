@@ -90084,33 +90084,57 @@ void SetDefaultExceptionHandlerZ0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_1809118e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常回调处理器Z2
+ * 
+ * 该函数负责处理异常回调操作，遍历异常数据缓冲区并执行相应的回调函数
+ * 如果发现异常数据指针为空，则终止系统运行
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809118e0
+ */
+void ProcessExceptionCallbacksZ2(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   DataBuffer *resourcePointer;
-  DataBuffer validationStatus;
+  DataBuffer systemCleanupStatus;
   
-  validationStatus = SystemCleanupFlagfffffffe;
+  systemCleanupStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x78);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x70); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer, 0, operationFlagA, operationFlagB, systemCleanupStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x70) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // WARNING: Subroutine does not return
   TerminateSystemE0();
 }
 
 
 
-void Unwind_1809118f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器Z1
+ * 
+ * 该函数负责管理资源的引用计数，处理内存地址的计算和资源的释放
+ * 当引用计数降为0时，会触发异常处理函数
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_1809118f0
+ */
+void ManageResourceReferenceCountZ1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
   DataBuffer *resourcePointer;
-  int64_t calculatedOffset;
+  int64_t calculatedMemoryOffset;
   uint64_t memoryBaseAddress;
   
   resourcePointer = *(DataBuffer **)(dataBuffer + 0x70);
@@ -90119,12 +90143,12 @@ void Unwind_1809118f0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
-    calculatedOffset = memoryBaseAddress + 0x80 + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
-      *resourcePointer = *(DataBuffer *)(calculatedOffset + 0x20);
-      *(DataBuffer **)(calculatedOffset + 0x20) = resourcePointer;
-      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+    calculatedMemoryOffset = memoryBaseAddress + 0x80 + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedMemoryOffset = calculatedMemoryOffset - (uint64_t)*(uint *)(calculatedMemoryOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedMemoryOffset + 0xe) == '\0')) {
+      *resourcePointer = *(DataBuffer *)(calculatedMemoryOffset + 0x20);
+      *(DataBuffer **)(calculatedMemoryOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedMemoryOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -90132,8 +90156,8 @@ void Unwind_1809118f0(DataBuffer operationBase,int64_t dataBuffer)
       }
     }
     else {
-      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
+      ManageMemory(memoryBaseAddress, CONCAT71(0xff000000, *(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                   resourcePointer, memoryBaseAddress, SystemCleanupFlagfffffffe);
     }
   }
   return;

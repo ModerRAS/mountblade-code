@@ -202154,7 +202154,7 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
   
   SystemStatusBuffer = (void *)MemoryAllocate(MemoryPoolManager, 0x78, 8, 3, 0xfffffffffffffffe);
   FUN_1803456e0(SystemStatusBuffer, Utf8BufferSize, SystemContextPointer);
-  *SystemStatusBuffer = &UNK_180a1e060;
+  *SystemStatusBuffer = &SystemStatusBufferTertiary;
   *(uint32_t *)((long long)SystemStatusBuffer + 0x74) = 0xdeadbeaf;
   *(uint8_t *)(SystemStatusBuffer + 0xe) = 0;
   return SystemStatusBuffer;
