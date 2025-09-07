@@ -10993,119 +10993,120 @@ undefined8 ProcessUIRenderingPipeline(void)
 
 
 
+/**
+ * @brief 更新UI动画状态
+ * 
+ * 处理UI组件的动画状态更新，包括组件变换、矩阵计算和动画插值。
+ * 该函数负责计算组件的位置、旋转和缩放变换，并更新相关的动画状态。
+ * 
+ * @return 更新结果状态码，1表示成功，0表示失败
+ * 
+ * @note 此函数涉及复杂的矩阵变换和动画插值计算
+ * @warning 调用者需要确保UI组件数据的有效性
+ */
 undefined8 UpdateUIAnimationState(void)
 
 {
   float floatResult;
-  longlong componentIndex;
-  float localFloat3;
-  float localFloat4;
-  float localFloat5;
-  float localFloat6;
-  float localFloat7;
-  float localFloat8;
-  float localFloat9;
-  char localChar10;
-  int unmodifiedEBX;
-  float *unmodifiedRBP;
-  undefined8 unmodifiedRDI;
-  int uiOperationResult1;
-  char register9B;
-  longlong register11;
-  longlong unmodifiedR12;
-  float *unmodifiedR13;
-  longlong unmodifiedR14;
-  int unmodifiedR15D;
-  float floatResult2;
-  float in_XMM5_Da;
-  float unmodifiedXMM6_Da;
-  float unmodifiedXMM7_Da;
-  float unmodifiedXMM8_Da;
-  float unmodifiedXMM9_Da;
-  float unmodifiedXMM10_Da;
-  float unmodifiedXMM12_Da;
-  float unmodifiedXMM12_Db;
-  float unmodifiedXMM12_Dc;
-  float unmodifiedXMM12_Dd;
-  float unmodifiedXMM13_Da;
-  float unmodifiedXMM14_Da;
-  float unmodifiedXMM15_Da;
-  float fStack0000000000000030;
-  float fStack0000000000000034;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
+  longlong ComponentIndex;
+  float ComponentValueX;
+  float ComponentValueY;
+  float ComponentValueZ;
+  float ComponentValueW;
+  float TransformValueX;
+  float TransformValueY;
+  char ValidationFlag;
+  int ComponentCount;
+  float *TransformMatrix;
+  undefined8 ComponentData;
+  int ValidationResult;
+  char ComponentStatus;
+  longlong ComponentOffset;
+  float *ComponentBuffer;
+  longlong ComponentSize;
+  int ComponentIteration;
+  float ResultValueX;
+  float ResultValueY;
+  float InputValueX;
+  float InputValueY;
+  float InputValueZ;
+  float InputValueW;
+  float TempValueX;
+  float TempValueY;
+  float TempValueZ;
+  float TempValueW;
   
-  componentIndex = *(longlong *)(unmodifiedR12 + 0x88);
-  uiOperationResult1 = unmodifiedR15D + 1;
+  ComponentIndex = *(longlong *)(ComponentBuffer + 0x88);
+  ValidationResult = ComponentIteration + 1;
   do {
-    if ((register9B == '\0') ||
-       ((floatResult2 = *(float *)(componentIndex + 4 + register11 * 8), floatResult = *(float *)(componentIndex + register11 * 8),
-        floatResult2 = (floatResult2 - *(float *)(componentIndex + 4 + (longlong)(uiOperationResult1 % unmodifiedEBX) * 8))                  (in_XMM5_Da - floatResult) -
-                 (unmodifiedXMM7_Da - floatResult2)                  (floatResult - *(float *)(componentIndex + (longlong)(uiOperationResult1 % unmodifiedEBX) * 8)),
-        floatResult2 <= unmodifiedXMM6_Da && (floatResult2 < unmodifiedXMM6_Da)))) {
-      register9B = '\0';
+    if ((ComponentStatus == '\0') ||
+       ((ResultValueX = *(float *)(ComponentIndex + 4 + ComponentOffset * 8), floatResult = *(float *)(ComponentIndex + ComponentOffset * 8),
+        ResultValueX = (ResultValueX - *(float *)(ComponentIndex + 4 + (longlong)(ValidationResult % ComponentCount) * 8))                  (InputValueX - floatResult) -
+                 (InputValueZ - ResultValueX)                  (floatResult - *(float *)(ComponentIndex + (longlong)(ValidationResult % ComponentCount) * 8)),
+        ResultValueX <= InputValueY && (ResultValueX < InputValueY)))) {
+      ComponentStatus = '\0';
     }
     else {
-      register9B = '\x01';
+      ComponentStatus = '\x01';
     }
-    uiOperationResult1 = uiOperationResult1 + 1;
-    register11 = register11 + 1;
-  } while (register11 < unmodifiedR14);
-  if (register9B == '\0') {
-    if (unmodifiedXMM13_Da * unmodifiedXMM13_Da <= unmodifiedXMM10_Da) {
+    ValidationResult = ValidationResult + 1;
+    ComponentOffset = ComponentOffset + 1;
+  } while (ComponentOffset < ComponentSize);
+  if (ComponentStatus == '\0') {
+    if (TempValueZ * TempValueZ <= TempValueX) {
       return 0;
     }
   }
-  else if (*(char *)(unmodifiedRBP + 0x48) == '\0') {
-    floatResult2 = unmodifiedXMM9_Da * unmodifiedXMM8_Da;
-    if ((unmodifiedXMM6_Da < floatResult2) ||
-       ((floatResult2 = unmodifiedXMM8_Da - unmodifiedXMM9_Da, -1e-05 < floatResult2 && (floatResult2 < 1e-05)))) {
-      if (ABS(unmodifiedXMM8_Da) < ABS(unmodifiedXMM9_Da)) {
-        _fStack0000000000000030 = _fStack0000000000000040;
+  else if (*(char *)(TransformMatrix + 0x48) == '\0') {
+    ResultValueX = TempValueY * InputValueW;
+    if ((InputValueY < ResultValueX) ||
+       ((ResultValueX = InputValueW - TempValueY, -1e-05 < ResultValueX && (ResultValueX < 1e-05)))) {
+      if (ABS(InputValueW) < ABS(TempValueY)) {
+        ComponentValueX = ComponentValueZ;
       }
     }
-    else if (unmodifiedXMM8_Da <= unmodifiedXMM9_Da) {
-      floatResult2 = unmodifiedXMM9_Da - unmodifiedXMM8_Da;
-      unmodifiedRBP[0x40] =
-           (fStack0000000000000040 - fStack0000000000000030) * (unmodifiedXMM9_Da / floatResult2) +
-           fStack0000000000000030;
-      unmodifiedRBP[0x41] =
-           (fStack0000000000000044 - fStack0000000000000034) * (unmodifiedXMM9_Da / floatResult2) +
-           fStack0000000000000034;
-      _fStack0000000000000030 = *(undefined8 *)(unmodifiedRBP + 0x40);
+    else if (InputValueW <= TempValueY) {
+      ResultValueX = TempValueY - InputValueW;
+      TransformMatrix[0x40] =
+           (ComponentValueZ - ComponentValueX) * (TempValueY / ResultValueX) +
+           ComponentValueX;
+      TransformMatrix[0x41] =
+           (ComponentValueW - ComponentValueY) * (TempValueY / ResultValueX) +
+           ComponentValueY;
+      ComponentValueX = *(undefined8 *)(TransformMatrix + 0x40);
     }
     else {
-      unmodifiedRBP[0x40] =
-           (fStack0000000000000030 - fStack0000000000000040) * (unmodifiedXMM8_Da / floatResult2) +
-           fStack0000000000000040;
-      unmodifiedRBP[0x41] =
-           (fStack0000000000000034 - fStack0000000000000044) * (unmodifiedXMM8_Da / floatResult2) +
-           fStack0000000000000044;
-      _fStack0000000000000030 = *(undefined8 *)(unmodifiedRBP + 0x40);
+      TransformMatrix[0x40] =
+           (ComponentValueX - ComponentValueZ) * (InputValueW / ResultValueX) +
+           ComponentValueZ;
+      TransformMatrix[0x41] =
+           (ComponentValueY - ComponentValueW) * (InputValueW / ResultValueX) +
+           ComponentValueW;
+      ComponentValueX = *(undefined8 *)(TransformMatrix + 0x40);
     }
-    *(undefined8 *)(unmodifiedRBP + 0x40) = _fStack0000000000000030;
-    localChar10 = CalculateUIComponentBounds(floatResult2,unmodifiedRBP + 0x40);
-    if (localChar10 == '\0') {
-      _fStack0000000000000030 = unmodifiedRDI;
+    *(undefined8 *)(TransformMatrix + 0x40) = ComponentValueX;
+    ValidationFlag = CalculateUIComponentBounds(ResultValueX,TransformMatrix + 0x40);
+    if (ValidationFlag == '\0') {
+      ComponentValueX = ComponentData;
     }
-    *(undefined8 *)(unmodifiedRBP + 0x40) = _fStack0000000000000030;
-    unmodifiedXMM14_Da = unmodifiedRBP[0x40];
-    unmodifiedXMM15_Da = unmodifiedRBP[0x41];
+    *(undefined8 *)(TransformMatrix + 0x40) = ComponentValueX;
+    TempValueY = TransformMatrix[0x40];
+    TempValueW = TransformMatrix[0x41];
   }
-  floatResult2 = unmodifiedRBP[-7];
-  floatResult = unmodifiedRBP[-6];
-  localFloat3 = unmodifiedRBP[-5];
-  localFloat4 = unmodifiedRBP[-3];
-  localFloat5 = unmodifiedRBP[-2];
-  localFloat6 = unmodifiedRBP[-1];
-  localFloat7 = unmodifiedRBP[1];
-  localFloat8 = unmodifiedRBP[2];
-  localFloat9 = unmodifiedRBP[3];
-  *unmodifiedR13 = unmodifiedXMM12_Da * unmodifiedXMM15_Da + unmodifiedRBP[-8] * unmodifiedXMM14_Da +
-               unmodifiedRBP[-4] * 0.0 + *unmodifiedRBP;
-  unmodifiedR13[1] = unmodifiedXMM12_Db * unmodifiedXMM15_Da + floatResult2 * unmodifiedXMM14_Da + localFloat4 * 0.0 + localFloat7;
-  unmodifiedR13[2] = unmodifiedXMM12_Dc * unmodifiedXMM15_Da + floatResult * unmodifiedXMM14_Da + localFloat5 * 0.0 + localFloat8;
-  unmodifiedR13[3] = unmodifiedXMM12_Dd * unmodifiedXMM15_Da + localFloat3 * unmodifiedXMM14_Da + localFloat6 * 0.0 + localFloat9;
+  ResultValueX = TransformMatrix[-7];
+  floatResult = TransformMatrix[-6];
+  ComponentValueX = TransformMatrix[-5];
+  ComponentValueY = TransformMatrix[-3];
+  ComponentValueZ = TransformMatrix[-2];
+  ComponentValueW = TransformMatrix[-1];
+  TransformValueX = TransformMatrix[1];
+  TransformValueY = TransformMatrix[2];
+  TransformValueZ = TransformMatrix[3];
+  *ComponentBuffer = TempValueX * TempValueW + TransformMatrix[-8] * TempValueY +
+               TransformMatrix[-4] * 0.0 + *TransformMatrix;
+  ComponentBuffer[1] = TempValueY * TempValueW + ResultValueX * TempValueY + ComponentValueY * 0.0 + TransformValueX;
+  ComponentBuffer[2] = TempValueZ * TempValueW + floatResult * TempValueY + ComponentValueZ * 0.0 + TransformValueY;
+  ComponentBuffer[3] = TempValueW * TempValueW + ComponentValueX * TempValueY + ComponentValueW * 0.0 + TransformValueZ;
   return 1;
 }
 
