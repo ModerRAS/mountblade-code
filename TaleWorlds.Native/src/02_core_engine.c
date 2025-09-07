@@ -175700,7 +175700,13 @@ uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsi
 
 
 
-431d0(uint64_t *CharacterCodevoid FUN_1801431d0(uint64_t *CharacterCode
+/**
+ * 初始化字符代码处理器
+ * 设置字符代码处理器的初始状态，配置系统目标数据和内存管理
+ * 
+ * @param CharacterCode 字符代码指针数组
+ */
+void InitializeCharacterCodeProcessor(uint64_t *CharacterCode)
 {
   *CharacterCode = SystemTargetDataSecondary;
   if (*(char*)SystemMemoryCurrentCharacter == '\0') {
@@ -175809,7 +175815,16 @@ uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsi
 
 
 
-43430(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180143430(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * 处理UTF-8到UTF-16的字符编码转换
+ * 执行字符编码转换操作，管理渲染数据操作和系统上下文寄存器
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessUtf8ToUtf16Conversion(long long CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long *SystemContextRegister;
   long long **pSystemRegisterPointerX10;
@@ -175889,7 +175904,14 @@ uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsi
 
 
 
-43610(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_180143610(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * 验证字符代码和系统缓冲区大小
+ * 执行字符代码验证，管理系统缓冲区大小和内存分配
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ */
+void ValidateCharacterCodeAndSystemBufferSize(uint64_t CharacterCode, long long SystemBufferSize)
 {
   uint32_t Utf16Char;
   char *SystemValidationFunction;
