@@ -213,6 +213,16 @@
 #define ProcessCharacterCodeDataConversion FUN_1801251b1
 
 /**
+ * @brief 查找并验证字符串处理节点
+ * 
+ * 该函数负责在字符串处理链表中查找并验证符合条件的节点，
+ * 支持字符串比较和节点遍历操作
+ * 
+ * @note 原始函数名：FUN_180203aa0
+ */
+#define FindAndValidateStringProcessingNode FUN_180203aa0
+
+/**
  * @brief 处理浮点数字符代码
  * 
  * 该函数负责处理浮点数形式的字符代码
@@ -38268,7 +38278,7 @@ SystemEventProcessingComplete: // 原始标签：LAB_1800718e9
     OperationStatus = NULL;
     pSystemFlagB = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)aProcessingStatus);
+    CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)ProcessingStatusBuffer);
   }
 SystemConfigurationValidation: // 原始标签：LAB_1800715eb
   StatusBuffer8 = &CoreEngineDataTemplate;
@@ -126799,25 +126809,25 @@ void ProcessUtf8ToUtf16CharacterEncodingConversion(long long CharacterCode, int 
     ProcessedFloatValue = 4.0;
   }
   *(float *)(MemoryBoundaryEnd + 0x1c04) = NormalizedParameterValue;
-  *(float *)(MemoryBoundaryEnd + 0x1c08) = ProcessedFloatValue8;
+  *(float *)(MemoryBoundaryEnd + 0x1c08) = ProcessedFloatValue;
   *(uint32_t *)(MemoryBoundaryEnd + 0x1bd4) = 1;
   if (CharacterCode == 0) {
-    lStack_168 = CONCAT44(lStack_168.HighPart,Utf8BufferSize);
-    OperateBufferAndSetParameters(aCoreEngineUnsignedValue,0x100,SystemDataTablePointerA8,*systemEventTemplatePointer);
+    StackBuffer168 = CONCAT44(StackBuffer168.HighPart,Utf8BufferSize);
+    OperateBufferAndSetParameters(CoreEngineBuffer,0x100,SystemDataTablePointerA8,*SystemEventTemplatePointer);
   }
   else {
-    lStack_168 = CharacterCode;
-    iStack_160 = Utf8BufferSize;
-    OperateBufferAndSetParameters(aCoreEngineUnsignedValue,0x100,&SystemDataTableSecondaryConfig,*systemEventTemplatePointer);
+    StackBuffer168 = CharacterCode;
+    StackBuffer160 = Utf8BufferSize;
+    OperateBufferAndSetParameters(CoreEngineBuffer,0x100,&SystemDataTableSecondaryConfig,*SystemEventTemplatePointer);
   }
   Utf16Char = *(uint32_t *)(MemoryBoundaryEnd + 0x1650);
-  InitializeSystemStatusBuffer(aCoreEngineUnsignedValue,0,AdditionalParameter1 | MemoryAllocationIndex & 4 | 0x1200103);
+  InitializeSystemStatusBuffer(CoreEngineBuffer,0,AdditionalParameter1 | MemoryAllocationIndex & 4 | 0x1200103);
   DataStructureCounter = *(long long *)(MemoryBoundaryEnd + 0x1af8);
   *(uint32_t *)(MemoryBoundaryEnd + 0x1650) = Utf16Char;
   *(int *)(DataStructureCounter + 0x88) = Utf8BufferSize;
-  *(uint *)(DataStructureCounter + 0xd0) = SystemChecksumValue | shouldReturnSource;
+  *(uint *)(DataStructureCounter + 0xd0) = SystemChecksumValue | ShouldReturnSource;
   if (*(short *)(DataStructureCounter + 0xb8) == 1) {
-    systemEventTemplatePointer[0x20] = *(void *)(DataStructureCounter + 0x40);
+    SystemEventTemplatePointer[0x20] = *(void *)(DataStructureCounter + 0x40);
   }
   if (((*(int *)(MemoryBoundaryEnd + 0x1ca4) == Utf8BufferSize) && ((AdditionalParameter1 & 0x800000) == 0)) &&
      ((*(int *)(DataStructureCounter + 0x174) != 0 || (*(char *)(DataStructureCounter + 0x17d) != '\0')))) {
@@ -126827,7 +126837,7 @@ void ProcessUtf8ToUtf16CharacterEncodingConversion(long long CharacterCode, int 
     *(uint32_t *)(MemoryBoundaryEnd + 0x1b60) = 2;
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)aProcessingStatus);
+  CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)ProcessingStatusBuffer);
 }
 
 
@@ -127125,7 +127135,15 @@ void ProcessCharacterCodeSystemOperations(uint64_t CharacterCode)
 
 
 
-86d8(voidvoid FUN_1801286d8(void
+/**
+ * @brief 处理系统Unicode代码点和内存地址掩码
+ * 
+ * 该函数负责处理系统Unicode代码点和内存地址掩码操作，
+ * 包括代码点计算、内存地址处理和数据大小管理。
+ * 
+ * @note 原始函数名：FUN_1801286d8
+ */
+void ProcessSystemUnicodeCodePointAndMemoryAddressMask(void)
 {
   int LockResult;
   long long BufferStatus;
