@@ -111886,9 +111886,18 @@ void DestroyMutexInPlace(void)
 
 
 
-// 函数: void CleanupThreadMutex(void)
-// 功能：清理线程互斥锁，释放同步资源
-// 返回值：无
+/**
+ * @brief 清理线程互斥锁
+ * 
+ * 该函数负责清理线程互斥锁，释放同步资源
+ * 主要用于线程清理和资源释放
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会清理指定的线程互斥锁资源，确保线程资源正确释放
+ * @warning 确保在调用此函数前已正确释放所有依赖资源
+ * @see DestroyMutexInPlace, DestroyMutexA, DestroyMutexB, DestroyMutexC
+ */
 void CleanupThreadMutex(void)
 
 {
