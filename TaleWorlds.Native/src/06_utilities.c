@@ -8332,22 +8332,22 @@ uint8_t UtilityFilterBufferD;
 // 全局数据指针A35配置缓冲区
 // 功能：存储全局数据指针A35的配置信息
 #define GlobalDataPointerA35ConfigBuffer GlobalDataConfigurationBuffer
-uint8_t GlobalDataPointerA35ConfigBuffer;
+uint8_t CloudServiceConfigBuffer;
 
 // 全局数据指针A35存储区
 // 功能：存储全局数据指针A35的相关信息
 #define GlobalDataPointerA35Storage GlobalDataStorageArea
-uint8_t GlobalDataPointerA35Storage;
+uint8_t CloudServiceStorage;
 
 // 全局数据指针A35状态区
 // 功能：存储全局数据指针A35的状态信息
 #define GlobalDataPointerA35Status GlobalDataStatusFlags
-uint8_t GlobalDataPointerA35Status;
+uint8_t CloudServiceStatus;
 
 // 全局数据指针A35配置区
 // 功能：存储全局数据指针A35的配置信息
 #define GlobalDataPointerA35Config GlobalDataConfigurationSettings
-uint8_t GlobalDataPointerA35Config;
+uint8_t CloudServiceConfig;
 
 // 全局数据指针A35缓存区
 // 功能：存储全局数据指针A35的缓存数据
