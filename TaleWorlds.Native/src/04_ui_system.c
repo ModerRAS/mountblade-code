@@ -9562,11 +9562,11 @@ LAB_1806575f7:
         contextData = *(longlong *)(targetBuffer + 8) - (longlong)pathCharacterPtr;
         do {
           isCharacterMatch = *pathCharacterPtr;
-          uVar4 = (uint)pbVar3[contextData];
-          if (isCharacterMatch != uVar4) break;
-          pbVar3 = pbVar3 + 1;
-        } while (uVar4 != 0);
-        if ((int)(isCharacterMatch - uVar4) < 1) goto LAB_1806575f7;
+          characterCode = (uint)pathCharacterPtr[contextData];
+          if (isCharacterMatch != characterCode) break;
+          pathCharacterPtr = pathCharacterPtr + 1;
+        } while (characterCode != 0);
+        if ((int)(isCharacterMatch - characterCode) < 1) goto LAB_1806575f7;
       }
     }
   }

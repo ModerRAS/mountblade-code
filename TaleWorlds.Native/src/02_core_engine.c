@@ -133927,7 +133927,7 @@ LAB_18012ce0f:
 
 
 
-9dbb(voidvoid FUN_180129dbb(void
+void InitializeSystemStringProcessing(void)
 {
   uint16_t *StatusBuffer;
   int *pCharacterByteCount;
@@ -135618,7 +135618,7 @@ LAB_18012ce0f:
 
 
 
-9e9e(uint64_t CharacterCodevoid FUN_180129e9e(uint64_t CharacterCode
+void ProcessSystemCharacterValidation(uint64_t CharacterCode)
 {
   uint16_t *StatusBuffer;
   int *pCharacterByteCount;
@@ -138918,7 +138918,7 @@ LAB_18012ce0f:
 
 
 
-a023(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_18012a023(uint64_t CharacterCode,long long Utf8BufferSize
+void ProcessSystemMemoryAllocation(uint64_t CharacterCode,long long Utf8BufferSize)
 {
   uint16_t *StatusBuffer;
   int *pCharacterByteCount;
@@ -140479,7 +140479,7 @@ LAB_18012b510:
 
 
 
-ae5a(float CharacterCode,float Utf8BufferSize,float Utf8SourcePointer,float Utf16EndPointervoid FUN_18012ae5a(float CharacterCode,float Utf8BufferSize,float Utf8SourcePointer,float Utf16EndPointer
+void ProcessSystemFloatVectorOperation(float CharacterCode,float Utf8BufferSize,float Utf8SourcePointer,float Utf16EndPointer)
 {
   int *ReferenceCountPointer;
   byte *HighBytePointer;
