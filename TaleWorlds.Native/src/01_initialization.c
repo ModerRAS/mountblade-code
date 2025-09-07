@@ -50010,9 +50010,9 @@ void InitializeSystemResourceManagerB(void* *SystemResourceManager)
   long long SystemThreadFlags;
   long long LocalDataIndex;
   long long SystemMemoryPointer;
-  long long resourceCounter;
+  long long ResourceCounter;
   ulong long SystemOperationFlags;
-  bool IsByteValid1;
+  bool IsMemoryAllocationValid;
   
   *SystemResourceManager = &SystemResourceTemplateA;
   ResourceAllocationContext = SystemResourceManager[4];

@@ -28352,6 +28352,15 @@ void SafeReleaseMemoryReferenceCount(void
  * 
  180057830，ProcessSystemEventQueue
  */
+/**
+ * @brief 处理系统事件队列
+ * 
+ * 该函数负责处理系统事件队列中的所有待处理事件，遍历事件队列并调用相应的事件处理器。
+ * 
+ * @param eventQueuePointer 事件队列指针，指向包含事件处理信息的队列结构
+ * 
+ * @note 该函数遍历事件队列中的每个事件，如果事件不为空，则调用对应的事件处理器函数
+ */
 void ProcessSystemEventQueue(long long *eventQueuePointer) {
   long long *eventHandlerPointer;
   long long *currentEvent;
@@ -116638,7 +116647,7 @@ LAB_18011f1e4:
     if (in_stack_000000f0 == 0.0) goto LAB_18011f326;
     ContextSecondaryFloat = in_stack_000000f0;
     FloatVariable4 = (float)ProcessSystemFloatEx(CharacterCode,*SourceIndex);
-    IntegerValue = ProcessValidationCheck(in_stack_00000100);
+    IntegerValue = ProcessValidationCheck(ValidationResultFlag2);
     Utf8BufferSize = 0x3f800000;
     CharacterCode = extraout_XMM0_Qa;
     if (IntegerValue < 1) {
