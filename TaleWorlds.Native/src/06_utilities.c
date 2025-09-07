@@ -2933,6 +2933,22 @@
 // 功能：存储异常处理的数据表信息
 #define ExceptionDataTable4 UNK_1809fd0a0
 
+// 原始变量名：UNK_180982508 - 数据验证标志表
+// 功能：存储数据验证的标志信息
+#define DataValidationFlagTable UNK_180982508
+
+// 原始变量名：UNK_180982608 - 数据处理状态表
+// 功能：存储数据处理的状态信息
+#define DataProcessingStatusTable UNK_180982608
+
+// 原始变量名：UNK_180982588 - 系统状态标志表
+// 功能：存储系统状态的标志信息
+#define SystemStatusFlagTable UNK_180982588
+
+// 原始变量名：UNK_180985a80 - 系统配置数据表
+// 功能：存储系统配置的数据表信息
+#define SystemConfigurationDataTable UNK_180985a80
+
 // 原始变量名：UNK_180983588 - 系统验证数据表A0
 // 功能：存储系统验证相关的数据表信息
 #define SystemValidationDataTableA0 UNK_180983588
@@ -7503,16 +7519,36 @@ uint8_t SystemDataTableA0;
 // 功能：处理系统配置操作
 #define ProcessSystemConfigurationA0 FUN_1809430b0
 uint8_t ProcessSystemConfigurationA0;
-uint8_t UNK_180a38958;
-uint8_t UNK_180a38978;
-uint8_t UNK_180a38988;
-uint8_t UNK_180a389b0;
-uint8_t UNK_180a389d8;
-uint8_t UNK_180a389f0;
-uint8_t UNK_180a38a08;
-uint8_t UNK_180a38a20;
-uint8_t UNK_180a38a3c;
-uint8_t UNK_180a38a48;
+// 系统内存管理区A0
+// 功能：用于系统内存管理的区域
+uint8_t SystemMemoryManagementAreaA0;
+// 系统内存管理区A1
+// 功能：用于系统内存管理的区域
+uint8_t SystemMemoryManagementAreaA1;
+// 系统内存管理区A2
+// 功能：用于系统内存管理的区域
+uint8_t SystemMemoryManagementAreaA2;
+// 系统内存管理区A3
+// 功能：用于系统内存管理的区域
+uint8_t SystemMemoryManagementAreaA3;
+// 系统内存管理区A4
+// 功能：用于系统内存管理的区域
+uint8_t SystemMemoryManagementAreaA4;
+// 系统内存管理区A5
+// 功能：用于系统内存管理的区域
+uint8_t SystemMemoryManagementAreaA5;
+// 系统内存管理区A6
+// 功能：用于系统内存管理的区域
+uint8_t SystemMemoryManagementAreaA6;
+// 系统内存管理区A7
+// 功能：用于系统内存管理的区域
+uint8_t SystemMemoryManagementAreaA7;
+// 系统内存管理区A8
+// 功能：用于系统内存管理的区域
+uint8_t SystemMemoryManagementAreaA8;
+// 系统内存管理区A9
+// 功能：用于系统内存管理的区域
+uint8_t SystemMemoryManagementAreaA9;
 uint8_t UNK_180a38a60;
 uint8_t UNK_180a38a78;
 uint8_t UNK_180a38a88;
@@ -33372,7 +33408,21 @@ DataBuffer ProcessDataConversionA1(int64_t operationBase,int64_t *dataBuffer)
 
 
 
-uint64_t FUN_18089f970(int64_t operationBase,int64_t *dataBuffer)
+/**
+ * @brief 处理数据和指针操作
+ * 
+ * 该函数负责处理数据与指针相关的操作，包括数据验证、内存访问、
+ * 颜色分量处理等。函数会根据操作基地址和数据缓冲区进行复杂的数据处理。
+ * 
+ * @param operationBase 操作基地址，用于计算各种偏移量
+ * @param dataBuffer 数据缓冲区指针，包含输入和输出数据
+ * @return uint64_t 操作结果状态码，0表示成功，其他值表示错误
+ * 
+ * @note 该函数会处理蓝色和Alpha颜色分量、颜色打包数据等
+ * @note 函数内部会进行多次数据验证和错误检查
+ * @note 如果验证失败，函数会调用系统清理例程
+ */
+uint64_t ProcessDataWithPointerOperation(int64_t operationBase,int64_t *dataBuffer)
 
 {
   int64_t validationContext;
