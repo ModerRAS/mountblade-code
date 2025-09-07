@@ -67939,8 +67939,16 @@ LAB_18069f21f:
 
 
 
- void FUN_18069f2f0(longlong uiContext)
-void FUN_18069f2f0(longlong uiContext)
+ /**
+ * @brief 初始化UI事件系统
+ * 
+ * 初始化UI系统的事件处理机制，设置事件队列和处理器
+ * 
+ * @param uiContext UI上下文指针
+ * 
+ * @note 原始函数名: FUN_18069f2f0
+ */
+void InitializeUIEventSystem(longlong uiContext)
 
 {
   longlong allocatedMemory;
@@ -68431,8 +68439,18 @@ void InitializeUISystem(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18069f9c0(longlong uiContext,longlong dataSource,char *targetBuffer)
-void FUN_18069f9c0(longlong uiContext,longlong dataSource,char *targetBuffer)
+ /**
+ * @brief 处理UI资源同步
+ * 
+ * 处理UI系统中的资源同步操作，确保资源状态的一致性
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * 
+ * @note 原始函数名: FUN_18069f9c0
+ */
+void ProcessUIResourceSynchronization(longlong uiContext,longlong dataSource,char *targetBuffer)
 
 {
   longlong allocatedMemory;
@@ -69473,8 +69491,24 @@ LAB_1806a011c:
 
 
 
- void FUN_180701330(longlong uiContext,int dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
-void FUN_180701330(longlong uiContext,int dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
+ /**
+ * @brief 处理UI组件状态更新
+ * 
+ * 处理UI组件的状态更新操作，包括状态验证和同步
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7
+ * @param param_8 参数8
+ * @param param_9 参数9
+ * 
+ * @note 原始函数名: FUN_180701330
+ */
+void ProcessUIComponentStateUpdate(longlong uiContext,int dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
                   int param_6,int param_7,int param_8,undefined4 param_9)
 
 {
@@ -70008,8 +70042,21 @@ undefined8 InitializeUITargetBuffer(undefined8 uiContext,undefined8 dataSource,u
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180703510(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,int resultPointer,int param_6
-void FUN_180703510(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,int resultPointer,int param_6
+ /**
+ * @brief 处理UI组件渲染数据
+ * 
+ * 处理UI组件的渲染数据，包括渲染参数计算和数据处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * 
+ * @note 原始函数名: FUN_180703510
+ */
+void ProcessUIComponentRenderData(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,int resultPointer,int param_6
                   )
 
 {
@@ -70284,8 +70331,20 @@ void FUN_180703510(longlong uiContext,longlong dataSource,int targetBuffer,int b
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180703a80(longlong *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined4 bufferSize,
-void FUN_180703a80(longlong *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined4 bufferSize,
+ /**
+ * @brief 处理UI动画数据
+ * 
+ * 处理UI系统的动画数据，包括动画参数计算和状态更新
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * 
+ * @note 原始函数名: FUN_180703a80
+ */
+void ProcessUIAnimationData(longlong *uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined4 bufferSize,
                   int resultPointer)
 
 {
@@ -70400,8 +70459,19 @@ bool FUN_1807040a0(longlong uiContext,longlong dataSource,int targetBuffer,int b
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807042f0(undefined8 uiContext,int dataSource,undefined4 targetBuffer,undefined8 bufferSize)
-void FUN_1807042f0(undefined8 uiContext,int dataSource,undefined4 targetBuffer,undefined8 bufferSize)
+ /**
+ * @brief 处理UI纹理数据
+ * 
+ * 处理UI系统的纹理数据，包括纹理加载和渲染准备
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名: FUN_1807042f0
+ */
+void ProcessUITextureData(undefined8 uiContext,int dataSource,undefined4 targetBuffer,undefined8 bufferSize)
 
 {
   undefined1 astackUIntc8 [16];
