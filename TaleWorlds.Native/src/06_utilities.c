@@ -101103,7 +101103,7 @@ void ResetSystemExceptionHandlerPointers(void)
  * 
  * @note 原始函数名：ResetUtilityPointers2
  */
-void ResetUtilityPointers2(void)
+void ResetSystemResourceManagerPointers(void)
 
 {
   UtilitySystemPointer2 = &DefaultExceptionHandler;
@@ -101122,7 +101122,7 @@ void ResetUtilityPointers2(void)
  * 
  * @note 原始函数名：ResetUtilityPointers3
  */
-void ResetUtilityPointers3(void)
+void ResetSystemMemoryManagerPointers(void)
 
 {
   UtilitySystemPointer3 = &DefaultExceptionHandler;
@@ -105576,8 +105576,8 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define DataBufferPointerA0 UNK_180a07218
 #define DataBufferPointerA1 UNK_180a05068
 #define DataBufferPointerA2 UNK_180a05240
-#define SystemMemoryAllocationBuffer SystemMemoryAllocationBuffer
-#define ExceptionDataBufferA ExceptionDataBufferA
+#define SystemMemoryAllocationBuffer UNK_180a01660
+#define ExceptionDataBufferA UNK_180a02e68
 #define ResourceExceptionHandlerBuffer UNK_1809ffa18
 #define ResourceTableA UNK_180a14bb8
 #define ResourceTableB UNK_180a14c60
@@ -105705,7 +105705,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define ExceptionHandlerA77 Unwind_180904090
 #define ExceptionHandlerA78 Unwind_1809040b0
 #define ExceptionHandlerA79 Unwind_1809040d0
-// 原始变量名：_DAT_180d49f80 - 系统异常处理器状态表
+// 系统异常处理器状态表
 // 功能：存储系统异常处理器的状态信息
 #define SystemExceptionHandlerStateTable _DAT_180d49f80
 
