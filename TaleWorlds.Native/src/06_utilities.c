@@ -38675,17 +38675,17 @@ void ValidateExceptionDataPointer(DataBuffer exceptionContext, int64_t contextDa
   // 计算基地址和偏移量
   baseAddress = (uint64_t)dataPointer & MemoryRegionMask;
   if (baseAddress != 0) {
-    memoryBlockOffset = baseAddress + 0x80 + ((int64_t)dataPointer - baseAddress >> 0x10) * 0x50;
+    memoryBlockOffset = baseAddress + ExceptionMemoryRegionOffset + ((int64_t)dataPointer - baseAddress >> 0x10) * ExceptionMemoryBlockMultiplier;
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     
     // 检查是否为异常列表且状态标志为0
-    if ((*(void ***)(baseAddress + 0x70) == &ExceptionList) && (*(char *)(memoryBlockOffset + 0xe) == '\0')) {
+    if ((*(void ***)(baseAddress + ExceptionMemoryRegionOffset70) == &ExceptionList) && (*(char *)(memoryBlockOffset + ExceptionHandlerPointerOffsetE) == '\0')) {
       // 更新指针链表
-      *dataPointer = *(DataBuffer *)(memoryBlockOffset + 0x20);
-      *(DataBuffer **)(memoryBlockOffset + 0x20) = dataPointer;
+      *dataPointer = *(DataBuffer *)(memoryBlockOffset + ExceptionHandlerPointerOffset20);
+      *(DataBuffer **)(memoryBlockOffset + ExceptionHandlerPointerOffset20) = dataPointer;
       
       // 减少引用计数
-      referenceCount = (int *)(memoryBlockOffset + 0x18);
+      referenceCount = (int *)(memoryBlockOffset + ExceptionHandlerPointerOffset18);
       *referenceCount = *referenceCount + -1;
       if (*referenceCount == 0) {
         HandleExceptionE0();
@@ -38694,7 +38694,7 @@ void ValidateExceptionDataPointer(DataBuffer exceptionContext, int64_t contextDa
     }
     else {
       // 调用异常处理函数
-      ManageMemory(baseAddress,SetBitFlag(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
+      ManageMemory(baseAddress,SetBitFlag(0xff000000,*(void ***)(baseAddress + ExceptionMemoryRegionOffset70) == &ExceptionList),
                           dataPointer,baseAddress,SystemCleanupFlagAlternative);
     }
   }
