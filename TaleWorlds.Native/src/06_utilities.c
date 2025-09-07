@@ -115082,7 +115082,7 @@ void DestroyMutexLockA0(void)
 
 
 
-void FUN_180942a60(void)
+void SetDefaultExceptionHandlerC0(void)
 /**
  * @brief 设置默认异常处理器函数C0
  * 
