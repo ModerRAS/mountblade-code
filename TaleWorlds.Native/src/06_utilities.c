@@ -3956,6 +3956,10 @@
 // 功能：重置系统状态
 #define ResetSystemStateE0 FUN_180639250
 
+// 原始函数名：FUN_1803aeb70 - 数据处理函数E0
+// 功能：处理数据操作
+#define ProcessDataOperationE0 FUN_1803aeb70
+
 // 工具系统数据处理函数宏定义
 // 原始函数名：FUN_1808d73b0 - 数据验证和处理函数A0
 // 功能：验证数据有效性并执行相应的处理操作
@@ -7581,21 +7585,21 @@ uint8_t SystemMemoryManagementAreaA8;
 // 系统内存管理区A9
 // 功能：用于系统内存管理的区域
 uint8_t SystemMemoryManagementAreaA9;
-uint8_t UNK_180a38a60;
-uint8_t UNK_180a38a78;
-uint8_t UNK_180a38a88;
-uint8_t UNK_180a38aa8;
-uint8_t UNK_180a38ac0;
-uint8_t UNK_180a38ad8;
-uint8_t UNK_180a38ae8;
-uint8_t UNK_180a38b20;
-uint8_t UNK_180a38b48;
-uint8_t UNK_180a38b60;
-uint8_t UNK_180a38b70;
-uint8_t UNK_180a38b88;
-uint8_t UNK_180a38ba0;
-uint8_t UNK_180a38bb8;
-uint8_t UNK_180a38bd0;
+uint8_t SystemStatusByteA0;
+uint8_t SystemStatusByteA1;
+uint8_t SystemStatusByteA2;
+uint8_t SystemStatusByteA3;
+uint8_t SystemStatusByteA4;
+uint8_t SystemStatusByteA5;
+uint8_t SystemStatusByteA6;
+uint8_t SystemStatusByteA7;
+uint8_t SystemStatusByteA8;
+uint8_t SystemStatusByteA9;
+uint8_t SystemStatusByteA10;
+uint8_t SystemStatusByteA11;
+uint8_t SystemStatusByteA12;
+uint8_t SystemStatusByteA13;
+uint8_t SystemStatusByteA14;
 uint8_t UNK_180a38be0;
 uint8_t UNK_180a38be8;
 uint8_t UNK_180a38c08;
@@ -19872,7 +19876,7 @@ ValidateDataSecurity:
         pfVar21 = (float *)(register_R15 + 0x94);
         fVar19 = register_R13D;
         do {
-          fVar1 = *pfVar21;
+          floatValidationValue = *pfVar21;
           if (fVar1 != 0.0) {
             StackParameter38 = StackParameter20;
             in_stack_00000028 = &UNK_1809839d8;
@@ -20737,9 +20741,9 @@ DataProcessingCheckpoint:
                   (afStack_348[0] = *(float *)(validationContextPointer6[2] + 0x10 + validationContext5), afStack_348[0] != -NAN))
           ;
           fVar1 = (float)((int)fVar18 + 1);
-          bVar20 = fVar18 != -NAN;
+          isFloatValueValid = fVar18 != -NAN;
           fVar18 = 0.0;
-          if (bVar20) {
+          if (isFloatValueValid) {
             fVar18 = fVar1;
           }
           if (fVar18 != *(float *)(validationContextPointer6 + 1)) {
@@ -36565,7 +36569,7 @@ void SetExceptionHandlerTablePointer(DataBuffer operationBase,int64_t dataBuffer
 void HandleExceptionRecoveryC0(DataBuffer context, int64_t exceptionData, DataBuffer recoveryParameter, DataBuffer additionalData)
 
 {
-  FUN_1803aeb70(*(int64_t *)(exceptionData + 0x70) + 0x98,
+  ProcessDataOperationE0(*(int64_t *)(exceptionData + 0x70) + 0x98,
                 *(DataBuffer *)(*(int64_t *)(exceptionData + 0x70) + 0xa8), recoveryParameter, additionalData,
                 SystemCleanupFlagfffffffe);
   return;
@@ -36596,7 +36600,7 @@ void DestroyMutexResources(void)
 void CallCleanupFunctionForOffset78(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
-  FUN_1803aeb70(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
+  ProcessDataOperationE0(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -36617,7 +36621,7 @@ void CallCleanupFunctionForOffset78(DataBuffer operationBase, int64_t dataBuffer
 void HandleExceptionRecoveryD0(DataBuffer context, int64_t exceptionData, DataBuffer recoveryParameter, DataBuffer additionalData)
 
 {
-  FUN_1803aeb70(*(int64_t *)(exceptionData + 0x78),*(DataBuffer *)(*(int64_t *)(exceptionData + 0x78) + 0x10),
+  ProcessDataOperationE0(*(int64_t *)(exceptionData + 0x78),*(DataBuffer *)(*(int64_t *)(exceptionData + 0x78) + 0x10),
                 recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
   return;
 }
