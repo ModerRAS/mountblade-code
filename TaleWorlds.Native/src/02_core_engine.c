@@ -130673,7 +130673,7 @@ LAB_18012ce0f:
   *(float *)(StackParameter2 + 0x30) = FloatValue32;
   *(uint32_t *)((long long)StackParameter2 + 0x184) = *(uint32_t *)(MemoryPoolBlockSize + 0x1c5c);
   if ((((uint)FloatValue34 & 0x21) == 0) && ((*(byte *)((long long)StackParameter2 + 0x432) & 1) == 0)) {
-    FUN_180120c80(StackParameter2,FrameRegisterPointer + 0x20);
+    ProcessSystemMemoryAllocationAndDataManagement(StackParameter2,FrameRegisterPointer + 0x20);
     if ((((*(long long **)(MemoryPoolBlockSize + 0x1b00) == StackParameter2) && (*(int *)(MemoryPoolBlockSize + 0x1b18) == 0)        && (*(int *)(MemoryPoolBlockSize + 0x1b20) == 0)) &&
        ((SystemStatusChar = ValidateAndProcessSystemFlags(FrameRegisterPointer + 0x20,FrameRegisterPointer + 0x22,1), SystemStatusChar != '\0' &&
         (*(char *)(MemoryPoolBlockSize + 0x415) != '\0')))) {
@@ -131112,7 +131112,7 @@ LAB_18012ac57:
       _TemporaryFloatStack50 =
            CONCAT44(*(float *)((long long)pBufferIndex + 0x4c) + *(float *)((long long)pBufferIndex + 0x44),
                     *(float *)(pBufferIndex + 8) + *(float *)(pBufferIndex + 9));
-      FUN_18011fcd0(FrameRegisterPointer + 0xe,pBufferIndex + 8,&TertiaryDataBuffer,pSecondaryFloatValue + -2);
+      ExecuteFloatingPointOperationAndVectorProcessing(FrameRegisterPointer + 0xe,pBufferIndex + 8,&TertiaryDataBuffer,pSecondaryFloatValue + -2);
       FloatValue36 = FloatValue33 * *pSecondaryFloatValue + FrameRegisterPointer[0xe];
       FloatValue35 = pSecondaryFloatValue[1];
       FloatValue39 = FloatValue33 * pSecondaryFloatValue[1] + FrameRegisterPointer[0xf];
@@ -131148,7 +131148,7 @@ LAB_18012b18f:
           FrameRegisterPointer[0x11] = FloatValue39 * -FloatValue33;
           FrameRegisterPointer[0x12] = FloatValue34 * FloatValue35;
           FrameRegisterPointer[0x13] = FloatValue34 * FloatValue39;
-          pSystemContextPrimaryFloat8 = (float *)FUN_18011fcd0(FrameRegisterPointer + 0x1c,FrameRegisterPointer + 0x12,FrameRegisterPointer + 0x10,
+          pSystemContextPrimaryFloat8 = (float *)ExecuteFloatingPointOperationAndVectorProcessing(FrameRegisterPointer + 0x1c,FrameRegisterPointer + 0x12,FrameRegisterPointer + 0x10,
                                                  pSecondaryFloatValue + -2);
           FloatValue35 = *(float *)(CharacterTablePointer5 + 0x118);
           FloatValue39 = *(float *)(CharacterTablePointer5 + 0x1b48);
