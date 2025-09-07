@@ -230,6 +230,22 @@
 #define ProcessUIComponentOpacity func_0x0001807673c0
 #define ProcessUIRenderOpacity FUN_180785c10
 
+// UI系统渲染参数美化
+#define renderParam1 stackParam00000048
+#define renderParam2 stackParam00000050
+#define renderParam3 stackParam00000058
+#define renderParam4 stackParam00000060
+#define renderParam5 stackParam00000068
+#define renderParam6 stackParam00000070
+#define colorRegister9_Dc stackParam00000128
+#define colorRegister9_Da stackParam00000120
+#define colorRegister8_Dc stackParam00000138
+#define colorRegister8_Da stackParam00000130
+#define colorRegister7_Dc stackParam00000148
+#define colorRegister7_Da stackParam00000140
+#define colorRegister6_Dc stackParam00000158
+#define colorRegister6_Da stackParam00000150
+
 // UI系统函数宏定义 - 查找UI数据索引
 #define FindUIDataIndex FUN_18087b530
 
