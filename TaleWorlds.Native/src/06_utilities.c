@@ -744,6 +744,13 @@
 #define ExceptionHandlerLevel3_SecondaryStatusOffset 0xf28
 #define ExceptionHandlerLevel3_SecondaryStateOffset 0xf38
 
+// 异常处理器级别3的额外偏移量
+#define ExceptionHandlerLevel3_FunctionPointerSecondaryOffset 0xdb0
+#define ExceptionHandlerLevel3_CallbackParamSecondaryOffset 0xda0
+#define ExceptionHandlerLevel3_TemporaryHandlerSecondaryOffset 0xd78
+#define ExceptionHandlerLevel3_TemporaryStatusSecondaryOffset 0xd80
+#define ExceptionHandlerLevel3_TemporaryStateSecondaryOffset 0xd90
+
 #define ExceptionHandlerLevel4_FunctionPointerOffset 0x1090
 #define ExceptionHandlerLevel4_CallbackParamOffset 0x1080
 #define ExceptionHandlerLevel4_TemporaryHandlerOffset 0x1060
@@ -753,6 +760,12 @@
 #define ExceptionHandlerLevel4_SecondaryStatusOffset 0x1048
 #define ExceptionHandlerLevel4_SecondaryStateOffset 0x1058
 
+// 异常处理器级别4的额外偏移量
+#define ExceptionHandlerLevel4_FunctionPointerSecondaryOffset 0xde8
+#define ExceptionHandlerLevel4_TemporaryHandlerSecondaryOffset 0xdc8
+#define ExceptionHandlerLevel4_TemporaryStatusSecondaryOffset 0xdd0
+#define ExceptionHandlerLevel4_TemporaryStateSecondaryOffset 0xde0
+
 #define ExceptionHandlerLevel5_FunctionPointerOffset 0x11b0
 #define ExceptionHandlerLevel5_CallbackParamOffset 0x11a0
 #define ExceptionHandlerLevel5_TemporaryHandlerOffset 0x1178
@@ -761,6 +774,12 @@
 #define ExceptionHandlerLevel5_SecondaryHandlerOffset 0x1158
 #define ExceptionHandlerLevel5_SecondaryStatusOffset 0x1160
 #define ExceptionHandlerLevel5_SecondaryStateOffset 0x1170
+
+// 异常处理器级别5的额外偏移量
+#define ExceptionHandlerLevel5_FunctionPointerSecondaryOffset 0xee0
+#define ExceptionHandlerLevel5_CallbackParamSecondaryOffset 0xed0
+#define ExceptionHandlerLevel5_TemporaryHandlerSecondaryOffset 0xeb0
+#define ExceptionHandlerLevel5_TemporaryStatusSecondaryOffset 0xeb8
 
 #define ExceptionHandlerLevel6_FunctionPointerOffset 0x12d0
 #define ExceptionHandlerLevel6_CallbackParamOffset 0x12c0
@@ -50034,17 +50053,17 @@ void CleanupExceptionHandlersLevel3(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionHandlerContext;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0xdb0) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0xdb0))(exceptionHandlerContext + 0xda0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerLevel3_FunctionPointerSecondaryOffset) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerLevel3_FunctionPointerSecondaryOffset))(exceptionHandlerContext + ExceptionHandlerLevel3_CallbackParamSecondaryOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xd78) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xd80) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel3_TemporaryHandlerSecondaryOffset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerLevel3_TemporaryStatusSecondaryOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xd80) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xd90) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xd78) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0xd58) = &TemporaryExceptionHandler;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel3_TemporaryStatusSecondaryOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerLevel3_TemporaryStateSecondaryOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel3_TemporaryHandlerSecondaryOffset) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel3_SecondaryHandlerOffset) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xd60) != 0) {
       TerminateSystemE0();
   }
@@ -100228,7 +100247,21 @@ void ReleaseMemoryResourceCopy(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910760(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证异常处理上下文并终止系统
+ * 
+ * 该函数验证异常处理上下文的有效性，遍历异常处理上下文中的所有数据项，
+ * 检查是否有无效的异常处理数据。如果发现任何问题，立即终止系统运行。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针（int64_t类型）
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于确保异常处理系统的完整性和安全性
+ * @warning 如果发现异常处理上下文有问题，会立即终止系统
+ */
+void ValidateExceptionHandlerContextAndTerminateSystem(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100248,7 +100281,21 @@ void Unwind_180910760(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910770(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放偏移量30处的内存资源并管理引用计数
+ * 
+ * 该函数释放数据缓冲区偏移量30处的内存资源，并管理相应的引用计数。
+ * 这是内存资源管理的另一个变体实现，用于处理不同位置的内存资源。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针（int64_t类型）
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数处理偏移量30处的内存资源，与其他函数类似但位置不同
+ * @warning 确保内存资源指针有效，避免内存泄漏
+ */
+void ReleaseMemoryResourceAtOffset30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -116504,6 +116551,14 @@ uint8_t SystemExceptionHandlerStateTable;
 // 原始函数名：Unwind_180910750 - 内存资源释放副本函数
 // 功能：释放内存资源的副本实现
 #define ReleaseMemoryResourceCopy Unwind_180910750
+
+// 原始函数名：Unwind_180910760 - 异常处理上下文验证函数
+// 功能：验证异常处理上下文并终止系统
+#define ValidateExceptionHandlerContextAndTerminateSystem Unwind_180910760
+
+// 原始函数名：Unwind_180910770 - 偏移量30处内存资源释放函数
+// 功能：释放偏移量30处的内存资源并管理引用计数
+#define ReleaseMemoryResourceAtOffset30 Unwind_180910770
 
 /**
  * @file 06_utilities.c 总结
