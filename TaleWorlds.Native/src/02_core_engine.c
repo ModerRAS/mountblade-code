@@ -200141,7 +200141,9 @@ void ReleaseAndCleanupSystemResources(void
 
 
 
-uint64_t * FUN_18017a200(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize
+// 系统次级上下文缓冲区处理函数
+// 处理系统次级上下文缓冲区的操作，管理次要上下文数据的内存分配
+uint64_t * ProcessSecondarySystemContextBuffer(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize
 {
   *SystemContextPointer = SystemContextDataSecondary;
   if ((Utf8BufferSize & 1) != 0) {
@@ -200153,7 +200155,9 @@ uint64_t * FUN_18017a200(uint64_t *SystemContextPointer,unsigned long long Utf8B
 
 
 
-7a240(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_18017a240(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+7a240(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer// UTF-16编码处理和系统事件函数
+// 处理UTF-16编码和系统事件的协调操作，管理编码过程中的事件触发
+void ProcessUtf16EncodingAndSystemEvent(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   FUN_18017b400(SystemContextPointer,*(void *)(SystemContextPointer + 0x10),Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
   return;

@@ -73366,7 +73366,7 @@ void Unwind_18090c2e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090c2f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x78) = &UNK_180a07218;
+  **(DataBuffer **)(dataBuffer + 0x78) = &SystemMemoryManagerPointerA;
   return;
 }
 
@@ -86843,7 +86843,7 @@ void Unwind_180910360(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910390(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x40) = &UNK_180a05068;
+  **(DataBuffer **)(dataBuffer + 0x40) = &SystemMemoryPoolPointerA;
   return;
 }
 
