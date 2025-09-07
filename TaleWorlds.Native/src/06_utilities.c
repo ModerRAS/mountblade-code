@@ -50133,7 +50133,7 @@ void CleanupSystemResourcesA2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905230(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionHandlerA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x278) = &DefaultExceptionHandlerB;
@@ -50142,7 +50142,7 @@ void Unwind_180905230(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905240(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x250) = &DefaultExceptionHandlerB;
@@ -50151,7 +50151,7 @@ void Unwind_180905240(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -74087,6 +74087,14 @@ void Unwind_18090c460(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常处理器清理函数A1
+ * 
+ * 该函数负责在异常处理过程中清理上下文，设置默认异常处理器B
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ */
 void Unwind_18090c470(DataBuffer operationBase,int64_t dataBuffer)
 
 {
