@@ -168827,7 +168827,18 @@ LAB_18013c174:
 
 
 
-3c380(long long CharacterCode,uint32_t *Utf8InputBufferSize,int Utf8SourcePointervoid FUN_18013c380(long long CharacterCode,uint32_t *Utf8InputBufferSize,int Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码验证和转换
+ * 
+ * 该函数负责处理UTF-8字符编码的验证和转换操作，包括字符编码的验证和转换。
+ * 主要用于系统字符编码的验证和转换操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @note 原始函数名：FUN_18013c380
+ */
+void ProcessUtf8CharacterEncodingValidationAndConversion(long long CharacterCode,uint32_t *Utf8InputBufferSize,int Utf8SourcePointer
 {
   uint32_t *CharacterStatusBuffer;
   uint *PrimaryProcessingStatusFlag;
