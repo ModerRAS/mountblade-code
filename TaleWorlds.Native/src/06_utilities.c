@@ -2216,9 +2216,9 @@
 // 功能：处理内存复制操作
 #define ProcessMemoryCopyA0 FUN_1808935c0
 
-// 原始函数名：ProcessDataBufferValidation - 数据缓冲区处理函数
-// 功能：处理数据缓冲区验证和操作
-#define ProcessDataBufferValidation FUN_1802c24b0
+// 原始函数名：FUN_1802c24b0 - 数据缓冲区验证处理函数
+// 功能：处理数据缓冲区验证操作，确保数据完整性和安全性
+#define ValidateDataBufferSecurity FUN_1802c24b0
 
 // 原始函数名：HandleSystemException - 异常处理函数
 // 功能：处理系统异常和清理操作
@@ -3237,6 +3237,10 @@
 // 原始变量名：UNK_180983738 - 验证上下文A0
 // 功能：存储验证操作的上下文信息
 #define ValidationContextA0 UNK_180983738
+
+// 原始变量名：UNK_1809ff498 - 异常数据表地址
+// 功能：存储异常数据表的地址信息
+#define ExceptionDataTableAddress UNK_1809ff498
 
 // 原始变量名：UNK_1809837c0 - 验证上下文A1
 // 功能：存储验证操作的上下文信息
@@ -50003,7 +50007,17 @@ void Unwind_180905470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理回调函数A0
+ * 
+ * 调用异常处理回调函数，用于处理数据缓冲区的异常情况
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ExceptionHandlerCallbackA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -50017,7 +50031,17 @@ void Unwind_180905480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理回调函数A1
+ * 
+ * 调用异常处理回调函数，用于处理数据缓冲区的异常情况
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ExceptionHandlerCallbackA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -50031,7 +50055,15 @@ void Unwind_180905490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809054a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统状态验证函数A0
+ * 
+ * 验证系统状态，如果状态异常则终止系统
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void ValidateSystemStatusA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(char *)(dataBuffer + 0x48) == '\0') && (*(int64_t *)(dataBuffer + 0x30) != 0)) {
@@ -50043,7 +50075,15 @@ void Unwind_1809054a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809054b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统状态验证函数A1
+ * 
+ * 验证系统状态，如果状态异常则终止系统
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void ValidateSystemStatusA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(char *)(dataBuffer + 0x68) == '\0') && (*(int64_t *)(dataBuffer + 0x50) != 0)) {
@@ -50055,7 +50095,15 @@ void Unwind_1809054b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809054c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数A0
+ * 
+ * 初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void InitializeExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x90) = &TemporaryExceptionHandler;
@@ -50071,7 +50119,15 @@ void Unwind_1809054c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809054d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数A1
+ * 
+ * 初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void InitializeExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x90) = &TemporaryExceptionHandler;
@@ -50087,7 +50143,15 @@ void Unwind_1809054d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809054e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数
+ * 
+ * 设置默认异常处理器到数据缓冲区
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void SetDefaultExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x100) = &DefaultExceptionHandlerB;
@@ -50096,13 +50160,21 @@ void Unwind_1809054e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809054f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据缓冲区初始化函数
+ * 
+ * 初始化异常数据缓冲区，设置异常处理器并处理异常
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void InitializeExceptionDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x50);
-  *exceptionDataBuffer = &UNK_1809ff498;
+  *exceptionDataBuffer = &ExceptionDataTableAddress;
   InitializeSystemA0();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
@@ -50115,7 +50187,12 @@ void Unwind_1809054f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905500(void)
+/**
+ * @brief 互斥量销毁函数A0
+ * 
+ * 销毁互斥量资源
+ */
+void DestroyMutexA0(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -50124,7 +50201,12 @@ void Unwind_180905500(void)
 
 
 
-void Unwind_180905520(void)
+/**
+ * @brief 互斥量销毁函数A1
+ * 
+ * 销毁互斥量资源
+ */
+void DestroyMutexA1(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -50133,7 +50215,15 @@ void Unwind_180905520(void)
 
 
 
-void Unwind_180905540(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理函数
+ * 
+ * 管理资源的引用计数，当引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -50169,7 +50259,15 @@ void Unwind_180905540(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905560(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数A1
+ * 
+ * 设置默认异常处理器到数据缓冲区的指定位置
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void SetDefaultExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x60) = &DefaultExceptionHandlerB;
@@ -50178,7 +50276,12 @@ void Unwind_180905560(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905570(void)
+/**
+ * @brief 互斥量销毁函数A2
+ * 
+ * 销毁互斥量资源
+ */
+void DestroyMutexA2(void)
 
 {
   _Mtx_destroy_in_situ();
