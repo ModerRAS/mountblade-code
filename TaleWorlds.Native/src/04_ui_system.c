@@ -100040,73 +100040,99 @@ void FUN_18072aac5(int uiContext,undefined8 dataSource,uint targetBuffer,int buf
 
 
 
- void FUN_18072aae3(int uiContext,undefined8 dataSource,uint targetBuffer,int bufferSize)
-void FUN_18072aae3(int uiContext,undefined8 dataSource,uint targetBuffer,int bufferSize)
+ /**
+ * @brief 处理UI缓冲区位运算和累加操作
+ * 
+ * 该函数负责处理UI缓冲区的位运算操作，包括位移计算和累加操作
+ * 主要用于UI数据的处理和优化
+ * 
+ * @param uiContext UI上下文参数
+ * @param dataSource 数据源参数
+ * @param targetBuffer 目标缓冲区参数
+ * @param bufferSize 缓冲区大小参数
+ * @return 无返回值
+ * 
+ * @note 原始函数名: FUN_18072aae3
+ */
+void ProcessUIBufferBitwiseOperation(int uiContext, uint64_t dataSource, uint targetBuffer, int bufferSize)
 
 {
-  short *psVar1;
-  short sVar2;
-  uint uVar3;
-  int iVar4;
-  int unaff_EBX;
-  int unaff_ESI;
-  short *psVar5;
-  ulonglong uVar6;
-  int in_R11D;
-  int iVar7;
-  int *unaff_R12;
-  short *unaff_R14;
-  int *unaff_R15;
+  short *bufferPointer1;
+  short bufferValue;
+  uint iterationCount;
+  int bitShiftCount;
+  int dataOffsetEBX;
+  int dataLengthESI;
+  short *bufferPointer2;
+  ulonglong loopCounter;
+  int registerR11D;
+  int tempValue;
+  int *resultPointerR12;
+  short *dataPointerR14;
+  int *resultPointerR15;
   
-  iVar4 = 0x1f;
+  bitShiftCount = 0x1f;
   if (targetBuffer != 0) {
-    for (; targetBuffer >> iVar4 == 0; iVar4 = iVar4 + -1) {
+    for (; targetBuffer >> bitShiftCount == 0; bitShiftCount = bitShiftCount + -1) {
     }
   }
-  iVar4 = (uiContext - (in_R11D - iVar4)) + 3;
-  if (iVar4 < 0) {
-    iVar4 = bufferSize;
+  bitShiftCount = (uiContext - (registerR11D - bitShiftCount)) + 3;
+  if (bitShiftCount < 0) {
+    bitShiftCount = bufferSize;
   }
-  iVar7 = bufferSize;
-  if (0 < unaff_ESI) {
-    uVar3 = (unaff_ESI - 1U >> 1) + 1;
-    uVar6 = (ulonglong)uVar3;
-    iVar7 = uVar3 * 2;
-    psVar5 = unaff_R14;
+  tempValue = bufferSize;
+  if (0 < dataLengthESI) {
+    iterationCount = (dataLengthESI - 1U >> 1) + 1;
+    loopCounter = (ulonglong)iterationCount;
+    tempValue = iterationCount * 2;
+    bufferPointer2 = dataPointerR14;
     do {
-      psVar1 = psVar5 + 1;
-      sVar2 = *psVar5;
-      psVar5 = psVar5 + 2;
-      bufferSize = bufferSize + ((uint)((int)sVar2 * (int)sVar2 + (int)*psVar1 * (int)*psVar1) >>
-                          ((byte)iVar4 & 0x1f));
-      uVar6 = uVar6 - 1;
-    } while (uVar6 != 0);
+      bufferPointer1 = bufferPointer2 + 1;
+      bufferValue = *bufferPointer2;
+      bufferPointer2 = bufferPointer2 + 2;
+      bufferSize = bufferSize + ((uint)((int)bufferValue * (int)bufferValue + (int)*bufferPointer1 * (int)*bufferPointer1) >>
+                          ((byte)bitShiftCount & 0x1f));
+      loopCounter = loopCounter - 1;
+    } while (loopCounter != 0);
   }
-  if (iVar7 < unaff_EBX) {
-    bufferSize = bufferSize + ((uint)((int)unaff_R14[iVar7] * (int)unaff_R14[iVar7]) >>
-                        ((byte)iVar4 & 0x1f));
+  if (tempValue < dataOffsetEBX) {
+    bufferSize = bufferSize + ((uint)((int)dataPointerR14[tempValue] * (int)dataPointerR14[tempValue]) >>
+                        ((byte)bitShiftCount & 0x1f));
   }
-  *unaff_R15 = iVar4;
-  *unaff_R12 = bufferSize;
+  *resultPointerR15 = bitShiftCount;
+  *resultPointerR12 = bufferSize;
   return;
 }
 
 
 
 
- void FUN_18072ab4f(undefined4 uiContext,undefined8 dataSource,undefined8 targetBuffer,int bufferSize)
-void FUN_18072ab4f(undefined4 uiContext,undefined8 dataSource,undefined8 targetBuffer,int bufferSize)
+ /**
+ * @brief 处理UI缓冲区平方运算和位移操作
+ * 
+ * 该函数负责处理UI缓冲区的平方运算和位移操作
+ * 主要用于UI数据的数学运算和优化
+ * 
+ * @param uiContext UI上下文参数
+ * @param dataSource 数据源参数
+ * @param targetBuffer 目标缓冲区参数
+ * @param bufferSize 缓冲区大小参数
+ * @return 无返回值
+ * 
+ * @note 原始函数名: FUN_18072ab4f
+ */
+void ProcessUIBufferSquareOperation(uint32_t uiContext, uint64_t dataSource, uint64_t targetBuffer, int bufferSize)
 
 {
   int operationResult;
-  int in_R11D;
-  int *unaff_R12;
-  longlong unaff_R14;
-  undefined4 *unaff_R15;
+  int registerR11D;
+  int *resultPointerR12;
+  int64_t dataPointerR14;
+  uint32_t *resultPointerR15;
   
-  operationResult = (int)*(short *)(unaff_R14 + (longlong)in_R11D * 2);
-  *unaff_R15 = uiContext;
-  *unaff_R12 = bufferSize + ((uint)(operationResult * operationResult) >> ((byte)uiContext & 0x1f));
+  operationResult = (int)*(short *)(dataPointerR14 + (int64_t)registerR11D * 2);
+  *resultPointerR15 = uiContext;
+  *resultPointerR12 = bufferSize + ((uint)(operationResult * operationResult) >> ((byte)uiContext & 0x1f));
   return;
 }
 
