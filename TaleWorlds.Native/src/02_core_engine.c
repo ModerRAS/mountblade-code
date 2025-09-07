@@ -161196,23 +161196,23 @@ void ProcessUtf8ToUtf16MemoryAllocationAndFloatCalculation(long long CharacterCo
   uint64_t StackParameter1;
   uint64_t StackParameter2;
   
-  afStackX_20[1] = (float)((unsigned long long)RegisterXMM0Value >> 0x20);
+  StackFloatArray[1] = (float)((unsigned long long)RegisterXMM0Value >> 0x20);
   CalculatedDistance = (float)RegisterXMM0Value;
   MemoryAllocationIndex = (int)Utf16EndPointer;
-  ProcessStringBuffer = (int)((unsigned long long)Utf16EndPointer >> 0x20);
+  StringProcessingBuffer = (int)((unsigned long long)Utf16EndPointer >> 0x20);
   do {
     BufferStatus = *(long long *)(CharacterCode + 0x10);
-    MemoryBlockIndex = *(long long *)(CharacterCode + 0x18);
-    uStack0000000000000080 = CONCAT44(ProcessStringBuffer,MemoryAllocationIndex);
-    uStack0000000000000098 = CONCAT44(afStackX_20[1],CalculatedDistance);
-    hasComparisonResult = *(byte *)(BufferStatus + 0xa0);
+    long long MemoryBlockIndex = *(long long *)(CharacterCode + 0x18);
+    StackParameter1 = CONCAT44(StringProcessingBuffer,MemoryAllocationIndex);
+    StackParameter2 = CONCAT44(StackFloatArray[1],CalculatedDistance);
+    byte HasComparisonResult = *(byte *)(BufferStatus + 0xa0);
     SystemStatusCode = MemoryAllocationIndex;
-    QuaternaryReturnCode = ProcessStringBuffer;
-    afStackX_20[0] = CalculatedDistance;
-    if (((hasComparisonResult & 4) != 0) && ((*(byte *)(MemoryBlockIndex + 0xa0) & 4) != 0)) {
+    QuaternaryReturnCode = StringProcessingBuffer;
+    StackFloatArray[0] = CalculatedDistance;
+    if (((HasComparisonResult & 4) != 0) && ((*(byte *)(MemoryBlockIndex + 0xa0) & 4) != 0)) {
       AllocatedMemorySize = (long long)*(int *)(CharacterCode + 0x50);
       CalculatedDistance = *(float *)(SystemDataConfiguration + 0x163c + AllocatedMemorySize * 4);
-      FloatValue8 = *(float *)((long long)&AdditionalParameter1 + AllocatedMemorySize * 4) - in_XMM5_Da;
+      TertiaryFloatValue = *(float *)((long long)&AdditionalParameter1 + AllocatedMemorySize * 4) - InputParameterFloat;
       CalculatedDistance = CalculatedDistance + CalculatedDistance;
       if (FloatValue8 <= 0.0) {
         MemoryAllocationThreshold1 = 0.0;
