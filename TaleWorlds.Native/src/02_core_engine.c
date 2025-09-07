@@ -114330,10 +114330,10 @@ unsigned long long ProcessFloatDataComparisonAndConfiguration(float CharacterCod
   long long NullPointerValue;
   float ContextPrimaryFloat9;
   uint32_t UnsignedSystemParameter28;
-  float fStack000000000000002c;
+  float SystemContextSecondaryFloat;
   uint32_t UnsignedStackProcessingParameter30;
-  uint32_t uStack0000000000000034;
-  uint32_t uStack0000000000000038;
+  uint32_t SystemConfigurationDataIndex34;
+  uint32_t SystemConfigurationDataIndex38;
   uint32_t UnsignedStackProcessingParameter3C;
   uint32_t StackProcessingVariable40;
   unsigned long long PrimaryReturnCode;
@@ -179161,67 +179161,67 @@ void ProcessUtf8ToUtf16ConversionWithValidation(uint64_t CharacterCode,uint64_t 
  */
 void AllocateMemoryAndManageBuffer(long long *CharacterCode,uint64_t *CharacterCodeSize)
 {
-  long long *CharacterCode;
+  long long *CharacterCodePointer;
   unsigned long long MemoryAllocationIndex;
-  uint64_t *systemEventTemplatePointer;
+  uint64_t *SystemEventTemplatePointer;
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
   int ProcessIterationCount;
-  long long secondaryLoopCounter;
+  long long SecondaryLoopCounter;
   uint64_t SystemMemoryAllocationResult;
   int ArrayIndex;
-  bool BooleanVariable11;
+  bool IsMemoryBlockValid;
   
-  AllocatedMemorySize = *CharacterCode;
+  AllocatedMemorySize = *CharacterCodePointer;
   ArrayIndex = 0;
-  SystemDataTablePointer = CharacterCode[1] - AllocatedMemorySize >> 0x3f;
-  if ((CharacterCode[1] - AllocatedMemorySize) / 0x30 + SystemDataTablePointer != SystemDataTablePointer) {
+  SystemDataTablePointer = CharacterCodePointer[1] - AllocatedMemorySize >> 0x3f;
+  if ((CharacterCodePointer[1] - AllocatedMemorySize) / 0x30 + SystemDataTablePointer != SystemDataTablePointer) {
     SystemDataTablePointer = 0;
     do {
       MemoryAllocationIndex = *(unsigned long long *)(AllocatedMemorySize + 0x28 + SystemDataTablePointer);
-      IsMemoryBlockEqual = true;
-      pMemoryAddressMask = (void *)SystemBufferSize[2];
-      systemEventTemplatePointer = SystemBufferSize;
-      while (pMemoryAddressMask != NULL) {
-        IsMemoryBlockEqual = MemoryAllocationIndex < (unsigned long long)pMemoryAddressMask[4];
-        systemEventTemplatePointer = pMemoryAddressMask;
-        if (IsMemoryBlockEqual) {
-          pMemoryAddressMask = (void *)pMemoryAddressMask[1];
+      IsMemoryBlockValid = true;
+      MemoryAddressMask = (void *)SystemBufferSize[2];
+      SystemEventTemplatePointer = SystemBufferSize;
+      while (MemoryAddressMask != NULL) {
+        IsMemoryBlockValid = MemoryAllocationIndex < (unsigned long long)MemoryAddressMask[4];
+        SystemEventTemplatePointer = MemoryAddressMask;
+        if (IsMemoryBlockValid) {
+          MemoryAddressMask = (void *)MemoryAddressMask[1];
         }
         else {
-          pMemoryAddressMask = (void *)*pMemoryAddressMask;
+          MemoryAddressMask = (void *)*MemoryAddressMask;
         }
       }
-      pMemoryAddressMask = systemEventTemplatePointer;
-      if (IsMemoryBlockEqual) {
-        if (systemEventTemplatePointer == (void *)SystemBufferSize[1]) goto LAB_18014b52a;
-        pMemoryAddressMask = (void *)GetPreviousMemoryBlockIndex(systemEventTemplatePointer);
+      MemoryAddressMask = SystemEventTemplatePointer;
+      if (IsMemoryBlockValid) {
+        if (SystemEventTemplatePointer == (void *)SystemBufferSize[1]) goto LAB_18014b52a;
+        MemoryAddressMask = (void *)GetPreviousMemoryBlockIndex(SystemEventTemplatePointer);
       }
-      if ((unsigned long long)pMemoryAddressMask[4] < MemoryAllocationIndex) {
+      if ((unsigned long long)MemoryAddressMask[4] < MemoryAllocationIndex) {
 LAB_18014b52a:
         AllocatedMemorySize = BufferAllocate(MemoryPoolManager,0x28,*(uint8_t *)(SystemBufferSize + 5));
         *(unsigned long long *)(AllocatedMemorySize + 0x20) = MemoryAllocationIndex;
-        if ((systemEventTemplatePointer == SystemBufferSize) || (MemoryAllocationIndex < (unsigned long long)systemEventTemplatePointer[4])) {
+        if ((SystemEventTemplatePointer == SystemBufferSize) || (MemoryAllocationIndex < (unsigned long long)SystemEventTemplatePointer[4])) {
           SystemMemoryAllocationResult = 0;
         }
         else {
           SystemMemoryAllocationResult = 1;
         }
                     // WARNING: Subroutine does not return
-        AllocateMemoryWithFlags(AllocatedMemorySize,systemEventTemplatePointer,SystemBufferSize,SystemMemoryAllocationResult);
+        AllocateMemoryWithFlags(AllocatedMemorySize,SystemEventTemplatePointer,SystemBufferSize,SystemMemoryAllocationResult);
       }
-      AllocatedMemorySize = *CharacterCode;
+      AllocatedMemorySize = *CharacterCodePointer;
       ArrayIndex = ArrayIndex + 1;
       SystemDataTablePointer = SystemDataTablePointer + 0x30;
-    } while ((unsigned long long)(long long)ArrayIndex < (unsigned long long)((CharacterCode[1] - AllocatedMemorySize) / 0x30));
+    } while ((unsigned long long)(long long)ArrayIndex < (unsigned long long)((CharacterCodePointer[1] - AllocatedMemorySize) / 0x30));
   }
-  AllocatedMemorySize = CharacterCode[4];
+  AllocatedMemorySize = CharacterCodePointer[4];
   ArrayIndex = 0;
-  if (CharacterCode[5] - AllocatedMemorySize >> 5 != 0) {
+  if (CharacterCodePointer[5] - AllocatedMemorySize >> 5 != 0) {
     SystemDataTablePointer = 0;
     do {
-      IsMemoryBlockEqual = true;
+      IsMemoryBlockValid = true;
       MemoryAllocationIndex = *(unsigned long long *)(AllocatedMemorySize + 0x18 + SystemDataTablePointer);
       pMemoryAddressMask = (void *)SystemBufferSize[2];
       systemEventTemplatePointer = SystemBufferSize;
