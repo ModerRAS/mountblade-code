@@ -64802,11 +64802,11 @@ void ProcessUIComponentQueue(int *uiContext,int *dataSource)
   }
   operationResult = dataSource[0x19];
   validationResult = operationResult / 2;
-  FUN_18069c3b0(*(undefined8 *)(dataSource + 0xe),dataSource[4],dataSource[2],dataSource[3],operationResult,operationResult,
+  ProcessUIComponentMemoryOperations(*(undefined8 *)(dataSource + 0xe),dataSource[4],dataSource[2],dataSource[3],operationResult,operationResult,
                 (dataSource[1] - dataSource[3]) + operationResult,(operationResult - dataSource[2]) + *dataSource);
-  FUN_18069c3b0(*(undefined8 *)(dataSource + 0x10),dataSource[9],dataSource[7],dataSource[8],validationResult,validationResult,
+  ProcessUIComponentMemoryOperations(*(undefined8 *)(dataSource + 0x10),dataSource[9],dataSource[7],dataSource[8],validationResult,validationResult,
                 (dataSource[6] - dataSource[8]) + validationResult,(dataSource[5] - dataSource[7]) + validationResult);
-  FUN_18069c3b0(*(undefined8 *)(dataSource + 0x12),dataSource[9],dataSource[7],dataSource[8],validationResult,validationResult,
+  ProcessUIComponentMemoryOperations(*(undefined8 *)(dataSource + 0x12),dataSource[9],dataSource[7],dataSource[8],validationResult,validationResult,
                 (dataSource[6] - dataSource[8]) + validationResult,(dataSource[5] - dataSource[7]) + validationResult);
   return;
 }
@@ -64827,7 +64827,7 @@ void ProcessUIComponentQueue(int *uiContext,int *dataSource)
   
   operationResult = uiContext[0x19];
   validationResult = operationResult / 2;
-  FUN_18069c3b0(*(undefined8 *)(uiContext + 0xe),uiContext[4],uiContext[2],uiContext[3],operationResult,operationResult,
+  ProcessUIComponentMemoryOperations(*(undefined8 *)(uiContext + 0xe),uiContext[4],uiContext[2],uiContext[3],operationResult,operationResult,
                 (uiContext[1] - uiContext[3]) + operationResult,(operationResult - uiContext[2]) + *uiContext);
   FUN_18069c3b0(*(undefined8 *)(uiContext + 0x10),uiContext[9],uiContext[7],uiContext[8],validationResult,validationResult,
                 (uiContext[6] - uiContext[8]) + validationResult,(uiContext[5] - uiContext[7]) + validationResult);
