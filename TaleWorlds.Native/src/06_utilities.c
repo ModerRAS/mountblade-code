@@ -72875,7 +72875,16 @@ void ExecuteExceptionHandlerCallbackOffset88(DataBuffer operationBase,int64_t da
 
 
 
-void Unwind_180908b50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量0x30+0x28处的异常处理器回调
+ * 
+ * 从数据缓冲区偏移量0x30处获取上下文指针，然后从该上下文的偏移量0x28处
+ * 获取异常处理器指针，如果存在则执行该异常处理器的回调函数。
+ * 
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ */
+void ExecuteExceptionHandlerCallbackOffset30_28(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -72889,7 +72898,16 @@ void Unwind_180908b50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908b60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量0x30+0x20处的异常处理器回调
+ * 
+ * 从数据缓冲区偏移量0x30处获取上下文指针，然后从该上下文的偏移量0x20处
+ * 获取异常处理器指针，如果存在则执行该异常处理器的回调函数。
+ * 
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ */
+void ExecuteExceptionHandlerCallbackOffset30_20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -72903,7 +72921,16 @@ void Unwind_180908b60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908b70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量0x88处的异常处理器回调（重复）
+ * 
+ * 检查数据缓冲区偏移量0x88处是否存在有效的异常处理器指针，
+ * 如果存在则执行该异常处理器的回调函数（偏移量0x38处）。
+ * 
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ */
+void ExecuteExceptionHandlerCallbackOffset88_Alt(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x88) != (int64_t *)0x0) {
