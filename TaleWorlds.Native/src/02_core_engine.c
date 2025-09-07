@@ -169386,18 +169386,18 @@ void FinalizeSystemBufferProcessing(void)
  */
 void ProcessSystemConfigurationAndTarget(long long CharacterCode, char* Utf8InputBufferSize, char* Utf8SourcePointer)
 {
-  long long PrimaryDataSize;
-  bool HighByte;
-  long long MemoryOffset;
-  int EncodingValidationResult;
-  char *pCharacterVariable5;
-  int ValidationResult;
-  char *StringDataPointer;
-  char *pSystemStatusChar;
-  int IntegerValue9;
+  SystemLong PrimaryDataSize;
+  SystemBool HighByte;
+  SystemLong MemoryOffset;
+  SystemInt EncodingValidationResult;
+  SystemByte* CharacterVariable5;
+  SystemInt ValidationResult;
+  SystemByte* StringDataPointer;
+  SystemByte* SystemStatusChar;
+  SystemInt IntegerValue9;
   
-  MemoryBlockIndex = SystemConfigurationHandle;
-  CharacterTablePointer = *(long long *)(SystemConfigurationHandle + 0x1af8);
+  SystemLong MemoryBlockIndex = SystemConfigurationHandle;
+  SystemLong* CharacterTablePointer = *(SystemLong**)(SystemConfigurationHandle + 0x1af8);
   if ((Utf8SourcePointer == (char *)0x0) && (Utf8SourcePointer = Utf8BufferSize, Utf8BufferSize != (char *)0xffffffffffffffff)) {
     while (*Utf8SourcePointer != '\0') {
       if (((*Utf8SourcePointer == '#') && (Utf8SourcePointer[1] == '#')) ||
