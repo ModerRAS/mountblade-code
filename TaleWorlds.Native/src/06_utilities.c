@@ -79686,49 +79686,89 @@ void ManageMemoryPointerFlagAF0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180909b20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 互斥体解锁函数B20
+ * 
+ * 该函数负责解锁系统互斥体，如果解锁失败则抛出异常
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180909b20
+ * @note 这是一个互斥体解锁函数，用于解锁系统互斥体资源
+ */
+void UnlockSystemMutexB20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x38));
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemMutexOffset));
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
   return;
 }
 
 
 
-void Unwind_180909b30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数B30
+ * 
+ * 该函数负责调用偏移量0x28处的异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180909b30
+ * @note 这是一个异常处理器调用函数，用于调用特定偏移量的异常处理器
+ */
+void InvokeExceptionHandlerB30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + 0x28);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + ExceptionHandlerSecondaryOffset);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset))();
   }
   return;
 }
 
 
 
-void Unwind_180909b40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数B40
+ * 
+ * 该函数负责调用偏移量0x50处的异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180909b40
+ * @note 这是一个异常处理器调用函数，用于调用特定偏移量的异常处理器
+ */
+void InvokeExceptionHandlerB40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x28);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + ExceptionHandlerSecondaryOffset);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset))();
   }
   return;
 }
 
 
 
-void Unwind_180909b50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数B50
+ * 
+ * 该函数负责设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180909b50
+ * @note 这是一个默认异常处理器设置函数，用于设置默认异常处理器B
+ */
+void SetDefaultExceptionHandlerB50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + FloatValueOffset0) = &DefaultExceptionHandlerB;
@@ -79737,21 +79777,41 @@ void Unwind_180909b50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909b60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数B60
+ * 
+ * 该函数负责调用偏移量0x48处的异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180909b60
+ * @note 这是一个异常处理器调用函数，用于调用特定偏移量的异常处理器
+ */
+void InvokeExceptionHandlerB60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x48) + 0x28);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset48) + ExceptionHandlerSecondaryOffset);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset))();
   }
   return;
 }
 
 
 
-void Unwind_180909b70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据清理函数B70
+ * 
+ * 该函数负责清理异常数据表和句柄表，销毁互斥体和条件变量
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180909b70
+ * @note 这是一个异常数据清理函数，用于清理异常数据表和句柄表
+ */
+void CleanupExceptionDataB70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -79768,14 +79828,24 @@ void Unwind_180909b70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909b80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数B80
+ * 
+ * 该函数负责调用偏移量0xe8处的异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180909b80
+ * @note 这是一个异常处理器调用函数，用于调用特定偏移量的异常处理器
+ */
+void InvokeExceptionHandlerB80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ValidationResultOffset) + 0xe8);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ValidationResultOffset) + ExceptionHandlerStatusQuinaryOffset);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset))();
   }
   return;
 }
@@ -79984,24 +80054,41 @@ void SetupExceptionHandlerAtOffsetE0(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180909d00(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 清理异常处理器链580
+ * 
+ * 该函数负责清理偏移量0x580处的异常处理器链，遍历所有异常处理器
+ * 并调用相应的清理函数。此函数确保在系统异常处理完成后的资源正确释放。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909d00
+ */
+void CleanupExceptionHandlerChain580(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int64_t *exceptionHandlerContextPointer;
-  int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *ExceptionHandlerContextPointer;
+  int64_t *DataContext;
+  int64_t *MemoryBlockIterator;
   
-  dataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x580);
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x588);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionHandlerContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + 0x38))();
+  DataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x580);
+  ExceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x588);
+  
+  // 遍历异常处理器链，调用每个处理器的清理函数
+  for (MemoryBlockIterator = (int64_t *)*DataContext; MemoryBlockIterator != ExceptionHandlerContextPointer; MemoryBlockIterator = MemoryBlockIterator + 1) {
+    if ((int64_t *)*MemoryBlockIterator != (int64_t *)0x0) {
+      // 调用异常处理器的清理函数
+      (**(FunctionPointer**)(*(int64_t *)*MemoryBlockIterator + 0x38))();
     }
   }
-  if (*dataContext == 0) {
+  
+  // 检查数据上下文是否为空
+  if (*DataContext == 0) {
     return;
   }
-    TerminateSystemE0();
+  
+  // 如果数据上下文不为空，终止系统
+  TerminateSystemE0();
 }
 
 
