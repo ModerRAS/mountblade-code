@@ -399,7 +399,7 @@ const void* const SystemTemporaryProcessingStatusFlag = (void*)0x180a095f0;
 const void* const SystemSecondaryProcessingStatusFlag = (void*)0x180a09520;
 const void* const SystemStatusBufferTertiary = (void*)0x180a095d0;
 const void* const SystemStatusBufferQuaternary = (void*)0x180a095b0;
-const void* const SystemTertiaryProcessingStatusFlag = (void*)0x180a094b0;
+const void* const SystemStringProcessingStatus = (void*)0x180a094b0;
 const void* const SystemPrimaryProcessingStatusFlag = (void*)0x180a09578;
 const void* const SystemSecondaryProcessingStatusFlagAlt = (void*)0x180a094e8;
 const void* const SystemMemoryValidationPointerPrimary = (void*)0x180a09078;
@@ -987,7 +987,7 @@ const void* const SystemDataTableSecondary = (void*)0x180a0b57c;
 const void* const SystemDataTemplatePointer = (void*)0x180a00300;
 const void* const CharacterTablePointerPointer = (void*)0x180a04ee4;
 const void* const SystemSecondaryProcessingStatusFlag = (void*)0x180a0aea0;
-const void* const SystemTertiaryProcessingStatusFlag = (void*)0x180a06430;
+const void* const SystemStringProcessingStatus = (void*)0x180a06430;
 const void* const SystemQuaternaryProcessingStatusFlag = (void*)0x180a0f804;
 const void* const SystemEventDataTable = (void*)0x180a035c0;
 const void* const SystemFloatConstantPointer = (void*)0x180a3fc80;
@@ -1017,7 +1017,7 @@ const void* const SystemMemoryBoundaryCheck6 = (void*)0x180a0af54;
 
 // 系统处理状态标志常量 - 用于替换UNK_180a07218等变量
 const void* const SystemSecondaryProcessingStatusFlagAddress = (void*)0x180a07218;
-const void* const SystemTertiaryProcessingStatusFlagAddress = (void*)0x180a071f8;
+const void* const SystemStringProcessingStatusAddress = (void*)0x180a071f8;
 
 // 系统函数指针常量 - 用于替换UNK_18018a0f0等变量
 const void* const SystemFunctionDispatchPointer = (void*)0x18018a0f0;
@@ -2222,7 +2222,7 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 #define ProcessCharacterCodeAndSystemContext FUN_180095da0
 
 // 原始函数名：FUN_180058710 - 三级数据指针处理函数
-#define ProcessTertiaryProcessingStatusFlag FUN_180058710
+#define ProcessStringProcessingStatus FUN_180058710
 
 // 原始函数名：ProcessSystemFunctionTable - 字符串处理和缓冲区操作函数
 #define ProcessStringAndBufferOperation ProcessSystemFunctionTable
@@ -9724,25 +9724,25 @@ void CoreEngineInitializeConnectionPoolManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
-  TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
-  TertiaryProcessingStatusFlag[9] = 4;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x431d7c8d7c475be2;
+  StringProcessingStatus[7] = 0xb97f048d2153e1b0;
+  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[9] = 4;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -9785,25 +9785,25 @@ void CoreEngineInitializeNetworkResourceManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4b2d79e470ee4e2c;
-  TertiaryProcessingStatusFlag[7] = 0x9c552acd3ed5548d;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateA;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4b2d79e470ee4e2c;
+  StringProcessingStatus[7] = 0x9c552acd3ed5548d;
+  StringProcessingStatus[8] = &SystemConnectionTemplateA;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -10271,25 +10271,25 @@ void CoreEngineInitializeConnectionManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
-  TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
-  TertiaryProcessingStatusFlag[9] = 4;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x431d7c8d7c475be2;
+  StringProcessingStatus[7] = 0xb97f048d2153e1b0;
+  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[9] = 4;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -10378,25 +10378,25 @@ void CoreEngineInitializeQueueManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x49086ba08ab981a7;
-  TertiaryProcessingStatusFlag[7] = 0xa9191d34ad910696;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateB;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[8] = &SystemConnectionTemplateB;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -10432,25 +10432,25 @@ void CoreEngineInitializeThreadPoolManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x402feffe4481676e;
-  TertiaryProcessingStatusFlag[7] = 0xd4c2151109de93a0;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateC;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x402feffe4481676e;
+  StringProcessingStatus[7] = 0xd4c2151109de93a0;
+  StringProcessingStatus[8] = &SystemConnectionTemplateC;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -10493,25 +10493,25 @@ void CoreEngineInitializeGameSystem(void)
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4384dcc4b6d3f417;
-  TertiaryProcessingStatusFlag[7] = 0x92a15d52fe2679bd;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateD;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = SystemFileSystemConfigurationFlag;
+  StringProcessingStatus[6] = 0x4384dcc4b6d3f417;
+  StringProcessingStatus[7] = 0x92a15d52fe2679bd;
+  StringProcessingStatus[8] = &SystemConnectionTemplateD;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = SystemFileSystemConfigurationFlag;
   return;
 }
 
@@ -10669,25 +10669,25 @@ void InitializeNetworkConfigurationNode(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataPrimary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x45425dc186a5d575;
-  TertiaryProcessingStatusFlag[7] = 0xfab48faa65382fa5;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateM;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x45425dc186a5d575;
+  StringProcessingStatus[7] = 0xfab48faa65382fa5;
+  StringProcessingStatus[8] = &SystemDataTemplateM;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -10723,25 +10723,25 @@ void InitializeNetworkAuthenticationNode(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataNonary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataNonary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataNonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x40db4257e97d3df8;
-  TertiaryProcessingStatusFlag[7] = 0x81d539e33614429f;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateF;
-  TertiaryProcessingStatusFlag[9] = 4;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x40db4257e97d3df8;
+  StringProcessingStatus[7] = 0x81d539e33614429f;
+  StringProcessingStatus[8] = &SystemConnectionTemplateF;
+  StringProcessingStatus[9] = 4;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -10777,25 +10777,25 @@ void InitializeNetworkValidationNode(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataDenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataDenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataDenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4e33c4803e67a08f;
-  TertiaryProcessingStatusFlag[7] = 0x703a29a844ce399;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateG;
-  TertiaryProcessingStatusFlag[9] = 3;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x4e33c4803e67a08f;
+  StringProcessingStatus[7] = 0x703a29a844ce399;
+  StringProcessingStatus[8] = &SystemConnectionTemplateG;
+  StringProcessingStatus[9] = 3;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -10999,7 +10999,7 @@ void InitializeNetworkProtocolNode(void)
   long long *SystemContextPtr;
   uint64_t *PrimaryProcessingStatusFlag;
   void *SecondaryProcessingStatusFlag;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   void *TemporaryBuffer;
   uint64_t StackConfigurationFlag;
   
@@ -11012,26 +11012,26 @@ void InitializeNetworkProtocolNode(void)
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryMatchResult < 0) {
-      NextNode = (void *)TertiaryProcessingStatusFlag[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      NextNode = (void *)StringProcessingStatus[2];
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*SecondaryProcessingStatusFlag;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4b2d79e470ee4e2c;
-  TertiaryProcessingStatusFlag[7] = 0x9c552acd3ed5548d;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateA;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4b2d79e470ee4e2c;
+  StringProcessingStatus[7] = 0x9c552acd3ed5548d;
+  StringProcessingStatus[8] = &SystemConnectionTemplateA;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -11067,25 +11067,25 @@ void InitializeNetworkSecurityNode(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x49086ba08ab981a7;
-  TertiaryProcessingStatusFlag[7] = 0xa9191d34ad910696;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateB;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[8] = &SystemConnectionTemplateB;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -11122,25 +11122,25 @@ void InitializeNetworkBufferNode(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x402feffe4481676e;
-  TertiaryProcessingStatusFlag[7] = 0xd4c2151109de93a0;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateC;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x402feffe4481676e;
+  StringProcessingStatus[7] = 0xd4c2151109de93a0;
+  StringProcessingStatus[8] = &SystemConnectionTemplateC;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -11177,25 +11177,25 @@ void InitializeNetworkEventHandlerNode(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4384dcc4b6d3f417;
-  TertiaryProcessingStatusFlag[7] = 0x92a15d52fe2679bd;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateD;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = SystemFileSystemConfigurationFlag;
+  StringProcessingStatus[6] = 0x4384dcc4b6d3f417;
+  StringProcessingStatus[7] = 0x92a15d52fe2679bd;
+  StringProcessingStatus[8] = &SystemConnectionTemplateD;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = SystemFileSystemConfigurationFlag;
   return;
 }
 
@@ -11231,25 +11231,25 @@ void SystemConnectionManagerInitialize(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4140994454d56503;
-  TertiaryProcessingStatusFlag[7] = 0x399eced9bb5517ad;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateE;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4140994454d56503;
+  StringProcessingStatus[7] = 0x399eced9bb5517ad;
+  StringProcessingStatus[8] = &SystemConnectionTemplateE;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -11378,25 +11378,25 @@ void NetworkStatusProcessorInitialize(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
-  TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
-  TertiaryProcessingStatusFlag[9] = 1;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x43330a43fcdb3653;
+  StringProcessingStatus[7] = 0xdcfdc333a769ec93;
+  StringProcessingStatus[8] = &SystemDataTemplateN;
+  StringProcessingStatus[9] = 1;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -11431,25 +11431,25 @@ void ConnectionManagerInitialize(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
-  TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
-  TertiaryProcessingStatusFlag[9] = 4;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x431d7c8d7c475be2;
+  StringProcessingStatus[7] = 0xb97f048d2153e1b0;
+  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[9] = 4;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -11485,25 +11485,25 @@ void SystemConnectionTemplateAInitialize(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4b2d79e470ee4e2c;
-  TertiaryProcessingStatusFlag[7] = 0x9c552acd3ed5548d;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateA;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4b2d79e470ee4e2c;
+  StringProcessingStatus[7] = 0x9c552acd3ed5548d;
+  StringProcessingStatus[8] = &SystemConnectionTemplateA;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -11538,25 +11538,25 @@ void NetworkSecurityProcessorInitialize(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x49086ba08ab981a7;
-  TertiaryProcessingStatusFlag[7] = 0xa9191d34ad910696;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateB;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[8] = &SystemConnectionTemplateB;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -11592,25 +11592,25 @@ void SystemConnectionTemplateCInitialize(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x402feffe4481676e;
-  TertiaryProcessingStatusFlag[7] = 0xd4c2151109de93a0;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateC;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x402feffe4481676e;
+  StringProcessingStatus[7] = 0xd4c2151109de93a0;
+  StringProcessingStatus[8] = &SystemConnectionTemplateC;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -11646,25 +11646,25 @@ void FileSystemProcessorInitialize(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4384dcc4b6d3f417;
-  TertiaryProcessingStatusFlag[7] = 0x92a15d52fe2679bd;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateD;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = SystemFileSystemConfigurationFlag;
+  StringProcessingStatus[6] = 0x4384dcc4b6d3f417;
+  StringProcessingStatus[7] = 0x92a15d52fe2679bd;
+  StringProcessingStatus[8] = &SystemConnectionTemplateD;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = SystemFileSystemConfigurationFlag;
   return;
 }
 
@@ -11709,16 +11709,16 @@ void CoreEngineInitializeSystemConnectionNode(void
     TargetNodePointer = NextNodePointer;
     SystemStringBuffer = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4140994454d56503;
-  TertiaryProcessingStatusFlag[7] = 0x399eced9bb5517ad;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateE;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4140994454d56503;
+  StringProcessingStatus[7] = 0x399eced9bb5517ad;
+  StringProcessingStatus[8] = &SystemConnectionTemplateE;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -12434,25 +12434,25 @@ void CoreEngineInitializeSystemNodeTemplateK(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataPrimary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x45425dc186a5d575;
-  TertiaryProcessingStatusFlag[7] = 0xfab48faa65382fa5;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateM;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x45425dc186a5d575;
+  StringProcessingStatus[7] = 0xfab48faa65382fa5;
+  StringProcessingStatus[8] = &SystemDataTemplateM;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -12726,25 +12726,25 @@ void CoreEngineInitializeNetworkStatusProcessor(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
-  TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
-  TertiaryProcessingStatusFlag[9] = 1;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x43330a43fcdb3653;
+  StringProcessingStatus[7] = 0xdcfdc333a769ec93;
+  StringProcessingStatus[8] = &SystemDataTemplateN;
+  StringProcessingStatus[9] = 1;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -12779,25 +12779,25 @@ void CoreEngineInitializeConnectionInitializer(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
-  TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
-  TertiaryProcessingStatusFlag[9] = 4;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x431d7c8d7c475be2;
+  StringProcessingStatus[7] = 0xb97f048d2153e1b0;
+  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[9] = 4;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -13163,25 +13163,25 @@ void CoreEngineInitializeSystemDataTemplateO(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
-  TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
-  TertiaryProcessingStatusFlag[9] = 4;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x431d7c8d7c475be2;
+  StringProcessingStatus[7] = 0xb97f048d2153e1b0;
+  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[9] = 4;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -13224,25 +13224,25 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4b2d79e470ee4e2c;
-  TertiaryProcessingStatusFlag[7] = 0x9c552acd3ed5548d;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateA;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4b2d79e470ee4e2c;
+  StringProcessingStatus[7] = 0x9c552acd3ed5548d;
+  StringProcessingStatus[8] = &SystemConnectionTemplateA;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -13286,25 +13286,25 @@ void CoreEngineInitializeSystemConnectionTemplateB(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x49086ba08ab981a7;
-  TertiaryProcessingStatusFlag[7] = 0xa9191d34ad910696;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateB;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[8] = &SystemConnectionTemplateB;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -13340,25 +13340,25 @@ void CoreEngineInitializeSystemManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x402feffe4481676e;
-  TertiaryProcessingStatusFlag[7] = 0xd4c2151109de93a0;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateC;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x402feffe4481676e;
+  StringProcessingStatus[7] = 0xd4c2151109de93a0;
+  StringProcessingStatus[8] = &SystemConnectionTemplateC;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -13394,25 +13394,25 @@ void CoreEngineInitializeSystemConnectionTemplateG(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4384dcc4b6d3f417;
-  TertiaryProcessingStatusFlag[7] = 0x92a15d52fe2679bd;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateD;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = SystemFileSystemConfigurationFlag;
+  StringProcessingStatus[6] = 0x4384dcc4b6d3f417;
+  StringProcessingStatus[7] = 0x92a15d52fe2679bd;
+  StringProcessingStatus[8] = &SystemConnectionTemplateD;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = SystemFileSystemConfigurationFlag;
   return;
 }
 
@@ -13448,25 +13448,25 @@ void CoreEngineInitializeConfigurationManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4140994454d56503;
-  TertiaryProcessingStatusFlag[7] = 0x399eced9bb5517ad;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateE;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4140994454d56503;
+  StringProcessingStatus[7] = 0x399eced9bb5517ad;
+  StringProcessingStatus[8] = &SystemConnectionTemplateE;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -13501,25 +13501,25 @@ void CoreEngineInitializeResourceManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
-  TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
-  TertiaryProcessingStatusFlag[9] = 1;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x43330a43fcdb3653;
+  StringProcessingStatus[7] = 0xdcfdc333a769ec93;
+  StringProcessingStatus[8] = &SystemDataTemplateN;
+  StringProcessingStatus[9] = 1;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -13554,25 +13554,25 @@ void CoreEngineInitializeMemoryAllocator(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
-  TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
-  TertiaryProcessingStatusFlag[9] = 4;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x431d7c8d7c475be2;
+  StringProcessingStatus[7] = 0xb97f048d2153e1b0;
+  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[9] = 4;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -13608,25 +13608,25 @@ void CoreEngineInitializeThreadScheduler(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4b2d79e470ee4e2c;
-  TertiaryProcessingStatusFlag[7] = 0x9c552acd3ed5548d;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateA;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4b2d79e470ee4e2c;
+  StringProcessingStatus[7] = 0x9c552acd3ed5548d;
+  StringProcessingStatus[8] = &SystemConnectionTemplateA;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -13661,25 +13661,25 @@ void CoreEngineInitializeEventManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x49086ba08ab981a7;
-  TertiaryProcessingStatusFlag[7] = 0xa9191d34ad910696;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateB;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[8] = &SystemConnectionTemplateB;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -13715,25 +13715,25 @@ void CoreEngineInitializeRenderManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x402feffe4481676e;
-  TertiaryProcessingStatusFlag[7] = 0xd4c2151109de93a0;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateC;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x402feffe4481676e;
+  StringProcessingStatus[7] = 0xd4c2151109de93a0;
+  StringProcessingStatus[8] = &SystemConnectionTemplateC;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -13769,25 +13769,25 @@ void CoreEngineInitializePhysicsManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4384dcc4b6d3f417;
-  TertiaryProcessingStatusFlag[7] = 0x92a15d52fe2679bd;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateD;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = SystemFileSystemConfigurationFlag;
+  StringProcessingStatus[6] = 0x4384dcc4b6d3f417;
+  StringProcessingStatus[7] = 0x92a15d52fe2679bd;
+  StringProcessingStatus[8] = &SystemConnectionTemplateD;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = SystemFileSystemConfigurationFlag;
   return;
 }
 
@@ -13823,25 +13823,25 @@ void CoreEngineInitializeAudioManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4140994454d56503;
-  TertiaryProcessingStatusFlag[7] = 0x399eced9bb5517ad;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateE;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4140994454d56503;
+  StringProcessingStatus[7] = 0x399eced9bb5517ad;
+  StringProcessingStatus[8] = &SystemConnectionTemplateE;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -13876,25 +13876,25 @@ void CoreEngineInitializeNetworkManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
-  TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
-  TertiaryProcessingStatusFlag[9] = 1;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x43330a43fcdb3653;
+  StringProcessingStatus[7] = 0xdcfdc333a769ec93;
+  StringProcessingStatus[8] = &SystemDataTemplateN;
+  StringProcessingStatus[9] = 1;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -13929,25 +13929,25 @@ void CoreEngineInitializeInputManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
-  TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
-  TertiaryProcessingStatusFlag[9] = 4;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x431d7c8d7c475be2;
+  StringProcessingStatus[7] = 0xb97f048d2153e1b0;
+  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[9] = 4;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -13983,25 +13983,25 @@ void CoreEngineInitializeFileSystemManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4b2d79e470ee4e2c;
-  TertiaryProcessingStatusFlag[7] = 0x9c552acd3ed5548d;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateA;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4b2d79e470ee4e2c;
+  StringProcessingStatus[7] = 0x9c552acd3ed5548d;
+  StringProcessingStatus[8] = &SystemConnectionTemplateA;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -14036,25 +14036,25 @@ void CoreEngineInitializeSecurityManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x49086ba08ab981a7;
-  TertiaryProcessingStatusFlag[7] = 0xa9191d34ad910696;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateB;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[8] = &SystemConnectionTemplateB;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -14090,25 +14090,25 @@ void CoreEngineInitializeDatabaseManager(void)
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x402feffe4481676e;
-  TertiaryProcessingStatusFlag[7] = 0xd4c2151109de93a0;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateC;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x402feffe4481676e;
+  StringProcessingStatus[7] = 0xd4c2151109de93a0;
+  StringProcessingStatus[8] = &SystemConnectionTemplateC;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -14338,25 +14338,25 @@ void CoreEngineInitializeNetworkConnectionMonitor(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigTemplateSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigTemplateSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x45b8d074df27d12f;
-  TertiaryProcessingStatusFlag[7] = 0x8d98f4c06880eda4;
-  TertiaryProcessingStatusFlag[8] = &SystemNodeTemplateG;
-  TertiaryProcessingStatusFlag[9] = 3;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x45b8d074df27d12f;
+  StringProcessingStatus[7] = 0x8d98f4c06880eda4;
+  StringProcessingStatus[8] = &SystemNodeTemplateG;
+  StringProcessingStatus[9] = 3;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -14384,7 +14384,7 @@ void CoreEngineInitializeMemoryNodeA(void
   long long *SystemContextPtr;
   uint64_t *PrimaryProcessingStatusFlag;
   uint64_t *SecondaryProcessingStatusFlag;
-  uint64_t *TertiaryProcessingStatusFlag;
+  uint64_t *StringProcessingStatus;
   char StringBuffer;
   int StackConfigurationFlag;
   int MemoryMatchResult;
@@ -14401,25 +14401,25 @@ void CoreEngineInitializeMemoryNodeA(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemDataTemplateTertiary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemDataTemplateTertiary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemDataTemplateTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x42d293584c8cf3e5;
-  TertiaryProcessingStatusFlag[7] = 0x355ffeb2d29e668a;
-  TertiaryProcessingStatusFlag[8] = &SystemNodeTemplateH;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x42d293584c8cf3e5;
+  StringProcessingStatus[7] = 0x355ffeb2d29e668a;
+  StringProcessingStatus[8] = &SystemNodeTemplateH;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -14447,7 +14447,7 @@ void CoreEngineInitializeMemoryNodeB(void
   long long *SystemContextPtr;
   uint64_t *PrimaryProcessingStatusFlag;
   uint64_t *SecondaryProcessingStatusFlag;
-  uint64_t *TertiaryProcessingStatusFlag;
+  uint64_t *StringProcessingStatus;
   char StringBuffer;
   void (*FunctionCallback)(void);
   int MemoryMatchResult;
@@ -14464,25 +14464,25 @@ void CoreEngineInitializeMemoryNodeB(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplatePrimary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemThreadTemplatePrimary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemThreadTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x421c3cedd07d816d;
-  TertiaryProcessingStatusFlag[7] = 0xbec25de793b7afa6;
-  TertiaryProcessingStatusFlag[8] = &SystemNodeTemplateI;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = FunctionCallback;
+  StringProcessingStatus[6] = 0x421c3cedd07d816d;
+  StringProcessingStatus[7] = 0xbec25de793b7afa6;
+  StringProcessingStatus[8] = &SystemNodeTemplateI;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = FunctionCallback;
   return;
 }
 
@@ -14518,25 +14518,25 @@ void CoreEngineInitializeThreadSystem(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplateSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemThreadTemplateSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemThreadTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4c22bb0c326587ce;
-  TertiaryProcessingStatusFlag[7] = 0x5e3cf00ce2978287;
-  TertiaryProcessingStatusFlag[8] = &SystemNodeTemplateJ;
-  TertiaryProcessingStatusFlag[9] = 1;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4c22bb0c326587ce;
+  StringProcessingStatus[7] = 0x5e3cf00ce2978287;
+  StringProcessingStatus[8] = &SystemNodeTemplateJ;
+  StringProcessingStatus[9] = 1;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -14572,25 +14572,25 @@ void CoreEngineProcessThreadQueue(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureA,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureA,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureA,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x46c54bc98fc3fc2a;
-  TertiaryProcessingStatusFlag[7] = 0x727b256e3af32585;
-  TertiaryProcessingStatusFlag[8] = &SystemMemoryTemplateA;
-  TertiaryProcessingStatusFlag[9] = 2;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x46c54bc98fc3fc2a;
+  StringProcessingStatus[7] = 0x727b256e3af32585;
+  StringProcessingStatus[8] = &SystemMemoryTemplateA;
+  StringProcessingStatus[9] = 2;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -14626,25 +14626,25 @@ void CoreEngineManageThreadResources(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureB,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x41ffd0b76c1e136f;
-  TertiaryProcessingStatusFlag[7] = 0x25db30365f277abb;
-  TertiaryProcessingStatusFlag[8] = &SystemMemoryTemplateB;
-  TertiaryProcessingStatusFlag[9] = 2;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x41ffd0b76c1e136f;
+  StringProcessingStatus[7] = 0x25db30365f277abb;
+  StringProcessingStatus[8] = &SystemMemoryTemplateB;
+  StringProcessingStatus[9] = 2;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -14673,25 +14673,25 @@ void CoreEngineManageThreadResources(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataPrimary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x45425dc186a5d575;
-  TertiaryProcessingStatusFlag[7] = 0xfab48faa65382fa5;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateM;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x45425dc186a5d575;
+  StringProcessingStatus[7] = 0xfab48faa65382fa5;
+  StringProcessingStatus[8] = &SystemDataTemplateM;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -14726,25 +14726,25 @@ void CoreEngineInitializeThreadSynchronization(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataUndenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataUndenary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataUndenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x449bafe9b77ddd3c;
-  TertiaryProcessingStatusFlag[7] = 0xc160408bde99e59f;
-  TertiaryProcessingStatusFlag[8] = &SystemConfigurationTemplate;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x449bafe9b77ddd3c;
+  StringProcessingStatus[7] = 0xc160408bde99e59f;
+  StringProcessingStatus[8] = &SystemConfigurationTemplate;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -14779,25 +14779,25 @@ void CoreEngineSetupThreadPriorities(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMonitorComparisonData,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMonitorComparisonData,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMonitorComparisonData,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x406be72011d07d37;
-  TertiaryProcessingStatusFlag[7] = 0x71876af946c867ab;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateF;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x406be72011d07d37;
+  StringProcessingStatus[7] = 0x71876af946c867ab;
+  StringProcessingStatus[8] = &SystemConnectionTemplateF;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -14826,25 +14826,25 @@ void CoreEngineSetupThreadPriorities(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConnectionComparisonData,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConnectionComparisonData,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConnectionComparisonData,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x40afa5469b6ac06d;
-  TertiaryProcessingStatusFlag[7] = 0x2f4bab01d34055a5;
-  TertiaryProcessingStatusFlag[8] = &SystemMonitorTemplateB;
-  TertiaryProcessingStatusFlag[9] = 3;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x40afa5469b6ac06d;
+  StringProcessingStatus[7] = 0x2f4bab01d34055a5;
+  StringProcessingStatus[8] = &SystemMonitorTemplateB;
+  StringProcessingStatus[9] = 3;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -14879,25 +14879,25 @@ void CoreEngineInitializeSystemDataTemplateA(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
-  TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
-  TertiaryProcessingStatusFlag[9] = 1;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x43330a43fcdb3653;
+  StringProcessingStatus[7] = 0xdcfdc333a769ec93;
+  StringProcessingStatus[8] = &SystemDataTemplateN;
+  StringProcessingStatus[9] = 1;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -14926,25 +14926,25 @@ void CoreEngineInitializeSystemDataTemplateA(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
-  TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
-  TertiaryProcessingStatusFlag[9] = 4;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x431d7c8d7c475be2;
+  StringProcessingStatus[7] = 0xb97f048d2153e1b0;
+  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[9] = 4;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -14974,25 +14974,25 @@ void CoreEngineInitializeSystemDataTemplateA(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4b2d79e470ee4e2c;
-  TertiaryProcessingStatusFlag[7] = 0x9c552acd3ed5548d;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateA;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4b2d79e470ee4e2c;
+  StringProcessingStatus[7] = 0x9c552acd3ed5548d;
+  StringProcessingStatus[8] = &SystemConnectionTemplateA;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -15021,25 +15021,25 @@ void CoreEngineInitializeSystemDataTemplateA(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x49086ba08ab981a7;
-  TertiaryProcessingStatusFlag[7] = 0xa9191d34ad910696;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateB;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x49086ba08ab981a7;
+  StringProcessingStatus[7] = 0xa9191d34ad910696;
+  StringProcessingStatus[8] = &SystemConnectionTemplateB;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -15183,25 +15183,25 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4140994454d56503;
-  TertiaryProcessingStatusFlag[7] = 0x399eced9bb5517ad;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateE;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4140994454d56503;
+  StringProcessingStatus[7] = 0x399eced9bb5517ad;
+  StringProcessingStatus[8] = &SystemConnectionTemplateE;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -15237,25 +15237,25 @@ void CoreEngineInitializeSystemDataTemplateC(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemFileSystemComparisonData,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemFileSystemComparisonData,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemFileSystemComparisonData,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x42bea5b911d9c4bf;
-  TertiaryProcessingStatusFlag[7] = 0x1aa83fc0020dc1b6;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateC;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x42bea5b911d9c4bf;
+  StringProcessingStatus[7] = 0x1aa83fc0020dc1b6;
+  StringProcessingStatus[8] = &SystemDataTemplateC;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -15285,25 +15285,25 @@ void CoreEngineInitializeSystemDataTemplateC(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureA,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureA,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureA,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x46c54bc98fc3fc2a;
-  TertiaryProcessingStatusFlag[7] = 0x727b256e3af32585;
-  TertiaryProcessingStatusFlag[8] = &SystemMemoryTemplateA;
-  TertiaryProcessingStatusFlag[9] = 2;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x46c54bc98fc3fc2a;
+  StringProcessingStatus[7] = 0x727b256e3af32585;
+  StringProcessingStatus[8] = &SystemMemoryTemplateA;
+  StringProcessingStatus[9] = 2;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -15333,25 +15333,25 @@ void CoreEngineInitializeSystemDataTemplateC(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureB,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x41ffd0b76c1e136f;
-  TertiaryProcessingStatusFlag[7] = 0x25db30365f277abb;
-  TertiaryProcessingStatusFlag[8] = &SystemMemoryTemplateB;
-  TertiaryProcessingStatusFlag[9] = 2;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x41ffd0b76c1e136f;
+  StringProcessingStatus[7] = 0x25db30365f277abb;
+  StringProcessingStatus[8] = &SystemMemoryTemplateB;
+  StringProcessingStatus[9] = 2;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -15814,25 +15814,25 @@ void CoreEngineInitializeDataStreamManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureB,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x41ffd0b76c1e136f;
-  TertiaryProcessingStatusFlag[7] = 0x25db30365f277abb;
-  TertiaryProcessingStatusFlag[8] = &SystemMemoryTemplateB;
-  TertiaryProcessingStatusFlag[9] = 2;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x41ffd0b76c1e136f;
+  StringProcessingStatus[7] = 0x25db30365f277abb;
+  StringProcessingStatus[8] = &SystemMemoryTemplateB;
+  StringProcessingStatus[9] = 2;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -15861,25 +15861,25 @@ void CoreEngineInitializeDataStreamManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMonitorComparisonData,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMonitorComparisonData,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMonitorComparisonData,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x406be72011d07d37;
-  TertiaryProcessingStatusFlag[7] = 0x71876af946c867ab;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateF;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x406be72011d07d37;
+  StringProcessingStatus[7] = 0x71876af946c867ab;
+  StringProcessingStatus[8] = &SystemConnectionTemplateF;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -15908,25 +15908,25 @@ void CoreEngineInitializeDataStreamManager(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConnectionComparisonData,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConnectionComparisonData,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConnectionComparisonData,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x40afa5469b6ac06d;
-  TertiaryProcessingStatusFlag[7] = 0x2f4bab01d34055a5;
-  TertiaryProcessingStatusFlag[8] = &SystemMonitorTemplateB;
-  TertiaryProcessingStatusFlag[9] = 3;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x40afa5469b6ac06d;
+  StringProcessingStatus[7] = 0x2f4bab01d34055a5;
+  StringProcessingStatus[8] = &SystemMonitorTemplateB;
+  StringProcessingStatus[9] = 3;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -16274,25 +16274,25 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4140994454d56503;
-  TertiaryProcessingStatusFlag[7] = 0x399eced9bb5517ad;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateE;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4140994454d56503;
+  StringProcessingStatus[7] = 0x399eced9bb5517ad;
+  StringProcessingStatus[8] = &SystemConnectionTemplateE;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -16321,25 +16321,25 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigurationTemplatePrimary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigurationTemplatePrimary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigurationTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4fc124d23d41985f;
-  TertiaryProcessingStatusFlag[7] = 0xe2f4a30d6e6ae482;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateG;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  StringProcessingStatus[6] = 0x4fc124d23d41985f;
+  StringProcessingStatus[7] = 0xe2f4a30d6e6ae482;
+  StringProcessingStatus[8] = &SystemConnectionTemplateG;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = functionCallback;
   return;
 }
 
@@ -16369,25 +16369,25 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigurationTemplateSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigurationTemplateSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigurationTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4770584fbb1df897;
-  TertiaryProcessingStatusFlag[7] = 0x47f249e43f66f2ab;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateH;
-  TertiaryProcessingStatusFlag[9] = 1;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4770584fbb1df897;
+  StringProcessingStatus[7] = 0x47f249e43f66f2ab;
+  StringProcessingStatus[8] = &SystemConnectionTemplateH;
+  StringProcessingStatus[9] = 1;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -16417,25 +16417,25 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemStateTemplatePrimary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemStateTemplatePrimary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemStateTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4666df49b97e0f10;
-  TertiaryProcessingStatusFlag[7] = 0x4e4b0d63a6ad1d8f;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateI;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4666df49b97e0f10;
+  StringProcessingStatus[7] = 0x4e4b0d63a6ad1d8f;
+  StringProcessingStatus[8] = &SystemConnectionTemplateI;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -16465,25 +16465,25 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMemoryTemplatePrimary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMemoryTemplatePrimary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMemoryTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x46ecbd4daf41613e;
-  TertiaryProcessingStatusFlag[7] = 0xdc42c056bbde8482;
-  TertiaryProcessingStatusFlag[8] = &SystemNodeTemplateD;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x46ecbd4daf41613e;
+  StringProcessingStatus[7] = 0xdc42c056bbde8482;
+  StringProcessingStatus[8] = &SystemNodeTemplateD;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -16513,25 +16513,25 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMemoryTemplateSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMemoryTemplateSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMemoryTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4c868a42644030f6;
-  TertiaryProcessingStatusFlag[7] = 0xc29193aa9d9b35b9;
-  TertiaryProcessingStatusFlag[8] = &SystemNodeTemplateE;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4c868a42644030f6;
+  StringProcessingStatus[7] = 0xc29193aa9d9b35b9;
+  StringProcessingStatus[8] = &SystemNodeTemplateE;
+  StringProcessingStatus[9] = 0;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -16561,25 +16561,25 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigTemplatePrimary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigTemplatePrimary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x40ea3a798283cbbb;
-  TertiaryProcessingStatusFlag[7] = 0x7f74eb2c5a7fadae;
-  TertiaryProcessingStatusFlag[8] = &SystemNodeTemplateF;
-  TertiaryProcessingStatusFlag[9] = 3;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x40ea3a798283cbbb;
+  StringProcessingStatus[7] = 0x7f74eb2c5a7fadae;
+  StringProcessingStatus[8] = &SystemNodeTemplateF;
+  StringProcessingStatus[9] = 3;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -16809,25 +16809,25 @@ void CoreEngineInitializeSystemThreadNodeJ(void
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplateSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
       NextNode = (void *)*CurrentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemThreadTemplateSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemThreadTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    StringProcessingStatus = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4c22bb0c326587ce;
-  TertiaryProcessingStatusFlag[7] = 0x5e3cf00ce2978287;
-  TertiaryProcessingStatusFlag[8] = &SystemNodeTemplateJ;
-  TertiaryProcessingStatusFlag[9] = 1;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  StringProcessingStatus[6] = 0x4c22bb0c326587ce;
+  StringProcessingStatus[7] = 0x5e3cf00ce2978287;
+  StringProcessingStatus[8] = &SystemNodeTemplateJ;
+  StringProcessingStatus[9] = 1;
+  StringProcessingStatus[10] = StackConfigurationFlag;
   return;
 }
 
@@ -19715,31 +19715,31 @@ void CoreEngineInitializeRuntimeEnvironment(void
   EngineConfigWordPtr[3] = 0x78742e67;
   *(uint16_t *)(EngineConfigWordPtr + 4) = 0x74;
   SystemEventFlag = memoryComparisonResult;
-  TertiaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x18,8,3);
+  StringProcessingStatus = (void *)MemoryAllocate(MemoryPoolManager,0x18,8,3);
   TempStatusBuffer = &CoreEngineDataTemplate;
   if (SystemEventBuffer != (uint8_t *)0x0) {
     TempStatusBuffer = SystemEventBuffer;
   }
-  *TertiaryProcessingStatusFlag = 0;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 2) = 0;
-  InitializeEngineStatusBuffer(TertiaryProcessingStatusFlag,TempStatusBuffer,&EngineInitializationBufferConfig);
-  ConfigureEngineMemoryContext(CoreEngineMemoryContext,TertiaryProcessingStatusFlag);
-  if (TertiaryProcessingStatusFlag[1] != 0) {
+  *StringProcessingStatus = 0;
+  *(uint8_t *)(StringProcessingStatus + 2) = 0;
+  InitializeEngineStatusBuffer(StringProcessingStatus,TempStatusBuffer,&EngineInitializationBufferConfig);
+  ConfigureEngineMemoryContext(CoreEngineMemoryContext,StringProcessingStatus);
+  if (StringProcessingStatus[1] != 0) {
     fclose();
-    TertiaryProcessingStatusFlag[1] = 0;
+    StringProcessingStatus[1] = 0;
     LOCK();
     EngineReferenceCounter = EngineReferenceCounter + -1;
     UNLOCK();
-    if (TertiaryProcessingStatusFlag[1] != 0) {
+    if (StringProcessingStatus[1] != 0) {
       fclose();
-      TertiaryProcessingStatusFlag[1] = 0;
+      StringProcessingStatus[1] = 0;
       LOCK();
       EngineReferenceCounter = EngineReferenceCounter + -1;
       UNLOCK();
     }
   }
                     // WARNING: Subroutine does not return
-  CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+  CoreEngineFreeSystemMemory(StringProcessingStatus);
 }
 
 
@@ -19840,22 +19840,22 @@ void SetThreadLocalStorageTemplate(uint64_t *CharacterCode{
   if (MemoryAllocationSize == -1) {
     MemoryAllocationSize = CoreEngineValidateDataStructure(&CoreEngineDataStructure,CharacterCodeSize);
   }
-  TertiaryProcessingStatusFlag = (void *)(CoreEngineDataTablePointer + 0xd0 + (long long)MemoryAllocationSize * 0x100);
-  MemoryAddressMask = TertiaryProcessingStatusFlag;
-  if ((void *)TertiaryProcessingStatusFlag[2] != NULL) {
-    TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[2];
+  StringProcessingStatus = (void *)(CoreEngineDataTablePointer + 0xd0 + (long long)MemoryAllocationSize * 0x100);
+  MemoryAddressMask = StringProcessingStatus;
+  if ((void *)StringProcessingStatus[2] != NULL) {
+    StringProcessingStatus = (void *)StringProcessingStatus[2];
     do {
       if (*(int *)(Utf8InputPointer + 0x10) == 0) {
-        TemporaryBuffer = (void *)TertiaryProcessingStatusFlag[1];
+        TemporaryBuffer = (void *)StringProcessingStatus[1];
         IsDataValid = false;
       }
       else {
-        if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+        if (*(int *)(StringProcessingStatus + 6) == 0) {
           IsDataValid = true;
         }
         else {
           Utf8OutputPointer = *(byte **)(Utf8InputPointer + 8);
-          StatusBufferOffset = TertiaryProcessingStatusFlag[5] - (long long)Utf8OutputPointer;
+          StatusBufferOffset = StringProcessingStatus[5] - (long long)Utf8OutputPointer;
           do {
             CalculatedCodePoint = (uint)Utf8OutputPointer[StatusBufferOffset];
             MemoryAllocationSize = *Utf8OutputPointer - CalculatedCodePoint;
@@ -19864,21 +19864,21 @@ void SetThreadLocalStorageTemplate(uint64_t *CharacterCode{
           } while (CalculatedCodePoint != 0);
           IsDataValid = 0 < MemoryAllocationSize;
           if (MemoryAllocationSize < 1) {
-            TemporaryBuffer = (void *)TertiaryProcessingStatusFlag[1];
+            TemporaryBuffer = (void *)StringProcessingStatus[1];
             goto TemporaryBufferProcessingComplete; // 原始标签：LAB_180047f2c
           }
         }
-        TemporaryBuffer = (void *)*TertiaryProcessingStatusFlag;
+        TemporaryBuffer = (void *)*StringProcessingStatus;
       }
 TemporaryBufferProcessingComplete: // 原始标签：LAB_180047f2c，TemporaryBufferProcessingComplete
       if (HighByte) {
-        TertiaryProcessingStatusFlag = MemoryAddressMask;
+        StringProcessingStatus = MemoryAddressMask;
       }
-      MemoryAddressMask = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag = TemporaryBuffer;
+      MemoryAddressMask = StringProcessingStatus;
+      StringProcessingStatus = TemporaryBuffer;
     } while (TemporaryBuffer != NULL);
   }
-  if (MemoryAddressMask != TertiaryProcessingStatusFlag) {
+  if (MemoryAddressMask != StringProcessingStatus) {
     if (*(int *)(MemoryAddressMask + 6) == 0) goto EventInitializationComplete; // 原始标签：LAB_180047f93
     if (*(int *)(Utf8InputPointer + 0x10) != 0) {
       Utf8OutputPointer = (byte *)MemoryAddressMask[5];
@@ -19892,7 +19892,7 @@ TemporaryBufferProcessingComplete: // 原始标签：LAB_180047f2c，TemporaryBu
       if ((int)(SourceByte - TargetByte) < 1) goto EventInitializationComplete; // 原始标签：LAB_180047f93
     }
   }
-  pMemoryAddressMask = (void *)AllocateEngineMemoryBlock(TertiaryProcessingStatusFlag,&SystemRegisterFlagX8);
+  pMemoryAddressMask = (void *)AllocateEngineMemoryBlock(StringProcessingStatus,&SystemRegisterFlagX8);
   pMemoryAddressMask = (void *)*pMemoryAddressMask;
 EventInitializationComplete: // 原始标签：LAB_180047f93，EventInitializationComplete
   CoreEngineInitializeSystemEvent(pMemoryAddressMask + 8,Utf8InputPointer);
@@ -19975,10 +19975,10 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
   *(uint16_t *)((long long)(SystemMemoryPointer + MemoryOffsetValue) + 4) = 0x2f;
   MemoryOffsetValue = 5;
   CoreEngineProcessSystemEvent(&SystemStatusBufferPointer,0x18);
-  TertiaryProcessingStatusFlag = (uint32_t *)(SystemMemoryPointer + MemoryOffsetValue);
-  *TertiaryProcessingStatusFlag = 0x66726570;
-  TertiaryProcessingStatusFlag[1] = 0x616d726f;
-  TertiaryProcessingStatusFlag[2] = 0x5f65636e;
+  StringProcessingStatus = (uint32_t *)(SystemMemoryPointer + MemoryOffsetValue);
+  *StringProcessingStatus = 0x66726570;
+  StringProcessingStatus[1] = 0x616d726f;
+  StringProcessingStatus[2] = 0x5f65636e;
   stringProcessingStatusFlag[3] = 0x2e676f6c;
   stringProcessingStatusFlag[4] = 0x747874;
   SystemDataRegisterSizeB8 = 0x18;
@@ -20410,17 +20410,17 @@ int64_t CoreEngineCopyDataStructure(int64_t TargetStructure,int64_t SourceStruct
   if (*(long long *)(SourceStructure + 0xe0) != 0) {
     TemporaryBuffer = (void *)AllocateStatusBufferWithSize(StatusBuffer,*(long long *)(SourceStructure + 0xe0),StatusBuffer,UnusedParam2,OperationFlag    ;
     *(uint64_t **)(TargetStructure + 0xe0) = TemporaryBuffer;
-    TertiaryProcessingStatusFlag = (void *)*TemporaryBuffer;
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
-    while (SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag, SecondaryProcessingStatusFlag != NULL) {
-      TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = (void *)*TemporaryBuffer;
+    StringProcessingStatus = TemporaryBuffer;
+    while (SecondaryProcessingStatusFlag = StringProcessingStatus, SecondaryProcessingStatusFlag != NULL) {
+      StringProcessingStatus = SecondaryProcessingStatusFlag;
       NextNode = (void *)*CurrentNode;
     }
-    *StatusBuffer = TertiaryProcessingStatusFlag;
+    *StatusBuffer = StringProcessingStatus;
     StatusBuffer = (void *)TemporaryBuffer[1];
-    while (TertiaryProcessingStatusFlag = StatusBuffer, TertiaryProcessingStatusFlag != NULL) {
-      TemporaryBuffer = TertiaryProcessingStatusFlag;
-      StatusBuffer = (void *)TertiaryProcessingStatusFlag[1];
+    while (StringProcessingStatus = StatusBuffer, StringProcessingStatus != NULL) {
+      TemporaryBuffer = StringProcessingStatus;
+      StatusBuffer = (void *)StringProcessingStatus[1];
     }
     *(uint64_t **)(TargetStructure + 0xd8) = TemporaryBuffer;
     *(void *)(TargetStructure + 0xf0) = *(void *)(SourceStructure + 0xf0);
@@ -22466,40 +22466,40 @@ bool CoreEngineCheckStatusBufferStatus(long long CharacterCode
   
   StatusBuffer = (void *)(CharacterCode + 0x2e0);
   CoreEngineFinalizeSystemEvent(&LocalProcessingStatusFlag);
-  TertiaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x2f0);
+  StringProcessingStatus = *(uint64_t **)(CharacterCode + 0x2f0);
   SystemStatusBuffer = StatusBuffer;
-  if (TertiaryProcessingStatusFlag != NULL) {
+  if (StringProcessingStatus != NULL) {
     do {
       if (SystemStatusValidationResult == 0) {
         DataValidationResult = false;
-        TemporaryBuffer = (void *)TertiaryProcessingStatusFlag[1];
+        TemporaryBuffer = (void *)StringProcessingStatus[1];
       }
       else {
-        if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+        if (*(int *)(StringProcessingStatus + 6) == 0) {
           DataValidationResult = true;
         }
         else {
           ValidationBytePointer = DataValidationBuffer;
           do {
-            CalculatedCodePoint = (uint)ValidationBytePointer[TertiaryProcessingStatusFlag[5] - (long long)DataValidationBuffer];
+            CalculatedCodePoint = (uint)ValidationBytePointer[StringProcessingStatus[5] - (long long)DataValidationBuffer];
             ValidationResult = *ValidationBytePointer - CalculatedCodePoint;
             if (*ValidationBytePointer != CalculatedCodePoint) break;
             StringValidationPointer = StringValidationPointer + 1;
           } while (CalculatedCodePoint != 0);
           DataValidationResult = 0 < ValidationResult;
           if (ValidationResult < 1) {
-            TemporaryBuffer = (void *)TertiaryProcessingStatusFlag[1];
+            TemporaryBuffer = (void *)StringProcessingStatus[1];
             goto StatusBufferProcessingComplete;
           }
         }
-        TemporaryBuffer = (void *)*TertiaryProcessingStatusFlag;
+        TemporaryBuffer = (void *)*StringProcessingStatus;
       }
 StatusBufferProcessingComplete: // 原始标签：LAB_180051f8b，StatusBufferProcessingComplete
-      StatusBuffer = TertiaryProcessingStatusFlag;
+      StatusBuffer = StringProcessingStatus;
       if (DataValidationResult) {
         StatusBuffer = SystemStatusBuffer;
       }
-      TertiaryProcessingStatusFlag = TemporaryBuffer;
+      StringProcessingStatus = TemporaryBuffer;
       SystemStatusBuffer = StatusBuffer;
     } while (TemporaryBuffer != NULL);
     if (StatusBuffer != StatusBuffer) {
@@ -23279,7 +23279,7 @@ MemoryAllocationDone: // 原始标签：LAB_1800535b0，MemoryAllocationDone
     ProcessStringBuffer = CalculatedCodePoint;
     if (DataSize != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(TertiaryProcessingStatusFlag,*(void *)(Utf8InputPointer + 8),ProcessingStatusFlag);
+      memcpy(StringProcessingStatus,*(void *)(Utf8InputPointer + 8),ProcessingStatusFlag);
     }
   }
   else if (DataSize != 0) {
@@ -23287,40 +23287,40 @@ MemoryAllocationDone: // 原始标签：LAB_1800535b0，MemoryAllocationDone
     if (validationResult < 0x10) {
       validationResult = 0x10;
     }
-    TertiaryProcessingStatusFlag = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)validationResult,0x13);
-    *TertiaryProcessingStatusFlag = 0;
-    SystemProcessingStatusFlagB = TertiaryProcessingStatusFlag;
-    CalculatedCodePoint = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+    StringProcessingStatus = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)validationResult,0x13);
+    *StringProcessingStatus = 0;
+    SystemProcessingStatusFlagB = StringProcessingStatus;
+    CalculatedCodePoint = GetMemoryAllocationInfo(StringProcessingStatus);
     StackVariable = CONCAT44(StackVariable.HighPart,CalculatedCodePoint);
     goto MemoryAllocationDone;
   }
-  if (TertiaryProcessingStatusFlag != (uint8_t *)0x0) {
-    TertiaryProcessingStatusFlag[ProcessingStatusFlag] = 0;
+  if (StringProcessingStatus != (uint8_t *)0x0) {
+    StringProcessingStatus[ProcessingStatusFlag] = 0;
   }
   BufferOffsetB = *(uint32_t *)(Utf8InputPointer + 0x1c);
   StackVariable = CONCAT44(BufferOffsetB,(uint32_t)StackVariable);
   SystemOperationCounter = DataSize;
   if (DataSize != 0xfffffffa) {
     DataSize = DataSize + 7;
-    if (TertiaryProcessingStatusFlag == (uint8_t *)0x0) {
+    if (StringProcessingStatus == (uint8_t *)0x0) {
       if ((int)DataSize < 0x10) {
         DataSize = 0x10;
       }
-      TertiaryProcessingStatusFlag = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)(int)DataSize,0x13);
-      *TertiaryProcessingStatusFlag = 0;
+      StringProcessingStatus = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)(int)DataSize,0x13);
+      *StringProcessingStatus = 0;
     }
     else {
       if (DataSize <= ProcessStringBuffer) goto MemoryAllocationComplete;
       MemoryAllocationFlags = 0x13;
-      TertiaryProcessingStatusFlag = (uint8_t *)ProcessMemoryPoolData(MemoryPoolManager,TertiaryProcessingStatusFlag,DataSize,0x10);
+      StringProcessingStatus = (uint8_t *)ProcessMemoryPoolData(MemoryPoolManager,StringProcessingStatus,DataSize,0x10);
     }
-    SystemProcessingStatusFlagB = TertiaryProcessingStatusFlag;
-    UnicodeCodePoint = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+    SystemProcessingStatusFlagB = StringProcessingStatus;
+    UnicodeCodePoint = GetMemoryAllocationInfo(StringProcessingStatus);
     StackVariable = CONCAT44(StackVariable.HighPart,UnicodeCodePoint);
   }
 MemoryCopyStart: // 原始标签：LAB_18005364c，MemoryCopyStart
                     // WARNING: Subroutine does not return
-  memcpy(TertiaryProcessingStatusFlag + ProcessingStatusFlag,LoopCounter,7);
+  memcpy(StringProcessingStatus + ProcessingStatusFlag,LoopCounter,7);
 }
 
 
@@ -23936,13 +23936,13 @@ IndexValidationLoop: // 原始标签：LAB_180054912，IndexValidationLoop
                 SystemStatusValue.HighPart = StatusBuffer5[3];
                 CoreEngineUnsignedValue = Utf16Char;
                 CoreEngineProcessSystemEvent(&CoreEnginePointerBuffer158,0x12);
-                TertiaryProcessingStatusFlag = (uint32_t *)(CoreEnginePointerBuffer150 + CoreEngineUnsignedValue);
-                *TertiaryProcessingStatusFlag = 0x6563732f;
-                TertiaryProcessingStatusFlag[1] = 0x782e656e;
-                TertiaryProcessingStatusFlag[2] = 0x2e6f6373;
-                TertiaryProcessingStatusFlag[3] = 0x65637378;
-                *(uint16_t *)(TertiaryProcessingStatusFlag + 4) = 0x656e;
-                *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0x12) = 0;
+                StringProcessingStatus = (uint32_t *)(CoreEnginePointerBuffer150 + CoreEngineUnsignedValue);
+                *StringProcessingStatus = 0x6563732f;
+                StringProcessingStatus[1] = 0x782e656e;
+                StringProcessingStatus[2] = 0x2e6f6373;
+                StringProcessingStatus[3] = 0x65637378;
+                *(uint16_t *)(StringProcessingStatus + 4) = 0x656e;
+                *(uint8_t *)((long long)StringProcessingStatus + 0x12) = 0;
                 CoreEngineUnsignedValue = 0x12;
                 OperationStatus = GetCharacterVariable(&CoreEnginePointerBuffer158);
                 if (OperationStatus != '\0') goto CharacterDataProcessingComplete;
@@ -27279,20 +27279,20 @@ uint64_t * FindMatchingDataNode(uint64_t *dataStructure, uint64_t *resultPointer
   uint64_t *DataBuffer0;
   
   if ((void *)dataStructure[2] != NULL) {
-    TertiaryProcessingStatusFlag = (void *)dataStructure[2];
+    StringProcessingStatus = (void *)dataStructure[2];
     DataBuffer0 = dataStructure;
     do {
       if (*(int *)(searchContext + 0x10) == 0) {
-        TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+        StringProcessingStatus = (void *)StringProcessingStatus[1];
         shouldUseBuffer0 = false;
       }
       else {
-        if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+        if (*(int *)(StringProcessingStatus + 6) == 0) {
           shouldUseBuffer0 = true;
         }
         else {
           bytePointer = *(byte **)(searchContext + 8);
-          byteOffset = TertiaryProcessingStatusFlag[5] - (long long)bytePointer;
+          byteOffset = StringProcessingStatus[5] - (long long)bytePointer;
           do {
             unsignedCharValue = (uint)bytePointer[byteOffset];
             validationDifference = *bytePointer - unsignedCharValue;
@@ -27301,20 +27301,20 @@ uint64_t * FindMatchingDataNode(uint64_t *dataStructure, uint64_t *resultPointer
           } while (unsignedCharValue != 0);
           shouldUseBuffer0 = 0 < validationDifference;
           if (validationDifference < 1) {
-            TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+            StringProcessingStatus = (void *)StringProcessingStatus[1];
             goto DataStructureProcessingComplete;
           }
         }
-        TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)*StringProcessingStatus;
       }
 StatusBufferProcessingStart:
-      bufferPointer = TertiaryProcessingStatusFlag;
+      bufferPointer = StringProcessingStatus;
       if (shouldUseBuffer0) {
         bufferPointer = DataBuffer0;
       }
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      StringProcessingStatus = StringProcessingStatus;
       DataBuffer0 = bufferPointer;
-    } while (TertiaryProcessingStatusFlag != NULL);
+    } while (StringProcessingStatus != NULL);
     if (bufferPointer != dataStructure) {
       if (*(int *)(bufferPointer + 6) == 0) {
 StatusBufferProcessingLoop:
@@ -31070,7 +31070,7 @@ unsigned long long ProcessDataStructureExchangeAndBufferAllocation(long long *ta
   unsigned long long *comparisonPointer;
   unsigned long long *SecondaryProcessingStatusFlag;
   unsigned long long CharacterTablePointer;
-  unsigned long long *TertiaryProcessingStatusFlag;
+  unsigned long long *StringProcessingStatus;
   uint calculationResult;
   unsigned long long iterationCounter;
   
@@ -31080,12 +31080,12 @@ unsigned long long ProcessDataStructureExchangeAndBufferAllocation(long long *ta
   }
   returnStatusValue = *(uint *)(targetDataStructure + 1);
   bufferCapacityValue = *(uint *)(targetDataStructure + 0x4c);
-  TertiaryProcessingStatusFlag = (unsigned long long *)0x0;
+  StringProcessingStatus = (unsigned long long *)0x0;
   dataPointerIterator = *(unsigned long long **)(sourceDataStructure + 6);
   if (*(unsigned long long **)(sourceDataStructure + 6) == (unsigned long long *)0x0) {
     comparisonPointer = (unsigned long long *)(memoryBlockPointer + 8);
     if (memoryBlockPointer == 0) {
-      comparisonPointer = TertiaryProcessingStatusFlag;
+      comparisonPointer = StringProcessingStatus;
     }
     *(unsigned long long **)(sourceDataStructure + 6) = comparisonPointer;
     calculationResult = (returnStatusValue - *sourceDataStructure % returnStatusValue) - 1;
@@ -31102,7 +31102,7 @@ unsigned long long ProcessDataStructureExchangeAndBufferAllocation(long long *ta
         }
         dataPointerIterator = SecondaryProcessingStatusFlag + 1;
         if (SecondaryProcessingStatusFlag == (unsigned long long *)0x0) {
-          dataPointerIterator = TertiaryProcessingStatusFlag;
+          dataPointerIterator = StringProcessingStatus;
         }
         *(unsigned long long **)(sourceDataStructure + 6) = dataPointerIterator;
         if (dataPointerIterator == (unsigned long long *)0x0) {
@@ -31127,9 +31127,9 @@ unsigned long long ProcessDataStructureExchangeAndBufferAllocation(long long *ta
       iterationCounter = *dataPointerIterator;
       comparisonPointer = (unsigned long long *)(iterationCounter - 8);
       if (iterationCounter == 0) {
-        comparisonPointer = TertiaryProcessingStatusFlag;
+        comparisonPointer = StringProcessingStatus;
       }
-      dataPointerIterator = TertiaryProcessingStatusFlag;
+      dataPointerIterator = StringProcessingStatus;
       if (comparisonPointer != (unsigned long long *)0x0) {
         dataPointerIterator = comparisonPointer + 1;
       }
@@ -31137,7 +31137,7 @@ unsigned long long ProcessDataStructureExchangeAndBufferAllocation(long long *ta
       if (dataPointerIterator == (unsigned long long *)0x0) {
         dataPointerIterator = (unsigned long long *)(memoryBlockPointer + 8);
         if (memoryBlockPointer == 0) {
-          dataPointerIterator = TertiaryProcessingStatusFlag;
+          dataPointerIterator = StringProcessingStatus;
         }
         *(unsigned long long **)(sourceDataStructure + 6) = dataPointerIterator;
       }
@@ -32210,10 +32210,10 @@ void ProcessIntegerDataStructure(int *CharacterCode
   SystemBufferSize = 0x12;
   SystemDataHashValue = LocalDataStructure160 - StackDataOffset168 >> 5;
   if (SystemDataHashValue != 0) {
-    TertiaryProcessingStatusFlag = (void *)(StackDataOffset168 + 8);
+    StringProcessingStatus = (void *)(StackDataOffset168 + 8);
     do {
-      if (*(int *)(TertiaryProcessingStatusFlag + 1) == 0x12) {
-        CharacterBufferPointer = (char *)*TertiaryProcessingStatusFlag;
+      if (*(int *)(StringProcessingStatus + 1) == 0x12) {
+        CharacterBufferPointer = (char *)*StringProcessingStatus;
         MemoryOffsetValue = (long long)CharacterCodePointer - (long long)CharacterBufferPointer;
         do {
           CharacterStringBuffer = *CharacterBufferPointer;
@@ -32224,7 +32224,7 @@ void ProcessIntegerDataStructure(int *CharacterCode
         if (CharacterStringBuffer == CharacterValidationResult) break;
       }
       ComputedResult = ComputedResult + 1;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
+      StringProcessingStatus = StringProcessingStatus + 4;
     } while ((unsigned long long)(long long)ComputedResult < SystemDataHashValue);
   }
   SystemNullTemplatePointer = &SystemNullTemplate;
@@ -33211,7 +33211,7 @@ unsigned long long ProcessSystemDataStreamAndMemoryManagement(uint64_t targetDat
   validationData = 0;
   operationMode = 3;
   systemStringBuffer = TerminateSystemProcess(&primaryBufferPointer);
-  TertiaryProcessingStatusFlag = secondaryBufferPointer;
+  StringProcessingStatus = secondaryBufferPointer;
   SecondaryProcessingStatusFlag = primaryBufferPointer;
   if ((systemStringBuffer == '\0') || (primaryBufferPointer == secondaryBufferPointer)) {
     ConfigureSystemMemoryManagement(SystemConfigurationPointer,5,3,&SystemFunctionPointerL);
@@ -33227,7 +33227,7 @@ unsigned long long ProcessSystemDataStreamAndMemoryManagement(uint64_t targetDat
       dataTemplatePointer = stackVariablePointer;
     }
     InitializeEngineStatusBuffer(&timeoutValue,dataTemplatePointer,&SystemFunctionPointerH);
-    operationResult = (long long)TertiaryProcessingStatusFlag - (long long)SecondaryProcessingStatusFlag >> 5;
+    operationResult = (long long)StringProcessingStatus - (long long)SecondaryProcessingStatusFlag >> 5;
     memoryOffsetPointer = &SystemNullTemplate;
     stackValidationValue = 0;
     fileWriteBuffer = 0;
@@ -33255,7 +33255,7 @@ unsigned long long ProcessSystemDataStreamAndMemoryManagement(uint64_t targetDat
       UNLOCK();
       UnicodeCodePoint = 0;
       SecondaryProcessingStatusFlag = primaryBufferPointer;
-      TertiaryProcessingStatusFlag = secondaryBufferPointer;
+      StringProcessingStatus = secondaryBufferPointer;
       EngineReferenceCounter = EngineReferenceCounter - 1;
     }
     memoryOffsetPointer = &SystemNullTemplate;
@@ -33282,11 +33282,11 @@ unsigned long long ProcessSystemDataStreamAndMemoryManagement(uint64_t targetDat
       EngineReferenceCounter = EngineReferenceCounter - 1;
       UNLOCK();
       SecondaryProcessingStatusFlag = primaryBufferPointer;
-      TertiaryProcessingStatusFlag = secondaryBufferPointer;
+      StringProcessingStatus = secondaryBufferPointer;
       dataIterator = primaryBufferPointer;
     }
   }
-  for (; SecondaryProcessingStatusFlag != TertiaryProcessingStatusFlag; SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 4) {
+  for (; SecondaryProcessingStatusFlag != StringProcessingStatus; SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 4) {
     operationResult = (**(code **)*SecondaryProcessingStatusFlag)(SecondaryProcessingStatusFlag,0);
   }
   if (dataIterator != NULL) {
@@ -35572,20 +35572,20 @@ void ManageMemoryBufferAllocation(long long *CharacterCode
   *ReferenceCountPointer = *ReferenceCountPointer + -1;
   UNLOCK();
   DataStructureCounter = *CharacterCode;
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   MemoryBlockIndex = DataStructureCounter + 0x200380;
   SystemPriorityLevel = 0x180068808;
   lStackX_8 = MemoryBlockIndex;
-  TemporaryBuffer = TertiaryProcessingStatusFlag;
+  TemporaryBuffer = StringProcessingStatus;
   SystemOperationResult = _Mtx_lock(MemoryBlockIndex);
   if (IntegerValue9 != 0) {
     SystemPriorityLevel = 0x180068815;
     __Throw_C_error_std__YAXH_Z(IntegerValue9);
   }
   SystemPriorityLevel = 0x18006881f;
-  ExtractMemoryBlockInfo(TertiaryProcessingStatusFlag + 4);
-  *TertiaryProcessingStatusFlag = *(void *)(DataStructureCounter + 0x200378);
-  *(uint64_t **)(DataStructureCounter + 0x200378) = TertiaryProcessingStatusFlag;
+  ExtractMemoryBlockInfo(StringProcessingStatus + 4);
+  *StringProcessingStatus = *(void *)(DataStructureCounter + 0x200378);
+  *(uint64_t **)(DataStructureCounter + 0x200378) = StringProcessingStatus;
   SystemPriorityLevel = 0x18006883a;
   SystemOperationResult = _Mtx_unlock(MemoryBlockIndex);
   if (IntegerValue9 != 0) {
@@ -37017,7 +37017,7 @@ uint64_t * GetSystemMemoryManagerPointer(long long *SystemSystemContext
   unsigned long long MemoryOffsetValue;
   uint ThreadIdHash;
   unsigned long long DataSize;
-  unsigned long long *TertiaryProcessingStatusFlag;
+  unsigned long long *StringProcessingStatus;
   void *NextNode;
   long long systemLoopCounter;
   long long SystemOffsetValue;
@@ -37033,20 +37033,20 @@ uint64_t * GetSystemMemoryManagerPointer(long long *SystemSystemContext
   HashResult = (ThreadIdHash >> 0x10 ^ ThreadIdHash) * -0x7a143595;
   HashResult = (HashResult >> 0xd ^ HashResult) * -0x3d4d51cb;
   QuaternaryReturnCode = (unsigned long long)(HashResult >> 0x10 ^ HashResult);
-  TertiaryProcessingStatusFlag = (unsigned long long *)SystemSystemContext[6];
-  for (systemEventTemplatePointer = TertiaryProcessingStatusFlag; DataSize = QuaternaryReturnCode, systemEventTemplatePointer != (unsigned long long *)0x0; systemEventTemplatePointer = (unsigned long long *)systemEventTemplatePointer[2]  {
+  StringProcessingStatus = (unsigned long long *)SystemSystemContext[6];
+  for (systemEventTemplatePointer = StringProcessingStatus; DataSize = QuaternaryReturnCode, systemEventTemplatePointer != (unsigned long long *)0x0; systemEventTemplatePointer = (unsigned long long *)systemEventTemplatePointer[2]  {
     while( true ) {
       DataSize = DataSize & *systemEventTemplatePointer - 1;
       Utf16Char4 = *(uint *)(DataSize * 0x10 + systemEventTemplatePointer[1]);
       if (Utf16Char4 == CalculatedCodePoint) {
         StatusBuffer5 = *(uint64_t **)(systemEventTemplatePointer[1] + 8 + DataSize * 0x10);
-        if (systemEventTemplatePointer == TertiaryProcessingStatusFlag) {
+        if (systemEventTemplatePointer == StringProcessingStatus) {
           return StatusBuffer5;
         }
         do {
-          QuaternaryReturnCode = QuaternaryReturnCode & *TertiaryProcessingStatusFlag - 1;
-          if (*(int *)(TertiaryProcessingStatusFlag[1] + QuaternaryReturnCode * 0x10) == 0) {
-            PrimaryProcessingStatusFlag = (uint *)(TertiaryProcessingStatusFlag[1] + QuaternaryReturnCode * 0x10);
+          QuaternaryReturnCode = QuaternaryReturnCode & *StringProcessingStatus - 1;
+          if (*(int *)(StringProcessingStatus[1] + QuaternaryReturnCode * 0x10) == 0) {
+            PrimaryProcessingStatusFlag = (uint *)(StringProcessingStatus[1] + QuaternaryReturnCode * 0x10);
             LOCK();
             CurrentByteValue7 = *PrimaryProcessingStatusFlag == 0;
             if (CurrentByteValue7) {
@@ -37054,7 +37054,7 @@ uint64_t * GetSystemMemoryManagerPointer(long long *SystemSystemContext
             }
             UNLOCK();
             if (CurrentByteValue7) {
-              *(uint64_t **)(TertiaryProcessingStatusFlag[1] + 8 + QuaternaryReturnCode * 0x10) = StatusBuffer5;
+              *(uint64_t **)(StringProcessingStatus[1] + 8 + QuaternaryReturnCode * 0x10) = StatusBuffer5;
               return StatusBuffer5;
             }
           }
@@ -37073,7 +37073,7 @@ uint64_t * GetSystemMemoryManagerPointer(long long *SystemSystemContext
   DataSize = CurrentMemoryBlockAddress + 1;
   StatusBuffer5 = NULL;
   while( true ) {
-    if (*TertiaryProcessingStatusFlag >> 1 <= DataSize) {
+    if (*StringProcessingStatus >> 1 <= DataSize) {
       LOCK();
       PrimaryProcessingStatusFlag = (uint *)(CharacterCode + 0x4b);
       Utf16Char4 = *PrimaryProcessingStatusFlag;
@@ -37081,37 +37081,37 @@ uint64_t * GetSystemMemoryManagerPointer(long long *SystemSystemContext
       UNLOCK();
       if ((Utf16Char4 & 1) == 0) {
         systemEventTemplatePointer = (unsigned long long *)CharacterCode[6];
-        TertiaryProcessingStatusFlag = systemEventTemplatePointer;
+        StringProcessingStatus = systemEventTemplatePointer;
         SystemStatusCode = *systemEventTemplatePointer;
         if (*systemEventTemplatePointer >> 1 <= DataSize) {
           do {
             MemoryAddressMask = SystemStatusCode;
             SystemStatusCode = MemoryAddressMask * 2;
           } while ((MemoryAddressMask & 0x7fffffffffffffff) <= DataSize);
-          TertiaryProcessingStatusFlag = (unsigned long long *)BufferAllocate(MemoryPoolManager,MemoryAddressMask * 0x20 + 0x1f,10);
-          if (TertiaryProcessingStatusFlag == (unsigned long long *)0x0) {
+          StringProcessingStatus = (unsigned long long *)BufferAllocate(MemoryPoolManager,MemoryAddressMask * 0x20 + 0x1f,10);
+          if (StringProcessingStatus == (unsigned long long *)0x0) {
             LOCK();
             CharacterCode[7] = CharacterCode[7] + -1;
             UNLOCK();
             *(uint32_t *)(CharacterCode + 0x4b) = 0;
             return NULL;
           }
-          *TertiaryProcessingStatusFlag = SystemStatusCode;
-          TertiaryProcessingStatusFlag[1] = (unsigned long long)(-(int)(TertiaryProcessingStatusFlag + 3) & 7) + (long long)(TertiaryProcessingStatusFlag + 3);
+          *StringProcessingStatus = SystemStatusCode;
+          StringProcessingStatus[1] = (unsigned long long)(-(int)(StringProcessingStatus + 3) & 7) + (long long)(StringProcessingStatus + 3);
           SystemStatusBuffer = StatusBuffer5;
           for (; SystemStatusCode != 0; SystemStatusCode = SystemStatusCode - 1) {
-            *(void *)((long long)SystemStatusBuffer + TertiaryProcessingStatusFlag[1] + 8) = 0;
-            *(uint32_t *)((long long)SystemStatusBuffer + TertiaryProcessingStatusFlag[1]) = 0;
+            *(void *)((long long)SystemStatusBuffer + StringProcessingStatus[1] + 8) = 0;
+            *(uint32_t *)((long long)SystemStatusBuffer + StringProcessingStatus[1]) = 0;
             SystemStatusBuffer = SystemStatusBuffer + 2;
           }
-          TertiaryProcessingStatusFlag[2] = (unsigned long long)systemEventTemplatePointer;
-          CharacterCode[6] = (long long)TertiaryProcessingStatusFlag;
+          StringProcessingStatus[2] = (unsigned long long)systemEventTemplatePointer;
+          CharacterCode[6] = (long long)StringProcessingStatus;
         }
         *(uint32_t *)(CharacterCode + 0x4b) = 0;
       }
     }
-    if (DataSize < (*TertiaryProcessingStatusFlag >> 2) + (*TertiaryProcessingStatusFlag >> 1)) break;
-    TertiaryProcessingStatusFlag = (unsigned long long *)CharacterCode[6];
+    if (DataSize < (*StringProcessingStatus >> 2) + (*StringProcessingStatus >> 1)) break;
+    StringProcessingStatus = (unsigned long long *)CharacterCode[6];
   }
   SystemStatusBuffer = (void *)*CharacterCode;
   while (SystemStatusBuffer != NULL) {
@@ -37132,24 +37132,24 @@ uint64_t * GetSystemMemoryManagerPointer(long long *SystemSystemContext
     }
   }
   CurrentByteValue7 = false;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x68,10);
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x68,10);
   SystemStatusBuffer = StatusBuffer5;
-  if (TertiaryProcessingStatusFlag != NULL) {
-    TertiaryProcessingStatusFlag[1] = 0;
-    *(uint8_t *)(TertiaryProcessingStatusFlag + 2) = 0;
-    TertiaryProcessingStatusFlag[3] = 0;
-    *TertiaryProcessingStatusFlag = &SystemMemoryBufferManagementData;
-    TertiaryProcessingStatusFlag[4] = 0;
-    TertiaryProcessingStatusFlag[5] = 0;
-    TertiaryProcessingStatusFlag[6] = 0;
-    TertiaryProcessingStatusFlag[7] = 0;
-    TertiaryProcessingStatusFlag[8] = 0;
-    *(uint8_t *)(TertiaryProcessingStatusFlag + 9) = 0;
-    TertiaryProcessingStatusFlag[10] = CharacterCode;
-    *TertiaryProcessingStatusFlag = &SystemMemoryBufferAllocationData;
-    TertiaryProcessingStatusFlag[0xb] = 0x20;
-    TertiaryProcessingStatusFlag[0xc] = 0;
-    ValidateProcessingStatusFlag(TertiaryProcessingStatusFlag);
+  if (StringProcessingStatus != NULL) {
+    StringProcessingStatus[1] = 0;
+    *(uint8_t *)(StringProcessingStatus + 2) = 0;
+    StringProcessingStatus[3] = 0;
+    *StringProcessingStatus = &SystemMemoryBufferManagementData;
+    StringProcessingStatus[4] = 0;
+    StringProcessingStatus[5] = 0;
+    StringProcessingStatus[6] = 0;
+    StringProcessingStatus[7] = 0;
+    StringProcessingStatus[8] = 0;
+    *(uint8_t *)(StringProcessingStatus + 9) = 0;
+    StringProcessingStatus[10] = CharacterCode;
+    *StringProcessingStatus = &SystemMemoryBufferAllocationData;
+    StringProcessingStatus[0xb] = 0x20;
+    StringProcessingStatus[0xc] = 0;
+    ValidateProcessingStatusFlag(StringProcessingStatus);
     LOCK();
     *(int *)(CharacterCode + 1) = (int)CharacterCode[1] + 1;
     UNLOCK();
@@ -37159,17 +37159,17 @@ uint64_t * GetSystemMemoryManagerPointer(long long *SystemSystemContext
       if (CurrentMemoryBlockAddress == 0) {
         SystemStatusBuffer = StatusBuffer5;
       }
-      TertiaryProcessingStatusFlag[1] = SystemStatusBuffer;
+      StringProcessingStatus[1] = SystemStatusBuffer;
       LOCK();
       SystemOffsetValue = *CharacterCode;
       CurrentByteValue6 = CurrentMemoryBlockAddress == SystemOffsetValue;
       if (CurrentByteValue6) {
-        *CharacterCode = (long long)TertiaryProcessingStatusFlag;
+        *CharacterCode = (long long)StringProcessingStatus;
         SystemOffsetValue = CurrentMemoryBlockAddress;
       }
       UNLOCK();
       CurrentMemoryBlockAddress = SystemOffsetValue;
-      SystemStatusBuffer = TertiaryProcessingStatusFlag;
+      SystemStatusBuffer = StringProcessingStatus;
     } while (!CurrentByteValue6);
   }
 MemoryComparisonComplete: // 原始标签：LAB_180069c2b，MemoryComparisonComplete
@@ -37185,9 +37185,9 @@ MemoryComparisonComplete: // 原始标签：LAB_180069c2b，MemoryComparisonComp
     UNLOCK();
   }
   do {
-    QuaternaryReturnCode = QuaternaryReturnCode & *TertiaryProcessingStatusFlag - 1;
-    if (*(int *)(TertiaryProcessingStatusFlag[1] + QuaternaryReturnCode * 0x10) == 0) {
-      PrimaryProcessingStatusFlag = (uint *)(TertiaryProcessingStatusFlag[1] + QuaternaryReturnCode * 0x10);
+    QuaternaryReturnCode = QuaternaryReturnCode & *StringProcessingStatus - 1;
+    if (*(int *)(StringProcessingStatus[1] + QuaternaryReturnCode * 0x10) == 0) {
+      PrimaryProcessingStatusFlag = (uint *)(StringProcessingStatus[1] + QuaternaryReturnCode * 0x10);
       LOCK();
       CurrentByteValue7 = *PrimaryProcessingStatusFlag == 0;
       if (CurrentByteValue7) {
@@ -37195,7 +37195,7 @@ MemoryComparisonComplete: // 原始标签：LAB_180069c2b，MemoryComparisonComp
       }
       UNLOCK();
       if (CurrentByteValue7) {
-        *(uint64_t **)(TertiaryProcessingStatusFlag[1] + 8 + QuaternaryReturnCode * 0x10) = SystemStatusBuffer;
+        *(uint64_t **)(StringProcessingStatus[1] + 8 + QuaternaryReturnCode * 0x10) = SystemStatusBuffer;
         return SystemStatusBuffer;
       }
     }
@@ -38182,7 +38182,7 @@ void ProcessDataStructureWithSource(uint64_t CharacterCode,long long CharacterCo
   void *CharacterCodePointer;
   uint32_t *SecondaryProcessingStatusFlag;
   void *PreviousNode;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   void *TemporaryBuffer;
   long long SystemOffsetValue;
   uint ProcessStringBuffer;
@@ -38365,10 +38365,10 @@ StringProcessingStart:
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
 LAB_180071d94:
-  TertiaryProcessingStatusFlag = (void *)(SystemEventPointer + FunctionAddress80);
-  *TertiaryProcessingStatusFlag = 0x6973736572707845;
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0x203a6e6f;
-  *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0xc) = 0;
+  StringProcessingStatus = (void *)(SystemEventPointer + FunctionAddress80);
+  *StringProcessingStatus = 0x6973736572707845;
+  *(uint32_t *)(StringProcessingStatus + 1) = 0x203a6e6f;
+  *(uint8_t *)((long long)StringProcessingStatus + 0xc) = 0;
   DataStructureCounter = -1;
   FunctionAddress80 = SystemStatusCode;
   if (Utf16EndPointer != 0) {
@@ -38419,22 +38419,22 @@ LAB_180071eb0:
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   FunctionAddress80 = MemoryAllocationIndex + 0xe;
   ConfigureSystemMemory(SystemConfigurationPointer,5,0xffffffff00000000,&SystemMemoryBufferPrimaryData);
-  TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+  StringProcessingStatus = &CoreEngineDataTemplate;
   if (SystemEventPointer != (uint8_t *)0x0) {
-    TertiaryProcessingStatusFlag = SystemEventPointer;
+    StringProcessingStatus = SystemEventPointer;
   }
-  ConfigureSystemData(SystemConfigurationPointer,4,0xffffffff00000000,&SystemMemoryBufferSecondaryData,TertiaryProcessingStatusFlag);
+  ConfigureSystemData(SystemConfigurationPointer,4,0xffffffff00000000,&SystemMemoryBufferSecondaryData,StringProcessingStatus);
   DataStructurePointer = &CoreEngineDataTemplate;
   if (TemporaryBuffer != NULL) {
     CharacterCodePointer = TemporaryBuffer;
   }
   ValidateSystemConfiguration(SystemConfigurationPointer,4,0xffffffff00000000,3,CharacterCodePointer);
   FinalizeSystemConfiguration();
-  TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+  StringProcessingStatus = &CoreEngineDataTemplate;
   if (SystemEventPointer != (uint8_t *)0x0) {
-    TertiaryProcessingStatusFlag = SystemEventPointer;
+    StringProcessingStatus = SystemEventPointer;
   }
-  OutputDebugStringA(TertiaryProcessingStatusFlag);
+  OutputDebugStringA(StringProcessingStatus);
   do {
     IntegerValue = ReleaseSemaphore(SemaphoreHandle,1);
   } while (IntegerValue == 0);
@@ -39097,8 +39097,8 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t CharacterCode,uint64_t *
   long long DataStructureCounter;
   uint64_t *pComparisonProcessingStatusFlag;
   void *CurrentProcessingNode;
-  uint64_t **pTertiaryProcessingStatusFlag;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint64_t **pStringProcessingStatus;
+  uint8_t *StringProcessingStatus;
   uint64_t SystemMemoryAllocationResult;
   uint16_t *pStatusBuffer;
   uint ProcessStringBuffer;
@@ -39250,7 +39250,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t CharacterCode,uint64_t *
     iStack_100 = 0x33;
     ProcessStringBuffer = 2;
     Utf16CharacterCode5 = 2;
-    pTertiaryProcessingStatusFlag = &pProcessingCounter;
+    pStringProcessingStatus = &pProcessingCounter;
     CharacterCodePointer = SystemEventDispatcher;
   }
   else {
@@ -39283,7 +39283,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t CharacterCode,uint64_t *
     }
     ProcessStringBuffer = 1;
     Utf16CharacterCode5 = 1;
-    pTertiaryProcessingStatusFlag = &SystemEventDispatcher;
+    pStringProcessingStatus = &SystemEventDispatcher;
     SecondaryProcessingStatusFlag = pProcessingCounter;
   }
   pSystemOperationFlag90 = &SystemNullTemplate;
@@ -39296,13 +39296,13 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t CharacterCode,uint64_t *
     if (Utf16CharacterCode5 < 0x10) {
       ProcessStringBuffer = 0x10;
     }
-    TertiaryProcessingStatusFlag = (uint8_t *)BufferAllocate(MemoryPoolManager,ProcessStringBuffer,0x13);
+    StringProcessingStatus = (uint8_t *)BufferAllocate(MemoryPoolManager,ProcessStringBuffer,0x13);
     *NextNode = 0;
-    SystemEventPointer = TertiaryProcessingStatusFlag;
-    Utf16Char = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+    SystemEventPointer = StringProcessingStatus;
+    Utf16Char = GetMemoryAllocationInfo(StringProcessingStatus);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,Utf16Char);
                     // WARNING: Subroutine does not return
-    memcpy(TertiaryProcessingStatusFlag,*pTertiaryProcessingStatusFlag,Utf16CharacterCode5);
+    memcpy(StringProcessingStatus,*pStringProcessingStatus,Utf16CharacterCode5);
   }
   StackUnsigned78 = 0;
   FunctionAddress80 = 0;
@@ -41671,10 +41671,10 @@ void ProcessDataStructureBufferExpansion(uint64_t *CharacterCode,unsigned long l
   long long secondaryLoopCounter;
   unsigned long long MemoryAllocationLoopCounter;
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
-  if ((unsigned long long)((CharacterCode[2] - (long long)TertiaryProcessingStatusFlag) / 0x24) < CharacterCodeSize) {
+  StringProcessingStatus = (void *)CharacterCode[1];
+  if ((unsigned long long)((CharacterCode[2] - (long long)StringProcessingStatus) / 0x24) < CharacterCodeSize) {
     systemEventTemplatePointer = (void *)*CharacterCode;
-    SystemDataTablePointer = ((long long)TertiaryProcessingStatusFlag - (long long)systemEventTemplatePointer) / 0x24;
+    SystemDataTablePointer = ((long long)StringProcessingStatus - (long long)systemEventTemplatePointer) / 0x24;
     SystemMemoryAllocationResult = SystemDataTablePointer * 2;
     if (SystemDataTablePointer == 0) {
       SystemMemoryAllocationResult = 1;
@@ -41684,13 +41684,13 @@ void ProcessDataStructureBufferExpansion(uint64_t *CharacterCode,unsigned long l
     }
     CharacterCode = (long long *)0x0;
     if (SystemMemoryAllocationResult != 0) {
-      CharacterCode = (long long *               BufferAllocate(MemoryPoolManager,SystemMemoryAllocationResult * 0x24,*(uint8_t *)(CharacterCode + 3),TertiaryProcessingStatusFlag,
+      CharacterCode = (long long *               BufferAllocate(MemoryPoolManager,SystemMemoryAllocationResult * 0x24,*(uint8_t *)(CharacterCode + 3),StringProcessingStatus,
                              0xfffffffffffffffe);
-      TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+      StringProcessingStatus = (void *)CharacterCode[1];
       systemEventTemplatePointer = (void *)*CharacterCode;
     }
     BufferAllocationStatus = CharacterCode;
-    if (systemEventTemplatePointer != TertiaryProcessingStatusFlag) {
+    if (systemEventTemplatePointer != StringProcessingStatus) {
       SystemDataTablePointer = (long long)CharacterCode - (long long)systemEventTemplatePointer;
       SystemContextPtr = (long long *)((long long)systemEventTemplatePointer + 0x1a);
       do {
@@ -41729,22 +41729,22 @@ void ProcessDataStructureBufferExpansion(uint64_t *CharacterCode,unsigned long l
         BufferAllocationStatus = (long long *)((long long)BufferAllocationStatus + 0x24);
         systemEventTemplatePointer = (void *)((long long)SystemContextPtr + 10);
         SystemContextPtr = (long long *)((long long)SystemContextPtr + 0x24);
-      } while (systemEventTemplatePointer != TertiaryProcessingStatusFlag);
+      } while (systemEventTemplatePointer != StringProcessingStatus);
     }
     if (CharacterCodeSize != 0) {
-      TertiaryProcessingStatusFlag = (void *)((long long)BufferAllocationStatus + 0x1a);
+      StringProcessingStatus = (void *)((long long)BufferAllocationStatus + 0x1a);
       DataSize = CharacterCodeSize;
       do {
-        TertiaryProcessingStatusFlag[-1] = 0;
-        *TertiaryProcessingStatusFlag = 0;
-        *(uint16_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-        *(uint16_t *)((long long)TertiaryProcessingStatusFlag + -10) = 0;
-        *(void *)((long long)TertiaryProcessingStatusFlag + -0x1a) = 0;
-        *(void *)((long long)TertiaryProcessingStatusFlag + -0x12) = 0;
-        *(uint16_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-        TertiaryProcessingStatusFlag[-1] = 0;
-        *TertiaryProcessingStatusFlag = 0;
-        TertiaryProcessingStatusFlag = (void *)((long long)TertiaryProcessingStatusFlag + 0x24);
+        StringProcessingStatus[-1] = 0;
+        *StringProcessingStatus = 0;
+        *(uint16_t *)(StringProcessingStatus + 1) = 0;
+        *(uint16_t *)((long long)StringProcessingStatus + -10) = 0;
+        *(void *)((long long)StringProcessingStatus + -0x1a) = 0;
+        *(void *)((long long)StringProcessingStatus + -0x12) = 0;
+        *(uint16_t *)(StringProcessingStatus + 1) = 0;
+        StringProcessingStatus[-1] = 0;
+        *StringProcessingStatus = 0;
+        StringProcessingStatus = (void *)((long long)StringProcessingStatus + 0x24);
         DataSize = DataSize - 1;
       } while (DataSize != 0);
     }
@@ -41786,26 +41786,26 @@ void ProcessDataStructureBufferExpansion(uint64_t *CharacterCode,unsigned long l
   }
   else {
     if (CharacterCodeSize != 0) {
-      systemEventTemplatePointer = (void *)((long long)TertiaryProcessingStatusFlag + 0x1a);
+      systemEventTemplatePointer = (void *)((long long)StringProcessingStatus + 0x1a);
       SystemMemoryAllocationResult = CharacterCodeSize;
       do {
-        TertiaryProcessingStatusFlag[1] = 0;
-        TertiaryProcessingStatusFlag[2] = 0;
-        TertiaryProcessingStatusFlag[3] = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 4) = 0;
+        StringProcessingStatus[1] = 0;
+        StringProcessingStatus[2] = 0;
+        StringProcessingStatus[3] = 0;
+        *(uint32_t *)(StringProcessingStatus + 4) = 0;
         *(uint16_t *)((long long)systemEventTemplatePointer + -10) = 0;
-        *TertiaryProcessingStatusFlag = 0;
+        *StringProcessingStatus = 0;
         *(void *)((long long)systemEventTemplatePointer + -0x12) = 0;
         *(uint16_t *)(systemEventTemplatePointer + 1) = 0;
         systemEventTemplatePointer[-1] = 0;
         *systemEventTemplatePointer = 0;
-        TertiaryProcessingStatusFlag = (void *)((long long)TertiaryProcessingStatusFlag + 0x24);
+        StringProcessingStatus = (void *)((long long)StringProcessingStatus + 0x24);
         systemEventTemplatePointer = (void *)((long long)systemEventTemplatePointer + 0x24);
         MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemMemoryAllocationResult != 0);
-      TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+      StringProcessingStatus = (void *)CharacterCode[1];
     }
-    CharacterCode[1] = (long long)TertiaryProcessingStatusFlag + CharacterCodeSize * 0x24;
+    CharacterCode[1] = (long long)StringProcessingStatus + CharacterCodeSize * 0x24;
   }
   return;
 }
@@ -46000,20 +46000,20 @@ LAB_1800782e0:
   ProcessSystemMemoryAllocation(CharacterCode);
   if ((*(long long *)(CharacterCode + 600) == 0) &&
      ((*(uint *)(*(long long *)(CharacterCode + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    TertiaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x58,8,9);
-    *(void *)((long long)TertiaryProcessingStatusFlag + 0x2c) = 0xffffffffffffffff;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 9) = 0xffffffff;
-    *TertiaryProcessingStatusFlag = 0;
-    TertiaryProcessingStatusFlag[2] = 0;
-    TertiaryProcessingStatusFlag[7] = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 5) = 0xffffffff;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 4) = 0xffffffff;
-    TertiaryProcessingStatusFlag[3] = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 8) = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0x44) = 0;
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0x24) = 0;
-    *(uint64_t **)(CharacterCode + 600) = TertiaryProcessingStatusFlag;
+    StringProcessingStatus = (void *)MemoryAllocate(MemoryPoolManager,0x58,8,9);
+    *(void *)((long long)StringProcessingStatus + 0x2c) = 0xffffffffffffffff;
+    *(uint32_t *)(StringProcessingStatus + 9) = 0xffffffff;
+    *StringProcessingStatus = 0;
+    StringProcessingStatus[2] = 0;
+    StringProcessingStatus[7] = 0;
+    *(uint32_t *)(StringProcessingStatus + 5) = 0xffffffff;
+    *(uint32_t *)(StringProcessingStatus + 4) = 0xffffffff;
+    StringProcessingStatus[3] = 0;
+    *(uint32_t *)(StringProcessingStatus + 8) = 0;
+    *(uint32_t *)(StringProcessingStatus + 1) = 0;
+    *(uint8_t *)((long long)StringProcessingStatus + 0x44) = 0;
+    *(uint8_t *)((long long)StringProcessingStatus + 0x24) = 0;
+    *(uint64_t **)(CharacterCode + 600) = StringProcessingStatus;
   }
   return;
 }
@@ -46114,20 +46114,20 @@ LAB_1800782e0:
   ProcessSystemMemoryAllocation();
   if ((*(long long *)(SystemContext + 600) == 0) &&
      ((*(uint *)(*(long long *)(SystemContext + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    TertiaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x58,8,9);
-    *(void *)((long long)TertiaryProcessingStatusFlag + 0x2c) = 0xffffffffffffffff;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 9) = 0xffffffff;
-    *TertiaryProcessingStatusFlag = 0;
-    TertiaryProcessingStatusFlag[2] = 0;
-    TertiaryProcessingStatusFlag[7] = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 5) = 0xffffffff;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 4) = 0xffffffff;
-    TertiaryProcessingStatusFlag[3] = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 8) = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0x44) = 0;
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0x24) = 0;
-    *(uint64_t **)(SystemContext + 600) = TertiaryProcessingStatusFlag;
+    StringProcessingStatus = (void *)MemoryAllocate(MemoryPoolManager,0x58,8,9);
+    *(void *)((long long)StringProcessingStatus + 0x2c) = 0xffffffffffffffff;
+    *(uint32_t *)(StringProcessingStatus + 9) = 0xffffffff;
+    *StringProcessingStatus = 0;
+    StringProcessingStatus[2] = 0;
+    StringProcessingStatus[7] = 0;
+    *(uint32_t *)(StringProcessingStatus + 5) = 0xffffffff;
+    *(uint32_t *)(StringProcessingStatus + 4) = 0xffffffff;
+    StringProcessingStatus[3] = 0;
+    *(uint32_t *)(StringProcessingStatus + 8) = 0;
+    *(uint32_t *)(StringProcessingStatus + 1) = 0;
+    *(uint8_t *)((long long)StringProcessingStatus + 0x44) = 0;
+    *(uint8_t *)((long long)StringProcessingStatus + 0x24) = 0;
+    *(uint64_t **)(SystemContext + 600) = StringProcessingStatus;
   }
   return;
 }
@@ -46228,20 +46228,20 @@ LAB_1800782e0:
   ProcessSystemMemoryAllocation();
   if ((*(long long *)(SystemContext + 600) == 0) &&
      ((*(uint *)(*(long long *)(SystemContext + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    TertiaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x58,8,9);
-    *(void *)((long long)TertiaryProcessingStatusFlag + 0x2c) = 0xffffffffffffffff;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 9) = 0xffffffff;
-    *TertiaryProcessingStatusFlag = 0;
-    TertiaryProcessingStatusFlag[2] = 0;
-    TertiaryProcessingStatusFlag[7] = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 5) = 0xffffffff;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 4) = 0xffffffff;
-    TertiaryProcessingStatusFlag[3] = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 8) = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0x44) = 0;
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0x24) = 0;
-    *(uint64_t **)(SystemContext + 600) = TertiaryProcessingStatusFlag;
+    StringProcessingStatus = (void *)MemoryAllocate(MemoryPoolManager,0x58,8,9);
+    *(void *)((long long)StringProcessingStatus + 0x2c) = 0xffffffffffffffff;
+    *(uint32_t *)(StringProcessingStatus + 9) = 0xffffffff;
+    *StringProcessingStatus = 0;
+    StringProcessingStatus[2] = 0;
+    StringProcessingStatus[7] = 0;
+    *(uint32_t *)(StringProcessingStatus + 5) = 0xffffffff;
+    *(uint32_t *)(StringProcessingStatus + 4) = 0xffffffff;
+    StringProcessingStatus[3] = 0;
+    *(uint32_t *)(StringProcessingStatus + 8) = 0;
+    *(uint32_t *)(StringProcessingStatus + 1) = 0;
+    *(uint8_t *)((long long)StringProcessingStatus + 0x44) = 0;
+    *(uint8_t *)((long long)StringProcessingStatus + 0x24) = 0;
+    *(uint64_t **)(SystemContext + 600) = StringProcessingStatus;
   }
   return;
 }
@@ -46330,20 +46330,20 @@ LAB_1800782e0:
   ProcessSystemMemoryAllocation();
   if ((*(long long *)(SystemContext + 600) == 0) &&
      ((*(uint *)(*(long long *)(SystemContext + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    TertiaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x58,8,9);
-    *(void *)((long long)TertiaryProcessingStatusFlag + 0x2c) = 0xffffffffffffffff;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 9) = 0xffffffff;
-    *TertiaryProcessingStatusFlag = 0;
-    TertiaryProcessingStatusFlag[2] = 0;
-    TertiaryProcessingStatusFlag[7] = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 5) = 0xffffffff;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 4) = 0xffffffff;
-    TertiaryProcessingStatusFlag[3] = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 8) = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0x44) = 0;
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0x24) = 0;
-    *(uint64_t **)(SystemContext + 600) = TertiaryProcessingStatusFlag;
+    StringProcessingStatus = (void *)MemoryAllocate(MemoryPoolManager,0x58,8,9);
+    *(void *)((long long)StringProcessingStatus + 0x2c) = 0xffffffffffffffff;
+    *(uint32_t *)(StringProcessingStatus + 9) = 0xffffffff;
+    *StringProcessingStatus = 0;
+    StringProcessingStatus[2] = 0;
+    StringProcessingStatus[7] = 0;
+    *(uint32_t *)(StringProcessingStatus + 5) = 0xffffffff;
+    *(uint32_t *)(StringProcessingStatus + 4) = 0xffffffff;
+    StringProcessingStatus[3] = 0;
+    *(uint32_t *)(StringProcessingStatus + 8) = 0;
+    *(uint32_t *)(StringProcessingStatus + 1) = 0;
+    *(uint8_t *)((long long)StringProcessingStatus + 0x44) = 0;
+    *(uint8_t *)((long long)StringProcessingStatus + 0x24) = 0;
+    *(uint64_t **)(SystemContext + 600) = StringProcessingStatus;
   }
   return;
 }
@@ -46529,28 +46529,28 @@ void ProcessCharacterCode(uint64_t *CharacterCode,long long CharacterCodeSize
   long long MemoryPoolBlockSize;
   long long *pSystemDataTablePointer;
   int IntegerValue9;
-  float ContextPrimaryFloat0;
-  uint32_t ProcessStringBuffer;
-  uint32_t SystemStatusCode;
-  uint32_t QuaternaryReturnCode;
-  float SystemContextPrimaryFloat4;
-  float SystemFloatValue;
-  float SystemContextPrimaryFloat6;
-  float SecondaryFloatValue;
-  float SystemContextPrimaryFloat8;
-  float ContextPrimaryFloat9;
-  float ContextSecondaryFloat0;
-  float ContextSecondaryFloat1;
-  float ContextSecondaryFloat2;
-  float ContextSecondaryFloat3;
-  float ContextSecondaryFloat4;
-  float ContextSecondaryFloat5;
-  float ContextSecondaryFloat6;
-  float ContextSecondaryFloat7;
-  float ContextSecondaryFloat8;
-  float ContextSecondaryFloat9;
-  float FloatValue30;
-  float FloatValue31;
+  float CharacterFloatValueA;
+  uint32_t StringProcessingBuffer;
+  uint32_t EncodingStatusCode;
+  uint32_t ValidationReturnCode;
+  float SystemContextFloatA;
+  float SystemFloatMultiplier;
+  float SystemContextFloatB;
+  float SecondaryFloatMultiplier;
+  float SystemContextFloatC;
+  float ContextFloatResultA;
+  float MatrixTransformX;
+  float MatrixTransformY;
+  float MatrixTransformZ;
+  float MatrixTransformW;
+  float MatrixScaleX;
+  float MatrixScaleY;
+  float MatrixScaleZ;
+  float MatrixScaleW;
+  float MatrixRotationX;
+  float MatrixRotationY;
+  float CalculatedFloatA;
+  float CalculatedFloatB;
   long long *SystemRegisterPointerX8;
   uint64_t systemStackBuffer [2];
   uint64_t systemStackVariable;
@@ -46762,19 +46762,19 @@ void ProcessCharacterCode(uint64_t *CharacterCode,long long CharacterCodeSize
     *(uint32_t *)((long long)CharacterCode + 0x9c) = 0;
     *(uint32_t *)((long long)CharacterCode + 0xac) = 0;
     *(uint32_t *)((long long)CharacterCode + 0xbc) = 0x3f800000;
-    SystemContextPrimaryFloat8 = pFloatVariable5[6];
-    SystemContextPrimaryFloat6 = pFloatVariable5[0xd];
-    ContextPrimaryFloat0 = pFloatVariable5[9];
-    SecondaryFloatValue = pFloatVariable5[1];
-    SystemFloatValue = pFloatVariable5[0xe];
-    ContextSecondaryFloat3 = pFloatVariable5[2];
-    ContextSecondaryFloat5 = pFloatVariable5[10];
-    ContextSecondaryFloat8 = pFloatVariable5[5];
-    ContextSecondaryFloat4 = SystemFloatValue * ContextPrimaryFloat0 - SystemContextPrimaryFloat6 * ContextSecondaryFloat5;
-    ContextSecondaryFloat1 = SystemFloatValue * ContextSecondaryFloat8 - SystemContextPrimaryFloat6 * SystemContextPrimaryFloat8;
-    ContextSecondaryFloat2 = SystemFloatValue * SecondaryFloatValue - SystemContextPrimaryFloat6 * ContextSecondaryFloat3;
-    ContextSecondaryFloat9 = ContextSecondaryFloat8 * ContextSecondaryFloat5 - ContextPrimaryFloat0 * SystemContextPrimaryFloat8;
-    ContextSecondaryFloat0 = SecondaryFloatValue * ContextSecondaryFloat5 - ContextPrimaryFloat0 * ContextSecondaryFloat3;
+    SystemContextFloatC = pFloatVariable5[6];
+    SystemContextFloatB = pFloatVariable5[0xd];
+    CharacterFloatValueA = pFloatVariable5[9];
+    SecondaryFloatMultiplier = pFloatVariable5[1];
+    SystemFloatMultiplier = pFloatVariable5[0xe];
+    MatrixTransformZ = pFloatVariable5[2];
+    MatrixScaleX = pFloatVariable5[10];
+    MatrixRotationX = pFloatVariable5[5];
+    MatrixTransformW = SystemFloatMultiplier * CharacterFloatValueA - SystemContextFloatB * MatrixScaleX;
+    MatrixTransformY = SystemFloatMultiplier * MatrixRotationX - SystemContextFloatB * SystemContextFloatC;
+    MatrixTransformZ = SystemFloatMultiplier * SecondaryFloatMultiplier - SystemContextFloatB * MatrixTransformZ;
+    MatrixRotationY = MatrixRotationX * MatrixScaleX - CharacterFloatValueA * SystemContextFloatC;
+    MatrixTransformX = SecondaryFloatMultiplier * MatrixScaleX - CharacterFloatValueA * MatrixTransformZ;
     *(float *)(CharacterCode + 0x18) = ContextSecondaryFloat9;
     ContextPrimaryFloat9 = SecondaryFloatValue * SystemContextPrimaryFloat8 - ContextSecondaryFloat8 * ContextSecondaryFloat3;
     FloatValue30 = ContextSecondaryFloat3 * pFloatVariable5[9] - ContextSecondaryFloat5 * pFloatVariable5[1];
@@ -52598,10 +52598,10 @@ void ReallocateCoreEngineDataBuffer(long long *CharacterCode,unsigned long long 
   uint64_t *StatusBuffer;
   unsigned long long ProcessStringBuffer;
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
-  if ((unsigned long long)(CharacterCode[2] - (long long)TertiaryProcessingStatusFlag >> 5) < CharacterCodeSize) {
+  StringProcessingStatus = (void *)CharacterCode[1];
+  if ((unsigned long long)(CharacterCode[2] - (long long)StringProcessingStatus >> 5) < CharacterCodeSize) {
     StatusBuffer = (void *)*CharacterCode;
-    DataStructureCounter = (long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer >> 5;
+    DataStructureCounter = (long long)StringProcessingStatus - (long long)StatusBuffer >> 5;
     SystemMemoryAllocationResult = DataStructureCounter * 2;
     if (DataStructureCounter == 0) {
       SystemMemoryAllocationResult = 1;
@@ -52612,11 +52612,11 @@ void ReallocateCoreEngineDataBuffer(long long *CharacterCode,unsigned long long 
     CharacterCodePointer = NULL;
     if (SystemMemoryAllocationResult != 0) {
       CharacterCodePointer = (void *               BufferAllocate(MemoryPoolManager,SystemMemoryAllocationResult << 5,(char)CharacterCode[3],Utf16EndPointer,0xfffffffffffffffe);
-      TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+      StringProcessingStatus = (void *)CharacterCode[1];
       StatusBuffer = (void *)*CharacterCode;
     }
     SecondaryProcessingStatusFlag = CharacterCodePointer;
-    if (StatusBuffer != TertiaryProcessingStatusFlag) {
+    if (StatusBuffer != StringProcessingStatus) {
       DataStructureCounter = (long long)CharacterCodePointer - (long long)StatusBuffer;
       StatusBuffer = StatusBuffer + 3;
       do {
@@ -52639,17 +52639,17 @@ void ReallocateCoreEngineDataBuffer(long long *CharacterCode,unsigned long long 
         SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 4;
         StatusBuffer = StatusBuffer + 1;
         StatusBuffer = StatusBuffer + 4;
-      } while (StatusBuffer != TertiaryProcessingStatusFlag);
+      } while (StatusBuffer != StringProcessingStatus);
     }
     if (CharacterCodeSize != 0) {
-      TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 1;
+      StringProcessingStatus = SecondaryProcessingStatusFlag + 1;
       ProcessStringBuffer = CharacterCodeSize;
       do {
-        TertiaryProcessingStatusFlag[-1] = 0;
-        *TertiaryProcessingStatusFlag = 0;
-        TertiaryProcessingStatusFlag[1] = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = 3;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
+        StringProcessingStatus[-1] = 0;
+        *StringProcessingStatus = 0;
+        StringProcessingStatus[1] = 0;
+        *(uint32_t *)(StringProcessingStatus + 2) = 3;
+        StringProcessingStatus = StringProcessingStatus + 4;
         ProcessStringBuffer = ProcessStringBuffer - 1;
       } while (ProcessStringBuffer != 0);
     }
@@ -52676,16 +52676,16 @@ void ReallocateCoreEngineDataBuffer(long long *CharacterCode,unsigned long long 
     SystemMemoryAllocationResult = CharacterCodeSize;
     if (CharacterCodeSize != 0) {
       do {
-        *TertiaryProcessingStatusFlag = 0;
-        TertiaryProcessingStatusFlag[1] = 0;
-        TertiaryProcessingStatusFlag[2] = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 3) = 3;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
+        *StringProcessingStatus = 0;
+        StringProcessingStatus[1] = 0;
+        StringProcessingStatus[2] = 0;
+        *(uint32_t *)(StringProcessingStatus + 3) = 3;
+        StringProcessingStatus = StringProcessingStatus + 4;
         MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemMemoryAllocationResult != 0);
-      TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+      StringProcessingStatus = (void *)CharacterCode[1];
     }
-    CharacterCode[1] = (long long)(TertiaryProcessingStatusFlag + CharacterCodeSize * 4);
+    CharacterCode[1] = (long long)(StringProcessingStatus + CharacterCodeSize * 4);
   }
   return;
 }
@@ -52725,10 +52725,10 @@ void ExpandCoreEngineDataBuffer(long long *CharacterCode,unsigned long long Char
   uint64_t *StatusBuffer;
   unsigned long long ProcessStringBuffer;
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
-  if ((unsigned long long)(CharacterCode[2] - (long long)TertiaryProcessingStatusFlag >> 5) < CharacterCodeSize) {
+  StringProcessingStatus = (void *)CharacterCode[1];
+  if ((unsigned long long)(CharacterCode[2] - (long long)StringProcessingStatus >> 5) < CharacterCodeSize) {
     StatusBuffer = (void *)*CharacterCode;
-    DataStructureCounter = (long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer >> 5;
+    DataStructureCounter = (long long)StringProcessingStatus - (long long)StatusBuffer >> 5;
     SystemMemoryAllocationResult = DataStructureCounter * 2;
     if (DataStructureCounter == 0) {
       SystemMemoryAllocationResult = 1;
@@ -52739,11 +52739,11 @@ void ExpandCoreEngineDataBuffer(long long *CharacterCode,unsigned long long Char
     CharacterCodePointer = NULL;
     if (SystemMemoryAllocationResult != 0) {
       CharacterCodePointer = (void *               BufferAllocate(MemoryPoolManager,SystemMemoryAllocationResult << 5,(char)CharacterCode[3],Utf16EndPointer,0xfffffffffffffffe);
-      TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+      StringProcessingStatus = (void *)CharacterCode[1];
       StatusBuffer = (void *)*CharacterCode;
     }
     SecondaryProcessingStatusFlag = CharacterCodePointer;
-    if (StatusBuffer != TertiaryProcessingStatusFlag) {
+    if (StatusBuffer != StringProcessingStatus) {
       DataStructureCounter = (long long)CharacterCodePointer - (long long)StatusBuffer;
       StatusBuffer = StatusBuffer + 3;
       do {
@@ -52766,17 +52766,17 @@ void ExpandCoreEngineDataBuffer(long long *CharacterCode,unsigned long long Char
         SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 4;
         StatusBuffer = StatusBuffer + 1;
         StatusBuffer = StatusBuffer + 4;
-      } while (StatusBuffer != TertiaryProcessingStatusFlag);
+      } while (StatusBuffer != StringProcessingStatus);
     }
     if (CharacterCodeSize != 0) {
-      TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 1;
+      StringProcessingStatus = SecondaryProcessingStatusFlag + 1;
       ProcessStringBuffer = CharacterCodeSize;
       do {
-        TertiaryProcessingStatusFlag[-1] = 0;
-        *TertiaryProcessingStatusFlag = 0;
-        TertiaryProcessingStatusFlag[1] = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = 3;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
+        StringProcessingStatus[-1] = 0;
+        *StringProcessingStatus = 0;
+        StringProcessingStatus[1] = 0;
+        *(uint32_t *)(StringProcessingStatus + 2) = 3;
+        StringProcessingStatus = StringProcessingStatus + 4;
         ProcessStringBuffer = ProcessStringBuffer - 1;
       } while (ProcessStringBuffer != 0);
     }
@@ -52803,16 +52803,16 @@ void ExpandCoreEngineDataBuffer(long long *CharacterCode,unsigned long long Char
     SystemMemoryAllocationResult = CharacterCodeSize;
     if (CharacterCodeSize != 0) {
       do {
-        *TertiaryProcessingStatusFlag = 0;
-        TertiaryProcessingStatusFlag[1] = 0;
-        TertiaryProcessingStatusFlag[2] = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 3) = 3;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
+        *StringProcessingStatus = 0;
+        StringProcessingStatus[1] = 0;
+        StringProcessingStatus[2] = 0;
+        *(uint32_t *)(StringProcessingStatus + 3) = 3;
+        StringProcessingStatus = StringProcessingStatus + 4;
         MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemMemoryAllocationResult != 0);
-      TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+      StringProcessingStatus = (void *)CharacterCode[1];
     }
-    CharacterCode[1] = (long long)(TertiaryProcessingStatusFlag + CharacterCodeSize * 4);
+    CharacterCode[1] = (long long)(StringProcessingStatus + CharacterCodeSize * 4);
   }
   return;
 }
@@ -52856,20 +52856,20 @@ void ProcessCoreEngineDataStructureCopy(long long *CharacterCode,long long *Char
   StatusBuffer2 = (uint32_t *)CharacterCode[1];
   SecondaryProcessingStatusFlag = (uint32_t *)*CharacterCode;
   SystemOffsetValue = (long long)StatusBuffer2 - (long long)SecondaryProcessingStatusFlag >> 5;
-  TertiaryProcessingStatusFlag = NULL;
+  StringProcessingStatus = NULL;
   if (SystemOffsetValue == 0) {
     SystemOffsetValue = 1;
   }
   else {
     SystemOffsetValue = SystemOffsetValue * 2;
-    CharacterCodePointer = TertiaryProcessingStatusFlag;
+    CharacterCodePointer = StringProcessingStatus;
     if (SystemOffsetValue == 0) goto LAB_180082720;
   }
   CharacterCodePointer = (void *           BufferAllocate(MemoryPoolManager,SystemOffsetValue << 5,(char)CharacterCode[3],StatusBuffer2,0xfffffffffffffffe);
   StatusBuffer2 = (uint32_t *)CharacterCode[1];
   SecondaryProcessingStatusFlag = (uint32_t *)*CharacterCode;
 LAB_180082720:
-  TertiaryProcessingStatusFlag = CharacterCodePointer;
+  StringProcessingStatus = CharacterCodePointer;
   if (SecondaryProcessingStatusFlag != StatusBuffer2) {
     SystemStringIndex = (long long)CharacterCodePointer - (long long)SecondaryProcessingStatusFlag;
     SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 6;
@@ -52878,8 +52878,8 @@ LAB_180082720:
       *(void *)(SystemStringIndex + -0x10 + (long long)SecondaryProcessingStatusFlag) = 0;
       *(void *)(SystemStringIndex + -8 + (long long)SecondaryProcessingStatusFlag) = 0;
       *(uint32_t *)(SystemStringIndex + (long long)SecondaryProcessingStatusFlag) = *SecondaryProcessingStatusFlag;
-      MemoryAddressMask = *TertiaryProcessingStatusFlag;
-      *TertiaryProcessingStatusFlag = *(void *)(SecondaryProcessingStatusFlag + -6);
+      MemoryAddressMask = *StringProcessingStatus;
+      *StringProcessingStatus = *(void *)(SecondaryProcessingStatusFlag + -6);
       *(void *)(SecondaryProcessingStatusFlag + -6) = MemoryAddressMask;
       MemoryAddressMask = *(void *)(SystemStringIndex + -0x10 + (long long)SecondaryProcessingStatusFlag);
       *(void *)(SystemStringIndex + -0x10 + (long long)SecondaryProcessingStatusFlag) = *(void *)(SecondaryProcessingStatusFlag + -4);
@@ -52890,26 +52890,26 @@ LAB_180082720:
       MemoryAllocationIndex = *(uint32_t *)(SystemStringIndex + (long long)SecondaryProcessingStatusFlag);
       *(uint32_t *)(SystemStringIndex + (long long)SecondaryProcessingStatusFlag) = *SecondaryProcessingStatusFlag;
       *SecondaryProcessingStatusFlag = MemoryAllocationIndex;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
+      StringProcessingStatus = StringProcessingStatus + 4;
       StatusBuffer = SecondaryProcessingStatusFlag + 2;
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 8;
     } while (StatusBuffer != StatusBuffer2);
   }
   SystemStringIndex = CharacterCodeSize[1] - *CharacterCodeSize >> 2;
   UnicodeCodePoint = *(uint *)(CharacterCodeSize + 3);
-  *(uint *)(TertiaryProcessingStatusFlag + 3) = UnicodeCodePoint;
+  *(uint *)(StringProcessingStatus + 3) = UnicodeCodePoint;
   if (SystemStringIndex != 0) {
-    TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,SystemStringIndex * 4,UnicodeCodePoint & 0xff,StatusBuffer2,QuaternaryReturnCode);
+    StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,SystemStringIndex * 4,UnicodeCodePoint & 0xff,StatusBuffer2,QuaternaryReturnCode);
   }
-  *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  TertiaryProcessingStatusFlag[1] = TertiaryProcessingStatusFlag;
-  TertiaryProcessingStatusFlag[2] = (long long)TertiaryProcessingStatusFlag + SystemStringIndex * 4;
+  *StringProcessingStatus = StringProcessingStatus;
+  StringProcessingStatus[1] = StringProcessingStatus;
+  StringProcessingStatus[2] = (long long)StringProcessingStatus + SystemStringIndex * 4;
   SystemStringIndex = *CharacterCodeSize;
   if (SystemStringIndex != CharacterCodeSize[1]) {
                     // WARNING: Subroutine does not return
-    memmove(*TertiaryProcessingStatusFlag,SystemStringIndex,CharacterCodeSize[1] - SystemStringIndex);
+    memmove(*StringProcessingStatus,SystemStringIndex,CharacterCodeSize[1] - SystemStringIndex);
   }
-  TertiaryProcessingStatusFlag[1] = *TertiaryProcessingStatusFlag;
+  StringProcessingStatus[1] = *StringProcessingStatus;
   pCurrentMemoryBlockAddress = (long long *)*CharacterCode;
   if (pCurrentMemoryBlockAddress != (long long *)CharacterCode[1]) {
     do {
@@ -52923,7 +52923,7 @@ LAB_180082720:
   }
   if (pCurrentMemoryBlockAddress == (long long *)0x0) {
     *CharacterCode = (long long)CharacterCodePointer;
-    CharacterCode[1] = (long long)(TertiaryProcessingStatusFlag + 4);
+    CharacterCode[1] = (long long)(StringProcessingStatus + 4);
     CharacterCode[2] = (long long)(CharacterCodePointer + SystemOffsetValue * 4);
     return;
   }
@@ -56502,17 +56502,17 @@ void CopyDataStructure(unsigned long long *CharacterCode,uint64_t *CharacterCode
   void *PreviousNode;
   void *NextNode;
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
-  if (TertiaryProcessingStatusFlag < (void *)CharacterCode[2]) {
-    CharacterCode[1] = (unsigned long long)(TertiaryProcessingStatusFlag + 3);
+  StringProcessingStatus = (void *)CharacterCode[1];
+  if (StringProcessingStatus < (void *)CharacterCode[2]) {
+    CharacterCode[1] = (unsigned long long)(StringProcessingStatus + 3);
     MemoryAddressMask = CharacterCodeSize[1];
-    *TertiaryProcessingStatusFlag = *CharacterCodeSize;
-    TertiaryProcessingStatusFlag[1] = MemoryAddressMask;
-    TertiaryProcessingStatusFlag[2] = CharacterCodeSize[2];
+    *StringProcessingStatus = *CharacterCodeSize;
+    StringProcessingStatus[1] = MemoryAddressMask;
+    StringProcessingStatus[2] = CharacterCodeSize[2];
     return;
   }
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
-  MemoryBoundaryEnd = ((long long)TertiaryProcessingStatusFlag - (long long)TertiaryProcessingStatusFlag) / 0x18;
+  StringProcessingStatus = (void *)*CharacterCode;
+  MemoryBoundaryEnd = ((long long)StringProcessingStatus - (long long)StringProcessingStatus) / 0x18;
   if (MemoryBoundaryEnd == 0) {
     MemoryBoundaryEnd = 1;
   }
@@ -56524,12 +56524,12 @@ void CopyDataStructure(unsigned long long *CharacterCode,uint64_t *CharacterCode
     }
   }
   CharacterCodePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0x18,(char)CharacterCode[3]);
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)*CharacterCode;
+  StringProcessingStatus = (void *)CharacterCode[1];
 LAB_180086316:
-  if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
+  if (StringProcessingStatus != StringProcessingStatus) {
                     // WARNING: Subroutine does not return
-    memmove(CharacterCodePointer,TertiaryProcessingStatusFlag,(long long)TertiaryProcessingStatusFlag - (long long)TertiaryProcessingStatusFlag);
+    memmove(CharacterCodePointer,StringProcessingStatus,(long long)StringProcessingStatus - (long long)StringProcessingStatus);
   }
   Utf16Char = *(uint32_t *)((long long)CharacterCodeSize + 4);
   MemoryAllocationIndex = *(uint32_t *)(CharacterCodeSize + 1);
@@ -57503,7 +57503,7 @@ uint64_t SystemStatusBufferHandler(long long CharacterCode,long long CharacterCo
   long long AllocatedMemorySize;
   uint DataSize;
   int ProcessIterationCount;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   uint64_t *TemporaryBuffer;
   uint64_t *StatusBuffer;
   uint64_t *SystemStatusBuffer;
@@ -57526,12 +57526,12 @@ uint64_t SystemStatusBufferHandler(long long CharacterCode,long long CharacterCo
     iStack_40 = 0;
     CoreEngineProcessSystemEvent(&SystemValidationPointer,*(uint32_t *)(CharacterCodeSize + 0x10));
     if (0 < *(int *)(CharacterCodeSize + 0x10)) {
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCodeSize + 8) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterCodeSize + 8);
+        StringProcessingStatus = *(void **)(CharacterCodeSize + 8);
       }
                     // WARNING: Subroutine does not return
-      memcpy(pbStack_48,TertiaryProcessingStatusFlag,(long long)(*(int *)(CharacterCodeSize + 0x10) + 1));
+      memcpy(pbStack_48,StringProcessingStatus,(long long)(*(int *)(CharacterCodeSize + 0x10) + 1));
     }
     if ((*(long long *)(CharacterCodeSize + 8) != 0) && (iStack_40 = 0, pbStack_48 != (byte *)0x0)) {
       *pbStack_48 = 0;
@@ -58602,10 +58602,10 @@ bool SystemStatusValidator(long long *CharacterCode
   int CoreEngineIntegerValue20;
   
   MemoryPoolBlockSize = *CharacterCode;
-  TertiaryProcessingStatusFlag = (void *)(MemoryPoolBlockSize + 0x48);
+  StringProcessingStatus = (void *)(MemoryPoolBlockSize + 0x48);
   CoreEngineFinalizeSystemEvent();
   StatusBuffer = *(uint64_t **)(MemoryPoolBlockSize + 0x58);
-  systemEventTemplatePointer = TertiaryProcessingStatusFlag;
+  systemEventTemplatePointer = StringProcessingStatus;
   if (StatusBuffer != NULL) {
     do {
       if (CoreEngineIntegerValue20 == 0) {
@@ -58640,7 +58640,7 @@ LAB_18008913b:
       systemEventTemplatePointer = pMemoryAddressMask;
       StatusBuffer = SystemStatusBuffer;
     } while (SystemStatusBuffer != NULL);
-    if (MemoryAddressMask != TertiaryProcessingStatusFlag) {
+    if (MemoryAddressMask != StringProcessingStatus) {
       if (*(int *)(MemoryAddressMask + 6) == 0) goto LAB_18008917c;
       if (CoreEngineIntegerValue20 != 0) {
         SystemBytePointer = (byte *)MemoryAddressMask[5];
@@ -58655,10 +58655,10 @@ LAB_18008913b:
       }
     }
   }
-  MemoryAddressMask = TertiaryProcessingStatusFlag;
+  MemoryAddressMask = StringProcessingStatus;
 LAB_18008917c:
   if (DataValidationBuffer == (byte *)0x0) {
-    return pMemoryAddressMask == TertiaryProcessingStatusFlag;
+    return pMemoryAddressMask == StringProcessingStatus;
   }
                     // WARNING: Subroutine does not return
   CoreEngineProcessSystemEvent();
@@ -60068,8 +60068,8 @@ LAB_18008ae5a:
     SystemStatusBuffer = puStack_440;
     UnicodeCharacterCode = (long long)puStack_570 - (long long)puStack_578 >> 5;
     PrimaryProcessingStatusFlag7 = puStack_578;
-    TertiaryProcessingStatusFlag = puStack_578;
-    TertiaryProcessingStatusFlag = puStack_570;
+    StringProcessingStatus = puStack_578;
+    StringProcessingStatus = puStack_570;
     TemporaryBuffer = puStack_470;
     StatusBuffer = puStack_468;
     if (0 < (int)UnicodeCharacterCode) {
@@ -60147,42 +60147,42 @@ LAB_18008ae5a:
         systemEventTemplatePointer0 = systemEventTemplatePointer0 + 4;
         UnicodeCharacterCode = UnicodeCharacterCode - 1;
         PrimaryProcessingStatusFlag7 = puStack_578;
-        TertiaryProcessingStatusFlag = puStack_578;
-        TertiaryProcessingStatusFlag = puStack_570;
+        StringProcessingStatus = puStack_578;
+        StringProcessingStatus = puStack_570;
         TemporaryBuffer = puStack_470;
         StatusBuffer = puStack_468;
       } while (UnicodeCharacterCode != 0);
     }
     for (; StatusBuffer = puStack_570, SystemStatusBuffer = puStack_578, puStack_470 = TemporaryBuffer, puStack_468 = StatusBuffer,
         PrimaryProcessingStatusFlag7 != puStack_570; PrimaryProcessingStatusFlag7 = PrimaryProcessingStatusFlag7 + 4) {
-      puStack_578 = TertiaryProcessingStatusFlag;
-      puStack_570 = TertiaryProcessingStatusFlag;
+      puStack_578 = StringProcessingStatus;
+      puStack_570 = StringProcessingStatus;
       (**(code **)*PrimaryProcessingStatusFlag7)(PrimaryProcessingStatusFlag7,0);
-      TertiaryProcessingStatusFlag = puStack_578;
-      TertiaryProcessingStatusFlag = puStack_570;
+      StringProcessingStatus = puStack_578;
+      StringProcessingStatus = puStack_570;
       TemporaryBuffer = puStack_470;
       StatusBuffer = puStack_468;
       puStack_570 = StatusBuffer;
       puStack_578 = SystemStatusBuffer;
     }
     if (puStack_578 != NULL) {
-      puStack_578 = TertiaryProcessingStatusFlag;
-      puStack_570 = TertiaryProcessingStatusFlag;
+      puStack_578 = StringProcessingStatus;
+      puStack_570 = StringProcessingStatus;
                     // WARNING: Subroutine does not return
       CoreEngineFreeSystemMemory(SystemStatusBuffer);
     }
     puStack_538 = &SystemNullTemplate;
     if (puStack_530 != (uint8_t *)0x0) {
-      puStack_578 = TertiaryProcessingStatusFlag;
-      puStack_570 = TertiaryProcessingStatusFlag;
+      puStack_578 = StringProcessingStatus;
+      puStack_570 = StringProcessingStatus;
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
     puStack_530 = (uint8_t *)0x0;
     uStack_520 = uStack_520 & 0xffffffff00000000;
     puStack_538 = &ThreadLocalStorageTemplate;
-    puStack_578 = TertiaryProcessingStatusFlag;
-    puStack_570 = TertiaryProcessingStatusFlag;
+    puStack_578 = StringProcessingStatus;
+    puStack_570 = StringProcessingStatus;
     for (PrimaryProcessingStatusFlag7 = TemporaryBuffer; PrimaryProcessingStatusFlag7 != StatusBuffer; PrimaryProcessingStatusFlag7 = PrimaryProcessingStatusFlag7 + 4) {
       (**(code **)*PrimaryProcessingStatusFlag7)(PrimaryProcessingStatusFlag7,0);
     }
@@ -60236,11 +60236,11 @@ unsigned long long ProcessSystemDataStructureValidation(uint64_t CharacterCode,u
   StatusBuffer = pMemoryAddressMask;
   if (0 < (int)SystemChecksumValue) {
     SystemChecksumValue = SystemChecksumValue & 0xffffffff;
-    TertiaryProcessingStatusFlag = pSystemPriorityLevel;
+    StringProcessingStatus = pSystemPriorityLevel;
     do {
-      ValidationResult = ValidateDataStructure(TertiaryProcessingStatusFlag);
+      ValidationResult = ValidateDataStructure(StringProcessingStatus);
       SystemMemoryAllocationResult = (unsigned long long)(uint)((int)SystemMemoryAllocationResult + ValidationResult);
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
+      StringProcessingStatus = StringProcessingStatus + 4;
       SystemChecksumValue = SystemChecksumValue - 1;
     } while (SystemChecksumValue != 0);
   }
@@ -60944,24 +60944,24 @@ void SynchronizeSystemDataStructure(long long CharacterCode,long long *Character
   *(long long **)(MemoryBoundaryEnd + 0x30) = plStack_8a0;
   CurrentByteValue2 = true;
   PrimaryProcessingStatusFlag = StatusBuffer;
-  TertiaryProcessingStatusFlag = (void *)CharacterCodePointer[8];
-  while (TertiaryProcessingStatusFlag != NULL) {
-    MemoryMatchResult = memcmp(MemoryBoundaryEnd + 0x20,TertiaryProcessingStatusFlag + 4,0x10);
+  StringProcessingStatus = (void *)CharacterCodePointer[8];
+  while (StringProcessingStatus != NULL) {
+    MemoryMatchResult = memcmp(MemoryBoundaryEnd + 0x20,StringProcessingStatus + 4,0x10);
     CurrentByteValue2 = MemoryAllocationSize < 0;
-    PrimaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+    PrimaryProcessingStatusFlag = StringProcessingStatus;
     if (CurrentByteValue2) {
-      TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+      StringProcessingStatus = (void *)StringProcessingStatus[1];
     }
     else {
-      TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+      StringProcessingStatus = (void *)*StringProcessingStatus;
     }
   }
   TertiaryNode = PrimaryStatusBlock;
   if (CurrentByteValue2) {
     if (PrimaryProcessingStatusFlag == (void *)CharacterCodePointer[7]) goto LAB_18008c531;
-    TertiaryProcessingStatusFlag = (void *)GetPreviousMemoryBlockIndex(PrimaryProcessingStatusFlag);
+    StringProcessingStatus = (void *)GetPreviousMemoryBlockIndex(PrimaryProcessingStatusFlag);
   }
-  MemoryMatchResult = memcmp(TertiaryProcessingStatusFlag + 4,MemoryBoundaryEnd + 0x20,0x10);
+  MemoryMatchResult = memcmp(StringProcessingStatus + 4,MemoryBoundaryEnd + 0x20,0x10);
   if (-1 < MemoryAllocationSize) {
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(MemoryBoundaryEnd);
@@ -62521,16 +62521,16 @@ void ProcessSystemDataStructure(long long *CharacterCode,long long CharacterCode
   uint64_t *MemoryAddressMask;
   uint64_t *CharacterCodePointer;
   long long MemoryBoundaryEnd;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   void *NextNode;
   long long systemLoopCounter;
   long long lStackX_18;
   uint64_t MemoryAllocationIndex;
   
   MemoryAllocationIndex = 0xfffffffffffffffe;
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   pMemoryAddressMask = (void *)*CharacterCode;
-  lStackX_18 = ((long long)TertiaryProcessingStatusFlag - (long long)pMemoryAddressMask) / 0x60;
+  lStackX_18 = ((long long)StringProcessingStatus - (long long)pMemoryAddressMask) / 0x60;
   StatusBuffer = NULL;
   if (lStackX_18 == 0) {
     lStackX_18 = 1;
@@ -62541,11 +62541,11 @@ void ProcessSystemDataStructure(long long *CharacterCode,long long CharacterCode
   }
   StatusBuffer = (void *           BufferAllocate(MemoryPoolManager,lStackX_18 * 0x60,(char)CharacterCode[3],Utf16EndPointer,
                          0xfffffffffffffffe);
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   pMemoryAddressMask = (void *)*CharacterCode;
 LAB_18008dde0:
   CharacterCodePointer = StatusBuffer;
-  if (MemoryAddressMask != TertiaryProcessingStatusFlag) {
+  if (MemoryAddressMask != StringProcessingStatus) {
     CurrentMemoryBlockAddress = (long long)StatusBuffer - (long long)pMemoryAddressMask;
     pMemoryAddressMask = pMemoryAddressMask + 1;
     do {
@@ -62573,17 +62573,17 @@ LAB_18008dde0:
       *(uint32_t *)(CurrentMemoryBlockAddress + 0x28 + (long long)pMemoryAddressMask) = 0;
       *systemEventTemplatePointer = 0;
       *(uint32_t *)(CurrentMemoryBlockAddress + 0x28 + (long long)pMemoryAddressMask) = *(uint32_t *)(pMemoryAddressMask + 5);
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if ((void *)pMemoryAddressMask[4] != NULL) {
-        TertiaryProcessingStatusFlag = (void *)pMemoryAddressMask[4];
+        StringProcessingStatus = (void *)pMemoryAddressMask[4];
       }
-      strcpy_s(*(void *)(CurrentMemoryBlockAddress + 0x20 + (long long)pMemoryAddressMask),0x20,TertiaryProcessingStatusFlag,Utf16EndPointer,MemoryAllocationIndex,PrimaryProcessingStatusFlag);
+      strcpy_s(*(void *)(CurrentMemoryBlockAddress + 0x20 + (long long)pMemoryAddressMask),0x20,StringProcessingStatus,Utf16EndPointer,MemoryAllocationIndex,PrimaryProcessingStatusFlag);
       *(uint8_t *)(CurrentMemoryBlockAddress + 0x50 + (long long)pMemoryAddressMask) = *(uint8_t *)(pMemoryAddressMask + 10);
       *(uint32_t *)(CurrentMemoryBlockAddress + 0x54 + (long long)pMemoryAddressMask) = *(uint32_t *)((long long)pMemoryAddressMask + 0x54);
       CharacterCodePointer = CharacterCodePointer + 0xc;
       PrimaryProcessingStatusFlag = pMemoryAddressMask + 0xb;
       pMemoryAddressMask = pMemoryAddressMask + 0xc;
-    } while (PrimaryProcessingStatusFlag != TertiaryProcessingStatusFlag);
+    } while (PrimaryProcessingStatusFlag != StringProcessingStatus);
   }
   CoreEngineExecuteSystemEvent(CharacterCodePointer,CharacterCodeSize);
   ProcessSystemDataStructure(CharacterCodePointer + 4,CharacterCodeSize + 0x20);
@@ -62849,20 +62849,20 @@ void ProcessDataStructureMemoryReorganization(long long *CharacterCode,uint64_t 
         AllocateSystemMemoryBuffer(alStackX_18,&lStackX_10,SystemStatusBuffer);
         TemporaryBuffer = (void *)CharacterCode[1];
         StatusBuffer = TemporaryBuffer + ((long long)StatusBuffer5 - (long long)StatusBuffer4) * 2;
-        TertiaryProcessingStatusFlag = CharacterCodeSize;
+        StringProcessingStatus = CharacterCodeSize;
         if (CharacterCodeSize != TemporaryBuffer) {
           do {
-            Utf16Char = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 4);
-            MemoryAllocationIndex = *(uint32_t *)(TertiaryProcessingStatusFlag + 1);
-            UnicodeCodePoint = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xc);
-            TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-            *(uint32_t *)StatusBuffer = *(uint32_t *)TertiaryProcessingStatusFlag;
+            Utf16Char = *(uint32_t *)((long long)StringProcessingStatus + 4);
+            MemoryAllocationIndex = *(uint32_t *)(StringProcessingStatus + 1);
+            UnicodeCodePoint = *(uint32_t *)((long long)StringProcessingStatus + 0xc);
+            StringProcessingStatus = StringProcessingStatus + 2;
+            *(uint32_t *)StatusBuffer = *(uint32_t *)StringProcessingStatus;
             *(uint32_t *)((long long)StatusBuffer + 4) = Utf16Char;
             *(uint32_t *)(StatusBuffer + 1) = MemoryAllocationIndex;
             *(uint32_t *)((long long)StatusBuffer + 0xc) = UnicodeCodePoint;
-            TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+            StringProcessingStatus = StringProcessingStatus;
             StatusBuffer = StatusBuffer + 2;
-          } while (TertiaryProcessingStatusFlag != TemporaryBuffer);
+          } while (StringProcessingStatus != TemporaryBuffer);
         }
         MemoryBoundaryEnd = *Utf8InputPointer;
         TemporaryBuffer = CharacterCodeSize + (long long)StatusBuffer4 * 2;
@@ -62923,8 +62923,8 @@ void InitializeSystemMemoryManager(void
   }
   SystemStatusBuffer = (uint32_t *)FrameRegisterPointer[1];
   if ((uint32_t *)(FrameRegisterPointer[2] - (long long)SystemStatusBuffer >> 4) < StatusBuffer5) {
-    TertiaryProcessingStatusFlag = (void *)*FrameRegisterPointer;
-    CurrentMemoryBlockAddress = (long long)SystemStatusBuffer - (long long)TertiaryProcessingStatusFlag >> 4;
+    StringProcessingStatus = (void *)*FrameRegisterPointer;
+    CurrentMemoryBlockAddress = (long long)SystemStatusBuffer - (long long)StringProcessingStatus >> 4;
     QuaternaryReturnCode = CurrentMemoryBlockAddress * 2;
     if (CurrentMemoryBlockAddress == 0) {
       QuaternaryReturnCode = 1;
@@ -62935,14 +62935,14 @@ void InitializeSystemMemoryManager(void
     StatusBuffer5 = StatusBuffer4;
     if (QuaternaryReturnCode != 0) {
       StatusBuffer4 = (uint32_t *)BufferAllocate(MemoryPoolManager,QuaternaryReturnCode << 4,(char)FrameRegisterPointer[3]);
-      TertiaryProcessingStatusFlag = (void *)*FrameRegisterPointer;
+      StringProcessingStatus = (void *)*FrameRegisterPointer;
       StatusBuffer5 = StatusBuffer4;
     }
-    for (; TertiaryProcessingStatusFlag != SystemContext; TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2) {
-      Utf16Char = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 4);
-      MemoryAllocationIndex = *(uint32_t *)(TertiaryProcessingStatusFlag + 1);
-      UnicodeCodePoint = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xc);
-      *StatusBuffer4 = *(uint32_t *)TertiaryProcessingStatusFlag;
+    for (; StringProcessingStatus != SystemContext; StringProcessingStatus = StringProcessingStatus + 2) {
+      Utf16Char = *(uint32_t *)((long long)StringProcessingStatus + 4);
+      MemoryAllocationIndex = *(uint32_t *)(StringProcessingStatus + 1);
+      UnicodeCodePoint = *(uint32_t *)((long long)StringProcessingStatus + 0xc);
+      *StatusBuffer4 = *(uint32_t *)StringProcessingStatus;
       StatusBuffer4[1] = Utf16Char;
       StatusBuffer4[2] = MemoryAllocationIndex;
       StatusBuffer4[3] = UnicodeCodePoint;
@@ -62951,8 +62951,8 @@ void InitializeSystemMemoryManager(void
     StackParameter0 = *RegisterR13Value;
     StackParameter1 = *RegisterValueR12;
     StatusBuffer4 = (uint32_t *)AllocateSystemMemoryBuffer(&MemoryAllocationStackBuffer,&MemoryAllocationSizeStackBuffer);
-    TertiaryProcessingStatusFlag = (void *)FrameRegisterPointer[1];
-    if (SystemContext != TertiaryProcessingStatusFlag) {
+    StringProcessingStatus = (void *)FrameRegisterPointer[1];
+    if (SystemContext != StringProcessingStatus) {
       do {
         Utf16Char = *(uint32_t *)SystemContext;
         MemoryAllocationIndex = *(uint32_t *)((long long)SystemContext + 4);
@@ -62964,7 +62964,7 @@ void InitializeSystemMemoryManager(void
         StatusBuffer4[2] = UnicodeCodePoint;
         StatusBuffer4[3] = MemoryAddressMask;
         StatusBuffer4 = StatusBuffer4 + 4;
-      } while (SystemContext != TertiaryProcessingStatusFlag);
+      } while (SystemContext != StringProcessingStatus);
     }
     if (*FrameRegisterPointer != 0) {
                     // WARNING: Subroutine does not return
@@ -63028,30 +63028,30 @@ void InitializeSystemMemoryManager(void
       StackParameter0 = *RegisterR13Value;
       StackParameter1 = CurrentMemoryBlockAddress;
       AllocateSystemMemoryBuffer(&MemoryAllocationStackBuffer,&MemoryAllocationSizeStackBuffer,SystemStatusBuffer);
-      TertiaryProcessingStatusFlag = (void *)FrameRegisterPointer[1];
-      StatusBuffer = TertiaryProcessingStatusFlag + ((long long)StatusBuffer5 - (long long)StatusBuffer4) * 2;
+      StringProcessingStatus = (void *)FrameRegisterPointer[1];
+      StatusBuffer = StringProcessingStatus + ((long long)StatusBuffer5 - (long long)StatusBuffer4) * 2;
       SecondaryProcessingStatusFlag = SystemContext;
-      if (SystemContext != TertiaryProcessingStatusFlag) {
+      if (SystemContext != StringProcessingStatus) {
         do {
           Utf16Char = *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 4);
           MemoryAllocationIndex = *(uint32_t *)(SecondaryProcessingStatusFlag + 1);
           UnicodeCodePoint = *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 0xc);
-          TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 2;
+          StringProcessingStatus = SecondaryProcessingStatusFlag + 2;
           *(uint32_t *)StatusBuffer = *(uint32_t *)SecondaryProcessingStatusFlag;
           *(uint32_t *)((long long)StatusBuffer + 4) = Utf16Char;
           *(uint32_t *)(StatusBuffer + 1) = MemoryAllocationIndex;
           *(uint32_t *)((long long)StatusBuffer + 0xc) = UnicodeCodePoint;
-          SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+          SecondaryProcessingStatusFlag = StringProcessingStatus;
           StatusBuffer = StatusBuffer + 2;
-        } while (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag);
+        } while (StringProcessingStatus != StringProcessingStatus);
       }
       AllocatedMemorySize = *RegisterValueR12;
-      TertiaryProcessingStatusFlag = SystemContext + (long long)StatusBuffer4 * 2;
+      StringProcessingStatus = SystemContext + (long long)StatusBuffer4 * 2;
       while (AllocatedMemorySize != CurrentMemoryBlockAddress) {
         CurrentMemoryBlockAddress = GetPreviousMemoryBlockIndex(CurrentMemoryBlockAddress);
-        TertiaryProcessingStatusFlag[-2] = *(void *)(CurrentMemoryBlockAddress + 0x20);
-        *(uint32_t *)(TertiaryProcessingStatusFlag + -1) = *(uint32_t *)(CurrentMemoryBlockAddress + 0x28);
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -2;
+        StringProcessingStatus[-2] = *(void *)(CurrentMemoryBlockAddress + 0x20);
+        *(uint32_t *)(StringProcessingStatus + -1) = *(uint32_t *)(CurrentMemoryBlockAddress + 0x28);
+        StringProcessingStatus = StringProcessingStatus + -2;
       }
     }
     FrameRegisterPointer[1] = FrameRegisterPointer[1] + (long long)StatusBuffer5 * 0x10;
@@ -67927,19 +67927,19 @@ LAB_180092c16:
             if (SystemContextValue == 0) {
               SystemContextValue = 1;
 LAB_180092e59:
-              TertiaryProcessingStatusFlag = (void *                       BufferAllocate(MemoryPoolManager,SystemContextValue * 0x30,
+              StringProcessingStatus = (void *                       BufferAllocate(MemoryPoolManager,SystemContextValue * 0x30,
                                      *(uint8_t *)(TimeManager + 0xb0));
               PrimaryProcessingStatusFlag1 = *(uint64_t **)(CharacterTablePointer5 + 0xa0);
               StatusBuffer6 = *(uint64_t **)(CharacterTablePointer5 + 0x98);
             }
             else {
               SystemContextValue = SystemContextValue * 2;
-              TertiaryProcessingStatusFlag = StatusBuffer7;
+              StringProcessingStatus = StatusBuffer7;
               if (SystemContextValue != 0) goto LAB_180092e59;
             }
-            EngineStatusBuffer = TertiaryProcessingStatusFlag;
+            EngineStatusBuffer = StringProcessingStatus;
             if (StatusBuffer6 != PrimaryProcessingStatusFlag1) {
-              BufferStatus3 = (long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer6;
+              BufferStatus3 = (long long)StringProcessingStatus - (long long)StatusBuffer6;
               StatusBuffer6 = StatusBuffer6 + 4;
               do {
                 *(void *)(BufferStatus3 + (long long)StatusBuffer6) = 0xffffffffffffffff;
@@ -67983,9 +67983,9 @@ LAB_180092e59:
                     // WARNING: Subroutine does not return
               CoreEngineProcessSystemEvent();
             }
-            *(uint64_t **)(CharacterTablePointer5 + 0x98) = TertiaryProcessingStatusFlag;
+            *(uint64_t **)(CharacterTablePointer5 + 0x98) = StringProcessingStatus;
             *(uint64_t **)(CharacterTablePointer5 + 0xa0) = StatusBuffer3 + 6;
-            *(uint64_t **)(CharacterTablePointer5 + 0xa8) = TertiaryProcessingStatusFlag + SystemContextValue * 6;
+            *(uint64_t **)(CharacterTablePointer5 + 0xa8) = StringProcessingStatus + SystemContextValue * 6;
           }
         }
         SystemMemoryAllocationResult = (int)StatusBuffer8 + 1;
@@ -68033,19 +68033,19 @@ LAB_180092e59:
             if (SystemContextValue == 0) {
               SystemContextValue = 1;
 LAB_180093089:
-              TertiaryProcessingStatusFlag = (void *                       BufferAllocate(MemoryPoolManager,SystemContextValue * 0x30,
+              StringProcessingStatus = (void *                       BufferAllocate(MemoryPoolManager,SystemContextValue * 0x30,
                                      *(uint8_t *)(TimeManager + 0xd0));
               PrimaryProcessingStatusFlag1 = *(uint64_t **)(CharacterTablePointer5 + 0xc0);
               StatusBuffer6 = *(uint64_t **)(CharacterTablePointer5 + 0xb8);
             }
             else {
               SystemContextValue = SystemContextValue * 2;
-              TertiaryProcessingStatusFlag = StatusBuffer7;
+              StringProcessingStatus = StatusBuffer7;
               if (SystemContextValue != 0) goto LAB_180093089;
             }
-            EngineStatusBuffer = TertiaryProcessingStatusFlag;
+            EngineStatusBuffer = StringProcessingStatus;
             if (StatusBuffer6 != PrimaryProcessingStatusFlag1) {
-              BufferStatus3 = (long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer6;
+              BufferStatus3 = (long long)StringProcessingStatus - (long long)StatusBuffer6;
               StatusBuffer6 = StatusBuffer6 + 4;
               do {
                 *(void *)(BufferStatus3 + (long long)StatusBuffer6) = 0xffffffffffffffff;
@@ -68089,9 +68089,9 @@ LAB_180093089:
                     // WARNING: Subroutine does not return
               CoreEngineProcessSystemEvent();
             }
-            *(uint64_t **)(CharacterTablePointer5 + 0xb8) = TertiaryProcessingStatusFlag;
+            *(uint64_t **)(CharacterTablePointer5 + 0xb8) = StringProcessingStatus;
             *(uint64_t **)(CharacterTablePointer5 + 0xc0) = StatusBuffer3 + 6;
-            *(uint64_t **)(CharacterTablePointer5 + 200) = TertiaryProcessingStatusFlag + SystemContextValue * 6;
+            *(uint64_t **)(CharacterTablePointer5 + 200) = StringProcessingStatus + SystemContextValue * 6;
           }
         }
         SystemMemoryAllocationResult = (int)StatusBuffer8 + 1;
@@ -68139,19 +68139,19 @@ LAB_180093089:
             if (SystemContextValue == 0) {
               SystemContextValue = 1;
 LAB_1800932b6:
-              TertiaryProcessingStatusFlag = (void *                       BufferAllocate(MemoryPoolManager,SystemContextValue * 0x30,
+              StringProcessingStatus = (void *                       BufferAllocate(MemoryPoolManager,SystemContextValue * 0x30,
                                      *(uint8_t *)(TimeManager + 0x90));
               PrimaryProcessingStatusFlag1 = *(uint64_t **)(CharacterTablePointer5 + 0x80);
               StatusBuffer6 = *(uint64_t **)(CharacterTablePointer5 + 0x78);
             }
             else {
               SystemContextValue = SystemContextValue * 2;
-              TertiaryProcessingStatusFlag = StatusBuffer7;
+              StringProcessingStatus = StatusBuffer7;
               if (SystemContextValue != 0) goto LAB_1800932b6;
             }
-            EngineStatusBuffer = TertiaryProcessingStatusFlag;
+            EngineStatusBuffer = StringProcessingStatus;
             if (StatusBuffer6 != PrimaryProcessingStatusFlag1) {
-              BufferStatus3 = (long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer6;
+              BufferStatus3 = (long long)StringProcessingStatus - (long long)StatusBuffer6;
               StatusBuffer6 = StatusBuffer6 + 4;
               do {
                 *(void *)(BufferStatus3 + (long long)StatusBuffer6) = 0xffffffffffffffff;
@@ -68195,9 +68195,9 @@ LAB_1800932b6:
                     // WARNING: Subroutine does not return
               CoreEngineProcessSystemEvent();
             }
-            *(uint64_t **)(CharacterTablePointer5 + 0x78) = TertiaryProcessingStatusFlag;
+            *(uint64_t **)(CharacterTablePointer5 + 0x78) = StringProcessingStatus;
             *(uint64_t **)(CharacterTablePointer5 + 0x80) = StatusBuffer3 + 6;
-            *(uint64_t **)(CharacterTablePointer5 + 0x88) = TertiaryProcessingStatusFlag + SystemContextValue * 6;
+            *(uint64_t **)(CharacterTablePointer5 + 0x88) = StringProcessingStatus + SystemContextValue * 6;
           }
         }
         SystemMemoryAllocationResult = (int)StatusBuffer8 + 1;
@@ -68245,19 +68245,19 @@ LAB_1800932b6:
             if (SystemContextValue == 0) {
               SystemContextValue = 1;
 LAB_1800934cd:
-              TertiaryProcessingStatusFlag = (void *                       BufferAllocate(MemoryPoolManager,SystemContextValue * 0x30,
+              StringProcessingStatus = (void *                       BufferAllocate(MemoryPoolManager,SystemContextValue * 0x30,
                                      *(uint8_t *)(TimeManager + 0x70));
               PrimaryProcessingStatusFlag1 = *(uint64_t **)(CharacterTablePointer5 + 0x60);
               StatusBuffer6 = *(uint64_t **)(CharacterTablePointer5 + 0x58);
             }
             else {
               SystemContextValue = SystemContextValue * 2;
-              TertiaryProcessingStatusFlag = StatusBuffer7;
+              StringProcessingStatus = StatusBuffer7;
               if (SystemContextValue != 0) goto LAB_1800934cd;
             }
-            EngineStatusBuffer = TertiaryProcessingStatusFlag;
+            EngineStatusBuffer = StringProcessingStatus;
             if (StatusBuffer6 != PrimaryProcessingStatusFlag1) {
-              BufferStatus3 = (long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer6;
+              BufferStatus3 = (long long)StringProcessingStatus - (long long)StatusBuffer6;
               StatusBuffer6 = StatusBuffer6 + 4;
               do {
                 *(void *)(BufferStatus3 + (long long)StatusBuffer6) = 0xffffffffffffffff;
@@ -68301,9 +68301,9 @@ LAB_1800934cd:
                     // WARNING: Subroutine does not return
               CoreEngineProcessSystemEvent();
             }
-            *(uint64_t **)(CharacterTablePointer5 + 0x58) = TertiaryProcessingStatusFlag;
+            *(uint64_t **)(CharacterTablePointer5 + 0x58) = StringProcessingStatus;
             *(uint64_t **)(CharacterTablePointer5 + 0x60) = StatusBuffer3 + 6;
-            *(uint64_t **)(CharacterTablePointer5 + 0x68) = TertiaryProcessingStatusFlag + SystemContextValue * 6;
+            *(uint64_t **)(CharacterTablePointer5 + 0x68) = StringProcessingStatus + SystemContextValue * 6;
           }
         }
         SystemMemoryAllocationResult = (int)StatusBuffer8 + 1;
@@ -68654,25 +68654,25 @@ void CoreEngineCopyDataStructure(long long *CharacterCode,uint64_t *CharacterCod
   else {
     SystemOffsetValue = SystemOffsetValue * 2;
     if (SystemOffsetValue == 0) {
-      TertiaryProcessingStatusFlag = NULL;
+      StringProcessingStatus = NULL;
       goto LAB_180093cb6;
     }
   }
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,SystemOffsetValue * 0x30,(char)CharacterCode[3]);
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,SystemOffsetValue * 0x30,(char)CharacterCode[3]);
   SystemStatusBuffer = (void *)CharacterCode[1];
   TemporaryBuffer = (void *)*CharacterCode;
 LAB_180093cb6:
-  TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  StringProcessingStatus = StringProcessingStatus;
   if (TemporaryBuffer != SystemStatusBuffer) {
-    SystemContextValue = (long long)TertiaryProcessingStatusFlag - (long long)TemporaryBuffer;
+    SystemContextValue = (long long)StringProcessingStatus - (long long)TemporaryBuffer;
     TemporaryBuffer = TemporaryBuffer + 4;
     do {
       *(void *)(SystemContextValue + (long long)TemporaryBuffer) = 0xffffffffffffffff;
       DataSize = TemporaryBuffer[-3];
       StatusBuffer = TemporaryBuffer + 6;
-      *TertiaryProcessingStatusFlag = TemporaryBuffer[-4];
-      TertiaryProcessingStatusFlag[1] = DataSize;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 6;
+      *StringProcessingStatus = TemporaryBuffer[-4];
+      StringProcessingStatus[1] = DataSize;
+      StringProcessingStatus = StringProcessingStatus + 6;
       DataSize = TemporaryBuffer[-1];
       PrimaryProcessingStatusFlag = (void *)(SystemContextValue + -0x40 + (long long)StatusBuffer);
       *PrimaryProcessingStatusFlag = TemporaryBuffer[-2];
@@ -68685,28 +68685,28 @@ LAB_180093cb6:
       TemporaryBuffer = StatusBuffer;
     } while (PrimaryProcessingStatusFlag != SystemStatusBuffer);
   }
-  TertiaryProcessingStatusFlag[4] = 0xffffffffffffffff;
+  StringProcessingStatus[4] = 0xffffffffffffffff;
   DataSize = CharacterCodeSize[1];
-  *TertiaryProcessingStatusFlag = *CharacterCodeSize;
-  TertiaryProcessingStatusFlag[1] = DataSize;
+  *StringProcessingStatus = *CharacterCodeSize;
+  StringProcessingStatus[1] = DataSize;
   UnicodeCodePoint = *(uint32_t *)((long long)CharacterCodeSize + 0x14);
   MemoryAddressMask = *(uint32_t *)(CharacterCodeSize + 3);
   CalculatedCodePoint = *(uint32_t *)((long long)CharacterCodeSize + 0x1c);
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = *(uint32_t *)(CharacterCodeSize + 2);
-  *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x14) = UnicodeCodePoint;
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 3) = MemoryAddressMask;
-  *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x1c) = CalculatedCodePoint;
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 4) = *(uint32_t *)(CharacterCodeSize + 4);
-  *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x24) = *(uint32_t *)((long long)CharacterCodeSize + 0x24);
-  *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x2c) = *(uint32_t *)((long long)CharacterCodeSize + 0x2c);
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 5) = *(uint32_t *)(CharacterCodeSize + 5);
+  *(uint32_t *)(StringProcessingStatus + 2) = *(uint32_t *)(CharacterCodeSize + 2);
+  *(uint32_t *)((long long)StringProcessingStatus + 0x14) = UnicodeCodePoint;
+  *(uint32_t *)(StringProcessingStatus + 3) = MemoryAddressMask;
+  *(uint32_t *)((long long)StringProcessingStatus + 0x1c) = CalculatedCodePoint;
+  *(uint32_t *)(StringProcessingStatus + 4) = *(uint32_t *)(CharacterCodeSize + 4);
+  *(uint32_t *)((long long)StringProcessingStatus + 0x24) = *(uint32_t *)((long long)CharacterCodeSize + 0x24);
+  *(uint32_t *)((long long)StringProcessingStatus + 0x2c) = *(uint32_t *)((long long)CharacterCodeSize + 0x2c);
+  *(uint32_t *)(StringProcessingStatus + 5) = *(uint32_t *)(CharacterCodeSize + 5);
   if (*CharacterCode != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  *CharacterCode = (long long)TertiaryProcessingStatusFlag;
-  CharacterCode[1] = (long long)(TertiaryProcessingStatusFlag + 6);
-  CharacterCode[2] = (long long)(TertiaryProcessingStatusFlag + SystemOffsetValue * 6);
+  *CharacterCode = (long long)StringProcessingStatus;
+  CharacterCode[1] = (long long)(StringProcessingStatus + 6);
+  CharacterCode[2] = (long long)(StringProcessingStatus + SystemOffsetValue * 6);
   return;
 }
 
@@ -68733,7 +68733,7 @@ void ProcessSystemDataStructureCopy(long long *CharacterCode,uint64_t CharacterC
   uint32_t MemoryAddressMask;
   uint8_t *CharacterCodePointer;
   void *CurrentNode;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   long long secondaryLoopCounter;
   long long systemLoopCounter;
   long long SystemOffsetValue;
@@ -68753,12 +68753,12 @@ void ProcessSystemDataStructureCopy(long long *CharacterCode,uint64_t CharacterC
   CurrentMemoryBlockAddress = CharacterCode[1];
   SystemDataTablePointer = *CharacterCode;
 MemoryAllocationComplete: // 原始标签：LAB_180093e1b
-  TertiaryProcessingStatusFlag = CharacterCodePointer;
+  StringProcessingStatus = CharacterCodePointer;
   if (SystemDataTablePointer != CurrentMemoryBlockAddress) {
     SecondaryProcessingStatusFlag = (void *)(CharacterCodePointer + 0x20);
     SystemDataTablePointer = SystemDataTablePointer - (long long)CharacterCodePointer;
     do {
-      *TertiaryProcessingStatusFlag = *(uint8_t *)((long long)SecondaryProcessingStatusFlag + SystemDataTablePointer + -0x20);
+      *StringProcessingStatus = *(uint8_t *)((long long)SecondaryProcessingStatusFlag + SystemDataTablePointer + -0x20);
       StatusBuffer = (uint32_t *)(SystemDataTablePointer + -0x1c + (long long)SecondaryProcessingStatusFlag);
       MemoryAllocationIndex = StatusBuffer[1];
       UnicodeCodePoint = StatusBuffer[2];
@@ -68785,11 +68785,11 @@ MemoryAllocationComplete: // 原始标签：LAB_180093e1b
       *(void *)((long long)SecondaryProcessingStatusFlag + 0x1c) = *(void *)(SystemDataTablePointer + 0x1c + (long long)SecondaryProcessingStatusFlag);
       *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 0x24) = *(uint32_t *)((long long)SecondaryProcessingStatusFlag + SystemDataTablePointer + 0x24);
       *(uint32_t *)(SecondaryProcessingStatusFlag + 5) = *(uint32_t *)((long long)SecondaryProcessingStatusFlag + SystemDataTablePointer + 0x28);
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0x50;
+      StringProcessingStatus = StringProcessingStatus + 0x50;
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 10;
     } while (SystemDataTablePointer + -0x20 + (long long)SecondaryProcessingStatusFlag != CurrentMemoryBlockAddress);
   }
-  ProcessTimeManagerMemoryAllocationIndex(TertiaryProcessingStatusFlag,CharacterCodeSize);
+  ProcessTimeManagerMemoryAllocationIndex(StringProcessingStatus,CharacterCodeSize);
   CurrentMemoryBlockAddress = CharacterCode[1];
   SystemDataTablePointer = *CharacterCode;
   if (SystemDataTablePointer != CurrentMemoryBlockAddress) {
@@ -68808,7 +68808,7 @@ MemoryAllocationComplete: // 原始标签：LAB_180093e1b
   }
   if (SystemDataTablePointer == 0) {
     *CharacterCode = (long long)CharacterCodePointer;
-    CharacterCode[1] = (long long)(TertiaryProcessingStatusFlag + 0x50);
+    CharacterCode[1] = (long long)(StringProcessingStatus + 0x50);
     CharacterCode[2] = (long long)(CharacterCodePointer + SystemOffsetValue * 0x50);
     return;
   }
@@ -70127,7 +70127,7 @@ void ProcessSystemDataStructureMemoryManagement(uint64_t CharacterCode, long lon
   int RemainingSpace;
   float *FloatProcessingStatusFlag;
   char *StringDataPointer;
-  uint16_t *TertiaryProcessingStatusFlag;
+  uint16_t *StringProcessingStatus;
   uint32_t *TemporaryBuffer;
   void *StatusBuffer;
   uint64_t ProcessStringBuffer;
@@ -70157,24 +70157,24 @@ void ProcessSystemDataStructureMemoryManagement(uint64_t CharacterCode, long lon
   ProcessSystemCleanupTask();
   StringDataPointer = (char *)ProcessSystemCharacterHandling(Utf8InputPointer + 0xf0,CharacterCodeSize + 0x20);
   acStackX_20[0] = *StringDataPointer;
-  TertiaryProcessingStatusFlag = (uint16_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAddressMask = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x2323;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (uint16_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAddressMask = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x2323;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   RemainingSpace = *(int *)(CharacterCodeSize + 0x30);
   if (0 < RemainingSpace) {
     if ((RemainingSpace != -2) && (MemoryAddressMask < RemainingSpace + 3U)) {
-      TertiaryProcessingStatusFlag = (uint16_t *)AllocateMemoryPool(MemoryPoolManager,TertiaryProcessingStatusFlag,RemainingSpace + 3U,0x10,0x13);
-      GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+      StringProcessingStatus = (uint16_t *)AllocateMemoryPool(MemoryPoolManager,StringProcessingStatus,RemainingSpace + 3U,0x10,0x13);
+      GetMemoryAllocationInfo(StringProcessingStatus);
       RemainingSpace = *(int *)(CharacterCodeSize + 0x30);
     }
                     // WARNING: Subroutine does not return
-    memcpy(TertiaryProcessingStatusFlag + 1,*(void *)(CharacterCodeSize + 0x28),(long long)(RemainingSpace + 1));
+    memcpy(StringProcessingStatus + 1,*(void *)(CharacterCodeSize + 0x28),(long long)(RemainingSpace + 1));
   }
   StatusBuffer4 = (uint16_t *)&CoreEngineDataTemplate;
-  if (TertiaryProcessingStatusFlag != (uint16_t *)0x0) {
-    StatusBuffer4 = TertiaryProcessingStatusFlag;
+  if (StringProcessingStatus != (uint16_t *)0x0) {
+    StatusBuffer4 = StringProcessingStatus;
   }
   OperationStatus = ProcessCharacterVariableAndStatusBuffer(StatusBuffer4,acStackX_20);
   StringBuffer = acStackX_20[0];
@@ -70185,9 +70185,9 @@ void ProcessSystemDataStructureMemoryManagement(uint64_t CharacterCode, long lon
   if (StringBuffer != '\0') {
     InitializeFloatConstants(0,0xbf800000);
   }
-  if (TertiaryProcessingStatusFlag != (uint16_t *)0x0) {
+  if (StringProcessingStatus != (uint16_t *)0x0) {
                     // WARNING: Subroutine does not return
-    CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+    CoreEngineFreeSystemMemory(StringProcessingStatus);
   }
   ProcessSystemCleanupTask();
   TemporaryBuffer = (uint32_t *)ProcessSystemBufferAllocation(Utf8InputPointer + 0x90,CharacterCodeSize + 0x20);
@@ -70237,7 +70237,7 @@ void InitializeSystemCoreComponents(void
   uint32_t uStack_18;
   
   SystemStringIndex = CoreEngineConfigFlag;
-  TertiaryProcessingStatusFlag = (void *)(CoreEngineConfigFlag + 0x40);
+  StringProcessingStatus = (void *)(CoreEngineConfigFlag + 0x40);
   CoreEngineFinalizeSystemEvent(&LocalProcessingStatusFlag);
   TemporaryBuffer = *(uint64_t **)(SystemStringIndex + 0x50);
   CurrentNode = NextNode;
@@ -70268,17 +70268,17 @@ void InitializeSystemCoreComponents(void
         StatusBuffer = (void *)*TemporaryBuffer;
       }
 LAB_1800960d8:
-      TertiaryProcessingStatusFlag = TemporaryBuffer;
+      StringProcessingStatus = TemporaryBuffer;
       if (HighByte) {
-        TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+        StringProcessingStatus = SecondaryProcessingStatusFlag;
       }
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
       TemporaryBuffer = StatusBuffer;
     } while (StatusBuffer != NULL);
-    if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
-      if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) goto LAB_18009611a;
+    if (StringProcessingStatus != StringProcessingStatus) {
+      if (*(int *)(StringProcessingStatus + 6) == 0) goto LAB_18009611a;
       if (CoreEngineIntegerValue20 != 0) {
-        ValidationBytePointer = (byte *)TertiaryProcessingStatusFlag[5];
+        ValidationBytePointer = (byte *)StringProcessingStatus[5];
         SystemStringIndex = (long long)DataValidationBuffer - (long long)ValidationBytePointer;
         do {
           CurrentByteValue = *ValidationBytePointer;
@@ -70290,47 +70290,47 @@ LAB_1800960d8:
       }
     }
   }
-  TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  StringProcessingStatus = StringProcessingStatus;
 LAB_18009611a:
   LocalProcessingStatusFlag = &SystemNullTemplate;
   if (DataValidationBuffer == (byte *)0x0) {
     ByteStack28 = (byte *)0x0;
     uStack_18 = 0;
     LocalProcessingStatusFlag = &ThreadLocalStorageTemplate;
-    if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
-      MemoryAllocationSize = _Mtx_lock(TertiaryProcessingStatusFlag + 0x2d);
+    if (StringProcessingStatus != StringProcessingStatus) {
+      MemoryAllocationSize = _Mtx_lock(StringProcessingStatus + 0x2d);
       if (MemoryAllocationSize != 0) {
         __Throw_C_error_std__YAXH_Z(MemoryAllocationSize);
       }
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0x1a;
-      ProcessSystemMemoryConfiguration(TertiaryProcessingStatusFlag,TertiaryProcessingStatusFlag[0x1c]);
-      *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag[0x1b] = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag[0x1c] = 0;
-      *(uint8_t *)(TertiaryProcessingStatusFlag + 0x1d) = 0;
-      TertiaryProcessingStatusFlag[0x1e] = 0;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 8;
-      CoreEngineProcessSystemMemoryResourceData(TertiaryProcessingStatusFlag,TertiaryProcessingStatusFlag[10]);
-      *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag[9] = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag[10] = 0;
-      *(uint8_t *)(TertiaryProcessingStatusFlag + 0xb) = 0;
-      TertiaryProcessingStatusFlag[0xc] = 0;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0x14;
-      CoreEngineProcessSystemMemoryResourceData(TertiaryProcessingStatusFlag,TertiaryProcessingStatusFlag[0x16]);
-      *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag[0x15] = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag[0x16] = 0;
-      *(uint8_t *)(TertiaryProcessingStatusFlag + 0x17) = 0;
-      TertiaryProcessingStatusFlag[0x18] = 0;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0xe;
-      ProcessTertiaryProcessingStatusFlag(TertiaryProcessingStatusFlag,TertiaryProcessingStatusFlag[0x10]);
-      *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag[0xf] = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag[0x10] = 0;
-      *(uint8_t *)(TertiaryProcessingStatusFlag + 0x11) = 0;
-      TertiaryProcessingStatusFlag[0x12] = 0;
-      MemoryAllocationSize = _Mtx_unlock(TertiaryProcessingStatusFlag + 0x2d);
+      StringProcessingStatus = StringProcessingStatus + 0x1a;
+      ProcessSystemMemoryConfiguration(StringProcessingStatus,StringProcessingStatus[0x1c]);
+      *StringProcessingStatus = StringProcessingStatus;
+      StringProcessingStatus[0x1b] = StringProcessingStatus;
+      StringProcessingStatus[0x1c] = 0;
+      *(uint8_t *)(StringProcessingStatus + 0x1d) = 0;
+      StringProcessingStatus[0x1e] = 0;
+      StringProcessingStatus = StringProcessingStatus + 8;
+      CoreEngineProcessSystemMemoryResourceData(StringProcessingStatus,StringProcessingStatus[10]);
+      *StringProcessingStatus = StringProcessingStatus;
+      StringProcessingStatus[9] = StringProcessingStatus;
+      StringProcessingStatus[10] = 0;
+      *(uint8_t *)(StringProcessingStatus + 0xb) = 0;
+      StringProcessingStatus[0xc] = 0;
+      StringProcessingStatus = StringProcessingStatus + 0x14;
+      CoreEngineProcessSystemMemoryResourceData(StringProcessingStatus,StringProcessingStatus[0x16]);
+      *StringProcessingStatus = StringProcessingStatus;
+      StringProcessingStatus[0x15] = StringProcessingStatus;
+      StringProcessingStatus[0x16] = 0;
+      *(uint8_t *)(StringProcessingStatus + 0x17) = 0;
+      StringProcessingStatus[0x18] = 0;
+      StringProcessingStatus = StringProcessingStatus + 0xe;
+      ProcessStringProcessingStatus(StringProcessingStatus,StringProcessingStatus[0x10]);
+      *StringProcessingStatus = StringProcessingStatus;
+      StringProcessingStatus[0xf] = StringProcessingStatus;
+      StringProcessingStatus[0x10] = 0;
+      *(uint8_t *)(StringProcessingStatus + 0x11) = 0;
+      StringProcessingStatus[0x12] = 0;
+      MemoryAllocationSize = _Mtx_unlock(StringProcessingStatus + 0x2d);
       if (MemoryAllocationSize != 0) {
         __Throw_C_error_std__YAXH_Z(MemoryAllocationSize);
       }
@@ -70527,19 +70527,19 @@ LAB_180096990:
     }
     return;
   }
-  TertiaryProcessingStatusFlag = pStackConfigurationFlag + 0x1e;
+  StringProcessingStatus = pStackConfigurationFlag + 0x1e;
   SystemStringIndex = CharacterCodeSize + 0x20;
-  MemoryBlockListHead = (long long *)FindMatchingDataNode(TertiaryProcessingStatusFlag,&pStackConfigurationFlag,SystemStringIndex);
-  if ((void *)*MemoryBlockListHead == TertiaryProcessingStatusFlag) {
-    SecondaryProcessingStatusFlag = (uint8_t *)ProcessSystemStringData(TertiaryProcessingStatusFlag,SystemStringIndex);
+  MemoryBlockListHead = (long long *)FindMatchingDataNode(StringProcessingStatus,&pStackConfigurationFlag,SystemStringIndex);
+  if ((void *)*MemoryBlockListHead == StringProcessingStatus) {
+    SecondaryProcessingStatusFlag = (uint8_t *)ProcessSystemStringData(StringProcessingStatus,SystemStringIndex);
     *SecondaryProcessingStatusFlag = 0;
   }
-  TertiaryProcessingStatusFlag = StatusBuffer2 + 0x18;
-  FindMatchingDataNode(TertiaryProcessingStatusFlag,&pStackConfigurationFlag,SystemStringIndex);
+  StringProcessingStatus = StatusBuffer2 + 0x18;
+  FindMatchingDataNode(StringProcessingStatus,&pStackConfigurationFlag,SystemStringIndex);
   TimeDifferenceInSeconds7 = 0.0;
-  if (pStackConfigurationFlag == TertiaryProcessingStatusFlag) {
+  if (pStackConfigurationFlag == StringProcessingStatus) {
     ContextSecondaryFloat9 = (float)*(double *)(CharacterCodeSize + 0x40);
-    pFloatVariable7 = (float *)ProcessFloatProcessingStatusFlag(TertiaryProcessingStatusFlag,SystemStringIndex);
+    pFloatVariable7 = (float *)ProcessFloatProcessingStatusFlag(StringProcessingStatus,SystemStringIndex);
   }
   else {
     ContextSecondaryFloat9 = *(float *)(pStackConfigurationFlag + 8);
@@ -70566,19 +70566,19 @@ LAB_180096990:
     if (SystemShortValue4 == 2) {
       ContextSecondaryFloat8 = ContextSecondaryFloat9;
     }
-    pFloatVariable7 = (float *)ProcessFloatProcessingStatusFlag(TertiaryProcessingStatusFlag,SystemStringIndex);
+    pFloatVariable7 = (float *)ProcessFloatProcessingStatusFlag(StringProcessingStatus,SystemStringIndex);
     ContextSecondaryFloat9 = (ContextSecondaryFloat8 - ContextSecondaryFloat9) * 0.02 + ContextSecondaryFloat9;
   }
   *pFloatVariable7 = ContextSecondaryFloat9;
-  TertiaryProcessingStatusFlag = StatusBuffer2 + 0x12;
-  if ((void *)StatusBuffer2[0x13] == TertiaryProcessingStatusFlag) {
+  StringProcessingStatus = StatusBuffer2 + 0x12;
+  if ((void *)StatusBuffer2[0x13] == StringProcessingStatus) {
     if (0.0 < *(float *)(StatusBuffer2 + 0x24)) {
       TimeDifferenceInSeconds7 = *(double *)(CharacterCodeSize + 0x40) / (double)*(float *)(StatusBuffer2 + 0x24);
     }
     ContextSecondaryFloat9 = (float)TimeDifferenceInSeconds7;
   }
   else {
-    pFloatVariable7 = (float *)ProcessFloatProcessingStatusFlag(TertiaryProcessingStatusFlag,SystemStringIndex);
+    pFloatVariable7 = (float *)ProcessFloatProcessingStatusFlag(StringProcessingStatus,SystemStringIndex);
     ContextSecondaryFloat9 = *pFloatVariable7;
     if ((*(char *)((long long)StatusBuffer2 + 0x124) == '\0') || (*(float *)(StatusBuffer2 + 0x24) == 0.0)) {
       TimeDifferenceInSeconds7 = (double)ContextSecondaryFloat9;
@@ -70588,9 +70588,9 @@ LAB_180096990:
     }
     ContextSecondaryFloat9 = ((float)TimeDifferenceInSeconds7 - ContextSecondaryFloat9) * 0.02 + ContextSecondaryFloat9;
   }
-  pFloatVariable7 = (float *)ProcessFloatProcessingStatusFlag(TertiaryProcessingStatusFlag,SystemStringIndex);
+  pFloatVariable7 = (float *)ProcessFloatProcessingStatusFlag(StringProcessingStatus,SystemStringIndex);
   *pFloatVariable7 = ContextSecondaryFloat9;
-  TertiaryProcessingStatusFlag = StatusBuffer2;
+  StringProcessingStatus = StatusBuffer2;
   if ((void *)StatusBuffer2[2] != NULL) {
     PrimaryProcessingStatusFlag0 = (void *)StatusBuffer2[2];
     do {
@@ -70621,20 +70621,20 @@ LAB_180096990:
       }
 LAB_18009662b:
       if (LowByte) {
-        PrimaryProcessingStatusFlag0 = TertiaryProcessingStatusFlag;
+        PrimaryProcessingStatusFlag0 = StringProcessingStatus;
       }
-      TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag0;
+      StringProcessingStatus = PrimaryProcessingStatusFlag0;
       PrimaryProcessingStatusFlag0 = StatusBuffer5;
     } while (StatusBuffer5 != NULL);
   }
-  if (TertiaryProcessingStatusFlag == StatusBuffer2) {
+  if (StringProcessingStatus == StatusBuffer2) {
 LAB_18009667a:
-    TertiaryProcessingStatusFlag = (void *)CreateSystemContextWithData(StatusBuffer2,&pStackConfigurationFlag);
-    TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+    StringProcessingStatus = (void *)CreateSystemContextWithData(StatusBuffer2,&pStackConfigurationFlag);
+    StringProcessingStatus = (void *)*StringProcessingStatus;
   }
-  else if (*(int *)(TertiaryProcessingStatusFlag + 6) != 0) {
+  else if (*(int *)(StringProcessingStatus + 6) != 0) {
     if (*(int *)(CharacterCodeSize + 0x30) != 0) {
-      pProcessingByte4 = (byte *)TertiaryProcessingStatusFlag[5];
+      pProcessingByte4 = (byte *)StringProcessingStatus[5];
       BufferStatus1 = *(long long *)(CharacterCodeSize + 0x28) - (long long)pProcessingByte4;
       do {
         CurrentByteValue = *pProcessingByte4;
@@ -70647,11 +70647,11 @@ LAB_18009667a:
     goto LAB_18009667a;
   }
 LAB_180096691:
-  PrimaryProcessingStatusFlag0 = TertiaryProcessingStatusFlag + 8;
+  PrimaryProcessingStatusFlag0 = StringProcessingStatus + 8;
   ProcessSystemStringIndex(StatusBuffer2 + 6,SystemStringIndex);
   TemporaryBuffer = (void *)AllocateTemporaryBuffer(StatusBuffer2 + 0xc,SystemStringIndex);
   TimeDifferenceInSeconds7 = *(double *)(CharacterCodeSize + 0x40);
-  StatusBuffer5 = (void *)TertiaryProcessingStatusFlag[10];
+  StatusBuffer5 = (void *)StringProcessingStatus[10];
   StatusBuffer = PrimaryProcessingStatusFlag0;
   if (StatusBuffer5 != NULL) {
     do {
@@ -70669,9 +70669,9 @@ LAB_180096691:
     StatusBuffer = (void *)*StatusBuffer;
   }
   *(float *)((long long)StatusBuffer + 0x24) = (float)TimeDifferenceInSeconds7;
-  if (0x96 < (unsigned long long)TertiaryProcessingStatusFlag[0xc]) {
-    SystemStringIndex = TertiaryProcessingStatusFlag[9];
-    TertiaryProcessingStatusFlag[0xc] = TertiaryProcessingStatusFlag[0xc] - 1;
+  if (0x96 < (unsigned long long)StringProcessingStatus[0xc]) {
+    SystemStringIndex = StringProcessingStatus[9];
+    StringProcessingStatus[0xc] = StringProcessingStatus[0xc] - 1;
     GetNextMemoryBlockIndex(SystemStringIndex);
     ProcessSystemStringAndPrimaryData(SystemStringIndex,PrimaryProcessingStatusFlag0);
     if (SystemStringIndex != 0) {
@@ -70684,10 +70684,10 @@ LAB_180096691:
   *(float *)(SystemStringIndex + 0x20) = (float)TimeDifferenceInSeconds7;
   LowByte = true;
   StatusBuffer2 = (void *)TemporaryBuffer[2];
-  TertiaryProcessingStatusFlag = TemporaryBuffer;
+  StringProcessingStatus = TemporaryBuffer;
   while (StatusBuffer2 != NULL) {
     LowByte = (float)TimeDifferenceInSeconds7 < *(float *)(StatusBuffer2 + 4);
-    TertiaryProcessingStatusFlag = StatusBuffer2;
+    StringProcessingStatus = StatusBuffer2;
     if (LowByte) {
       StatusBuffer2 = (void *)StatusBuffer2[1];
     }
@@ -70695,10 +70695,10 @@ LAB_180096691:
       StatusBuffer2 = (void *)*StatusBuffer2;
     }
   }
-  StatusBuffer2 = TertiaryProcessingStatusFlag;
+  StatusBuffer2 = StringProcessingStatus;
   if (LowByte) {
-    if (TertiaryProcessingStatusFlag == (void *)TemporaryBuffer[1]) goto LAB_1800967cd;
-    StatusBuffer2 = (void *)GetPreviousMemoryBlockIndex(TertiaryProcessingStatusFlag);
+    if (StringProcessingStatus == (void *)TemporaryBuffer[1]) goto LAB_1800967cd;
+    StatusBuffer2 = (void *)GetPreviousMemoryBlockIndex(StringProcessingStatus);
   }
   if (*(float *)(SystemStringIndex + 0x20) < *(float *)(StatusBuffer2 + 4) ||
       *(float *)(SystemStringIndex + 0x20) == *(float *)(StatusBuffer2 + 4)) {
@@ -70706,14 +70706,14 @@ LAB_180096691:
     CoreEngineFreeSystemMemory(SystemStringIndex);
   }
 LAB_1800967cd:
-  if ((TertiaryProcessingStatusFlag == TemporaryBuffer) ||
+  if ((StringProcessingStatus == TemporaryBuffer) ||
      (MemoryAllocationOffset = 1,
-     *(float *)(SystemStringIndex + 0x20) <= *(float *)(TertiaryProcessingStatusFlag + 4) &&
-     *(float *)(TertiaryProcessingStatusFlag + 4) != *(float *)(SystemStringIndex + 0x20))) {
+     *(float *)(SystemStringIndex + 0x20) <= *(float *)(StringProcessingStatus + 4) &&
+     *(float *)(StringProcessingStatus + 4) != *(float *)(SystemStringIndex + 0x20))) {
     MemoryAllocationOffset = UnicodeCharacterCode;
   }
                     // WARNING: Subroutine does not return
-  AllocateMemoryWithFlags(SystemStringIndex,TertiaryProcessingStatusFlag,TemporaryBuffer,MemoryAllocationOffset);
+  AllocateMemoryWithFlags(SystemStringIndex,StringProcessingStatus,TemporaryBuffer,MemoryAllocationOffset);
 LAB_180096a34:
   *MemoryBlockListHead = SystemStringIndex;
   BufferAllocationStatus5 = BufferAllocationStatus5 + 1;
@@ -72402,31 +72402,31 @@ void ProcessSystemDataHandler(uint64_t CharacterCode,uint64_t CharacterCodeSize,
       }
     }
   }
-  TertiaryProcessingStatusFlag = (void *)ProcessSystemTertiaryDataAndAllocate(Utf8InputPointer + 0x60,0x60);
+  StringProcessingStatus = (void *)ProcessSystemTertiaryDataAndAllocate(Utf8InputPointer + 0x60,0x60);
   Utf16CharacterCode5 = 0;
   *NextNode = 0;
-  TertiaryProcessingStatusFlag[1] = 0;
-  TertiaryProcessingStatusFlag[4] = 0;
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 5) = 1;
-  TertiaryProcessingStatusFlag[6] = 0;
-  TertiaryProcessingStatusFlag[8] = 0;
+  StringProcessingStatus[1] = 0;
+  StringProcessingStatus[4] = 0;
+  *(uint32_t *)(StringProcessingStatus + 5) = 1;
+  StringProcessingStatus[6] = 0;
+  StringProcessingStatus[8] = 0;
   pSystemValidationChar = "scope";
   do {
     StringBuffer0 = pSystemValidationChar;
     pSystemValidationChar = StringBuffer0 + 1;
   } while (*pSystemValidationChar != '\0');
-  *TertiaryProcessingStatusFlag = &NetworkConfigDataA;
-  TertiaryProcessingStatusFlag[2] = StringBuffer0 + -0x180a01603;
+  *StringProcessingStatus = &NetworkConfigDataA;
+  StringProcessingStatus[2] = StringBuffer0 + -0x180a01603;
   StatusBuffer9 = &CoreEngineDataTemplate;
   if (*(void **)(AdditionalParameter1 + 8) != NULL) {
     StatusBuffer9 = *(void **)(AdditionalParameter1 + 8);
   }
-  ProcessSystemNetworkAndConfigureData(Utf8InputPointer,TertiaryProcessingStatusFlag,&NetworkConfigDataB,StatusBuffer9);
-  ProcessSystemNetworkAndConfigureSecondary(Utf8InputPointer,TertiaryProcessingStatusFlag,&NetworkConfigDataC,*(double *)(AdditionalParameter1 + 0x40) * 1000.0);
+  ProcessSystemNetworkAndConfigureData(Utf8InputPointer,StringProcessingStatus,&NetworkConfigDataB,StatusBuffer9);
+  ProcessSystemNetworkAndConfigureSecondary(Utf8InputPointer,StringProcessingStatus,&NetworkConfigDataC,*(double *)(AdditionalParameter1 + 0x40) * 1000.0);
   UnicodeCharacterCode = Utf16CharacterCode5;
   if (*(long long *)(AdditionalParameter1 + 0x50) - *(long long *)(AdditionalParameter1 + 0x48) >> 3 != 0) {
     do {
-      ProcessSystemDataHandler(CharacterCode,CharacterCodeSize,Utf8InputPointer,TertiaryProcessingStatusFlag,
+      ProcessSystemDataHandler(CharacterCode,CharacterCodeSize,Utf8InputPointer,StringProcessingStatus,
                     *(void *)(UnicodeCharacterCode + *(long long *)(AdditionalParameter1 + 0x48)));
       Utf16Char4 = (int)Utf16CharacterCode5 + 1;
       Utf16CharacterCode5 = (unsigned long long)Utf16Char4;
@@ -72435,16 +72435,16 @@ void ProcessSystemDataHandler(uint64_t CharacterCode,uint64_t CharacterCodeSize,
              (unsigned long long)(*(long long *)(AdditionalParameter1 + 0x50) - *(long long *)(AdditionalParameter1 + 0x48) >> 3));
   }
   if (*(long long *)(Utf16EndPointer + 0x30) == 0) {
-    TertiaryProcessingStatusFlag[10] = 0;
-    *(uint64_t **)(Utf16EndPointer + 0x30) = TertiaryProcessingStatusFlag;
+    StringProcessingStatus[10] = 0;
+    *(uint64_t **)(Utf16EndPointer + 0x30) = StringProcessingStatus;
   }
   else {
-    TertiaryProcessingStatusFlag[10] = *(void *)(Utf16EndPointer + 0x38);
-    *(uint64_t **)(*(long long *)(Utf16EndPointer + 0x38) + 0x58) = TertiaryProcessingStatusFlag;
+    StringProcessingStatus[10] = *(void *)(Utf16EndPointer + 0x38);
+    *(uint64_t **)(*(long long *)(Utf16EndPointer + 0x38) + 0x58) = StringProcessingStatus;
   }
-  *(uint64_t **)(Utf16EndPointer + 0x38) = TertiaryProcessingStatusFlag;
-  TertiaryProcessingStatusFlag[4] = Utf16EndPointer;
-  TertiaryProcessingStatusFlag[0xb] = 0;
+  *(uint64_t **)(Utf16EndPointer + 0x38) = StringProcessingStatus;
+  StringProcessingStatus[4] = Utf16EndPointer;
+  StringProcessingStatus[0xb] = 0;
   return;
 }
 
@@ -72529,10 +72529,10 @@ void ProcessSystemEventHandler(uint64_t CharacterCode,uint64_t *CharacterCodeSiz
     goto LAB_18009a8d1;
   }
   CharacterCodePointer = *(uint64_t **)(*MemoryBlockIndex + 0x50);
-  TertiaryProcessingStatusFlag = StatusBuffer6;
+  StringProcessingStatus = StatusBuffer6;
   if (CharacterCodePointer == NULL) {
 LAB_18009a8ab:
-    TertiaryProcessingStatusFlag = StatusBuffer6;
+    StringProcessingStatus = StatusBuffer6;
   }
   else {
     do {
@@ -72540,13 +72540,13 @@ LAB_18009a8ab:
         CharacterCodePointer = (void *)*CharacterCodePointer;
       }
       else {
-        TertiaryProcessingStatusFlag = CharacterCodePointer;
+        StringProcessingStatus = CharacterCodePointer;
         CharacterCodePointer = (void *)CharacterCodePointer[1];
       }
     } while (CharacterCodePointer != NULL);
-    if ((TertiaryProcessingStatusFlag == StatusBuffer6) || (AdditionalParameter1 < *(int *)(TertiaryProcessingStatusFlag + 4))) goto LAB_18009a8ab;
+    if ((StringProcessingStatus == StatusBuffer6) || (AdditionalParameter1 < *(int *)(StringProcessingStatus + 4))) goto LAB_18009a8ab;
   }
-  SystemContextPrimaryFloat8 = *(float *)((long long)TertiaryProcessingStatusFlag + 0x24);
+  SystemContextPrimaryFloat8 = *(float *)((long long)StringProcessingStatus + 0x24);
 LAB_18009a8d1:
   Utf16EndPointer[8] = (long long)(double)SystemContextPrimaryFloat8;
   StatusBuffer6 = (void *)CharacterCodeSize[1];
@@ -72645,52 +72645,52 @@ LAB_18009a8d1:
           *(uint8_t *)(Utf16Char4 + CharacterCodePointer[5]) = 0;
         }
         *(uint32_t *)((long long)CharacterCodePointer + 0x3c) = CoreEngineValueA8.HighPart;
-        TertiaryProcessingStatusFlag = (void *)CharacterCodeSize[2];
+        StringProcessingStatus = (void *)CharacterCodeSize[2];
         SecondaryProcessingStatusFlag = CharacterCodeSize;
         pCurrentByteValue2 = pbStack_b8;
-        if (TertiaryProcessingStatusFlag == NULL) {
+        if (StringProcessingStatus == NULL) {
 LAB_18009abe9:
-          TertiaryProcessingStatusFlag = CharacterCodeSize;
+          StringProcessingStatus = CharacterCodeSize;
         }
         else {
           do {
             if (SystemStackRegisterFlagB0 == 0) {
               HighByte = false;
-              StatusBuffer7 = (void *)TertiaryProcessingStatusFlag[1];
+              StatusBuffer7 = (void *)StringProcessingStatus[1];
             }
             else {
-              if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+              if (*(int *)(StringProcessingStatus + 6) == 0) {
                 HighByte = true;
               }
               else {
                 pCurrentByteValue0 = pbStack_b8;
                 do {
-                  pCurrentByteValue2 = (byte *)(unsigned long long)pCurrentByteValue0[TertiaryProcessingStatusFlag[5] - (long long)pbStack_b8];
-                  ProcessStringBuffer = (uint)pCurrentByteValue0[TertiaryProcessingStatusFlag[5] - (long long)pbStack_b8];
+                  pCurrentByteValue2 = (byte *)(unsigned long long)pCurrentByteValue0[StringProcessingStatus[5] - (long long)pbStack_b8];
+                  ProcessStringBuffer = (uint)pCurrentByteValue0[StringProcessingStatus[5] - (long long)pbStack_b8];
                   IntegerValue3 = *pCurrentByteValue0 - ProcessStringBuffer;
                   if (*pCurrentByteValue0 != ProcessStringBuffer) break;
                   pCurrentByteValue0 = pCurrentByteValue0 + 1;
                 } while (ProcessStringBuffer != 0);
                 HighByte = 0 < IntegerValue3;
                 if (IntegerValue3 < 1) {
-                  StatusBuffer7 = (void *)TertiaryProcessingStatusFlag[1];
+                  StatusBuffer7 = (void *)StringProcessingStatus[1];
                   goto LAB_18009abab;
                 }
               }
-              StatusBuffer7 = (void *)*TertiaryProcessingStatusFlag;
+              StatusBuffer7 = (void *)*StringProcessingStatus;
             }
 LAB_18009abab:
-            TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+            StringProcessingStatus = StringProcessingStatus;
             if (HighByte) {
-              TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+              StringProcessingStatus = SecondaryProcessingStatusFlag;
             }
-            SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-            TertiaryProcessingStatusFlag = StatusBuffer7;
+            SecondaryProcessingStatusFlag = StringProcessingStatus;
+            StringProcessingStatus = StatusBuffer7;
           } while (StatusBuffer7 != NULL);
-          if (TertiaryProcessingStatusFlag == CharacterCodeSize) goto LAB_18009abe9;
-          if (*(int *)(TertiaryProcessingStatusFlag + 6) != 0) {
+          if (StringProcessingStatus == CharacterCodeSize) goto LAB_18009abe9;
+          if (*(int *)(StringProcessingStatus + 6) != 0) {
             if (SystemStackRegisterFlagB0 != 0) {
-              pCurrentByteValue0 = (byte *)TertiaryProcessingStatusFlag[5];
+              pCurrentByteValue0 = (byte *)StringProcessingStatus[5];
               DataStructureCounter = (long long)pbStack_b8 - (long long)pCurrentByteValue0;
               do {
                 CurrentByteValue = *pCurrentByteValue0;
@@ -72712,19 +72712,19 @@ LAB_18009ac35:
           ProcessSystemContextAllocation(MemoryBlockIndex + 9,&TemporaryBuffer);
         }
         else {
-          TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[10];
-          SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 8;
-          if (TertiaryProcessingStatusFlag != NULL) {
+          StringProcessingStatus = (void *)StringProcessingStatus[10];
+          SecondaryProcessingStatusFlag = StringProcessingStatus + 8;
+          if (StringProcessingStatus != NULL) {
             do {
-              if (*(int *)(TertiaryProcessingStatusFlag + 4) < AdditionalParameter1) {
-                TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+              if (*(int *)(StringProcessingStatus + 4) < AdditionalParameter1) {
+                StringProcessingStatus = (void *)*StringProcessingStatus;
               }
               else {
                 CurrentNode = NextNode;
-                TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+                StringProcessingStatus = (void *)StringProcessingStatus[1];
               }
-            } while (TertiaryProcessingStatusFlag != NULL);
-            if ((SecondaryProcessingStatusFlag != TertiaryProcessingStatusFlag + 8) && (*(int *)(SecondaryProcessingStatusFlag + 4) <= AdditionalParameter1)) goto LAB_18009ac35;
+            } while (StringProcessingStatus != NULL);
+            if ((SecondaryProcessingStatusFlag != StringProcessingStatus + 8) && (*(int *)(SecondaryProcessingStatusFlag + 4) <= AdditionalParameter1)) goto LAB_18009ac35;
           }
           CoreEngineProcessSystemEventAndCleanupResources(CharacterCodePointer,pCurrentByteValue2);
         }
@@ -73009,7 +73009,7 @@ void ProcessSystemConfigurationHandle(uint64_t *CharacterCode
   }
   *(uint8_t *)((long long)CharacterCode + 0xe) = CalculatedCodePoint;
   SystemOffsetValue = 0x38;
-  TertiaryProcessingStatusFlag = CharacterCode + 2;
+  StringProcessingStatus = CharacterCode + 2;
   FloatProcessingStatusFlag = (float *)(MemoryBlockIndex + 4);
   do {
     if ((*(char *)(pCalculatedDistance + 5) != '\0') ||
@@ -73019,7 +73019,7 @@ void ProcessSystemConfigurationHandle(uint64_t *CharacterCode
     else {
       CalculatedCodePoint = 1;
     }
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + -1) = CalculatedCodePoint;
+    *(uint8_t *)((long long)StringProcessingStatus + -1) = CalculatedCodePoint;
     if ((*(char *)(pCalculatedDistance + 0xb) != '\0') ||
        ((pCalculatedDistance[6] <= 0.7 && pCalculatedDistance[6] != 0.7 && (((uint)pCalculatedDistance[10] & 1) == 0)))) {
       CalculatedCodePoint = 0;
@@ -73027,7 +73027,7 @@ void ProcessSystemConfigurationHandle(uint64_t *CharacterCode
     else {
       CalculatedCodePoint = 1;
     }
-    *(uint8_t *)TertiaryProcessingStatusFlag = CalculatedCodePoint;
+    *(uint8_t *)StringProcessingStatus = CalculatedCodePoint;
     if ((*(char *)(pCalculatedDistance + 0x11) != '\0') ||
        ((pCalculatedDistance[0xc] <= 0.7 && pCalculatedDistance[0xc] != 0.7 && (((uint)pCalculatedDistance[0x10] & 1) == 0)))) {
       CalculatedCodePoint = 0;
@@ -73035,7 +73035,7 @@ void ProcessSystemConfigurationHandle(uint64_t *CharacterCode
     else {
       CalculatedCodePoint = 1;
     }
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 1) = CalculatedCodePoint;
+    *(uint8_t *)((long long)StringProcessingStatus + 1) = CalculatedCodePoint;
     if ((*(char *)(pCalculatedDistance + 0x17) != '\0') ||
        ((pCalculatedDistance[0x12] <= 0.7 && pCalculatedDistance[0x12] != 0.7 && (((uint)pCalculatedDistance[0x16] & 1) == 0)))) {
       CalculatedCodePoint = 0;
@@ -73043,9 +73043,9 @@ void ProcessSystemConfigurationHandle(uint64_t *CharacterCode
     else {
       CalculatedCodePoint = 1;
     }
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 2) = CalculatedCodePoint;
+    *(uint8_t *)((long long)StringProcessingStatus + 2) = CalculatedCodePoint;
     FloatProcessingStatusFlag = pCalculatedDistance + 0x18;
-    TertiaryProcessingStatusFlag = (void *)((long long)TertiaryProcessingStatusFlag + 4);
+    StringProcessingStatus = (void *)((long long)StringProcessingStatus + 4);
     SystemOffsetValue = SystemOffsetValue + -1;
   } while (SystemOffsetValue != 0);
   if ((*(char *)((long long)CharacterCode + 0x2c) == '\0') && (*(char *)((long long)CharacterCode + 0xac) == '\0'     ) {
@@ -73495,21 +73495,21 @@ uint64_t * ProcessSystemDataStructure(uint64_t *DataStructurePointer, long long 
   long long OffsetValue;
   uint8_t SystemFlagArray [8];
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[2];
+  StringProcessingStatus = (void *)CharacterCode[2];
   TemporaryBuffer = CharacterCode;
-  if (TertiaryProcessingStatusFlag != NULL) {
+  if (StringProcessingStatus != NULL) {
     do {
       if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-        TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+        StringProcessingStatus = (void *)StringProcessingStatus[1];
         HighByte = false;
       }
       else {
-        if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+        if (*(int *)(StringProcessingStatus + 6) == 0) {
           HighByte = true;
         }
         else {
           pLowByte = *(byte **)(CharacterCodeSize + 8);
-          SystemOffsetValue = TertiaryProcessingStatusFlag[5] - (long long)pLowByte;
+          SystemOffsetValue = StringProcessingStatus[5] - (long long)pLowByte;
           do {
             CalculatedCodePoint = (uint)pLowByte[SystemOffsetValue];
             ValidationResult = *pLowByte - CalculatedCodePoint;
@@ -73518,20 +73518,20 @@ uint64_t * ProcessSystemDataStructure(uint64_t *DataStructurePointer, long long 
           } while (CalculatedCodePoint != 0);
           HighByte = 0 < ValidationResult;
           if (ValidationResult < 1) {
-            TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+            StringProcessingStatus = (void *)StringProcessingStatus[1];
             goto LAB_18009b417;
           }
         }
-        TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)*StringProcessingStatus;
       }
 LAB_18009b417:
       if (HighByte) {
-        TertiaryProcessingStatusFlag = TemporaryBuffer;
+        StringProcessingStatus = TemporaryBuffer;
       }
-      TemporaryBuffer = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-    } while (TertiaryProcessingStatusFlag != NULL);
-    TertiaryProcessingStatusFlag = NULL;
+      TemporaryBuffer = StringProcessingStatus;
+      StringProcessingStatus = StringProcessingStatus;
+    } while (StringProcessingStatus != NULL);
+    StringProcessingStatus = NULL;
   }
   if (TemporaryBuffer != CharacterCode) {
     if (*(int *)(TemporaryBuffer + 6) == 0) {
@@ -73540,17 +73540,17 @@ LAB_18009b467:
     }
     if (*(int *)(CharacterCodeSize + 0x10) != 0) {
       pLowByte = (byte *)TemporaryBuffer[5];
-      TertiaryProcessingStatusFlag = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)pLowByte);
+      StringProcessingStatus = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)pLowByte);
       do {
         CurrentByteValue = *pLowByte;
-        CalculatedCodePoint = (uint)pLowByte[(long long)TertiaryProcessingStatusFlag];
+        CalculatedCodePoint = (uint)pLowByte[(long long)StringProcessingStatus];
         if (CurrentByteValue != CalculatedCodePoint) break;
         pLowByte = pLowByte + 1;
       } while (CalculatedCodePoint != 0);
       if ((int)(CurrentByteValue - CalculatedCodePoint) < 1) goto LAB_18009b467;
     }
   }
-  SystemContextPtr = (long long *)ProcessSystemDataStructure(CharacterCode,aSystemRegisterFlagX8,TertiaryProcessingStatusFlag,TemporaryBuffer,CharacterCodeSize);
+  SystemContextPtr = (long long *)ProcessSystemDataStructure(CharacterCode,aSystemRegisterFlagX8,StringProcessingStatus,TemporaryBuffer,CharacterCodeSize);
   return (void *)(*SystemContextPtr + 0x40);
 }
 
@@ -73588,7 +73588,7 @@ ProcessSystemDataNodeComparison(uint64_t CharacterCode,long long CharacterCodeSi
   
   do {
     if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-      TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+      StringProcessingStatus = (void *)Utf8InputPointer[1];
       HighByte = false;
     }
     else {
@@ -73606,19 +73606,19 @@ ProcessSystemDataNodeComparison(uint64_t CharacterCode,long long CharacterCodeSi
         } while (CalculatedCodePoint != 0);
         HighByte = 0 < ValidationResult;
         if (ValidationResult < 1) {
-          TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+          StringProcessingStatus = (void *)Utf8InputPointer[1];
           goto LAB_18009b417;
         }
       }
-      TertiaryProcessingStatusFlag = (void *)*Utf8InputPointer;
+      StringProcessingStatus = (void *)*Utf8InputPointer;
     }
 LAB_18009b417:
     if (HighByte) {
       Utf8InputPointer = Utf16EndPointer;
     }
     Utf16EndPointer = Utf8InputPointer;
-    Utf8InputPointer = TertiaryProcessingStatusFlag;
-  } while (TertiaryProcessingStatusFlag != NULL);
+    Utf8InputPointer = StringProcessingStatus;
+  } while (StringProcessingStatus != NULL);
   if (Utf16EndPointer != RegisterSourceIndex) {
     if (*(int *)(Utf16EndPointer + 6) == 0) {
 LAB_18009b467:
@@ -73718,21 +73718,21 @@ uint64_t * FindSystemDataStructure(uint64_t *CharacterCode,long long CharacterCo
   long long SystemOffsetValue;
   uint8_t aSystemRegisterFlagX8 [8];
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[2];
+  StringProcessingStatus = (void *)CharacterCode[2];
   TemporaryBuffer = CharacterCode;
-  if (TertiaryProcessingStatusFlag != NULL) {
+  if (StringProcessingStatus != NULL) {
     do {
       if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-        TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+        StringProcessingStatus = (void *)StringProcessingStatus[1];
         HighByte = false;
       }
       else {
-        if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+        if (*(int *)(StringProcessingStatus + 6) == 0) {
           HighByte = true;
         }
         else {
           pLowByte = *(byte **)(CharacterCodeSize + 8);
-          SystemOffsetValue = TertiaryProcessingStatusFlag[5] - (long long)pLowByte;
+          SystemOffsetValue = StringProcessingStatus[5] - (long long)pLowByte;
           do {
             CalculatedCodePoint = (uint)pLowByte[SystemOffsetValue];
             ValidationResult = *pLowByte - CalculatedCodePoint;
@@ -73741,20 +73741,20 @@ uint64_t * FindSystemDataStructure(uint64_t *CharacterCode,long long CharacterCo
           } while (CalculatedCodePoint != 0);
           HighByte = 0 < ValidationResult;
           if (ValidationResult < 1) {
-            TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+            StringProcessingStatus = (void *)StringProcessingStatus[1];
             goto LAB_18009b517;
           }
         }
-        TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)*StringProcessingStatus;
       }
 LAB_18009b517:
       if (HighByte) {
-        TertiaryProcessingStatusFlag = TemporaryBuffer;
+        StringProcessingStatus = TemporaryBuffer;
       }
-      TemporaryBuffer = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-    } while (TertiaryProcessingStatusFlag != NULL);
-    TertiaryProcessingStatusFlag = NULL;
+      TemporaryBuffer = StringProcessingStatus;
+      StringProcessingStatus = StringProcessingStatus;
+    } while (StringProcessingStatus != NULL);
+    StringProcessingStatus = NULL;
   }
   if (TemporaryBuffer != CharacterCode) {
     if (*(int *)(TemporaryBuffer + 6) == 0) {
@@ -73763,17 +73763,17 @@ LAB_18009b567:
     }
     if (*(int *)(CharacterCodeSize + 0x10) != 0) {
       pLowByte = (byte *)TemporaryBuffer[5];
-      TertiaryProcessingStatusFlag = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)pLowByte);
+      StringProcessingStatus = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)pLowByte);
       do {
         CurrentByteValue = *pLowByte;
-        CalculatedCodePoint = (uint)pLowByte[(long long)TertiaryProcessingStatusFlag];
+        CalculatedCodePoint = (uint)pLowByte[(long long)StringProcessingStatus];
         if (CurrentByteValue != CalculatedCodePoint) break;
         pLowByte = pLowByte + 1;
       } while (CalculatedCodePoint != 0);
       if ((int)(CurrentByteValue - CalculatedCodePoint) < 1) goto LAB_18009b567;
     }
   }
-  SystemContextPtr = (long long *)ProcessSystemContextAndAllocateSecondary(CharacterCode,aSystemRegisterFlagX8,TertiaryProcessingStatusFlag,TemporaryBuffer,CharacterCodeSize);
+  SystemContextPtr = (long long *)ProcessSystemContextAndAllocateSecondary(CharacterCode,aSystemRegisterFlagX8,StringProcessingStatus,TemporaryBuffer,CharacterCodeSize);
   return (void *)(*SystemContextPtr + 0x40);
 }
 
@@ -73810,7 +73810,7 @@ void* CompareAndSwapSystemDataStructures(uint64_t CharacterCode, long long Chara
   
   do {
     if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-      TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+      StringProcessingStatus = (void *)Utf8InputPointer[1];
       ShouldSwapData = false;
     }
     else {
@@ -73828,19 +73828,19 @@ void* CompareAndSwapSystemDataStructures(uint64_t CharacterCode, long long Chara
         } while (ValidationValue != 0);
         ShouldSwapData = 0 < ComparisonDifference;
         if (ComparisonDifference < 1) {
-          TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+          StringProcessingStatus = (void *)Utf8InputPointer[1];
           goto LAB_18009b517;
         }
       }
-      TertiaryProcessingStatusFlag = (void *)*Utf8InputPointer;
+      StringProcessingStatus = (void *)*Utf8InputPointer;
     }
 LAB_18009b517:
     if (ShouldSwapData) {
       Utf8InputPointer = Utf16EndPointer;
     }
     Utf16EndPointer = Utf8InputPointer;
-    Utf8InputPointer = TertiaryProcessingStatusFlag;
-  } while (TertiaryProcessingStatusFlag != NULL);
+    Utf8InputPointer = StringProcessingStatus;
+  } while (StringProcessingStatus != NULL);
   if (Utf16EndPointer != DataNodeIndexPointer) {
     if (*(int *)(Utf16EndPointer + 6) == 0) {
 LAB_18009b567:
@@ -74240,21 +74240,21 @@ uint64_t * ProcessSystemDataBlockB(uint64_t *CharacterCode,long long CharacterCo
   long long SystemOffsetValue;
   uint8_t aSystemRegisterFlagX8 [8];
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[2];
+  StringProcessingStatus = (void *)CharacterCode[2];
   TemporaryBuffer = CharacterCode;
-  if (TertiaryProcessingStatusFlag != NULL) {
+  if (StringProcessingStatus != NULL) {
     do {
       if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-        TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+        StringProcessingStatus = (void *)StringProcessingStatus[1];
         HighByte = false;
       }
       else {
-        if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+        if (*(int *)(StringProcessingStatus + 6) == 0) {
           HighByte = true;
         }
         else {
           pLowByte = *(byte **)(CharacterCodeSize + 8);
-          SystemOffsetValue = TertiaryProcessingStatusFlag[5] - (long long)pLowByte;
+          SystemOffsetValue = StringProcessingStatus[5] - (long long)pLowByte;
           do {
             CalculatedCodePoint = (uint)pLowByte[SystemOffsetValue];
             ValidationResult = *pLowByte - CalculatedCodePoint;
@@ -74263,20 +74263,20 @@ uint64_t * ProcessSystemDataBlockB(uint64_t *CharacterCode,long long CharacterCo
           } while (CalculatedCodePoint != 0);
           HighByte = 0 < ValidationResult;
           if (ValidationResult < 1) {
-            TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+            StringProcessingStatus = (void *)StringProcessingStatus[1];
             goto LAB_18009b9d7;
           }
         }
-        TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)*StringProcessingStatus;
       }
 LAB_18009b9d7:
       if (HighByte) {
-        TertiaryProcessingStatusFlag = TemporaryBuffer;
+        StringProcessingStatus = TemporaryBuffer;
       }
-      TemporaryBuffer = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-    } while (TertiaryProcessingStatusFlag != NULL);
-    TertiaryProcessingStatusFlag = NULL;
+      TemporaryBuffer = StringProcessingStatus;
+      StringProcessingStatus = StringProcessingStatus;
+    } while (StringProcessingStatus != NULL);
+    StringProcessingStatus = NULL;
   }
   if (TemporaryBuffer != CharacterCode) {
     if (*(int *)(TemporaryBuffer + 6) == 0) {
@@ -74285,17 +74285,17 @@ LAB_18009ba27:
     }
     if (*(int *)(CharacterCodeSize + 0x10) != 0) {
       pLowByte = (byte *)TemporaryBuffer[5];
-      TertiaryProcessingStatusFlag = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)pLowByte);
+      StringProcessingStatus = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)pLowByte);
       do {
         CurrentByteValue = *pLowByte;
-        CalculatedCodePoint = (uint)pLowByte[(long long)TertiaryProcessingStatusFlag];
+        CalculatedCodePoint = (uint)pLowByte[(long long)StringProcessingStatus];
         if (CurrentByteValue != CalculatedCodePoint) break;
         pLowByte = pLowByte + 1;
       } while (CalculatedCodePoint != 0);
       if ((int)(CurrentByteValue - CalculatedCodePoint) < 1) goto LAB_18009ba27;
     }
   }
-  SystemContextPtr = (long long *)ProcessSystemContextAndAllocateTertiary(CharacterCode,aSystemRegisterFlagX8,TertiaryProcessingStatusFlag,TemporaryBuffer,CharacterCodeSize);
+  SystemContextPtr = (long long *)ProcessSystemContextAndAllocateTertiary(CharacterCode,aSystemRegisterFlagX8,StringProcessingStatus,TemporaryBuffer,CharacterCodeSize);
   return (void *)(*SystemContextPtr + 0x40);
 }
 
@@ -74332,7 +74332,7 @@ void* CompareAndSwapSystemDataStructuresVariantB(uint64_t CharacterCode, long lo
   
   do {
     if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-      TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+      StringProcessingStatus = (void *)Utf8InputPointer[1];
       ShouldSwapData = false;
     }
     else {
@@ -74350,19 +74350,19 @@ void* CompareAndSwapSystemDataStructuresVariantB(uint64_t CharacterCode, long lo
         } while (ValidationValue != 0);
         ShouldSwapData = 0 < ComparisonDifference;
         if (ComparisonDifference < 1) {
-          TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+          StringProcessingStatus = (void *)Utf8InputPointer[1];
           goto LAB_18009b9d7;
         }
       }
-      TertiaryProcessingStatusFlag = (void *)*Utf8InputPointer;
+      StringProcessingStatus = (void *)*Utf8InputPointer;
     }
 LAB_18009b9d7:
     if (ShouldSwapData) {
       Utf8InputPointer = Utf16EndPointer;
     }
     Utf16EndPointer = Utf8InputPointer;
-    Utf8InputPointer = TertiaryProcessingStatusFlag;
-  } while (TertiaryProcessingStatusFlag != NULL);
+    Utf8InputPointer = StringProcessingStatus;
+  } while (StringProcessingStatus != NULL);
   if (Utf16EndPointer != DataNodeIndexPointer) {
     if (*(int *)(Utf16EndPointer + 6) == 0) {
 LAB_18009ba27:
@@ -74460,21 +74460,21 @@ uint64_t * FindSystemDataStructure(uint64_t *CharacterCode,long long CharacterCo
   long long StringOffsetValue;
   uint8_t SystemFlagBuffer [8];
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[2];
+  StringProcessingStatus = (void *)CharacterCode[2];
   TemporaryBuffer = CharacterCode;
-  if (TertiaryProcessingStatusFlag != NULL) {
+  if (StringProcessingStatus != NULL) {
     do {
       if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-        TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+        StringProcessingStatus = (void *)StringProcessingStatus[1];
         HighByte = false;
       }
       else {
-        if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+        if (*(int *)(StringProcessingStatus + 6) == 0) {
           HighByte = true;
         }
         else {
           DataComparisonPointer = *(byte **)(CharacterCodeSize + 8);
-          SystemOffsetValue = TertiaryProcessingStatusFlag[5] - (long long)DataComparisonPointer;
+          SystemOffsetValue = StringProcessingStatus[5] - (long long)DataComparisonPointer;
           do {
             CalculatedCodePoint = (uint)DataComparisonPointer[SystemOffsetValue];
             ValidationResult = *DataComparisonPointer - CalculatedCodePoint;
@@ -74483,20 +74483,20 @@ uint64_t * FindSystemDataStructure(uint64_t *CharacterCode,long long CharacterCo
           } while (CalculatedCodePoint != 0);
           HighByte = 0 < ValidationResult;
           if (ValidationResult < 1) {
-            TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+            StringProcessingStatus = (void *)StringProcessingStatus[1];
             goto NodeTraversalComplete;
           }
         }
-        TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)*StringProcessingStatus;
       }
 NodeTraversalComplete:
       if (HighByte) {
-        TertiaryProcessingStatusFlag = TemporaryBuffer;
+        StringProcessingStatus = TemporaryBuffer;
       }
-      TemporaryBuffer = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-    } while (TertiaryProcessingStatusFlag != NULL);
-    TertiaryProcessingStatusFlag = NULL;
+      TemporaryBuffer = StringProcessingStatus;
+      StringProcessingStatus = StringProcessingStatus;
+    } while (StringProcessingStatus != NULL);
+    StringProcessingStatus = NULL;
   }
   if (TemporaryBuffer != CharacterCode) {
     if (*(int *)(TemporaryBuffer + 6) == 0) {
@@ -74505,17 +74505,17 @@ DataValidationComplete:
     }
     if (*(int *)(CharacterCodeSize + 0x10) != 0) {
       DataComparisonPointer = (byte *)TemporaryBuffer[5];
-      TertiaryProcessingStatusFlag = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)DataComparisonPointer);
+      StringProcessingStatus = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)DataComparisonPointer);
       do {
         CurrentByteValue = *DataComparisonPointer;
-        CalculatedCodePoint = (uint)DataComparisonPointer[(long long)TertiaryProcessingStatusFlag];
+        CalculatedCodePoint = (uint)DataComparisonPointer[(long long)StringProcessingStatus];
         if (CurrentByteValue != CalculatedCodePoint) break;
         DataComparisonPointer = DataComparisonPointer + 1;
       } while (CalculatedCodePoint != 0);
       if ((int)(CurrentByteValue - CalculatedCodePoint) < 1) goto DataValidationComplete;
     }
   }
-  SystemContextPtr = (long long *)ProcessSystemContextAndAllocateQuaternary(CharacterCode,aSystemRegisterFlagX8,TertiaryProcessingStatusFlag,TemporaryBuffer,CharacterCodeSize);
+  SystemContextPtr = (long long *)ProcessSystemContextAndAllocateQuaternary(CharacterCode,aSystemRegisterFlagX8,StringProcessingStatus,TemporaryBuffer,CharacterCodeSize);
   return (void *)(*SystemContextPtr + 0x40);
 }
 
@@ -74552,7 +74552,7 @@ void* CompareAndSwapSystemDataStructuresVariantC(uint64_t CharacterCode, long lo
   
   do {
     if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-      TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+      StringProcessingStatus = (void *)Utf8InputPointer[1];
       ShouldSwapData = false;
     }
     else {
@@ -74570,19 +74570,19 @@ void* CompareAndSwapSystemDataStructuresVariantC(uint64_t CharacterCode, long lo
         } while (ValidationValue != 0);
         ShouldSwapData = 0 < ComparisonDifference;
         if (ComparisonDifference < 1) {
-          TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+          StringProcessingStatus = (void *)Utf8InputPointer[1];
           goto LAB_18009bad7;
         }
       }
-      TertiaryProcessingStatusFlag = (void *)*Utf8InputPointer;
+      StringProcessingStatus = (void *)*Utf8InputPointer;
     }
 LAB_18009bad7:
     if (ShouldSwapData) {
       Utf8InputPointer = Utf16EndPointer;
     }
     Utf16EndPointer = Utf8InputPointer;
-    Utf8InputPointer = TertiaryProcessingStatusFlag;
-  } while (TertiaryProcessingStatusFlag != NULL);
+    Utf8InputPointer = StringProcessingStatus;
+  } while (StringProcessingStatus != NULL);
   if (Utf16EndPointer != DataNodeIndexPointer) {
     if (*(int *)(Utf16EndPointer + 6) == 0) {
 LAB_18009bb27:
@@ -79164,10 +79164,10 @@ int * Process32BitSystemDataStructureComparison(int *CharacterCode,int *Characte
     pMemoryAddressMask = (void *)Utf16EndPointer[2];
     CharacterByteCount = *CharacterCode;
     CharacterCodePointer = pMemoryAddressMask;
-    TertiaryProcessingStatusFlag = Utf16EndPointer;
+    StringProcessingStatus = Utf16EndPointer;
     if (pMemoryAddressMask == NULL) {
 LAB_18009e3f9:
-      TertiaryProcessingStatusFlag = Utf16EndPointer;
+      StringProcessingStatus = Utf16EndPointer;
     }
     else {
       do {
@@ -79175,11 +79175,11 @@ LAB_18009e3f9:
           CharacterCodePointer = (void *)*CharacterCodePointer;
         }
         else {
-          TertiaryProcessingStatusFlag = CharacterCodePointer;
+          StringProcessingStatus = CharacterCodePointer;
           CharacterCodePointer = (void *)CharacterCodePointer[1];
         }
       } while (CharacterCodePointer != NULL);
-      if ((TertiaryProcessingStatusFlag == Utf16EndPointer) || (IntegerValue < *(int *)(TertiaryProcessingStatusFlag + 4))) goto LAB_18009e3f9;
+      if ((StringProcessingStatus == Utf16EndPointer) || (IntegerValue < *(int *)(StringProcessingStatus + 4))) goto LAB_18009e3f9;
     }
     SecondaryProcessingStatusFlag = Utf16EndPointer;
     CharacterCodePointer = pMemoryAddressMask;
@@ -79199,15 +79199,15 @@ LAB_18009e42e:
       } while (CharacterCodePointer != NULL);
       if ((SecondaryProcessingStatusFlag == Utf16EndPointer) || (CharacterByteCount < *(int *)(SecondaryProcessingStatusFlag + 4))) goto LAB_18009e42e;
     }
-    if (*(float *)((long long)SecondaryProcessingStatusFlag + 0x24) <= *(float *)((long long)TertiaryProcessingStatusFlag + 0x24)) {
+    if (*(float *)((long long)SecondaryProcessingStatusFlag + 0x24) <= *(float *)((long long)StringProcessingStatus + 0x24)) {
       do {
         MemoryAllocationSize = CharacterCodeSize[-1];
         CharacterCodeSize = CharacterCodeSize + -1;
         CharacterCodePointer = pMemoryAddressMask;
-        TertiaryProcessingStatusFlag = Utf16EndPointer;
+        StringProcessingStatus = Utf16EndPointer;
         if (pMemoryAddressMask == NULL) {
 LAB_18009e489:
-          TertiaryProcessingStatusFlag = Utf16EndPointer;
+          StringProcessingStatus = Utf16EndPointer;
         }
         else {
           do {
@@ -79215,11 +79215,11 @@ LAB_18009e489:
               CharacterCodePointer = (void *)*CharacterCodePointer;
             }
             else {
-              TertiaryProcessingStatusFlag = CharacterCodePointer;
+              StringProcessingStatus = CharacterCodePointer;
               CharacterCodePointer = (void *)CharacterCodePointer[1];
             }
           } while (CharacterCodePointer != NULL);
-          if ((TertiaryProcessingStatusFlag == Utf16EndPointer) || (MemoryAllocationSize < *(int *)(TertiaryProcessingStatusFlag + 4))) goto LAB_18009e489;
+          if ((StringProcessingStatus == Utf16EndPointer) || (MemoryAllocationSize < *(int *)(StringProcessingStatus + 4))) goto LAB_18009e489;
         }
         SecondaryProcessingStatusFlag = Utf16EndPointer;
         CharacterCodePointer = pMemoryAddressMask;
@@ -79239,7 +79239,7 @@ LAB_18009e4bf:
           } while (CharacterCodePointer != NULL);
           if ((SecondaryProcessingStatusFlag == Utf16EndPointer) || (IntegerValue < *(int *)(SecondaryProcessingStatusFlag + 4))) goto LAB_18009e4bf;
         }
-      } while (*(float *)((long long)TertiaryProcessingStatusFlag + 0x24) < *(float *)((long long)SecondaryProcessingStatusFlag + 0x24));
+      } while (*(float *)((long long)StringProcessingStatus + 0x24) < *(float *)((long long)SecondaryProcessingStatusFlag + 0x24));
       if (CharacterCodeSize <= CharacterCode) {
         return CharacterCode;
       }
@@ -79407,12 +79407,12 @@ void ProcessSystemDataStructureLockAndCompare(long long CharacterCode,long long 
   
   CurrentMemoryBlockAddress = Utf16EndPointer * 2;
   while (MemoryBlockIndex = CurrentMemoryBlockAddress + 2, MemoryBlockIndex < Utf8InputPointer) {
-    TertiaryProcessingStatusFlag = (void *)AdditionalParameter2[2];
+    StringProcessingStatus = (void *)AdditionalParameter2[2];
     validationResult = *(int *)(CharacterCode + -4 + MemoryBlockIndex * 4);
     IntegerValue = *(int *)(CharacterCode + MemoryBlockIndex * 4);
-    CharacterCodePointer = TertiaryProcessingStatusFlag;
+    CharacterCodePointer = StringProcessingStatus;
     SecondaryProcessingStatusFlag = AdditionalParameter2;
-    if (TertiaryProcessingStatusFlag == NULL) {
+    if (StringProcessingStatus == NULL) {
 LAB_18009e789:
       SecondaryProcessingStatusFlag = AdditionalParameter2;
     }
@@ -79430,20 +79430,20 @@ LAB_18009e789:
       if ((SecondaryProcessingStatusFlag == AdditionalParameter2) || (validationResult < *(int *)(SecondaryProcessingStatusFlag + 4))) goto LAB_18009e789;
     }
     CharacterCodePointer = AdditionalParameter2;
-    if (TertiaryProcessingStatusFlag == NULL) {
+    if (StringProcessingStatus == NULL) {
 LAB_18009e7bc:
       CharacterCodePointer = AdditionalParameter2;
     }
     else {
       do {
-        if (*(int *)(TertiaryProcessingStatusFlag + 4) < IntegerValue) {
-          TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+        if (*(int *)(StringProcessingStatus + 4) < IntegerValue) {
+          StringProcessingStatus = (void *)*StringProcessingStatus;
         }
         else {
-          CharacterCodePointer = TertiaryProcessingStatusFlag;
-          TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+          CharacterCodePointer = StringProcessingStatus;
+          StringProcessingStatus = (void *)StringProcessingStatus[1];
         }
-      } while (TertiaryProcessingStatusFlag != NULL);
+      } while (StringProcessingStatus != NULL);
       if ((CharacterCodePointer == AdditionalParameter2) || (IntegerValue < *(int *)(CharacterCodePointer + 4))) goto LAB_18009e7bc;
     }
     MemoryPoolBlockSize = CurrentMemoryBlockAddress + 1;
@@ -79462,12 +79462,12 @@ LAB_18009e7bc:
   if (CharacterCodeSize < Utf16EndPointer) {
     do {
       CurrentMemoryBlockAddress = Utf16EndPointer + -1 >> 1;
-      TertiaryProcessingStatusFlag = (void *)AdditionalParameter2[2];
+      StringProcessingStatus = (void *)AdditionalParameter2[2];
       validationResult = *AdditionalParameter1;
       IntegerValue = *(int *)(CharacterCode + CurrentMemoryBlockAddress * 4);
-      CharacterCodePointer = TertiaryProcessingStatusFlag;
+      CharacterCodePointer = StringProcessingStatus;
       SecondaryProcessingStatusFlag = AdditionalParameter2;
-      if (TertiaryProcessingStatusFlag == NULL) {
+      if (StringProcessingStatus == NULL) {
 LAB_18009e859:
         SecondaryProcessingStatusFlag = AdditionalParameter2;
       }
@@ -79484,20 +79484,20 @@ LAB_18009e859:
         if ((SecondaryProcessingStatusFlag == AdditionalParameter2) || (validationResult < *(int *)(SecondaryProcessingStatusFlag + 4))) goto LAB_18009e859;
       }
       CharacterCodePointer = AdditionalParameter2;
-      if (TertiaryProcessingStatusFlag == NULL) {
+      if (StringProcessingStatus == NULL) {
 LAB_18009e88c:
         CharacterCodePointer = AdditionalParameter2;
       }
       else {
         do {
-          if (*(int *)(TertiaryProcessingStatusFlag + 4) < IntegerValue) {
-            TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+          if (*(int *)(StringProcessingStatus + 4) < IntegerValue) {
+            StringProcessingStatus = (void *)*StringProcessingStatus;
           }
           else {
-            CharacterCodePointer = TertiaryProcessingStatusFlag;
-            TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+            CharacterCodePointer = StringProcessingStatus;
+            StringProcessingStatus = (void *)StringProcessingStatus[1];
           }
-        } while (TertiaryProcessingStatusFlag != NULL);
+        } while (StringProcessingStatus != NULL);
         if ((CharacterCodePointer == AdditionalParameter2) || (IntegerValue < *(int *)(CharacterCodePointer + 4))) goto LAB_18009e88c;
       }
       if (*(float *)((long long)CharacterCodePointer + 0x24) <= *(float *)((long long)SecondaryProcessingStatusFlag + 0x24)) {
@@ -80258,8 +80258,8 @@ void ProcessSystemDataStreamSync(long long CharacterCode
   int validationResult;
   long long AllocatedMemorySize;
   unsigned long long DataSize;
-  uint8_t *TertiaryProcessingStatusFlag;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
+  uint8_t *StringProcessingStatus;
   uint8_t SystemOperationBuffer [32];
   long long *pCoreEngineSignedValue78;
   uint8_t *StackVariableBuffer;
@@ -80298,47 +80298,47 @@ void ProcessSystemDataStreamSync(long long CharacterCode
         UnicodeCodePoint = fgetc(*(void *)(CharacterCode + 0x80));
         if (UnicodeCodePoint != 0xffffffff) {
           ProcessSystemDataAndConfigureFunction(&FunctionAddress,UnicodeCodePoint & 0xff);
-          TertiaryProcessingStatusFlag = &FunctionAddress;
+          StringProcessingStatus = &FunctionAddress;
           if (0xf < StackUnsigned20) {
-            TertiaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
+            StringProcessingStatus = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
           }
-          TertiaryProcessingStatusFlag = &FunctionAddress;
+          StringProcessingStatus = &FunctionAddress;
           if (0xf < StackUnsigned20) {
-            TertiaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
+            StringProcessingStatus = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
           }
           PointerPointerStack60 = &QuaternaryStackPointer8;
           EnginePointerBuffer = auStack_57;
           StackVariableBuffer = &BufferOffset;
           pCoreEngineSignedValue78 = &lStack_50;
           validationResult = _in___codecvt_DDU_Mbstatet___std__QEBAHAEAU_Mbstatet__PEBD1AEAPEBDPEAD3AEAPEAD_Z
-                            (*(void *)(CharacterCode + 0x68),CharacterCode + 0x74,TertiaryProcessingStatusFlag,
-                             TertiaryProcessingStatusFlag + uStack_28);
+                            (*(void *)(CharacterCode + 0x68),CharacterCode + 0x74,StringProcessingStatus,
+                             StringProcessingStatus + uStack_28);
           if ((-1 < validationResult) && (validationResult < 2)) {
             if (QuaternaryStackPointer8 == &BufferOffset) {
-              TertiaryProcessingStatusFlag = &FunctionAddress;
+              StringProcessingStatus = &FunctionAddress;
               if (0xf < StackUnsigned20) {
-                TertiaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
+                StringProcessingStatus = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
               }
-              DataSize = lStack_50 - (long long)TertiaryProcessingStatusFlag;
-              if (uStack_28 < (unsigned long long)(lStack_50 - (long long)TertiaryProcessingStatusFlag)) {
+              DataSize = lStack_50 - (long long)StringProcessingStatus;
+              if (uStack_28 < (unsigned long long)(lStack_50 - (long long)StringProcessingStatus)) {
                 DataSize = uStack_28;
               }
-              TertiaryProcessingStatusFlag = &FunctionAddress;
+              StringProcessingStatus = &FunctionAddress;
               if (0xf < StackUnsigned20) {
-                TertiaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
+                StringProcessingStatus = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
               }
               uStack_28 = uStack_28 - DataSize;
                     // WARNING: Subroutine does not return
-              memmove(TertiaryProcessingStatusFlag,TertiaryProcessingStatusFlag + DataSize,uStack_28 + 1);
+              memmove(StringProcessingStatus,StringProcessingStatus + DataSize,uStack_28 + 1);
             }
-            TertiaryProcessingStatusFlag = &FunctionAddress;
+            StringProcessingStatus = &FunctionAddress;
             if (0xf < StackUnsigned20) {
-              TertiaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
+              StringProcessingStatus = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
             }
-            TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + (uStack_28 - lStack_50);
-            while (0 < (long long)TertiaryProcessingStatusFlag) {
-              TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -1;
-              ungetc((int)(char)TertiaryProcessingStatusFlag[lStack_50],*(void *)(CharacterCode + 0x80));
+            StringProcessingStatus = StringProcessingStatus + (uStack_28 - lStack_50);
+            while (0 < (long long)StringProcessingStatus) {
+              StringProcessingStatus = StringProcessingStatus + -1;
+              ungetc((int)(char)StringProcessingStatus[lStack_50],*(void *)(CharacterCode + 0x80));
             }
           }
         }
@@ -80903,7 +80903,7 @@ void ProcessSystemDataConversion(long long *CharacterCode,long long *CharacterCo
   long long DataStructureCounter;
   uint32_t *CharacterCodePointer;
   long long *pMemoryBoundaryEnd;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   long long secondaryLoopCounter;
   unsigned long long MemoryAllocationLoopCounter;
   uint8_t *StatusBuffer;
@@ -80944,7 +80944,7 @@ void ProcessSystemDataConversion(long long *CharacterCode,long long *CharacterCo
   SystemDataTablePointer = CharacterCodeSize[1];
   StringProcessingIndex = 0;
   if (PrimaryProcessingStatusFlag == (uint8_t *)0x0) {
-    TertiaryProcessingStatusFlag = (uint8_t *)0x180d48d24;
+    StringProcessingStatus = (uint8_t *)0x180d48d24;
   }
   else {
     StringProcessingIndex = Utf8InputPointer[2];
@@ -80956,7 +80956,7 @@ void ProcessSystemDataConversion(long long *CharacterCode,long long *CharacterCo
   if (PrimaryProcessingStatusFlag != (uint8_t *)0x0) {
     StatusBuffer = PrimaryProcessingStatusFlag;
   }
-  while (StatusBuffer != TertiaryProcessingStatusFlag + StringProcessingIndex) {
+  while (StatusBuffer != StringProcessingStatus + StringProcessingIndex) {
     Utf16Char = *StatusBuffer;
     StatusBuffer = StatusBuffer + 1;
     ProcessSystemDataAndConfigureSecondary(SystemDataTablePointer,Utf16Char);
@@ -81098,7 +81098,7 @@ LAB_18009fe7d:
   SystemStringIndex = *CharacterCodeSize;
   MemoryBlockIndex = CharacterCodeSize[1];
   if (PrimaryProcessingStatusFlag == (uint8_t *)0x0) {
-    TertiaryProcessingStatusFlag = (uint8_t *)0x180d48d24;
+    StringProcessingStatus = (uint8_t *)0x180d48d24;
     SystemDataTablePointer = 0;
   }
   else {
@@ -81111,7 +81111,7 @@ LAB_18009fe7d:
   if (PrimaryProcessingStatusFlag != (uint8_t *)0x0) {
     StatusBuffer = PrimaryProcessingStatusFlag;
   }
-  while (StatusBuffer != TertiaryProcessingStatusFlag + SystemDataTablePointer) {
+  while (StatusBuffer != StringProcessingStatus + SystemDataTablePointer) {
     Utf16Char = *StatusBuffer;
     StatusBuffer = StatusBuffer + 1;
     ProcessSystemDataAndConfigureSecondary(MemoryBlockIndex,Utf16Char);
@@ -82366,12 +82366,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   MemoryAllocationPointer = NULL;
   uStack_218 = uStack_218 & 0xffffffff00000000;
   cStack_1e0 = CharacterCodeSize;
-  TertiaryProcessingStatusFlag = (void *           BufferAllocate(MemoryPoolManager,0x10,CONCAT71((int7)((unsigned long long)CharacterTablePointer5 >> 8),0x13));
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3039303320787472;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *           BufferAllocate(MemoryPoolManager,0x10,CONCAT71((int7)((unsigned long long)CharacterTablePointer5 >> 8),0x13));
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3039303320787472;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_218.LowPart = 8;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pOperationStatus);
@@ -82387,12 +82387,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3038303320787472;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3038303320787472;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_1f8 = 8;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pCoreEngineUnsignedValue208);
@@ -82408,12 +82408,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3037303320787472;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3037303320787472;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_218.LowPart = 8;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pOperationStatus);
@@ -82429,12 +82429,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3036303320787472;
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0x697420;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3036303320787472;
+  *(uint32_t *)(StringProcessingStatus + 1) = 0x697420;
   uStack_1f8 = 0xb;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pCoreEngineUnsignedValue208);
@@ -82450,12 +82450,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3036303320787472;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3036303320787472;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_218.LowPart = 8;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pOperationStatus);
@@ -82471,12 +82471,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3038303220787472;
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0x697420;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3038303220787472;
+  *(uint32_t *)(StringProcessingStatus + 1) = 0x697420;
   uStack_1f8 = 0xb;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pCoreEngineUnsignedValue208);
@@ -82492,12 +82492,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3038303220787472;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3038303220787472;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_218.LowPart = 8;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pOperationStatus);
@@ -82513,12 +82513,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3038303120787467;
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0x697420;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3038303120787467;
+  *(uint32_t *)(StringProcessingStatus + 1) = 0x697420;
   uStack_1f8 = 0xb;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pCoreEngineUnsignedValue208);
@@ -82534,12 +82534,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3037303220787472;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3037303220787472;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_218.LowPart = 8;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pOperationStatus);
@@ -82555,13 +82555,13 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x2030303936207872;
-  *(uint16_t *)(TertiaryProcessingStatusFlag + 1) = 0x7478;
-  *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 10) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x2030303936207872;
+  *(uint16_t *)(StringProcessingStatus + 1) = 0x7478;
+  *(uint8_t *)((long long)StringProcessingStatus + 10) = 0;
   uStack_1f8 = 10;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pCoreEngineUnsignedValue208);
@@ -82577,13 +82577,13 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x2030303836207872;
-  *(uint16_t *)(TertiaryProcessingStatusFlag + 1) = 0x7478;
-  *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 10) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x2030303836207872;
+  *(uint16_t *)(StringProcessingStatus + 1) = 0x7478;
+  *(uint8_t *)((long long)StringProcessingStatus + 10) = 0;
   uStack_218.LowPart = 10;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pOperationStatus);
@@ -82599,11 +82599,11 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x30303836207872;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x30303836207872;
   uStack_1f8 = 7;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pCoreEngineUnsignedValue208);
@@ -82619,13 +82619,13 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x76206e6f65646172;
-  *(uint16_t *)(TertiaryProcessingStatusFlag + 1) = 0x6969;
-  *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 10) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x76206e6f65646172;
+  *(uint16_t *)(StringProcessingStatus + 1) = 0x6969;
+  *(uint8_t *)((long long)StringProcessingStatus + 10) = 0;
   uStack_218.LowPart = 10;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pOperationStatus);
@@ -82645,11 +82645,11 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x30303735207872;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x30303735207872;
   uStack_1f8 = 7;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_138,&pCoreEngineUnsignedValue208);
@@ -82665,12 +82665,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3036303220787472;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3036303220787472;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_218.LowPart = 8;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pOperationStatus);
@@ -82686,12 +82686,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3038303120787467;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3038303120787467;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_1f8 = 8;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pCoreEngineUnsignedValue208);
@@ -82707,12 +82707,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3037303120787467;
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0x697420;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3037303120787467;
+  *(uint32_t *)(StringProcessingStatus + 1) = 0x697420;
   uStack_218.LowPart = 0xb;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_138,&pOperationStatus);
@@ -82728,12 +82728,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3037303120787467;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3037303120787467;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_1f8 = 8;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_138,&pCoreEngineUnsignedValue208);
@@ -82749,12 +82749,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3036363120787467;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3036363120787467;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_218.LowPart = 8;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_138,&pOperationStatus);
@@ -82770,11 +82770,11 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x34362061676576;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x34362061676576;
   uStack_1f8 = 7;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_1d8,&pCoreEngineUnsignedValue208);
@@ -82790,11 +82790,11 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x36352061676576;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x36352061676576;
   uStack_218.LowPart = 7;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_138,&pOperationStatus);
@@ -82814,12 +82814,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3036363120787467;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3036363120787467;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_1f8 = 8;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&StackVariable1B8,&pCoreEngineUnsignedValue208);
@@ -82835,12 +82835,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3036303120787467;
-  *(uint8_t *)(TertiaryProcessingStatusFlag + 1) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3036303120787467;
+  *(uint8_t *)(StringProcessingStatus + 1) = 0;
   uStack_218.LowPart = 8;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&StackVariable1B8,&pOperationStatus);
@@ -82856,11 +82856,11 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x30383920787467;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x30383920787467;
   uStack_1f8 = 7;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&StackVariable1B8,&pCoreEngineUnsignedValue208);
@@ -82876,13 +82876,13 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x2030383920787467;
-  *(uint16_t *)(TertiaryProcessingStatusFlag + 1) = 0x6974;
-  *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 10) = 0;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x2030383920787467;
+  *(uint16_t *)(StringProcessingStatus + 1) = 0x6974;
+  *(uint8_t *)((long long)StringProcessingStatus + 10) = 0;
   uStack_218.LowPart = 10;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&StackVariable1B8,&pOperationStatus);
@@ -82942,11 +82942,11 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x58303933203972;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x58303933203972;
   uStack_1f8 = 7;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&StackVariable1B8,&pCoreEngineUnsignedValue208);
@@ -82966,12 +82966,12 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_210 = 0;
   MemoryAllocationPointer = NULL;
   uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  MemoryAllocationPointer = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x3035303120787467;
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0x697420;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  MemoryAllocationPointer = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x3035303120787467;
+  *(uint32_t *)(StringProcessingStatus + 1) = 0x697420;
   uStack_218.LowPart = 0xb;
   uStack_210.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_158,&pOperationStatus);
@@ -82987,11 +82987,11 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t CharacterCode,char Ch
   uStack_1f0 = 0;
   UnsignedProcessingStatusFlag = NULL;
   uStack_1f8 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  UnsignedProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  SystemChecksumValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x30373920787467;
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  UnsignedProcessingStatusFlag = StringProcessingStatus;
+  SystemChecksumValue = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x30373920787467;
   uStack_1f8 = 7;
   uStack_1f0.LowPart = SystemChecksumValue;
   ConvertProcessingStatusFlagAndProcessSystemVariable(&uStack_158,&pCoreEngineUnsignedValue208);
@@ -86472,7 +86472,7 @@ LAB_1801080f5:
   char OperationStatus;
   uint32_t CalculatedCodePoint;
   uint64_t DataSize;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   uint64_t SystemRegisterFlagX8;
   uint8_t SystemKeyPointer [16];
   code *ProgramCounterPointer;
@@ -86502,11 +86502,11 @@ LAB_1801080f5:
      (OperationStatus = (**(code **)(CharacterCode + 0x1b8))(&SystemRegisterFlagX8), CalculatedCodePoint = (uint32_t)SystemRegisterFlagX8,
      OperationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 0x160) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x160);
+        StringProcessingStatus = *(void **)(CharacterCode + 0x160);
       }
-      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
     }
     CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x198);
   }
@@ -86517,11 +86517,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x1b8))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x160) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x160);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x160);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x198);
     }
@@ -86556,11 +86556,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x308))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x2b0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x2b0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x2b0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x2e8);
     }
@@ -86575,11 +86575,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x308))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x2b0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x2b0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x2b0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x2e8);
     }
@@ -86614,11 +86614,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x228))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x1d0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x1d0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x1d0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x208);
     }
@@ -86633,11 +86633,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x228))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x1d0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x1d0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x1d0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x208);
     }
@@ -86672,11 +86672,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x298))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x240) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x240);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x240);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x278);
     }
@@ -86691,11 +86691,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x298))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x240) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x240);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x240);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x278);
     }
@@ -86730,11 +86730,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x378))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 800) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 800);
+          StringProcessingStatus = *(void **)(CharacterCode + 800);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x358);
     }
@@ -86749,11 +86749,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x378))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 800) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 800);
+          StringProcessingStatus = *(void **)(CharacterCode + 800);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x358);
     }
@@ -86788,11 +86788,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 1000))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x390) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x390);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x390);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x3c8);
     }
@@ -86807,11 +86807,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 1000))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x390) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x390);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x390);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x3c8);
     }
@@ -86846,11 +86846,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x458))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x400) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x400);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x400);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x438);
     }
@@ -86865,11 +86865,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x458))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x400) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x400);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x400);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x438);
     }
@@ -86904,11 +86904,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x4c8))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x470) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x470);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x470);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x4a8);
     }
@@ -86923,11 +86923,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x4c8))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x470) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x470);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x470);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x4a8);
     }
@@ -86962,11 +86962,11 @@ LAB_1801080f5:
      (OperationStatus = (**(code **)(CharacterCode + 0x148))(&SystemRegisterFlagX8), CalculatedCodePoint = (uint32_t)SystemRegisterFlagX8,
      OperationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 0xf0) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0xf0);
+        StringProcessingStatus = *(void **)(CharacterCode + 0xf0);
       }
-      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
     }
     CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x128);
   }
@@ -86977,11 +86977,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x148))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0xf0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0xf0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0xf0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x128);
     }
@@ -87016,11 +87016,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x538))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x4e0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x4e0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x4e0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x518);
     }
@@ -87035,11 +87035,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x538))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x4e0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x4e0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x4e0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x518);
     }
@@ -87074,11 +87074,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x5a8))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x550) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x550);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x550);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x588);
     }
@@ -87093,11 +87093,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x5a8))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x550) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x550);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x550);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x588);
     }
@@ -87132,11 +87132,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x618))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x5c0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x5c0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x5c0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x5f8);
     }
@@ -87151,11 +87151,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x618))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x5c0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x5c0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x5c0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x5f8);
     }
@@ -87172,11 +87172,11 @@ LAB_1801080f5:
   if ((*(long long *)(CharacterCode + 0xa08) != 0) &&
      (OperationStatus = (**(code **)(CharacterCode + 0xa10))(&SystemRegisterFlagX8), DataSize = SystemRegisterFlagX8, OperationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 0x9b8) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x9b8);
+        StringProcessingStatus = *(void **)(CharacterCode + 0x9b8);
       }
-      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
     }
     DataSize = *(void *)(CharacterCode + 0x9f0);
   }
@@ -87189,11 +87189,11 @@ LAB_1801080f5:
   }
   else {
     if (CoreEngineThreadStatus == '\0') {
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 0x9b8) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x9b8);
+        StringProcessingStatus = *(void **)(CharacterCode + 0x9b8);
       }
-      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
     }
     *(void *)(CharacterCode + 0x9a8) = *(void *)(CharacterCode + 0x9f0);
   }
@@ -87205,11 +87205,11 @@ LAB_1801080f5:
   if ((*(long long *)(CharacterCode + 0xa80) != 0) &&
      (OperationStatus = (**(code **)(CharacterCode + 0xa88))(&SystemRegisterFlagX8), DataSize = SystemRegisterFlagX8, OperationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 0xa30) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0xa30);
+        StringProcessingStatus = *(void **)(CharacterCode + 0xa30);
       }
-      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
     }
     DataSize = *(void *)(CharacterCode + 0xa68);
   }
@@ -87219,11 +87219,11 @@ LAB_1801080f5:
   if ((*(long long *)(CharacterCode + 0xa80) != 0) &&
      (OperationStatus = (**(code **)(CharacterCode + 0xa88))(&SystemRegisterFlagX8), DataSize = SystemRegisterFlagX8, OperationStatus == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 0xa30) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0xa30);
+        StringProcessingStatus = *(void **)(CharacterCode + 0xa30);
       }
-      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
     }
     DataSize = *(void *)(CharacterCode + 0xa68);
   }
@@ -87254,11 +87254,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x688))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x630) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x630);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x630);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x668);
     }
@@ -87273,11 +87273,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x688))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x630) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x630);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x630);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x668);
     }
@@ -87312,11 +87312,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x6f8))(&SystemRegisterFlagX8);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x6a0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x6a0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x6a0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x6d8);
     }
@@ -87331,11 +87331,11 @@ LAB_1801080f5:
     OperationStatus = (**(code **)(CharacterCode + 0x6f8))(&SystemRegisterFlagX8,StatusBuffer);
     if (OperationStatus == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x6a0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x6a0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x6a0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       CalculatedCodePoint = *(uint32_t *)(CharacterCode + 0x6d8);
     }
@@ -87591,7 +87591,7 @@ LAB_180109ba3:
   uint8_t *MemoryAddressMask;
   char SystemCharacterCode;
   uint64_t DataSize;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   uint32_t ProcessingStatusFlag;
   uint64_t SystemRegisterFlagX8;
   uint8_t aStackUnsigned60 [16];
@@ -87733,11 +87733,11 @@ LAB_180109ba3:
     CharacterVariable5 = (**(code **)(CharacterCode + 0xd48))(&SystemRegisterFlagX8);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0xcf0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0xcf0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0xcf0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0xd28);
     }
@@ -87752,11 +87752,11 @@ LAB_180109ba3:
     CharacterVariable5 = (**(code **)(CharacterCode + 0xd48))(&SystemRegisterFlagX8);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0xcf0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0xcf0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0xcf0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0xd28);
     }
@@ -87774,11 +87774,11 @@ LAB_180109ba3:
     CharacterVariable5 = (**(code **)(CharacterCode + 0xdb8))(&SystemRegisterFlagX8);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0xd60) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0xd60);
+          StringProcessingStatus = *(void **)(CharacterCode + 0xd60);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0xd98);
     }
@@ -87793,11 +87793,11 @@ LAB_180109ba3:
     CharacterVariable5 = (**(code **)(CharacterCode + 0xdb8))(&SystemRegisterFlagX8);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0xd60) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0xd60);
+          StringProcessingStatus = *(void **)(CharacterCode + 0xd60);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0xd98);
     }
@@ -87823,11 +87823,11 @@ LAB_18010a440:
       goto LAB_18010a440;
     }
     if (CoreEngineThreadStatus == '\0') {
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 0xdd0) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0xdd0);
+        StringProcessingStatus = *(void **)(CharacterCode + 0xdd0);
       }
-      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
     }
     *systemEventTemplatePointer = *(uint32_t *)(CharacterCode + 0xe08);
   }
@@ -87844,11 +87844,11 @@ LAB_18010a4a0:
       goto LAB_18010a4a0;
     }
     if (CoreEngineThreadStatus == '\0') {
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 0xdd0) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0xdd0);
+        StringProcessingStatus = *(void **)(CharacterCode + 0xdd0);
       }
-      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+      InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
     }
     *(uint32_t *)(CharacterCode + 0xdc4) = *(uint32_t *)(CharacterCode + 0xe08);
   }
@@ -87902,11 +87902,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x10d8))(&SystemRegisterFlagX8);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x1080) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x1080);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x1080);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x10b8);
     }
@@ -87921,11 +87921,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x10d8))(&SystemRegisterFlagX8,pMemoryAddressMask);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x1080) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x1080);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x1080);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x10b8);
     }
@@ -87960,11 +87960,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x1148))(&SystemRegisterFlagX8);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x10f0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x10f0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x10f0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x1128);
     }
@@ -87979,11 +87979,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x1148))(&SystemRegisterFlagX8,pMemoryAddressMask);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x10f0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x10f0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x10f0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x1128);
     }
@@ -88018,11 +88018,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x11b8))(&SystemRegisterFlagX8);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x1160) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x1160);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x1160);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x1198);
     }
@@ -88037,11 +88037,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x11b8))(&SystemRegisterFlagX8,pMemoryAddressMask);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x1160) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x1160);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x1160);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x1198);
     }
@@ -88076,11 +88076,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x1228))(&SystemRegisterFlagX8);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x11d0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x11d0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x11d0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x1208);
     }
@@ -88095,11 +88095,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x1228))(&SystemRegisterFlagX8,pMemoryAddressMask);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x11d0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x11d0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x11d0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x1208);
     }
@@ -88134,11 +88134,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x1298))(&SystemRegisterFlagX8);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x1240) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x1240);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x1240);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x1278);
     }
@@ -88153,11 +88153,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x1298))(&SystemRegisterFlagX8,pMemoryAddressMask);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x1240) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x1240);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x1240);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x1278);
     }
@@ -88192,11 +88192,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x1308))(&SystemRegisterFlagX8);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x12b0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x12b0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x12b0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x12e8);
     }
@@ -88211,11 +88211,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x1308))(&SystemRegisterFlagX8,pMemoryAddressMask);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x12b0) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x12b0);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x12b0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x12e8);
     }
@@ -88250,11 +88250,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x1378))(&SystemRegisterFlagX8);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x1320) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x1320);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x1320);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x1358);
     }
@@ -88269,11 +88269,11 @@ LAB_18010a4a0:
     CharacterVariable5 = (**(code **)(CharacterCode + 0x1378))(&SystemRegisterFlagX8,pMemoryAddressMask);
     if (CharacterVariable5 == '\0') {
       if (CoreEngineThreadStatus == '\0') {
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x1320) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x1320);
+          StringProcessingStatus = *(void **)(CharacterCode + 0x1320);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,TertiaryProcessingStatusFlag);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
       *(uint32_t *)(CharacterCode + 0x1314) = *(uint32_t *)(CharacterCode + 0x1358);
       goto LAB_18010af2a;
@@ -88300,7 +88300,7 @@ af70(uint64_t *CharacterCode,long long CharacterCodeSize,long long Utf8InputPoin
   uint16_t *pMemoryAddressMask;
   uint64_t *CharacterCodePointer;
   long long MemoryBoundaryEnd;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   void *NextNode;
   uint SystemMemoryAllocationResult;
   unsigned long long Utf16Char;
@@ -88477,7 +88477,7 @@ af70(uint64_t *CharacterCode,long long CharacterCodeSize,long long Utf8InputPoin
     }
     pDataContentStatus = CharacterCodePointer;
     MatchCounter = ProcessStringAndStatusBuffer(CharacterCodePointer,&SystemStringPrimary,acStack_148);
-    TertiaryProcessingStatusFlag = NULL;
+    StringProcessingStatus = NULL;
     while (MatchCounter != -1) {
       ProcessStringAndStatusBuffer(CharacterCodePointer,&SystemStringSecondary,aStackVariable);
       MemoryBlockIndex = -1;
@@ -88486,7 +88486,7 @@ af70(uint64_t *CharacterCode,long long CharacterCodeSize,long long Utf8InputPoin
         LoopIndex = MemoryBlockIndex + 1;
         MemoryBlockIndex = MemoryBoundaryEnd;
       } while (acStack_148[LoopIndex] != '\0');
-      uStack_194 = (int)TertiaryProcessingStatusFlag + (int)MemoryBoundaryEnd + 1;
+      uStack_194 = (int)StringProcessingStatus + (int)MemoryBoundaryEnd + 1;
       SystemTemplatePointer = &SystemNullTemplate;
       SystemUnsignedValue160 = 0;
       stackPointer1B0 = (uint8_t *)0x0;
@@ -88503,38 +88503,38 @@ af70(uint64_t *CharacterCode,long long CharacterCodeSize,long long Utf8InputPoin
         if (IntegerValue < 0x10) {
           MatchCounter = 0x10;
         }
-        TertiaryProcessingStatusFlag = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)MatchCounter,0x13);
-        *TertiaryProcessingStatusFlag = 0;
-        stackPointer1B0 = TertiaryProcessingStatusFlag;
-        SystemUnsignedValue160 = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+        StringProcessingStatus = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)MatchCounter,0x13);
+        *StringProcessingStatus = 0;
+        stackPointer1B0 = StringProcessingStatus;
+        SystemUnsignedValue160 = GetMemoryAllocationInfo(StringProcessingStatus);
         SystemUnsignedValue1A0 = CONCAT44(SystemUnsignedValue1A0.HighPart,(int)SystemUnsignedValue160);
                     // WARNING: Subroutine does not return
-        memcpy(TertiaryProcessingStatusFlag,acStack_148,IntegerValue);
+        memcpy(StringProcessingStatus,acStack_148,IntegerValue);
       }
       SystemValue1a8 = 0;
-      TertiaryProcessingStatusFlag = (void *)CharacterCode[0x275];
-      if (TertiaryProcessingStatusFlag < (void *)CharacterCode[0x276]) {
-        CharacterCode[0x275] = TertiaryProcessingStatusFlag + 4;
-        *TertiaryProcessingStatusFlag = &ThreadLocalStorageTemplate;
-        TertiaryProcessingStatusFlag[1] = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = 0;
-        *TertiaryProcessingStatusFlag = &SystemNullTemplate;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = 0;
-        TertiaryProcessingStatusFlag[1] = 0;
-        *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x1c) = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 3) = 0;
+      StringProcessingStatus = (void *)CharacterCode[0x275];
+      if (StringProcessingStatus < (void *)CharacterCode[0x276]) {
+        CharacterCode[0x275] = StringProcessingStatus + 4;
+        *StringProcessingStatus = &ThreadLocalStorageTemplate;
+        StringProcessingStatus[1] = 0;
+        *(uint32_t *)(StringProcessingStatus + 2) = 0;
+        *StringProcessingStatus = &SystemNullTemplate;
+        *(uint32_t *)(StringProcessingStatus + 2) = 0;
+        StringProcessingStatus[1] = 0;
+        *(uint32_t *)((long long)StringProcessingStatus + 0x1c) = 0;
+        *(uint32_t *)(StringProcessingStatus + 3) = 0;
         SystemValue1a8 = 0;
         SystemUnsignedValue1A0 = 0;
-        SystemPointerValue170 = TertiaryProcessingStatusFlag;
+        SystemPointerValue170 = StringProcessingStatus;
       }
       else {
         MemoryBlockIndex = *CharacterCode5;
-        LoopIndex = (long long)TertiaryProcessingStatusFlag - MemoryBlockIndex >> 5;
+        LoopIndex = (long long)StringProcessingStatus - MemoryBlockIndex >> 5;
         if (LoopIndex == 0) {
           LoopIndex = 1;
 LAB_18010b692:
           CharacterCodePointer = (void *                   BufferAllocate(MemoryPoolManager,LoopIndex << 5,*(uint8_t *)(CharacterCode + 0x277));
-          TertiaryProcessingStatusFlag = (void *)CharacterCode[0x275];
+          StringProcessingStatus = (void *)CharacterCode[0x275];
           MemoryBlockIndex = *CharacterCode5;
         }
         else {
@@ -88543,7 +88543,7 @@ LAB_18010b692:
           if (LoopIndex != 0) goto LAB_18010b692;
         }
         SystemPointerValue170 = CharacterCodePointer;
-        CoreEnginePointerBuffer150 = (void *)CoreEngineCopyMemoryBuffer(MemoryBlockIndex,TertiaryProcessingStatusFlag,CharacterCodePointer);
+        CoreEnginePointerBuffer150 = (void *)CoreEngineCopyMemoryBuffer(MemoryBlockIndex,StringProcessingStatus,CharacterCodePointer);
         *CoreEnginePointerBuffer150 = &ThreadLocalStorageTemplate;
         CoreEnginePointerBuffer150[1] = 0;
         *(uint32_t *)(CoreEnginePointerBuffer150 + 2) = 0;
@@ -88557,24 +88557,24 @@ LAB_18010b692:
         SystemUnsignedValue1A0 = 0;
         StatusBuffer2 = CoreEnginePointerBuffer150 + 4;
         CharacterCodePointer = (void *)CharacterCode[0x275];
-        TertiaryProcessingStatusFlag = (void *)*CharacterCode5;
-        if (TertiaryProcessingStatusFlag != CharacterCodePointer) {
+        StringProcessingStatus = (void *)*CharacterCode5;
+        if (StringProcessingStatus != CharacterCodePointer) {
           do {
-            (**(code **)*TertiaryProcessingStatusFlag)(TertiaryProcessingStatusFlag,0);
-            TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
-          } while (TertiaryProcessingStatusFlag != CharacterCodePointer);
-          TertiaryProcessingStatusFlag = (void *)*CharacterCode5;
+            (**(code **)*StringProcessingStatus)(StringProcessingStatus,0);
+            StringProcessingStatus = StringProcessingStatus + 4;
+          } while (StringProcessingStatus != CharacterCodePointer);
+          StringProcessingStatus = (void *)*CharacterCode5;
         }
-        if (TertiaryProcessingStatusFlag != NULL) {
+        if (StringProcessingStatus != NULL) {
                     // WARNING: Subroutine does not return
-          CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+          CoreEngineFreeSystemMemory(StringProcessingStatus);
         }
         *CharacterCode5 = (long long)SystemPointerValue170;
         CharacterCode[0x275] = StatusBuffer2;
         CharacterCode[0x276] = SystemPointerValue170 + LoopIndex * 4;
         CharacterCodePointer = pDataContentStatus;
       }
-      TertiaryProcessingStatusFlag = (void *)(unsigned long long)uStack_194;
+      StringProcessingStatus = (void *)(unsigned long long)uStack_194;
       stackPointer1B0 = (uint8_t *)0x0;
       SystemUnsignedValue1A0 = SystemUnsignedValue1A0 & 0xffffffff00000000;
       SystemTemplatePointer = &ThreadLocalStorageTemplate;
@@ -88604,7 +88604,7 @@ b7d0(long long CharacterCode,long long CharacterCodeSizevoid ProcessSystemMemory
   unsigned long long CalculatedCodePoint;
   unsigned long long DataSize;
   int ProcessIterationCount;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   void *TemporaryBuffer;
   uint MemoryAllocationIndex;
   int MatchCounter;
@@ -88672,11 +88672,11 @@ b7d0(long long CharacterCode,long long CharacterCodeSizevoid ProcessSystemMemory
             StackUnsigned60 = 0;
             CoreEnginePointerBuffer78 = &ThreadLocalStorageTemplate;
           }
-          TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+          StringProcessingStatus = &CoreEngineDataTemplate;
           if (pSystemStackRegisterFlagB0 != NULL) {
-            TertiaryProcessingStatusFlag = pSystemStackRegisterFlagB0;
+            StringProcessingStatus = pSystemStackRegisterFlagB0;
           }
-          ProcessSystemContextConfiguration(&pSystemFlagF,&SystemDataBufferF,TertiaryProcessingStatusFlag);
+          ProcessSystemContextConfiguration(&pSystemFlagF,&SystemDataBufferF,StringProcessingStatus);
           pMemoryOffsetValue = &SystemNullTemplate;
           if (pSystemStackRegisterFlagB0 != NULL) {
                     // WARNING: Subroutine does not return
@@ -88721,11 +88721,11 @@ b7d0(long long CharacterCode,long long CharacterCodeSizevoid ProcessSystemMemory
         SystemPriorityLevel = 0;
         pBufferOffset = &ThreadLocalStorageTemplate;
       }
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (pSystemOperationFlag90 != NULL) {
-        TertiaryProcessingStatusFlag = pSystemOperationFlag90;
+        StringProcessingStatus = pSystemOperationFlag90;
       }
-      ProcessSystemContextConfiguration(&pSystemFlagF,&SystemFunctionPointerD,TertiaryProcessingStatusFlag);
+      ProcessSystemContextConfiguration(&pSystemFlagF,&SystemFunctionPointerD,StringProcessingStatus);
       pSystemOperationFlag98 = &SystemNullTemplate;
       if (pSystemOperationFlag90 != NULL) {
                     // WARNING: Subroutine does not return
@@ -88742,10 +88742,10 @@ b7d0(long long CharacterCode,long long CharacterCodeSizevoid ProcessSystemMemory
       MemoryAddressMask = CalculatedCodePoint;
       if (CharacterTablePointer - BufferStatus >> 5 != 1) {
         do {
-          TertiaryProcessingStatusFlag = *(void **)(CalculatedCodePoint + 8 + BufferStatus);
+          StringProcessingStatus = *(void **)(CalculatedCodePoint + 8 + BufferStatus);
           TemporaryBuffer = &CoreEngineDataTemplate;
-          if (TertiaryProcessingStatusFlag != NULL) {
-            TemporaryBuffer = TertiaryProcessingStatusFlag;
+          if (StringProcessingStatus != NULL) {
+            TemporaryBuffer = StringProcessingStatus;
           }
           ProcessSystemContextConfiguration(&pSystemFlagF,&SystemDataBufferF,TemporaryBuffer);
           MemoryAllocationIndex = (int)MemoryAddressMask + 1;
@@ -88755,10 +88755,10 @@ b7d0(long long CharacterCode,long long CharacterCodeSizevoid ProcessSystemMemory
           MemoryAddressMask = (unsigned long long)MemoryAllocationIndex;
         } while ((unsigned long long)(long long)(int)MemoryAllocationIndex < (CharacterTablePointer - BufferStatus >> 5) - 1U);
       }
-      TertiaryProcessingStatusFlag = *(void **)(((CharacterTablePointer - BufferStatus & 0xffffffffffffffe0U) - 0x18) + BufferStatus);
+      StringProcessingStatus = *(void **)(((CharacterTablePointer - BufferStatus & 0xffffffffffffffe0U) - 0x18) + BufferStatus);
       TemporaryBuffer = &CoreEngineDataTemplate;
-      if (TertiaryProcessingStatusFlag != NULL) {
-        TemporaryBuffer = TertiaryProcessingStatusFlag;
+      if (StringProcessingStatus != NULL) {
+        TemporaryBuffer = StringProcessingStatus;
       }
       ProcessSystemContextConfiguration(&pSystemFlagF,&SystemFunctionPointerD,TemporaryBuffer);
     }
@@ -95958,7 +95958,7 @@ char ProcessSystemMemoryBufferSecondary(void
   char OperationStatus;
   uint32_t CalculatedCodePoint;
   uint32_t DataSize;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   long long SystemContext;
   long long FrameRegisterPointer;
   long long RegisterSourceIndex;
@@ -96030,11 +96030,11 @@ char ProcessSystemMemoryBufferSecondary(void
                   ContextPrimaryFloat0 - (NormalizedParameterValue + NormalizedParameterValue));
   }
   if (*(char *)(SystemContext + 0x2e38) != '\0') {
-    TertiaryProcessingStatusFlag = &SystemStatusBufferPointer;
+    StringProcessingStatus = &SystemStatusBufferPointer;
     if (*FunctionPointer != '\0') {
-      TertiaryProcessingStatusFlag = &SystemDataBufferPointer;
+      StringProcessingStatus = &SystemDataBufferPointer;
     }
-    ProcessSystemConfigurationAndTarget(&TertiaryDataBuffer,TertiaryProcessingStatusFlag,0);
+    ProcessSystemConfigurationAndTarget(&TertiaryDataBuffer,StringProcessingStatus,0);
   }
   if (SecondaryFloatValue < AuxiliaryFloat9) {
     ProcessSystemConfigurationAndStack(DataStorageValue);
@@ -109122,7 +109122,7 @@ uint64_t ManageDataStructureMemory(long long CharacterCode
   uint32_t AddressMask;
   uint64_t ValidationValue;
   int ValidationResult;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   long long SystemContext;
   int ComputedResult;
   long long RegisterSourceIndex;
@@ -109217,16 +109217,16 @@ uint64_t ManageDataStructureMemory(long long CharacterCode
       }
       TertiaryDataStorage = ContextPrimaryFloat1 + (float)DataNodeIndex[0xc];
       TemporaryBuffer = &SystemChecksumValueStackBuffer;
-      TertiaryProcessingStatusFlag = &SystemStackBuffer;
+      StringProcessingStatus = &SystemStackBuffer;
     }
     else {
       TertiaryDataStorage = *(float *)(RegisterValueR12 + 0x38);
       TemporaryBuffer = &SystemStackBuffer;
       SystemStringBuffer30 = TertiaryDataStorage + *(float *)(RegisterValueR12 + 0x40);
-      TertiaryProcessingStatusFlag = &SystemChecksumValueStackBuffer;
+      StringProcessingStatus = &SystemChecksumValueStackBuffer;
     }
     StackVariable3c = StackVariable34;
-    AllocateMemoryAndConfigure(*(void *)(RegisterSourceIndex + 0x2e8),TertiaryProcessingStatusFlag,TemporaryBuffer,MemoryAddressMask,0x3f800000);
+    AllocateMemoryAndConfigure(*(void *)(RegisterSourceIndex + 0x2e8),StringProcessingStatus,TemporaryBuffer,MemoryAddressMask,0x3f800000);
   }
   return 1;
 }
@@ -109307,11 +109307,11 @@ uint64_t ProcessUtf16CharacterConversion(void)
     ProcessSystemBuffer(&SystemStackBuffer);
     BufferStatus = SystemConfigurationHandle;
     *(int *)(RegisterSourceIndex + 0x100) = DataNodeIndex[10];
-    TertiaryProcessingStatusFlag = (uint32_t *             (BufferStatus + 0x1628 + ((((unsigned long long)(ProcessingStatusFlag & 0x400000) | 0x4200000) >> 0x15) + 10) * 0x10);
-    TertiaryDataStorage = (float)*TertiaryProcessingStatusFlag;
-    StackVariable3c = (float)TertiaryProcessingStatusFlag[1];
-    StackParameter2 = TertiaryProcessingStatusFlag[2];
-    TemporaryFloatStack44 = (float)TertiaryProcessingStatusFlag[3] * *(float *)(BufferStatus + 0x1628);
+    StringProcessingStatus = (uint32_t *             (BufferStatus + 0x1628 + ((((unsigned long long)(ProcessingStatusFlag & 0x400000) | 0x4200000) >> 0x15) + 10) * 0x10);
+    TertiaryDataStorage = (float)*StringProcessingStatus;
+    StackVariable3c = (float)StringProcessingStatus[1];
+    StackParameter2 = StringProcessingStatus[2];
+    TemporaryFloatStack44 = (float)StringProcessingStatus[3] * *(float *)(BufferStatus + 0x1628);
     UnicodeCodePoint = ValidateSystemData(&SystemChecksumValueStackBuffer);
     StackVariable34 = (float)DataNodeIndex[0xd] - 1.0;
     if (RegisterValueR12 == 0) {
@@ -109326,17 +109326,17 @@ uint64_t ProcessUtf16CharacterConversion(void)
         NormalizedParameterValue = *(float *)(RegisterSourceIndex + 0x70);
       }
       TertiaryDataStorage = NormalizedParameterValue + (float)DataNodeIndex[0xc];
-      TertiaryProcessingStatusFlag = &SystemChecksumValueStackBuffer;
+      StringProcessingStatus = &SystemChecksumValueStackBuffer;
       SecondaryProcessingStatusFlag = &SystemStackBuffer;
     }
     else {
       TertiaryDataStorage = *(float *)(RegisterValueR12 + 0x38);
-      TertiaryProcessingStatusFlag = &SystemStackBuffer;
+      StringProcessingStatus = &SystemStackBuffer;
       SystemStringBuffer30 = TertiaryDataStorage + *(float *)(RegisterValueR12 + 0x40);
       SecondaryProcessingStatusFlag = &SystemChecksumValueStackBuffer;
     }
     StackVariable3c = StackVariable34;
-    AllocateMemoryAndConfigure(*(void *)(RegisterSourceIndex + 0x2e8),SecondaryProcessingStatusFlag,TertiaryProcessingStatusFlag,UnicodeCodePoint,0x3f800000);
+    AllocateMemoryAndConfigure(*(void *)(RegisterSourceIndex + 0x2e8),SecondaryProcessingStatusFlag,StringProcessingStatus,UnicodeCodePoint,0x3f800000);
   }
   return 1;
 }
@@ -109363,7 +109363,7 @@ uint64_t ProcessSystemDataAndConfigureMemory(void
   long long SystemContext;
   long long RegisterSourceIndex;
   int *DataNodeIndex;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   uint ProcessingStatusFlag;
   long long RegisterValueR12;
   uint64_t *RegisterR13Value;
@@ -109403,11 +109403,11 @@ uint64_t ProcessSystemDataAndConfigureMemory(void
     ProcessSystemBuffer(&SystemStackBuffer);
     MemoryBlockIndex = SystemConfigurationHandle;
     *(int *)(RegisterSourceIndex + 0x100) = DataNodeIndex[10];
-    TertiaryProcessingStatusFlag = (uint32_t *             (MemoryBlockIndex + 0x1628 + ((((unsigned long long)(ProcessingStatusFlag & 0x400000) | 0x4200000) >> 0x15) + 10) * 0x10);
-    TertiaryDataStorage = (float)*TertiaryProcessingStatusFlag;
-    StackVariable3c = (float)TertiaryProcessingStatusFlag[1];
-    StackParameter2 = TertiaryProcessingStatusFlag[2];
-    TemporaryFloatStack44 = (float)TertiaryProcessingStatusFlag[3] * *(float *)(MemoryBlockIndex + 0x1628);
+    StringProcessingStatus = (uint32_t *             (MemoryBlockIndex + 0x1628 + ((((unsigned long long)(ProcessingStatusFlag & 0x400000) | 0x4200000) >> 0x15) + 10) * 0x10);
+    TertiaryDataStorage = (float)*StringProcessingStatus;
+    StackVariable3c = (float)StringProcessingStatus[1];
+    StackParameter2 = StringProcessingStatus[2];
+    TemporaryFloatStack44 = (float)StringProcessingStatus[3] * *(float *)(MemoryBlockIndex + 0x1628);
     MemoryAddressMask = ValidateSystemData(&SystemChecksumValueStackBuffer);
     StackVariable34 = (float)DataNodeIndex[0xd] - 1.0;
     if (RegisterValueR12 == 0) {
@@ -109422,17 +109422,17 @@ uint64_t ProcessSystemDataAndConfigureMemory(void
         NormalizedParameterValue = *(float *)(RegisterSourceIndex + 0x70);
       }
       TertiaryDataStorage = NormalizedParameterValue + (float)DataNodeIndex[0xc];
-      TertiaryProcessingStatusFlag = &SystemChecksumValueStackBuffer;
+      StringProcessingStatus = &SystemChecksumValueStackBuffer;
       SecondaryProcessingStatusFlag = &SystemStackBuffer;
     }
     else {
       TertiaryDataStorage = *(float *)(RegisterValueR12 + 0x38);
-      TertiaryProcessingStatusFlag = &SystemStackBuffer;
+      StringProcessingStatus = &SystemStackBuffer;
       SystemStringBuffer30 = TertiaryDataStorage + *(float *)(RegisterValueR12 + 0x40);
       SecondaryProcessingStatusFlag = &SystemChecksumValueStackBuffer;
     }
     StackVariable3c = StackVariable34;
-    AllocateMemoryAndConfigure(*(void *)(RegisterSourceIndex + 0x2e8),SecondaryProcessingStatusFlag,TertiaryProcessingStatusFlag,MemoryAddressMask,0x3f800000);
+    AllocateMemoryAndConfigure(*(void *)(RegisterSourceIndex + 0x2e8),SecondaryProcessingStatusFlag,StringProcessingStatus,MemoryAddressMask,0x3f800000);
   }
   return 1;
 }
@@ -110910,7 +110910,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *CharacterCode,char *Ch
   byte HighByte;
   char *SystemCheckResult;
   uint *SecondaryProcessingStatusFlag;
-  uint *TertiaryProcessingStatusFlag;
+  uint *StringProcessingStatus;
   uint MemoryAllocationIndex;
   long long SecondaryBufferStatus;
   unsigned long long SecondaryMemoryAllocationIndex;
@@ -110969,8 +110969,8 @@ unsigned long long ProcessSystemDataStructureHandler(int *CharacterCode,char *Ch
   if ((Utf8InputPointer != (char *)0x0) && (*Utf8InputPointer == '\0')) {
     *(uint8_t *)(*(long long *)(MemoryPoolBlockSize + 0x1af8) + 0xb1) = 1;
     MemoryPoolBlockSize = *(long long *)(MemoryPoolBlockSize + 0x1af8);
-    TertiaryProcessingStatusFlag = (uint *)(MemoryPoolBlockSize + 0x1a8);
-    *TertiaryProcessingStatusFlag = *TertiaryProcessingStatusFlag | 0x18;
+    StringProcessingStatus = (uint *)(MemoryPoolBlockSize + 0x1a8);
+    *StringProcessingStatus = *StringProcessingStatus | 0x18;
     SystemCallInitializeMemoryBlock(MemoryPoolBlockSize + 0x1b8);
     StackFloat130 = 3.4028235e+38;
     StackFloat12c = 3.4028235e+38;
@@ -110982,14 +110982,14 @@ unsigned long long ProcessSystemDataStructureHandler(int *CharacterCode,char *Ch
   }
   SecondaryProcessingStatusFlag = (uint *)((unsigned long long)SystemCheckResult & 0xffffffffffffff00);
   SystemCallProcessFloatData(&StackFloatX8,CharacterCodeSize);
-  TertiaryProcessingStatusFlag = (uint *)0x0;
+  StringProcessingStatus = (uint *)0x0;
   if ((StatusCode != 0) && (0 < *CharacterCode)) {
     SecondaryProcessingStatusFlag = *(uint **)(CharacterCode + 2);
-    SecondaryStatusBuffer = TertiaryProcessingStatusFlag;
+    SecondaryStatusBuffer = StringProcessingStatus;
     PrimaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
     do {
       if (*PrimaryProcessingStatusFlag == StatusCode) {
-        TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag + (long long)(int)SecondaryStatusBuffer * 10;
+        StringProcessingStatus = SecondaryProcessingStatusFlag + (long long)(int)SecondaryStatusBuffer * 10;
         break;
       }
       SystemStatusCode = (int)SecondaryStatusBuffer + 1;
@@ -110999,7 +110999,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *CharacterCode,char *Ch
   }
   Utf16Char = (unsigned long long)SecondaryProcessingStatusFlag & 0xffffffffffffff00;
   SecondaryBufferStatus = MemoryPoolBlockSize;
-  if (TertiaryProcessingStatusFlag == (uint *)0x0) {
+  if (StringProcessingStatus == (uint *)0x0) {
     IntegerValue9 = *CharacterCode;
     SecondaryIntegerValue = CharacterCode[1];
     SystemFlagB = 0;
@@ -146118,8 +146118,8 @@ long long ValidateSystemConfiguration(uint64_t CharacterCode
   BufferStatus = **(long long **)(AllocatedMemorySize + 0x1c70);
   if ((*(uint *)(AllocatedMemorySize + 0x19e8) & 0x400) != 0) {
     if (*(char *)(BufferStatus + 0x77) == '\0') {
-      TertiaryProcessingStatusFlag = (void *)(**(code **)(AllocatedMemorySize + 0x1560))(&SystemRegisterFlagX8,BufferStatus);
-      SystemRegisterFlagX8 = *TertiaryProcessingStatusFlag;
+      StringProcessingStatus = (void *)(**(code **)(AllocatedMemorySize + 0x1560))(&SystemRegisterFlagX8,BufferStatus);
+      SystemRegisterFlagX8 = *StringProcessingStatus;
     }
     else {
       SystemRegisterFlagX8 = *(void *)(BufferStatus + 8);
@@ -146166,14 +146166,14 @@ long long ValidateSystemConfiguration(uint64_t CharacterCode
       if ((*(uint *)(AllocatedMemorySize + 0x19e8) & 0x400) != 0) {
         if ((*(char *)(SystemStringIndex + 0x77) == '\0') && (hasComparisonResult)) {
           if (*(char *)(SystemStringIndex + 0x49) != '\0') {
-            TertiaryProcessingStatusFlag = (void *)(**(code **)(AllocatedMemorySize + 0x1560))(&SystemRegisterFlagX8,SystemStringIndex);
-            Utf16Char = *TertiaryProcessingStatusFlag;
+            StringProcessingStatus = (void *)(**(code **)(AllocatedMemorySize + 0x1560))(&SystemRegisterFlagX8,SystemStringIndex);
+            Utf16Char = *StringProcessingStatus;
             *(void *)(SystemStringIndex + 0xd8) = Utf16Char;
             *(void *)(SystemStringIndex + 8) = Utf16Char;
           }
           if (*(char *)(SystemStringIndex + 0x4a) != '\0') {
-            TertiaryProcessingStatusFlag = (void *)(**(code **)(AllocatedMemorySize + 0x1570))(&uStackX_10,SystemStringIndex);
-            Utf16Char = *TertiaryProcessingStatusFlag;
+            StringProcessingStatus = (void *)(**(code **)(AllocatedMemorySize + 0x1570))(&uStackX_10,SystemStringIndex);
+            Utf16Char = *StringProcessingStatus;
             *(void *)(SystemStringIndex + 0xe0) = Utf16Char;
             *(void *)(SystemStringIndex + 0x10) = Utf16Char;
           }
@@ -146285,17 +146285,17 @@ LAB_180130774:
   else {
     SystemMemoryAllocationResult = MemoryAllocationIndex;
     if ((*(int *)(AllocatedMemorySize + 0x130) != 0) && (0 < *(int *)(SystemConfigurationHandle + 0x1c68))) {
-      TertiaryProcessingStatusFlag = *(uint64_t **)(SystemConfigurationHandle + 0x1c70);
+      StringProcessingStatus = *(uint64_t **)(SystemConfigurationHandle + 0x1c70);
       SystemStatusCode = MemoryAllocationIndex;
       Utf16CharacterCode5 = MemoryAllocationIndex;
       do {
-        if (*(int *)*TertiaryProcessingStatusFlag == *(int *)(AllocatedMemorySize + 0x130)) {
+        if (*(int *)*StringProcessingStatus == *(int *)(AllocatedMemorySize + 0x130)) {
           SystemMemoryAllocationResult = (*(uint64_t **)(SystemConfigurationHandle + 0x1c70))[(int)Utf16CharacterCode5];
           break;
         }
         Utf16CharacterCode5 = (unsigned long long)((int)Utf16CharacterCode5 + 1);
         SystemStatusCode = SystemStatusCode + 1;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+        StringProcessingStatus = StringProcessingStatus + 1;
       } while ((long long)SystemStatusCode < (long long)*(int *)(SystemConfigurationHandle + 0x1c68));
     }
     SystemStatusCode = SystemMemoryAllocationResult;
@@ -147072,14 +147072,14 @@ int * ProcessUtf8ToUtf16CharacterEncoding(long long CharacterCode,int CharacterC
   ValidationResult = 0;
   IntegerValue = *(int *)(SystemConfigurationHandle + 0x1c68);
   if (0 < IntegerValue) {
-    TertiaryProcessingStatusFlag = *(uint64_t **)(SystemConfigurationHandle + 0x1c70);
+    StringProcessingStatus = *(uint64_t **)(SystemConfigurationHandle + 0x1c70);
     do {
-      if (*(int *)*TertiaryProcessingStatusFlag == CharacterCodeSize) {
+      if (*(int *)*StringProcessingStatus == CharacterCodeSize) {
         pRemainingSpace = (int *)(*(uint64_t **)(SystemConfigurationHandle + 0x1c70))[ValidationResult];
         goto LAB_1801308eb;
       }
       ValidationResult = ValidationResult + 1;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+      StringProcessingStatus = StringProcessingStatus + 1;
     } while (ValidationResult < IntegerValue);
   }
   pRemainingSpace = (int *)0x0;
@@ -147483,13 +147483,13 @@ LAB_180130c8e:
     goto LAB_180130e8e;
   }
   if ((RegisterValueEBP & 0x2000000) == 0) {
-    TertiaryProcessingStatusFlag = (void *             ((long long)(*(int *)(DataNodeIndex + 0x1bc0) + -1) * 0x30 + 0x28 +
+    StringProcessingStatus = (void *             ((long long)(*(int *)(DataNodeIndex + 0x1bc0) + -1) * 0x30 + 0x28 +
              *(long long *)(DataNodeIndex + 0x1bc8));
   }
   else {
-    TertiaryProcessingStatusFlag = (void *)(DataNodeIndex + 0x118);
+    StringProcessingStatus = (void *)(DataNodeIndex + 0x118);
   }
-  DataSize = *TertiaryProcessingStatusFlag;
+  DataSize = *StringProcessingStatus;
   if (((*(char *)(DataNodeIndex + 0x1d06) == OperationStatus) && (*(char *)(DataNodeIndex + 0x1d07) != OperationStatus)) &&
      (*(unsigned long long *)(DataNodeIndex + 0x1c98) != RegisterSourceIndex)) {
     CurrentByteValue = false;
@@ -147514,7 +147514,7 @@ LAB_180130d35:
     if (CurrentByteValue) {
       if (!HighByte) goto LAB_180130d35;
       pFloatVariable7 = &DataTransferStackBuffer;
-      _fStack0000000000000060 = *TertiaryProcessingStatusFlag;
+      _fStack0000000000000060 = *StringProcessingStatus;
     }
     else {
       _fStack0000000000000060 = DataSize;
@@ -151827,7 +151827,7 @@ LAB_180133764:
   int RemainingSpace;
   float *FloatProcessingStatusFlag;
   uint SystemChecksumValue;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   long long systemLoopCounter;
   uint64_t MemoryAllocationIndex;
   long long SystemStringIndex;
@@ -152017,9 +152017,9 @@ LAB_1801338ca:
     if (*(int *)(BufferStatus + 0x1cc0) == 3) {
       if (*(char *)(BufferStatus + 0x135) == '\0') {
         MemoryAllocationIndex = 1;
-        TertiaryProcessingStatusFlag = aSystemRegisterFlagX8;
+        StringProcessingStatus = aSystemRegisterFlagX8;
 LAB_180133c1e:
-        FloatProcessingStatusFlag = (float *)FUN_180131aa0(TertiaryProcessingStatusFlag,MemoryAllocationIndex,0,0,0);
+        FloatProcessingStatusFlag = (float *)FUN_180131aa0(StringProcessingStatus,MemoryAllocationIndex,0,0,0);
         SystemFloatValue = pCalculatedDistance[1];
         if ((*pCalculatedDistance != 0.0) || (SystemFloatValue != 0.0)) {
           SecondaryFloatValue = *(float *)(BufferStatus + 0xbc);
@@ -152040,7 +152040,7 @@ LAB_180133c1e:
     }
     else if (*(int *)(BufferStatus + 0x1cc0) == 4) {
       MemoryAllocationIndex = 4;
-      TertiaryProcessingStatusFlag = auStackX_10;
+      StringProcessingStatus = auStackX_10;
       goto LAB_180133c1e;
     }
   }
@@ -152894,7 +152894,7 @@ LAB_180133d4a:
   char OperationStatus;
   float *pFloatVariable5;
   uint DataSize;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   uint64_t SystemMemoryAllocationResult;
   long long SystemContext;
   long long SystemOffsetValue;
@@ -152982,9 +152982,9 @@ LAB_180133d4a:
     if (*(int *)(SystemContext + 0x1cc0) == 3) {
       if (*(char *)(SystemContext + 0x135) == StringBuffer2) {
         SystemMemoryAllocationResult = 1;
-        TertiaryProcessingStatusFlag = &SecondaryFloatStackBuffer;
+        StringProcessingStatus = &SecondaryFloatStackBuffer;
 LAB_180133c1e:
-        pFloatVariable5 = (float *)FUN_180131aa0(TertiaryProcessingStatusFlag,SystemMemoryAllocationResult,0,0);
+        pFloatVariable5 = (float *)FUN_180131aa0(StringProcessingStatus,SystemMemoryAllocationResult,0,0);
         SystemContextPrimaryFloat4 = pFloatVariable5[1];
         if ((*pFloatVariable5 != FloatingPointRegisterA) || (SystemContextPrimaryFloat4 != FloatingPointRegisterA)) {
           SystemFloatValue = *(float *)(SystemContext + 0xbc);
@@ -153005,7 +153005,7 @@ LAB_180133c1e:
     }
     else if (*(int *)(SystemContext + 0x1cc0) == 4) {
       SystemMemoryAllocationResult = 4;
-      TertiaryProcessingStatusFlag = &stack0x000000a8;
+      StringProcessingStatus = &stack0x000000a8;
       goto LAB_180133c1e;
     }
   }
@@ -153080,7 +153080,7 @@ LAB_180133d4a:
   char SystemCharacterCode;
   float *FloatProcessingStatusFlag;
   uint SystemChecksumValue;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   long long SystemContext;
   long long RegisterSourceIndex;
   unsigned long long Utf16Char;
@@ -153156,10 +153156,10 @@ LAB_180133d4a:
   if ((RegisterSourceIndex != 0) && ((*(byte *)(RegisterSourceIndex + 0xc) & 4) == 0)) {
     if (*(int *)(SystemContext + 0x1cc0) == 3) {
       if (*(char *)(SystemContext + 0x135) == StringBuffer2) {
-        TertiaryProcessingStatusFlag = &SecondaryFloatStackBuffer;
+        StringProcessingStatus = &SecondaryFloatStackBuffer;
         SystemChecksumValue = RegisterValueR12D;
 LAB_180133c1e:
-        FloatProcessingStatusFlag = (float *)FUN_180131aa0(TertiaryProcessingStatusFlag,SystemChecksumValue,0,0);
+        FloatProcessingStatusFlag = (float *)FUN_180131aa0(StringProcessingStatus,SystemChecksumValue,0,0);
         SystemContextPrimaryFloat4 = pCalculatedDistance[1];
         if ((*pCalculatedDistance != FloatingPointRegisterA) || (SystemContextPrimaryFloat4 != FloatingPointRegisterA)) {
           SystemFloatValue = *(float *)(SystemContext + 0xbc);
@@ -153180,7 +153180,7 @@ LAB_180133c1e:
     }
     else if (*(int *)(SystemContext + 0x1cc0) == 4) {
       SystemChecksumValue = 4;
-      TertiaryProcessingStatusFlag = &stack0x000000a8;
+      StringProcessingStatus = &stack0x000000a8;
       goto LAB_180133c1e;
     }
   }
@@ -156600,18 +156600,18 @@ uint64_t * FUN_180135420(uint64_t *CharacterCode
       ValidationResultPointer = *(int **)(SystemConfigurationHandle + 0x2df8);
       EngineStatusBuffer = NULL;
       DataSize = 0;
-      TertiaryProcessingStatusFlag = StatusBuffer3;
+      StringProcessingStatus = StatusBuffer3;
       StatusBuffer6 = StatusBuffer3;
       StatusBuffer8 = StatusBuffer3;
       PrimaryProcessingStatusFlag0 = StatusBuffer3;
-      TertiaryProcessingStatusFlag = StatusBuffer3;
+      StringProcessingStatus = StatusBuffer3;
       if (0 < *ValidationResultPointer) {
         do {
           SystemOffsetValue = *(long long *)((long long)StatusBuffer8 + *(long long *)(ValidationResultPointer + 2) + 8);
-          TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag0;
+          StringProcessingStatus = PrimaryProcessingStatusFlag0;
           if (SystemOffsetValue != 0) {
             SystemOperationResult = (int)StatusBuffer6;
-            MatchCounter = (int)TertiaryProcessingStatusFlag;
+            MatchCounter = (int)StringProcessingStatus;
             if (MatchCounter == IntegerValue9) {
               if (SystemOperationResult == 0) {
                 DataSize = 8;
@@ -156627,22 +156627,22 @@ uint64_t * FUN_180135420(uint64_t *CharacterCode
                 if (SystemConfigurationHandle != 0) {
                   *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
                 }
-                TertiaryProcessingStatusFlag = (void *                         SystemCallMemoryAccess((long long)(int)SystemStatusCode << 3,SystemMemoryPoolBase);
+                StringProcessingStatus = (void *                         SystemCallMemoryAccess((long long)(int)SystemStatusCode << 3,SystemMemoryPoolBase);
                 if (PrimaryProcessingStatusFlag0 != NULL) {
                     // WARNING: Subroutine does not return
-                  memcpy(TertiaryProcessingStatusFlag,PrimaryProcessingStatusFlag0,(long long)MatchCounter << 3);
+                  memcpy(StringProcessingStatus,PrimaryProcessingStatusFlag0,(long long)MatchCounter << 3);
                 }
                 StatusBuffer6 = (void *)(unsigned long long)SystemStatusCode;
               }
             }
-            TertiaryProcessingStatusFlag[MatchCounter] = SystemOffsetValue;
-            TertiaryProcessingStatusFlag = (void *)(unsigned long long)(MatchCounter + 1);
+            StringProcessingStatus[MatchCounter] = SystemOffsetValue;
+            StringProcessingStatus = (void *)(unsigned long long)(MatchCounter + 1);
           }
-          DataSize = (uint)TertiaryProcessingStatusFlag;
+          DataSize = (uint)StringProcessingStatus;
           SystemStatusCode = (int)StatusBuffer3 + 1;
           EngineStatusBuffer = (void *)(unsigned long long)SystemStatusCode;
           StatusBuffer8 = StatusBuffer8 + 2;
-          PrimaryProcessingStatusFlag0 = TertiaryProcessingStatusFlag;
+          PrimaryProcessingStatusFlag0 = StringProcessingStatus;
         } while ((int)SystemStatusCode < *ValidationResultPointer);
       }
       Utf16Char9 = 0;
@@ -156650,14 +156650,14 @@ uint64_t * FUN_180135420(uint64_t *CharacterCode
       if (0 < *(int *)(CharacterTablePointer5 + 0x2e28)) {
         do {
           MatchCounter = *(int *)(*(long long *)(CharacterTablePointer5 + 0x2e30) + 0x28 + UnicodeCharacterCode);
-          if ((MatchCounter != 0) && (SystemOperationResult = 0, TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag, 0 < (int)DataSize)) {
+          if ((MatchCounter != 0) && (SystemOperationResult = 0, StringProcessingStatus = StringProcessingStatus, 0 < (int)DataSize)) {
             do {
-              if (*(int *)*TertiaryProcessingStatusFlag == MatchCounter) {
+              if (*(int *)*StringProcessingStatus == MatchCounter) {
                 *(uint32_t *)(*(long long *)(CharacterTablePointer5 + 0x2e30) + 0x28 + UnicodeCharacterCode) = 0;
                 break;
               }
               SystemOperationResult = IterationCounter + 1;
-              TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+              StringProcessingStatus = StringProcessingStatus + 1;
             } while (IntegerValue9 < (int)DataSize);
           }
           SystemStatusCode = (int)Utf16Char9 + 1;
@@ -156666,14 +156666,14 @@ uint64_t * FUN_180135420(uint64_t *CharacterCode
         } while ((int)SystemStatusCode < *(int *)(CharacterTablePointer5 + 0x2e28));
       }
       if (1 < (int)DataSize) {
-        qsort(TertiaryProcessingStatusFlag,(long long)(int)DataSize,8,(int(*)(const void*,const void*))SystemDataComparisonFunction);
+        qsort(StringProcessingStatus,(long long)(int)DataSize,8,(int(*)(const void*,const void*))SystemDataComparisonFunction);
       }
       if (0 < (int)DataSize) {
         UnicodeCharacterCode = (unsigned long long)DataSize;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+        StringProcessingStatus = StringProcessingStatus;
         do {
-          FUN_1801359f0(CharacterTablePointer5,*TertiaryProcessingStatusFlag,0);
-          TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+          FUN_1801359f0(CharacterTablePointer5,*StringProcessingStatus,0);
+          StringProcessingStatus = StringProcessingStatus + 1;
           UnicodeCharacterCode = UnicodeCharacterCode - 1;
         } while (UnicodeCharacterCode != 0);
       }
@@ -156697,14 +156697,14 @@ uint64_t * FUN_180135420(uint64_t *CharacterCode
                     // WARNING: Subroutine does not return
         InitializeSystemMemoryPool(CharacterTablePointer5,SystemMemoryPoolBase);
       }
-      if (TertiaryProcessingStatusFlag == NULL) {
+      if (StringProcessingStatus == NULL) {
         return;
       }
       if (SystemConfigurationHandle != 0) {
         *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      InitializeSystemMemoryPool(TertiaryProcessingStatusFlag,SystemMemoryPoolBase);
+      InitializeSystemMemoryPool(StringProcessingStatus,SystemMemoryPoolBase);
     }
   }
   else {
@@ -157231,8 +157231,8 @@ uint32_t * FUN_180135960(long long CharacterCode,int CharacterCodeSize,uint64_t 
   uint32_t MemoryAddressMask;
   byte shouldReturnSource;
   uint64_t DataSize;
-  uint32_t *TertiaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
+  uint32_t *StringProcessingStatus;
   uint32_t *TemporaryBuffer;
   long long SystemOffsetValue;
   byte IsMemoryBlockEqual;
@@ -157246,69 +157246,69 @@ uint32_t * FUN_180135960(long long CharacterCode,int CharacterCodeSize,uint64_t 
   if (CharacterCodeSize[0xd] != 0) {
     *(void *)(CharacterCodeSize[0xd] + 0x410) = 0;
   }
-  TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+  StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
   if (Utf8InputPointer == '\0') {
-    if (TertiaryProcessingStatusFlag != (uint32_t *)0x0) {
+    if (StringProcessingStatus != (uint32_t *)0x0) {
       for (SystemContextValue = 0x10; SystemContextValue < 0x20; SystemContextValue = SystemContextValue + 8) {
-        if (*(uint64_t **)(SystemContextValue + (long long)TertiaryProcessingStatusFlag) == CharacterCodeSize) {
+        if (*(uint64_t **)(SystemContextValue + (long long)StringProcessingStatus) == CharacterCodeSize) {
           *(void *)(SystemContextValue + CharacterCodeSize[1]) = 0;
         }
       }
     }
   }
-  else if (TertiaryProcessingStatusFlag != (uint32_t *)0x0) {
-    StatusBuffer5 = *(uint64_t **)(TertiaryProcessingStatusFlag + 4);
+  else if (StringProcessingStatus != (uint32_t *)0x0) {
+    StatusBuffer5 = *(uint64_t **)(StringProcessingStatus + 4);
     if (StatusBuffer5 == CharacterCodeSize) {
-      StatusBuffer5 = *(uint64_t **)(TertiaryProcessingStatusFlag + 6);
+      StatusBuffer5 = *(uint64_t **)(StringProcessingStatus + 6);
     }
-    TertiaryProcessingStatusFlag = *(uint32_t **)(TertiaryProcessingStatusFlag + 4);
-    TemporaryBuffer = *(uint32_t **)(TertiaryProcessingStatusFlag + 6);
-    MemoryAllocationIndex = TertiaryProcessingStatusFlag[0x12];
-    UnicodeCodePoint = TertiaryProcessingStatusFlag[0x13];
+    StringProcessingStatus = *(uint32_t **)(StringProcessingStatus + 4);
+    TemporaryBuffer = *(uint32_t **)(StringProcessingStatus + 6);
+    MemoryAllocationIndex = StringProcessingStatus[0x12];
+    UnicodeCodePoint = StringProcessingStatus[0x13];
     SystemContextValue = StatusBuffer5[2];
-    *(long long *)(TertiaryProcessingStatusFlag + 4) = SystemContextValue;
+    *(long long *)(StringProcessingStatus + 4) = SystemContextValue;
     SystemOffsetValue = StatusBuffer5[3];
-    *(long long *)(TertiaryProcessingStatusFlag + 6) = SystemOffsetValue;
+    *(long long *)(StringProcessingStatus + 6) = SystemOffsetValue;
     if (SystemContextValue != 0) {
-      *(uint32_t **)(SystemContextValue + 8) = TertiaryProcessingStatusFlag;
-      SystemOffsetValue = *(long long *)(TertiaryProcessingStatusFlag + 6);
+      *(uint32_t **)(SystemContextValue + 8) = StringProcessingStatus;
+      SystemOffsetValue = *(long long *)(StringProcessingStatus + 6);
     }
     if (SystemOffsetValue != 0) {
-      *(uint32_t **)(SystemOffsetValue + 8) = TertiaryProcessingStatusFlag;
+      *(uint32_t **)(SystemOffsetValue + 8) = StringProcessingStatus;
     }
     PrimaryReturnCode = 0;
-    TertiaryProcessingStatusFlag[0x14] = *(uint32_t *)(StatusBuffer5 + 10);
-    *(void *)(TertiaryProcessingStatusFlag + 0x12) = StatusBuffer5[9];
+    StringProcessingStatus[0x14] = *(uint32_t *)(StatusBuffer5 + 10);
+    *(void *)(StringProcessingStatus + 0x12) = StatusBuffer5[9];
     StatusBuffer5[3] = 0;
     StatusBuffer5[2] = 0;
-    if (TertiaryProcessingStatusFlag != (uint32_t *)0x0) {
-      FUN_180136f60(TertiaryProcessingStatusFlag,TertiaryProcessingStatusFlag);
-      FUN_18013bf60(*TertiaryProcessingStatusFlag,*TertiaryProcessingStatusFlag);
+    if (StringProcessingStatus != (uint32_t *)0x0) {
+      FUN_180136f60(StringProcessingStatus,StringProcessingStatus);
+      FUN_18013bf60(*StringProcessingStatus,*StringProcessingStatus);
     }
     if (TemporaryBuffer != (uint32_t *)0x0) {
-      FUN_180136f60(TertiaryProcessingStatusFlag,TemporaryBuffer);
-      FUN_18013bf60(*TemporaryBuffer,*TertiaryProcessingStatusFlag);
+      FUN_180136f60(StringProcessingStatus,TemporaryBuffer);
+      FUN_18013bf60(*TemporaryBuffer,*StringProcessingStatus);
     }
     Utf16Char4 = PrimaryReturnCode;
-    if (0 < (int)TertiaryProcessingStatusFlag[8]) {
+    if (0 < (int)StringProcessingStatus[8]) {
       do {
         QuaternaryReturnCode = (int)Utf16Char4 + 1;
-        MemoryAddressMask = TertiaryProcessingStatusFlag[0xf];
-        SystemContextValue = *(long long *)(PrimaryReturnCode + *(long long *)(TertiaryProcessingStatusFlag + 10));
-        *(uint32_t *)(SystemContextValue + 0x40) = TertiaryProcessingStatusFlag[0xe];
+        MemoryAddressMask = StringProcessingStatus[0xf];
+        SystemContextValue = *(long long *)(PrimaryReturnCode + *(long long *)(StringProcessingStatus + 10));
+        *(uint32_t *)(SystemContextValue + 0x40) = StringProcessingStatus[0xe];
         *(uint32_t *)(SystemContextValue + 0x44) = MemoryAddressMask;
-        MemoryAddressMask = TertiaryProcessingStatusFlag[0x11];
-        SystemContextValue = *(long long *)(PrimaryReturnCode + *(long long *)(TertiaryProcessingStatusFlag + 10));
-        *(uint32_t *)(SystemContextValue + 0x50) = TertiaryProcessingStatusFlag[0x10];
+        MemoryAddressMask = StringProcessingStatus[0x11];
+        SystemContextValue = *(long long *)(PrimaryReturnCode + *(long long *)(StringProcessingStatus + 10));
+        *(uint32_t *)(SystemContextValue + 0x50) = StringProcessingStatus[0x10];
         *(uint32_t *)(SystemContextValue + 0x54) = MemoryAddressMask;
         PrimaryReturnCode = PrimaryReturnCode + 8;
         Utf16Char4 = (unsigned long long)QuaternaryReturnCode;
-      } while ((int)QuaternaryReturnCode < (int)TertiaryProcessingStatusFlag[8]);
+      } while ((int)QuaternaryReturnCode < (int)StringProcessingStatus[8]);
     }
-    shouldReturnSource = *(byte *)(TertiaryProcessingStatusFlag + 0x28);
-    *(byte *)(TertiaryProcessingStatusFlag + 0x28) = shouldReturnSource & 0xfc;
-    *(void *)(TertiaryProcessingStatusFlag + 0x1c) = StatusBuffer5[0xe];
-    if (((TertiaryProcessingStatusFlag == (uint32_t *)0x0) || ((*(byte *)(TertiaryProcessingStatusFlag + 0x28) & 0x20) == 0)) &&
+    shouldReturnSource = *(byte *)(StringProcessingStatus + 0x28);
+    *(byte *)(StringProcessingStatus + 0x28) = shouldReturnSource & 0xfc;
+    *(void *)(StringProcessingStatus + 0x1c) = StatusBuffer5[0xe];
+    if (((StringProcessingStatus == (uint32_t *)0x0) || ((*(byte *)(StringProcessingStatus + 0x28) & 0x20) == 0)) &&
        ((TemporaryBuffer == (uint32_t *)0x0 || ((*(byte *)(TemporaryBuffer + 0x28) & 0x20) == 0)))) {
       IsMemoryBlockEqual = 0;
     }
@@ -157316,12 +157316,12 @@ uint32_t * FUN_180135960(long long CharacterCode,int CharacterCodeSize,uint64_t 
       IsMemoryBlockEqual = 0x20;
     }
     IsMemoryBlockEqual = shouldReturnSource & 0xdc | IsMemoryBlockEqual;
-    *(byte *)(TertiaryProcessingStatusFlag + 0x28) = IsMemoryBlockEqual;
+    *(byte *)(StringProcessingStatus + 0x28) = IsMemoryBlockEqual;
     shouldReturnSource = *(byte *)(StatusBuffer5 + 0x14);
-    TertiaryProcessingStatusFlag[0x12] = MemoryAllocationIndex;
-    TertiaryProcessingStatusFlag[0x13] = UnicodeCodePoint;
-    *(byte *)(TertiaryProcessingStatusFlag + 0x28) = (shouldReturnSource ^ IsMemoryBlockEqual) & 0x40 ^ IsMemoryBlockEqual;
-    if (TertiaryProcessingStatusFlag == (uint32_t *)0x0) {
+    StringProcessingStatus[0x12] = MemoryAllocationIndex;
+    StringProcessingStatus[0x13] = UnicodeCodePoint;
+    *(byte *)(StringProcessingStatus + 0x28) = (shouldReturnSource ^ IsMemoryBlockEqual) & 0x40 ^ IsMemoryBlockEqual;
+    if (StringProcessingStatus == (uint32_t *)0x0) {
       if (TemporaryBuffer == (uint32_t *)0x0) {
         return;
       }
@@ -157333,13 +157333,13 @@ uint32_t * FUN_180135960(long long CharacterCode,int CharacterCodeSize,uint64_t 
                     // WARNING: Subroutine does not return
       InitializeSystemMemoryPool(TemporaryBuffer,SystemMemoryPoolBase);
     }
-    FUN_180122160(*(void *)(CharacterCode + 0x2df8),*TertiaryProcessingStatusFlag,0);
-    FUN_180136ab0(TertiaryProcessingStatusFlag);
+    FUN_180122160(*(void *)(CharacterCode + 0x2df8),*StringProcessingStatus,0);
+    FUN_180136ab0(StringProcessingStatus);
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    InitializeSystemMemoryPool(TertiaryProcessingStatusFlag,SystemMemoryPoolBase);
+    InitializeSystemMemoryPool(StringProcessingStatus,SystemMemoryPoolBase);
   }
   FUN_180122160(DataSize,*(uint32_t *)CharacterCodeSize,0,DataSize,0xfffffffffffffffe);
   FUN_18013ea00(CharacterCodeSize[6]);
@@ -157393,7 +157393,7 @@ uint32_t * FUN_180135960(long long CharacterCode,int CharacterCodeSize,uint64_t 
   uint32_t *MemoryAddressMask;
   byte *SystemBytePointer;
   uint32_t *SecondaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   long long secondaryLoopCounter;
   uint64_t SystemMemoryAllocationResult;
   byte CurrentByteValue0;
@@ -157414,42 +157414,42 @@ uint32_t * FUN_180135960(long long CharacterCode,int CharacterCodeSize,uint64_t 
   SystemDataTablePointer = (long long)Utf8InputPointer;
   do {
     if (*(int *)(pSystemShortValue14 + -9) != 0) {
-      TertiaryProcessingStatusFlag = (uint32_t *)FUN_180135960();
+      StringProcessingStatus = (uint32_t *)FUN_180135960();
       if (*(int *)(pSystemShortValue14 + -7) == 0) {
         SystemDataTablePointer = 0;
       }
       else {
         SystemDataTablePointer = FUN_180121fa0(*(void *)(CharacterCode + 0x2df8));
       }
-      *(long long *)(TertiaryProcessingStatusFlag + 2) = SystemDataTablePointer;
+      *(long long *)(StringProcessingStatus + 2) = SystemDataTablePointer;
       SystemShortValue2 = pSystemShortValue14[1];
-      TertiaryProcessingStatusFlag[0xe] = (float)(int)*pSystemShortValue14;
-      TertiaryProcessingStatusFlag[0xf] = (float)(int)SystemShortValue2;
+      StringProcessingStatus[0xe] = (float)(int)*pSystemShortValue14;
+      StringProcessingStatus[0xf] = (float)(int)SystemShortValue2;
       SystemShortValue2 = pSystemShortValue14[3];
-      TertiaryProcessingStatusFlag[0x10] = (float)(int)pSystemShortValue14[2];
-      TertiaryProcessingStatusFlag[0x11] = (float)(int)SystemShortValue2;
+      StringProcessingStatus[0x10] = (float)(int)pSystemShortValue14[2];
+      StringProcessingStatus[0x11] = (float)(int)SystemShortValue2;
       SystemShortValue2 = pSystemShortValue14[5];
-      TertiaryProcessingStatusFlag[0x12] = (float)(int)pSystemShortValue14[4];
-      TertiaryProcessingStatusFlag[0x13] = (float)(int)SystemShortValue2;
+      StringProcessingStatus[0x12] = (float)(int)pSystemShortValue14[4];
+      StringProcessingStatus[0x13] = (float)(int)SystemShortValue2;
       if (SystemDataTablePointer != 0) {
         if (*(long long *)(SystemDataTablePointer + 0x10) == 0) {
-          *(uint32_t **)(SystemDataTablePointer + 0x10) = TertiaryProcessingStatusFlag;
+          *(uint32_t **)(SystemDataTablePointer + 0x10) = StringProcessingStatus;
         }
         else if ((SystemDataTablePointer != 0) && (*(long long *)(SystemDataTablePointer + 0x18) == 0)) {
-          *(uint32_t **)(SystemDataTablePointer + 0x18) = TertiaryProcessingStatusFlag;
+          *(uint32_t **)(SystemDataTablePointer + 0x18) = StringProcessingStatus;
         }
       }
-      TertiaryProcessingStatusFlag[0x26] = *(uint32_t *)(pSystemShortValue14 + -5);
-      TertiaryProcessingStatusFlag[0x14] = (int)(char)pSystemShortValue14[-3];
-      CurrentByteValue = *(byte *)(TertiaryProcessingStatusFlag + 0x28);
+      StringProcessingStatus[0x26] = *(uint32_t *)(pSystemShortValue14 + -5);
+      StringProcessingStatus[0x14] = (int)(char)pSystemShortValue14[-3];
+      CurrentByteValue = *(byte *)(StringProcessingStatus + 0x28);
       CurrentByteValue0 = -((char)pSystemShortValue14[-2] != '\0') & 0x10;
-      *(byte *)(TertiaryProcessingStatusFlag + 0x28) = CurrentByteValue0 | CurrentByteValue & 0xef;
+      *(byte *)(StringProcessingStatus + 0x28) = CurrentByteValue0 | CurrentByteValue & 0xef;
       IsMemoryBlockEqual = -(*(char *)((long long)pSystemShortValue14 + -3) != '\0') & 0x20;
-      *(byte *)(TertiaryProcessingStatusFlag + 0x28) = IsMemoryBlockEqual | CurrentByteValue0 | CurrentByteValue & 0xcf;
-      *(byte *)(TertiaryProcessingStatusFlag + 0x28) =
+      *(byte *)(StringProcessingStatus + 0x28) = IsMemoryBlockEqual | CurrentByteValue0 | CurrentByteValue & 0xcf;
+      *(byte *)(StringProcessingStatus + 0x28) =
            -((char)pSystemShortValue14[-1] != '\0') & 0x40U | IsMemoryBlockEqual | CurrentByteValue0 | CurrentByteValue & 0x8f;
-      SecondaryProcessingStatusFlag = *(uint32_t **)(TertiaryProcessingStatusFlag + 2);
-      MemoryAddressMask = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = *(uint32_t **)(StringProcessingStatus + 2);
+      MemoryAddressMask = StringProcessingStatus;
       while (systemEventTemplatePointer = SecondaryProcessingStatusFlag, systemEventTemplatePointer != (uint32_t *)0x0) {
         pMemoryAddressMask = systemEventTemplatePointer;
         SecondaryProcessingStatusFlag = *(uint32_t **)(systemEventTemplatePointer + 2);
@@ -157468,7 +157468,7 @@ uint32_t * FUN_180135960(long long CharacterCode,int CharacterCodeSize,uint64_t 
         SystemBytePointer = SystemBytePointer + 1;
       }
       SystemMemoryAllocationResult = FUN_180121fa0(SystemConfigurationHandle + 0x1ae0,~SystemStatusCode);
-      *(void *)(TertiaryProcessingStatusFlag + 0x1a) = SystemMemoryAllocationResult;
+      *(void *)(StringProcessingStatus + 0x1a) = SystemMemoryAllocationResult;
     }
     pSystemShortValue14 = pSystemShortValue14 + 0x10;
     SystemDataTablePointer = SystemDataTablePointer + -1;
@@ -157489,7 +157489,7 @@ uint32_t * FUN_180135960(long long CharacterCode,int CharacterCodeSize,uint64_t 
   uint32_t *MemoryAddressMask;
   byte *SystemBytePointer;
   uint32_t *SecondaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   long long secondaryLoopCounter;
   uint64_t SystemMemoryAllocationResult;
   byte CurrentByteValue0;
@@ -157514,42 +157514,42 @@ uint32_t * FUN_180135960(long long CharacterCode,int CharacterCodeSize,uint64_t 
   SystemDataTablePointer = (long long)Utf8InputPointer;
   do {
     if (*(int *)(pSystemShortValue14 + -9) != 0) {
-      TertiaryProcessingStatusFlag = (uint32_t *)FUN_180135960();
+      StringProcessingStatus = (uint32_t *)FUN_180135960();
       if (*(int *)(pSystemShortValue14 + -7) == 0) {
         SystemDataTablePointer = 0;
       }
       else {
         SystemDataTablePointer = FUN_180121fa0(*(void *)(CharacterCode + 0x2df8));
       }
-      *(long long *)(TertiaryProcessingStatusFlag + 2) = SystemDataTablePointer;
+      *(long long *)(StringProcessingStatus + 2) = SystemDataTablePointer;
       SystemShortValue2 = pSystemShortValue14[1];
-      TertiaryProcessingStatusFlag[0xe] = (float)(int)*pSystemShortValue14;
-      TertiaryProcessingStatusFlag[0xf] = (float)(int)SystemShortValue2;
+      StringProcessingStatus[0xe] = (float)(int)*pSystemShortValue14;
+      StringProcessingStatus[0xf] = (float)(int)SystemShortValue2;
       SystemShortValue2 = pSystemShortValue14[3];
-      TertiaryProcessingStatusFlag[0x10] = (float)(int)pSystemShortValue14[2];
-      TertiaryProcessingStatusFlag[0x11] = (float)(int)SystemShortValue2;
+      StringProcessingStatus[0x10] = (float)(int)pSystemShortValue14[2];
+      StringProcessingStatus[0x11] = (float)(int)SystemShortValue2;
       SystemShortValue2 = pSystemShortValue14[5];
-      TertiaryProcessingStatusFlag[0x12] = (float)(int)pSystemShortValue14[4];
-      TertiaryProcessingStatusFlag[0x13] = (float)(int)SystemShortValue2;
+      StringProcessingStatus[0x12] = (float)(int)pSystemShortValue14[4];
+      StringProcessingStatus[0x13] = (float)(int)SystemShortValue2;
       if (SystemDataTablePointer != 0) {
         if (*(long long *)(SystemDataTablePointer + 0x10) == 0) {
-          *(uint32_t **)(SystemDataTablePointer + 0x10) = TertiaryProcessingStatusFlag;
+          *(uint32_t **)(SystemDataTablePointer + 0x10) = StringProcessingStatus;
         }
         else if ((SystemDataTablePointer != 0) && (*(long long *)(SystemDataTablePointer + 0x18) == 0)) {
-          *(uint32_t **)(SystemDataTablePointer + 0x18) = TertiaryProcessingStatusFlag;
+          *(uint32_t **)(SystemDataTablePointer + 0x18) = StringProcessingStatus;
         }
       }
-      TertiaryProcessingStatusFlag[0x26] = *(uint32_t *)(pSystemShortValue14 + -5);
-      TertiaryProcessingStatusFlag[0x14] = (int)(char)pSystemShortValue14[-3];
-      CurrentByteValue = *(byte *)(TertiaryProcessingStatusFlag + 0x28);
+      StringProcessingStatus[0x26] = *(uint32_t *)(pSystemShortValue14 + -5);
+      StringProcessingStatus[0x14] = (int)(char)pSystemShortValue14[-3];
+      CurrentByteValue = *(byte *)(StringProcessingStatus + 0x28);
       CurrentByteValue0 = -((char)pSystemShortValue14[-2] != '\0') & 0x10;
-      *(byte *)(TertiaryProcessingStatusFlag + 0x28) = CurrentByteValue0 | CurrentByteValue & 0xef;
+      *(byte *)(StringProcessingStatus + 0x28) = CurrentByteValue0 | CurrentByteValue & 0xef;
       IsMemoryBlockEqual = -(*(char *)((long long)pSystemShortValue14 + -3) != '\0') & 0x20;
-      *(byte *)(TertiaryProcessingStatusFlag + 0x28) = IsMemoryBlockEqual | CurrentByteValue0 | CurrentByteValue & 0xcf;
-      *(byte *)(TertiaryProcessingStatusFlag + 0x28) =
+      *(byte *)(StringProcessingStatus + 0x28) = IsMemoryBlockEqual | CurrentByteValue0 | CurrentByteValue & 0xcf;
+      *(byte *)(StringProcessingStatus + 0x28) =
            -((char)pSystemShortValue14[-1] != '\0') & 0x40U | IsMemoryBlockEqual | CurrentByteValue0 | CurrentByteValue & 0x8f;
-      SecondaryProcessingStatusFlag = *(uint32_t **)(TertiaryProcessingStatusFlag + 2);
-      MemoryAddressMask = TertiaryProcessingStatusFlag;
+      SecondaryProcessingStatusFlag = *(uint32_t **)(StringProcessingStatus + 2);
+      MemoryAddressMask = StringProcessingStatus;
       while (systemEventTemplatePointer = SecondaryProcessingStatusFlag, systemEventTemplatePointer != (uint32_t *)0x0) {
         pMemoryAddressMask = systemEventTemplatePointer;
         SecondaryProcessingStatusFlag = *(uint32_t **)(systemEventTemplatePointer + 2);
@@ -157568,7 +157568,7 @@ uint32_t * FUN_180135960(long long CharacterCode,int CharacterCodeSize,uint64_t 
         SystemBytePointer = SystemBytePointer + 1;
       }
       SystemMemoryAllocationResult = FUN_180121fa0(SystemConfigurationHandle + 0x1ae0,~SystemStatusCode);
-      *(void *)(TertiaryProcessingStatusFlag + 0x1a) = SystemMemoryAllocationResult;
+      *(void *)(StringProcessingStatus + 0x1a) = SystemMemoryAllocationResult;
     }
     pSystemShortValue14 = pSystemShortValue14 + 0x10;
     SystemDataTablePointer = SystemDataTablePointer + -1;
@@ -157838,7 +157838,7 @@ void CoreEngineInitializeNetworkSystem(void
   uint32_t *CharacterCodePointer;
   uint32_t *SecondaryProcessingStatusFlag;
   uint SystemChecksumValue;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   uint8_t auStackX_10 [8];
   long long lStackX_18;
   uint8_t *puStackX_20;
@@ -157860,10 +157860,10 @@ void CoreEngineInitializeNetworkSystem(void
     FUN_180122160(*(void *)(CharacterCode + 0x2df8),*CharacterCodePointer,CharacterCodePointer);
     FUN_180136f60(CharacterCodePointer,CharacterCodeSize);
     FUN_18013bf60(*CharacterCodeSize,*CharacterCodePointer);
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     if (0 < (int)CharacterCodePointer[8]) {
       do {
-        BufferStatus = *(long long *)((long long)TertiaryProcessingStatusFlag + *(long long *)(CharacterCodePointer + 10));
+        BufferStatus = *(long long *)((long long)StringProcessingStatus + *(long long *)(CharacterCodePointer + 10));
         *(void *)(BufferStatus + 0x398) = 0;
         CharacterCode = (long long *)(BufferStatus + 0x3b8);
         *CharacterCode = BufferStatus;
@@ -157878,7 +157878,7 @@ void CoreEngineInitializeNetworkSystem(void
         }
         SystemChecksumValue = (int)SecondaryProcessingStatusFlag + 1;
         SecondaryProcessingStatusFlag = (uint32_t *)(unsigned long long)SystemChecksumValue;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+        StringProcessingStatus = StringProcessingStatus + 2;
       } while ((int)SystemChecksumValue < (int)CharacterCodePointer[8]);
     }
     *(byte *)((long long)CharacterCodePointer + 0xa1) = *(byte *)((long long)CharacterCodePointer + 0xa1) | 8;
@@ -158020,8 +158020,8 @@ LAB_180136c0c:
         *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
       }
       pMemoryAddressMask = (void *)SystemCallMemoryAccess(0x60,SystemMemoryPoolBase);
-      TertiaryProcessingStatusFlag = NULL;
-      CharacterCodePointer = TertiaryProcessingStatusFlag;
+      StringProcessingStatus = NULL;
+      CharacterCodePointer = StringProcessingStatus;
       if (pMemoryAddressMask != NULL) {
         *pMemoryAddressMask = 0;
         pMemoryAddressMask[1] = 0;
@@ -158043,13 +158043,13 @@ LAB_180136c0c:
       *(uint32_t *)(CharacterCodePointer + 3) = CharacterCode[0x26];
       *(uint32_t *)(*(long long *)(CharacterCode + 0xc) + 0x14) =
            *(uint32_t *)(*(long long *)(CharacterCode + 0xc) + 0x18);
-      CharacterCodePointer = TertiaryProcessingStatusFlag;
+      CharacterCodePointer = StringProcessingStatus;
       if (0 < CharacterCode[8] + -1) {
         do {
           FUN_18011bbb0(*(void *)(CharacterCode + 0xc),0,
                         *(void *)((long long)CharacterCodePointer + *(long long *)(CharacterCode + 10)));
-          DataSize = (int)TertiaryProcessingStatusFlag + 1;
-          TertiaryProcessingStatusFlag = (void *)(unsigned long long)DataSize;
+          DataSize = (int)StringProcessingStatus + 1;
+          StringProcessingStatus = (void *)(unsigned long long)DataSize;
           CharacterCodePointer = CharacterCodePointer + 1;
         } while ((int)DataSize < CharacterCode[8] + -1);
       }
@@ -158076,7 +158076,7 @@ LAB_180136c0c:
   uint64_t CalculatedCodePoint;
   uint32_t *SecondaryProcessingStatusFlag;
   long long MemoryPoolBlockSize;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   uint32_t *TemporaryBuffer;
   byte CurrentByteValue0;
   long long *CharacterCode1;
@@ -158142,7 +158142,7 @@ LAB_180136c0c:
         if (ReferenceCountPointer9 == CharacterCode) {
           ReferenceCountPointer9 = *(int **)(SecondaryProcessingStatusFlag + 6);
         }
-        TertiaryProcessingStatusFlag = *(uint32_t **)(SecondaryProcessingStatusFlag + 4);
+        StringProcessingStatus = *(uint32_t **)(SecondaryProcessingStatusFlag + 4);
         TemporaryBuffer = *(uint32_t **)(SecondaryProcessingStatusFlag + 6);
         Utf16Char = SecondaryProcessingStatusFlag[0x12];
         MemoryAllocationIndex = SecondaryProcessingStatusFlag[0x13];
@@ -158164,9 +158164,9 @@ LAB_180136c0c:
         ReferenceCountPointer9[7] = 0;
         ReferenceCountPointer9[4] = 0;
         ReferenceCountPointer9[5] = 0;
-        if (TertiaryProcessingStatusFlag != (uint32_t *)0x0) {
-          FUN_180136f60(SecondaryProcessingStatusFlag,TertiaryProcessingStatusFlag);
-          FUN_18013bf60(*TertiaryProcessingStatusFlag,*SecondaryProcessingStatusFlag);
+        if (StringProcessingStatus != (uint32_t *)0x0) {
+          FUN_180136f60(SecondaryProcessingStatusFlag,StringProcessingStatus);
+          FUN_18013bf60(*StringProcessingStatus,*SecondaryProcessingStatusFlag);
         }
         if (TemporaryBuffer != (uint32_t *)0x0) {
           FUN_180136f60(SecondaryProcessingStatusFlag,TemporaryBuffer);
@@ -158191,7 +158191,7 @@ LAB_180136c0c:
         hasComparisonResult = *(byte *)(SecondaryProcessingStatusFlag + 0x28);
         *(byte *)(SecondaryProcessingStatusFlag + 0x28) = hasComparisonResult & 0xfc;
         *(void *)(SecondaryProcessingStatusFlag + 0x1c) = *(void *)(ReferenceCountPointer9 + 0x1c);
-        if (((TertiaryProcessingStatusFlag == (uint32_t *)0x0) || ((*(byte *)(TertiaryProcessingStatusFlag + 0x28) & 0x20) == 0)) &&
+        if (((StringProcessingStatus == (uint32_t *)0x0) || ((*(byte *)(StringProcessingStatus + 0x28) & 0x20) == 0)) &&
            ((TemporaryBuffer == (uint32_t *)0x0 || ((*(byte *)(TemporaryBuffer + 0x28) & 0x20) == 0)))) {
           ValidationByteFlag3 = 0;
         }
@@ -158204,7 +158204,7 @@ LAB_180136c0c:
         SecondaryProcessingStatusFlag[0x12] = Utf16Char;
         SecondaryProcessingStatusFlag[0x13] = MemoryAllocationIndex;
         *(byte *)(SecondaryProcessingStatusFlag + 0x28) = (hasComparisonResult ^ ValidationByteFlag3) & 0x40 ^ ValidationByteFlag3;
-        if (TertiaryProcessingStatusFlag == (uint32_t *)0x0) {
+        if (StringProcessingStatus == (uint32_t *)0x0) {
           if (TemporaryBuffer == (uint32_t *)0x0) {
             return;
           }
@@ -158216,13 +158216,13 @@ LAB_180136c0c:
                     // WARNING: Subroutine does not return
           InitializeSystemMemoryPool(TemporaryBuffer,SystemMemoryPoolBase);
         }
-        FUN_180122160(*(void *)(MemoryPoolBlockSize + 0x2df8),*TertiaryProcessingStatusFlag,0);
-        FUN_180136ab0(TertiaryProcessingStatusFlag);
+        FUN_180122160(*(void *)(MemoryPoolBlockSize + 0x2df8),*StringProcessingStatus,0);
+        FUN_180136ab0(StringProcessingStatus);
         if (SystemConfigurationHandle != 0) {
           *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        InitializeSystemMemoryPool(TertiaryProcessingStatusFlag,SystemMemoryPoolBase);
+        InitializeSystemMemoryPool(StringProcessingStatus,SystemMemoryPoolBase);
       }
       FUN_180122160(CalculatedCodePoint,*CharacterCode,0,CalculatedCodePoint,0xfffffffffffffffe);
       FUN_18013ea00(*(void *)(CharacterCode + 0xc));
@@ -160649,40 +160649,40 @@ LAB_180138724:
     pCharacterByteCount1 = ReferenceCountPointer9;
     if (0 < CharacterCode[8]) {
       do {
-        TertiaryProcessingStatusFlag = *(uint64_t **)((long long)pCharacterByteCount1 + *(long long *)(CharacterCode + 10));
-        if ((((PrimaryScalingFactor._0_1_ == '\0') && (iStack_114 != *(int *)(TertiaryProcessingStatusFlag + 1))) ||
-            ((*(char *)((long long)TertiaryProcessingStatusFlag + 0xb7) == '\0' ||
-             ((*(uint *)((long long)TertiaryProcessingStatusFlag + 0xc) & 0x100000) != 0)))) &&
-           ((*(int *)(BufferStatus5 + 0x1a90) <= *(int *)(TertiaryProcessingStatusFlag + 0x50) + 1 || (iStack_104 != iStack_108)           )) {
-          MemoryAllocationBase = *(uint *)((long long)TertiaryProcessingStatusFlag + 0xc) >> 0x14 & 1;
+        StringProcessingStatus = *(uint64_t **)((long long)pCharacterByteCount1 + *(long long *)(CharacterCode + 10));
+        if ((((PrimaryScalingFactor._0_1_ == '\0') && (iStack_114 != *(int *)(StringProcessingStatus + 1))) ||
+            ((*(char *)((long long)StringProcessingStatus + 0xb7) == '\0' ||
+             ((*(uint *)((long long)StringProcessingStatus + 0xc) & 0x100000) != 0)))) &&
+           ((*(int *)(BufferStatus5 + 0x1a90) <= *(int *)(StringProcessingStatus + 0x50) + 1 || (iStack_104 != iStack_108)           )) {
+          MemoryAllocationBase = *(uint *)((long long)StringProcessingStatus + 0xc) >> 0x14 & 1;
           StackConfigurationFlag = (int *)CONCAT71(StackConfigurationFlag.FullPart,1);
           Utf16Char4 = MemoryAllocationBase | 0x100004;
           if ((pCharacterByteCount3[0x13] & 4U) == 0) {
             Utf16Char4 = MemoryAllocationBase | 0x100000;
           }
           ReferenceCountPointer7 = (int *)&StackConfigurationFlag;
-          if (*(char *)((long long)TertiaryProcessingStatusFlag + 0xb7) == '\0') {
+          if (*(char *)((long long)StringProcessingStatus + 0xb7) == '\0') {
             ReferenceCountPointer7 = ReferenceCountPointer9;
           }
-          FUN_18011c360(pCharacterByteCount3,*TertiaryProcessingStatusFlag,ReferenceCountPointer7,Utf16Char4,TertiaryProcessingStatusFlag);
+          FUN_18011c360(pCharacterByteCount3,*StringProcessingStatus,ReferenceCountPointer7,Utf16Char4,StringProcessingStatus);
           if ((char)StackConfigurationFlag == '\0') {
-            CharacterCode[0x27] = *(int *)(TertiaryProcessingStatusFlag + 1);
+            CharacterCode[0x27] = *(int *)(StringProcessingStatus + 1);
           }
-          if (pCharacterByteCount3[7] == *(int *)(TertiaryProcessingStatusFlag + 1)) {
-            *(uint64_t **)(CharacterCode + 0x1c) = TertiaryProcessingStatusFlag;
+          if (pCharacterByteCount3[7] == *(int *)(StringProcessingStatus + 1)) {
+            *(uint64_t **)(CharacterCode + 0x1c) = StringProcessingStatus;
           }
-          *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x41c) = *(uint32_t *)(lStackX_10 + 0x148);
+          *(uint32_t *)((long long)StringProcessingStatus + 0x41c) = *(uint32_t *)(lStackX_10 + 0x148);
           SystemStatusCode = *(uint32_t *)(lStackX_10 + 0x150);
           ProcessStringBuffer = *(uint32_t *)(lStackX_10 + 0x154);
           ProcessingStatusFlag = *(uint32_t *)(lStackX_10 + 0x158);
-          *(uint32_t *)(TertiaryProcessingStatusFlag + 0x84) = *(uint32_t *)(lStackX_10 + 0x14c);
-          *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x424) = SystemStatusCode;
-          *(uint32_t *)(TertiaryProcessingStatusFlag + 0x85) = ProcessStringBuffer;
-          *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x42c) = ProcessingStatusFlag;
+          *(uint32_t *)(StringProcessingStatus + 0x84) = *(uint32_t *)(lStackX_10 + 0x14c);
+          *(uint32_t *)((long long)StringProcessingStatus + 0x424) = SystemStatusCode;
+          *(uint32_t *)(StringProcessingStatus + 0x85) = ProcessStringBuffer;
+          *(uint32_t *)((long long)StringProcessingStatus + 0x42c) = ProcessingStatusFlag;
           if (((*(long long *)(BufferStatus5 + 0x1c98) != 0) &&
-              (*(uint64_t **)(*(long long *)(BufferStatus5 + 0x1c98) + 0x3a8) == TertiaryProcessingStatusFlag)) &&
-             ((*(byte *)((long long)TertiaryProcessingStatusFlag + 0x174) & 2) == 0)) {
-            *(uint32_t *)(lStackX_10 + 0x3cc) = *(uint32_t *)(TertiaryProcessingStatusFlag + 1);
+              (*(uint64_t **)(*(long long *)(BufferStatus5 + 0x1c98) + 0x3a8) == StringProcessingStatus)) &&
+             ((*(byte *)((long long)StringProcessingStatus + 0x174) & 2) == 0)) {
+            *(uint32_t *)(lStackX_10 + 0x3cc) = *(uint32_t *)(StringProcessingStatus + 1);
           }
         }
         Utf16Char4 = (int)ReferenceCountPointer8 + 1;
@@ -161200,12 +161200,12 @@ char ProcessSystemDataStructureMemory(long long CharacterCode, long long Charact
   if (CharacterCodeSize == 0) {
     TemporaryBuffer = (void *)(CharacterCode + 0x40);
   }
-  TertiaryProcessingStatusFlag = (void *)(CharacterTablePointer6 + 0x40);
+  StringProcessingStatus = (void *)(CharacterTablePointer6 + 0x40);
   if (CharacterCodeSize == 0) {
-    TertiaryProcessingStatusFlag = (void *)(CharacterCode + 0x48);
+    StringProcessingStatus = (void *)(CharacterCode + 0x48);
   }
   *(void *)(Utf16EndPointer + 0x38) = *TemporaryBuffer;
-  *(void *)(Utf16EndPointer + 0x40) = *TertiaryProcessingStatusFlag;
+  *(void *)(Utf16EndPointer + 0x40) = *StringProcessingStatus;
   CharacterTablePointer6 = *(long long *)(Utf8InputPointer + 0x410);
   if (((CharacterTablePointer6 == 0) || (*(long long *)(CharacterTablePointer6 + 0x10) == 0)) || (*(long long *)(CharacterTablePointer6 + 0x80) != 0)  {
     CurrentByteValue = false;
@@ -161300,7 +161300,7 @@ char ProcessSystemDataStructureMemory(long long CharacterCode, long long Charact
       pSystemFloatValue = (float *)aStackConfigurationFlag;
       pSystemContextPrimaryFloat4 = (float *)aSystemRegisterFlagX8;
       TemporaryBuffer = (void *)aStackConfigurationFlag;
-      TertiaryProcessingStatusFlag = (void *)aSystemRegisterFlagX8;
+      StringProcessingStatus = (void *)aSystemRegisterFlagX8;
       pSecondaryFloatValue = (float *)&uStackX_20;
       pContextPrimaryFloat9 = (float *)&uStackX_10;
       SystemStackFlag.HighPart = (float)SystemStackFlag;
@@ -161314,7 +161314,7 @@ char ProcessSystemDataStructureMemory(long long CharacterCode, long long Charact
       pSystemFloatValue = (float *)((long long)aStackConfigurationFlag + 4);
       pSystemContextPrimaryFloat4 = (float *)((long long)aSystemRegisterFlagX8 + 4);
       TemporaryBuffer = (void *)((long long)aStackConfigurationFlag + 4);
-      TertiaryProcessingStatusFlag = (void *)((long long)aSystemRegisterFlagX8 + 4);
+      StringProcessingStatus = (void *)((long long)aSystemRegisterFlagX8 + 4);
       pSecondaryFloatValue = (float *)((long long)&uStackX_20 + 4);
       pContextPrimaryFloat9 = (float *)((long long)&uStackX_10 + 4);
     }
@@ -161331,7 +161331,7 @@ char ProcessSystemDataStructureMemory(long long CharacterCode, long long Charact
       *pSystemContextPrimaryFloat4 = (float)(int)(ContextSecondaryFloat1 - SystemStackFlag.HighPart) + *pSystemFloatValue + ContextSecondaryFloat2;
     }
     else if ((SystemStatusCode & 0xfffffffd) == 0) {
-      *(uint32_t *)TertiaryProcessingStatusFlag = *(uint32_t *)TemporaryBuffer;
+      *(uint32_t *)StringProcessingStatus = *(uint32_t *)TemporaryBuffer;
     }
     ContextSecondaryFloat1 = *pSystemContextPrimaryFloat3 / *(float *)(CharacterTablePointer6 + Utf16EndPointer);
     ContextSecondaryFloat2 = 0.0;
@@ -162472,8 +162472,8 @@ LAB_18013a7a6:
   int validationResult;
   long long AllocatedMemorySize;
   uint32_t *SecondaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
+  uint32_t *StringProcessingStatus;
   char SystemValidationChar;
   uint32_t MemoryAllocationIndex;
   int MatchCounter;
@@ -162512,20 +162512,20 @@ LAB_18013a7a6:
     }
     MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)FloatPointerValue >> 0x20);
     SecondaryProcessingStatusFlag = *(uint32_t **)(CharacterCode + 4);
-    TertiaryProcessingStatusFlag = *(uint32_t **)(CharacterCode + 6);
+    StringProcessingStatus = *(uint32_t **)(CharacterCode + 6);
     SystemConfigurationHandle = CharacterTablePointer6;
     if ((*(byte *)(SecondaryProcessingStatusFlag + 0x28) & 4) != 0) {
-      if ((*(byte *)(TertiaryProcessingStatusFlag + 0x28) & 4) != 0) {
+      if ((*(byte *)(StringProcessingStatus + 0x28) & 4) != 0) {
         validationResult = CharacterCode[0x14];
         Utf16CharacterCode5 = (unsigned long long)validationResult;
         afStack_e0[0] = (float)SecondaryProcessingStatusFlag[0xe];
         afStack_e0[1] = (float)SecondaryProcessingStatusFlag[0xf];
-        SystemFlagF = *(void *)(TertiaryProcessingStatusFlag + 0xe);
+        SystemFlagF = *(void *)(StringProcessingStatus + 0xe);
         AllocatedMemorySize = Utf16CharacterCode5 * 4;
         afStack_e0[Utf16CharacterCode5] = (float)SecondaryProcessingStatusFlag[Utf16CharacterCode5 + 0x10] + afStack_e0[Utf16CharacterCode5];
         SystemStatusCode = Utf16CharacterCode5 ^ 1;
         *(float *)((long long)&SystemFlagF + SystemStatusCode * 4) =
-             (float)TertiaryProcessingStatusFlag[SystemStatusCode + 0x10] + *(float *)((long long)&SystemFlagF + SystemStatusCode * 4);
+             (float)StringProcessingStatus[SystemStatusCode + 0x10] + *(float *)((long long)&SystemFlagF + SystemStatusCode * 4);
         if ((*(byte *)(CharacterCode + 1) & 0x20) == 0) {
           FUN_18012e2d0(*CharacterCode);
           InitializeSystemResourceStructure(aCoreEngineUnsignedValueA0,0x10,2,&ProcessSystemDataStructure,CopyAndInitializeSystemData);
@@ -162549,8 +162549,8 @@ LAB_18013a7a6:
                 FUN_18013a860(*(long long *)(SecondaryProcessingStatusFlag + 6),validationResult,1,aCoreEngineUnsignedValueA0);
               }
             }
-            long long AllocatedMemorySize = *(long long *)(TertiaryProcessingStatusFlag + 4);
-            pSystemRegisterFlagX8 = TertiaryProcessingStatusFlag;
+            long long AllocatedMemorySize = *(long long *)(StringProcessingStatus + 4);
+            pSystemRegisterFlagX8 = StringProcessingStatus;
             if (AllocatedMemorySize == 0) {
               FUN_18013d860(aSystemOperationFlag90,&pSystemRegisterFlagX8);
             }
@@ -162558,9 +162558,9 @@ LAB_18013a7a6:
               if ((*(byte *)(AllocatedMemorySize + 0xa0) & 4) != 0) {
                 FUN_18013a860(AllocatedMemorySize,validationResult,0,aSystemOperationFlag90);
               }
-              if (((*(byte *)(*(long long *)(TertiaryProcessingStatusFlag + 6) + 0xa0) & 4) != 0) &&
-                 ((TertiaryProcessingStatusFlag[0x14] != validationResult || ((*(byte *)(*(long long *)(TertiaryProcessingStatusFlag + 4) + 0xa0) & 4) == 0                  ))) {
-                FUN_18013a860(*(long long *)(TertiaryProcessingStatusFlag + 6),validationResult,0,aSystemOperationFlag90);
+              if (((*(byte *)(*(long long *)(StringProcessingStatus + 6) + 0xa0) & 4) != 0) &&
+                 ((StringProcessingStatus[0x14] != validationResult || ((*(byte *)(*(long long *)(StringProcessingStatus + 4) + 0xa0) & 4) == 0                  ))) {
+                FUN_18013a860(*(long long *)(StringProcessingStatus + 6),validationResult,0,aSystemOperationFlag90);
               }
             }
             if (0 < (int)aCoreEngineUnsignedValueA0[0]) {
@@ -162598,9 +162598,9 @@ LAB_18013a7a6:
           }
           AllocatedMemorySize = SystemConfigurationHandle;
           pSystemRegisterFlagX8 = (uint32_t *)CONCAT44(pSystemRegisterFlagX8.HighPart,SecondaryProcessingStatusFlag[Utf16CharacterCode5 + 0x10]);
-          afStackX_10[0] = (float)TertiaryProcessingStatusFlag[Utf16CharacterCode5 + 0x10];
+          afStackX_10[0] = (float)StringProcessingStatus[Utf16CharacterCode5 + 0x10];
           CalculatedFilterValue = (float)SecondaryProcessingStatusFlag[Utf16CharacterCode5 + 0xe];
-          MatchCounter = ValidateSystemDataAndProcessOperation((afStackX_10[0] + (float)TertiaryProcessingStatusFlag[Utf16CharacterCode5 + 0xe]) - SystemContextPrimaryFloat8,0,
+          MatchCounter = ValidateSystemDataAndProcessOperation((afStackX_10[0] + (float)StringProcessingStatus[Utf16CharacterCode5 + 0xe]) - SystemContextPrimaryFloat8,0,
                                  *(uint32_t *                                  (*(long long *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x220) +
                                    -4 + (long long                                        *(int *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x218) * 4
                                   ));
@@ -162617,10 +162617,10 @@ LAB_18013a7a6:
           if (((SystemValidationChar != '\0') && (0 < (int)aCoreEngineUnsignedValueA0[0])) && (0 < (int)aSystemOperationFlag90[0])) {
             SecondaryProcessingStatusFlag[Utf16CharacterCode5 + 0x12] = pSystemRegisterFlagX8.LowPart;
             SecondaryProcessingStatusFlag[Utf16CharacterCode5 + 0x10] = pSystemRegisterFlagX8.LowPart;
-            TertiaryProcessingStatusFlag[Utf16CharacterCode5 + 0xe] =
-                 (float)TertiaryProcessingStatusFlag[Utf16CharacterCode5 + 0xe] - (afStackX_10[0] - (float)TertiaryProcessingStatusFlag[Utf16CharacterCode5 + 0x10]);
-            TertiaryProcessingStatusFlag[Utf16CharacterCode5 + 0x12] = afStackX_10[0];
-            TertiaryProcessingStatusFlag[Utf16CharacterCode5 + 0x10] = afStackX_10[0];
+            StringProcessingStatus[Utf16CharacterCode5 + 0xe] =
+                 (float)StringProcessingStatus[Utf16CharacterCode5 + 0xe] - (afStackX_10[0] - (float)StringProcessingStatus[Utf16CharacterCode5 + 0x10]);
+            StringProcessingStatus[Utf16CharacterCode5 + 0x12] = afStackX_10[0];
+            StringProcessingStatus[Utf16CharacterCode5 + 0x10] = afStackX_10[0];
             CharacterTablePointer6 = 0;
             do {
               MatchCounter = 0;
@@ -162628,8 +162628,8 @@ LAB_18013a7a6:
                 LoopIterationCounter7 = 0;
                 do {
                   LoopIndex = *(long long *)(LoopIterationCounter7 + *(long long *)(aSystemOperationFlag90 + CharacterTablePointer6 * 4 + -2));
-                  TertiaryProcessingStatusFlag = *(uint32_t **)(LoopIndex + 8);
-                  while (TertiaryProcessingStatusFlag != CharacterCode) {
+                  StringProcessingStatus = *(uint32_t **)(LoopIndex + 8);
+                  while (StringProcessingStatus != CharacterCode) {
                     CharacterCode3 = (long long *)(LoopIndex + 8);
                     LoopIndex = *CharacterCode3;
                     if (*(int *)(LoopIndex + 0x50) == validationResult) {
@@ -162637,7 +162637,7 @@ LAB_18013a7a6:
                       *pCurrentByteValue = *pCurrentByteValue | 4;
                       LoopIndex = *CharacterCode3;
                     }
-                    TertiaryProcessingStatusFlag = *(uint32_t **)(LoopIndex + 8);
+                    StringProcessingStatus = *(uint32_t **)(LoopIndex + 8);
                   }
                   MatchCounter = MatchCounter + 1;
                   LoopIterationCounter7 = LoopIterationCounter7 + 8;
@@ -162648,8 +162648,8 @@ LAB_18013a7a6:
                 LoopIterationCounter7 = 0;
                 do {
                   LoopIndex = *(long long *)(LoopIterationCounter7 + (long long)aplStack_88[CharacterTablePointer6 * 2]);
-                  TertiaryProcessingStatusFlag = *(uint32_t **)(LoopIndex + 8);
-                  while (TertiaryProcessingStatusFlag != CharacterCode) {
+                  StringProcessingStatus = *(uint32_t **)(LoopIndex + 8);
+                  while (StringProcessingStatus != CharacterCode) {
                     CharacterCode3 = (long long *)(LoopIndex + 8);
                     LoopIndex = *CharacterCode3;
                     if (*(int *)(LoopIndex + 0x50) == validationResult) {
@@ -162657,7 +162657,7 @@ LAB_18013a7a6:
                       *pCurrentByteValue = *pCurrentByteValue | 4;
                       LoopIndex = *CharacterCode3;
                     }
-                    TertiaryProcessingStatusFlag = *(uint32_t **)(LoopIndex + 8);
+                    StringProcessingStatus = *(uint32_t **)(LoopIndex + 8);
                   }
                   MatchCounter = MatchCounter + 1;
                   LoopIterationCounter7 = LoopIterationCounter7 + 8;
@@ -162666,7 +162666,7 @@ LAB_18013a7a6:
               CharacterTablePointer6 = CharacterTablePointer6 + 2;
             } while (CharacterTablePointer6 < 2);
             FUN_18013a5e0(SecondaryProcessingStatusFlag,*(void *)(SecondaryProcessingStatusFlag + 0xe),*(void *)(SecondaryProcessingStatusFlag + 0x10));
-            FUN_18013a5e0(TertiaryProcessingStatusFlag,*(void *)(TertiaryProcessingStatusFlag + 0xe),*(void *)(TertiaryProcessingStatusFlag + 0x10));
+            FUN_18013a5e0(StringProcessingStatus,*(void *)(StringProcessingStatus + 0xe),*(void *)(StringProcessingStatus + 0x10));
             if (*(float *)(AllocatedMemorySize + 0x2e04) <= 0.0) {
               *(uint32_t *)(AllocatedMemorySize + 0x2e04) = *(uint32_t *)(AllocatedMemorySize + 0x1c);
             }
@@ -162690,9 +162690,9 @@ LAB_18013a7a6:
         FUN_18013a920(SecondaryProcessingStatusFlag);
       }
     }
-    if ((*(byte *)(TertiaryProcessingStatusFlag + 0x28) & 4) == 0) break;
-    long long AllocatedMemorySize = *(long long *)(TertiaryProcessingStatusFlag + 4);
-    CharacterCode = TertiaryProcessingStatusFlag;
+    if ((*(byte *)(StringProcessingStatus + 0x28) & 4) == 0) break;
+    long long AllocatedMemorySize = *(long long *)(StringProcessingStatus + 4);
+    CharacterCode = StringProcessingStatus;
     CharacterTablePointer6 = SystemConfigurationHandle;
   }
   return;
@@ -165184,9 +165184,9 @@ uint64_t * FUN_18013c9d9(void
   DataStructureCounter = *(long long *)(SystemContext + 0x2e30);
   *(void *)(MemoryPoolBlockSize + DataStructureCounter) = uStackX_20;
   ((void *)(MemoryPoolBlockSize + DataStructureCounter))[1] = in_stack_00000028;
-  TertiaryProcessingStatusFlag = (void *)(MemoryPoolBlockSize + 0x10 + DataStructureCounter);
-  *TertiaryProcessingStatusFlag = SystemStringBuffer30;
-  TertiaryProcessingStatusFlag[1] = TertiaryDataStorage;
+  StringProcessingStatus = (void *)(MemoryPoolBlockSize + 0x10 + DataStructureCounter);
+  *StringProcessingStatus = SystemStringBuffer30;
+  StringProcessingStatus[1] = TertiaryDataStorage;
   StatusBuffer = (uint32_t *)(MemoryPoolBlockSize + 0x20 + DataStructureCounter);
   *StatusBuffer = StackVariable40;
   StatusBuffer[1] = StackVariable44;
@@ -165195,9 +165195,9 @@ uint64_t * FUN_18013c9d9(void
   *(void *)(MemoryPoolBlockSize + 0x30 + DataStructureCounter) = DataStorageValue;
   MemoryAllocationSize = *(int *)(SystemContext + 0x2e28);
   *(int *)(SystemContext + 0x2e28) = MemoryAllocationSize + 1;
-  TertiaryProcessingStatusFlag = (void *)((long long)MemoryAllocationSize * 0x38 + *(long long *)(SystemContext + 0x2e30));
+  StringProcessingStatus = (void *)((long long)MemoryAllocationSize * 0x38 + *(long long *)(SystemContext + 0x2e30));
   DataSize = FUN_1801210b0();
-  *TertiaryProcessingStatusFlag = DataSize;
+  *StringProcessingStatus = DataSize;
   SystemMemoryAllocationResult = 0xffffffff;
   HighByte = *GeneralRegister14;
   SystemBytePointer = GeneralRegister14 + 1;
@@ -165210,8 +165210,8 @@ uint64_t * FUN_18013c9d9(void
     HighByte = *SystemBytePointer;
     SystemBytePointer = SystemBytePointer + 1;
   }
-  *(uint *)(TertiaryProcessingStatusFlag + 1) = ~SystemMemoryAllocationResult;
-  return TertiaryProcessingStatusFlag;
+  *(uint *)(StringProcessingStatus + 1) = ~SystemMemoryAllocationResult;
+  return StringProcessingStatus;
 }
 
 
@@ -165243,9 +165243,9 @@ uint64_t * FUN_18013ca47(int CharacterCode
   DataStructureCounter = *(long long *)(SystemContext + 0x2e30);
   *(void *)(MemoryPoolBlockSize + DataStructureCounter) = uStackX_20;
   ((void *)(MemoryPoolBlockSize + DataStructureCounter))[1] = in_stack_00000028;
-  TertiaryProcessingStatusFlag = (void *)(MemoryPoolBlockSize + 0x10 + DataStructureCounter);
-  *TertiaryProcessingStatusFlag = SystemStringBuffer30;
-  TertiaryProcessingStatusFlag[1] = TertiaryDataStorage;
+  StringProcessingStatus = (void *)(MemoryPoolBlockSize + 0x10 + DataStructureCounter);
+  *StringProcessingStatus = SystemStringBuffer30;
+  StringProcessingStatus[1] = TertiaryDataStorage;
   StatusBuffer = (uint32_t *)(MemoryPoolBlockSize + 0x20 + DataStructureCounter);
   *StatusBuffer = StackVariable40;
   StatusBuffer[1] = StackVariable44;
@@ -165254,9 +165254,9 @@ uint64_t * FUN_18013ca47(int CharacterCode
   *(void *)(MemoryPoolBlockSize + 0x30 + DataStructureCounter) = DataStorageValue;
   MemoryAllocationSize = *(int *)(SystemContext + 0x2e28);
   *(int *)(SystemContext + 0x2e28) = MemoryAllocationSize + 1;
-  TertiaryProcessingStatusFlag = (void *)((long long)MemoryAllocationSize * 0x38 + *(long long *)(SystemContext + 0x2e30));
+  StringProcessingStatus = (void *)((long long)MemoryAllocationSize * 0x38 + *(long long *)(SystemContext + 0x2e30));
   DataSize = FUN_1801210b0();
-  *TertiaryProcessingStatusFlag = DataSize;
+  *StringProcessingStatus = DataSize;
   SystemMemoryAllocationResult = 0xffffffff;
   HighByte = *GeneralRegister14;
   SystemBytePointer = GeneralRegister14 + 1;
@@ -165269,8 +165269,8 @@ uint64_t * FUN_18013ca47(int CharacterCode
     HighByte = *SystemBytePointer;
     SystemBytePointer = SystemBytePointer + 1;
   }
-  *(uint *)(TertiaryProcessingStatusFlag + 1) = ~SystemMemoryAllocationResult;
-  return TertiaryProcessingStatusFlag;
+  *(uint *)(StringProcessingStatus + 1) = ~SystemMemoryAllocationResult;
+  return StringProcessingStatus;
 }
 
 
@@ -165353,7 +165353,7 @@ uint64_t * FUN_18013ca47(int CharacterCode
   uint8_t *CharacterCodePointer;
   long long MemoryBoundaryEnd;
   int ProcessIterationCount;
-  uint *TertiaryProcessingStatusFlag;
+  uint *StringProcessingStatus;
   long long FrameRegisterPointer;
   long long RegisterSourceIndex;
   byte *ByteBufferPointer9;
@@ -165395,16 +165395,16 @@ uint64_t * FUN_18013ca47(int CharacterCode
         }
         MutexLockResult = 0;
         if (0 < *(int *)(SystemConfigurationHandle + 0x2e18)) {
-          TertiaryProcessingStatusFlag = (uint *)(*(long long *)(SystemConfigurationHandle + 0x2e20) + 8);
+          StringProcessingStatus = (uint *)(*(long long *)(SystemConfigurationHandle + 0x2e20) + 8);
           do {
-            if (*TertiaryProcessingStatusFlag == ~MemoryAddressMask) {
+            if (*StringProcessingStatus == ~MemoryAddressMask) {
               RegisterSourceIndex = (long long)MutexLockResult * 0x30 + *(long long *)(SystemConfigurationHandle + 0x2e20);
               if (RegisterSourceIndex == 0) goto LAB_18013ccf1;
               FrameRegisterPointer = (**(code **)(RegisterSourceIndex + 0x10))();
               goto LAB_18013cd32;
             }
             MutexLockResult = MutexLockResult + 1;
-            TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0xc;
+            StringProcessingStatus = StringProcessingStatus + 0xc;
           } while (MutexLockResult < *(int *)(SystemConfigurationHandle + 0x2e18));
         }
         RegisterSourceIndex = 0;
@@ -165468,7 +165468,7 @@ LAB_18013cd32:
   uint8_t *CharacterCodePointer;
   long long MemoryBoundaryEnd;
   int ProcessIterationCount;
-  uint *TertiaryProcessingStatusFlag;
+  uint *StringProcessingStatus;
   long long FrameRegisterPointer;
   byte *ByteBufferPointer9;
   long long RegisterSourceIndex;
@@ -165510,16 +165510,16 @@ LAB_18013cd32:
           }
           MutexLockResult = 0;
           if (0 < *(int *)(SystemConfigurationHandle + 0x2e18)) {
-            TertiaryProcessingStatusFlag = (uint *)(*(long long *)(SystemConfigurationHandle + 0x2e20) + 8);
+            StringProcessingStatus = (uint *)(*(long long *)(SystemConfigurationHandle + 0x2e20) + 8);
             do {
-              if (*TertiaryProcessingStatusFlag == ~MemoryAddressMask) {
+              if (*StringProcessingStatus == ~MemoryAddressMask) {
                 RegisterSourceIndex = (long long)MutexLockResult * 0x30 + *(long long *)(SystemConfigurationHandle + 0x2e20);
                 if (RegisterSourceIndex == 0) goto LAB_18013ccf1;
                 FrameRegisterPointer = (**(code **)(RegisterSourceIndex + 0x10))();
                 goto LAB_18013cd32;
               }
               MutexLockResult = MutexLockResult + 1;
-              TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0xc;
+              StringProcessingStatus = StringProcessingStatus + 0xc;
             } while (MutexLockResult < *(int *)(SystemConfigurationHandle + 0x2e18));
           }
           RegisterSourceIndex = 0;
@@ -166810,7 +166810,7 @@ long long FUN_18013d540(void
   int validationResult;
   uint CalculatedCodePoint;
   long long MemoryBoundaryEnd;
-  ushort *TertiaryProcessingStatusFlag;
+  ushort *StringProcessingStatus;
   long long secondaryLoopCounter;
   uint SystemMemoryAllocationResult;
   uint MemoryAllocationIndex;
@@ -166828,10 +166828,10 @@ long long FUN_18013d540(void
     if (MemoryAllocationSize != 0) {
       MemoryBoundaryEnd = GetClipboardData(0xd);
       if (MemoryBoundaryEnd != 0) {
-        TertiaryProcessingStatusFlag = (ushort *)GlobalLock(MemoryBoundaryEnd);
-        if (TertiaryProcessingStatusFlag != (ushort *)0x0) {
-          MemoryAllocationIndex = *TertiaryProcessingStatusFlag;
-          StatusBuffer = TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (ushort *)GlobalLock(MemoryBoundaryEnd);
+        if (StringProcessingStatus != (ushort *)0x0) {
+          MemoryAllocationIndex = *StringProcessingStatus;
+          StatusBuffer = StringProcessingStatus;
           MemoryAllocationSize = 0;
           while (MemoryAllocationIndex != 0) {
             StatusBuffer = StatusBuffer + 1;
@@ -166876,7 +166876,7 @@ long long FUN_18013d540(void
             }
           }
           SecondarySystemDataSize = CONCAT44(AllocatedMemorySize,SystemMemoryAllocationResult);
-          ConvertUtf16ToUtf8Character(MemoryEndAddressConstant,SystemMemoryAllocationResult,TertiaryProcessingStatusFlag,0);
+          ConvertUtf16ToUtf8Character(MemoryEndAddressConstant,SystemMemoryAllocationResult,StringProcessingStatus,0);
         }
         GlobalUnlock(MemoryBoundaryEnd);
         CloseClipboard();
@@ -168850,7 +168850,7 @@ uint64_t *ProcessSystemEventHandling(long long CharacterCode,uint64_t *Character
   uint64_t MemoryAddressMask;
   uint64_t *CharacterCodePointer;
   long long MemoryBoundaryEnd;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   uint8_t aStackVariable1B8 [32];
   uint32_t StackVariable;
   void *puStack_190;
@@ -168890,11 +168890,11 @@ uint64_t *ProcessSystemEventHandling(long long CharacterCode,uint64_t *Character
   *CharacterCodePointer = 0x2f73656c75646f4d;
   *(uint8_t *)(CharacterCodePointer + 1) = 0;
   SystemUnsignedValue180 = 8;
-  TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+  StringProcessingStatus = &CoreEngineDataTemplate;
   if (*(void **)(CharacterCode + 0x28) != NULL) {
-    TertiaryProcessingStatusFlag = *(void **)(CharacterCode + 0x28);
+    StringProcessingStatus = *(void **)(CharacterCode + 0x28);
   }
-  ProcessSystemMemoryAllocationBuffer(acStack_138,SystemMemoryAllocationBuffer,CharacterCodePointer,TertiaryProcessingStatusFlag);
+  ProcessSystemMemoryAllocationBuffer(acStack_138,SystemMemoryAllocationBuffer,CharacterCodePointer,StringProcessingStatus);
   CharacterCode = &UnknownDataStructureTemplate;
   CoreEnginePointerBuffer158 = aCoreEngineUnsignedValue;
   aCoreEngineUnsignedValue[0] = 0;
@@ -169020,7 +169020,7 @@ unsigned long long FUN_180141820(long long *CharacterCode
   uint CalculatedCodePoint;
   int ValidationResult;
   void *PreviousNode;
-  uint16_t *TertiaryProcessingStatusFlag;
+  uint16_t *StringProcessingStatus;
   uint8_t *TemporaryBuffer;
   uint8_t *StatusBuffer;
   long long SystemStringIndex;
@@ -169053,13 +169053,13 @@ unsigned long long FUN_180141820(long long *CharacterCode
   StackValidationData = 0;
   pSystemOperationFlag98 = NULL;
   SystemOperationFlag90 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  pSystemOperationFlag98 = TertiaryProcessingStatusFlag;
-  MemoryAllocationIndex = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  pSystemOperationFlag98 = StringProcessingStatus;
+  MemoryAllocationIndex = GetMemoryAllocationInfo(StringProcessingStatus);
   StackValidationData = CONCAT44(StackValidationData.HighPart,MemoryAllocationIndex);
-  *TertiaryProcessingStatusFlag = 0x73656c75646f4d2f;
-  *(uint16_t *)(TertiaryProcessingStatusFlag + 1) = 0x2f;
+  *StringProcessingStatus = 0x73656c75646f4d2f;
+  *(uint16_t *)(StringProcessingStatus + 1) = 0x2f;
   SystemOperationFlag90 = 9;
   MemoryAllocationSize = CoreEngineValidateSystemContext(&SystemMemoryPointer,&StackTempPointer);
   Utf16Char4 = 0;
@@ -169068,12 +169068,12 @@ unsigned long long FUN_180141820(long long *CharacterCode
     StackUnsigned68 = 0;
     CoreEnginePointerBuffer78 = (uint16_t *)0x0;
     StackVariable70 = 0;
-    TertiaryProcessingStatusFlag = (uint16_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-    *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-    CoreEnginePointerBuffer78 = TertiaryProcessingStatusFlag;
-    MemoryAllocationIndex = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+    StringProcessingStatus = (uint16_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+    *(uint8_t *)StringProcessingStatus = 0;
+    CoreEnginePointerBuffer78 = StringProcessingStatus;
+    MemoryAllocationIndex = GetMemoryAllocationInfo(StringProcessingStatus);
     StackUnsigned68 = CONCAT44(StackUnsigned68.HighPart,MemoryAllocationIndex);
-    *TertiaryProcessingStatusFlag = 0x2f;
+    *StringProcessingStatus = 0x2f;
     StackVariable70 = 1;
     SystemStringIndex = *CharacterCode;
     StatusBuffer = (uint8_t *)0x0;
@@ -169085,7 +169085,7 @@ unsigned long long FUN_180141820(long long *CharacterCode
     *TemporaryBuffer = 0;
     pBufferOffset = TemporaryBuffer;
     MemoryAddressMask = GetMemoryAllocationInfo(TemporaryBuffer);
-    *TemporaryBuffer = *(uint8_t *)TertiaryProcessingStatusFlag;
+    *TemporaryBuffer = *(uint8_t *)StringProcessingStatus;
     SystemKeyPointer = 1;
     TemporaryBuffer[1] = 0;
     SystemStackFlag = (unsigned long long)MemoryAddressMask;
@@ -169301,7 +169301,7 @@ uint32_t ProcessUtf16CharAndSystemBuffer(long long CharacterCode,uint64_t *Chara
   unsigned long long MemoryOffsetValue;
   uint CalculatedCodePoint;
   int ValidationResult;
-  uint16_t *TertiaryProcessingStatusFlag;
+  uint16_t *StringProcessingStatus;
   long long secondaryLoopCounter;
   uint64_t MemoryAllocationIndex;
   uint64_t ProcessStringBuffer;
@@ -169341,11 +169341,11 @@ uint32_t ProcessUtf16CharAndSystemBuffer(long long CharacterCode,uint64_t *Chara
   pSystemFlagB = (uint16_t *)0x0;
   SystemFlagC = 0;
   CoreEnginePointerBuffer78 = CharacterCodeSize;
-  TertiaryProcessingStatusFlag = (uint16_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  pSystemFlagB = TertiaryProcessingStatusFlag;
-  CalculatedCodePoint = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-  *TertiaryProcessingStatusFlag = 0x2f;
+  StringProcessingStatus = (uint16_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  pSystemFlagB = StringProcessingStatus;
+  CalculatedCodePoint = GetMemoryAllocationInfo(StringProcessingStatus);
+  *StringProcessingStatus = 0x2f;
   SystemFlagC = 1;
   EngineStatusBuffer = &CoreEngineDataTemplate;
   if (*(void **)(Utf8InputPointer + 8) != NULL) {
@@ -169362,12 +169362,12 @@ uint32_t ProcessUtf16CharAndSystemBuffer(long long CharacterCode,uint64_t *Chara
     IntegerValue2 = ValidationResult + 2;
     if ((IntegerValue2 != 0) && (Utf16Char = ValidationResult + 3, CalculatedCodePoint < Utf16Char)) {
       uStack_118 = 0x13;
-      TertiaryProcessingStatusFlag = (uint16_t *)AllocateMemoryPool(MemoryPoolManager,TertiaryProcessingStatusFlag,Utf16Char,0x10);
-      pSystemFlagB = TertiaryProcessingStatusFlag;
-      SystemFlagD.LowPart = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+      StringProcessingStatus = (uint16_t *)AllocateMemoryPool(MemoryPoolManager,StringProcessingStatus,Utf16Char,0x10);
+      pSystemFlagB = StringProcessingStatus;
+      SystemFlagD.LowPart = GetMemoryAllocationInfo(StringProcessingStatus);
     }
                     // WARNING: Subroutine does not return
-    memcpy((uint8_t *)((long long)TertiaryProcessingStatusFlag + 1),StatusBuffer3,(long long)IntegerValue2);
+    memcpy((uint8_t *)((long long)StringProcessingStatus + 1),StatusBuffer3,(long long)IntegerValue2);
   }
   ProcessingContextPointerBuffer = &pSystemFlagE;
   MemoryAllocationIndex = ProcessSystemMemoryAllocationIndex(&pSystemFlagE,&pSystemFlagA);
@@ -169482,19 +169482,19 @@ uint32_t ProcessSystemData(long long CharacterCode,long long CharacterCodeSize
   StatusBuffer = (void *)(CharacterCode + 0x858);
   if (*(uint64_t **)(CharacterCode + 0x868) != NULL) {
     pMemoryAddressMask = StatusBuffer;
-    TertiaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x868);
+    StringProcessingStatus = *(uint64_t **)(CharacterCode + 0x868);
     do {
       if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-        TemporaryBuffer = (void *)TertiaryProcessingStatusFlag[1];
+        TemporaryBuffer = (void *)StringProcessingStatus[1];
         LowByte = false;
       }
       else {
-        if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+        if (*(int *)(StringProcessingStatus + 6) == 0) {
           LowByte = true;
         }
         else {
           SystemBytePointer = *(byte **)(CharacterCodeSize + 8);
-          SystemOffsetValue = TertiaryProcessingStatusFlag[5] - (long long)SystemBytePointer;
+          SystemOffsetValue = StringProcessingStatus[5] - (long long)SystemBytePointer;
           do {
             DataSize = (uint)SystemBytePointer[SystemOffsetValue];
             MutexLockResult = *SystemBytePointer - DataSize;
@@ -169503,18 +169503,18 @@ uint32_t ProcessSystemData(long long CharacterCode,long long CharacterCodeSize
           } while (DataSize != 0);
           LowByte = 0 < MutexLockResult;
           if (MutexLockResult < 1) {
-            TemporaryBuffer = (void *)TertiaryProcessingStatusFlag[1];
+            TemporaryBuffer = (void *)StringProcessingStatus[1];
             goto LAB_18014271c;
           }
         }
-        TemporaryBuffer = (void *)*TertiaryProcessingStatusFlag;
+        TemporaryBuffer = (void *)*StringProcessingStatus;
       }
 LAB_18014271c:
       if (LowByte) {
-        TertiaryProcessingStatusFlag = MemoryAddressMask;
+        StringProcessingStatus = MemoryAddressMask;
       }
-      MemoryAddressMask = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag = TemporaryBuffer;
+      MemoryAddressMask = StringProcessingStatus;
+      StringProcessingStatus = TemporaryBuffer;
     } while (TemporaryBuffer != NULL);
     if (pMemoryAddressMask != StatusBuffer) {
       if (*(int *)(MemoryAddressMask + 6) == 0) goto LAB_18014276d;
@@ -169567,19 +169567,19 @@ uint32_t ProcessSystemMemoryAllocationAndStatus(long long CharacterCode,long lon
   StatusBuffer = (void *)(CharacterCode + 0x858);
   if (*(uint64_t **)(CharacterCode + 0x868) != NULL) {
     pMemoryAddressMask = StatusBuffer;
-    TertiaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x868);
+    StringProcessingStatus = *(uint64_t **)(CharacterCode + 0x868);
     do {
       if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-        TemporaryBuffer = (void *)TertiaryProcessingStatusFlag[1];
+        TemporaryBuffer = (void *)StringProcessingStatus[1];
         LowByte = false;
       }
       else {
-        if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+        if (*(int *)(StringProcessingStatus + 6) == 0) {
           LowByte = true;
         }
         else {
           SystemBytePointer = *(byte **)(CharacterCodeSize + 8);
-          SystemOffsetValue = TertiaryProcessingStatusFlag[5] - (long long)SystemBytePointer;
+          SystemOffsetValue = StringProcessingStatus[5] - (long long)SystemBytePointer;
           do {
             DataSize = (uint)SystemBytePointer[SystemOffsetValue];
             MutexLockResult = *SystemBytePointer - DataSize;
@@ -169588,18 +169588,18 @@ uint32_t ProcessSystemMemoryAllocationAndStatus(long long CharacterCode,long lon
           } while (DataSize != 0);
           LowByte = 0 < MutexLockResult;
           if (MutexLockResult < 1) {
-            TemporaryBuffer = (void *)TertiaryProcessingStatusFlag[1];
+            TemporaryBuffer = (void *)StringProcessingStatus[1];
             goto LAB_18014271c;
           }
         }
-        TemporaryBuffer = (void *)*TertiaryProcessingStatusFlag;
+        TemporaryBuffer = (void *)*StringProcessingStatus;
       }
 LAB_18014271c:
       if (LowByte) {
-        TertiaryProcessingStatusFlag = MemoryAddressMask;
+        StringProcessingStatus = MemoryAddressMask;
       }
-      MemoryAddressMask = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag = TemporaryBuffer;
+      MemoryAddressMask = StringProcessingStatus;
+      StringProcessingStatus = TemporaryBuffer;
     } while (TemporaryBuffer != NULL);
     if (pMemoryAddressMask != StatusBuffer) {
       if (*(int *)(MemoryAddressMask + 6) == 0) goto LAB_18014276d;
@@ -170548,16 +170548,16 @@ LAB_1801452ee:
     pCharacterVariable5 = CharacterPointer + 1;
   } while (*pCharacterVariable5 != '\0');
   CharacterPointer = CharacterPointer + -0x18098c08f;
-  TertiaryProcessingStatusFlag = *(uint64_t **)(CharacterCodeSize + 0x30);
-  if (TertiaryProcessingStatusFlag != NULL) {
+  StringProcessingStatus = *(uint64_t **)(CharacterCodeSize + 0x30);
+  if (StringProcessingStatus != NULL) {
     do {
-      pCharacterVariable5 = (char *)*TertiaryProcessingStatusFlag;
+      pCharacterVariable5 = (char *)*StringProcessingStatus;
       if (pCharacterVariable5 == (char *)0x0) {
         pCharacterVariable5 = (char *)0x180d48d24;
         FunctionPointer = (char *)0x0;
       }
       else {
-        FunctionPointer = (char *)TertiaryProcessingStatusFlag[2];
+        FunctionPointer = (char *)StringProcessingStatus[2];
       }
       if (FunctionPointer == CharacterPointer) {
         FunctionPointer = FunctionPointer + (long long)pCharacterVariable5;
@@ -170579,7 +170579,7 @@ LAB_180146224:
           PrimaryProcessingStatusFlag[3] = 0x6f6d615f;
           PrimaryProcessingStatusFlag[4] = 0x746e75;
           SystemPriorityLevel = 0x13;
-          FUN_180632650(TertiaryProcessingStatusFlag,&SystemValidationPointer);
+          FUN_180632650(StringProcessingStatus,&SystemValidationPointer);
           SystemTemplatePointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
           CoreEngineFreeSystemMemory(PrimaryProcessingStatusFlag);
@@ -170590,8 +170590,8 @@ LAB_180146224:
           if (FunctionPointer <= pCharacterVariable5) goto LAB_180146224;
         }
       }
-      TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[0xb];
-    } while (TertiaryProcessingStatusFlag != NULL);
+      StringProcessingStatus = (void *)StringProcessingStatus[0xb];
+    } while (StringProcessingStatus != NULL);
   }
   return;
 }
@@ -170687,16 +170687,16 @@ LAB_180146a6e:
     pCharacterVariable5 = CharacterPointer + 1;
   } while (*pCharacterVariable5 != '\0');
   CharacterPointer = CharacterPointer + -0x180a071e7;
-  TertiaryProcessingStatusFlag = *(uint64_t **)(CharacterCodeSize + 0x30);
-  if (TertiaryProcessingStatusFlag != NULL) {
+  StringProcessingStatus = *(uint64_t **)(CharacterCodeSize + 0x30);
+  if (StringProcessingStatus != NULL) {
     do {
-      pCharacterVariable5 = (char *)*TertiaryProcessingStatusFlag;
+      pCharacterVariable5 = (char *)*StringProcessingStatus;
       if (pCharacterVariable5 == (char *)0x0) {
         pCharacterVariable5 = (char *)0x180d48d24;
         pSystemCheckResult = (char *)0x0;
       }
       else {
-        pSystemCheckResult = (char *)TertiaryProcessingStatusFlag[2];
+        pSystemCheckResult = (char *)StringProcessingStatus[2];
       }
       if (pSystemCheckResult == CharacterPointer) {
         pSystemCheckResult = pSystemCheckResult + (long long)pCharacterVariable5;
@@ -170719,7 +170719,7 @@ LAB_1801479b7:
           systemEventTemplatePointer[4] = 0x646c6f68;
           *(uint8_t *)(systemEventTemplatePointer + 5) = 0;
           SystemPriorityLevel = 0x14;
-          FUN_180632650(TertiaryProcessingStatusFlag,&SystemValidationPointer);
+          FUN_180632650(StringProcessingStatus,&SystemValidationPointer);
           SystemTemplatePointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
           CoreEngineFreeSystemMemory(systemEventTemplatePointer);
@@ -170730,8 +170730,8 @@ LAB_1801479b7:
           if (pSystemCheckResult <= pCharacterVariable5) goto LAB_1801479b7;
         }
       }
-      TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[0xb];
-    } while (TertiaryProcessingStatusFlag != NULL);
+      StringProcessingStatus = (void *)StringProcessingStatus[0xb];
+    } while (StringProcessingStatus != NULL);
   }
   return;
 }
@@ -171880,7 +171880,7 @@ long long * FUN_18014acf0(long long CharacterCode,long long *CharacterCodeSize
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
   unsigned long long SystemChecksumValue;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   long long systemLoopCounter;
   
   AllocatedMemorySize = CharacterCodeSize[0x20];
@@ -171945,13 +171945,13 @@ long long * FUN_18014acf0(long long CharacterCode,long long *CharacterCodeSize
     FUN_18014eff0(CharacterCode + 8,CharacterCodeSize[8],CharacterCodeSize[9]);
   }
   *(int *)(CharacterCode + 0xe) = (int)CharacterCodeSize[0xe];
-  TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+  StringProcessingStatus = &CoreEngineDataTemplate;
   if ((void *)CharacterCodeSize[0xd] != NULL) {
-    TertiaryProcessingStatusFlag = (void *)CharacterCodeSize[0xd];
+    StringProcessingStatus = (void *)CharacterCodeSize[0xd];
   }
                     // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
                     // WARNING: Treating indirect jump as call
-  strcpy_s(CharacterCode[0xd],0x80,TertiaryProcessingStatusFlag);
+  strcpy_s(CharacterCode[0xd],0x80,StringProcessingStatus);
   return;
 }
 
@@ -173397,8 +173397,8 @@ LAB_18014b72a:
   uint16_t MemoryAddressMask;
   uint16_t *CharacterCodePointer;
   uint32_t *SecondaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
+  uint32_t *StringProcessingStatus;
   uint32_t *TemporaryBuffer;
   uint32_t *StatusBuffer;
   uint32_t *SystemStatusBuffer;
@@ -173487,7 +173487,7 @@ LAB_18014b72a:
     lStack_140 = 0;
     do {
       CharacterCodePointer = CoreEnginePointerBuffer158;
-      TertiaryProcessingStatusFlag = (uint32_t *)0x0;
+      StringProcessingStatus = (uint32_t *)0x0;
       SystemDataTablePointer = *(long long *)(CharacterCode + 0x28);
       memoryAllocationBuffer = (uint32_t *                    ((long long)*(int *)(lStack_120 + 4 + lStack_140 * 0x18) * 0x10 + SystemDataTablePointer);
       DataProcessingBuffer = (uint32_t *                    ((long long)*(int *)(lStack_120 + 8 + lStack_140 * 0x18) * 0x10 + SystemDataTablePointer);
@@ -173497,14 +173497,14 @@ LAB_18014b72a:
       SystemDataTablePointer = (SystemDataTablePointer >> 1) - (SystemDataTablePointer >> 0x3f);
       if (StatusBuffer5 < SystemPointerValue170) {
         *StatusBuffer5 = (int)SystemDataTablePointer;
-        TertiaryProcessingStatusFlag = TemporaryBuffer;
+        StringProcessingStatus = TemporaryBuffer;
       }
       else {
         lStack_118 = (long long)StatusBuffer5 - (long long)TemporaryBuffer;
         if (lStack_118 >> 2 == 0) {
           lStackX_18 = 1;
 LAB_18014ba35:
-          TertiaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,lStackX_18 * 4,(uint8_t)DataContentStatus          ;
+          StringProcessingStatus = (uint32_t *)BufferAllocate(MemoryPoolManager,lStackX_18 * 4,(uint8_t)DataContentStatus          ;
         }
         else {
           lStackX_18 = (lStack_118 >> 2) * 2;
@@ -173512,23 +173512,23 @@ LAB_18014ba35:
         }
         if (TemporaryBuffer != StatusBuffer5) {
                     // WARNING: Subroutine does not return
-          memmove(TertiaryProcessingStatusFlag,TemporaryBuffer,lStack_118);
+          memmove(StringProcessingStatus,TemporaryBuffer,lStack_118);
         }
-        *TertiaryProcessingStatusFlag = (int)SystemDataTablePointer;
+        *StringProcessingStatus = (int)SystemDataTablePointer;
         if (TemporaryBuffer != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
           CoreEngineFreeSystemMemory(TemporaryBuffer);
         }
-        SystemPointerValue170 = TertiaryProcessingStatusFlag + lStackX_18;
-        SystemProcessingStatusFlag = TertiaryProcessingStatusFlag;
-        StatusBuffer5 = TertiaryProcessingStatusFlag;
+        SystemPointerValue170 = StringProcessingStatus + lStackX_18;
+        SystemProcessingStatusFlag = StringProcessingStatus;
+        StatusBuffer5 = StringProcessingStatus;
       }
-      TertiaryProcessingStatusFlag = StatusBuffer5 + 1;
+      StringProcessingStatus = StatusBuffer5 + 1;
       TemporaryBuffer = (uint32_t *)0x0;
       Utf16Char = memoryAllocationBuffer[2];
       MemoryAllocationIndex = memoryAllocationBuffer[1];
       UnicodeCodePoint = *memoryAllocationBuffer;
-      DataContentPointer = TertiaryProcessingStatusFlag;
+      DataContentPointer = StringProcessingStatus;
       if (SystemStatusBuffer < puStack_190) {
         *SystemStatusBuffer = UnicodeCodePoint;
         SystemStatusBuffer[1] = MemoryAllocationIndex;
@@ -173571,13 +173571,13 @@ LAB_18014baf6:
                ((long long)SystemStatusBuffer - (long long)TemporaryBuffer >> 0x3f);
       SystemDataTablePointer = (SystemDataTablePointer >> 1) - (SystemDataTablePointer >> 0x3f);
       ProcessingContextPointer = SystemStatusBuffer;
-      if (TertiaryProcessingStatusFlag < SystemPointerValue170) {
+      if (StringProcessingStatus < SystemPointerValue170) {
         StatusBuffer5 = StatusBuffer5 + 2;
-        *TertiaryProcessingStatusFlag = (int)SystemDataTablePointer;
-        StatusBuffer = TertiaryProcessingStatusFlag;
+        *StringProcessingStatus = (int)SystemDataTablePointer;
+        StatusBuffer = StringProcessingStatus;
       }
       else {
-        memoryAllocationBuffer = (uint32_t *)((long long)TertiaryProcessingStatusFlag - (long long)TertiaryProcessingStatusFlag);
+        memoryAllocationBuffer = (uint32_t *)((long long)StringProcessingStatus - (long long)StringProcessingStatus);
         if ((long long)memoryAllocationBuffer >> 2 == 0) {
           lStackX_18 = 1;
 LAB_18014bbf9:
@@ -173588,15 +173588,15 @@ LAB_18014bbf9:
           if (lStackX_18 != 0) goto LAB_18014bbf9;
           StatusBuffer = (uint32_t *)0x0;
         }
-        if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
+        if (StringProcessingStatus != StringProcessingStatus) {
                     // WARNING: Subroutine does not return
-          memmove(StatusBuffer,TertiaryProcessingStatusFlag,memoryAllocationBuffer);
+          memmove(StatusBuffer,StringProcessingStatus,memoryAllocationBuffer);
         }
         *StatusBuffer = (int)SystemDataTablePointer;
         StatusBuffer5 = StatusBuffer + 1;
-        if (TertiaryProcessingStatusFlag != (uint32_t *)0x0) {
+        if (StringProcessingStatus != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
-          CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+          CoreEngineFreeSystemMemory(StringProcessingStatus);
         }
         SystemPointerValue170 = StatusBuffer + lStackX_18;
         SystemProcessingStatusFlag = StatusBuffer;
@@ -173606,48 +173606,48 @@ LAB_18014bbf9:
       UnicodeCodePoint = *DataProcessingBuffer;
       DataContentPointer = StatusBuffer5;
       if (SystemStatusBuffer < puStack_190) {
-        TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 6;
+        StringProcessingStatus = SecondaryProcessingStatusFlag + 6;
         *SystemStatusBuffer = UnicodeCodePoint;
         SecondaryProcessingStatusFlag[4] = MemoryAllocationIndex;
         SecondaryProcessingStatusFlag[5] = Utf16Char;
-        TertiaryProcessingStatusFlag = TemporaryBuffer;
+        StringProcessingStatus = TemporaryBuffer;
       }
       else {
         if (SystemDataTablePointer == 0) {
           SystemDataTablePointer = 1;
 LAB_18014bcbe:
-          TertiaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,SystemDataTablePointer * 0xc,(uint8_t)ProcessingStatus);
+          StringProcessingStatus = (uint32_t *)BufferAllocate(MemoryPoolManager,SystemDataTablePointer * 0xc,(uint8_t)ProcessingStatus);
         }
         else {
           SystemDataTablePointer = SystemDataTablePointer * 2;
           if (SystemDataTablePointer != 0) goto LAB_18014bcbe;
-          TertiaryProcessingStatusFlag = (uint32_t *)0x0;
+          StringProcessingStatus = (uint32_t *)0x0;
         }
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+        StringProcessingStatus = StringProcessingStatus;
         if (TemporaryBuffer != SystemStatusBuffer) {
-          LoopIndex = (long long)TemporaryBuffer - (long long)TertiaryProcessingStatusFlag;
+          LoopIndex = (long long)TemporaryBuffer - (long long)StringProcessingStatus;
           do {
-            *TertiaryProcessingStatusFlag = *(uint32_t *)(LoopIndex + (long long)TertiaryProcessingStatusFlag);
-            TertiaryProcessingStatusFlag[1] = *(uint32_t *)(LoopIndex + 4 + (long long)TertiaryProcessingStatusFlag);
-            TertiaryProcessingStatusFlag[2] = *(uint32_t *)(LoopIndex + 8 + (long long)TertiaryProcessingStatusFlag);
-            TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 3;
-          } while ((uint32_t *)(LoopIndex + (long long)TertiaryProcessingStatusFlag) != SystemStatusBuffer);
+            *StringProcessingStatus = *(uint32_t *)(LoopIndex + (long long)StringProcessingStatus);
+            StringProcessingStatus[1] = *(uint32_t *)(LoopIndex + 4 + (long long)StringProcessingStatus);
+            StringProcessingStatus[2] = *(uint32_t *)(LoopIndex + 8 + (long long)StringProcessingStatus);
+            StringProcessingStatus = StringProcessingStatus + 3;
+          } while ((uint32_t *)(LoopIndex + (long long)StringProcessingStatus) != SystemStatusBuffer);
         }
-        *TertiaryProcessingStatusFlag = UnicodeCodePoint;
-        TertiaryProcessingStatusFlag[1] = MemoryAllocationIndex;
-        TertiaryProcessingStatusFlag[2] = Utf16Char;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 3;
+        *StringProcessingStatus = UnicodeCodePoint;
+        StringProcessingStatus[1] = MemoryAllocationIndex;
+        StringProcessingStatus[2] = Utf16Char;
+        StringProcessingStatus = StringProcessingStatus + 3;
         if (TemporaryBuffer != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
           CoreEngineFreeSystemMemory(TemporaryBuffer);
         }
-        puStack_190 = TertiaryProcessingStatusFlag + SystemDataTablePointer * 3;
-        ProcessingBufferPointer = TertiaryProcessingStatusFlag;
+        puStack_190 = StringProcessingStatus + SystemDataTablePointer * 3;
+        ProcessingBufferPointer = StringProcessingStatus;
       }
-      SystemDataTablePointer = ((long long)TertiaryProcessingStatusFlag - (long long)TertiaryProcessingStatusFlag) / 6 +
-               ((long long)TertiaryProcessingStatusFlag - (long long)TertiaryProcessingStatusFlag >> 0x3f);
+      SystemDataTablePointer = ((long long)StringProcessingStatus - (long long)StringProcessingStatus) / 6 +
+               ((long long)StringProcessingStatus - (long long)StringProcessingStatus >> 0x3f);
       SystemDataTablePointer = (SystemDataTablePointer >> 1) - (SystemDataTablePointer >> 0x3f);
-      ProcessingContextPointer = TertiaryProcessingStatusFlag;
+      ProcessingContextPointer = StringProcessingStatus;
       if (StatusBuffer5 < SystemPointerValue170) {
         *StatusBuffer5 = (int)SystemDataTablePointer;
         TemporaryBuffer = StatusBuffer;
@@ -173682,12 +173682,12 @@ LAB_18014bdc7:
       MemoryAllocationIndex = pBufferInitializationFlag[1];
       UnicodeCodePoint = *pBufferInitializationFlag;
       DataContentPointer = StatusBuffer5;
-      if (TertiaryProcessingStatusFlag < puStack_190) {
-        *TertiaryProcessingStatusFlag = UnicodeCodePoint;
-        TertiaryProcessingStatusFlag[1] = MemoryAllocationIndex;
-        TertiaryProcessingStatusFlag[2] = Utf16Char;
-        StatusBuffer = TertiaryProcessingStatusFlag;
-        SystemStatusBuffer = TertiaryProcessingStatusFlag;
+      if (StringProcessingStatus < puStack_190) {
+        *StringProcessingStatus = UnicodeCodePoint;
+        StringProcessingStatus[1] = MemoryAllocationIndex;
+        StringProcessingStatus[2] = Utf16Char;
+        StatusBuffer = StringProcessingStatus;
+        SystemStatusBuffer = StringProcessingStatus;
       }
       else {
         if (SystemDataTablePointer == 0) {
@@ -173701,21 +173701,21 @@ LAB_18014be81:
           StatusBuffer = (uint32_t *)0x0;
         }
         SystemStatusBuffer = StatusBuffer;
-        if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
-          LoopIndex = (long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer;
+        if (StringProcessingStatus != StringProcessingStatus) {
+          LoopIndex = (long long)StringProcessingStatus - (long long)StatusBuffer;
           do {
             *SystemStatusBuffer = *(uint32_t *)(LoopIndex + (long long)SystemStatusBuffer);
             SystemStatusBuffer[1] = *(uint32_t *)(LoopIndex + 4 + (long long)SystemStatusBuffer);
             SystemStatusBuffer[2] = *(uint32_t *)(LoopIndex + 8 + (long long)SystemStatusBuffer);
             SystemStatusBuffer = SystemStatusBuffer + 3;
-          } while ((uint32_t *)(LoopIndex + (long long)SystemStatusBuffer) != TertiaryProcessingStatusFlag);
+          } while ((uint32_t *)(LoopIndex + (long long)SystemStatusBuffer) != StringProcessingStatus);
         }
         *SystemStatusBuffer = UnicodeCodePoint;
         SystemStatusBuffer[1] = MemoryAllocationIndex;
         SystemStatusBuffer[2] = Utf16Char;
-        if (TertiaryProcessingStatusFlag != (uint32_t *)0x0) {
+        if (StringProcessingStatus != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
-          CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+          CoreEngineFreeSystemMemory(StringProcessingStatus);
         }
         puStack_190 = StatusBuffer + SystemDataTablePointer * 3;
         ProcessingBufferPointer = StatusBuffer;
@@ -173802,7 +173802,7 @@ uint8_t ProcessCharacterCodeWithFullValidation(long long CharacterCode,uint64_t 
   uint32_t *MemoryAddressMask;
   uint8_t CalculatedCodePoint;
   uint32_t *SecondaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   long long secondaryLoopCounter;
   uint32_t *TemporaryBuffer;
   long long SystemOffsetValue;
@@ -173853,7 +173853,7 @@ uint8_t ProcessCharacterCodeWithFullValidation(long long CharacterCode,uint64_t 
         pSystemFlagF[1] = MemoryAllocationIndex;
         pSystemFlagF[2] = Utf16Char;
         SecondaryProcessingStatusFlag = TemporaryBuffer;
-        TertiaryProcessingStatusFlag = pSystemFlagF;
+        StringProcessingStatus = pSystemFlagF;
       }
       else {
         SystemDataTablePointer = ((long long)pSystemFlagF - (long long)TemporaryBuffer) / 0xc;
@@ -173866,19 +173866,19 @@ LAB_18014c263:
           SystemDataTablePointer = SystemDataTablePointer * 2;
           if (SystemDataTablePointer != 0) goto LAB_18014c263;
         }
-        TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+        StringProcessingStatus = SecondaryProcessingStatusFlag;
         if (TemporaryBuffer != pMemoryAddressMask) {
           SystemOffsetValue = (long long)TemporaryBuffer - (long long)SecondaryProcessingStatusFlag;
           do {
-            *TertiaryProcessingStatusFlag = *(uint32_t *)(SystemOffsetValue + (long long)TertiaryProcessingStatusFlag);
-            TertiaryProcessingStatusFlag[1] = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + SystemOffsetValue + 4);
-            TertiaryProcessingStatusFlag[2] = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + SystemOffsetValue + 8);
-            TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 3;
-          } while ((uint32_t *)(SystemOffsetValue + (long long)TertiaryProcessingStatusFlag) != pMemoryAddressMask);
+            *StringProcessingStatus = *(uint32_t *)(SystemOffsetValue + (long long)StringProcessingStatus);
+            StringProcessingStatus[1] = *(uint32_t *)((long long)StringProcessingStatus + SystemOffsetValue + 4);
+            StringProcessingStatus[2] = *(uint32_t *)((long long)StringProcessingStatus + SystemOffsetValue + 8);
+            StringProcessingStatus = StringProcessingStatus + 3;
+          } while ((uint32_t *)(SystemOffsetValue + (long long)StringProcessingStatus) != pMemoryAddressMask);
         }
-        *TertiaryProcessingStatusFlag = UnicodeCodePoint;
-        TertiaryProcessingStatusFlag[1] = MemoryAllocationIndex;
-        TertiaryProcessingStatusFlag[2] = Utf16Char;
+        *StringProcessingStatus = UnicodeCodePoint;
+        StringProcessingStatus[1] = MemoryAllocationIndex;
+        StringProcessingStatus[2] = Utf16Char;
         if (TemporaryBuffer != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
           CoreEngineFreeSystemMemory(TemporaryBuffer);
@@ -173887,7 +173887,7 @@ LAB_18014c263:
         pSystemFlagE = SecondaryProcessingStatusFlag;
         pSystemFlagG = SystemStatusBuffer;
       }
-      pSystemFlagF = TertiaryProcessingStatusFlag + 3;
+      pSystemFlagF = StringProcessingStatus + 3;
       SystemStatusCode = (int)QuaternaryReturnCode + 1;
       QuaternaryReturnCode = (unsigned long long)SystemStatusCode;
       SystemDataTablePointer = *(long long *)(CharacterCode + 0x28);
@@ -177696,7 +177696,7 @@ uint64_t* ConfigureSystemContext(uint64_t CharacterCode,uint64_t *CharacterCodeS
   uint32_t MemoryAddressMask;
   long long AllocatedMemorySize;
   uint8_t *SecondaryProcessingStatusFlag;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   long long secondaryLoopCounter;
   int IntegerValue9;
   void *EncodingBuffer;
@@ -177704,11 +177704,11 @@ uint64_t* ConfigureSystemContext(uint64_t CharacterCode,uint64_t *CharacterCodeS
   uint32_t SystemKeyPointer;
   unsigned long long SystemStackFlag;
   
-  TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+  StringProcessingStatus = &CoreEngineDataTemplate;
   if (*(void **)(CharacterCodeSize + 8) != NULL) {
-    TertiaryProcessingStatusFlag = *(void **)(CharacterCodeSize + 8);
+    StringProcessingStatus = *(void **)(CharacterCodeSize + 8);
   }
-  CharacterByteCount = (**(code **)(CoreEngineEventHandler + 400))(TertiaryProcessingStatusFlag);
+  CharacterByteCount = (**(code **)(CoreEngineEventHandler + 400))(StringProcessingStatus);
   if ((CharacterByteCount != 0) && (CoreEngineConsoleHandle != 0)) {
     (**(code **)(CoreEngineConsoleHandle + 0x30))(CharacterByteCount);
   }
@@ -177717,20 +177717,20 @@ uint64_t* ConfigureSystemContext(uint64_t CharacterCode,uint64_t *CharacterCodeS
   if (0 < MemoryAllocationSize) {
     do {
       AllocatedMemorySize = (**(code **)(CoreEngineConsoleHandle + 0xd0))(CharacterByteCount,IntegerValue9);
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(AllocatedMemorySize + 8) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 8);
+        StringProcessingStatus = *(void **)(AllocatedMemorySize + 8);
       }
       EncodingBuffer = &SystemNullTemplate;
       SystemStackFlag = 0;
       pBufferOffset = (uint8_t *)0x0;
       SystemKeyPointer = 0;
-      if (TertiaryProcessingStatusFlag != NULL) {
+      if (StringProcessingStatus != NULL) {
         AllocatedMemorySize = -1;
         do {
           SystemDataTablePointer = AllocatedMemorySize;
           AllocatedMemorySize = SystemDataTablePointer + 1;
-        } while (TertiaryProcessingStatusFlag[AllocatedMemorySize] != '\0');
+        } while (StringProcessingStatus[AllocatedMemorySize] != '\0');
         if ((int)AllocatedMemorySize != 0) {
           MemoryAllocationSize = (int)SystemDataTablePointer + 2;
           CharacterByteCount = MemoryAllocationSize;
@@ -177743,7 +177743,7 @@ uint64_t* ConfigureSystemContext(uint64_t CharacterCode,uint64_t *CharacterCodeS
           MemoryAddressMask = GetMemoryAllocationInfo(SecondaryProcessingStatusFlag);
           SystemStackFlag = CONCAT44(SystemStackFlag.HighPart,MemoryAddressMask);
                     // WARNING: Subroutine does not return
-          memcpy(SecondaryProcessingStatusFlag,TertiaryProcessingStatusFlag,MemoryAllocationSize);
+          memcpy(SecondaryProcessingStatusFlag,StringProcessingStatus,MemoryAllocationSize);
         }
       }
       SystemKeyPointer = 0;
@@ -177814,7 +177814,7 @@ uint64_t * FUN_180150ab0(uint64_t *CharacterCode,unsigned long long CharacterCod
   long long DataStructureCounter;
   long long *AllocatedMemorySizePointer;
   long long MemoryBoundaryEnd;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   uint8_t ProcessingStatusFlag;
   char *pSystemValidationChar;
   long long SystemOffsetValue;
@@ -178020,11 +178020,11 @@ uint64_t * FUN_180150ab0(uint64_t *CharacterCode,unsigned long long CharacterCod
         InitializeSystemStatusBuffer(&SystemEventQueueBuffer,0,0x40);
         for (MemoryBoundaryEnd = *(long long *)(DataStructureCounter + 0x8210); MemoryBoundaryEnd != DataStructureCounter + 0x8208;
             MemoryBoundaryEnd = GetNextMemoryBlockIndex(MemoryBoundaryEnd)) {
-          TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+          StringProcessingStatus = &CoreEngineDataTemplate;
           if (*(void **)(MemoryBoundaryEnd + 0x28) != NULL) {
-            TertiaryProcessingStatusFlag = *(void **)(MemoryBoundaryEnd + 0x28);
+            StringProcessingStatus = *(void **)(MemoryBoundaryEnd + 0x28);
           }
-          SystemCheckResult = FUN_1801189e0(TertiaryProcessingStatusFlag);
+          SystemCheckResult = FUN_1801189e0(StringProcessingStatus);
           if (SystemCheckResult != '\0') {
             SecondaryFloatValue = (float)*(long long *)(MemoryBoundaryEnd + 0x138);
             if (*(long long *)(MemoryBoundaryEnd + 0x138) < 0) {
@@ -178186,7 +178186,7 @@ uint64_t * FUN_180150ab0(uint64_t *CharacterCode,unsigned long long CharacterCod
   long long *AllocatedMemorySizePointer;
   uint DataSize;
   int ProcessIterationCount;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   long long systemLoopCounter;
   uint64_t MemoryAllocationIndex;
   long long SystemStringIndex;
@@ -178579,11 +178579,11 @@ code_r0x000180151fd7:
     MemoryAllocationIndex = FUN_18023a940(*(void *)(CoreEngineRenderContext + 0x121e0));
     FUN_1800a5fc0(CoreEngineRenderContext,MemoryAllocationIndex,&lStack_a8);
     if ((((int)SystemUnsignedValue54 == 1) || ((int)SystemUnsignedValue54 - 7U < 2)) && (0 < (int)(CoreEngineUnsignedValueA0 >> 2))) {
-      TertiaryProcessingStatusFlag = (uint8_t *)(lStack_a8 + 3);
+      StringProcessingStatus = (uint8_t *)(lStack_a8 + 3);
       SystemStatusCode = CoreEngineUnsignedValueA0 >> 2 & 0xffffffff;
       do {
-        *TertiaryProcessingStatusFlag = 0xff;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
+        *StringProcessingStatus = 0xff;
+        StringProcessingStatus = StringProcessingStatus + 4;
         SystemStatusCode = SystemStatusCode - 1;
       } while (SystemStatusCode != 0);
     }
@@ -180531,7 +180531,7 @@ LAB_1801545d1:
   uint32_t *CharacterCodePointer;
   uint32_t *SecondaryProcessingStatusFlag;
   long long MemoryPoolBlockSize;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   unsigned long long MemoryAllocationLoopCounter;
   uint32_t *StatusBuffer;
   uint32_t **pSystemStatusBuffer;
@@ -180555,7 +180555,7 @@ LAB_1801545d1:
   Utf16CharacterCode5 = 0xfffffffffffffffe;
   pSystemOperationFlag90 = (uint32_t *)0x0;
   SystemEventPointer = (uint32_t *)0x0;
-  TertiaryProcessingStatusFlag = (uint32_t *)0x0;
+  StringProcessingStatus = (uint32_t *)0x0;
   pFunctionAddress80 = (uint32_t *)0x0;
   StackUnsigned78 = 3;
   pSystemStackRegisterFlagB0 = (uint32_t *)0x0;
@@ -180571,8 +180571,8 @@ LAB_1801545d1:
     __Throw_C_error_std__YAXH_Z(CharacterByteCount);
   }
   pSystemStatusBuffer = (uint32_t **)(CharacterCode + 0x16);
-  MemoryAddressMask = TertiaryProcessingStatusFlag;
-  StatusBuffer = TertiaryProcessingStatusFlag;
+  MemoryAddressMask = StringProcessingStatus;
+  StatusBuffer = StringProcessingStatus;
   if (&StackVariableBuffer != pSystemStatusBuffer) {
     CharacterCodePointer = (uint32_t *)CharacterCode[0x17];
     StatusBuffer4 = *pSystemStatusBuffer;
@@ -180641,13 +180641,13 @@ LAB_180156576:
           CoreEngineFreeSystemMemory(pSystemStackRegisterFlagB0);
         }
         StackTempPointer = SecondaryProcessingStatusFlag + MemoryPoolBlockSize;
-        TertiaryProcessingStatusFlag = pFunctionAddress80;
+        StringProcessingStatus = pFunctionAddress80;
         pSystemStackRegisterFlagB0 = SecondaryProcessingStatusFlag;
         SystemEventDispatcher = StatusBuffer2;
       }
       else {
         StatusBuffer2 = CharacterCodePointer;
-        if (StatusBuffer < TertiaryProcessingStatusFlag) {
+        if (StatusBuffer < StringProcessingStatus) {
           SystemEventPointer = StatusBuffer + 1;
           *StatusBuffer = *pMemoryAddressMask;
           StatusBuffer = SystemEventPointer;
@@ -180675,7 +180675,7 @@ LAB_1801564c8:
             CoreEngineFreeSystemMemory(StatusBuffer4);
           }
           pFunctionAddress80 = CharacterCodePointer + MemoryPoolBlockSize;
-          TertiaryProcessingStatusFlag = pFunctionAddress80;
+          StringProcessingStatus = pFunctionAddress80;
           StatusBuffer4 = CharacterCodePointer;
           pSystemOperationFlag90 = CharacterCodePointer;
           SystemEventPointer = StatusBuffer;
@@ -180697,12 +180697,12 @@ LAB_1801565db:
     __Throw_C_error_std__YAXH_Z(MemoryAllocationSize);
   }
   SystemMemoryAllocationResult = (long long)StatusBuffer - (long long)StatusBuffer4 >> 2;
-  TertiaryProcessingStatusFlag = StatusBuffer4;
+  StringProcessingStatus = StatusBuffer4;
   if (SystemMemoryAllocationResult != 0) {
     do {
-      (**(code **)(*CharacterCode + 0x108))(CharacterCode,*TertiaryProcessingStatusFlag);
+      (**(code **)(*CharacterCode + 0x108))(CharacterCode,*StringProcessingStatus);
       CharacterByteCount = CharacterByteCount + 1;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+      StringProcessingStatus = StringProcessingStatus + 1;
     } while ((unsigned long long)(long long)CharacterByteCount < SystemMemoryAllocationResult);
   }
   CharacterByteCount = _Mtx_unlock(CharacterCode + 0x1a);
@@ -181500,49 +181500,49 @@ InitializeMemoryPoolManager(long long *CharacterCode,long long *CharacterCodeSiz
     SystemStackRegisterFlagB0 = 0;
     SystemMemoryPointer = NULL;
     MemoryOffsetValue = 0;
-    TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,&SystemMemoryAllocationTemplate);
-    *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-    SystemMemoryPointer = TertiaryProcessingStatusFlag;
-    CalculatedCodePoint = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
-    *TertiaryProcessingStatusFlag = 0x655f657461657263;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0x746e6576;
-    *(uint16_t *)((long long)TertiaryProcessingStatusFlag + 0xc) = 0x20;
+    StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,&SystemMemoryAllocationTemplate);
+    *(uint8_t *)StringProcessingStatus = 0;
+    SystemMemoryPointer = StringProcessingStatus;
+    CalculatedCodePoint = GetMemoryAllocationInfo(StringProcessingStatus);
+    *StringProcessingStatus = 0x655f657461657263;
+    *(uint32_t *)(StringProcessingStatus + 1) = 0x746e6576;
+    *(uint16_t *)((long long)StringProcessingStatus + 0xc) = 0x20;
     MemoryOffsetValue = 0xd;
     validationResult = *(int *)(Utf8InputPointer + 0x10);
     SystemStackRegisterFlagB0.LowPart = CalculatedCodePoint;
     if (0 < validationResult) {
       if ((validationResult != -0xd) && (CalculatedCodePoint < validationResult + 0xeU)) {
-        TertiaryProcessingStatusFlag = (void *)AllocateMemoryPool(MemoryPoolManager,TertiaryProcessingStatusFlag,validationResult + 0xeU,0x10,0x13);
-        SystemMemoryPointer = TertiaryProcessingStatusFlag;
-        SystemStackRegisterFlagB0.LowPart = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+        StringProcessingStatus = (void *)AllocateMemoryPool(MemoryPoolManager,StringProcessingStatus,validationResult + 0xeU,0x10,0x13);
+        SystemMemoryPointer = StringProcessingStatus;
+        SystemStackRegisterFlagB0.LowPart = GetMemoryAllocationInfo(StringProcessingStatus);
         validationResult = *(int *)(Utf8InputPointer + 0x10);
       }
                     // WARNING: Subroutine does not return
-      memcpy((uint8_t *)((long long)TertiaryProcessingStatusFlag + 0xd),*(void *)(Utf8InputPointer + 8),
+      memcpy((uint8_t *)((long long)StringProcessingStatus + 0xd),*(void *)(Utf8InputPointer + 8),
              (long long)(validationResult + 1));
     }
-    if (TertiaryProcessingStatusFlag == NULL) {
-      TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-      *(uint8_t *)TertiaryProcessingStatusFlag = 0;
+    if (StringProcessingStatus == NULL) {
+      StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+      *(uint8_t *)StringProcessingStatus = 0;
 LAB_180157585:
-      SystemMemoryPointer = TertiaryProcessingStatusFlag;
-      SystemStackRegisterFlagB0.LowPart = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+      SystemMemoryPointer = StringProcessingStatus;
+      SystemStackRegisterFlagB0.LowPart = GetMemoryAllocationInfo(StringProcessingStatus);
     }
     else if (CalculatedCodePoint < 0xf) {
-      TertiaryProcessingStatusFlag = (void *)AllocateMemoryPool(MemoryPoolManager,TertiaryProcessingStatusFlag,0xf,0x10,0x13);
+      StringProcessingStatus = (void *)AllocateMemoryPool(MemoryPoolManager,StringProcessingStatus,0xf,0x10,0x13);
       goto LAB_180157585;
     }
-    *(uint16_t *)((long long)TertiaryProcessingStatusFlag + 0xd) = 10;
+    *(uint16_t *)((long long)StringProcessingStatus + 0xd) = 10;
     MemoryOffsetValue = 0xe;
-    TertiaryProcessingStatusFlag = (void *)&CoreEngineDataTemplate;
-    if (TertiaryProcessingStatusFlag != NULL) {
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+    StringProcessingStatus = (void *)&CoreEngineDataTemplate;
+    if (StringProcessingStatus != NULL) {
+      StringProcessingStatus = StringProcessingStatus;
     }
-    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,TertiaryProcessingStatusFlag);
+    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,StringProcessingStatus);
     SystemStatusBufferPointer = &SystemNullTemplate;
-    if (TertiaryProcessingStatusFlag != NULL) {
+    if (StringProcessingStatus != NULL) {
                     // WARNING: Subroutine does not return
-      CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+      CoreEngineFreeSystemMemory(StringProcessingStatus);
     }
     SystemMemoryPointer = NULL;
     SystemStackRegisterFlagB0 = (unsigned long long)SystemStackRegisterFlagB0.HighPart << 0x20;
@@ -181607,11 +181607,11 @@ LAB_180157585:
       SystemStackRegisterFlagB0.LowPart = GetMemoryAllocationInfo(SystemMemoryPointer);
     }
 LAB_1801577b2:
-    TertiaryProcessingStatusFlag = (void *)((unsigned long long)MemoryOffsetValue + (long long)SystemMemoryPointer);
-    *TertiaryProcessingStatusFlag = 0x6820746e65766520;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0x6c646e61;
-    *(uint16_t *)((long long)TertiaryProcessingStatusFlag + 0xc) = 0x2065;
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0xe) = 0;
+    StringProcessingStatus = (void *)((unsigned long long)MemoryOffsetValue + (long long)SystemMemoryPointer);
+    *StringProcessingStatus = 0x6820746e65766520;
+    *(uint32_t *)(StringProcessingStatus + 1) = 0x6c646e61;
+    *(uint16_t *)((long long)StringProcessingStatus + 0xc) = 0x2065;
+    *(uint8_t *)((long long)StringProcessingStatus + 0xe) = 0;
     MemoryOffsetValue = CalculatedCodePoint;
     FUN_180628380(&SystemStatusBufferPointer,(int)SystemRegisterPointerX8[10]);
     validationResult = MemoryOffsetValue + 1;
@@ -181632,12 +181632,12 @@ LAB_1801577b2:
     }
 LAB_180157862:
     *(uint16_t *)((unsigned long long)MemoryOffsetValue + (long long)SystemMemoryPointer) = 10;
-    TertiaryProcessingStatusFlag = (void *)&CoreEngineDataTemplate;
+    StringProcessingStatus = (void *)&CoreEngineDataTemplate;
     if (SystemMemoryPointer != NULL) {
-      TertiaryProcessingStatusFlag = SystemMemoryPointer;
+      StringProcessingStatus = SystemMemoryPointer;
     }
     MemoryOffsetValue = validationResult;
-    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,TertiaryProcessingStatusFlag);
+    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,StringProcessingStatus);
     SystemStatusBufferPointer = &SystemNullTemplate;
     if (SystemMemoryPointer != NULL) {
                     // WARNING: Subroutine does not return
@@ -181761,7 +181761,7 @@ AllocateSystemMemoryBuffer(long long *CharacterCode,long long *CharacterCodeSize
   char OperationStatus;
   int RemainingSpace;
   uint DataSize;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   long long *SystemRegisterPointerX8;
   long long *SystemRegisterPointerX10;
   void *pSystemStackRegisterFlagB0;
@@ -181859,19 +181859,19 @@ AllocateSystemMemoryBuffer(long long *CharacterCode,long long *CharacterCodeSize
       SystemOperationFlag98.LowPart = GetMemoryAllocationInfo(SystemEventDispatcher);
     }
 LAB_180157e02:
-    TertiaryProcessingStatusFlag = (uint32_t *)((unsigned long long)CoreEngineUnsignedValueA0 + (long long)SystemEventDispatcher);
-    *TertiaryProcessingStatusFlag = 0x6f632022;
-    TertiaryProcessingStatusFlag[1] = 0x20646c75;
-    TertiaryProcessingStatusFlag[2] = 0x20746f6e;
-    TertiaryProcessingStatusFlag[3] = 0x67206562;
-    *(void *)(TertiaryProcessingStatusFlag + 4) = 0x6465746172656e65;
-    *(uint16_t *)(TertiaryProcessingStatusFlag + 6) = 0x21;
-    TertiaryProcessingStatusFlag = (uint32_t *)&CoreEngineDataTemplate;
+    StringProcessingStatus = (uint32_t *)((unsigned long long)CoreEngineUnsignedValueA0 + (long long)SystemEventDispatcher);
+    *StringProcessingStatus = 0x6f632022;
+    StringProcessingStatus[1] = 0x20646c75;
+    StringProcessingStatus[2] = 0x20746f6e;
+    StringProcessingStatus[3] = 0x67206562;
+    *(void *)(StringProcessingStatus + 4) = 0x6465746172656e65;
+    *(uint16_t *)(StringProcessingStatus + 6) = 0x21;
+    StringProcessingStatus = (uint32_t *)&CoreEngineDataTemplate;
     if (SystemEventDispatcher != (uint32_t *)0x0) {
-      TertiaryProcessingStatusFlag = SystemEventDispatcher;
+      StringProcessingStatus = SystemEventDispatcher;
     }
     CoreEngineUnsignedValueA0 = RemainingSpace;
-    InitializeSystemEvent(TertiaryProcessingStatusFlag);
+    InitializeSystemEvent(StringProcessingStatus);
     pSystemStackRegisterFlagB0 = &SystemNullTemplate;
     if (SystemEventDispatcher != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -183226,7 +183226,7 @@ unsigned long long FUN_18015acc0(long long *CharacterCode,int CharacterCodeSize,
   unsigned long long CalculatedCodePoint;
   uint64_t DataSize;
   uint64_t SystemChecksumValue;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   long long systemLoopCounter;
   long long SystemOffsetValue;
   long long SystemStringIndex;
@@ -183275,11 +183275,11 @@ unsigned long long FUN_18015acc0(long long *CharacterCode,int CharacterCodeSize,
       }
       FunctionAddress80 = 0;
       CoreEngineSignedValue78 = 0;
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (EncodingBuffer != (uint8_t *)0x0) {
-        TertiaryProcessingStatusFlag = EncodingBuffer;
+        StringProcessingStatus = EncodingBuffer;
       }
-      CalculatedCodePoint = InitializeEngineStatusBuffer(&FunctionAddress80,TertiaryProcessingStatusFlag,&SystemStringEncodingBuffer);
+      CalculatedCodePoint = InitializeEngineStatusBuffer(&FunctionAddress80,StringProcessingStatus,&SystemStringEncodingBuffer);
       BufferStatus = CoreEngineSignedValue78;
       if (CoreEngineSignedValue78 != 0) {
         CoreEngineSignedValue48 = 0;
@@ -183366,7 +183366,7 @@ void ProcessCharacterEncodingConversion(uint64_t CharacterCode,long long Charact
   uint16_t MemoryAddressMask;
   int RemainingSpace;
   uint16_t *SecondaryProcessingStatusFlag;
-  uint16_t *TertiaryProcessingStatusFlag;
+  uint16_t *StringProcessingStatus;
   long long secondaryLoopCounter;
   long long systemLoopCounter;
   uint16_t *pBufferOffset;
@@ -183384,15 +183384,15 @@ void ProcessCharacterEncodingConversion(uint64_t CharacterCode,long long Charact
   if (0 < RemainingSpace) {
     CurrentMemoryBlockAddress = 0;
     SecondaryProcessingStatusFlag = pBufferOffset;
-    TertiaryProcessingStatusFlag = pBufferOffset;
+    StringProcessingStatus = pBufferOffset;
     do {
       MemoryAddressMask = CONCAT11(*(uint8_t *)(CharacterCodeSize + 1 + CurrentMemoryBlockAddress * 2),*(uint8_t *)(CharacterCodeSize + CurrentMemoryBlockAddress * 2                      );
-      if (TertiaryProcessingStatusFlag < QuaternaryStackPointer8) {
-        *TertiaryProcessingStatusFlag = MemoryAddressMask;
+      if (StringProcessingStatus < QuaternaryStackPointer8) {
+        *StringProcessingStatus = MemoryAddressMask;
         pBufferOffset = SecondaryProcessingStatusFlag;
       }
       else {
-        MemoryBlockIndex = (long long)TertiaryProcessingStatusFlag - (long long)SecondaryProcessingStatusFlag >> 1;
+        MemoryBlockIndex = (long long)StringProcessingStatus - (long long)SecondaryProcessingStatusFlag >> 1;
         if (MemoryBlockIndex == 0) {
           MemoryBlockIndex = 1;
 LAB_18015b087:
@@ -183404,9 +183404,9 @@ LAB_18015b087:
           if (MemoryBlockIndex != 0) goto LAB_18015b087;
           pBufferOffset = (uint16_t *)0x0;
         }
-        if (SecondaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
+        if (SecondaryProcessingStatusFlag != StringProcessingStatus) {
                     // WARNING: Subroutine does not return
-          memmove(pBufferOffset,SecondaryProcessingStatusFlag,(long long)TertiaryProcessingStatusFlag - (long long)SecondaryProcessingStatusFlag);
+          memmove(pBufferOffset,SecondaryProcessingStatusFlag,(long long)StringProcessingStatus - (long long)SecondaryProcessingStatusFlag);
         }
         *pBufferOffset = MemoryAddressMask;
         if (SecondaryProcessingStatusFlag != (uint16_t *)0x0) {
@@ -183414,9 +183414,9 @@ LAB_18015b087:
           CoreEngineFreeSystemMemory(SecondaryProcessingStatusFlag);
         }
         QuaternaryStackPointer8 = pBufferOffset + MemoryBlockIndex;
-        TertiaryProcessingStatusFlag = pBufferOffset;
+        StringProcessingStatus = pBufferOffset;
       }
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+      StringProcessingStatus = StringProcessingStatus + 1;
       CurrentMemoryBlockAddress = CurrentMemoryBlockAddress + 1;
       SecondaryProcessingStatusFlag = pBufferOffset;
     } while (CurrentMemoryBlockAddress < SystemDataTablePointer);
@@ -184046,9 +184046,9 @@ void ProcessSystemCharacterEncodingConversion(uint64_t CharacterCode,int Charact
   long long MemoryBoundaryEnd;
   void *PreviousNode;
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   systemEventTemplatePointer = (void *)*CharacterCode;
-  MemoryBoundaryEnd = ((long long)TertiaryProcessingStatusFlag - (long long)systemEventTemplatePointer) / 0x28;
+  MemoryBoundaryEnd = ((long long)StringProcessingStatus - (long long)systemEventTemplatePointer) / 0x28;
   PrimaryProcessingStatusFlag = NULL;
   if (MemoryBoundaryEnd == 0) {
     MemoryBoundaryEnd = 1;
@@ -184059,11 +184059,11 @@ void ProcessSystemCharacterEncodingConversion(uint64_t CharacterCode,int Charact
   }
   PrimaryProcessingStatusFlag = (void *           BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0x28,*(uint8_t *)(CharacterCode + 3),systemEventTemplatePointer,
                          0xfffffffffffffffe);
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   systemEventTemplatePointer = (void *)*CharacterCode;
 LAB_18015bf2e:
   CharacterCodePointer = PrimaryProcessingStatusFlag;
-  if (systemEventTemplatePointer != TertiaryProcessingStatusFlag) {
+  if (systemEventTemplatePointer != StringProcessingStatus) {
     DataStructureCounter = (long long)PrimaryProcessingStatusFlag - (long long)systemEventTemplatePointer;
     systemEventTemplatePointer = systemEventTemplatePointer + 1;
     do {
@@ -184085,13 +184085,13 @@ LAB_18015bf2e:
       CharacterCodePointer = CharacterCodePointer + 5;
       StatusBuffer = systemEventTemplatePointer + 4;
       systemEventTemplatePointer = systemEventTemplatePointer + 5;
-    } while (StatusBuffer != TertiaryProcessingStatusFlag);
+    } while (StatusBuffer != StringProcessingStatus);
   }
   CoreEngineExecuteSystemEvent(CharacterCodePointer,CharacterCodeSize);
   *(uint8_t *)(CharacterCodePointer + 4) = *(uint8_t *)(CharacterCodeSize + 0x20);
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   systemEventTemplatePointer = (void *)*CharacterCode;
-  if (systemEventTemplatePointer != TertiaryProcessingStatusFlag) {
+  if (systemEventTemplatePointer != StringProcessingStatus) {
     do {
       *systemEventTemplatePointer = &SystemNullTemplate;
       if (systemEventTemplatePointer[1] != 0) {
@@ -184102,7 +184102,7 @@ LAB_18015bf2e:
       *(uint32_t *)(systemEventTemplatePointer + 3) = 0;
       *systemEventTemplatePointer = &ThreadLocalStorageTemplate;
       systemEventTemplatePointer = systemEventTemplatePointer + 5;
-    } while (systemEventTemplatePointer != TertiaryProcessingStatusFlag);
+    } while (systemEventTemplatePointer != StringProcessingStatus);
     systemEventTemplatePointer = (void *)*CharacterCode;
   }
   if (systemEventTemplatePointer == NULL) {
@@ -187126,8 +187126,8 @@ UpdateSystemStatus(uint64_t *CharacterCode,uint64_t CharacterCodeSize,long long 
   long long DataStructureCounter;
   long long AllocatedMemorySize;
   uint64_t DataSize;
-  void *TertiaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
+  uint32_t *StringProcessingStatus;
   int IntegerValue9;
   int IntegerValue0;
   uint32_t VectorRegisterDa;
@@ -187155,11 +187155,11 @@ UpdateSystemStatus(uint64_t *CharacterCode,uint64_t CharacterCodeSize,long long 
   ProcessStringBuffer = 1;
   CoreEngineExecuteSystemEvent(&EnginePointerBuffer,CharacterCodeSize);
   if (Utf8InputPointer[1] - *Utf8InputPointer >> 5 == 0) {
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (EncodingBuffer != NULL) {
-      TertiaryProcessingStatusFlag = EncodingBuffer;
+      StringProcessingStatus = EncodingBuffer;
     }
-    BufferStatus = strstr(TertiaryProcessingStatusFlag,&SystemStringBufferQuinary);
+    BufferStatus = strstr(StringProcessingStatus,&SystemStringBufferQuinary);
     SystemOperationResult = *(int *)(CharacterCode + 2);
     if (BufferStatus == 0) {
       IntegerValue0 = IntegerValue9 + 9;
@@ -187196,18 +187196,18 @@ UpdateSystemStatus(uint64_t *CharacterCode,uint64_t CharacterCodeSize,long long 
     }
     else {
       CoreEngineProcessSystemEvent(CharacterCode,IntegerValue9 + 0x26);
-      TertiaryProcessingStatusFlag = (uint32_t *)((unsigned long long)*(uint *)(CharacterCode + 2) + CharacterCode[1]);
-      *TertiaryProcessingStatusFlag = 0x73736f50;
-      TertiaryProcessingStatusFlag[1] = 0x656c6269;
-      TertiaryProcessingStatusFlag[2] = 0x6c617620;
-      TertiaryProcessingStatusFlag[3] = 0x20736575;
-      TertiaryProcessingStatusFlag[4] = 0x6120666f;
-      TertiaryProcessingStatusFlag[5] = 0x206f7475;
-      TertiaryProcessingStatusFlag[6] = 0x20786667;
-      TertiaryProcessingStatusFlag[7] = 0x6c617571;
-      TertiaryProcessingStatusFlag[8] = 0x20797469;
-      *(uint16_t *)(TertiaryProcessingStatusFlag + 9) = 0xa3a;
-      *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0x26) = 0;
+      StringProcessingStatus = (uint32_t *)((unsigned long long)*(uint *)(CharacterCode + 2) + CharacterCode[1]);
+      *StringProcessingStatus = 0x73736f50;
+      StringProcessingStatus[1] = 0x656c6269;
+      StringProcessingStatus[2] = 0x6c617620;
+      StringProcessingStatus[3] = 0x20736575;
+      StringProcessingStatus[4] = 0x6120666f;
+      StringProcessingStatus[5] = 0x206f7475;
+      StringProcessingStatus[6] = 0x20786667;
+      StringProcessingStatus[7] = 0x6c617571;
+      StringProcessingStatus[8] = 0x20797469;
+      *(uint16_t *)(StringProcessingStatus + 9) = 0xa3a;
+      *(uint8_t *)((long long)StringProcessingStatus + 0x26) = 0;
       *(int *)(CharacterCode + 2) = IntegerValue9 + 0x26;
       CoreEngineProcessSystemEvent(CharacterCode,IntegerValue9 + 0x2e);
       Utf16Char = *(uint *)(CharacterCode + 2);
@@ -187229,21 +187229,21 @@ UpdateSystemStatus(uint64_t *CharacterCode,uint64_t CharacterCodeSize,long long 
       *(int *)(CharacterCode + 2) = IntegerValue9 + 0x42;
       SystemOperationResult = IntegerValue9 + 0x51;
       CoreEngineProcessSystemEvent(CharacterCode,IntegerValue9);
-      TertiaryProcessingStatusFlag = (uint32_t *)((unsigned long long)*(uint *)(CharacterCode + 2) + CharacterCode[1]);
-      *TertiaryProcessingStatusFlag = 0x203a2033;
-      TertiaryProcessingStatusFlag[1] = 0x79726556;
-      TertiaryProcessingStatusFlag[2] = 0x67694820;
-      TertiaryProcessingStatusFlag[3] = 0xa0a68;
+      StringProcessingStatus = (uint32_t *)((unsigned long long)*(uint *)(CharacterCode + 2) + CharacterCode[1]);
+      *StringProcessingStatus = 0x203a2033;
+      StringProcessingStatus[1] = 0x79726556;
+      StringProcessingStatus[2] = 0x67694820;
+      StringProcessingStatus[3] = 0xa0a68;
     }
     *(int *)(CharacterCode + 2) = IntegerValue9;
   }
   else {
     CoreEngineExecuteSystemEvent(&QuaternaryStackPointer8);
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (EncodingBuffer != NULL) {
-      TertiaryProcessingStatusFlag = EncodingBuffer;
+      StringProcessingStatus = EncodingBuffer;
     }
-    BufferStatus = strstr(TertiaryProcessingStatusFlag,&SystemStringBufferQuinary);
+    BufferStatus = strstr(StringProcessingStatus,&SystemStringBufferQuinary);
     if (BufferStatus == 0) {
       FUN_1800af2c0(CoreEngineMemoryContext,&EnginePointerBuffer,&QuaternaryStackPointer8);
     }
@@ -187251,26 +187251,26 @@ UpdateSystemStatus(uint64_t *CharacterCode,uint64_t CharacterCodeSize,long long 
       ProcessStringBuffer = atoi(lStack_40);
       ProcessSystemByteAndReturn(VectorRegisterDa,ProcessStringBuffer);
     }
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (EncodingBuffer != NULL) {
-      TertiaryProcessingStatusFlag = EncodingBuffer;
+      StringProcessingStatus = EncodingBuffer;
     }
-    BufferStatus = strstr(TertiaryProcessingStatusFlag,&SystemContextTemplateVigesimal);
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    BufferStatus = strstr(StringProcessingStatus,&SystemContextTemplateVigesimal);
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (EncodingBuffer != NULL) {
-      TertiaryProcessingStatusFlag = EncodingBuffer;
+      StringProcessingStatus = EncodingBuffer;
     }
-    MemoryBlockIndex = strstr(TertiaryProcessingStatusFlag,&SystemContextTemplateUnvigesimal);
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    MemoryBlockIndex = strstr(StringProcessingStatus,&SystemContextTemplateUnvigesimal);
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (EncodingBuffer != NULL) {
-      TertiaryProcessingStatusFlag = EncodingBuffer;
+      StringProcessingStatus = EncodingBuffer;
     }
-    DataStructureCounter = strstr(TertiaryProcessingStatusFlag,&SystemContextTemplateTrevigesimal);
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    DataStructureCounter = strstr(StringProcessingStatus,&SystemContextTemplateTrevigesimal);
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (EncodingBuffer != NULL) {
-      TertiaryProcessingStatusFlag = EncodingBuffer;
+      StringProcessingStatus = EncodingBuffer;
     }
-    AllocatedMemorySize = strstr(TertiaryProcessingStatusFlag,&SystemContextTemplateQuattuorvigesimal);
+    AllocatedMemorySize = strstr(StringProcessingStatus,&SystemContextTemplateQuattuorvigesimal);
     if ((((BufferStatus == 0) && (MemoryBlockIndex == 0)) && (DataStructureCounter == 0)) && (AllocatedMemorySize == 0)) {
       DataSize = 0;
     }
@@ -187280,16 +187280,16 @@ UpdateSystemStatus(uint64_t *CharacterCode,uint64_t CharacterCodeSize,long long 
     FUN_180103970(VectorRegisterDa_00,DataSize);
     SystemOperationResult = *(int *)(CharacterCode + 2);
     CoreEngineProcessSystemEvent(CharacterCode,IntegerValue9 + 0x23);
-    TertiaryProcessingStatusFlag = (uint32_t *)((unsigned long long)*(uint *)(CharacterCode + 2) + CharacterCode[1]);
-    *TertiaryProcessingStatusFlag = 0x69676e45;
-    TertiaryProcessingStatusFlag[1] = 0x6320656e;
-    TertiaryProcessingStatusFlag[2] = 0x69666e6f;
-    TertiaryProcessingStatusFlag[3] = 0x68632067;
-    TertiaryProcessingStatusFlag[4] = 0x65676e61;
-    TertiaryProcessingStatusFlag[5] = 0x75732064;
-    TertiaryProcessingStatusFlag[6] = 0x73656363;
-    TertiaryProcessingStatusFlag[7] = 0x6c756673;
-    TertiaryProcessingStatusFlag[8] = 0x2e796c;
+    StringProcessingStatus = (uint32_t *)((unsigned long long)*(uint *)(CharacterCode + 2) + CharacterCode[1]);
+    *StringProcessingStatus = 0x69676e45;
+    StringProcessingStatus[1] = 0x6320656e;
+    StringProcessingStatus[2] = 0x69666e6f;
+    StringProcessingStatus[3] = 0x68632067;
+    StringProcessingStatus[4] = 0x65676e61;
+    StringProcessingStatus[5] = 0x75732064;
+    StringProcessingStatus[6] = 0x73656363;
+    StringProcessingStatus[7] = 0x6c756673;
+    StringProcessingStatus[8] = 0x2e796c;
     *(int *)(CharacterCode + 2) = IntegerValue9 + 0x23;
     QuaternaryStackPointer8 = &SystemNullTemplate;
     if (lStack_40 != 0) {
@@ -187583,7 +187583,7 @@ uint64_t * FUN_1801616b0(long long CharacterCode,uint64_t *CharacterCodeSize,uin
   uint32_t MemoryAddressMask;
   uint8_t *CharacterCodePointer;
   void *CurrentNode;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   unsigned long long ProcessingStatusFlag;
   uint8_t *TemporaryBuffer;
   unsigned long long Utf16Char;
@@ -187779,16 +187779,16 @@ LAB_18016195a:
         if (CharacterCodePointer != (uint8_t *)0x0) {
           TemporaryBuffer = CharacterCodePointer;
         }
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (pSystemOperationFlag98 != NULL) {
-          TertiaryProcessingStatusFlag = pSystemOperationFlag98;
+          StringProcessingStatus = pSystemOperationFlag98;
         }
-        SystemContextValue = (**(code **)(CoreEngineConsoleHandle + 0x48))(TertiaryProcessingStatusFlag,TemporaryBuffer);
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        SystemContextValue = (**(code **)(CoreEngineConsoleHandle + 0x48))(StringProcessingStatus,TemporaryBuffer);
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (*(void **)(SystemContextValue + 8) != NULL) {
-          TertiaryProcessingStatusFlag = *(void **)(SystemContextValue + 8);
+          StringProcessingStatus = *(void **)(SystemContextValue + 8);
         }
-        ProcessTemporaryBuffer(CharacterCodeSize,TertiaryProcessingStatusFlag);
+        ProcessTemporaryBuffer(CharacterCodeSize,StringProcessingStatus);
         SystemMemoryPointer = (void *)&SystemNullTemplate;
         if (CharacterCodePointer == (uint8_t *)0x0) {
           pMemoryOffsetValue = NULL;
@@ -187986,7 +187986,7 @@ long long * FUN_180161f80(long long CharacterCode,long long *CharacterCodeSize,l
   uint8_t *MemoryAddressMask;
   uint CalculatedCodePoint;
   long long MemoryBoundaryEnd;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   long long *pCurrentMemoryBlockAddress;
   unsigned long long Utf16Char;
   unsigned long long ProcessStringBuffer;
@@ -188039,15 +188039,15 @@ long long * FUN_180161f80(long long CharacterCode,long long *CharacterCodeSize,l
           MemoryAllocationIndex = MemoryAllocationIndex + 1;
         } while (CalculatedCodePoint < SystemStackFlag);
       }
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(Utf8InputPointer + 8) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(Utf8InputPointer + 8);
+        StringProcessingStatus = *(void **)(Utf8InputPointer + 8);
       }
       pMemoryAddressMask = &CoreEngineDataTemplate;
       if (SystemValidationPointer != (uint8_t *)0x0) {
         pMemoryAddressMask = SystemValidationPointer;
       }
-      BufferStatus = strstr(pMemoryAddressMask,TertiaryProcessingStatusFlag,MemoryAllocationIndex,SystemValidationPointer,QuaternaryReturnCode,Utf16Char4);
+      BufferStatus = strstr(pMemoryAddressMask,StringProcessingStatus,MemoryAllocationIndex,SystemValidationPointer,QuaternaryReturnCode,Utf16Char4);
       if (BufferStatus != 0) {
         pCurrentMemoryBlockAddress = (long long *)CharacterCodeSize[1];
         if (pCurrentMemoryBlockAddress < (long long *)CharacterCodeSize[2]) {
@@ -188504,15 +188504,15 @@ ProcessUtf8ToUtf16StringConverter(uint64_t CharacterCode,uint64_t *CharacterCode
     CharacterCodePointer = ProcessingContextPointer;
     do {
       CharacterTablePointer = *CharacterCodePointer;
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(*Utf16EndPointer + 8) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(*Utf16EndPointer + 8);
+        StringProcessingStatus = *(void **)(*Utf16EndPointer + 8);
       }
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterTablePointer + 0x18) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterTablePointer + 0x18);
+        StringProcessingStatus = *(void **)(CharacterTablePointer + 0x18);
       }
-      MemoryBoundaryEnd = strstr(TertiaryProcessingStatusFlag,TertiaryProcessingStatusFlag);
+      MemoryBoundaryEnd = strstr(StringProcessingStatus,StringProcessingStatus);
       if (MemoryBoundaryEnd != 0) {
         MatchCounter = MatchCounter + 1;
         if (0 < *(int *)(CharacterTablePointer + 0x20)) {
@@ -188683,15 +188683,15 @@ ProcessUtf8ToUtf16AdvancedStringConverter(uint64_t CharacterCode,uint64_t *Chara
       if ((int)((long long)(*(unsigned long long *)(AllocatedMemorySize + 0x40) - *(long long *)(AllocatedMemorySize + 0x38)) >> 4) ==
           IntegerValue9) {
         if (BufferStatus - MemoryBlockIndex >> 5 == 1) {
-          TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+          StringProcessingStatus = &CoreEngineDataTemplate;
           if (*(void **)(*Utf16EndPointer + 8) != NULL) {
-            TertiaryProcessingStatusFlag = *(void **)(*Utf16EndPointer + 8);
+            StringProcessingStatus = *(void **)(*Utf16EndPointer + 8);
           }
-          TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+          StringProcessingStatus = &CoreEngineDataTemplate;
           if (*(void **)(AllocatedMemorySize + 0x1f8) != NULL) {
-            TertiaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 0x1f8);
+            StringProcessingStatus = *(void **)(AllocatedMemorySize + 0x1f8);
           }
-          AllocatedMemorySize = strstr(TertiaryProcessingStatusFlag,TertiaryProcessingStatusFlag);
+          AllocatedMemorySize = strstr(StringProcessingStatus,StringProcessingStatus);
           if (AllocatedMemorySize == 0) goto LAB_18016612b;
         }
         QuaternaryReturnCode = (unsigned long long)((int)QuaternaryReturnCode + 1);
@@ -188789,15 +188789,15 @@ ProcessAdvancedCharacterEncodingConversion(uint64_t CharacterCode,uint64_t *Char
     CharacterCodePointer = ProcessingContextPointer;
     do {
       CharacterTablePointer = *CharacterCodePointer;
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(*Utf16EndPointer + 8) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(*Utf16EndPointer + 8);
+        StringProcessingStatus = *(void **)(*Utf16EndPointer + 8);
       }
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterTablePointer + 0x18) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterTablePointer + 0x18);
+        StringProcessingStatus = *(void **)(CharacterTablePointer + 0x18);
       }
-      MemoryBoundaryEnd = strstr(TertiaryProcessingStatusFlag,TertiaryProcessingStatusFlag);
+      MemoryBoundaryEnd = strstr(StringProcessingStatus,StringProcessingStatus);
       if (MemoryBoundaryEnd != 0) {
         MatchCounter = MatchCounter + 1;
         if (0 < *(int *)(CharacterTablePointer + 0x20)) {
@@ -188906,8 +188906,8 @@ FUN_180166580(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8In
   long long *EngineContext;
   uint CalculatedCodePoint;
   long long MemoryBoundaryEnd;
-  void *TertiaryProcessingStatusFlag;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
+  void *StringProcessingStatus;
   uint SystemMemoryAllocationResult;
   long long *CharacterCodePointer;
   int MatchCounter;
@@ -188955,15 +188955,15 @@ FUN_180166580(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8In
     CharacterCodePointer = ProcessingContextPointer;
     do {
       CharacterTablePointer = *CharacterCodePointer;
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(*Utf16EndPointer + 8) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(*Utf16EndPointer + 8);
+        StringProcessingStatus = *(void **)(*Utf16EndPointer + 8);
       }
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterTablePointer + 0x18) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterTablePointer + 0x18);
+        StringProcessingStatus = *(void **)(CharacterTablePointer + 0x18);
       }
-      MemoryBoundaryEnd = strstr(TertiaryProcessingStatusFlag,TertiaryProcessingStatusFlag);
+      MemoryBoundaryEnd = strstr(StringProcessingStatus,StringProcessingStatus);
       if (MemoryBoundaryEnd != 0) {
         MatchCounter = MatchCounter + 1;
         if (0 < *(int *)(CharacterTablePointer + 0x20)) {
@@ -189850,8 +189850,21 @@ LAB_180167a3b:
 
 
 
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换的第五个阶段
+ * 
+ * 该函数负责处理字符编码转换的第五阶段，包括线程锁处理、Unicode码点转换和内存地址掩码操作
+ * 
+ * @param CharacterCode 输入的字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 转换后的字符编码指针
+ * 
+ * @note 原始函数名：FUN_180167f80
+ */
 uint64_t *
-FUN_180167f80(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingStage5(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
 {
   int LockResult;
   void *PrimaryProcessingStatusFlag;
@@ -190386,7 +190399,7 @@ long long FUN_180168af0(long long CharacterCode,long long CharacterCodeSize
   long long DataStructureCounter;
   long long AllocatedMemorySize;
   void *CurrentNode;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   
   CoreEngineExecuteSystemEvent();
   DataStructureCounter = *(long long *)(CharacterCodeSize + 0x28) - *(long long *)(CharacterCodeSize + 0x20);
@@ -190416,11 +190429,11 @@ long long FUN_180168af0(long long CharacterCode,long long CharacterCodeSize
       *(uint8_t *)(SecondaryProcessingStatusFlag + 3) = 0;
       *(uint32_t *)(SecondaryProcessingStatusFlag + 2) = *(uint32_t *)(AllocatedMemorySize + 0x10 + (long long)SecondaryProcessingStatusFlag);
       PrimaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 8 + (long long)SecondaryProcessingStatusFlag);
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (PrimaryProcessingStatusFlag != NULL) {
         TertiaryNode = PrimaryStatusBlock;
       }
-      strcpy_s(SecondaryProcessingStatusFlag[1],0x80,TertiaryProcessingStatusFlag);
+      strcpy_s(SecondaryProcessingStatusFlag[1],0x80,StringProcessingStatus);
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0x13;
     } while (AllocatedMemorySize + (long long)SecondaryProcessingStatusFlag != DataStructureCounter);
   }
@@ -190455,11 +190468,11 @@ long long FUN_180168af0(long long CharacterCode,long long CharacterCodeSize
       *(uint8_t *)(SecondaryProcessingStatusFlag + 3) = 0;
       *(uint32_t *)(SecondaryProcessingStatusFlag + 2) = *(uint32_t *)(AllocatedMemorySize + 0x10 + (long long)SecondaryProcessingStatusFlag);
       PrimaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 8 + (long long)SecondaryProcessingStatusFlag);
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (PrimaryProcessingStatusFlag != NULL) {
         TertiaryNode = PrimaryStatusBlock;
       }
-      strcpy_s(SecondaryProcessingStatusFlag[1],0x80,TertiaryProcessingStatusFlag);
+      strcpy_s(SecondaryProcessingStatusFlag[1],0x80,StringProcessingStatus);
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0x13;
     } while (AllocatedMemorySize + (long long)SecondaryProcessingStatusFlag != DataStructureCounter);
   }
@@ -190491,11 +190504,11 @@ long long FUN_180168af0(long long CharacterCode,long long CharacterCodeSize
       *(uint8_t *)(SecondaryProcessingStatusFlag + 3) = 0;
       *(uint32_t *)(SecondaryProcessingStatusFlag + 2) = *(uint32_t *)(AllocatedMemorySize + 0x10 + (long long)SecondaryProcessingStatusFlag);
       PrimaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 8 + (long long)SecondaryProcessingStatusFlag);
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (PrimaryProcessingStatusFlag != NULL) {
         TertiaryNode = PrimaryStatusBlock;
       }
-      strcpy_s(SecondaryProcessingStatusFlag[1],0x80,TertiaryProcessingStatusFlag);
+      strcpy_s(SecondaryProcessingStatusFlag[1],0x80,StringProcessingStatus);
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0x13;
     } while (AllocatedMemorySize + (long long)SecondaryProcessingStatusFlag != DataStructureCounter);
   }
@@ -190529,11 +190542,11 @@ long long FUN_180168af0(long long CharacterCode,long long CharacterCodeSize
       *(uint8_t *)(SecondaryProcessingStatusFlag + 3) = 0;
       *(uint32_t *)(SecondaryProcessingStatusFlag + 2) = *(uint32_t *)(MemoryBlockIndex + 0x10 + (long long)SecondaryProcessingStatusFlag);
       PrimaryProcessingStatusFlag = *(void **)(MemoryBlockIndex + 8 + (long long)SecondaryProcessingStatusFlag);
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (PrimaryProcessingStatusFlag != NULL) {
         TertiaryNode = PrimaryStatusBlock;
       }
-      strcpy_s(SecondaryProcessingStatusFlag[1],0x80,TertiaryProcessingStatusFlag);
+      strcpy_s(SecondaryProcessingStatusFlag[1],0x80,StringProcessingStatus);
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0x13;
     } while (MemoryBlockIndex + (long long)SecondaryProcessingStatusFlag != DataStructureCounter);
   }
@@ -190764,7 +190777,7 @@ long long * FUN_180169c30(long long *CharacterCode,long long CharacterCodeSize
   uint MemoryAddressMask;
   uint8_t *CharacterCodePointer;
   unsigned long long DataSize;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   uint ProcessingStatusFlag;
   long long systemLoopCounter;
   uint *StatusBuffer;
@@ -190790,15 +190803,15 @@ long long * FUN_180169c30(long long *CharacterCode,long long CharacterCodeSize
   LowByte = false;
   if (*StringCodeBuffer != '\0') {
     do {
-      TertiaryProcessingStatusFlag = (uint8_t *)0x0;
+      StringProcessingStatus = (uint8_t *)0x0;
       pBufferOffset = &SystemNullTemplate;
       SystemPriorityLevel = 0;
       SystemValidationPointer = (uint8_t *)0x0;
       uStack_3c = 0;
       SystemStackFlag = 0;
       StringBuffer = *StringCodeBuffer;
-      CharacterCodePointer = TertiaryProcessingStatusFlag;
-      EngineStatusBuffer = TertiaryProcessingStatusFlag;
+      CharacterCodePointer = StringProcessingStatus;
+      EngineStatusBuffer = StringProcessingStatus;
       if (StringBuffer != '\0') {
         do {
           SystemStringStringBuffer = StringCodeBuffer;
@@ -190818,20 +190831,20 @@ long long * FUN_180169c30(long long *CharacterCode,long long CharacterCodeSize
                 *CharacterCodePointer = 0;
               }
               else {
-                if (MemoryAddressMask <= (uint)TertiaryProcessingStatusFlag) goto LAB_180169e1e;
+                if (MemoryAddressMask <= (uint)StringProcessingStatus) goto LAB_180169e1e;
                 CharacterCodePointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,CharacterCodePointer,MemoryAddressMask,0x10,0x13);
               }
               ProcessStringBuffer = (unsigned long long)CharacterCodePointer & 0xffffffffffc00000;
               if (ProcessStringBuffer == 0) {
-                TertiaryProcessingStatusFlag = (uint8_t *)0x0;
+                StringProcessingStatus = (uint8_t *)0x0;
               }
               else {
                 CurrentMemoryBlockAddress = ((long long)CharacterCodePointer - ProcessStringBuffer >> 0x10) * 0x50 + 0x80 + ProcessStringBuffer;
                 StatusBuffer = (uint *)(CurrentMemoryBlockAddress - (unsigned long long)*(uint *)(CurrentMemoryBlockAddress + 4));
                 if ((*(byte *)((long long)StatusBuffer + 0xe) & 2) == 0) {
-                  TertiaryProcessingStatusFlag = (uint8_t *)(unsigned long long)StatusBuffer[7];
-                  if ((uint8_t *)0x3ffffff < TertiaryProcessingStatusFlag) {
-                    TertiaryProcessingStatusFlag = (uint8_t *)((unsigned long long)*StatusBuffer << 0x10);
+                  StringProcessingStatus = (uint8_t *)(unsigned long long)StatusBuffer[7];
+                  if ((uint8_t *)0x3ffffff < StringProcessingStatus) {
+                    StringProcessingStatus = (uint8_t *)((unsigned long long)*StatusBuffer << 0x10);
                   }
                 }
                 else {
@@ -190845,12 +190858,12 @@ long long * FUN_180169c30(long long *CharacterCode,long long CharacterCodeSize
                   if (0x3ffffff < DataSize) {
                     DataSize = (unsigned long long)*StatusBuffer << 0x10;
                   }
-                  TertiaryProcessingStatusFlag = (uint8_t *                           (DataSize - ((long long)CharacterCodePointer -
+                  StringProcessingStatus = (uint8_t *                           (DataSize - ((long long)CharacterCodePointer -
                                     (((long long)((long long)StatusBuffer + (-0x80 - ProcessStringBuffer)) / 0x50) *
                                      0x10000 + ProcessStringBuffer)) % SystemStatusCode);
                 }
               }
-              SystemPriorityLevel = SUB84(TertiaryProcessingStatusFlag,0);
+              SystemPriorityLevel = SUB84(StringProcessingStatus,0);
               SystemValidationPointer = CharacterCodePointer;
             }
 LAB_180169e1e:
@@ -191499,7 +191512,7 @@ LAB_18016aa7a:
   long long DataStructureCounter;
   uint8_t *CharacterCodePointer;
   uint8_t *SecondaryProcessingStatusFlag;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   long long secondaryLoopCounter;
   uint8_t *TemporaryBuffer;
   uint MemoryAllocationIndex;
@@ -191574,7 +191587,7 @@ LAB_18016aa7a:
     ProcessTemporaryBuffer(&StackTempPointer);
     pSystemFlagD = NULL;
     pSystemFlagE = NULL;
-    TertiaryProcessingStatusFlag = (uint8_t *)0x0;
+    StringProcessingStatus = (uint8_t *)0x0;
     MemoryAllocationIndex8 = 0;
     pSystemFlagF = NULL;
     SystemFlagG = 3;
@@ -191590,8 +191603,8 @@ LAB_18016aa7a:
     CoreEngineExecuteSystemEvent(&pProcessingCounter,pMemoryOffsetValue + -4);
     if (SystemFlagB != 0) {
       pSystemCheckResult = pcStack_100;
-      CharacterCodePointer = TertiaryProcessingStatusFlag;
-      PrimaryProcessingStatusFlag0 = TertiaryProcessingStatusFlag;
+      CharacterCodePointer = StringProcessingStatus;
+      PrimaryProcessingStatusFlag0 = StringProcessingStatus;
       MemoryAllocationSize = MemoryAllocationIndex8;
       if (SystemFlagB != 1) {
         do {
@@ -191605,8 +191618,8 @@ LAB_18016aa7a:
         } while (MemoryAllocationIndex < SystemFlagB - 1);
       }
       if (SystemFlagB != 1) {
-        CharacterCodePointer = TertiaryProcessingStatusFlag;
-        PrimaryProcessingStatusFlag0 = TertiaryProcessingStatusFlag;
+        CharacterCodePointer = StringProcessingStatus;
+        PrimaryProcessingStatusFlag0 = StringProcessingStatus;
         do {
           CharacterCodePointer[(long long)pcStack_100] = (CharacterCodePointer + (int)MemoryAllocationSize)[(long long)pcStack_100];
           MemoryAllocationIndex = (int)PrimaryProcessingStatusFlag0 + 1;
@@ -191618,8 +191631,8 @@ LAB_18016aa7a:
       pcStack_100[SystemFlagB] = '\0';
       if (SystemFlagB != 0) {
         pSystemCheckResult = pcStack_100;
-        CharacterCodePointer = TertiaryProcessingStatusFlag;
-        PrimaryProcessingStatusFlag0 = TertiaryProcessingStatusFlag;
+        CharacterCodePointer = StringProcessingStatus;
+        PrimaryProcessingStatusFlag0 = StringProcessingStatus;
         MemoryAllocationSize = MemoryAllocationIndex8;
         if (SystemFlagB != 1) {
           do {
@@ -191633,8 +191646,8 @@ LAB_18016aa7a:
           } while (MemoryAllocationIndex < SystemFlagB - 1);
         }
         if (SystemFlagB != 1) {
-          CharacterCodePointer = TertiaryProcessingStatusFlag;
-          PrimaryProcessingStatusFlag0 = TertiaryProcessingStatusFlag;
+          CharacterCodePointer = StringProcessingStatus;
+          PrimaryProcessingStatusFlag0 = StringProcessingStatus;
           do {
             CharacterCodePointer[(long long)pcStack_100] = (CharacterCodePointer + (int)MemoryAllocationSize)[(long long)pcStack_100];
             MemoryAllocationIndex = (int)PrimaryProcessingStatusFlag0 + 1;
@@ -191646,7 +191659,7 @@ LAB_18016aa7a:
         pcStack_100[SystemFlagB] = '\0';
         if (SystemFlagB != 0) {
           SystemDataTablePointer = (long long)(int)(SystemFlagB - 1);
-          CharacterCodePointer = TertiaryProcessingStatusFlag;
+          CharacterCodePointer = StringProcessingStatus;
           MemoryAllocationSize = MemoryAllocationIndex8;
           if (0 < (int)(SystemFlagB - 1)) {
             do {
@@ -191711,14 +191724,14 @@ LAB_18016aa7a:
       BufferAllocationStatus4 = pSystemFlagD + 1;
       pSystemFlagD = StatusBuffer5;
       do {
-        CharacterCodePointer = TertiaryProcessingStatusFlag;
-        PrimaryProcessingStatusFlag0 = TertiaryProcessingStatusFlag;
+        CharacterCodePointer = StringProcessingStatus;
+        PrimaryProcessingStatusFlag0 = StringProcessingStatus;
         MemoryAllocationSize = MemoryAllocationIndex8;
         if (SystemDataTablePointer != 1) {
           PrimaryProcessingStatusFlag5 = (uint *)(SystemMemoryPointer + 2);
-          SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-          TemporaryBuffer = TertiaryProcessingStatusFlag;
-          PrimaryProcessingStatusFlag6 = TertiaryProcessingStatusFlag;
+          SecondaryProcessingStatusFlag = StringProcessingStatus;
+          TemporaryBuffer = StringProcessingStatus;
+          PrimaryProcessingStatusFlag6 = StringProcessingStatus;
           do {
             EngineStatusBuffer = SystemMemoryPointer + (long long)SecondaryProcessingStatusFlag * 4;
             FUN_180629c00(StatusBuffer3,10);
@@ -191728,7 +191741,7 @@ LAB_18016aa7a:
               MemoryAllocationIndex = MemoryAllocationIndex8;
               if (0 < (int)(MemoryAllocationSize - 1)) {
                 DataStructureCounter = (long long)(int)(MemoryAllocationSize - 1);
-                SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+                SecondaryProcessingStatusFlag = StringProcessingStatus;
                 do {
                   MemoryAllocationIndex = (uint)SecondaryProcessingStatusFlag;
                   if (*(char *)(*(long long *)(PrimaryProcessingStatusFlag5 + -2) + DataStructureCounter) != ' ') break;
@@ -191773,7 +191786,7 @@ LAB_18016aa7a:
                 CharacterCodePointer = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationSize,0x13);
                 *CharacterCodePointer = 0;
                 MemoryAllocationCounter = (unsigned long long)CharacterCodePointer & 0xffffffffffc00000;
-                TemporaryBuffer = TertiaryProcessingStatusFlag;
+                TemporaryBuffer = StringProcessingStatus;
                 if (MemoryAllocationCounter != 0) {
                   DataStructureCounter = ((long long)CharacterCodePointer - MemoryAllocationCounter >> 0x10) * 0x50 + 0x80 + MemoryAllocationCounter;
                   StatusBuffer9 = (uint *)(DataStructureCounter - (unsigned long long)*(uint *)(DataStructureCounter + 4));
@@ -191818,7 +191831,7 @@ LAB_18016aa7a:
                 CharacterCodePointer = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationSize,0x13);
                 *CharacterCodePointer = 0;
                 MemoryAllocationCounter = (unsigned long long)CharacterCodePointer & 0xffffffffffc00000;
-                TemporaryBuffer = TertiaryProcessingStatusFlag;
+                TemporaryBuffer = StringProcessingStatus;
                 if (MemoryAllocationCounter != 0) {
                   DataStructureCounter = ((long long)CharacterCodePointer - MemoryAllocationCounter >> 0x10) * 0x50 + 0x80 + MemoryAllocationCounter;
                   StatusBuffer9 = (uint *)(DataStructureCounter - (unsigned long long)*(uint *)(DataStructureCounter + 4));
@@ -191910,7 +191923,7 @@ LAB_18016b773:
     pSystemRegisterFlagX8 = (void *)((unsigned long long)pSystemRegisterFlagX8 & 0xffffffff00000000);
     if (StackConfigurationFlag != 0) {
       StatusBuffer2 = StatusBuffer2 + 1;
-      CharacterCodePointer = TertiaryProcessingStatusFlag;
+      CharacterCodePointer = StringProcessingStatus;
       do {
         BufferAllocationStatus4 = SystemRegisterPointerX10;
         StatusBuffer8 = &CoreEngineDataTemplate;
@@ -191929,11 +191942,11 @@ LAB_18016b773:
             if (IntegerValue4 < 0x10) {
               IntegerValue7 = 0x10;
             }
-            TertiaryProcessingStatusFlag = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)IntegerValue7,&SystemMemoryAllocationFlag);
-            *TertiaryProcessingStatusFlag = 0;
-            GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+            StringProcessingStatus = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)IntegerValue7,&SystemMemoryAllocationFlag);
+            *StringProcessingStatus = 0;
+            GetMemoryAllocationInfo(StringProcessingStatus);
                     // WARNING: Subroutine does not return
-            memcpy(TertiaryProcessingStatusFlag,StatusBuffer8,IntegerValue4);
+            memcpy(StringProcessingStatus,StatusBuffer8,IntegerValue4);
           }
         }
         EngineStatusBuffer = (void *)SystemRegisterPointerX10[1];
@@ -191962,7 +191975,7 @@ LAB_18016b996:
           }
           else {
             DataStructureCounter = DataStructureCounter * 2;
-            CharacterCodePointer = TertiaryProcessingStatusFlag;
+            CharacterCodePointer = StringProcessingStatus;
             if (DataStructureCounter != 0) goto LAB_18016b996;
           }
           CoreEnginePointerBuffer78 = (void *)CoreEngineCopyMemoryBuffer(SystemDataTablePointer,StatusBuffer3,CharacterCodePointer);
@@ -192988,7 +193001,7 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long CharacterCode
   float FloatVariable5;
   float CalculatedDistance;
   int ProcessIterationCount;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   long long systemLoopCounter;
   uint64_t MemoryAllocationIndex;
   long long SystemStringIndex;
@@ -193015,10 +193028,10 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long CharacterCode
       *(void *)(SystemContext + 0x1720) = 0x3f80000000000000;
     }
     FUN_18012e2d0(RegisterValueEDI);
-    TertiaryProcessingStatusFlag = *(void **)(*(long long *)(RegisterSourceIndex + 0x20) + 8 + UnicodeCharacterCode);
+    StringProcessingStatus = *(void **)(*(long long *)(RegisterSourceIndex + 0x20) + 8 + UnicodeCharacterCode);
     StatusBuffer6 = &CoreEngineDataTemplate;
-    if (TertiaryProcessingStatusFlag != NULL) {
-      StatusBuffer6 = TertiaryProcessingStatusFlag;
+    if (StringProcessingStatus != NULL) {
+      StatusBuffer6 = StringProcessingStatus;
     }
     StringBuffer2 = FUN_180119960(StatusBuffer6,MutexLockResult == RegisterValueEDI,0,&stack0x00000090);
     if (StringBuffer2 != '\0') {
@@ -193428,10 +193441,10 @@ LAB_18016d07b:
         *(void *)(DataStructureCounter + 8) = 0;
         *(void *)(DataStructureCounter + 0x18) = 0;
         SystemDataTablePointer = DataStructureCounter;
-        for (TertiaryProcessingStatusFlag = (void *)(DataStructureCounter + -0x18); *(int *)(TertiaryProcessingStatusFlag + 1) != 0; TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -4
+        for (StringProcessingStatus = (void *)(DataStructureCounter + -0x18); *(int *)(StringProcessingStatus + 1) != 0; StringProcessingStatus = StringProcessingStatus + -4
             ) {
           if (MatchCounter != 0) {
-            SystemBytePointer = (byte *)*TertiaryProcessingStatusFlag;
+            SystemBytePointer = (byte *)*StringProcessingStatus;
             SystemOffsetValue = CurrentMemoryBlockAddress - (long long)SystemBytePointer;
             do {
               CurrentByteValue = *SystemBytePointer;
@@ -193441,20 +193454,20 @@ LAB_18016d07b:
             } while (DataSize != 0);
             if ((int)(CurrentByteValue - DataSize) < 1) break;
           }
-          if (TertiaryProcessingStatusFlag[4] != 0) {
+          if (StringProcessingStatus[4] != 0) {
                     // WARNING: Subroutine does not return
             CoreEngineProcessSystemEvent();
           }
-          TertiaryProcessingStatusFlag[6] = 0;
-          TertiaryProcessingStatusFlag[4] = 0;
-          *(uint32_t *)(TertiaryProcessingStatusFlag + 5) = 0;
-          *(uint32_t *)(TertiaryProcessingStatusFlag + 5) = *(uint32_t *)(TertiaryProcessingStatusFlag + 1);
-          TertiaryProcessingStatusFlag[4] = *TertiaryProcessingStatusFlag;
-          *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x34) = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x14);
-          *(uint32_t *)(TertiaryProcessingStatusFlag + 6) = *(uint32_t *)(TertiaryProcessingStatusFlag + 2);
-          *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-          *TertiaryProcessingStatusFlag = 0;
-          TertiaryProcessingStatusFlag[2] = 0;
+          StringProcessingStatus[6] = 0;
+          StringProcessingStatus[4] = 0;
+          *(uint32_t *)(StringProcessingStatus + 5) = 0;
+          *(uint32_t *)(StringProcessingStatus + 5) = *(uint32_t *)(StringProcessingStatus + 1);
+          StringProcessingStatus[4] = *StringProcessingStatus;
+          *(uint32_t *)((long long)StringProcessingStatus + 0x34) = *(uint32_t *)((long long)StringProcessingStatus + 0x14);
+          *(uint32_t *)(StringProcessingStatus + 6) = *(uint32_t *)(StringProcessingStatus + 2);
+          *(uint32_t *)(StringProcessingStatus + 1) = 0;
+          *StringProcessingStatus = 0;
+          StringProcessingStatus[2] = 0;
           SystemDataTablePointer = SystemDataTablePointer + -0x20;
         }
         if (*(long long *)(SystemDataTablePointer + 8) != 0) {
@@ -193553,22 +193566,22 @@ LAB_18016d59c:
   MemoryPoolBlockSize = CoreEngineCopyMemoryBuffer(*CharacterCode,CharacterCodeSize,MemoryBoundaryEnd);
   MemoryPoolBlockSize = CoreEngineCopyMemoryBuffer(CharacterCodeSize,CharacterCode[1],MemoryPoolBlockSize + 0x20);
   CharacterCodePointer = (void *)CharacterCode[1];
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
-  if (TertiaryProcessingStatusFlag != CharacterCodePointer) {
+  StringProcessingStatus = (void *)*CharacterCode;
+  if (StringProcessingStatus != CharacterCodePointer) {
     do {
-      (**(code **)*TertiaryProcessingStatusFlag)(TertiaryProcessingStatusFlag,0);
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
-    } while (TertiaryProcessingStatusFlag != CharacterCodePointer);
-    TertiaryProcessingStatusFlag = (void *)*CharacterCode;
+      (**(code **)*StringProcessingStatus)(StringProcessingStatus,0);
+      StringProcessingStatus = StringProcessingStatus + 4;
+    } while (StringProcessingStatus != CharacterCodePointer);
+    StringProcessingStatus = (void *)*CharacterCode;
   }
-  if (TertiaryProcessingStatusFlag == NULL) {
+  if (StringProcessingStatus == NULL) {
     *CharacterCode = MemoryBoundaryEnd;
     CharacterCode[1] = MemoryPoolBlockSize;
     CharacterCode[2] = CurrentMemoryBlockAddress * 0x20 + MemoryBoundaryEnd;
     return;
   }
                     // WARNING: Subroutine does not return
-  CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+  CoreEngineFreeSystemMemory(StringProcessingStatus);
 }
 
 
@@ -198187,7 +198200,7 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int CharacterCodeSize
   uint32_t MemoryAddressMask;
   uint32_t CalculatedCodePoint;
   void *CurrentNode;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   void *NextNode;
   uint64_t *TemporaryBuffer;
   void *StatusBuffer;
@@ -198196,8 +198209,8 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int CharacterCodeSize
   long long DataSize13;
   
   SystemStatusBuffer = (void *)CharacterCode[1];
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
-  SystemDataTablePointer = ((long long)SystemStatusBuffer - (long long)TertiaryProcessingStatusFlag) / 0x70;
+  StringProcessingStatus = (void *)*CharacterCode;
+  SystemDataTablePointer = ((long long)SystemStatusBuffer - (long long)StringProcessingStatus) / 0x70;
   SecondaryProcessingStatusFlag = NULL;
   if (SystemDataTablePointer == 0) {
     SystemDataTablePointer = 1;
@@ -198209,39 +198222,39 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int CharacterCodeSize
   SecondaryProcessingStatusFlag = (void *           BufferAllocate(MemoryPoolManager,SystemDataTablePointer * 0x70,*(uint8_t *)(CharacterCode + 3),Utf16EndPointer,
                          0xfffffffffffffffe);
   SystemStatusBuffer = (void *)CharacterCode[1];
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
+  StringProcessingStatus = (void *)*CharacterCode;
 LAB_1801741dc:
   TemporaryBuffer = SecondaryProcessingStatusFlag;
-  if (TertiaryProcessingStatusFlag != SystemStatusBuffer) {
-    SystemContextValue = (long long)SecondaryProcessingStatusFlag - (long long)TertiaryProcessingStatusFlag;
-    TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+  if (StringProcessingStatus != SystemStatusBuffer) {
+    SystemContextValue = (long long)SecondaryProcessingStatusFlag - (long long)StringProcessingStatus;
+    StringProcessingStatus = StringProcessingStatus + 1;
     do {
       *TemporaryBuffer = &ThreadLocalStorageTemplate;
-      *(void *)(SystemContextValue + (long long)TertiaryProcessingStatusFlag) = 0;
-      *(uint32_t *)(SystemContextValue + 8 + (long long)TertiaryProcessingStatusFlag) = 0;
+      *(void *)(SystemContextValue + (long long)StringProcessingStatus) = 0;
+      *(uint32_t *)(SystemContextValue + 8 + (long long)StringProcessingStatus) = 0;
       *TemporaryBuffer = &SystemStringBuffer;
-      TertiaryProcessingStatusFlag = (uint8_t *)((long long)TertiaryProcessingStatusFlag + SystemContextValue + 0x10);
-      *(uint8_t **)(SystemContextValue + (long long)TertiaryProcessingStatusFlag) = TertiaryProcessingStatusFlag;
-      *(uint32_t *)(SystemContextValue + 8 + (long long)TertiaryProcessingStatusFlag) = 0;
-      *TertiaryProcessingStatusFlag = 0;
-      *(uint32_t *)(SystemContextValue + 8 + (long long)TertiaryProcessingStatusFlag) = *(uint32_t *)(TertiaryProcessingStatusFlag + 1);
+      StringProcessingStatus = (uint8_t *)((long long)StringProcessingStatus + SystemContextValue + 0x10);
+      *(uint8_t **)(SystemContextValue + (long long)StringProcessingStatus) = StringProcessingStatus;
+      *(uint32_t *)(SystemContextValue + 8 + (long long)StringProcessingStatus) = 0;
+      *StringProcessingStatus = 0;
+      *(uint32_t *)(SystemContextValue + 8 + (long long)StringProcessingStatus) = *(uint32_t *)(StringProcessingStatus + 1);
       StatusBuffer = &CoreEngineDataTemplate;
-      if ((void *)*TertiaryProcessingStatusFlag != NULL) {
-        StatusBuffer = (void *)*TertiaryProcessingStatusFlag;
+      if ((void *)*StringProcessingStatus != NULL) {
+        StatusBuffer = (void *)*StringProcessingStatus;
       }
-      strcpy_s(*(void *)(SystemContextValue + (long long)TertiaryProcessingStatusFlag),0x40,StatusBuffer);
-      UnicodeCodePoint = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x54);
-      MemoryAddressMask = *(uint32_t *)(TertiaryProcessingStatusFlag + 0xb);
-      CalculatedCodePoint = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x5c);
-      PrimaryProcessingStatusFlag = (uint32_t *)(SystemContextValue + 0x50 + (long long)TertiaryProcessingStatusFlag);
-      *PrimaryProcessingStatusFlag = *(uint32_t *)(TertiaryProcessingStatusFlag + 10);
+      strcpy_s(*(void *)(SystemContextValue + (long long)StringProcessingStatus),0x40,StatusBuffer);
+      UnicodeCodePoint = *(uint32_t *)((long long)StringProcessingStatus + 0x54);
+      MemoryAddressMask = *(uint32_t *)(StringProcessingStatus + 0xb);
+      CalculatedCodePoint = *(uint32_t *)((long long)StringProcessingStatus + 0x5c);
+      PrimaryProcessingStatusFlag = (uint32_t *)(SystemContextValue + 0x50 + (long long)StringProcessingStatus);
+      *PrimaryProcessingStatusFlag = *(uint32_t *)(StringProcessingStatus + 10);
       PrimaryProcessingStatusFlag[1] = UnicodeCodePoint;
       PrimaryProcessingStatusFlag[2] = MemoryAddressMask;
       PrimaryProcessingStatusFlag[3] = CalculatedCodePoint;
-      *(void *)(SystemContextValue + 0x60 + (long long)TertiaryProcessingStatusFlag) = TertiaryProcessingStatusFlag[0xc];
+      *(void *)(SystemContextValue + 0x60 + (long long)StringProcessingStatus) = StringProcessingStatus[0xc];
       TemporaryBuffer = TemporaryBuffer + 0xe;
-      StatusBuffer = TertiaryProcessingStatusFlag + 0xd;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0xe;
+      StatusBuffer = StringProcessingStatus + 0xd;
+      StringProcessingStatus = StringProcessingStatus + 0xe;
     } while (StatusBuffer != SystemStatusBuffer);
   }
   FUN_1800b8300(TemporaryBuffer,CharacterCodeSize);
@@ -198254,15 +198267,15 @@ LAB_1801741dc:
   *(uint32_t *)((long long)TemporaryBuffer + 100) = CalculatedCodePoint;
   TemporaryBuffer[0xd] = *(void *)(CharacterCodeSize + 0x68);
   SystemStatusBuffer = (void *)CharacterCode[1];
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
-  if (TertiaryProcessingStatusFlag != SystemStatusBuffer) {
+  StringProcessingStatus = (void *)*CharacterCode;
+  if (StringProcessingStatus != SystemStatusBuffer) {
     do {
-      *TertiaryProcessingStatusFlag = &ThreadLocalStorageTemplate;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0xe;
-    } while (TertiaryProcessingStatusFlag != SystemStatusBuffer);
-    TertiaryProcessingStatusFlag = (void *)*CharacterCode;
+      *StringProcessingStatus = &ThreadLocalStorageTemplate;
+      StringProcessingStatus = StringProcessingStatus + 0xe;
+    } while (StringProcessingStatus != SystemStatusBuffer);
+    StringProcessingStatus = (void *)*CharacterCode;
   }
-  if (TertiaryProcessingStatusFlag == NULL) {
+  if (StringProcessingStatus == NULL) {
     *CharacterCode = SecondaryProcessingStatusFlag;
     CharacterCode[1] = TemporaryBuffer + 0xe;
     CharacterCode[2] = SecondaryProcessingStatusFlag + SystemDataTablePointer * 0xe;
@@ -198284,7 +198297,7 @@ LAB_1801741dc:
   uint32_t MemoryAddressMask;
   void **pCharacterCodePointer;
   uint8_t *SecondaryProcessingStatusFlag;
-  void **pTertiaryProcessingStatusFlag;
+  void **pStringProcessingStatus;
   void *NextNode;
   void **pTemporaryBuffer;
   long long SystemOffsetValue;
@@ -198330,26 +198343,26 @@ LAB_1801741dc:
     SystemStringIndex = ((long long *)CharacterCode)[1];
     SystemOffsetValue = ((SystemStringIndex + -0x70) - (long long)CharacterCodeSize) / 0x70;
     if (0 < SystemOffsetValue) {
-      TertiaryProcessingStatusFlag = (void *)(SystemStringIndex + 8);
+      StringProcessingStatus = (void *)(SystemStringIndex + 8);
       EngineStatusBuffer = (void *)(SystemStringIndex + -0x68);
       do {
-        *(uint32_t *)(TertiaryProcessingStatusFlag + -0xd) = *(uint32_t *)(StatusBuffer3 + -0xd);
+        *(uint32_t *)(StringProcessingStatus + -0xd) = *(uint32_t *)(StatusBuffer3 + -0xd);
         StatusBuffer5 = (void *)StatusBuffer3[-0xe];
         StatusBuffer4 = &CoreEngineDataTemplate;
         if (StatusBuffer5 != NULL) {
           StatusBuffer4 = StatusBuffer5;
         }
-        strcpy_s(TertiaryProcessingStatusFlag[-0xe],0x40,StatusBuffer4);
+        strcpy_s(StringProcessingStatus[-0xe],0x40,StatusBuffer4);
         MemoryAllocationIndex = *(uint32_t *)((long long)StatusBuffer3 + -0x1c);
         UnicodeCodePoint = *(uint32_t *)(StatusBuffer3 + -3);
         MemoryAddressMask = *(uint32_t *)((long long)StatusBuffer3 + -0x14);
-        *(uint32_t *)(TertiaryProcessingStatusFlag + -4) = *(uint32_t *)(StatusBuffer3 + -4);
-        *(uint32_t *)((long long)TertiaryProcessingStatusFlag + -0x1c) = MemoryAllocationIndex;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + -3) = UnicodeCodePoint;
-        *(uint32_t *)((long long)TertiaryProcessingStatusFlag + -0x14) = MemoryAddressMask;
-        TertiaryProcessingStatusFlag[-2] = StatusBuffer3[-2];
+        *(uint32_t *)(StringProcessingStatus + -4) = *(uint32_t *)(StatusBuffer3 + -4);
+        *(uint32_t *)((long long)StringProcessingStatus + -0x1c) = MemoryAllocationIndex;
+        *(uint32_t *)(StringProcessingStatus + -3) = UnicodeCodePoint;
+        *(uint32_t *)((long long)StringProcessingStatus + -0x14) = MemoryAddressMask;
+        StringProcessingStatus[-2] = StatusBuffer3[-2];
         SystemOffsetValue = SystemOffsetValue + -1;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -0xe;
+        StringProcessingStatus = StringProcessingStatus + -0xe;
         EngineStatusBuffer = StatusBuffer3 + -0xe;
       } while (0 < SystemOffsetValue);
     }
@@ -198424,10 +198437,10 @@ LAB_180174517:
       StatusBuffer[3] = MemoryAddressMask;
       *(void **)((long long)pStatusBuffer2 + SystemStringIndex + 0x60) = pStatusBuffer2[0xc];
       pTemporaryBuffer = pTemporaryBuffer + 0xe;
-      pTertiaryProcessingStatusFlag = pStatusBuffer2 + 0xd;
+      pStringProcessingStatus = pStatusBuffer2 + 0xd;
       pStatusBuffer6 = ppSystemFlagE;
       pStatusBuffer2 = pStatusBuffer2 + 0xe;
-    } while (pTertiaryProcessingStatusFlag != CharacterCodeSize);
+    } while (pStringProcessingStatus != CharacterCodeSize);
   }
   pTemporaryBuffer = pTemporaryBuffer + 0xe;
   pStatusBuffer2 = (void **)((long long *)CharacterCode)[1];
@@ -198461,25 +198474,25 @@ LAB_180174517:
       StatusBuffer[3] = MemoryAddressMask;
       *(void **)(SystemStringIndex + 0x60 + (long long)pStatusBuffer6) = pStatusBuffer6[0xc];
       pTemporaryBuffer = pTemporaryBuffer + 0xe;
-      pTertiaryProcessingStatusFlag = pStatusBuffer6 + 0xd;
+      pStringProcessingStatus = pStatusBuffer6 + 0xd;
       pStatusBuffer6 = pStatusBuffer6 + 0xe;
-    } while (pTertiaryProcessingStatusFlag != pStatusBuffer2);
+    } while (pStringProcessingStatus != pStatusBuffer2);
     pStatusBuffer2 = (void **)ppSystemFlagD[1];
     CharacterCode = ppSystemFlagD;
     pStatusBuffer6 = ppSystemFlagE;
   }
-  pTertiaryProcessingStatusFlag = (void **)*CharacterCode;
-  ppSystemFlagD = pTertiaryProcessingStatusFlag;
-  if (pTertiaryProcessingStatusFlag != pStatusBuffer2) {
+  pStringProcessingStatus = (void **)*CharacterCode;
+  ppSystemFlagD = pStringProcessingStatus;
+  if (pStringProcessingStatus != pStatusBuffer2) {
     do {
-      ppSystemFlagG = pTertiaryProcessingStatusFlag;
+      ppSystemFlagG = pStringProcessingStatus;
       *ppSystemFlagG = &ThreadLocalStorageTemplate;
       ppSystemFlagD = ppSystemFlagG + 0xe;
-      pTertiaryProcessingStatusFlag = ppSystemFlagD;
+      pStringProcessingStatus = ppSystemFlagD;
     } while (ppSystemFlagD != pStatusBuffer2);
-    pTertiaryProcessingStatusFlag = (void **)*CharacterCode;
+    pStringProcessingStatus = (void **)*CharacterCode;
   }
-  if (pTertiaryProcessingStatusFlag != (void **)0x0) {
+  if (pStringProcessingStatus != (void **)0x0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
@@ -198785,15 +198798,15 @@ uint64_t FUN_180174c70(uint64_t CharacterCode,long long *CharacterCodeSize
   long long DataStructureCounter;
   char SystemCharacterCode;
   int ValidationResult;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   uint8_t aStackConfigurationFlag [16];
   
   CharacterTablePointer = *CharacterCodeSize;
-  TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+  StringProcessingStatus = &CoreEngineDataTemplate;
   if (*(void **)(CharacterTablePointer + 8) != NULL) {
-    TertiaryProcessingStatusFlag = *(void **)(CharacterTablePointer + 8);
+    StringProcessingStatus = *(void **)(CharacterTablePointer + 8);
   }
-  CharacterVariable5 = ValidateSystemHandlesAndStatus(CharacterTablePointer + 0x20,TertiaryProcessingStatusFlag,5,0x105,0xfffffffffffffffe);
+  CharacterVariable5 = ValidateSystemHandlesAndStatus(CharacterTablePointer + 0x20,StringProcessingStatus,5,0x105,0xfffffffffffffffe);
   if (CharacterVariable5 != '\0') {
     DataStructureCounter = CharacterCodeSize[2];
     BufferStatus = CharacterCodeSize[1];
@@ -199210,7 +199223,7 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
   uint32_t *CharacterCodePointer;
   long long *pMemoryBoundaryEnd;
   long long *MemoryPoolBlockSizePointer;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   uint32_t SystemMemoryAllocationResult;
   uint MemoryAllocationIndex;
   uint32_t ProcessStringBuffer;
@@ -199300,11 +199313,11 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
           pSystemFlagE = aSystemFlagG;
           aSystemFlagG[0] = 0;
           SystemFlagF = 0x18;
-          TertiaryProcessingStatusFlag = (uint32_t *)&CoreEngineDataTemplate;
+          StringProcessingStatus = (uint32_t *)&CoreEngineDataTemplate;
           if (CharacterCodePointer != (uint32_t *)0x0) {
-            TertiaryProcessingStatusFlag = CharacterCodePointer;
+            StringProcessingStatus = CharacterCodePointer;
           }
-          ProcessStringBuffer = strcpy_s(aSystemFlagG,0x80,TertiaryProcessingStatusFlag);
+          ProcessStringBuffer = strcpy_s(aSystemFlagG,0x80,StringProcessingStatus);
           pMemoryBoundaryEnd = (long long *)FUN_1800b2450(ProcessStringBuffer,&PointerStackF8,&pSystemFlagD,&SystemStatusValue);
           BufferStatus = *pMemoryBoundaryEnd;
           *pMemoryBoundaryEnd = 0;
@@ -199413,8 +199426,8 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
   StatusBuffer = CharacterCode + 0x12;
   *StatusBuffer = SystemStatusBufferTertiary;
   *StatusBuffer = SystemStatusBufferQuaternary;
-  TertiaryProcessingStatusFlag = CharacterCode + 0x13;
-  *TertiaryProcessingStatusFlag = SystemTertiaryProcessingStatusFlag;
+  StringProcessingStatus = CharacterCode + 0x13;
+  *StringProcessingStatus = SystemStringProcessingStatus;
   pSystemOperationFlag98 = CharacterCode + 0x14;
   *pSystemOperationFlag98 = 0;
   CharacterCode[0x15] = 0;
@@ -199425,7 +199438,7 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
   CharacterCode[0x1a] = 0;
   *(uint32_t *)(CharacterCode + 0x1b) = 3;
   SystemEventDispatcher = CharacterCode + 0x20;
-  StackTempPointer = TertiaryProcessingStatusFlag;
+  StackTempPointer = StringProcessingStatus;
   _Mtx_init_in_situ(SystemEventDispatcher,2);
   PrimaryProcessingStatusFlag = CharacterCode + 0x2a;
   CharacterCode[0x2d] = 0;
@@ -199475,14 +199488,14 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
   AllocatedMemorySize = _GetPerformanceManager_Performance_Graphine__YAPEAVIPerformanceManager_12_XZ();
   if (AllocatedMemorySize != 0) {
     SecondaryProcessingStatusFlag = (void *             _GetPerformanceManager_Performance_Graphine__YAPEAVIPerformanceManager_12_XZ();
-    (**(code **)*SecondaryProcessingStatusFlag)(SecondaryProcessingStatusFlag,TertiaryProcessingStatusFlag);
+    (**(code **)*SecondaryProcessingStatusFlag)(SecondaryProcessingStatusFlag,StringProcessingStatus);
     MemoryPoolBlockSizePointer = (long long *             _GetPerformanceManager_Performance_Graphine__YAPEAVIPerformanceManager_12_XZ();
     (**(code **)(*MemoryPoolBlockSizePointer + 0x58))(MemoryPoolBlockSizePointer,0);
   }
   *(uint16_t *)(CharacterCode + 0x3e) = 0;
   _RegisterAllocator_Graphine__YA_AW4Enum_Error_1_PEAVIAllocator_1__Z(CharacterCode);
-  TertiaryProcessingStatusFlag = (void *)_GetLogManager_Graphine__YAPEAVILogManager_1_XZ();
-  (**(code **)*TertiaryProcessingStatusFlag)(TertiaryProcessingStatusFlag,TemporaryBuffer);
+  StringProcessingStatus = (void *)_GetLogManager_Graphine__YAPEAVILogManager_1_XZ();
+  (**(code **)*StringProcessingStatus)(StringProcessingStatus,TemporaryBuffer);
   MemoryAllocationSize = _Initialize_Granite_Graphine__YA_AW4Enum_Error_2__J_Z(0x1450);
   if (MemoryAllocationSize != 0) {
     FUN_180626ee0(SystemMemoryValidationPointerPrimary,MemoryAllocationSize);
@@ -199718,7 +199731,7 @@ long long InitializeSystemDataTemplate(uint64_t CharacterCode,long long Characte
   long long AllocatedMemorySize;
   void **pSecondaryProcessingStatusFlag;
   long long *MemoryPoolBlockSizePointer;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   uint8_t *TemporaryBuffer;
   long long *CharacterCodePointer;
   unsigned long long ProcessStringBuffer;
@@ -199792,12 +199805,12 @@ long long InitializeSystemDataTemplate(uint64_t CharacterCode,long long Characte
   iStack_6e8 = 0;
   CoreEngineProcessSystemEvent(&puStack_6f8,*(uint32_t *)(AllocatedMemorySize + 0x10));
   if (0 < *(int *)(AllocatedMemorySize + 0x10)) {
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (*(void **)(AllocatedMemorySize + 8) != NULL) {
-      TertiaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 8);
+      StringProcessingStatus = *(void **)(AllocatedMemorySize + 8);
     }
                     // WARNING: Subroutine does not return
-    memcpy(puStack_6f0,TertiaryProcessingStatusFlag,(long long)(*(int *)(AllocatedMemorySize + 0x10) + 1));
+    memcpy(puStack_6f0,StringProcessingStatus,(long long)(*(int *)(AllocatedMemorySize + 0x10) + 1));
   }
   if ((*(long long *)(AllocatedMemorySize + 8) != 0) && (iStack_6e8 = 0, puStack_6f0 != (uint8_t *)0x0)) {
     *puStack_6f0 = 0;
@@ -199814,15 +199827,15 @@ long long InitializeSystemDataTemplate(uint64_t CharacterCode,long long Characte
   CharacterCode2 = plStack_6b8;
   if ((plStack_6b8 == (long long *)0x0) || (validationResult != 0)) {
     if (CoreEngineThreadStatus == '\0') {
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (pStatusBuffer[1] != NULL) {
-        TertiaryProcessingStatusFlag = pStatusBuffer[1];
+        StringProcessingStatus = pStatusBuffer[1];
       }
       EngineStatusBuffer = &CoreEngineDataTemplate;
       if (*(void **)(Utf8InputPointer + 8) != NULL) {
         EngineStatusBuffer = *(void **)(Utf8InputPointer + 8);
       }
-      InitializeSystemEvent(SystemEventCallbackPointerTertiary,StatusBuffer3,TertiaryProcessingStatusFlag);
+      InitializeSystemEvent(SystemEventCallbackPointerTertiary,StatusBuffer3,StringProcessingStatus);
     }
     puStack_6f8 = &SystemNullTemplate;
     if (puStack_6f0 != (uint8_t *)0x0) {
@@ -200864,20 +200877,20 @@ LAB_180177d26:
           *(long long *)(MemoryPoolBlockSize + 0x40) = lStack_858;
           LowByte = true;
           pMemoryAddressMask = StatusBuffer;
-          TertiaryProcessingStatusFlag = *(uint64_t **)(SystemDataTablePointer + 0x160);
-          while (TertiaryProcessingStatusFlag != NULL) {
-            MemoryAddressMask = TertiaryProcessingStatusFlag;
-            if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+          StringProcessingStatus = *(uint64_t **)(SystemDataTablePointer + 0x160);
+          while (StringProcessingStatus != NULL) {
+            MemoryAddressMask = StringProcessingStatus;
+            if (*(int *)(StringProcessingStatus + 6) == 0) {
               LowByte = false;
 LAB_180178010:
-              TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+              StringProcessingStatus = (void *)*StringProcessingStatus;
             }
             else {
               if (*(int *)(MemoryPoolBlockSize + 0x30) == 0) {
                 LowByte = true;
               }
               else {
-                pIsSystemContextValid = (byte *)TertiaryProcessingStatusFlag[5];
+                pIsSystemContextValid = (byte *)StringProcessingStatus[5];
                 CharacterTablePointer6 = *(long long *)(MemoryPoolBlockSize + 0x28) - (long long)pIsSystemContextValid;
                 do {
                   HighByte = *pIsSystemContextValid;
@@ -200888,13 +200901,13 @@ LAB_180178010:
                 LowByte = 0 < (int)(HighByte - MemoryAllocationIndex);
               }
               if (!LowByte) goto LAB_180178010;
-              TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+              StringProcessingStatus = (void *)StringProcessingStatus[1];
             }
           }
-          TertiaryProcessingStatusFlag = MemoryAddressMask;
+          StringProcessingStatus = MemoryAddressMask;
           if (LowByte) {
             if (pMemoryAddressMask != *(uint64_t **)(SystemDataTablePointer + 0x158)) {
-              TertiaryProcessingStatusFlag = (void *)GetPreviousMemoryBlockIndex(pMemoryAddressMask);
+              StringProcessingStatus = (void *)GetPreviousMemoryBlockIndex(pMemoryAddressMask);
               goto LAB_180178030;
             }
           }
@@ -200914,9 +200927,9 @@ LAB_180178104:
               puStack_878 = &ThreadLocalStorageTemplate;
               goto LAB_180178154;
             }
-            if (*(int *)(TertiaryProcessingStatusFlag + 6) != 0) {
+            if (*(int *)(StringProcessingStatus + 6) != 0) {
               pIsSystemContextValid = *(byte **)(MemoryPoolBlockSize + 0x28);
-              SystemDataTablePointer = TertiaryProcessingStatusFlag[5] - (long long)pIsSystemContextValid;
+              SystemDataTablePointer = StringProcessingStatus[5] - (long long)pIsSystemContextValid;
               do {
                 HighByte = *pIsSystemContextValid;
                 MemoryAllocationIndex = (uint)pIsSystemContextValid[SystemDataTablePointer];
@@ -201498,9 +201511,9 @@ FUN_180179410(uint64_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8I
   
   StackUnsigned20 = EncodingDecodingKey ^ (unsigned long long)aSystemFlagH;
   CharacterCode = (long long *)(**(code **)(**(long long **)(CharacterCode + 0x38) + 0xc0))();
-  TertiaryProcessingStatusFlag = (void *)(CharacterCode + 8);
+  StringProcessingStatus = (void *)(CharacterCode + 8);
   pMemoryAddressMask = *(uint64_t **)(CharacterCode + 0x18);
-  PrimaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  PrimaryProcessingStatusFlag = StringProcessingStatus;
   if (*(uint64_t **)(CharacterCode + 0x18) != NULL) {
     do {
       if ((long long *)pMemoryAddressMask[4] < CharacterCode) {
@@ -201512,12 +201525,12 @@ FUN_180179410(uint64_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8I
       }
       pMemoryAddressMask = systemEventTemplatePointer;
     } while (systemEventTemplatePointer != NULL);
-    if ((PrimaryProcessingStatusFlag != TertiaryProcessingStatusFlag) && ((long long *)PrimaryProcessingStatusFlag[4] <= CharacterCode)) goto LAB_1801794f5;
+    if ((PrimaryProcessingStatusFlag != StringProcessingStatus) && ((long long *)PrimaryProcessingStatusFlag[4] <= CharacterCode)) goto LAB_1801794f5;
   }
-  PrimaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  PrimaryProcessingStatusFlag = StringProcessingStatus;
 LAB_1801794f5:
   pStackLongValue = CharacterCode;
-  if (PrimaryProcessingStatusFlag == TertiaryProcessingStatusFlag) {
+  if (PrimaryProcessingStatusFlag == StringProcessingStatus) {
     StackVariable70 = 0;
     (**(code **)(**(long long **)(CoreEngineRenderContext + 0x1d78) + 0x38)              (*(long long **)(CoreEngineRenderContext + 0x1d78),CharacterCode,0,&StackVariable70);
     StackValidationData = StackVariable70;
@@ -201527,7 +201540,7 @@ LAB_1801794f5:
     else {
       FunctionAddress80 = *(uint32_t *)(Utf8InputPointer + 8);
     }
-    PrimaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+    PrimaryProcessingStatusFlag = StringProcessingStatus;
     pMemoryAddressMask = *(uint64_t **)(CharacterCode + 0x18);
     while (pMemoryAddressMask != NULL) {
       if ((long long *)pMemoryAddressMask[4] < CharacterCode) {
@@ -201538,9 +201551,9 @@ LAB_1801794f5:
         pMemoryAddressMask = (void *)pMemoryAddressMask[1];
       }
     }
-    if ((PrimaryProcessingStatusFlag == TertiaryProcessingStatusFlag) || (CharacterCode < (long long *)PrimaryProcessingStatusFlag[4])) {
+    if ((PrimaryProcessingStatusFlag == StringProcessingStatus) || (CharacterCode < (long long *)PrimaryProcessingStatusFlag[4])) {
       pplStack_a8 = &pStackLongValue;
-      PrimaryProcessingStatusFlag = (void *)FUN_180179770(TertiaryProcessingStatusFlag,aStackUnsigned78);
+      PrimaryProcessingStatusFlag = (void *)FUN_180179770(StringProcessingStatus,aStackUnsigned78);
       PrimaryProcessingStatusFlag = (void *)*PrimaryProcessingStatusFlag;
       CharacterCode = pStackLongValue;
     }
@@ -201559,7 +201572,7 @@ LAB_1801794f5:
     }
   }
   SystemOperationFlag90 = 0;
-  MemoryAddressMask = TertiaryProcessingStatusFlag;
+  MemoryAddressMask = StringProcessingStatus;
   if (Utf8InputPointer == 0) {
     (**(code **)(**(long long **)(CoreEngineRenderContext + 0x1d78) + 0x38)              (*(long long **)(CoreEngineRenderContext + 0x1d78),CharacterCode,0,&SystemOperationFlag90);
     StackValidationData = SystemOperationFlag90;
@@ -201577,7 +201590,7 @@ LAB_1801794f5:
   }
   else {
     (**(code **)(*CharacterCode + 0x50))(CharacterCode,aSystemKeyPointer);
-    systemEventTemplatePointer = TertiaryProcessingStatusFlag;
+    systemEventTemplatePointer = StringProcessingStatus;
     PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x18);
     while (PrimaryProcessingStatusFlag != NULL) {
       if ((long long *)PrimaryProcessingStatusFlag[4] < CharacterCode) {
@@ -201588,9 +201601,9 @@ LAB_1801794f5:
         PrimaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
       }
     }
-    if ((systemEventTemplatePointer == TertiaryProcessingStatusFlag) || (CharacterCode < (long long *)systemEventTemplatePointer[4])) {
+    if ((systemEventTemplatePointer == StringProcessingStatus) || (CharacterCode < (long long *)systemEventTemplatePointer[4])) {
       pplStack_a8 = &pStackLongValue;
-      systemEventTemplatePointer = (void *)FUN_180179770(TertiaryProcessingStatusFlag,aStackUnsigned78);
+      systemEventTemplatePointer = (void *)FUN_180179770(StringProcessingStatus,aStackUnsigned78);
       systemEventTemplatePointer = (void *)*systemEventTemplatePointer;
       CharacterCode = pStackLongValue;
     }
@@ -201612,9 +201625,9 @@ LAB_1801794f5:
     }
   }
   SystemOperationFlag90 = StackValidationData;
-  if ((pMemoryAddressMask == TertiaryProcessingStatusFlag) || (CharacterCode < (long long *)pMemoryAddressMask[4])) {
+  if ((pMemoryAddressMask == StringProcessingStatus) || (CharacterCode < (long long *)pMemoryAddressMask[4])) {
     pplStack_a8 = &pStackLongValue;
-    pMemoryAddressMask = (void *)FUN_180179770(TertiaryProcessingStatusFlag,aStackUnsigned78);
+    pMemoryAddressMask = (void *)FUN_180179770(StringProcessingStatus,aStackUnsigned78);
     pMemoryAddressMask = (void *)*pMemoryAddressMask;
   }
   FUN_1800863a0(pMemoryAddressMask + 5,&StackValidationData);
@@ -203616,7 +203629,7 @@ long long * FUN_18017b6e0(long long *CharacterCode,uint32_t *CharacterCodeSize,u
   long long DataStructureCounter;
   long long AllocatedMemorySize;
   uint64_t DataSize;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   long long *pSystemDataTablePointer;
   long long *pCurrentMemoryBlockAddress;
   long long *CharacterCodePointer;
@@ -203709,11 +203722,11 @@ long long * FUN_18017b6e0(long long *CharacterCode,uint32_t *CharacterCodeSize,u
           if (*(void **)(BufferStatus + 0x18) != NULL) {
             SystemStatusBuffer = *(void **)(BufferStatus + 0x18);
           }
-          TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+          StringProcessingStatus = &CoreEngineDataTemplate;
           if (*(void **)(CharacterTablePointer + 0x18) != NULL) {
-            TertiaryProcessingStatusFlag = *(void **)(CharacterTablePointer + 0x18);
+            StringProcessingStatus = *(void **)(CharacterTablePointer + 0x18);
           }
-          InitializeSystemEvent(&SystemEventInitializationBuffer,TertiaryProcessingStatusFlag,SystemStatusBuffer);
+          InitializeSystemEvent(&SystemEventInitializationBuffer,StringProcessingStatus,SystemStatusBuffer);
         }
         CharacterCodePointer = CharacterCodePointer + 1;
         AllocatedMemorySize = AllocatedMemorySize + -1;
@@ -206212,18 +206225,18 @@ LAB_1801807f2:
   
   pMemoryAddressMask = (void *)MemoryAllocate(MemoryPoolManager,0x150,8,3);
   SystemStackFlag = 0xfffffffffffffffe;
-  TertiaryProcessingStatusFlag = MemoryAddressMask;
+  StringProcessingStatus = MemoryAddressMask;
   FUN_1803456e0(pMemoryAddressMask,CharacterCodeSize,CharacterCode);
-  *TertiaryProcessingStatusFlag = &SystemStatusBufferTertiary;
-  pSystemDataTablePointer = TertiaryProcessingStatusFlag + 0x12;
+  *StringProcessingStatus = &SystemStatusBufferTertiary;
+  pSystemDataTablePointer = StringProcessingStatus + 0x12;
   *pSystemDataTablePointer = (long long)&ThreadLocalStorageTemplate;
   IntegerValue3 = 0;
-  TertiaryProcessingStatusFlag[0x13] = 0;
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 0x14) = 0;
+  StringProcessingStatus[0x13] = 0;
+  *(uint32_t *)(StringProcessingStatus + 0x14) = 0;
   *pSystemDataTablePointer = (long long)&SystemNullTemplate;
-  TertiaryProcessingStatusFlag[0x15] = 0;
-  TertiaryProcessingStatusFlag[0x13] = 0;
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 0x14) = 0;
+  StringProcessingStatus[0x15] = 0;
+  StringProcessingStatus[0x13] = 0;
+  *(uint32_t *)(StringProcessingStatus + 0x14) = 0;
   CharacterCodePointer = pMemoryAddressMask + 0x16;
   *CharacterCodePointer = (long long)&ThreadLocalStorageTemplate;
   pMemoryAddressMask[0x17] = 0;
@@ -206232,11 +206245,11 @@ LAB_1801807f2:
   pMemoryAddressMask[0x19] = 0;
   pMemoryAddressMask[0x17] = 0;
   *(uint32_t *)(pMemoryAddressMask + 0x18) = 0;
-  TertiaryProcessingStatusFlag = pMemoryAddressMask + 0x1a;
+  StringProcessingStatus = pMemoryAddressMask + 0x1a;
   pMemoryAddressMask[0x1d] = 0;
   *(uint32_t *)(pMemoryAddressMask + 0x1f) = 3;
-  *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-  pMemoryAddressMask[0x1b] = TertiaryProcessingStatusFlag;
+  *StringProcessingStatus = StringProcessingStatus;
+  pMemoryAddressMask[0x1b] = StringProcessingStatus;
   pMemoryAddressMask[0x1c] = 0;
   *(uint8_t *)(pMemoryAddressMask + 0x1d) = 0;
   pMemoryAddressMask[0x1e] = 0;
@@ -206284,13 +206297,13 @@ LAB_1801807f2:
       }
     }
     uStack_118 = 0;
-    SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+    SecondaryProcessingStatusFlag = StringProcessingStatus;
     for (PrimaryProcessingStatusFlag = (void *)pMemoryAddressMask[0x1c]; PrimaryProcessingStatusFlag != NULL;
         PrimaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1]) {
       SecondaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
     }
-    if ((SecondaryProcessingStatusFlag == TertiaryProcessingStatusFlag) || (*(int *)(SecondaryProcessingStatusFlag + 6) != 0)) {
-      SecondaryProcessingStatusFlag = (void *)FUN_1800c2ab0(TertiaryProcessingStatusFlag,aSystemPriorityLevel);
+    if ((SecondaryProcessingStatusFlag == StringProcessingStatus) || (*(int *)(SecondaryProcessingStatusFlag + 6) != 0)) {
+      SecondaryProcessingStatusFlag = (void *)FUN_1800c2ab0(StringProcessingStatus,aSystemPriorityLevel);
       SecondaryProcessingStatusFlag = (void *)*SecondaryProcessingStatusFlag;
     }
     *(int *)(SecondaryProcessingStatusFlag + 8) = IntegerValue3;
@@ -206311,19 +206324,19 @@ LAB_1801807f2:
   uStack_110 = 0;
   pDataProcessingFlags = NULL;
   uStack_118 = 0;
-  TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  pDataProcessingFlags = TertiaryProcessingStatusFlag;
-  UnicodeCodePoint = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+  StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)StringProcessingStatus = 0;
+  pDataProcessingFlags = StringProcessingStatus;
+  UnicodeCodePoint = GetMemoryAllocationInfo(StringProcessingStatus);
   uStack_110 = CONCAT44(uStack_110.HighPart,UnicodeCodePoint);
-  *TertiaryProcessingStatusFlag = 0x615020746e657645;
-  *(uint16_t *)(TertiaryProcessingStatusFlag + 1) = 0x6874;
-  *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 10) = 0;
+  *StringProcessingStatus = 0x615020746e657645;
+  *(uint16_t *)(StringProcessingStatus + 1) = 0x6874;
+  *(uint8_t *)((long long)StringProcessingStatus + 10) = 0;
   uStack_118 = 10;
   FUN_1803460a0(pMemoryAddressMask,&pBufferInitializationFlag,pMemoryAddressMask + 0x12,9);
   pBufferInitializationFlag = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
-  CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+  CoreEngineFreeSystemMemory(StringProcessingStatus);
 }
 
 
@@ -207372,8 +207385,8 @@ LAB_180184089:
   long long *EngineContext;
   uint64_t ***ppCharacterCodePointer;
   code *CharacterPointer;
-  uint64_t ***ppTertiaryProcessingStatusFlag;
-  uint64_t ***ppTertiaryProcessingStatusFlag;
+  uint64_t ***ppStringProcessingStatus;
+  uint64_t ***ppStringProcessingStatus;
   uint64_t ****pppTemporaryBuffer;
   uint64_t ****pppStatusBuffer;
   uint64_t ****pppSystemStatusBuffer;
@@ -207441,20 +207454,20 @@ LAB_180184411:
         return;
       }
       (**(code **)(*SystemContextPtr + 0x10))(SystemContextPtr,&StackUnsigned78,&StackVariable70);
-      ppTertiaryProcessingStatusFlag = primaryStatusBufferPointer;
+      ppStringProcessingStatus = primaryStatusBufferPointer;
       ppSystemValidationPointer = &primaryStatusBufferPointer;
       SystemCheckResult = *(char *)((long long)primaryStatusBufferPointer[1] + SystemNodeStatusOffset);
-      ppTertiaryProcessingStatusFlag = (uint64_t ***)primaryStatusBufferPointer[1];
+      ppStringProcessingStatus = (uint64_t ***)primaryStatusBufferPointer[1];
       while (SystemCheckResult == '\0') {
-        FUN_1801885a0(&primaryStatusBufferPointer,ppTertiaryProcessingStatusFlag[2]);
-        ppCharacterCodePointer = (uint64_t ***)*ppTertiaryProcessingStatusFlag;
-        free(ppTertiaryProcessingStatusFlag,0x28);
-        ppTertiaryProcessingStatusFlag = ppCharacterCodePointer;
+        FUN_1801885a0(&primaryStatusBufferPointer,ppStringProcessingStatus[2]);
+        ppCharacterCodePointer = (uint64_t ***)*ppStringProcessingStatus;
+        free(ppStringProcessingStatus,0x28);
+        ppStringProcessingStatus = ppCharacterCodePointer;
         SystemCheckResult = *(char *)((long long)ppCharacterCodePointer + SystemNodeStatusOffset);
       }
-      ((uint64_t ****)primaryStatusBufferPointer)[1] = ppTertiaryProcessingStatusFlag;
-      *primaryStatusBufferPointer = ppTertiaryProcessingStatusFlag;
-      ((uint64_t ****)primaryStatusBufferPointer)[2] = ppTertiaryProcessingStatusFlag;
+      ((uint64_t ****)primaryStatusBufferPointer)[1] = ppStringProcessingStatus;
+      *primaryStatusBufferPointer = ppStringProcessingStatus;
+      ((uint64_t ****)primaryStatusBufferPointer)[2] = ppStringProcessingStatus;
       StackUnsigned60 = 0;
       free(primaryStatusBufferPointer,0x28);
     }
@@ -208503,7 +208516,7 @@ LAB_1801857bd:
   long long DataStructureCounter;
   uint64_t CalculatedCodePoint;
   void *CurrentNode;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   unsigned long long ProcessingStatusFlag;
   uint8_t auStack_118 [32];
   uint32_t SystemFlagB;
@@ -208525,7 +208538,7 @@ LAB_1801857bd:
   
   MemoryOffsetValue = 0xfffffffffffffffe;
   SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)auStack_118;
-  TertiaryProcessingStatusFlag = (uint32_t *)0x0;
+  StringProcessingStatus = (uint32_t *)0x0;
   SystemFlagB = 0;
   lStack_f0 = 0;
   pSystemFlagD = (uint32_t *)0x0;
@@ -208541,9 +208554,9 @@ LAB_1801857bd:
       SystemFlagG = *(uint32_t *)(SecondaryProcessingStatusFlag + 4);
       uStack_cc = *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 0x24);
       SystemFlagF = systemEventTemplatePointer;
-      if (TertiaryProcessingStatusFlag == pSystemFlagD) {
+      if (StringProcessingStatus == pSystemFlagD) {
         FUN_1801887a0(&lStack_f0,pSystemFlagD,&SystemFlagF);
-        TertiaryProcessingStatusFlag = pSystemFlagE;
+        StringProcessingStatus = pSystemFlagE;
       }
       else {
         SystemFlagF.LowPart = SUB84(systemEventTemplatePointer,0);
@@ -208593,7 +208606,7 @@ LAB_1801859b0:
     plStack_60 = (long long *)0x0;
   }
   if (BufferStatus != 0) {
-    ProcessingStatusFlag = (long long)TertiaryProcessingStatusFlag - BufferStatus & 0xfffffffffffffff0;
+    ProcessingStatusFlag = (long long)StringProcessingStatus - BufferStatus & 0xfffffffffffffff0;
     DataStructureCounter = BufferStatus;
     if (0xfff < ProcessingStatusFlag) {
       ProcessingStatusFlag = ProcessingStatusFlag + 0x27;
@@ -209533,7 +209546,7 @@ LAB_18018728e:
   uint64_t *MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   void *CurrentNode;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   unsigned long long ProcessingStatusFlag;
   uint64_t *TemporaryBuffer;
   uint64_t **pStatusBuffer;
@@ -209648,7 +209661,7 @@ LAB_18018728e:
             pMemoryAddressMask = (void *)SystemEventDispatcher[1];
             do {
               SecondaryProcessingStatusFlag = pMemoryAddressMask + 4;
-              TertiaryProcessingStatusFlag = &SystemOperationFlag98;
+              StringProcessingStatus = &SystemOperationFlag98;
               if (0xf < Utf16Char4) {
                 TertiaryNode = PrimaryStatusBlock;
               }
@@ -209660,7 +209673,7 @@ LAB_18018728e:
               if (ProcessingStatusFlag < Utf16Char) {
                 QuaternaryReturnCode = ProcessingStatusFlag;
               }
-              MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag,TertiaryProcessingStatusFlag,QuaternaryReturnCode);
+              MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag,StringProcessingStatus,QuaternaryReturnCode);
               if (MemoryAllocationSize == 0) {
                 if (Utf16Char < ProcessingStatusFlag) goto LAB_180187642;
 LAB_1801875f6:
@@ -209680,7 +209693,7 @@ LAB_180187642:
             if (0xf < (unsigned long long)TemporaryBuffer[7]) {
               pMemoryAddressMask = (void *)*pMemoryAddressMask;
             }
-            TertiaryProcessingStatusFlag = &SystemOperationFlag98;
+            StringProcessingStatus = &SystemOperationFlag98;
             if (0xf < Utf16Char4) {
               TertiaryNode = PrimaryStatusBlock;
             }
@@ -209688,7 +209701,7 @@ LAB_180187642:
             if (Utf16Char < ProcessingStatusFlag) {
               Utf16Char4 = Utf16Char;
             }
-            MemoryMatchResult = memcmp(TertiaryProcessingStatusFlag,pMemoryAddressMask,Utf16Char4);
+            MemoryMatchResult = memcmp(StringProcessingStatus,pMemoryAddressMask,Utf16Char4);
             if (MemoryAllocationSize == 0) {
               if (ProcessingStatusFlag < Utf16Char) goto LAB_18018764a;
             }
@@ -210123,16 +210136,16 @@ uint64_t * FUN_180187f00(long long *CharacterCode,uint64_t *CharacterCodeSize
   long long alStackX_18 [2];
   
   StatusBuffer = (void *)*CharacterCode;
-  TertiaryProcessingStatusFlag = StatusBuffer;
+  StringProcessingStatus = StatusBuffer;
   if (*(char *)((long long)StatusBuffer[1] + SystemNodeStatusOffset) == '\0') {
     MemoryAllocationIndex = CharacterCodeSize[2];
     UnicodeCodePoint = CharacterCodeSize[3];
     TemporaryBuffer = (void *)StatusBuffer[1];
     do {
       pMemoryBoundaryEnd = TemporaryBuffer + 4;
-      TertiaryProcessingStatusFlag = CharacterCodeSize;
+      StringProcessingStatus = CharacterCodeSize;
       if (0xf < UnicodeCodePoint) {
-        TertiaryProcessingStatusFlag = (void *)*CharacterCodeSize;
+        StringProcessingStatus = (void *)*CharacterCodeSize;
       }
       ProcessStringBuffer = TemporaryBuffer[6];
       if (0xf < (unsigned long long)TemporaryBuffer[7]) {
@@ -210142,25 +210155,25 @@ uint64_t * FUN_180187f00(long long *CharacterCode,uint64_t *CharacterCodeSize
       if (MemoryAllocationIndex < ProcessStringBuffer) {
         MemoryAllocationIndex = MemoryAllocationIndex;
       }
-      validationResult = memcmp(pMemoryBoundaryEnd,TertiaryProcessingStatusFlag,MemoryAllocationIndex);
+      validationResult = memcmp(pMemoryBoundaryEnd,StringProcessingStatus,MemoryAllocationIndex);
       if (validationResult == 0) {
         if (ProcessStringBuffer < MemoryAllocationIndex) goto LAB_180188024;
 LAB_180187f7e:
-        TertiaryProcessingStatusFlag = (void *)*TemporaryBuffer;
-        TertiaryProcessingStatusFlag = TemporaryBuffer;
+        StringProcessingStatus = (void *)*TemporaryBuffer;
+        StringProcessingStatus = TemporaryBuffer;
       }
       else {
         if (-1 < validationResult) goto LAB_180187f7e;
 LAB_180188024:
-        TertiaryProcessingStatusFlag = (void *)TemporaryBuffer[2];
+        StringProcessingStatus = (void *)TemporaryBuffer[2];
       }
-      TemporaryBuffer = TertiaryProcessingStatusFlag;
-    } while (*(char *)((long long)TertiaryProcessingStatusFlag + SystemNodeStatusOffset) == '\0');
+      TemporaryBuffer = StringProcessingStatus;
+    } while (*(char *)((long long)StringProcessingStatus + SystemNodeStatusOffset) == '\0');
   }
-  if (TertiaryProcessingStatusFlag != StatusBuffer) {
-    pMemoryBoundaryEnd = TertiaryProcessingStatusFlag + 4;
-    MemoryAllocationIndex = TertiaryProcessingStatusFlag[6];
-    if (0xf < (unsigned long long)TertiaryProcessingStatusFlag[7]) {
+  if (StringProcessingStatus != StatusBuffer) {
+    pMemoryBoundaryEnd = StringProcessingStatus + 4;
+    MemoryAllocationIndex = StringProcessingStatus[6];
+    if (0xf < (unsigned long long)StringProcessingStatus[7]) {
       pMemoryBoundaryEnd = (long long *)*pMemoryBoundaryEnd;
     }
     UnicodeCodePoint = CharacterCodeSize[2];
@@ -210175,13 +210188,13 @@ LAB_180188024:
     if (validationResult == 0) {
       if (MemoryAllocationIndex <= UnicodeCodePoint) {
 LAB_18018802f:
-        return TertiaryProcessingStatusFlag + 8;
+        return StringProcessingStatus + 8;
       }
     }
     else if (-1 < validationResult) goto LAB_18018802f;
   }
   AllocatedMemorySize = FUN_18018a130(CharacterCode);
-  FUN_18018a1c0(CharacterCode,alStackX_18,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+  FUN_18018a1c0(CharacterCode,alStackX_18,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
   return (void *)(alStackX_18[0] + 0x40);
 }
 
@@ -210204,27 +210217,27 @@ uint64_t * FUN_180187f11(uint64_t CharacterCode,long long CharacterCodeSize
   SecondaryProcessingStatusFlag = SystemContext;
   if (*(char *)((long long)SystemContext[1] + SystemNodeStatusOffset) == '\0') {
     Utf16Char = *(unsigned long long *)(CharacterCodeSize + 0x10);
-    TertiaryProcessingStatusFlag = (void *)SystemContext[1];
+    StringProcessingStatus = (void *)SystemContext[1];
     do {
-      MemoryBlockListHead = TertiaryProcessingStatusFlag + 4;
-      MemoryAllocationIndex = TertiaryProcessingStatusFlag[6];
-      if (0xf < (unsigned long long)TertiaryProcessingStatusFlag[7]) {
+      MemoryBlockListHead = StringProcessingStatus + 4;
+      MemoryAllocationIndex = StringProcessingStatus[6];
+      if (0xf < (unsigned long long)StringProcessingStatus[7]) {
         MemoryBlockListHead = (long long *)*MemoryBlockListHead;
       }
       MemoryMatchResult = memcmp(MemoryBlockListHead);
       if (MemoryAllocationSize == 0) {
         if (Utf16Char <= MemoryAllocationIndex) goto LAB_180187f7e;
 LAB_180188024:
-        TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[2];
+        StringProcessingStatus = (void *)StringProcessingStatus[2];
       }
       else {
         if (MemoryMatchResult < 0) goto LAB_180188024;
 LAB_180187f7e:
-        TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
-        SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)*StringProcessingStatus;
+        SecondaryProcessingStatusFlag = StringProcessingStatus;
       }
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-    } while (*(char *)((long long)TertiaryProcessingStatusFlag + SystemNodeStatusOffset) == '\0');
+      StringProcessingStatus = StringProcessingStatus;
+    } while (*(char *)((long long)StringProcessingStatus + SystemNodeStatusOffset) == '\0');
   }
   if (SecondaryProcessingStatusFlag != SystemContext) {
     Utf16Char = SecondaryProcessingStatusFlag[6];
@@ -211111,7 +211124,7 @@ uint32_t * ReallocateStatusBufferAndInsertElement(long long *StatusBuffer, long 
   uint32_t CalculatedCodePoint;
   uint32_t DataSize;
   uint32_t *NewBufferPointer;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   long long systemLoopCounter;
   unsigned long long CalculatedElementCount;
   unsigned long long CurrentBufferCapacity;
@@ -211126,8 +211139,8 @@ uint32_t * ReallocateStatusBufferAndInsertElement(long long *StatusBuffer, long 
   if (CurrentMemoryBlockAddress == 0x666666666666666) {
     FUN_180189990();
     FunctionPointer = (code *)swi(3);
-    TertiaryProcessingStatusFlag = (uint32_t *)(*FunctionPointer)();
-    return TertiaryProcessingStatusFlag;
+    StringProcessingStatus = (uint32_t *)(*FunctionPointer)();
+    return StringProcessingStatus;
   }
   NewElementCount = CurrentMemoryBlockAddress + 1;
   CurrentBufferCapacity = (StatusBuffer[2] - BufferStartAddress) / 0x28;
@@ -211164,17 +211177,17 @@ uint32_t * ReallocateStatusBufferAndInsertElement(long long *StatusBuffer, long 
   *(uint8_t *)(PrimaryProcessingStatusFlag + 8) = *(uint8_t *)(ElementData + 8);
   BufferStartAddress = StatusBuffer[1];
   CurrentMemoryBlockAddress = *StatusBuffer;
-  TertiaryProcessingStatusFlag = NewBufferPointer;
+  StringProcessingStatus = NewBufferPointer;
   EngineStatusBuffer = PrimaryProcessingStatusFlag;
   StatusBuffer5 = PrimaryProcessingStatusFlag;
   if (InsertPosition != BufferStartAddress) {
     FUN_180189b30(*StatusBuffer,InsertPosition,NewBufferPointer,StatusBuffer,PrimaryProcessingStatusFlag,Utf16Char4,PrimaryProcessingStatusFlag);
-    TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag + 10;
+    StringProcessingStatus = PrimaryProcessingStatusFlag + 10;
     BufferStartAddress = StatusBuffer[1];
     CurrentMemoryBlockAddress = InsertPosition;
     EngineStatusBuffer = NewBufferPointer;
   }
-  FUN_180189b30(CurrentMemoryBlockAddress,BufferStartAddress,TertiaryProcessingStatusFlag,StatusBuffer,StatusBuffer3,Utf16Char4,StatusBuffer5);
+  FUN_180189b30(CurrentMemoryBlockAddress,BufferStartAddress,StringProcessingStatus,StatusBuffer,StatusBuffer3,Utf16Char4,StatusBuffer5);
   BufferStartAddress = *StatusBuffer;
   if (BufferStartAddress != 0) {
     CurrentMemoryBlockAddress = StatusBuffer[1];
@@ -212631,20 +212644,20 @@ FUN_18018ac60(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8Inpu
   
   aStackVariable70[1] = 0xfffffffffffffffe;
   MemoryAllocationIndex = 1;
-  TertiaryProcessingStatusFlag = (void *)((void *)*CharacterCode)[1];
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
+  StringProcessingStatus = (void *)((void *)*CharacterCode)[1];
+  StringProcessingStatus = (void *)*CharacterCode;
   SystemRegisterPointerX8 = CharacterCode;
-  while (*(char *)((long long)TertiaryProcessingStatusFlag + SystemNodeStatusOffset) == '\0') {
+  while (*(char *)((long long)StringProcessingStatus + SystemNodeStatusOffset) == '\0') {
     if (Utf8InputPointer == '\0') {
-      pCurrentMemoryBlockAddress = TertiaryProcessingStatusFlag + 4;
-      Utf16Char = TertiaryProcessingStatusFlag[6];
-      if (0xf < (unsigned long long)TertiaryProcessingStatusFlag[7]) {
+      pCurrentMemoryBlockAddress = StringProcessingStatus + 4;
+      Utf16Char = StringProcessingStatus[6];
+      if (0xf < (unsigned long long)StringProcessingStatus[7]) {
         pCurrentMemoryBlockAddress = (long long *)*pCurrentMemoryBlockAddress;
       }
       MemoryAllocationIndex = Utf16EndPointer[2];
-      TertiaryProcessingStatusFlag = Utf16EndPointer;
+      StringProcessingStatus = Utf16EndPointer;
       if (0xf < (unsigned long long)Utf16EndPointer[3]) {
-        TertiaryProcessingStatusFlag = (void *)*Utf16EndPointer;
+        StringProcessingStatus = (void *)*Utf16EndPointer;
       }
       ProcessStringBuffer = MemoryAllocationIndex;
       if (Utf16Char < MemoryAllocationIndex) {
@@ -212652,7 +212665,7 @@ FUN_18018ac60(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8Inpu
       }
       SystemKeyPointer = Utf16Char;
       SystemStackFlag = MemoryAllocationIndex;
-      CalculatedCodePoint = memcmp(TertiaryProcessingStatusFlag,pCurrentMemoryBlockAddress,ProcessStringBuffer);
+      CalculatedCodePoint = memcmp(StringProcessingStatus,pCurrentMemoryBlockAddress,ProcessStringBuffer);
       if (CalculatedCodePoint == 0) {
         if (MemoryAllocationIndex < Utf16Char) {
           CalculatedCodePoint = 0xffffffff;
@@ -212663,14 +212676,14 @@ FUN_18018ac60(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8Inpu
       }
     }
     else {
-      pCurrentMemoryBlockAddress = TertiaryProcessingStatusFlag + 4;
+      pCurrentMemoryBlockAddress = StringProcessingStatus + 4;
       Utf16Char = Utf16EndPointer[2];
-      TertiaryProcessingStatusFlag = Utf16EndPointer;
+      StringProcessingStatus = Utf16EndPointer;
       if (0xf < (unsigned long long)Utf16EndPointer[3]) {
-        TertiaryProcessingStatusFlag = (void *)*Utf16EndPointer;
+        StringProcessingStatus = (void *)*Utf16EndPointer;
       }
-      MemoryAllocationIndex = TertiaryProcessingStatusFlag[6];
-      if (0xf < (unsigned long long)TertiaryProcessingStatusFlag[7]) {
+      MemoryAllocationIndex = StringProcessingStatus[6];
+      if (0xf < (unsigned long long)StringProcessingStatus[7]) {
         pCurrentMemoryBlockAddress = (long long *)*pCurrentMemoryBlockAddress;
       }
       ProcessStringBuffer = MemoryAllocationIndex;
@@ -212679,7 +212692,7 @@ FUN_18018ac60(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8Inpu
       }
       aStackVariable70[2] = Utf16Char;
       BufferOffset = MemoryAllocationIndex;
-      CalculatedCodePoint = memcmp(pCurrentMemoryBlockAddress,TertiaryProcessingStatusFlag,ProcessStringBuffer);
+      CalculatedCodePoint = memcmp(pCurrentMemoryBlockAddress,StringProcessingStatus,ProcessStringBuffer);
       if (CalculatedCodePoint == 0) {
         if (MemoryAllocationIndex < Utf16Char) {
           CalculatedCodePoint = 0;
@@ -212691,53 +212704,53 @@ FUN_18018ac60(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8Inpu
     }
 LAB_18018ad63:
     MemoryAllocationIndex = CalculatedCodePoint >> 0x1f;
-    TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+    StringProcessingStatus = StringProcessingStatus;
     if ((int)CalculatedCodePoint < 0) {
-      TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+      StringProcessingStatus = (void *)*StringProcessingStatus;
     }
     else {
-      TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[2];
+      StringProcessingStatus = (void *)StringProcessingStatus[2];
     }
   }
-  TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  StringProcessingStatus = StringProcessingStatus;
   if ((char)MemoryAllocationIndex != '\0') {
-    if (TertiaryProcessingStatusFlag == *(uint64_t **)*SystemRegisterPointerX8) {
-      TertiaryProcessingStatusFlag = (void *)FUN_18018aa30(SystemRegisterPointerX8,&SystemRegisterPointerX8,1,TertiaryProcessingStatusFlag);
-      *CharacterCodeSize = *TertiaryProcessingStatusFlag;
+    if (StringProcessingStatus == *(uint64_t **)*SystemRegisterPointerX8) {
+      StringProcessingStatus = (void *)FUN_18018aa30(SystemRegisterPointerX8,&SystemRegisterPointerX8,1,StringProcessingStatus);
+      *CharacterCodeSize = *StringProcessingStatus;
       *(uint8_t *)(CharacterCodeSize + 1) = 1;
       return CharacterCodeSize;
     }
-    if (*(char *)((long long)TertiaryProcessingStatusFlag + SystemNodeStatusOffset) == '\0') {
-      pMemoryAddressMask = (void *)*TertiaryProcessingStatusFlag;
-      systemEventTemplatePointer = TertiaryProcessingStatusFlag;
-      if (*(char *)((long long)*TertiaryProcessingStatusFlag + SystemNodeStatusOffset) == '\0') {
+    if (*(char *)((long long)StringProcessingStatus + SystemNodeStatusOffset) == '\0') {
+      pMemoryAddressMask = (void *)*StringProcessingStatus;
+      systemEventTemplatePointer = StringProcessingStatus;
+      if (*(char *)((long long)*StringProcessingStatus + SystemNodeStatusOffset) == '\0') {
         do {
-          TertiaryProcessingStatusFlag = MemoryAddressMask;
-          pMemoryAddressMask = (void *)TertiaryProcessingStatusFlag[2];
-        } while (*(char *)((long long)TertiaryProcessingStatusFlag[2] + SystemNodeStatusOffset) == '\0');
+          StringProcessingStatus = MemoryAddressMask;
+          pMemoryAddressMask = (void *)StringProcessingStatus[2];
+        } while (*(char *)((long long)StringProcessingStatus[2] + SystemNodeStatusOffset) == '\0');
       }
       else {
         do {
-          TertiaryProcessingStatusFlag = systemEventTemplatePointer;
-          systemEventTemplatePointer = (void *)TertiaryProcessingStatusFlag[1];
+          StringProcessingStatus = systemEventTemplatePointer;
+          systemEventTemplatePointer = (void *)StringProcessingStatus[1];
           if (*(char *)((long long)systemEventTemplatePointer + SystemNodeStatusOffset) != '\0') break;
-        } while (TertiaryProcessingStatusFlag == (void *)*systemEventTemplatePointer);
-        if (*(char *)((long long)TertiaryProcessingStatusFlag + SystemNodeStatusOffset) == '\0') {
-          TertiaryProcessingStatusFlag = systemEventTemplatePointer;
+        } while (StringProcessingStatus == (void *)*systemEventTemplatePointer);
+        if (*(char *)((long long)StringProcessingStatus + SystemNodeStatusOffset) == '\0') {
+          StringProcessingStatus = systemEventTemplatePointer;
         }
       }
     }
     else {
-      TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[2];
+      StringProcessingStatus = (void *)StringProcessingStatus[2];
     }
   }
-  pCurrentMemoryBlockAddress = TertiaryProcessingStatusFlag + 4;
+  pCurrentMemoryBlockAddress = StringProcessingStatus + 4;
   Utf16Char = Utf16EndPointer[2];
   if (0xf < (unsigned long long)Utf16EndPointer[3]) {
     Utf16EndPointer = (void *)*Utf16EndPointer;
   }
-  MemoryAllocationIndex = TertiaryProcessingStatusFlag[6];
-  if (0xf < (unsigned long long)TertiaryProcessingStatusFlag[7]) {
+  MemoryAllocationIndex = StringProcessingStatus[6];
+  if (0xf < (unsigned long long)StringProcessingStatus[7]) {
     pCurrentMemoryBlockAddress = (long long *)*pCurrentMemoryBlockAddress;
   }
   ProcessStringBuffer = MemoryAllocationIndex;
@@ -212755,14 +212768,14 @@ LAB_18018aebc:
       ProcessSystemStackData((long long *)(AdditionalParameter1 + 0x20));
       FunctionAddress = 0x60;
       free(AdditionalParameter1,0x60);
-      *CharacterCodeSize = TertiaryProcessingStatusFlag;
+      *CharacterCodeSize = StringProcessingStatus;
       *(uint8_t *)(CharacterCodeSize + 1) = 0;
       return CharacterCodeSize;
     }
   }
   else if (-1 < ValidationResult) goto LAB_18018aebc;
-  TertiaryProcessingStatusFlag = (void *)FUN_18018aa30(SystemRegisterPointerX8,aStackVariable70,MemoryAllocationIndex,TertiaryProcessingStatusFlag);
-  *CharacterCodeSize = *TertiaryProcessingStatusFlag;
+  StringProcessingStatus = (void *)FUN_18018aa30(SystemRegisterPointerX8,aStackVariable70,MemoryAllocationIndex,StringProcessingStatus);
+  *CharacterCodeSize = *StringProcessingStatus;
   *(uint8_t *)(CharacterCodeSize + 1) = 1;
   return CharacterCodeSize;
 }
@@ -213102,7 +213115,7 @@ uint64_t * FUN_18018b4c0(uint64_t CharacterCode,long long CharacterCodeSize
   long long AllocatedMemorySize;
   long long *pMemoryBoundaryEnd;
   uint64_t SystemChecksumValue;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   int aiStackX_8 [2];
   long long lStack_30;
   int *piStack_28;
@@ -213111,11 +213124,11 @@ uint64_t * FUN_18018b4c0(uint64_t CharacterCode,long long CharacterCodeSize
   
   MemoryBlockIndex = *(long long *)(CharacterCode + 0xb0);
   pMemoryAddressMask = *(void **)(*(long long *)(MemoryBlockIndex + 0xa8) + 0x70);
-  TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+  StringProcessingStatus = &CoreEngineDataTemplate;
   if (pMemoryAddressMask != NULL) {
-    TertiaryProcessingStatusFlag = MemoryAddressMask;
+    StringProcessingStatus = MemoryAddressMask;
   }
-  (**(code **)(*(long long *)(MemoryBlockIndex + 0x10) + 0x10))((long long *)(MemoryBlockIndex + 0x10),TertiaryProcessingStatusFlag);
+  (**(code **)(*(long long *)(MemoryBlockIndex + 0x10) + 0x10))((long long *)(MemoryBlockIndex + 0x10),StringProcessingStatus);
   long long AllocatedMemorySize = *(long long *)(*(long long *)(MemoryBlockIndex + 0xa8) + 0x20);
   if (*(long long *)(MemoryBlockIndex + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
@@ -214950,7 +214963,7 @@ LAB_18018e08d:
   uint MemoryAddressMask;
   long long AllocatedMemorySize;
   unsigned long long *SecondaryProcessingStatusFlag;
-  unsigned long long *TertiaryProcessingStatusFlag;
+  unsigned long long *StringProcessingStatus;
   long long secondaryLoopCounter;
   uint8_t *TemporaryBuffer;
   unsigned long long *StatusBuffer;
@@ -214996,7 +215009,7 @@ LAB_18018e08d:
   lStack_f8 = CharacterCodeSize;
   aCoreEngineSignedValueE8[0] = SystemDataTablePointer;
   if (0 < (int)SystemDataTablePointer) {
-    TertiaryProcessingStatusFlag = (unsigned long long *)0x0;
+    StringProcessingStatus = (unsigned long long *)0x0;
     DataContentStatus = (unsigned long long *)0x0;
     SecondaryProcessingStatusFlag = StatusBuffer;
     StatusBuffer4 = StatusBuffer;
@@ -215069,11 +215082,11 @@ LAB_18018e08d:
         DataContentStatus = (unsigned long long *                     CONCAT44(IntegerValue3,(24.0 - ABS(ABS(12.0 - *(float *)(SystemContextValue + 0x2c)) -
                                                  ABS(12.0 - *(float *)(Utf8InputPointer + 0xa8)))) * 500.0 +
                                      SecondaryFloatValue);
-        if (TertiaryProcessingStatusFlag < StatusBuffer4) {
-          *TertiaryProcessingStatusFlag = (unsigned long long)DataContentStatus;
+        if (StringProcessingStatus < StatusBuffer4) {
+          *StringProcessingStatus = (unsigned long long)DataContentStatus;
         }
         else {
-          SystemContextValue = (long long)TertiaryProcessingStatusFlag - (long long)pDataProcessingFlags;
+          SystemContextValue = (long long)StringProcessingStatus - (long long)pDataProcessingFlags;
           SystemDataTablePointer = SystemContextValue >> 3;
           if (SystemDataTablePointer == 0) {
             SystemDataTablePointer = 1;
@@ -215086,19 +215099,19 @@ LAB_18018e486:
             if (SystemDataTablePointer != 0) goto LAB_18018e486;
           }
           StatusBuffer4 = (unsigned long long *)(SystemContextValue + 7U >> 3);
-          if (TertiaryProcessingStatusFlag < SystemStatusBuffer) {
+          if (StringProcessingStatus < SystemStatusBuffer) {
             StatusBuffer4 = StatusBuffer;
           }
-          TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+          StringProcessingStatus = SecondaryProcessingStatusFlag;
           if (StatusBuffer4 != (unsigned long long *)0x0) {
             StatusBuffer5 = StatusBuffer;
             do {
-              *TertiaryProcessingStatusFlag = *(unsigned long long *)(((long long)SystemStatusBuffer - (long long)SecondaryProcessingStatusFlag) + (long long)TertiaryProcessingStatusFlag);
-              TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+              *StringProcessingStatus = *(unsigned long long *)(((long long)SystemStatusBuffer - (long long)SecondaryProcessingStatusFlag) + (long long)StringProcessingStatus);
+              StringProcessingStatus = StringProcessingStatus + 1;
               StatusBuffer5 = (unsigned long long *)((long long)StatusBuffer5 + 1);
             } while (StatusBuffer5 != StatusBuffer4);
           }
-          *TertiaryProcessingStatusFlag = (unsigned long long)DataContentStatus;
+          *StringProcessingStatus = (unsigned long long)DataContentStatus;
           if (SystemStatusBuffer != (unsigned long long *)0x0) {
                     // WARNING: Subroutine does not return
             CoreEngineFreeSystemMemory(SystemStatusBuffer);
@@ -215109,9 +215122,9 @@ LAB_18018e486:
           pDataProcessingFlags = SecondaryProcessingStatusFlag;
           CoreEnginePointerBuffer110 = StatusBuffer4;
         }
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+        StringProcessingStatus = StringProcessingStatus + 1;
         CharacterCode = &SystemNullTemplate;
-        ThreadLocalStorageBuffer = TertiaryProcessingStatusFlag;
+        ThreadLocalStorageBuffer = StringProcessingStatus;
         if (CoreEnginePointerBuffer158 != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
           CoreEngineProcessSystemEvent();
@@ -215126,22 +215139,22 @@ LAB_18018e486:
       SecondaryProcessingStatusFlag = (unsigned long long *)(unsigned long long)PrimaryReturnCode;
       SystemStatusValue = CONCAT44(SystemStatusValue.HighPart,PrimaryReturnCode);
     } while ((int)PrimaryReturnCode < (int)SystemDataTablePointer);
-    DataContentStatus = TertiaryProcessingStatusFlag;
-    if (pDataProcessingFlags != TertiaryProcessingStatusFlag) {
-      SystemContextValue = (long long)TertiaryProcessingStatusFlag - (long long)pDataProcessingFlags >> 3;
+    DataContentStatus = StringProcessingStatus;
+    if (pDataProcessingFlags != StringProcessingStatus) {
+      SystemContextValue = (long long)StringProcessingStatus - (long long)pDataProcessingFlags >> 3;
       PrimaryReturnCode = 0;
       for (SystemDataTablePointer = SystemContextValue; SystemDataTablePointer != 0; SystemDataTablePointer = SystemDataTablePointer >> 1) {
         PrimaryReturnCode = (int)StatusBuffer + 1;
         StatusBuffer = (unsigned long long *)(unsigned long long)PrimaryReturnCode;
       }
-      FUN_180190c90(pDataProcessingFlags,TertiaryProcessingStatusFlag,(long long)(int)(PrimaryReturnCode - 1) * 2);
+      FUN_180190c90(pDataProcessingFlags,StringProcessingStatus,(long long)(int)(PrimaryReturnCode - 1) * 2);
       if (SystemContextValue < 0x1d) {
-        FUN_180190a20(SystemStatusBuffer,TertiaryProcessingStatusFlag);
+        FUN_180190a20(SystemStatusBuffer,StringProcessingStatus);
       }
       else {
         StatusBuffer = SystemStatusBuffer + 0x1c;
         FUN_180190a20(SystemStatusBuffer,StatusBuffer);
-        if (StatusBuffer != TertiaryProcessingStatusFlag) {
+        if (StatusBuffer != StringProcessingStatus) {
           StatusBuffer4 = SystemStatusBuffer + 0x1b;
           do {
             MemoryAllocationIndex = *StatusBuffer;
@@ -215157,7 +215170,7 @@ LAB_18018e486:
                 SystemStatusBuffer = SystemStatusBuffer + -1;
                 SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + -1;
                 OperationStatus = ProcessSystemDataPair(MemoryAllocationIndex,*SecondaryProcessingStatusFlag);
-                TertiaryProcessingStatusFlag = DataContentStatus;
+                StringProcessingStatus = DataContentStatus;
               } while (OperationStatus != '\0');
             }
             *(int *)SystemStatusBuffer = (int)SystemStatusValue;
@@ -215166,7 +215179,7 @@ LAB_18018e486:
             StatusBuffer4 = StatusBuffer4 + 1;
             SystemStatusBuffer = pDataProcessingFlags;
             CharacterCodeSize = lStack_128;
-          } while (StatusBuffer != TertiaryProcessingStatusFlag);
+          } while (StatusBuffer != StringProcessingStatus);
         }
       }
     }
@@ -216063,7 +216076,7 @@ uint64_t * FUN_180190630(long long *CharacterCode,long long CharacterCodeSize,ui
   if (SecondaryProcessingStatusFlag < (void *)CharacterCode[2]) {
     CharacterCode[1] = (long long)(SecondaryProcessingStatusFlag + 0x69);
     *SecondaryProcessingStatusFlag = &SystemSecondaryProcessingStatusFlagAddress;
-    *SecondaryProcessingStatusFlag = &SystemTertiaryProcessingStatusFlagAddress;
+    *SecondaryProcessingStatusFlag = &SystemStringProcessingStatusAddress;
     CoreEngineExecuteSystemEvent(SecondaryProcessingStatusFlag + 1,CharacterCodeSize + 8,Utf8InputPointer,Utf16EndPointer,0xfffffffffffffffe);
     *(uint32_t *)(SecondaryProcessingStatusFlag + 5) = *(uint32_t *)(CharacterCodeSize + 0x28);
     *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 0x2c) = *(uint32_t *)(CharacterCodeSize + 0x2c);
@@ -216238,8 +216251,8 @@ uint64_t * FUN_180190630(long long *CharacterCode,long long CharacterCodeSize,ui
     *(uint32_t *)(SecondaryProcessingStatusFlag + 0x68) = *(uint32_t *)(CharacterCodeSize + 0x340);
     return SecondaryProcessingStatusFlag;
   }
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
-  CurrentMemoryBlockAddress = ((long long)SecondaryProcessingStatusFlag - (long long)TertiaryProcessingStatusFlag) / 0x348;
+  StringProcessingStatus = (void *)*CharacterCode;
+  CurrentMemoryBlockAddress = ((long long)SecondaryProcessingStatusFlag - (long long)StringProcessingStatus) / 0x348;
   if (CurrentMemoryBlockAddress == 0) {
     CurrentMemoryBlockAddress = 1;
   }
@@ -216253,21 +216266,21 @@ uint64_t * FUN_180190630(long long *CharacterCode,long long CharacterCodeSize,ui
   }
   SystemDataTablePointer = BufferAllocate(MemoryPoolManager,CurrentMemoryBlockAddress * 0x348,(char)CharacterCode[3]);
   SecondaryProcessingStatusFlag = (void *)CharacterCode[1];
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
+  StringProcessingStatus = (void *)*CharacterCode;
   SystemOffsetValue = SystemDataTablePointer;
 joined_r0x0001801906da:
-  for (; TertiaryProcessingStatusFlag != SecondaryProcessingStatusFlag; TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0x69) {
-    FUN_18018e7e0(SystemDataTablePointer,TertiaryProcessingStatusFlag);
+  for (; StringProcessingStatus != SecondaryProcessingStatusFlag; StringProcessingStatus = StringProcessingStatus + 0x69) {
+    FUN_18018e7e0(SystemDataTablePointer,StringProcessingStatus);
     SystemDataTablePointer = SystemDataTablePointer + 0x348;
   }
   FUN_18018e7e0(SystemDataTablePointer,CharacterCodeSize);
   SecondaryProcessingStatusFlag = (void *)*CharacterCode;
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
-  if (SecondaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
+  StringProcessingStatus = (void *)CharacterCode[1];
+  if (SecondaryProcessingStatusFlag != StringProcessingStatus) {
     do {
       (**(code **)*SecondaryProcessingStatusFlag)(SecondaryProcessingStatusFlag,0);
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0x69;
-    } while (SecondaryProcessingStatusFlag != TertiaryProcessingStatusFlag);
+    } while (SecondaryProcessingStatusFlag != StringProcessingStatus);
     SecondaryProcessingStatusFlag = (void *)*CharacterCode;
   }
   if (SecondaryProcessingStatusFlag != NULL) {
@@ -216381,7 +216394,7 @@ joined_r0x0001801906da:
   long long DataStructureCounter;
   byte *SystemBytePointer;
   int ValidationResult;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   long long secondaryLoopCounter;
   uint64_t *TemporaryBuffer;
   bool CurrentByteValue0;
@@ -216409,16 +216422,16 @@ LAB_1801908b0:
         TemporaryBuffer = (void *)(CharacterCode + 0x10);
         BufferStatus = SystemDataTablePointer;
         do {
-          TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+          StringProcessingStatus = &CoreEngineDataTemplate;
           if (puStack_358 != NULL) {
-            TertiaryProcessingStatusFlag = puStack_358;
+            StringProcessingStatus = puStack_358;
           }
-          MemoryBlockIndex = strstr(TertiaryProcessingStatusFlag,&SystemMemoryBoundaryCheck6);
-          TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+          MemoryBlockIndex = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheck6);
+          StringProcessingStatus = &CoreEngineDataTemplate;
           if ((void *)*TemporaryBuffer != NULL) {
-            TertiaryProcessingStatusFlag = (void *)*TemporaryBuffer;
+            StringProcessingStatus = (void *)*TemporaryBuffer;
           }
-          DataStructureCounter = strstr(TertiaryProcessingStatusFlag,&SystemMemoryBoundaryCheck6);
+          DataStructureCounter = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheck6);
           CurrentByteValue0 = DataStructureCounter != 0;
           if (MemoryBlockIndex == 0) {
             if (CurrentByteValue0) goto LAB_1801909bf;
@@ -216615,7 +216628,7 @@ LAB_1801909bf:
   long long DataStructureCounter;
   long long AllocatedMemorySize;
   byte *Utf8OutputPointer;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   int ComputedResult;
   uint64_t *TemporaryBuffer;
   uint64_t *StatusBuffer;
@@ -216633,16 +216646,16 @@ LAB_1801909bf:
         SystemStatusBuffer = TemporaryBuffer + 2;
         do {
           PrimaryProcessingStatusFlag = SystemStatusBuffer + -0x69;
-          TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+          StringProcessingStatus = &CoreEngineDataTemplate;
           if (puStack_358 != NULL) {
-            TertiaryProcessingStatusFlag = puStack_358;
+            StringProcessingStatus = puStack_358;
           }
-          DataStructureCounter = strstr(TertiaryProcessingStatusFlag,&SystemMemoryBoundaryCheck6);
-          TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+          DataStructureCounter = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheck6);
+          StringProcessingStatus = &CoreEngineDataTemplate;
           if ((void *)*PrimaryProcessingStatusFlag != NULL) {
-            TertiaryProcessingStatusFlag = (void *)*PrimaryProcessingStatusFlag;
+            StringProcessingStatus = (void *)*PrimaryProcessingStatusFlag;
           }
-          AllocatedMemorySize = strstr(TertiaryProcessingStatusFlag,&SystemMemoryBoundaryCheck6);
+          AllocatedMemorySize = strstr(StringProcessingStatus,&SystemMemoryBoundaryCheck6);
           CurrentByteValue2 = AllocatedMemorySize != 0;
           if (DataStructureCounter == 0) {
             if (CurrentByteValue2) break;
@@ -216824,7 +216837,7 @@ LAB_180190c1c:
     OperationStatus = ProcessSystemDataPair(*CharacterCode,CharacterCode[AllocatedMemorySize >> 1]);
     if (OperationStatus == '\0') {
       OperationStatus = ProcessSystemDataPair(*CharacterCode,*StatusBuffer);
-      TertiaryProcessingStatusFlag = CharacterCode;
+      StringProcessingStatus = CharacterCode;
       if (OperationStatus == '\0') {
         OperationStatus = ProcessSystemDataPair(*SecondaryProcessingStatusFlag,*StatusBuffer);
         goto LAB_180190d41;
@@ -216832,18 +216845,18 @@ LAB_180190c1c:
     }
     else {
       OperationStatus = ProcessSystemDataPair(*SecondaryProcessingStatusFlag,*StatusBuffer);
-      TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+      StringProcessingStatus = SecondaryProcessingStatusFlag;
       if (OperationStatus == '\0') {
         OperationStatus = ProcessSystemDataPair(*CharacterCode,*StatusBuffer);
         SecondaryProcessingStatusFlag = CharacterCode;
 LAB_180190d41:
-        TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+        StringProcessingStatus = SecondaryProcessingStatusFlag;
         if (OperationStatus != '\0') {
-          TertiaryProcessingStatusFlag = StatusBuffer;
+          StringProcessingStatus = StatusBuffer;
         }
       }
     }
-    Utf16Char = *TertiaryProcessingStatusFlag;
+    Utf16Char = *StringProcessingStatus;
     SecondaryProcessingStatusFlag = CharacterCode;
     StatusBuffer = CharacterCodeSize;
     while( true ) {
@@ -216851,19 +216864,19 @@ LAB_180190d41:
         SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 1;
       }
       OperationStatus = ProcessSystemDataPair(Utf16Char,StatusBuffer[-1]);
-      TertiaryProcessingStatusFlag = StatusBuffer;
-      while (StatusBuffer = TertiaryProcessingStatusFlag + -1, OperationStatus != '\0') {
-        OperationStatus = ProcessSystemDataPair(Utf16Char,TertiaryProcessingStatusFlag[-2]);
-        TertiaryProcessingStatusFlag = StatusBuffer;
+      StringProcessingStatus = StatusBuffer;
+      while (StatusBuffer = StringProcessingStatus + -1, OperationStatus != '\0') {
+        OperationStatus = ProcessSystemDataPair(Utf16Char,StringProcessingStatus[-2]);
+        StringProcessingStatus = StatusBuffer;
       }
       if (StatusBuffer <= SecondaryProcessingStatusFlag) break;
       MemoryAllocationIndex = *SecondaryProcessingStatusFlag;
       *(uint32_t *)SecondaryProcessingStatusFlag = *(uint32_t *)StatusBuffer;
-      *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 4) = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + -4);
+      *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 4) = *(uint32_t *)((long long)StringProcessingStatus + -4);
       uStackX_20 = (uint32_t)MemoryAllocationIndex;
       *(uint32_t *)StatusBuffer = uStackX_20;
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 1;
-      *(int *)((long long)TertiaryProcessingStatusFlag + -4) = (int)((unsigned long long)MemoryAllocationIndex >> 0x20);
+      *(int *)((long long)StringProcessingStatus + -4) = (int)((unsigned long long)MemoryAllocationIndex >> 0x20);
     }
     Utf8InputPointer = Utf8InputPointer + -1;
     FUN_180190c90(SecondaryProcessingStatusFlag,CharacterCodeSize,Utf8InputPointer);
@@ -216999,7 +217012,7 @@ LAB_180190d41:
     OperationStatus = ProcessSystemDataPair(*CharacterCode,CharacterCode[AllocatedMemorySize >> 1]);
     if (OperationStatus == '\0') {
       OperationStatus = ProcessSystemDataPair(*CharacterCode,*StatusBuffer);
-      TertiaryProcessingStatusFlag = CharacterCode;
+      StringProcessingStatus = CharacterCode;
       if (OperationStatus == '\0') {
         OperationStatus = ProcessSystemDataPair(*SecondaryProcessingStatusFlag,*StatusBuffer);
         goto LAB_180190d41;
@@ -217007,18 +217020,18 @@ LAB_180190d41:
     }
     else {
       OperationStatus = ProcessSystemDataPair(*SecondaryProcessingStatusFlag,*StatusBuffer);
-      TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+      StringProcessingStatus = SecondaryProcessingStatusFlag;
       if (OperationStatus == '\0') {
         OperationStatus = ProcessSystemDataPair(*CharacterCode,*StatusBuffer);
         SecondaryProcessingStatusFlag = CharacterCode;
 LAB_180190d41:
-        TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+        StringProcessingStatus = SecondaryProcessingStatusFlag;
         if (OperationStatus != '\0') {
-          TertiaryProcessingStatusFlag = StatusBuffer;
+          StringProcessingStatus = StatusBuffer;
         }
       }
     }
-    Utf16Char = *TertiaryProcessingStatusFlag;
+    Utf16Char = *StringProcessingStatus;
     SecondaryProcessingStatusFlag = CharacterCode;
     StatusBuffer = CharacterCodeSize;
     while( true ) {
@@ -217026,19 +217039,19 @@ LAB_180190d41:
         SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 1;
       }
       OperationStatus = ProcessSystemDataPair(Utf16Char,StatusBuffer[-1]);
-      TertiaryProcessingStatusFlag = StatusBuffer;
-      while (StatusBuffer = TertiaryProcessingStatusFlag + -1, OperationStatus != '\0') {
-        OperationStatus = ProcessSystemDataPair(Utf16Char,TertiaryProcessingStatusFlag[-2]);
-        TertiaryProcessingStatusFlag = StatusBuffer;
+      StringProcessingStatus = StatusBuffer;
+      while (StatusBuffer = StringProcessingStatus + -1, OperationStatus != '\0') {
+        OperationStatus = ProcessSystemDataPair(Utf16Char,StringProcessingStatus[-2]);
+        StringProcessingStatus = StatusBuffer;
       }
       if (StatusBuffer <= SecondaryProcessingStatusFlag) break;
       MemoryAllocationIndex = *SecondaryProcessingStatusFlag;
       *(uint32_t *)SecondaryProcessingStatusFlag = *(uint32_t *)StatusBuffer;
-      *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 4) = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + -4);
+      *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 4) = *(uint32_t *)((long long)StringProcessingStatus + -4);
       TemporaryStackValue58 = (uint32_t)MemoryAllocationIndex;
       *(uint32_t *)StatusBuffer = TemporaryStackValue58;
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 1;
-      *(int *)((long long)TertiaryProcessingStatusFlag + -4) = (int)((unsigned long long)MemoryAllocationIndex >> 0x20);
+      *(int *)((long long)StringProcessingStatus + -4) = (int)((unsigned long long)MemoryAllocationIndex >> 0x20);
     }
     Utf8InputPointer = Utf8InputPointer + -1;
     FUN_180190c90(SecondaryProcessingStatusFlag,CharacterCodeSize,Utf8InputPointer);
@@ -217072,9 +217085,9 @@ LAB_180190d41:
   uint32_t TemporaryStackValue5c;
   
   do {
-    TertiaryProcessingStatusFlag = FrameRegisterPointer;
+    StringProcessingStatus = FrameRegisterPointer;
     if (RegisterR15Value < 1) break;
-    TertiaryProcessingStatusFlag = FrameRegisterPointer + -1;
+    StringProcessingStatus = FrameRegisterPointer + -1;
     DataStructureCounter = (long long)FrameRegisterPointer - (long long)GeneralRegister14 >> 3;
     if (DataStructureCounter < 0) {
       DataStructureCounter = DataStructureCounter + 1;
@@ -217082,32 +217095,32 @@ LAB_180190d41:
     CharacterCodePointer = GeneralRegister14 + (DataStructureCounter >> 1);
     OperationStatus = ProcessSystemDataPair(*GeneralRegister14,GeneralRegister14[DataStructureCounter >> 1]);
     if (OperationStatus == '\0') {
-      OperationStatus = ProcessSystemDataPair(*GeneralRegister14,*TertiaryProcessingStatusFlag);
+      OperationStatus = ProcessSystemDataPair(*GeneralRegister14,*StringProcessingStatus);
       SecondaryProcessingStatusFlag = GeneralRegister14;
       if (OperationStatus == '\0') {
-        OperationStatus = ProcessSystemDataPair(*CharacterCodePointer,*TertiaryProcessingStatusFlag);
+        OperationStatus = ProcessSystemDataPair(*CharacterCodePointer,*StringProcessingStatus);
         goto LAB_180190d41;
       }
     }
     else {
-      OperationStatus = ProcessSystemDataPair(*CharacterCodePointer,*TertiaryProcessingStatusFlag);
+      OperationStatus = ProcessSystemDataPair(*CharacterCodePointer,*StringProcessingStatus);
       SecondaryProcessingStatusFlag = CharacterCodePointer;
       if (OperationStatus == '\0') {
-        OperationStatus = ProcessSystemDataPair(*GeneralRegister14,*TertiaryProcessingStatusFlag);
+        OperationStatus = ProcessSystemDataPair(*GeneralRegister14,*StringProcessingStatus);
         CharacterCodePointer = GeneralRegister14;
 LAB_180190d41:
         SecondaryProcessingStatusFlag = CharacterCodePointer;
         if (OperationStatus != '\0') {
-          SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+          SecondaryProcessingStatusFlag = StringProcessingStatus;
         }
       }
     }
     Utf16Char = *SecondaryProcessingStatusFlag;
-    TertiaryProcessingStatusFlag = GeneralRegister14;
+    StringProcessingStatus = GeneralRegister14;
     CharacterCodePointer = FrameRegisterPointer;
     while( true ) {
-      while (OperationStatus = ProcessSystemDataPair(*TertiaryProcessingStatusFlag,Utf16Char), OperationStatus != '\0') {
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+      while (OperationStatus = ProcessSystemDataPair(*StringProcessingStatus,Utf16Char), OperationStatus != '\0') {
+        StringProcessingStatus = StringProcessingStatus + 1;
       }
       OperationStatus = ProcessSystemDataPair(Utf16Char,CharacterCodePointer[-1]);
       SecondaryProcessingStatusFlag = CharacterCodePointer;
@@ -217115,23 +217128,23 @@ LAB_180190d41:
         OperationStatus = ProcessSystemDataPair(Utf16Char,SecondaryProcessingStatusFlag[-2]);
         SecondaryProcessingStatusFlag = CharacterCodePointer;
       }
-      if (CharacterCodePointer <= TertiaryProcessingStatusFlag) break;
-      MemoryAllocationIndex = *TertiaryProcessingStatusFlag;
-      *(uint32_t *)TertiaryProcessingStatusFlag = *(uint32_t *)CharacterCodePointer;
-      *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 4) = *(uint32_t *)((long long)SecondaryProcessingStatusFlag + -4);
+      if (CharacterCodePointer <= StringProcessingStatus) break;
+      MemoryAllocationIndex = *StringProcessingStatus;
+      *(uint32_t *)StringProcessingStatus = *(uint32_t *)CharacterCodePointer;
+      *(uint32_t *)((long long)StringProcessingStatus + 4) = *(uint32_t *)((long long)SecondaryProcessingStatusFlag + -4);
       TemporaryStackValue58 = (uint32_t)MemoryAllocationIndex;
       *(uint32_t *)CharacterCodePointer = TemporaryStackValue58;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+      StringProcessingStatus = StringProcessingStatus + 1;
       *(int *)((long long)SecondaryProcessingStatusFlag + -4) = (int)((unsigned long long)MemoryAllocationIndex >> 0x20);
     }
     RegisterR15Value = RegisterR15Value + -1;
-    FUN_180190c90(TertiaryProcessingStatusFlag,FrameRegisterPointer,RegisterR15Value);
-    FrameRegisterPointer = TertiaryProcessingStatusFlag;
-  } while (0xe0 < (long long)((long long)TertiaryProcessingStatusFlag - (long long)GeneralRegister14 & 0xfffffffffffffff8U));
+    FUN_180190c90(StringProcessingStatus,FrameRegisterPointer,RegisterR15Value);
+    FrameRegisterPointer = StringProcessingStatus;
+  } while (0xe0 < (long long)((long long)StringProcessingStatus - (long long)GeneralRegister14 & 0xfffffffffffffff8U));
   if (RegisterR15Value != 0) {
     return;
   }
-  DataStructureCounter = (long long)TertiaryProcessingStatusFlag - (long long)GeneralRegister14 >> 3;
+  DataStructureCounter = (long long)StringProcessingStatus - (long long)GeneralRegister14 >> 3;
   if (1 < DataStructureCounter) {
     SystemStringIndex = (DataStructureCounter + -2 >> 1) + 1;
     SystemOffsetValue = SystemStringIndex * 2 + 2;
@@ -217172,14 +217185,14 @@ LAB_180190d41:
     } while (SystemStringIndex != 0);
   }
   if (1 < DataStructureCounter) {
-    TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -1;
+    StringProcessingStatus = StringProcessingStatus + -1;
     do {
-      Utf16Char = *TertiaryProcessingStatusFlag;
+      Utf16Char = *StringProcessingStatus;
       DataStructureCounter = DataStructureCounter + -1;
       SystemOffsetValue = 0;
       SystemStringIndex = 2;
-      *(uint32_t *)TertiaryProcessingStatusFlag = *(uint32_t *)GeneralRegister14;
-      *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 4) = *(uint32_t *)((long long)GeneralRegister14 + 4);
+      *(uint32_t *)StringProcessingStatus = *(uint32_t *)GeneralRegister14;
+      *(uint32_t *)((long long)StringProcessingStatus + 4) = *(uint32_t *)((long long)GeneralRegister14 + 4);
       CurrentByteValue2 = DataStructureCounter == 2;
       SystemDataTablePointer = SystemOffsetValue;
       if (2 < DataStructureCounter) {
@@ -217212,10 +217225,10 @@ LAB_180190d41:
              *(uint32_t *)((long long)GeneralRegister14 + DataStructureCounter * 8 + 4);
         SystemOffsetValue = DataStructureCounter;
       }
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -1;
+      StringProcessingStatus = StringProcessingStatus + -1;
       *(int *)((long long)GeneralRegister14 + SystemOffsetValue * 8 + 4) = (int)((unsigned long long)Utf16Char >> 0x20);
       *(int *)(GeneralRegister14 + SystemOffsetValue) = (int)Utf16Char;
-      DataStructureCounter = (8 - (long long)GeneralRegister14) + (long long)TertiaryProcessingStatusFlag >> 3;
+      DataStructureCounter = (8 - (long long)GeneralRegister14) + (long long)StringProcessingStatus >> 3;
     } while (1 < DataStructureCounter);
   }
   return;
@@ -217285,14 +217298,14 @@ LAB_180190d41:
     } while (MemoryBoundaryEnd != 0);
   }
   if (1 < SystemDataTablePointer) {
-    TertiaryProcessingStatusFlag = (void *)(FrameRegisterPointer + -8);
+    StringProcessingStatus = (void *)(FrameRegisterPointer + -8);
     do {
-      Utf16Char = *TertiaryProcessingStatusFlag;
+      Utf16Char = *StringProcessingStatus;
       SystemDataTablePointer = SystemDataTablePointer + -1;
       AllocatedMemorySize = 0;
       MemoryBoundaryEnd = 2;
-      *(uint32_t *)TertiaryProcessingStatusFlag = *GeneralRegister14;
-      *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 4) = GeneralRegister14[1];
+      *(uint32_t *)StringProcessingStatus = *GeneralRegister14;
+      *(uint32_t *)((long long)StringProcessingStatus + 4) = GeneralRegister14[1];
       IsSystemContextValid = SystemDataTablePointer == 2;
       MemoryBlockIndex = AllocatedMemorySize;
       if (2 < SystemDataTablePointer) {
@@ -217323,10 +217336,10 @@ LAB_180190d41:
         GeneralRegister14[AllocatedMemorySize * 2 + 1] = GeneralRegister14[SystemDataTablePointer * 2 + 1];
         AllocatedMemorySize = SystemDataTablePointer;
       }
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -1;
+      StringProcessingStatus = StringProcessingStatus + -1;
       GeneralRegister14[AllocatedMemorySize * 2 + 1] = (int)((unsigned long long)Utf16Char >> 0x20);
       GeneralRegister14[AllocatedMemorySize * 2] = (int)Utf16Char;
-      SystemDataTablePointer = (8 - (long long)GeneralRegister14) + (long long)TertiaryProcessingStatusFlag >> 3;
+      SystemDataTablePointer = (8 - (long long)GeneralRegister14) + (long long)StringProcessingStatus >> 3;
     } while (1 < SystemDataTablePointer);
   }
   return;
@@ -217392,14 +217405,14 @@ LAB_180190d41:
     } while (MemoryBoundaryEnd != 0);
   }
   if (1 < SystemDataTablePointer) {
-    TertiaryProcessingStatusFlag = (void *)(FrameRegisterPointer + -8);
+    StringProcessingStatus = (void *)(FrameRegisterPointer + -8);
     do {
-      Utf16Char = *TertiaryProcessingStatusFlag;
+      Utf16Char = *StringProcessingStatus;
       SystemDataTablePointer = SystemDataTablePointer + -1;
       AllocatedMemorySize = 0;
       MemoryBoundaryEnd = 2;
-      *(uint32_t *)TertiaryProcessingStatusFlag = *GeneralRegister14;
-      *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 4) = GeneralRegister14[1];
+      *(uint32_t *)StringProcessingStatus = *GeneralRegister14;
+      *(uint32_t *)((long long)StringProcessingStatus + 4) = GeneralRegister14[1];
       IsSystemContextValid = SystemDataTablePointer == 2;
       MemoryBlockIndex = AllocatedMemorySize;
       if (2 < SystemDataTablePointer) {
@@ -217430,10 +217443,10 @@ LAB_180190d41:
         GeneralRegister14[AllocatedMemorySize * 2 + 1] = GeneralRegister14[SystemDataTablePointer * 2 + 1];
         AllocatedMemorySize = SystemDataTablePointer;
       }
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -1;
+      StringProcessingStatus = StringProcessingStatus + -1;
       GeneralRegister14[AllocatedMemorySize * 2 + 1] = (int)((unsigned long long)Utf16Char >> 0x20);
       GeneralRegister14[AllocatedMemorySize * 2] = (int)Utf16Char;
-      SystemDataTablePointer = (8 - (long long)GeneralRegister14) + (long long)TertiaryProcessingStatusFlag >> 3;
+      SystemDataTablePointer = (8 - (long long)GeneralRegister14) + (long long)StringProcessingStatus >> 3;
     } while (1 < SystemDataTablePointer);
   }
   return;
@@ -217551,16 +217564,16 @@ LAB_180190f00:
       *(uint32_t *)((long long)CharacterCode + MemoryBlockIndex * 8 + 4) = uStackX_24;
     } while (MemoryBoundaryEnd != 0);
   }
-  TertiaryProcessingStatusFlag = CharacterCodeSize;
+  StringProcessingStatus = CharacterCodeSize;
   if (CharacterCodeSize < Utf8InputPointer) {
     do {
-      SystemCheckResult = ProcessSystemDataPair(*TertiaryProcessingStatusFlag,*CharacterCode);
+      SystemCheckResult = ProcessSystemDataPair(*StringProcessingStatus,*CharacterCode);
       if (SystemCheckResult != '\0') {
-        Utf16Char = *TertiaryProcessingStatusFlag;
+        Utf16Char = *StringProcessingStatus;
         AllocatedMemorySize = 0;
         MemoryBoundaryEnd = 2;
-        *(uint32_t *)TertiaryProcessingStatusFlag = *(uint32_t *)CharacterCode;
-        *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 4) = *(uint32_t *)((long long)CharacterCode + 4);
+        *(uint32_t *)StringProcessingStatus = *(uint32_t *)CharacterCode;
+        *(uint32_t *)((long long)StringProcessingStatus + 4) = *(uint32_t *)((long long)CharacterCode + 4);
         IsSystemContextValid = SystemDataTablePointer == 2;
         MemoryBlockIndex = AllocatedMemorySize;
         if (2 < SystemDataTablePointer) {
@@ -217598,8 +217611,8 @@ LAB_180190f00:
         *(uint32_t *)(CharacterCode + AllocatedMemorySize) = uStackX_20;
         *(uint32_t *)((long long)CharacterCode + AllocatedMemorySize * 8 + 4) = uStackX_24;
       }
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
-    } while (TertiaryProcessingStatusFlag < Utf8InputPointer);
+      StringProcessingStatus = StringProcessingStatus + 1;
+    } while (StringProcessingStatus < Utf8InputPointer);
   }
   if (1 < SystemDataTablePointer) {
     CharacterCodeSize = CharacterCodeSize + -1;
@@ -217674,7 +217687,7 @@ LAB_180190f00:
   uint32_t uStack000000000000007c;
   
   SystemDataTablePointer = RegisterR15Value - (long long)CharacterCode >> 3;
-  TertiaryProcessingStatusFlag = CharacterCodeSize;
+  StringProcessingStatus = CharacterCodeSize;
   if (1 < SystemDataTablePointer) {
     MemoryBoundaryEnd = (SystemDataTablePointer + -2 >> 1) + 1;
     AllocatedMemorySize = MemoryBoundaryEnd * 2 + 2;
@@ -217713,7 +217726,7 @@ LAB_180190f00:
       *(uint32_t *)(CharacterCode + MemoryBlockIndex) = uStack0000000000000078;
       *(uint32_t *)((long long)CharacterCode + MemoryBlockIndex * 8 + 4) = uStack000000000000007c;
       CharacterCodeSize = _uStack0000000000000068;
-      TertiaryProcessingStatusFlag = _uStack0000000000000068;
+      StringProcessingStatus = _uStack0000000000000068;
     } while (MemoryBoundaryEnd != 0);
   }
   for (; CharacterCodeSize < Utf8InputPointer; CharacterCodeSize = CharacterCodeSize + 1) {
@@ -217761,17 +217774,17 @@ LAB_180190f00:
       *(uint32_t *)(CharacterCode + AllocatedMemorySize) = uStack0000000000000078;
       *(uint32_t *)((long long)CharacterCode + AllocatedMemorySize * 8 + 4) = uStack000000000000007c;
     }
-    TertiaryProcessingStatusFlag = _uStack0000000000000068;
+    StringProcessingStatus = _uStack0000000000000068;
   }
   if (1 < SystemDataTablePointer) {
-    TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -1;
+    StringProcessingStatus = StringProcessingStatus + -1;
     do {
-      Utf16Char = *TertiaryProcessingStatusFlag;
+      Utf16Char = *StringProcessingStatus;
       SystemDataTablePointer = SystemDataTablePointer + -1;
       AllocatedMemorySize = 0;
       MemoryBoundaryEnd = 2;
-      *(uint32_t *)TertiaryProcessingStatusFlag = *(uint32_t *)CharacterCode;
-      *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 4) = *(uint32_t *)((long long)CharacterCode + 4);
+      *(uint32_t *)StringProcessingStatus = *(uint32_t *)CharacterCode;
+      *(uint32_t *)((long long)StringProcessingStatus + 4) = *(uint32_t *)((long long)CharacterCode + 4);
       IsSystemContextValid = SystemDataTablePointer == 2;
       MemoryBlockIndex = AllocatedMemorySize;
       if (2 < SystemDataTablePointer) {
@@ -217805,11 +217818,11 @@ LAB_180190f00:
         AllocatedMemorySize = SystemDataTablePointer;
       }
       TemporaryStackValue6c = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -1;
+      StringProcessingStatus = StringProcessingStatus + -1;
       uStack0000000000000068 = (uint32_t)Utf16Char;
       *(uint32_t *)((long long)CharacterCode + AllocatedMemorySize * 8 + 4) = TemporaryStackValue6c;
       *(uint32_t *)(CharacterCode + AllocatedMemorySize) = uStack0000000000000068;
-      SystemDataTablePointer = (8 - (long long)CharacterCode) + (long long)TertiaryProcessingStatusFlag >> 3;
+      SystemDataTablePointer = (8 - (long long)CharacterCode) + (long long)StringProcessingStatus >> 3;
     } while (1 < SystemDataTablePointer);
   }
   return;
@@ -218531,9 +218544,9 @@ uint32_t ProcessNetworkConnection(long long CharacterCode
 LAB_180191c97:
       TemporaryBuffer = StatusBuffer;
       if (LowByte) {
-        TemporaryBuffer = TertiaryProcessingStatusFlag;
+        TemporaryBuffer = StringProcessingStatus;
       }
-      TertiaryProcessingStatusFlag = TemporaryBuffer;
+      StringProcessingStatus = TemporaryBuffer;
       StatusBuffer = SystemStatusBuffer;
     } while (SystemStatusBuffer != NULL);
     if (TemporaryBuffer != PrimaryProcessingStatusFlag) {
@@ -219014,21 +219027,21 @@ uint64_t * FUN_180193ac0(uint64_t *CharacterCode,long long CharacterCodeSize
   long long SystemOffsetValue;
   uint8_t aSystemRegisterFlagX8 [8];
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[2];
+  StringProcessingStatus = (void *)CharacterCode[2];
   TemporaryBuffer = CharacterCode;
-  if (TertiaryProcessingStatusFlag != NULL) {
+  if (StringProcessingStatus != NULL) {
     do {
       if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-        TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+        StringProcessingStatus = (void *)StringProcessingStatus[1];
         HighByte = false;
       }
       else {
-        if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+        if (*(int *)(StringProcessingStatus + 6) == 0) {
           HighByte = true;
         }
         else {
           pLowByte = *(byte **)(CharacterCodeSize + 8);
-          SystemOffsetValue = TertiaryProcessingStatusFlag[5] - (long long)pLowByte;
+          SystemOffsetValue = StringProcessingStatus[5] - (long long)pLowByte;
           do {
             CalculatedCodePoint = (uint)pLowByte[SystemOffsetValue];
             ValidationResult = *pLowByte - CalculatedCodePoint;
@@ -219037,20 +219050,20 @@ uint64_t * FUN_180193ac0(uint64_t *CharacterCode,long long CharacterCodeSize
           } while (CalculatedCodePoint != 0);
           HighByte = 0 < ValidationResult;
           if (ValidationResult < 1) {
-            TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+            StringProcessingStatus = (void *)StringProcessingStatus[1];
             goto LAB_180193b37;
           }
         }
-        TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)*StringProcessingStatus;
       }
 LAB_180193b37:
       if (HighByte) {
-        TertiaryProcessingStatusFlag = TemporaryBuffer;
+        StringProcessingStatus = TemporaryBuffer;
       }
-      TemporaryBuffer = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-    } while (TertiaryProcessingStatusFlag != NULL);
-    TertiaryProcessingStatusFlag = NULL;
+      TemporaryBuffer = StringProcessingStatus;
+      StringProcessingStatus = StringProcessingStatus;
+    } while (StringProcessingStatus != NULL);
+    StringProcessingStatus = NULL;
   }
   if (TemporaryBuffer != CharacterCode) {
     if (*(int *)(TemporaryBuffer + 6) == 0) {
@@ -219059,17 +219072,17 @@ LAB_180193b87:
     }
     if (*(int *)(CharacterCodeSize + 0x10) != 0) {
       pLowByte = (byte *)TemporaryBuffer[5];
-      TertiaryProcessingStatusFlag = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)pLowByte);
+      StringProcessingStatus = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)pLowByte);
       do {
         CurrentByteValue = *pLowByte;
-        CalculatedCodePoint = (uint)pLowByte[(long long)TertiaryProcessingStatusFlag];
+        CalculatedCodePoint = (uint)pLowByte[(long long)StringProcessingStatus];
         if (CurrentByteValue != CalculatedCodePoint) break;
         pLowByte = pLowByte + 1;
       } while (CalculatedCodePoint != 0);
       if ((int)(CurrentByteValue - CalculatedCodePoint) < 1) goto LAB_180193b87;
     }
   }
-  SystemContextPtr = (long long *)FUN_18013f220(CharacterCode,aSystemRegisterFlagX8,TertiaryProcessingStatusFlag,TemporaryBuffer,CharacterCodeSize);
+  SystemContextPtr = (long long *)FUN_18013f220(CharacterCode,aSystemRegisterFlagX8,StringProcessingStatus,TemporaryBuffer,CharacterCodeSize);
   return (void *)(*SystemContextPtr + 0x40);
 }
 
@@ -219091,7 +219104,7 @@ FUN_180193adc(uint64_t CharacterCode,long long CharacterCodeSize,uint64_t *Utf8I
   
   do {
     if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-      TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+      StringProcessingStatus = (void *)Utf8InputPointer[1];
       HighByte = false;
     }
     else {
@@ -219109,19 +219122,19 @@ FUN_180193adc(uint64_t CharacterCode,long long CharacterCodeSize,uint64_t *Utf8I
         } while (CalculatedCodePoint != 0);
         HighByte = 0 < ValidationResult;
         if (ValidationResult < 1) {
-          TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+          StringProcessingStatus = (void *)Utf8InputPointer[1];
           goto LAB_180193b37;
         }
       }
-      TertiaryProcessingStatusFlag = (void *)*Utf8InputPointer;
+      StringProcessingStatus = (void *)*Utf8InputPointer;
     }
 LAB_180193b37:
     if (HighByte) {
       Utf8InputPointer = Utf16EndPointer;
     }
     Utf16EndPointer = Utf8InputPointer;
-    Utf8InputPointer = TertiaryProcessingStatusFlag;
-  } while (TertiaryProcessingStatusFlag != NULL);
+    Utf8InputPointer = StringProcessingStatus;
+  } while (StringProcessingStatus != NULL);
   if (Utf16EndPointer != RegisterSourceIndex) {
     if (*(int *)(Utf16EndPointer + 6) == 0) {
 LAB_180193b87:
@@ -219536,7 +219549,7 @@ uint64_t * ProcessDataStructureNodeTraversal(uint64_t *CharacterCode,uint64_t *C
   SecondaryProcessingStatusFlag = (void *)CharacterCode[2];
   do {
     if (*(int *)(Utf8InputPointer + 0x10) == 0) {
-      TertiaryProcessingStatusFlag = (void *)SecondaryProcessingStatusFlag[1];
+      StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
       CurrentByteValue = false;
     }
     else {
@@ -219554,21 +219567,21 @@ uint64_t * ProcessDataStructureNodeTraversal(uint64_t *CharacterCode,uint64_t *C
         } while (UnicodeCodePoint != 0);
         CurrentByteValue = 0 < validationResult;
         if (validationResult < 1) {
-          TertiaryProcessingStatusFlag = (void *)SecondaryProcessingStatusFlag[1];
+          StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
           goto LAB_180193ed9;
         }
       }
-      TertiaryProcessingStatusFlag = (void *)*SecondaryProcessingStatusFlag;
+      StringProcessingStatus = (void *)*SecondaryProcessingStatusFlag;
     }
 LAB_180193ed9:
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     if (CurrentByteValue) {
-      TertiaryProcessingStatusFlag = CharacterCode;
+      StringProcessingStatus = CharacterCode;
     }
-    SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-    CharacterCode = TertiaryProcessingStatusFlag;
-    if (TertiaryProcessingStatusFlag == NULL) {
-      *CharacterCodeSize = TertiaryProcessingStatusFlag;
+    SecondaryProcessingStatusFlag = StringProcessingStatus;
+    CharacterCode = StringProcessingStatus;
+    if (StringProcessingStatus == NULL) {
+      *CharacterCodeSize = StringProcessingStatus;
       return CharacterCodeSize;
     }
   } while( true );
@@ -219617,14 +219630,14 @@ LAB_180193ed9:
       SecondaryProcessingStatusFlag = (void *)*Utf16EndPointer;
     }
 LAB_180193ed9:
-    TertiaryProcessingStatusFlag = Utf16EndPointer;
+    StringProcessingStatus = Utf16EndPointer;
     if (CurrentByteValue) {
-      TertiaryProcessingStatusFlag = in_R11;
+      StringProcessingStatus = in_R11;
     }
     Utf16EndPointer = SecondaryProcessingStatusFlag;
-    in_R11 = TertiaryProcessingStatusFlag;
+    in_R11 = StringProcessingStatus;
     if (SecondaryProcessingStatusFlag == NULL) {
-      *SystemContext = TertiaryProcessingStatusFlag;
+      *SystemContext = StringProcessingStatus;
       return;
     }
   } while( true );
@@ -219994,9 +220007,9 @@ uint64_t * FUN_1801940f0(long long CharacterCode,uint64_t *CharacterCodeSize,lon
   void *NextNode;
   long long systemLoopCounter;
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
-  CurrentMemoryBlockAddress = ((long long)TertiaryProcessingStatusFlag - (long long)TertiaryProcessingStatusFlag) / 0x18;
+  StringProcessingStatus = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)*CharacterCode;
+  CurrentMemoryBlockAddress = ((long long)StringProcessingStatus - (long long)StringProcessingStatus) / 0x18;
   MemoryBlockIndex = (long long *)0x0;
   if (CurrentMemoryBlockAddress == 0) {
     CurrentMemoryBlockAddress = 1;
@@ -220005,24 +220018,24 @@ uint64_t * FUN_1801940f0(long long CharacterCode,uint64_t *CharacterCodeSize,lon
     CurrentMemoryBlockAddress = CurrentMemoryBlockAddress * 2;
     if (CurrentMemoryBlockAddress == 0) goto LAB_1801945bb;
   }
-  MemoryBlockIndex = (long long *           BufferAllocate(MemoryPoolManager,CurrentMemoryBlockAddress * 0x18,(char)CharacterCode[3],TertiaryProcessingStatusFlag,0xfffffffffffffffe);
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
+  MemoryBlockIndex = (long long *           BufferAllocate(MemoryPoolManager,CurrentMemoryBlockAddress * 0x18,(char)CharacterCode[3],StringProcessingStatus,0xfffffffffffffffe);
+  StringProcessingStatus = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)*CharacterCode;
 LAB_1801945bb:
   MemoryBlockListHead = MemoryBlockIndex;
-  if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
-    pMemoryAddressMask = TertiaryProcessingStatusFlag + 1;
+  if (StringProcessingStatus != StringProcessingStatus) {
+    pMemoryAddressMask = StringProcessingStatus + 1;
     do {
       *MemoryBlockListHead = pMemoryAddressMask[-1];
       pMemoryAddressMask[-1] = 0;
-      *(void *)((long long)pMemoryAddressMask + ((long long)MemoryBlockIndex - (long long)TertiaryProcessingStatusFlag)) = *pMemoryAddressMask;
+      *(void *)((long long)pMemoryAddressMask + ((long long)MemoryBlockIndex - (long long)StringProcessingStatus)) = *pMemoryAddressMask;
       *pMemoryAddressMask = 0;
-      *(uint32_t *)(((long long)MemoryBlockIndex - (long long)TertiaryProcessingStatusFlag) + 8 + (long long)pMemoryAddressMask) =
+      *(uint32_t *)(((long long)MemoryBlockIndex - (long long)StringProcessingStatus) + 8 + (long long)pMemoryAddressMask) =
            *(uint32_t *)(pMemoryAddressMask + 1);
       MemoryBlockListHead = MemoryBlockListHead + 3;
       StatusBuffer = pMemoryAddressMask + 2;
       pMemoryAddressMask = pMemoryAddressMask + 3;
-    } while (StatusBuffer != TertiaryProcessingStatusFlag);
+    } while (StatusBuffer != StringProcessingStatus);
   }
   BufferAllocationStatus = (long long *)*CharacterCodeSize;
   *MemoryBlockListHead = (long long)BufferAllocationStatus;
@@ -223064,7 +223077,7 @@ LAB_180198720:
   uint32_t MemoryAddressMask;
   uint32_t CalculatedCodePoint;
   uint32_t DataSize;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   long long secondaryLoopCounter;
   long long *pCurrentMemoryBlockAddress;
   float ContextPrimaryFloat0;
@@ -223078,11 +223091,11 @@ LAB_180198720:
     *(int *)(CharacterCode + 0x3358) = IntegerValue + 1;
     FUN_1801b4720(CharacterCode,*(uint32_t *)(CharacterCode + 0x3054));
   }
-  TertiaryProcessingStatusFlag = (uint32_t *           FUN_180145140(CharacterCode + 0x3018,auStack_18,*(uint32_t *)(CharacterCode + 0x3f50));
-  UnicodeCodePoint = *TertiaryProcessingStatusFlag;
-  MemoryAddressMask = TertiaryProcessingStatusFlag[1];
-  CalculatedCodePoint = TertiaryProcessingStatusFlag[2];
-  DataSize = TertiaryProcessingStatusFlag[3];
+  StringProcessingStatus = (uint32_t *           FUN_180145140(CharacterCode + 0x3018,auStack_18,*(uint32_t *)(CharacterCode + 0x3f50));
+  UnicodeCodePoint = *StringProcessingStatus;
+  MemoryAddressMask = StringProcessingStatus[1];
+  CalculatedCodePoint = StringProcessingStatus[2];
+  DataSize = StringProcessingStatus[3];
   *(uint8_t *)(CharacterCode + 0x3e05) = 1;
   *(uint32_t *)(CharacterCode + 0x3e0c) = UnicodeCodePoint;
   *(uint32_t *)(CharacterCode + 0x3e10) = MemoryAddressMask;
@@ -223358,24 +223371,24 @@ unsigned long long FUN_180198b90(long long CharacterCode,long long *CharacterCod
   IsMemoryBlockEqual = true;
   StatusBuffer = StatusBuffer;
   if (*(uint64_t **)(CharacterCode + 0x60888) != NULL) {
-    TertiaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x60888);
+    StringProcessingStatus = *(uint64_t **)(CharacterCode + 0x60888);
     do {
-      StatusBuffer = TertiaryProcessingStatusFlag;
+      StatusBuffer = StringProcessingStatus;
       IsMemoryBlockEqual = *(unsigned long long *)(MemoryBoundaryEnd + 0x20) < (unsigned long long)StatusBuffer[4];
       if (IsMemoryBlockEqual) {
-        TertiaryProcessingStatusFlag = (void *)StatusBuffer[1];
+        StringProcessingStatus = (void *)StatusBuffer[1];
       }
       else {
-        TertiaryProcessingStatusFlag = (void *)*StatusBuffer;
+        StringProcessingStatus = (void *)*StatusBuffer;
       }
-    } while (TertiaryProcessingStatusFlag != NULL);
+    } while (StringProcessingStatus != NULL);
   }
-  TertiaryProcessingStatusFlag = StatusBuffer;
+  StringProcessingStatus = StatusBuffer;
   if (IsMemoryBlockEqual) {
     if (StatusBuffer == *(uint64_t **)(CharacterCode + 0x60880)) goto LAB_180198da7;
-    TertiaryProcessingStatusFlag = (void *)GetPreviousMemoryBlockIndex(StatusBuffer);
+    StringProcessingStatus = (void *)GetPreviousMemoryBlockIndex(StatusBuffer);
   }
-  if (*(unsigned long long *)(MemoryBoundaryEnd + 0x20) <= (unsigned long long)TertiaryProcessingStatusFlag[4]) {
+  if (*(unsigned long long *)(MemoryBoundaryEnd + 0x20) <= (unsigned long long)StringProcessingStatus[4]) {
     if (*(long long **)(MemoryBoundaryEnd + 0x20) != (long long *)0x0) {
       (**(code **)(**(long long **)(MemoryBoundaryEnd + 0x20) + 0x38))();
     }
@@ -223949,7 +223962,7 @@ void ConfigureSystemContext(long long CharacterCode,float CharacterCodeSize,char
   long long *AllocatedMemorySizePointer;
   byte *Utf8OutputPointer;
   long long *MemoryPoolBlockSizePointer;
-  uint64_t *******ppppppTertiaryProcessingStatusFlag;
+  uint64_t *******ppppppStringProcessingStatus;
   int IntegerValue9;
   uint64_t *StatusBuffer;
   uint64_t *******ppppppSystemStatusBuffer;
@@ -224118,9 +224131,9 @@ void ConfigureSystemContext(long long CharacterCode,float CharacterCodeSize,char
             if ((*(long long *)(MemoryBufferC + 0x18) != 0) && (iStack_218 = 0, pbStack_220 != (byte *)0x0)            {
               *pbStack_220 = 0;
             }
-            ppppppTertiaryProcessingStatusFlag = &pppppEventVariablePointer;
+            ppppppStringProcessingStatus = &pppppEventVariablePointer;
             ppppppEngineStatusBuffer = (uint64_t *******)pppppDataProcessingBuffer;
-            while (ppppppSystemStatusBuffer = ppppppTertiaryProcessingStatusFlag, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
+            while (ppppppSystemStatusBuffer = ppppppStringProcessingStatus, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
               if (iStack_218 == 0) {
                 HighByte = false;
                 pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)ppppppStatusBuffer3[1];
@@ -224146,10 +224159,10 @@ void ConfigureSystemContext(long long CharacterCode,float CharacterCodeSize,char
                 pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)*ppppppStatusBuffer3;
               }
 LAB_180199c3b:
-              ppppppTertiaryProcessingStatusFlag = ppppppStatusBuffer3;
+              ppppppStringProcessingStatus = ppppppStatusBuffer3;
               ppppppEngineStatusBuffer = pppppPrimaryProcessingStatusFlag5;
               if (HighByte) {
-                ppppppTertiaryProcessingStatusFlag = ppppppSystemStatusBuffer;
+                ppppppStringProcessingStatus = ppppppSystemStatusBuffer;
               }
             }
             if (ppppppSystemStatusBuffer == &pppppEventVariablePointer) {
@@ -224199,9 +224212,9 @@ LAB_180199caa:
             if ((*(long long *)(MemoryBufferC + 0x18) != 0) && (iStack_1f8 = 0, pbStack_200 != (byte *)0x0)            {
               *pbStack_200 = 0;
             }
-            ppppppTertiaryProcessingStatusFlag = &pppppEventVariablePointer;
+            ppppppStringProcessingStatus = &pppppEventVariablePointer;
             ppppppEngineStatusBuffer = (uint64_t *******)pppppDataProcessingBuffer;
-            while (ppppppSystemStatusBuffer = ppppppTertiaryProcessingStatusFlag, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
+            while (ppppppSystemStatusBuffer = ppppppStringProcessingStatus, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
               if (iStack_1f8 == 0) {
                 HighByte = false;
                 pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)ppppppStatusBuffer3[1];
@@ -224227,10 +224240,10 @@ LAB_180199caa:
                 pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)*ppppppStatusBuffer3;
               }
 LAB_180199dab:
-              ppppppTertiaryProcessingStatusFlag = ppppppStatusBuffer3;
+              ppppppStringProcessingStatus = ppppppStatusBuffer3;
               ppppppEngineStatusBuffer = pppppPrimaryProcessingStatusFlag5;
               if (HighByte) {
-                ppppppTertiaryProcessingStatusFlag = ppppppSystemStatusBuffer;
+                ppppppStringProcessingStatus = ppppppSystemStatusBuffer;
               }
             }
             if (ppppppSystemStatusBuffer == &pppppEventVariablePointer) {
@@ -224286,9 +224299,9 @@ LAB_180199e19:
             if ((*(long long *)(MemoryBufferC + 0x18) != 0) && (iStack_1d8 = 0, pbStack_1e0 != (byte *)0x0)            {
               *pbStack_1e0 = 0;
             }
-            ppppppTertiaryProcessingStatusFlag = &pppppSystemPointerValue170;
+            ppppppStringProcessingStatus = &pppppSystemPointerValue170;
             ppppppEngineStatusBuffer = (uint64_t *******)pppppCharacterCode;
-            while (ppppppSystemStatusBuffer = ppppppTertiaryProcessingStatusFlag, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
+            while (ppppppSystemStatusBuffer = ppppppStringProcessingStatus, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
               if (iStack_1d8 == 0) {
                 HighByte = false;
                 pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)ppppppStatusBuffer3[1];
@@ -224314,10 +224327,10 @@ LAB_180199e19:
                 pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)*ppppppStatusBuffer3;
               }
 LAB_180199f4b:
-              ppppppTertiaryProcessingStatusFlag = ppppppStatusBuffer3;
+              ppppppStringProcessingStatus = ppppppStatusBuffer3;
               ppppppEngineStatusBuffer = pppppPrimaryProcessingStatusFlag5;
               if (HighByte) {
-                ppppppTertiaryProcessingStatusFlag = ppppppSystemStatusBuffer;
+                ppppppStringProcessingStatus = ppppppSystemStatusBuffer;
               }
             }
             if (ppppppSystemStatusBuffer == &pppppSystemPointerValue170) {
@@ -224366,9 +224379,9 @@ LAB_180199fb9:
             if ((*(long long *)(MemoryBufferC + 0x18) != 0) && (iStack_1b8 = 0, pbStack_1c0 != (byte *)0x0)            {
               *pbStack_1c0 = 0;
             }
-            ppppppTertiaryProcessingStatusFlag = &pppppSystemPointerValue170;
+            ppppppStringProcessingStatus = &pppppSystemPointerValue170;
             ppppppEngineStatusBuffer = (uint64_t *******)pppppCharacterCode;
-            while (ppppppSystemStatusBuffer = ppppppTertiaryProcessingStatusFlag, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
+            while (ppppppSystemStatusBuffer = ppppppStringProcessingStatus, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
               if (iStack_1b8 == 0) {
                 HighByte = false;
                 pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)ppppppStatusBuffer3[1];
@@ -224394,10 +224407,10 @@ LAB_180199fb9:
                 pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)*ppppppStatusBuffer3;
               }
 LAB_18019a0bb:
-              ppppppTertiaryProcessingStatusFlag = ppppppStatusBuffer3;
+              ppppppStringProcessingStatus = ppppppStatusBuffer3;
               ppppppEngineStatusBuffer = pppppPrimaryProcessingStatusFlag5;
               if (HighByte) {
-                ppppppTertiaryProcessingStatusFlag = ppppppSystemStatusBuffer;
+                ppppppStringProcessingStatus = ppppppSystemStatusBuffer;
               }
             }
             if (ppppppSystemStatusBuffer == &pppppSystemPointerValue170) {
@@ -224452,9 +224465,9 @@ LAB_18019a129:
                    (iStack_258 = 0, pbStack_260 != (byte *)0x0)) {
                   *pbStack_260 = 0;
                 }
-                ppppppTertiaryProcessingStatusFlag = &ppppppSystemValue1a8;
+                ppppppStringProcessingStatus = &ppppppSystemValue1a8;
                 ppppppEngineStatusBuffer = (uint64_t *******)ppppPrimaryStackPointer98;
-                while (ppppppSystemStatusBuffer = ppppppTertiaryProcessingStatusFlag, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
+                while (ppppppSystemStatusBuffer = ppppppStringProcessingStatus, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
                   if (iStack_258 == 0) {
                     HighByte = false;
                     pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)ppppppStatusBuffer3[1];
@@ -224480,10 +224493,10 @@ LAB_18019a129:
                     pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)*ppppppStatusBuffer3;
                   }
 LAB_18019a25b:
-                  ppppppTertiaryProcessingStatusFlag = ppppppStatusBuffer3;
+                  ppppppStringProcessingStatus = ppppppStatusBuffer3;
                   ppppppEngineStatusBuffer = pppppPrimaryProcessingStatusFlag5;
                   if (HighByte) {
-                    ppppppTertiaryProcessingStatusFlag = ppppppSystemStatusBuffer;
+                    ppppppStringProcessingStatus = ppppppSystemStatusBuffer;
                   }
                 }
                 if (ppppppSystemStatusBuffer == &ppppppSystemValue1a8) {
@@ -224533,9 +224546,9 @@ LAB_18019a2ca:
                    (iStack_238 = 0, pbStack_240 != (byte *)0x0)) {
                   *pbStack_240 = 0;
                 }
-                ppppppTertiaryProcessingStatusFlag = &ppppppSystemValue1a8;
+                ppppppStringProcessingStatus = &ppppppSystemValue1a8;
                 ppppppEngineStatusBuffer = (uint64_t *******)ppppPrimaryStackPointer98;
-                while (ppppppSystemStatusBuffer = ppppppTertiaryProcessingStatusFlag, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
+                while (ppppppSystemStatusBuffer = ppppppStringProcessingStatus, ppppppStatusBuffer3 != (uint64_t *******)0x0) {
                   if (iStack_238 == 0) {
                     HighByte = false;
                     pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)ppppppStatusBuffer3[1];
@@ -224561,10 +224574,10 @@ LAB_18019a2ca:
                     pppppPrimaryProcessingStatusFlag5 = (uint64_t *******)*ppppppStatusBuffer3;
                   }
 LAB_18019a3db:
-                  ppppppTertiaryProcessingStatusFlag = ppppppStatusBuffer3;
+                  ppppppStringProcessingStatus = ppppppStatusBuffer3;
                   ppppppEngineStatusBuffer = pppppPrimaryProcessingStatusFlag5;
                   if (HighByte) {
-                    ppppppTertiaryProcessingStatusFlag = ppppppSystemStatusBuffer;
+                    ppppppStringProcessingStatus = ppppppSystemStatusBuffer;
                   }
                 }
                 if (ppppppSystemStatusBuffer == &ppppppSystemValue1a8) {
@@ -231847,21 +231860,21 @@ uint64_t * FUN_180203aa0(uint64_t *CharacterCode,long long CharacterCodeSize
   long long SystemOffsetValue;
   uint8_t aSystemRegisterFlagX8 [8];
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[2];
+  StringProcessingStatus = (void *)CharacterCode[2];
   TemporaryBuffer = CharacterCode;
-  if (TertiaryProcessingStatusFlag != NULL) {
+  if (StringProcessingStatus != NULL) {
     do {
       if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-        TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+        StringProcessingStatus = (void *)StringProcessingStatus[1];
         HighByte = false;
       }
       else {
-        if (*(int *)(TertiaryProcessingStatusFlag + 6) == 0) {
+        if (*(int *)(StringProcessingStatus + 6) == 0) {
           HighByte = true;
         }
         else {
           pLowByte = *(byte **)(CharacterCodeSize + 8);
-          SystemOffsetValue = TertiaryProcessingStatusFlag[5] - (long long)pLowByte;
+          SystemOffsetValue = StringProcessingStatus[5] - (long long)pLowByte;
           do {
             CalculatedCodePoint = (uint)pLowByte[SystemOffsetValue];
             ValidationResult = *pLowByte - CalculatedCodePoint;
@@ -231870,20 +231883,20 @@ uint64_t * FUN_180203aa0(uint64_t *CharacterCode,long long CharacterCodeSize
           } while (CalculatedCodePoint != 0);
           HighByte = 0 < ValidationResult;
           if (ValidationResult < 1) {
-            TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+            StringProcessingStatus = (void *)StringProcessingStatus[1];
             goto LAB_180203b17;
           }
         }
-        TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)*StringProcessingStatus;
       }
 LAB_180203b17:
       if (HighByte) {
-        TertiaryProcessingStatusFlag = TemporaryBuffer;
+        StringProcessingStatus = TemporaryBuffer;
       }
-      TemporaryBuffer = TertiaryProcessingStatusFlag;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-    } while (TertiaryProcessingStatusFlag != NULL);
-    TertiaryProcessingStatusFlag = NULL;
+      TemporaryBuffer = StringProcessingStatus;
+      StringProcessingStatus = StringProcessingStatus;
+    } while (StringProcessingStatus != NULL);
+    StringProcessingStatus = NULL;
   }
   if (TemporaryBuffer != CharacterCode) {
     if (*(int *)(TemporaryBuffer + 6) == 0) {
@@ -231892,17 +231905,17 @@ LAB_180203b67:
     }
     if (*(int *)(CharacterCodeSize + 0x10) != 0) {
       pLowByte = (byte *)TemporaryBuffer[5];
-      TertiaryProcessingStatusFlag = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)pLowByte);
+      StringProcessingStatus = (void *)(*(long long *)(CharacterCodeSize + 8) - (long long)pLowByte);
       do {
         CurrentByteValue = *pLowByte;
-        CalculatedCodePoint = (uint)pLowByte[(long long)TertiaryProcessingStatusFlag];
+        CalculatedCodePoint = (uint)pLowByte[(long long)StringProcessingStatus];
         if (CurrentByteValue != CalculatedCodePoint) break;
         pLowByte = pLowByte + 1;
       } while (CalculatedCodePoint != 0);
       if ((int)(CurrentByteValue - CalculatedCodePoint) < 1) goto LAB_180203b67;
     }
   }
-  SystemContextPtr = (long long *)FUN_180203ba0(CharacterCode,aSystemRegisterFlagX8,TertiaryProcessingStatusFlag,TemporaryBuffer,CharacterCodeSize);
+  SystemContextPtr = (long long *)FUN_180203ba0(CharacterCode,aSystemRegisterFlagX8,StringProcessingStatus,TemporaryBuffer,CharacterCodeSize);
   return (void *)(*SystemContextPtr + 0x78);
 }
 
@@ -231924,7 +231937,7 @@ FUN_180203abc(uint64_t CharacterCode,long long CharacterCodeSize,uint64_t *Utf8I
   
   do {
     if (*(int *)(CharacterCodeSize + 0x10) == 0) {
-      TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+      StringProcessingStatus = (void *)Utf8InputPointer[1];
       HighByte = false;
     }
     else {
@@ -231942,19 +231955,19 @@ FUN_180203abc(uint64_t CharacterCode,long long CharacterCodeSize,uint64_t *Utf8I
         } while (CalculatedCodePoint != 0);
         HighByte = 0 < ValidationResult;
         if (ValidationResult < 1) {
-          TertiaryProcessingStatusFlag = (void *)Utf8InputPointer[1];
+          StringProcessingStatus = (void *)Utf8InputPointer[1];
           goto LAB_180203b17;
         }
       }
-      TertiaryProcessingStatusFlag = (void *)*Utf8InputPointer;
+      StringProcessingStatus = (void *)*Utf8InputPointer;
     }
 LAB_180203b17:
     if (HighByte) {
       Utf8InputPointer = Utf16EndPointer;
     }
     Utf16EndPointer = Utf8InputPointer;
-    Utf8InputPointer = TertiaryProcessingStatusFlag;
-  } while (TertiaryProcessingStatusFlag != NULL);
+    Utf8InputPointer = StringProcessingStatus;
+  } while (StringProcessingStatus != NULL);
   if (Utf16EndPointer != RegisterSourceIndex) {
     if (*(int *)(Utf16EndPointer + 6) == 0) {
 LAB_180203b67:
@@ -232418,7 +232431,7 @@ uint64_t * FUN_180204420(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uin
     FUN_180204980(Utf8InputPointer + LoopIndex * -4 + -2,SystemDataTablePointer,Utf8InputPointer + -2);
     FUN_180204980(CharacterCodeSize + LoopIndex * 2,StatusBuffer,SystemDataTablePointer);
   }
-  TertiaryProcessingStatusFlag = StatusBuffer + 2;
+  StringProcessingStatus = StatusBuffer + 2;
   if (CharacterCodeSize < StatusBuffer) {
     while( true ) {
       IntegerValue = *(int *)(StatusBuffer + -1);
@@ -232439,33 +232452,33 @@ uint64_t * FUN_180204420(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uin
       if ((LowByte) || (StatusBuffer = StatusBuffer + -2, StatusBuffer <= CharacterCodeSize)) break;
     }
   }
-  TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  StringProcessingStatus = StringProcessingStatus;
   SystemStatusBuffer = StatusBuffer;
-  if (TertiaryProcessingStatusFlag < Utf8InputPointer) {
+  if (StringProcessingStatus < Utf8InputPointer) {
     IntegerValue = *(int *)(StatusBuffer + 1);
     while( true ) {
-      CharacterByteCount = *(int *)(TertiaryProcessingStatusFlag + 1);
+      CharacterByteCount = *(int *)(StringProcessingStatus + 1);
       if (CharacterByteCount == IntegerValue) {
-        LowByte = *(int *)((long long)TertiaryProcessingStatusFlag + 0xc) < *(int *)((long long)StatusBuffer + 0xc);
+        LowByte = *(int *)((long long)StringProcessingStatus + 0xc) < *(int *)((long long)StatusBuffer + 0xc);
       }
       else {
         LowByte = IntegerValue < CharacterByteCount;
       }
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      StringProcessingStatus = StringProcessingStatus;
       if (LowByte) break;
       if (IntegerValue == CharacterByteCount) {
-        LowByte = *(int *)((long long)StatusBuffer + 0xc) < *(int *)((long long)TertiaryProcessingStatusFlag + 0xc);
+        LowByte = *(int *)((long long)StatusBuffer + 0xc) < *(int *)((long long)StringProcessingStatus + 0xc);
       }
       else {
         LowByte = CharacterByteCount < IntegerValue;
       }
-      if ((LowByte) || (TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2, TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag, Utf8InputPointer <= TertiaryProcessingStatusFlag)) break;
+      if ((LowByte) || (StringProcessingStatus = StringProcessingStatus + 2, StringProcessingStatus = StringProcessingStatus, Utf8InputPointer <= StringProcessingStatus)) break;
     }
   }
 joined_r0x000180204576:
   do {
     StatusBuffer5 = StatusBuffer;
-    if (Utf8InputPointer <= TertiaryProcessingStatusFlag) {
+    if (Utf8InputPointer <= StringProcessingStatus) {
 joined_r0x0001802045de:
       for (; CharacterCodeSize < StatusBuffer; StatusBuffer = StatusBuffer + -2) {
         TemporaryBuffer = StatusBuffer5 + -2;
@@ -232501,34 +232514,34 @@ joined_r0x0001802045de:
         StatusBuffer5 = TemporaryBuffer;
       }
       if (StatusBuffer == CharacterCodeSize) {
-        if (TertiaryProcessingStatusFlag == Utf8InputPointer) {
+        if (StringProcessingStatus == Utf8InputPointer) {
           *CharacterCode = SystemStatusBuffer;
-          CharacterCode[1] = TertiaryProcessingStatusFlag;
+          CharacterCode[1] = StringProcessingStatus;
           return CharacterCode;
         }
-        if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
-          MemoryAddressMask = TertiaryProcessingStatusFlag[1];
+        if (StringProcessingStatus != StringProcessingStatus) {
+          MemoryAddressMask = StringProcessingStatus[1];
           CalculatedCodePoint = *SystemStatusBuffer;
           DataSize = SystemStatusBuffer[1];
-          *SystemStatusBuffer = *TertiaryProcessingStatusFlag;
+          *SystemStatusBuffer = *StringProcessingStatus;
           SystemStatusBuffer[1] = MemoryAddressMask;
-          *TertiaryProcessingStatusFlag = CalculatedCodePoint;
-          TertiaryProcessingStatusFlag[1] = DataSize;
+          *StringProcessingStatus = CalculatedCodePoint;
+          StringProcessingStatus[1] = DataSize;
         }
-        MemoryAddressMask = TertiaryProcessingStatusFlag[1];
+        MemoryAddressMask = StringProcessingStatus[1];
         CalculatedCodePoint = *SystemStatusBuffer;
         DataSize = SystemStatusBuffer[1];
-        *SystemStatusBuffer = *TertiaryProcessingStatusFlag;
+        *SystemStatusBuffer = *StringProcessingStatus;
         SystemStatusBuffer[1] = MemoryAddressMask;
-        *TertiaryProcessingStatusFlag = CalculatedCodePoint;
-        TertiaryProcessingStatusFlag[1] = DataSize;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+        *StringProcessingStatus = CalculatedCodePoint;
+        StringProcessingStatus[1] = DataSize;
+        StringProcessingStatus = StringProcessingStatus + 2;
+        StringProcessingStatus = StringProcessingStatus + 2;
         SystemStatusBuffer = SystemStatusBuffer + 2;
       }
       else {
         StatusBuffer5 = StatusBuffer + -2;
-        if (TertiaryProcessingStatusFlag == Utf8InputPointer) {
+        if (StringProcessingStatus == Utf8InputPointer) {
           TemporaryBuffer = SystemStatusBuffer + -2;
           if (StatusBuffer5 != TemporaryBuffer) {
             MemoryAddressMask = SystemStatusBuffer[-1];
@@ -232539,24 +232552,24 @@ joined_r0x0001802045de:
             *TemporaryBuffer = CalculatedCodePoint;
             SystemStatusBuffer[-1] = DataSize;
           }
-          MemoryAddressMask = TertiaryProcessingStatusFlag[-1];
+          MemoryAddressMask = StringProcessingStatus[-1];
           CalculatedCodePoint = *TemporaryBuffer;
           DataSize = SystemStatusBuffer[-1];
-          *TemporaryBuffer = TertiaryProcessingStatusFlag[-2];
+          *TemporaryBuffer = StringProcessingStatus[-2];
           SystemStatusBuffer[-1] = MemoryAddressMask;
-          TertiaryProcessingStatusFlag[-2] = CalculatedCodePoint;
-          TertiaryProcessingStatusFlag[-1] = DataSize;
-          TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -2;
+          StringProcessingStatus[-2] = CalculatedCodePoint;
+          StringProcessingStatus[-1] = DataSize;
+          StringProcessingStatus = StringProcessingStatus + -2;
           StatusBuffer = StatusBuffer5;
           SystemStatusBuffer = TemporaryBuffer;
         }
         else {
-          MemoryAddressMask = *TertiaryProcessingStatusFlag;
-          CalculatedCodePoint = TertiaryProcessingStatusFlag[1];
+          MemoryAddressMask = *StringProcessingStatus;
+          CalculatedCodePoint = StringProcessingStatus[1];
           DataSize = StatusBuffer[-1];
-          *TertiaryProcessingStatusFlag = *StatusBuffer5;
-          TertiaryProcessingStatusFlag[1] = DataSize;
-          TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+          *StringProcessingStatus = *StatusBuffer5;
+          StringProcessingStatus[1] = DataSize;
+          StringProcessingStatus = StringProcessingStatus + 2;
           *StatusBuffer5 = MemoryAddressMask;
           StatusBuffer[-1] = CalculatedCodePoint;
           StatusBuffer = StatusBuffer5;
@@ -232565,35 +232578,35 @@ joined_r0x0001802045de:
       goto joined_r0x000180204576;
     }
     IntegerValue = *(int *)(SystemStatusBuffer + 1);
-    CharacterByteCount = *(int *)(TertiaryProcessingStatusFlag + 1);
+    CharacterByteCount = *(int *)(StringProcessingStatus + 1);
     if (IntegerValue == CharacterByteCount) {
-      LowByte = *(int *)((long long)SystemStatusBuffer + 0xc) < *(int *)((long long)TertiaryProcessingStatusFlag + 0xc);
+      LowByte = *(int *)((long long)SystemStatusBuffer + 0xc) < *(int *)((long long)StringProcessingStatus + 0xc);
     }
     else {
       LowByte = CharacterByteCount < IntegerValue;
     }
-    TemporaryBuffer = TertiaryProcessingStatusFlag;
+    TemporaryBuffer = StringProcessingStatus;
     if (!LowByte) {
       if (CharacterByteCount == IntegerValue) {
-        LowByte = *(int *)((long long)TertiaryProcessingStatusFlag + 0xc) < *(int *)((long long)SystemStatusBuffer + 0xc);
+        LowByte = *(int *)((long long)StringProcessingStatus + 0xc) < *(int *)((long long)SystemStatusBuffer + 0xc);
       }
       else {
         LowByte = IntegerValue < CharacterByteCount;
       }
       if (LowByte) goto joined_r0x0001802045de;
-      TemporaryBuffer = TertiaryProcessingStatusFlag + 2;
-      if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
-        MemoryAddressMask = TertiaryProcessingStatusFlag[1];
-        CalculatedCodePoint = *TertiaryProcessingStatusFlag;
-        DataSize = TertiaryProcessingStatusFlag[1];
-        *TertiaryProcessingStatusFlag = *TertiaryProcessingStatusFlag;
-        TertiaryProcessingStatusFlag[1] = MemoryAddressMask;
-        *TertiaryProcessingStatusFlag = CalculatedCodePoint;
-        TertiaryProcessingStatusFlag[1] = DataSize;
+      TemporaryBuffer = StringProcessingStatus + 2;
+      if (StringProcessingStatus != StringProcessingStatus) {
+        MemoryAddressMask = StringProcessingStatus[1];
+        CalculatedCodePoint = *StringProcessingStatus;
+        DataSize = StringProcessingStatus[1];
+        *StringProcessingStatus = *StringProcessingStatus;
+        StringProcessingStatus[1] = MemoryAddressMask;
+        *StringProcessingStatus = CalculatedCodePoint;
+        StringProcessingStatus[1] = DataSize;
       }
     }
-    TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    StringProcessingStatus = StringProcessingStatus + 2;
+    StringProcessingStatus = TemporaryBuffer;
   } while( true );
 }
 
@@ -232632,7 +232645,7 @@ uint64_t * FUN_180204430(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uin
     FUN_180204980(Utf8InputPointer + LoopIndex * -4 + -2,SystemDataTablePointer,Utf8InputPointer + -2);
     FUN_180204980(CharacterCodeSize + LoopIndex * 2,StatusBuffer,SystemDataTablePointer);
   }
-  TertiaryProcessingStatusFlag = StatusBuffer + 2;
+  StringProcessingStatus = StatusBuffer + 2;
   if (CharacterCodeSize < StatusBuffer) {
     while( true ) {
       IntegerValue = *(int *)(StatusBuffer + -1);
@@ -232653,33 +232666,33 @@ uint64_t * FUN_180204430(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uin
       if ((LowByte) || (StatusBuffer = StatusBuffer + -2, StatusBuffer <= CharacterCodeSize)) break;
     }
   }
-  TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  StringProcessingStatus = StringProcessingStatus;
   SystemStatusBuffer = StatusBuffer;
-  if (TertiaryProcessingStatusFlag < Utf8InputPointer) {
+  if (StringProcessingStatus < Utf8InputPointer) {
     IntegerValue = *(int *)(StatusBuffer + 1);
     while( true ) {
-      CharacterByteCount = *(int *)(TertiaryProcessingStatusFlag + 1);
+      CharacterByteCount = *(int *)(StringProcessingStatus + 1);
       if (CharacterByteCount == IntegerValue) {
-        LowByte = *(int *)((long long)TertiaryProcessingStatusFlag + 0xc) < *(int *)((long long)StatusBuffer + 0xc);
+        LowByte = *(int *)((long long)StringProcessingStatus + 0xc) < *(int *)((long long)StatusBuffer + 0xc);
       }
       else {
         LowByte = IntegerValue < CharacterByteCount;
       }
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      StringProcessingStatus = StringProcessingStatus;
       if (LowByte) break;
       if (IntegerValue == CharacterByteCount) {
-        LowByte = *(int *)((long long)StatusBuffer + 0xc) < *(int *)((long long)TertiaryProcessingStatusFlag + 0xc);
+        LowByte = *(int *)((long long)StatusBuffer + 0xc) < *(int *)((long long)StringProcessingStatus + 0xc);
       }
       else {
         LowByte = CharacterByteCount < IntegerValue;
       }
-      if ((LowByte) || (TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2, TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag, Utf8InputPointer <= TertiaryProcessingStatusFlag)) break;
+      if ((LowByte) || (StringProcessingStatus = StringProcessingStatus + 2, StringProcessingStatus = StringProcessingStatus, Utf8InputPointer <= StringProcessingStatus)) break;
     }
   }
 joined_r0x000180204576:
   do {
     StatusBuffer5 = StatusBuffer;
-    if (Utf8InputPointer <= TertiaryProcessingStatusFlag) {
+    if (Utf8InputPointer <= StringProcessingStatus) {
 joined_r0x0001802045de:
       for (; CharacterCodeSize < StatusBuffer; StatusBuffer = StatusBuffer + -2) {
         TemporaryBuffer = StatusBuffer5 + -2;
@@ -232715,34 +232728,34 @@ joined_r0x0001802045de:
         StatusBuffer5 = TemporaryBuffer;
       }
       if (StatusBuffer == CharacterCodeSize) {
-        if (TertiaryProcessingStatusFlag == Utf8InputPointer) {
+        if (StringProcessingStatus == Utf8InputPointer) {
           *CharacterCode = SystemStatusBuffer;
-          CharacterCode[1] = TertiaryProcessingStatusFlag;
+          CharacterCode[1] = StringProcessingStatus;
           return CharacterCode;
         }
-        if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
-          MemoryAddressMask = TertiaryProcessingStatusFlag[1];
+        if (StringProcessingStatus != StringProcessingStatus) {
+          MemoryAddressMask = StringProcessingStatus[1];
           CalculatedCodePoint = *SystemStatusBuffer;
           DataSize = SystemStatusBuffer[1];
-          *SystemStatusBuffer = *TertiaryProcessingStatusFlag;
+          *SystemStatusBuffer = *StringProcessingStatus;
           SystemStatusBuffer[1] = MemoryAddressMask;
-          *TertiaryProcessingStatusFlag = CalculatedCodePoint;
-          TertiaryProcessingStatusFlag[1] = DataSize;
+          *StringProcessingStatus = CalculatedCodePoint;
+          StringProcessingStatus[1] = DataSize;
         }
-        MemoryAddressMask = TertiaryProcessingStatusFlag[1];
+        MemoryAddressMask = StringProcessingStatus[1];
         CalculatedCodePoint = *SystemStatusBuffer;
         DataSize = SystemStatusBuffer[1];
-        *SystemStatusBuffer = *TertiaryProcessingStatusFlag;
+        *SystemStatusBuffer = *StringProcessingStatus;
         SystemStatusBuffer[1] = MemoryAddressMask;
-        *TertiaryProcessingStatusFlag = CalculatedCodePoint;
-        TertiaryProcessingStatusFlag[1] = DataSize;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+        *StringProcessingStatus = CalculatedCodePoint;
+        StringProcessingStatus[1] = DataSize;
+        StringProcessingStatus = StringProcessingStatus + 2;
+        StringProcessingStatus = StringProcessingStatus + 2;
         SystemStatusBuffer = SystemStatusBuffer + 2;
       }
       else {
         StatusBuffer5 = StatusBuffer + -2;
-        if (TertiaryProcessingStatusFlag == Utf8InputPointer) {
+        if (StringProcessingStatus == Utf8InputPointer) {
           TemporaryBuffer = SystemStatusBuffer + -2;
           if (StatusBuffer5 != TemporaryBuffer) {
             MemoryAddressMask = SystemStatusBuffer[-1];
@@ -232753,24 +232766,24 @@ joined_r0x0001802045de:
             *TemporaryBuffer = CalculatedCodePoint;
             SystemStatusBuffer[-1] = DataSize;
           }
-          MemoryAddressMask = TertiaryProcessingStatusFlag[-1];
+          MemoryAddressMask = StringProcessingStatus[-1];
           CalculatedCodePoint = *TemporaryBuffer;
           DataSize = SystemStatusBuffer[-1];
-          *TemporaryBuffer = TertiaryProcessingStatusFlag[-2];
+          *TemporaryBuffer = StringProcessingStatus[-2];
           SystemStatusBuffer[-1] = MemoryAddressMask;
-          TertiaryProcessingStatusFlag[-2] = CalculatedCodePoint;
-          TertiaryProcessingStatusFlag[-1] = DataSize;
-          TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -2;
+          StringProcessingStatus[-2] = CalculatedCodePoint;
+          StringProcessingStatus[-1] = DataSize;
+          StringProcessingStatus = StringProcessingStatus + -2;
           StatusBuffer = StatusBuffer5;
           SystemStatusBuffer = TemporaryBuffer;
         }
         else {
-          MemoryAddressMask = *TertiaryProcessingStatusFlag;
-          CalculatedCodePoint = TertiaryProcessingStatusFlag[1];
+          MemoryAddressMask = *StringProcessingStatus;
+          CalculatedCodePoint = StringProcessingStatus[1];
           DataSize = StatusBuffer[-1];
-          *TertiaryProcessingStatusFlag = *StatusBuffer5;
-          TertiaryProcessingStatusFlag[1] = DataSize;
-          TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+          *StringProcessingStatus = *StatusBuffer5;
+          StringProcessingStatus[1] = DataSize;
+          StringProcessingStatus = StringProcessingStatus + 2;
           *StatusBuffer5 = MemoryAddressMask;
           StatusBuffer[-1] = CalculatedCodePoint;
           StatusBuffer = StatusBuffer5;
@@ -232779,35 +232792,35 @@ joined_r0x0001802045de:
       goto joined_r0x000180204576;
     }
     IntegerValue = *(int *)(SystemStatusBuffer + 1);
-    CharacterByteCount = *(int *)(TertiaryProcessingStatusFlag + 1);
+    CharacterByteCount = *(int *)(StringProcessingStatus + 1);
     if (IntegerValue == CharacterByteCount) {
-      LowByte = *(int *)((long long)SystemStatusBuffer + 0xc) < *(int *)((long long)TertiaryProcessingStatusFlag + 0xc);
+      LowByte = *(int *)((long long)SystemStatusBuffer + 0xc) < *(int *)((long long)StringProcessingStatus + 0xc);
     }
     else {
       LowByte = CharacterByteCount < IntegerValue;
     }
-    TemporaryBuffer = TertiaryProcessingStatusFlag;
+    TemporaryBuffer = StringProcessingStatus;
     if (!LowByte) {
       if (CharacterByteCount == IntegerValue) {
-        LowByte = *(int *)((long long)TertiaryProcessingStatusFlag + 0xc) < *(int *)((long long)SystemStatusBuffer + 0xc);
+        LowByte = *(int *)((long long)StringProcessingStatus + 0xc) < *(int *)((long long)SystemStatusBuffer + 0xc);
       }
       else {
         LowByte = IntegerValue < CharacterByteCount;
       }
       if (LowByte) goto joined_r0x0001802045de;
-      TemporaryBuffer = TertiaryProcessingStatusFlag + 2;
-      if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
-        MemoryAddressMask = TertiaryProcessingStatusFlag[1];
-        CalculatedCodePoint = *TertiaryProcessingStatusFlag;
-        DataSize = TertiaryProcessingStatusFlag[1];
-        *TertiaryProcessingStatusFlag = *TertiaryProcessingStatusFlag;
-        TertiaryProcessingStatusFlag[1] = MemoryAddressMask;
-        *TertiaryProcessingStatusFlag = CalculatedCodePoint;
-        TertiaryProcessingStatusFlag[1] = DataSize;
+      TemporaryBuffer = StringProcessingStatus + 2;
+      if (StringProcessingStatus != StringProcessingStatus) {
+        MemoryAddressMask = StringProcessingStatus[1];
+        CalculatedCodePoint = *StringProcessingStatus;
+        DataSize = StringProcessingStatus[1];
+        *StringProcessingStatus = *StringProcessingStatus;
+        StringProcessingStatus[1] = MemoryAddressMask;
+        *StringProcessingStatus = CalculatedCodePoint;
+        StringProcessingStatus[1] = DataSize;
       }
     }
-    TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    StringProcessingStatus = StringProcessingStatus + 2;
+    StringProcessingStatus = TemporaryBuffer;
   } while( true );
 }
 
@@ -232866,7 +232879,7 @@ joined_r0x0001802045de:
       if ((hasComparisonResult) || (SystemRegisterR10 = SystemRegisterR10 + -2, SystemRegisterR10 <= FrameRegisterPointer)) break;
     }
   }
-  TertiaryProcessingStatusFlag = TemporaryBuffer;
+  StringProcessingStatus = TemporaryBuffer;
   SystemStatusBuffer = SystemRegisterR10;
   if (TemporaryBuffer < RegisterSourceIndex) {
     CharacterByteCount = *(int *)(SystemRegisterR10 + 1);
@@ -232878,7 +232891,7 @@ joined_r0x0001802045de:
       else {
         hasComparisonResult = CharacterByteCount < MemoryAllocationSize;
       }
-      TertiaryProcessingStatusFlag = TemporaryBuffer;
+      StringProcessingStatus = TemporaryBuffer;
       if (hasComparisonResult) break;
       if (CharacterByteCount == MemoryAllocationSize) {
         hasComparisonResult = *(int *)((long long)SystemRegisterR10 + 0xc) < *(int *)((long long)TemporaryBuffer + 0xc);
@@ -232886,7 +232899,7 @@ joined_r0x0001802045de:
       else {
         hasComparisonResult = MemoryAllocationSize < CharacterByteCount;
       }
-      if ((hasComparisonResult) || (TemporaryBuffer = TemporaryBuffer + 2, TertiaryProcessingStatusFlag = TemporaryBuffer, RegisterSourceIndex <= TemporaryBuffer)) break;
+      if ((hasComparisonResult) || (TemporaryBuffer = TemporaryBuffer + 2, StringProcessingStatus = TemporaryBuffer, RegisterSourceIndex <= TemporaryBuffer)) break;
     }
   }
 joined_r0x000180204576:
@@ -232930,17 +232943,17 @@ joined_r0x0001802045de:
       if (SystemRegisterR10 == FrameRegisterPointer) {
         if (TemporaryBuffer == RegisterSourceIndex) {
           *RegisterR15Value = SystemStatusBuffer;
-          RegisterR15Value[1] = TertiaryProcessingStatusFlag;
+          RegisterR15Value[1] = StringProcessingStatus;
           return;
         }
-        if (TertiaryProcessingStatusFlag != TemporaryBuffer) {
-          CalculatedCodePoint = TertiaryProcessingStatusFlag[1];
+        if (StringProcessingStatus != TemporaryBuffer) {
+          CalculatedCodePoint = StringProcessingStatus[1];
           DataSize = *SystemStatusBuffer;
           SystemChecksumValue = SystemStatusBuffer[1];
-          *SystemStatusBuffer = *TertiaryProcessingStatusFlag;
+          *SystemStatusBuffer = *StringProcessingStatus;
           SystemStatusBuffer[1] = CalculatedCodePoint;
-          *TertiaryProcessingStatusFlag = DataSize;
-          TertiaryProcessingStatusFlag[1] = SystemChecksumValue;
+          *StringProcessingStatus = DataSize;
+          StringProcessingStatus[1] = SystemChecksumValue;
         }
         CalculatedCodePoint = TemporaryBuffer[1];
         DataSize = *SystemStatusBuffer;
@@ -232950,7 +232963,7 @@ joined_r0x0001802045de:
         *TemporaryBuffer = DataSize;
         TemporaryBuffer[1] = SystemChecksumValue;
         TemporaryBuffer = TemporaryBuffer + 2;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+        StringProcessingStatus = StringProcessingStatus + 2;
         SystemStatusBuffer = SystemStatusBuffer + 2;
       }
       else {
@@ -232966,14 +232979,14 @@ joined_r0x0001802045de:
             *StatusBuffer = DataSize;
             SystemStatusBuffer[-1] = SystemChecksumValue;
           }
-          CalculatedCodePoint = TertiaryProcessingStatusFlag[-1];
+          CalculatedCodePoint = StringProcessingStatus[-1];
           DataSize = *StatusBuffer;
           SystemChecksumValue = SystemStatusBuffer[-1];
-          *StatusBuffer = TertiaryProcessingStatusFlag[-2];
+          *StatusBuffer = StringProcessingStatus[-2];
           SystemStatusBuffer[-1] = CalculatedCodePoint;
-          TertiaryProcessingStatusFlag[-2] = DataSize;
-          TertiaryProcessingStatusFlag[-1] = SystemChecksumValue;
-          TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -2;
+          StringProcessingStatus[-2] = DataSize;
+          StringProcessingStatus[-1] = SystemChecksumValue;
+          StringProcessingStatus = StringProcessingStatus + -2;
           SystemRegisterR10 = StatusBuffer5;
           SystemStatusBuffer = StatusBuffer;
         }
@@ -232999,7 +233012,7 @@ joined_r0x0001802045de:
     else {
       hasComparisonResult = MemoryAllocationSize < CharacterByteCount;
     }
-    StatusBuffer = TertiaryProcessingStatusFlag;
+    StatusBuffer = StringProcessingStatus;
     if (!hasComparisonResult) {
       if (MemoryAllocationSize == CharacterByteCount) {
         hasComparisonResult = *(int *)((long long)TemporaryBuffer + 0xc) < *(int *)((long long)SystemStatusBuffer + 0xc);
@@ -233008,19 +233021,19 @@ joined_r0x0001802045de:
         hasComparisonResult = CharacterByteCount < MemoryAllocationSize;
       }
       if (hasComparisonResult) goto joined_r0x0001802045de;
-      StatusBuffer = TertiaryProcessingStatusFlag + 2;
-      if (TertiaryProcessingStatusFlag != TemporaryBuffer) {
+      StatusBuffer = StringProcessingStatus + 2;
+      if (StringProcessingStatus != TemporaryBuffer) {
         CalculatedCodePoint = TemporaryBuffer[1];
-        DataSize = *TertiaryProcessingStatusFlag;
-        SystemChecksumValue = TertiaryProcessingStatusFlag[1];
-        *TertiaryProcessingStatusFlag = *TemporaryBuffer;
-        TertiaryProcessingStatusFlag[1] = CalculatedCodePoint;
+        DataSize = *StringProcessingStatus;
+        SystemChecksumValue = StringProcessingStatus[1];
+        *StringProcessingStatus = *TemporaryBuffer;
+        StringProcessingStatus[1] = CalculatedCodePoint;
         *TemporaryBuffer = DataSize;
         TemporaryBuffer[1] = SystemChecksumValue;
       }
     }
     TemporaryBuffer = TemporaryBuffer + 2;
-    TertiaryProcessingStatusFlag = StatusBuffer;
+    StringProcessingStatus = StatusBuffer;
   } while( true );
 }
 
@@ -233047,7 +233060,7 @@ joined_r0x0001802045de:
   uint64_t *RegisterR15Value;
   
   FUN_180204980(CharacterCode,CharacterCodeSize,Utf8InputPointer + -0x10);
-  TertiaryProcessingStatusFlag = SystemRegisterR10 + 2;
+  StringProcessingStatus = SystemRegisterR10 + 2;
   if (FrameRegisterPointer < SystemRegisterR10) {
     while( true ) {
       IntegerValue = *(int *)(SystemRegisterR10 + -1);
@@ -233068,33 +233081,33 @@ joined_r0x0001802045de:
       if ((LowByte) || (SystemRegisterR10 = SystemRegisterR10 + -2, SystemRegisterR10 <= FrameRegisterPointer)) break;
     }
   }
-  TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  StringProcessingStatus = StringProcessingStatus;
   StatusBuffer = SystemRegisterR10;
-  if (TertiaryProcessingStatusFlag < RegisterSourceIndex) {
+  if (StringProcessingStatus < RegisterSourceIndex) {
     IntegerValue = *(int *)(SystemRegisterR10 + 1);
     while( true ) {
-      CharacterByteCount = *(int *)(TertiaryProcessingStatusFlag + 1);
+      CharacterByteCount = *(int *)(StringProcessingStatus + 1);
       if (CharacterByteCount == IntegerValue) {
-        LowByte = *(int *)((long long)TertiaryProcessingStatusFlag + 0xc) < *(int *)((long long)SystemRegisterR10 + 0xc);
+        LowByte = *(int *)((long long)StringProcessingStatus + 0xc) < *(int *)((long long)SystemRegisterR10 + 0xc);
       }
       else {
         LowByte = IntegerValue < CharacterByteCount;
       }
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+      StringProcessingStatus = StringProcessingStatus;
       if (LowByte) break;
       if (IntegerValue == CharacterByteCount) {
-        LowByte = *(int *)((long long)SystemRegisterR10 + 0xc) < *(int *)((long long)TertiaryProcessingStatusFlag + 0xc);
+        LowByte = *(int *)((long long)SystemRegisterR10 + 0xc) < *(int *)((long long)StringProcessingStatus + 0xc);
       }
       else {
         LowByte = CharacterByteCount < IntegerValue;
       }
-      if ((LowByte) || (TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2, TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag, RegisterSourceIndex <= TertiaryProcessingStatusFlag)) break;
+      if ((LowByte) || (StringProcessingStatus = StringProcessingStatus + 2, StringProcessingStatus = StringProcessingStatus, RegisterSourceIndex <= StringProcessingStatus)) break;
     }
   }
 joined_r0x000180204576:
   do {
     StatusBuffer2 = SystemRegisterR10;
-    if (RegisterSourceIndex <= TertiaryProcessingStatusFlag) {
+    if (RegisterSourceIndex <= StringProcessingStatus) {
 joined_r0x0001802045de:
       for (; FrameRegisterPointer < SystemRegisterR10; SystemRegisterR10 = SystemRegisterR10 + -2) {
         TemporaryBuffer = StatusBuffer2 + -2;
@@ -233130,34 +233143,34 @@ joined_r0x0001802045de:
         StatusBuffer2 = TemporaryBuffer;
       }
       if (SystemRegisterR10 == FrameRegisterPointer) {
-        if (TertiaryProcessingStatusFlag == RegisterSourceIndex) {
+        if (StringProcessingStatus == RegisterSourceIndex) {
           *RegisterR15Value = StatusBuffer;
-          RegisterR15Value[1] = TertiaryProcessingStatusFlag;
+          RegisterR15Value[1] = StringProcessingStatus;
           return;
         }
-        if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
-          MemoryAddressMask = TertiaryProcessingStatusFlag[1];
+        if (StringProcessingStatus != StringProcessingStatus) {
+          MemoryAddressMask = StringProcessingStatus[1];
           CalculatedCodePoint = *StatusBuffer;
           DataSize = StatusBuffer[1];
-          *StatusBuffer = *TertiaryProcessingStatusFlag;
+          *StatusBuffer = *StringProcessingStatus;
           StatusBuffer[1] = MemoryAddressMask;
-          *TertiaryProcessingStatusFlag = CalculatedCodePoint;
-          TertiaryProcessingStatusFlag[1] = DataSize;
+          *StringProcessingStatus = CalculatedCodePoint;
+          StringProcessingStatus[1] = DataSize;
         }
-        MemoryAddressMask = TertiaryProcessingStatusFlag[1];
+        MemoryAddressMask = StringProcessingStatus[1];
         CalculatedCodePoint = *StatusBuffer;
         DataSize = StatusBuffer[1];
-        *StatusBuffer = *TertiaryProcessingStatusFlag;
+        *StatusBuffer = *StringProcessingStatus;
         StatusBuffer[1] = MemoryAddressMask;
-        *TertiaryProcessingStatusFlag = CalculatedCodePoint;
-        TertiaryProcessingStatusFlag[1] = DataSize;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+        *StringProcessingStatus = CalculatedCodePoint;
+        StringProcessingStatus[1] = DataSize;
+        StringProcessingStatus = StringProcessingStatus + 2;
+        StringProcessingStatus = StringProcessingStatus + 2;
         StatusBuffer = StatusBuffer + 2;
       }
       else {
         StatusBuffer2 = SystemRegisterR10 + -2;
-        if (TertiaryProcessingStatusFlag == RegisterSourceIndex) {
+        if (StringProcessingStatus == RegisterSourceIndex) {
           TemporaryBuffer = StatusBuffer + -2;
           if (StatusBuffer2 != TemporaryBuffer) {
             MemoryAddressMask = StatusBuffer[-1];
@@ -233168,24 +233181,24 @@ joined_r0x0001802045de:
             *TemporaryBuffer = CalculatedCodePoint;
             StatusBuffer[-1] = DataSize;
           }
-          MemoryAddressMask = TertiaryProcessingStatusFlag[-1];
+          MemoryAddressMask = StringProcessingStatus[-1];
           CalculatedCodePoint = *TemporaryBuffer;
           DataSize = StatusBuffer[-1];
-          *TemporaryBuffer = TertiaryProcessingStatusFlag[-2];
+          *TemporaryBuffer = StringProcessingStatus[-2];
           StatusBuffer[-1] = MemoryAddressMask;
-          TertiaryProcessingStatusFlag[-2] = CalculatedCodePoint;
-          TertiaryProcessingStatusFlag[-1] = DataSize;
-          TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -2;
+          StringProcessingStatus[-2] = CalculatedCodePoint;
+          StringProcessingStatus[-1] = DataSize;
+          StringProcessingStatus = StringProcessingStatus + -2;
           SystemRegisterR10 = StatusBuffer2;
           StatusBuffer = TemporaryBuffer;
         }
         else {
-          MemoryAddressMask = *TertiaryProcessingStatusFlag;
-          CalculatedCodePoint = TertiaryProcessingStatusFlag[1];
+          MemoryAddressMask = *StringProcessingStatus;
+          CalculatedCodePoint = StringProcessingStatus[1];
           DataSize = SystemRegisterR10[-1];
-          *TertiaryProcessingStatusFlag = *StatusBuffer2;
-          TertiaryProcessingStatusFlag[1] = DataSize;
-          TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+          *StringProcessingStatus = *StatusBuffer2;
+          StringProcessingStatus[1] = DataSize;
+          StringProcessingStatus = StringProcessingStatus + 2;
           *StatusBuffer2 = MemoryAddressMask;
           SystemRegisterR10[-1] = CalculatedCodePoint;
           SystemRegisterR10 = StatusBuffer2;
@@ -233194,35 +233207,35 @@ joined_r0x0001802045de:
       goto joined_r0x000180204576;
     }
     IntegerValue = *(int *)(StatusBuffer + 1);
-    CharacterByteCount = *(int *)(TertiaryProcessingStatusFlag + 1);
+    CharacterByteCount = *(int *)(StringProcessingStatus + 1);
     if (IntegerValue == CharacterByteCount) {
-      LowByte = *(int *)((long long)StatusBuffer + 0xc) < *(int *)((long long)TertiaryProcessingStatusFlag + 0xc);
+      LowByte = *(int *)((long long)StatusBuffer + 0xc) < *(int *)((long long)StringProcessingStatus + 0xc);
     }
     else {
       LowByte = CharacterByteCount < IntegerValue;
     }
-    TemporaryBuffer = TertiaryProcessingStatusFlag;
+    TemporaryBuffer = StringProcessingStatus;
     if (!LowByte) {
       if (CharacterByteCount == IntegerValue) {
-        LowByte = *(int *)((long long)TertiaryProcessingStatusFlag + 0xc) < *(int *)((long long)StatusBuffer + 0xc);
+        LowByte = *(int *)((long long)StringProcessingStatus + 0xc) < *(int *)((long long)StatusBuffer + 0xc);
       }
       else {
         LowByte = IntegerValue < CharacterByteCount;
       }
       if (LowByte) goto joined_r0x0001802045de;
-      TemporaryBuffer = TertiaryProcessingStatusFlag + 2;
-      if (TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag) {
-        MemoryAddressMask = TertiaryProcessingStatusFlag[1];
-        CalculatedCodePoint = *TertiaryProcessingStatusFlag;
-        DataSize = TertiaryProcessingStatusFlag[1];
-        *TertiaryProcessingStatusFlag = *TertiaryProcessingStatusFlag;
-        TertiaryProcessingStatusFlag[1] = MemoryAddressMask;
-        *TertiaryProcessingStatusFlag = CalculatedCodePoint;
-        TertiaryProcessingStatusFlag[1] = DataSize;
+      TemporaryBuffer = StringProcessingStatus + 2;
+      if (StringProcessingStatus != StringProcessingStatus) {
+        MemoryAddressMask = StringProcessingStatus[1];
+        CalculatedCodePoint = *StringProcessingStatus;
+        DataSize = StringProcessingStatus[1];
+        *StringProcessingStatus = *StringProcessingStatus;
+        StringProcessingStatus[1] = MemoryAddressMask;
+        *StringProcessingStatus = CalculatedCodePoint;
+        StringProcessingStatus[1] = DataSize;
       }
     }
-    TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+    StringProcessingStatus = StringProcessingStatus + 2;
+    StringProcessingStatus = TemporaryBuffer;
   } while( true );
 }
 
@@ -233265,7 +233278,7 @@ joined_r0x0001802045de:
     }
     if ((LowByte) || (SystemRegisterR10 = SystemRegisterR10 + -2, SystemRegisterR10 <= FrameRegisterPointer)) break;
   }
-  TertiaryProcessingStatusFlag = Utf8InputPointer;
+  StringProcessingStatus = Utf8InputPointer;
   TemporaryBuffer = SystemRegisterR10;
   if (Utf8InputPointer < RegisterSourceIndex) {
     IntegerValue = *(int *)(SystemRegisterR10 + 1);
@@ -233277,7 +233290,7 @@ joined_r0x0001802045de:
       else {
         LowByte = IntegerValue < CharacterByteCount;
       }
-      TertiaryProcessingStatusFlag = Utf8InputPointer;
+      StringProcessingStatus = Utf8InputPointer;
       if (LowByte) break;
       if (IntegerValue == CharacterByteCount) {
         LowByte = *(int *)((long long)SystemRegisterR10 + 0xc) < *(int *)((long long)Utf8InputPointer + 0xc);
@@ -233285,7 +233298,7 @@ joined_r0x0001802045de:
       else {
         LowByte = CharacterByteCount < IntegerValue;
       }
-      if ((LowByte) || (Utf8InputPointer = Utf8InputPointer + 2, TertiaryProcessingStatusFlag = Utf8InputPointer, RegisterSourceIndex <= Utf8InputPointer)) break;
+      if ((LowByte) || (Utf8InputPointer = Utf8InputPointer + 2, StringProcessingStatus = Utf8InputPointer, RegisterSourceIndex <= Utf8InputPointer)) break;
     }
   }
 joined_r0x000180204576:
@@ -233294,7 +233307,7 @@ joined_r0x000180204576:
     if (RegisterSourceIndex <= Utf8InputPointer) {
 joined_r0x0001802045de:
       for (; FrameRegisterPointer < SystemRegisterR10; SystemRegisterR10 = SystemRegisterR10 + -2) {
-        TertiaryProcessingStatusFlag = SystemStatusBuffer + -2;
+        StringProcessingStatus = SystemStatusBuffer + -2;
         IntegerValue = *(int *)(SystemStatusBuffer + -1);
         CharacterByteCount = *(int *)(TemporaryBuffer + 1);
         if (IntegerValue == CharacterByteCount) {
@@ -233313,33 +233326,33 @@ joined_r0x0001802045de:
           }
           if (LowByte) break;
           StatusBuffer = TemporaryBuffer + -2;
-          if (StatusBuffer != TertiaryProcessingStatusFlag) {
+          if (StatusBuffer != StringProcessingStatus) {
             MemoryAddressMask = SystemStatusBuffer[-1];
             CalculatedCodePoint = *StatusBuffer;
             DataSize = TemporaryBuffer[-1];
-            *StatusBuffer = *TertiaryProcessingStatusFlag;
+            *StatusBuffer = *StringProcessingStatus;
             TemporaryBuffer[-1] = MemoryAddressMask;
-            *TertiaryProcessingStatusFlag = CalculatedCodePoint;
+            *StringProcessingStatus = CalculatedCodePoint;
             SystemStatusBuffer[-1] = DataSize;
           }
         }
         TemporaryBuffer = StatusBuffer;
-        SystemStatusBuffer = TertiaryProcessingStatusFlag;
+        SystemStatusBuffer = StringProcessingStatus;
       }
       if (SystemRegisterR10 == FrameRegisterPointer) {
         if (Utf8InputPointer == RegisterSourceIndex) {
           *RegisterR15Value = TemporaryBuffer;
-          RegisterR15Value[1] = TertiaryProcessingStatusFlag;
+          RegisterR15Value[1] = StringProcessingStatus;
           return;
         }
-        if (TertiaryProcessingStatusFlag != Utf8InputPointer) {
-          MemoryAddressMask = TertiaryProcessingStatusFlag[1];
+        if (StringProcessingStatus != Utf8InputPointer) {
+          MemoryAddressMask = StringProcessingStatus[1];
           CalculatedCodePoint = *TemporaryBuffer;
           DataSize = TemporaryBuffer[1];
-          *TemporaryBuffer = *TertiaryProcessingStatusFlag;
+          *TemporaryBuffer = *StringProcessingStatus;
           TemporaryBuffer[1] = MemoryAddressMask;
-          *TertiaryProcessingStatusFlag = CalculatedCodePoint;
-          TertiaryProcessingStatusFlag[1] = DataSize;
+          *StringProcessingStatus = CalculatedCodePoint;
+          StringProcessingStatus[1] = DataSize;
         }
         MemoryAddressMask = Utf8InputPointer[1];
         CalculatedCodePoint = *TemporaryBuffer;
@@ -233349,32 +233362,32 @@ joined_r0x0001802045de:
         *Utf8InputPointer = CalculatedCodePoint;
         Utf8InputPointer[1] = DataSize;
         Utf8InputPointer = Utf8InputPointer + 2;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+        StringProcessingStatus = StringProcessingStatus + 2;
         TemporaryBuffer = TemporaryBuffer + 2;
       }
       else {
         SystemStatusBuffer = SystemRegisterR10 + -2;
         if (Utf8InputPointer == RegisterSourceIndex) {
-          TertiaryProcessingStatusFlag = TemporaryBuffer + -2;
-          if (SystemStatusBuffer != TertiaryProcessingStatusFlag) {
+          StringProcessingStatus = TemporaryBuffer + -2;
+          if (SystemStatusBuffer != StringProcessingStatus) {
             MemoryAddressMask = TemporaryBuffer[-1];
             CalculatedCodePoint = *SystemStatusBuffer;
             DataSize = SystemRegisterR10[-1];
-            *SystemStatusBuffer = *TertiaryProcessingStatusFlag;
+            *SystemStatusBuffer = *StringProcessingStatus;
             SystemRegisterR10[-1] = MemoryAddressMask;
-            *TertiaryProcessingStatusFlag = CalculatedCodePoint;
+            *StringProcessingStatus = CalculatedCodePoint;
             TemporaryBuffer[-1] = DataSize;
           }
-          MemoryAddressMask = TertiaryProcessingStatusFlag[-1];
-          CalculatedCodePoint = *TertiaryProcessingStatusFlag;
+          MemoryAddressMask = StringProcessingStatus[-1];
+          CalculatedCodePoint = *StringProcessingStatus;
           DataSize = TemporaryBuffer[-1];
-          *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag[-2];
+          *StringProcessingStatus = StringProcessingStatus[-2];
           TemporaryBuffer[-1] = MemoryAddressMask;
-          TertiaryProcessingStatusFlag[-2] = CalculatedCodePoint;
-          TertiaryProcessingStatusFlag[-1] = DataSize;
-          TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + -2;
+          StringProcessingStatus[-2] = CalculatedCodePoint;
+          StringProcessingStatus[-1] = DataSize;
+          StringProcessingStatus = StringProcessingStatus + -2;
           SystemRegisterR10 = SystemStatusBuffer;
-          TemporaryBuffer = TertiaryProcessingStatusFlag;
+          TemporaryBuffer = StringProcessingStatus;
         }
         else {
           MemoryAddressMask = *Utf8InputPointer;
@@ -233398,7 +233411,7 @@ joined_r0x0001802045de:
     else {
       LowByte = CharacterByteCount < IntegerValue;
     }
-    TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+    StringProcessingStatus = StringProcessingStatus;
     if (!LowByte) {
       if (CharacterByteCount == IntegerValue) {
         LowByte = *(int *)((long long)Utf8InputPointer + 0xc) < *(int *)((long long)TemporaryBuffer + 0xc);
@@ -233407,19 +233420,19 @@ joined_r0x0001802045de:
         LowByte = IntegerValue < CharacterByteCount;
       }
       if (LowByte) goto joined_r0x0001802045de;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-      if (TertiaryProcessingStatusFlag != Utf8InputPointer) {
+      StringProcessingStatus = StringProcessingStatus + 2;
+      if (StringProcessingStatus != Utf8InputPointer) {
         MemoryAddressMask = Utf8InputPointer[1];
-        CalculatedCodePoint = *TertiaryProcessingStatusFlag;
-        DataSize = TertiaryProcessingStatusFlag[1];
-        *TertiaryProcessingStatusFlag = *Utf8InputPointer;
-        TertiaryProcessingStatusFlag[1] = MemoryAddressMask;
+        CalculatedCodePoint = *StringProcessingStatus;
+        DataSize = StringProcessingStatus[1];
+        *StringProcessingStatus = *Utf8InputPointer;
+        StringProcessingStatus[1] = MemoryAddressMask;
         *Utf8InputPointer = CalculatedCodePoint;
         Utf8InputPointer[1] = DataSize;
       }
     }
     Utf8InputPointer = Utf8InputPointer + 2;
-    TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+    StringProcessingStatus = StringProcessingStatus;
   } while( true );
 }
 
@@ -233832,32 +233845,32 @@ LAB_180204df9:
   IntegerValue = CharacterCodeSize[2];
   if (IntegerValue == -1) goto FUN_180204f57;
   SecondaryProcessingStatusFlag = (unsigned long long *)(CharacterCode + 0x98 + (unsigned long long)*(uint *)(CharacterCode + 0x90) * 0x20);
-  TertiaryProcessingStatusFlag = (void *)SecondaryProcessingStatusFlag[1];
-  if (TertiaryProcessingStatusFlag < (void *)SecondaryProcessingStatusFlag[2]) {
+  StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
+  if (StringProcessingStatus < (void *)SecondaryProcessingStatusFlag[2]) {
     CharacterByteCount = CharacterCodeSize[3];
-    *TertiaryProcessingStatusFlag = *(void *)CharacterCodeSize;
-    *(int *)(TertiaryProcessingStatusFlag + 1) = IntegerValue;
-    *(int *)((long long)TertiaryProcessingStatusFlag + 0xc) = CharacterByteCount;
+    *StringProcessingStatus = *(void *)CharacterCodeSize;
+    *(int *)(StringProcessingStatus + 1) = IntegerValue;
+    *(int *)((long long)StringProcessingStatus + 0xc) = CharacterByteCount;
     SecondaryProcessingStatusFlag[1] = SecondaryProcessingStatusFlag[1] + 0x10;
     goto FUN_180204f57;
   }
   CharacterCodePointer = (void *)*SecondaryProcessingStatusFlag;
-  MemoryPoolBlockSize = (long long)TertiaryProcessingStatusFlag - (long long)CharacterCodePointer >> 4;
+  MemoryPoolBlockSize = (long long)StringProcessingStatus - (long long)CharacterCodePointer >> 4;
   if (MemoryPoolBlockSize == 0) {
     MemoryPoolBlockSize = 1;
 LAB_180204eca:
     pMemoryAddressMask = (void *)BufferAllocate(MemoryPoolManager,MemoryPoolBlockSize << 4,(char)SecondaryProcessingStatusFlag[3]);
     CharacterCodePointer = (void *)*SecondaryProcessingStatusFlag;
-    TertiaryProcessingStatusFlag = (void *)SecondaryProcessingStatusFlag[1];
+    StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
   }
   else {
     MemoryPoolBlockSize = MemoryPoolBlockSize * 2;
     if (MemoryPoolBlockSize != 0) goto LAB_180204eca;
     pMemoryAddressMask = NULL;
   }
-  if (CharacterCodePointer != TertiaryProcessingStatusFlag) {
+  if (CharacterCodePointer != StringProcessingStatus) {
                     // WARNING: Subroutine does not return
-    memmove(pMemoryAddressMask,CharacterCodePointer,(long long)TertiaryProcessingStatusFlag - (long long)CharacterCodePointer);
+    memmove(pMemoryAddressMask,CharacterCodePointer,(long long)StringProcessingStatus - (long long)CharacterCodePointer);
   }
   IntegerValue = CharacterCodeSize[2];
   CharacterByteCount = CharacterCodeSize[3];
@@ -233903,32 +233916,32 @@ FUN_180204f57:
   void *NextNode;
   
   SecondaryProcessingStatusFlag = (unsigned long long *)(CharacterCode + 0x98 + ProcessingResult * 0x20);
-  TertiaryProcessingStatusFlag = (void *)SecondaryProcessingStatusFlag[1];
-  if (TertiaryProcessingStatusFlag < (void *)SecondaryProcessingStatusFlag[2]) {
+  StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
+  if (StringProcessingStatus < (void *)SecondaryProcessingStatusFlag[2]) {
     Utf16Char = *(uint32_t *)((long long)RegisterSourceIndex + 0xc);
-    *TertiaryProcessingStatusFlag = *RegisterSourceIndex;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = CharacterCodeSize;
-    *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xc) = Utf16Char;
+    *StringProcessingStatus = *RegisterSourceIndex;
+    *(uint32_t *)(StringProcessingStatus + 1) = CharacterCodeSize;
+    *(uint32_t *)((long long)StringProcessingStatus + 0xc) = Utf16Char;
     SecondaryProcessingStatusFlag[1] = SecondaryProcessingStatusFlag[1] + 0x10;
     goto FUN_180204f4d;
   }
   CharacterCodePointer = (void *)*SecondaryProcessingStatusFlag;
-  MemoryPoolBlockSize = (long long)TertiaryProcessingStatusFlag - (long long)CharacterCodePointer >> 4;
+  MemoryPoolBlockSize = (long long)StringProcessingStatus - (long long)CharacterCodePointer >> 4;
   if (MemoryPoolBlockSize == 0) {
     MemoryPoolBlockSize = 1;
 LAB_180204eca:
     pMemoryAddressMask = (void *)BufferAllocate(MemoryPoolManager,MemoryPoolBlockSize << 4,(char)SecondaryProcessingStatusFlag[3]);
     CharacterCodePointer = (void *)*SecondaryProcessingStatusFlag;
-    TertiaryProcessingStatusFlag = (void *)SecondaryProcessingStatusFlag[1];
+    StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
   }
   else {
     MemoryPoolBlockSize = MemoryPoolBlockSize * 2;
     if (MemoryPoolBlockSize != 0) goto LAB_180204eca;
     pMemoryAddressMask = NULL;
   }
-  if (CharacterCodePointer != TertiaryProcessingStatusFlag) {
+  if (CharacterCodePointer != StringProcessingStatus) {
                     // WARNING: Subroutine does not return
-    memmove(pMemoryAddressMask,CharacterCodePointer,(long long)TertiaryProcessingStatusFlag - (long long)CharacterCodePointer);
+    memmove(pMemoryAddressMask,CharacterCodePointer,(long long)StringProcessingStatus - (long long)CharacterCodePointer);
   }
   Utf16Char = *(uint32_t *)(RegisterSourceIndex + 1);
   MemoryAllocationIndex = *(uint32_t *)((long long)RegisterSourceIndex + 0xc);
@@ -234101,7 +234114,7 @@ LAB_180204eec:
   unsigned long long *MemoryAddressMask;
   uint CalculatedCodePoint;
   unsigned long long *SecondaryProcessingStatusFlag;
-  unsigned long long *TertiaryProcessingStatusFlag;
+  unsigned long long *StringProcessingStatus;
   long long secondaryLoopCounter;
   uint64_t SystemMemoryAllocationResult;
   
@@ -234116,21 +234129,21 @@ LAB_180204eec:
       PrimaryProcessingStatusFlag = systemEventTemplatePointer + 1;
       systemEventTemplatePointer = (unsigned long long *)*PrimaryProcessingStatusFlag;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+    StringProcessingStatus = SecondaryProcessingStatusFlag;
     if (systemEventTemplatePointer != (unsigned long long *)0x0) {
       do {
         pMemoryAddressMask = systemEventTemplatePointer;
         if (CharacterCodeSize != *pMemoryAddressMask) break;
         *PrimaryProcessingStatusFlag = pMemoryAddressMask[1];
-        pMemoryAddressMask[1] = (unsigned long long)TertiaryProcessingStatusFlag;
+        pMemoryAddressMask[1] = (unsigned long long)StringProcessingStatus;
         CharacterCode = (long long *)(SystemDataTablePointer + 0x18);
         *CharacterCode = *CharacterCode + -1;
         systemEventTemplatePointer = (unsigned long long *)*PrimaryProcessingStatusFlag;
-        TertiaryProcessingStatusFlag = MemoryAddressMask;
+        StringProcessingStatus = MemoryAddressMask;
       } while ((unsigned long long *)*PrimaryProcessingStatusFlag != (unsigned long long *)0x0);
-      if (TertiaryProcessingStatusFlag != (unsigned long long *)0x0) {
+      if (StringProcessingStatus != (unsigned long long *)0x0) {
                     // WARNING: Subroutine does not return
-        CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+        CoreEngineFreeSystemMemory(StringProcessingStatus);
       }
     }
   }
@@ -234318,10 +234331,10 @@ LAB_180204eec:
                         IntegerValue7 = 0;
                         SystemOffsetValue = 0;
                         if (0 < validationResult) {
-                          TertiaryProcessingStatusFlag = StatusBuffer4;
+                          StringProcessingStatus = StatusBuffer4;
                           do {
-                            if (((int *)*TertiaryProcessingStatusFlag != (int *)0x0) &&
-                               (ReferenceCountPointer5[-2] * IntegerValue <= *(int *)*TertiaryProcessingStatusFlag)) {
+                            if (((int *)*StringProcessingStatus != (int *)0x0) &&
+                               (ReferenceCountPointer5[-2] * IntegerValue <= *(int *)*StringProcessingStatus)) {
                               if ((unsigned long long)CharacterCode8[1] < (unsigned long long)CharacterCode8[2]) {
                                 FUN_180204a00();
                                 CharacterCode8[1] = CharacterCode8[1] + 0x18;
@@ -234334,22 +234347,22 @@ LAB_180204eec:
                     // WARNING: Subroutine does not return
                                 CoreEngineProcessSystemEvent();
                               }
-                              TertiaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x18,8,3);
+                              StringProcessingStatus = (void *)MemoryAllocate(MemoryPoolManager,0x18,8,3);
                               SystemDataTablePointer = SystemMemoryAllocationBlock;
-                              TertiaryProcessingStatusFlag[2] = 0;
+                              StringProcessingStatus[2] = 0;
                               *NextNode = 0;
-                              TertiaryProcessingStatusFlag[1] = 0;
-                              *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = *systemEventTemplatePointer;
-                              *(uint64_t **)(systemEventTemplatePointer + 2) = TertiaryProcessingStatusFlag;
-                              *(uint64_t **)(systemEventTemplatePointer + 4) = TertiaryProcessingStatusFlag;
-                              TertiaryProcessingStatusFlag = (void *                                       FUN_180204b50(CharacterCode,aSystemStackRegisterFlagB0,IntegerValue9,0,
+                              StringProcessingStatus[1] = 0;
+                              *(uint32_t *)(StringProcessingStatus + 2) = *systemEventTemplatePointer;
+                              *(uint64_t **)(systemEventTemplatePointer + 2) = StringProcessingStatus;
+                              *(uint64_t **)(systemEventTemplatePointer + 4) = StringProcessingStatus;
+                              StringProcessingStatus = (void *                                       FUN_180204b50(CharacterCode,aSystemStackRegisterFlagB0,IntegerValue9,0,
                                                      *(uint32_t *)(SystemMemoryBlock130 + 0x184),
                                                      in_stack_fffffffffffffdb0 & 0xffffff00,1);
-                              uStack_218 = *TertiaryProcessingStatusFlag;
-                              iStack_210 = *(int *)(TertiaryProcessingStatusFlag + 1);
-                              StackUnsigned20c = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xc);
-                              BufferAllocationStatus = (long long *)TertiaryProcessingStatusFlag[2];
-                              TertiaryProcessingStatusFlag[2] = 0;
+                              uStack_218 = *StringProcessingStatus;
+                              iStack_210 = *(int *)(StringProcessingStatus + 1);
+                              StackUnsigned20c = *(uint32_t *)((long long)StringProcessingStatus + 0xc);
+                              BufferAllocationStatus = (long long *)StringProcessingStatus[2];
+                              StringProcessingStatus[2] = 0;
                               plStack_128 = SystemPointer208;
                               if (SystemPointer208 != (long long *)0x0) {
                                 SystemOffsetValue = *SystemPointer208;
@@ -234365,17 +234378,17 @@ LAB_180204eec:
                             }
                             IntegerValue7 = IntegerValue7 + 1;
                             SystemOffsetValue = SystemOffsetValue + 1;
-                            TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 3;
+                            StringProcessingStatus = StringProcessingStatus + 3;
                           } while (SystemOffsetValue < validationResult);
                         }
                         if (iStack_210 == -1) {
-                          TertiaryProcessingStatusFlag = (void *                                   FUN_180204b50(CharacterCode,SystemOperationBuffer,IntegerValue9,0,
+                          StringProcessingStatus = (void *                                   FUN_180204b50(CharacterCode,SystemOperationBuffer,IntegerValue9,0,
                                                  *(uint32_t *)(SystemDataTablePointer + 0x184),1,1);
-                          uStack_218 = *TertiaryProcessingStatusFlag;
-                          iStack_210 = *(int *)(TertiaryProcessingStatusFlag + 1);
-                          StackUnsigned20c = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xc);
-                          BufferAllocationStatus = (long long *)TertiaryProcessingStatusFlag[2];
-                          TertiaryProcessingStatusFlag[2] = 0;
+                          uStack_218 = *StringProcessingStatus;
+                          iStack_210 = *(int *)(StringProcessingStatus + 1);
+                          StackUnsigned20c = *(uint32_t *)((long long)StringProcessingStatus + 0xc);
+                          BufferAllocationStatus = (long long *)StringProcessingStatus[2];
+                          StringProcessingStatus[2] = 0;
                           plStack_120 = SystemPointer208;
                           if (SystemPointer208 != (long long *)0x0) {
                             SystemOffsetValue = *SystemPointer208;
@@ -234451,27 +234464,27 @@ LAB_180204eec:
           (**(code **)(*plStack_168 + 0x38))();
         }
         StatusBuffer4 = SystemTemplatePointer;
-        TertiaryProcessingStatusFlag = SystemTemplatePointer;
+        StringProcessingStatus = SystemTemplatePointer;
         PrimaryProcessingStatusFlag0 = stackPointer1B0;
         if (plStack_170 != (long long *)0x0) {
           (**(code **)(*plStack_170 + 0x38))();
           StatusBuffer4 = SystemTemplatePointer;
-          TertiaryProcessingStatusFlag = SystemTemplatePointer;
+          StringProcessingStatus = SystemTemplatePointer;
           PrimaryProcessingStatusFlag0 = stackPointer1B0;
         }
         for (; SecondaryProcessingStatusFlag = stackPointer1B0, CharacterCodePointer = SystemTemplatePointer, StatusBuffer4 != stackPointer1B0;
             StatusBuffer4 = StatusBuffer4 + 3) {
-          SystemTemplatePointer = TertiaryProcessingStatusFlag;
+          SystemTemplatePointer = StringProcessingStatus;
           stackPointer1B0 = PrimaryProcessingStatusFlag0;
           FUN_18004bf50(StatusBuffer4);
-          TertiaryProcessingStatusFlag = SystemTemplatePointer;
+          StringProcessingStatus = SystemTemplatePointer;
           PrimaryProcessingStatusFlag0 = stackPointer1B0;
           stackPointer1B0 = SecondaryProcessingStatusFlag;
           SystemTemplatePointer = CharacterCodePointer;
         }
         HighByte2 = SystemTemplatePointer != NULL;
         SystemDataTablePointer = CurrentMemoryBlockAddress;
-        SystemTemplatePointer = TertiaryProcessingStatusFlag;
+        SystemTemplatePointer = StringProcessingStatus;
         stackPointer1B0 = PrimaryProcessingStatusFlag0;
         if (HighByte2) {
                     // WARNING: Subroutine does not return
@@ -234518,18 +234531,18 @@ LAB_180204eec:
         }
         if (0 < (int)CurrentMemoryBlockAddress) {
           do {
-            TertiaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x38);
-            PrimaryProcessingStatusFlag0 = (void *)*TertiaryProcessingStatusFlag;
-            StatusBuffer4 = TertiaryProcessingStatusFlag;
+            StringProcessingStatus = *(uint64_t **)(CharacterCode + 0x38);
+            PrimaryProcessingStatusFlag0 = (void *)*StringProcessingStatus;
+            StatusBuffer4 = StringProcessingStatus;
             if (PrimaryProcessingStatusFlag0 == NULL) {
-              StatusBuffer4 = TertiaryProcessingStatusFlag + 1;
+              StatusBuffer4 = StringProcessingStatus + 1;
               PrimaryProcessingStatusFlag0 = (void *)*StatusBuffer4;
               while (PrimaryProcessingStatusFlag0 == NULL) {
                 StatusBuffer4 = StatusBuffer4 + 1;
                 PrimaryProcessingStatusFlag0 = (void *)*StatusBuffer4;
               }
             }
-            if (PrimaryProcessingStatusFlag0 != (void *)TertiaryProcessingStatusFlag[*(long long *)(CharacterCode + 0x40)]) {
+            if (PrimaryProcessingStatusFlag0 != (void *)StringProcessingStatus[*(long long *)(CharacterCode + 0x40)]) {
               do {
                 StatusBuffer2 = (uint32_t *)*PrimaryProcessingStatusFlag0;
                 if (((StatusBuffer2[5] == IntegerValue9) && (StatusBuffer2[2] != -1)) && (StatusBuffer2[4] == IntegerValue6)) {
@@ -234541,10 +234554,10 @@ LAB_180204eec:
                     IntegerValue7 = 0;
                     SystemOffsetValue = 0;
                     if (0 < validationResult) {
-                      TertiaryProcessingStatusFlag = ProcessingContextPointer;
+                      StringProcessingStatus = ProcessingContextPointer;
                       do {
-                        if (((int *)*TertiaryProcessingStatusFlag != (int *)0x0) &&
-                           (StatusBuffer2[3] * IntegerValue <= *(int *)*TertiaryProcessingStatusFlag)) {
+                        if (((int *)*StringProcessingStatus != (int *)0x0) &&
+                           (StatusBuffer2[3] * IntegerValue <= *(int *)*StringProcessingStatus)) {
                           if ((unsigned long long)CharacterCode8[1] < (unsigned long long)CharacterCode8[2]) {
                             FUN_180204a00();
                             CharacterCode8[1] = CharacterCode8[1] + 0x18;
@@ -234557,20 +234570,20 @@ LAB_180204eec:
                     // WARNING: Subroutine does not return
                             CoreEngineProcessSystemEvent();
                           }
-                          TertiaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x18,8,3);
-                          TertiaryProcessingStatusFlag[2] = 0;
+                          StringProcessingStatus = (void *)MemoryAllocate(MemoryPoolManager,0x18,8,3);
+                          StringProcessingStatus[2] = 0;
                           *NextNode = 0;
-                          TertiaryProcessingStatusFlag[1] = 0;
-                          *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = *systemEventTemplatePointer;
-                          *(uint64_t **)(systemEventTemplatePointer + 2) = TertiaryProcessingStatusFlag;
-                          *(uint64_t **)(systemEventTemplatePointer + 4) = TertiaryProcessingStatusFlag;
-                          TertiaryProcessingStatusFlag = (void *                                   FUN_180204b50(CharacterCode,StackBuffer80,IntegerValue9,0,*StatusBuffer2,
+                          StringProcessingStatus[1] = 0;
+                          *(uint32_t *)(StringProcessingStatus + 2) = *systemEventTemplatePointer;
+                          *(uint64_t **)(systemEventTemplatePointer + 2) = StringProcessingStatus;
+                          *(uint64_t **)(systemEventTemplatePointer + 4) = StringProcessingStatus;
+                          StringProcessingStatus = (void *                                   FUN_180204b50(CharacterCode,StackBuffer80,IntegerValue9,0,*StatusBuffer2,
                                                  in_stack_fffffffffffffdb0 & 0xffffff00,1);
-                          SystemUintBuffer238 = *TertiaryProcessingStatusFlag;
-                          iStack_230 = *(int *)(TertiaryProcessingStatusFlag + 1);
-                          uStack_22c = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xc);
-                          BufferAllocationStatus = (long long *)TertiaryProcessingStatusFlag[2];
-                          TertiaryProcessingStatusFlag[2] = 0;
+                          SystemUintBuffer238 = *StringProcessingStatus;
+                          iStack_230 = *(int *)(StringProcessingStatus + 1);
+                          uStack_22c = *(uint32_t *)((long long)StringProcessingStatus + 0xc);
+                          BufferAllocationStatus = (long long *)StringProcessingStatus[2];
+                          StringProcessingStatus[2] = 0;
                           plStack_118 = plStack_228;
                           if (plStack_228 != (long long *)0x0) {
                             SystemOffsetValue = *plStack_228;
@@ -234586,16 +234599,16 @@ LAB_180204eec:
                         }
                         IntegerValue7 = IntegerValue7 + 1;
                         SystemOffsetValue = SystemOffsetValue + 1;
-                        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 3;
+                        StringProcessingStatus = StringProcessingStatus + 3;
                       } while (SystemOffsetValue < validationResult);
                     }
                     if (iStack_230 == -1) {
-                      TertiaryProcessingStatusFlag = (void *)FUN_180204b50(CharacterCode,aStackUnsigned68,IntegerValue9,0,*StatusBuffer2,1,1                      ;
-                      SystemUintBuffer238 = *TertiaryProcessingStatusFlag;
-                      iStack_230 = *(int *)(TertiaryProcessingStatusFlag + 1);
-                      uStack_22c = *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xc);
-                      BufferAllocationStatus = (long long *)TertiaryProcessingStatusFlag[2];
-                      TertiaryProcessingStatusFlag[2] = 0;
+                      StringProcessingStatus = (void *)FUN_180204b50(CharacterCode,aStackUnsigned68,IntegerValue9,0,*StatusBuffer2,1,1                      ;
+                      SystemUintBuffer238 = *StringProcessingStatus;
+                      iStack_230 = *(int *)(StringProcessingStatus + 1);
+                      uStack_22c = *(uint32_t *)((long long)StringProcessingStatus + 0xc);
+                      BufferAllocationStatus = (long long *)StringProcessingStatus[2];
+                      StringProcessingStatus[2] = 0;
                       plStack_110 = plStack_228;
                       if (plStack_228 != (long long *)0x0) {
                         SystemOffsetValue = *plStack_228;
@@ -234678,28 +234691,28 @@ LAB_180204eec:
         }
         SystemDataTablePointer = lStack_1e0;
         StatusBuffer4 = ProcessingContextPointer;
-        TertiaryProcessingStatusFlag = ProcessingContextPointer;
+        StringProcessingStatus = ProcessingContextPointer;
         PrimaryProcessingStatusFlag0 = puStack_190;
         if (plStack_158 != (long long *)0x0) {
           (**(code **)(*plStack_158 + 0x38))();
           SystemDataTablePointer = lStack_1e0;
           StatusBuffer4 = ProcessingContextPointer;
-          TertiaryProcessingStatusFlag = ProcessingContextPointer;
+          StringProcessingStatus = ProcessingContextPointer;
           PrimaryProcessingStatusFlag0 = puStack_190;
         }
         for (; SecondaryProcessingStatusFlag = puStack_190, CharacterCodePointer = ProcessingContextPointer, lStack_1e0 = SystemDataTablePointer,
             StatusBuffer4 != puStack_190; StatusBuffer4 = StatusBuffer4 + 3) {
-          ProcessingContextPointer = TertiaryProcessingStatusFlag;
+          ProcessingContextPointer = StringProcessingStatus;
           puStack_190 = PrimaryProcessingStatusFlag0;
           FUN_18004bf50(StatusBuffer4);
           SystemDataTablePointer = lStack_1e0;
-          TertiaryProcessingStatusFlag = ProcessingContextPointer;
+          StringProcessingStatus = ProcessingContextPointer;
           PrimaryProcessingStatusFlag0 = puStack_190;
           puStack_190 = SecondaryProcessingStatusFlag;
           ProcessingContextPointer = CharacterCodePointer;
         }
         HighByte2 = ProcessingContextPointer != NULL;
-        ProcessingContextPointer = TertiaryProcessingStatusFlag;
+        ProcessingContextPointer = StringProcessingStatus;
         puStack_190 = PrimaryProcessingStatusFlag0;
         CurrentMemoryBlockAddress = SystemDataTablePointer;
         if (HighByte2) {
@@ -235206,13 +235219,13 @@ void FUN_180206da0(uint64_t CharacterCode,long long CharacterCodeSize,char *Utf8
   CoreEngineSignedValue78 = Utf16EndPointer;
   if (*(char *)(CharacterCodeSize + 0x180) == '\x01') {
     if (0 < AllocatedMemorySize) {
-      TertiaryProcessingStatusFlag = (void *)(AdditionalParameter2 + 8);
+      StringProcessingStatus = (void *)(AdditionalParameter2 + 8);
       MemoryBoundaryEnd = (CharacterCodeSize - AdditionalParameter2) + 8;
       lStack_80 = MemoryBoundaryEnd;
       do {
         if (CoreEngineCharArray58[DataStructureCounter] != '\0') {
           CharacterTablePointer = *(long long *)(CoreEngineRenderContext + 0x1cd8);
-          MemoryBoundaryEnd = *(long long *)(MemoryBoundaryEnd + (long long)TertiaryProcessingStatusFlag);
+          MemoryBoundaryEnd = *(long long *)(MemoryBoundaryEnd + (long long)StringProcessingStatus);
           *(uint32_t *)(MemoryBoundaryEnd + 0x16c) = *(uint32_t *)(CoreEngineSystemContext + 0x224);
           MemoryBlockIndex = *(long long **)(CharacterTablePointer + 0x8400);
           StackTempPointer = aStackUnsigned68;
@@ -235221,7 +235234,7 @@ void FUN_180206da0(uint64_t CharacterCode,long long CharacterCodeSize,char *Utf8
           if (CharacterByteCount < 0) {
             FUN_180220810(CharacterByteCount,&SystemMutexLock);
           }
-          *TertiaryProcessingStatusFlag = aStackUnsigned68[0];
+          *StringProcessingStatus = aStackUnsigned68[0];
           MemoryBlockIndex = (long long *)FUN_1800e81f0();
           MemoryBlockIndex = (long long *)*MemoryBlockIndex;
           if (MemoryBlockIndex != (long long *)0x0) {
@@ -235240,7 +235253,7 @@ void FUN_180206da0(uint64_t CharacterCode,long long CharacterCodeSize,char *Utf8
           }
         }
         DataStructureCounter = DataStructureCounter + 1;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 3;
+        StringProcessingStatus = StringProcessingStatus + 3;
       } while (DataStructureCounter < AllocatedMemorySize);
     }
   }
@@ -236465,50 +236478,50 @@ void ProcessSystemCharacterStream(uint64_t CharacterCode,long long *CharacterCod
           do {
             MemoryAllocationOffset = MemoryAllocationIndexSecondary;
             if (3 < SystemStringIndex) {
-              TertiaryProcessingStatusFlag = (void *)((long long)CharacterCode + 0x44);
+              StringProcessingStatus = (void *)((long long)CharacterCode + 0x44);
               MemoryBufferA = (SystemStringIndex - 4U >> 2) + 1;
               MemoryAllocationOffset = MemoryBufferA * 4;
               do {
-                FloatValue30 = *(float *)((long long)TertiaryProcessingStatusFlag + 0xc);
-                if (*(float *)((long long)TertiaryProcessingStatusFlag + 4) <= FloatValue30 &&
-                    FloatValue30 != *(float *)((long long)TertiaryProcessingStatusFlag + 4)) {
-                  MemoryAddressMask = TertiaryProcessingStatusFlag[1];
-                  TertiaryProcessingStatusFlag[1] = *TertiaryProcessingStatusFlag;
-                  FloatValue30 = *(float *)((long long)TertiaryProcessingStatusFlag + 0xc);
-                  *TertiaryProcessingStatusFlag = MemoryAddressMask;
+                FloatValue30 = *(float *)((long long)StringProcessingStatus + 0xc);
+                if (*(float *)((long long)StringProcessingStatus + 4) <= FloatValue30 &&
+                    FloatValue30 != *(float *)((long long)StringProcessingStatus + 4)) {
+                  MemoryAddressMask = StringProcessingStatus[1];
+                  StringProcessingStatus[1] = *StringProcessingStatus;
+                  FloatValue30 = *(float *)((long long)StringProcessingStatus + 0xc);
+                  *StringProcessingStatus = MemoryAddressMask;
                 }
-                if (FloatValue30 < *(float *)((long long)TertiaryProcessingStatusFlag + 0x14)) {
-                  MemoryAddressMask = TertiaryProcessingStatusFlag[1];
-                  TertiaryProcessingStatusFlag[1] = TertiaryProcessingStatusFlag[2];
-                  TertiaryProcessingStatusFlag[2] = MemoryAddressMask;
+                if (FloatValue30 < *(float *)((long long)StringProcessingStatus + 0x14)) {
+                  MemoryAddressMask = StringProcessingStatus[1];
+                  StringProcessingStatus[1] = StringProcessingStatus[2];
+                  StringProcessingStatus[2] = MemoryAddressMask;
                 }
-                if (*(float *)((long long)TertiaryProcessingStatusFlag + 0x14) <= *(float *)((long long)TertiaryProcessingStatusFlag + 0x1c) &&
-                    *(float *)((long long)TertiaryProcessingStatusFlag + 0x1c) != *(float *)((long long)TertiaryProcessingStatusFlag + 0x14)) {
-                  MemoryAddressMask = TertiaryProcessingStatusFlag[2];
-                  TertiaryProcessingStatusFlag[2] = TertiaryProcessingStatusFlag[3];
-                  TertiaryProcessingStatusFlag[3] = MemoryAddressMask;
+                if (*(float *)((long long)StringProcessingStatus + 0x14) <= *(float *)((long long)StringProcessingStatus + 0x1c) &&
+                    *(float *)((long long)StringProcessingStatus + 0x1c) != *(float *)((long long)StringProcessingStatus + 0x14)) {
+                  MemoryAddressMask = StringProcessingStatus[2];
+                  StringProcessingStatus[2] = StringProcessingStatus[3];
+                  StringProcessingStatus[3] = MemoryAddressMask;
                 }
-                if (*(float *)((long long)TertiaryProcessingStatusFlag + 0x1c) <= *(float *)((long long)TertiaryProcessingStatusFlag + 0x24) &&
-                    *(float *)((long long)TertiaryProcessingStatusFlag + 0x24) != *(float *)((long long)TertiaryProcessingStatusFlag + 0x1c)) {
-                  MemoryAddressMask = TertiaryProcessingStatusFlag[3];
-                  TertiaryProcessingStatusFlag[3] = TertiaryProcessingStatusFlag[4];
-                  TertiaryProcessingStatusFlag[4] = MemoryAddressMask;
+                if (*(float *)((long long)StringProcessingStatus + 0x1c) <= *(float *)((long long)StringProcessingStatus + 0x24) &&
+                    *(float *)((long long)StringProcessingStatus + 0x24) != *(float *)((long long)StringProcessingStatus + 0x1c)) {
+                  MemoryAddressMask = StringProcessingStatus[3];
+                  StringProcessingStatus[3] = StringProcessingStatus[4];
+                  StringProcessingStatus[4] = MemoryAddressMask;
                 }
-                TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
+                StringProcessingStatus = StringProcessingStatus + 4;
                 MemoryBufferA = MemoryBufferA + -1;
               } while (MemoryBufferA != 0);
             }
             if ((long long)MemoryAllocationOffset < SystemStringIndex) {
-              TertiaryProcessingStatusFlag = (void *)((long long)CharacterCode + MemoryAllocationOffset * 8 + 0x44);
+              StringProcessingStatus = (void *)((long long)CharacterCode + MemoryAllocationOffset * 8 + 0x44);
               MemoryBufferA = SystemStringIndex - MemoryAllocationOffset;
               do {
-                if (*(float *)((long long)TertiaryProcessingStatusFlag + 4) <= *(float *)((long long)TertiaryProcessingStatusFlag + 0xc) &&
-                    *(float *)((long long)TertiaryProcessingStatusFlag + 0xc) != *(float *)((long long)TertiaryProcessingStatusFlag + 4)) {
-                  MemoryAddressMask = *TertiaryProcessingStatusFlag;
-                  *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag[1];
-                  TertiaryProcessingStatusFlag[1] = MemoryAddressMask;
+                if (*(float *)((long long)StringProcessingStatus + 4) <= *(float *)((long long)StringProcessingStatus + 0xc) &&
+                    *(float *)((long long)StringProcessingStatus + 0xc) != *(float *)((long long)StringProcessingStatus + 4)) {
+                  MemoryAddressMask = *StringProcessingStatus;
+                  *StringProcessingStatus = StringProcessingStatus[1];
+                  StringProcessingStatus[1] = MemoryAddressMask;
                 }
-                TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+                StringProcessingStatus = StringProcessingStatus + 1;
                 MemoryBufferA = MemoryBufferA + -1;
               } while (MemoryBufferA != 0);
             }
@@ -236579,13 +236592,13 @@ void ProcessSystemCharacterStream(uint64_t CharacterCode,long long *CharacterCod
                   *(uint32_t *)(SystemOffsetValue + 0x110) = UnicodeCodePoint;
                   *(byte *)(SystemOffsetValue + 0xfe) = *(byte *)(SystemOffsetValue + 0xfe) | hasMemoryBoundaryChanged;
                   *(uint32_t *)(SystemOffsetValue + 0x108) = UnicodeCharacterCode;
-                  TertiaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryAddressMask,0x20,8,3);
-                  *TertiaryProcessingStatusFlag = 0;
-                  *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-                  *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xc) = 0xffffffff;
-                  TertiaryProcessingStatusFlag[2] = 0;
-                  *(uint32_t *)(TertiaryProcessingStatusFlag + 3) = 0;
-                  *(uint64_t **)(SystemOffsetValue + 0x2d0) = TertiaryProcessingStatusFlag;
+                  StringProcessingStatus = (void *)MemoryAllocate(MemoryAddressMask,0x20,8,3);
+                  *StringProcessingStatus = 0;
+                  *(uint32_t *)(StringProcessingStatus + 1) = 0;
+                  *(uint32_t *)((long long)StringProcessingStatus + 0xc) = 0xffffffff;
+                  StringProcessingStatus[2] = 0;
+                  *(uint32_t *)(StringProcessingStatus + 3) = 0;
+                  *(uint64_t **)(SystemOffsetValue + 0x2d0) = StringProcessingStatus;
                   *(uint32_t *)(MemoryBufferA + CoreEngineSignedValue48) = 0;
                 }
                 else {
@@ -236727,7 +236740,7 @@ void InitializeSystemCharacterHandler(uint64_t CharacterCode,uint64_t CharacterC
   uint64_t CalculatedCodePoint;
   char CharacterMemoryAllocationSize;
   byte BooleanByteFlag7;
-  unsigned long long *TertiaryProcessingStatusFlag;
+  unsigned long long *StringProcessingStatus;
   long long systemLoopCounter;
   float *pContextPrimaryFloat0;
   long long SystemStringIndex;
@@ -236813,13 +236826,13 @@ void InitializeSystemCharacterHandler(uint64_t CharacterCode,uint64_t CharacterC
             *(uint32_t *)(CurrentMemoryBlockAddress + 0x110) = UnicodeCodePoint;
             *(byte *)(CurrentMemoryBlockAddress + 0xfe) = *(byte *)(CurrentMemoryBlockAddress + 0xfe) | isSystemContextNull;
             *(uint32_t *)(CurrentMemoryBlockAddress + 0x108) = PrimaryReturnCode;
-            TertiaryProcessingStatusFlag = (unsigned long long *)MemoryAllocate(CalculatedCodePoint,0x20,8,3);
-            *TertiaryProcessingStatusFlag = GeneralRegister14;
-            *(uint *)(TertiaryProcessingStatusFlag + 1) = MemoryAllocationSize;
-            *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xc) = 0xffffffff;
-            TertiaryProcessingStatusFlag[2] = GeneralRegister14;
-            *(uint *)(TertiaryProcessingStatusFlag + 3) = MemoryAllocationSize;
-            *(unsigned long long **)(CurrentMemoryBlockAddress + 0x2d0) = TertiaryProcessingStatusFlag;
+            StringProcessingStatus = (unsigned long long *)MemoryAllocate(CalculatedCodePoint,0x20,8,3);
+            *StringProcessingStatus = GeneralRegister14;
+            *(uint *)(StringProcessingStatus + 1) = MemoryAllocationSize;
+            *(uint32_t *)((long long)StringProcessingStatus + 0xc) = 0xffffffff;
+            StringProcessingStatus[2] = GeneralRegister14;
+            *(uint *)(StringProcessingStatus + 3) = MemoryAllocationSize;
+            *(unsigned long long **)(CurrentMemoryBlockAddress + 0x2d0) = StringProcessingStatus;
             *(uint *)(SystemStringIndex + MemoryAllocationIndex7) = MemoryAllocationSize;
           }
           else {
@@ -237542,25 +237555,25 @@ long long FUN_1802092f0(long long CharacterCode
   *(uint32_t *)(MemoryPoolBlockSize + 0x28) = UnicodeCodePoint;
   *(uint32_t *)(MemoryPoolBlockSize + 0x2c) = MemoryAddressMask;
   *(void *)(MemoryPoolBlockSize + 0x30) = Utf8InputPointer;
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[2];
+  StringProcessingStatus = (void *)CharacterCode[2];
   CharacterCodePointer = CharacterCode;
-  while (TertiaryProcessingStatusFlag != NULL) {
-    ValidationResult = memcmp(MemoryPoolBlockSize + 0x20,TertiaryProcessingStatusFlag + 4,0x10);
+  while (StringProcessingStatus != NULL) {
+    ValidationResult = memcmp(MemoryPoolBlockSize + 0x20,StringProcessingStatus + 4,0x10);
     CurrentByteValue0 = ValidationResult < 0;
-    CharacterCodePointer = TertiaryProcessingStatusFlag;
+    CharacterCodePointer = StringProcessingStatus;
     if (CurrentByteValue0) {
-      TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+      StringProcessingStatus = (void *)StringProcessingStatus[1];
     }
     else {
-      TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+      StringProcessingStatus = (void *)*StringProcessingStatus;
     }
   }
-  TertiaryProcessingStatusFlag = CharacterCodePointer;
+  StringProcessingStatus = CharacterCodePointer;
   if (CurrentByteValue0) {
     if (CharacterCodePointer == (void *)CharacterCode[1]) goto LAB_1802093e9;
-    TertiaryProcessingStatusFlag = (void *)GetPreviousMemoryBlockIndex(CharacterCodePointer);
+    StringProcessingStatus = (void *)GetPreviousMemoryBlockIndex(CharacterCodePointer);
   }
-  ValidationResult = memcmp(TertiaryProcessingStatusFlag + 4,MemoryPoolBlockSize + 0x20,0x10);
+  ValidationResult = memcmp(StringProcessingStatus + 4,MemoryPoolBlockSize + 0x20,0x10);
   if (-1 < ValidationResult) {
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(MemoryPoolBlockSize);
@@ -237658,23 +237671,23 @@ LAB_1802093e9:
           CharacterCodePointer = (void *)CharacterCode[0xc];
         }
         else {
-          TertiaryProcessingStatusFlag = (void *)CharacterCode[0xb];
-          MemoryBlockIndex = ((long long)CharacterCodePointer - (long long)TertiaryProcessingStatusFlag) / 0xc;
+          StringProcessingStatus = (void *)CharacterCode[0xb];
+          MemoryBlockIndex = ((long long)CharacterCodePointer - (long long)StringProcessingStatus) / 0xc;
           if (MemoryBlockIndex == 0) {
             MemoryBlockIndex = 1;
 LAB_180209615:
             pMemoryAddressMask = (void *)BufferAllocate(MemoryPoolManager,MemoryBlockIndex * 0xc,(char)CharacterCode[0xe]);
             CharacterCodePointer = (void *)CharacterCode[0xc];
-            TertiaryProcessingStatusFlag = (void *)CharacterCode[0xb];
+            StringProcessingStatus = (void *)CharacterCode[0xb];
           }
           else {
             MemoryBlockIndex = MemoryBlockIndex * 2;
             if (MemoryBlockIndex != 0) goto LAB_180209615;
             pMemoryAddressMask = NULL;
           }
-          if (TertiaryProcessingStatusFlag != CharacterCodePointer) {
+          if (StringProcessingStatus != CharacterCodePointer) {
                     // WARNING: Subroutine does not return
-            memmove(pMemoryAddressMask,TertiaryProcessingStatusFlag,(long long)CharacterCodePointer - (long long)TertiaryProcessingStatusFlag);
+            memmove(pMemoryAddressMask,StringProcessingStatus,(long long)CharacterCodePointer - (long long)StringProcessingStatus);
           }
           *pMemoryAddressMask = 0xffffffffffffffff;
           *(uint32_t *)(pMemoryAddressMask + 1) = 0xffffffff;
@@ -238910,25 +238923,25 @@ void FinalizeSystemCharacterHandler(uint64_t CharacterCode,long long CharacterCo
     uStack_4a8 = (long long *)0x0;
     puStack_4b8 = NULL;
     plStack_4b0 = (long long *)((unsigned long long)plStack_4b0 & 0xffffffff00000000);
-    TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x45,0x13);
-    *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-    puStack_4b8 = TertiaryProcessingStatusFlag;
-    MemoryAddressMask = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+    StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x45,0x13);
+    *(uint8_t *)StringProcessingStatus = 0;
+    puStack_4b8 = StringProcessingStatus;
+    MemoryAddressMask = GetMemoryAllocationInfo(StringProcessingStatus);
     uStack_4a8 = (long long *)CONCAT44(uStack_4a8.HighPart,MemoryAddressMask);
-    *TertiaryProcessingStatusFlag = 0x6f4d2f4553414224;
-    TertiaryProcessingStatusFlag[1] = 0x614e2f73656c7564;
-    TertiaryProcessingStatusFlag[2] = 0x646f4d2f65766974;
-    TertiaryProcessingStatusFlag[3] = 0x2f61746144656c75;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 4) = 0x65726f43;
-    *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x24) = 0x656d6147;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 5) = 0x65666552;
-    *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x2c) = 0x636e6572;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 6) = 0x702f7365;
-    *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x34) = 0x61666572;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 7) = 0x6e655f62;
-    *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0x3c) = 0x79746974;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 8) = 0x7478742e;
-    *(uint8_t *)((long long)TertiaryProcessingStatusFlag + 0x44) = 0;
+    *StringProcessingStatus = 0x6f4d2f4553414224;
+    StringProcessingStatus[1] = 0x614e2f73656c7564;
+    StringProcessingStatus[2] = 0x646f4d2f65766974;
+    StringProcessingStatus[3] = 0x2f61746144656c75;
+    *(uint32_t *)(StringProcessingStatus + 4) = 0x65726f43;
+    *(uint32_t *)((long long)StringProcessingStatus + 0x24) = 0x656d6147;
+    *(uint32_t *)(StringProcessingStatus + 5) = 0x65666552;
+    *(uint32_t *)((long long)StringProcessingStatus + 0x2c) = 0x636e6572;
+    *(uint32_t *)(StringProcessingStatus + 6) = 0x702f7365;
+    *(uint32_t *)((long long)StringProcessingStatus + 0x34) = 0x61666572;
+    *(uint32_t *)(StringProcessingStatus + 7) = 0x6e655f62;
+    *(uint32_t *)((long long)StringProcessingStatus + 0x3c) = 0x79746974;
+    *(uint32_t *)(StringProcessingStatus + 8) = 0x7478742e;
+    *(uint8_t *)((long long)StringProcessingStatus + 0x44) = 0;
     plStack_4b0 = (long long *)CONCAT44(plStack_4b0.HighPart,0x44);
     ProcessMemoryAllocation(&pSystemInitializationFlags,&pcStack_4c0);
     PrimaryProcessingStatusFlag3 = &CoreEngineDataTemplate;
@@ -239102,26 +239115,26 @@ LAB_18020ada0:
   StatusBuffer4[8] = 0;
   StatusBuffer4[0x60f] = 0;
   StatusBuffer4[0x610] = 0;
-  TertiaryProcessingStatusFlag = StatusBuffer4 + 0xf;
-  StatusBuffer4[0xc] = TertiaryProcessingStatusFlag;
-  StatusBuffer4[0xd] = (unsigned long long)(-(int)TertiaryProcessingStatusFlag & 7) + (long long)TertiaryProcessingStatusFlag;
+  StringProcessingStatus = StatusBuffer4 + 0xf;
+  StatusBuffer4[0xc] = StringProcessingStatus;
+  StatusBuffer4[0xd] = (unsigned long long)(-(int)StringProcessingStatus & 7) + (long long)StringProcessingStatus;
   StatusBuffer4[0xe] = StatusBuffer4 + 0x60f;
   StatusBuffer4[0x60f] = &SystemStatusDataTemplate;
   StatusBuffer4[0x610] = InitializeSystemMemoryPool;
-  TertiaryProcessingStatusFlag = (void *)Utf16EndPointer[1];
+  StringProcessingStatus = (void *)Utf16EndPointer[1];
   plStack_490 = StatusBuffer4;
-  if (TertiaryProcessingStatusFlag < (void *)Utf16EndPointer[2]) {
-    Utf16EndPointer[1] = (long long)(TertiaryProcessingStatusFlag + 1);
-    *TertiaryProcessingStatusFlag = StatusBuffer4;
+  if (StringProcessingStatus < (void *)Utf16EndPointer[2]) {
+    Utf16EndPointer[1] = (long long)(StringProcessingStatus + 1);
+    *StringProcessingStatus = StatusBuffer4;
   }
   else {
     StatusBuffer6 = (void *)*Utf16EndPointer;
-    CurrentMemoryBlockAddress = (long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer6 >> 3;
+    CurrentMemoryBlockAddress = (long long)StringProcessingStatus - (long long)StatusBuffer6 >> 3;
     if (CurrentMemoryBlockAddress == 0) {
       CurrentMemoryBlockAddress = 1;
 LAB_18020afd3:
       StatusBuffer5 = (void *)BufferAllocate(MemoryPoolManager,CurrentMemoryBlockAddress * 8,(char)Utf16EndPointer[3]);
-      TertiaryProcessingStatusFlag = (void *)Utf16EndPointer[1];
+      StringProcessingStatus = (void *)Utf16EndPointer[1];
       StatusBuffer6 = (void *)*Utf16EndPointer;
     }
     else {
@@ -239129,9 +239142,9 @@ LAB_18020afd3:
       if (CurrentMemoryBlockAddress != 0) goto LAB_18020afd3;
       StatusBuffer5 = NULL;
     }
-    if (StatusBuffer6 != TertiaryProcessingStatusFlag) {
+    if (StatusBuffer6 != StringProcessingStatus) {
                     // WARNING: Subroutine does not return
-      memmove(StatusBuffer5,StatusBuffer6,(long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer6);
+      memmove(StatusBuffer5,StatusBuffer6,(long long)StringProcessingStatus - (long long)StatusBuffer6);
     }
     *StatusBuffer5 = StatusBuffer4;
     if (*Utf16EndPointer != 0) {
@@ -239148,29 +239161,29 @@ LAB_18020afd3:
   MemoryBlockListHead[1] = 0;
   MemoryBlockListHead[2] = 0;
   *(uint32_t *)(MemoryBlockListHead + 3) = 10;
-  TertiaryProcessingStatusFlag = (void *)AdditionalParameter1[1];
+  StringProcessingStatus = (void *)AdditionalParameter1[1];
   plStack_490 = MemoryBlockListHead;
-  if (TertiaryProcessingStatusFlag < (void *)AdditionalParameter1[2]) {
-    AdditionalParameter1[1] = (long long)(TertiaryProcessingStatusFlag + 1);
-    *TertiaryProcessingStatusFlag = MemoryBlockListHead;
+  if (StringProcessingStatus < (void *)AdditionalParameter1[2]) {
+    AdditionalParameter1[1] = (long long)(StringProcessingStatus + 1);
+    *StringProcessingStatus = MemoryBlockListHead;
   }
   else {
     StatusBuffer5 = (void *)*AdditionalParameter1;
-    CurrentMemoryBlockAddress = (long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer5 >> 3;
+    CurrentMemoryBlockAddress = (long long)StringProcessingStatus - (long long)StatusBuffer5 >> 3;
     if (CurrentMemoryBlockAddress == 0) {
       CurrentMemoryBlockAddress = 1;
 LAB_18020b0af:
       StatusBuffer6 = (void *)BufferAllocate(MemoryPoolManager,CurrentMemoryBlockAddress * 8,(char)AdditionalParameter1[3]);
-      TertiaryProcessingStatusFlag = (void *)AdditionalParameter1[1];
+      StringProcessingStatus = (void *)AdditionalParameter1[1];
       StatusBuffer5 = (void *)*AdditionalParameter1;
     }
     else {
       CurrentMemoryBlockAddress = CurrentMemoryBlockAddress * 2;
       if (CurrentMemoryBlockAddress != 0) goto LAB_18020b0af;
     }
-    if (StatusBuffer5 != TertiaryProcessingStatusFlag) {
+    if (StatusBuffer5 != StringProcessingStatus) {
                     // WARNING: Subroutine does not return
-      memmove(StatusBuffer6,StatusBuffer5,(long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer5);
+      memmove(StatusBuffer6,StatusBuffer5,(long long)StringProcessingStatus - (long long)StatusBuffer5);
     }
     *StatusBuffer6 = MemoryBlockListHead;
     if (*AdditionalParameter1 != 0) {
@@ -239189,15 +239202,15 @@ LAB_18020b0af:
     pSystemCheckResult9 = pSystemCheckResult8;
     pSystemCheckResult8 = pSystemCheckResult9 + 1;
   } while (*pSystemCheckResult8 != '\0');
-  for (TertiaryProcessingStatusFlag = (void *)StatusBuffer4[6]; TertiaryProcessingStatusFlag != NULL;
-      TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[0xb]) {
-    StringBuffer = (char *)*TertiaryProcessingStatusFlag;
+  for (StringProcessingStatus = (void *)StatusBuffer4[6]; StringProcessingStatus != NULL;
+      StringProcessingStatus = (void *)StringProcessingStatus[0xb]) {
+    StringBuffer = (char *)*StringProcessingStatus;
     pSystemCheckResult8 = (char *)0x0;
     if (StringBuffer == (char *)0x0) {
       StringBuffer = (char *)0x180d48d24;
     }
     else {
-      pSystemCheckResult8 = (char *)TertiaryProcessingStatusFlag[2];
+      pSystemCheckResult8 = (char *)StringProcessingStatus[2];
     }
     if (pSystemCheckResult8 == pSystemCheckResult9 + -0x180a0ffa7) {
       pSystemCheckResult8 = pSystemCheckResult8 + (long long)StringBuffer;
@@ -239209,9 +239222,9 @@ LAB_18020b0af:
       }
     }
   }
-  TertiaryProcessingStatusFlag = NULL;
+  StringProcessingStatus = NULL;
 LAB_18020b1b3:
-  CurrentMemoryBlockAddress = FUN_180631000(TertiaryProcessingStatusFlag,&SystemMemoryBufferSecondary,auStack_4e8);
+  CurrentMemoryBlockAddress = FUN_180631000(StringProcessingStatus,&SystemMemoryBufferSecondary,auStack_4e8);
   MemoryBlockListHead = plStack_438;
   if (CurrentMemoryBlockAddress == 0) {
     auStack_4e8[0] = 1;
@@ -239219,13 +239232,13 @@ LAB_18020b1b3:
   *(uint8_t *)(plStack_438 + 9) = auStack_4e8[0];
   CharacterCodePointer = (long long *)FUN_18020d6c0(pcStack_498,plStack_438 + 4);
   plStack_448 = CharacterCodePointer;
-  if (TertiaryProcessingStatusFlag != NULL) {
+  if (StringProcessingStatus != NULL) {
     pSystemCheckResult8 = "game_entity";
     do {
       pSystemCheckResult9 = pSystemCheckResult8;
       pSystemCheckResult8 = pSystemCheckResult9 + 1;
     } while (*pSystemCheckResult8 != '\0');
-    for (pSystemCheckResult8 = (char *)TertiaryProcessingStatusFlag[6]; pSystemCheckResult8 != (char *)0x0; pSystemCheckResult8 = *(char **)(pSystemCheckResult8 + 0x58)    {
+    for (pSystemCheckResult8 = (char *)StringProcessingStatus[6]; pSystemCheckResult8 != (char *)0x0; pSystemCheckResult8 = *(char **)(pSystemCheckResult8 + 0x58)    {
       StringBuffer = *(char **)pSystemCheckResult8;
       if (StringBuffer == (char *)0x0) {
         StringBuffer = (char *)0x180d48d24;
@@ -239265,23 +239278,23 @@ LAB_18020b280:
       pSystemCheckResult1 = StringBuffer;
       StringBuffer = pSystemCheckResult1 + 1;
     } while (*StringBuffer != '\0');
-    for (TertiaryProcessingStatusFlag = *(uint64_t **)(pSystemCheckResult8 + 0x40); TertiaryProcessingStatusFlag != NULL;
-        TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[6]) {
-      StringBuffer = (char *)*TertiaryProcessingStatusFlag;
+    for (StringProcessingStatus = *(uint64_t **)(pSystemCheckResult8 + 0x40); StringProcessingStatus != NULL;
+        StringProcessingStatus = (void *)StringProcessingStatus[6]) {
+      StringBuffer = (char *)*StringProcessingStatus;
       if (StringBuffer == (char *)0x0) {
         StringBuffer = (char *)0x180d48d24;
         StringBuffer7 = pSystemCheckResult9;
       }
       else {
-        StringBuffer7 = (char *)TertiaryProcessingStatusFlag[2];
+        StringBuffer7 = (char *)StringProcessingStatus[2];
       }
       if (StringBuffer7 == pSystemCheckResult1 + -0x180a03a83) {
         StringBuffer7 = StringBuffer + (long long)StringBuffer7;
         if (StringBuffer7 <= StringBuffer) {
 LAB_18020b304:
           CurrentMemoryBlockAddress = 0x180d48d24;
-          if (TertiaryProcessingStatusFlag[1] != 0) {
-            CurrentMemoryBlockAddress = TertiaryProcessingStatusFlag[1];
+          if (StringProcessingStatus[1] != 0) {
+            CurrentMemoryBlockAddress = StringProcessingStatus[1];
           }
           CoreEngineConfigureSystemEvent(&puStack_4e0,CurrentMemoryBlockAddress);
           break;
@@ -239393,22 +239406,22 @@ LAB_18020b488:
         (**(code **)(*CharacterCodePointer + 0x28))(CharacterCodePointer);
       }
       BufferAllocationStatus4 = plStack_4a0;
-      TertiaryProcessingStatusFlag = (void *)plStack_4a0[1];
-      if (TertiaryProcessingStatusFlag < (void *)plStack_4a0[2]) {
-        plStack_4a0[1] = (long long)(TertiaryProcessingStatusFlag + 1);
-        *TertiaryProcessingStatusFlag = CharacterCodePointer;
+      StringProcessingStatus = (void *)plStack_4a0[1];
+      if (StringProcessingStatus < (void *)plStack_4a0[2]) {
+        plStack_4a0[1] = (long long)(StringProcessingStatus + 1);
+        *StringProcessingStatus = CharacterCodePointer;
         if (CharacterCodePointer != (long long *)0x0) {
           (**(code **)(*CharacterCodePointer + 0x28))(CharacterCodePointer);
         }
       }
       else {
         StatusBuffer4 = (void *)*plStack_4a0;
-        CurrentMemoryBlockAddress = (long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer4 >> 3;
+        CurrentMemoryBlockAddress = (long long)StringProcessingStatus - (long long)StatusBuffer4 >> 3;
         if (CurrentMemoryBlockAddress == 0) {
           CurrentMemoryBlockAddress = 1;
 LAB_18020b539:
           pSystemCheckResult9 = (char *)BufferAllocate(MemoryPoolManager,CurrentMemoryBlockAddress * 8);
-          TertiaryProcessingStatusFlag = (void *)BufferAllocationStatus4[1];
+          StringProcessingStatus = (void *)BufferAllocationStatus4[1];
           StatusBuffer4 = (void *)*BufferAllocationStatus4;
           StringBuffer = pSystemCheckResult9;
         }
@@ -239417,7 +239430,7 @@ LAB_18020b539:
           StringBuffer = pSystemCheckResult9;
           if (CurrentMemoryBlockAddress != 0) goto LAB_18020b539;
         }
-        for (; StatusBuffer4 != TertiaryProcessingStatusFlag; StatusBuffer4 = StatusBuffer4 + 1) {
+        for (; StatusBuffer4 != StringProcessingStatus; StatusBuffer4 = StatusBuffer4 + 1) {
           *(void *)pSystemCheckResult9 = *StatusBuffer4;
           *StatusBuffer4 = 0;
           pSystemCheckResult9 = pSystemCheckResult9 + 8;
@@ -239911,14 +239924,14 @@ LAB_18020c1b3:
               if (MemoryBoundaryEnd == 0) {
                 MemoryBoundaryEnd = 1;
 LAB_18020c2f3:
-                TertiaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd << 5,3);
+                StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd << 5,3);
               }
               else {
                 MemoryBoundaryEnd = MemoryBoundaryEnd * 2;
                 if (MemoryBoundaryEnd != 0) goto LAB_18020c2f3;
-                TertiaryProcessingStatusFlag = NULL;
+                StringProcessingStatus = NULL;
               }
-              MemoryBlockIndex = CoreEngineCopyMemoryBuffer(pBufferInitializationFlag,pDataProcessingFlags,TertiaryProcessingStatusFlag);
+              MemoryBlockIndex = CoreEngineCopyMemoryBuffer(pBufferInitializationFlag,pDataProcessingFlags,StringProcessingStatus);
               CoreEngineExecuteSystemEvent(MemoryBlockIndex,pSystemDataTablePointer + 0x3e);
               for (StatusBuffer9 = pBufferInitializationFlag; StatusBuffer9 != pDataProcessingFlags; StatusBuffer9 = StatusBuffer9 + 4) {
                 (**(code **)*StatusBuffer9)(StatusBuffer9,0);
@@ -239927,8 +239940,8 @@ LAB_18020c2f3:
                     // WARNING: Subroutine does not return
                 CoreEngineFreeSystemMemory(pBufferInitializationFlag);
               }
-              StatusBuffer9 = TertiaryProcessingStatusFlag + MemoryBoundaryEnd * 4;
-              pBufferInitializationFlag = TertiaryProcessingStatusFlag;
+              StatusBuffer9 = StringProcessingStatus + MemoryBoundaryEnd * 4;
+              pBufferInitializationFlag = StringProcessingStatus;
               pDataProcessingFlags = (void *)(MemoryBlockIndex + 0x20);
             }
           }
@@ -239986,7 +239999,7 @@ LAB_18020c2f3:
               FUN_1802e8c60(DataStructureCounter,&plStack_108);
               pSystemStackRegisterFlagB0 = NULL;
               SystemEventDispatcher = NULL;
-              TertiaryProcessingStatusFlag = NULL;
+              StringProcessingStatus = NULL;
               StackTempPointer = NULL;
               SystemOperationFlag98 = 3;
               IntegerValue4 = 0;
@@ -240014,7 +240027,7 @@ LAB_18020c2f3:
                       TemporaryBuffer = SystemStatusBuffer;
                       StatusBuffer9 = StatusBuffer8;
                       if (CharacterByteCount0 == 0) {
-                        if (StatusBuffer8 < TertiaryProcessingStatusFlag) {
+                        if (StatusBuffer8 < StringProcessingStatus) {
                           StatusBuffer9 = StatusBuffer8 + 4;
                           SystemEventDispatcher = StatusBuffer9;
                           CoreEngineExecuteSystemEvent(StatusBuffer8,pSystemDataTablePointer + 0x3e);
@@ -240034,17 +240047,17 @@ LAB_18020c64c:
                           LoopIterationCounter7 = CoreEngineCopyMemoryBuffer(SystemStatusBuffer,StatusBuffer8,TemporaryBuffer);
                           CoreEngineExecuteSystemEvent(LoopIterationCounter7,pSystemDataTablePointer + 0x3e);
                           StatusBuffer9 = (void *)(LoopIterationCounter7 + 0x20);
-                          for (TertiaryProcessingStatusFlag = SystemStatusBuffer; TertiaryProcessingStatusFlag != StatusBuffer8; TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4) {
-                            (**(code **)*TertiaryProcessingStatusFlag)(TertiaryProcessingStatusFlag,0);
+                          for (StringProcessingStatus = SystemStatusBuffer; StringProcessingStatus != StatusBuffer8; StringProcessingStatus = StringProcessingStatus + 4) {
+                            (**(code **)*StringProcessingStatus)(StringProcessingStatus,0);
                           }
                           if (SystemStatusBuffer != NULL) {
                     // WARNING: Subroutine does not return
                             CoreEngineFreeSystemMemory(SystemStatusBuffer);
                           }
-                          TertiaryProcessingStatusFlag = TemporaryBuffer + MemoryBlockIndex * 4;
+                          StringProcessingStatus = TemporaryBuffer + MemoryBlockIndex * 4;
                           pSystemStackRegisterFlagB0 = TemporaryBuffer;
                           SystemEventDispatcher = StatusBuffer9;
-                          StackTempPointer = TertiaryProcessingStatusFlag;
+                          StackTempPointer = StringProcessingStatus;
                         }
                       }
                       lStack_d0 = lStack_d0 + 1;
@@ -240066,7 +240079,7 @@ LAB_18020c64c:
               SystemStatusBuffer = pSystemStackRegisterFlagB0;
               PrimaryReturnCode = (long long)StatusBuffer9 - (long long)pSystemStackRegisterFlagB0 >> 5;
               SystemContextValue = CoreEngineSignedValueE8;
-              TertiaryProcessingStatusFlag = pSystemStackRegisterFlagB0;
+              StringProcessingStatus = pSystemStackRegisterFlagB0;
               if (PrimaryReturnCode == StackUnsigned60) {
                 IntegerValue4 = 0;
                 if (PrimaryReturnCode != 0) {
@@ -240102,9 +240115,9 @@ LAB_18020c64c:
                   MemoryBlockIndex = MemoryBoundaryEnd;
                 }
               }
-              for (; DataStructureCounter = CoreEngineSignedValueE8, TertiaryProcessingStatusFlag != StatusBuffer9; TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4) {
+              for (; DataStructureCounter = CoreEngineSignedValueE8, StringProcessingStatus != StatusBuffer9; StringProcessingStatus = StringProcessingStatus + 4) {
                 CoreEngineSignedValueE8 = SystemContextValue;
-                (**(code **)*TertiaryProcessingStatusFlag)(TertiaryProcessingStatusFlag,0);
+                (**(code **)*StringProcessingStatus)(StringProcessingStatus,0);
                 SystemContextValue = CoreEngineSignedValueE8;
                 CoreEngineSignedValueE8 = DataStructureCounter;
               }
@@ -240479,14 +240492,14 @@ LAB_18020c9db:
   if ((void *)systemEventTemplatePointer[2] != NULL) {
     do {
       if (*(int *)(SecondaryProcessingStatusFlag + 4) < iStack_8c) {
-        TertiaryProcessingStatusFlag = (void *)*SecondaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)*SecondaryProcessingStatusFlag;
       }
       else {
-        TertiaryProcessingStatusFlag = (void *)SecondaryProcessingStatusFlag[1];
+        StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
         StatusBuffer4 = SecondaryProcessingStatusFlag;
       }
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
-    } while (TertiaryProcessingStatusFlag != NULL);
+      SecondaryProcessingStatusFlag = StringProcessingStatus;
+    } while (StringProcessingStatus != NULL);
     if ((StatusBuffer4 != systemEventTemplatePointer) && (*(int *)(StatusBuffer4 + 4) <= iStack_8c)) goto LAB_18020cd75;
   }
   StatusBuffer4 = systemEventTemplatePointer;
@@ -240837,10 +240850,10 @@ LAB_18020d04f:
   FUN_18020c8f0(CoreEngineConfigurationData,&pBufferOffset,Utf8InputPointer,Utf16EndPointer,0,0xfffffffffffffffe);
   ValidationResult = 0;
   MemoryAllocationIndex = lStack_50 - (long long)pBufferOffset >> 3;
-  TertiaryProcessingStatusFlag = pBufferOffset;
+  StringProcessingStatus = pBufferOffset;
   if (MemoryAllocationIndex != 0) {
     do {
-      Utf16Char = *TertiaryProcessingStatusFlag;
+      Utf16Char = *StringProcessingStatus;
       CoreEnginePointerBuffer78 = NULL;
       StackVariableBuffer = NULL;
       EnginePointerBuffer = NULL;
@@ -240891,7 +240904,7 @@ LAB_18020d5b5:
         CoreEngineProcessSystemEvent();
       }
       ValidationResult = ValidationResult + 1;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+      StringProcessingStatus = StringProcessingStatus + 1;
     } while ((unsigned long long)(long long)ValidationResult < MemoryAllocationIndex);
   }
   if (pBufferOffset == NULL) {
@@ -243842,7 +243855,7 @@ LAB_180213d73:
   uint64_t MemoryAddressMask;
   long long AllocatedMemorySize;
   void *CurrentNode;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   void *NextNode;
   uint64_t *TemporaryBuffer;
   uint8_t aSystemValue2b8 [32];
@@ -243867,51 +243880,51 @@ LAB_180213d73:
   CoreEngineFinalizeSystemEvent(&SystemConfigurationPointer,MemoryAddressMask);
   aDataBufferPointer[0] = &ThreadLocalStorageTemplate;
   uStack_298 = 0;
-  TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+  StringProcessingStatus = &CoreEngineDataTemplate;
   if (SystemStatusBufferPointer != NULL) {
-    TertiaryProcessingStatusFlag = SystemStatusBufferPointer;
+    StringProcessingStatus = SystemStatusBufferPointer;
   }
-  CharacterByteCount = FUN_180848090(*(void *)(CharacterCode + 0x368),TertiaryProcessingStatusFlag,0,&uStack_298);
-  TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+  CharacterByteCount = FUN_180848090(*(void *)(CharacterCode + 0x368),StringProcessingStatus,0,&uStack_298);
+  StringProcessingStatus = &CoreEngineDataTemplate;
   if (SystemStatusBufferPointer != NULL) {
-    TertiaryProcessingStatusFlag = SystemStatusBufferPointer;
+    StringProcessingStatus = SystemStatusBufferPointer;
   }
-  FUN_180211a30(CharacterByteCount,TertiaryProcessingStatusFlag);
+  FUN_180211a30(CharacterByteCount,StringProcessingStatus);
   if (CharacterByteCount != 0) {
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (SystemStatusBufferPointer != NULL) {
-      TertiaryProcessingStatusFlag = SystemStatusBufferPointer;
+      StringProcessingStatus = SystemStatusBufferPointer;
     }
-    InitializeSystemEvent(&SystemEventInitializationData,TertiaryProcessingStatusFlag);
+    InitializeSystemEvent(&SystemEventInitializationData,StringProcessingStatus);
     goto LAB_180214064;
   }
-  TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+  StringProcessingStatus = &CoreEngineDataTemplate;
   if (SystemStatusBufferPointer != NULL) {
-    TertiaryProcessingStatusFlag = SystemStatusBufferPointer;
+    StringProcessingStatus = SystemStatusBufferPointer;
   }
-  AllocatedMemorySize = strstr(TertiaryProcessingStatusFlag,&SystemStringTemplateData);
+  AllocatedMemorySize = strstr(StringProcessingStatus,&SystemStringTemplateData);
   if (AllocatedMemorySize == 0) {
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (SystemStatusBufferPointer != NULL) {
-      TertiaryProcessingStatusFlag = SystemStatusBufferPointer;
+      StringProcessingStatus = SystemStatusBufferPointer;
     }
-    AllocatedMemorySize = strstr(TertiaryProcessingStatusFlag,&SystemUnknownProcessingStatusFlagH);
+    AllocatedMemorySize = strstr(StringProcessingStatus,&SystemUnknownProcessingStatusFlagH);
     if (AllocatedMemorySize != 0) goto LAB_180213f5f;
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (SystemStatusBufferPointer != NULL) {
-      TertiaryProcessingStatusFlag = SystemStatusBufferPointer;
+      StringProcessingStatus = SystemStatusBufferPointer;
     }
-    AllocatedMemorySize = strstr(TertiaryProcessingStatusFlag,&SystemStringTemplateDataSecondary);
+    AllocatedMemorySize = strstr(StringProcessingStatus,&SystemStringTemplateDataSecondary);
     if (AllocatedMemorySize != 0) goto LAB_180213f5f;
   }
   else {
 LAB_180213f5f:
     UnicodeCodePoint = FUN_1808482f0(uStack_298);
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (SystemStatusBufferPointer != NULL) {
-      TertiaryProcessingStatusFlag = SystemStatusBufferPointer;
+      StringProcessingStatus = SystemStatusBufferPointer;
     }
-    FUN_180211a30(UnicodeCodePoint,TertiaryProcessingStatusFlag);
+    FUN_180211a30(UnicodeCodePoint,StringProcessingStatus);
     UnicodeCodePoint = FUN_180840c00(*(void *)(CharacterCode + 0x368));
     FUN_180211a30(UnicodeCodePoint,&CoreEngineDataTemplate);
   }
@@ -243921,23 +243934,23 @@ LAB_180213f5f:
     *TemporaryBuffer = uStack_298;
     goto LAB_180214064;
   }
-  TertiaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x378);
-  AllocatedMemorySize = (long long)TemporaryBuffer - (long long)TertiaryProcessingStatusFlag >> 3;
+  StringProcessingStatus = *(uint64_t **)(CharacterCode + 0x378);
+  AllocatedMemorySize = (long long)TemporaryBuffer - (long long)StringProcessingStatus >> 3;
   if (AllocatedMemorySize == 0) {
     AllocatedMemorySize = 1;
 LAB_180213fe6:
     SecondaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 8,*(uint8_t *)(CharacterCode + 0x390));
     TemporaryBuffer = *(uint64_t **)(CharacterCode + 0x380);
-    TertiaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x378);
+    StringProcessingStatus = *(uint64_t **)(CharacterCode + 0x378);
   }
   else {
     AllocatedMemorySize = AllocatedMemorySize * 2;
     if (AllocatedMemorySize != 0) goto LAB_180213fe6;
     SecondaryProcessingStatusFlag = NULL;
   }
-  if (TertiaryProcessingStatusFlag != TemporaryBuffer) {
+  if (StringProcessingStatus != TemporaryBuffer) {
                     // WARNING: Subroutine does not return
-    memmove(SecondaryProcessingStatusFlag,TertiaryProcessingStatusFlag,(long long)TemporaryBuffer - (long long)TertiaryProcessingStatusFlag);
+    memmove(SecondaryProcessingStatusFlag,StringProcessingStatus,(long long)TemporaryBuffer - (long long)StringProcessingStatus);
   }
   *SecondaryProcessingStatusFlag = uStack_298;
   if (*(long long *)(CharacterCode + 0x378) != 0) {
@@ -245048,7 +245061,7 @@ FUN_180215110(long long CharacterCode,long long *CharacterCodeSize,int *Utf8Inpu
   long long AllocatedMemorySize;
   void *CurrentNode;
   uint64_t SystemChecksumValue;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   long long *pCurrentMemoryBlockAddress;
   unsigned long long Utf16Char;
   uint ProcessStringBuffer;
@@ -245138,7 +245151,7 @@ FUN_180215110(long long CharacterCode,long long *CharacterCodeSize,int *Utf8Inpu
     uStack_158 = 0x36;
     SystemChecksumValue = FUN_180627ce0(SystemChecksumValue,&SystemEventDispatcher,&pDataContentStatus);
     AllocatedMemorySize = FUN_180627ce0(SystemChecksumValue,&SystemStatusBufferPointer,Utf8InputPointer + 2);
-    TertiaryProcessingStatusFlag = (uint8_t *)0x0;
+    StringProcessingStatus = (uint8_t *)0x0;
     ProcessStringBuffer = 0;
     MemoryAddressMask = *(uint *)(AllocatedMemorySize + 0x10);
     MemoryAllocationIndex = (unsigned long long)MemoryAddressMask;
@@ -245148,7 +245161,7 @@ LAB_18021573d:
       ProcessStringBuffer = UnicodeCodePoint;
       if (MemoryAddressMask != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(TertiaryProcessingStatusFlag,*(void *)(AllocatedMemorySize + 8),MemoryAllocationIndex);
+        memcpy(StringProcessingStatus,*(void *)(AllocatedMemorySize + 8),MemoryAllocationIndex);
       }
     }
     else if (MemoryAddressMask != 0) {
@@ -245156,32 +245169,32 @@ LAB_18021573d:
       if (CharacterByteCount < 0x10) {
         CharacterByteCount = 0x10;
       }
-      TertiaryProcessingStatusFlag = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)CharacterByteCount,0x13);
+      StringProcessingStatus = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)CharacterByteCount,0x13);
       *NextNode = 0;
-      UnicodeCodePoint = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+      UnicodeCodePoint = GetMemoryAllocationInfo(StringProcessingStatus);
       goto LAB_18021573d;
     }
-    if (TertiaryProcessingStatusFlag != (uint8_t *)0x0) {
-      TertiaryProcessingStatusFlag[MemoryAllocationIndex] = 0;
+    if (StringProcessingStatus != (uint8_t *)0x0) {
+      StringProcessingStatus[MemoryAllocationIndex] = 0;
     }
     if (MemoryAddressMask != 0xfffffffe) {
       MemoryAddressMask = MemoryAddressMask + 3;
-      if (TertiaryProcessingStatusFlag == (uint8_t *)0x0) {
+      if (StringProcessingStatus == (uint8_t *)0x0) {
         if ((int)MemoryAddressMask < 0x10) {
           MemoryAddressMask = 0x10;
         }
-        TertiaryProcessingStatusFlag = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAddressMask,0x13);
+        StringProcessingStatus = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAddressMask,0x13);
         *NextNode = 0;
       }
       else {
         if (MemoryAddressMask <= ProcessStringBuffer) goto LAB_1802157dc;
-        TertiaryProcessingStatusFlag = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,TertiaryProcessingStatusFlag,MemoryAddressMask,0x10,0x13);
+        StringProcessingStatus = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,StringProcessingStatus,MemoryAddressMask,0x10,0x13);
       }
-      GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+      GetMemoryAllocationInfo(StringProcessingStatus);
     }
 LAB_1802157dc:
-    *(uint16_t *)(TertiaryProcessingStatusFlag + MemoryAllocationIndex) = 0xa22;
-    TertiaryProcessingStatusFlag[MemoryAllocationIndex + 2] = 0;
+    *(uint16_t *)(StringProcessingStatus + MemoryAllocationIndex) = 0xa22;
+    StringProcessingStatus[MemoryAllocationIndex + 2] = 0;
     SystemStatusBufferPointer = &SystemNullTemplate;
     if (lStack_c0 != 0) {
                     // WARNING: Subroutine does not return
@@ -245292,7 +245305,7 @@ LAB_1802158f5:
   StackVariable = 0x36;
   SystemChecksumValue = FUN_180627ce0(SystemChecksumValue,&pProcessingCounter,&pSystemValue1a8);
   AllocatedMemorySize = FUN_180627ce0(SystemChecksumValue,&pBufferInitializationFlag,Utf8InputPointer + 2);
-  TertiaryProcessingStatusFlag = (uint8_t *)0x0;
+  StringProcessingStatus = (uint8_t *)0x0;
   ProcessStringBuffer = 0;
   MemoryAddressMask = *(uint *)(AllocatedMemorySize + 0x10);
   MemoryAllocationIndex = (unsigned long long)MemoryAddressMask;
@@ -245302,7 +245315,7 @@ LAB_180215380:
     ProcessStringBuffer = UnicodeCodePoint;
     if (MemoryAddressMask != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(TertiaryProcessingStatusFlag,*(void *)(AllocatedMemorySize + 8),MemoryAllocationIndex);
+      memcpy(StringProcessingStatus,*(void *)(AllocatedMemorySize + 8),MemoryAllocationIndex);
     }
   }
   else if (MemoryAddressMask != 0) {
@@ -245310,32 +245323,32 @@ LAB_180215380:
     if (CharacterByteCount < 0x10) {
       CharacterByteCount = 0x10;
     }
-    TertiaryProcessingStatusFlag = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)CharacterByteCount,0x13);
+    StringProcessingStatus = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)CharacterByteCount,0x13);
     *NextNode = 0;
-    UnicodeCodePoint = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+    UnicodeCodePoint = GetMemoryAllocationInfo(StringProcessingStatus);
     goto LAB_180215380;
   }
-  if (TertiaryProcessingStatusFlag != (uint8_t *)0x0) {
-    TertiaryProcessingStatusFlag[MemoryAllocationIndex] = 0;
+  if (StringProcessingStatus != (uint8_t *)0x0) {
+    StringProcessingStatus[MemoryAllocationIndex] = 0;
   }
   if (MemoryAddressMask != 0xfffffffe) {
     MemoryAddressMask = MemoryAddressMask + 3;
-    if (TertiaryProcessingStatusFlag == (uint8_t *)0x0) {
+    if (StringProcessingStatus == (uint8_t *)0x0) {
       if ((int)MemoryAddressMask < 0x10) {
         MemoryAddressMask = 0x10;
       }
-      TertiaryProcessingStatusFlag = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAddressMask,0x13);
+      StringProcessingStatus = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAddressMask,0x13);
       *NextNode = 0;
     }
     else {
       if (MemoryAddressMask <= ProcessStringBuffer) goto LAB_18021541f;
-      TertiaryProcessingStatusFlag = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,TertiaryProcessingStatusFlag,MemoryAddressMask,0x10,0x13);
+      StringProcessingStatus = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,StringProcessingStatus,MemoryAddressMask,0x10,0x13);
     }
-    GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+    GetMemoryAllocationInfo(StringProcessingStatus);
   }
 LAB_18021541f:
-  *(uint16_t *)(TertiaryProcessingStatusFlag + MemoryAllocationIndex) = 0xa22;
-  TertiaryProcessingStatusFlag[MemoryAllocationIndex + 2] = 0;
+  *(uint16_t *)(StringProcessingStatus + MemoryAllocationIndex) = 0xa22;
+  StringProcessingStatus[MemoryAllocationIndex + 2] = 0;
   pBufferInitializationFlag = &SystemNullTemplate;
   if (lStack_120 != 0) {
                     // WARNING: Subroutine does not return
@@ -245424,7 +245437,7 @@ int FUN_180215b90(long long CharacterCode,long long CharacterCodeSize
   int validationResult;
   long long AllocatedMemorySize;
   byte *Utf8OutputPointer;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   int ComputedResult;
   long long systemLoopCounter;
   long long *CharacterCodePointer;
@@ -245465,11 +245478,11 @@ LAB_180215c6e:
         CharacterCodePointer = CharacterCodePointer + 0x13;
       } while (AllocatedMemorySize < validationResult);
     }
-    TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+    StringProcessingStatus = &CoreEngineDataTemplate;
     if (*(void **)(CharacterCodeSize + 8) != NULL) {
-      TertiaryProcessingStatusFlag = *(void **)(CharacterCodeSize + 8);
+      StringProcessingStatus = *(void **)(CharacterCodeSize + 8);
     }
-    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemDataBufferPointerQuinary,TertiaryProcessingStatusFlag,ProcessStringBuffer);
+    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemDataBufferPointerQuinary,StringProcessingStatus,ProcessStringBuffer);
     MemoryAllocationSize = -1;
 LAB_180215cc5:
     validationResult = _Mtx_unlock(CharacterCode + 0x318);
@@ -246422,8 +246435,8 @@ uint8_t FUN_1802164d6(void
   uint64_t MemoryAddressMask;
   void *CharacterCodePointer;
   uint DataSize;
-  uint *TertiaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint *StringProcessingStatus;
+  uint32_t *StringProcessingStatus;
   unsigned long long MemoryAllocationLoopCounter;
   uint32_t MemoryAllocationIndex;
   void *pSystemFlagG;
@@ -246460,12 +246473,12 @@ uint8_t FUN_1802164d6(void
     BufferStatus = FUN_1801595d0(MemoryAllocationIndex,&SystemEventPointer);
     DataSize = StackUnsigned78 + 0x13;
     CoreEngineProcessSystemEvent(&SystemEventPointer,DataSize);
-    TertiaryProcessingStatusFlag = (uint32_t *)((unsigned long long)StackUnsigned78 + lStack_80);
-    *TertiaryProcessingStatusFlag = 0x6e756f53;
-    TertiaryProcessingStatusFlag[1] = 0x74614464;
-    TertiaryProcessingStatusFlag[2] = 0x672e7361;
-    TertiaryProcessingStatusFlag[3] = 0x732e6e65;
-    TertiaryProcessingStatusFlag[4] = 0x666465;
+    StringProcessingStatus = (uint32_t *)((unsigned long long)StackUnsigned78 + lStack_80);
+    *StringProcessingStatus = 0x6e756f53;
+    StringProcessingStatus[1] = 0x74614464;
+    StringProcessingStatus[2] = 0x672e7361;
+    StringProcessingStatus[3] = 0x732e6e65;
+    StringProcessingStatus[4] = 0x666465;
     DataStructurePointer = &CoreEngineDataTemplate;
     if (*(void **)(BufferStatus + 8) != NULL) {
       CharacterCodePointer = *(void **)(BufferStatus + 8);
@@ -246499,8 +246512,8 @@ uint8_t FUN_1802164d6(void
     EngineReferenceCounter = EngineReferenceCounter + -1;
     UNLOCK();
     DataSize = *StackTempPointer;
-    TertiaryProcessingStatusFlag = (uint *)((long long)StackTempPointer + 2);
-    StackTempPointer = TertiaryProcessingStatusFlag;
+    StringProcessingStatus = (uint *)((long long)StackTempPointer + 2);
+    StackTempPointer = StringProcessingStatus;
     if ((ushort)DataSize != 0) {
       SystemMemoryAllocationResult = (unsigned long long)(ushort)DataSize;
       do {
@@ -246509,17 +246522,17 @@ uint8_t FUN_1802164d6(void
         CoreEngineSignedValueC8 = 0;
         CoreEngineValueC0 = 0;
         SystemStackRegisterFlagB0 = 0;
-        DataSize = *TertiaryProcessingStatusFlag;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+        DataSize = *StringProcessingStatus;
+        StringProcessingStatus = StringProcessingStatus + 1;
         if (DataSize != 0) {
-          StackTempPointer = TertiaryProcessingStatusFlag;
-          FUN_180628f30(&pSystemFlagG,TertiaryProcessingStatusFlag,DataSize);
-          TertiaryProcessingStatusFlag = (uint *)((long long)TertiaryProcessingStatusFlag + (unsigned long long)DataSize);
+          StackTempPointer = StringProcessingStatus;
+          FUN_180628f30(&pSystemFlagG,StringProcessingStatus,DataSize);
+          StringProcessingStatus = (uint *)((long long)StringProcessingStatus + (unsigned long long)DataSize);
         }
-        SystemStackRegisterFlagB0 = *(void *)TertiaryProcessingStatusFlag;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+        SystemStackRegisterFlagB0 = *(void *)StringProcessingStatus;
+        StringProcessingStatus = StringProcessingStatus + 2;
         Utf16Char = *(unsigned long long *)(CharacterCode + 0x3e0);
-        StackTempPointer = TertiaryProcessingStatusFlag;
+        StackTempPointer = StringProcessingStatus;
         if (Utf16Char < *(unsigned long long *)(CharacterCode + 1000)) {
           *(unsigned long long *)(CharacterCode + 0x3e0) = Utf16Char + 0x28;
           CoreEngineExecuteSystemEvent(Utf16Char);
@@ -247174,10 +247187,10 @@ LAB_180216e0c:
   }
   pMemoryAddressMask = (void *)FUN_180067110(AllocatedMemorySize);
   systemEventTemplatePointer = (void *)CharacterCode[1];
-  TertiaryProcessingStatusFlag = MemoryAddressMask;
+  StringProcessingStatus = MemoryAddressMask;
   for (SecondaryProcessingStatusFlag = (void *)*CharacterCode; SecondaryProcessingStatusFlag != systemEventTemplatePointer; SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 1) {
-    *TertiaryProcessingStatusFlag = *SecondaryProcessingStatusFlag;
-    TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+    *StringProcessingStatus = *SecondaryProcessingStatusFlag;
+    StringProcessingStatus = StringProcessingStatus + 1;
   }
   AllocatedMemorySize = *CharacterCode;
   if (AllocatedMemorySize != 0) {
@@ -247238,7 +247251,7 @@ LAB_180216e0c:
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   void *CurrentNode;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   
   if ((unsigned long long)((CharacterCode[2] - *CharacterCode) / 0x98) < 0x514) {
     systemEventTemplatePointer = (void *             BufferAllocate(MemoryPoolManager,0x303e0,(char)CharacterCode[3],Utf16EndPointer,0xfffffffffffffffe);
@@ -247257,11 +247270,11 @@ LAB_180216e0c:
         *(uint8_t *)(pMemoryAddressMask + 3) = 0;
         *(uint32_t *)(pMemoryAddressMask + 2) = *(uint32_t *)(AllocatedMemorySize + 0x10 + (long long)pMemoryAddressMask);
         PrimaryProcessingStatusFlag = *(void **)(AllocatedMemorySize + 8 + (long long)pMemoryAddressMask);
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (PrimaryProcessingStatusFlag != NULL) {
           TertiaryNode = PrimaryStatusBlock;
         }
-        strcpy_s(pMemoryAddressMask[1],0x80,TertiaryProcessingStatusFlag);
+        strcpy_s(pMemoryAddressMask[1],0x80,StringProcessingStatus);
         pMemoryAddressMask = pMemoryAddressMask + 0x13;
       } while ((void *)(AllocatedMemorySize + (long long)pMemoryAddressMask) != StatusBuffer);
       StatusBuffer = (void *)CharacterCode[1];
@@ -247347,8 +247360,8 @@ LAB_180216e0c:
   CharacterCode[1] = MemoryBoundaryEnd;
   CharacterCode[2] = MemoryBoundaryEnd;
   *(uint *)(CharacterCode + 3) = Utf16Char;
-  for (TertiaryProcessingStatusFlag = systemEventTemplatePointer; TertiaryProcessingStatusFlag != pMemoryAddressMask; TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0x13) {
-    (**(code **)*TertiaryProcessingStatusFlag)(TertiaryProcessingStatusFlag,0);
+  for (StringProcessingStatus = systemEventTemplatePointer; StringProcessingStatus != pMemoryAddressMask; StringProcessingStatus = StringProcessingStatus + 0x13) {
+    (**(code **)*StringProcessingStatus)(StringProcessingStatus,0);
   }
   if (systemEventTemplatePointer != NULL) {
                     // WARNING: Subroutine does not return
@@ -247369,7 +247382,7 @@ LAB_180216e0c:
   uint64_t *MemoryAddressMask;
   uint64_t *CharacterCodePointer;
   unsigned long long DataSize;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   unsigned long long ProcessingStatusFlag;
   long long systemLoopCounter;
   long long SystemOffsetValue;
@@ -247407,11 +247420,11 @@ LAB_18021800d:
       *(uint8_t *)(pMemoryAddressMask + 3) = 0;
       *(uint32_t *)(pMemoryAddressMask + 2) = *(uint32_t *)(CurrentMemoryBlockAddress + 0x10 + (long long)pMemoryAddressMask);
       StatusBuffer = *(void **)(CurrentMemoryBlockAddress + 8 + (long long)pMemoryAddressMask);
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (StatusBuffer != NULL) {
-        TertiaryProcessingStatusFlag = StatusBuffer;
+        StringProcessingStatus = StatusBuffer;
       }
-      strcpy_s(pMemoryAddressMask[1],0x80,TertiaryProcessingStatusFlag);
+      strcpy_s(pMemoryAddressMask[1],0x80,StringProcessingStatus);
       pMemoryAddressMask = pMemoryAddressMask + 0x13;
     } while (CurrentMemoryBlockAddress + (long long)pMemoryAddressMask != DataSize);
   }
@@ -247870,25 +247883,25 @@ long long FUN_180218920(long long *CharacterCode,uint64_t *CharacterCodeSize,uin
   }
   pMemoryAddressMask = (void *)FUN_180067110(MemoryBoundaryEnd);
   pMemoryAddressMask[SystemOffsetValue] = *Utf8InputPointer;
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
-  TertiaryProcessingStatusFlag = (void *)*CharacterCode;
+  StringProcessingStatus = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)*CharacterCode;
   TemporaryBuffer = pMemoryAddressMask;
-  if (CharacterCodeSize == TertiaryProcessingStatusFlag) {
-    for (; TertiaryProcessingStatusFlag != TertiaryProcessingStatusFlag; TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1) {
-      *TemporaryBuffer = *TertiaryProcessingStatusFlag;
+  if (CharacterCodeSize == StringProcessingStatus) {
+    for (; StringProcessingStatus != StringProcessingStatus; StringProcessingStatus = StringProcessingStatus + 1) {
+      *TemporaryBuffer = *StringProcessingStatus;
       TemporaryBuffer = TemporaryBuffer + 1;
     }
   }
   else {
-    for (; TertiaryProcessingStatusFlag != CharacterCodeSize; TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1) {
-      *TemporaryBuffer = *TertiaryProcessingStatusFlag;
+    for (; StringProcessingStatus != CharacterCodeSize; StringProcessingStatus = StringProcessingStatus + 1) {
+      *TemporaryBuffer = *StringProcessingStatus;
       TemporaryBuffer = TemporaryBuffer + 1;
     }
-    TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
-    TertiaryProcessingStatusFlag = pMemoryAddressMask + SystemOffsetValue + 1;
-    for (; CharacterCodeSize != TertiaryProcessingStatusFlag; CharacterCodeSize = CharacterCodeSize + 1) {
-      *TertiaryProcessingStatusFlag = *CharacterCodeSize;
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+    StringProcessingStatus = (void *)CharacterCode[1];
+    StringProcessingStatus = pMemoryAddressMask + SystemOffsetValue + 1;
+    for (; CharacterCodeSize != StringProcessingStatus; CharacterCodeSize = CharacterCodeSize + 1) {
+      *StringProcessingStatus = *CharacterCodeSize;
+      StringProcessingStatus = StringProcessingStatus + 1;
     }
   }
   FUN_180217bb0(CharacterCode,pMemoryAddressMask,Utf16Char,ProcessStringBuffer);
@@ -247966,10 +247979,10 @@ long long FUN_180218a80(long long CharacterCode,long long CharacterCodeSize,uint
   unsigned long long MemoryAllocationLoopCounter;
   uint64_t *StatusBuffer;
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
-  if ((unsigned long long)(CharacterCode[2] - (long long)TertiaryProcessingStatusFlag >> 4) < CharacterCodeSize) {
+  StringProcessingStatus = (void *)CharacterCode[1];
+  if ((unsigned long long)(CharacterCode[2] - (long long)StringProcessingStatus >> 4) < CharacterCodeSize) {
     StatusBuffer = (void *)*CharacterCode;
-    BufferStatus = (long long)TertiaryProcessingStatusFlag - (long long)StatusBuffer >> 4;
+    BufferStatus = (long long)StringProcessingStatus - (long long)StatusBuffer >> 4;
     SystemMemoryAllocationResult = BufferStatus * 2;
     if (BufferStatus == 0) {
       SystemMemoryAllocationResult = 1;
@@ -247980,11 +247993,11 @@ long long FUN_180218a80(long long CharacterCode,long long CharacterCodeSize,uint
     systemEventTemplatePointer = NULL;
     if (SystemMemoryAllocationResult != 0) {
       systemEventTemplatePointer = (void *               BufferAllocate(MemoryPoolManager,SystemMemoryAllocationResult << 4,(char)CharacterCode[3],Utf16EndPointer,0xfffffffffffffffe);
-      TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+      StringProcessingStatus = (void *)CharacterCode[1];
       StatusBuffer = (void *)*CharacterCode;
     }
     pMemoryAddressMask = systemEventTemplatePointer;
-    if (StatusBuffer != TertiaryProcessingStatusFlag) {
+    if (StatusBuffer != StringProcessingStatus) {
       BufferStatus = (long long)StatusBuffer - (long long)systemEventTemplatePointer;
       do {
         pMemoryAddressMask[1] = 0;
@@ -247999,7 +248012,7 @@ long long FUN_180218a80(long long CharacterCode,long long CharacterCodeSize,uint
           (**(code **)(*CharacterCode + 0x38))();
         }
         pMemoryAddressMask = pMemoryAddressMask + 2;
-      } while ((void *)(BufferStatus + (long long)pMemoryAddressMask) != TertiaryProcessingStatusFlag);
+      } while ((void *)(BufferStatus + (long long)pMemoryAddressMask) != StringProcessingStatus);
     }
     if (CharacterCodeSize != 0) {
       pSystemDataTablePointer = pMemoryAddressMask + 1;
@@ -248039,19 +248052,19 @@ long long FUN_180218a80(long long CharacterCode,long long CharacterCodeSize,uint
     SystemMemoryAllocationResult = CharacterCodeSize;
     if (CharacterCodeSize != 0) {
       do {
-        TertiaryProcessingStatusFlag[1] = 0;
-        *TertiaryProcessingStatusFlag = 0;
-        pSystemDataTablePointer = (long long *)TertiaryProcessingStatusFlag[1];
-        TertiaryProcessingStatusFlag[1] = 0;
+        StringProcessingStatus[1] = 0;
+        *StringProcessingStatus = 0;
+        pSystemDataTablePointer = (long long *)StringProcessingStatus[1];
+        StringProcessingStatus[1] = 0;
         if (pSystemDataTablePointer != (long long *)0x0) {
           (**(code **)(*pSystemDataTablePointer + 0x38))();
         }
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+        StringProcessingStatus = StringProcessingStatus + 2;
         MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemMemoryAllocationResult != 0);
-      TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+      StringProcessingStatus = (void *)CharacterCode[1];
     }
-    pMemoryAddressMask = TertiaryProcessingStatusFlag + CharacterCodeSize * 2;
+    pMemoryAddressMask = StringProcessingStatus + CharacterCodeSize * 2;
   }
   CharacterCode[1] = (long long)pMemoryAddressMask;
   return;
@@ -248071,9 +248084,9 @@ long long FUN_180218a80(long long CharacterCode,long long CharacterCodeSize,uint
   long long MemoryBoundaryEnd;
   void *PreviousNode;
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   systemEventTemplatePointer = (void *)*CharacterCode;
-  MemoryBoundaryEnd = ((long long)TertiaryProcessingStatusFlag - (long long)systemEventTemplatePointer) / 0x28;
+  MemoryBoundaryEnd = ((long long)StringProcessingStatus - (long long)systemEventTemplatePointer) / 0x28;
   PrimaryProcessingStatusFlag = NULL;
   if (MemoryBoundaryEnd == 0) {
     MemoryBoundaryEnd = 1;
@@ -248084,11 +248097,11 @@ long long FUN_180218a80(long long CharacterCode,long long CharacterCodeSize,uint
   }
   PrimaryProcessingStatusFlag = (void *           BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0x28,*(uint8_t *)(CharacterCode + 3),systemEventTemplatePointer,
                          0xfffffffffffffffe);
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   systemEventTemplatePointer = (void *)*CharacterCode;
 LAB_180218ece:
   CharacterCodePointer = PrimaryProcessingStatusFlag;
-  if (systemEventTemplatePointer != TertiaryProcessingStatusFlag) {
+  if (systemEventTemplatePointer != StringProcessingStatus) {
     DataStructureCounter = (long long)PrimaryProcessingStatusFlag - (long long)systemEventTemplatePointer;
     systemEventTemplatePointer = systemEventTemplatePointer + 1;
     do {
@@ -248110,13 +248123,13 @@ LAB_180218ece:
       CharacterCodePointer = CharacterCodePointer + 5;
       StatusBuffer = systemEventTemplatePointer + 4;
       systemEventTemplatePointer = systemEventTemplatePointer + 5;
-    } while (StatusBuffer != TertiaryProcessingStatusFlag);
+    } while (StatusBuffer != StringProcessingStatus);
   }
   CoreEngineExecuteSystemEvent(CharacterCodePointer,CharacterCodeSize);
   *(uint32_t *)(CharacterCodePointer + 4) = *(uint32_t *)(CharacterCodeSize + 0x20);
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   systemEventTemplatePointer = (void *)*CharacterCode;
-  if (systemEventTemplatePointer != TertiaryProcessingStatusFlag) {
+  if (systemEventTemplatePointer != StringProcessingStatus) {
     do {
       *systemEventTemplatePointer = &SystemNullTemplate;
       if (systemEventTemplatePointer[1] != 0) {
@@ -248127,7 +248140,7 @@ LAB_180218ece:
       *(uint32_t *)(systemEventTemplatePointer + 3) = 0;
       *systemEventTemplatePointer = &ThreadLocalStorageTemplate;
       systemEventTemplatePointer = systemEventTemplatePointer + 5;
-    } while (systemEventTemplatePointer != TertiaryProcessingStatusFlag);
+    } while (systemEventTemplatePointer != StringProcessingStatus);
     systemEventTemplatePointer = (void *)*CharacterCode;
   }
   if (systemEventTemplatePointer == NULL) {
@@ -248173,15 +248186,15 @@ LAB_180218ece:
   SystemStatusBuffer = (uint32_t *)CharacterCode[1];
   CharacterCodePointer = (uint32_t *)*CharacterCode;
 LAB_1802190a9:
-  TertiaryProcessingStatusFlag = MemoryAddressMask;
+  StringProcessingStatus = MemoryAddressMask;
   if (CharacterCodePointer != SystemStatusBuffer) {
     SystemOffsetValue = (long long)pMemoryAddressMask - (long long)CharacterCodePointer;
     CharacterCodePointer = CharacterCodePointer + 0xe;
     do {
-      *TertiaryProcessingStatusFlag = &ThreadLocalStorageTemplate;
+      *StringProcessingStatus = &ThreadLocalStorageTemplate;
       *(void *)(SystemOffsetValue + -0x30 + (long long)CharacterCodePointer) = 0;
       *(uint32_t *)(SystemOffsetValue + -0x28 + (long long)CharacterCodePointer) = 0;
-      *TertiaryProcessingStatusFlag = &SystemNullTemplate;
+      *StringProcessingStatus = &SystemNullTemplate;
       *(void *)(SystemOffsetValue + -0x20 + (long long)CharacterCodePointer) = 0;
       *(void *)(SystemOffsetValue + -0x30 + (long long)CharacterCodePointer) = 0;
       *(uint32_t *)(SystemOffsetValue + -0x28 + (long long)CharacterCodePointer) = 0;
@@ -248217,12 +248230,12 @@ LAB_1802190a9:
       *(uint32_t *)(SystemOffsetValue + 0x1c + (long long)CharacterCodePointer) = CharacterCodePointer[7];
       *(uint8_t *)(SystemOffsetValue + 0x20 + (long long)CharacterCodePointer) = *(uint8_t *)(CharacterCodePointer + 8);
       *(uint8_t *)(SystemOffsetValue + 0x21 + (long long)CharacterCodePointer) = *(uint8_t *)((long long)CharacterCodePointer + 0x21);
-      TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0xc;
+      StringProcessingStatus = StringProcessingStatus + 0xc;
       StatusBuffer = CharacterCodePointer + 10;
       CharacterCodePointer = CharacterCodePointer + 0x18;
     } while (StatusBuffer != SystemStatusBuffer);
   }
-  FUN_180218a80(TertiaryProcessingStatusFlag,CharacterCodeSize);
+  FUN_180218a80(StringProcessingStatus,CharacterCodeSize);
   SystemOffsetValue = CharacterCode[1];
   SystemDataTablePointer = *CharacterCode;
   if (SystemDataTablePointer != SystemOffsetValue) {
@@ -248234,7 +248247,7 @@ LAB_1802190a9:
   }
   if (SystemDataTablePointer == 0) {
     *CharacterCode = (long long)pMemoryAddressMask;
-    CharacterCode[1] = (long long)(TertiaryProcessingStatusFlag + 0xc);
+    CharacterCode[1] = (long long)(StringProcessingStatus + 0xc);
     CharacterCode[2] = (long long)(pMemoryAddressMask + CurrentMemoryBlockAddress * 0xc);
     return;
   }
@@ -248529,9 +248542,9 @@ LAB_18021943e:
   long long MemoryBoundaryEnd;
   void *PreviousNode;
   
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   systemEventTemplatePointer = (void *)*CharacterCode;
-  MemoryBoundaryEnd = ((long long)TertiaryProcessingStatusFlag - (long long)systemEventTemplatePointer) / 0x28;
+  MemoryBoundaryEnd = ((long long)StringProcessingStatus - (long long)systemEventTemplatePointer) / 0x28;
   PrimaryProcessingStatusFlag = NULL;
   if (MemoryBoundaryEnd == 0) {
     MemoryBoundaryEnd = 1;
@@ -248542,11 +248555,11 @@ LAB_18021943e:
   }
   PrimaryProcessingStatusFlag = (void *           BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0x28,*(uint8_t *)(CharacterCode + 3),systemEventTemplatePointer,
                          0xfffffffffffffffe);
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   systemEventTemplatePointer = (void *)*CharacterCode;
 LAB_18021963e:
   CharacterCodePointer = PrimaryProcessingStatusFlag;
-  if (systemEventTemplatePointer != TertiaryProcessingStatusFlag) {
+  if (systemEventTemplatePointer != StringProcessingStatus) {
     DataStructureCounter = (long long)PrimaryProcessingStatusFlag - (long long)systemEventTemplatePointer;
     systemEventTemplatePointer = systemEventTemplatePointer + 1;
     do {
@@ -248568,13 +248581,13 @@ LAB_18021963e:
       CharacterCodePointer = CharacterCodePointer + 5;
       StatusBuffer = systemEventTemplatePointer + 4;
       systemEventTemplatePointer = systemEventTemplatePointer + 5;
-    } while (StatusBuffer != TertiaryProcessingStatusFlag);
+    } while (StatusBuffer != StringProcessingStatus);
   }
   CoreEngineExecuteSystemEvent(CharacterCodePointer,CharacterCodeSize);
   CharacterCodePointer[4] = *(void *)(CharacterCodeSize + 0x20);
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   systemEventTemplatePointer = (void *)*CharacterCode;
-  if (systemEventTemplatePointer != TertiaryProcessingStatusFlag) {
+  if (systemEventTemplatePointer != StringProcessingStatus) {
     do {
       *systemEventTemplatePointer = &SystemNullTemplate;
       if (systemEventTemplatePointer[1] != 0) {
@@ -248585,7 +248598,7 @@ LAB_18021963e:
       *(uint32_t *)(systemEventTemplatePointer + 3) = 0;
       *systemEventTemplatePointer = &ThreadLocalStorageTemplate;
       systemEventTemplatePointer = systemEventTemplatePointer + 5;
-    } while (systemEventTemplatePointer != TertiaryProcessingStatusFlag);
+    } while (systemEventTemplatePointer != StringProcessingStatus);
     systemEventTemplatePointer = (void *)*CharacterCode;
   }
   if (systemEventTemplatePointer == NULL) {
@@ -248623,24 +248636,24 @@ LAB_18021963e:
     }
     FUN_180219e30(CharacterCodeSize,Utf8InputPointer,AllocatedMemorySize);
     PrimaryProcessingStatusFlag = (void *)CharacterCode[1];
-    TertiaryProcessingStatusFlag = (void *)*CharacterCode;
-    if (TertiaryProcessingStatusFlag != PrimaryProcessingStatusFlag) {
+    StringProcessingStatus = (void *)*CharacterCode;
+    if (StringProcessingStatus != PrimaryProcessingStatusFlag) {
       do {
-        *TertiaryProcessingStatusFlag = &SystemNullTemplate;
-        if (TertiaryProcessingStatusFlag[1] != 0) {
+        *StringProcessingStatus = &SystemNullTemplate;
+        if (StringProcessingStatus[1] != 0) {
                     // WARNING: Subroutine does not return
           CoreEngineProcessSystemEvent();
         }
-        TertiaryProcessingStatusFlag[1] = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 3) = 0;
-        *TertiaryProcessingStatusFlag = &ThreadLocalStorageTemplate;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 5;
-      } while (TertiaryProcessingStatusFlag != PrimaryProcessingStatusFlag);
-      TertiaryProcessingStatusFlag = (void *)*CharacterCode;
+        StringProcessingStatus[1] = 0;
+        *(uint32_t *)(StringProcessingStatus + 3) = 0;
+        *StringProcessingStatus = &ThreadLocalStorageTemplate;
+        StringProcessingStatus = StringProcessingStatus + 5;
+      } while (StringProcessingStatus != PrimaryProcessingStatusFlag);
+      StringProcessingStatus = (void *)*CharacterCode;
     }
-    if (TertiaryProcessingStatusFlag != NULL) {
+    if (StringProcessingStatus != NULL) {
                     // WARNING: Subroutine does not return
-      CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+      CoreEngineFreeSystemMemory(StringProcessingStatus);
     }
     *CharacterCode = AllocatedMemorySize;
     AllocatedMemorySize = MemoryAddressMask * 0x28 + AllocatedMemorySize;
@@ -248658,15 +248671,15 @@ LAB_18021963e:
     else {
       SecondaryProcessingStatusFlag = (void *)FUN_180219d60(CharacterCodeSize,Utf8InputPointer,AllocatedMemorySize,SystemDataTablePointer,0xfffffffffffffffe);
       PrimaryProcessingStatusFlag = (void *)CharacterCode[1];
-      for (TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag; TertiaryProcessingStatusFlag != PrimaryProcessingStatusFlag; TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 5) {
-        *TertiaryProcessingStatusFlag = &SystemNullTemplate;
-        if (TertiaryProcessingStatusFlag[1] != 0) {
+      for (StringProcessingStatus = SecondaryProcessingStatusFlag; StringProcessingStatus != PrimaryProcessingStatusFlag; StringProcessingStatus = StringProcessingStatus + 5) {
+        *StringProcessingStatus = &SystemNullTemplate;
+        if (StringProcessingStatus[1] != 0) {
                     // WARNING: Subroutine does not return
           CoreEngineProcessSystemEvent();
         }
-        TertiaryProcessingStatusFlag[1] = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 3) = 0;
-        *TertiaryProcessingStatusFlag = &ThreadLocalStorageTemplate;
+        StringProcessingStatus[1] = 0;
+        *(uint32_t *)(StringProcessingStatus + 3) = 0;
+        *StringProcessingStatus = &ThreadLocalStorageTemplate;
       }
       CharacterCode[1] = (long long)SecondaryProcessingStatusFlag;
     }
@@ -249320,8 +249333,8 @@ LAB_18021a863:
   uint64_t MemoryAddressMask;
   void *CharacterCodePointer;
   uint DataSize;
-  uint *TertiaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint *StringProcessingStatus;
+  uint32_t *StringProcessingStatus;
   unsigned long long MemoryAllocationLoopCounter;
   uint32_t MemoryAllocationIndex;
   void *pSystemFlagG;
@@ -249358,12 +249371,12 @@ LAB_18021a863:
     BufferStatus = FUN_1801595d0(MemoryAllocationIndex,&SystemEventPointer);
     DataSize = StackUnsigned78 + 0x13;
     CoreEngineProcessSystemEvent(&SystemEventPointer,DataSize);
-    TertiaryProcessingStatusFlag = (uint32_t *)((unsigned long long)StackUnsigned78 + lStack_80);
-    *TertiaryProcessingStatusFlag = 0x6e756f53;
-    TertiaryProcessingStatusFlag[1] = 0x74614464;
-    TertiaryProcessingStatusFlag[2] = 0x672e7361;
-    TertiaryProcessingStatusFlag[3] = 0x732e6e65;
-    TertiaryProcessingStatusFlag[4] = 0x666465;
+    StringProcessingStatus = (uint32_t *)((unsigned long long)StackUnsigned78 + lStack_80);
+    *StringProcessingStatus = 0x6e756f53;
+    StringProcessingStatus[1] = 0x74614464;
+    StringProcessingStatus[2] = 0x672e7361;
+    StringProcessingStatus[3] = 0x732e6e65;
+    StringProcessingStatus[4] = 0x666465;
     DataStructurePointer = &CoreEngineDataTemplate;
     if (*(void **)(BufferStatus + 8) != NULL) {
       CharacterCodePointer = *(void **)(BufferStatus + 8);
@@ -249397,8 +249410,8 @@ LAB_18021a863:
     EngineReferenceCounter = EngineReferenceCounter + -1;
     UNLOCK();
     DataSize = *StackTempPointer;
-    TertiaryProcessingStatusFlag = (uint *)((long long)StackTempPointer + 2);
-    StackTempPointer = TertiaryProcessingStatusFlag;
+    StringProcessingStatus = (uint *)((long long)StackTempPointer + 2);
+    StackTempPointer = StringProcessingStatus;
     if ((ushort)DataSize != 0) {
       SystemMemoryAllocationResult = (unsigned long long)(ushort)DataSize;
       do {
@@ -249407,17 +249420,17 @@ LAB_18021a863:
         CoreEngineSignedValueC8 = 0;
         CoreEngineValueC0 = 0;
         SystemStackRegisterFlagB0 = 0;
-        DataSize = *TertiaryProcessingStatusFlag;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
+        DataSize = *StringProcessingStatus;
+        StringProcessingStatus = StringProcessingStatus + 1;
         if (DataSize != 0) {
-          StackTempPointer = TertiaryProcessingStatusFlag;
-          FUN_180628f30(&pSystemFlagG,TertiaryProcessingStatusFlag,DataSize);
-          TertiaryProcessingStatusFlag = (uint *)((long long)TertiaryProcessingStatusFlag + (unsigned long long)DataSize);
+          StackTempPointer = StringProcessingStatus;
+          FUN_180628f30(&pSystemFlagG,StringProcessingStatus,DataSize);
+          StringProcessingStatus = (uint *)((long long)StringProcessingStatus + (unsigned long long)DataSize);
         }
-        SystemStackRegisterFlagB0 = *(void *)TertiaryProcessingStatusFlag;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
+        SystemStackRegisterFlagB0 = *(void *)StringProcessingStatus;
+        StringProcessingStatus = StringProcessingStatus + 2;
         Utf16Char = *(unsigned long long *)(CharacterCode + 0x288);
-        StackTempPointer = TertiaryProcessingStatusFlag;
+        StackTempPointer = StringProcessingStatus;
         if (Utf16Char < *(unsigned long long *)(CharacterCode + 0x290)) {
           *(unsigned long long *)(CharacterCode + 0x288) = Utf16Char + 0x28;
           CoreEngineExecuteSystemEvent(Utf16Char);
@@ -252014,7 +252027,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Chara
   long long *EngineContext;
   uint CalculatedCodePoint;
   void *SecondaryProcessingStatusFlag;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   long long systemLoopCounter;
   unsigned long long Utf16Char;
   long long SystemStringIndex;
@@ -252954,11 +252967,11 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Chara
         SystemFlagF = 0;
         CoreEngineSignedValueE8 = 0;
         SystemFlagE = 0;
-        TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+        StringProcessingStatus = &CoreEngineDataTemplate;
         if (pProcessingStatus != (uint8_t *)0x0) {
-          TertiaryProcessingStatusFlag = pProcessingStatus;
+          StringProcessingStatus = pProcessingStatus;
         }
-        FUN_180049bf0(&CoreEngineValue148,TertiaryProcessingStatusFlag);
+        FUN_180049bf0(&CoreEngineValue148,StringProcessingStatus);
         SecondaryProcessingStatusFlag = &DataReferencePointerA;
         if ((DataContentStatus & AdditionalParameter4) == 0) {
           SecondaryProcessingStatusFlag = &DataReferencePointerB;
@@ -262852,7 +262865,7 @@ uint64_t GetSystemNullStatus(void
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
   void *CurrentNode;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   long long secondaryLoopCounter;
   long long lStackX_18;
   uint64_t SystemMemoryAllocationResult;
@@ -262889,11 +262902,11 @@ LAB_1802260bd:
       *(uint8_t *)(SecondaryProcessingStatusFlag + -10) = 0;
       *(uint32_t *)(SecondaryProcessingStatusFlag + -0xb) = *(uint32_t *)((long long)SecondaryProcessingStatusFlag + AllocatedMemorySize + -0x58);
       StatusBuffer = *(void **)((long long)SecondaryProcessingStatusFlag + AllocatedMemorySize + -0x60);
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (StatusBuffer != NULL) {
-        TertiaryProcessingStatusFlag = StatusBuffer;
+        StringProcessingStatus = StatusBuffer;
       }
-      strcpy_s(SecondaryProcessingStatusFlag[-0xc],0x40,TertiaryProcessingStatusFlag,Utf16EndPointer,SystemMemoryAllocationResult,pMemoryAddressMask);
+      strcpy_s(SecondaryProcessingStatusFlag[-0xc],0x40,StringProcessingStatus,Utf16EndPointer,SystemMemoryAllocationResult,pMemoryAddressMask);
       SecondaryProcessingStatusFlag[-2] = &ThreadLocalStorageTemplate;
       SecondaryProcessingStatusFlag[-1] = 0;
       *(uint32_t *)SecondaryProcessingStatusFlag = 0;
@@ -263209,32 +263222,32 @@ uint64_t * FUN_180226430(uint64_t *CharacterCode
   uint8_t aStackConfigurationFlag [16];
   
   if (*CharacterCode == 0) {
-    TertiaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x98,8,3);
-    *TertiaryProcessingStatusFlag = &ThreadLocalStorageTemplate;
-    TertiaryProcessingStatusFlag[1] = 0;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = 0;
-    *TertiaryProcessingStatusFlag = &SystemConfigurationHandler;
-    TertiaryProcessingStatusFlag[1] = TertiaryProcessingStatusFlag + 3;
-    *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = 0;
-    *(uint8_t *)(TertiaryProcessingStatusFlag + 3) = 0;
-    *CharacterCode = (long long)TertiaryProcessingStatusFlag;
-    pSystemRegisterFlagX8 = TertiaryProcessingStatusFlag;
+    StringProcessingStatus = (void *)MemoryAllocate(MemoryPoolManager,0x98,8,3);
+    *StringProcessingStatus = &ThreadLocalStorageTemplate;
+    StringProcessingStatus[1] = 0;
+    *(uint32_t *)(StringProcessingStatus + 2) = 0;
+    *StringProcessingStatus = &SystemConfigurationHandler;
+    StringProcessingStatus[1] = StringProcessingStatus + 3;
+    *(uint32_t *)(StringProcessingStatus + 2) = 0;
+    *(uint8_t *)(StringProcessingStatus + 3) = 0;
+    *CharacterCode = (long long)StringProcessingStatus;
+    pSystemRegisterFlagX8 = StringProcessingStatus;
   }
   else {
     FUN_180639830(CharacterCode,CharacterCode[1]);
-    TertiaryProcessingStatusFlag = (void *)*CharacterCode;
+    StringProcessingStatus = (void *)*CharacterCode;
   }
-  *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = *(uint32_t *)(CharacterCodeSize + 0x10);
+  *(uint32_t *)(StringProcessingStatus + 2) = *(uint32_t *)(CharacterCodeSize + 0x10);
   StatusBuffer = &CoreEngineDataTemplate;
   if (*(void **)(CharacterCodeSize + 8) != NULL) {
     StatusBuffer = *(void **)(CharacterCodeSize + 8);
   }
-  strcpy_s(TertiaryProcessingStatusFlag[1],0x80,StatusBuffer);
+  strcpy_s(StringProcessingStatus[1],0x80,StatusBuffer);
   MemoryBoundaryEnd = SystemMemoryBlockE;
   MemoryBlockIndex = *CharacterCode;
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[1];
+  StringProcessingStatus = (void *)CharacterCode[1];
   CharacterTablePointer = SystemMemoryBlockE + 200;
-  pSystemRegisterFlagX8 = TertiaryProcessingStatusFlag;
+  pSystemRegisterFlagX8 = StringProcessingStatus;
   lStackX_10 = LoopCounter;
   MutexLockResult = _Mtx_lock(CharacterTablePointer);
   if (MutexLockResult != 0) {
@@ -263244,7 +263257,7 @@ uint64_t * FUN_180226430(uint64_t *CharacterCode
   pMemoryAddressMask = *(uint64_t **)(MemoryBoundaryEnd + 0xa8);
   CharacterCodePointer = pMemoryAddressMask;
   while (TemporaryBuffer = PrimaryProcessingStatusFlag, CharacterCodePointer != NULL) {
-    if ((void *)CharacterCodePointer[4] < TertiaryProcessingStatusFlag) {
+    if ((void *)CharacterCodePointer[4] < StringProcessingStatus) {
       CharacterCodePointer = (void *)*CharacterCodePointer;
     }
     else {
@@ -263252,7 +263265,7 @@ uint64_t * FUN_180226430(uint64_t *CharacterCode
     }
   }
   while (pMemoryAddressMask != NULL) {
-    if ((void *)pMemoryAddressMask[4] < TertiaryProcessingStatusFlag) {
+    if ((void *)pMemoryAddressMask[4] < StringProcessingStatus) {
       pMemoryAddressMask = (void *)*pMemoryAddressMask;
     }
     else {
@@ -263260,7 +263273,7 @@ uint64_t * FUN_180226430(uint64_t *CharacterCode
       pMemoryAddressMask = (void *)pMemoryAddressMask[1];
     }
   }
-  if ((TemporaryBuffer == PrimaryProcessingStatusFlag) || (TertiaryProcessingStatusFlag < (void *)TemporaryBuffer[4])) {
+  if ((TemporaryBuffer == PrimaryProcessingStatusFlag) || (StringProcessingStatus < (void *)TemporaryBuffer[4])) {
     TemporaryBuffer = (void *)FUN_180639930(PrimaryProcessingStatusFlag,aStackConfigurationFlag,PrimaryProcessingStatusFlag,TemporaryBuffer,&pSystemRegisterFlagX8);
     TemporaryBuffer = (void *)*TemporaryBuffer;
   }
@@ -263527,7 +263540,7 @@ FUN_180226a50(uint64_t *CharacterCode,unsigned long long CharacterCodeSize,uint6
   long long DataStructureCounter;
   byte *SystemBytePointer;
   int ValidationResult;
-  uint *TertiaryProcessingStatusFlag;
+  uint *StringProcessingStatus;
   int ComputedResult;
   long long *pCurrentMemoryBlockAddress;
   uint8_t auStack_498 [32];
@@ -263551,11 +263564,11 @@ FUN_180226a50(uint64_t *CharacterCode,unsigned long long CharacterCodeSize,uint6
   iStack_448 = 0;
   abStack_440[0] = 0;
   UnicodeCodePoint = **(uint **)(CharacterCodeSize + 8);
-  TertiaryProcessingStatusFlag = *(uint **)(CharacterCodeSize + 8) + 1;
-  *(uint **)(CharacterCodeSize + 8) = TertiaryProcessingStatusFlag;
+  StringProcessingStatus = *(uint **)(CharacterCodeSize + 8) + 1;
+  *(uint **)(CharacterCodeSize + 8) = StringProcessingStatus;
   pcStack_468 = CharacterCode;
   if (UnicodeCodePoint != 0) {
-    FUN_180045f60(&puStack_458,TertiaryProcessingStatusFlag,UnicodeCodePoint);
+    FUN_180045f60(&puStack_458,StringProcessingStatus,UnicodeCodePoint);
     *(long long *)(CharacterCodeSize + 8) = *(long long *)(CharacterCodeSize + 8) + (unsigned long long)UnicodeCodePoint;
   }
   pCurrentMemoryBlockAddress = (long long *)0x180bf7e20;
@@ -263590,43 +263603,43 @@ LAB_180226f1e:
   uStack_474 = 1;
   pCurrentMemoryBlockAddress = *(long long **)(CharacterCode + 0x58);
   UnicodeCodePoint = **(uint **)(CharacterCodeSize + 8);
-  TertiaryProcessingStatusFlag = *(uint **)(CharacterCodeSize + 8) + 1;
-  *(uint **)(CharacterCodeSize + 8) = TertiaryProcessingStatusFlag;
+  StringProcessingStatus = *(uint **)(CharacterCodeSize + 8) + 1;
+  *(uint **)(CharacterCodeSize + 8) = StringProcessingStatus;
   if (UnicodeCodePoint != 0) {
-    (**(code **)(*pCurrentMemoryBlockAddress + 0x18))(pCurrentMemoryBlockAddress,TertiaryProcessingStatusFlag,UnicodeCodePoint);
+    (**(code **)(*pCurrentMemoryBlockAddress + 0x18))(pCurrentMemoryBlockAddress,StringProcessingStatus,UnicodeCodePoint);
     *(long long *)(CharacterCodeSize + 8) = *(long long *)(CharacterCodeSize + 8) + (unsigned long long)UnicodeCodePoint;
-    TertiaryProcessingStatusFlag = *(uint **)(CharacterCodeSize + 8);
+    StringProcessingStatus = *(uint **)(CharacterCodeSize + 8);
   }
   DataStructureCounter = *(long long *)(CharacterCode + 0x58);
-  UnicodeCodePoint = *TertiaryProcessingStatusFlag;
-  TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
-  *(uint **)(CharacterCodeSize + 8) = TertiaryProcessingStatusFlag;
+  UnicodeCodePoint = *StringProcessingStatus;
+  StringProcessingStatus = StringProcessingStatus + 1;
+  *(uint **)(CharacterCodeSize + 8) = StringProcessingStatus;
   if (UnicodeCodePoint != 0) {
-    (**(code **)(*(long long *)(DataStructureCounter + 0x20) + 0x18))((long long *)(DataStructureCounter + 0x20),TertiaryProcessingStatusFlag,UnicodeCodePoint);
+    (**(code **)(*(long long *)(DataStructureCounter + 0x20) + 0x18))((long long *)(DataStructureCounter + 0x20),StringProcessingStatus,UnicodeCodePoint);
     *(long long *)(CharacterCodeSize + 8) = *(long long *)(CharacterCodeSize + 8) + (unsigned long long)UnicodeCodePoint;
-    TertiaryProcessingStatusFlag = *(uint **)(CharacterCodeSize + 8);
+    StringProcessingStatus = *(uint **)(CharacterCodeSize + 8);
   }
   DataStructureCounter = *(long long *)(CharacterCode + 0x58);
-  UnicodeCodePoint = *TertiaryProcessingStatusFlag;
-  TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 1;
-  *(uint **)(CharacterCodeSize + 8) = TertiaryProcessingStatusFlag;
+  UnicodeCodePoint = *StringProcessingStatus;
+  StringProcessingStatus = StringProcessingStatus + 1;
+  *(uint **)(CharacterCodeSize + 8) = StringProcessingStatus;
   if (UnicodeCodePoint != 0) {
-    (**(code **)(*(long long *)(DataStructureCounter + 0x40) + 0x18))((long long *)(DataStructureCounter + 0x40),TertiaryProcessingStatusFlag,UnicodeCodePoint);
-    TertiaryProcessingStatusFlag = (uint *)((unsigned long long)UnicodeCodePoint + *(long long *)(CharacterCodeSize + 8));
+    (**(code **)(*(long long *)(DataStructureCounter + 0x40) + 0x18))((long long *)(DataStructureCounter + 0x40),StringProcessingStatus,UnicodeCodePoint);
+    StringProcessingStatus = (uint *)((unsigned long long)UnicodeCodePoint + *(long long *)(CharacterCodeSize + 8));
   }
-  *(uint *)(CharacterCode + 0x10) = *TertiaryProcessingStatusFlag;
-  *(uint *)(CharacterCode + 0x14) = TertiaryProcessingStatusFlag[1];
-  *(uint *)(CharacterCode + 0x18) = TertiaryProcessingStatusFlag[2];
-  *(uint *)(CharacterCode + 0x1c) = TertiaryProcessingStatusFlag[3];
-  *(uint *)(CharacterCode + 0x20) = TertiaryProcessingStatusFlag[4];
-  *(uint *)(CharacterCode + 0x24) = TertiaryProcessingStatusFlag[5];
-  *(uint *)(CharacterCode + 0x28) = TertiaryProcessingStatusFlag[6];
-  *(uint *)(CharacterCode + 0x2c) = TertiaryProcessingStatusFlag[7];
-  TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 8;
-  *(uint **)(CharacterCodeSize + 8) = TertiaryProcessingStatusFlag;
+  *(uint *)(CharacterCode + 0x10) = *StringProcessingStatus;
+  *(uint *)(CharacterCode + 0x14) = StringProcessingStatus[1];
+  *(uint *)(CharacterCode + 0x18) = StringProcessingStatus[2];
+  *(uint *)(CharacterCode + 0x1c) = StringProcessingStatus[3];
+  *(uint *)(CharacterCode + 0x20) = StringProcessingStatus[4];
+  *(uint *)(CharacterCode + 0x24) = StringProcessingStatus[5];
+  *(uint *)(CharacterCode + 0x28) = StringProcessingStatus[6];
+  *(uint *)(CharacterCode + 0x2c) = StringProcessingStatus[7];
+  StringProcessingStatus = StringProcessingStatus + 8;
+  *(uint **)(CharacterCodeSize + 8) = StringProcessingStatus;
   SystemCheckResult = *CharacterCode;
   if (SystemCheckResult == '\0') {
-    *(uint *)(CharacterCode + 0x30) = *TertiaryProcessingStatusFlag;
+    *(uint *)(CharacterCode + 0x30) = *StringProcessingStatus;
     *(long long *)(CharacterCodeSize + 8) = *(long long *)(CharacterCodeSize + 8) + 4;
     *(uint32_t *)(CharacterCode + 0x34) = **(uint32_t **)(CharacterCodeSize + 8);
   }
@@ -263649,7 +263662,7 @@ LAB_180226f1e:
   }
   else {
     if (SystemCheckResult != '\x02') goto LAB_1802270fc;
-    *(uint *)(CharacterCode + 0x30) = *TertiaryProcessingStatusFlag;
+    *(uint *)(CharacterCode + 0x30) = *StringProcessingStatus;
     *(long long *)(CharacterCodeSize + 8) = *(long long *)(CharacterCodeSize + 8) + 4;
     *(uint32_t *)(CharacterCode + 0x3c) = **(uint32_t **)(CharacterCodeSize + 8);
     *(long long *)(CharacterCodeSize + 8) = *(long long *)(CharacterCodeSize + 8) + 4;
@@ -264884,8 +264897,8 @@ LAB_180227e59:
   uint32_t MemoryAddressMask;
   uint32_t CalculatedCodePoint;
   char *CharacterPointer;
-  uint8_t *TertiaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
+  uint32_t *StringProcessingStatus;
   unsigned long long MemoryAllocationLoopCounter;
   int IntegerValue0;
   unsigned long long ProcessStringBuffer;
@@ -264893,13 +264906,13 @@ LAB_180227e59:
   long long DataSize13;
   unsigned long long Utf16Char4;
   
-  TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+  StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
   Utf16Char = *CharacterCode;
-  if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 5) {
-    UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)TertiaryProcessingStatusFlag + (4 - *CharacterCodeSize));
-    TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+  if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 5) {
+    UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)StringProcessingStatus + (4 - *CharacterCodeSize));
+    StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
   }
-  *TertiaryProcessingStatusFlag = Utf16Char;
+  *StringProcessingStatus = Utf16Char;
   CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
   FUN_180639f50(CharacterCodeSize,CharacterCode + 1);
   FUN_180639f50(CharacterCodeSize,CharacterCode + 5);
@@ -264915,18 +264928,18 @@ LAB_180227e59:
     CharacterPointer = CharacterPointer + 0x10;
   } while ((long long)CharacterPointer < 0x180bf7d28);
   FUN_180639ec0(CharacterCodeSize,CharacterCode + 10);
-  TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
-  if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 0x11) {
-    UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)TertiaryProcessingStatusFlag + (0x10 - *CharacterCodeSize));
-    TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+  StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
+  if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 0x11) {
+    UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)StringProcessingStatus + (0x10 - *CharacterCodeSize));
+    StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
   }
   Utf16Char = CharacterCode[0x21];
   MemoryAddressMask = CharacterCode[0x22];
   CalculatedCodePoint = CharacterCode[0x23];
-  *TertiaryProcessingStatusFlag = CharacterCode[0x20];
-  TertiaryProcessingStatusFlag[1] = Utf16Char;
-  TertiaryProcessingStatusFlag[2] = MemoryAddressMask;
-  TertiaryProcessingStatusFlag[3] = CalculatedCodePoint;
+  *StringProcessingStatus = CharacterCode[0x20];
+  StringProcessingStatus[1] = Utf16Char;
+  StringProcessingStatus[2] = MemoryAddressMask;
+  StringProcessingStatus[3] = CalculatedCodePoint;
   ReferenceCountPointer2 = (int *)(CharacterCodeSize[1] + 0x10);
   CharacterCodeSize[1] = (long long)ReferenceCountPointer2;
   SystemDataTablePointer = (*(long long *)(CharacterCode + 0x26) - *(long long *)(CharacterCode + 0x24)) +
@@ -264939,20 +264952,20 @@ LAB_180227e59:
   }
   *ReferenceCountPointer2 = IntegerValue0;
   CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
-  TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+  StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
   SystemDataTablePointer = (long long)IntegerValue0;
   ProcessStringBuffer = Utf16Char4;
   if (0 < IntegerValue0) {
     do {
       MemoryBlockIndex = *(long long *)(CharacterCode + 0x24);
       FUN_180639ec0(CharacterCodeSize,MemoryBlockIndex + 8 + ProcessStringBuffer);
-      TertiaryProcessingStatusFlag = (uint8_t *)CharacterCodeSize[1];
+      StringProcessingStatus = (uint8_t *)CharacterCodeSize[1];
       MemoryAllocationIndex = *(uint8_t *)(ProcessStringBuffer + MemoryBlockIndex);
-      if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 2) {
-        UpdateSystemProcessingStatusFlag(CharacterCodeSize,TertiaryProcessingStatusFlag + (1 - *CharacterCodeSize));
-        TertiaryProcessingStatusFlag = (uint8_t *)CharacterCodeSize[1];
+      if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 2) {
+        UpdateSystemProcessingStatusFlag(CharacterCodeSize,StringProcessingStatus + (1 - *CharacterCodeSize));
+        StringProcessingStatus = (uint8_t *)CharacterCodeSize[1];
       }
-      *TertiaryProcessingStatusFlag = MemoryAllocationIndex;
+      *StringProcessingStatus = MemoryAllocationIndex;
       CharacterCodeSize[1] = CharacterCodeSize[1] + 1;
       FUN_180639ec0(CharacterCodeSize,MemoryBlockIndex + 0xa0 + ProcessStringBuffer);
       CharacterPointer = (char *)0x180bf7d28;
@@ -264965,20 +264978,20 @@ LAB_180227e59:
         SystemMemoryAllocationResult = SystemMemoryAllocationResult + 1;
         CharacterPointer = CharacterPointer + 0x10;
       } while ((long long)CharacterPointer < 0x180bf7e28);
-      TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       Utf16Char = *(uint32_t *)(ProcessStringBuffer + 0xfc + MemoryBlockIndex);
-      if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 5) {
-        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)TertiaryProcessingStatusFlag + (4 - *CharacterCodeSize));
-        TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 5) {
+        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)StringProcessingStatus + (4 - *CharacterCodeSize));
+        StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       }
-      *TertiaryProcessingStatusFlag = Utf16Char;
+      *StringProcessingStatus = Utf16Char;
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
-      if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 0x11) {
-        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)TertiaryProcessingStatusFlag + (0x10 - *CharacterCodeSize));
-        TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
+      if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 0x11) {
+        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)StringProcessingStatus + (0x10 - *CharacterCodeSize));
+        StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       }
-      *TertiaryProcessingStatusFlag = *(uint32_t *)(ProcessStringBuffer + 0x104 + MemoryBlockIndex);
+      *StringProcessingStatus = *(uint32_t *)(ProcessStringBuffer + 0x104 + MemoryBlockIndex);
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
       *(uint32_t *)CharacterCodeSize[1] = *(uint32_t *)(ProcessStringBuffer + 0x108 + MemoryBlockIndex);
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
@@ -264986,12 +264999,12 @@ LAB_180227e59:
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
       *(uint32_t *)CharacterCodeSize[1] = 0x3f800000;
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
-      if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 0x11) {
-        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)TertiaryProcessingStatusFlag + (0x10 - *CharacterCodeSize));
-        TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
+      if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 0x11) {
+        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)StringProcessingStatus + (0x10 - *CharacterCodeSize));
+        StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       }
-      *TertiaryProcessingStatusFlag = *(uint32_t *)(ProcessStringBuffer + 0x114 + MemoryBlockIndex);
+      *StringProcessingStatus = *(uint32_t *)(ProcessStringBuffer + 0x114 + MemoryBlockIndex);
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
       *(uint32_t *)CharacterCodeSize[1] = *(uint32_t *)(ProcessStringBuffer + 0x118 + MemoryBlockIndex);
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
@@ -264999,20 +265012,20 @@ LAB_180227e59:
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
       *(uint32_t *)CharacterCodeSize[1] = 0x3f800000;
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       Utf16Char = *(uint32_t *)(ProcessStringBuffer + 0x124 + MemoryBlockIndex);
-      if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 5) {
-        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)TertiaryProcessingStatusFlag + (4 - *CharacterCodeSize));
-        TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 5) {
+        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)StringProcessingStatus + (4 - *CharacterCodeSize));
+        StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       }
-      *TertiaryProcessingStatusFlag = Utf16Char;
+      *StringProcessingStatus = Utf16Char;
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
-      if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 0x11) {
-        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)TertiaryProcessingStatusFlag + (0x10 - *CharacterCodeSize));
-        TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
+      if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 0x11) {
+        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)StringProcessingStatus + (0x10 - *CharacterCodeSize));
+        StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       }
-      *TertiaryProcessingStatusFlag = *(uint32_t *)(ProcessStringBuffer + 0x128 + MemoryBlockIndex);
+      *StringProcessingStatus = *(uint32_t *)(ProcessStringBuffer + 0x128 + MemoryBlockIndex);
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
       *(uint32_t *)CharacterCodeSize[1] = *(uint32_t *)(ProcessStringBuffer + 300 + MemoryBlockIndex);
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
@@ -265020,12 +265033,12 @@ LAB_180227e59:
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
       *(uint32_t *)CharacterCodeSize[1] = 0x3f800000;
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
-      if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 0x11) {
-        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)TertiaryProcessingStatusFlag + (0x10 - *CharacterCodeSize));
-        TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
+      if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 0x11) {
+        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)StringProcessingStatus + (0x10 - *CharacterCodeSize));
+        StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       }
-      *TertiaryProcessingStatusFlag = *(uint32_t *)(ProcessStringBuffer + 0x138 + MemoryBlockIndex);
+      *StringProcessingStatus = *(uint32_t *)(ProcessStringBuffer + 0x138 + MemoryBlockIndex);
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
       *(uint32_t *)CharacterCodeSize[1] = *(uint32_t *)(ProcessStringBuffer + 0x13c + MemoryBlockIndex);
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
@@ -265033,30 +265046,30 @@ LAB_180227e59:
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
       *(uint32_t *)CharacterCodeSize[1] = 0x3f800000;
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       Utf16Char = *(uint32_t *)(ProcessStringBuffer + 0x148 + MemoryBlockIndex);
-      if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 5) {
-        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)TertiaryProcessingStatusFlag + (4 - *CharacterCodeSize));
-        TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 5) {
+        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)StringProcessingStatus + (4 - *CharacterCodeSize));
+        StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       }
-      *TertiaryProcessingStatusFlag = Utf16Char;
+      *StringProcessingStatus = Utf16Char;
       CharacterCodeSize[1] = CharacterCodeSize[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       Utf16Char = *(uint32_t *)(ProcessStringBuffer + 0x100 + MemoryBlockIndex);
-      if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 5) {
-        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)TertiaryProcessingStatusFlag + (4 - *CharacterCodeSize));
-        TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+      if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 5) {
+        UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)StringProcessingStatus + (4 - *CharacterCodeSize));
+        StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
       }
-      *TertiaryProcessingStatusFlag = Utf16Char;
-      TertiaryProcessingStatusFlag = (uint32_t *)(CharacterCodeSize[1] + 4);
-      CharacterCodeSize[1] = (long long)TertiaryProcessingStatusFlag;
+      *StringProcessingStatus = Utf16Char;
+      StringProcessingStatus = (uint32_t *)(CharacterCodeSize[1] + 4);
+      CharacterCodeSize[1] = (long long)StringProcessingStatus;
       SystemDataTablePointer = SystemDataTablePointer + -1;
       ProcessStringBuffer = ProcessStringBuffer + 0x150;
     } while (SystemDataTablePointer != 0);
   }
-  if ((unsigned long long)((CharacterCodeSize[2] - (long long)TertiaryProcessingStatusFlag) + *CharacterCodeSize) < 5) {
-    UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)TertiaryProcessingStatusFlag + (4 - *CharacterCodeSize));
-    TertiaryProcessingStatusFlag = (uint32_t *)CharacterCodeSize[1];
+  if ((unsigned long long)((CharacterCodeSize[2] - (long long)StringProcessingStatus) + *CharacterCodeSize) < 5) {
+    UpdateSystemProcessingStatusFlag(CharacterCodeSize,(long long)StringProcessingStatus + (4 - *CharacterCodeSize));
+    StringProcessingStatus = (uint32_t *)CharacterCodeSize[1];
   }
   *NextNode = 0;
   ReferenceCountPointer2 = (int *)(CharacterCodeSize[1] + 4);
@@ -265093,8 +265106,8 @@ LAB_180227e59:
   uint32_t MemoryAddressMask;
   uint32_t CalculatedCodePoint;
   char *CharacterPointer;
-  uint8_t *TertiaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
+  uint32_t *StringProcessingStatus;
   unsigned long long MemoryAllocationLoopCounter;
   long long *SystemContext;
   int IntegerValue0;
@@ -265105,13 +265118,13 @@ LAB_180227e59:
   uint32_t in_XMM0_Da;
   uint32_t Utf16CharacterCode5;
   
-  TertiaryProcessingStatusFlag = *(uint32_t **)(CharacterCodeSize + 8);
+  StringProcessingStatus = *(uint32_t **)(CharacterCodeSize + 8);
   Utf16CharacterCode5 = *CharacterCode;
-  if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 5) {
-    in_XMM0_Da = UpdateSystemProcessingStatusFlag(in_XMM0_Da,(long long)TertiaryProcessingStatusFlag + (4 - *SystemContext));
-    TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+  if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 5) {
+    in_XMM0_Da = UpdateSystemProcessingStatusFlag(in_XMM0_Da,(long long)StringProcessingStatus + (4 - *SystemContext));
+    StringProcessingStatus = (uint32_t *)SystemContext[1];
   }
-  *TertiaryProcessingStatusFlag = Utf16CharacterCode5;
+  *StringProcessingStatus = Utf16CharacterCode5;
   SystemContext[1] = SystemContext[1] + 4;
   Utf16CharacterCode5 = FUN_180639f50(in_XMM0_Da,CharacterCode + 1);
   Utf16CharacterCode5 = FUN_180639f50(Utf16CharacterCode5,CharacterCode + 5);
@@ -265127,19 +265140,19 @@ LAB_180227e59:
     CharacterPointer = CharacterPointer + 0x10;
   } while ((long long)CharacterPointer < 0x180bf7d28);
   Utf16CharacterCode5 = FUN_180639ec0(Utf16CharacterCode5,CharacterCode + 10);
-  TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
-  if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 0x11) {
-    UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)TertiaryProcessingStatusFlag + (0x10 - *SystemContext));
-    TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+  StringProcessingStatus = (uint32_t *)SystemContext[1];
+  if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 0x11) {
+    UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)StringProcessingStatus + (0x10 - *SystemContext));
+    StringProcessingStatus = (uint32_t *)SystemContext[1];
   }
   Utf16CharacterCode5 = CharacterCode[0x20];
   Utf16Char = CharacterCode[0x21];
   MemoryAddressMask = CharacterCode[0x22];
   CalculatedCodePoint = CharacterCode[0x23];
-  *TertiaryProcessingStatusFlag = Utf16CharacterCode5;
-  TertiaryProcessingStatusFlag[1] = Utf16Char;
-  TertiaryProcessingStatusFlag[2] = MemoryAddressMask;
-  TertiaryProcessingStatusFlag[3] = CalculatedCodePoint;
+  *StringProcessingStatus = Utf16CharacterCode5;
+  StringProcessingStatus[1] = Utf16Char;
+  StringProcessingStatus[2] = MemoryAddressMask;
+  StringProcessingStatus[3] = CalculatedCodePoint;
   ReferenceCountPointer2 = (int *)(SystemContext[1] + 0x10);
   SystemContext[1] = (long long)ReferenceCountPointer2;
   SystemDataTablePointer = (*(long long *)(CharacterCode + 0x26) - *(long long *)(CharacterCode + 0x24)) +
@@ -265152,20 +265165,20 @@ LAB_180227e59:
   }
   *ReferenceCountPointer2 = IntegerValue0;
   SystemContext[1] = SystemContext[1] + 4;
-  TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+  StringProcessingStatus = (uint32_t *)SystemContext[1];
   SystemDataTablePointer = (long long)IntegerValue0;
   ProcessStringBuffer = Utf16Char4;
   if (0 < IntegerValue0) {
     do {
       MemoryBlockIndex = *(long long *)(CharacterCode + 0x24);
       Utf16CharacterCode5 = FUN_180639ec0(Utf16CharacterCode5,MemoryBlockIndex + 8 + ProcessStringBuffer);
-      TertiaryProcessingStatusFlag = (uint8_t *)SystemContext[1];
+      StringProcessingStatus = (uint8_t *)SystemContext[1];
       MemoryAllocationIndex = *(uint8_t *)(ProcessStringBuffer + MemoryBlockIndex);
-      if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 2) {
-        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,TertiaryProcessingStatusFlag + (1 - *SystemContext));
-        TertiaryProcessingStatusFlag = (uint8_t *)SystemContext[1];
+      if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 2) {
+        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,StringProcessingStatus + (1 - *SystemContext));
+        StringProcessingStatus = (uint8_t *)SystemContext[1];
       }
-      *TertiaryProcessingStatusFlag = MemoryAllocationIndex;
+      *StringProcessingStatus = MemoryAllocationIndex;
       SystemContext[1] = SystemContext[1] + 1;
       Utf16CharacterCode5 = FUN_180639ec0(Utf16CharacterCode5,MemoryBlockIndex + 0xa0 + ProcessStringBuffer);
       CharacterPointer = (char *)0x180bf7d28;
@@ -265178,20 +265191,20 @@ LAB_180227e59:
         SystemMemoryAllocationResult = SystemMemoryAllocationResult + 1;
         CharacterPointer = CharacterPointer + 0x10;
       } while ((long long)CharacterPointer < 0x180bf7e28);
-      TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      StringProcessingStatus = (uint32_t *)SystemContext[1];
       Utf16Char = *(uint32_t *)(ProcessStringBuffer + 0xfc + MemoryBlockIndex);
-      if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 5) {
-        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)TertiaryProcessingStatusFlag + (4 - *SystemContext));
-        TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 5) {
+        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)StringProcessingStatus + (4 - *SystemContext));
+        StringProcessingStatus = (uint32_t *)SystemContext[1];
       }
-      *TertiaryProcessingStatusFlag = Utf16Char;
+      *StringProcessingStatus = Utf16Char;
       SystemContext[1] = SystemContext[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
-      if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 0x11) {
-        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)TertiaryProcessingStatusFlag + (0x10 - *SystemContext));
-        TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      StringProcessingStatus = (uint32_t *)SystemContext[1];
+      if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 0x11) {
+        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)StringProcessingStatus + (0x10 - *SystemContext));
+        StringProcessingStatus = (uint32_t *)SystemContext[1];
       }
-      *TertiaryProcessingStatusFlag = *(uint32_t *)(ProcessStringBuffer + 0x104 + MemoryBlockIndex);
+      *StringProcessingStatus = *(uint32_t *)(ProcessStringBuffer + 0x104 + MemoryBlockIndex);
       SystemContext[1] = SystemContext[1] + 4;
       *(uint32_t *)SystemContext[1] = *(uint32_t *)(ProcessStringBuffer + 0x108 + MemoryBlockIndex);
       SystemContext[1] = SystemContext[1] + 4;
@@ -265199,12 +265212,12 @@ LAB_180227e59:
       SystemContext[1] = SystemContext[1] + 4;
       *(uint32_t *)SystemContext[1] = 0x3f800000;
       SystemContext[1] = SystemContext[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
-      if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 0x11) {
-        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)TertiaryProcessingStatusFlag + (0x10 - *SystemContext));
-        TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      StringProcessingStatus = (uint32_t *)SystemContext[1];
+      if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 0x11) {
+        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)StringProcessingStatus + (0x10 - *SystemContext));
+        StringProcessingStatus = (uint32_t *)SystemContext[1];
       }
-      *TertiaryProcessingStatusFlag = *(uint32_t *)(ProcessStringBuffer + 0x114 + MemoryBlockIndex);
+      *StringProcessingStatus = *(uint32_t *)(ProcessStringBuffer + 0x114 + MemoryBlockIndex);
       SystemContext[1] = SystemContext[1] + 4;
       *(uint32_t *)SystemContext[1] = *(uint32_t *)(ProcessStringBuffer + 0x118 + MemoryBlockIndex);
       SystemContext[1] = SystemContext[1] + 4;
@@ -265212,20 +265225,20 @@ LAB_180227e59:
       SystemContext[1] = SystemContext[1] + 4;
       *(uint32_t *)SystemContext[1] = 0x3f800000;
       SystemContext[1] = SystemContext[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      StringProcessingStatus = (uint32_t *)SystemContext[1];
       Utf16Char = *(uint32_t *)(ProcessStringBuffer + 0x124 + MemoryBlockIndex);
-      if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 5) {
-        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)TertiaryProcessingStatusFlag + (4 - *SystemContext));
-        TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 5) {
+        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)StringProcessingStatus + (4 - *SystemContext));
+        StringProcessingStatus = (uint32_t *)SystemContext[1];
       }
-      *TertiaryProcessingStatusFlag = Utf16Char;
+      *StringProcessingStatus = Utf16Char;
       SystemContext[1] = SystemContext[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
-      if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 0x11) {
-        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)TertiaryProcessingStatusFlag + (0x10 - *SystemContext));
-        TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      StringProcessingStatus = (uint32_t *)SystemContext[1];
+      if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 0x11) {
+        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)StringProcessingStatus + (0x10 - *SystemContext));
+        StringProcessingStatus = (uint32_t *)SystemContext[1];
       }
-      *TertiaryProcessingStatusFlag = *(uint32_t *)(ProcessStringBuffer + 0x128 + MemoryBlockIndex);
+      *StringProcessingStatus = *(uint32_t *)(ProcessStringBuffer + 0x128 + MemoryBlockIndex);
       SystemContext[1] = SystemContext[1] + 4;
       *(uint32_t *)SystemContext[1] = *(uint32_t *)(ProcessStringBuffer + 300 + MemoryBlockIndex);
       SystemContext[1] = SystemContext[1] + 4;
@@ -265233,12 +265246,12 @@ LAB_180227e59:
       SystemContext[1] = SystemContext[1] + 4;
       *(uint32_t *)SystemContext[1] = 0x3f800000;
       SystemContext[1] = SystemContext[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
-      if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 0x11) {
-        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)TertiaryProcessingStatusFlag + (0x10 - *SystemContext));
-        TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      StringProcessingStatus = (uint32_t *)SystemContext[1];
+      if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 0x11) {
+        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)StringProcessingStatus + (0x10 - *SystemContext));
+        StringProcessingStatus = (uint32_t *)SystemContext[1];
       }
-      *TertiaryProcessingStatusFlag = *(uint32_t *)(ProcessStringBuffer + 0x138 + MemoryBlockIndex);
+      *StringProcessingStatus = *(uint32_t *)(ProcessStringBuffer + 0x138 + MemoryBlockIndex);
       SystemContext[1] = SystemContext[1] + 4;
       *(uint32_t *)SystemContext[1] = *(uint32_t *)(ProcessStringBuffer + 0x13c + MemoryBlockIndex);
       SystemContext[1] = SystemContext[1] + 4;
@@ -265246,30 +265259,30 @@ LAB_180227e59:
       SystemContext[1] = SystemContext[1] + 4;
       *(uint32_t *)SystemContext[1] = 0x3f800000;
       SystemContext[1] = SystemContext[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      StringProcessingStatus = (uint32_t *)SystemContext[1];
       Utf16Char = *(uint32_t *)(ProcessStringBuffer + 0x148 + MemoryBlockIndex);
-      if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 5) {
-        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)TertiaryProcessingStatusFlag + (4 - *SystemContext));
-        TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 5) {
+        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)StringProcessingStatus + (4 - *SystemContext));
+        StringProcessingStatus = (uint32_t *)SystemContext[1];
       }
-      *TertiaryProcessingStatusFlag = Utf16Char;
+      *StringProcessingStatus = Utf16Char;
       SystemContext[1] = SystemContext[1] + 4;
-      TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      StringProcessingStatus = (uint32_t *)SystemContext[1];
       Utf16Char = *(uint32_t *)(ProcessStringBuffer + 0x100 + MemoryBlockIndex);
-      if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 5) {
-        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)TertiaryProcessingStatusFlag + (4 - *SystemContext));
-        TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+      if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 5) {
+        Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)StringProcessingStatus + (4 - *SystemContext));
+        StringProcessingStatus = (uint32_t *)SystemContext[1];
       }
-      *TertiaryProcessingStatusFlag = Utf16Char;
-      TertiaryProcessingStatusFlag = (uint32_t *)(SystemContext[1] + 4);
-      SystemContext[1] = (long long)TertiaryProcessingStatusFlag;
+      *StringProcessingStatus = Utf16Char;
+      StringProcessingStatus = (uint32_t *)(SystemContext[1] + 4);
+      SystemContext[1] = (long long)StringProcessingStatus;
       SystemDataTablePointer = SystemDataTablePointer + -1;
       ProcessStringBuffer = ProcessStringBuffer + 0x150;
     } while (SystemDataTablePointer != 0);
   }
-  if ((unsigned long long)((SystemContext[2] - (long long)TertiaryProcessingStatusFlag) + *SystemContext) < 5) {
-    Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)TertiaryProcessingStatusFlag + (4 - *SystemContext));
-    TertiaryProcessingStatusFlag = (uint32_t *)SystemContext[1];
+  if ((unsigned long long)((SystemContext[2] - (long long)StringProcessingStatus) + *SystemContext) < 5) {
+    Utf16CharacterCode5 = UpdateSystemProcessingStatusFlag(Utf16CharacterCode5,(long long)StringProcessingStatus + (4 - *SystemContext));
+    StringProcessingStatus = (uint32_t *)SystemContext[1];
   }
   *NextNode = 0;
   ReferenceCountPointer2 = (int *)(SystemContext[1] + 4);
@@ -266191,7 +266204,7 @@ LAB_1802297eb:
   uint32_t MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   uint32_t *SecondaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   void *NextNode;
   long long systemLoopCounter;
   unsigned long long Utf16Char;
@@ -266257,54 +266270,54 @@ LAB_1802297eb:
           StatusBuffer4 = StatusBuffer;
         }
         strcpy_s(*(void *)(StatusBuffer6 + -2),0x80,StatusBuffer4);
-        TertiaryProcessingStatusFlag = (void *)(LoopIterationCounter7 + 0x88 + (long long)StatusBuffer6);
-        CalculatedCodePoint = TertiaryProcessingStatusFlag[1];
-        *(void *)(StatusBuffer6 + 0x22) = *TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)(LoopIterationCounter7 + 0x88 + (long long)StatusBuffer6);
+        CalculatedCodePoint = StringProcessingStatus[1];
+        *(void *)(StatusBuffer6 + 0x22) = *StringProcessingStatus;
         *(void *)(StatusBuffer6 + 0x24) = CalculatedCodePoint;
-        TertiaryProcessingStatusFlag = (void *)(LoopIterationCounter7 + 0x98 + (long long)StatusBuffer6);
-        CalculatedCodePoint = TertiaryProcessingStatusFlag[1];
-        *(void *)(StatusBuffer6 + 0x26) = *TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)(LoopIterationCounter7 + 0x98 + (long long)StatusBuffer6);
+        CalculatedCodePoint = StringProcessingStatus[1];
+        *(void *)(StatusBuffer6 + 0x26) = *StringProcessingStatus;
         *(void *)(StatusBuffer6 + 0x28) = CalculatedCodePoint;
-        TertiaryProcessingStatusFlag = (uint32_t *)(LoopIterationCounter7 + 0xa8 + (long long)StatusBuffer6);
-        MemoryAllocationIndex = TertiaryProcessingStatusFlag[1];
-        UnicodeCodePoint = TertiaryProcessingStatusFlag[2];
-        MemoryAddressMask = TertiaryProcessingStatusFlag[3];
-        StatusBuffer6[0x2a] = *TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (uint32_t *)(LoopIterationCounter7 + 0xa8 + (long long)StatusBuffer6);
+        MemoryAllocationIndex = StringProcessingStatus[1];
+        UnicodeCodePoint = StringProcessingStatus[2];
+        MemoryAddressMask = StringProcessingStatus[3];
+        StatusBuffer6[0x2a] = *StringProcessingStatus;
         StatusBuffer6[0x2b] = MemoryAllocationIndex;
         StatusBuffer6[0x2c] = UnicodeCodePoint;
         StatusBuffer6[0x2d] = MemoryAddressMask;
-        TertiaryProcessingStatusFlag = (void *)(LoopIterationCounter7 + 0xb8 + (long long)StatusBuffer6);
-        CalculatedCodePoint = TertiaryProcessingStatusFlag[1];
-        *(void *)(StatusBuffer6 + 0x2e) = *TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)(LoopIterationCounter7 + 0xb8 + (long long)StatusBuffer6);
+        CalculatedCodePoint = StringProcessingStatus[1];
+        *(void *)(StatusBuffer6 + 0x2e) = *StringProcessingStatus;
         *(void *)(StatusBuffer6 + 0x30) = CalculatedCodePoint;
         StatusBuffer2 = StatusBuffer2 + 0x38;
-        TertiaryProcessingStatusFlag = (uint32_t *)((long long)StatusBuffer6 + LoopIterationCounter7 + 200);
+        StringProcessingStatus = (uint32_t *)((long long)StatusBuffer6 + LoopIterationCounter7 + 200);
         StatusBuffer6 = StatusBuffer6 + 0x38;
-      } while (TertiaryProcessingStatusFlag != StatusBuffer3);
+      } while (StringProcessingStatus != StatusBuffer3);
     }
     if (CharacterCodeSize != 0) {
-      TertiaryProcessingStatusFlag = (void *)(StatusBuffer2 + 4);
+      StringProcessingStatus = (void *)(StatusBuffer2 + 4);
       Utf16CharacterCode5 = CharacterCodeSize;
       do {
-        TertiaryProcessingStatusFlag[-1] = &ThreadLocalStorageTemplate;
+        StringProcessingStatus[-1] = &ThreadLocalStorageTemplate;
         *NextNode = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-        TertiaryProcessingStatusFlag[-1] = &SystemConfigurationHandler;
-        *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-        *(uint8_t *)(TertiaryProcessingStatusFlag + 2) = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + -2) = 0xffffffff;
-        TertiaryProcessingStatusFlag[0x12] = 0x3f800000;
-        TertiaryProcessingStatusFlag[0x13] = 0;
-        TertiaryProcessingStatusFlag[0x14] = 0x3f80000000000000;
-        TertiaryProcessingStatusFlag[0x15] = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 0x16) = 0;
-        *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xb4) = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 0x17) = 0x3f800000;
-        *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xbc) = 0;
-        TertiaryProcessingStatusFlag[0x18] = 0;
-        TertiaryProcessingStatusFlag[0x19] = 0x3f80000000000000;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0x1c;
+        *(uint32_t *)(StringProcessingStatus + 1) = 0;
+        StringProcessingStatus[-1] = &SystemConfigurationHandler;
+        *StringProcessingStatus = StringProcessingStatus + 2;
+        *(uint32_t *)(StringProcessingStatus + 1) = 0;
+        *(uint8_t *)(StringProcessingStatus + 2) = 0;
+        *(uint32_t *)(StringProcessingStatus + -2) = 0xffffffff;
+        StringProcessingStatus[0x12] = 0x3f800000;
+        StringProcessingStatus[0x13] = 0;
+        StringProcessingStatus[0x14] = 0x3f80000000000000;
+        StringProcessingStatus[0x15] = 0;
+        *(uint32_t *)(StringProcessingStatus + 0x16) = 0;
+        *(uint32_t *)((long long)StringProcessingStatus + 0xb4) = 0;
+        *(uint32_t *)(StringProcessingStatus + 0x17) = 0x3f800000;
+        *(uint32_t *)((long long)StringProcessingStatus + 0xbc) = 0;
+        StringProcessingStatus[0x18] = 0;
+        StringProcessingStatus[0x19] = 0x3f80000000000000;
+        StringProcessingStatus = StringProcessingStatus + 0x1c;
         Utf16CharacterCode5 = Utf16CharacterCode5 - 1;
       } while (Utf16CharacterCode5 != 0);
     }
@@ -266327,27 +266340,27 @@ LAB_1802297eb:
   }
   else {
     if (CharacterCodeSize != 0) {
-      TertiaryProcessingStatusFlag = (void *)(StatusBuffer3 + 4);
+      StringProcessingStatus = (void *)(StatusBuffer3 + 4);
       MemoryAllocationIndex = CharacterCodeSize;
       do {
-        TertiaryProcessingStatusFlag[-1] = &ThreadLocalStorageTemplate;
+        StringProcessingStatus[-1] = &ThreadLocalStorageTemplate;
         *NextNode = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-        TertiaryProcessingStatusFlag[-1] = &SystemConfigurationHandler;
-        *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-        *(uint8_t *)(TertiaryProcessingStatusFlag + 2) = 0;
+        *(uint32_t *)(StringProcessingStatus + 1) = 0;
+        StringProcessingStatus[-1] = &SystemConfigurationHandler;
+        *StringProcessingStatus = StringProcessingStatus + 2;
+        *(uint32_t *)(StringProcessingStatus + 1) = 0;
+        *(uint8_t *)(StringProcessingStatus + 2) = 0;
         *EngineStatusBuffer = 0xffffffff;
-        TertiaryProcessingStatusFlag[0x12] = 0x3f800000;
-        TertiaryProcessingStatusFlag[0x13] = 0;
-        TertiaryProcessingStatusFlag[0x14] = 0x3f80000000000000;
-        TertiaryProcessingStatusFlag[0x15] = 0;
-        TertiaryProcessingStatusFlag[0x16] = 0;
-        TertiaryProcessingStatusFlag[0x17] = 0x3f800000;
-        TertiaryProcessingStatusFlag[0x18] = 0;
-        TertiaryProcessingStatusFlag[0x19] = 0x3f80000000000000;
+        StringProcessingStatus[0x12] = 0x3f800000;
+        StringProcessingStatus[0x13] = 0;
+        StringProcessingStatus[0x14] = 0x3f80000000000000;
+        StringProcessingStatus[0x15] = 0;
+        StringProcessingStatus[0x16] = 0;
+        StringProcessingStatus[0x17] = 0x3f800000;
+        StringProcessingStatus[0x18] = 0;
+        StringProcessingStatus[0x19] = 0x3f80000000000000;
         EngineStatusBuffer = StatusBuffer3 + 0x38;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0x1c;
+        StringProcessingStatus = StringProcessingStatus + 0x1c;
         MemoryAllocationIndex = MemoryAllocationIndex - 1;
       } while (MemoryAllocationIndex != 0);
       EngineStatusBuffer = (uint32_t *)CharacterCode[1];
@@ -266412,7 +266425,7 @@ LAB_1802297eb:
   uint32_t CalculatedCodePoint;
   uint32_t DataSize;
   uint64_t SystemChecksumValue;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   long long systemLoopCounter;
   unsigned long long Utf16Char;
   long long SystemStringIndex;
@@ -266455,19 +266468,19 @@ LAB_1802297eb:
     if (MemoryAllocationIndex < CurrentMemoryBlockAddress + CharacterCodeSize) {
       MemoryAllocationIndex = CurrentMemoryBlockAddress + CharacterCodeSize;
     }
-    TertiaryProcessingStatusFlag = (uint8_t *)0x0;
+    StringProcessingStatus = (uint8_t *)0x0;
     if (MemoryAllocationIndex != 0) {
-      TertiaryProcessingStatusFlag = (uint8_t *               BufferAllocate(MemoryPoolManager,MemoryAllocationIndex * 0x150,(char)CharacterCode[3],0xc30c30c30c30c30d,
+      StringProcessingStatus = (uint8_t *               BufferAllocate(MemoryPoolManager,MemoryAllocationIndex * 0x150,(char)CharacterCode[3],0xc30c30c30c30c30d,
                              0xfffffffffffffffe);
       LoopIndex = CharacterCode[1];
       SystemStringIndex = *CharacterCode;
     }
     PrimaryReturnCode = CharacterCodeSize;
-    StatusBuffer2 = TertiaryProcessingStatusFlag;
-    EngineStatusBuffer = TertiaryProcessingStatusFlag;
+    StatusBuffer2 = StringProcessingStatus;
+    EngineStatusBuffer = StringProcessingStatus;
     if (SystemStringIndex != LoopIndex) {
-      SystemStringIndex = SystemStringIndex - (long long)TertiaryProcessingStatusFlag;
-      StatusBuffer7 = (uint32_t *)(TertiaryProcessingStatusFlag + 0x18);
+      SystemStringIndex = SystemStringIndex - (long long)StringProcessingStatus;
+      StatusBuffer7 = (uint32_t *)(StringProcessingStatus + 0x18);
       do {
         *StatusBuffer2 = *(uint8_t *)(SystemStringIndex + -0x18 + (long long)StatusBuffer7);
         *(void **)(StatusBuffer7 + -4) = &ThreadLocalStorageTemplate;
@@ -266547,9 +266560,9 @@ LAB_1802297eb:
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
-    *CharacterCode = (long long)TertiaryProcessingStatusFlag;
+    *CharacterCode = (long long)StringProcessingStatus;
     CharacterCode[1] = (long long)(StatusBuffer3 + CharacterCodeSize * 0x150);
-    CharacterCode[2] = (long long)(TertiaryProcessingStatusFlag + MemoryAllocationIndex * 0x150);
+    CharacterCode[2] = (long long)(StringProcessingStatus + MemoryAllocationIndex * 0x150);
   }
   else {
     MemoryAllocationIndex = CharacterCodeSize;
@@ -266578,7 +266591,7 @@ LAB_1802297eb:
   uint32_t MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   uint32_t *SecondaryProcessingStatusFlag;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   void *NextNode;
   unsigned long long MemoryAllocationLoopCounter;
   long long SystemOffsetValue;
@@ -266627,54 +266640,54 @@ LAB_1802297eb:
           EngineStatusBuffer = StatusBuffer;
         }
         strcpy_s(*(void *)(StatusBuffer5 + -2),0x80,StatusBuffer3);
-        TertiaryProcessingStatusFlag = (void *)(CharacterTablePointer6 + 0x88 + (long long)StatusBuffer5);
-        CalculatedCodePoint = TertiaryProcessingStatusFlag[1];
-        *(void *)(StatusBuffer5 + 0x22) = *TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)(CharacterTablePointer6 + 0x88 + (long long)StatusBuffer5);
+        CalculatedCodePoint = StringProcessingStatus[1];
+        *(void *)(StatusBuffer5 + 0x22) = *StringProcessingStatus;
         *(void *)(StatusBuffer5 + 0x24) = CalculatedCodePoint;
-        TertiaryProcessingStatusFlag = (void *)(CharacterTablePointer6 + 0x98 + (long long)StatusBuffer5);
-        CalculatedCodePoint = TertiaryProcessingStatusFlag[1];
-        *(void *)(StatusBuffer5 + 0x26) = *TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)(CharacterTablePointer6 + 0x98 + (long long)StatusBuffer5);
+        CalculatedCodePoint = StringProcessingStatus[1];
+        *(void *)(StatusBuffer5 + 0x26) = *StringProcessingStatus;
         *(void *)(StatusBuffer5 + 0x28) = CalculatedCodePoint;
-        TertiaryProcessingStatusFlag = (uint32_t *)(CharacterTablePointer6 + 0xa8 + (long long)StatusBuffer5);
-        MemoryAllocationIndex = TertiaryProcessingStatusFlag[1];
-        UnicodeCodePoint = TertiaryProcessingStatusFlag[2];
-        MemoryAddressMask = TertiaryProcessingStatusFlag[3];
-        StatusBuffer5[0x2a] = *TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (uint32_t *)(CharacterTablePointer6 + 0xa8 + (long long)StatusBuffer5);
+        MemoryAllocationIndex = StringProcessingStatus[1];
+        UnicodeCodePoint = StringProcessingStatus[2];
+        MemoryAddressMask = StringProcessingStatus[3];
+        StatusBuffer5[0x2a] = *StringProcessingStatus;
         StatusBuffer5[0x2b] = MemoryAllocationIndex;
         StatusBuffer5[0x2c] = UnicodeCodePoint;
         StatusBuffer5[0x2d] = MemoryAddressMask;
-        TertiaryProcessingStatusFlag = (void *)(CharacterTablePointer6 + 0xb8 + (long long)StatusBuffer5);
-        CalculatedCodePoint = TertiaryProcessingStatusFlag[1];
-        *(void *)(StatusBuffer5 + 0x2e) = *TertiaryProcessingStatusFlag;
+        StringProcessingStatus = (void *)(CharacterTablePointer6 + 0xb8 + (long long)StatusBuffer5);
+        CalculatedCodePoint = StringProcessingStatus[1];
+        *(void *)(StatusBuffer5 + 0x2e) = *StringProcessingStatus;
         *(void *)(StatusBuffer5 + 0x30) = CalculatedCodePoint;
         SystemStatusBuffer = SystemStatusBuffer + 0x38;
-        TertiaryProcessingStatusFlag = (uint32_t *)((long long)StatusBuffer5 + CharacterTablePointer6 + 200);
+        StringProcessingStatus = (uint32_t *)((long long)StatusBuffer5 + CharacterTablePointer6 + 200);
         StatusBuffer5 = StatusBuffer5 + 0x38;
-      } while (TertiaryProcessingStatusFlag != StatusBuffer2);
+      } while (StringProcessingStatus != StatusBuffer2);
     }
     if (CharacterCodeSize != 0) {
-      TertiaryProcessingStatusFlag = (void *)(SystemStatusBuffer + 4);
+      StringProcessingStatus = (void *)(SystemStatusBuffer + 4);
       Utf16Char4 = CharacterCodeSize;
       do {
-        TertiaryProcessingStatusFlag[-1] = &ThreadLocalStorageTemplate;
+        StringProcessingStatus[-1] = &ThreadLocalStorageTemplate;
         *NextNode = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-        TertiaryProcessingStatusFlag[-1] = &SystemConfigurationHandler;
-        *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-        *(uint8_t *)(TertiaryProcessingStatusFlag + 2) = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + -2) = 0xffffffff;
-        TertiaryProcessingStatusFlag[0x12] = 0x3f800000;
-        TertiaryProcessingStatusFlag[0x13] = 0;
-        TertiaryProcessingStatusFlag[0x14] = 0x3f80000000000000;
-        TertiaryProcessingStatusFlag[0x15] = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 0x16) = 0;
-        *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xb4) = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 0x17) = 0x3f800000;
-        *(uint32_t *)((long long)TertiaryProcessingStatusFlag + 0xbc) = 0;
-        TertiaryProcessingStatusFlag[0x18] = 0;
-        TertiaryProcessingStatusFlag[0x19] = 0x3f80000000000000;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0x1c;
+        *(uint32_t *)(StringProcessingStatus + 1) = 0;
+        StringProcessingStatus[-1] = &SystemConfigurationHandler;
+        *StringProcessingStatus = StringProcessingStatus + 2;
+        *(uint32_t *)(StringProcessingStatus + 1) = 0;
+        *(uint8_t *)(StringProcessingStatus + 2) = 0;
+        *(uint32_t *)(StringProcessingStatus + -2) = 0xffffffff;
+        StringProcessingStatus[0x12] = 0x3f800000;
+        StringProcessingStatus[0x13] = 0;
+        StringProcessingStatus[0x14] = 0x3f80000000000000;
+        StringProcessingStatus[0x15] = 0;
+        *(uint32_t *)(StringProcessingStatus + 0x16) = 0;
+        *(uint32_t *)((long long)StringProcessingStatus + 0xb4) = 0;
+        *(uint32_t *)(StringProcessingStatus + 0x17) = 0x3f800000;
+        *(uint32_t *)((long long)StringProcessingStatus + 0xbc) = 0;
+        StringProcessingStatus[0x18] = 0;
+        StringProcessingStatus[0x19] = 0x3f80000000000000;
+        StringProcessingStatus = StringProcessingStatus + 0x1c;
         Utf16Char4 = Utf16Char4 - 1;
       } while (Utf16Char4 != 0);
     }
@@ -266697,27 +266710,27 @@ LAB_1802297eb:
   }
   else {
     if (CharacterCodeSize != 0) {
-      TertiaryProcessingStatusFlag = (void *)(StatusBuffer2 + 4);
+      StringProcessingStatus = (void *)(StatusBuffer2 + 4);
       SystemMemoryAllocationResult = CharacterCodeSize;
       do {
-        TertiaryProcessingStatusFlag[-1] = &ThreadLocalStorageTemplate;
+        StringProcessingStatus[-1] = &ThreadLocalStorageTemplate;
         *NextNode = 0;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-        TertiaryProcessingStatusFlag[-1] = &SystemConfigurationHandler;
-        *TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-        *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0;
-        *(uint8_t *)(TertiaryProcessingStatusFlag + 2) = 0;
+        *(uint32_t *)(StringProcessingStatus + 1) = 0;
+        StringProcessingStatus[-1] = &SystemConfigurationHandler;
+        *StringProcessingStatus = StringProcessingStatus + 2;
+        *(uint32_t *)(StringProcessingStatus + 1) = 0;
+        *(uint8_t *)(StringProcessingStatus + 2) = 0;
         *StatusBuffer2 = 0xffffffff;
-        TertiaryProcessingStatusFlag[0x12] = 0x3f800000;
-        TertiaryProcessingStatusFlag[0x13] = 0;
-        TertiaryProcessingStatusFlag[0x14] = 0x3f80000000000000;
-        TertiaryProcessingStatusFlag[0x15] = 0;
-        TertiaryProcessingStatusFlag[0x16] = 0;
-        TertiaryProcessingStatusFlag[0x17] = 0x3f800000;
-        TertiaryProcessingStatusFlag[0x18] = 0;
-        TertiaryProcessingStatusFlag[0x19] = 0x3f80000000000000;
+        StringProcessingStatus[0x12] = 0x3f800000;
+        StringProcessingStatus[0x13] = 0;
+        StringProcessingStatus[0x14] = 0x3f80000000000000;
+        StringProcessingStatus[0x15] = 0;
+        StringProcessingStatus[0x16] = 0;
+        StringProcessingStatus[0x17] = 0x3f800000;
+        StringProcessingStatus[0x18] = 0;
+        StringProcessingStatus[0x19] = 0x3f80000000000000;
         StatusBuffer2 = StatusBuffer2 + 0x38;
-        TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0x1c;
+        StringProcessingStatus = StringProcessingStatus + 0x1c;
         MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemMemoryAllocationResult != 0);
       StatusBuffer2 = (uint32_t *)CharacterCode[1];
@@ -266740,7 +266753,7 @@ LAB_1802297eb:
   uint32_t CalculatedCodePoint;
   uint32_t DataSize;
   uint64_t SystemChecksumValue;
-  uint8_t *TertiaryProcessingStatusFlag;
+  uint8_t *StringProcessingStatus;
   long long systemLoopCounter;
   long long SystemOffsetValue;
   uint8_t *SystemStatusBuffer;
@@ -266765,17 +266778,17 @@ LAB_1802297eb:
     if (PrimaryReturnCode < SystemOffsetValue + CharacterCodeSize) {
       PrimaryReturnCode = SystemOffsetValue + CharacterCodeSize;
     }
-    TertiaryProcessingStatusFlag = (uint8_t *)0x0;
+    StringProcessingStatus = (uint8_t *)0x0;
     if (PrimaryReturnCode != 0) {
-      TertiaryProcessingStatusFlag = (uint8_t *               BufferAllocate(MemoryPoolManager,PrimaryReturnCode * 0x150,(char)CharacterCode[3],0xc30c30c30c30c30d,
+      StringProcessingStatus = (uint8_t *               BufferAllocate(MemoryPoolManager,PrimaryReturnCode * 0x150,(char)CharacterCode[3],0xc30c30c30c30c30d,
                              0xfffffffffffffffe);
       SystemDataTablePointer = CharacterCode[1];
       CurrentMemoryBlockAddress = *CharacterCode;
     }
-    SystemStatusBuffer = TertiaryProcessingStatusFlag;
+    SystemStatusBuffer = StringProcessingStatus;
     if (CurrentMemoryBlockAddress != SystemDataTablePointer) {
-      CurrentMemoryBlockAddress = CurrentMemoryBlockAddress - (long long)TertiaryProcessingStatusFlag;
-      StatusBuffer7 = (uint32_t *)(TertiaryProcessingStatusFlag + 0x18);
+      CurrentMemoryBlockAddress = CurrentMemoryBlockAddress - (long long)StringProcessingStatus;
+      StatusBuffer7 = (uint32_t *)(StringProcessingStatus + 0x18);
       do {
         *SystemStatusBuffer = *(uint8_t *)(CurrentMemoryBlockAddress + -0x18 + (long long)StatusBuffer7);
         *(void **)(StatusBuffer7 + -4) = &ThreadLocalStorageTemplate;
@@ -266859,9 +266872,9 @@ LAB_1802297eb:
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
-    *CharacterCode = (long long)TertiaryProcessingStatusFlag;
+    *CharacterCode = (long long)StringProcessingStatus;
     CharacterCode[1] = (long long)(SystemStatusBuffer + CharacterCodeSize * 0x150);
-    CharacterCode[2] = (long long)(TertiaryProcessingStatusFlag + PrimaryReturnCode * 0x150);
+    CharacterCode[2] = (long long)(StringProcessingStatus + PrimaryReturnCode * 0x150);
   }
   else {
     PrimaryReturnCode = CharacterCodeSize;
@@ -268043,15 +268056,15 @@ uint64_t * FUN_18022b590(uint64_t *CharacterCode
   PrimaryProcessingStatusFlag = CharacterCode + 0x29;
   CharacterCode = CharacterCode + 0x2c;
   ProcessSystemResourceInitialization(CharacterCode,0x38,2,FUN_180046480,CoreEngineSetupThreadLocalStorage);
-  TertiaryProcessingStatusFlag = CharacterCode + 0x2b;
+  StringProcessingStatus = CharacterCode + 0x2b;
   AllocatedMemorySize = 2;
   pMemoryBoundaryEnd = CharacterCode;
   do {
-    *(uint8_t *)TertiaryProcessingStatusFlag = 0;
+    *(uint8_t *)StringProcessingStatus = 0;
     *PrimaryProcessingStatusFlag = 0xffffffffffffffff;
     (**(code **)(*pMemoryBoundaryEnd + 0x10))(CharacterCode,&CoreEngineDataTemplate);
     CharacterCode = CharacterCode + 7;
-    TertiaryProcessingStatusFlag = (void *)((long long)TertiaryProcessingStatusFlag + 1);
+    StringProcessingStatus = (void *)((long long)StringProcessingStatus + 1);
     PrimaryProcessingStatusFlag = PrimaryProcessingStatusFlag + 1;
     pMemoryBoundaryEnd = pMemoryBoundaryEnd + 7;
     AllocatedMemorySize = AllocatedMemorySize + -1;
@@ -268073,7 +268086,7 @@ uint64_t * FUN_18022b590(uint64_t *CharacterCode
   CharacterCode[0x6e] = 0;
   CharacterCode[0x6f] = 0;
   *(uint32_t *)(CharacterCode + 0x70) = 0x11;
-  TertiaryProcessingStatusFlag = CharacterCode + 0x7b;
+  StringProcessingStatus = CharacterCode + 0x7b;
   CharacterCode = CharacterCode + 0x7c;
   ProcessSystemResourceInitialization(CharacterCode,8,0x10,&CoreEngineSystemBufferAllocator,InitializeSystemMemoryCallback);
   AllocatedMemorySize = 5;
@@ -268086,11 +268099,11 @@ uint64_t * FUN_18022b590(uint64_t *CharacterCode
     CharacterCode = CharacterCode + 1;
     AllocatedMemorySize = AllocatedMemorySize + -1;
   } while (AllocatedMemorySize != 0);
-  *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-  FUN_18040f650(TertiaryProcessingStatusFlag);
+  *(uint8_t *)StringProcessingStatus = 0;
+  FUN_18040f650(StringProcessingStatus);
   CharacterCode[0x79] = 0;
   CharacterCode[0x7a] = 0;
-  FUN_18040f650(TertiaryProcessingStatusFlag);
+  FUN_18040f650(StringProcessingStatus);
   CharacterCode[0x3a] = 0xffffffffffffffff;
   *(uint8_t *)(CharacterCode + 0x3b) = 0;
   *(uint32_t *)(CharacterCode + 0x27) = 0;
@@ -268293,7 +268306,7 @@ uint64_t FUN_18022bbe0(long long CharacterCode,int CharacterCodeSize
     if (BufferStatus != 0) {
       if ((*CharacterCode2 == 0) && (MemoryPoolBlockSize = *(long long *)(BufferStatus + 0xa8), MemoryPoolBlockSize != 0)) {
         StatusBuffer = (uint32_t *)(MemoryPoolBlockSize + 0xc);
-        TertiaryProcessingStatusFlag = (void *)(CoreEngineEventInitialized + 0x1f8);
+        StringProcessingStatus = (void *)(CoreEngineEventInitialized + 0x1f8);
         CurrentNode = NextNode;
         TemporaryBuffer = *(uint64_t **)(CoreEngineEventInitialized + 0x208);
         if (*(uint64_t **)(CoreEngineEventInitialized + 0x208) == NULL) {
@@ -268312,9 +268325,9 @@ LAB_18022bda0:
             }
             TemporaryBuffer = StatusBuffer;
           } while (StatusBuffer != NULL);
-          if ((SecondaryProcessingStatusFlag == TertiaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(StatusBuffer,SecondaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)          goto LAB_18022bda0;
+          if ((SecondaryProcessingStatusFlag == StringProcessingStatus) || (MemoryMatchResult = memcmp(StatusBuffer,SecondaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)          goto LAB_18022bda0;
         }
-        if (SecondaryProcessingStatusFlag == TertiaryProcessingStatusFlag) {
+        if (SecondaryProcessingStatusFlag == StringProcessingStatus) {
           MemoryAddressMask = MemoryAllocate(MemoryPoolManager,0x3b0,0x10,3);
           MemoryBlockListHead = (long long *)FUN_18023a2e0(MemoryAddressMask,0);
           if (MemoryBlockListHead != (long long *)0x0) {
@@ -269091,7 +269104,7 @@ uint64_t * FUN_18022cab0(uint64_t *CharacterCode,uint64_t *CharacterCodeSize
   char SystemCharacterCode;
   uint32_t DataSize;
   long long MemoryPoolBlockSize;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   unsigned long long MemoryAllocationLoopCounter;
   uint8_t aMemoryOffsetValue [32];
   void *pSystemOperationFlag98;
@@ -269125,8 +269138,8 @@ uint64_t * FUN_18022cab0(uint64_t *CharacterCode,uint64_t *CharacterCodeSize
   *(void *)(CharacterCode + 0x1d0) = 0;
   if (CoreEngineEventInitialized == 0) goto LAB_18022d28d;
   MemoryPoolBlockSize = FUN_180178540();
-  TertiaryProcessingStatusFlag = pSystemOperationFlag90;
-  if ((MemoryPoolBlockSize == 0) || (CharacterVariable5 = ValidateCharacterCode(CharacterCode), TertiaryProcessingStatusFlag = pSystemOperationFlag90, CharacterVariable5 == '\0')) {
+  StringProcessingStatus = pSystemOperationFlag90;
+  if ((MemoryPoolBlockSize == 0) || (CharacterVariable5 = ValidateCharacterCode(CharacterCode), StringProcessingStatus = pSystemOperationFlag90, CharacterVariable5 == '\0')) {
 LAB_18022cf5f:
     hasComparisonResult = false;
   }
@@ -269136,17 +269149,17 @@ LAB_18022cf5f:
     FunctionAddress80 = 0;
     pSystemOperationFlag90 = (uint32_t *)0x0;
     StackValidationData = 0;
-    TertiaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,0x16,0x13);
-    *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-    pSystemOperationFlag90 = TertiaryProcessingStatusFlag;
-    DataSize = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+    StringProcessingStatus = (uint32_t *)BufferAllocate(MemoryPoolManager,0x16,0x13);
+    *(uint8_t *)StringProcessingStatus = 0;
+    pSystemOperationFlag90 = StringProcessingStatus;
+    DataSize = GetMemoryAllocationInfo(StringProcessingStatus);
     FunctionAddress80 = CONCAT44(FunctionAddress80.HighPart,DataSize);
-    *TertiaryProcessingStatusFlag = 0x5f657375;
-    TertiaryProcessingStatusFlag[1] = 0x74726976;
-    TertiaryProcessingStatusFlag[2] = 0x5f6c6175;
-    TertiaryProcessingStatusFlag[3] = 0x74786574;
-    TertiaryProcessingStatusFlag[4] = 0x6e697275;
-    *(uint16_t *)(TertiaryProcessingStatusFlag + 5) = 0x67;
+    *StringProcessingStatus = 0x5f657375;
+    StringProcessingStatus[1] = 0x74726976;
+    StringProcessingStatus[2] = 0x5f6c6175;
+    StringProcessingStatus[3] = 0x74786574;
+    StringProcessingStatus[4] = 0x6e697275;
+    *(uint16_t *)(StringProcessingStatus + 5) = 0x67;
     StackValidationData = 0x15;
     LowByte = true;
     StackUnsigned78 = 1;
@@ -269157,9 +269170,9 @@ LAB_18022cf5f:
   if (LowByte) {
     StackUnsigned78 = 0;
     pSystemOperationFlag98 = &SystemNullTemplate;
-    if (TertiaryProcessingStatusFlag != (uint32_t *)0x0) {
+    if (StringProcessingStatus != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
-      CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+      CoreEngineFreeSystemMemory(StringProcessingStatus);
     }
     pSystemOperationFlag90 = (uint32_t *)0x0;
     FunctionAddress80 = FunctionAddress80 & 0xffffffff00000000;
@@ -269202,26 +269215,26 @@ LAB_18022cf5f:
       FunctionAddress80 = 0;
       pSystemOperationFlag90 = (uint32_t *)0x0;
       StackValidationData = 0;
-      TertiaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,0x26,0x13);
-      *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-      pSystemOperationFlag90 = TertiaryProcessingStatusFlag;
-      DataSize = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+      StringProcessingStatus = (uint32_t *)BufferAllocate(MemoryPoolManager,0x26,0x13);
+      *(uint8_t *)StringProcessingStatus = 0;
+      pSystemOperationFlag90 = StringProcessingStatus;
+      DataSize = GetMemoryAllocationInfo(StringProcessingStatus);
       FunctionAddress80 = CONCAT44(FunctionAddress80.HighPart,DataSize);
-      *TertiaryProcessingStatusFlag = 0x5f657375;
-      TertiaryProcessingStatusFlag[1] = 0x62756f64;
-      TertiaryProcessingStatusFlag[2] = 0x635f656c;
-      TertiaryProcessingStatusFlag[3] = 0x726f6c6f;
-      TertiaryProcessingStatusFlag[4] = 0x5f70616d;
-      TertiaryProcessingStatusFlag[5] = 0x68746977;
-      TertiaryProcessingStatusFlag[6] = 0x73616d5f;
-      TertiaryProcessingStatusFlag[7] = 0x65745f6b;
-      TertiaryProcessingStatusFlag[8] = 0x72757478;
-      *(uint16_t *)(TertiaryProcessingStatusFlag + 9) = 0x65;
+      *StringProcessingStatus = 0x5f657375;
+      StringProcessingStatus[1] = 0x62756f64;
+      StringProcessingStatus[2] = 0x635f656c;
+      StringProcessingStatus[3] = 0x726f6c6f;
+      StringProcessingStatus[4] = 0x5f70616d;
+      StringProcessingStatus[5] = 0x68746977;
+      StringProcessingStatus[6] = 0x73616d5f;
+      StringProcessingStatus[7] = 0x65745f6b;
+      StringProcessingStatus[8] = 0x72757478;
+      *(uint16_t *)(StringProcessingStatus + 9) = 0x65;
       StackValidationData = 0x25;
       FUN_180240430(MemoryAllocationIndex,&pSystemOperationFlag98,0);
       pSystemOperationFlag98 = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
-      CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+      CoreEngineFreeSystemMemory(StringProcessingStatus);
     }
     EnginePointerBuffer = &RenderConfigManager;
     EncodingBuffer = aSystemKeyPointer;
@@ -269250,7 +269263,7 @@ LAB_18022d28d:
   char OperationStatus;
   uint32_t CalculatedCodePoint;
   long long MemoryBoundaryEnd;
-  uint32_t *TertiaryProcessingStatusFlag;
+  uint32_t *StringProcessingStatus;
   unsigned long long ProcessingStatusFlag;
   uint8_t aMemoryOffsetValue [32];
   void *pSystemOperationFlag98;
@@ -269272,8 +269285,8 @@ LAB_18022d28d:
   *(void *)(CharacterCode + 0x1d0) = 0;
   if (CoreEngineEventInitialized == 0) goto LAB_18022d28d;
   MemoryBoundaryEnd = FUN_180178540();
-  TertiaryProcessingStatusFlag = pSystemOperationFlag90;
-  if ((MemoryBoundaryEnd == 0) || (OperationStatus = ValidateCharacterCode(CharacterCode), TertiaryProcessingStatusFlag = pSystemOperationFlag90, OperationStatus == '\0')) {
+  StringProcessingStatus = pSystemOperationFlag90;
+  if ((MemoryBoundaryEnd == 0) || (OperationStatus = ValidateCharacterCode(CharacterCode), StringProcessingStatus = pSystemOperationFlag90, OperationStatus == '\0')) {
 LAB_18022cf5f:
     LowByte = false;
   }
@@ -269283,17 +269296,17 @@ LAB_18022cf5f:
     FunctionAddress80 = 0;
     pSystemOperationFlag90 = (uint32_t *)0x0;
     StackValidationData = 0;
-    TertiaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,0x16,0x13);
-    *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-    pSystemOperationFlag90 = TertiaryProcessingStatusFlag;
-    CalculatedCodePoint = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+    StringProcessingStatus = (uint32_t *)BufferAllocate(MemoryPoolManager,0x16,0x13);
+    *(uint8_t *)StringProcessingStatus = 0;
+    pSystemOperationFlag90 = StringProcessingStatus;
+    CalculatedCodePoint = GetMemoryAllocationInfo(StringProcessingStatus);
     FunctionAddress80 = CONCAT44(FunctionAddress80.HighPart,CalculatedCodePoint);
-    *TertiaryProcessingStatusFlag = 0x5f657375;
-    TertiaryProcessingStatusFlag[1] = 0x74726976;
-    TertiaryProcessingStatusFlag[2] = 0x5f6c6175;
-    TertiaryProcessingStatusFlag[3] = 0x74786574;
-    TertiaryProcessingStatusFlag[4] = 0x6e697275;
-    *(uint16_t *)(TertiaryProcessingStatusFlag + 5) = 0x67;
+    *StringProcessingStatus = 0x5f657375;
+    StringProcessingStatus[1] = 0x74726976;
+    StringProcessingStatus[2] = 0x5f6c6175;
+    StringProcessingStatus[3] = 0x74786574;
+    StringProcessingStatus[4] = 0x6e697275;
+    *(uint16_t *)(StringProcessingStatus + 5) = 0x67;
     StackValidationData = 0x15;
     HighByte = true;
     StackUnsigned78 = 1;
@@ -269304,9 +269317,9 @@ LAB_18022cf5f:
   if (HighByte) {
     StackUnsigned78 = 0;
     pSystemOperationFlag98 = &SystemNullTemplate;
-    if (TertiaryProcessingStatusFlag != (uint32_t *)0x0) {
+    if (StringProcessingStatus != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
-      CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+      CoreEngineFreeSystemMemory(StringProcessingStatus);
     }
     pSystemOperationFlag90 = (uint32_t *)0x0;
     FunctionAddress80 = FunctionAddress80 & 0xffffffff00000000;
@@ -269349,26 +269362,26 @@ LAB_18022cf5f:
       FunctionAddress80 = 0;
       pSystemOperationFlag90 = (uint32_t *)0x0;
       StackValidationData = 0;
-      TertiaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,0x26,0x13);
-      *(uint8_t *)TertiaryProcessingStatusFlag = 0;
-      pSystemOperationFlag90 = TertiaryProcessingStatusFlag;
-      CalculatedCodePoint = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
+      StringProcessingStatus = (uint32_t *)BufferAllocate(MemoryPoolManager,0x26,0x13);
+      *(uint8_t *)StringProcessingStatus = 0;
+      pSystemOperationFlag90 = StringProcessingStatus;
+      CalculatedCodePoint = GetMemoryAllocationInfo(StringProcessingStatus);
       FunctionAddress80 = CONCAT44(FunctionAddress80.HighPart,CalculatedCodePoint);
-      *TertiaryProcessingStatusFlag = 0x5f657375;
-      TertiaryProcessingStatusFlag[1] = 0x62756f64;
-      TertiaryProcessingStatusFlag[2] = 0x635f656c;
-      TertiaryProcessingStatusFlag[3] = 0x726f6c6f;
-      TertiaryProcessingStatusFlag[4] = 0x5f70616d;
-      TertiaryProcessingStatusFlag[5] = 0x68746977;
-      TertiaryProcessingStatusFlag[6] = 0x73616d5f;
-      TertiaryProcessingStatusFlag[7] = 0x65745f6b;
-      TertiaryProcessingStatusFlag[8] = 0x72757478;
-      *(uint16_t *)(TertiaryProcessingStatusFlag + 9) = 0x65;
+      *StringProcessingStatus = 0x5f657375;
+      StringProcessingStatus[1] = 0x62756f64;
+      StringProcessingStatus[2] = 0x635f656c;
+      StringProcessingStatus[3] = 0x726f6c6f;
+      StringProcessingStatus[4] = 0x5f70616d;
+      StringProcessingStatus[5] = 0x68746977;
+      StringProcessingStatus[6] = 0x73616d5f;
+      StringProcessingStatus[7] = 0x65745f6b;
+      StringProcessingStatus[8] = 0x72757478;
+      *(uint16_t *)(StringProcessingStatus + 9) = 0x65;
       StackValidationData = 0x25;
       FUN_180240430(Utf16Char,&pSystemOperationFlag98,0);
       pSystemOperationFlag98 = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
-      CoreEngineFreeSystemMemory(TertiaryProcessingStatusFlag);
+      CoreEngineFreeSystemMemory(StringProcessingStatus);
     }
     EnginePointerBuffer = &RenderConfigManager;
     EncodingBuffer = aSystemKeyPointer;
@@ -269557,7 +269570,7 @@ uint GetMemoryAllocationStatus(long long CharacterCode,long long *CharacterCodeS
   int RemainingSpace;
   void *SecondaryProcessingStatusFlag;
   long long MemoryPoolBlockSize;
-  void *TertiaryProcessingStatusFlag;
+  void *StringProcessingStatus;
   uint64_t *TemporaryBuffer;
   void *StatusBuffer;
   unsigned long long ProcessStringBuffer;
@@ -269596,20 +269609,20 @@ LAB_18022d7dd:
     TemporaryBuffer = TemporaryBuffer + 0xb;
     if (0xf < (long long)ProcessStringBuffer) {
 LAB_18022d7ef:
-      TertiaryProcessingStatusFlag = *(void **)(*(long long *)(CharacterCode + 0x1e0) + 0x18);
+      StringProcessingStatus = *(void **)(*(long long *)(CharacterCode + 0x1e0) + 0x18);
       StatusBuffer = &CoreEngineDataTemplate;
-      if (TertiaryProcessingStatusFlag != NULL) {
-        StatusBuffer = TertiaryProcessingStatusFlag;
+      if (StringProcessingStatus != NULL) {
+        StatusBuffer = StringProcessingStatus;
       }
-      TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
+      StringProcessingStatus = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCodeSize + 8) != NULL) {
-        TertiaryProcessingStatusFlag = *(void **)(CharacterCodeSize + 8);
+        StringProcessingStatus = *(void **)(CharacterCodeSize + 8);
       }
       SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 0x18) != NULL) {
         SecondaryProcessingStatusFlag = *(void **)(CharacterCode + 0x18);
       }
-      InitializeSystemEvent(&UNK_180a13b30,SecondaryProcessingStatusFlag,TertiaryProcessingStatusFlag,StatusBuffer);
+      InitializeSystemEvent(&UNK_180a13b30,SecondaryProcessingStatusFlag,StringProcessingStatus,StatusBuffer);
       return;
     }
   } while( true );
@@ -269828,28 +269841,28 @@ LAB_18022de69:
             MemoryPoolBlockSize = MemoryPoolBlockSize * 2;
             if (MemoryPoolBlockSize != 0) goto LAB_18022de69;
           }
-          TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
+          StringProcessingStatus = SecondaryProcessingStatusFlag;
           if (Utf16Char4 != ProcessStringBuffer) {
             CharacterTablePointer5 = Utf16Char4 - (long long)SecondaryProcessingStatusFlag;
             do {
-              *TertiaryProcessingStatusFlag = &ThreadLocalStorageTemplate;
-              TertiaryProcessingStatusFlag[1] = 0;
-              *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = 0;
-              *TertiaryProcessingStatusFlag = &SystemStringBuffer;
-              TertiaryProcessingStatusFlag[1] = TertiaryProcessingStatusFlag + 3;
-              *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = 0;
-              *(uint8_t *)(TertiaryProcessingStatusFlag + 3) = 0;
-              *(uint32_t *)(TertiaryProcessingStatusFlag + 2) = *(uint32_t *)(CharacterTablePointer5 + 0x10 + (long long)TertiaryProcessingStatusFlag);
-              PrimaryProcessingStatusFlag = *(void **)(CharacterTablePointer5 + 8 + (long long)TertiaryProcessingStatusFlag);
+              *StringProcessingStatus = &ThreadLocalStorageTemplate;
+              StringProcessingStatus[1] = 0;
+              *(uint32_t *)(StringProcessingStatus + 2) = 0;
+              *StringProcessingStatus = &SystemStringBuffer;
+              StringProcessingStatus[1] = StringProcessingStatus + 3;
+              *(uint32_t *)(StringProcessingStatus + 2) = 0;
+              *(uint8_t *)(StringProcessingStatus + 3) = 0;
+              *(uint32_t *)(StringProcessingStatus + 2) = *(uint32_t *)(CharacterTablePointer5 + 0x10 + (long long)StringProcessingStatus);
+              PrimaryProcessingStatusFlag = *(void **)(CharacterTablePointer5 + 8 + (long long)StringProcessingStatus);
               StatusBuffer = &CoreEngineDataTemplate;
               if (PrimaryProcessingStatusFlag != NULL) {
                 StatusBuffer = PrimaryProcessingStatusFlag;
               }
-              strcpy_s(TertiaryProcessingStatusFlag[1],0x40,StatusBuffer);
-              TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0xb;
-            } while (CharacterTablePointer5 + (long long)TertiaryProcessingStatusFlag != ProcessStringBuffer);
+              strcpy_s(StringProcessingStatus[1],0x40,StatusBuffer);
+              StringProcessingStatus = StringProcessingStatus + 0xb;
+            } while (CharacterTablePointer5 + (long long)StringProcessingStatus != ProcessStringBuffer);
           }
-          FUN_1800b8300(TertiaryProcessingStatusFlag,AllocatedMemorySize);
+          FUN_1800b8300(StringProcessingStatus,AllocatedMemorySize);
           systemEventTemplatePointer = *(uint64_t **)(CharacterCode + 0x370);
           TemporaryBuffer = (void *)*StatusBuffer;
           if (TemporaryBuffer != systemEventTemplatePointer) {
@@ -269864,7 +269877,7 @@ LAB_18022de69:
             CoreEngineFreeSystemMemory(TemporaryBuffer);
           }
           *StatusBuffer = (unsigned long long)SecondaryProcessingStatusFlag;
-          *(uint64_t **)(CharacterCode + 0x370) = TertiaryProcessingStatusFlag + 0xb;
+          *(uint64_t **)(CharacterCode + 0x370) = StringProcessingStatus + 0xb;
           *(uint64_t **)(CharacterCode + 0x378) = SecondaryProcessingStatusFlag + MemoryPoolBlockSize * 0xb;
         }
       }
@@ -270633,25 +270646,25 @@ void ProcessCharacterCodeHash(unsigned long long *CharacterCode,long long Charac
   SystemMemoryAllocationResult = 0;
   *(void *)(Utf16EndPointer + 4) = 0;
   CurrentByteValue0 = true;
-  TertiaryProcessingStatusFlag = (void *)CharacterCode[2];
+  StringProcessingStatus = (void *)CharacterCode[2];
   CharacterCodePointer = CharacterCode;
-  while (TertiaryProcessingStatusFlag != NULL) {
-    ValidationResult = memcmp(StatusBuffer,TertiaryProcessingStatusFlag + 4,0x10);
+  while (StringProcessingStatus != NULL) {
+    ValidationResult = memcmp(StatusBuffer,StringProcessingStatus + 4,0x10);
     CurrentByteValue0 = ValidationResult < 0;
-    CharacterCodePointer = TertiaryProcessingStatusFlag;
+    CharacterCodePointer = StringProcessingStatus;
     if (CurrentByteValue0) {
-      TertiaryProcessingStatusFlag = (void *)TertiaryProcessingStatusFlag[1];
+      StringProcessingStatus = (void *)StringProcessingStatus[1];
     }
     else {
-      TertiaryProcessingStatusFlag = (void *)*TertiaryProcessingStatusFlag;
+      StringProcessingStatus = (void *)*StringProcessingStatus;
     }
   }
-  TertiaryProcessingStatusFlag = CharacterCodePointer;
+  StringProcessingStatus = CharacterCodePointer;
   if (CurrentByteValue0) {
     if (CharacterCodePointer == (void *)CharacterCode[1]) goto LAB_18022ee7d;
-    TertiaryProcessingStatusFlag = (void *)GetPreviousMemoryBlockIndex(CharacterCodePointer);
+    StringProcessingStatus = (void *)GetPreviousMemoryBlockIndex(CharacterCodePointer);
   }
-  ValidationResult = memcmp(TertiaryProcessingStatusFlag + 4,StatusBuffer,0x10);
+  ValidationResult = memcmp(StringProcessingStatus + 4,StatusBuffer,0x10);
   if (-1 < ValidationResult) {
     if (*(long long **)(MemoryPoolBlockSize + 0x30) != (long long *)0x0) {
       (**(code **)(**(long long **)(MemoryPoolBlockSize + 0x30) + 0x38))();

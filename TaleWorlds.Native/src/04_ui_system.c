@@ -7434,7 +7434,7 @@ void ProcessUIEventQueue(longlong uiContext,longlong dataSource,undefined8 targe
   }
   else {
     in_stack_00000058 = unaff_RBP;
-    if (uVar3 != 0) {
+    if (calculatedBufferSize != 0) {
                     // WARNING: Subroutine does not return
       memset();
     }

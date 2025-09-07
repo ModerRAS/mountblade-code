@@ -60738,7 +60738,21 @@ void ProcessExceptionDataBufferA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906b50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理数据缓冲区0x88偏移量的资源引用计数
+ * 
+ * 该函数负责管理数据缓冲区0x88偏移量处的资源引用计数。
+ * 它会计算资源的内存基地址，检查资源是否属于异常列表，
+ * 如果是则更新引用计数，否则调用内存管理函数进行清理。
+ * 当引用计数归零时，会触发异常处理E0。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含待管理的资源指针
+ * 
+ * @note 原始函数名：Unwind_180906b50
+ * @note 函数操作0x88偏移量的资源，使用复杂的内存地址计算
+ */
+void ManageResourceReferenceCountAtOffset88(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
