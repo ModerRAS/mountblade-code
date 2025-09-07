@@ -99,6 +99,7 @@
 #define GetSystemStringIndex FUN_180624c70                       // 获取系统字符串索引
 #define ProcessSystemDataTable FUN_180627ce0                     // 处理系统数据表
 #define InitializeCharacterCodePointer FUN_180184700              // 初始化字符代码指针
+#define ProcessCharacterCodeBufferData FUN_1801899b0                // 处理字符代码缓冲区数据
 #define GetCharacterBuffer80 FUN_18014f810                       // 获取字符缓冲区80
 #define GetProcessingPointer88 FUN_18014f840                     // 获取处理指针88
 #define ProcessCharacterCodeData FUN_18019c480                    // 处理字符代码数据
@@ -180276,7 +180277,20 @@ void CalculateAndUpdateMemoryPoolSize(uint64_t CharacterCode, long long SystemBu
 
 
 
-void FUN_18014cb90(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t *Utf8SourcePointer,uint8_t Utf16EndPointer)
+/**
+ * @brief 处理字符代码和内存分配
+ * 
+ * 该函数负责处理字符代码数据，进行内存分配和系统缓冲区管理。
+ * 主要功能包括字符编码转换、内存块分配、数据验证和系统状态管理。
+ * 
+ * @param CharacterCode 字符代码标识符
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18014cb90
+ */
+void ProcessCharacterCodeWithMemoryAllocation(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t *Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
   float SystemContextPrimaryFloat;
   unsigned long long MemoryAllocationIndex;
@@ -180296,9 +180310,9 @@ void FUN_18014cb90(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t *Ut
   uint32_t BufferOffset;
   uint32_t SystemUnsignedValue54;
   float DistanceThreshold;
-  float fStack_4c;
-  float fStack_48;
-  uint32_t uStack_44;
+  float StackPrimaryFloat;
+  float StackSecondaryFloat;
+  uint32_t StackUnsignedValue;
   uint32_t SystemPriorityLevel;
   uint64_t FunctionAddress;
   uint64_t ProcessingFlags;
@@ -180318,9 +180332,9 @@ void FUN_18014cb90(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t *Ut
   BufferOffset = (uint32_t)FunctionAddress;
   SystemUnsignedValue54 = FunctionAddress.HighPart;
   DistanceThreshold = (float)ProcessingFlags;
-  fStack_4c = ProcessingFlags.HighPart;
-  fStack_48 = (float)StackValidationFlag28;
-  uStack_44 = StackValidationFlag28.HighPart;
+  StackPrimaryFloat = ProcessingFlags.HighPart;
+  StackSecondaryFloat = (float)StackValidationFlag28;
+  StackUnsignedValue = StackValidationFlag28.HighPart;
   SystemPriorityLevel = ProcessingCounter;
   SystemRegisterFlagX8 = CharacterCode;
   FunctionAddress = SystemBufferSize;
@@ -180349,12 +180363,12 @@ void FUN_18014cb90(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t *Ut
         SystemContextPrimaryFloat = *(float *)(EncodingConversionResult + 0x28);
         if (DistanceThreshold == SystemContextPrimaryFloat) {
           SystemContextPrimaryFloat = *(float *)(EncodingConversionResult + 0x2c);
-          if (fStack_4c != SystemContextPrimaryFloat) {
-            ProcessingByte4 = SystemContextPrimaryFloat == fStack_4c;
-            ValidationByteFlag3 = SystemContextPrimaryFloat < fStack_4c;
+          if (StackPrimaryFloat != SystemContextPrimaryFloat) {
+            ProcessingByte4 = SystemContextPrimaryFloat == StackPrimaryFloat;
+            ValidationByteFlag3 = SystemContextPrimaryFloat < StackPrimaryFloat;
             goto LAB_18014cc76;
           }
-          ProcessingByte4 = fStack_48 < *(float *)(EncodingConversionResult + 0x30);
+          ProcessingByte4 = StackSecondaryFloat < *(float *)(EncodingConversionResult + 0x30);
         }
         else {
           ProcessingByte4 = SystemContextPrimaryFloat == DistanceThreshold;
@@ -218847,7 +218861,23 @@ void FreeCharacterStatusBufferArray(long long *BufferArrayStart, long long *Buff
 
 
 uint32_t *
-FUN_1801899b0(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer,uint32_t *Utf16EndPointer
+/**
+ * @brief 处理字符代码缓冲区数据
+ * 
+ * 处理字符代码缓冲区中的数据，包括内存分配、Unicode码点处理、
+ * 内存地址掩码设置等操作。该函数负责字符数据的批量处理和转换。
+ * 
+ * @param CharacterCode 字符代码值
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint32_t* 返回处理后的UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_1801899b0
+ * @warning 此函数包含复杂的内存操作和指针运算
+ */
+uint32_t *
+ProcessCharacterCodeBufferData(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer,uint32_t *Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
