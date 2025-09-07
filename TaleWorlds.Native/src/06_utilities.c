@@ -9032,7 +9032,7 @@ uint8_t UtilitySetupMemoryRegions;
 uint8_t SystemConfigurationParameterP;
 uint8_t SystemConfigurationParameterQ;
 uint8_t SystemConfigurationParameterR;
-uint8_t UnknownSystemDataS;
+uint8_t SystemConfigurationParameterS;
 uint8_t SystemDataBufferC;
 uint8_t SystemExceptionDataA;
 uint8_t SystemNetworkContext;
@@ -9074,10 +9074,10 @@ uint8_t UtilityDestroyMemoryHeap;
 uint8_t MemoryHeapDestroyHandle;
 uint8_t MemoryHeapCleanupFlag;
 uint8_t MemoryPoolAllocatorA;
-// 系统内存管理数据块A
-uint8_t SystemMemoryManagementBlockA1;
-uint8_t SystemMemoryManagementBlockA2;
-uint8_t SystemMemoryManagementBlockA3;
+// 系统内存管理数据块主数据
+uint8_t SystemMemoryManagementBlockPrimaryData;
+uint8_t SystemMemoryManagementBlockSecondaryData;
+uint8_t SystemMemoryManagementBlockTertiaryData;
 uint8_t SystemMemoryManagementBlockA4;
 // 系统全局数据指针
 uint8_t SystemGlobalDataPointer;
