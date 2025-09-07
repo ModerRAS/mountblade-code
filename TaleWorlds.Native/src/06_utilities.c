@@ -78263,7 +78263,23 @@ void ProcessSystemParametersValidationD5(DataBuffer operationBase, int64_t dataB
 
 
 
-void Unwind_1809097e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理资源数据缓冲区D6
+ * 
+ * 该函数负责处理资源数据缓冲区，调用数据缓冲区处理函数A0，
+ * 使用资源迭代器偏移量和系统数据偏移量
+ * 
+ * @param operationBase 系统操作句柄
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809097e0
+ * @warning 此函数必须在资源处理上下文中调用
+ * 
+ * @see ProcessDataBufferA0, ResourceIteratorOffset, SystemDataOffset30, SystemDataOffset40
+ */
+void ProcessResourceDataBufferD6(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA0(*(int64_t *)(dataBuffer + ResourceIteratorOffset) + SystemDataOffset30,
@@ -78285,7 +78301,21 @@ void DestroyMutexInSitu(void)
 
 
 
-void Unwind_180909800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据缓冲区D7
+ * 
+ * 该函数负责处理异常数据缓冲区，从数据缓冲区中获取异常数据缓冲区指针，
+ * 并进行相应的处理操作
+ * 
+ * @param operationBase 系统操作句柄
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180909800
+ * @warning 此函数必须在异常处理上下文中调用
+ */
+void ProcessExceptionDataBufferD7(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
