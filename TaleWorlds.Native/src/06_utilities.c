@@ -9190,6 +9190,18 @@ DataBuffer ForceResourceRelease(int64_t resourceDescriptor)
  * @note 此函数会无条件执行资源释放，确保栈资源被正确清理
  * @warning 确保寄存器值有效，否则可能导致未定义行为
  */
+/**
+ * @brief 释放栈资源
+ * 
+ * 该函数负责释放栈中的资源，包括：
+ * - 根据处理器寄存器值计算栈资源指针
+ * - 执行资源释放操作
+ * - 返回操作结果状态
+ * 
+ * @note 原始函数名：FUN_18008e9f0
+ * 
+ * @return DataWord 释放操作结果状态码
+ */
 DataWord ReleaseStackResource(void)
 
 {
