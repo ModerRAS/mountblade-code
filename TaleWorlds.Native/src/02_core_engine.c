@@ -129010,7 +129010,7 @@ LAB_18012aa37:
             (pSystemContextPrimaryFloat6[1] <= pSystemFloatValue[1] && pSystemFloatValue[1] != pSystemContextPrimaryFloat6[1])) ||
            ((pSystemFloatValue[2] < pSystemContextPrimaryFloat6[2] || (pSystemFloatValue[3] < pSystemContextPrimaryFloat6[3])))) {
           pfStack_258 = (float *)CONCAT44(pfStack_258.HighPart,4);
-          SystemContextValue = FUN_180130830(pSystemMemoryOffset238,(int)pSystemMemoryOffset238[1],pSystemMemoryOffset238 + 8,pSystemMemoryOffset238 + 9);
+          SystemContextValue = ProcessUtf8ToUtf16CharacterEncoding(pSystemMemoryOffset238,(int)pSystemMemoryOffset238[1],pSystemMemoryOffset238 + 8,pSystemMemoryOffset238 + 9);
           pSystemMemoryOffset238[5] = SystemContextValue;
           ProcessSystemStateHandler(pSystemMemoryOffset238,SystemContextValue);
           if ((*(uint *)(DataStructureCounter + 8) & 0x8000) == 0) {
