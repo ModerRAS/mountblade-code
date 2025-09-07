@@ -5898,6 +5898,46 @@ void InitializeUtilityModule(void);
 #define SetupExceptionHandlerAtOffset1F0 Unwind_1809051f0
 
 /**
+ * @brief 函数指针回调执行函数A0
+ * 
+ * 该函数负责执行函数指针回调，检查特定偏移量的函数指针是否存在，
+ * 如果存在则调用该函数并传递相应的参数。
+ * 
+ * @note 原始函数名：Unwind_1809071d0
+ */
+#define ExecuteFunctionPointerCallbackA0 Unwind_1809071d0
+
+/**
+ * @brief 函数指针回调执行函数A1
+ * 
+ * 该函数负责执行函数指针回调，检查特定偏移量(0xe8)的函数指针是否存在，
+ * 如果存在则调用该函数并传递相应的参数。
+ * 
+ * @note 原始函数名：Unwind_180907090
+ */
+#define ExecuteFunctionPointerCallbackA1 Unwind_180907090
+
+/**
+ * @brief 函数指针回调执行函数A2
+ * 
+ * 该函数负责执行函数指针回调，检查特定偏移量(0x68)的函数指针是否存在，
+ * 如果存在则调用该函数并传递相应的参数。
+ * 
+ * @note 原始函数名：Unwind_1809070a0
+ */
+#define ExecuteFunctionPointerCallbackA2 Unwind_1809070a0
+
+/**
+ * @brief 系统终止检查函数A3
+ * 
+ * 该函数检查嵌套指针的特定偏移量(0x68)，如果不为0则终止系统。
+ * 这是一个系统安全检查函数，确保系统状态正确。
+ * 
+ * @note 原始函数名：Unwind_180907200
+ */
+#define CheckSystemTerminationA3 Unwind_180907200
+
+/**
  * @brief 工具模块配置参数
  */
 uint32_t UtilityPrimaryModuleConfig;
@@ -35222,7 +35262,7 @@ uint64_t ManageMemoryAndValidatePointers(void)
   uint registerValueESI;
   int64_t *destinationIndexRegister;
   DataWord InputParam30;
-  DataWord uStack0000000000000038;
+  DataWord ValidationDataBuffer;
   BytePair StackBytePairA;
   BytePair StackBytePairB;
   BytePair StackDataBufferF;
@@ -50283,6 +50323,19 @@ void ProcessExceptionDataWithOffset40Duplicate(DataBuffer operationBase,int64_t 
 
 
 
+/**
+ * @brief 异常资源清理函数920
+ * 
+ * 该函数负责清理异常处理过程中的资源引用计数。它会验证资源指针的有效性，
+ * 计算内存偏移量，并递减引用计数。当引用计数归零时，会调用异常处理器。
+ * 这是异常展开机制的重要组成部分，确保资源在异常处理过程中被正确释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180904920
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的资源清理
+ */
 void Unwind_180904920(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -50319,6 +50372,20 @@ void Unwind_180904920(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常资源清理函数930
+ * 
+ * 该函数负责清理异常处理过程中的资源引用计数，与函数920类似但操作不同的内存偏移量。
+ * 它会验证资源指针的有效性，计算内存偏移量，并递减引用计数。当引用计数归零时，
+ * 会调用异常处理器。这是异常展开机制的重要组成部分，确保资源被正确释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180904930
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的资源清理
+ * @note 该函数操作偏移量0x48处的资源指针，与920函数的0x28不同
+ */
 void Unwind_180904930(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -50373,6 +50440,20 @@ void Unwind_180904950(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常资源清理函数960
+ * 
+ * 该函数负责清理异常处理过程中的资源，包括验证状态指针和资源迭代器。
+ * 它会遍历资源链表，清理验证状态，并调用相应的清理函数。如果发现异常状态，
+ * 会调用系统终止函数。这是一个更复杂的异常清理函数，涉及多个资源管理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文和资源信息
+ * 
+ * @note 原始函数名：Unwind_180904960
+ * @note 这是一个异常展开（unwind）处理函数，用于复杂的资源清理场景
+ * @note 函数会验证多个偏移量处的资源状态，并执行相应的清理操作
+ */
 void Unwind_180904960(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -105876,3 +105957,84 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：uStack_a4 - 内存分配计数器
 // 功能：存储内存分配操作的计数器
 #define MemoryAllocationCounter uStack_a4
+
+// Unwind函数语义化宏定义扩展
+// 原始函数名：Unwind_180904920 - 异常资源清理函数920
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCount920 Unwind_180904920
+
+// 原始函数名：Unwind_180904930 - 异常资源清理函数930
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCount930 Unwind_180904930
+
+// 原始函数名：Unwind_180904940 - 异常资源清理函数940
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCount940 Unwind_180904940
+
+// 原始函数名：Unwind_180904950 - 异常资源清理函数950
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCount950 Unwind_180904950
+
+// 原始函数名：Unwind_180904960 - 异常资源清理函数960
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCount960 Unwind_180904960
+
+// 原始函数名：Unwind_180904970 - 异常资源清理函数970
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCount970 Unwind_180904970
+
+// 原始函数名：Unwind_180904990 - 异常资源清理函数990
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCount990 Unwind_180904990
+
+// 原始函数名：Unwind_1809049c0 - 异常资源清理函数9c0
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCount9c0 Unwind_1809049c0
+
+// 原始函数名：Unwind_1809049d0 - 异常资源清理函数9d0
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCount9d0 Unwind_1809049d0
+
+// 原始函数名：Unwind_1809049e0 - 异常资源清理函数9e0
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCount9e0 Unwind_1809049e0
+
+// 原始函数名：Unwind_1809049f0 - 异常资源清理函数9f0
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCount9f0 Unwind_1809049f0
+
+// 原始函数名：Unwind_180904a20 - 异常资源清理函数a20
+// 功能：清理异常处理过程中的资源引用计数
+#define CleanupExceptionResourceReferenceCountA20 Unwind_180904a20
+
+// 原始函数名：Unwind_180904ae0 - 异常状态重置函数ae0
+// 功能：重置异常处理状态标志
+#define ResetExceptionStatusFlagAE0 Unwind_180904ae0
+
+// 原始函数名：Unwind_180904af0 - 异常配置函数af0
+// 功能：配置异常处理参数
+#define ConfigureExceptionParametersAF0 Unwind_180904af0
+
+// 原始函数名：Unwind_180904b00 - 异常状态检查函数b00
+// 功能：检查异常处理状态
+#define CheckExceptionStatusB00 Unwind_180904b00
+
+// 原始函数名：Unwind_180904e40 - 异常处理器配置函数e40
+// 功能：配置异常处理器和相关参数
+#define ConfigureExceptionHandlerE40 Unwind_180904e40
+
+// 原始函数名：Unwind_180904e50 - 异常处理器配置函数e50
+// 功能：配置异常处理器和相关参数
+#define ConfigureExceptionHandlerE50 Unwind_180904e50
+
+// 原始函数名：Unwind_180904e60 - 异常处理器配置函数e60
+// 功能：配置异常处理器和相关参数
+#define ConfigureExceptionHandlerE60 Unwind_180904e60
+
+// 原始函数名：Unwind_180904e70 - 异常状态清理函数e70
+// 功能：清理异常处理状态
+#define ClearExceptionStatusE70 Unwind_180904e70
+
+// 原始函数名：Unwind_180904e80 - 异常状态验证函数e80
+// 功能：验证异常处理状态
+#define ValidateExceptionStatusE80 Unwind_180904e80
