@@ -59298,7 +59298,19 @@ void CleanupExceptionHandlerPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906580(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理状态
+ * 
+ * 该函数负责重置异常处理过程中的状态标记，将相关状态置零
+ * 如果发现异常状态不为零，会调用系统终止函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理状态信息
+ * 
+ * @note 原始函数名：Unwind_180906580
+ * @note 这是一个异常展开（unwind）处理函数，用于重置异常处理状态
+ */
+void ResetExceptionHandlerState(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -59317,7 +59329,19 @@ void Unwind_180906580(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906590(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器状态A
+ * 
+ * 该函数负责清理异常处理器的状态标记，将相关状态置零
+ * 如果发现异常状态不为零，会调用系统终止函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器状态信息
+ * 
+ * @note 原始函数名：Unwind_180906590
+ * @note 这是一个异常展开（unwind）处理函数，用于清理异常处理器状态
+ */
+void CleanupExceptionHandlerStateA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
