@@ -34046,7 +34046,7 @@ DataBuffer CleanupDataCacheA1(DataBuffer operationBase,int64_t dataBuffer)
 void ProcessUtilityCallback(DataBuffer *callbackData)
 
 {
-  FUN_18006a050(*(DataWord *)*callbackData,callbackData);
+  CheckSystemStateAndExecute(*(DataWord *)*callbackData,callbackData);
   return;
 }
 
@@ -35624,7 +35624,7 @@ void ExceptionRecoveryHandlerB4(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x50) & 1) != 0) {
     *(uint *)(dataBuffer + 0x50) = *(uint *)(dataBuffer + 0x50) & 0xfffffffe;
-    FUN_180627b90(dataBuffer + 0x30);
+    CleanupResourceHandler(dataBuffer + 0x30);
   }
   return;
 }
@@ -39324,7 +39324,7 @@ void SetDefaultExceptionHandlerBAtOffset438(DataBuffer operationBase,int64_t dat
 void ExecuteSystemResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058710(*(int64_t *)(dataBuffer + 0x40) + 0x858,
+  CleanupSystemResourcesAndMemory(*(int64_t *)(dataBuffer + 0x40) + 0x858,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x868),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -39573,7 +39573,7 @@ void CleanupDataResourceF(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
 void CleanupDataResourceG(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058710(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
+  CleanupSystemResourcesAndMemory(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -39583,7 +39583,7 @@ void CleanupDataResourceG(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
 void ExceptionDataProcessorA3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058710(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
+  CleanupSystemResourcesAndMemory(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -39593,7 +39593,7 @@ void ExceptionDataProcessorA3(DataBuffer operationBase,int64_t dataBuffer,DataBu
 void CleanupExceptionDataBufferA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058710(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  CleanupSystemResourcesAndMemory(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -39603,7 +39603,7 @@ void CleanupExceptionDataBufferA(DataBuffer operationBase,int64_t dataBuffer,Dat
 void CleanupExceptionDataBufferB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058710(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  CleanupSystemResourcesAndMemory(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -39749,9 +39749,9 @@ void CleanupSystemResources100(DataBuffer operationBase,int64_t dataBuffer,DataB
   FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
   FUN_180058370(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
   FUN_180058370(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
-  FUN_1800593f0(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
-  FUN_180058710(validationContext + 0x50,*(DataBuffer *)(validationContext + 0x60));
-  FUN_1800593f0(validationContext + 0x20,*(DataBuffer *)(validationContext + 0x30));
+  ValidateSystemDataBufferAndProcess(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
+  CleanupSystemResourcesAndMemory(validationContext + 0x50,*(DataBuffer *)(validationContext + 0x60));
+  ValidateSystemDataBufferAndProcess(validationContext + 0x20,*(DataBuffer *)(validationContext + 0x30));
   return;
 }
 
@@ -40018,7 +40018,7 @@ void CleanupMemoryPool1a0(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x28);
   validationContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x30);
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x548) {
-    FUN_1800594b0(calculatedOffset);
+    ValidateSystemDataAndExecute(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -40039,7 +40039,7 @@ void CleanupSystemMemoryBufferA(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = *(int64_t **)(dataBuffer + 0x48);
   validationContext = pdataContext[1];
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x548) {
-    FUN_1800594b0(calculatedOffset);
+    ValidateSystemDataAndExecute(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -40076,9 +40076,9 @@ void CleanupSystemMemoryWithFunctionCall(DataBuffer operationBase,int64_t dataBu
   FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
   FUN_180058370(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
   FUN_180058370(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
-  FUN_1800593f0(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
-  FUN_180058710(validationContext + 0x50,*(DataBuffer *)(validationContext + 0x60));
-  FUN_1800593f0(validationContext + 0x20,*(DataBuffer *)(validationContext + 0x30));
+  ValidateSystemDataBufferAndProcess(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
+  CleanupSystemResourcesAndMemory(validationContext + 0x50,*(DataBuffer *)(validationContext + 0x60));
+  ValidateSystemDataBufferAndProcess(validationContext + 0x20,*(DataBuffer *)(validationContext + 0x30));
   return;
 }
 
@@ -40166,7 +40166,7 @@ void CleanupSystemMemoryDataResource(DataBuffer operationBase,int64_t dataBuffer
   pdataContext = *(int64_t **)(dataBuffer + 0x40);
   validationContext = pdataContext[1];
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x548) {
-    FUN_1800594b0(calculatedOffset);
+    ValidateSystemDataAndExecute(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -40190,7 +40190,7 @@ void CleanupSystemMemoryDataResource(DataBuffer operationBase,int64_t dataBuffer
 void ExecuteSystemCleanupA(DataBuffer dataBuffer, int64_t executionContext, DataBuffer cleanupParam, DataBuffer cleanupParamB)
 
 {
-  FUN_1800593f0(*(int64_t *)(executionContext + 0x40),*(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + 0x10),
+  ValidateSystemDataBufferAndProcess(*(int64_t *)(executionContext + 0x40),*(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + 0x10),
                 cleanupParam,cleanupParamB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -40210,7 +40210,7 @@ void ExecuteSystemCleanupA(DataBuffer dataBuffer, int64_t executionContext, Data
 void ExecuteSystemCleanupB(DataBuffer dataBuffer, int64_t executionContext, DataBuffer cleanupParam, DataBuffer cleanupParamB)
 
 {
-  FUN_180058710(*(int64_t *)(executionContext + 0x40) + 0x30,
+  CleanupSystemResourcesAndMemory(*(int64_t *)(executionContext + 0x40) + 0x30,
                 *(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + 0x40),cleanupParam,cleanupParamB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -40231,7 +40231,7 @@ void ExecuteSystemCleanupB(DataBuffer dataBuffer, int64_t executionContext, Data
 void ExecuteSystemCleanupC(DataBuffer dataBuffer, int64_t executionContext, DataBuffer cleanupParam, DataBuffer cleanupParamB)
 
 {
-  FUN_1800593f0(*(int64_t *)(executionContext + 0x40) + 0x60,
+  ValidateSystemDataBufferAndProcess(*(int64_t *)(executionContext + 0x40) + 0x60,
                 *(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + 0x70),cleanupParam,cleanupParamB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -40329,7 +40329,7 @@ void DestroyMutexResourceB(void)
 void ExecuteSystemCleanupG(DataBuffer dataBuffer, int64_t executionContext, DataBuffer cleanupParam, DataBuffer cleanupParamB)
 
 {
-  FUN_1800593f0(*(int64_t *)(executionContext + 0x48),*(DataBuffer *)(*(int64_t *)(executionContext + 0x48) + 0x10),
+  ValidateSystemDataBufferAndProcess(*(int64_t *)(executionContext + 0x48),*(DataBuffer *)(*(int64_t *)(executionContext + 0x48) + 0x10),
                 cleanupParam,cleanupParamB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -40339,7 +40339,7 @@ void ExecuteSystemCleanupG(DataBuffer dataBuffer, int64_t executionContext, Data
 void Unwind_1809032e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800593f0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
+  ValidateSystemDataBufferAndProcess(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -40349,7 +40349,7 @@ void Unwind_1809032e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809032f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800593f0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ValidateSystemDataBufferAndProcess(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -40359,7 +40359,7 @@ void Unwind_1809032f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180903300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800593f0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ValidateSystemDataBufferAndProcess(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -47964,7 +47964,7 @@ void Unwind_180904eb0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180627b90(dataBuffer + 0x38);
+    CleanupResourceHandler(dataBuffer + 0x38);
   }
   return;
 }
@@ -47976,7 +47976,7 @@ void Unwind_180904ee0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffd;
-    FUN_180627b90(dataBuffer + 0x98);
+    CleanupResourceHandler(dataBuffer + 0x98);
   }
   return;
 }
@@ -48066,7 +48066,7 @@ void Unwind_180904f40(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x68) & 1) != 0) {
     *(uint *)(dataBuffer + 0x68) = *(uint *)(dataBuffer + 0x68) & 0xfffffffe;
-    FUN_180627b90(dataBuffer + 0x70);
+    CleanupResourceHandler(dataBuffer + 0x70);
   }
   return;
 }
@@ -49010,7 +49010,7 @@ void Unwind_1809052c0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180627b90(dataBuffer + 0x70);
+    CleanupResourceHandler(dataBuffer + 0x70);
   }
   return;
 }
@@ -49022,7 +49022,7 @@ void Unwind_1809052f0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffd;
-    FUN_180627b90(dataBuffer + 0x50);
+    CleanupResourceHandler(dataBuffer + 0x50);
   }
   return;
 }
@@ -49034,7 +49034,7 @@ void Unwind_180905320(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180627b90(dataBuffer + 0x48);
+    CleanupResourceHandler(dataBuffer + 0x48);
   }
   return;
 }
@@ -53436,7 +53436,7 @@ void Unwind_180906400(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180627b90(dataBuffer + 0x98);
+    CleanupResourceHandler(dataBuffer + 0x98);
   }
   return;
 }
@@ -53448,7 +53448,7 @@ void Unwind_180906430(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffd;
-    FUN_180627b90(dataBuffer + 0x38);
+    CleanupResourceHandler(dataBuffer + 0x38);
   }
   return;
 }
@@ -63052,9 +63052,9 @@ void Unwind_180908e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
   FUN_180058370(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
   FUN_180058370(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
-  FUN_1800593f0(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
-  FUN_180058710(validationContext + 0x50,*(DataBuffer *)(validationContext + 0x60));
-  FUN_1800593f0(validationContext + 0x20,*(DataBuffer *)(validationContext + 0x30));
+  ValidateSystemDataBufferAndProcess(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
+  CleanupSystemResourcesAndMemory(validationContext + 0x50,*(DataBuffer *)(validationContext + 0x60));
+  ValidateSystemDataBufferAndProcess(validationContext + 0x20,*(DataBuffer *)(validationContext + 0x30));
   return;
 }
 
@@ -68127,7 +68127,7 @@ void Unwind_18090aa50(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 4) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffb;
-    FUN_180627b90(dataBuffer + 0x38);
+    CleanupResourceHandler(dataBuffer + 0x38);
   }
   return;
 }
@@ -68139,7 +68139,7 @@ void Unwind_18090aa80(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 8) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffff7;
-    FUN_180627b90(dataBuffer + 0x38);
+    CleanupResourceHandler(dataBuffer + 0x38);
   }
   return;
 }
@@ -74051,7 +74051,7 @@ void Unwind_18090cd60(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 0x10) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xffffffef;
-    FUN_180627b90(dataBuffer + 0x48);
+    CleanupResourceHandler(dataBuffer + 0x48);
   }
   return;
 }
@@ -74075,7 +74075,7 @@ void Unwind_18090cdc0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 0x40) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xffffffbf;
-    FUN_180627b90(dataBuffer + 0x48);
+    CleanupResourceHandler(dataBuffer + 0x48);
   }
   return;
 }
@@ -80172,7 +80172,7 @@ void Unwind_18090ea40(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 0x10) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xffffffef;
-    FUN_180627b90(dataBuffer + 0x38);
+    CleanupResourceHandler(dataBuffer + 0x38);
   }
   return;
 }
@@ -80196,7 +80196,7 @@ void Unwind_18090eaa0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 0x40) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xffffffbf;
-    FUN_180627b90(dataBuffer + 0x38);
+    CleanupResourceHandler(dataBuffer + 0x38);
   }
   return;
 }

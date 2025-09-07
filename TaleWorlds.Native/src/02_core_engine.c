@@ -196361,7 +196361,7 @@ uint64_t * FUN_1801754b0(uint64_t *SystemContextPointer
   SystemContextPointer = *(long long **)(MemoryAllocationSize + 0x8400);
   ValidationCode = (**(code **)(*SystemContextPointer + 0x70))(SystemContextPointer,*(void *)(DataConfigurationCounter + 8),0,1,0);
   if (MemoryMatchResult < 0) {
-    FUN_180220810(ValidationCode,&UNK_180a173b0);
+    FUN_180220810(ValidationCode,&SystemValidationBuffer);
   }
   ValidationCode = (**(code **)(**(long long **)(RegisterSourceIndex + 0x50) + 0xa8)                    (*(long long **)(RegisterSourceIndex + 0x50),DataStorageValue,
                      *(uint16_t *)(*(long long *)(RegisterGeneral14 + 0x28) + 0x32c),
@@ -196753,7 +196753,7 @@ uint64_t * FUN_1801754b0(uint64_t *SystemContextPointer
 uint64_t *
 FUN_180175ee0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
-  *SystemContextPointer = &UNK_180a095f0;
+  *SystemContextPointer = &SystemContextBufferPrimary;
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,8,Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
   }
@@ -196765,7 +196765,7 @@ FUN_180175ee0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
 uint64_t * FUN_180175f20(uint64_t *SystemContextPointer,uint Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   FUN_180179f00(SystemContextPointer + 1,SystemContextPointer[3],Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
-  *SystemContextPointer = &UNK_180a09578;
+  *SystemContextPointer = &SystemContextBufferSecondary;
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,0x40);
   }
@@ -199248,7 +199248,7 @@ LAB_180179d1f:
 
 uint64_t * FUN_180179ec0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize
 {
-  *SystemContextPointer = &UNK_180a09578;
+  *SystemContextPointer = &SystemContextBufferSecondary;
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,8);
   }
@@ -199305,7 +199305,7 @@ uint64_t * FUN_180179ec0(uint64_t *SystemContextPointer,unsigned long long Utf8B
 79ff0(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_180179ff0(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   FUN_180179f00(SystemContextPointer + 1,SystemContextPointer[3],Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
-  *SystemContextPointer = &UNK_180a09578;
+  *SystemContextPointer = &SystemContextBufferSecondary;
   return;
 }
 
@@ -199419,7 +199419,7 @@ uint64_t * FUN_18017a0f0(uint64_t *SystemContextPointer,unsigned long long Utf8B
 
 uint64_t * FUN_18017a160(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize
 {
-  *SystemContextPointer = &UNK_180a095f0;
+  *SystemContextPointer = &SystemContextBufferPrimary;
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,8);
   }
@@ -199431,7 +199431,7 @@ uint64_t * FUN_18017a160(uint64_t *SystemContextPointer,unsigned long long Utf8B
 
 7a1a0(uint64_t *SystemContextPointervoid FUN_18017a1a0(uint64_t *SystemContextPointer
 {
-  *SystemContextPointer = &UNK_180a095f0;
+  *SystemContextPointer = &SystemContextBufferPrimary;
   return;
 }
 
