@@ -23,12 +23,12 @@
 #define ProcessSystemResourceInitialization HandleSystemResourceInitializationAndConfiguration
 
 #define ProcessSystemContextManagement HandleSystemContextManagementAndMaintenance
-#define ProcessUtf8ToUtf16Conversion FUN_18013a1b0
-#define GetMemoryAddressMask FUN_1801358c0
-#define AllocateValidationMemory FUN_180136a10
-#define ProcessSystemValidation FUN_180122160
-#define ProcessStringConversion FUN_180136f60
-#define InitializeStringEncodingBuffer FUN_180120d00
+#define ProcessUtf8ToUtf16Conversion ConvertUtf8StringToUtf16
+#define GetMemoryAddressMask CalculateMemoryAddressMask
+#define AllocateValidationMemory AllocateMemoryForValidation
+#define ProcessSystemValidation ExecuteSystemValidationProcess
+#define ProcessStringConversion ConvertStringEncoding
+#define InitializeStringEncodingBuffer SetupStringEncodingBuffer
 
 
 /**
@@ -102,7 +102,7 @@
  * 
  * @note 原始函数名：FUN_18013e9f0
  */
-#define ProcessSystemSpecialData FUN_18013e9f0
+#define ProcessSystemSpecialData HandleSpecialDataTypeProcessing
 
 /**
  * @brief 处理系统浮点数计算
@@ -111,7 +111,7 @@
  * 
  * @note 原始函数名：FUN_18010e5a0
  */
-#define ProcessSystemFloatCalculation FUN_18010e5a0
+#define ProcessSystemFloatCalculation ExecuteFloatingPointCalculation
 
 /**
  * @brief 处理系统数据验证
@@ -120,7 +120,7 @@
  * 
  * @note 原始函数名：FUN_180122890
  */
-#define ProcessSystemDataValidation FUN_180122890
+#define ProcessSystemDataValidation ExecuteSystemDataValidation
 
 /**
  * @brief 清理系统事件处理
@@ -125603,7 +125603,7 @@ void ProcessSystemStatusBuffer(void)
 
 
 
-786d(voidvoid FUN_18012786d(void
+void ProcessSystemMemoryCleanupAndValidation(void)
 {
   int *ReferenceCountPointer;
   unsigned long long MemoryAllocationIndex;
@@ -125611,20 +125611,20 @@ void ProcessSystemStatusBuffer(void)
   uint MemoryAddressMask;
   int RemainingSpace;
   int ValidationResult;
-  int *pMutexLockResult;
+  int *MutexLockResult;
   uint64_t ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
   uint32_t *StatusBuffer;
   unsigned long long *SystemStatusBuffer;
   int IntegerValue2;
-  unsigned long long QuaternaryReturnCode;
-  long long CharacterTablePointer4;
-  unsigned long long Utf16CharacterCode5;
+  unsigned long long LoopCounter;
+  long long CharacterTablePointer;
+  unsigned long long Utf16CharacterCode;
   long long DataNodeIndex;
   unsigned long long PrimaryReturnCode;
   unsigned long long UnicodeCharacterCode;
-  long long CharacterTablePointer8;
-  unsigned long long uStackX_20;
+  long long TableEntryCount;
+  unsigned long long StackVariable;
   
   ValidationResult = *(int *)(DataNodeIndex + 0x1a90);
   if (*(int *)(DataNodeIndex + 0x1a94) != ValidationResult) {
