@@ -181535,7 +181535,18 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
 
 
 
-4e1ad(voidvoid FUN_18014e1ad(void
+/**
+ * @brief 初始化系统数据节点
+ * 
+ * 该函数负责初始化系统数据节点，分配内存空间并设置初始状态。
+ * 主要功能包括：
+ * - 为系统数据节点分配内存
+ * - 设置节点初始状态
+ * - 处理系统上下文更新
+ * 
+ * @note 原始函数名：FUN_18014e1ad
+ */
+void InitializeSystemDataNode(void)
 {
   long long PrimaryDataSize;
   long long *SystemContext;
@@ -181567,7 +181578,19 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
 
 
 
-4e20d(long long CharacterCodevoid FUN_18014e20d(long long CharacterCode
+/**
+ * @brief 处理字符代码数据结构
+ * 
+ * 该函数负责处理字符代码相关的数据结构操作，包括：
+ * - 验证字符代码的有效性
+ * - 管理字符数据缓冲区
+ * - 处理系统上下文更新
+ * 
+ * @param CharacterCode 字符代码参数
+ * 
+ * @note 原始函数名：FUN_18014e20d
+ */
+void ProcessCharacterCodeDataStructure(long long CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -279001,7 +279024,7 @@ long long * FUN_18022f240(uint64_t *CharacterCode,unsigned long long SystemBuffe
 
 
 
-2f2e0(long long *CharacterCode,long long *CharacterCodeSize,uint32_t Utf8SourcePointervoid InitializeSystemFlag(long long *CharacterCode,long long *CharacterCodeSize,uint32_t Utf8SourcePointer
+void InitializeSystemFlag(long long *CharacterCode,long long *CharacterCodeSize,uint32_t Utf8SourcePointer
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
@@ -279034,9 +279057,9 @@ long long * FUN_18022f240(uint64_t *CharacterCode,unsigned long long SystemBuffe
 
 
 
-2f390(uint64_t *CharacterCodevoid CleanupSystemCharacterData(uint64_t *CharacterCode
+void CleanupSystemCharacterData(uint64_t *CharacterCode
 {
-  long long *CharacterCode;
+  long long *SystemDataPointer;
   
   if (CharacterCode[1] != 0) {
     if (*(char *)((long long)CharacterCode + 0x32) != '\0') {
@@ -279064,7 +279087,7 @@ long long * FUN_18022f240(uint64_t *CharacterCode,unsigned long long SystemBuffe
 
 
 
-2f410(long long *CharacterCodevoid FinalizeSystemFlag(long long *CharacterCode
+void FinalizeSystemFlag(long long *CharacterCode
 {
   if (*CharacterCode != 0) {
     CleanupSystemCharacterData();
@@ -279085,7 +279108,7 @@ long long * FUN_18022f240(uint64_t *CharacterCode,unsigned long long SystemBuffe
 
 
 
-2f490(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_18022f490(uint64_t CharacterCode,long long SystemBufferSize
+void ProcessSystemMatrixTransformation(uint64_t CharacterCode,long long SystemBufferSize
 {
   float *pSystemContextPrimaryFloat;
   char SystemCheckResult;
