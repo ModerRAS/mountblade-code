@@ -38448,10 +38448,10 @@ void ProcessUIRendererData6(longlong uiContext,longlong dataSource,undefined1 (*
   afunctionResult8 = vpacksswb_avx(*param_6,*param_6);
   afunctionResult6._16_16_ = afunctionResult8;
   afunctionResult6._0_16_ = afunctionResult8;
-  auVar6 = vpshufb_avx2(afunctionResult6,_DAT_180947060);
-  auVar7 = vpshufb_avx2(afunctionResult6,_DAT_180947080);
-  auVar8 = vpshufb_avx2(afunctionResult6,_DAT_1809470a0);
-  afunctionResult6 = vpshufb_avx2(afunctionResult6,_DAT_1809470c0);
+  auVar6 = vpshufb_avx2(afunctionResult6,UIVectorShuffleMask3);
+  auVar7 = vpshufb_avx2(afunctionResult6,UIVectorShuffleMask4);
+  auVar8 = vpshufb_avx2(afunctionResult6,UIVectorShuffleMask5);
+  afunctionResult6 = vpshufb_avx2(afunctionResult6,UIVectorShuffleMask6);
   if (1 < resultPointer) {
     functionResult5 = (ulonglong)((resultPointer - 2 >> 1) + 1);
     do {
