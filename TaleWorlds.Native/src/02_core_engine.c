@@ -38142,7 +38142,7 @@ void ProcessEngineIOCompletionPort(long long EngineContext{
         SystemUnsignedValueQuaternary = SystemUnsignedValueExtended;
         BufferOffset = StackProcessingSecondaryValue;
         SystemUnsignedValueQuinary = SystemUnsignedValueTertiary;
-        MemoryBoundaryPointer = (long long *)ProcessMemoryBoundaryOperation(CalculatedCodePoint,&StackProcessingUnsignedValue60);
+        MemoryBoundaryPointer = (long long *)ProcessMemoryBoundaryOperation(CalculatedCodePoint,&StackProcessingPrimaryValue);
         if (MemoryBoundaryPointer != (long long *)0x0) {
           (**(code **)(*MemoryBoundaryPointer + 0x28))(MemoryBoundaryPointer);
         }
@@ -40273,11 +40273,11 @@ void ProcessDataStructureWithSemaphore(uint64_t CharacterCode,uint64_t Utf8Buffe
     StackProcessingVariable38 = 0;
     SystemKeyPointer = &ThreadLocalStorageTemplate;
   }
-  StackProcessingVariable70 = &SystemNullTemplate;
+  StackProcessingValue = &SystemNullTemplate;
   SystemTimeout = 0;
   EnginePointerBuffer = NULL;
-  StackProcessingVariable60 = 0;
-  ProcessSystemContextConfiguration(&StackProcessingVariable70,&SystemMemoryBufferContextData,Utf8BufferSize);
+  StackProcessingSecondaryValue = 0;
+  ProcessSystemContextConfiguration(&StackProcessingValue,&SystemMemoryBufferContextData,Utf8BufferSize);
   ConfigureSystemMemory(SystemConfigHandle,5,0xffffffff00000000,&SystemMemoryBufferPrimaryData);
   SecondaryMemoryPointer = &CoreEngineDataTemplate;
   if (EnginePointerBuffer != NULL) {
@@ -40305,7 +40305,7 @@ void ProcessDataStructureWithSemaphore(uint64_t CharacterCode,uint64_t Utf8Buffe
     StopEngineSystem();
   }
   else {
-    BufferOffset = GetBufferOffset(&StackProcessingVariable70);
+    BufferOffset = GetBufferOffset(&StackProcessingValue);
     ProcessSystemTimeout(BufferOffset);
   }
   ProcessGraphicsConfiguration(&GraphicsConfigTemplate,1);
@@ -40960,13 +40960,13 @@ void ProcessDataStructureWithSource(uint64_t CharacterCode,long long Utf8BufferS
   void *pSystemOperation90;
   uint8_t *SystemEventPointer;
   uint CalculationFunctionAddress;
-  unsigned long long StackProcessingUnsignedValue78;
-  void *StackProcessingVariableBuffer;
+  unsigned long long StackProcessingExtendedValue;
+  void *StackProcessingBuffer;
   void *StackPointer;
-  uint32_t StackProcessingUnsignedValue60;
+  uint32_t StackProcessingValue;
   uint64_t BufferOffset;
   void *SystemValidationPointer;
-  long long CoreEngineSignedValue48;
+  long long CoreEngineSignedValue;
   uint32_t FunctionAddress;
   
   IntegerValue = WaitForSingleObject(SemaphoreHandle,0);
@@ -40974,14 +40974,14 @@ void ProcessDataStructureWithSource(uint64_t CharacterCode,long long Utf8BufferS
     return;
   }
   TemporaryBuffer = NULL;
-  StackProcessingVariableBuffer = &SystemNullTemplate;
+  StackProcessingBuffer = &SystemNullTemplate;
   BufferOffset = 0;
   EnginePointerBuffer = NULL;
-  StackProcessingUnsignedValue60 = 0;
+  StackProcessingValue = 0;
   IntegerValue = IsDebuggerPresent();
   if (IntegerValue == 0) {
     SystemDataStructureRegistry = AllocateSystemMemory(&SystemValidationPointer,0);
-    StackProcessingUnsignedValue60 = *(uint32_t *)(SystemDataStructureRegistry + 0x10);
+    StackProcessingValue = *(uint32_t *)(SystemDataStructureRegistry + 0x10);
     TemporaryBuffer = *(void **)(SystemDataStructureRegistry + 8);
     BufferOffset = *(void *)(SystemDataStructureRegistry + 0x18);
     *(uint32_t *)(SystemDataStructureRegistry + 0x10) = 0;
@@ -167964,7 +167964,16 @@ void ExecuteUtf8SystemInitialization(void)
 
 
 
-3baf0(long long CharacterCodevoid FUN_18013baf0(long long CharacterCode
+/**
+ * @brief 处理UTF-8缓冲区数据扩展
+ * 
+ * 处理UTF-8字符编码缓冲区的数据扩展操作，包括内存地址验证、系统上下文管理
+ * 和字符编码转换。该函数负责复杂的内存块管理和字符数据处理。
+ * 
+ * @param CharacterCode 字符代码，包含字符的编码信息和缓冲区数据
+ * @return void 无返回值
+ */
+void ProcessUtf8BufferDataEx(long long CharacterCode
 {
   char *StringBuffer;
   void *SystemContext;
