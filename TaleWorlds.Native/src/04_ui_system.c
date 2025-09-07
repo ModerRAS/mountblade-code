@@ -1501,6 +1501,9 @@ void* UIGestureCoordinates;
 // 原始函数名：FUN_18069ccd0 - UI系统状态数据解码函数
 #define DecodeUIStateData FUN_18069ccd0
 
+// 原始函数名：FUN_18069d8a0 - UI系统数据初始化函数
+#define InitializeUIData FUN_18069d8a0
+
 // 原始函数名：FUN_18069bc50 - UI系统缓冲区数据复制函数
 #define CopyUIBufferData FUN_18069bc50
 
@@ -8816,24 +8819,24 @@ LAB_180656abd:
               memoryAllocationPtr = (longlong *)CreateUIContext(UIContextManager,memoryBlockAddress * 8,(undefined1)stackValue60);
             }
             else {
-              allocatedMemory6 = allocatedMemory6 * 2;
-              if (allocatedMemory6 != 0) goto LAB_180656abd;
-              plVar7 = (longlong *)0x0;
+              memoryBlockAddress = memoryBlockAddress * 2;
+              if (memoryBlockAddress != 0) goto LAB_180656abd;
+              memoryAllocationPtr = (longlong *)0x0;
             }
-            if (plStack_78 != plStackX_8) {
+            if (stackPointer78 != stackFramePointer) {
                     // WARNING: Subroutine does not return
-              memmove(plVar7,plStack_78,componentIndex3);
+              memmove(memoryAllocationPtr,stackPointer78,componentIndex);
             }
-            *plVar7 = contextData;
-            colorBufferPointer1 = plVar7 + 1;
-            plStackX_8 = colorBufferPointer1;
-            if (plStack_78 != (longlong *)0x0) {
+            *memoryAllocationPtr = contextData;
+            colorBufferPtr = memoryAllocationPtr + 1;
+            stackFramePointer = colorBufferPtr;
+            if (stackPointer78 != (longlong *)0x0) {
                     // WARNING: Subroutine does not return
               DestroyUIComponent();
             }
-            pallocatedMemory5 = plVar7 + allocatedMemory6;
-            plStack_78 = plVar7;
-            plStack_70 = colorBufferPointer1;
+            allocatedMemoryPtr = memoryAllocationPtr + memoryBlockAddress;
+            stackPointer78 = memoryAllocationPtr;
+            stackPointer70 = colorBufferPtr;
             plStack_68 = pallocatedMemory5;
           }
         }
@@ -66182,7 +66185,7 @@ void RenderUIButtonInternal(undefined8 uiContext,longlong dataSource,undefined8 
     layoutOffset = uiContext + 0x33ad;
   }
   else {
-    processResult = FUN_18069ccd0(layoutConfig,uiContext + 0x319d,
+    processResult = DecodeUIStateData(layoutConfig,uiContext + 0x319d,
                           (int)*(char *)(layoutData2 + 8) + (int)*(char *)(layoutData1 + 8),0,dataSource + 0x480);
     layoutOffset = uiContext + 0x3095;
     *(bool *)(layoutData2 + 8) = 0 < processResult;
