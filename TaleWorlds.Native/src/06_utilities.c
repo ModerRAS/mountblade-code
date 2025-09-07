@@ -7654,7 +7654,7 @@ uint32_t UtilitySyncDataOffset;
 uint32_t UtilitySyncDataFlags;
 uint32_t UtilitySyncDataVersion;
 
-// 函数: uint8_t UtilityEncodeData;
+// 函数: uint8_t UtilityEncodeData(void);
 // 
 // 编码工具数据
 // 对工具数据进行编码处理，支持多种编码格式
@@ -7664,14 +7664,14 @@ uint32_t UtilitySyncDataVersion;
 // 
 // 返回值:
 //   uint8_t - 编码结果状态
-uint32_t UtilityEncodeData;
+uint8_t UtilityEncodeData(void);
 uint8_t* UtilityEncodingBuffer;
 uint8_t* UtilityEncodeInputData;
 uint8_t* UtilityEncodeOutputBuffer;
 uint32_t UtilityEncodeKey;
 uint32_t UtilityEncodeResult;
 
-// 函数: uint8_t UtilityDecodeData;
+// 函数: uint8_t UtilityDecodeData(void);
 // 
 // 解码工具数据
 // 对已编码的工具数据进行解码处理
@@ -7681,7 +7681,7 @@ uint32_t UtilityEncodeResult;
 // 
 // 返回值:
 //   uint8_t - 解码结果状态
-uint32_t UtilityDecodeData;
+uint8_t UtilityDecodeData(void);
 uint8_t* UtilityDecodeBuffer;
 uint8_t* UtilityDecodeInputData;
 uint8_t* UtilityDecodeOutputBuffer;
@@ -7689,7 +7689,7 @@ uint32_t UtilityDecodeKey;
 uint32_t UtilityDecodeResult;
 uint32_t UtilityDecodeStatus;
 
-// 函数: uint8_t UtilitySerializeData;
+// 函数: uint8_t UtilitySerializeData(void);
 // 
 // 序列化工具数据
 // 将工具数据序列化为可存储或传输的格式
@@ -7699,7 +7699,7 @@ uint32_t UtilityDecodeStatus;
 // 
 // 返回值:
 //   uint8_t - 序列化结果状态
-uint32_t UtilitySerializeData;
+uint8_t UtilitySerializeData(void);
 uint8_t* SerializationDataBuffer;
 uint32_t SerializationDataSize;
 uint32_t SerializationDataFlags;

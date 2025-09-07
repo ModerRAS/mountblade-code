@@ -46606,32 +46606,48 @@ longlong ProcessUIDataValidationOperation(longlong uiContext,int dataSource,ulon
 
 
 
-longlong FUN_18068f9a0(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
-                      longlong resultPointer,int param_6,uint *param_7)
+/**
+ * @brief 处理UI数据操作（并行模式）
+ * 
+ * 该函数负责处理UI系统中的数据操作，使用并行处理模式
+ * 执行多个数据源的并行处理，并汇总处理结果
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 输出参数7，用于存储处理结果
+ * @return 处理结果状态码
+ * @note 原始函数名: FUN_18068f9a0
+ */
+longlong ProcessUIDataOperationParallel(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
+                                      longlong resultPointer,int param_6,uint *param_7)
 
 {
-  int operationResult;
-  int validationResult;
-  int iVar3;
-  int iVar4;
-  longlong lVar5;
-  longlong lVar6;
-  int aiStackX_10 [2];
+  int primaryOperationResult;
+  int secondaryValidationResult;
+  int tertiaryOperationResult;
+  int quaternaryOperationResult;
+  longlong operationParameter;
+  longlong dataSourceValue;
+  int stackBuffer [2];
   
-  lVar5 = (longlong)param_6;
-  lVar6 = (longlong)dataSource;
-  operationResult = func_0x000180024290(uiContext,lVar6,targetBuffer,bufferSize,resultPointer,lVar5,0x40,&param_6,0,0);
-  validationResult = func_0x000180024290(uiContext + 0x10,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x10,lVar5,0x40,aiStackX_10,0,0);
-  param_6 = param_6 + aiStackX_10[0];
-  iVar3 = func_0x000180024290(uiContext + 0x20,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x20,lVar5,0x40,aiStackX_10,0,0);
-  param_6 = param_6 + aiStackX_10[0];
-  iVar4 = func_0x000180024290(uiContext + 0x30,lVar6,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
-                              resultPointer + 0x30,lVar5,0x40,aiStackX_10,0,0);
-  *param_7 = param_6 + aiStackX_10[0];
-  lVar5 = (longlong)(operationResult + validationResult + iVar3 + iVar4);
-  return (ulonglong)(uint)(param_6 + aiStackX_10[0]) - (lVar5 * lVar5 >> 0xc);
+  operationParameter = (longlong)param_6;
+  dataSourceValue = (longlong)dataSource;
+  primaryOperationResult = func_0x000180024290(uiContext,dataSourceValue,targetBuffer,bufferSize,resultPointer,operationParameter,0x40,&param_6,0,0);
+  secondaryValidationResult = func_0x000180024290(uiContext + 0x10,dataSourceValue,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+                              resultPointer + 0x10,operationParameter,0x40,stackBuffer,0,0);
+  param_6 = param_6 + stackBuffer[0];
+  tertiaryOperationResult = func_0x000180024290(uiContext + 0x20,dataSourceValue,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+                              resultPointer + 0x20,operationParameter,0x40,stackBuffer,0,0);
+  param_6 = param_6 + stackBuffer[0];
+  quaternaryOperationResult = func_0x000180024290(uiContext + 0x30,dataSourceValue,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
+                              resultPointer + 0x30,operationParameter,0x40,stackBuffer,0,0);
+  *param_7 = param_6 + stackBuffer[0];
+  operationParameter = (longlong)(primaryOperationResult + secondaryValidationResult + tertiaryOperationResult + quaternaryOperationResult);
+  return (ulonglong)(uint)(param_6 + stackBuffer[0]) - (operationParameter * operationParameter >> 0xc);
 }
 
 
