@@ -100159,11 +100159,11 @@ ProcessSystemFloatingPointDataOperation_SkipDataConversion:
     SystemChecksumValue = AdditionalParameter3;
   }
   if (Utf16EndPointer == (double *)0x0) {
-    CoreEngineValueA8 = 0;
+    EngineProcessingValueB = 0;
     MemoryOffsetValue = 0;
-    CoreEngineValueC0 = 0;
+    EngineProcessingValueA = 0;
     SystemFlagH = CONCAT44(SystemFlagH.HighPart,SystemChecksumValue) | 0x10;
-    OperationStatus = ValidateSystemBufferAndProcessData(CharacterCode,SystemOperationBuffer,0x40,&CoreEngineValueA8);
+    OperationStatus = ValidateSystemBufferAndProcessData(CharacterCode,SystemOperationBuffer,0x40,&EngineProcessingValueB);
     if (OperationStatus != '\0') {
       SystemFlagH = AdditionalParameter2;
       CopyAndProcessSystemData(SystemOperationBuffer,*(void *)(MemoryBlockIndex + 0x1ec8),Utf8BufferSize,Utf8SourcePointer);
@@ -100181,9 +100181,9 @@ ProcessSystemFloatingPointDataOperation_SkipDataConversion:
       ProcessedFloatValue8 = 1.0;
     }
     ProcessMemoryCleanup(ProcessedFloatValue8);
-    CoreEngineValueA8 = 0;
+    EngineProcessingValueB = 0;
     MemoryOffsetValue = 0;
-    CoreEngineValueC0 = 0;
+    EngineProcessingValueA = 0;
     SystemFlagH = CONCAT44(SystemFlagH.HighPart,SystemChecksumValue) | 0x10;
     OperationStatus = ValidateSystemBufferAndProcessData(&CoreEngineDataTemplate,SystemOperationBuffer,0x40,&CoreEngineValueA8);
     if (OperationStatus != '\0') {
