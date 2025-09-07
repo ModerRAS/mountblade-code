@@ -160603,7 +160603,7 @@ void ProcessCharacterEncodingEx(long long CharacterCode, uint32_t *Utf8InputBuff
   
   BufferStatus = *(long long *)(Utf8BufferSize + 2);
   if ((BufferStatus == 0) || ((*(byte *)(Utf8BufferSize + 0x28) & 0x20) != 0)) {
-    UnicodeCodePoint = FUN_1801358c0(CharacterCode);
+    UnicodeCodePoint = GetUtf8BufferSize(CharacterCode);
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
     }
@@ -160753,7 +160753,20 @@ uint32_t * InitializeUtf8ProcessingBuffer(uint32_t *Utf8InputBuffer,uint32_t Utf
 
 
 
-36b10(uint32_t *Utf8InputBuffer,long long Utf8BufferSize,char Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180136b10(uint32_t *Utf8InputBuffer,long long Utf8BufferSize,char Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理内存分配扩展
+ * 
+ * 该函数负责扩展处理内存分配操作，包括UTF-8输入缓冲区管理、
+ * 内存地址掩码计算和字符编码处理
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180136b10
+ */
+void ProcessMemoryAllocationEx(uint32_t *Utf8InputBuffer, long long Utf8BufferSize, char Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   int LockResult;
   int CharacterByteCount;
@@ -165983,7 +165996,7 @@ LAB_18013b1d6:
   else {
     shouldReturnSource = true;
     if (*(int *)(CharacterCode + 0x83) == 0) {
-      ProcessingStatusFlag = FUN_1801358c0(SystemConfigurationHandle);
+      ProcessingStatusFlag = GetUtf8BufferSize(SystemConfigurationHandle);
       *(uint32_t *)(CharacterCode + 0x83) = ProcessingStatusFlag;
     }
   }
