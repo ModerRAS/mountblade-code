@@ -28569,7 +28569,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
 
 
 /**
- * @brief 系统验证和初始化函数A0
+ * @brief 系统验证和初始化函数
  * 
  * 执行系统验证操作，包括参数检查、内存分配和初始化。
  * 这是一个系统级的验证函数，确保系统组件的正确性。
@@ -28577,7 +28577,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
  * @param void 无参数
  * @return void 无返回值
  */
-void ValidateAndInitializeSystemA0(void)
+void ValidateAndInitializeSystemComponents(void)
 
 {
   int64_t exceptionHandlerContext;
