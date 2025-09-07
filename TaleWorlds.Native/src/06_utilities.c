@@ -174,6 +174,7 @@
 #define ExceptionStatusOffset 0x58                // 异常状态偏移量
 #define ExceptionDataPtrOffset 0x50               // 异常数据指针偏移量
 #define ExceptionHandlerCallbackOffset30 0x30    // 异常处理回调偏移量30
+#define ExceptionHandlerContextOffset58 0x58     // 异常处理上下文偏移量58
 
 // 系统上下文相关偏移量常量
 #define SystemContextDataOffset 0x18              // 系统上下文数据偏移量
