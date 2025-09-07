@@ -52396,16 +52396,16 @@ SystemDataRelease:
                 BufferStatus1 = *MemoryBlockIndex9;
                 StackProcessingVariable1B8.HighPart = *(uint32_t *)(BufferStatus3 + 8 + BufferStatus1);
                 StackProcessingVariable1B8.LowPart = *(uint32_t *)(BufferStatus3 + 4 + BufferStatus1);
-                uStack_1bc = *(uint32_t *)(BufferStatus3 + BufferStatus1);
-                SystemUnsignedValue1A0 = (int *)CONCAT44((uint32_t)StackProcessingVariable1B8,uStack_1bc);
+                SystemStackValue1bc = *(uint32_t *)(BufferStatus3 + BufferStatus1);
+                SystemUnsignedValue1A0 = (int *)CONCAT44((uint32_t)StackProcessingVariable1B8,SystemStackValue1bc);
                 StackProcessingVariable = (int *)CONCAT44(0x7f7fffff,StackProcessingVariable1B8.HighPart);
                 piStack_1b0 = (int *)CONCAT44(piStack_1b0.HighPart,0x7f7fffff);
                 MemoryAddressMask1 = (unsigned long long)*systemEventTemplatePointer2;
                 paUnicodeCodePoint7 = *(uint8_t (**) [16])(piStack_218 + MemoryAddressMask1 * 8 + 2);
-                uStack_1c0 = Utf16Char9;
+                SystemStackValue1c0 = Utf16Char9;
                 if (paUnicodeCodePoint7 < *(uint8_t (**) [16])(piStack_218 + MemoryAddressMask1 * 8 + 4)) {
                   *(uint8_t **)(piStack_218 + MemoryAddressMask1 * 8 + 2) = paUnicodeCodePoint7[1] + 4;
-                  aProcessingStatusFlag.HighPart = uStack_1bc;
+                  aProcessingStatusFlag.HighPart = SystemStackValue1bc;
                   aProcessingStatusFlag.LowPart = Utf16Char9;
                   aProcessingStatusFlag.ValueField = (uint32_t)StackProcessingVariable1B8;
                   aProcessingStatusFlag.High32Part = StackProcessingVariable1B8.HighPart;
@@ -52432,8 +52432,8 @@ UnicodeBufferAllocation:
                     // WARNING: Subroutine does not return
                     memmove(paMemoryAddressMask2,paUnicodeCodePoint5,(long long)paUnicodeCodePoint7 - (long long)paUnicodeCodePoint5);
                   }
-                  aMemoryAddressMask7.HighPart = uStack_1bc;
-                  aMemoryAddressMask7.LowPart = uStack_1c0;
+                  aMemoryAddressMask7.HighPart = SystemStackValue1bc;
+                  aMemoryAddressMask7.LowPart = SystemStackValue1c0;
                   aMemoryAddressMask7._8_4_ = (uint32_t)StackProcessingVariable1B8;
                   aMemoryAddressMask7.High32Part = StackProcessingVariable1B8.HighPart;
                   *paMemoryAddressMask2 = aMemoryAddressMask7;
@@ -52710,8 +52710,8 @@ LAB_180079fb3:
       }
       do {
         ReferenceCountPointer3 = (int *)0x0;
-        uStack_1c0 = 0;
-        uStack_1bc = 0;
+        SystemStackValue1c0 = 0;
+        SystemStackValue1bc = 0;
         StackProcessingVariable1B8 = (int *)0x0;
         piStack_1b0 = (int *)0x0;
         SystemValue1a8 = 3;
@@ -52756,8 +52756,8 @@ ReferenceCountBufferAllocation:
                     // WARNING: Subroutine does not return
                   CoreEngineFreeSystemMemory(pCharacterByteCount5);
                 }
-                uStack_1c0 = (uint)ReferenceCountPointer6;
-                uStack_1bc = (uint32_t)((unsigned long long)ReferenceCountPointer6 >> 0x20);
+                SystemStackValue1c0 = (uint)ReferenceCountPointer6;
+                SystemStackValue1bc = (uint32_t)((unsigned long long)ReferenceCountPointer6 >> 0x20);
                 ReferenceCountPointer3 = ReferenceCountPointer6 + BufferStatus1;
                 piStack_1b0 = ReferenceCountPointer3;
                 pCharacterByteCount6 = ReferenceCountPointer6;
@@ -52817,8 +52817,8 @@ ReferenceCountAllocation:
           } while ((unsigned long long)(long long)(int)UnicodeCodePoint3 < SystemUnsignedValue180);
         }
         MemoryBlockIndex9 = plStack_168;
-        uStack_1c0 = (uint)piStack_218;
-        uStack_1bc = (uint32_t)((unsigned long long)piStack_218 >> 0x20);
+        SystemStackValue1c0 = (uint)piStack_218;
+        SystemStackValue1bc = (uint32_t)((unsigned long long)piStack_218 >> 0x20);
         StackProcessingVariable1B8.LowPart = SUB84(piStack_1f8,0);
         StackProcessingVariable1B8.HighPart = (uint32_t)((unsigned long long)piStack_1f8 >> 0x20);
         piStack_1b0 = pCoreEngineIntegerValue208;
