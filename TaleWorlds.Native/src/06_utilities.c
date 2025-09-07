@@ -31647,7 +31647,7 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   uint validationFlag;
   uint64_t systemFlags;
   int contextStatus;
-  int64_t threadContext;
+  int64_t ThreadContext;
   int systemRegisterValue;
   int errorCounter;
   float processingValue;
@@ -113185,7 +113185,7 @@ void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,Dat
 void ResetThreadLocalStorage(void)
 
 {
-  int64_t threadContext;
+  int64_t ThreadContext;
   
   ThreadContext = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
   *(DataBuffer *)(ThreadContext + 0x18) = &TemporaryExceptionHandler;
