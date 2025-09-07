@@ -76702,7 +76702,20 @@ void ConfigureTemporaryExceptionHandlerAndReset(DataBuffer operationBase,int64_t
 
 
 
-void Unwind_180909500(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置临时异常处理器并重置状态（偏移量0x298）
+ * 
+ * 该函数负责配置临时异常处理器，重置相关状态标志，
+ * 并最终设置默认异常处理器B。这是一个标准的异常处理器配置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，用于配置异常处理器
+ * 
+ * @note 原始函数名：Unwind_180909500
+ * @note 该函数用于系统异常处理机制的配置和状态重置
+ * @warning 如果异常处理器状态异常，会调用TerminateSystemE0终止系统
+ */
+void ConfigureTemporaryExceptionHandlerAndResetStatus(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x298) = &TemporaryExceptionHandler;
