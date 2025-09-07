@@ -4090,6 +4090,18 @@
 // 功能：终止系统执行并清理资源
 #define TerminateSystemExecution FUN_180080060
 
+// 原始函数名：FUN_1800594b0 - 系统数据验证函数
+// 功能：验证系统数据并执行相应操作
+#define ValidateSystemDataAndExecute FUN_1800594b0
+
+// 原始函数名：FUN_1800593f0 - 系统数据缓冲区验证函数
+// 功能：验证系统数据缓冲区并处理
+#define ValidateSystemDataBufferAndProcess FUN_1800593f0
+
+// 原始函数名：FUN_180058710 - 系统资源清理函数
+// 功能：清理系统资源并释放内存
+#define CleanupSystemResourcesAndMemory FUN_180058710
+
 // Unwind函数语义化宏定义
 // 原始函数名：Unwind_180902010 - 异常处理展开函数010
 // 功能：处理标志位0x01的异常展开，清理相关资源
