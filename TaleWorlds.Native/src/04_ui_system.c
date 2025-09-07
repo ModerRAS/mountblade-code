@@ -8166,8 +8166,8 @@ void HandleUIEvent(undefined8 uiContext,undefined8 dataSource,undefined8 *target
   undefined8 functionResult5;
   undefined8 functionResult6;
   undefined8 functionResult7;
-  longlong in_RAX;
-  longlong in_R10;
+  longlong baseRegister;
+  longlong offsetRegister;
   
   pfunctionResult = (undefined8 *)(in_RAX + 0x60 + in_R10);
   uVar3 = *pfunctionResult;
