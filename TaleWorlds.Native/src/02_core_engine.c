@@ -2076,6 +2076,13 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 
 // 原始函数名：FUN_18011a9d0 - 系统参数设置函数
 #define SetSystemParameters FUN_18011a9d0
+
+// 系统数据处理函数组
+// 原始函数名：FUN_18012e1b0 - 系统数据表处理函数
+#define ProcessSystemDataTable FUN_18012e1b0
+
+// 原始函数名：FUN_18011fcd0 - 系统浮点数处理函数
+#define ProcessSystemFloatData FUN_18011fcd0
 /**
  * @brief 处理系统数据缓冲区并复制数据
  * 
@@ -10000,13 +10007,15 @@ void NetworkStatusManagerInitializer(void
 
 
 
- void CoreEngineInitializeParticleSystem(void/**
+ void CoreEngineInitializeParticleSystem(void);
+
+/**
  * @brief 初始化系统连接管理器
  * 
  * 该函数负责初始化系统连接管理器，设置连接池和连接处理机制。
  * 用于管理引擎中的各种连接资源。
  */
-void CoreEngineInitializeConnectionManager(void
+void CoreEngineInitializeConnectionManager(void)
 {
   char StatusBuffer;
   EngineContext *SystemContext;
@@ -10053,13 +10062,15 @@ void CoreEngineInitializeConnectionManager(void
 
 
 
- void CoreEngineInitializeUISystem(void/**
+ void CoreEngineInitializeUISystem(void);
+
+/**
  * @brief 初始化系统缓存管理器
  * 
  * 该函数负责初始化系统缓存管理器，设置缓存池和缓存处理机制。
  * 用于管理引擎中的各种缓存资源。
  */
-void CoreEngineInitializeCacheManager(void
+void CoreEngineInitializeCacheManager(void)
 {
   char StringBuffer;
   void *SystemContext;
@@ -83686,8 +83697,8 @@ LAB_180103c39:
       EngineReferenceCounter = EngineReferenceCounter + -1;
       UNLOCK();
     }
-    puStack_8 = &SystemNullTemplate;
-    if (unaff_retaddr != NULL) {
+    StackPointer8 = &SystemNullTemplate;
+    if (ReturnAddress != NULL) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
@@ -128046,7 +128057,7 @@ LAB_18012ac57:
       OperationStatus = CONCAT44(*(float *)((long long)OutputBuffer4 + 0x4c) +
                             *(float *)((long long)OutputBuffer4 + 0x44),
                             *(float *)(OutputBuffer4 + 8) + *(float *)(OutputBuffer4 + 9));
-      FUN_18011fcd0(&fStack_140,OutputBuffer4 + 8,&OperationStatus,pSystemFloatValue + -2);
+      ProcessSystemFloatData(&fStack_140,OutputBuffer4 + 8,&OperationStatus,pSystemFloatValue + -2);
       fStack_1e0 = FloatValue34 * *pSystemFloatValue + fStack_140;
       fStack_1dc = FloatValue34 * pSystemFloatValue[1] + fStack_13c;
       FloatValue37 = fStack_140 - FloatValue36 * *pSystemFloatValue;
@@ -128077,7 +128088,7 @@ LAB_18012b18f:
           fStack_134 = pSystemFloatValue[1] * -FloatValue34;
           fStack_130 = FloatValue36 * *pSystemFloatValue;
           fStack_12c = FloatValue36 * pSystemFloatValue[1];
-          pSystemContextPrimaryFloat6 = (float *)FUN_18011fcd0(&fStack_108,&fStack_130,&fStack_138,pSystemFloatValue + -2);
+          pSystemContextPrimaryFloat6 = (float *)ProcessSystemFloatData(&fStack_108,&fStack_130,&fStack_138,pSystemFloatValue + -2);
           fStack_124 = (*(float *)(SystemContextValue + 0x11c) - *(float *)(SystemContextValue + 0x1b4c)) + pSystemContextPrimaryFloat6[1];
           fStack_128 = (*(float *)(SystemContextValue + 0x118) - *(float *)(SystemContextValue + 0x1b48)) + *pSystemContextPrimaryFloat6;
           pfStack_258 = &fStack_218;
