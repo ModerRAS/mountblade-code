@@ -93510,8 +93510,20 @@ LAB_18072312c:
 
 
 
- void FUN_180723131(undefined8 uiContext,int dataSource,int targetBuffer)
-void FUN_180723131(undefined8 uiContext,int dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI上下文数据缓冲区管理
+ * 
+ * 该函数负责管理UI系统的上下文数据缓冲区，包括：
+ * - 处理上下文数据的状态更新
+ * - 管理数据缓冲区的读写操作
+ * - 执行事件类型代码的处理
+ * - 维护循环计数器和处理状态
+ * 
+ * @param uiContext UI上下文指针，包含系统的状态信息
+ * @param dataSource 数据源参数，控制数据处理的流向
+ * @param targetBuffer 目标缓冲区参数，指定数据处理的目标位置
+ */
+void ProcessUIContextDataBufferManagement(undefined8 uiContext, int dataSource, int targetBuffer)
 
 {
   longlong *pallocatedMemory;

@@ -3084,6 +3084,21 @@ const void* const SystemConfigHandleQuaternary = (void*)0x18021cb40;
  * @note 原始函数名：FUN_18014d6a0
  */
 #define InitializeCharacterCodeProcessingSystem FUN_18014d6a0
+
+/**
+ * @brief 处理字符代码缓冲区转换
+ * 
+ * 该函数负责处理字符代码缓冲区的转换，包括系统缓冲区大小管理、
+ * UTF-8源指针和UTF-16结束指针的处理，以及Unicode码点的转换。
+ *
+ * @param CharacterCode 字符代码指针数组
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18014d790
+ */
+#define ProcessCharacterCodeBufferConversion FUN_18014d790
 const void* const SystemProcessingStatusPrimary = (void*)0x180a09c50;
 const void* const SystemProcessingStatusSecondary = (void*)0x180a09d40;
 const void* const SystemProcessingStatusTertiary = (void*)0x180a20018;
@@ -218976,7 +218991,7 @@ FUN_180189aa0(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8
 
 
 
-uint64_t * FUN_180189b30(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer
+uint64_t * ProcessCharacterCodeTripleData(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer
 {
   uint64_t Utf16Char;
   
