@@ -85,6 +85,10 @@
 #define ExtendedComponentListStartOffset 0x1b8
 #define ExtendedComponentListEndOffset 0x1c0
 
+// 异常处理器位置常量
+#define CriticalExceptionHandlerOffset 0x6f0
+#define TemporaryExceptionHandlerOffset 0x218
+
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
 #define SystemComponentDataOffset 0x38
@@ -75900,25 +75904,49 @@ void InitializeSystemComponentsProcessorD(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_1809094e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到关键位置
+ * 
+ * 该函数将默认异常处理器B设置到数据缓冲区的关键位置(0x6f0)，
+ * 用于处理关键路径的异常情况。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809094e0
+ * @note 这是一个异常处理器配置函数，用于设置关键路径的异常处理回调
+ */
+void SetDefaultExceptionHandlerBToCriticalPosition(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x6f0) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + CriticalExceptionHandlerOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_1809094f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置临时异常处理器并重置操作状态
+ * 
+ * 该函数负责配置临时异常处理器，重置操作状态和内存操作状态，
+ * 最后将默认异常处理器B设置到指定位置。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809094f0
+ * @note 这是一个异常处理器配置函数，用于临时异常处理和状态重置
+ */
+void ConfigureTemporaryExceptionHandlerAndReset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x218) = &TemporaryExceptionHandler;
+  *(DataBuffer *)(dataBuffer + TemporaryExceptionHandlerOffset) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + OperationStatusOffset) != 0) {
       TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + OperationStatusOffset) = 0;
   *(DataWord *)(dataBuffer + MemoryOperationOffset) = 0;
-  *(DataBuffer *)(dataBuffer + 0x218) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + TemporaryExceptionHandlerOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
