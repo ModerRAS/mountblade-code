@@ -174518,59 +174518,59 @@ unsigned long long ProcessSystemStringPathAndMemoryAllocation(long long *Utf8Inp
   StackProcessingUnsignedValue68 = (unsigned long long)StackProcessingUnsignedValue68.HighPart << 0x20;
   pCalculationFunctionAddress = &ThreadLocalStorageTemplate;
   Utf16ConversionContext = (unsigned long long)SystemStackRegisterFlagB0;
-  if (((0 < (int)SystemStackRegisterFlagB0) && (pMemoryOffsetValue[(int)(SystemStackRegisterFlagB0 - 1)] == '/')) &&
-     (pMemoryOffsetValue[(long long)(int)(SystemStackRegisterFlagB0 - 1) + 1] == '\0')) goto LAB_180141f1f;
-  SystemStatusCode = SystemStackRegisterFlagB0 + 1;
-  if (SystemStatusCode != 0) {
-    CalculatedCodePoint = SystemStackRegisterFlagB0 + 2;
-    if (pMemoryOffsetValue == (uint8_t *)0x0) {
-      if ((int)CalculatedCodePoint < 0x10) {
-        CalculatedCodePoint = 0x10;
+  if (((0 < (int)SystemStackRegisterFlagB0) && (PathBufferPointer[(int)(SystemStackRegisterFlagB0 - 1)] == '/')) &&
+     (PathBufferPointer[(long long)(int)(SystemStackRegisterFlagB0 - 1) + 1] == '\0')) goto LAB_180141f1f;
+  PathLength = SystemStackRegisterFlagB0 + 1;
+  if (PathLength != 0) {
+    CharacterCode = SystemStackRegisterFlagB0 + 2;
+    if (PathBufferPointer == (uint8_t *)0x0) {
+      if ((int)CharacterCode < 0x10) {
+        CharacterCode = 0x10;
       }
-      pMemoryOffsetValue = (uint8_t *                   BufferAllocate(MemoryPoolManager,(long long)(int)CalculatedCodePoint,
+      PathBufferPointer = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)(int)CharacterCode,
                                  CONCAT71((uint7)(uint3)(SystemStackRegisterFlagB0 >> 8),0x13));
-      *pMemoryOffsetValue = 0;
+      *PathBufferPointer = 0;
     }
     else {
-      if (CalculatedCodePoint <= MemoryAddressMask) goto LAB_180141f05;
-      pMemoryOffsetValue = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,pMemoryOffsetValue,CalculatedCodePoint,0x10,0x13);
+      if (CharacterCode <= MemoryAllocationSize) goto LAB_180141f05;
+      PathBufferPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,PathBufferPointer,CharacterCode,0x10,0x13);
     }
-    MemoryAllocationIndex = GetMemoryAllocationInfo(pMemoryOffsetValue);
-    Utf16ConversionContext = (unsigned long long)SystemStackRegisterFlagB0;
+    MemoryAllocationIndex = GetMemoryAllocationInfo(PathBufferPointer);
+    PathConversionContext = (unsigned long long)SystemStackRegisterFlagB0;
     CoreEngineValueA8 = CONCAT44(CoreEngineValueA8.HighPart,MemoryAllocationIndex);
   }
 LAB_180141f05:
-  *(uint16_t *)(pMemoryOffsetValue + Utf16ConversionContext) = 0x2f;
-  Utf16ConversionContext = (unsigned long long)SystemStatusCode;
-  SystemStackRegisterFlagB0 = SystemStatusCode;
+  *(uint16_t *)(PathBufferPointer + PathConversionContext) = 0x2f;
+  PathConversionContext = (unsigned long long)PathLength;
+  SystemStackRegisterFlagB0 = PathLength;
 LAB_180141f1f:
-  PrimaryReturnCode = Utf16Char4;
-  ValidationResult = Utf16Char4;
-  if ((int)Utf16ConversionContext != 0) {
+  PrimaryReturnCode = Utf16Char;
+  PathCharacterIndex = Utf16Char;
+  if ((int)PathConversionContext != 0) {
     do {
-      InputStringBuffer = pMemoryOffsetValue[ValidationResult];
-      if ((byte)(InputStringBuffer + 0xbfU) < 0x1a) {
-        pMemoryOffsetValue[ValidationResult] = InputStringBuffer + ' ';
-        Utf16ConversionContext = (unsigned long long)SystemStackRegisterFlagB0;
+      PathCharacter = PathBufferPointer[PathCharacterIndex];
+      if ((byte)(PathCharacter + 0xbfU) < 0x1a) {
+        PathBufferPointer[PathCharacterIndex] = PathCharacter + ' ';
+        PathConversionContext = (unsigned long long)SystemStackRegisterFlagB0;
       }
-      MemoryAddressMask = (int)PrimaryReturnCode + 1;
-      PrimaryReturnCode = (unsigned long long)MemoryAddressMask;
-      ValidationResult = ValidationResult + 1;
-    } while (MemoryAddressMask < (uint)Utf16ConversionContext);
+      MemoryAllocationSize = (int)PrimaryReturnCode + 1;
+      PrimaryReturnCode = (unsigned long long)MemoryAllocationSize;
+      PathCharacterIndex = PathCharacterIndex + 1;
+    } while (MemoryAllocationSize < (uint)PathConversionContext);
   }
   DataStringLength = (int)(Utf8InputBuffer[0x112] - Utf8InputBuffer[0x111] >> 5);
-  Utf16ConversionContext = Utf16Char4;
-  PrimaryReturnCode = Utf16Char4;
+  PathConversionContext = Utf16Char;
+  PrimaryReturnCode = Utf16Char;
   if (0 < DataStringLength) {
     do {
       TemporaryBuffer = (uint8_t *)0x0;
       SystemStringIndex = Utf8InputBuffer[0x111] + PrimaryReturnCode;
       if (*(int *)(SystemStringIndex + 0x10) != 0) {
-        ValidationResult = *(int *)(SystemStringIndex + 0x10) + 1;
-        if (ValidationResult < 0x10) {
-          ValidationResult = 0x10;
+        ProcessingStatus = *(int *)(SystemStringIndex + 0x10) + 1;
+        if (ProcessingStatus < 0x10) {
+          ProcessingStatus = 0x10;
         }
-        TemporaryBuffer = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)ValidationResult,0x13);
+        TemporaryBuffer = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)ProcessingStatus,0x13);
         *TemporaryBuffer = 0;
         if (*(int *)(SystemStringIndex + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -174591,12 +174591,12 @@ LAB_180141f1f:
                     // WARNING: Subroutine does not return
         CoreEngineFreeSystemMemory(TemporaryBuffer);
       }
-      Utf16Char4 = (unsigned long long)((int)Utf16Char4 + 1);
-      Utf16ConversionContext = Utf16ConversionContext + 1;
+      Utf16Char = (unsigned long long)((int)Utf16Char + 1);
+      PathConversionContext = PathConversionContext + 1;
       PrimaryReturnCode = PrimaryReturnCode + 0x20;
-    } while ((long long)Utf16ConversionContext < (long long)DataStringLength);
+    } while ((long long)PathConversionContext < (long long)DataStringLength);
   }
-  Utf16Char4 = 0xffffffff;
+  Utf16Char = 0xffffffff;
 LAB_1801421be:
   StackTempPointer = &SystemNullTemplate;
   if (pSystemOperationFlag98 != NULL) {
@@ -174607,8 +174607,8 @@ LAB_1801421be:
   StackValidationData = StackValidationData & 0xffffffff00000000;
   StackTempPointer = &ThreadLocalStorageTemplate;
   SystemMemoryPointer = &SystemNullTemplate;
-  if (pMemoryOffsetValue == (uint8_t *)0x0) {
-    return Utf16Char4;
+  if (PathBufferPointer == (uint8_t *)0x0) {
+    return Utf16Char;
   }
                     // WARNING: Subroutine does not return
   CoreEngineProcessSystemEvent();
@@ -179518,7 +179518,17 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *Utf8InputBuffer,long l
 
 
 
-uint64_t * FUN_18014c850(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize
+/**
+ * @brief 交换UTF-8输入缓冲区和大小缓冲区的数据
+ * 
+ * 该函数负责交换两个缓冲区之间的数据，包括UTF-8输入缓冲区和大小缓冲区。
+ * 函数会交换缓冲区中的各个字段和内存分配索引。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @return 交换后的字符代码指针
+ */
+uint64_t * SwapUtf8InputAndSizeBuffers(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize)
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
