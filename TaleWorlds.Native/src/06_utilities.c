@@ -98612,7 +98612,19 @@ void Unwind_18090efe0(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_18090f000
  * @note 语义化名称：ProcessDataBufferCleanupA0
  */
-void Unwind_18090f000(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器清理函数000
+ * 
+ * 该函数负责清理异常上下文处理器，遍历内存块中的所有处理器指针，
+ * 并在适当的时候调用相应的异常处理函数。如果数据上下文为空，
+ * 则直接返回，否则终止系统。
+ * 
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f000
+ */
+void CleanupExceptionContextHandlers(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -98643,7 +98655,20 @@ void Unwind_18090f000(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理函数020
+ * 
+ * 该函数负责处理位于偏移量0x78处的数据缓冲区，调用ProcessDataBufferA3函数
+ * 进行数据处理，并传递相应的操作标志。
+ * 
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090f020
+ */
+void ProcessDataBufferWithContextOffset78(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA3(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + ExceptionHandlerCallbackOffset10),
@@ -98653,7 +98678,20 @@ void Unwind_18090f020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理函数030
+ * 
+ * 该函数负责处理位于偏移量0x78处的数据缓冲区，调用ProcessDataBufferA3函数
+ * 进行数据处理，并传递相应的操作标志。
+ * 
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090f030
+ */
+void ProcessDataBufferWithContextOffset78A(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA3(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + ExceptionHandlerCallbackOffset10),
@@ -98663,7 +98701,18 @@ void Unwind_18090f030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f040(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文数据处理函数040
+ * 
+ * 该函数负责处理异常上下文中的数据，遍历数据上下文并进行处理。
+ * 如果发现任何非零的内存块偏移量，则终止系统。最后清理异常上下文指针。
+ * 
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f040
+ */
+void ProcessExceptionContextData(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
