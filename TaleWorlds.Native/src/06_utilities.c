@@ -36670,6 +36670,22 @@ void ExceptionHandlerA0(void)
 
 
 
+/**
+ * @brief 异常处理器A1
+ * 
+ * 该函数负责处理异常回调，执行以下操作：
+ * - 从数据缓冲区获取异常处理回调函数指针
+ * - 验证回调函数指针的有效性
+ * - 调用异常处理回调函数
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * 返回值:
+ *   无
+ */
 void ExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
