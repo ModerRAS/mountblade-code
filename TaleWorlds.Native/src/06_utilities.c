@@ -15122,30 +15122,30 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
 DataBuffer ProcessMemoryReleaseA0(int64_t memoryDescriptor,int64_t systemContext)
 
 {
-  int64_t validationContext;
-  DataBuffer operationResult;
-  DataWord memoryOffset1;
-  DataWord memoryOffset2;
-  DataWord memoryOffset3;
-  DataWord memoryFlags;
+  int64_t ValidationContext;
+  DataBuffer OperationResult;
+  DataWord MemoryOffset1;
+  DataWord MemoryOffset2;
+  DataWord MemoryOffset3;
+  DataWord MemoryFlags;
   
-  memoryOffset1 = *(DataWord *)(memoryDescriptor + 0x10);
-  memoryOffset2 = *(DataWord *)(memoryDescriptor + 0x14);
-  memoryOffset3 = *(DataWord *)(memoryDescriptor + 0x18);
-  memoryFlags = *(DataWord *)(memoryDescriptor + 0x1c);
-  validationContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
-                    (*(int64_t **)(systemContext + 800),&memoryOffset1,1);
-  if ((validationContext == 0) || (*(int64_t *)(validationContext + 0x2e8) == 0)) {
-    operationResult = 0x4a;
+  MemoryOffset1 = *(DataWord *)(memoryDescriptor + 0x10);
+  MemoryOffset2 = *(DataWord *)(memoryDescriptor + 0x14);
+  MemoryOffset3 = *(DataWord *)(memoryDescriptor + 0x18);
+  MemoryFlags = *(DataWord *)(memoryDescriptor + 0x1c);
+  ValidationContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
+                    (*(int64_t **)(systemContext + 800),&MemoryOffset1,1);
+  if ((ValidationContext == 0) || (*(int64_t *)(ValidationContext + 0x2e8) == 0)) {
+    OperationResult = 0x4a;
   }
   else {
-    operationResult = ValidateAndProcessSystemResourceA0(*(int64_t *)(validationContext + 0x2e8),memoryDescriptor + 0x20);
-    if ((int)operationResult == 0) {
-      operationResult = ProcessSystemEventB0(*(DataBuffer *)(systemContext + 0x98),memoryDescriptor);
-      return operationResult;
+    OperationResult = ValidateAndProcessSystemResourceA0(*(int64_t *)(ValidationContext + 0x2e8),memoryDescriptor + 0x20);
+    if ((int)OperationResult == 0) {
+      OperationResult = ProcessSystemEventB0(*(DataBuffer *)(systemContext + 0x98),memoryDescriptor);
+      return OperationResult;
     }
   }
-  return operationResult;
+  return OperationResult;
 }
 
 
@@ -15154,12 +15154,12 @@ DataBuffer ProcessMemoryReleaseA0(int64_t memoryDescriptor,int64_t systemContext
 DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
 
 {
-  int64_t validationContext;
-  DataBuffer operationResult;
-  DataWord memoryOffset1;
-  DataWord memoryOffset2;
-  DataWord memoryOffset3;
-  DataWord memoryFlags;
+  int64_t ValidationContext;
+  DataBuffer OperationResult;
+  DataWord MemoryOffset1;
+  DataWord MemoryOffset2;
+  DataWord MemoryOffset3;
+  DataWord MemoryFlags;
   
   memoryOffset1 = *(DataWord *)(memoryDescriptor + 0x10);
   memoryOffset2 = *(DataWord *)(memoryDescriptor + 0x14);
@@ -99885,8 +99885,8 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define DataBufferPointerA3 UNK_180a05168
 
 // 系统数据表宏定义 - 美化DAT_变量
-#define SystemValidation基准常量A0 SystemValidationBaseConstantA0
-#define SystemValidation基准常量A1 SystemValidationBaseConstantA1
+#define SystemValidationBaseConstantA0 SystemValidationBaseConstantA0
+#define SystemValidationBaseConstantA1 SystemValidationBaseConstantA1
 #define SystemResourceIteratorTable _DAT_180c86938
 #define SystemFunctionPointerTable _DAT_180c86968
 #define SystemInputParameterTable _DAT_180c82868
@@ -99911,4 +99911,32 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define SystemResourceDataTable _DAT_180c92498
 #define SystemResourceDataTableA1 _DAT_180c92488
 #define DefaultExceptionHandlerBPointerTable _DAT_180bf6558
+
+// 异常处理函数宏定义 - 美化Unwind_函数
+#define ExecuteExceptionHandlerA0 Unwind_180911160
+#define ExecuteExceptionHandlerA1 Unwind_180911180
+#define ExecuteExceptionHandlerA2 Unwind_1809111a0
+#define ExecuteExceptionHandlerA3 Unwind_1809111c0
+
+// 异常处理函数宏定义 - 美化Unwind_函数
+#define ExceptionHandlerA0 Unwind_180903790
+#define ExceptionHandlerA1 Unwind_1809037b0
+#define ExceptionHandlerA2 Unwind_1809037d0
+#define ExceptionHandlerA3 Unwind_1809037f0
+#define ExceptionHandlerA4 Unwind_180903810
+#define ExceptionHandlerA5 Unwind_180903830
+#define ExceptionHandlerA6 Unwind_180903850
+#define ExceptionHandlerA7 Unwind_180903870
+#define ExceptionHandlerA8 Unwind_180903890
+#define ExceptionHandlerA9 Unwind_1809038b0
+#define ExceptionHandlerA10 Unwind_1809038c0
+#define ExceptionHandlerA11 Unwind_1809038d0
+#define ExceptionHandlerA12 Unwind_1809038e0
+#define ExceptionHandlerA13 Unwind_1809038f0
+#define ExceptionHandlerA14 Unwind_180903910
+#define ExceptionHandlerA15 Unwind_180903930
+#define ExceptionHandlerA16 Unwind_180903950
+#define ExceptionHandlerA17 Unwind_180903970
+#define ExceptionHandlerA18 Unwind_180903990
+#define ExceptionHandlerA19 Unwind_1809039d0
 #define SystemExceptionHandlerStateTable _DAT_180d49f80
