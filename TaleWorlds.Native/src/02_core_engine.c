@@ -10121,7 +10121,7 @@ void CoreEngineInitializeNetworkEventHandler(void)
   }
   if ((CurrentNode == RootNode) || (ComparisonResult = memcmp(&SystemComparisonDataSeptenary,CurrentNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
-    CoreEngineSetupNetworkEventHandler(SystemHandle,&NewNode,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupNetworkEventHandler(SystemHandle,&NewNode,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNode;
   }
   CurrentNode[6] = SystemNetworkEventHandlerIdentifierPrimary;
@@ -10175,7 +10175,7 @@ void CoreEngineInitializeNetworkDataSynchronizer(void)
   }
   if ((CurrentSyncNode == SyncPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataOctonary,CurrentSyncNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
-    CoreEngineSetupNetworkSynchronizer(SystemHandle,&NewSyncPointer,CurrentSyncNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupNetworkSynchronizer(SystemHandle,&NewSyncPointer,CurrentSyncNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentSyncNode = NewSyncPointer;
   }
   CurrentSyncNode[6] = SystemNetworkSyncManagerIdentifierPrimary;
@@ -10287,7 +10287,7 @@ void CoreEngineInitializeNetworkStatusMonitor(void
   }
   if ((CurrentMonitorNode == MonitorPoolPointer) || (ComparisonResult = memcmp(&SystemMonitorComparisonData,CurrentMonitorNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
-    CoreEngineSetupNetworkStatusMonitor(SystemHandle,&NewMonitorPointer,CurrentMonitorNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupNetworkStatusMonitor(SystemHandle,&NewMonitorPointer,CurrentMonitorNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentMonitorNode = NewMonitorPointer;
   }
   CurrentMonitorNode[6] = SystemNetworkMonitorIdentifierPrimary;
@@ -10343,7 +10343,7 @@ void CoreEngineInitializePhysicsConfig(void)
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemConnectionComparisonData,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
-    CoreEngineSetupNetworkConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupNetworkConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentConnection = NewConnectionPointer;
   }
   CurrentConnection[6] = SystemNetworkConnectionPoolStateManagerIdentifierPrimary;
@@ -10400,7 +10400,7 @@ void CoreEngineInitializeAudioConfig(void
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemMonitorComparisonData,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
-    CoreEngineSetupNetworkConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupNetworkConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentConnection = NewConnectionPointer;
   }
   CurrentConnection[6] = SystemNetworkMonitorIdentifierPrimary;
@@ -10454,7 +10454,7 @@ void CoreEngineInitializeNetworkConnectionPoolStateManager(void
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemConnectionComparisonData,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemContext);
-    CoreEngineSetupMemoryNode(SystemContext,&NewConnectionPointer,CurrentConnection,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemContext,&NewConnectionPointer,CurrentConnection,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentConnection = NewConnectionPointer;
   }
   CurrentConnection[6] = SystemNetworkConnectionPoolStateManagerIdentifierPrimary;
@@ -10508,7 +10508,7 @@ void CoreEngineInitializeNetworkConnectionPoolStatusProcessor(void
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataSecondary,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
-    CoreEngineSetupNetworkConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupNetworkConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentConnection = NewConnectionPointer;
   }
   CurrentConnection[6] = SystemNodeIdentifierTertiary;
@@ -10563,7 +10563,7 @@ void InitializeGameDataStructureNode(void
   }
   if ((CurrentGameDataNode == GameDataNodePointer) || (ComparisonResult = memcmp(&SystemComparisonDataTertiary,CurrentGameDataNode + 4,0x10), ComparisonResult < 0)) {
     AllocationSize = CoreEngineAllocateMemory(SystemContext);
-    CoreEngineSetupMemoryNode(SystemContext,&NewGameDataNode,CurrentGameDataNode,AllocationSize + 0x20,AllocationSize);
+    CoreEngineSetupMemoryNode(SystemContext,&NewGameDataNode,CurrentGameDataNode,AllocationSize + SystemMemoryAllocationOffset,AllocationSize);
     CurrentGameDataNode = NewGameDataNode;
   }
   CurrentGameDataNode[6] = SystemNodeIdentifierQuinary;
@@ -10624,7 +10624,7 @@ void CoreEngineInitializeNetworkConnectionPoolResourceManager(void)
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataQuaternary,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     AllocationSize = CoreEngineGetAllocationSize(SystemHandle);
-    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + 0x20,AllocationSize);
+    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + SystemMemoryAllocationOffset,AllocationSize);
     CurrentConnection = NewConnectionPointer;
   }
   CurrentConnection[6] = 0x4b2d79e470ee4e2c;
@@ -10678,7 +10678,7 @@ void CoreEngineInitializeNetworkConnectionPoolQueueManager(void)
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataQuinary, CurrentConnection + SystemNodeHeaderSize, SystemDataStructureSize), ComparisonResult < 0)) {
     AllocationSize = CoreEngineGetAllocationSize(SystemHandle);
-    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + 0x20,AllocationSize);
+    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + SystemMemoryAllocationOffset,AllocationSize);
     CurrentConnection = NewConnectionPointer;
   }
   CurrentConnection[6] = 0x49086ba08ab981a7;
@@ -10732,7 +10732,7 @@ void CoreEngineInitializeNetworkConnectionPoolEventHandler(void
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataSextenary,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     AllocationSize = CoreEngineGetAllocationSize(SystemHandle);
-    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + 0x20,AllocationSize);
+    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + SystemMemoryAllocationOffset,AllocationSize);
     CurrentConnection = NewConnectionPointer;
   }
   CurrentConnection[6] = 0x402feffe4481676e;
@@ -10786,7 +10786,7 @@ void CoreEngineInitializeNetworkConnectionPoolEventCallbackManager(void
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataSeptenary,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     AllocationSize = CoreEngineGetAllocationSize(SystemHandle);
-    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + 0x20,AllocationSize);
+    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + SystemMemoryAllocationOffset,AllocationSize);
     CurrentConnection = NewConnectionPointer;
   }
   CurrentConnection[6] = 0x4384dcc4b6d3f417;
@@ -10840,7 +10840,7 @@ void CoreEngineInitializeNetworkConnectionPoolSyncManager(void
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataOctonary,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     AllocationSize = CoreEngineGetAllocationSize(SystemHandle);
-    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + 0x20,AllocationSize);
+    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + SystemMemoryAllocationOffset,AllocationSize);
     CurrentConnection = NewConnectionPointer;
   }
   CurrentConnection[6] = 0x4140994454d56503;
@@ -10921,7 +10921,7 @@ void CoreEngineInitializenetworkConnectionPoolStateRecoveryManager(void
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataSecondary,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     AllocationSize = CoreEngineGetAllocationSize(SystemHandle);
-    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + 0x20,AllocationSize);
+    CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + SystemMemoryAllocationOffset,AllocationSize);
     CurrentConnection = NewConnectionPointer;
   }
   CurrentConnection[6] = SystemNodeIdentifierTertiary;
@@ -11031,7 +11031,7 @@ void CoreEngineInitializeDataManager(void
   }
   if ((PreviousDataManagerNode == DataManagerSystemRootPointer) || (MemoryCompareResult = memcmp(&SystemComparisonDataQuaternary,PreviousDataManagerNode + 4,0x10), MemoryCompareResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemContext);
-    CoreEngineSetupMemoryNode(SystemContext,&NewDataManagerNodePointer,PreviousDataManagerNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemContext,&NewDataManagerNodePointer,PreviousDataManagerNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     PreviousDataManagerNode = NewDataManagerNodePointer;
   }
   PreviousDataManagerNode[6] = 0x4b2d79e470ee4e2c;
@@ -11713,7 +11713,7 @@ void CoreEngineInitializeUIManager(void
   }
   if ((PreviousNodePointer == CharacterCode) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary, PreviousNodePointer + SystemNodeHeaderSize, SystemDataStructureSize), MemoryMatchResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&ResultNodePointer,PreviousNodePointer,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle,&ResultNodePointer,PreviousNodePointer,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     PreviousNodePointer = ResultNodePointer;
   }
   PreviousNodePointer[6] = 0x4b2d79e470ee4e2c;
@@ -12269,7 +12269,7 @@ void CoreEngineInitializeMemoryPoolManager(void
   }
   if ((CurrentMemoryNode == MemoryPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataSeptenary,CurrentMemoryNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemContext);
-    CoreEngineSetupMemoryNode(SystemContext,&NewMemoryNodePointer,CurrentMemoryNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemContext,&NewMemoryNodePointer,CurrentMemoryNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentMemoryNode = NewMemoryNodePointer;
   }
   CurrentMemoryNode[6] = 0x4384dcc4b6d3f417;
@@ -12453,7 +12453,7 @@ void CoreEngineInitializeNetworkConfigurationSystem(void) {
   }
   if ((CurrentNode == SystemContext) || (ComparisonResult = memcmp(&SystemComparisonDataPrimary, CurrentNode + SystemNodeHeaderSize, SystemDataStructureSize), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle, &NewNodePointer, CurrentNode, MemoryOffset + 0x20, MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle, &NewNodePointer, CurrentNode, MemoryOffset + SystemMemoryAllocationOffset, MemoryOffset);
     CurrentNode = NewNodePointer;
   }
   CurrentNode[6] = 0x45425dc186a5d575;
@@ -12518,7 +12518,7 @@ void CoreEngineInitializeResourceManagerSystem(void) {
   }
   if ((CurrentNode == SystemContext) || (ComparisonResult = memcmp(&SystemComparisonDataUndenary, CurrentNode + 4, 0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle, &NewNodePointer, CurrentNode, MemoryOffset + 0x20, MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle, &NewNodePointer, CurrentNode, MemoryOffset + SystemMemoryAllocationOffset, MemoryOffset);
     CurrentNode = NewNodePointer;
   }
   CurrentNode[6] = 0x449bafe9b77ddd3c;
@@ -12584,7 +12584,7 @@ void CoreEngineInitializeNetworkEventSystem(void
   }
   if ((CurrentNode == CharacterCode) || (ComparisonResult = memcmp(&SystemMonitorComparisonData,CurrentNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNodePointer;
   }
   CurrentNode[6] = 0x406be72011d07d37;
@@ -12645,7 +12645,7 @@ void CoreEngineInitializeNetworkConnectionProcessor(void
   }
   if ((currentNetworkConnection == NetworkSystemSystemContext) || (NetworkConnectionComparisonResult = memcmp(&SystemConnectionComparisonData,currentNetworkConnection + 4,0x10), NetworkConnectionComparisonResult < 0)) {
     NetworkMemoryOffset = CoreEngineAllocateMemory(NetworkSystemHandle);
-    CoreEngineSetupMemoryNode(NetworkSystemHandle,&NewNetworkConnectionPointer,currentNetworkConnection,NetworkMemoryOffset + 0x20,NetworkMemoryOffset);
+    CoreEngineSetupMemoryNode(NetworkSystemHandle,&NewNetworkConnectionPointer,currentNetworkConnection,NetworkMemoryOffset + SystemMemoryAllocationOffset,NetworkMemoryOffset);
     currentNetworkConnection = NewNetworkConnectionPointer;
   }
   currentNetworkConnection[6] = 0x40afa5469b6ac06d;
@@ -13595,7 +13595,7 @@ void CoreEngineInitializeWorldSystem(void)
   }
   if ((CurrentNode == DataPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataOctonary,CurrentNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNodePointer;
   }
   CurrentNode[6] = 0x4140994454d56503;
@@ -13656,7 +13656,7 @@ void CoreEngineInitializeResourceManagerNode(void
   }
   if ((CurrentNode == ResourcePoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataUndenary,CurrentNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNodePointer;
   }
   CurrentNode[6] = 0x449bafe9b77ddd3c;
@@ -13873,7 +13873,7 @@ void InitializeNetworkSessionNode(void)
   }
   if ((sessionTargetNode == sessionPrimaryNode) || (memoryMatchResult = memcmp(&SystemFileSystemComparisonData, sessionTargetNode + 4, 0x10), memoryMatchResult < 0)) {
     memoryAllocationSize = CoreEngineAllocateMemory(systemContextPtr);
-    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, sessionTargetNode, memoryAllocationSize + 0x20, memoryAllocationSize);
+    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, sessionTargetNode, memoryAllocationSize + SystemMemoryAllocationOffset, memoryAllocationSize);
     sessionTargetNode = temporaryBuffer;
   }
   sessionTargetNode[6] = 0x42bea5b911d9c4bf;
@@ -13933,7 +13933,7 @@ void InitializeNetworkStatusNode(void)
   }
   if ((statusTargetNode == statusPrimaryNode) || (memoryMatchResult = memcmp(&SystemComparisonDataSecondary, statusTargetNode + 4, 0x10), memoryMatchResult < 0)) {
     memoryAllocationSize = CoreEngineAllocateMemory(systemContextPtr);
-    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, statusTargetNode, memoryAllocationSize + 0x20, memoryAllocationSize);
+    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, statusTargetNode, memoryAllocationSize + SystemMemoryAllocationOffset, memoryAllocationSize);
     statusTargetNode = temporaryBuffer;
   }
   statusTargetNode[6] = 0x43330a43fcdb3653;
@@ -13993,7 +13993,7 @@ void InitializeNetworkConnectionNode(void)
   }
   if ((connectionTargetNode == connectionPrimaryNode) || (memoryMatchResult = memcmp(&SystemComparisonDataTertiary, connectionTargetNode + 4, 0x10), memoryMatchResult < 0)) {
     memoryAllocationSize = CoreEngineAllocateMemory(systemContextPtr);
-    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, connectionTargetNode, memoryAllocationSize + 0x20, memoryAllocationSize);
+    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, connectionTargetNode, memoryAllocationSize + SystemMemoryAllocationOffset, memoryAllocationSize);
     connectionTargetNode = temporaryBuffer;
   }
   connectionTargetNode[6] = 0x431d7c8d7c475be2;
@@ -15176,7 +15176,7 @@ void SystemConfigTemplateManagerInitialize(void
   }
   if ((PreviousNode == CharacterCode) || (ConfigComparisonResult = memcmp(&SystemConfigTemplatePrimary,PreviousNode + 4,0x10), ConfigComparisonResult < 0)) {
     ConfigAllocationSize = CoreEngineAllocateMemory(ConfigPoolPointer);
-    CoreEngineSetupMemoryNode(ConfigPoolPointer,&NewConfigNode,PreviousNode,ConfigAllocationSize + 0x20,ConfigAllocationSize);
+    CoreEngineSetupMemoryNode(ConfigPoolPointer,&NewConfigNode,PreviousNode,ConfigAllocationSize + SystemMemoryAllocationOffset,ConfigAllocationSize);
     PreviousNode = NewConfigNode;
   }
   PreviousNode[6] = 0x40ea3a798283cbbb;
@@ -15237,7 +15237,7 @@ void SystemConfigTemplateSecondaryManagerInitialize(void
   }
   if ((PreviousNode == CharacterCode) || (ConfigComparisonResult = memcmp(&SystemConfigTemplateSecondary,PreviousNode + 4,0x10), ConfigComparisonResult < 0)) {
     ConfigAllocationSize = CoreEngineAllocateMemory(ConfigPoolPointer);
-    CoreEngineSetupMemoryNode(ConfigPoolPointer,&NewConfigNode,PreviousNode,ConfigAllocationSize + 0x20,ConfigAllocationSize);
+    CoreEngineSetupMemoryNode(ConfigPoolPointer,&NewConfigNode,PreviousNode,ConfigAllocationSize + SystemMemoryAllocationOffset,ConfigAllocationSize);
     PreviousNode = NewConfigNode;
   }
   PreviousNode[6] = 0x45b8d074df27d12f;
@@ -15298,7 +15298,7 @@ void SystemDataTemplateTertiaryManagerInitialize(void
   }
   if ((PreviousNode == CharacterCode) || (DataComparisonResult = memcmp(&SystemDataTemplateTertiary,PreviousNode + 4,0x10), DataComparisonResult < 0)) {
     DataAllocationSize = CoreEngineAllocateMemory(DataPoolPointer);
-    CoreEngineSetupMemoryNode(DataPoolPointer,&NewDataNode,PreviousNode,DataAllocationSize + 0x20,DataAllocationSize);
+    CoreEngineSetupMemoryNode(DataPoolPointer,&NewDataNode,PreviousNode,DataAllocationSize + SystemMemoryAllocationOffset,DataAllocationSize);
     PreviousNode = NewDataNode;
   }
   PreviousNode[6] = 0x42d293584c8cf3e5;
@@ -15359,7 +15359,7 @@ void SystemThreadTemplateManagerInitialize(void
   }
   if ((PreviousNode == CharacterCode) || (ThreadComparisonResult = memcmp(&SystemThreadTemplatePrimary,PreviousNode + 4,0x10), ThreadComparisonResult < 0)) {
     ThreadAllocationSize = CoreEngineAllocateMemory(ThreadPoolPointer);
-    CoreEngineSetupMemoryNode(ThreadPoolPointer,&NewThreadNode,PreviousNode,ThreadAllocationSize + 0x20,ThreadAllocationSize);
+    CoreEngineSetupMemoryNode(ThreadPoolPointer,&NewThreadNode,PreviousNode,ThreadAllocationSize + SystemMemoryAllocationOffset,ThreadAllocationSize);
     PreviousNode = NewThreadNode;
   }
   PreviousNode[6] = 0x421c3cedd07d816d;
@@ -18498,7 +18498,7 @@ void CoreEngineInitializeGameRenderMemoryManager(void
   // 如果需要，创建新的内存节点
   if ((CurrentMemoryNode == MemoryPoolPointer) || (ComparisonResult = memcmp(&DataTableStructureA,CurrentMemoryNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemContext);
-    CoreEngineSetupMemoryNode(SystemContext,&NewMemoryNodePointer,CurrentMemoryNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemContext,&NewMemoryNodePointer,CurrentMemoryNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentMemoryNode = NewMemoryNodePointer;
   }
   
@@ -18629,7 +18629,7 @@ void CoreEngineInitializeResourceManager(void
   }
   if ((CurrentNode == CharacterCode) || (ComparisonResult = memcmp(&DataTableStructureA,CurrentNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNodePointer;
   }
   CurrentNode[6] = 0x46c54bc98fc3fc2a;
@@ -18690,7 +18690,7 @@ void CoreEngineInitializeCacheManager(void
   }
   if ((CurrentNode == CharacterCode) || (ComparisonResult = memcmp(&DataTableStructureB,CurrentNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNodePointer;
   }
   CurrentNode[6] = 0x41ffd0b76c1e136f;
@@ -18812,7 +18812,7 @@ void CoreEngineInitializeDataStreamManager(void
   }
   if ((CurrentNode == CharacterCode) || (ComparisonResult = memcmp(&DataTableStructureA,CurrentNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNodePointer;
   }
   CurrentNode[6] = 0x46c54bc98fc3fc2a;
@@ -19669,7 +19669,7 @@ void CoreEngineInitializeSystemConfigNodeG(void
   }
   if ((CurrentNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemConfigTemplateSecondary,CurrentNode + 4,0x10), MemoryCompareResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNodePointer;
   }
   CurrentNode[6] = 0x45b8d074df27d12f;
@@ -19731,7 +19731,7 @@ void CoreEngineInitializeSystemDataNodeH(void
   }
   if ((CurrentNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemDataTemplateTertiary,CurrentNode + 4,0x10), MemoryCompareResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNodePointer;
   }
   CurrentNode[6] = 0x42d293584c8cf3e5;
@@ -19793,7 +19793,7 @@ void CoreEngineInitializeSystemThreadNodeI(void
   }
   if ((CurrentNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemThreadTemplatePrimary,CurrentNode + 4,0x10), MemoryCompareResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNodePointer;
   }
   CurrentNode[6] = 0x421c3cedd07d816d;
@@ -22164,8 +22164,8 @@ void CoreEngineProcessSystemData(unsigned long long *SystemProcessingStatusFlag
     MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
     MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
     if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-      *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+      *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
       ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
       *ReferenceCountPointer = *ReferenceCountPointer + -1;
       if (*ReferenceCountPointer == 0) {
@@ -22855,7 +22855,19 @@ void SetThreadLocalStoragePointer(long long ThreadLocalStoragePointer
  * 
  * @note 该函数用于初始化线程本地存储机制，确保每个线程都有正确的存储模板
  */
-void SetThreadLocalStorageTemplate(uint64_t *threadStoragePointer) {
+/**
+ * @brief 设置线程本地存储模板
+ * 
+ * 该函数负责设置线程本地存储的模板指针，用于初始化线程本地存储区域。
+ * 将指定的线程存储指针指向预定义的线程本地存储模板。
+ * 
+ * @param threadStoragePointer 线程存储指针，指向需要设置的线程本地存储区域
+ * @return 无
+ * 
+ * @note 这是一个简单的指针赋值操作，用于初始化线程本地存储
+ * @note 线程本地存储模板包含系统预设的线程相关数据结构
+ */
+void InitializeThreadLocalStorageTemplate(uint64_t *threadStoragePointer) {
   *threadStoragePointer = &ThreadLocalStorageTemplate;
   return;
 }
@@ -23358,8 +23370,8 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
     MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
     MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
     if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-      *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+      *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
       ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
       *ReferenceCountPointer = *ReferenceCountPointer + -1;
       if (*ReferenceCountPointer == 0) {
@@ -25193,8 +25205,8 @@ void CoreEngineProcessSystemEventsAndResourceCleanup(long long CharacterCode
     MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
     MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
     if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-      *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+      *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
       ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
       *ReferenceCountPointer = *ReferenceCountPointer + -1;
       if (*ReferenceCountPointer == 0) {
@@ -29097,8 +29109,8 @@ void CoreEngineProcessDataCleanup(long long *Utf8InputBuffer
       MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -29520,8 +29532,8 @@ void CoreEngineCleanupMemoryReferenceCount(void
       MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -32407,7 +32419,7 @@ long long CopySystemMemoryDataBlocks(long long sourceMemoryPointer, uint64_t res
     }
     blockCounter = blockCounter + -1;
     *(uint32_t *)(TargetMemoryOffset + 0x14 + (long long)memoryBlockPointer) = *(uint32_t *)((long long)memoryBlockPointer + 0x14);
-    TargetMemoryOffset = TargetMemoryOffset + 0x20;
+    TargetMemoryOffset = TargetMemoryOffset + SystemMemoryAllocationOffset;
     memoryBlockPointer = memoryBlockPointer + 4;
   } while (0 < blockCounter);
   return TargetMemoryOffset;
@@ -47226,8 +47238,8 @@ void ProcessSystemReferenceCount(long long CharacterCode
     MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
     MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
     if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-      *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+      *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
       ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
       *ReferenceCountPointer = *ReferenceCountPointer + -1;
       if (*ReferenceCountPointer == 0) {
@@ -56735,8 +56747,8 @@ void ProcessCharacterCodeReference(unsigned long long *Utf8InputBuffer
     MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
     MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
     if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-      *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+      *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
       ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
       *ReferenceCountPointer = *ReferenceCountPointer + -1;
       if (*ReferenceCountPointer == 0) {
@@ -178866,8 +178878,8 @@ long long * FUN_18014c570(long long *Utf8InputBuffer,long long *Utf8InputBufferS
       MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -180013,7 +180025,18 @@ long long * FUN_18014e160(long long *Utf8InputBuffer,long long *Utf8InputBufferS
 
 
 
-4e179(long long CharacterCode,long long *Utf8InputBufferSizevoid FUN_18014e179(long long CharacterCode,long long *Utf8InputBufferSize
+/**
+ * @brief 处理UTF-8字符编码和内存管理
+ * 
+ * 该函数负责处理UTF-8字符编码，包括内存分配、缓冲区管理和数据移动操作。
+ * 它会根据字符代码和缓冲区大小来管理内存块，并确保数据正确存储在内存中。
+ * 
+ * @param CharacterCode 要处理的字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * 
+ * @note 原始函数名：FUN_18014e179
+ */
+void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, long long *Utf8InputBufferSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -180024,23 +180047,24 @@ long long * FUN_18014e160(long long *Utf8InputBuffer,long long *Utf8InputBufferS
   unsigned long long CalculatedCodePoint;
   long long MemoryBoundaryEnd;
   
+  // 获取字符表指针和缓冲区状态
   CharacterTablePointer = *Utf8InputBufferSize;
   BufferStatus = Utf8BufferSize[1];
   MemoryBoundaryEnd = BufferStatus - LoopCounter;
   MemoryAddressMask = MemoryBoundaryEnd >> 5;
+  
+  // 检查是否需要分配新的内存块
   if ((unsigned long long)(ProcessingResult - CharacterCode >> 5) < MemoryAddressMask) {
     if (MemoryAddressMask == 0) {
       MemoryBlockHandle = 0;
     }
     else {
-      MemoryBlockIndex = BufferAllocate(MemoryPoolManager,MemoryAddressMask << 5,(char)SystemContext[3]);
+      MemoryBlockIndex = BufferAllocate(MemoryPoolManager, MemoryAddressMask << 5, (char)SystemContext[3]);
     }
     if (CharacterTablePointer != BufferStatus) {
-                    // WARNING: Subroutine does not return
-      memmove(MemoryBlockIndex,LoopCounter,MemoryBoundaryEnd);
+      memmove(MemoryBlockIndex, LoopCounter, MemoryBoundaryEnd);
     }
     if (*SystemContext != 0) {
-                    // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
     *SystemContext = MemoryBlockIndex;
@@ -180048,6 +180072,7 @@ long long * FUN_18014e160(long long *Utf8InputBuffer,long long *Utf8InputBufferS
     SystemContext[2] = MemoryBlockIndex;
   }
   else {
+    // 处理现有内存块
     MemoryBlockIndex = SystemContext[1];
     CalculatedCodePoint = MemoryBlockIndex - CharacterCode >> 5;
     if (MemoryAddressMask <= CalculatedCodePoint) {
@@ -180055,17 +180080,14 @@ long long * FUN_18014e160(long long *Utf8InputBuffer,long long *Utf8InputBufferS
         SystemContext[1] = CharacterCode;
         return;
       }
-                    // WARNING: Subroutine does not return
-      memmove(CharacterCode,LoopCounter,MemoryBoundaryEnd);
+      memmove(CharacterCode, LoopCounter, MemoryBoundaryEnd);
     }
     MemoryBoundaryEnd = CalculatedCodePoint * 0x20 + LoopCounter;
     if (CharacterTablePointer != MemoryBoundaryEnd) {
-                    // WARNING: Subroutine does not return
-      memmove(CharacterCode,CharacterTablePointer);
+      memmove(CharacterCode, CharacterTablePointer);
     }
     if (MemoryBoundaryEnd != BufferStatus) {
-                    // WARNING: Subroutine does not return
-      memmove(MemoryBlockIndex,MemoryBoundaryEnd,BufferStatus - MemoryBoundaryEnd);
+      memmove(MemoryBlockIndex, MemoryBoundaryEnd, BufferStatus - MemoryBoundaryEnd);
     }
   }
   SystemContext[1] = MemoryBlockIndex;
@@ -185711,8 +185733,8 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t CharacterCode,uns
       MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -185801,8 +185823,8 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t CharacterCode,uns
       MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -188340,8 +188362,8 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t Utf8BufferSize,
       MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -188531,8 +188553,8 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t Utf8BufferSize,
       MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -188570,8 +188592,8 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t Utf8BufferSize,
       MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -188609,8 +188631,8 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t Utf8BufferSize,
     MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
     MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
     if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-      *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+      *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
       ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
       *ReferenceCountPointer = *ReferenceCountPointer + -1;
       if (*ReferenceCountPointer == 0) {
@@ -191627,8 +191649,8 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *Utf8InputB
       MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -191666,8 +191688,8 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *Utf8InputB
       MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -191705,8 +191727,8 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *Utf8InputB
     MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
     MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
     if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-      *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+      *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
       ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
       *ReferenceCountPointer = *ReferenceCountPointer + -1;
       if (*ReferenceCountPointer == 0) {
@@ -200585,8 +200607,8 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t CharacterCode,uint
       MemoryBlockIndex = CalculatedCodePoint + 0x80 + ((long long)PrimaryProcessingStatusFlag - CalculatedCodePoint >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList) && (*(char *)(MemoryBlockIndex + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -203923,8 +203945,8 @@ void ProcessUtf8InputBufferReferenceCount(unsigned long long *Utf8InputBuffer)
       MemoryBlockIndex = CalculatedCodePoint + 0x80 + ((long long)PrimaryProcessingStatusFlag - CalculatedCodePoint >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList) && (*(char *)(MemoryBlockIndex + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -203975,8 +203997,8 @@ void ProcessUtf8InputBufferMemoryManagement(unsigned long long *Utf8InputBuffer)
       MemoryBlockIndex = CalculatedCodePoint + 0x80 + ((long long)PrimaryProcessingStatusFlag - CalculatedCodePoint >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList) && (*(char *)(MemoryBlockIndex + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -207663,8 +207685,8 @@ void CleanupSystemContextData(unsigned long long *Utf8InputBuffer
     MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
     MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
     if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-      *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+      *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
       ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
       *ReferenceCountPointer = *ReferenceCountPointer + -1;
       if (*ReferenceCountPointer == 0) {
@@ -207701,8 +207723,8 @@ void ProcessMemoryReferenceCount(long long CharacterCode
     MemoryOffset = MemoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMask >> 0x10) * 0x50;
     MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
     if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
-      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-      *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+      *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+      *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
       ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
       *ReferenceCountPointer = *ReferenceCountPointer + -1;
       if (*ReferenceCountPointer == 0) {
@@ -269704,8 +269726,8 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
       MemoryBlockIndex = CalculatedCodePoint + 0x80 + ((long long)PrimaryProcessingStatusFlag - CalculatedCodePoint >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList) && (*(char *)(MemoryBlockIndex + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -269746,8 +269768,8 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
       MemoryBlockIndex = CalculatedCodePoint + 0x80 + ((long long)PrimaryProcessingStatusFlag - CalculatedCodePoint >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList) && (*(char *)(MemoryBlockIndex + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -271982,8 +272004,8 @@ LAB_1802297eb:
       MemoryBlockIndex = CalculatedCodePoint + 0x80 + ((long long)PrimaryProcessingStatusFlag - CalculatedCodePoint >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList) && (*(char *)(MemoryBlockIndex + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -272202,8 +272224,8 @@ LAB_1802297eb:
       MemoryBlockIndex = CalculatedCodePoint + 0x80 + ((long long)PrimaryProcessingStatusFlag - CalculatedCodePoint >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
       if ((*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList) && (*(char *)(MemoryBlockIndex + 0xe) == '\0')) {
-        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + 0x20);
-        *(uint64_t **)(MemoryOffset + 0x20) = PrimaryProcessingStatusFlag;
+        *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
+        *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
