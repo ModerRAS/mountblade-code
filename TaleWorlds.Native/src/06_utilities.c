@@ -57813,7 +57813,17 @@ void DestroyMutexInSituA1(void)
 
 
 
-void Unwind_180906050(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 销毁互斥锁的异常处理函数（偏移量0x80）
+ * 
+ * 该函数在异常处理过程中销毁与数据缓冲区0x80偏移量关联的互斥锁资源
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要销毁的互斥锁信息
+ * 
+ * @note 原始函数名：Unwind_180906050
+ */
+void DestroyMutexInSituOffset80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x80));
@@ -57822,7 +57832,20 @@ void Unwind_180906050(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906060(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统配置迭代器的异常处理函数
+ * 
+ * 该函数在异常处理过程中遍历系统配置迭代器，处理每个配置项，
+ * 并在完成配置处理后终止系统。这是一个异常展开（unwind）处理函数，
+ * 用于确保系统异常时能正确处理所有配置项。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含系统配置迭代器信息
+ * 
+ * @note 原始函数名：Unwind_180906060
+ * @warning 该函数会调用TerminateSystemE0()，不会返回
+ */
+void ProcessSystemConfigurationIteratorOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
