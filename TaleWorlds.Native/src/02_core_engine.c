@@ -38234,14 +38234,14 @@ SystemEventValidationLabel:
     FunctionAddress80 = MemoryAllocationIndex;
     SystemEventPointer = (uint8_t *)BufferAllocate(MemoryPoolManager,0x15,0x13);
     *SystemEventPointer = 0;
-LAB_180071c93:
+MemoryAllocationProcessingStart:
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
   else if ((uint)StackUnsigned78 < 0x15) {
     FunctionAddress80 = MemoryAllocationIndex;
     SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,0x15,0x10,0x13);
-    goto LAB_180071c93;
+    goto MemoryAllocationProcessingStart;
   }
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 0x3a;
   FunctionAddress80 = 0x14;
@@ -124228,7 +124228,8 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-701a(voidvoid FUN_18012701a(void
+// 原始函数名：FUN_18012701a - 系统内存管理函数
+#define ManageSystemMemoryEx FUN_18012701a
 {
   float *pSystemContextPrimaryFloat;
   byte SystemHighByte;
@@ -124398,7 +124399,8 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-736d(uint32_t CharacterCode,uint64_t CharacterCodeSize,float Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_18012736d(uint32_t CharacterCode,uint64_t CharacterCodeSize,float Utf8InputPointer,uint64_t Utf16EndPointer
+// 原始函数名：FUN_18012736d - UTF-8到UTF-16字符编码转换函数
+#define ConvertUtf8ToUtf16Character FUN_18012736d
 {
   byte CurrentByteValue;
   long long SystemContext;
@@ -124434,7 +124436,8 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-7414(voidvoid FUN_180127414(void
+// 原始函数名：FUN_180127414 - 系统缓冲区清理函数
+#define CleanupSystemBuffer FUN_180127414
 {
   return;
 }
@@ -245321,7 +245324,7 @@ unsigned long long FUN_180215ed0(long long CharacterCode,long long CharacterCode
 
 
 
-unsigned long long FUN_180215f2d(void
+unsigned long long ProcessSystemUnicodeValidation(void
 {
   uint32_t Utf16Char;
   long long BufferStatus;
@@ -245349,7 +245352,7 @@ unsigned long long FUN_180215f2d(void
 
 
 
-unsigned long long FUN_180215fb2(void
+unsigned long long ValidateSystemUnicodeConversion(void
 {
   unsigned long long Utf16Char;
   long long SystemContext;

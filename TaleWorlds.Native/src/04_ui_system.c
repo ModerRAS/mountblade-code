@@ -111185,15 +111185,15 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
     }
     else if ((((uiContext != 0) && (targetBuffer == 0)) && (bufferSize == 0)) &&
             ((resultPointer == 0 && (0xff < (int)dataSource)))) {
-      uVar3 = FUN_180742460(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uiContext,dataSource,4,0);
-      if ((int)uVar3 != 0) {
-        return uVar3;
+      initializationResult = FUN_180742460(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uiContext,dataSource,4,0);
+      if ((int)initializationResult != 0) {
+        return initializationResult;
       }
-      lVar4 = *(longlong *)(_DAT_180be12f0 + 0x1a0);
-      *(undefined8 *)(lVar4 + 0x358) = 0;
-      *(undefined8 *)(lVar4 + 0x360) = 0;
-      *(undefined8 *)(lVar4 + 0x368) = 0;
-      return uVar3;
+      validationIndex = *(longlong *)(_DAT_180be12f0 + 0x1a0);
+      *(undefined8 *)(validationIndex + 0x358) = 0;
+      *(undefined8 *)(validationIndex + 0x360) = 0;
+      *(undefined8 *)(validationIndex + 0x368) = 0;
+      return initializationResult;
     }
   }
   return 0x1f;
@@ -111203,16 +111203,28 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1807388c0(ulonglong *uiContext,int dataSource)
+/**
+ * @brief UI系统上下文创建函数
+ * 
+ * 该函数负责创建UI系统的上下文对象，包括内存分配、信号量处理和验证操作。
+ * 主要用于UI系统的初始化和上下文管理。
+ * 
+ * @param uiContext UI上下文指针，用于返回创建的上下文
+ * @param dataSource 数据源参数，指定上下文类型和配置
+ * @return 状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名: FUN_1807388c0
+ */
+undefined8 CreateUIContext(ulonglong *uiContext,int dataSource)
 
 {
-  longlong allocatedMemory;
-  ulonglong semaphoreHandle;
-  longlong *plVar3;
-  undefined8 uVar4;
-  ulonglong uVar5;
-  uint uVar6;
-  ulonglong uVar7;
+  longlong contextMemory;
+  ulonglong contextHandle;
+  longlong *validationPointers;
+  undefined8 creationResult;
+  ulonglong handleValue;
+  uint validationIndex;
+  ulonglong loopCounter;
   
   if (0xff < dataSource - 0x20200U) {
     return 0x14;
@@ -111220,39 +111232,39 @@ undefined8 FUN_1807388c0(ulonglong *uiContext,int dataSource)
   if (uiContext == (ulonglong *)0x0) {
     return 0x1f;
   }
-  uVar5 = 0;
-  allocatedMemory = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x127f8,&UNK_180957080,0x91,0);
-  semaphoreHandle = uVar5;
-  if (allocatedMemory != 0) {
-    semaphoreHandle = FUN_180743e90(allocatedMemory);
+  handleValue = 0;
+  contextMemory = FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x127f8,&UNK_180957080,0x91,0);
+  contextHandle = handleValue;
+  if (contextMemory != 0) {
+    contextHandle = FUN_180743e90(contextMemory);
   }
-  *uiContext = semaphoreHandle;
-  if (semaphoreHandle == 0) {
-    uVar4 = 0x26;
+  *uiContext = contextHandle;
+  if (contextHandle == 0) {
+    creationResult = 0x26;
   }
   else {
-    plVar3 = (longlong *)(_DAT_180be12f0 + 0x160);
-    uVar7 = uVar5;
+    validationPointers = (longlong *)(_DAT_180be12f0 + 0x160);
+    loopCounter = handleValue;
     do {
-      uVar6 = (uint)uVar7;
-      if (*plVar3 == 0) break;
-      uVar6 = uVar6 + 1;
-      uVar7 = (ulonglong)uVar6;
-      uVar5 = uVar5 + 1;
-      plVar3 = plVar3 + 1;
-    } while ((longlong)uVar5 < 8);
-    if (7 < (int)uVar6) {
+      validationIndex = (uint)loopCounter;
+      if (*validationPointers == 0) break;
+      validationIndex = validationIndex + 1;
+      loopCounter = (ulonglong)validationIndex;
+      handleValue = handleValue + 1;
+      validationPointers = validationPointers + 1;
+    } while ((longlong)handleValue < 8);
+    if (7 < (int)validationIndex) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),semaphoreHandle,&UNK_180957080,0xa3,1);
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),contextHandle,&UNK_180957080,0xa3,1);
     }
-    uVar4 = FUN_180741c20();
-    if ((int)uVar4 == 0) {
-      *(ulonglong *)((longlong)(int)uVar6 * 8 + 0x160 + _DAT_180be12f0) = semaphoreHandle;
-      *(uint *)(semaphoreHandle + 0x116b8) = uVar6;
+    creationResult = FUN_180741c20();
+    if ((int)creationResult == 0) {
+      *(ulonglong *)((longlong)(int)validationIndex * 8 + 0x160 + _DAT_180be12f0) = contextHandle;
+      *(uint *)(contextHandle + 0x116b8) = validationIndex;
       return 0;
     }
   }
-  return uVar4;
+  return creationResult;
 }
 
 

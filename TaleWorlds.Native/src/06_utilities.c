@@ -2079,7 +2079,7 @@
  * 
  * @note 原始函数名：FUN_1808928f1
  */
-#define GetSystemConfigurationA0 FUN_1808928f1
+#define GetSystemConfiguration0 FUN_1808928f1
 
 /**
  * @brief 验证系统参数A0
@@ -2088,7 +2088,7 @@
  * 
  * @note 原始函数名：FUN_180892909
  */
-#define ValidateSystemParameterA0 FUN_180892909
+#define ValidateSystemParameter0 FUN_180892909
 
 /**
  * @brief 设置系统参数A0
@@ -2097,7 +2097,7 @@
  * 
  * @note 原始函数名：FUN_180892920
  */
-#define SetSystemParameterA0 FUN_180892920
+#define SetSystemParameter0 FUN_180892920
 
 /**
  * @brief 检查系统初始化状态A0
@@ -2106,7 +2106,7 @@
  * 
  * @note 原始函数名：FUN_180892974
  */
-#define CheckSystemInitializationStatusA0 FUN_180892974
+#define CheckSystemInitializationStatus0 FUN_180892974
 
 /**
  * @brief 处理系统数据A0
@@ -2115,7 +2115,7 @@
  * 
  * @note 原始函数名：FUN_180892990
  */
-#define ProcessSystemDataA0 FUN_180892990
+#define ProcessSystemData0 FUN_180892990
 
 /**
  * @brief 验证和处理浮点数A2
