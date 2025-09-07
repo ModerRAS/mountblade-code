@@ -194469,7 +194469,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx8(uint64_t *Utf8InputBuffer,uint64_t Utf8Bu
 
 
 uint64_t *
-FUN_18016dbb0(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingEx9(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint32_t *StatusBuffer;
   
@@ -258048,7 +258048,7 @@ int FUN_1802254b1(void
 
 
 
-int FUN_1802254f0(void
+int ParseSystemStringConstantAndReturnIdentifier(void
 {
   int LockResult;
   long long BufferStatus;
@@ -258069,7 +258069,7 @@ int FUN_1802254f0(void
   }
   if (MemoryAllocationSize == 3) {
     MemoryBlockIndex = RegisterSourceIndex;
-    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&UNK_180a13160)[BufferStatus]
+    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&SystemStringConstantL4)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
       if (BufferStatus + 1 == 4) {
@@ -258337,7 +258337,7 @@ int FUN_1802254f0(void
 
 
 
-int FUN_180225537(void
+int ParseSystemKeywordStringAndReturnStatusCode(void
 {
   int LockResult;
   long long BufferStatus;
@@ -258348,7 +258348,7 @@ int FUN_180225537(void
   
   if (MemoryAllocationSize == 3) {
     MemoryBlockIndex = RegisterSourceIndex;
-    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&UNK_180a13160)[BufferStatus]
+    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&SystemStringConstantL4)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
       if (BufferStatus + 1 == 4) {
