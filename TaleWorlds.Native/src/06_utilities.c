@@ -110001,76 +110001,112 @@ void Unwind_180911dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理系统资源表和处理异常
+ * 
+ * 该函数在异常展开过程中清理系统资源表并处理相关异常，包括：
+ * - 遍历资源引用计数表
+ * - 处理内存块偏移和异常上下文
+ * - 清理资源表指针和引用计数
+ * - 调用系统异常处理函数
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含资源表信息
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_180911de0
+ * @note 处理0x1e70偏移量的资源引用计数
+ * @note 处理0x1e78偏移量的内存块表
+ * @note 处理0x1e68偏移量的资源基地址
+ */
+void CleanupSystemResourceTableAndHandleExceptions(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int *resourceReferenceCount;
-  int operationResult;
+  int resourceIndex;
   int64_t memoryBlockOffset;
-  int64_t calculatedIndex;
-  uint64_t operationResult;
+  int64_t resourceTableBase;
+  uint64_t loopCounter;
   uint dataFlags;
   uint64_t validationOutcome;
   
-  calculatedIndex = *(int64_t *)(dataBuffer + 0x70);
-  operationResult = 0;
-  resourceReferenceCount = (int *)(calculatedIndex + 0x1e70);
-  validationOutcome = operationResult;
+  resourceTableBase = *(int64_t *)(dataBuffer + 0x70);
+  resourceIndex = 0;
+  resourceReferenceCount = (int *)(resourceTableBase + 0x1e70);
+  validationOutcome = resourceIndex;
   if (0 < *resourceReferenceCount) {
     do {
-      operationResult = *(int *)(*(int64_t *)(calculatedIndex + 0x1e78) + 8 + operationResult);
-      if ((operationResult != -1) &&
-         (memoryBlockOffset = *(int64_t *)((int64_t)operationResult * 0x60 + *(int64_t *)(calculatedIndex + 0x1e68) + 8),
+      resourceIndex = *(int *)(*(int64_t *)(resourceTableBase + 0x1e78) + 8 + resourceIndex);
+      if ((resourceIndex != -1) &&
+         (memoryBlockOffset = *(int64_t *)((int64_t)resourceIndex * 0x60 + *(int64_t *)(resourceTableBase + 0x1e68) + 8),
          memoryBlockOffset != 0)) {
         if (ExceptionContextPtr != 0) {
           *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
         }
-          HandleSystemException(memoryBlockOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+          HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
       }
       dataFlags = (int)validationOutcome + 1;
-      operationResult = operationResult + 0x10;
+      resourceIndex = resourceIndex + 0x10;
       validationOutcome = (uint64_t)dataFlags;
     } while ((int)dataFlags < *resourceReferenceCount);
   }
-  memoryBlockOffset = *(int64_t *)(calculatedIndex + 0x1e78);
+  memoryBlockOffset = *(int64_t *)(resourceTableBase + 0x1e78);
   if (memoryBlockOffset != 0) {
     resourceReferenceCount[0] = 0;
     resourceReferenceCount[1] = 0;
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-      HandleSystemException(memoryBlockOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
-  memoryBlockOffset = *(int64_t *)(calculatedIndex + 0x1e68);
+  memoryBlockOffset = *(int64_t *)(resourceTableBase + 0x1e68);
   if (memoryBlockOffset == 0) {
-    *(DataWord *)(calculatedIndex + 0x1e80) = 0;
-    memoryBlockOffset = *(int64_t *)(calculatedIndex + 0x1e78);
+    *(DataWord *)(resourceTableBase + 0x1e80) = 0;
+    memoryBlockOffset = *(int64_t *)(resourceTableBase + 0x1e78);
     if (memoryBlockOffset != 0) {
       if (ExceptionContextPtr != 0) {
         *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
       }
-        HandleSystemException(memoryBlockOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+        HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
     }
-    calculatedIndex = *(int64_t *)(calculatedIndex + 0x1e68);
-    if (calculatedIndex == 0) {
+    resourceTableBase = *(int64_t *)(resourceTableBase + 0x1e68);
+    if (resourceTableBase == 0) {
       return;
     }
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-      HandleSystemException(calculatedIndex,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(resourceTableBase, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(calculatedIndex + 0x1e60) = 0;
+  *(DataBuffer *)(resourceTableBase + 0x1e60) = 0;
   if (ExceptionContextPtr != 0) {
     *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
   }
-    HandleSystemException(memoryBlockOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
 }
 
 
 
 
-void Unwind_180911e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常处理器上下文清理
+ * 
+ * 该函数在异常展开过程中处理特定偏移量的异常处理器上下文清理，包括：
+ * - 获取0x1e90偏移量的异常处理器上下文
+ * - 处理异常上下文引用计数
+ * - 调用系统异常处理函数
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文信息
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_180911e00
+ * @note 处理0x1e90偏移量的异常处理器上下文
+ * @note 简单的异常处理函数，只处理单个上下文
+ */
+void ProcessExceptionHandlerContextCleanup(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -110080,7 +110116,7 @@ void Unwind_180911e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
