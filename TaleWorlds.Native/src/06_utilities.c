@@ -6255,7 +6255,7 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 // 系统异常处理状态变量声明
 uint8_t SystemExceptionHandlerState;      // 系统异常处理状态
 uint8_t SystemExceptionCleanupFlag;       // 系统异常清理标志
-uint8_t SystemTerminationFlag;           // _DAT_180d49220 - 系统终止标志
+uint8_t SystemTerminationFlag;           // 系统终止标志
 uint8_t SystemResetInProgressFlag;        // _DAT_180d49230 - 系统重置进行中标志
 uint8_t SystemCriticalSectionFlag;       // _DAT_180d49270 - 系统临界区标志
 
@@ -11846,6 +11846,9 @@ DataWord ValidateRegisterResource(void)
   int64_t systemRegisterValue;
   int64_t adjustedPointer;
   
+  // 获取系统寄存器值（从RAX寄存器）
+  systemRegisterValue = GetSystemRegisterValue();
+  
   if (systemRegisterValue == 0) {
     adjustedPointer = 0;
   }
@@ -11928,6 +11931,9 @@ DataWord NoOperationC(void)
 
 {
   int64_t ResourceHandlePointer;
+  
+  // 初始化资源句柄指针为0，确保安全访问
+  ResourceHandlePointer = 0;
   
   if (ResourceHandlePointer != 0) {
     ResourceHandlePointer = ResourceHandlePointer + -8;
@@ -12033,6 +12039,9 @@ DataWord NoOperationH(void)
 {
   int64_t ResourceHandlePointer;
   
+  // 初始化资源句柄指针为0，确保安全访问
+  ResourceHandlePointer = 0;
+  
   if (ResourceHandlePointer != 0) {
     ResourceHandlePointer = ResourceHandlePointer + -8;
   }
@@ -12133,11 +12142,6 @@ void ProcessUtilityOperation(int64_t operationParams,uint64_t systemContext)
   }
   return;
 }
-
-
-
- (ram,0x0001808d7494)
- (ram,0x0001808d74a4)
  (ram,0x0001808d74b1)
 
 // 函数: DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
