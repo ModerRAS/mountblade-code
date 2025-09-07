@@ -9916,86 +9916,86 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
 
 {
   int64_t componentDataContext;
-  int64_t systemContextHandle;
+  int64_t SystemContextHandle;
   int32_t componentBufferSize;
-  uint64_t systemQueryResult;
+  uint64_t SystemQueryStatus;
   uint64_t componentProcessResult;
   int64_t *currentComponentPointer;
-  int32_t currentComponentCount;
-  uint64_t componentLoopIndex;
+  int32_t CurrentComponentCount;
+  uint64_t ComponentLoopCounter;
   int32_t componentListCapacity;
   uint64_t componentSearchIterator;
-  int64_t *componentListPointer;
+  int64_t *ComponentListContext;
   int64_t systemContextBuffer;
   int8_t componentValidationBuffer [DataValidationBufferSize];
   
-  systemQueryResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
-  if ((int)systemQueryResult != 0) {
-    return systemQueryResult;
+  SystemQueryStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
+  if ((int)SystemQueryStatus != 0) {
+    return SystemQueryStatus;
   }
-  systemContextHandle = *(int64_t *)(systemContextBuffer + SystemContextOffset);
-  if ((systemContextHandle == 0) || (*(int64_t *)(systemContextHandle + SYSTEM_CONTEXT_OFFSET) != systemContextBuffer)) {
+  SystemContextHandle = *(int64_t *)(systemContextBuffer + SystemContextOffset);
+  if ((SystemContextHandle == 0) || (*(int64_t *)(SystemContextHandle + SYSTEM_CONTEXT_OFFSET) != systemContextBuffer)) {
     return SystemContextValidationFailure;
   }
-  componentDataContext = *(int64_t *)(systemContextHandle + COMPONENT_DATA_OFFSET);
-  if (systemContextHandle == 0) {
+  componentDataContext = *(int64_t *)(SystemContextHandle + COMPONENT_DATA_OFFSET);
+  if (SystemContextHandle == 0) {
     return ComponentDataValidationFailure;
   }
-  if (*(int32_t *)(systemContextHandle + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
-    systemQueryResult = ProcessInputData(systemContextHandle,componentValidationBuffer);
-    if ((int32_t)systemQueryResult != 0) {
-      return systemQueryResult;
+  if (*(int32_t *)(SystemContextHandle + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
+    SystemQueryStatus = ProcessInputData(SystemContextHandle,componentValidationBuffer);
+    if ((int32_t)SystemQueryStatus != 0) {
+      return SystemQueryStatus;
     }
     componentProcessResult = ValidateInputData(componentValidationBuffer);
     if ((int32_t)componentProcessResult != 0) {
       return componentProcessResult;
     }
-    if ((int8_t)systemQueryResult == (int8_t)componentProcessResult) {
+    if ((int8_t)SystemQueryStatus == (int8_t)componentProcessResult) {
       if (componentValidationBuffer[0] == (int8_t)componentProcessResult) {
-        componentListPointer = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
+        ComponentListContext = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
         componentSearchIterator = 0;
-        currentComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
-        if (0 < currentComponentCount) {
-          currentComponentPointer = (int64_t *)*componentListPointer;
-          componentLoopIndex = componentSearchIterator;
+        CurrentComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
+        if (0 < CurrentComponentCount) {
+          currentComponentPointer = (int64_t *)*ComponentListContext;
+          ComponentLoopCounter = componentSearchIterator;
           do {
             if (*currentComponentPointer == componentValidationBuffer) {
-              if (ComponentInactiveStatus < (int32_t)componentLoopIndex) {
+              if (ComponentInactiveStatus < (int32_t)ComponentLoopCounter) {
                 return 0;
               }
               break;
             }
-            componentLoopIndex = (uint64_t)((int32_t)componentLoopIndex + 1);
+            ComponentLoopCounter = (uint64_t)((int32_t)ComponentLoopCounter + 1);
             componentSearchIterator = componentSearchIterator + 1;
             currentComponentPointer = currentComponentPointer + 1;
-          } while ((int64_t)componentSearchIterator < (int64_t)currentComponentCount);
+          } while ((int64_t)componentSearchIterator < (int64_t)CurrentComponentCount);
         }
-        currentComponentCount = currentComponentCount + 1;
-        if (*(int32_t *)(componentDataContext + COMPONENT_CAPACITY_OFFSET) < currentComponentCount) {
+        CurrentComponentCount = CurrentComponentCount + 1;
+        if (*(int32_t *)(componentDataContext + COMPONENT_CAPACITY_OFFSET) < CurrentComponentCount) {
           componentListCapacity = (int32_t)((float)*(int32_t *)(componentDataContext + COMPONENT_CAPACITY_OFFSET) * ComponentCapacityGrowthFactor);
-          componentBufferSize = currentComponentCount;
-          if (currentComponentCount <= componentListCapacity) {
+          componentBufferSize = CurrentComponentCount;
+          if (CurrentComponentCount <= componentListCapacity) {
             componentBufferSize = componentListCapacity;
           }
           if (componentBufferSize < 8) {
             componentListCapacity = 8;
           }
-          else if (componentListCapacity < currentComponentCount) {
-            componentListCapacity = currentComponentCount;
+          else if (componentListCapacity < CurrentComponentCount) {
+            componentListCapacity = CurrentComponentCount;
           }
-          componentBufferSize = ValidateComponentMemory(componentListPointer,componentListCapacity);
+          componentBufferSize = ValidateComponentMemory(ComponentListContext,componentListCapacity);
           if (componentBufferSize != 0) {
             return 0;
           }
         }
-        *(int64_t *)(*componentListPointer + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * 8) = componentValidationBuffer;
+        *(int64_t *)(*ComponentListContext + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * 8) = componentValidationBuffer;
         *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) + 1;
         *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
-        systemQueryResult = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,componentValidationBuffer);
-        if ((int32_t)systemQueryResult != 0) {
-          return systemQueryResult;
+        SystemQueryStatus = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,componentValidationBuffer);
+        if ((int32_t)SystemQueryStatus != 0) {
+          return SystemQueryStatus;
         }
       }
     }
@@ -10028,76 +10028,76 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
   int64_t *exceptionHandlerContextPointer;
   int64_t *componentDataPointer;
   int64_t *componentInfoPointer;
-  int32_t moduleInitializationStatus;
+  int32_t ModuleInitializationStatus;
   uint32_t gameMessageProcessingResult;
   uint64_t systemModuleOperationResult;
-  int64_t *resourceInfoPointer;
-  int64_t *contextDataPointer;
-  int64_t *moduleDataPointer;
+  int64_t *ResourceInfoContext;
+  int64_t *ContextDataContext;
+  int64_t *ModuleDataContext;
   int64_t *baseValidationContext;
-  int64_t localStackMemoryContext;
-  int64_t tempStackContext;
+  int64_t LocalStackMemoryContext;
+  int64_t TemporaryStackContext;
   
-  systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&tempStackContext);
-  moduleInitializationStatus = (int32_t)systemModuleOperationResult;
-  if (moduleInitializationStatus == 0) {
+  systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&TemporaryStackContext);
+  ModuleInitializationStatus = (int32_t)systemModuleOperationResult;
+  if (ModuleInitializationStatus == 0) {
     baseValidationContext = (int64_t *)0x0;
-    moduleDataPointer = baseValidationContext;
-    if (tempStackContext != 0) {
-      moduleDataPointer = (int64_t *)(tempStackContext + -8);
+    ModuleDataContext = baseValidationContext;
+    if (TemporaryStackContext != 0) {
+      ModuleDataContext = (int64_t *)(TemporaryStackContext + -8);
     }
-    systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&tempStackContext);
-    moduleInitializationStatus = (int32_t)systemModuleOperationResult;
-    if (moduleInitializationStatus == 0) {
-      localStackMemoryContext = 0;
-      gameMessageProcessingResult = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(tempStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
-                            &localStackMemoryContext);
+    systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&TemporaryStackContext);
+    ModuleInitializationStatus = (int32_t)systemModuleOperationResult;
+    if (ModuleInitializationStatus == 0) {
+      LocalStackMemoryContext = 0;
+      gameMessageProcessingResult = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(TemporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
+                            &LocalStackMemoryContext);
       if (gameMessageProcessingResult != 0) {
-        CleanupSystemDataStructures(moduleDataPointer);
+        CleanupSystemDataStructures(ModuleDataContext);
         return (uint64_t)gameMessageProcessingResult;
       }
-      if (((*(uint32_t *)(*(int64_t *)(tempStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
-         (systemModuleOperationResult = ValidateSystemOperationContextA0(localStackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
+      if (((*(uint32_t *)(*(int64_t *)(TemporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
+         (systemModuleOperationResult = ValidateSystemOperationContextA0(LocalStackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
         return systemModuleOperationResult;
       }
-      exceptionHandlerContextPointer = (int64_t *)(localStackMemoryContext + MODULE_CONTEXT_OFFSET);
-      resourceInfoPointer = (int64_t *)(*exceptionHandlerContextPointer + MODULE_RESOURCE_OFFSET);
+      exceptionHandlerContextPointer = (int64_t *)(LocalStackMemoryContext + MODULE_CONTEXT_OFFSET);
+      ResourceInfoContext = (int64_t *)(*exceptionHandlerContextPointer + MODULE_RESOURCE_OFFSET);
       if (*exceptionHandlerContextPointer == 0) {
-        resourceInfoPointer = baseValidationContext;
+        ResourceInfoContext = baseValidationContext;
       }
-      contextDataPointer = baseValidationContext;
+      ContextDataContext = baseValidationContext;
       componentDataPointer = baseValidationContext;
       componentInfoPointer = baseValidationContext;
-      if (resourceInfoPointer != (int64_t *)0x0) {
-        contextDataPointer = resourceInfoPointer + RESOURCE_CONTEXT_OFFSET;
+      if (ResourceInfoContext != (int64_t *)0x0) {
+        ContextDataContext = ResourceInfoContext + RESOURCE_CONTEXT_OFFSET;
       }
       while( true ) {
-        if (contextDataPointer == exceptionHandlerContextPointer) {
-          *(int64_t **)(localStackMemoryContext + MODULE_COMPONENT_OFFSET) = moduleDataPointer;
-          ExecuteSystemDataProcessing(localStackMemoryContext,moduleDataPointer);
-          moduleDataPointer[2] = localStackMemoryContext;
-          systemModuleOperationResult = InitializeSystemComponent(localStackMemoryContext);
+        if (ContextDataContext == exceptionHandlerContextPointer) {
+          *(int64_t **)(LocalStackMemoryContext + MODULE_COMPONENT_OFFSET) = ModuleDataContext;
+          ExecuteSystemDataProcessing(LocalStackMemoryContext,ModuleDataContext);
+          ModuleDataContext[2] = LocalStackMemoryContext;
+          systemModuleOperationResult = InitializeSystemComponent(LocalStackMemoryContext);
           if ((int32_t)systemModuleOperationResult == 0) {
             return 0;
           }
           return systemModuleOperationResult;
         }
-        if ((int32_t)moduleDataPointer[5] <= (int32_t)componentInfoPointer) {
+        if ((int32_t)ModuleDataContext[5] <= (int32_t)componentInfoPointer) {
           return ResourceInvalidErrorCode;
         }
-        resourceInfoPointer = contextDataPointer + RESOURCE_DATA_OFFSET;
-        if (contextDataPointer == (int64_t *)0x0) {
-          resourceInfoPointer = (int64_t *)MODULE_VALIDATION_OFFSET;
+        ResourceInfoContext = ContextDataContext + RESOURCE_DATA_OFFSET;
+        if (ContextDataContext == (int64_t *)0x0) {
+          ResourceInfoContext = (int64_t *)MODULE_VALIDATION_OFFSET;
         }
-        *(int64_t *)(moduleDataPointer[4] + SystemContextOffset + (int64_t)componentDataPointer) = *resourceInfoPointer;
-        if (contextDataPointer == exceptionHandlerContextPointer) break;
-        resourceInfoPointer = (int64_t *)(*contextDataPointer + MODULE_RESOURCE_OFFSET);
-        if (*contextDataPointer == 0) {
-          resourceInfoPointer = baseValidationContext;
+        *(int64_t *)(ModuleDataContext[4] + SystemContextOffset + (int64_t)componentDataPointer) = *ResourceInfoContext;
+        if (ContextDataContext == exceptionHandlerContextPointer) break;
+        ResourceInfoContext = (int64_t *)(*ContextDataContext + MODULE_RESOURCE_OFFSET);
+        if (*ContextDataContext == 0) {
+          ResourceInfoContext = baseValidationContext;
         }
-        contextDataPointer = baseValidationContext;
-        if (resourceInfoPointer != (int64_t *)0x0) {
-          contextDataPointer = resourceInfoPointer + RESOURCE_CONTEXT_OFFSET;
+        ContextDataContext = baseValidationContext;
+        if (ResourceInfoContext != (int64_t *)0x0) {
+          ContextDataContext = ResourceInfoContext + RESOURCE_CONTEXT_OFFSET;
         }
         componentDataPointer = componentDataPointer + COMPONENT_DATA_OFFSET;
         componentInfoPointer = (int64_t *)(uint64_t)((int32_t)componentInfoPointer + 1);
@@ -10105,7 +10105,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
       return ResourceInvalidErrorCode;
     }
   }
-  if (moduleInitializationStatus == ModuleResourceAllocationStatus) {
+  if (ModuleInitializationStatus == ModuleResourceAllocationStatus) {
     return 0;
   }
   return systemModuleOperationResult;
@@ -10835,7 +10835,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
   uint32_t processingFlags;
   uint32_t statusRegister;
   uint64_t operationResult;
-  uint64_t *arrayElementPointer;
+  uint64_t *ArrayElementContext;
   int32_t integerConversionResult;
   float processedFloatValue;
   uint8_t simdProcessingBuffer [16];
@@ -10859,11 +10859,11 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
     inputFloatValue = *(float *)(resourceDescriptor + 0x20);
     
     // 遍历浮点数组并进行验证
-    for (arrayElementPointer = *(uint64_t **)(exceptionHandlerContext + 0x48);
-        (*(uint64_t **)(exceptionHandlerContext + 0x48) <= arrayElementPointer &&
-        (arrayElementPointer < *(uint64_t **)(exceptionHandlerContext + 0x48) + *(int32_t *)(exceptionHandlerContext + 0x50))); 
-        arrayElementPointer = arrayElementPointer + 1) {
-      operationResult = ProcessFloatingPointDataValidationA0(*arrayElementPointer, inputFloatValue, 0);
+    for (ArrayElementContext = *(uint64_t **)(exceptionHandlerContext + 0x48);
+        (*(uint64_t **)(exceptionHandlerContext + 0x48) <= ArrayElementContext &&
+        (ArrayElementContext < *(uint64_t **)(exceptionHandlerContext + 0x48) + *(int32_t *)(exceptionHandlerContext + 0x50))); 
+        ArrayElementContext = ArrayElementContext + 1) {
+      operationResult = ProcessFloatingPointDataValidationA0(*ArrayElementContext, inputFloatValue, 0);
       if ((int32_t)operationResult != 0) {
         return operationResult;
       }
@@ -11098,26 +11098,26 @@ uint64_t ValidateDataArray(int64_t arrayDescriptor)
 {
   uint64_t validationStatus;
   int *DataComparisonContext;
-  uint32_t *validationDataPointer;
-  uint32_t entryCounter;
-  uint64_t adjustedAddress;
+  uint32_t *ValidationDataContext;
+  uint32_t EntryCounter;
+  uint64_t AdjustedMemoryAddress;
   int64_t dataBuffer;
-  uint64_t loopIndex;
+  uint64_t LoopCounter;
   
   validationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(arrayDescriptor + 0x10),&dataBuffer);
   if ((int)validationStatus == 0) {
-    loopIndex = 0;
-    adjustedAddress = dataBuffer - 8;
+    LoopCounter = 0;
+    AdjustedMemoryAddress = dataBuffer - 8;
     if (dataBuffer == 0) {
-      adjustedAddress = loopIndex;
+      AdjustedMemoryAddress = LoopCounter;
     }
-    validationDataPointer = (uint32_t *)(arrayDescriptor + 0x20 + (int64_t)*(int *)(arrayDescriptor + 0x18) * 8);
+    ValidationDataContext = (uint32_t *)(arrayDescriptor + 0x20 + (int64_t)*(int *)(arrayDescriptor + 0x18) * 8);
     DataComparisonContext = (int *)(arrayDescriptor + 0x20);
     if (0 < *(int *)(arrayDescriptor + 0x18)) {
       do {
         if ((*DataComparisonContext != MemoryValidationConstantA) || (DataComparisonContext[1] != MemoryValidationConstantB)) {
           dataBuffer = 0;
-          validationStatus = ValidateMemoryAddressA0(adjustedAddress,(int *)(arrayDescriptor + 0x20) + (int64_t)(int)loopIndex * 2,&dataBuffer)
+          validationStatus = ValidateMemoryAddressA0(AdjustedMemoryAddress,(int *)(arrayDescriptor + 0x20) + (int64_t)(int)LoopCounter * 2,&dataBuffer)
           ;
           if ((int)validationStatus != 0) {
             return validationStatus;
@@ -11125,17 +11125,17 @@ uint64_t ValidateDataArray(int64_t arrayDescriptor)
           if (*(int64_t *)(dataBuffer + 8) == 0) {
             return ResourceInvalidErrorCode;
           }
-          validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(dataBuffer + 8),*validationDataPointer,*(uint8_t *)(arrayDescriptor + 0x1c)
+          validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(dataBuffer + 8),*ValidationDataContext,*(uint8_t *)(arrayDescriptor + 0x1c)
                                );
           if ((int)validationStatus != 0) {
             return validationStatus;
           }
         }
-        entryCounter = (int)loopIndex + 1;
-        loopIndex = (uint64_t)entryCounter;
-        validationDataPointer = validationDataPointer + 1;
+        EntryCounter = (int)LoopCounter + 1;
+        LoopCounter = (uint64_t)EntryCounter;
+        ValidationDataContext = ValidationDataContext + 1;
         DataComparisonContext = DataComparisonContext + 2;
-      } while ((int)entryCounter < *(int *)(arrayDescriptor + 0x18));
+      } while ((int)EntryCounter < *(int *)(arrayDescriptor + 0x18));
     }
     validationStatus = 0;
   }
@@ -12472,23 +12472,23 @@ DataBuffer ValidateDataIntegrity(int64_t dataStructure,int64_t exceptionHandlerC
 
 {
   DataBuffer validationResult;
-  int *dataElementPointer;
+  int *DataElementContext;
   DataWord *validationFlagPointer;
   int elementIndex;
   
   elementIndex = 0;
   validationFlagPointer = (DataWord *)(dataStructure + 0x18 + (int64_t)*(int *)(dataStructure + 0x10) * 8);
-  dataElementPointer = (int *)(dataStructure + 0x18);
+  DataElementContext = (int *)(dataStructure + 0x18);
   if (0 < *(int *)(dataStructure + 0x10)) {
     do {
-      if (((*dataElementPointer != MemoryValidationConstantA) || (dataElementPointer[1] != MemoryValidationConstantB)) &&
+      if (((*DataElementContext != MemoryValidationConstantA) || (DataElementContext[1] != MemoryValidationConstantB)) &&
          (validationResult = ProcessDataIndexA0(exceptionHandlerContext + 0x60,(int *)(dataStructure + 0x18) + (int64_t)elementIndex * 2,*validationFlagPointer
                                 ,*(ByteFlag *)(dataStructure + 0x14)), (int)validationResult != 0)) {
         return validationResult;
       }
       elementIndex = elementIndex + 1;
       validationFlagPointer = validationFlagPointer + 1;
-      dataElementPointer = dataElementPointer + 2;
+      DataElementContext = DataElementContext + 2;
     } while (elementIndex < *(int *)(dataStructure + 0x10));
   }
   return 0;
@@ -20019,7 +20019,7 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   int64_t dataContext;
   int operationStatus;
   int arrayIndex;
-  int loopIndex;
+  int LoopCounter;
   uint8_t **ppdataFlags;
   int calculatedValue;
   ByteFlag PrimaryEncryptionKeyBuffer [32];
@@ -20053,7 +20053,7 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   uint64_t colorProcessingData;
   
   colorProcessingData = ExceptionEncryptionKey ^ (uint64_t)PrimaryEncryptionKeyBuffer;
-  loopIndex = 0;
+  LoopCounter = 0;
   if (operationFlagA != 0) {
     operationStatus = *(int *)(dataBuffer + 0x220);
     if (operationStatus == 0) {
@@ -20126,31 +20126,31 @@ SecurityValidationLabel:
         ContextDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
         ContextDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
         TablePointerG = &SystemDataTableReference;
-        arrayIndex = loopIndex + 1;
+        arrayIndex = LoopCounter + 1;
         ContextDataWordAA = ContextDataWordT;
         ValidationIntegerD = calculatedValue;
         ContextDataWordAB = operationFlagA;
-        ValidationIntegerE = loopIndex;
-        loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerG);
-        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), loopIndex != 0))
+        ValidationIntegerE = LoopCounter;
+        LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerG);
+        if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
           ContextDataWordU = CONCAT44(ContextDataWordU._4_4_,ValidationFloatArrayC[0]);
           TablePointerH = &SystemValidationDataTableA1;
           ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
-          ValidationIntegerF = loopIndex;
-          loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerH);
-          if (loopIndex != 0) GOTO_SecurityCheckFailed;
+          ValidationIntegerF = LoopCounter;
+          LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerH);
+          if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           ValidationIntegerF = 0;
           TablePointerH = &SystemValidationDataTableA4;
           ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
           ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
-          loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerH);
-          if (loopIndex != 0) GOTO_SecurityCheckFailed;
+          LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerH);
+          if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
-        loopIndex = arrayIndex;
+        LoopCounter = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           ValidationIntegerF = 0;
           TablePointerH = &SystemValidationDataTableA5;
@@ -20173,31 +20173,31 @@ SecurityValidationLabel:
         ContextDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
         ContextDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
         TablePointerG = &SystemDataTableReference;
-        arrayIndex = loopIndex + 1;
+        arrayIndex = LoopCounter + 1;
         ContextDataWordAA = ContextDataWordT;
         ValidationIntegerD = calculatedValue;
         ContextDataWordAB = operationFlagA;
-        ValidationIntegerE = loopIndex;
-        loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerG);
-        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), loopIndex != 0))
+        ValidationIntegerE = LoopCounter;
+        LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerG);
+        if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
           ContextDataWordU = CONCAT44(ContextDataWordU._4_4_,ValidationFloatArrayC[0]);
           TablePointerH = &SystemValidationDataTableA1;
           ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
-          ValidationIntegerF = loopIndex;
-          loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerH);
-          if (loopIndex != 0) GOTO_SecurityCheckFailed;
+          ValidationIntegerF = LoopCounter;
+          LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerH);
+          if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           ValidationIntegerF = 0;
           TablePointerH = &SystemValidationDataTableA4;
           ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
           ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
-          loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerH);
-          if (loopIndex != 0) GOTO_SecurityCheckFailed;
+          LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerH);
+          if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
-        loopIndex = arrayIndex;
+        LoopCounter = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           ValidationIntegerF = 0;
           TablePointerH = &SystemValidationDataTableA5;
@@ -20220,31 +20220,31 @@ SecurityValidationLabel:
         ContextDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
         ContextDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
         TablePointerG = &SystemDataTableReference;
-        arrayIndex = loopIndex + 1;
+        arrayIndex = LoopCounter + 1;
         ContextDataWordAA = ContextDataWordT;
         ValidationIntegerD = calculatedValue;
         ContextDataWordAB = operationFlagA;
-        ValidationIntegerE = loopIndex;
-        loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerG);
-        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), loopIndex != 0))
+        ValidationIntegerE = LoopCounter;
+        LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerG);
+        if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
           ContextDataWordU = CONCAT44(ContextDataWordU._4_4_,ValidationFloatArrayC[0]);
           TablePointerH = &SystemValidationDataTableA1;
           ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
-          ValidationIntegerF = loopIndex;
-          loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerH);
-          if (loopIndex != 0) GOTO_SecurityCheckFailed;
+          ValidationIntegerF = LoopCounter;
+          LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerH);
+          if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           ValidationIntegerF = 0;
           TablePointerH = &SystemValidationDataTableA4;
           ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
           ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
-          loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerH);
-          if (loopIndex != 0) GOTO_SecurityCheckFailed;
+          LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerH);
+          if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
-        loopIndex = arrayIndex;
+        LoopCounter = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           ValidationIntegerF = 0;
           TablePointerH = &SystemValidationDataTableA5;
@@ -20267,31 +20267,31 @@ SecurityValidationLabel:
         ContextDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
         ContextDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
         TablePointerG = &SystemDataTableReference;
-        arrayIndex = loopIndex + 1;
+        arrayIndex = LoopCounter + 1;
         ContextDataWordAA = ContextDataWordT;
         ValidationIntegerD = calculatedValue;
         ContextDataWordAB = operationFlagA;
-        ValidationIntegerE = loopIndex;
-        loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerG);
-        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), loopIndex != 0))
+        ValidationIntegerE = LoopCounter;
+        LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerG);
+        if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
           ContextDataWordU = CONCAT44(ContextDataWordU._4_4_,ValidationFloatArrayC[0]);
           TablePointerH = &SystemValidationDataTableA1;
           ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
-          ValidationIntegerF = loopIndex;
-          loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerH);
-          if (loopIndex != 0) GOTO_SecurityCheckFailed;
+          ValidationIntegerF = LoopCounter;
+          LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerH);
+          if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           ValidationIntegerF = 0;
           TablePointerH = &SystemValidationDataTableA4;
           ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
           ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
-          loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerH);
-          if (loopIndex != 0) GOTO_SecurityCheckFailed;
+          LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerH);
+          if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
-        loopIndex = arrayIndex;
+        LoopCounter = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           ValidationIntegerF = 0;
           TablePointerH = &SystemValidationDataTableA5;
@@ -20302,7 +20302,7 @@ SecurityValidationLabel:
         }
       }
     }
-    loopIndex = 0;
+    LoopCounter = 0;
     operationStatus = 0;
     do {
       if ((operationStatus < 0) || (*(int *)(dataBuffer + 200) <= operationStatus)) break;
@@ -20317,14 +20317,14 @@ SecurityValidationLabel:
         ContextDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
         ContextDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
         TablePointerG = &SystemDataValidationReference;
-        arrayIndex = loopIndex + 1;
+        arrayIndex = LoopCounter + 1;
         ContextDataWordAA = ContextDataWordT;
         ValidationIntegerD = calculatedValue;
         ContextDataWordAB = operationFlagA;
-        ValidationIntegerE = loopIndex;
-        loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerG);
-        if ((loopIndex != 0) || (calculatedValue = ValidateDataA2(dataContext,ValidationFloatArrayC,0), calculatedValue != 0)) break;
-        loopIndex = arrayIndex;
+        ValidationIntegerE = LoopCounter;
+        LoopCounter = ValidateDataIntegrityA0(operationBase,&TablePointerG);
+        if ((LoopCounter != 0) || (calculatedValue = ValidateDataA2(dataContext,ValidationFloatArrayC,0), calculatedValue != 0)) break;
+        LoopCounter = arrayIndex;
         if (ValidationFloatArrayC[0] != 1.0) {
           ContextDataWordU = CONCAT44(ContextDataWordU._4_4_,ValidationFloatArrayC[0]);
           TablePointerH = &SystemValidationDataTableA7;
@@ -25652,7 +25652,7 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
   char validationResult;
   DataWord inputAccumulatorRegisterEAX;
   ByteTriple dataFlags;
-  int loopIndex;
+  int LoopCounter;
   DataWord in_register_00000004;
   uint register_EBP;
   char carryFlag;
@@ -25671,9 +25671,9 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
        *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + validationResult;
   *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) =
        *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + validationResult;
-  loopIndex = CONCAT31(dataFlags,validationResult + '\x18');
-  *dataBuffer = *dataBuffer + loopIndex;
-  exceptionHandlerCallback = (char *)((int64_t)&StackIntegerPointerD + CONCAT44(in_register_00000004,loopIndex));
+  LoopCounter = CONCAT31(dataFlags,validationResult + '\x18');
+  *dataBuffer = *dataBuffer + LoopCounter;
+  exceptionHandlerCallback = (char *)((int64_t)&StackIntegerPointerD + CONCAT44(in_register_00000004,LoopCounter));
   *exceptionHandlerCallback = *sourceCharacterPointer + validationResult + '\x18';
   validationFlag = (code *)swi(3);
   (*validationFlag)();
@@ -27783,7 +27783,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
   DataBuffer operationResult;
   uint validationStatus;
   int arrayIndex;
-  int loopIndex;
+  int LoopCounter;
   uint dataFlags;
   uint validationOutcome;
   uint securityValidationBuffer [2];
@@ -27804,27 +27804,27 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
         arrayIndex = 0;
         if (validationStatus >> 1 != 0) {
           do {
-            loopIndex = ExecuteSystemInitializationOperation(dataBuffer,securityValidationBuffer[0]);
-            if (loopIndex != 0) {
+            LoopCounter = ExecuteSystemInitializationOperation(dataBuffer,securityValidationBuffer[0]);
+            if (LoopCounter != 0) {
               return;
             }
             if (*(int *)(dataBuffer[1] + 0x18) == 0) {
               operationResult = *dataBuffer;
               exceptionHandlerContext = *(int64_t *)(operationBase + 0x20) + (int64_t)arrayIndex * 8;
-              loopIndex = ValidateDataWithSecurityCheckA2(operationResult,exceptionHandlerContext);
-              if (loopIndex != 0) {
+              LoopCounter = ValidateDataWithSecurityCheckA2(operationResult,exceptionHandlerContext);
+              if (LoopCounter != 0) {
                 return;
               }
-              loopIndex = ValidateDataWithSecurityCheckA2(operationResult,exceptionHandlerContext + 4);
+              LoopCounter = ValidateDataWithSecurityCheckA2(operationResult,exceptionHandlerContext + 4);
             }
             else {
-              loopIndex = 0x1c;
+              LoopCounter = 0x1c;
             }
-            if (loopIndex != 0) {
+            if (LoopCounter != 0) {
               return;
             }
-            loopIndex = ExecuteSystemCleanupOperation(dataBuffer,securityValidationBuffer);
-            if (loopIndex != 0) {
+            LoopCounter = ExecuteSystemCleanupOperation(dataBuffer,securityValidationBuffer);
+            if (LoopCounter != 0) {
               return;
             }
             arrayIndex = arrayIndex + 1;
@@ -27857,7 +27857,7 @@ void ValidateAndInitializeSystemA0(void)
   DataBuffer operationResult;
   uint validationStatus;
   int arrayIndex;
-  int loopIndex;
+  int LoopCounter;
   int64_t registerContext;
   DataBuffer *DestinationContext;
   uint dataFlags;
@@ -27873,27 +27873,27 @@ void ValidateAndInitializeSystemA0(void)
       arrayIndex = 0;
       if (validationStatus >> 1 != 0) {
         do {
-          loopIndex = ExecuteSystemInitializationOperation();
-          if (loopIndex != 0) {
+          LoopCounter = ExecuteSystemInitializationOperation();
+          if (LoopCounter != 0) {
             return;
           }
           if (*(int *)(DestinationContext[1] + 0x18) == 0) {
             operationResult = *DestinationContext;
             exceptionHandlerContext = *(int64_t *)(registerContext + 0x20) + (int64_t)arrayIndex * 8;
-            loopIndex = ValidateDataWithSecurityCheckA2(operationResult,exceptionHandlerContext);
-            if (loopIndex != 0) {
+            LoopCounter = ValidateDataWithSecurityCheckA2(operationResult,exceptionHandlerContext);
+            if (LoopCounter != 0) {
               return;
             }
-            loopIndex = ValidateDataWithSecurityCheckA2(operationResult,exceptionHandlerContext + 4);
+            LoopCounter = ValidateDataWithSecurityCheckA2(operationResult,exceptionHandlerContext + 4);
           }
           else {
-            loopIndex = 0x1c;
+            LoopCounter = 0x1c;
           }
-          if (loopIndex != 0) {
+          if (LoopCounter != 0) {
             return;
           }
-          loopIndex = ExecuteSystemCleanupOperation();
-          if (loopIndex != 0) {
+          LoopCounter = ExecuteSystemCleanupOperation();
+          if (LoopCounter != 0) {
             return;
           }
           arrayIndex = arrayIndex + 1;
