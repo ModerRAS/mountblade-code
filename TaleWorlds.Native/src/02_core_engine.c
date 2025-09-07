@@ -164876,7 +164876,7 @@ void ProcessUtf8BufferFinalization(int *Utf8InputBuffer,long long Utf8BufferSize
   long long lStackX_10;
   uint64_t ReservedStackSpace;
   uint8_t uStackX_20;
-  uint64_t in_stack_fffffffffffffeb8;
+  uint64_t SystemStatusParameter;
   uint64_t UnicodeCodePoint3;
   int iStack_138;
   uint64_t BufferInitializationFlag;
@@ -164979,7 +164979,7 @@ LAB_18013802c:
       BufferInitializationFlag = StackProcessingConfigurationFlag;
     }
     CharacterTablePointer6 = SystemConfigurationHandle;
-    SystemStatusCode = (uint32_t)((unsigned long long)in_stack_fffffffffffffeb8 >> 0x20);
+    SystemStatusCode = (uint32_t)((unsigned long long)SystemStatusParameter >> 0x20);
     iStack_138 = 0;
     IntegerValue3 = iStack_138;
     iStack_138 = 0;
@@ -164989,7 +164989,7 @@ LAB_18013802c:
                              *(uint32_t *                              (*(long long *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x220) + -4 +
                               (long long)*(int *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x218) * 4
                               ));
-      SystemStatusCode = (uint32_t)((unsigned long long)in_stack_fffffffffffffeb8 >> 0x20);
+      SystemStatusCode = (uint32_t)((unsigned long long)SystemStatusParameter >> 0x20);
       if (*(int *)(CharacterTablePointer6 + 0x1b2c) == ArrayIndex) {
         *(int *)(CharacterTablePointer6 + 0x1b34) = ArrayIndex;
       }
@@ -165007,7 +165007,7 @@ LAB_18013802c:
         *(uint32_t *)(CharacterTablePointer6 + 0x1bd0) = 1;
         *(uint8_t *)(CharacterTablePointer6 + 0x1c14) = 1;
         SystemValidationChar = ValidateSystemConfiguration();
-        SystemStatusCode = (uint32_t)((unsigned long long)in_stack_fffffffffffffeb8 >> 0x20);
+        SystemStatusCode = (uint32_t)((unsigned long long)SystemStatusParameter >> 0x20);
         if (SystemValidationChar != '\0') {
           HighByte7 = true;
           if (*pStringComparisonResult3 == 1) {
@@ -165034,7 +165034,7 @@ LAB_18013802c:
                 }
                 InitializeFloatConstants(0,0xbf800000);
                 ProcessSystemEventQueueData((char*)SystemEventQueueData);
-                SystemStatusCode = (uint32_t)((unsigned long long)in_stack_fffffffffffffeb8 >> 0x20);
+                SystemStatusCode = (uint32_t)((unsigned long long)SystemStatusParameter >> 0x20);
                 Utf16Char4 = (int)pStringComparisonResult1 + 1;
                 pStringComparisonResult1 = (int *)(unsigned long long)Utf16Char4;
                 ReferenceCountPointer8 = ReferenceCountPointer8 + 10;
