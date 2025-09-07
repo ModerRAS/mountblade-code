@@ -10119,11 +10119,11 @@ DataBuffer ProcessMemoryFlagUpdate(int64_t memoryConfig)
   int64_t *memoryRegionIterator;
   int64_t localMemoryBuffer [4];
   
-  memoryUpdateStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryConfig + 0x10),localMemoryBuffer);
+  memoryUpdateStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryConfig + MemoryConfigOffset),localMemoryBuffer);
   if ((int)memoryUpdateStatus == 0) {
-    memoryRegionIterator = *(int64_t **)(localMemoryBuffer[0] + 0x20);
-    while ((*(int64_t **)(localMemoryBuffer[0] + 0x20) <= memoryRegionIterator &&
-           (memoryRegionIterator < *(int64_t **)(localMemoryBuffer[0] + 0x20) + *(int *)(localMemoryBuffer[0] + 0x28)))) {
+    memoryRegionIterator = *(int64_t **)(localMemoryBuffer[0] + MemoryRegionIteratorOffset);
+    while ((*(int64_t **)(localMemoryBuffer[0] + MemoryRegionIteratorOffset) <= memoryRegionIterator &&
+           (memoryRegionIterator < *(int64_t **)(localMemoryBuffer[0] + MemoryRegionIteratorOffset) + *(int *)(localMemoryBuffer[0] + MemoryRegionBoundOffset)))) {
       memoryRegionBlock = *memoryRegionIterator;
       memoryRegionIterator = memoryRegionIterator + 1;
       if ((*(int64_t *)(memoryRegionBlock + 0x18) == *(int64_t *)(localMemoryBuffer[0] + 8)) &&
@@ -51967,7 +51967,20 @@ void ExecuteDataBufferCleanupCallback(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180904e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据缓冲区e40
+ * 
+ * 该函数负责处理异常数据缓冲区，设置异常处理器，
+ * 并处理相关的异常情况。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180904e40
+ */
+void ProcessExceptionDataBufferE40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -101685,6 +101698,14 @@ void InitializeGlobalDataPointerA2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
+/**
+ * @brief 初始化全局数据指针A3
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180941fe0
+ */
 void InitializeGlobalDataPointerA3(void)
 
 {
@@ -101697,6 +101718,14 @@ void InitializeGlobalDataPointerA3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
+/**
+ * @brief 初始化全局数据指针A4
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180942000
+ */
 void InitializeGlobalDataPointerA4(void)
 
 {
@@ -101709,6 +101738,14 @@ void InitializeGlobalDataPointerA4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
+/**
+ * @brief 初始化全局数据指针A5
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180942020
+ */
 void InitializeGlobalDataPointerA5(void)
 
 {
