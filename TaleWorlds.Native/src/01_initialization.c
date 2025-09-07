@@ -441,12 +441,12 @@
 #define InputKeyboardContextAddress              0x180be2af8
 
 // 物理系统地址常量
-#define PhysicsSystemPrimaryAddress            0x180be4710
-#define PhysicsSystemSecondaryAddress          0x180be4728
+#define PhysicsWorldContextAddress              0x180be4710
+#define PhysicsColliderContextAddress            0x180be4728
 
 // 网络系统地址常量
-#define NetworkSystemPrimaryAddress            0x180be6068
-#define NetworkSystemSecondaryAddress          0x180be6070
+#define NetworkClientContextAddress             0x180be6068
+#define NetworkServerContextAddress             0x180be6070
 #define NetworkSystemTertiaryAddress           0x180be6078
 
 // 虚函数表偏移量常量
@@ -466,24 +466,24 @@
 #define SystemEventBroadcastOffset            0x20
 #define SystemStatusFlagOffset          0x1ed
 #define SystemSecondaryAllocationSize         0x28
-#define SystemControllerAddress               0x180c91060
+#define SystemInputControllerAddress           0x180c91060
 
 // 游戏系统地址常量
-#define GameLogicSystemPrimaryAddress         0x180bebac8
-#define GameLogicSystemSecondaryAddress       0x180bebad8
-#define UISystemPrimaryAddress                0x180bebaf0
-#define UISystemSecondaryAddress              0x180bebbb0
-#define UISystemTertiaryAddress               0x180bebb50
-#define UISystemQuaternaryAddress             0x180bebc10
+#define GameStateContextAddress                0x180bebac8
+#define GameEntityContextAddress               0x180bebad8
+#define UIManagerContextAddress                0x180bebaf0
+#define UIWidgetContextAddress                 0x180bebbb0
+#define UIEventContextAddress                  0x180bebb50
+#define UIRenderContextAddress                 0x180bebc10
 
 // 系统数据库地址常量
-#define SystemDatabasePrimaryAddress          0x180c4f510
+#define DatabaseConnectionContextAddress       0x180c4f510
 
 // 系统同步对象地址常量
-#define SystemSyncObjectPrimaryAddress        0x180c82170
+#define SystemCriticalSectionAddress           0x180c82170
 
 // 虚函数表地址常量
-#define VirtualTablePrimaryAddress            0x180c35590
+#define VirtualFunctionTableAddress            0x180c35590
 
 // 系统配置标识符常量
 #define SystemConfigurationIdentifier         SystemConfigurationSystemIdentifier1
@@ -493,7 +493,6 @@
 
 // 系统节点分配额外大小常量
 #define SystemNodeAllocationExtraSize     NodeAllocationExtraSize
-#define SystemNodeAllocationExtraSize NodeAllocationExtraSize
 
 // 系统配置节点标识符常量
 #define SystemConfigurationNodeIdentifier1 SystemConfigurationSystemIdentifier1
@@ -516,16 +515,6 @@
 #define SystemDataTemplateTertiarySystemId1 SystemTertiarySystemIdentifier1
 #define SystemDataTemplateTertiarySystemId2 SystemTertiarySystemIdentifier2
 
-/**
- * @brief 处理系统内存页
- * 
- * 处理系统内存页，包括内存页的分配、释放和管理操作。
- * 用于系统内存页的生命周期管理。
- * 
- * @param MemoryPointer 内存指针，指向需要处理的内存页
- * 
- * @return 无返回值
- */
 /**
  * @brief 处理系统内存页
  * 
