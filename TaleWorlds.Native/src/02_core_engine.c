@@ -55560,16 +55560,16 @@ void InitializeCoreEngineDataStructure(long long systemContext, long long *memor
       (**(code **)(*secondaryMemoryPoolPointer + 0x38))();                  // 调用次级内存池处理器
     }
                     // WARNING: Subroutine does not return
-    memcpy(*(void *)(*Utf8InputBufferSize + 0x10),*(void *)(CharacterCode + 8),
-           (long long)*(int *)(*Utf8InputBufferSize + 0x1c));
+    memcpy(*(void *)(*memoryPoolHandle + 0x10), *(void *)(systemContext + 8),     // 复制系统上下文数据
+           (long long)*(int *)(*memoryPoolHandle + 0x1c));                        // 使用指定大小进行复制
   }
-  PrimaryMemoryPoolPointer = (long long *)*Utf8InputBufferSize;
-  *Utf8InputBufferSize = 0;
-  if (PrimaryMemoryPoolPointer != (long long *)0x0) {
-    (**(code **)(*PrimaryMemoryPoolPointer + 0x38))();
+  primaryMemoryPoolPointer = (long long *)*memoryPoolHandle;                     // 获取主内存池指针
+  *memoryPoolHandle = 0;                                                         // 清空内存池句柄
+  if (primaryMemoryPoolPointer != (long long *)0x0) {                            // 检查主内存池状态
+    (**(code **)(*primaryMemoryPoolPointer + 0x38))();                          // 调用主内存池处理器
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemEncryptionKey);
+  CoreEngineExecuteUtilityFunction(functionAddress ^ (unsigned long long)systemEncryptionKey); // 执行工具函数
 }
 
 
@@ -116898,19 +116898,19 @@ void ProcessSystemBufferSize(int *Utf8InputBuffer,int Utf8BufferSize)
  * @note 使用SystemCallMemoryAccess进行内存分配
  * @note 内存块大小为Utf8BufferSize * 0x28字节
  */
-void ExpandUtf8Buffer28(int *SystemContext,int BufferSize) {
-  uint64_t AllocatedMemoryBuffer;
+void ExpandUtf8Buffer28(int *systemContext, int bufferSize) {
+  uint64_t allocatedMemoryBuffer;                                        // 分配的内存缓冲区
   
-  if (SystemContext[1] < BufferSize) {
-    if (SystemConfigurationHandle != 0) {
-      *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
+  if (systemContext[1] < bufferSize) {                                   // 检查是否需要扩展缓冲区
+    if (SystemConfigurationHandle != 0) {                                 // 检查系统配置句柄
+      *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1; // 增加引用计数
     }
-    AllocatedMemoryBuffer = SystemCallMemoryAccess((long long)BufferSize * 0x28,SystemMemoryPoolBase);
-    if (*(long long *)(SystemContext + 2) != 0) {
-      memcpy(AllocatedMemoryBuffer,*(long long *)(SystemContext + 2),(long long)*SystemContext * 0x28);
+    allocatedMemoryBuffer = SystemCallMemoryAccess((long long)bufferSize * 0x28, SystemMemoryPoolBase); // 分配新内存
+    if (*(long long *)(systemContext + 2) != 0) {                        // 检查是否有现有数据
+      memcpy(allocatedMemoryBuffer, *(long long *)(systemContext + 2), (long long)*systemContext * 0x28); // 复制现有数据
     }
-    *(void *)(SystemContext + 2) = AllocatedMemoryBuffer;
-    SystemContext[1] = BufferSize;
+    *(void *)(systemContext + 2) = allocatedMemoryBuffer;                // 设置新的缓冲区指针
+    systemContext[1] = bufferSize;                                        // 更新缓冲区大小
   }
   return;
 }
@@ -116932,20 +116932,20 @@ void ExpandUtf8Buffer28(int *SystemContext,int BufferSize) {
  * @note 依赖ProcessingResult和DataNodePointer寄存器值
  */
 void ExpandUtf8Buffer28NoArgs(void) {
-  long long SystemConfigurationHandle = 0;
-  uint64_t AllocatedMemoryBuffer;
-  int *SystemContext = NULL;
-  long long RequiredBufferSize = 0;
+  long long systemConfigurationHandle = 0;                                  // 系统配置句柄
+  uint64_t allocatedMemoryBuffer;                                          // 分配的内存缓冲区
+  int *systemContext = NULL;                                                // 系统上下文指针
+  long long requiredBufferSize = 0;                                         // 需要的缓冲区大小
   
-  if (SystemConfigurationHandle != 0) {
-    *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
+  if (systemConfigurationHandle != 0) {                                    // 检查系统配置句柄
+    *(int *)(systemConfigurationHandle + 0x3a8) = *(int *)(systemConfigurationHandle + 0x3a8) + 1; // 增加引用计数
   }
-  AllocatedMemoryBuffer = SystemCallMemoryAccess(RequiredBufferSize * 0x28,SystemMemoryPoolBase);
-  if (*(long long *)(SystemContext + 2) != 0) {
-    memcpy(AllocatedMemoryBuffer,*(long long *)(SystemContext + 2),(long long)*SystemContext * 0x28);
+  allocatedMemoryBuffer = SystemCallMemoryAccess(requiredBufferSize * 0x28, SystemMemoryPoolBase); // 分配内存
+  if (*(long long *)(systemContext + 2) != 0) {                             // 检查现有数据
+    memcpy(allocatedMemoryBuffer, *(long long *)(systemContext + 2), (long long)*systemContext * 0x28); // 复制数据
   }
-  *(void *)(SystemContext + 2) = AllocatedMemoryBuffer;
-  SystemContext[1] = (int)RequiredBufferSize;
+  *(void *)(systemContext + 2) = allocatedMemoryBuffer;                     // 设置新缓冲区
+  systemContext[1] = (int)requiredBufferSize;                              // 更新缓冲区大小
   return;
 }
 

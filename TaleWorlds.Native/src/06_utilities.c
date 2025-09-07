@@ -118998,19 +118998,19 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：重置异常处理器状态，清理异常上下文
 #define ResetExceptionHandlers Unwind_1809092f0
 
-// 原始函数名：Unwind_180909400 - 系统状态验证和清理函数
+// 系统状态验证和清理函数
 // 功能：验证系统状态并执行清理操作
 #define ValidateAndCleanupSystemState Unwind_180909400
 
-// 原始函数名：Unwind_1809094a0 - 系统资源管理函数
+// 系统资源管理函数
 // 功能：管理系统资源，处理资源分配和释放
 #define ManageSystemResources Unwind_1809094a0
 
-// 原始函数名：Unwind_1809094b0 - 系统内存优化函数
+// 系统内存优化函数
 // 功能：优化系统内存使用，提高内存效率
 #define OptimizeSystemMemory Unwind_1809094b0
 
-// 原始函数名：Unwind_180909500 - 系统性能监控函数
+// 系统性能监控函数
 // 功能：监控系统性能，收集性能数据
 #define MonitorSystemPerformance Unwind_180909500
 
