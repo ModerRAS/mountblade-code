@@ -63,6 +63,15 @@
 #define ResourcePrimaryDataOffset 0x90
 #define ResourceSecondaryDataOffset 800
 
+// 缓冲区大小常量
+#define SecurityValidationBufferSize 32
+#define WorkingDataBufferSize 512
+#define ResourceHandleSize 8
+
+// 系统状态常量
+#define SystemSuccessStatus 0
+#define SystemErrorStatus 2
+
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
 #define SystemComponentDataOffset 0x38
@@ -10332,12 +10341,12 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   int32_t ProcessedResourceCount;
   
   // 安全和缓冲区相关变量
-  uint8_t SecurityValidationBuffer[32];
+  uint8_t SecurityValidationBuffer[SecurityValidationBufferSize];
   int64_t SystemContextArray[2];
   uint8_t *DataProcessingBuffer;
   int32_t ResourceProcessingLoopCounter;
   uint32_t DataProcessingFlags;
-  uint8_t WorkingDataBuffer[512];
+  uint8_t WorkingDataBuffer[WorkingDataBufferSize];
   
   // 初始化操作状态
   OperationStatus = 0;
