@@ -21362,7 +21362,23 @@ void SetThreadLocalStorageTemplate(uint64_t *threadStoragePointer) {
 
 
 
- void CoreEngineProcessSystemConfiguration(uint64_t configHandle, uint64_t configData, long long contextParam, uint64_t flagsParam)
+ /**
+ * @brief 处理系统配置和数据结构
+ * 
+ * 该函数负责处理系统配置参数，管理数据结构，并进行字符编码转换。
+ * 主要功能包括：
+ * - 系统配置数据的处理和验证
+ * - 数据结构的比较和验证
+ * - UTF-8字符串的处理和比较
+ * - 内存分配和系统事件初始化
+ * 
+ * @param configHandle 配置句柄
+ * @param configData 配置数据
+ * @param contextParam 上下文参数
+ * @param flagsParam 标志参数
+ * @return void
+ */
+void CoreEngineProcessSystemConfiguration(uint64_t configHandle, uint64_t configData, long long contextParam, uint64_t flagsParam)
 {
   byte SystemStringBuffer;
   bool BufferStatus;
@@ -97946,7 +97962,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *Utf8InputBuffer
       MatrixElementB = *(float *)(MemoryBlockIndex + 0x1744) * *(float *)(MemoryBlockIndex + 0x1628);
       ProcessingStatusFlag = ValidateSystemData(&SystemFloat1);
       pcStack_108.LowPart = *(uint32_t *)(MemoryBlockIndex + 0x1664);
-      ProcessSystemDataConcatenation(CONCAT44(fStack_dc,fStack_e0),CONCAT44(fStack_d4,fStack_d8),ProcessingStatusFlag,1);
+      ProcessSystemDataConcatenation(CONCAT44(ContextFloat2,ContextFloat1),CONCAT44(ContextFloat4,ContextFloat3),ProcessingStatusFlag,1);
       NormalizedParameterValue = -*(float *)(MemoryBlockIndex + 0x1668);
       ContextPrimaryFloat1 = ContextPrimaryFloat1 - NormalizedParameterValue;
       ContextPrimaryFloat0 = ContextPrimaryFloat0 + NormalizedParameterValue;
