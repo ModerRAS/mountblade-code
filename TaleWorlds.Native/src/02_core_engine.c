@@ -153872,7 +153872,17 @@ LAB_180133764:
 
 
 
-336ac(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointervoid FUN_1801336ac(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer
+/**
+ * @brief UTF8编码处理函数6AC
+ * 
+ * 该函数负责处理UTF8编码相关的操作
+ * 
+ * @param CharacterCode 字符编码
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @note 原始函数名：FUN_1801336ac
+ */
+void ProcessUtf8Encoding6AC(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
