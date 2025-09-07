@@ -21029,9 +21029,19 @@ DataBuffer UtilityNoOperationH(void)
 
 
 
-// 原始函数名：FUN_180895d30 - 哈希表数据插入和更新函数
-// 功能：在哈希表中插入或更新数据项，处理哈希冲突和内存分配
-#define ProcessHashTableInsertAndUpdate FUN_180895d30
+/**
+ * @brief 处理哈希表插入和更新操作
+ * 
+ * 该函数负责在哈希表中插入或更新数据项，处理哈希冲突和内存分配。
+ * 当哈希表需要扩容时，会自动调整表的大小并重新分配内存。
+ * 
+ * @param hashTableContext 哈希表上下文指针，包含哈希表的状态信息
+ * @param searchKey 搜索键指针，用于在哈希表中查找数据项
+ * @param systemDataBuffer 系统数据缓冲区指针，包含要插入或更新的数据
+ * @return DataBuffer 操作结果，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：FUN_180895d30
+ */
 DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searchKey,DataBuffer *systemDataBuffer)
 
 {
@@ -21049,68 +21059,68 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
   int expandedSize;
   int *currentNodePointer;
   
-  memoryRegionBase = InitializeSystemA1();
-  if ((int)memoryRegionBase == 0) {
+  systemMemoryBase = InitializeSystemA1();
+  if ((int)systemMemoryBase == 0) {
     if ((int)operationBase[1] == 0) {
       return ResourceInvalidErrorCode;
     }
-    systemDataBuffer = *dataBuffer;
-    bufferPointer = (int64_t)(int)((int)operationBase[1] - 1U & systemDataBuffer);
-    resourceReferenceCount3 = (int *)(*operationBase + bufferPointer * 4);
-    operationResult = *(int *)(*operationBase + bufferPointer * 4);
+    systemDataBuffer = *dataTableBuffer;
+    tableEntryPointer = (int64_t)(int)((int)operationBase[1] - 1U & systemDataBuffer);
+    resourceReferencePointer = (int *)(*operationBase + tableEntryPointer * 4);
+    operationResult = *(int *)(*operationBase + tableEntryPointer * 4);
     if (operationResult != -1) {
-      bufferPointer = operationBase[2];
+      tableEntryPointer = operationBase[2];
       do {
-        dataPointer = (int64_t)operationResult;
-        if (*(uint *)(bufferPointer + dataPointer * 0x10) == systemDataBuffer) {
-          *(DataBuffer *)(bufferPointer + 8 + dataPointer * 0x10) = *operationFlagA;
+        dataNodePointer = (int64_t)operationResult;
+        if (*(uint *)(tableEntryPointer + dataNodePointer * 0x10) == systemDataBuffer) {
+          *(DataBuffer *)(tableEntryPointer + 8 + dataNodePointer * 0x10) = *operationFlagA;
           return 0;
         }
-        operationResult = *(int *)(bufferPointer + 4 + dataPointer * 0x10);
-        resourceReferenceCount3 = (int *)(bufferPointer + 4 + dataPointer * 0x10);
+        operationResult = *(int *)(tableEntryPointer + 4 + dataNodePointer * 0x10);
+        resourceReferencePointer = (int *)(tableEntryPointer + 4 + dataNodePointer * 0x10);
       } while (operationResult != -1);
     }
     operationResult = (int)hashTable[4];
     if (operationResult == -1) {
-      memoryRegionBase = *systemDataBuffer;
+      systemMemoryBase = *systemDataBuffer;
       operationResult = (int)hashTable[3];
       calculatedValue = operationResult + 1;
       systemDataBuffer1 = (int)*(uint *)((int64_t)hashTable + 0x1c) >> 0x1f;
       operationStatus = (*(uint *)((int64_t)hashTable + 0x1c) ^ systemDataBuffer1) - systemDataBuffer1;
       if (operationStatus < calculatedValue) {
-        validationParameter2 = (int)((float)operationStatus * 1.5);
+        validationParameter = (int)((float)operationStatus * 1.5);
         operationStatus = calculatedValue;
-        if (calculatedValue <= validationParameter2) {
-          operationStatus = validationParameter2;
+        if (calculatedValue <= validationParameter) {
+          operationStatus = validationParameter;
         }
         if (operationStatus < 4) {
-          validationParameter2 = 4;
+          validationParameter = 4;
         }
-        else if (validationParameter2 < calculatedValue) {
-          validationParameter2 = calculatedValue;
+        else if (validationParameter < calculatedValue) {
+          validationParameter = calculatedValue;
         }
-        operationResult = CheckSystemDataA0(operationBase + 2,validationParameter2);
+        operationResult = CheckSystemDataA0(operationBase + 2,validationParameter);
         if ((int)operationResult != 0) {
           return operationResult;
         }
       }
-      pdataFlags = (DataBuffer *)((int64_t)(int)operationBase[3] * 0x10 + operationBase[2]);
-      *pdataFlags = CONCAT44(SystemCleanupFlag,systemDataBuffer);
-      pdataFlags[1] = memoryRegionBase;
+      dataFlagsPointer = (DataBuffer *)((int64_t)(int)operationBase[3] * 0x10 + operationBase[2]);
+      *dataFlagsPointer = CONCAT44(SystemCleanupFlag,systemDataBuffer);
+      dataFlagsPointer[1] = systemMemoryBase;
       *(int *)(operationBase + 3) = (int)operationBase[3] + 1;
     }
     else {
-      loopCounterPointer = (uint *)((int64_t)operationResult * 0x10 + operationBase[2]);
-      *(uint *)(operationBase + 4) = loopCounterPointer[1];
-      loopCounterPointer[1] = SystemCleanupFlag;
-      *loopCounterPointer = *dataBuffer;
-      *(DataBuffer *)(loopCounterPointer + 2) = *operationFlagA;
+      hashChainPointer = (uint *)((int64_t)operationResult * 0x10 + operationBase[2]);
+      *(uint *)(operationBase + 4) = hashChainPointer[1];
+      hashChainPointer[1] = SystemCleanupFlag;
+      *hashChainPointer = *dataTableBuffer;
+      *(DataBuffer *)(hashChainPointer + 2) = *operationFlagA;
     }
-    *resourceReferenceCount3 = operationResult;
+    *resourceReferencePointer = operationResult;
     *(int *)((int64_t)operationBase + 0x24) = *(int *)((int64_t)operationBase + 0x24) + 1;
-    memoryRegionBase = 0;
+    systemMemoryBase = 0;
   }
-  return memoryRegionBase;
+  return systemMemoryBase;
 }
 
 
