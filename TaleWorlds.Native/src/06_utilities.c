@@ -69096,20 +69096,34 @@ void Unwind_180907f70(DataBuffer exceptionContext, int64_t handleContext)
  * @param pointerContext 指针上下文信息
  * @return 无
  */
-void Unwind_180907f80(DataBuffer cleanupContext, int64_t pointerContext)
+/**
+ * @brief 指针验证和清理函数
+ * 
+ * 该函数负责验证指针的有效性并根据状态执行相应的清理操作：
+ * - 检查指针是否为空指针
+ * - 验证指针内容的完整性
+ * - 在检测到问题时终止系统
+ * 
+ * @param CleanupContext 清理上下文，包含清理操作的相关信息
+ * @param PointerContext 指针上下文，包含需要验证的指针信息
+ * 
+ * @note 该函数会检查指针的第3个字节是否为空来判断指针状态
+ * @warning 当检测到无效指针时会调用系统终止函数
+ */
+void ValidateAndProcessPointer(DataBuffer CleanupContext, int64_t PointerContext)
 
 {
-  int64_t *pointerToCheck;
+  int64_t *PointerToCheck;
   
-  pointerToCheck = *(int64_t **)(pointerContext + 0x58);
-  if (pointerToCheck == (int64_t *)0x0) {
-    *(int64_t *)(pointerContext + 0x58) = 0;
+  PointerToCheck = *(int64_t **)(PointerContext + 0x58);
+  if (PointerToCheck == (int64_t *)0x0) {
+    *(int64_t *)(PointerContext + 0x58) = 0;
     return;
   }
-  if (((char)pointerToCheck[3] == '\0') && (*pointerToCheck != 0)) {
+  if (((char)PointerToCheck[3] == '\0') && (*PointerToCheck != 0)) {
       TerminateSystemE0();
   }
-    TerminateSystemE0(pointerToCheck);
+    TerminateSystemE0(PointerToCheck);
 }
 
 
