@@ -6383,11 +6383,11 @@ void* ExceptionHandlerPointerBB;         // 异常处理器指针BB
 
 // 内存验证相关变量声明
 void* MemoryValidationStartPointer;     // 内存验证起始指针
-void* MemoryValidationEndPointer;       // _DAT_180c91f28 - 内存验证结束指针
+void* MemoryValidationEndPointer;       // 内存验证结束指针
 uint8_t MemoryValidationStatus;    // 内存验证状态
 
 // 系统资源数据管理相关变量声明
-void* SystemResourceDataManager;     // _DAT_180c967a0 - 系统资源数据管理器
+void* SystemResourceDataManager;     // 系统资源数据管理器
 void* SystemResourceDataTable;         // DAT_180c96790 - 系统资源数据表
 void* SystemResourceDataBuffer;         // DAT_18098bc73 - 系统资源数据缓冲区
 void* SystemCalculationBaseAddress;    // 系统计算基础地址
@@ -59163,7 +59163,21 @@ void InitializeExceptionDataTables(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906540(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理程序B
+ * 
+ * 该函数负责设置默认异常处理程序B的指针地址。
+ * 它将默认异常处理程序B的地址存储到数据缓冲区指定偏移量的位置，
+ * 用于在异常发生时调用相应的处理程序。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理配置信息
+ * 
+ * @note 原始函数名：Unwind_180906540
+ * @note 这是一个异常展开（unwind）处理函数，用于设置默认异常处理程序
+ * @note 函数将默认异常处理程序B地址存储到数据缓冲区的0x10偏移量处
+ */
+void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x48) + 0x10) = &DefaultExceptionHandlerB;
@@ -59267,7 +59281,20 @@ void Unwind_180906590(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809065a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理上下文状态清理函数5A0
+ * 
+ * 该函数负责清理异常处理上下文的状态，验证特定偏移量处的数据状态。
+ * 如果发现异常状态，会调用系统终止函数，然后重置相关状态。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809065a0
+ */
+#define CleanupExceptionHandlerState5A0 Unwind_1809065a0
+
+void CleanupExceptionHandlerState5A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -59496,7 +59523,20 @@ void Unwind_1809066c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809066e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理回调执行函数6E0
+ * 
+ * 该函数负责执行异常处理回调，通过函数指针调用异常处理程序。
+ * 它会检查异常处理上下文指针的有效性，然后调用相应的处理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理回调信息
+ * 
+ * @note 原始函数名：Unwind_1809066e0
+ */
+#define ExecuteExceptionHandlerCallback6E0 Unwind_1809066e0
+
+void ExecuteExceptionHandlerCallback6E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -59510,7 +59550,22 @@ void Unwind_1809066e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 带标志的异常处理资源清理函数700
+ * 
+ * 该函数负责清理异常处理资源，包括数据缓冲区、验证状态和内存地址。
+ * 它接受两个操作标志参数，用于控制清理行为。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理资源信息
+ * @param operationFlagA 操作标志A，用于控制清理行为
+ * @param operationFlagB 操作标志B，用于控制清理行为
+ * 
+ * @note 原始函数名：Unwind_180906700
+ */
+#define CleanupExceptionResourcesWithFlags700 Unwind_180906700
+
+void CleanupExceptionResourcesWithFlags700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
