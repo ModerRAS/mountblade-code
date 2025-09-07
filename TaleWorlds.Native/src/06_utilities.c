@@ -915,47 +915,47 @@
 
 // 系统上下文验证函数A0
 // 功能：验证系统上下文的有效性和完整性
-// 原始函数名：FUN_180090b80
+// 系统上下文验证函数
 #define ValidateSystemContextA0 FUN_180090b80
 
 // 数据数组处理函数A0
 // 功能：处理和操作数据数组，包括数据的读取、写入、验证和转换
-// 原始函数名：FUN_180057010
+// 数据数组处理函数
 #define ProcessDataArrayA0 FUN_180057010
 
 // 数据缓冲区初始化函数
 // 功能：初始化系统数据缓冲区，为后续的数据操作准备内存空间
-// 原始函数名：FUN_1800a19c0
+// 数据缓冲区初始化函数
 #define InitializeDataBuffer FUN_1800a19c0
 
 // 系统命令执行函数
 // 功能：执行系统级命令，处理命令参数和返回结果
-// 原始函数名：FUN_18009fb60
+// 系统命令执行函数
 #define ExecuteSystemCommand FUN_18009fb60
 
 // 系统操作处理函数
 // 功能：处理系统级操作，包括资源管理和状态控制
-// 原始函数名：FUN_1800ad6f0
+// 系统操作处理函数
 #define ProcessSystemOperations FUN_1800ad6f0
 
 // 验证和处理数据函数
 // 功能：验证数据的有效性并执行相应的数据处理操作
-// 原始函数名：FUN_1800f74f0
+// 数据验证和处理函数
 #define ValidateAndProcessData FUN_1800f74f0
 
 // 验证和执行操作函数A1
 // 功能：验证操作参数的有效性并执行相应的系统操作
-// 原始函数名：FUN_18005d560
+// 验证和执行操作函数
 #define ValidateAndExecuteOperationsA1 FUN_18005d560
 
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
-// 原始函数名：FUN_1800adb30
+// 系统组件初始化函数
 #define InitializeSystemComponents FUN_1800adb30
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
-// 原始函数名：FUN_18004c030
+// 内存操作处理函数
 #define ProcessMemoryOperationA0 FUN_18004c030
 
 // Unwind函数宏定义 - 异常处理清理函数
@@ -3502,7 +3502,7 @@
 // 功能：检查系统状态和标志位
 #define CheckSystemStatus CheckSystemStatus
 
-// 原始函数名：FUN_18009fb60 - 系统命令执行函数
+// 系统命令执行函数 - 系统命令执行函数
 // 功能：执行系统命令和操作
 #define ExecuteSystemCommand FUN_18009fb60
 
@@ -5644,7 +5644,7 @@ extern void* SystemPrimaryResourceTable;
 // 功能：分配系统资源并初始化
 #define AllocateSystemResourcesAndInitialize FUN_1800582b0
 
-// 原始函数名：FUN_1800adb30 - 系统验证函数
+// 系统组件初始化函数 - 系统验证函数
 // 功能：验证系统组件并执行检查
 #define ValidateSystemComponentsAndCheck FUN_1800adb30
 
@@ -74069,7 +74069,19 @@ void DestroyStreamBufferOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908eb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常回调并进行验证
+ * 
+ * 该函数在异常处理过程中处理异常回调并进行验证，确保异常处理链的正确执行
+ * 从数据缓冲区的0x30偏移量处获取异常处理器回调并执行
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180908eb0
+ * @note 这是一个异常处理回调函数，用于处理异常回调并进行验证
+ */
+void ProcessExceptionCallbackWithValidation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -74086,7 +74098,19 @@ void Unwind_180908eb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908ec0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在异常时清理资源
+ * 
+ * 该函数在异常处理过程中清理资源，确保系统异常时能正确释放相关资源
+ * 从数据缓冲区的0x60偏移量处获取资源指针进行清理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要清理的资源信息
+ * 
+ * @note 原始函数名：Unwind_180908ec0
+ * @note 这是一个异常处理清理函数，用于在异常发生时释放资源
+ */
+void CleanupResourceOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CleanupResourceA0(dataBuffer + 0x60);
@@ -74203,7 +74227,7 @@ void SetupMemoryBaseAddressAtOffset40(DataBuffer operationBase,int64_t dataBuffe
 uint8_t * HandleStringStateException(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
+  SetBasicIosState
             ((int64_t)*(int *)(**(int64_t **)(dataBuffer + 0x70) + 4) +
              (int64_t)*(int64_t **)(dataBuffer + 0x70), 4, 1);
   return &SystemStringConstantA;
@@ -74219,7 +74243,7 @@ void Unwind_180908f90(DataBuffer operationBase,int64_t dataBuffer)
   
   characterFlag = _uncaught_exception_std__YA_NXZ();
   if (characterFlag == '\0') {
-    __Osfx___basic_ostream_DU__char_traits_D_std___std__QEAAXXZ(*(int64_t *)(dataBuffer + 0x38));
+    FlushBasicOstream(*(int64_t *)(dataBuffer + 0x38));
   }
   exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x38);
   exceptionHandlerContextPointer = *(int64_t **)((int64_t)*(int *)(*exceptionHandlerContextPointer + 4) + 0x48 + (int64_t)exceptionHandlerContextPointer);
@@ -83329,7 +83353,7 @@ void Unwind_18090c330(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
     *(uint *)(dataBuffer + MemoryPointerOffset) = *(uint *)(dataBuffer + MemoryPointerOffset) & 0xfffffffe;
-    __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + 0xb8);
+    DestroyBasicIos(*(int64_t *)(dataBuffer + 0x40) + 0xb8);
   }
   return;
 }
@@ -83339,7 +83363,7 @@ void Unwind_18090c330(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090c360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                                      __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + 0x20);
+                                      DestroyBasicIostream(*(int64_t *)(dataBuffer + 0x40) + 0x20);
   return;
 }
 
@@ -98771,8 +98795,8 @@ void Unwind_180910450(DataBuffer operationBase,int64_t dataBuffer)
   operationResult = *(int *)(*(int64_t *)(memoryBlockOffset + 0x128) + 4);
   *(int *)((int64_t)operationResult + -0xb4 + exceptionHandlerContext) = operationResult + -0xb0;
   ExecuteSystemCommand(memoryBlockOffset + 0x138);
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(memoryBlockOffset + 0x140);
-                             __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(exceptionHandlerContext);
+  DestroyBasicIstream(memoryBlockOffset + 0x140);
+                             DestroyBasicIos(exceptionHandlerContext);
   return;
 }
 
@@ -98919,7 +98943,7 @@ void Unwind_180910530(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + DataContextOffset68) + 0xb0);
+    DestroyBasicIos(*(int64_t *)(dataBuffer + DataContextOffset68) + 0xb0);
   }
   return;
 }
@@ -98929,7 +98953,7 @@ void Unwind_180910530(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910560(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                                 __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + DataContextOffset68) + 0x18);
+                                 DestroyBasicIstream(*(int64_t *)(dataBuffer + DataContextOffset68) + 0x18);
   return;
 }
 
@@ -98985,8 +99009,8 @@ void SystemCleanupHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
   operationResult = *(int *)(*(int64_t *)(memoryBlockOffset + 0x128) + 4);
   *(int *)((int64_t)operationResult + -0xb4 + exceptionHandlerContext) = operationResult + -0xb0;
   ExecuteSystemCommand(memoryBlockOffset + 0x138);
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(memoryBlockOffset + 0x140);
-                             __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(exceptionHandlerContext);
+  DestroyBasicIstream(memoryBlockOffset + 0x140);
+                             DestroyBasicIos(exceptionHandlerContext);
   return;
 }
 
@@ -99131,7 +99155,7 @@ void Unwind_180910660(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910680(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                                        __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
+                                        DestroyBasicIstream(*(int64_t *)(dataBuffer + 0x40) + -0x98);
   return;
 }
 
@@ -112582,32 +112606,32 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 系统上下文验证函数A0
 // 功能：验证系统上下文的有效性和完整性
-// 原始函数名：FUN_180090b80
+// 系统上下文验证函数
 #define ValidateSystemContextA0 FUN_180090b80
 
 // 数据数组处理函数A0
 // 功能：处理和操作数据数组，包括数据的读取、写入、验证和转换
-// 原始函数名：FUN_180057010
+// 数据数组处理函数
 #define ProcessDataArrayA0 FUN_180057010
 
 // 数据缓冲区初始化函数
 // 功能：初始化系统数据缓冲区，为后续的数据操作准备内存空间
-// 原始函数名：FUN_1800a19c0
+// 数据缓冲区初始化函数
 #define InitializeDataBuffer FUN_1800a19c0
 
 // 系统命令执行函数
 // 功能：执行系统级命令，处理命令参数和返回结果
-// 原始函数名：FUN_18009fb60
+// 系统命令执行函数
 #define ExecuteSystemCommand FUN_18009fb60
 
 // 系统操作处理函数
 // 功能：处理系统级操作，包括资源管理和状态控制
-// 原始函数名：FUN_1800ad6f0
+// 系统操作处理函数
 #define ProcessSystemOperations FUN_1800ad6f0
 
 // 验证和处理数据函数
 // 功能：验证数据的有效性并执行相应的数据处理操作
-// 原始函数名：FUN_1800f74f0
+// 数据验证和处理函数
 #define ValidateAndProcessData FUN_1800f74f0
 
 // 数据块处理函数
@@ -112624,17 +112648,17 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 验证和执行操作函数A1
 // 功能：验证操作参数的有效性并执行相应的系统操作
-// 原始函数名：FUN_18005d560
+// 验证和执行操作函数
 #define ValidateAndExecuteOperationsA1 FUN_18005d560
 
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
-// 原始函数名：FUN_1800adb30
+// 系统组件初始化函数
 #define InitializeSystemComponents FUN_1800adb30
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
-// 原始函数名：FUN_18004c030
+// 内存操作处理函数
 #define ProcessMemoryOperationA0 FUN_18004c030
 
 // Unwind函数宏定义 - 异常处理清理函数
