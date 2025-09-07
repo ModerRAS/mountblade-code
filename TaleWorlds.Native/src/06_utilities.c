@@ -4785,7 +4785,7 @@ extern void* SystemPrimaryResourceTable;
 // 更多系统函数宏定义
 // 原始函数名：FUN_18089a370 - 系统数据处理函数A0
 // 功能：处理系统数据并返回处理结果
-#define ProcessSystemDataA0 FUN_18089a370
+#define ProcessSystemDataAndReturnResult FUN_18089a370
 
 // 原始函数名：FUN_18089a51d - 系统状态查询函数A0
 // 功能：查询系统状态并返回状态信息
