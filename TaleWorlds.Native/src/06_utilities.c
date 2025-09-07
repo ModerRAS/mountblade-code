@@ -19468,7 +19468,7 @@ ProcessDataSecurityValidation:
   DataWord statusCounter;
   DataWord loopCounter;
   DataWord systemDataBuffer1;
-  char cVar12;
+  char statusChar;
   int inputParameter3;
   uint systemDataBuffer4;
   DataBuffer *inputAccumulatorRegister;
@@ -19731,7 +19731,7 @@ ValidateDataSecurity:
   DataWord statusCounter;
   DataWord loopCounter;
   DataWord systemDataBuffer1;
-  char cVar12;
+  char statusChar;
   int inputParameter3;
   uint systemDataBuffer4;
   int64_t inputAccumulatorRegister;
@@ -19873,10 +19873,10 @@ ValidateDataSecurity:
           inputParameter3 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
           if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
-        pfVar21 = (float *)(register_R15 + 0x94);
-        fVar19 = register_R13D;
+        floatArrayPointer = (float *)(register_R15 + 0x94);
+        loopCounterFloat = register_R13D;
         do {
-          floatValidationValue = *pfVar21;
+          floatValidationValue = *floatArrayPointer;
           if (floatValidationValue != 0.0) {
             StackParameter38 = StackParameter20;
             in_stack_00000028 = &UNK_1809839d8;
@@ -20638,7 +20638,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           ProcessContext(validationContext5,validationContextPointer4,afStack_348,alStack_300);
           validationContext1 = GetSystemContextHandle(validationContext5,validationContextPointer4);
           systemStatusChar = CheckSystemStatus(validationContext1,0);
-          if ((cVar5 == '\0') && (afStack_348[0] != *(float *)(validationContext1 + 0x4c))) {
+          if ((systemStatusChar == '\0') && (afStack_348[0] != *(float *)(validationContext1 + 0x4c))) {
             uStack_2c0 = auStack_2f0._0_4_;
             uStack_2bc = auStack_2f0._4_4_;
             fStack_2c8 = afStack_348[0];
@@ -20945,19 +20945,19 @@ DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuff
   exceptionDataBuffer1 = (uint *)*operationBase;
   if (((exceptionDataBuffer1 != (uint *)0x0) && (operationBase[4] != 0)) && (operationBase[2] != 0)) {
     inputParameter0 = 0;
-    cVar5 = *dataBuffer;
-    while (cVar5 != '\0') {
+    currentChar = *dataBuffer;
+    while (currentChar != '\0') {
       bVar3 = *(byte *)((int64_t)exceptionDataBuffer1 + 7);
       if (bVar3 == 0) {
         return 0x4a;
       }
-      cVar5 = ProcessCharacterDataA0(cVar5);
+      currentChar = ProcessCharacterDataA0(currentChar);
       exceptionDataBuffer1 = (uint *)(*operationBase + (uint64_t)(exceptionDataBuffer1[1] & 0xffffff) * 8);
       calculatedValue = 0;
       if (bVar3 == 0) {
         return 0x4a;
       }
-      while (*(char *)((int64_t)exceptionDataBuffer1 + 3) != cVar5) {
+      while (*(char *)((int64_t)exceptionDataBuffer1 + 3) != currentChar) {
         calculatedValue = calculatedValue + 1;
         exceptionDataBuffer1 = exceptionDataBuffer1 + 2;
         if ((int)(uint)bVar3 <= calculatedValue) {
@@ -20966,22 +20966,22 @@ DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuff
       }
       dataBuffer = dataBuffer + 1;
       pcVar9 = (char *)(operationBase[4] + 1 + (uint64_t)(*exceptionDataBuffer1 & 0xffffff));
-      cVar5 = *dataBuffer;
-      while (cVar5 != '\0') {
+      currentChar = *dataBuffer;
+      while (currentChar != '\0') {
         if (*pcVar9 == '\0') goto ProcessCheckpointStringValidation;
-        cVar5 = ProcessCharacterDataA0(cVar5);
-        cVar6 = ProcessCharacterDataA0(*pcVar9);
-        if (cVar5 != cVar6) break;
+        currentChar = ProcessCharacterDataA0(currentChar);
+        processedChar = ProcessCharacterDataA0(*pcVar9);
+        if (currentChar != processedChar) break;
         pcVar1 = dataBuffer + 1;
         dataBuffer = dataBuffer + 1;
         pcVar9 = pcVar9 + 1;
-        cVar5 = *pcVar1;
+        currentChar = *pcVar1;
       }
       if (*pcVar9 != '\0') {
         return 0x4a;
       }
 SystemCheckpointA:
-      cVar5 = *dataBuffer;
+      currentChar = *dataBuffer;
     }
     bVar3 = *(byte *)((int64_t)exceptionDataBuffer1 + 7);
     if (bVar3 != 0) {
