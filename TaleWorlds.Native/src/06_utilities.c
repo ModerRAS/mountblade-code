@@ -93,6 +93,7 @@
 // 异常处理器位置常量
 #define CriticalExceptionHandlerOffset 0x6f0
 #define TemporaryExceptionHandlerOffset 0x218
+#define ExceptionHandlerOffset170 0x170
 
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
@@ -79041,7 +79042,17 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
 
 
 
-void Unwind_180909a60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B函数
+ * 
+ * 该函数将默认异常处理器B的地址设置到数据缓冲区的指定偏移量处。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909a60
+ */
+void SetDefaultExceptionHandlerBInBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x410) = &DefaultExceptionHandlerB;
@@ -79050,7 +79061,18 @@ void Unwind_180909a60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909a70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据验证和标志清理函数
+ * 
+ * 该函数检查数据缓冲区中的标志位，如果第一位被设置，则清除该位
+ * 并调用数据验证处理程序。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909a70
+ */
+void ValidateDataAndClearFlag(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x38) & 1) != 0) {
@@ -89992,7 +90014,7 @@ void CleanupExceptionAtOffset220(DataBuffer ExceptionContext,int64_t ExceptionOf
   int64_t ExceptionFrameAddress;
   uint64_t ExceptionMemoryMask;
   
-  ExceptionPointerArray = *(DataBuffer ***)(ExceptionOffset + 0x170);
+  ExceptionPointerArray = *(DataBuffer ***)(ExceptionOffset + ExceptionHandlerOffset170);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -90011,7 +90033,7 @@ void CleanupExceptionAtOffset220(DataBuffer ExceptionContext,int64_t ExceptionOf
       }
     }
     else {
-      ManageMemory(memoryRegionBase,SetBitFlag(0xff000000,*(void ***)(memoryRegionBase + 0x70) == &ExceptionList),
+      ManageMemory(memoryRegionBase,SetBitFlag(0xff000000,*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList),
                           memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
@@ -90038,7 +90060,7 @@ void CleanupResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 400);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceHandlerContextOffset);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -90057,7 +90079,7 @@ void CleanupResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffer)
       }
     }
     else {
-      ManageMemory(memoryRegionBase,SetBitFlag(0xff000000,*(void ***)(memoryRegionBase + 0x70) == &ExceptionList),
+      ManageMemory(memoryRegionBase,SetBitFlag(0xff000000,*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList),
                           memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
