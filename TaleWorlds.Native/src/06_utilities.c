@@ -7467,7 +7467,9 @@ uint8_t SystemDataCacheAreaA1;
 // 系统数据缓存区A2
 // 功能：用于缓存系统数据的区域
 uint8_t SystemDataCacheAreaA2;
-uint8_t UNK_180a33c90;
+// 系统数据缓存区A3
+// 功能：用于缓存系统数据的区域
+uint8_t SystemDataCacheAreaA3;
 uint8_t UNK_18053f010;
 uint8_t UNK_18053f040;
 uint8_t UNK_18053f080;

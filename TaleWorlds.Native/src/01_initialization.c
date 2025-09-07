@@ -1487,8 +1487,8 @@ void* SystemDataTemplateConfigurationComponentId1;                // 系统数�
 void* SystemDataTemplateConfigurationComponentId2;                // 系统数据模板 - 配置组件标识符2
 void* SystemDataTemplateLogSystemId1;                    // 系统数据模板 - 日志系统标识符1
 void* SystemDataTemplateLogSystemId2;                    // 系统数据模板 - 日志系统标识符2
-void* SystemDataTemplateOId1;                    // 系统数据模板 - 输出系统标识符1
-void* SystemDataTemplateOId2;                    // 系统数据模板 - 输出系统标识符2
+void* SystemDataTemplateOutputSystemId1;                    // 系统数据模板 - 输出系统标识符1
+void* SystemDataTemplateOutputSystemId2;                    // 系统数据模板 - 输出系统标识符2
 
 // 系统回调管理器变量
 void* SystemCallbackManager;                     // 系统回调管理器指针
