@@ -15151,34 +15151,34 @@ LAB_18065a67b:
       plocalFloat2[1] = localFloat7;
     }
 LAB_18065a69c:
-    localFloat8 = *(float *)((longlong)afStack_60e8 + (8 - unmodifiedR14) + (longlong)plocalFloat2);
-    localFloat9 = localFloat8 - plocalFloat2[-8];
-    floatResult0 = (float)((uint)localFloat9 & in_XMM5_Da);
-    if (0.001 <= floatResult0) {
-      floatResult2 = unmodifiedXMM14_Da;
-      if (unmodifiedXMM6_Da <= localFloat9) {
-        floatResult2 = unmodifiedXMM8_Da;
+    currentScale = *(float *)((longlong)transformBuffer + (8 - transformDataPointer) + (longlong)transformMatrixPointer);
+    targetScale = currentScale - transformMatrixPointer[-8];
+    interpolationFactor = (float)((uint)targetScale & vectorMask);
+    if (0.001 <= interpolationFactor) {
+      rotationAngle = baseRotationW;
+      if (baseRotationY <= targetScale) {
+        rotationAngle = baseRotationZ;
       }
-      if (0.05 <= floatResult0) {
-        if (0.5 <= floatResult0) {
-          floatResult0 = 0.5;
+      if (0.05 <= interpolationFactor) {
+        if (0.5 <= interpolationFactor) {
+          interpolationFactor = 0.5;
         }
       }
       else {
-        floatResult0 = 0.05;
+        interpolationFactor = 0.05;
       }
-      floatResult0 = floatResult0 * floatResult2 * param_6._4_4_ * 6.0;
-      in_XMM5_Da = 0x7fffffff;
-      if (floatResult0 * floatResult2 <= floatResult2 * localFloat9) {
-        localFloat8 = plocalFloat2[-8] + floatResult0;
+      interpolationFactor = interpolationFactor * rotationAngle * transformTypeFlags._4_4_ * 6.0;
+      vectorMask = 0x7fffffff;
+      if (interpolationFactor * rotationAngle <= rotationAngle * targetScale) {
+        currentScale = transformMatrixPointer[-8] + interpolationFactor;
       }
     }
-    uiCompareResult = localInt4 + 2;
-    plocalFloat2[-8] = localFloat8;
-    plocalFloat2[2] = localFloat8;
-    if (2 < uiCompareResult) {
-      if (uiCompareResult < 7) {
-        localFloat9 = unmodifiedXMM8_Da - bufferSize;
+    transformStepCounter = componentIndex + 2;
+    transformMatrixPointer[-8] = currentScale;
+    transformMatrixPointer[2] = currentScale;
+    if (2 < transformStepCounter) {
+      if (transformStepCounter < 7) {
+        targetScale = baseRotationZ - bufferSize;
       }
       else {
         localFloat9 = unmodifiedXMM6_Da;
