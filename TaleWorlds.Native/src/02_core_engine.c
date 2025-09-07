@@ -38562,10 +38562,10 @@ void ProcessSystemDataTransfer(uint64_t SystemContextPointer,uint32_t Utf8Buffer
   uint16_t FunctionAddress;
   uint64_t SystemStackOffset36;
   uint64_t SystemStackOffset2E;
-  uint16_t uStack_26;
+  uint16_t SystemStackFlag26;
   uint64_t SystemStackOffset18;
   
-  uStack_18 = 0xfffffffffffffffe;
+  SystemStackOffset18 = 0xfffffffffffffffe;
   SystemEventPointer = &SystemNullTemplate;
   StackVariable70 = 0;
   FunctionAddress80 = 0;
@@ -38577,9 +38577,9 @@ void ProcessSystemDataTransfer(uint64_t SystemContextPointer,uint32_t Utf8Buffer
   FunctionAddress = 0;
   SystemStackFlag = 0;
   SystemPriorityLevel = 0;
-  uStack_26 = 0;
-  uStack_36 = 0;
-  uStack_2e = 0;
+  SystemStackFlag26 = 0;
+  SystemStackOffset36 = 0;
+  SystemStackOffset2E = 0;
   ProcessSystemEventEx(&SystemEventPointer,SystemContextPointer,Utf16InputPointer,Utf16EndPointer,&StackUnsigned68);
   ProcessSystemConfigurationData(&SystemEventPointer,Utf16InputPointer);
   ProcessSystemMemoryAllocation(&SystemEventPointer);
@@ -41913,13 +41913,13 @@ void HandleSystemMemoryAllocationAndBufferManagement(long long *SystemContextPoi
   long long MemoryBlockSize;
   float CurrentThresholdValue;
   float TargetThresholdValue;
-  uint8_t auStack_138 [8];
+  uint8_t SystemStackBuffer138 [8];
   long long *pSystemMemoryAllocationBlock;
   uint32_t BufferInitializationFlag;
   long long *pMemoryBufferArray;
   long long *pMemoryBufferHandle;
-  uint32_t uStack_110;
-  long long lStack_108;
+  uint32_t SystemStackFlag110;
+  long long SystemStackOffset108;
   uint64_t SystemFlagA;
   uint64_t SystemFlagB;
   uint8_t SystemFlagC;
