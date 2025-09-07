@@ -86,6 +86,9 @@
 #define ProcessCharacterEncodingConversion FUN_18013a860        // 处理字符编码转换
 #define ProcessSystemDataLookup FUN_18012e350                    // 处理系统数据查找
 #define ProcessSystemCharacterValidation FUN_180112630           // 处理系统字符验证
+#define ProcessSystemEncodingAndBufferManagement FUN_180170ac0    // 处理系统编码和缓冲区管理
+#define ProcessCharacterEncodingConversionAndValidation FUN_180170ba0 // 处理字符编码转换和验证
+#define ProcessThreadLocalStorageSetup FUN_18006b6f0                  // 处理线程本地存储设置
 
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
@@ -200022,17 +200025,17 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
   Utf8InputBuffer[0x21c] = 0;
   *(uint32_t *)(CharacterCode + 0x21e) = 0;
   Utf8InputBuffer[0x21b] = &ThreadLocalStorageTemplate;
-  FUN_18006b6f0();
+  ProcessThreadLocalStorageSetup();
   Utf8InputBuffer[0x204] = &ThreadLocalStorageTemplate;
   Utf8InputBuffer[0x1f1] = &ThreadLocalStorageTemplate;
   InitializeSystemMemoryBlock(CharacterCode + 0x146,0x98,9,CoreEngineSetupThreadLocalStorage);
   InitializeSystemMemoryBlock(CharacterCode + 0x96,0x58,0x10,CoreEngineSetupThreadLocalStorage);
-  FUN_18006b6f0();
+  ProcessThreadLocalStorageSetup();
   InitializeSystemMemoryBlock(CharacterCode + 0x33,0x98,5,CoreEngineSetupThreadLocalStorage);
-  FUN_18006b6f0();
+  ProcessThreadLocalStorageSetup();
   Utf8InputBuffer[0x1c] = &ThreadLocalStorageTemplate;
   Utf8InputBuffer[8] = &ThreadLocalStorageTemplate;
-  FUN_18006b6f0();
+  ProcessThreadLocalStorageSetup();
   *Utf8InputBuffer = &SystemNullTemplate;
   if (Utf8InputBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -200048,7 +200051,19 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
 
 
 
-70ac0(long long CharacterCode,long long Utf8BufferSizevoid FUN_180170ac0(long long CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理系统编码和缓冲区管理
+ * 
+ * 该函数负责处理系统编码和缓冲区管理操作，包括：
+ * - 处理字符编码和缓冲区管理
+ * - 管理系统输入字符串缓冲区
+ * - 执行编码和解密操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @note 原始函数名：FUN_180170ac0
+ */
+void ProcessSystemEncodingAndBufferManagement(long long CharacterCode,long long Utf8BufferSize)
 {
   long long PrimaryDataSize;
   void *PrimaryProcessingStatusFlag;
@@ -200088,7 +200103,21 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
 
 
 
-70ba0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointervoid FUN_180170ba0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer
+/**
+ * @brief 处理字符编码转换和验证
+ * 
+ * 该函数负责处理字符编码转换和验证操作，包括：
+ * - 处理Unicode字符编码转换
+ * - 管理内存分配和缓冲区初始化
+ * - 执行字符编码验证和错误处理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180170ba0
+ */
+void ProcessCharacterEncodingConversionAndValidation(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer)
 {
   unsigned long long *CharacterStatusBuffer;
   unsigned long long MemoryAllocationIndex;
@@ -248318,7 +248347,7 @@ uint64_t FUN_180212170(uint64_t CharacterCode,unsigned long long Utf8BufferSize
     CoreEngineProcessSystemEvent();
   }
   SystemRegisterPointerX10 = CharacterCode + 0x73;
-  FUN_18006b6f0();
+  ProcessThreadLocalStorageSetup();
   SystemRegisterPointerX10 = CharacterCode + 0x6f;
   if (*SystemRegisterPointerX10 != 0) {
                     // WARNING: Subroutine does not return
@@ -254449,7 +254478,7 @@ uint64_t FUN_18021a590(uint64_t CharacterCode,unsigned long long Utf8BufferSize,
   
   Utf16Char = 0xfffffffffffffffe;
   FUN_180048980();
-  FUN_18006b6f0();
+  ProcessThreadLocalStorageSetup();
   FUN_1801570c0(CharacterCode);
   if ((Utf8BufferSize & 1) != 0) {
     free(CharacterCode,0x2a0,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
