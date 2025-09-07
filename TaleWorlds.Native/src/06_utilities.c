@@ -24004,8 +24004,8 @@ DataBuffer ProcessDataCollectionA0(int64_t collectionContext,int64_t *dataPointe
   int itemProcessingBuffer [2];
   
   itemCount = (int)dataPointer[1];
-  itemBuffer[0] = itemCount;
-  processResult = (**(FunctionPointer**)**(DataBuffer **)(collectionContext + 8))(*(DataBuffer **)(collectionContext + 8),itemBuffer,4);
+  itemProcessingBuffer[0] = itemCount;
+  processResult = (**(FunctionPointer**)**(DataBuffer **)(collectionContext + 8))(*(DataBuffer **)(collectionContext + 8),itemProcessingBuffer,4);
   if ((int)processResult == 0) {
     if (0 < itemCount) {
       itemIndex = 0;
@@ -24016,9 +24016,9 @@ DataBuffer ProcessDataCollectionA0(int64_t collectionContext,int64_t *dataPointe
         if ((int)processResult != 0) {
           return processResult;
         }
-        itemBuffer[0] = *(int *)(baseAddress + currentOffset + 0x10);
+        itemProcessingBuffer[0] = *(int *)(baseAddress + currentOffset + 0x10);
         processResult = (**(FunctionPointer**)**(DataBuffer **)(collectionContext + 8))
-                          (*(DataBuffer **)(collectionContext + 8),itemBuffer,4);
+                          (*(DataBuffer **)(collectionContext + 8),itemProcessingBuffer,4);
         if ((int)processResult != 0) {
           return processResult;
         }
