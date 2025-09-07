@@ -223,6 +223,24 @@
 #define FindAndValidateStringProcessingNode FUN_180203aa0
 
 /**
+ * @brief 处理字符串编码转换
+ * 
+ * 该函数负责处理字符串的编码转换操作，支持多种编码格式
+ * 
+ * @note 原始函数名：FUN_180203abc
+ */
+#define ProcessStringEncodingConversion FUN_180203abc
+
+/**
+ * @brief 执行系统上下文处理
+ * 
+ * 该函数负责执行系统上下文的处理操作，包括内存管理和状态更新
+ * 
+ * @note 原始函数名：FUN_180203ba0
+ */
+#define ExecuteSystemContextProcessing FUN_180203ba0
+
+/**
  * @brief 处理浮点数字符代码
  * 
  * 该函数负责处理浮点数形式的字符代码
