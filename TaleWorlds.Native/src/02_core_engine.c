@@ -38210,7 +38210,7 @@ MemoryCopyOperation:
     pProcessingCounter = StatusBuffer;
     MemoryAddressMask = GetMemoryAllocationInfo(StatusBuffer);
     SystemFlagB = CONCAT44(SystemFlagB.HighPart,MemoryAddressMask);
-    goto LAB_180072120;
+    goto MemoryCopyOperation;
   }
   if (StatusBuffer != (uint8_t *)0x0) {
     StatusBuffer[Utf16Char9] = 0;
@@ -38243,7 +38243,7 @@ MemoryCopyOperation:
         pProcessingCounter = StatusBuffer;
         SystemFlagB.LowPart = GetMemoryAllocationInfo(StatusBuffer);
       }
-LAB_1800721e1:
+StringConcatenationComplete:
                     // WARNING: Subroutine does not return
       memcpy(StatusBuffer + Utf16Char9,Utf8BufferSize,(long long)((int)LoopCounter7 + 2));
     }
@@ -117168,7 +117168,17 @@ void ProcessSystemFloatCalculation(uint64_t SystemContextPointer,float *Utf8Buff
 
 
 
-250a(uint64_t SystemContextPointer,float *Utf8BufferSizevoid FUN_18012250a(uint64_t SystemContextPointer,float *Utf8BufferSize
+/**
+ * @brief 处理系统浮点数参数
+ * 
+ * 该函数负责处理系统中的浮点数参数计算和验证
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18012250a
+ */
+void ProcessSystemFloatParameters(uint64_t SystemContextPointer,float *Utf8BufferSize
 {
   uint64_t *StatusBuffer;
   float SystemContextSecondaryFloat;
