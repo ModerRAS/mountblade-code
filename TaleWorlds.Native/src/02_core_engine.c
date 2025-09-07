@@ -164093,7 +164093,7 @@ uint8_t ProcessCharacterCodeWithSizeValidation(uint32_t *Utf8InputBuffer,float *
   float fStack_114;
   float fStack_110;
   float fStack_10c;
-  long long alStack_108 [2];
+  long long SystemMemoryCommandBuffer [2];
   float fStack_f8;
   float fStack_f4;
   float fStack_f0;
@@ -164105,12 +164105,12 @@ uint8_t ProcessCharacterCodeWithSizeValidation(uint32_t *Utf8InputBuffer,float *
   lStackX_10 = Utf8BufferSize;
   StackConfigurationFlag = Utf8SourcePointer;
   PerformanceCounterValue = Utf16EndPointer;
-  alStack_108[0] = ExecuteMemoryBufferCommands(Utf8InputBuffer[5]);
+  SystemMemoryCommandBuffer[0] = ExecuteMemoryBufferCommands(Utf8InputBuffer[5]);
   IntegerValue5 = 1;
   CharacterTableIterator = 1;
   lStack_140 = 1;
   if ((Utf8InputBuffer[5] != Utf8SourcePointer[5]) && (lStack_140 = 1, CharacterVariable5 == '\0')) {
-    alStack_108[1] = ExecuteMemoryBufferCommands();
+    SystemMemoryCommandBuffer[1] = ExecuteMemoryBufferCommands();
     CharacterTableIterator = 2;
     lStack_140 = 2;
   }
