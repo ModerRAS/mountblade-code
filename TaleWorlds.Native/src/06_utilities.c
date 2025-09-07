@@ -63360,8 +63360,17 @@ void ExecuteExceptionHandlerCallbackK0(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_1809070b0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器回调执行函数L0
+ * 
+ * 该函数负责执行异常处理器回调，使用偏移量0x160获取异常处理上下文
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809070b0
+ */
+void ExecuteExceptionHandlerCallbackL0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
@@ -63374,8 +63383,17 @@ void Unwind_1809070b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809070c0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器回调执行函数M0
+ * 
+ * 该函数负责执行异常处理器回调，使用偏移量0x160和0x18获取异常处理上下文
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809070c0
+ */
+void ExecuteExceptionHandlerCallbackM0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
