@@ -200123,65 +200123,75 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long CharacterCode)
 
 
 
-70e80(long long CharacterCodevoid FUN_180170e80(long long CharacterCode
+/**
+ * @brief 处理字符编码状态和窗口操作
+ * 
+ * 该函数负责根据不同的状态标志处理字符编码和窗口操作，
+ * 包括窗口显示、隐藏、激活等不同模式的处理。
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * 
+ * @note 原始函数名：FUN_180170e80
+ */
+void ProcessCharacterEncodingStatusAndWindowOperations(long long CharacterCode)
 {
-  void *CharacterStatusBuffer;
-  uint8_t MemoryAllocationIndex;
-  int MemoryMatchResult;
-  long long SystemDataStructureRegistry;
-  uint64_t CalculatedCodePoint;
-  void *SecondaryProcessingStatusFlag;
-  uint8_t aStackProcessingUnsignedValue68 [32];
-  long long CoreEngineSignedValue48;
-  long long MemoryOperationStatus;
-  uint32_t FunctionAddress;
-  int iStack_28;
-  int iStack_24;
-  int CoreEngineLoopCounter0;
-  int iStack_1c;
-  unsigned long long uStack_18;
+  void *CharacterStatusBuffer;                         // 字符状态缓冲区指针
+  uint8_t MemoryAllocationIndex;                       // 内存分配索引
+  int MemoryMatchResult;                              // 内存匹配结果
+  long long SystemDataStructureRegistry;               // 系统数据结构注册表
+  uint64_t CalculatedCodePoint;                       // 计算得到的码点值
+  void *SecondaryProcessingStatusFlag;                 // 次要处理状态标志指针
+  uint8_t SystemValidationBuffer [32];                 // 系统验证缓冲区
+  long long CoreEngineSignedValue48;                   // 核心引擎有符号值48
+  long long MemoryOperationStatus;                    // 内存操作状态
+  uint32_t FunctionAddress;                           // 函数地址
+  int StackParameter1;                                // 栈参数1
+  int StackParameter2;                                // 栈参数2
+  int CoreEngineLoopCounter;                          // 核心引擎循环计数器
+  int StackParameter4;                                // 栈参数4
+  unsigned long long EncodedOperationKey;               // 编码操作密钥
   
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)aStackProcessingUnsignedValue68;
+  EncodedOperationKey = EncodingDecodingKey ^ (unsigned long long)SystemValidationBuffer;
   switch(*(uint32_t *)(CharacterCode + 0x28)) {
   case 0:
     FUN_180173950(*(void *)(CharacterCode + 0x20),*(void *)(CharacterCode + 0x30));
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 1:
     FUN_180173ab0(*(long long *)(CharacterCode + 0x20),*(long long *)(CharacterCode + 0x20) + 0x148);
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 2:
     ShowWindow(*(void *)(*(long long *)(CharacterCode + 0x20) + 8),5);
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 3:
     ShowWindow(*(void *)(*(long long *)(CharacterCode + 0x20) + 8),0);
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 4:
     SetFocus(*(void *)(*(long long *)(CharacterCode + 0x20) + 8));
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 5:
-    iStack_28 = *(int *)(CharacterCode + 0x30);
-    iStack_24 = *(uint32_t *)(CharacterCode + 0x34);
-    ClientToScreen(*(void *)(*(long long *)(CharacterCode + 0x20) + 8),&iStack_28);
-    SetCursorPos(iStack_28,iStack_24);
+    StackParameter1 = *(int *)(CharacterCode + 0x30);
+    StackParameter2 = *(uint32_t *)(CharacterCode + 0x34);
+    ClientToScreen(*(void *)(*(long long *)(CharacterCode + 0x20) + 8),&StackParameter1);
+    SetCursorPos(StackParameter1,StackParameter2);
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 6:
-    GetCursorPos(&iStack_28);
-    iStack_28 = iStack_28 + *(int *)(CharacterCode + 0x30);
-    iStack_24 = iStack_24 + *(int *)(CharacterCode + 0x34);
+    GetCursorPos(&StackParameter1);
+    StackParameter1 = StackParameter1 + *(int *)(CharacterCode + 0x30);
+    StackParameter2 = StackParameter2 + *(int *)(CharacterCode + 0x34);
     SetCursorPos();
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 7:
-    iStack_28 = *(int *)(CharacterCode + 0x34);
-    iStack_24 = *(int *)(CharacterCode + 0x38);
-    CoreEngineLoopCounter0 = *(int *)(CharacterCode + 0x3c);
-    iStack_1c = *(int *)(CharacterCode + 0x40);
+    StackParameter1 = *(int *)(CharacterCode + 0x34);
+    StackParameter2 = *(int *)(CharacterCode + 0x38);
+    CoreEngineLoopCounter = *(int *)(CharacterCode + 0x3c);
+    StackParameter4 = *(int *)(CharacterCode + 0x40);
     if (*(int *)(CharacterCode + 0x30) == 0) {
       SystemDataStructureRegistry = *(long long *)(*(long long *)(CharacterCode + 0x20) + 8);
     }
@@ -200191,11 +200201,11 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long CharacterCode)
     }
     if (SystemDataStructureRegistry != 0) {
       FunctionAddress = 0x40;
-      MemoryOperationStatus = CONCAT44(MemoryOperationStatus.HighPart,iStack_1c - iStack_24);
-      CoreEngineSignedValue48 = CONCAT44(CoreEngineSignedValue48.HighPart,CoreEngineLoopCounter0 - iStack_28);
+      MemoryOperationStatus = CONCAT44(MemoryOperationStatus.HighPart,StackParameter4 - StackParameter2);
+      CoreEngineSignedValue48 = CONCAT44(CoreEngineSignedValue48.HighPart,CoreEngineLoopCounter - StackParameter1);
       SetWindowPos(SystemDataStructureRegistry,0);
                     // WARNING: Subroutine does not return
-      CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+      CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
     }
     break;
   case 8:
@@ -200203,26 +200213,26 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long CharacterCode)
       MemoryAllocationSize = ClipCursor(0);
       *(bool *)(CharacterCode + 0x30) = MemoryAllocationSize != 0;
                     // WARNING: Subroutine does not return
-      CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+      CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
     }
-    iStack_1c = *(uint32_t *)(CharacterCode + 0x40);
-    iStack_28 = *(int *)(CharacterCode + 0x34);
-    CoreEngineLoopCounter0 = *(uint32_t *)(CharacterCode + 0x3c);
-    iStack_24 = *(uint32_t *)(CharacterCode + 0x38);
-    MemoryAllocationSize = ClipCursor(&iStack_28);
+    StackParameter4 = *(uint32_t *)(CharacterCode + 0x40);
+    StackParameter1 = *(int *)(CharacterCode + 0x34);
+    CoreEngineLoopCounter = *(uint32_t *)(CharacterCode + 0x3c);
+    StackParameter2 = *(uint32_t *)(CharacterCode + 0x38);
+    MemoryAllocationSize = ClipCursor(&StackParameter1);
     *(bool *)(CharacterCode + 0x30) = MemoryAllocationSize != 0;
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 9:
     MemoryAllocationIndex = FUN_1801720a0(*(void *)(CharacterCode + 0x20),*(uint32_t *)(CharacterCode + 0x30));
-    *(uint8_t *)(*(long long *)(CharacterCode + 0x20) + 0x168) = MemoryAllocationIndex;
+    *(uint8_t *)(*(long long )(CharacterCode + 0x20) + 0x168) = MemoryAllocationIndex;
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 10:
     FUN_180173be0(*(void *)(CharacterCode + 0x20),*(uint8_t *)(CharacterCode + 0x30),
                   *(uint32_t *)(CharacterCode + 0x34));
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 0xb:
     SystemDataStructureRegistry = *(long long *)(CharacterCode + 0x20);
     switch(*(uint32_t *)(CharacterCode + 0x30)) {

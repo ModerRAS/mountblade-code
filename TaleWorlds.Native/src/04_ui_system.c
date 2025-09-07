@@ -9022,12 +9022,12 @@ LAB_180656e11:
       else {
         do {
           if (stackUInta8 == 0) {
-            bVar2 = false;
-            pisCharacterMatch1 = *(byte **)(pisCharacterMatch8 + 8);
+            isCharacterMatchFound = false;
+            characterMatchPointer = *(byte **)(pisCharacterMatch8 + 8);
           }
           else {
             if (*(int *)(pisCharacterMatch8 + 0x30) == 0) {
-              bVar2 = true;
+              isCharacterMatchFound = true;
             }
             else {
               pisCharacterMatch1 = pbStack_b0;
@@ -9037,7 +9037,7 @@ LAB_180656e11:
                 if (*pisCharacterMatch1 != semaphoreHandle2) break;
                 pisCharacterMatch1 = pisCharacterMatch1 + 1;
               } while (semaphoreHandle2 != 0);
-              bVar2 = 0 < uiOperationResult2;
+              isCharacterMatchFound = 0 < uiOperationResult2;
               if (uiOperationResult2 < 1) {
                 pisCharacterMatch1 = *(byte **)(pisCharacterMatch8 + 8);
                 goto LAB_180656d07;
