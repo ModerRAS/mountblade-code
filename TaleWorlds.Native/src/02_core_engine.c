@@ -146012,8 +146012,23 @@ LAB_180130808:
 
 
 
-int * FUN_180130830(long long OutputBuffer,int OutputBufferSize,uint64_t *Utf8InputPointer,uint64_t *Utf16EndPointer,
-                   uint AdditionalParameter1
+/**
+ * @brief 系统内存分配和管理函数
+ * 
+ * 该函数负责处理系统内存的分配、验证和管理操作
+ * 包括内存块的创建、验证、引用计数维护等
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @return int* 返回分配的内存指针
+ * 
+ * @note 原始函数名：FUN_180130830
+ */
+int * ProcessSystemMemoryAllocationAndManagement(long long OutputBuffer,int OutputBufferSize,uint64_t *Utf8InputPointer,uint64_t *Utf16EndPointer,
+                                               uint AdditionalParameter1
 {
   int LockResult;
   uint MemoryAllocationIndex;
@@ -153084,7 +153099,20 @@ void ProcessSystemMemoryContext(long long OutputBuffer,long long OutputBufferSiz
 
 
 
-int * FUN_180134480(long long OutputBuffer,int OutputBufferSize,unsigned long long Utf8InputPointer
+/**
+ * @brief 系统缓冲区扩展和管理函数
+ * 
+ * 该函数负责处理系统缓冲区的扩展、验证和管理操作
+ * 包括缓冲区的动态扩展、内存分配和数据结构管理
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @return int* 返回分配的缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180134480
+ */
+int * ProcessSystemBufferExpansionAndManagement(long long OutputBuffer,int OutputBufferSize,unsigned long long Utf8InputPointer
 {
   uint64_t *StatusBuffer;
   int CharacterByteCount;
@@ -182243,8 +182271,22 @@ unsigned long long FUN_18015acc0(long long *OutputBuffer,int OutputBufferSize,in
 
 
 5af90(uint64_t OutputBuffer,long long OutputBufferSize,int Utf8InputPointer,uint64_t Utf16EndPointer,
-void FUN_18015af90(uint64_t OutputBuffer,long long OutputBufferSize,int Utf8InputPointer,uint64_t Utf16EndPointer,
-                  uint32_t *AdditionalParameter1
+/**
+ * @brief 系统UTF-16数据处理函数
+ * 
+ * 该函数负责处理UTF-16编码数据的转换、验证和管理操作
+ * 包括字符编码转换、缓冲区分配和内存管理
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1指针
+ * 
+ * @note 原始函数名：FUN_18015af90
+ */
+void ProcessSystemUtf16DataProcessing(uint64_t OutputBuffer,long long OutputBufferSize,int Utf8InputPointer,uint64_t Utf16EndPointer,
+                                     uint32_t *AdditionalParameter1
 {
   long long PrimaryDataSize;
   uint32_t MemoryAllocationIndex;
@@ -182320,7 +182362,14 @@ LAB_18015b087:
 
 
 
-5b160(voidvoid FUN_18015b160(void
+5b160(void/**
+ * @brief 系统终止函数
+ * 
+ * 该函数负责终止系统进程，释放系统资源并执行清理操作
+ * 
+ * @note 原始函数名：FUN_18015b160
+ */
+void TerminateSystemProcess(void)
 {
                     // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();
@@ -182823,8 +182872,23 @@ uint64_t * FUN_18015b6b0(long long OutputBuffer,uint64_t *OutputBufferSize,int *
 
 
 5b810(uint64_t OutputBuffer,int OutputBufferSize,int Utf8InputPointer,int Utf16EndPointer,uint64_t AdditionalParameter1,
-void FUN_18015b810(uint64_t OutputBuffer,int OutputBufferSize,int Utf8InputPointer,int Utf16EndPointer,uint64_t AdditionalParameter1,
-                  long long AdditionalParameter2
+/**
+ * @brief 系统内存池管理函数
+ * 
+ * 该函数负责处理系统内存池的分配、验证和管理操作
+ * 包括内存池的动态调整、内存分配策略优化等
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2
+ * 
+ * @note 原始函数名：FUN_18015b810
+ */
+void ProcessSystemMemoryPoolManagement(uint64_t OutputBuffer,int OutputBufferSize,int Utf8InputPointer,int Utf16EndPointer,uint64_t AdditionalParameter1,
+                                       long long AdditionalParameter2
 {
   uint32_t Utf16Char;
   int CharacterByteCount;
@@ -271311,6 +271375,18 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define ProcessSystemDataFinalization FUN_18013e6c0
 // 原始函数名：FUN_18013e100 - 系统上下文验证函数
 #define ProcessSystemContextValidation FUN_18013e100
+
+// 系统内存管理函数
+// 原始函数名：FUN_180130830 - 系统内存分配和管理函数
+#define ProcessSystemMemoryAllocationAndManagement FUN_180130830
+// 原始函数名：FUN_180134480 - 系统缓冲区扩展和管理函数
+#define ProcessSystemBufferExpansionAndManagement FUN_180134480
+// 原始函数名：FUN_18015af90 - 系统UTF-16数据处理函数
+#define ProcessSystemUtf16DataProcessing FUN_18015af90
+// 原始函数名：FUN_18015b160 - 系统终止函数
+#define TerminateSystemProcess FUN_18015b160
+// 原始函数名：FUN_18015b810 - 系统内存池管理函数
+#define ProcessSystemMemoryPoolManagement FUN_18015b810
 
 // 系统状态检查函数
 // 原始函数名：FUN_1801248f0 - 系统资源状态检查函数
