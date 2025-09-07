@@ -15301,8 +15301,8 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   int quaternaryInfinityFlag;
   int64_t dataBufferPtr;
   int64_t systemContextBuffer [2];
-  uint TemporaryUint;
-  float TemporaryFloat;
+  uint PackedColorData;
+  float ComponentYFloat;
   int componentWInfinityFlag;
   int componentXInfinityFlag;
   int componentYInfinityFlag;
@@ -15357,7 +15357,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   floatComponentZ = *(float *)(dataPtr + 0x44);
   tertiaryInfinityFlag = 0;
   VectorComponentW = *(uint *)(dataPtr + 0x40);
-  TemporaryFloat = *(float *)(dataPtr + 0x3c);
+  ComponentYFloat = *(float *)(dataPtr + 0x3c);
   // 将浮点数组件Z合并到系统上下文缓冲区中
   systemContextBuffer[0] = CONCAT44(systemContextBuffer[0]._4_4_,floatComponentZ);
   quaternaryInfinityFlag = tertiaryInfinityFlag;
@@ -15368,7 +15368,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   if ((VectorComponentW & FloatInfinityValue) == FloatInfinityValue) {
     primaryInfinityFlag = 0x1d;
   }
-  if (((uint)TemporaryFloat & FloatInfinityValue) == FloatInfinityValue) {
+  if (((uint)ComponentYFloat & FloatInfinityValue) == FloatInfinityValue) {
     componentWInfinityFlag = 0x1d;
   }
   if ((componentZInfinityFlag == 0 && componentXInfinityFlag == 0) && componentWInfinityFlag == 0) {
@@ -15376,7 +15376,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
        (*(float *)(dataPtr + 0x38) == 0.0)) {
       return ComponentDataValidationFailure;
     }
-    if (((TemporaryFloat == 0.0) && (*(float *)(dataPtr + 0x40) == 0.0)) && (floatComponentZ == 0.0)) {
+    if (((ComponentYFloat == 0.0) && (*(float *)(dataPtr + 0x40) == 0.0)) && (floatComponentZ == 0.0)) {
       return ComponentDataValidationFailure;
     }
     result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataPtr + ExceptionHandlerCallbackOffset10),systemContextBuffer);
