@@ -27642,6 +27642,27 @@ void UtilityNoOperationN(void)
 
 
 
+/**
+ * @brief 验证并处理系统数据
+ * 
+ * 该函数负责验证系统数据的完整性和安全性，并执行相应的数据处理操作。
+ * 它包括安全验证、端口控制请求验证、数据验证操作等多个步骤。
+ * 
+ * @param SystemContext 系统上下文，包含系统状态和配置信息
+ * @param DataArray 数据数组指针，指向需要处理的数据缓冲区
+ * 
+ * @return void 无返回值
+ * 
+ * 该函数执行以下主要步骤：
+ * 1. 执行安全验证和端口控制请求验证
+ * 2. 进行数据验证操作并解析验证结果
+ * 3. 验证数组索引的有效性
+ * 4. 在循环中执行系统初始化和清理操作
+ * 5. 对每个数据项进行安全检查
+ * 
+ * @note 如果在任何验证步骤中失败，函数会提前返回
+ * @warning 函数包含多个不返回的子程序调用
+ */
 void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
 
 {
@@ -27694,7 +27715,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
               return;
             }
             arrayIndex = arrayIndex + 1;
-            auStackX_18[0] = auStackX_18[0] & -dataFlags;
+            securityValidationBuffer[0] = securityValidationBuffer[0] & -dataFlags;
           } while (arrayIndex < (int)validationOutcome);
         }
                     // WARNING: Subroutine does not return
