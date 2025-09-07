@@ -150014,25 +150014,37 @@ void FUN_18075dbf0(longlong uiContext,longlong dataSource,undefined8 targetBuffe
  WARNING: Removing unreachable block (ram,0x00018075dfc0)
  WARNING: Removing unreachable block (ram,0x00018075de62)
 
-ulonglong FUN_18075dcc0(longlong uiContext,longlong dataSource,ulonglong targetBuffer,char bufferSize,
-                       char resultPointer,int param_6)
+/**
+ * 递归处理UI组件的验证和操作
+ * 用于UI系统中组件树的遍历、验证和状态管理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针标志
+ * @param param_6 操作参数
+ * @return 操作结果状态码
+ */
+ulonglong ProcessUIComponentRecursive(longlong uiContext, longlong dataSource, ulonglong targetBuffer, char bufferSize,
+                                    char resultPointer, int param_6)
 
 {
-  short sVar1;
+  short componentCount;
   longlong componentIndex;
-  longlong stringCompareIndex;
-  bool bVar4;
+  longlong traversalIndex;
+  bool isSecondaryValidation;
   bool IsValidationComplete;
-  ulonglong MaxProcessingCount;
-  ulonglong eventTypeCode;
-  longlong *plocalLong8;
-  undefined8 *ptrLocal9;
-  uint result0;
-  undefined8 result1;
-  ulonglong result2;
-  int uiOperationResult3;
-  ulonglong result4;
-  bool isCharacterMatch5;
+  ulonglong maxIterations;
+  ulonglong componentData;
+  longlong *componentPointer;
+  undefined8 *nextComponentPtr;
+  uint operationResult;
+  undefined8 tempResult1;
+  ulonglong traversalResult;
+  int validationStatus;
+  ulonglong componentAddress;
+  bool isProcessingComplete;
   
   componentIndex = *(longlong *)(uiBufferData + 0xa8);
   IsValidationComplete = false;
