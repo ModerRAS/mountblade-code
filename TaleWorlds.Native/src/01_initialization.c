@@ -50034,20 +50034,20 @@ void InitializeSystemResourceManagerB(void* *SystemResourceManager)
             *(uint32_t *)(resourceCounter + 0x3530) = 1;
             SystemLocalContextPointer = (long long *)(SystemThreadFlags + 0x28);
             LOCK();
-            localDataIndex = *SystemLocalContextPointer;
-            isMemoryAllocationValid = SystemMemoryPointer == localDataIndex;
-            if (isMemoryAllocationValid) {
+            LocalDataIndex = *SystemLocalContextPointer;
+            IsMemoryAllocationValid = SystemMemoryPointer == LocalDataIndex;
+            if (IsMemoryAllocationValid) {
               *SystemLocalContextPointer = resourceCounter;
-              localDataIndex = SystemMemoryPointer;
+              LocalDataIndex = SystemMemoryPointer;
             }
             UNLOCK();
-            if (isMemoryAllocationValid) break;
+            if (IsMemoryAllocationValid) break;
             LOCK();
             SystemIntegerPointer = (int *)(resourceCounter + 0x3530);
             SystemOperationResult = *SystemIntegerPointer;
             *SystemIntegerPointer = *SystemIntegerPointer + 0x7fffffff;
             UNLOCK();
-            SystemMemoryPointer = localDataIndex;
+            SystemMemoryPointer = LocalDataIndex;
           } while (SystemOperationResult == 1);
         }
       }
@@ -50077,20 +50077,20 @@ ResourceCounterCheck:
         *(uint32_t *)(resourceCounter + 0x3530) = 1;
         SystemLocalContextPointer = (long long *)(SystemThreadFlags + 0x28);
         LOCK();
-        localDataIndex = *SystemLocalContextPointer;
-        isMemoryAllocationValid = SystemMemoryPointer == localDataIndex;
-        if (isMemoryAllocationValid) {
+        LocalDataIndex = *SystemLocalContextPointer;
+        IsMemoryAllocationValid = SystemMemoryPointer == LocalDataIndex;
+        if (IsMemoryAllocationValid) {
           *SystemLocalContextPointer = resourceCounter;
-          localDataIndex = SystemMemoryPointer;
+          LocalDataIndex = SystemMemoryPointer;
         }
         UNLOCK();
-        if (isMemoryAllocationValid) break;
+        if (IsMemoryAllocationValid) break;
         LOCK();
         SystemIntegerPointer = (int *)(resourceCounter + 0x3530);
         SystemOperationResult = *SystemIntegerPointer;
         *SystemIntegerPointer = *SystemIntegerPointer + 0x7fffffff;
         UNLOCK();
-        SystemMemoryPointer = localDataIndex;
+        SystemMemoryPointer = LocalDataIndex;
       } while (SystemOperationResult == 1);
     }
   }
