@@ -24725,7 +24725,7 @@ DataBuffer ExecuteDataCleanupA0(void)
   if ((systemContext & 0x10) != 0) {
     operationResult = *(int *)(destinationIndexRegister + 0x260);
     validationStatus = (**(FunctionPointer**)**(DataBuffer **)(registerContext + 8))
-                      (*(DataBuffer **)(registerContext + 8),&stack0x00000020,4,in_R9,operationResult);
+                      (*(DataBuffer **)(registerContext + 8),&StackDataBufferE,4,in_R9,operationResult);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
@@ -24738,7 +24738,7 @@ DataBuffer ExecuteDataCleanupA0(void)
           return validationStatus;
         }
         validationStatus = (**(FunctionPointer**)**(DataBuffer **)(registerContext + 8))
-                          (*(DataBuffer **)(registerContext + 8),&stack0x00000020,1,in_R9,dataValidationFlag != 0);
+                          (*(DataBuffer **)(registerContext + 8),&StackDataBufferE,1,in_R9,dataValidationFlag != 0);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -25030,7 +25030,7 @@ uint64_t ProcessBinaryDataA0(void)
     do {
       operationCounter = *destinationIndexRegister;
       systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
-                        (*(DataBuffer **)(systemContext + 8),&stack0x00000068,4);
+                        (*(DataBuffer **)(systemContext + 8),&StackInputParameterA,4);
       if ((int)systemDataBuffer != 0) {
         return systemDataBuffer;
       }
@@ -25067,12 +25067,12 @@ uint64_t ProcessBinaryDataA0(void)
       case 0x20:
         StackParameter78 = destinationIndexRegister[1];
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
-                          (*(DataBuffer **)(systemContext + 8),&stack0x00000078,4);
+                          (*(DataBuffer **)(systemContext + 8),&StackDataBufferG,4);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
-                          (*(DataBuffer **)(systemContext + 8),&stack0x00000020,4,in_R9,destinationIndexRegister[2]);
+                          (*(DataBuffer **)(systemContext + 8),&StackDataBufferE,4,in_R9,destinationIndexRegister[2]);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
@@ -25627,7 +25627,7 @@ DataCheckpointB:
     if (*validationContextPointer != 0) {
       if (validationContextPointer[2] == 0) {
 MemoryCheckpointA:
-        registerValueEDI = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x00000038,registerValueESI,4,0);
+        registerValueEDI = ValidateDataAndReturnStatusO3(*validationContextPointer,&StackDataBufferI,registerValueESI,4,0);
       }
       else {
         uint64_t allocationFlag = 0;
@@ -101606,21 +101606,21 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferD StackDataBufferD
 
-// 原始变量名：stack0x00000020 - 栈数据缓冲区E
+// 原始变量名：StackDataBufferE - 栈数据缓冲区E
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferE stack0x00000020
+#define StackDataBufferE StackDataBufferE
 
-// 原始变量名：stack0x00000068 - 栈数据缓冲区F
+// 原始变量名：StackInputParameterA - 栈数据缓冲区F
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferF stack0x00000068
+#define StackDataBufferF StackInputParameterA
 
-// 原始变量名：stack0x00000078 - 栈数据缓冲区G
+// 原始变量名：StackDataBufferG - 栈数据缓冲区G
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferG stack0x00000078
+#define StackDataBufferG StackDataBufferG
 
-// 原始变量名：stack0x00000038 - 栈数据缓冲区H
+// 原始变量名：StackDataBufferI - 栈数据缓冲区H
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferH stack0x00000038
+#define StackDataBufferH StackDataBufferI
 
 // 原始变量名：stack0x00000018 - 栈数据缓冲区I
 // 功能：存储数据缓冲区的栈变量
