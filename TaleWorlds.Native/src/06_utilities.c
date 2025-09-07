@@ -10266,16 +10266,17 @@ DataWord CheckMemoryStructureA0(void)
 
 
 
-// 函数: void TerminateProcessWithError(void)
-// 
-// 错误终止进程函数
-// 调用底层错误处理函数终止进程执行
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 终止进程执行
+ * 
+ * 该函数负责在发生错误时终止进程的执行。它会调用资源释放函数来清理系统资源，
+ * 然后终止进程。这是一个错误处理函数，用于在系统遇到无法恢复的错误时安全地终止进程。
+ * 
+ * @note 原始函数名：TerminateProcessWithError
+ * @warning 函数执行过程中不会返回，会直接终止进程
+ * 
+ * @see ReleaseResource
+ */
 void TerminateProcessWithError(void)
 
 {
