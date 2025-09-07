@@ -51,6 +51,10 @@
 #define ResourcePointerStartOffset 0x208
 #define ResourcePointerStep 4
 #define ExceptionHandlerContextOffset 0x1800
+#define ExceptionHandlerParameterOffset 0x17f0
+#define SystemMutexCleanupAddress 0x180c919f0
+#define SystemExceptionInitializerA0Address 0x180d497e0
+#define SystemExceptionInitializerB0Address 0x180d498a0
 
 // 资源管理常量定义
 #define ResourceDataOffset 0x10
@@ -101764,7 +101768,7 @@ void Unwind_180910ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
   if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset))(exceptionHandlerContext + 0x17f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset))(exceptionHandlerContext + ExceptionHandlerParameterOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x17c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x17d0) != 0) {
@@ -104383,7 +104387,7 @@ void Unwind_180911400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset))(exceptionHandlerContext + 0x17f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset))(exceptionHandlerContext + ExceptionHandlerParameterOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x17c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x17d0) != 0) {
@@ -110403,7 +110407,7 @@ void CleanupSystemStateAndResourcesH0(void)
     }
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
-    CleanupSystemMemoryA0(0x180c919f0);
+    CleanupSystemMemoryA0(SystemMutexCleanupAddress);
   }
   return;
 }
@@ -110523,14 +110527,14 @@ void SetThirdExceptionHandlerB(void)
 void InitializeSystemExceptionHandlingAndValidate(void)
 
 {
-  InitializeSystemExceptionA0(0x180d497e0);
+  InitializeSystemExceptionA0(SystemExceptionInitializerA0Address);
   if (SystemValidationFlag1 != 0) {
       TerminateSystemE0();
   }
   if (SystemValidationFlag2 != 0) {
       TerminateSystemE0();
   }
-  InitializeSystemExceptionB0(0x180d498a0);
+  InitializeSystemExceptionB0(SystemExceptionInitializerB0Address);
   SystemExceptionHandlerLocation = &DefaultExceptionHandlerB;
   return;
 }
