@@ -48715,7 +48715,15 @@ void Unwind_1809051f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905200(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理函数A0
+ * 
+ * 该函数负责清理系统资源，处理内存引用计数和异常处理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ */
+void CleanupSystemResourcesA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -48751,7 +48759,17 @@ void Unwind_180905200(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统资源清理函数A1
+ * 
+ * 该函数负责清理系统资源，处理异常数据缓冲区和操作标志
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void CleanupSystemResourcesA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48772,7 +48790,15 @@ void Unwind_180905210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905220(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理函数A2
+ * 
+ * 该函数负责清理系统资源，处理内存引用计数和异常处理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ */
+void CleanupSystemResourcesA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
