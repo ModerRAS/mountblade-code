@@ -65815,7 +65815,17 @@ void ProcessSystemResourceCleanupA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907720(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器B0
+ * 
+ * 该函数负责执行异常处理器，调用异常处理回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907720
+ */
+void ExecuteExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
