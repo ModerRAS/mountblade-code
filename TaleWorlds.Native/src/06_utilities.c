@@ -7479,7 +7479,9 @@ uint8_t SystemDataProcessingAreaA1;
 // 系统数据处理区A2
 // 功能：用于处理系统数据的区域
 uint8_t SystemDataProcessingAreaA2;
-uint8_t UNK_18053f090;
+// 系统数据处理区A3
+// 功能：用于处理系统数据的区域
+uint8_t SystemDataProcessingAreaA3;
 byte DAT_180c91d14;
 // 系统清理处理器数据存储
 uint8_t SystemCleanupHandlerDataStore;
