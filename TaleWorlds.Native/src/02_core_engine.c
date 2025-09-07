@@ -2587,10 +2587,28 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_180235ca0 - 渲染数据主要处理函数
 #define ProcessRenderDataPrimary FUN_180235ca0
 
-// 原始函数名：FUN_180124730 - 内存分配大小获取函数
+/**
+ * @brief 获取内存分配大小
+ * 
+ * 该函数负责获取已分配内存的大小信息，包括内存块的大小和使用情况。
+ * 确保内存大小信息的准确获取。
+ * 
+ * @return 内存分配大小
+ * 
+ * @note 原始函数名：FUN_180124730
+ */
 #define GetAllocatedMemorySize FUN_180124730
 
-// 原始函数名：FUN_180290fd0 - 系统状态重置函数
+/**
+ * @brief 重置系统状态
+ * 
+ * 该函数负责系统状态的重置操作，包括系统参数的初始化和状态清理。
+ * 确保系统状态的正确重置和初始化。
+ * 
+ * @return 重置结果状态码
+ * 
+ * @note 原始函数名：FUN_180290fd0
+ */
 #define ResetSystemStatus FUN_180290fd0
 
 // 原始函数名：FUN_180098ae0 - 状态缓冲区处理函数
