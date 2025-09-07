@@ -123189,8 +123189,8 @@ ulonglong AllocateUIComponentMemory(int uiContext,longlong dataSource)
       }
       uiEventTypeCode = (ulonglong)(uiComponentCount + 1);
       uiProcessingStatus = uiProcessingStatus + 1;
-      pallocatedMemory = pallocatedMemory + 1;
-    } while ((longlong)ProcessingStatus < 100);
+      pAllocatedUIMemory = pAllocatedUIMemory + 1;
+    } while ((longlong)uiProcessingStatus < 100);
   }
   return 0xffffffffffffffff;
 }
