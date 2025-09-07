@@ -3760,6 +3760,30 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 // 原始函数名：FUN_180128280 - 系统时间处理函数
 #define ProcessSystemTimeOperation FUN_180128280
 
+// 原始函数名：FUN_18012800a - 系统初始化函数
+#define InitializeSystemCoreEx FUN_18012800a
+
+// 原始函数名：FUN_180128031 - 系统状态检查函数
+#define CheckSystemStatusSecondary FUN_180128031
+
+// 原始函数名：FUN_1801283f0 - 系统数据处理函数
+#define ProcessSystemDataAndParametersEx FUN_1801283f0
+
+// 原始函数名：FUN_1801285e0 - 系统内存管理函数
+#define ManageSystemMemoryEx FUN_1801285e0
+
+// 原始函数名：FUN_18012862b - 系统资源处理函数
+#define ProcessSystemResourceEx FUN_18012862b
+
+// 原始函数名：FUN_1801286d8 - 系统清理函数
+#define CleanupSystemResourcesEx FUN_1801286d8
+
+// 原始函数名：FUN_180128bd0 - 系统数据转换函数
+#define ConvertSystemDataAndParameters FUN_180128bd0
+
+// 原始函数名：FUN_180128fd0 - 系统浮点数计算函数
+#define CalculateSystemFloatAndDistance FUN_180128fd0
+
 // 原始函数名：ValidateSystemDataAndProcessOperation - 系统数据验证和处理函数
 #define ValidateSystemDataAndProcessOperation ValidateSystemDataAndProcessOperation
 
