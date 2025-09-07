@@ -7593,12 +7593,12 @@ void CleanupUIComponentCache(void)
   uStack_260 = 0;
   AllocateUIBuffer(&puStack_270,iStack_148);
   if (0 < iStack_148) {
-    puVar9 = &UIDefaultDataBuffer;
+    dataSourcePointer = &UIDefaultDataBuffer;
     if (puStack_150 != (undefined *)0x0) {
-      puVar9 = puStack_150;
+      dataSourcePointer = puStack_150;
     }
                     // WARNING: Subroutine does not return
-    memcpy(puStack_268,puVar9,(longlong)(iStack_148 + 1));
+    memcpy(puStack_268,dataSourcePointer,(longlong)(iStack_148 + 1));
   }
   if ((puStack_150 != (undefined *)0x0) && (uStack_260 = 0, puStack_268 != (undefined1 *)0x0)) {
     *puStack_268 = 0;
