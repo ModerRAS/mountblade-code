@@ -119500,12 +119500,22 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：执行系统终结操作，处理系统终结流程
 #define ExecuteSystemFinalizationA0 Unwind_180909860
 
-// 原始函数名：Unwind_180909870 - 系统终止处理函数A0
-// 功能：处理系统终止操作，包括系统终止和清理
+/**
+ * @brief 系统终止处理函数A0
+ * 
+ * 处理系统终止操作，包括系统终止和清理
+ * 
+ * @note 原始函数名：Unwind_180909870
+ */
 #define ProcessSystemTerminationA0 Unwind_180909870
 
-// 原始函数名：Unwind_180909890 - 系统终止执行函数A0
-// 功能：执行系统终止操作，处理系统终止流程
+/**
+ * @brief 系统终止执行函数A0
+ * 
+ * 执行系统终止操作，处理系统终止流程
+ * 
+ * @note 原始函数名：Unwind_180909890
+ */
 #define ExecuteSystemTerminationA0 Unwind_180909890
 
 // 原始函数名：Unwind_1809098a0 - 系统退出处理函数A0
