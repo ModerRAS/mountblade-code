@@ -104832,6 +104832,15 @@ char ProcessSystemConfigurationAndStatusCheck(void)
 
  (ram,0x000180118ca3 (ram,0x000180118f40 (ram,0x00018011913b (ram,0x00018011916e (ram,0x00018011917d (ram,0x000180119177 (ram,0x00018011917f (ram,0x0001801190e0 (ram,0x000180119064 (ram,0x000180119128 (ram,0x000180119187 (ram,0x00018011958b// WARNING: Restarted to delay deadcode elimination for space: stack
 
+/**
+ * @brief 处理系统上下文并执行UTF8转换
+ * 
+ * 该函数负责处理系统上下文指针，执行UTF8字符转换操作。
+ * 包含内存分配、状态验证和字符处理等功能。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @return 处理结果状态码
+ */
 unsigned long long ProcessSystemContextWithUtf8Conversion(char *SystemContextPointer
 {
   float SystemContextFloat1;
@@ -105198,6 +105207,16 @@ void InitializeSystemContextAndMemoryAllocation(void
 
 
 
+/**
+ * @brief 处理系统上下文并验证缓冲区
+ * 
+ * 该函数负责系统上下文的处理和缓冲区的验证操作。
+ * 确保数据的有效性和内存的正确分配。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @return 处理结果状态码
+ */
 unsigned long long ProcessSystemContextWithBufferValidation(uint64_t SystemContextPointer,uint32_t Utf8BufferSize
 {
   long long PrimaryDataSize;
@@ -105729,6 +105748,15 @@ void SystemContextValidator(uint32_t SystemContextPointer)
 
  (ram,0x000180118c7e (ram,0x000180118c85 (ram,0x000180118f40 (ram,0x00018011958b (ram,0x00018011913b (ram,0x00018011916e (ram,0x00018011917d (ram,0x000180119177 (ram,0x00018011917f (ram,0x0001801190e0 (ram,0x000180119064 (ram,0x000180119019 (ram,0x00018011902f (ram,0x0001801190b4 (ram,0x000180119128 (ram,0x000180119187 (ram,0x000180119650 (ram,0x000180119653// WARNING: Restarted to delay deadcode elimination for space: stack
 
+/**
+ * @brief 处理系统上下文并执行字符处理
+ * 
+ * 该函数负责系统上下文的处理和字符相关的操作。
+ * 包含字符验证、编码转换和状态管理。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @return 处理结果状态码
+ */
 unsigned long long ProcessSystemContextWithCharacterHandling(char *SystemContextPointer
 {
   float SystemContextFloat1;
@@ -109776,7 +109804,7 @@ unsigned long long ProcessFloatDataComparisonAndConfiguration(float SystemContex
 
 
 
-unsigned long long FUN_18011c2cb(uint64_t SystemContextPointer,uint64_t Utf8BufferSize
+unsigned long long ProcessSystemContextWithUint64Parameters(uint64_t SystemContextPointer,uint64_t Utf8BufferSize
 {
   long long PrimaryDataSize;
   char SystemCheckResult;
@@ -109811,7 +109839,17 @@ unsigned long long FUN_18011c2cb(uint64_t SystemContextPointer,uint64_t Utf8Buff
 
 
 
-unsigned long long FUN_18011c2d9(uint64_t SystemContextPointer,uint64_t Utf8BufferSize
+/**
+ * @brief 处理系统上下文并使用双Uint64参数
+ * 
+ * 该函数负责系统上下文的处理，使用两个Uint64参数进行操作。
+ * 包含数据验证、内存管理和状态处理。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @return 处理结果状态码
+ */
+unsigned long long ProcessSystemContextWithDualUint64Parameters(uint64_t SystemContextPointer,uint64_t Utf8BufferSize
 {
   long long PrimaryDataSize;
   char SystemCheckResult;
@@ -110379,7 +110417,7 @@ LAB_18011cbeb:
 
 
 
-unsigned long long FUN_18011c43c(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,unsigned long long Utf16InputPointer,uint64_t Utf16EndPointer,
+unsigned long long ProcessSystemContextWithQuadParameters(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,unsigned long long Utf16InputPointer,uint64_t Utf16EndPointer,
                        uint64_t AdditionalParameter1,char AdditionalParameter2,float AdditionalParameter3,float AdditionalParameter4,uint AdditionalParameter5,
                        long long SystemContextPointer0,int SystemContextPointer1,uint64_t SystemContextPointer2,uint32_t SystemContextPointer3,
                        uint64_t SystemContextPointer4,uint64_t SystemContextPointer5
@@ -111699,7 +111737,7 @@ void CoreEngineProcessFloatData(long long SystemContextPointer,float *Utf8Buffer
 
 
 
-unsigned long long FUN_18011d200(long long SystemContextPointer,float *Utf8BufferSize,uint Utf16InputPointer,char *Utf16EndPointer,int AdditionalParameter1,
+unsigned long long ProcessSystemContextWithMixedParameters(long long SystemContextPointer,float *Utf8BufferSize,uint Utf16InputPointer,char *Utf16EndPointer,int AdditionalParameter1,
                        int AdditionalParameter2
 {
   uint32_t Utf16Char;
@@ -114555,7 +114593,7 @@ uint64_t * FUN_180120b10(uint64_t *SystemContextPointer
 
 
 
-unsigned long long FUN_180121200(long long SystemContextPointer,int Utf8BufferSize
+unsigned long long ProcessSystemContextWithLongParameters(long long SystemContextPointer,int Utf8BufferSize
 {
   unsigned long long Utf16Char;
   uint MemoryAllocationIndex;
@@ -114654,7 +114692,7 @@ uint ValidateSystemDataAndProcessOperation(byte *SystemContextPointer,long long 
 
 
 
-long long FUN_180121420(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,long long *Utf16InputPointer
+long long ProcessSystemContextWithPointerParameters(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,long long *Utf16InputPointer
 {
   int LockResult;
   long long bufferAllocationStatus;
