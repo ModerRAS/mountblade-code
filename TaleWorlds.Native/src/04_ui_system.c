@@ -99,6 +99,8 @@
 
 // UI系统函数宏定义 - 初始化UI布局系统
 #define CalculateUILayoutMetrics FUN_18069ccd0
+#define SynchronizeUIResources FUN_18069d8a0
+#define ProcessUIResourceUpdate FUN_18069d9e0
 #define InitializeUILayoutSystem FUN_180707a56
 
 // UI系统函数宏定义 - 验证UI布局
@@ -66379,7 +66381,7 @@ void ProcessUIRenderPipelineHandler(longlong uiContext)
       else {
         ProcessUIResourceUpdate(piVar8 + -8,*piVar8 + lVar4,semaphoreHandle,uVar5,semaphoreHandle,*(undefined8 *)(uiContext + 0xf98)
                      );
-        FUN_18069d9e0(piVar8 + 6,piVar8[0xe] + lVar4,semaphoreHandle,uVar5,semaphoreHandle,
+        ProcessUIResourceUpdate(piVar8 + 6,piVar8[0xe] + lVar4,semaphoreHandle,uVar5,semaphoreHandle,
                       *(undefined8 *)(uiContext + 0xf98));
       }
       contextData = contextData + 0x70;
@@ -66409,9 +66411,9 @@ void ProcessUIRenderPipelineHandler(longlong uiContext)
       }
     }
     else {
-      FUN_18069d9e0(piVar8 + -0xc,piVar8[-4] + lVar4,compareResult,contextData,compareResult,
+      ProcessUIResourceUpdate(piVar8 + -0xc,piVar8[-4] + lVar4,compareResult,contextData,compareResult,
                     *(undefined8 *)(uiContext + 0xf98));
-      FUN_18069d9e0(piVar8 + 2,piVar8[10] + lVar4,compareResult,contextData,compareResult,*(undefined8 *)(uiContext + 0xf98)
+      ProcessUIResourceUpdate(piVar8 + 2,piVar8[10] + lVar4,compareResult,contextData,compareResult,*(undefined8 *)(uiContext + 0xf98)
                    );
     }
     piVar8 = piVar8 + 0x1c;
@@ -66436,9 +66438,9 @@ void ProcessUIRenderPipelineHandler(longlong uiContext)
       }
     }
     else {
-      FUN_18069d9e0(piVar8 + -0xc,piVar8[-4] + lVar4,compareResult,contextData,compareResult,
+      ProcessUIResourceUpdate(piVar8 + -0xc,piVar8[-4] + lVar4,compareResult,contextData,compareResult,
                     *(undefined8 *)(uiContext + 0xf98));
-      FUN_18069d9e0(piVar8 + 2,piVar8[10] + lVar4,compareResult,contextData,compareResult,*(undefined8 *)(uiContext + 0xf98)
+      ProcessUIResourceUpdate(piVar8 + 2,piVar8[10] + lVar4,compareResult,contextData,compareResult,*(undefined8 *)(uiContext + 0xf98)
                    );
     }
     piVar8 = piVar8 + 0x1c;
@@ -66813,7 +66815,7 @@ void ProcessUIContextRendering(longlong uiContext)
       if (piVar7[4] == piVar7[0x12]) {
         in_stack_ffffffffffffffd0 = CONCAT44(functionResult4,functionResult5);
         in_stack_ffffffffffffffc8 = uVar4;
-        FUN_18069d8a0(uiContext,piVar7 + -8,*piVar7 + stringCompareIndex,functionResult5,uVar4,in_stack_ffffffffffffffd0);
+        InitializeUIData(uiContext,piVar7 + -8,*piVar7 + stringCompareIndex,functionResult5,uVar4,in_stack_ffffffffffffffd0);
       }
       else {
         functionResult2 = CONCAT44(functionResult3,functionResult5);
