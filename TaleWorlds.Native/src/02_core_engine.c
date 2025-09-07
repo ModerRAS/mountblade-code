@@ -170088,15 +170088,25 @@ long long ProcessUtf8InputBufferAndValidate(long long *Utf8InputBuffer
 
 
 
-long long FUN_18013ce56(long long *Utf8InputBuffer
+/**
+ * @brief 处理UTF-8输入缓冲区数据
+ * 
+ * 该函数用于处理UTF-8编码的输入缓冲区数据，包括内存分配、
+ * 引用计数管理、数据验证等操作。此函数在字符编码转换
+ * 和处理过程中被调用。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针，包含待处理的UTF-8数据
+ * @return long long 处理结果，包含处理后的数据和状态信息
+ */
+long long ProcessUtf8InputBufferData(long long *Utf8InputBuffer)
 {
-  int *ReferenceCountPointer;
-  uint MemoryAllocationIndex;
-  int MemoryMatchResult;
-  long long SystemDataRegistry;
-  unsigned long long CalculatedCodePoint;
-  unsigned long long DataSize;
-  int ProcessIterationCount;
+  int *ReferenceCountPointer;                // 引用计数指针
+  uint MemoryAllocationIndex;                // 内存分配索引
+  int MemoryMatchResult;                    // 内存匹配结果
+  long long SystemDataRegistry;             // 系统数据寄存器
+  unsigned long long CalculatedCodePoint;    // 计算出的Unicode码点
+  unsigned long long DataSize;               // 数据大小
+  int ProcessIterationCount;                // 处理迭代计数
   unsigned long long PatternIndex;
   long long DataNodePointer;
   
