@@ -4627,7 +4627,7 @@ void SetUIState(longlong uiContext)
   if (*threadLocalStorageFlag == '\0') {
     *threadLocalStorageFlag = '\x01';
     pfunctionResult = (ulonglong *)GetUIResourceManager();
-    __stdio_common_vsprintf(*pfunctionResult | 2,&stack0x00000030,0x1ff);
+    __stdio_common_vsprintf(*pfunctionResult | 2,UIStackRenderContext,0x1ff);
     *threadLocalStorageFlag = '\0';
     ProcessUIRenderRequest();
   }
@@ -5091,7 +5091,7 @@ void RefreshUIDisplay(void)
     *(undefined4 *)(contextPtr + 4) = 1;
   }
                     // WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(stackFramePtr + 0x47) ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(*(ulonglong *)(stackFramePtr + 0x47) ^ (ulonglong)UIStackBufferBase);
 }
 
 
@@ -10135,7 +10135,7 @@ undefined8 InitializeUIElementContext(longlong *uiContext)
       allocatedMemory6 = (longlong)(operationResult8 % operationResult2);
       uStack0000000000000070 = *(undefined4 *)(allocatedMemory7 + allocatedMemory6 * 8);
       uStack0000000000000074 = *(undefined4 *)(allocatedMemory7 + 4 + allocatedMemory6 * 8);
-      ProcessUIMatrixTransformation(&stack0x00000070,&stack0x00000060,&stack0x00000040,&stack0x00000030,
+      ProcessUIMatrixTransformation(UIStackTransformMatrix1,UIStackTransformMatrix2,UIStackTransformMatrix3,UIStackRenderContext,
                     unaff_RBP + -0x10);
       unaff_RBP[-0x1b] = *pfloatResult1;
       unaff_RBP[-0x17] = *(float *)(componentIndex + 4 + allocatedMemory6 * 8);
@@ -10151,7 +10151,7 @@ undefined8 InitializeUIElementContext(longlong *uiContext)
       if (floatResult9 < fVar21) {
         functionResult3 = *(undefined8 *)(unaff_RBP + -0x20);
       }
-      ProcessUIMatrixTransformation(unaff_RBP + -0x18,unaff_RBP + -0x1c,&stack0x00000040,&stack0x00000030,
+      ProcessUIMatrixTransformation(unaff_RBP + -0x18,unaff_RBP + -0x1c,UIStackTransformMatrix3,UIStackRenderContext,
                     unaff_RBP + -0x14);
       fVar21 = (unaff_RBP[-0xb] - unaff_RBP[-0x13]) * (unaff_RBP[-0xb] - unaff_RBP[-0x13]) +
                (unaff_RBP[-0xc] - unaff_RBP[-0x14]) * (unaff_RBP[-0xc] - unaff_RBP[-0x14]) +

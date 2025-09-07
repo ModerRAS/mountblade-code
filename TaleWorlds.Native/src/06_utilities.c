@@ -4723,8 +4723,7 @@ extern void* SystemPrimaryResourceTable;
 // 功能：存储系统数据配置的第八级配置表和参数
 #define DataConfigurationTableA8 DataConfigurationTableEighthLevel
 
-// 缺失的变量定义
-// 原始变量名：SystemMemoryAllocationBuffer - 内存分配配置表
+// 内存分配配置表
 // 功能：存储内存分配相关的配置信息
 #define MemoryAllocationConfigurationTable SystemMemoryAllocationBuffer
 
@@ -5341,13 +5340,13 @@ extern void* SystemPrimaryResourceTable;
 #define CleanupExceptionAtOffset2C0 Unwind_18090d0f0
 
 // 全局变量语义化宏定义
-// 原始变量名：ExceptionContextPtr - 异常上下文指针
+// 异常上下文指针
 // 功能：存储异常处理的上下文信息
 #define ExceptionContext ExceptionContextPtr
 
-// 原始变量名：ExceptionDataPointer - 异常处理数据指针
+// 异常处理数据指针
 // 功能：存储异常处理的数据指针信息
-#define ExceptionDataPointer ExceptionDataPointer
+#define ExceptionData ExceptionDataPointer
 
 // 空操作函数语义化宏定义
 // 原始函数名：FUN_180899c45 - 空操作函数H
@@ -6124,7 +6123,8 @@ extern void* SystemPrimaryResourceTable;
 // 功能：分配系统数据
 #define AllocateSystemDataA0 FUN_1807703c0
 
-// 原始变量名：SystemBufferConfiguration - 系统缓冲区配置常量
+// 系统缓冲区配置常量
+// 功能：定义系统缓冲区的配置地址
 #define SystemBufferConfiguration 0x180958180
 
 // 原始函数名：FUN_1808db8c0 - 数据处理函数A9
@@ -8181,9 +8181,8 @@ uint8_t DeserializationDataBuffer;
 uint8_t DeserializationDataSize;
 uint8_t DeserializationDataFlags;
 uint8_t DeserializationDataChecksum;
-// 原始变量名：UNK_180a22df8 - 系统配置数据表
+// 系统配置数据表
 // 功能：存储系统配置信息
-#define SystemConfigurationDataTable SystemConfigurationDataStorage
 uint8_t SystemConfigurationDataTable;
 
 // 函数: uint8_t UtilityCloneData;
@@ -8392,19 +8391,19 @@ uint8_t GlobalDataPointerCacheValidationBuffer;
 
 // 全局数据指针Final存储区
 // 功能：存储全局数据指针Final的相关信息
-uint8_t GlobalDataPointerFinalStorage;    // 原始变量名：DAT_180bfa170
+uint8_t GlobalDataPointerFinalStorage;
 
 // 全局数据指针Final状态区
 // 功能：存储全局数据指针Final的状态信息
-uint8_t GlobalDataPointerFinalStatus;     // 原始变量名：DAT_180bfa178
+uint8_t GlobalDataPointerFinalStatus;
 
 // 全局数据指针Final配置区
 // 功能：存储全局数据指针Final的配置信息
-uint8_t GlobalDataPointerFinalConfig;     // 原始变量名：DAT_180bfa180
+uint8_t GlobalDataPointerFinalConfig;
 
 // 全局数据指针Final缓存区
 // 功能：存储全局数据指针Final的缓存数据
-uint8_t GlobalDataPointerFinalCache;      // 原始变量名：DAT_180bfa188
+uint8_t GlobalDataPointerFinalCache;
 
 // 全局数据指针Final验证缓冲区
 // 功能：存储全局数据指针Final的验证信息
@@ -14189,39 +14188,39 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 数据配置表A0
 // 功能：存储数据配置信息的表结构
-uint8_t DataConfigurationTableA0;    // 原始变量名：UNK_1809864e0
+uint8_t DataConfigurationTableA0;
 
 // 数据配置表A1
 // 功能：存储数据配置信息的表结构
-uint8_t DataConfigurationTableA1;    // 原始变量名：UNK_180986508
+uint8_t DataConfigurationTableA1;
 
 // 数据配置表A2
 // 功能：存储数据配置信息的表结构
-uint8_t DataConfigurationTableA2;    // 原始变量名：UNK_180986550
+uint8_t DataConfigurationTableA2;
 
 // 数据配置表A3
 // 功能：存储数据配置信息的表结构
-uint8_t DataConfigurationTableA3;    // 原始变量名：UNK_180986590
+uint8_t DataConfigurationTableA3;
 
 // 数据配置表A4
 // 功能：存储数据配置信息的表结构
-uint8_t DataConfigurationTableA4;    // 原始变量名：UNK_1809865f0
+uint8_t DataConfigurationTableA4;
 
 // 数据配置表A5
 // 功能：存储数据配置信息的表结构
-uint8_t DataConfigurationTableA5;    // 原始变量名：UNK_1809866c0
+uint8_t DataConfigurationTableA5;
 
 // 数据配置表A6
 // 功能：存储数据配置信息的表结构
-uint8_t DataConfigurationTableA6;    // 原始变量名：UNK_180986730
+uint8_t DataConfigurationTableA6;
 
 // 数据配置表A7
 // 功能：存储数据配置信息的表结构
-uint8_t DataConfigurationTableA7;    // 原始变量名：UNK_1809867b0
+uint8_t DataConfigurationTableA7;
 
 // 数据配置表A8
 // 功能：存储数据配置信息的表结构
-uint8_t DataConfigurationTableA8;    // 原始变量名：UNK_180986850
+uint8_t DataConfigurationTableA8;
 
 // 数据处理函数A0
 // 功能：处理数据块和配置信息
@@ -23178,17 +23177,17 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
   DataBuffer operationResult;
   uint64_t validationStatus;
   uint64_t memoryRegionBase;
-  DataBuffer uStackX_8;
-  int64_t alStackX_18 [2];
+  DataBuffer validationStackBuffer;
+  int64_t temporaryStackArray [2];
   uint8_t *SecurityValidationPointer;
   DataWord SystemResetFlagLocal3;
   uint64_t securityCheckValue;
   
   *(ByteFlag *)(operationBase + 4) = 1;
-  operationResult = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + 0x78),&uStackX_8);
-  if ((((int)operationResult == 0) && (operationResult = ProcessDataBufferA0(uStackX_8,alStackX_18,0), (int)operationResult == 0)) &&
+  operationResult = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + 0x78),&validationStackBuffer);
+  if ((((int)operationResult == 0) && (operationResult = ProcessDataBufferA0(validationStackBuffer,temporaryStackArray,0), (int)operationResult == 0)) &&
      (operationResult = (**(FunctionPointer**)(*operationBase + ExceptionHandlerCallbackOffset10))(operationBase), (int)operationResult == 0)) {
-    validationStatus = (uint64_t)(alStackX_18[0] * 48000) / (uint64_t)*(uint *)((int64_t)operationBase + 0x1c);
+    validationStatus = (uint64_t)(temporaryStackArray[0] * 48000) / (uint64_t)*(uint *)((int64_t)operationBase + 0x1c);
     exceptionHandlerContext = operationBase[2];
     memoryRegionBase = validationStatus - exceptionHandlerContext;
     if (((dataBuffer != '\0') || (exceptionHandlerContext == 0)) || (47999 < memoryRegionBase)) {
@@ -33825,7 +33824,7 @@ uint64_t ProcessSystemBuffer(void)
   }
   StackDataBufferD = 0;
   memoryRegionBase = systemOperationFlags & 1;
-  dataFlags = uStack00000000000000b8 >> 1;
+  dataFlags = threadLocalStorageFlag >> 1;
   operationResult = validationOutcome;
   if (dataFlags != 0) {
     do {
@@ -33876,9 +33875,9 @@ uint64_t ProcessSystemBuffer(void)
   }
 ValidationCompleteHandler2:
   if ((int)operationResult == 0) {
-    *(uint *)(systemContext + 0x4c) = uStack00000000000000b8;
+    *(uint *)(systemContext + 0x4c) = threadLocalStorageFlag;
     operationResult = 0xd;
-    if (uStack00000000000000b8 < 7) {
+    if (threadLocalStorageFlag < 7) {
       operationResult = validationOutcome;
     }
     if ((int)operationResult == 0) {
@@ -111673,7 +111672,7 @@ uint8_t MemoryBaseExtendedTable;                // 内存基地址扩展表
 #define ExceptionHandlerA79 Unwind_1809040d0
 // 系统异常处理器状态表
 // 功能：存储系统异常处理器的状态信息
-uint8_t SystemExceptionHandlerStateTable;    // 原始变量名：_DAT_180d49f80
+uint8_t SystemExceptionHandlerStateTable;
 
 // 异常处理器指针初始化函数宏定义
 // 原始函数名：Unwind_1809077c0 - 异常处理器指针初始化函数A5
@@ -111811,162 +111810,162 @@ uint8_t SystemExceptionHandlerStateTable;    // 原始变量名：_DAT_180d49f80
 #define ReleaseExceptionHandlerResourceA9 Unwind_1809049e0
 
 // 栈变量宏定义 - 美化更多栈变量
-// 原始变量名：uStack_1c8 - 栈数据字A
+// 栈数据字A
 // 功能：存储系统资源分配的基础数据字
 #define StackResourceAllocationBase uStack_1c8
 
-// 原始变量名：systemNameBuffer - 栈字符缓冲区A
+// 栈字符缓冲区A
 // 功能：存储字符数据的栈缓冲区
 #define StackCharBufferA systemNameBuffer
 
-// 原始变量名：puStack_1c0 - 栈指针缓冲区A
+// 栈指针缓冲区A
 // 功能：存储指针数据的栈缓冲区
 #define StackPointerBufferA puStack_1c0
 
-// 原始变量名：TemporaryDataWordB - 栈数据字B
+// 栈数据字B
 // 功能：存储异常处理的上下文数据字
 #define StackExceptionHandlerContext TemporaryDataWordB
 
-// 原始变量名：uStack_1b0 - 栈数据字C
+// 栈数据字C
 // 功能：存储数据处理的临时存储数据字
 #define StackDataProcessingTemp uStack_1b0
 
-// 原始变量名：InputFloatValueA - 栈浮点值A
+// 栈浮点值A
 // 功能：存储浮点运算的栈值
-#define InputFloatValueA InputFloatValueA
+#define StackFloatValueA InputFloatValueA
 
-// 原始变量名：InputFloatValueB - 栈浮点值B
+// 栈浮点值B
 // 功能：存储浮点运算的栈值
-#define InputFloatValueB InputFloatValueB
+#define StackFloatValueB InputFloatValueB
 
-// 原始变量名：uStack_1a0 - 栈数据字D
+// 栈数据字D
 // 功能：存储资源清理的状态数据字
 #define StackResourceCleanupStatus uStack_1a0
 
-// 原始变量名：InputFloatValueC - 栈浮点值C
+// 栈浮点值C
 // 功能：存储浮点运算的栈值
-#define InputFloatValueC InputFloatValueC
+#define StackFloatValueC InputFloatValueC
 
 // 栈变量宏定义 - 美化acStack变量
-// 原始变量名：systemNameBufferX - 栈系统状态
+// 栈系统状态
 // 功能：存储系统状态的栈变量
 #define StackSystemStatus systemNameBufferX
 
 // 栈变量宏定义 - 美化stack0x变量
-// 原始变量名：StackDataBufferD - 栈数据缓冲区D
+// 栈数据缓冲区D
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferD StackDataBufferD
 
-// 原始变量名：StackDataBufferE - 栈数据缓冲区E
+// 栈数据缓冲区E
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferE StackDataBufferE
 
-// 原始变量名：StackInputParameterA - 栈数据缓冲区F
+// 栈数据缓冲区F
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferF StackInputParameterA
 
-// 原始变量名：StackDataBufferG - 栈数据缓冲区G
+// 栈数据缓冲区G
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferG StackDataBufferG
 
-// 原始变量名：StackDataBufferI - 栈数据缓冲区H
+// 栈数据缓冲区H
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferH StackDataBufferI
 
-// 原始变量名：StackDataBufferI - 栈数据缓冲区I
+// 栈数据缓冲区I
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferI StackDataBufferI
 
-// 原始变量名：stack0x00000008 - 栈数据缓冲区J
+// 栈数据缓冲区J
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferJ stack0x00000008
 
-// 原始变量名：stack0x00000088 - 栈数据缓冲区K
+// 栈数据缓冲区K
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferK stack0x00000088
 
-// 原始变量名：stack0x00000080 - 栈数据缓冲区L
+// 栈数据缓冲区L
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferL stack0x00000080
 
-// 原始变量名：stack0x00000094 - 栈数据缓冲区M
+// 栈数据缓冲区M
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferM stack0x00000094
 
-// 原始变量名：stack0x000000b8 - 栈数据缓冲区N
+// 栈数据缓冲区N
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferN stack0x000000b8
 
-// 原始变量名：stack0x000000b0 - 栈数据缓冲区O
+// 栈数据缓冲区O
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferO stack0x000000b0
 
 // 栈变量宏定义 - 美化更多栈变量
-// 原始变量名：StackFloatArrayA - 栈浮点数组A
+// 栈浮点数组A
 // 功能：存储浮点数组的栈数据
 #define StackFloatArrayA StackFloatArrayA
 
-// 原始变量名：TemporaryPointerBufferB - 栈指针缓冲区B
+// 栈指针缓冲区B
 // 功能：存储指针数据的栈缓冲区
-#define TemporaryPointerBufferB TemporaryPointerBufferB
+#define StackPointerBufferB TemporaryPointerBufferB
 
-// 原始变量名：StackLongIntegerA - 栈长整型A
+// 栈长整型A
 // 功能：存储长整型数据的栈变量
 #define StackLongIntegerA StackLongIntegerA
 
-// 原始变量名：ProcessingLongIntegerB - 栈长整型B
+// 栈长整型B
 // 功能：存储长整型数据的栈变量
-#define ProcessingLongIntegerB ProcessingLongIntegerB
+#define StackLongIntegerB ProcessingLongIntegerB
 
-// 原始变量名：lStack_320 - 栈长整型数C
+// 栈长整型数C
 // 功能：存储长整型数的栈变量
 #define StackLongIntegerC lStack_320
 
-// 原始变量名：StackPointerBufferC - 栈指针缓冲区C
+// 栈指针缓冲区C
 // 功能：存储指针数据的栈缓冲区
 #define StackPointerBufferC StackPointerBufferC
 
-// 原始变量名：uStack_170 - 栈数据字E
+// 栈数据字E
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataValidationTemp uStack_170
 
-// 原始变量名：uStack_168 - 栈数据字F
+// 栈数据字F
 // 功能：存储数据处理的辅助数据字
 #define StackDataProcessingAux uStack_168
 
-// 原始变量名：uStack_160 - 栈数据字G
+// 栈数据字G
 // 功能：存储数据验证的主数据字
 #define StackDataValidationMain uStack_160
 
-// 原始变量名：StackPointerBufferD - 栈指针缓冲区D
+// 栈指针缓冲区D
 // 功能：存储指针数据的栈缓冲区
 #define StackPointerBufferD StackPointerBufferD
 
-// 原始变量名：puStack_2d8 - 栈指针变量E
+// 栈指针变量E
 // 功能：存储指针数据的栈变量
 #define StackPointerVariableE puStack_2d8
 
-// 原始变量名：auStack_238 - 栈无符号整型联合体B
+// 栈无符号整型联合体B
 // 功能：存储无符号整型联合体的栈数据
 #define StackUnsignedIntegerUnionB auStack_238
 
-// 原始变量名：aContextDataWordV - 栈数据字数组V
+// 栈数据字数组V
 // 功能：存储数据字数组的栈变量
 #define StackDataWordArrayV aContextDataWordV
 
-// 原始变量名：uStack_150 - 栈数据字H
+// 栈数据字H
 // 功能：存储系统状态的存储数据字
 #define StackSystemStatusStorage uStack_150
 
-// 原始变量名：uStack_148 - 栈数据字I
+// 栈数据字I
 // 功能：存储数据处理的备份数据字
 #define StackDataProcessingBackup uStack_148
 
-// 原始变量名：uStack_140 - 栈数据缓冲区A
+// 栈数据缓冲区A
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferA uStack_140
 
-// 原始变量名：uStack_138 - 栈数据缓冲区B
+// 栈数据缓冲区B
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferB uStack_138
 
