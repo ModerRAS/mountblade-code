@@ -10035,14 +10035,14 @@ void InitializeNetworkConnectionPool(void)
   while (ConnectionStatusFlag == '\0') {
     MemoryComparisonResult = memcmp(RightTraverseNode + 4,&SystemComparisonDataNonary,0x10);
     if (MemoryComparisonResult < 0) {
-      NextNodePointer = (void *)CurrentNode[2];
+      NextNodePointer = (void *)RightTraverseNode[2];
       RightTraverseNode = LeftTraverseNode;
     }
     else {
-      NextNodePointer = (void *)*CurrentNode;
+      NextNodePointer = (void *)*RightTraverseNode;
     }
     LeftTraverseNode = RightTraverseNode;
-    CurrentNode = NextNodePointer;
+    RightTraverseNode = NextNodePointer;
     ConnectionStatusFlag = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
   }
   if ((LeftTraverseNode == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataNonary,LeftTraverseNode + 4,0x10), MemoryComparisonResult < 0)) {
@@ -10141,48 +10141,48 @@ void InitializeNetworkValidationSystem(void
  * 该函数负责初始化网络状态管理系统，设置网络状态监控相关的数据结构。
  * 通过内存分配和节点设置来建立网络状态管理的基础架构。
  */
-void NetworkStatusManagerInitializer(void
+void NetworkStatusManagerInitializer(void)
 {
-  char NetworkMonitorStringBuffer;
-  void* StatusSystemContext;
-  int statusComparisonResult;
-  long long *statusSystemContext;
-  long long statusAllocatedMemorySize;
-  uint64_t *statusNodeLeft;
-  uint64_t *statusNodeRight;
-  uint64_t *statusNextNode;
-  uint64_t *statusNewNode;
-  code *statusProcessHandler;
+  char NetworkStatusFlag;                              // 网络状态标志
+  void* SystemContext;                                 // 系统上下文指针
+  int StatusComparisonResult;                          // 状态比较结果
+  long long *EngineSystemContext;                      // 引擎系统上下文指针
+  long long AllocatedMemorySize;                       // 已分配内存大小
+  uint64_t *LeftTraverseNode;                          // 左遍历节点指针
+  uint64_t *RightTraverseNode;                         // 右遍历节点指针
+  uint64_t *NextNodePointer;                           // 下一个节点指针
+  uint64_t *NewNodePointer;                            // 新节点指针
+  code *NetworkStatusHandler;                          // 网络状态处理器指针
   
-  statusSystemContext = (long long *)CoreEngineGetSystemContext();
-  statusSystemContext = (uint64_t *)*statusSystemContext;
-  statusMonitorFlag = *(char *)((long long)statusSystemContext[1] + SystemNodeStatusOffset);
-  statusProcessHandler = CoreEngineProcessNetworkStatus;
-  TertiaryNode = PrimaryStatusBlock;
-  SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (StringBuffer == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
-    if (MemoryMatchResult < 0) {
-      NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  EngineSystemContext = (long long *)CoreEngineGetSystemContext();
+  SystemContext = (void *)*EngineSystemContext;
+  NetworkStatusFlag = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
+  NetworkStatusHandler = CoreEngineProcessNetworkStatus;
+  LeftTraverseNode = PrimaryStatusBlock;
+  RightTraverseNode = (void *)PrimaryProcessingStatusFlag[1];
+  while (NetworkStatusFlag == '\0') {
+    StatusComparisonResult = memcmp(RightTraverseNode + 4,&SystemComparisonDataSecondary,0x10);
+    if (StatusComparisonResult < 0) {
+      NextNodePointer = (void *)RightTraverseNode[2];
+      RightTraverseNode = LeftTraverseNode;
     }
     else {
-      NextNode = (void *)*CurrentNode;
+      NextNodePointer = (void *)*RightTraverseNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
-    CurrentNode = NextNode;
-    StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    LeftTraverseNode = RightTraverseNode;
+    RightTraverseNode = NextNodePointer;
+    NetworkStatusFlag = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
-    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+  if ((LeftTraverseNode == PrimaryProcessingStatusFlag) || (StatusComparisonResult = memcmp(&SystemComparisonDataSecondary,LeftTraverseNode + 4,0x10), StatusComparisonResult < 0)) {
+    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
+    CoreEngineSetupMemoryNode(SystemContext,&TemporaryBuffer,LeftTraverseNode,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    LeftTraverseNode = TemporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
-  TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
-  TertiaryProcessingStatusFlag[9] = 1;
-  TertiaryProcessingStatusFlag[10] = functionCallback;
+  LeftTraverseNode[6] = 0x43330a43fcdb3653;
+  LeftTraverseNode[7] = 0xdcfdc333a769ec93;
+  LeftTraverseNode[8] = &SystemDataTemplateN;
+  LeftTraverseNode[9] = 1;
+  LeftTraverseNode[10] = NetworkStatusHandler;
   return;
 }
 
@@ -10248,48 +10248,48 @@ void CoreEngineInitializeConnectionManager(void
  * 该函数负责初始化系统缓存管理器，设置缓存池和缓存处理机制。
  * 用于管理引擎中的各种缓存资源。
  */
-void CoreEngineInitializeCacheManager(void
+void CoreEngineInitializeCacheManager(void)
 {
-  char StringBuffer;
-  void *SystemContext;
-  int MemoryMatchResult;
-  long long *EngineContext;
-  long long AllocatedMemorySize;
-  void *CurrentNode;
-  void *PreviousNode;
-  void *NextNode;
-  void *TempStackPointer;
-  uint64_t ReservedStackSpace;
+  char CacheStatusFlag;                                 // 缓存状态标志
+  void *SystemContext;                                 // 系统上下文指针
+  int MemoryComparisonResult;                           // 内存比较结果
+  long long *EngineContext;                             // 引擎上下文指针
+  long long AllocatedMemorySize;                        // 已分配内存大小
+  void *LeftTraverseNode;                               // 左遍历节点指针
+  void *RightTraverseNode;                              // 右遍历节点指针
+  void *NextNodePointer;                                // 下一个节点指针
+  void *TempStackPointer;                               // 临时栈指针
+  uint64_t StackConfigurationFlag;                      // 栈配置标志
   
-  SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
-  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  EngineContext = (long long *)CoreEngineGetSystemContext();
+  SystemContext = (void *)*EngineContext;
+  CacheStatusFlag = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryNode = PrimaryStatusBlock;
-  SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (StringBuffer == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
-    if (MemoryMatchResult < 0) {
-      NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  LeftTraverseNode = SystemContext;
+  RightTraverseNode = (void *)SystemContext[1];
+  while (CacheStatusFlag == '\0') {
+    MemoryComparisonResult = memcmp(RightTraverseNode + 4,&SystemComparisonDataQuaternary,0x10);
+    if (MemoryComparisonResult < 0) {
+      NextNodePointer = (void *)RightTraverseNode[2];
+      RightTraverseNode = LeftTraverseNode;
     }
     else {
-      NextNode = (void *)*CurrentNode;
+      NextNodePointer = (void *)*RightTraverseNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
-    CurrentNode = NextNode;
-    StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    LeftTraverseNode = RightTraverseNode;
+    RightTraverseNode = NextNodePointer;
+    CacheStatusFlag = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
-    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+  if ((LeftTraverseNode == SystemContext) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuaternary,LeftTraverseNode + 4,0x10), MemoryComparisonResult < 0)) {
+    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
+    CoreEngineSetupMemoryNode(SystemContext,&TempStackPointer,LeftTraverseNode,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    LeftTraverseNode = TempStackPointer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x4b2d79e470ee4e2c;
-  TertiaryProcessingStatusFlag[7] = 0x9c552acd3ed5548d;
-  TertiaryProcessingStatusFlag[8] = &SystemConnectionTemplateA;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  LeftTraverseNode[6] = 0x4b2d79e470ee4e2c;
+  LeftTraverseNode[7] = 0x9c552acd3ed5548d;
+  LeftTraverseNode[8] = &SystemConnectionTemplateA;
+  LeftTraverseNode[9] = 0;
+  LeftTraverseNode[10] = StackConfigurationFlag;
   return;
 }
 

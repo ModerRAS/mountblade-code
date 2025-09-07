@@ -7232,6 +7232,12 @@ void CleanupUIComponentCache(void)
   undefined *stackPointer11;
   int stackIndex;
   ulonglong encryptionKey;
+  undefined4 *DefaultDataBufferPointer;
+  undefined4 *UIContextPointer;
+  undefined1 *CopyDestinationBuffer;
+  undefined *SourceBufferPointer;
+  undefined *CustomDataSource;
+  undefined4 *ComponentContextPointer;
   
   tempValue2 = 0xfffffffffffffffe;
   encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
@@ -7249,7 +7255,7 @@ void CleanupUIComponentCache(void)
   uStack_298 = 0;
   puStack_180 = &SecondaryUIBuffer;
   ProcessUIDataEx(auStack_158,auStack_1a8);
-  puStack_270 = &PrimaryUIBuffer;
+  SourceBufferPointer = &PrimaryUIBuffer;
   uStack_258 = 0;
   puStack_268 = (undefined1 *)0x0;
   uStack_260 = 0;
@@ -48458,82 +48464,82 @@ int CalculateUIImageBlockDifference(undefined1 (*uiContext) [32],int dataSource,
         uiContext = (undefined1 (*) [32])(*uiContext + dataSource);
         resultPointer = (undefined1 (*) [32])(*resultPointer + param_6);
         tempVector6 = vpunpcklbw_avx2(tempVector9,*uiContext);
-        auVar6 = vpmaddubsw_avx2(auVar6,*(undefined1 (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
-        auVar6 = vpaddw_avx2(auVar6,_DAT_180948080);
-        auVar9 = vpunpckhbw_avx2(auVar9,*uiContext);
-        asemaphoreHandle = vpsraw_avx2(auVar6,4);
-        auVar6 = vpunpcklbw_avx2(auVar5,auVar3);
-        auVar6 = vpsubw_avx2(asemaphoreHandle,auVar6);
-        auVar9 = vpmaddubsw_avx2(auVar9,*(undefined1 (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
-        auVar9 = vpaddw_avx2(auVar9,_DAT_180948080);
-        asemaphoreHandle = vpsraw_avx2(auVar9,4);
-        auVar9 = vpunpckhbw_avx2(auVar5,auVar3);
-        asemaphoreHandle = vpsubw_avx2(asemaphoreHandle,auVar9);
-        auVar9 = vpaddw_avx2(auVar6,afunctionResult0._0_32_);
-        auVar9 = vpaddw_avx2(auVar9,asemaphoreHandle);
-        afunctionResult0 = ZEXT3264(auVar9);
-        auVar5 = vpmaddwd_avx2(auVar6,auVar6);
-        auVar5 = vpaddd_avx2(auVar5,afunctionResult1._0_32_);
-        auVar6 = vpmaddwd_avx2(asemaphoreHandle,asemaphoreHandle);
-        auVar5 = vpaddd_avx2(auVar5,auVar6);
-        afunctionResult1 = ZEXT3264(auVar5);
-        functionResult = functionResult - 1;
-      } while (functionResult != 0);
+        tempVector6 = vpmaddubsw_avx2(tempVector6,*(undefined1 (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
+        tempVector6 = vpaddw_avx2(tempVector6,_DAT_180948080);
+        tempVector9 = vpunpckhbw_avx2(tempVector9,*uiContext);
+        tempVector1 = vpsraw_avx2(tempVector6,4);
+        tempVector6 = vpunpcklbw_avx2(tempVector5,zeroVector);
+        tempVector6 = vpsubw_avx2(tempVector1,tempVector6);
+        tempVector9 = vpmaddubsw_avx2(tempVector9,*(undefined1 (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
+        tempVector9 = vpaddw_avx2(tempVector9,_DAT_180948080);
+        tempVector1 = vpsraw_avx2(tempVector9,4);
+        tempVector9 = vpunpckhbw_avx2(tempVector5,zeroVector);
+        tempVector1 = vpsubw_avx2(tempVector1,tempVector9);
+        tempVector9 = vpaddw_avx2(tempVector6,sumResult0._0_32_);
+        tempVector9 = vpaddw_avx2(tempVector9,tempVector1);
+        sumResult0 = ZEXT3264(tempVector9);
+        tempVector5 = vpmaddwd_avx2(tempVector6,tempVector6);
+        tempVector5 = vpaddd_avx2(tempVector5,sumResult1._0_32_);
+        tempVector6 = vpmaddwd_avx2(tempVector1,tempVector1);
+        tempVector5 = vpaddd_avx2(tempVector5,tempVector6);
+        sumResult1 = ZEXT3264(tempVector5);
+        pixelCount = pixelCount - 1;
+      } while (pixelCount != 0);
     }
   }
   else if (targetBuffer == 8) {
     if (bufferSize == 0) {
       if (0 < (int)param_7) {
-        functionResult = (ulonglong)param_7;
+        pixelCount = (ulonglong)param_7;
         do {
-          auVar9 = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
-          auVar5 = vpunpcklbw_avx2(*resultPointer,auVar3);
-          auVar6 = vpunpcklbw_avx2(auVar9,auVar3);
-          auVar5 = vpsubw_avx2(auVar6,auVar5);
-          auVar9 = vpunpckhbw_avx2(auVar9,auVar3);
-          auVar6 = vpunpckhbw_avx2(*resultPointer,auVar3);
-          auVar6 = vpsubw_avx2(auVar9,auVar6);
-          auVar9 = vpaddw_avx2(auVar5,afunctionResult0._0_32_);
-          auVar5 = vpmaddwd_avx2(auVar5,auVar5);
-          auVar9 = vpaddw_avx2(auVar9,auVar6);
-          afunctionResult0 = ZEXT3264(auVar9);
+          tempVector9 = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
+          tempVector5 = vpunpcklbw_avx2(*resultPointer,zeroVector);
+          tempVector6 = vpunpcklbw_avx2(tempVector9,zeroVector);
+          tempVector5 = vpsubw_avx2(tempVector6,tempVector5);
+          tempVector9 = vpunpckhbw_avx2(tempVector9,zeroVector);
+          tempVector6 = vpunpckhbw_avx2(*resultPointer,zeroVector);
+          tempVector6 = vpsubw_avx2(tempVector9,tempVector6);
+          tempVector9 = vpaddw_avx2(tempVector5,sumResult0._0_32_);
+          tempVector5 = vpmaddwd_avx2(tempVector5,tempVector5);
+          tempVector9 = vpaddw_avx2(tempVector9,tempVector6);
+          sumResult0 = ZEXT3264(tempVector9);
           uiContext = (undefined1 (*) [32])(*uiContext + dataSource);
           resultPointer = (undefined1 (*) [32])(*resultPointer + param_6);
-          auVar5 = vpaddd_avx2(auVar5,afunctionResult1._0_32_);
-          auVar6 = vpmaddwd_avx2(auVar6,auVar6);
-          auVar5 = vpaddd_avx2(auVar5,auVar6);
-          afunctionResult1 = ZEXT3264(auVar5);
-          functionResult = functionResult - 1;
-        } while (functionResult != 0);
+          tempVector5 = vpaddd_avx2(tempVector5,sumResult1._0_32_);
+          tempVector6 = vpmaddwd_avx2(tempVector6,tempVector6);
+          tempVector5 = vpaddd_avx2(tempVector5,tempVector6);
+          sumResult1 = ZEXT3264(tempVector5);
+          pixelCount = pixelCount - 1;
+        } while (pixelCount != 0);
       }
     }
     else if (bufferSize == 8) {
-      auVar6 = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
+      tempVector6 = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
       if (0 < (int)param_7) {
-        functionResult = (ulonglong)param_7;
+        pixelCount = (ulonglong)param_7;
         do {
-          auVar9 = *resultPointer;
+          tempVector9 = *resultPointer;
           uiContext = (undefined1 (*) [32])(*uiContext + dataSource);
           resultPointer = (undefined1 (*) [32])(*resultPointer + param_6);
-          auVar4 = vpunpcklbw_avx2(auVar9,auVar3);
-          asemaphoreHandle = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
-          auVar5 = vpavgb_avx2(auVar6,asemaphoreHandle);
-          auVar6 = vpunpcklbw_avx2(auVar5,auVar3);
-          auVar6 = vpsubw_avx2(auVar6,auVar4);
-          auVar9 = vpunpckhbw_avx2(auVar9,auVar3);
-          auVar5 = vpunpckhbw_avx2(auVar5,auVar3);
-          auVar4 = vpsubw_avx2(auVar5,auVar9);
-          auVar9 = vpaddw_avx2(auVar6,afunctionResult0._0_32_);
-          auVar5 = vpmaddwd_avx2(auVar6,auVar6);
-          auVar9 = vpaddw_avx2(auVar9,auVar4);
-          afunctionResult0 = ZEXT3264(auVar9);
-          auVar5 = vpaddd_avx2(auVar5,afunctionResult1._0_32_);
-          auVar6 = vpmaddwd_avx2(auVar4,auVar4);
-          auVar5 = vpaddd_avx2(auVar5,auVar6);
-          afunctionResult1 = ZEXT3264(auVar5);
-          functionResult = functionResult - 1;
-          auVar6 = asemaphoreHandle;
-        } while (functionResult != 0);
+          tempVector4 = vpunpcklbw_avx2(tempVector9,zeroVector);
+          tempVector1 = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
+          tempVector5 = vpavgb_avx2(tempVector6,tempVector1);
+          tempVector6 = vpunpcklbw_avx2(tempVector5,zeroVector);
+          tempVector6 = vpsubw_avx2(tempVector6,tempVector4);
+          tempVector9 = vpunpckhbw_avx2(tempVector9,zeroVector);
+          tempVector5 = vpunpckhbw_avx2(tempVector5,zeroVector);
+          tempVector4 = vpsubw_avx2(tempVector5,tempVector9);
+          tempVector9 = vpaddw_avx2(tempVector6,sumResult0._0_32_);
+          tempVector5 = vpmaddwd_avx2(tempVector6,tempVector6);
+          tempVector9 = vpaddw_avx2(tempVector9,tempVector4);
+          sumResult0 = ZEXT3264(tempVector9);
+          tempVector5 = vpaddd_avx2(tempVector5,sumResult1._0_32_);
+          tempVector6 = vpmaddwd_avx2(tempVector4,tempVector4);
+          tempVector5 = vpaddd_avx2(tempVector5,tempVector6);
+          sumResult1 = ZEXT3264(tempVector5);
+          pixelCount = pixelCount - 1;
+          tempVector6 = tempVector1;
+        } while (pixelCount != 0);
       }
     }
     else {
@@ -69136,16 +69142,16 @@ void ProcessUITransformData(longlong uiContext, longlong dataSource, int targetB
                            float *param_6, float *param_7, int param_8)
 
 {
-  float floatResult;
-  float fVar2;
-  float fVar3;
-  uint uVar4;
-  float *pfVar5;
-  longlong lVar6;
-  int iVar7;
-  float *pfVar8;
-  longlong lVar9;
-  longlong allocatedMemory0;
+  float transformResult;
+  float scaleValue;
+  float rotationValue;
+  uint colorValue;
+  float *matrixPointer;
+  longlong contextOffset;
+  int bufferIndex;
+  float *vertexPointer;
+  longlong textureHandle;
+  longlong allocatedMemory;
   ulonglong functionResult1;
   int operationResult2;
   float floatResult3;
@@ -69326,16 +69332,25 @@ void ProcessUITransformData(longlong uiContext, longlong dataSource, int targetB
 
 
 
- void FUN_180700fc3(undefined4 uiContext,undefined8 dataSource,longlong targetBuffer)
-void FUN_180700fc3(undefined4 uiContext,undefined8 dataSource,longlong targetBuffer)
+ /**
+ * @brief 处理UI上下文同步
+ * 
+ * 该函数负责处理UI上下文的同步操作
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @note 原始函数名: FUN_180700fc3
+ */
+void ProcessUIContextSync(undefined4 uiContext, undefined8 dataSource, longlong targetBuffer)
 
 {
-  float floatResult;
-  int bufferSize;
-  uint semaphoreHandle;
-  float *pfVar3;
-  longlong context;
-  int iVar4;
+  float syncResult;
+  int bufferLength;
+  uint syncHandle;
+  float *dataPointer;
+  longlong contextHandle;
+  int operationStatus;
   int iVar5;
   ulonglong unaff_RSI;
   int iVar6;
@@ -69498,8 +69513,17 @@ void FUN_180700fc3(undefined4 uiContext,undefined8 dataSource,longlong targetBuf
 
 
 
- void FUN_180701270(undefined8 uiContext,undefined8 dataSource,longlong targetBuffer)
-void FUN_180701270(undefined8 uiContext,undefined8 dataSource,longlong targetBuffer)
+ /**
+ * @brief 处理UI渲染数据
+ * 
+ * 该函数负责处理UI渲染数据的计算和转换
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @note 原始函数名: FUN_180701270
+ */
+void ProcessUIRenderData(undefined8 uiContext, undefined8 dataSource, longlong targetBuffer)
 
 {
   float floatResult;
