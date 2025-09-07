@@ -2605,8 +2605,8 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define InitializeFloatConstants FUN_180114a30
 #define ProcessSystemConfiguration FUN_180119790
 #define ValidateSystemParameters FUN_180095340
-#define AllocateResourceMemory(FUN_180220c90) AllocateResourceMemory
-#define ProcessCoreEngineData(FUN_1800a1680) ProcessCoreEngineData
+#define AllocateResourceMemory FUN_180220c90
+#define ProcessCoreEngineData FUN_1800a1680
 #define ConfigureRenderParametersbf60) ConfigureRenderParameters
 #define SetupRenderPipelinebf80) SetupRenderPipeline
 #define InitializeRenderSystem InitializeRenderSystem

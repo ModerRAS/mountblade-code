@@ -18770,25 +18770,25 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
             arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),validationBuffer1);
             validationContextPointer3 = systemContextPointer;
             if (arrayIndex == 0) {
-              puStack_d8 = &SystemValidationDataTableA3;
-              uStack_c8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
-              uStack_d0 = 0;
-              uStack_c0 = 0x3f800000;
-              ValidateDataIntegrityA1(&puStack_d8,*(DataBuffer *)(operationBase + 0x58));
-              puStack_98 = &SystemValidationDataTableA4;
-              uStack_88 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
-              uStack_90 = 0;
-              uStack_80 = 0;
-              ProcessDataBlockA0(&puStack_98,*(DataBuffer *)(operationBase + 0x58));
-              puStack_b8 = &SystemValidationDataTableA5;
-              uStack_a8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
-              uStack_b0 = 0;
-              uStack_a0 = uStack_a0 & 0xffffff00;
-              ProcessDataSetFlagA0(&puStack_b8,*(DataBuffer *)(operationBase + 0x58));
-              puStack_f0 = &SystemValidationDataTableA6;
-              uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
-              uStack_e8 = 0;
-              ProcessSystemEventA0(&puStack_f0,*(DataBuffer *)(operationBase + 0x58));
+              StackValidationPointer = &SystemValidationDataTableA3;
+              StackBufferData = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              StackBufferOffset = 0;
+              StackBufferFlag = 0x3f800000;
+              ValidateDataIntegrityA1(&StackValidationPointer,*(DataBuffer *)(operationBase + 0x58));
+              StackDataPointer = &SystemValidationDataTableA4;
+              StackProcessingData = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              StackProcessingOffset = 0;
+              StackProcessingFlag = 0;
+              ProcessDataBlockA0(&StackDataPointer,*(DataBuffer *)(operationBase + 0x58));
+              StackEventPointer = &SystemValidationDataTableA5;
+              StackEventData = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              StackEventOffset = 0;
+              StackEventFlag = StackEventFlag & 0xffffff00;
+              ProcessDataSetFlagA0(&StackEventPointer,*(DataBuffer *)(operationBase + 0x58));
+              StackSystemPointer = &SystemValidationDataTableA6;
+              StackSystemData = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              StackSystemOffset = 0;
+              ProcessSystemEventA0(&StackSystemPointer,*(DataBuffer *)(operationBase + 0x58));
               validationContextPointer3 = systemContextPointer;
             }
           }
