@@ -109796,8 +109796,8 @@ unsigned long long ProcessSystemDataConversionAndMemoryManagement(uint Character
   float fStack_cc;
   
   MemoryBlockIndex = SystemConfigurationHandle;
-  MemoryAllocationIndex9 = (uint32_t)((unsigned long long)in_stack_fffffffffffffed0 >> 0x20);
-  ProcessingStatusFlag = (uint32_t)((unsigned long long)in_stack_fffffffffffffec8 >> 0x20);
+  MemoryAllocationIndex9 = (uint32_t)((unsigned long long)AdditionalParameter2 >> 0x20);
+  ProcessingStatusFlag = (uint32_t)((unsigned long long)CodeParameter >> 0x20);
   MemoryAllocationHandle = *(unsigned long long *)(SystemConfigurationHandle + 0x1af8);
   *(uint8_t *)(MemoryAllocationHandle + 0xb1) = 1;
   SystemFlagE = *(long long *)(MemoryBlockIndex + 0x1af8);
