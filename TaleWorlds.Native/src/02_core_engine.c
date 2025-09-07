@@ -153460,7 +153460,7 @@ void ProcessSystemConfigurationUpdate(void
       StackFloat54 = ContextPrimaryFloat0;
       DistanceThreshold = ContextPrimaryFloat1;
       fStack_4c = SystemContextPrimaryFloat2;
-      FUN_180131c60(SystemDataTablePointer,&PrimaryFloatValue);
+      ProcessSystemDataTableAndFloatValue(SystemDataTablePointer,&PrimaryFloatValue);
       SystemDataTablePointer = *(long long *)(MutexLockResult + 2);
       FUN_1801293e0(&PrimaryScalingFactor,SystemDataTablePointer,0);
       PrimaryScalingFactor = *(float *)(SystemDataTablePointer + 0x8c) - PrimaryScalingFactor;
