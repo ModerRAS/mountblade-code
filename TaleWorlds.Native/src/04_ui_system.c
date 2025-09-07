@@ -7117,110 +7117,110 @@ void CleanupUIComponentCache(void)
   uStack_298 = 0;
   puStack_180 = &SecondaryUIBuffer;
   ProcessUIDataEx(auStack_158,auStack_1a8);
-  SourceBufferPointer = &PrimaryUIBuffer;
-  uStack_258 = 0;
-  stringCopyDestination = (undefined1 *)0x0;
-  uStack_260 = 0;
-  AllocateUIBuffer(&puStack_270,stringBufferSize);
+  uiSourceBuffer = &PrimaryUIBuffer;
+  uiBufferFlags = 0;
+  stringDestinationBuffer = (undefined1 *)0x0;
+  stringBufferLength = 0;
+  AllocateUIBuffer(&uiBufferPointer,stringBufferSize);
   if (0 < stringBufferSize) {
     dataSourcePointer = &UIDefaultDataBuffer;
-    if (puStack_150 != (undefined *)0x0) {
-      dataSourcePointer = puStack_150;
+    if (dataSourcePointer != (undefined *)0x0) {
+      dataSourcePointer = dataSourcePointer;
     }
                     // WARNING: Subroutine does not return
-    memcpy(stringCopyDestination,dataSourcePointer,(longlong)(stringBufferSize + 1));
+    memcpy(stringDestinationBuffer,dataSourcePointer,(longlong)(stringBufferSize + 1));
   }
-  if ((puStack_150 != (undefined *)0x0) && (uStack_260 = 0, stringCopyDestination != (undefined1 *)0x0)) {
-    *stringCopyDestination = 0;
+  if ((dataSourcePointer != (undefined *)0x0) && (stringBufferLength = 0, stringDestinationBuffer != (undefined1 *)0x0)) {
+    *stringDestinationBuffer = 0;
   }
-  puStack_2d8 = &PrimaryUIBuffer;
-  uStack_2c0 = 0;
+  uiPrimaryBufferPtr = &PrimaryUIBuffer;
+  uiComponentFlags = 0;
   uiComponentContext = (undefined4 *)0x0;
-  uStack_2c8 = 0;
-  componentContextPointer = (undefined4 *)CreateUIContext(UIContextManager,0x10,0x13);
-  *(undefined1 *)componentContextPointer = 0;
-  uiComponentContext = componentContextPointer;
-  semaphoreHandle = ConfigureUIComponent(componentContextPointer);
-  uStack_2c0 = CONCAT44(uStack_2c0._4_4_,semaphoreHandle);
-  *componentContextPointer = 0x2f6e6962;
-  *(undefined1 *)(componentContextPointer + 1) = 0;
-  uStack_2c8 = 4;
-  contextData = MergeUIData(&puStack_270,&puStack_180,&puStack_2d8);
-  puStack_2b8 = &PrimaryUIBuffer;
-  uStack_2a0 = 0;
-  puStack_2b0 = (undefined1 *)0x0;
-  uStack_2a8 = 0;
-  uStack_298 = 2;
-  functionResult = *(uint *)(contextData + 0x10);
-  functionResult1 = (ulonglong)functionResult;
-  uVar4 = 0;
+  uiComponentState = 0;
+  uiComponentBuffer = (undefined4 *)CreateUIContext(UIContextManager,0x10,0x13);
+  *(undefined1 *)uiComponentBuffer = 0;
+  uiComponentContext = uiComponentBuffer;
+  componentResult = ConfigureUIComponent(uiComponentBuffer);
+  uiComponentFlags = CONCAT44(uiComponentFlags._4_4_,componentResult);
+  *uiComponentBuffer = 0x2f6e6962;
+  *(undefined1 *)(uiComponentBuffer + 1) = 0;
+  uiComponentState = 4;
+  contextData = MergeUIData(&uiBufferPointer,&uiSecondaryBufferPtr,&uiPrimaryBufferPtr);
+  uiSecondaryBufferPtr = &PrimaryUIBuffer;
+  uiContextStackOffset = 0;
+  uiBufferPointer = (undefined1 *)0x0;
+  uiContextFlags = 0;
+  uiContextState = 2;
+  memorySize = *(uint *)(contextData + 0x10);
+  memorySize64 = (ulonglong)memorySize;
+  initializationResult = 0;
   if (*(longlong *)(contextData + 8) == 0) {
 LAB_UIMemoryCopyStart:
-    functionResult0 = uVar4;
-    if (functionResult != 0) {
+    copyResult = initializationResult;
+    if (memorySize != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(peventTypeCode,*(undefined8 *)(contextData + 8),functionResult1);
+      memcpy(uiBufferPointer,*(undefined8 *)(contextData + 8),memorySize64);
     }
   }
-  else if (functionResult != 0) {
-    compareResult = functionResult + 1;
-    if (compareResult < 0x10) {
-      compareResult = 0x10;
+  else if (memorySize != 0) {
+    bufferSize = memorySize + 1;
+    if (bufferSize < 0x10) {
+      bufferSize = 0x10;
     }
-    peventTypeCode = (undefined1 *)CreateUIContext(UIContextManager,(longlong)compareResult,0x13);
-    *peventTypeCode = 0;
-    puStack_2b0 = peventTypeCode;
-    uVar4 = ConfigureUIComponent(peventTypeCode);
-    uStack_2a0 = CONCAT44(uStack_2a0._4_4_,uVar4);
+    uiBufferPointer = (undefined1 *)CreateUIContext(UIContextManager,(longlong)bufferSize,0x13);
+    *uiBufferPointer = 0;
+    uiBufferPointer = uiBufferPointer;
+    initializationResult = ConfigureUIComponent(uiBufferPointer);
+    uiContextStackOffset = CONCAT44(uiContextStackOffset._4_4_,initializationResult);
     goto LAB_ComponentConfigurationComplete;
   }
-  if (peventTypeCode != (undefined1 *)0x0) {
-    peventTypeCode[functionResult1] = 0;
+  if (uiBufferPointer != (undefined1 *)0x0) {
+    uiBufferPointer[memorySize64] = 0;
   }
-  uStack_2a0 = CONCAT44(*(undefined4 *)(contextData + 0x1c),(undefined4)uStack_2a0);
-  if (functionResult + 0x15 != 0) {
-    uVar4 = functionResult + 0x16;
-    uStack_2a8 = functionResult;
-    if (peventTypeCode == (undefined1 *)0x0) {
-      if ((int)uVar4 < 0x10) {
-        uVar4 = 0x10;
+  uiContextStackOffset = CONCAT44(*(undefined4 *)(contextData + 0x1c),(undefined4)uiContextStackOffset);
+  if (memorySize + 0x15 != 0) {
+    extendedBufferSize = memorySize + 0x16;
+    uiContextFlags = memorySize;
+    if (uiBufferPointer == (undefined1 *)0x0) {
+      if ((int)extendedBufferSize < 0x10) {
+        extendedBufferSize = 0x10;
       }
-      peventTypeCode = (undefined1 *)CreateUIContext(UIContextManager,(longlong)(int)uVar4,0x13);
-      *peventTypeCode = 0;
+      uiBufferPointer = (undefined1 *)CreateUIContext(UIContextManager,(longlong)(int)extendedBufferSize,0x13);
+      *uiBufferPointer = 0;
     }
     else {
-      if (uVar4 <= functionResult0) goto LAB_MemorySizeInsufficient;
-      uStack_318 = 0x13;
-      peventTypeCode = (undefined1 *)CreateUIObject(UIContextManager,peventTypeCode,uVar4,0x10);
+      if (extendedBufferSize <= copyResult) goto LAB_MemorySizeInsufficient;
+      uiContextType = 0x13;
+      uiBufferPointer = (undefined1 *)CreateUIObject(UIContextManager,uiBufferPointer,extendedBufferSize,0x10);
     }
-    puStack_2b0 = peventTypeCode;
-    semaphoreHandle = ConfigureUIComponent(peventTypeCode);
-    uStack_2a0 = CONCAT44(uStack_2a0._4_4_,semaphoreHandle);
+    uiBufferPointer = uiBufferPointer;
+    componentResult = ConfigureUIComponent(uiBufferPointer);
+    uiContextStackOffset = CONCAT44(uiContextStackOffset._4_4_,componentResult);
   }
 LAB_UIComponentWriteHeader:
-  componentContextPointer = (undefined4 *)(peventTypeCode + functionResult1);
-  *componentContextPointer = 0x366e6957;
-  componentContextPointer[1] = 0x68535f34;
-  componentContextPointer[2] = 0x69707069;
-  componentContextPointer[3] = 0x435f676e;
-  *(undefined4 *)(peventTypeCode + functionResult1 + 0x10) = 0x6e65696c;
-  *(undefined2 *)(peventTypeCode + functionResult1 + 0x14) = 0x74;
-  puStack_2f8 = &PrimaryUIBuffer;
-  uStack_2e0 = 0;
-  puStack_2f0 = (undefined2 *)0x0;
-  uStack_2e8 = 0;
-  uStack_2a8 = functionResult + 0x15;
-  puVar8 = (undefined2 *)CreateUIContext(UIContextManager,0x10,0x13);
-  *(undefined1 *)puVar8 = 0;
-  puStack_2f0 = puVar8;
-  semaphoreHandle = ConfigureUIComponent(puVar8);
-  uStack_2e0 = CONCAT44(uStack_2e0._4_4_,semaphoreHandle);
-  *puVar8 = 0x2f;
-  uStack_2e8 = 1;
-  MergeUIData(&puStack_2b8,auStack_210,&puStack_2f8);
-  puStack_2f8 = &PrimaryUIBuffer;
+  componentHeaderPointer = (undefined4 *)(uiBufferPointer + memorySize64);
+  *componentHeaderPointer = 0x366e6957;
+  componentHeaderPointer[1] = 0x68535f34;
+  componentHeaderPointer[2] = 0x69707069;
+  componentHeaderPointer[3] = 0x435f676e;
+  *(undefined4 *)(uiBufferPointer + memorySize64 + 0x10) = 0x6e65696c;
+  *(undefined2 *)(uiBufferPointer + memorySize64 + 0x14) = 0x74;
+  uiPrimaryBufferPtr = &PrimaryUIBuffer;
+  uiOperationFlags = 0;
+  uiSecondaryBufferPtr = (undefined2 *)0x0;
+  uiSecondaryFlags = 0;
+  uiContextFlags = memorySize + 0x15;
+  uiContextBuffer = (undefined2 *)CreateUIContext(UIContextManager,0x10,0x13);
+  *(undefined1 *)uiContextBuffer = 0;
+  uiSecondaryBufferPtr = uiContextBuffer;
+  componentResult = ConfigureUIComponent(uiContextBuffer);
+  uiOperationFlags = CONCAT44(uiOperationFlags._4_4_,componentResult);
+  *uiContextBuffer = 0x2f;
+  uiSecondaryFlags = 1;
+  MergeUIData(&uiSecondaryBufferPtr,uiStackDataBuffer,&uiPrimaryBufferPtr);
+  uiPrimaryBufferPtr = &PrimaryUIBuffer;
                     // WARNING: Subroutine does not return
-  DestroyUIComponent(puVar8);
+  DestroyUIComponent(uiContextBuffer);
 }
 
 

@@ -7866,16 +7866,13 @@ uint8_t UtilityCopyBlockTertiaryData;
 uint8_t UtilityCopyBlockQuaternaryData;
 uint8_t UtilityCopyBlockPrimaryStatus;
 
-// 函数: void InitializeUtilitySystem(void)
-// 
-// 初始化工具系统
-// 设置工具系统的基础配置和数据结构
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 初始化工具系统
+ * 
+ * 设置工具系统的基础配置和数据结构，完成系统的初始化工作
+ * 
+ * @note 原始函数名：InitializeUtilitySystem
+ */
 void InitializeUtilitySystem(void);
 // 工具系统初始化数据变量
 int32_t UtilityInitializationErrorCode;
@@ -7884,16 +7881,13 @@ int32_t UtilityInitializationThreadCount;
 int32_t UtilityInitializationBufferCount;
 int32_t UtilityInitializationSuccessFlag;
 
-// 函数: void ConfigureUtilitySystem(void)
-// 
-// 配置工具系统
-// 根据运行时参数配置工具系统的各项设置
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 配置工具系统
+ * 
+ * 根据运行时参数配置工具系统的各项设置，优化系统性能
+ * 
+ * @note 原始函数名：ConfigureUtilitySystem
+ */
 void ConfigureUtilitySystem(void);
 // 工具系统配置数据变量
 int32_t UtilityConfigurePrimaryData;
@@ -7902,16 +7896,13 @@ int32_t UtilityConfigureTertiaryData;
 int32_t UtilityConfigureQuaternaryData;
 int32_t UtilityConfigureStatus;
 
-// 函数: void SetupUtilityMemory(void)
-// 
-// 设置工具系统内存
-// 分配和初始化工具系统所需的内存区域
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 设置工具系统内存
+ * 
+ * 分配和初始化工具系统所需的内存区域，确保内存分配正确
+ * 
+ * @note 原始函数名：SetupUtilityMemory
+ */
 void SetupUtilityMemory(void);
 // 工具系统设置内存数据变量
 void* UtilitySetupMemoryPrimaryData;
@@ -7920,28 +7911,22 @@ void* UtilitySetupMemoryTertiaryData;
 void* UtilitySetupMemoryQuaternaryData;
 int32_t UtilitySetupMemoryStatus;
 
-// 函数: void AllocateUtilityBuffers(void)
-// 
-// 分配工具系统缓冲区
-// 为工具系统创建和管理各种缓冲区
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 分配工具系统缓冲区
+ * 
+ * 为工具系统创建和管理各种缓冲区，确保数据处理的效率
+ * 
+ * @note 原始函数名：AllocateUtilityBuffers
+ */
 void AllocateUtilityBuffers(void);
 
-// 函数: void InitializeUtilityThreads(void)
-// 
-// 初始化工具系统线程
-// 创建和配置工具系统所需的工作线程
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 初始化工具系统线程
+ * 
+ * 创建和配置工具系统所需的工作线程，设置线程参数
+ * 
+ * @note 原始函数名：InitializeUtilityThreads
+ */
 void InitializeUtilityThreads(void);
 // 工具系统初始化线程数据变量
 uint32_t UtilityInitThreadCounter;
@@ -7951,16 +7936,13 @@ uint32_t UtilityInitThreadPriority;
 uint32_t UtilityInitThreadStatus;
 uint32_t UtilityInitThreadConfig;
 
-// 函数: void StartUtilityWorkers(void)
-// 
-// 启动工具系统工作线程
-// 启动工具系统的工作线程开始处理任务
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 启动工具系统工作线程
+ * 
+ * 启动工具系统的工作线程开始处理任务，初始化任务队列
+ * 
+ * @note 原始函数名：StartUtilityWorkers
+ */
 void StartUtilityWorkers(void);
 // 工具系统启动工作线程数据变量
 uint32_t UtilityStartWorkerCount;
@@ -7970,16 +7952,13 @@ uint32_t UtilityStartWorkerStatus;
 uint32_t UtilityStartWorkerConfig;
 uint32_t UtilityStartWorkerPriority;
 
-// 函数: void ProcessUtilityQueue(void)
-// 
-// 处理工具系统队列
-// 处理工具系统中的待处理任务队列
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 处理工具系统队列
+ * 
+ * 处理工具系统中的待处理任务队列，按优先级执行任务
+ * 
+ * @note 原始函数名：ProcessUtilityQueue
+ */
 void ProcessUtilityQueue(void);
 // 工具系统队列处理变量
 uint32_t UtilityQueueSize;
@@ -75162,7 +75141,7 @@ void SetDefaultExceptionHandlerAtOffset1D0A0(DataBuffer operationBase,int64_t da
 
 
 
-void Unwind_180909990(DataBuffer operationBase,int64_t dataBuffer)
+void SetExceptionDataTablePointersA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -75175,7 +75154,7 @@ void Unwind_180909990(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809099a0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupDataBufferAtOffsetE0A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CleanupDataBufferA0(*(int64_t *)(dataBuffer + 0xe0) + ExceptionHandlerCallbackOffset10);
@@ -75193,7 +75172,7 @@ void Unwind_1809099b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809099c0(DataBuffer operationBase,int64_t dataBuffer)
+void SetExceptionDataTable6A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0xe0) = &ExceptionDataTable6;
@@ -112152,6 +112131,11 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define ResetSystemStateA0 Unwind_180909900
 #define ValidateSystemIntegrityA0 Unwind_180909930
 #define ExecuteSystemIntegrityCheckA0 Unwind_180909960
+#define ValidateDataHandlerStateA0 Unwind_180908e10
+#define UnlockSystemMutexAndHandleErrorA0 Unwind_180909970
+#define SetDefaultExceptionHandlerAtOffset1D0A0 Unwind_180909980
+#define SetExceptionDataTablePointersA0 Unwind_180909990
+#define CleanupDataBufferAtOffsetE0A0 Unwind_1809099a0
 #define ProcessSystemStatusUpdateA0 Unwind_180907800
 
 /**

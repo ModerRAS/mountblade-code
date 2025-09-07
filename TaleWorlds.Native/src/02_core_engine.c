@@ -153942,7 +153942,14 @@ LAB_180133764:
 
 
 
-33783(voidvoid FUN_180133783(void
+/**
+ * @brief 系统处理函数783
+ * 
+ * 该函数负责处理系统相关的操作
+ * 
+ * @note 原始函数名：FUN_180133783
+ */
+void ProcessSystemOperations783(void)
 {
   return;
 }
@@ -153951,7 +153958,14 @@ LAB_180133764:
 
 
 
-33790(voidvoid FUN_180133790(void
+/**
+ * @brief 系统处理函数790
+ * 
+ * 该函数负责处理系统相关的操作
+ * 
+ * @note 原始函数名：FUN_180133790
+ */
+void ProcessSystemOperations790(void)
 {
   bool CurrentByteValue;
   long long BufferStatus;
@@ -154236,7 +154250,14 @@ LAB_180133d4a:
 
 
 
-337ef(voidvoid FUN_1801337ef(void
+/**
+ * @brief 系统处理函数7EF
+ * 
+ * 该函数负责处理系统相关的操作
+ * 
+ * @note 原始函数名：FUN_1801337ef
+ */
+void ProcessSystemOperations7EF(void)
 {
   unsigned long long *StatusBuffer;
   unsigned long long MemoryAllocationIndex;
@@ -154511,7 +154532,14 @@ LAB_180133d4a:
 
 
 
-33881(voidvoid FUN_180133881(void
+/**
+ * @brief 系统处理函数881
+ * 
+ * 该函数负责处理系统相关的操作
+ * 
+ * @note 原始函数名：FUN_180133881
+ */
+void ProcessSystemOperations881(void)
 {
   long long SystemContext;
   uint64_t NullPointerValue;
