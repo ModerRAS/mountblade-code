@@ -147129,6 +147129,17 @@ LAB_180130dd5:
 
 
 
+/**
+ * @brief 处理系统浮点数据转换
+ * 
+ * 该函数负责处理系统浮点数据的转换操作，包括数据大小计算
+ * 和滤波器值的处理
+ * 
+ * @param CharacterCode 浮点字符代码指针
+ * @return 返回转换后的数据大小
+ * 
+ * @note 原始函数名：FUN_180130ec0
+ */
 unsigned long long FUN_180130ec0(float *CharacterCode
 {
   long long PrimaryDataSize;
@@ -147567,6 +147578,15 @@ LAB_18013148a:
 
 
 
+/**
+ * @brief 获取系统状态标志
+ * 
+ * 该函数负责获取系统的状态标志信息
+ * 
+ * @return 返回系统状态标志
+ * 
+ * @note 原始函数名：FUN_18013113e
+ */
 uint8_t FUN_18013113e(void
 {
   return 0;
@@ -147574,6 +147594,19 @@ uint8_t FUN_18013113e(void
 
 
 
+/**
+ * @brief 处理系统浮点数计算
+ * 
+ * 该函数负责处理系统浮点数的计算操作，支持多种参数输入
+ * 
+ * @param CharacterCode 浮点字符代码
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return 返回计算结果
+ * 
+ * @note 原始函数名：FUN_180131148
+ */
 unsigned long long FUN_180131148(float CharacterCode,float CharacterCodeSize,long long Utf8InputPointer,long long Utf16EndPointer
 {
   uint Utf16Char;
