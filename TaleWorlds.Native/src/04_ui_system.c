@@ -2782,13 +2782,10 @@ void* UIComponentInstance;
 void* UIComponentData;
 
  void CreateUIElement(void);
-void CreateUIElement(void);
 
  void DestroyUIElement(void);
-void DestroyUIElement(void);
 
  void UpdateUIElement(void);
-void UpdateUIElement(void);
 
  void RenderUIElement(void);
 void RenderUIElement(void);
