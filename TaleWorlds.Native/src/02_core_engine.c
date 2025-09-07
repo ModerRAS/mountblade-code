@@ -238,6 +238,73 @@
  */
 #define CalculateCharacterEncodingFloatValue FUN_180181d80
 
+// UTF-8编码处理函数语义化定义
+// 原始函数名：FUN_18016e450 - UTF-8编码验证和处理函数
+#define ProcessUtf8EncodingWithValidation FUN_18016e450
+
+// 原始函数名：FUN_18016e530 - UTF-8字符编码验证函数
+#define ValidateUtf8CharacterEncoding FUN_18016e530
+
+// 原始函数名：FUN_18016e5b0 - UTF-8字符处理验证函数
+#define ProcessUtf8CharacterValidation FUN_18016e5b0
+
+// 原始函数名：FUN_18016e630 - UTF-8到UTF-16字符转换函数
+#define ConvertUtf8ToUtf16Character FUN_18016e630
+
+// 原始函数名：FUN_18016e6a0 - UTF-8编码缓冲区处理函数
+#define ProcessUtf8EncodingBuffer FUN_18016e6a0
+
+// 原始函数名：FUN_18016e850 - UTF-8字符编码转换函数
+#define ConvertUtf8CharacterEncoding FUN_18016e850
+
+// 原始函数名：FUN_18016e940 - UTF-8编码数据验证函数
+#define ValidateUtf8EncodingData FUN_18016e940
+
+// 原始函数名：FUN_18016eb20 - UTF-8编码状态处理函数
+#define ProcessUtf8EncodingStatus FUN_18016eb20
+
+// 原始函数名：FUN_18016eba0 - UTF-8编码错误处理函数
+#define HandleUtf8EncodingError FUN_18016eba0
+
+// 原始函数名：FUN_18016eeb0 - UTF-8编码流处理函数
+#define ProcessUtf8EncodingStream FUN_18016eeb0
+
+// 原始函数名：FUN_18016ef90 - UTF-8编码数据初始化函数
+#define InitializeUtf8EncodingData FUN_18016ef90
+
+// 原始函数名：FUN_18016f090 - UTF-8编码内存管理函数
+#define ManageUtf8EncodingMemory FUN_18016f090
+
+// 原始函数名：FUN_18016f440 - UTF-8编码验证器函数
+#define ValidateUtf8EncodingEx FUN_18016f440
+
+// 原始函数名：FUN_18016f4f0 - UTF-8编码缓冲区清理函数
+#define CleanupUtf8EncodingBuffer FUN_18016f4f0
+
+// 原始函数名：FUN_18016f5d0 - UTF-8编码数据处理器函数
+#define ProcessUtf8EncodingDataEx FUN_18016f5d0
+
+// 原始函数名：FUN_18016f680 - UTF-8编码字符转换函数
+#define ConvertUtf8CharacterEx FUN_18016f680
+
+// 原始函数名：FUN_18016f720 - UTF-8编码流读取函数
+#define ReadUtf8EncodingStream FUN_18016f720
+
+// 原始函数名：FUN_18016f7d0 - UTF-8编码状态更新函数
+#define UpdateUtf8EncodingStatus FUN_18016f7d0
+
+// 原始函数名：FUN_18016f9f0 - UTF-8编码内存分配函数
+#define AllocateUtf8EncodingMemory FUN_18016f9f0
+
+// 原始函数名：FUN_18016fbe0 - UTF-8编码数据释放函数
+#define ReleaseUtf8EncodingData FUN_18016fbe0
+
+// 原始函数名：FUN_18016fcc0 - UTF-8编码上下文管理函数
+#define ManageUtf8EncodingContext FUN_18016fcc0
+
+// 原始函数名：FUN_180179410 - UTF-8编码系统初始化函数
+#define InitializeUtf8EncodingSystem FUN_180179410
+
 /**
  * @brief 处理系统数据操作
  * 
@@ -50089,7 +50156,7 @@ void CleanupSystemBuffer(void
  * 
  180079430，GetSystemDataStructurePointer
  */
-void * GetSystemDataStructurePointer(long long systemContext, uint64_t sourceProcessingStatusFlag, uint64_t reservedParameter1, uint64_t reservedParameter2
+void * GetSystemDataStructurePointer(long long systemContext, uint64_t sourceProcessingStatusFlag, uint64_t reservedParameter1, uint64_t reservedParameter2)
 {
   uint64_t operationResult;
   
@@ -97845,7 +97912,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *Utf8InputBuffer
           fStack_e8 = SystemContextPrimaryFloat3;
         }
         CharacterPointer = (char *)&MemoryOffsetValue;
-        if (&stack0x00000000 != (uint8_t *)0xb7) {
+        if (&StackBaseAddress != (uint8_t *)0xb7) {
           do {
             if ((*CharacterPointer == '\0') || ((*CharacterPointer == '#' && (CharacterPointer[1] == '#')))) break;
             CharacterPointer = CharacterPointer + 1;
@@ -98046,7 +98113,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *Utf8InputBuffer
         SystemParameter2 = SystemContextPrimaryFloat2;
       }
       pCharacterVariable5 = &MemoryAllocationStackBuffer;
-      if (&stack0x00000000 != (uint8_t *)0xffffffffffffff8f) {
+      if (&StackBaseAddress != (uint8_t *)0xffffffffffffff8f) {
         do {
           if ((*pCharacterVariable5 == '\0') || ((*pCharacterVariable5 == '#' && (pCharacterVariable5[1] == '#')))) break;
           pCharacterVariable5 = pCharacterVariable5 + 1;
@@ -98062,7 +98129,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *Utf8InputBuffer
     }
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x70) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x70) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -98176,7 +98243,7 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
       fStack0000000000000040 = FloatVariable7;
     }
     pCharacterVariable5 = &MemoryAllocationStackBuffer;
-    if (&stack0x00000000 != (uint8_t *)0xffffffffffffff8f) {
+    if (&StackBaseAddress != (uint8_t *)0xffffffffffffff8f) {
       while (*pCharacterVariable5 != '\0') {
         if (((*pCharacterVariable5 == '#') && (pCharacterVariable5[1] == '#')) ||
            (pCharacterVariable5 = pCharacterVariable5 + 1, pCharacterVariable5 == (char *)0xffffffffffffffff)) break;
@@ -98192,7 +98259,7 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
     }
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x70) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x70) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -98221,7 +98288,7 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
     fStack0000000000000040 = ContextSecondaryFloat;
   }
   StringBuffer = &MemoryAllocationStackBuffer;
-  if (&stack0x00000000 != (uint8_t *)0xffffffffffffff8f) {
+  if (&StackBaseAddress != (uint8_t *)0xffffffffffffff8f) {
     while (*SystemStringBuffer != '\0') {
       if (((*StringBuffer == '#') && (StringBuffer[1] == '#')) ||
          (StringBuffer = StringBuffer + 1, StringBuffer == (char *)0xffffffffffffffff)) break;
@@ -98234,7 +98301,7 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
     ProcessSystemConfigurationAndTarget(&DataStackBuffer,&MemoryAllocationStackBuffer,StringBuffer);
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x70) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x70) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -98255,7 +98322,7 @@ void CoreEngineExecuteFunction(void)
   long long FramePointer;
   
   // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(FramePointer + -0x70) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(FramePointer + -0x70) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -98337,7 +98404,7 @@ void ProcessFloatDataStructureAndSystemBuffer(float *Utf8InputBuffer,uint64_t Ut
   CalculatedDistance = ContextSecondaryFloat + Utf8InputBuffer[1];
   fStack0000000000000078 = FloatVariable7 - SystemContextPrimaryFloat;
   fStack000000000000007c = CalculatedDistance - ContextSecondaryFloat;
-  ProcessSystemBuffer(&stack0x00000078,0);
+  ProcessSystemBuffer(&SecondaryStackBuffer,0);
   long long AllocatedMemorySize = *(long long *)(Utf16EndPointer + 0x1af8);
   *(void *)(AllocatedMemorySize + 0x144) = 0;
   *(float *)(AllocatedMemorySize + 0x14c) = SystemContextPrimaryFloat;
@@ -99552,7 +99619,7 @@ void ProcessSystemFloatDataTransferAndConfiguration(void)
     }
     if (((float)(int)StringBuffer6 != TemporaryFloatStack68) &&
        (ValidateSystemDataStructure(*(void *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x2e8),
-                      (long long)&DataStackBuffer + 4,&stack0x00000078,CharacterPointer,StringBuffer6),
+                      (long long)&DataStackBuffer + 4,&SecondaryStackBuffer,CharacterPointer,StringBuffer6),
        *(char *)(SystemContextValue + 0x2e38) != '\0')) {
       ProcessSystemConfigurationAndTarget((long long)&DataStackBuffer + 4,
                     CONCAT44(TemporaryStackValue6c,TemporaryFloatStack68),StringBuffer6);
@@ -99687,7 +99754,7 @@ void ProcessSystemFloatDataTransferAndConfiguration(void)
   }
 UtilityFunctionExecutionComplete: // 原始标签：LAB_180112f8f，UtilityFunctionExecutionComplete
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x58) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x58) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -99745,7 +99812,7 @@ void ProcessSystemDataComparison(uint64_t CharacterCode,char *Utf8InputBufferSiz
     }
     if (((int)pSystemStatusChar != (int)Utf8BufferSize) &&
        (ValidateSystemDataStructure(*(void *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x2e8),
-                      (long long)&DataStackBuffer + 4,&stack0x00000078,Utf8BufferSize,pSystemStatusChar),
+                      (long long)&DataStackBuffer + 4,&SecondaryStackBuffer,Utf8BufferSize,pSystemStatusChar),
        *(char *)(SystemDataStructureRegistry + 0x2e38) != '\0')) {
       ProcessSystemConfigurationAndTarget((long long)&DataStackBuffer + 4,
                     CONCAT44(TemporaryStackValue6c,uStack0000000000000068),pSystemStatusChar);
@@ -99875,7 +99942,7 @@ void ProcessSystemDataComparison(uint64_t CharacterCode,char *Utf8InputBufferSiz
   }
 UtilityFunctionExecutionComplete: // 原始标签：LAB_180112f8f，UtilityFunctionExecutionComplete
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x58) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x58) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -100038,7 +100105,7 @@ void InitializeSystemResourceAndData(void)
   }
 UtilityFunctionExecutionComplete: // 原始标签：LAB_180112f8f，UtilityFunctionExecutionComplete
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x58) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x58) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -100407,7 +100474,7 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
         if (*(char *)(SystemDataStructureRegistry + 0x2e38) != '\0') {
           SystemDataStructureRegistry = *(long long *)(SystemConfigurationHandle + 0x1af8);
           if ((pSystemContextPrimaryFloat6 == (float *)0x0) &&
-             (pSystemContextPrimaryFloat6 = (float *)&SystemFlagH, &stack0x00000000 != (uint8_t *)0xc7)) {
+             (pSystemContextPrimaryFloat6 = (float *)&SystemFlagH, &StackBaseAddress != (uint8_t *)0xc7)) {
             do {
               if ((*(char *)pSystemContextPrimaryFloat6 == '\0') ||
                  ((*(char *)pSystemContextPrimaryFloat6 == '#' && (*(char *)((long long)pSystemContextPrimaryFloat6 + 1) == '#')))) break;
@@ -100578,7 +100645,7 @@ void CoreEngineProcessDataStructureAndMemoryAllocation(long long CharacterCode, 
   SystemParameter1 = SystemParameter1 + ContextSecondaryFloat1 + StackParameter0;
   SystemParameter2 = StackParameter0;
   fStack000000000000007c = fStack000000000000006c;
-  CharacterStatus2 = ValidateSystemData(&MemoryAllocationSizeStackBuffer,IntegerValue9,&stack0x00000078);
+  CharacterStatus2 = ValidateSystemData(&MemoryAllocationSizeStackBuffer,IntegerValue9,&SecondaryStackBuffer);
   if (CharacterStatus2 == '\0') {
     *(float *)(StackFramePointer + -0x74) = StackFloatVariable2 - fStack000000000000006c;
     MemoryAllocationIndexSecondary = *(uint32_t *)(SourceIndex + 0x1660);
@@ -100587,7 +100654,7 @@ void CoreEngineProcessDataStructureAndMemoryAllocation(long long CharacterCode, 
     goto LAB_180114015;
   }
   CharacterStatus2 = ProcessSystemCharacterStatus(VectorRegisterDa,IntegerValue9,1);
-  SystemStatusChar = CheckSystemStatus(&stack0x00000078,IntegerValue9);
+  SystemStatusChar = CheckSystemStatus(&SecondaryStackBuffer,IntegerValue9);
   if ((((CharacterStatus2 == '\0') && ((SystemStatusChar == '\0' || (*(char *)(SourceIndex + 0x410) == '\0')))) &&
       (*(int *)(SourceIndex + 0x1ca4) != IntegerValue9)) &&
      ((*(int *)(SourceIndex + 0x1cb0) != IntegerValue9 || (*(int *)(SourceIndex + 0x2da0) == IntegerValue9)))) {
@@ -100610,7 +100677,7 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
       StackFloatVariable2 = (float)systemEventTemplatePointer[3] * *(float *)(SourceIndex + 0x1628);
       MemoryAllocationIndex = ValidateSystemData(&MemoryAllocationSizeStackBuffer);
       if (SystemOperationResult == *(int *)(SourceIndex + 0x1ca0)) {
-        ProcessMemoryLock(&stack0x00000078,1);
+        ProcessMemoryLock(&SecondaryStackBuffer,1);
       }
       ProcessSystemDataConcatenation(CONCAT44(fStack000000000000007c,SystemParameter2),
                     *(void *)(StackFramePointer + -0x80),MemoryAllocationIndex,1,
@@ -100619,7 +100686,7 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
       fStack000000000000006c = 3.4028235e+38;
       SystemParameter1 = -3.4028235e+38;
       StackFloatVariable2 = -3.4028235e+38;
-      CharacterStatus2 = ValidateCharacterEncoding(&stack0x00000078,IntegerValue9,4);
+      CharacterStatus2 = ValidateCharacterEncoding(&SecondaryStackBuffer,IntegerValue9,4);
       LoopIndex = SystemConfigurationHandle;
       if (CharacterStatus2 != '\0') {
         CharacterCode = (long long *)(SystemConfigurationHandle + 0x1af8);
@@ -100662,7 +100729,7 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
       if (((int)StringBuffer8 != (int)StackFramePointer + -0x60) &&
          (StringBuffer3 = StringBuffer8,
          ValidateSystemDataStructure(*(void *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x2e8),
-                       &stack0x00000078,StackFramePointer + -0x80,StackFramePointer + -0x60,StringBuffer8),
+                       &SecondaryStackBuffer,StackFramePointer + -0x80,StackFramePointer + -0x60,StringBuffer8),
          ContextSecondaryFloat1 = fStack000000000000007c, CharacterTablePointer6 = SystemConfigurationHandle,
          *(char *)(LoopIndex + 0x2e38) != '\0')) {
         LoopIndex = *(long long *)(SystemConfigurationHandle + 0x1af8);
@@ -100722,10 +100789,10 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
   }
   *(int *)(DataNodeIndex + 0x3f0) = *(int *)(DataNodeIndex + 0x3f0) + -1;
   *(int *)(DataNodeIndex + 0x3f4) = *(int *)(DataNodeIndex + 0x3f4) + -1;
-  ProcessFloatDataShader(&stack0x00000078,IntegerValue9);
+  ProcessFloatDataShader(&SecondaryStackBuffer,IntegerValue9);
 ProcessSystemDataStructureConfiguration_SkipInitialization:
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x20) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x20) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -100823,7 +100890,7 @@ void ProcessSystemEventAndValidateStatus(void)
   SystemParameter1 = SystemParameter1 + ContextSecondaryFloat1 + StackParameter0;
   SystemParameter2 = StackParameter0;
   fStack000000000000007c = fStack000000000000006c;
-  CharacterStatus2 = ValidateSystemData(&MemoryAllocationSizeStackBuffer,IntegerValue9,&stack0x00000078);
+  CharacterStatus2 = ValidateSystemData(&MemoryAllocationSizeStackBuffer,IntegerValue9,&SecondaryStackBuffer);
   if (CharacterStatus2 == '\0') {
     *(float *)(StackFramePointer + -0x74) = StackFloatVariable2 - fStack000000000000006c;
     MemoryAllocationIndexSecondary = *(uint32_t *)(SourceIndex + 0x1660);
@@ -100832,7 +100899,7 @@ void ProcessSystemEventAndValidateStatus(void)
     goto LAB_180114015;
   }
   CharacterStatus2 = ProcessSystemCharacterStatus(VectorRegisterDa,IntegerValue9,1);
-  SystemStatusChar = CheckSystemStatus(&stack0x00000078,IntegerValue9);
+  SystemStatusChar = CheckSystemStatus(&SecondaryStackBuffer,IntegerValue9);
   if ((((CharacterStatus2 == '\0') && ((SystemStatusChar == '\0' || (*(char *)(SourceIndex + 0x410) == '\0')))) &&
       (*(int *)(SourceIndex + 0x1ca4) != IntegerValue9)) &&
      ((*(int *)(SourceIndex + 0x1cb0) != IntegerValue9 || (*(int *)(SourceIndex + 0x2da0) == IntegerValue9)))) {
@@ -100855,7 +100922,7 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
       StackFloatVariable2 = (float)systemEventTemplatePointer[3] * *(float *)(SourceIndex + 0x1628);
       MemoryAllocationIndex = ValidateSystemData(&MemoryAllocationSizeStackBuffer);
       if (SystemOperationResult == *(int *)(SourceIndex + 0x1ca0)) {
-        ProcessMemoryLock(&stack0x00000078,1);
+        ProcessMemoryLock(&SecondaryStackBuffer,1);
       }
       ProcessSystemDataConcatenation(CONCAT44(fStack000000000000007c,SystemParameter2),
                     *(void *)(StackFramePointer + -0x80),MemoryAllocationIndex,1,
@@ -100864,7 +100931,7 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
       fStack000000000000006c = 3.4028235e+38;
       SystemParameter1 = -3.4028235e+38;
       StackFloatVariable2 = -3.4028235e+38;
-      CharacterStatus2 = ValidateCharacterEncoding(&stack0x00000078,IntegerValue9,4);
+      CharacterStatus2 = ValidateCharacterEncoding(&SecondaryStackBuffer,IntegerValue9,4);
       LoopIndex = SystemConfigurationHandle;
       if (CharacterStatus2 != '\0') {
         CharacterCode = (long long *)(SystemConfigurationHandle + 0x1af8);
@@ -100907,7 +100974,7 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
       if (((int)StringBuffer8 != (int)StackFramePointer + -0x60) &&
          (StringBuffer3 = StringBuffer8,
          ValidateSystemDataStructure(*(void *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x2e8),
-                       &stack0x00000078,StackFramePointer + -0x80,StackFramePointer + -0x60,StringBuffer8),
+                       &SecondaryStackBuffer,StackFramePointer + -0x80,StackFramePointer + -0x60,StringBuffer8),
          ContextSecondaryFloat1 = fStack000000000000007c, CharacterTablePointer6 = SystemConfigurationHandle,
          *(char *)(LoopIndex + 0x2e38) != '\0')) {
         LoopIndex = *(long long *)(SystemConfigurationHandle + 0x1af8);
@@ -100967,10 +101034,10 @@ MemoryBoundaryValidation: // 原始标签：LAB_180113c0c，MemoryBoundaryValida
   }
   *(int *)(DataNodeIndex + 0x3f0) = *(int *)(DataNodeIndex + 0x3f0) + -1;
   *(int *)(DataNodeIndex + 0x3f4) = *(int *)(DataNodeIndex + 0x3f4) + -1;
-  ProcessFloatDataShader(&stack0x00000078,IntegerValue9);
+  ProcessFloatDataShader(&SecondaryStackBuffer,IntegerValue9);
 ProcessSystemDataStructureConfiguration_SkipInitialization:
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x20) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x20) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -101002,7 +101069,7 @@ void ProcessUtf16CharacterAndFloatBuffer(void)
   *(float *)(StackFramePointer + -0x78) = StackFloatVariable1 - TemporaryFloatStack68;
   ProcessSystemBuffer(StackFramePointer + -0x78,Utf16Char);
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x20) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x20) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -101023,7 +101090,7 @@ void ConfigureFloatDataShader(void
   long long StackFramePointer;
   
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x20) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -0x20) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -101442,7 +101509,7 @@ ProcessSystemDataStructureConfiguration_DataProcessing:
     ProcessSystemTertiaryEventHandle();
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(StackParameter3 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(StackParameter3 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -101534,7 +101601,7 @@ void FinalizeFloatDataTexture(void)
   *ReferenceCountPointer = *ReferenceCountPointer + -1;
   ProcessSystemTertiaryEventHandle();
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(StackParameter3 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(StackParameter3 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -101581,7 +101648,7 @@ void ValidateFloatDataTexture(void
   *ReferenceCountPointer = *ReferenceCountPointer + -1;
   ProcessSystemTertiaryEventHandle();
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(StackParameter3 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(StackParameter3 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -101602,7 +101669,7 @@ void ConfigureFloatDataMaterial(void
   unsigned long long StackParameter3;
   
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(StackParameter3 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(StackParameter3 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -109615,7 +109682,7 @@ void SetupIntegerDataNetwork(uint64_t CharacterCode,char *Utf8InputBufferSize,ui
     if (((*(int *)(DataNodeIndex + 0x1b18) == 0) || (*(char *)(DataNodeIndex + 0x1b1c) != '\0')) &&
        (((CharacterTablePointer5 = *(long long *)(DataNodeIndex + 0x1af8), *(long long *)(DataNodeIndex + 0x1b00) == CharacterTablePointer5 &&
          ((((*(int *)(DataNodeIndex + 0x1b2c) == 0 || (*(char *)(DataNodeIndex + 0x1b3d) != '\0')) &&
-           (CharacterStatus2 = ValidateAndProcessSystemFlags(&MemoryAllocationStackBuffer,&stack0x00000078), CharacterStatus2 != '\0')) &&
+           (CharacterStatus2 = ValidateAndProcessSystemFlags(&MemoryAllocationStackBuffer,&SecondaryStackBuffer), CharacterStatus2 != '\0')) &&
           ((*(char *)(DataNodeIndex + 0x1d07) == '\0' &&
            (CharacterStatus2 = SystemCallStringValidation(CharacterTablePointer5,0), CharacterStatus2 != '\0')))))) &&
         ((*(byte *)(CharacterTablePointer5 + 0x1a8) & 4) == 0)))) {
@@ -109867,7 +109934,7 @@ void SystemDataProcessor(void)
     *(uint *)(SystemRegisterR10 + 0x148) = *(uint *)(SystemRegisterR10 + 0x148) | 1;
   }
   CharacterVariable5 = (char)RegisterR13ValueD;
-  if (((((*(int *)(DataNodeIndex + 0x1b18) == RegisterR13ValueD) || (*(char *)(DataNodeIndex + 0x1b1c) != CharacterVariable5)       && (SystemContextValue = *(long long *)(DataNodeIndex + 0x1af8), *(long long *)(DataNodeIndex + 0x1b00) == SystemContextValue)      && (((*(int *)(DataNodeIndex + 0x1b2c) == RegisterR13ValueD || (*(char *)(DataNodeIndex + 0x1b3d) != CharacterVariable5)          && ((CharacterValidationResult = ValidateAndProcessSystemFlags(&MemoryAllocationStackBuffer,&stack0x00000078), CharacterValidationResult != '\0' &&
+  if (((((*(int *)(DataNodeIndex + 0x1b18) == RegisterR13ValueD) || (*(char *)(DataNodeIndex + 0x1b1c) != CharacterVariable5)       && (SystemContextValue = *(long long *)(DataNodeIndex + 0x1af8), *(long long *)(DataNodeIndex + 0x1b00) == SystemContextValue)      && (((*(int *)(DataNodeIndex + 0x1b2c) == RegisterR13ValueD || (*(char *)(DataNodeIndex + 0x1b3d) != CharacterVariable5)          && ((CharacterValidationResult = ValidateAndProcessSystemFlags(&MemoryAllocationStackBuffer,&SecondaryStackBuffer), CharacterValidationResult != '\0' &&
               ((*(char *)(DataNodeIndex + 0x1d07) == CharacterVariable5 &&
                (CharacterValidationResult = SystemCallStringValidation(SystemContextValue,0), CharacterValidationResult != '\0')))))))) &&
      ((*(byte *)(SystemContextValue + 0x1a8) & 4) == 0)) {
@@ -132803,7 +132870,7 @@ LAB_18012ce0f:
   }
   *(uint8_t *)((long long)SystemParameter2 + 0xb4) = MemoryAllocationOffset;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -134648,7 +134715,7 @@ LAB_18012ce0f:
   }
   *(uint8_t *)((long long)SystemParameter2 + 0xb4) = MemoryAllocationCounter;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -136339,7 +136406,7 @@ LAB_18012ce0f:
   }
   *(uint8_t *)((long long)SystemParameter2 + 0xb4) = MemoryAllocationIndexPrimary;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -137948,7 +138015,7 @@ LAB_18012b510:
   }
   *(uint8_t *)((long long)SystemParameter2 + 0xb4) = MemoryAllocationCounter;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -139639,7 +139706,7 @@ LAB_18012ce0f:
   }
   *(uint8_t *)((long long)SystemParameter2 + 0xb4) = MemoryAllocationIndexPrimary;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -141200,7 +141267,7 @@ LAB_18012b510:
   }
   *(uint8_t *)(SystemParameter2 + 0xb4) = MemoryAllocationHandle;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -142276,7 +142343,7 @@ LAB_18012b510:
   }
   *(uint8_t *)(SystemParameter2 + 0xb4) = MemoryAllocationHandle;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -143126,7 +143193,7 @@ void ExecuteSystemCoreDataProcessing(void)
   }
   *(uint8_t *)(SystemParameter2 + 0xb4) = MemoryAllocationHandle;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -143482,7 +143549,7 @@ void ProcessSystemStatusValidationAndInitialization(void)
   }
   *(uint8_t *)(SystemParameter2 + 0xb4) = Utf16ConversionContext;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -143618,7 +143685,7 @@ void ProcessUnicodeCharacterEncodingValidation(void)
   }
   *(uint8_t *)(SystemParameter2 + 0xb4) = UnicodeCodePoint;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(StackFramePointer[0x12] ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(StackFramePointer[0x12] ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -143731,7 +143798,7 @@ void ProcessCharacterCodeConversionAndValidation(long long CharacterCode)
   }
   *(uint8_t *)(SystemParameter2 + 0xb4) = CalculatedCodePoint;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x24) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -143795,7 +143862,7 @@ void InitializeSystemEventProcessor(void)
   }
   *(uint8_t *)(SystemParameter2 + 0xb4) = MemoryAllocationIndex;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x90) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x90) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -143854,7 +143921,7 @@ void ProcessSystemMemoryCleanup(void)
   }
   *(uint8_t *)(SystemParameter2 + 0xb4) = MemoryAllocationIndex;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x90) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x90) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -143896,7 +143963,7 @@ void ProcessCharacterCodeValidation(uint32_t CharacterCode
   }
   *(uint8_t *)(SystemStackParameter + 0xb4) = ValidationIndex;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(ContextFramePointer + 0x90) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(ContextFramePointer + 0x90) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -159493,7 +159560,7 @@ uint32_t * FUN_180135960(long long CharacterCode,int Utf8BufferSize,uint64_t Utf
     SystemDataTablePointer = SystemDataTablePointer + -1;
   } while (SystemDataTablePointer != 0);
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(TertiaryDataStorage ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(TertiaryDataStorage ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -161404,7 +161471,7 @@ LAB_180137cc2:
     }
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -161752,7 +161819,7 @@ LAB_180137cc2:
     }
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -161949,7 +162016,7 @@ LAB_180137cc2:
     }
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -162026,7 +162093,7 @@ LAB_180137cc2:
     }
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -162128,7 +162195,7 @@ LAB_180137cc2:
     }
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -162177,7 +162244,7 @@ LAB_180137cc2:
     }
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -162198,7 +162265,7 @@ LAB_180137cc2:
     FinalizeSystemEventQueue();
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + -1) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -197825,7 +197892,7 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
     return;
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -197836,7 +197903,7 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
   unsigned long long DataStorageValue;
   
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -197851,7 +197918,7 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
   Utf16Char = LoadCursorFromFileA();
   *(void *)(DataNodeIndex + 0x50) = Utf16Char;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -197869,7 +197936,7 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
   FUN_180173720(LoopCounter,*(uint32_t *)(SystemContext + 0x30),*(uint32_t *)(SystemContext + 0x34),
                 *(uint8_t *)(SystemContext + 0x38),CharacterTablePointer + 0x38);
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -199311,7 +199378,7 @@ LAB_1801732ce:
   *(uint32_t *)(SourceIndex + 0xa0) = MemoryAddressMask;
   DefWindowProcW();
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x780) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x780) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -199384,7 +199451,7 @@ LAB_1801732ce:
   }
   DefWindowProcW();
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x780) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x780) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -199923,7 +199990,7 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
                MatchCounter,DataStorageValue - iStack0000000000000048);
   *CharacterLimit = MemoryAllocationSize;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00000058 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(in_stack_00000058 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -199949,7 +200016,7 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
                RegisterValueR12D,DataStorageValue - PrimaryDataStorage);
   *CharacterLimit = MemoryAllocationSize;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00000058 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(in_stack_00000058 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -199963,7 +200030,7 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
   
   *CharacterLimit = MemoryAllocationSize;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00000058 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(in_stack_00000058 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -200007,7 +200074,7 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
   CloseClipboard();
   GlobalUnlock(Utf16Char);
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -200032,7 +200099,7 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
   CloseClipboard();
   GlobalUnlock();
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -200047,7 +200114,7 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
   CloseClipboard();
   GlobalUnlock();
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -200058,7 +200125,7 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
   unsigned long long in_stack_00008040;
   
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -231291,7 +231358,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   } while ((unsigned long long)(long long)in_stack_00000058 <
            (unsigned long long)((*(long long **)(StackFramePointer + 0x2c))[1] - Utf8BufferSize >> 3));
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0xa8) ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0xa8) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -270104,7 +270171,7 @@ long long FUN_18022ac3f(void
     in_AL = *(char *)((long long)in_AL + 0x100 + StackFramePointer);
   } while (-1 < in_AL);
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(SystemParameter2 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(SystemParameter2 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -270115,7 +270182,7 @@ long long FUN_18022ac3f(void
   unsigned long long SystemParameter2;
   
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(SystemParameter2 ^ (unsigned long long)&stack0x00000000);
+  CoreEngineExecuteUtilityFunction(SystemParameter2 ^ (unsigned long long)&StackBaseAddress);
 }
 
 
