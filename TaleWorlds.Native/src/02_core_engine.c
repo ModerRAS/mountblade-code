@@ -208295,8 +208295,21 @@ void InitializeSystemDataNode(void)
 
 
 
+/**
+ * @brief UTF-8到UTF-16编码转换扩展函数
+ * 
+ * 该函数是UTF-8到UTF-16编码转换的扩展版本，提供更多的转换选项
+ * 和参数配置，支持更复杂的字符编码转换需求。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1，用于扩展转换配置
+ * @return uint64_t* 转换后的UTF-16缓冲区大小指针
+ */
 uint64_t *
-FUN_180179aa0(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
+ConvertUtf8ToUtf16Extended(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
              int *AdditionalParameter1
 {
   bool CurrentByteValue;
@@ -210957,8 +210970,20 @@ uint64_t * FUN_18017cac0(uint64_t CharacterCode,uint64_t Utf8BufferSize
 
 
 
+/**
+ * @brief UTF-8编码转换初始化函数
+ * 
+ * 该函数负责初始化UTF-8编码转换过程，设置系统字符状态缓冲区，
+ * 并根据缓冲区大小进行相应的内存处理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回字符代码指针
+ */
 uint64_t *
-FUN_18017cb20(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+InitializeUtf8EncodingConversion(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t Utf16Char;
   
