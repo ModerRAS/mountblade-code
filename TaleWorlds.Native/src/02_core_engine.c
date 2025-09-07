@@ -507,6 +507,32 @@ const char* const SystemRenderConfigTemplateLighting = (const char*)0x180a057d8;
 const char* const SystemRenderConfigTemplateShadow = (const char*)0x180a057c0;
 const char* const SystemRenderConfigTemplatePostProcess = (const char*)0x180a057f8;
 const char* const SystemRenderConfigTemplateAntiAliasing = (const char*)0x180a057e8;
+
+// 系统处理配置常量 - 用于替换UNK_变量
+const void* const SystemProcessingConfigA = (void*)0x180993550;
+const void* const SystemProcessingConfigB = (void*)0x180a0b2e8;
+const void* const SystemProcessingConfigC = (void*)0x180a0b2e0;
+const void* const SystemProcessingConfigD = (void*)0x180a0b300;
+const void* const SystemProcessingConfigE = (void*)0x180a0b2f0;
+const void* const SystemProcessingConfigF = (void*)0x180a0b318;
+const void* const SystemProcessingConfigG = (void*)0x180a0b310;
+const void* const SystemProcessingConfigH = (void*)0x180a0b338;
+
+// 系统验证函数指针常量
+const void* const SystemValidationFunctionA = (void*)0x1800467f0;
+const void* const SystemValidationFunctionB = (void*)0x180049760;
+
+// 系统事件处理常量
+const void* const SystemEventQueueA = (void*)0x180a0b328;
+const void* const SystemEventQueueB = (void*)0x180a0b358;
+const void* const SystemEventQueueC = (void*)0x180a0b348;
+const void* const SystemEventQueueD = (void*)0x180a0b378;
+const void* const SystemEventDispatcherA = (void*)0x180a0b3d4;
+const void* const SystemEventQueueE = (void*)0x180a0b480;
+const void* const SystemEventQueueF = (void*)0x180a0b4e0;
+const void* const SystemEventQueueG = (void*)0x180a0b4b0;
+const void* const SystemEventQueueH = (void*)0x180a0b590;
+const void* const SystemEventQueueI = (void*)0x180a0b5d8;
 const char* const SystemRenderConfigTemplateAmbientOcclusion = (const char*)0x180a05828;
 const char* const SystemRenderConfigTemplateDepthOfField = (const char*)0x180a05808;
 const char* const SystemRenderConfigTemplateBloom = (const char*)0x180a05850;
@@ -221500,7 +221526,7 @@ void ConfigureSystemContext(long long SystemContextPointer,float Utf8BufferSize,
             break;
           }
           *(float *)(SystemDataTablePointer + 0x8320 + SystemContextPointer) =
-               SystemContextFloat12 - Utf8BufferSize * *(float *)(&UNK_180993550 +
+               SystemContextFloat12 - Utf8BufferSize * *(float *)(&SystemProcessingConfigA +
                                             (long long)*(char *)(MemoryBlockSize + MemoryAllocationSize * 0xc) * 4);
           ProcessStringBuffer = CONCAT71((int7)(ProcessStringBuffer >> 8),1);
           ValidationCode = *(int *)(SystemDataTablePointer + 0x8324 + SystemContextPointer);
@@ -223401,7 +223427,7 @@ LAB_18019a44a:
       do {
         SystemContextPointer7 = *(long long **)(MemoryBufferC + MemoryAllocationIndex3 * 8);
         pCharacterVariable5 = *(code **)(*SystemContextPointer7 + 0x68);
-        if (pCharacterVariable5 == (code *)&UNK_1800467f0) {
+        if (pCharacterVariable5 == (code *)&SystemValidationFunctionA) {
           SystemValidationChar = (char)SystemContextPointer7[2] != '\0';
         }
         else {
@@ -223414,7 +223440,7 @@ LAB_18019a44a:
           if (SystemValidationChar == '\0') {
             SystemContextPointer7 = *(long long **)(*SystemContextPointer4 + MemoryAllocationIndex3 * 8);
             pCharacterVariable5 = *(code **)(*SystemContextPointer7 + 0x80);
-            if (pCharacterVariable5 == (code *)&UNK_180049760) {
+            if (pCharacterVariable5 == (code *)&SystemValidationFunctionB) {
               FUN_1800496b0(SystemContextPointer7 + 4);
             }
             else {
@@ -223671,19 +223697,19 @@ long long * FUN_18019c5b0(long long *SystemContextPointer,long long *Utf8BufferS
   FUN_18019cf00(Utf8BufferSize + 0x125b8,CurrentMemoryBlockAddress);
   CurrentMemoryBlockAddress = *(long long *)(Utf8BufferSize + 0x12608);
   if (CurrentMemoryBlockAddress != 0) {
-    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&UNK_180a0b2e8);
+    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&SystemProcessingConfigB);
     *(void *)(Utf8BufferSize + 0x12610) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&UNK_180a0b2e0);
+    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&SystemProcessingConfigC);
     *(void *)(Utf8BufferSize + 0x12618) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&UNK_180a0b300);
+    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&SystemProcessingConfigD);
     *(void *)(Utf8BufferSize + 0x12620) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&UNK_180a0b2f0);
+    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&SystemProcessingConfigE);
     *(void *)(Utf8BufferSize + 0x12628) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&UNK_180a0b318);
+    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&SystemProcessingConfigF);
     *(void *)(Utf8BufferSize + 0x12630) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&UNK_180a0b310);
+    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&SystemProcessingConfigG);
     *(void *)(Utf8BufferSize + 0x12638) = ProcessingStatusFlag;
-    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&UNK_180a0b338);
+    ProcessingStatusFlag = FUN_1801c1880(CurrentMemoryBlockAddress,&SystemProcessingConfigH);
     *(void *)(Utf8BufferSize + 0x12640) = ProcessingStatusFlag;
   }
   shouldReturnSource = true;
@@ -224070,7 +224096,7 @@ long long * FUN_18019cf00(long long *SystemContextPointer,long long *Utf8BufferS
   if ((void *)SystemContextPointer[0x9c] != NULL) {
     TemporaryBuffer = (void *)SystemContextPointer[0x9c];
   }
-  ProcessSystemEventQueueData(&UNK_180a0b328,TemporaryBuffer);
+  ProcessSystemEventQueueData(&SystemEventQueueA,TemporaryBuffer);
   if (*(int *)(SystemContextPointer + 0xc0ea) != 0) {
     TemporaryBuffer = &CoreEngineDataTemplate;
     if ((void *)SystemContextPointer[0xc0e9] != NULL) {
