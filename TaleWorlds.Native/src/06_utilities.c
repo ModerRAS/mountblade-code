@@ -3916,19 +3916,19 @@ extern uint64_t ExceptionOffsetValue;
 // 功能：存储系统主要资源分配表
 #define SystemPrimaryResourceTable SystemPrimaryResourceTable
 
-// 原始变量名：_DAT_180bf9390 - 全局异常处理器指针A1
+// 全局异常处理器指针A1
 // 功能：存储全局异常处理器A1的指针
 #define GlobalExceptionHandlerPointerA1 _DAT_180bf9390
 
-// 原始变量名：_DAT_180bf93f0 - 全局异常处理器指针A2
+// 全局异常处理器指针A2
 // 功能：存储全局异常处理器A2的指针
 #define GlobalExceptionHandlerPointerA2 _DAT_180bf93f0
 
-// 原始变量名：_DAT_180bf9450 - 全局异常处理器指针A3
+// 全局异常处理器指针A3
 // 功能：存储全局异常处理器A3的指针
 #define GlobalExceptionHandlerPointerA3 _DAT_180bf9450
 
-// 原始变量名：_DAT_180bf94b0 - 全局异常处理器指针A4
+// 全局异常处理器指针A4
 // 功能：存储全局异常处理器A4的指针
 #define GlobalExceptionHandlerPointerA4 _DAT_180bf94b0
 
