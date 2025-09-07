@@ -5163,7 +5163,7 @@ void HandleUIEvent(undefined4 uiContext,undefined8 dataSource,undefined8 targetB
     if (RendererInitialized == 0) {
       InitializeUIRenderer(&UIRendererInstance);
     }
-    if (RendererInstance == 0) goto LAB_180650464;
+    if (RendererInstance == 0) goto LAB_RendererInitializationFailure;
   }
   LOCK();
   semaphoreHandle = RenderPoolCounter + 1;
@@ -6042,7 +6042,7 @@ LAB_UIComponentActivation:
   if (SizeCheckResult) {
     if (ComponentInsertPosition == UIComponentTail) {
       RequestedSize = *resultPointer;
-      goto LAB_1806516e0;
+      goto LAB_ComponentSizeRequestHandler;
     }
     ComponentListIterator = (undefined8 *)GetUIComponentData(ComponentInsertPosition);
   }
@@ -7605,16 +7605,16 @@ void CleanupUIComponentCache(void)
                     // WARNING: Subroutine does not return
     memcpy(stringCopyDestination,dataSourcePointer,(longlong)(stringBufferSize + 1));
   }
-  if ((puStack_150 != (undefined *)0x0) && (uStack_260 = 0, puStack_268 != (undefined1 *)0x0)) {
-    *puStack_268 = 0;
+  if ((puStack_150 != (undefined *)0x0) && (uStack_260 = 0, stringCopyDestination != (undefined1 *)0x0)) {
+    *stringCopyDestination = 0;
   }
   puStack_2d8 = &PrimaryUIBuffer;
   uStack_2c0 = 0;
-  puStack_2d0 = (undefined4 *)0x0;
+  uiComponentContext = (undefined4 *)0x0;
   uStack_2c8 = 0;
   componentContextPointer = (undefined4 *)CreateUIContext(UIContextManager,0x10,0x13);
   *(undefined1 *)componentContextPointer = 0;
-  puStack_2d0 = componentContextPointer;
+  uiComponentContext = componentContextPointer;
   semaphoreHandle = ConfigureUIComponent(componentContextPointer);
   uStack_2c0 = CONCAT44(uStack_2c0._4_4_,semaphoreHandle);
   *componentContextPointer = 0x2f6e6962;
@@ -7647,7 +7647,7 @@ LAB_UIMemoryCopyStart:
     puStack_2b0 = puVar7;
     uVar4 = ConfigureUIComponent(puVar7);
     uStack_2a0 = CONCAT44(uStack_2a0._4_4_,uVar4);
-    goto LAB_18065415f;
+    goto LAB_ComponentConfigurationComplete;
   }
   if (puVar7 != (undefined1 *)0x0) {
     puVar7[functionResult1] = 0;
@@ -7664,7 +7664,7 @@ LAB_UIMemoryCopyStart:
       *puVar7 = 0;
     }
     else {
-      if (uVar4 <= functionResult0) goto LAB_1806541f1;
+      if (uVar4 <= functionResult0) goto LAB_MemorySizeInsufficient;
       uStack_318 = 0x13;
       puVar7 = (undefined1 *)CreateUIObject(UIContextManager,puVar7,uVar4,0x10);
     }
@@ -7759,14 +7759,14 @@ int ProcessUIEvent(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
     operationResult = strcmp(lStack_28,&UIStringConstant1);
     if (operationResult == 0) {
       operationResult = 0x84;
-      goto LAB_1806555a8;
+      goto LAB_EventTypeResultReturn;
     }
   }
   else if (iStack_20 == 0x18) {
     operationResult = strcmp(lStack_28,&UIStringConstant2);
     if (operationResult == 0) {
       operationResult = 0x10;
-      goto LAB_1806555a8;
+      goto LAB_EventTypeResultReturn;
     }
 LAB_UIStringCompareStart:
     bufferPtr = &UIStringConstant3;
@@ -7774,39 +7774,39 @@ LAB_UIStringCompareLoop:
     operationResult = strcmp(characterPosition,bufferPtr);
     if (operationResult == 0) {
       operationResult = 4;
-      goto LAB_1806555a8;
+      goto LAB_EventTypeResultReturn;
     }
   }
   else if (iStack_20 == 0x12) {
     operationResult = strcmp(lStack_28,&UIStringConstant4);
     if (operationResult == 0) {
       operationResult = 0xa0;
-      goto LAB_1806555a8;
+      goto LAB_EventTypeResultReturn;
     }
 LAB_UIStringCompareAlternative:
     operationResult = strcmp(characterPosition,&UIStringConstant5);
     if (operationResult == 0) {
       operationResult = 8;
-      goto LAB_1806555a8;
+      goto LAB_EventTypeResultReturn;
     }
     operationResult = strcmp(characterPosition,&UIStringConstant6);
     if (operationResult == 0) {
       operationResult = 0x10;
-      goto LAB_1806555a8;
+      goto LAB_EventTypeResultReturn;
     }
     bufferPtr = &UIStringConstant7;
 LAB_UIStringCompareFinal:
     operationResult = strcmp(lVar3,bufferPtr);
     if (operationResult == 0) {
       operationResult = 0x10;
-      goto LAB_1806555a8;
+      goto LAB_EventTypeResultReturn;
     }
   }
   else if (iStack_20 == 0x1a) {
     operationResult = strcmp(lStack_28,&UIStringConstant7);
     if (operationResult == 0) {
       operationResult = 0x204;
-      goto LAB_1806555a8;
+      goto LAB_EventTypeResultReturn;
     }
   }
   else {
@@ -7814,7 +7814,7 @@ LAB_UIStringCompareFinal:
       operationResult = strcmp(lStack_28,&UIEventTypeString21);
       if (operationResult == 0) {
         operationResult = 0x404;
-        goto LAB_1806555a8;
+        goto LAB_EventTypeResultReturn;
       }
       bufferPtr = &UIEventTypeString22;
       goto LAB_180655402;
@@ -7823,7 +7823,7 @@ LAB_UIStringCompareFinal:
       operationResult = strcmp(lStack_28,&UIEventTypeString23);
       if (operationResult == 0) {
         operationResult = 0x50;
-        goto LAB_1806555a8;
+        goto LAB_EventTypeResultReturn;
       }
     }
     else {
@@ -7832,7 +7832,7 @@ LAB_UIStringCompareFinal:
         operationResult = strcmp(lStack_28,&UIEventTypeString24);
         if (operationResult == 0) {
           operationResult = 8;
-          goto LAB_1806555a8;
+          goto LAB_EventTypeResultReturn;
         }
       }
       else if (iStack_20 == 0x16) {
@@ -7841,7 +7841,7 @@ LAB_UIEventTypeCompare:
         operationResult = strcmp(lStack_28,bufferPtr);
         if (operationResult == 0) {
           operationResult = 0xc;
-          goto LAB_1806555a8;
+          goto LAB_EventTypeResultReturn;
         }
       }
       else {
@@ -7856,13 +7856,13 @@ LAB_UIEventTypeCompare:
             lVar3 = lVar2;
           } while (lVar2 != 8);
           operationResult = 0x10;
-          goto LAB_1806555a8;
+          goto LAB_EventTypeResultReturn;
         }
         if (iStack_20 == 0xf) {
           operationResult = strcmp(lStack_28,&UIEventTypeString27);
           if (operationResult == 0) {
             operationResult = 0x40;
-            goto LAB_1806555a8;
+            goto LAB_EventTypeResultReturn;
           }
         }
         else {
@@ -7882,7 +7882,7 @@ LAB_UIEventTypeCompare:
               lVar3 = lVar2 + 1;
             } while (lVar2 + 1 != 7);
             operationResult = (int)lVar2 + 0x1e;
-            goto LAB_1806555a8;
+            goto LAB_EventTypeResultReturn;
           }
           if (iStack_20 == 0x12) goto LAB_18065555e;
         }
@@ -7904,7 +7904,7 @@ UIEventTypeString31Check:
     if (*(char *)(lStack_28 + lVar3) != (&UIEventTypeString31)[lVar3]) goto LAB_1806555a6;
   }
   operationResult = 0x30;
-  goto LAB_1806555a8;
+  goto LAB_EventTypeResultReturn;
 }
 
 
