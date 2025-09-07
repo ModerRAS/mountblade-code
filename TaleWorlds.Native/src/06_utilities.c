@@ -110928,17 +110928,17 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define InitializeSystemComponentA0 FUN_1807d3e20
 
 // 系统数据验证基础错误信息常量
-#define SystemDataValidationErrorBase UNK_1809832b8
+#define SystemDataValidationErrorBase SystemDataValidationErrorMessage
 
 // 浮点数验证错误信息常量
-#define FloatingPointValidationErrorCodeA UNK_180983738
-#define FloatingPointValidationErrorCodeB UNK_1809837c0
+#define FloatingPointValidationErrorCodeA FloatingPointValidationPrimaryError
+#define FloatingPointValidationErrorCodeB FloatingPointValidationSecondaryError
 
 // 数据处理验证错误信息常量
-#define DataProcessingValidationErrorCode UNK_1809839d8
+#define DataProcessingValidationErrorCode DataProcessingValidationErrorMessage
 
 // 系统状态验证错误信息常量
-#define SystemStatusValidationErrorCode UNK_180983950
+#define SystemStatusValidationErrorCode SystemStatusValidationErrorMessage
 
 // 数据完整性验证错误信息常量
 #define DataIntegrityValidationErrorCodeA UNK_180983be8
