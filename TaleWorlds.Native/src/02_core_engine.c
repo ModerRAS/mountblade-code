@@ -83485,7 +83485,7 @@ uint64_t InitializeSystemDataStructure(long long *CharacterCode
     SetSystemDataStructureOffset2E0(DataStructureCounter,2);
     DataStructureCounter = *CharacterCode;
   }
-LAB_180103c39:
+SystemFloatValueCheckComplete: // 原始标签：LAB_180103c39
   if ((((*(int *)(DataStructureCounter + 0x4d4) != *(int *)(DataStructureCounter + 0x4d0)) ||
        (*(int *)(DataStructureCounter + 0x314) != *(int *)(DataStructureCounter + 0x310))) ||
       (*(float *)(DataStructureCounter + 0x20d0) != *(float *)(DataStructureCounter + 0x20d4))) ||
@@ -83677,7 +83677,7 @@ uint64_t ProcessCoreEngineSystemEventAndValidation(void
     SetSystemDataStructureOffset2E0(DataStructureCounter,2);
     DataStructureCounter = *SystemContext;
   }
-LAB_180103c39:
+SystemFloatValueCheckComplete: // 原始标签：LAB_180103c39
   if ((((*(int *)(DataStructureCounter + 0x4d4) != *(int *)(DataStructureCounter + 0x4d0)) ||
        (*(int *)(DataStructureCounter + 0x314) != *(int *)(DataStructureCounter + 0x310))) ||
       (*(float *)(DataStructureCounter + 0x20d0) != *(float *)(DataStructureCounter + 0x20d4))) ||
@@ -191560,11 +191560,11 @@ void ProcessCharacterEncodingAndSystemContext(long long ***CharacterCode,long lo
   CharacterStatus = InitializeSystemStatusBuffer(StatusBuffer,&SystemCharacterTableAddress,-(uint)(CharacterStatus != '\0') & 0x2020);
   LoopCounter = SystemDataConfiguration;
   IntegerValue = 0;
-  if (CharacterStatus1 == '\0') {
+  if (CharacterStatus == '\0') {
     FinalizeSystemEventQueue();
   }
   else {
-    pppSystemRegisterPointerX8 =
+    SystemRegisterX8QuadPtr =
          (long long ****         ((unsigned long long          (uint)(*(float *)(SystemDataConfiguration + 0x1660) + *(float *)(SystemDataConfiguration + 0x1660) +
                  *(float *)(SystemDataConfiguration + 0x19f8) + *(float *)(SystemDataConfiguration + 0x1670)) << 0x20
          ^ 0x8000000000000000);
@@ -243327,9 +243327,9 @@ LAB_180214378:
   ProcessSystemEventQueueData(&SystemEventQueueDataTableSeptendecenary,(double)fStack_7c);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableOctodecenary,(double)fStack_78);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableNovemdecenary,(double)fStack_74);
-  ProcessSystemEventQueueData(&UNK_180a10850,(double)fStack_70);
-  ProcessSystemEventQueueData(&UNK_180a10860,(double)fStack_6c);
-  ProcessSystemEventQueueData(&UNK_180a10820,(double)fStack_68);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableVigintenary,(double)fStack_70);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableUnvigintenary,(double)fStack_6c);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableDuovigintenary,(double)fStack_68);
   ProcessSystemEventQueueData(&UNK_180a10838,(double)fStack_64);
   ProcessSystemEventQueueData(&UNK_180a10898,(double)fStack_60);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableDuodecenary);

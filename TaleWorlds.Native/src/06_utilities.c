@@ -60226,7 +60226,18 @@ void ExecuteCallbackWithFlagsA0(DataBuffer operationBase,int64_t dataBuffer,Data
 
 
 
-void Unwind_180906b10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常数据缓冲区并设置异常处理器A0
+ * 
+ * 该函数负责处理异常数据缓冲区，遍历资源指针并设置异常处理器
+ * 主要用于异常处理系统的资源清理和处理器设置
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理资源信息
+ * 
+ * @note 原始函数名：Unwind_180906b10
+ */
+void ProcessExceptionDataBufferA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -60252,7 +60263,18 @@ void Unwind_180906b10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906b20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行嵌套异常上下文中的回调函数A0
+ * 
+ * 该函数负责从嵌套的异常上下文中获取回调函数指针并执行相应的回调操作
+ * 主要用于处理多层嵌套的异常处理回调
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含嵌套异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906b20
+ */
+void ExecuteNestedExceptionHandlerContextCallbackA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x100) != (int64_t *)0x0) {
@@ -60263,7 +60285,20 @@ void Unwind_180906b20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行带操作标志的回调函数A1
+ * 
+ * 该函数负责执行带有操作标志的回调函数，将标志位传递给回调函数
+ * 这是ExecuteCallbackWithFlagsA0的备用实现，功能相同
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含回调函数信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给回调函数）
+ * 
+ * @note 原始函数名：Unwind_180906b30
+ */
+void ExecuteCallbackWithFlagsA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x78) != (code *)0x0) {
@@ -60274,7 +60309,18 @@ void Unwind_180906b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180906b40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常数据缓冲区并设置异常处理器A1
+ * 
+ * 该函数负责处理异常数据缓冲区，遍历资源指针并设置异常处理器
+ * 这是ProcessExceptionDataBufferA0的备用实现，功能相同
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理资源信息
+ * 
+ * @note 原始函数名：Unwind_180906b40
+ */
+void ProcessExceptionDataBufferA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
