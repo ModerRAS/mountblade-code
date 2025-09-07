@@ -10621,7 +10621,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
             return 0;
           }
         }
-        *(int64_t *)(*ComponentListContext + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * 8) = ComponentValidationBuffer;
+        *(int64_t *)(*ComponentListContext + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * PointerSizeBytes) = ComponentValidationBuffer;
         *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) + 1;
         *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) + 1;
       }

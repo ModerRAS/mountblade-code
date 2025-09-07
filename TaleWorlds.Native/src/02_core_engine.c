@@ -159451,7 +159451,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode)
           Utf16Char9 = Utf16Char9 + 8;
         } while ((int)DataSize < *ReferenceCountPointer);
       }
-      FUN_18013b0f0(0);
+      ProcessMemoryAddressMask(0);
       FUN_180136210(CharacterCode,*(void *)(CharacterTablePointer5 + 0x28),*(uint32_t *)(CharacterTablePointer5 + 0x20));
       FUN_180136440(CharacterCode);
       *(uint8_t *)(ValidationResultPointer + 0xc) = 0;
@@ -159516,7 +159516,7 @@ void ProcessCharacterDataValidation(long long CharacterCode
       systemEventTemplatePointer = *(uint32_t **)(ProcessingStatusFlag + 8 + *(long long *)(SourceIndex + 2));
       if ((systemEventTemplatePointer != (uint32_t *)0x0) &&
          ((*(long long *)(systemEventTemplatePointer + 2) == 0 && (*(long long *)(systemEventTemplatePointer + 4) != 0)))) {
-        FUN_18013b0f0(*systemEventTemplatePointer);
+        ProcessMemoryAddressMask(*systemEventTemplatePointer);
       }
       DataSize = (int)ProcessStringBuffer + 1;
       ProcessStringBuffer = (unsigned long long)DataSize;
@@ -159549,7 +159549,7 @@ void ProcessCharacterDataValidation(long long CharacterCode
         ProcessStringBuffer = ProcessStringBuffer + 8;
       } while ((int)DataSize < *ReferenceCountPointer);
     }
-    FUN_18013b0f0(0);
+    ProcessMemoryAddressMask(0);
     FUN_180136210();
     FUN_180136440();
     *(uint8_t *)(SourceIndex + 0xc) = 0;
@@ -159631,7 +159631,7 @@ void ProcessCharacterCodeConversion(void
     } while ((int)DataSize < *ReferenceCountPointer);
     CharacterLimit = 0;
   }
-  FUN_18013b0f0(0);
+  ProcessMemoryAddressMask(0);
   FUN_180136210();
   FUN_180136440();
   *(uint8_t *)(SourceIndex + 0x30) = 0;
@@ -159707,7 +159707,7 @@ void ProcessCharacterCodeConversion(void
     CharacterLimit = CharacterLimit + 8;
   } while (RegisterValueEDI < *StackFrameAddressPointer);
   CalculatedCodePoint = 0;
-  FUN_18013b0f0(0);
+  ProcessMemoryAddressMask(0);
   FUN_180136210();
   FUN_180136440();
   *(uint8_t *)(SourceIndex + 0x30) = 0;
@@ -159760,7 +159760,7 @@ void ProcessCharacterCodeConversion(void
   unsigned long long CharacterLimit;
   float FloatingPointRegisterA;
   
-  FUN_18013b0f0(0);
+  ProcessMemoryAddressMask(0);
   FUN_180136210();
   FUN_180136440();
   *(uint8_t *)(SourceIndex + 0x30) = 0;
