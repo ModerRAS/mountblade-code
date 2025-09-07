@@ -3198,6 +3198,34 @@
 // 功能：存储异常处理的状态标志信息
 #define ExceptionStatusFlagA1 _DAT_180d49148
 
+// 原始变量名：UNK_1809850f8 - 浮点数验证数组
+// 功能：存储浮点数验证的默认值数组
+#define FloatValidationArray UNK_1809850f8
+
+// 原始变量名：UNK_180983950 - 数据处理上下文A0
+// 功能：存储数据处理的上下文信息
+#define DataProcessingContextA0 UNK_180983950
+
+// 原始变量名：UNK_180983738 - 验证上下文A0
+// 功能：存储验证操作的上下文信息
+#define ValidationContextA0 UNK_180983738
+
+// 原始变量名：UNK_1809837c0 - 验证上下文A1
+// 功能：存储验证操作的上下文信息
+#define ValidationContextA1 UNK_1809837c0
+
+// 原始变量名：UNK_180982378 - 数据缓冲区A0
+// 功能：存储数据缓冲区信息
+#define DataBufferA0 UNK_180982378
+
+// 原始变量名：UNK_1809823f8 - 数据缓冲区A1
+// 功能：存储数据缓冲区信息
+#define DataBufferA1 UNK_1809823f8
+
+// 原始变量名：UNK_180982260 - 数据缓冲区A2
+// 功能：存储数据缓冲区信息
+#define DataBufferA2 UNK_180982260
+
 // 原始变量名：_DAT_180c82240 - 异常事件句柄
 // 功能：存储异常处理的事件句柄信息
 #define ExceptionEventHandle _DAT_180c82240
