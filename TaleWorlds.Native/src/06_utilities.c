@@ -71769,7 +71769,16 @@ void ProcessMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180908880(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 解锁互斥锁C0
+ * 
+ * 该函数负责解锁位于偏移量0xc0处的互斥锁，如果解锁失败则抛出异常
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908880
+ */
+void UnlockMutexAtOffsetC0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int inputParameter;
@@ -71783,7 +71792,16 @@ void Unwind_180908880(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908890(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 解锁互斥锁200
+ * 
+ * 该函数负责解锁位于偏移量200处的互斥锁，如果解锁失败则抛出异常
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908890
+ */
+void UnlockMutexAtOffset200(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int inputParameter;
@@ -71797,7 +71815,16 @@ void Unwind_180908890(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809088a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 解锁互斥锁240
+ * 
+ * 该函数负责解锁位于偏移量240处的互斥锁，如果解锁失败则抛出异常
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_1809088a0
+ */
+void UnlockMutexAtOffset240(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
