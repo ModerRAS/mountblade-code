@@ -50650,7 +50650,19 @@ void CleanupExceptionResourceReferenceCount960(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_180904970(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常资源引用计数970
+ * 
+ * 该函数负责清理异常相关的资源引用计数，验证系统状态，
+ * 并在必要时终止系统。它处理多个资源迭代器，验证异常状态，
+ * 并管理内存资源的释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_180904970
+ */
+void CleanupExceptionResourceReferenceCount970(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -50857,7 +50869,18 @@ void CleanupResourceReferenceCount9d0(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_1809049e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数9e0
+ * 
+ * 该函数负责清理资源的引用计数，管理内存块的释放，
+ * 并处理异常情况下的资源清理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_1809049e0
+ */
+void CleanupResourceReferenceCount9e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -50893,7 +50916,18 @@ void Unwind_1809049e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809049f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数9f0
+ * 
+ * 该函数负责清理资源的引用计数，管理内存块的释放，
+ * 并处理异常情况下的资源清理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_1809049f0
+ */
+void CleanupResourceReferenceCount9f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -50969,7 +51003,19 @@ void CloseHandleOffset70OnException(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904a20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常资源引用计数a20
+ * 
+ * 该函数负责清理异常相关的资源引用计数，验证系统状态，
+ * 并在必要时终止系统。它处理多个资源迭代器，验证异常状态，
+ * 并管理内存资源的释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_180904a20
+ */
+void CleanupExceptionResourceReferenceCountA20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -51444,7 +51490,18 @@ void ExceptionCallbackProcessorA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904ae0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调ae0
+ * 
+ * 该函数负责执行异常处理器的回调函数。它检查数据缓冲区中的
+ * 异常处理器指针，如果存在则调用相应的回调函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * 
+ * @note 原始函数名：Unwind_180904ae0
+ */
+void ExecuteExceptionHandlerCallbackAe0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x60) != (int64_t *)0x0) {
@@ -51455,7 +51512,20 @@ void Unwind_180904ae0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 设置异常处理器af0
+ * 
+ * 该函数负责设置异常处理器到指定的数据缓冲区位置。
+ * 它处理异常数据缓冲区并配置异常处理机制。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180904af0
+ */
+void SetExceptionHandlerAf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -51492,7 +51562,18 @@ void Unwind_180904af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904b00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理系统状态b00
+ * 
+ * 该函数负责清理系统状态，重置相关的标志和指针。
+ * 它确保系统在异常处理后能够恢复正常状态。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含系统状态信息
+ * 
+ * @note 原始函数名：Unwind_180904b00
+ */
+void CleanupSystemStateB00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x40) = &SystemDataBuffer;
@@ -100074,7 +100155,8 @@ void Unwind_1809127c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127d0(void)
+// 资源清理异常处理函数 - 在偏移量0x7d0处处理资源清理异常
+void HandleResourceCleanupExceptionAtOffset7d0(void)
 
 {
   byte shiftBitCount;
