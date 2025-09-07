@@ -9494,7 +9494,7 @@ uint8_t SystemExceptionStackTable;
 uint8_t SystemStatusValidationFunction;
 // 系统数据表A0
 // 功能：存储系统数据表信息
-#define SystemDataTableA0 DAT_180d49ff8
+#define SystemGlobalDataTableA0 DAT_180d49ff8
 uint8_t SystemDataTableStorage;
 
 // 系统配置处理函数A0
@@ -9919,7 +9919,7 @@ uint8_t SecurityValidationFlagA274;    // 系统安全验证标志e18
 uint8_t ThreadLocalStorageValidationFlag;    // 线程本地存储验证标志
 // 系统配置数据表A0
 // 功能：存储系统配置数据表信息
-#define SystemConfigurationDataTableA0 DAT_180c92510
+#define SystemGlobalConfigurationTableA0 DAT_180c92510
 uint8_t SystemConfigurationDataTableA0;
 // 系统主缓存状态标志
 char SystemMainCacheStatusFlag;               // 系统主缓存状态标志
@@ -9933,11 +9933,11 @@ void* SystemStatusPointerA0;
 void* SystemDataProcessingFunction;
 // 系统标志变量A0
 // 功能：存储系统状态标志
-#define SystemFlagA0 DAT_180bf66d8
+#define SystemGlobalStatusFlagA0 DAT_180bf66d8
 ByteFlag SystemFlagA0;
 // 系统数据表A1
 // 功能：存储系统数据表信息
-#define SystemDataTableA1 DAT_180c96858
+#define SystemGlobalDataTableA1 DAT_180c96858
 uint8_t SystemDataTableA1;
 // 系统缓冲区数据表A0
 // 功能：存储系统缓冲区数据表信息
