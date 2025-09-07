@@ -60249,7 +60249,22 @@ void CleanupSystemResourceE1(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180906d90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理函数E2
+ * 
+ * 该函数负责清理系统资源，包括引用计数管理和内存释放。
+ * 主要功能包括：
+ * - 检查资源指针有效性
+ * - 计算内存基地址和偏移量
+ * - 管理引用计数
+ * - 处理异常情况
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906d90
+ */
+void CleanupSystemResourceE2(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -60474,7 +60489,21 @@ void CleanupSystemValidationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ValidateSystemContextH(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统上下文验证函数H
+ * 
+ * 该函数负责验证系统上下文的完整性，检查异常处理上下文的有效性。
+ * 主要功能包括：
+ * - 验证上下文指针的有效性
+ * - 遍历数据上下文进行清理
+ * - 处理异常情况
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906de0
+ */
+void ValidateSystemContextH(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -60496,7 +60525,20 @@ void ValidateSystemContextH(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ProcessSystemDataWithValidationB(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统数据处理函数B
+ * 
+ * 该函数负责处理系统数据，执行数据验证和处理操作。
+ * 主要功能包括：
+ * - 调用数据处理函数
+ * - 验证数据完整性
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906df0
+ */
+void ProcessSystemDataWithValidationB(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   ProcessSystemDataA1(dataBuffer + 0xd8);
@@ -60505,7 +60547,20 @@ void ProcessSystemDataWithValidationB(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void ExecuteSystemCallbackA(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统回调执行函数A
+ * 
+ * 该函数负责执行系统回调函数，处理系统事件和通知。
+ * 主要功能包括：
+ * - 检查回调函数指针有效性
+ * - 执行系统回调函数
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906e00
+ */
+void ExecuteSystemCallbackA(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x118) != (int64_t *)0x0) {
@@ -60516,7 +60571,20 @@ void ExecuteSystemCallbackA(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ExecuteSystemCallbackB(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统回调执行函数B
+ * 
+ * 该函数负责执行系统回调函数，处理系统事件和通知。
+ * 主要功能包括：
+ * - 检查回调函数指针有效性
+ * - 执行系统回调函数
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906e10
+ */
+void ExecuteSystemCallbackB(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x120) != (int64_t *)0x0) {
@@ -60527,7 +60595,20 @@ void ExecuteSystemCallbackB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ExecuteSystemCallbackC(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统回调执行函数C
+ * 
+ * 该函数负责执行系统回调函数，处理系统事件和通知。
+ * 主要功能包括：
+ * - 检查回调函数指针有效性
+ * - 执行系统回调函数
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906e20
+ */
+void ExecuteSystemCallbackC(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x170) != (int64_t *)0x0) {
@@ -60538,7 +60619,20 @@ void ExecuteSystemCallbackC(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ExecuteSystemCallbackD(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统回调执行函数D
+ * 
+ * 该函数负责执行系统回调函数，处理系统事件和通知。
+ * 主要功能包括：
+ * - 检查回调函数指针有效性
+ * - 执行系统回调函数
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906e30
+ */
+void ExecuteSystemCallbackD(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x178) != (int64_t *)0x0) {
@@ -60549,7 +60643,21 @@ void ExecuteSystemCallbackD(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906e40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统初始化和回调执行函数
+ * 
+ * 该函数负责初始化系统资源并执行系统回调函数。
+ * 主要功能包括：
+ * - 初始化系统资源
+ * - 检查回调函数指针有效性
+ * - 执行系统回调函数
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906e40
+ */
+void InitializeSystemAndExecuteCallback(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   InitializeSystemResourcesI0();
@@ -60561,7 +60669,23 @@ void Unwind_180906e40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数A
+ * 
+ * 该函数负责执行异常处理器回调函数，处理系统异常事件。
+ * 主要功能包括：
+ * - 获取异常处理器回调函数指针
+ * - 检查回调函数指针有效性
+ * - 执行异常处理器回调函数
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180906ef0
+ */
+void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -104961,3 +105085,84 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始函数名：Catch_180904c60 - 异常捕获器A3
 // 功能：捕获系统异常情况，提供异常处理机制
 #define ExceptionCatcherA3 Catch_180904c60
+
+// Unwind系列函数语义化宏定义 - 180909080-1809092b0
+// 原始函数名：Unwind_180909080 - 系统验证状态初始化函数
+// 功能：初始化系统验证状态表，设置数据缓冲区指针
+#define InitializeSystemValidationStatus Unwind_180909080
+
+// 原始函数名：Unwind_180909090 - 资源引用计数管理函数
+// 功能：管理资源引用计数，处理内存释放和异常处理
+#define ManageResourceReferenceCount Unwind_180909090
+
+// 原始函数名：Unwind_1809090a0 - 异常上下文处理函数
+// 功能：处理异常上下文，执行系统操作和回调函数
+#define ProcessExceptionContext Unwind_1809090a0
+
+// 原始函数名：Unwind_1809090b0 - 系统数据验证函数
+// 功能：验证系统数据完整性，处理数据缓冲区
+#define ValidateSystemData Unwind_1809090b0
+
+// 原始函数名：Unwind_1809090d0 - 内存块处理函数
+// 功能：处理内存块操作，管理内存资源
+#define ProcessMemoryBlock Unwind_1809090d0
+
+// 原始函数名：Unwind_1809090f0 - 系统状态检查函数
+// 功能：检查系统状态，验证系统参数
+#define CheckSystemStatus Unwind_1809090f0
+
+// 原始函数名：Unwind_180909110 - 数据缓冲区初始化函数
+// 功能：初始化数据缓冲区，设置系统参数
+#define InitializeDataBufferA Unwind_180909110
+
+// 原始函数名：Unwind_180909130 - 系统资源处理函数
+// 功能：处理系统资源，管理资源分配
+#define ProcessSystemResource Unwind_180909130
+
+// 原始函数名：Unwind_180909150 - 异常处理器设置函数
+// 功能：设置异常处理器，配置异常处理机制
+#define SetExceptionHandlerA Unwind_180909150
+
+// 原始函数名：Unwind_180909170 - 系统内存管理函数
+// 功能：管理系统内存，处理内存分配和释放
+#define ManageSystemMemory Unwind_180909170
+
+// 原始函数名：Unwind_180909190 - 系统操作处理函数
+// 功能：处理系统操作，执行系统命令
+#define ProcessSystemOperation Unwind_180909190
+
+// 原始函数名：Unwind_1809091b0 - 系统验证函数
+// 功能：验证系统状态，检查系统完整性
+#define ValidateSystemA Unwind_1809091b0
+
+// 原始函数名：Unwind_1809091d0 - 系统清理函数
+// 功能：清理系统资源，释放内存
+#define CleanupSystemA Unwind_1809091d0
+
+// 原始函数名：Unwind_1809091f0 - 系统初始化函数
+// 功能：初始化系统组件，设置系统参数
+#define InitializeSystemA Unwind_1809091f0
+
+// 原始函数名：Unwind_180909210 - 系统配置函数
+// 功能：配置系统参数，设置系统选项
+#define ConfigureSystemA Unwind_180909210
+
+// 原始函数名：Unwind_180909230 - 系统同步函数
+// 功能：同步系统状态，确保数据一致性
+#define SynchronizeSystemA Unwind_180909230
+
+// 原始函数名：Unwind_180909250 - 系统监控函数
+// 功能：监控系统状态，检测系统异常
+#define MonitorSystemA Unwind_180909250
+
+// 原始函数名：Unwind_180909270 - 系统恢复函数
+// 功能：恢复系统状态，处理系统故障
+#define RecoverSystemA Unwind_180909270
+
+// 原始函数名：Unwind_180909290 - 系统维护函数
+// 功能：维护系统组件，执行系统维护任务
+#define MaintainSystemA Unwind_180909290
+
+// 原始函数名：Unwind_1809092b0 - 系统优化函数
+// 功能：优化系统性能，调整系统参数
+#define OptimizeSystemA Unwind_1809092b0

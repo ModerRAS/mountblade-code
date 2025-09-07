@@ -37440,6 +37440,7 @@ SystemMemoryProcessingStart:
     SystemByteValue = GetMemoryAllocationInfo(memoryAllocationBuffer);
     BufferInitializationFlag = CONCAT44(BufferInitializationFlag.HighPart,SystemByteValue);
   }
+SystemMemoryResizeComplete: // 原始标签：LAB_180070f81
 SystemMemoryValidationComplete:
   *(uint16_t *)(memoryAllocationBuffer + BufferOffset) = 10;
   Utf16Char4 = DataSize + 0xd;
@@ -37454,12 +37455,13 @@ SystemMemoryValidationComplete:
       *memoryAllocationBuffer = 0;
     }
     else {
-      if (CalculatedCodePoint <= (uint)BufferInitializationFlag) goto LAB_180071000;
+      if (CalculatedCodePoint <= (uint)BufferInitializationFlag) goto SystemMemoryAllocationComplete;
       memoryAllocationBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,memoryAllocationBuffer,CalculatedCodePoint,0x10);
     }
     SystemByteValue = GetMemoryAllocationInfo(memoryAllocationBuffer);
     BufferInitializationFlag = CONCAT44(BufferInitializationFlag.HighPart,SystemByteValue);
   }
+SystemMemoryAllocationComplete: // 原始标签：LAB_180071000
 LAB_ProcessSystemStatusBuffer:
   loopCounter5 = lStack_88;
   SystemStatusBuffer = (void *)(memoryAllocationBuffer + BufferOffset);
