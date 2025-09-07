@@ -156,6 +156,13 @@
 #define ExceptionListOffset 0x70
 #define ResourceDescriptorQuaternaryOffset 0x1c
 #define SystemContextBufferOffset 8
+#define ExceptionHandlerContextOffset 0x50
+#define ConfigurationDataOffset 0x3d0
+#define SystemConfigurationBlockSize 0x1a8
+#define ExceptionContextPrimaryOffset 0x60
+#define ExceptionContextSecondaryOffset 0x78
+#define ExceptionContextTertiaryOffset 0xf0
+#define ExceptionContextValidationOffset 0x68
 
 // 动态发现的偏移量常量定义
 #define ResourceCallbackDataOffset 0x18                // 资源回调数据偏移量
@@ -255,6 +262,7 @@
 
 // 数据合并函数定义
 #define CONCAT44(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
+#define MergeHighLowWords(highPart, lowPart) CONCAT44(highPart, lowPart)
 #define SetBitFlag(mask, condition) ((mask) | ((condition) ? 1 : 0))
 
 // 联合体成员访问宏定义
@@ -16926,8 +16934,8 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   tertiaryInfinityFlag = 0;
   VectorComponentW = *(uint *)(dataPtr + 0x40);
   ComponentYFloat = *(float *)(dataPtr + 0x3c);
-  // 将浮点数组件Z合并到系统上下文缓冲区中
-  systemContextBuffer[0] = CONCAT44(systemContextBuffer[0]._4_4_,floatComponentZ);
+  // 合并浮点数组件Z到系统上下文缓冲区
+  systemContextBuffer[0] = MergeFloatComponents(systemContextBuffer[0]._4_4_, floatComponentZ);
   quaternaryInfinityFlag = tertiaryInfinityFlag;
   if (((uint)floatComponentZ & FloatInfinityValue) == FloatInfinityValue) {
     quaternaryInfinityFlag = 0x1d;
@@ -17068,7 +17076,7 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
   int64_t queryBuffer [2];
   
   // 从上下文指针中提取浮点数值并初始化系统上下文缓冲区
-  systemContextBuffer = CONCAT44(systemContextBuffer._4_4_,*(uint *)(contextPointer + 0x20));
+  systemContextBuffer = MergeHighLowWords(systemContextBuffer._4_4_, *(uint *)(contextPointer + 0x20));
   if ((*(uint *)(contextPointer + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
@@ -60388,17 +60396,17 @@ void ProcessSystemConfigurationIteratorOnException(DataBuffer operationBase,int6
 
 {
   int64_t exceptionHandlerContext;
-  int64_t *dataContext;
-  int64_t memoryBlockOffset;
-  int64_t contextIterator;
+  int64_t *systemConfigurationContext;
+  int64_t configurationBlockOffset;
+  int64_t configurationIterator;
   
-  dataContext = *(int64_t **)(dataBuffer + 0x78);
-  exceptionHandlerContext = dataContext[1];
-  contextIterator = *(int64_t *)(*(int64_t *)(exceptionHandlerContext + 0x50) + 0x3d0);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != contextIterator; memoryBlockOffset = memoryBlockOffset + 0x1a8) {
-    ProcessSystemConfigurationA0(memoryBlockOffset);
+  systemConfigurationContext = *(int64_t **)(dataBuffer + SystemContextDataOffset);
+  exceptionHandlerContext = systemConfigurationContext[1];
+  configurationIterator = *(int64_t *)(*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset) + ConfigurationDataOffset);
+  for (configurationBlockOffset = *systemConfigurationContext; configurationBlockOffset != configurationIterator; configurationBlockOffset = configurationBlockOffset + SystemConfigurationBlockSize) {
+    ProcessSystemConfigurationA0(configurationBlockOffset);
   }
-  if (*dataContext == 0) {
+  if (*systemConfigurationContext == 0) {
     return;
   }
     TerminateSystemE0();
@@ -60422,7 +60430,7 @@ void ExceptionCleanupWithMutexDestructionA(DataBuffer exceptionHandlerContext,in
   int64_t *exceptionHandlerContextPointer;
   int64_t *dataContextPointer;
   
-  dataContextPointer = *(int64_t **)(systemContext + 0x60);
+  dataContextPointer = *(int64_t **)(systemContext + ExceptionContextPrimaryOffset);
   _Mtx_destroy_in_situ();
   exceptionHandlerContextPointer = (int64_t *)*dataContextPointer;
   if (exceptionHandlerContextPointer != dataContextPointer) {
@@ -60449,7 +60457,7 @@ void ExceptionCleanupWithMutexDestructionB(DataBuffer exceptionHandlerContext,in
   int64_t *exceptionHandlerContextPointer;
   int64_t *dataContextPointer;
   
-  dataContextPointer = (int64_t *)(*(int64_t *)(systemContext + 0x60) + 0x78);
+  dataContextPointer = (int64_t *)(*(int64_t *)(systemContext + ExceptionContextPrimaryOffset) + ExceptionContextSecondaryOffset);
   _Mtx_destroy_in_situ();
   exceptionHandlerContextPointer = (int64_t *)*dataContextPointer;
   if (exceptionHandlerContextPointer != dataContextPointer) {
@@ -60477,7 +60485,7 @@ void ExceptionCleanupWithMutexDestructionB(DataBuffer operationBase,int64_t data
   int64_t *exceptionHandlerContextPointer;
   int64_t *dataContext;
   
-  dataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x60) + 0xf0);
+  dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionContextPrimaryOffset) + ExceptionContextTertiaryOffset);
   _Mtx_destroy_in_situ();
   exceptionHandlerContextPointer = (int64_t *)*dataContext;
   if (exceptionHandlerContextPointer != dataContext) {
@@ -60504,8 +60512,8 @@ void ValidateExceptionContextAndTerminate(DataBuffer operationBase,int64_t dataB
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = (int64_t *)**(int64_t **)(dataBuffer + 0x68);
-  if (exceptionHandlerContextPointer != *(int64_t **)(dataBuffer + 0x68)) {
+  exceptionHandlerContextPointer = (int64_t *)**(int64_t **)(dataBuffer + ExceptionContextValidationOffset);
+  if (exceptionHandlerContextPointer != *(int64_t **)(dataBuffer + ExceptionContextValidationOffset)) {
       TerminateSystemE0(exceptionHandlerContextPointer);
   }
   return;
