@@ -104998,7 +104998,21 @@ void Unwind_1809107c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809107e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常上下文数据，重置异常处理器状态（偏移量0xae0）
+ * 
+ * 该函数负责清理异常上下文数据，重置异常处理器状态，并设置默认异常处理器。
+ * 主要用于异常处理后的资源清理和状态重置操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809107e0
+ * @note 该函数处理偏移量0xae0处的异常处理器清理
+ */
+void CleanupExceptionContextAtOffsetAE0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -105026,7 +105040,21 @@ void Unwind_1809107e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常上下文数据，重置异常处理器状态（偏移量0xb50）
+ * 
+ * 该函数负责清理异常上下文数据，重置异常处理器状态，并设置默认异常处理器。
+ * 主要用于异常处理后的资源清理和状态重置操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910800
+ * @note 该函数处理偏移量0xb50处的异常处理器清理
+ */
+void CleanupExceptionContextAtOffsetB50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -105054,7 +105082,21 @@ void Unwind_180910800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常上下文数据，重置异常处理器状态（偏移量0xbc0）
+ * 
+ * 该函数负责清理异常上下文数据，重置异常处理器状态，并设置默认异常处理器。
+ * 主要用于异常处理后的资源清理和状态重置操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910820
+ * @note 该函数处理偏移量0xbc0处的异常处理器清理
+ */
+void CleanupExceptionContextAtOffsetBC0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -105082,7 +105124,21 @@ void Unwind_180910820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常上下文数据，重置异常处理器状态（偏移量0xc30）
+ * 
+ * 该函数负责清理异常上下文数据，重置异常处理器状态，并设置默认异常处理器。
+ * 主要用于异常处理后的资源清理和状态重置操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910840
+ * @note 该函数处理偏移量0xc30处的异常处理器清理
+ */
+void CleanupExceptionContextAtOffsetC30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -105110,7 +105166,21 @@ void Unwind_180910840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常上下文数据，重置异常处理器状态（偏移量0xca0）
+ * 
+ * 该函数负责清理异常上下文数据，重置异常处理器状态，并设置默认异常处理器。
+ * 主要用于异常处理后的资源清理和状态重置操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910860
+ * @note 该函数处理偏移量0xca0处的异常处理器清理
+ */
+void CleanupExceptionContextAtOffsetCA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -105138,7 +105208,21 @@ void Unwind_180910860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常上下文数据，重置异常处理器状态（偏移量0xd10）
+ * 
+ * 该函数负责清理异常上下文数据，重置异常处理器状态，并设置默认异常处理器。
+ * 主要用于异常处理后的资源清理和状态重置操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910880
+ * @note 该函数处理偏移量0xd10处的异常处理器清理
+ */
+void CleanupExceptionContextAtOffsetD10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -105166,7 +105250,21 @@ void Unwind_180910880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809108a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常上下文数据，重置异常处理器状态（偏移量0xd80）
+ * 
+ * 该函数负责清理异常上下文数据，重置异常处理器状态，并设置默认异常处理器。
+ * 主要用于异常处理后的资源清理和状态重置操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809108a0
+ * @note 该函数处理偏移量0xd80处的异常处理器清理
+ */
+void CleanupExceptionContextAtOffsetD80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -105194,7 +105292,21 @@ void Unwind_1809108a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809108c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常上下文数据，重置异常处理器状态（偏移量0xdf0）
+ * 
+ * 该函数负责清理异常上下文数据，重置异常处理器状态，并设置默认异常处理器。
+ * 主要用于异常处理后的资源清理和状态重置操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809108c0
+ * @note 该函数处理偏移量0xdf0处的异常处理器清理
+ */
+void CleanupExceptionContextAtOffsetDF0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -105222,7 +105334,21 @@ void Unwind_1809108c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809108e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常上下文数据，重置异常处理器状态（偏移量0xe60）
+ * 
+ * 该函数负责清理异常上下文数据，重置异常处理器状态，并设置默认异常处理器。
+ * 主要用于异常处理后的资源清理和状态重置操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809108e0
+ * @note 该函数处理偏移量0xe60处的异常处理器清理
+ */
+void CleanupExceptionContextAtOffsetE60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -121441,6 +121567,42 @@ uint8_t SystemExceptionHandlerStateTable;
 // 异常上下文引用计数递减函数（简化版本）
 // 功能：处理异常上下文引用计数递减的简化版本
 #define HandleExceptionContextReferenceCountDecrementSimplified Unwind_1809125a0
+
+// 异常上下文清理函数7E0
+// 功能：清理异常上下文数据，重置异常处理器状态（偏移量0xae0）
+#define CleanupExceptionContextAtOffsetAE0 Unwind_1809107e0
+
+// 异常上下文清理函数800
+// 功能：清理异常上下文数据，重置异常处理器状态（偏移量0xb50）
+#define CleanupExceptionContextAtOffsetB50 Unwind_180910800
+
+// 异常上下文清理函数820
+// 功能：清理异常上下文数据，重置异常处理器状态（偏移量0xbc0）
+#define CleanupExceptionContextAtOffsetBC0 Unwind_180910820
+
+// 异常上下文清理函数840
+// 功能：清理异常上下文数据，重置异常处理器状态（偏移量0xc30）
+#define CleanupExceptionContextAtOffsetC30 Unwind_180910840
+
+// 异常上下文清理函数860
+// 功能：清理异常上下文数据，重置异常处理器状态（偏移量0xca0）
+#define CleanupExceptionContextAtOffsetCA0 Unwind_180910860
+
+// 异常上下文清理函数880
+// 功能：清理异常上下文数据，重置异常处理器状态（偏移量0xd10）
+#define CleanupExceptionContextAtOffsetD10 Unwind_180910880
+
+// 异常上下文清理函数8A0
+// 功能：清理异常上下文数据，重置异常处理器状态（偏移量0xd80）
+#define CleanupExceptionContextAtOffsetD80 Unwind_1809108a0
+
+// 异常上下文清理函数8C0
+// 功能：清理异常上下文数据，重置异常处理器状态（偏移量0xdf0）
+#define CleanupExceptionContextAtOffsetDF0 Unwind_1809108c0
+
+// 异常上下文清理函数8E0
+// 功能：清理异常上下文数据，重置异常处理器状态（偏移量0xe60）
+#define CleanupExceptionContextAtOffsetE60 Unwind_1809108e0
 
 /**
  * @file 06_utilities.c 总结
