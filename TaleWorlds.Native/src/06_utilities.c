@@ -18663,10 +18663,10 @@ MemoryCopyLabel:
     }
     else {
       if ((characterFlag != '\x02') || ((*(byte *)(operationBase + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
-      DataProcessingOffset._4_4_ = *(DataWord *)(bufferPointer + 0x20);
+      DataProcessingOffset.DataProcessingOffsetField = *(DataWord *)(bufferPointer + 0x20);
       arrayIndex = ValidateAndProcessDataFlags(operationBase,basePointer,(int64_t)&dataProcessingBuffer + 4);
       if (arrayIndex != 0) goto ValidationSuccessLabel;
-      arrayIndex = QueryAndRetrieveSystemDataA0(DataProcessingOffset._4_4_,stackFramePointer + -0x78);
+      arrayIndex = QueryAndRetrieveSystemDataA0(DataProcessingOffset.DataProcessingOffsetField,stackFramePointer + -0x78);
       if ((arrayIndex != 0) || (*(int *)(*(int64_t *)(stackFramePointer + -0x78) + 0x30) != 2))
       goto MemoryCopyLabel;
     }
@@ -20048,9 +20048,9 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
     operationStatus = *(int *)(dataBuffer + 0x220);
     if (operationStatus == 0) {
       exceptionHandlerContextPointer = &DataValidationFlagTable;
-      StackValidationFlagA = 0;
-      StackValidationOffsetA = 0;
-      StackValidationDataA = operationFlagA;
+      ValidationFlagA = 0;
+      ValidationOffsetA = 0;
+      ValidationDataA = operationFlagA;
       InitializeMemory(DataProcessingBufferA,*(DataBuffer *)(dataBuffer + 0x228),0x200);
       ppdataFlags = exceptionHandlerContextPointer;
 SecurityValidationLabel:
@@ -65105,7 +65105,20 @@ void Unwind_180907d00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器链调用函数7d10
+ * 
+ * 该函数负责调用系统异常处理器链，依次检查并调用多个异常处理函数。
+ * 主要用于系统异常处理时的多级异常处理机制。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907d10
+ */
+void InvokeSystemExceptionHandlers7d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x150) != (code *)0x0) {
@@ -65122,7 +65135,20 @@ void Unwind_180907d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统资源清理函数7d20
+ * 
+ * 该函数负责清理系统资源，遍历资源指针列表并调用相应的清理函数。
+ * 主要用于系统异常处理时的资源清理工作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源清理信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907d20
+ */
+void CleanupSystemResources7d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
