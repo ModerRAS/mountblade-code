@@ -168989,10 +168989,10 @@ uint64_t * ProcessUtf8InputBufferWithChecksum(byte *Utf8InputBuffer)
   uint32_t SystemParameter2;
   uint32_t StackDataBuffer1;
   uint32_t StackProcessingVariable48;
-  uint32_t uStack000000000000004c;
+  uint32_t StackValue4c;
   uint64_t DataStorageValue;
   
-  *(void *)(in_R11 + 8) = SystemContext;
+  *(void *)(RegisterR11 + 8) = SystemContext;
   MemoryBoundaryEnd = SystemConfigurationHandle;
   *(void *)(in_R11 + -0x48) = ProcessingResult;
   *(void *)(in_R11 + -0x40) = ProcessingResult;
