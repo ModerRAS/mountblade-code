@@ -6989,12 +6989,12 @@ uint8_t UtilityDestroyHeapData5;
 //   uint8_t - 调整结果状态
 uint8_t UtilityResizeMemoryHeap;
 // 工具系统调整堆数据
-uint8_t UtilityResizeHeapData1;
-uint8_t UtilityResizeHeapPtr1;
-uint8_t UtilityResizeHeapData2;
-uint8_t UtilityResizeHeapData3;
-uint8_t UtilityResizeHeapData4;
-uint8_t UtilityResizeHeapData5;
+uint8_t UtilityResizeHeapPrimaryData;
+uint8_t UtilityResizeHeapPrimaryPointer;
+uint8_t UtilityResizeHeapSecondaryData;
+uint8_t UtilityResizeHeapTertiaryData;
+uint8_t UtilityResizeHeapQuaternaryData;
+uint8_t UtilityResizeHeapQuinaryData;
 
 // 函数: uint8_t UtilityCompactMemoryHeap;
 // 
@@ -7008,7 +7008,7 @@ uint8_t UtilityResizeHeapData5;
 //   uint8_t - 压缩结果状态
 uint8_t UtilityCompactMemoryHeap;
 // 工具系统压缩内存堆状态变量
-uint8_t UtilityCompactHeapStatus1;
+uint8_t UtilityCompactHeapPrimaryStatus;
 uint8_t UtilityCompactHeapData1;
 uint8_t UtilityCompactHeapData2;
 uint8_t UtilityCompactHeapData3;
@@ -33123,19 +33123,19 @@ uint64_t ValidateAndProcessDataOperation(int64_t operationBase,DataBuffer *dataB
     if (*(uint *)(dataBuffer + 8) < 0x6d) {
       if (*(int *)(dataBuffer[1] + 0x18) == 0) {
         operationResult = *dataBuffer;
-        memoryBaseAddress = OperateDataO0(operationResult,&uStack_78,4);
+        memoryBaseAddress = OperateDataO0(operationResult,&StackDataBufferA,4);
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
-        memoryBaseAddress = OperateDataO0(operationResult,&uStack_74,2);
+        memoryBaseAddress = OperateDataO0(operationResult,&StackDataBufferB,2);
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
-        memoryBaseAddress = OperateDataO0(operationResult,(int64_t)&uStack_74 + 2,2);
+        memoryBaseAddress = OperateDataO0(operationResult,(int64_t)&StackDataBufferB + 2,2);
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
-        memoryBaseAddress = OperateDataO0(operationResult,&uStack_70,8);
+        memoryBaseAddress = OperateDataO0(operationResult,&StackDataBufferC,8);
       }
       else {
         memoryBaseAddress = 0x1c;
@@ -33144,13 +33144,13 @@ uint64_t ValidateAndProcessDataOperation(int64_t operationBase,DataBuffer *dataB
     if ((((int)memoryBaseAddress == 0) && (memoryBaseAddress = ValidateSystemOperationA0(dataBuffer,operationBase + 0x38,0), (int)memoryBaseAddress == 0)) &&
        (memoryBaseAddress = ValidateSystemOperationA0(dataBuffer,operationBase + 0x48,0), (int)memoryBaseAddress == 0)) {
       if (*(uint *)(dataBuffer + 8) < 0x84) {
-        puStack_88 = (DataWord *)0x0;
-        uStack_80 = 0;
-        validationStatus = InitializeSystemComponentA0(dataBuffer,&puStack_88,0);
+        StackPointerBufferG = (DataWord *)0x0;
+        StackIntegerD = 0;
+        validationStatus = InitializeSystemComponentA0(dataBuffer,&StackPointerBufferG,0);
         memoryBaseAddress = (uint64_t)validationStatus;
         if (validationStatus != 0) {
 ValidationErrorHandler5:
-          CleanupSystemResourcesA0(&puStack_88);
+          CleanupSystemResourcesA0(&StackPointerBufferG);
           return memoryBaseAddress;
         }
         poperationResult = puStack_88;

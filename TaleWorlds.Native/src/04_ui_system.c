@@ -940,6 +940,114 @@ void* UIGestureCoordinates;
 #define UIVectorShuffleMask1 _DAT_180946f60
 // 原始变量名：_DAT_180946f80 - UI向量洗牌掩码2
 #define UIVectorShuffleMask2 _DAT_180946f80
+// 原始变量名：_DAT_180946fc0 - UI向量操作掩码7
+#define UIVectorOperationMask7 _DAT_180946fc0
+// 原始变量名：_DAT_180946fe0 - UI向量操作掩码8
+#define UIVectorOperationMask8 _DAT_180946fe0
+// 原始变量名：_DAT_180947000 - UI向量操作掩码9
+#define UIVectorOperationMask9 _DAT_180947000
+// 原始变量名：_DAT_180947040 - UI向量操作掩码10
+#define UIVectorOperationMask10 _DAT_180947040
+// 原始变量名：_DAT_180947060 - UI向量洗牌掩码3
+#define UIVectorShuffleMask3 _DAT_180947060
+// 原始变量名：_DAT_180947080 - UI向量洗牌掩码4
+#define UIVectorShuffleMask4 _DAT_180947080
+// 原始变量名：_DAT_1809470a0 - UI向量洗牌掩码5
+#define UIVectorShuffleMask5 _DAT_1809470a0
+// 原始变量名：_DAT_1809470c0 - UI向量洗牌掩码6
+#define UIVectorShuffleMask6 _DAT_1809470c0
+// 原始变量名：_DAT_1809472f0 - UI像素数据转换表
+#define UIPixelDataConversionTable _DAT_1809472f0
+// 原始变量名：_DAT_180947310 - UI渲染常数0
+#define UIRenderingConstant0 _DAT_180947310
+// 原始变量名：_DAT_180947320 - UI渲染常数1
+#define UIRenderingConstant1 _DAT_180947320
+// 原始变量名：_DAT_180947330 - UI向量乘法掩码0
+#define UIVectorMultiplyMask0 _DAT_180947330
+// 原始变量名：_DAT_180947340 - UI向量乘法掩码1
+#define UIVectorMultiplyMask1 _DAT_180947340
+// 原始变量名：_DAT_180947350 - UI向量乘法掩码2
+#define UIVectorMultiplyMask2 _DAT_180947350
+// 原始变量名：_DAT_180947360 - UI向量乘法掩码3
+#define UIVectorMultiplyMask3 _DAT_180947360
+// 原始变量名：_DAT_180947370 - UI向量乘法掩码4
+#define UIVectorMultiplyMask4 _DAT_180947370
+// 原始变量名：_DAT_180947380 - UI向量乘法掩码5
+#define UIVectorMultiplyMask5 _DAT_180947380
+// 原始变量名：_DAT_180947390 - UI向量乘法掩码6
+#define UIVectorMultiplyMask6 _DAT_180947390
+// 原始变量名：_DAT_1809473a0 - UI向量乘法掩码7
+#define UIVectorMultiplyMask7 _DAT_1809473a0
+// 原始变量名：_DAT_1809473b0 - UI向量乘法掩码8
+#define UIVectorMultiplyMask8 _DAT_1809473b0
+// 原始变量名：_DAT_1809473c0 - UI向量乘法掩码9
+#define UIVectorMultiplyMask9 _DAT_1809473c0
+// 原始变量名：_DAT_1809473d0 - UI向量乘法掩码10
+#define UIVectorMultiplyMask10 _DAT_1809473d0
+// 原始变量名：_DAT_1809473e0 - UI向量乘法掩码11
+#define UIVectorMultiplyMask11 _DAT_1809473e0
+// 原始变量名：_DAT_1809473f0 - UI向量乘法掩码12
+#define UIVectorMultiplyMask12 _DAT_1809473f0
+// 原始变量名：_DAT_180947400 - UI向量乘法掩码13
+#define UIVectorMultiplyMask13 _DAT_180947400
+// 原始变量名：_DAT_180947410 - UI向量乘法掩码14
+#define UIVectorMultiplyMask14 _DAT_180947410
+// 原始变量名：_DAT_180947420 - UI向量乘法掩码15
+#define UIVectorMultiplyMask15 _DAT_180947420
+// 原始变量名：_DAT_180947430 - UI向量乘法掩码16
+#define UIVectorMultiplyMask16 _DAT_180947430
+// 原始变量名：_DAT_180947440 - UI向量乘法掩码17
+#define UIVectorMultiplyMask17 _DAT_180947440
+// 原始变量名：_DAT_180947450 - UI向量乘法掩码18
+#define UIVectorMultiplyMask18 _DAT_180947450
+// 原始变量名：_DAT_180947460 - UI向量乘法掩码19
+#define UIVectorMultiplyMask19 _DAT_180947460
+// 原始变量名：_DAT_180947470 - UI向量乘法掩码20
+#define UIVectorMultiplyMask20 _DAT_180947470
+// 原始变量名：_DAT_180947480 - UI向量乘法掩码21
+#define UIVectorMultiplyMask21 _DAT_180947480
+// 原始变量名：_DAT_180947490 - UI向量乘法掩码22
+#define UIVectorMultiplyMask22 _DAT_180947490
+// 原始变量名：_DAT_1809474a0 - UI向量乘法掩码23
+#define UIVectorMultiplyMask23 _DAT_1809474a0
+// 原始变量名：_DAT_1809474b0 - UI向量乘法掩码24
+#define UIVectorMultiplyMask24 _DAT_1809474b0
+// 原始变量名：_DAT_1809474c0 - UI向量乘法掩码25
+#define UIVectorMultiplyMask25 _DAT_1809474c0
+// 原始变量名：_DAT_1809474d0 - UI向量乘法掩码26
+#define UIVectorMultiplyMask26 _DAT_1809474d0
+// 原始变量名：_DAT_1809474e0 - UI向量乘法掩码27
+#define UIVectorMultiplyMask27 _DAT_1809474e0
+// 原始变量名：_DAT_1809474f0 - UI向量乘法掩码28
+#define UIVectorMultiplyMask28 _DAT_1809474f0
+// 原始变量名：_DAT_180947500 - UI向量乘法掩码29
+#define UIVectorMultiplyMask29 _DAT_180947500
+// 原始变量名：_DAT_180947510 - UI向量乘法掩码30
+#define UIVectorMultiplyMask30 _DAT_180947510
+// 原始变量名：_DAT_180947520 - UI向量乘法掩码31
+#define UIVectorMultiplyMask31 _DAT_180947520
+// 原始变量名：_DAT_180948080 - UI向量加法常数
+#define UIVectorAdditionConstant _DAT_180948080
+// 原始变量名：_DAT_1809480a0 - UI渲染常数2
+#define UIRenderingConstant2 _DAT_1809480a0
+// 原始变量名：_DAT_1809480b0 - UI渲染常数3
+#define UIRenderingConstant3 _DAT_1809480b0
+// 原始变量名：_DAT_1809480c0 - UI渲染常数4
+#define UIRenderingConstant4 _DAT_1809480c0
+// 原始变量名：_DAT_1809480d0 - UI渲染常数5
+#define UIRenderingConstant5 _DAT_1809480d0
+// 原始变量名：_DAT_180948140 - UI加密掩码
+#define UIEncryptionMask _DAT_180948140
+// 原始变量名：_DAT_180a06434 - UI数据校验常数
+#define UIDataValidationConstant _DAT_180a06434
+// 原始变量名：_DAT_180a3f870 - UI饱和加法常数
+#define UISaturationAdditionConstant _DAT_180a3f870
+// 原始变量名：_DAT_180a3f880 - UI饱和减法常数
+#define UISaturationSubtractionConstant _DAT_180a3f880
+// 原始变量名：_DAT_180a401b0 - UI数据转换常数
+#define UIDataConversionConstant _DAT_180a401b0
+// 原始变量名：_DAT_180a40580 - UI异或加密密钥
+#define UIXOREncryptionKey _DAT_180a40580
 
 // UI系统未知函数表宏定义
 #define UIUnknownFunctionTable1 UIUnknownFunctionTable1
