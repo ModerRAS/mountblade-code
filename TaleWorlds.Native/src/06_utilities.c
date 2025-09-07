@@ -530,31 +530,49 @@
 // 原始函数名：ProcessSystemDataA0 - 系统数据处理函数A0
 #define ProcessSystemDataA0 ProcessSystemDataA0
 
-// 原始函数名：FUN_180090b80 - 系统上下文验证函数A0
+// 系统上下文验证函数A0
+// 功能：验证系统上下文的有效性和完整性
+// 原始函数名：FUN_180090b80
 #define ValidateSystemContextA0 FUN_180090b80
 
-// 原始函数名：FUN_180057010 - 数据数组处理函数A0
+// 数据数组处理函数A0
+// 功能：处理和操作数据数组，包括数据的读取、写入、验证和转换
+// 原始函数名：FUN_180057010
 #define ProcessDataArrayA0 FUN_180057010
 
-// 原始函数名：FUN_1800a19c0 - 数据缓冲区初始化函数
+// 数据缓冲区初始化函数
+// 功能：初始化系统数据缓冲区，为后续的数据操作准备内存空间
+// 原始函数名：FUN_1800a19c0
 #define InitializeDataBuffer FUN_1800a19c0
 
-// 原始函数名：FUN_18009fb60 - 系统命令执行函数
+// 系统命令执行函数
+// 功能：执行系统级命令，处理命令参数和返回结果
+// 原始函数名：FUN_18009fb60
 #define ExecuteSystemCommand FUN_18009fb60
 
-// 原始函数名：FUN_1800ad6f0 - 系统操作处理函数
+// 系统操作处理函数
+// 功能：处理系统级操作，包括资源管理和状态控制
+// 原始函数名：FUN_1800ad6f0
 #define ProcessSystemOperations FUN_1800ad6f0
 
-// 原始函数名：FUN_1800f74f0 - 验证和处理数据函数
+// 验证和处理数据函数
+// 功能：验证数据的有效性并执行相应的数据处理操作
+// 原始函数名：FUN_1800f74f0
 #define ValidateAndProcessData FUN_1800f74f0
 
-// 原始函数名：FUN_18005d560 - 验证和执行操作函数A1
+// 验证和执行操作函数A1
+// 功能：验证操作参数的有效性并执行相应的系统操作
+// 原始函数名：FUN_18005d560
 #define ValidateAndExecuteOperationsA1 FUN_18005d560
 
-// 原始函数名：FUN_1800adb30 - 系统组件初始化函数
+// 系统组件初始化函数
+// 功能：初始化系统组件，设置组件的初始状态和参数
+// 原始函数名：FUN_1800adb30
 #define InitializeSystemComponents FUN_1800adb30
 
-// 原始函数名：FUN_18004c030 - 内存操作处理函数
+// 内存操作处理函数
+// 功能：处理内存操作，包括内存分配、释放和访问控制
+// 原始函数名：FUN_18004c030
 #define ProcessMemoryOperationA0 FUN_18004c030
 
 // Unwind函数宏定义 - 异常处理清理函数
@@ -2449,8 +2467,9 @@
  */
 #define ExecuteSecurityCheckWrapper FUN_180894ad2
 
-// 原始函数名：FUN_180894bf5 - 安全检查包装函数B
-// 功能：包装安全检查函数，执行系统状态验证
+// 安全检查包装函数B
+// 功能：包装安全检查函数，执行系统状态验证和安全性检查
+// 原始函数名：FUN_180894bf5
 #define ExecuteSecurityCheckWrapperB FUN_180894bf5
 
 // 原始函数名：FUN_180895b89 - 安全检查执行函数
@@ -59186,7 +59205,19 @@ void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906550(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器上下文
+ * 
+ * 该函数负责重置异常处理器的上下文指针，将相关指针置零
+ * 如果发现异常状态不为零，会调用系统终止函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906550
+ * @note 这是一个异常展开（unwind）处理函数，用于清理异常上下文
+ */
+void ResetExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -59205,7 +59236,19 @@ void Unwind_180906550(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906560(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理状态
+ * 
+ * 该函数负责清理异常处理过程中的状态标记，将相关状态置零
+ * 如果发现异常状态不为零，会调用系统终止函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常状态信息
+ * 
+ * @note 原始函数名：Unwind_180906560
+ * @note 这是一个异常展开（unwind）处理函数，用于清理异常状态
+ */
+void CleanupExceptionHandlerState(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -59224,7 +59267,19 @@ void Unwind_180906560(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906570(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器指针
+ * 
+ * 该函数负责清理异常处理器的指针，将相关指针置零
+ * 如果发现异常状态不为零，会调用系统终止函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器指针信息
+ * 
+ * @note 原始函数名：Unwind_180906570
+ * @note 这是一个异常展开（unwind）处理函数，用于清理异常处理器指针
+ */
+void CleanupExceptionHandlerPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -105357,22 +105412,34 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 原始函数名：ProcessSystemDataA0 - 系统数据处理函数A0
 #define ProcessSystemDataA0 ProcessSystemDataA0
 
-// 原始函数名：FUN_180090b80 - 系统上下文验证函数A0
+// 系统上下文验证函数A0
+// 功能：验证系统上下文的有效性和完整性
+// 原始函数名：FUN_180090b80
 #define ValidateSystemContextA0 FUN_180090b80
 
-// 原始函数名：FUN_180057010 - 数据数组处理函数A0
+// 数据数组处理函数A0
+// 功能：处理和操作数据数组，包括数据的读取、写入、验证和转换
+// 原始函数名：FUN_180057010
 #define ProcessDataArrayA0 FUN_180057010
 
-// 原始函数名：FUN_1800a19c0 - 数据缓冲区初始化函数
+// 数据缓冲区初始化函数
+// 功能：初始化系统数据缓冲区，为后续的数据操作准备内存空间
+// 原始函数名：FUN_1800a19c0
 #define InitializeDataBuffer FUN_1800a19c0
 
-// 原始函数名：FUN_18009fb60 - 系统命令执行函数
+// 系统命令执行函数
+// 功能：执行系统级命令，处理命令参数和返回结果
+// 原始函数名：FUN_18009fb60
 #define ExecuteSystemCommand FUN_18009fb60
 
-// 原始函数名：FUN_1800ad6f0 - 系统操作处理函数
+// 系统操作处理函数
+// 功能：处理系统级操作，包括资源管理和状态控制
+// 原始函数名：FUN_1800ad6f0
 #define ProcessSystemOperations FUN_1800ad6f0
 
-// 原始函数名：FUN_1800f74f0 - 验证和处理数据函数
+// 验证和处理数据函数
+// 功能：验证数据的有效性并执行相应的数据处理操作
+// 原始函数名：FUN_1800f74f0
 #define ValidateAndProcessData FUN_1800f74f0
 
 // 原始函数名：FUN_180152b00 - 数据块处理函数
@@ -105390,13 +105457,19 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：更新系统状态和标志位
 #define UpdateSystemStatusA2 FUN_1802ab380
 
-// 原始函数名：FUN_18005d560 - 验证和执行操作函数A1
+// 验证和执行操作函数A1
+// 功能：验证操作参数的有效性并执行相应的系统操作
+// 原始函数名：FUN_18005d560
 #define ValidateAndExecuteOperationsA1 FUN_18005d560
 
-// 原始函数名：FUN_1800adb30 - 系统组件初始化函数
+// 系统组件初始化函数
+// 功能：初始化系统组件，设置组件的初始状态和参数
+// 原始函数名：FUN_1800adb30
 #define InitializeSystemComponents FUN_1800adb30
 
-// 原始函数名：FUN_18004c030 - 内存操作处理函数
+// 内存操作处理函数
+// 功能：处理内存操作，包括内存分配、释放和访问控制
+// 原始函数名：FUN_18004c030
 #define ProcessMemoryOperationA0 FUN_18004c030
 
 // Unwind函数宏定义 - 异常处理清理函数
