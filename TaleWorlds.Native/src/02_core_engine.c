@@ -200028,31 +200028,41 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
 
 
 
-70e50(long long CharacterCodevoid FUN_180170e50(long long CharacterCode
+/**
+ * @brief 处理字符编码状态和窗口管理
+ * 
+ * 该函数负责处理字符编码状态信息，管理窗口系统相关的数据结构，
+ * 包括焦点处理、窗口矩形计算和字符状态更新。
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * 
+ * @note 原始函数名：FUN_180170e50
+ */
+void ProcessCharacterEncodingStatusAndWindowManagement(long long CharacterCode)
 {
-  uint64_t *CharacterStatusBuffer;
-  uint32_t *PrimaryProcessingStatusFlag;
-  long long MemoryOffset;
-  long long SystemDataStructureRegistry;
-  unsigned long long CalculatedCodePoint;
-  uint8_t SystemOperationBuffer [32];
-  uint64_t StackProcessingUnsignedValue78;
-  uint64_t StackProcessingVariable70;
-  uint32_t StackProcessingUnsignedValue68;
-  uint32_t SystemUnsignedValue64;
-  uint32_t StackProcessingUnsignedValue60;
-  uint32_t SystemUnsignedValue5C;
-  uint64_t BufferOffset;
-  uint64_t SystemKeyPointer;
-  uint64_t SystemStackOffset48;
-  uint64_t SystemPriorityLevel;
-  uint64_t FunctionAddress;
-  uint64_t ProcessingFlags;
-  uint32_t uStack_28;
-  uint32_t uStack_24;
-  uint32_t ProcessingCounter;
-  uint32_t uStack_1c;
-  unsigned long long uStack_18;
+  uint64_t *CharacterStatusBuffer;                    // 字符状态缓冲区指针
+  uint32_t *PrimaryProcessingStatusFlag;              // 主要处理状态标志指针
+  long long MemoryOffset;                             // 内存偏移量
+  long long SystemDataStructureRegistry;              // 系统数据结构注册表
+  unsigned long long CalculatedCodePoint;             // 计算得到的码点值
+  uint8_t SystemOperationBuffer [32];                 // 系统操作缓冲区
+  uint64_t WindowPositionX;                           // 窗口X坐标位置
+  uint64_t WindowPositionY;                           // 窗口Y坐标位置
+  uint32_t WindowWidth;                               // 窗口宽度
+  uint32_t ScreenCoordinateX;                        // 屏幕X坐标
+  uint32_t WindowHeight;                              // 窗口高度
+  uint32_t ScreenCoordinateY;                        // 屏幕Y坐标
+  uint64_t BufferOffset;                              // 缓冲区偏移量
+  uint64_t SystemKeyPointer;                          // 系统密钥指针
+  uint64_t SystemStackOffset48;                      // 系统栈偏移量48
+  uint64_t SystemPriorityLevel;                      // 系统优先级
+  uint64_t FunctionAddress;                           // 函数地址
+  uint64_t ProcessingFlags;                           // 处理标志
+  uint32_t StackParameter1;                           // 栈参数1
+  uint32_t StackParameter2;                           // 栈参数2
+  uint32_t ProcessingCounter;                         // 处理计数器
+  uint32_t StackParameter4;                           // 栈参数4
+  unsigned long long EncodedOperationKey;             // 编码操作密钥
   
   ProcessingFlags = 0x180170e65;
   FUN_180173c40(*(void *)(CharacterCode + 0xc0));
