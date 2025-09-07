@@ -50811,7 +50811,17 @@ void CloseSystemHandle9c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809049d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数函数9d0
+ * 
+ * 该函数负责清理资源引用计数，管理内存资源的释放
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_1809049d0
+ */
+void CleanupResourceReferenceCount9d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -104100,9 +104110,34 @@ void *AllocateBufferEN0(void *bufferParams, size_t allocationSize);
 // 功能：检查状态EP0，监控系统运行状态
 #define CheckSystemStatusEP0 FUN_18088aca0
 
+/**
+ * @brief 检查系统状态EP0
+ * 
+ * 该函数负责检查系统的运行状态，监控系统的健康状况
+ * 
+ * @param systemContext 系统上下文
+ * @return 系统状态码
+ * 
+ * @note 原始函数名：FUN_18088aca0
+ */
+int CheckSystemStatusEP0(void *systemContext);
+
 // 原始函数名：FUN_18088c970 - 数据同步函数EQ0
 // 功能：同步数据EQ0，确保数据一致性
 #define SynchronizeDataEQ0 FUN_18088c970
+
+/**
+ * @brief 同步数据EQ0
+ * 
+ * 该函数负责同步数据，确保数据在不同系统间的一致性
+ * 
+ * @param dataSource 数据源
+ * @param dataTarget 数据目标
+ * @return 同步操作的状态码
+ * 
+ * @note 原始函数名：FUN_18088c970
+ */
+int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 原始函数名：FUN_18088cbb0 - 数据验证函数ER0
 // 功能：验证数据ER0，确保数据正确性
