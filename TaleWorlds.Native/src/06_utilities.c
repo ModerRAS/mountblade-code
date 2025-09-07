@@ -90000,7 +90000,18 @@ void Unwind_18090e1a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e1e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数1588 - 处理偏移量0x1588的异常上下文
+ * 
+ * 该函数负责处理偏移量0x1588处的异常上下文，调用相应的异常处理器
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e1e0
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessExceptionContextAtOffset1588(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -90014,7 +90025,18 @@ void Unwind_18090e1e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e200(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作初始化函数1598 - 在偏移量0x1598处初始化内存操作
+ * 
+ * 该函数负责在偏移量0x1598处执行内存操作初始化
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e200
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void InitializeMemoryOperationAtOffset1598(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x1598,0x238,2,InitializeSystemDataA0);
@@ -90023,7 +90045,18 @@ void Unwind_18090e200(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e240(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理函数1A18 - 在偏移量0x1A18处处理内存操作
+ * 
+ * 该函数负责在偏移量0x1A18处执行内存操作处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e240
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessMemoryOperationAtOffset1A18(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x1a18,0x488,2,ProcessMemoryOperationA3,SystemCleanupFlagAlternative);
@@ -90032,7 +90065,18 @@ void Unwind_18090e240(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e260(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理函数2378 - 在偏移量0x2378处处理内存操作
+ * 
+ * 该函数负责在偏移量0x2378处执行内存操作处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e260
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessMemoryOperationAtOffset2378(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x2378,0x248,2,ProcessMemoryOperationA0,SystemCleanupFlagAlternative);
