@@ -49741,78 +49741,94 @@ void CleanupExceptionHandlersLevel0(DataBuffer operationBase,int64_t dataBuffer,
 
 
 
+/**
+ * @brief 清理异常处理器层级1
+ * 
+ * 该函数负责清理第1层级的异常处理器，重置所有相关的异常处理状态。
+ * 它会遍历多个异常处理器层级，清理临时异常处理器，并重置状态标志。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，用于异常处理器调用
+ * 
+ * @note 原始函数名：Unwind_180904800
+ * @note 这是一个异常处理器清理函数，用于重置系统的异常处理机制
+ * @warning 如果异常处理器状态异常，会调用TerminateSystemE0终止系统
+ */
 void CleanupExceptionHandlersLevel1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0xcd0) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0xcd0))(exceptionHandlerContext + 0xcc0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerLevel1_FunctionPointerOffset) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerLevel1_FunctionPointerOffset))(exceptionHandlerContext + ExceptionHandlerLevel1_CallbackParamOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xca0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xca8) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel1_TemporaryHandlerOffset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerLevel1_TemporaryStatusOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xca8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xcb8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xca0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0xc80) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xc88) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel1_TemporaryStatusOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerLevel1_TemporaryStateOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel1_TemporaryHandlerOffset) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel1_SecondaryHandlerOffset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerLevel1_SecondaryStatusOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xc88) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xc98) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xc80) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0xc60) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xc68) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel1_SecondaryStatusOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerLevel1_SecondaryStateOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel1_SecondaryHandlerOffset) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel1_TertiaryHandlerOffset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerLevel1_TertiaryStatusOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xc68) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xc78) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xc60) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0xc40) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xc48) != 0) {
-      TerminateSystemE0();
-  }
-  *(DataBuffer *)(exceptionHandlerContext + 0xc48) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xc58) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xc40) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0xc20) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xc28) != 0) {
-      TerminateSystemE0();
-  }
-  *(DataBuffer *)(exceptionHandlerContext + 0xc28) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xc38) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xc20) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel1_TertiaryStatusOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerLevel1_TertiaryStateOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel1_TertiaryHandlerOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
+/**
+ * @brief 清理异常处理器层级2
+ * 
+ * 该函数负责清理第2层级的异常处理器，重置所有相关的异常处理状态。
+ * 它会遍历多个异常处理器层级，清理临时异常处理器，并重置状态标志。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，用于异常处理器调用
+ * 
+ * @note 原始函数名：Unwind_180904810
+ * @note 这是一个异常处理器清理函数，用于重置系统的异常处理机制
+ * @warning 如果异常处理器状态异常，会调用TerminateSystemE0终止系统
+ */
 void CleanupExceptionHandlersLevel2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0xd40) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0xd40))(exceptionHandlerContext + 0xd30,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerLevel2_FunctionPointerOffset) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerLevel2_FunctionPointerOffset))(exceptionHandlerContext + ExceptionHandlerLevel2_CallbackParamOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xd08) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xd10) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel2_TemporaryHandlerOffset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerLevel2_TemporaryStatusOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xd10) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xd20) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xd08) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0xce8) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xcf0) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel2_TemporaryStatusOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerLevel2_TemporaryStateOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel2_TemporaryHandlerOffset) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel2_SecondaryHandlerOffset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerLevel2_SecondaryStatusOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xcf0) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xd00) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xce8) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel2_SecondaryStatusOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerLevel2_SecondaryStateOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel2_SecondaryHandlerOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
