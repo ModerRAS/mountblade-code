@@ -355,6 +355,13 @@
 #define SystemStackResultOffset 0x78                   // 系统栈结果偏移量
 #define SystemDataValidationOffset 0x200               // 系统数据验证偏移量
 
+// 异常处理上下文相关偏移量常量
+#define ExceptionHandlerContextOffset18 0x18            // 异常处理上下文偏移量18
+#define ExceptionHandlerContextOffset50 0x50            // 异常处理上下文偏移量50
+#define ExceptionHandlerContextOffset58 0x58            // 异常处理上下文偏移量58
+#define ExceptionHandlerContextOffset60 0x60            // 异常处理上下文偏移量60
+#define ExceptionHandlerContextOffset68 0x68            // 异常处理上下文偏移量68
+
 // 数据结构相关偏移量常量
 #define DataStructureOffset18 0x18                // 数据结构偏移量18
 #define DataStructureOffset24 0x24                // 数据结构偏移量24
@@ -19199,13 +19206,13 @@ DataBuffer InitializeSystemDataStructure(int64_t *systemContext)
           return ResourceInvalidErrorCode;
         }
         resourceIterator = (int64_t)(int)(*(uint *)(memoryRegionBase + operationBase[2]) & (int)operationBase[1] - 1U);
-        pcalculatedValue = (int *)(*operationBase + resourceIterator * 4);
+        calculatedValue = (int *)(*operationBase + resourceIterator * 4);
         calculatedSize = *(int *)(*operationBase + resourceIterator * 4);
         while (calculatedSize != -1) {
-          pcalculatedValue = (int *)(operationBase[2] + 4 + (int64_t)calculatedSize * 0x10);
-          calculatedSize = *pcalculatedValue;
+          calculatedValue = (int *)(operationBase[2] + 4 + (int64_t)calculatedSize * 0x10);
+          calculatedSize = *calculatedValue;
         }
-        *pcalculatedValue = (int)statusCounter;
+        *calculatedValue = (int)statusCounter;
         loopCounter = loopCounter + 1;
         statusCounter = (uint64_t)((int)statusCounter + 1);
         *(DataWord *)(operationBase[2] + 4 + memoryRegionBase) = SystemCleanupFlag;
@@ -55419,7 +55426,7 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
   int64_t *contextPointer;
   DataBuffer *operationResult;
   int iterationCount;
-  int *pcalculatedValue;
+  int *calculatedValue;
   int64_t *bufferPointer;
   uint statusCounter;
   uint64_t systemDataBuffer1;
@@ -55444,32 +55451,32 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
     do {
       systemDataBuffer2 = systemDataBuffer1 % (uint64_t)*(uint *)(operationResult + 8);
       iterationCount = (int)loopCounter;
-      for (pcalculatedValue = *(int **)(operationResult[7] + systemDataBuffer2 * 8); pcalculatedValue != (int *)0x0;
-          pcalculatedValue = *(int **)(pcalculatedValue + 4)) {
-        if (iterationCount == *pcalculatedValue) {
-          if (pcalculatedValue != (int *)0x0) goto ProcessCheckpointValidationData3;
+      for (calculatedValue = *(int **)(operationResult[7] + systemDataBuffer2 * 8); calculatedValue != (int *)0x0;
+          calculatedValue = *(int **)(calculatedValue + 4)) {
+        if (iterationCount == *calculatedValue) {
+          if (calculatedValue != (int *)0x0) goto ProcessCheckpointValidationData3;
           break;
         }
       }
       ConvertDataTypeA0(operationResult + 10,&stackVariable10,(uint64_t)*(uint *)(operationResult + 8),
                     *(DataWord *)(operationResult + 9),1);
-      pcalculatedValue = (int *)CalculateSystemValue(SystemCalculationBaseAddress,0x18,*(ByteFlag *)((int64_t)operationResult + 0x5c));
-      *pcalculatedValue = iterationCount;
-      pcalculatedValue[2] = 0;
-      pcalculatedValue[3] = 0;
-      pcalculatedValue[4] = 0;
-      pcalculatedValue[5] = 0;
+      calculatedValue = (int *)CalculateSystemValue(SystemCalculationBaseAddress,0x18,*(ByteFlag *)((int64_t)operationResult + 0x5c));
+      *calculatedValue = iterationCount;
+      calculatedValue[2] = 0;
+      calculatedValue[3] = 0;
+      calculatedValue[4] = 0;
+      calculatedValue[5] = 0;
       if ((char)stackVariable10 != '\0') {
         systemDataBuffer2 = systemDataBuffer1 % ((uint64_t)stackVariable10 >> 0x20);
         ProcessContextA0(operationResult + 6);
       }
-      *(DataBuffer *)(pcalculatedValue + 4) = *(DataBuffer *)(operationResult[7] + systemDataBuffer2 * 8);
-      *(int **)(operationResult[7] + systemDataBuffer2 * 8) = pcalculatedValue;
+      *(DataBuffer *)(calculatedValue + 4) = *(DataBuffer *)(operationResult[7] + systemDataBuffer2 * 8);
+      *(int **)(operationResult[7] + systemDataBuffer2 * 8) = calculatedValue;
       operationResult[9] = operationResult[9] + 1;
 ProcessCheckpointValidationData3:
-      stackVariable18 = *(int64_t **)(pcalculatedValue + 2);
-      pcalculatedValue[2] = 0;
-      pcalculatedValue[3] = 0;
+      stackVariable18 = *(int64_t **)(calculatedValue + 2);
+      calculatedValue[2] = 0;
+      calculatedValue[3] = 0;
       if (stackVariable18 != (int64_t *)0x0) {
         (**(FunctionPointer**)(*stackVariable18 + 0x38))();
       }
@@ -56240,7 +56247,7 @@ void FinalizeExceptionHandling950(DataBuffer operationBase,int64_t dataBuffer)
   int64_t *contextPointer;
   DataBuffer *operationResult;
   int iterationCount;
-  int *pcalculatedValue;
+  int *calculatedValue;
   int64_t *bufferPointer;
   uint statusCounter;
   uint64_t systemDataBuffer1;
@@ -56265,32 +56272,32 @@ void FinalizeExceptionHandling950(DataBuffer operationBase,int64_t dataBuffer)
     do {
       systemDataBuffer2 = systemDataBuffer1 % (uint64_t)*(uint *)(operationResult + 8);
       iterationCount = (int)loopCounter;
-      for (pcalculatedValue = *(int **)(operationResult[7] + systemDataBuffer2 * 8); pcalculatedValue != (int *)0x0;
-          pcalculatedValue = *(int **)(pcalculatedValue + 4)) {
-        if (iterationCount == *pcalculatedValue) {
-          if (pcalculatedValue != (int *)0x0) goto ProcessCheckpointValidationData3;
+      for (calculatedValue = *(int **)(operationResult[7] + systemDataBuffer2 * 8); calculatedValue != (int *)0x0;
+          calculatedValue = *(int **)(calculatedValue + 4)) {
+        if (iterationCount == *calculatedValue) {
+          if (calculatedValue != (int *)0x0) goto ProcessCheckpointValidationData3;
           break;
         }
       }
       ConvertDataTypeA0(operationResult + 10,&stackVariable10,(uint64_t)*(uint *)(operationResult + 8),
                     *(DataWord *)(operationResult + 9),1);
-      pcalculatedValue = (int *)CalculateSystemValue(SystemCalculationBaseAddress,0x18,*(ByteFlag *)((int64_t)operationResult + 0x5c));
-      *pcalculatedValue = iterationCount;
-      pcalculatedValue[2] = 0;
-      pcalculatedValue[3] = 0;
-      pcalculatedValue[4] = 0;
-      pcalculatedValue[5] = 0;
+      calculatedValue = (int *)CalculateSystemValue(SystemCalculationBaseAddress,0x18,*(ByteFlag *)((int64_t)operationResult + 0x5c));
+      *calculatedValue = iterationCount;
+      calculatedValue[2] = 0;
+      calculatedValue[3] = 0;
+      calculatedValue[4] = 0;
+      calculatedValue[5] = 0;
       if ((char)stackVariable10 != '\0') {
         systemDataBuffer2 = systemDataBuffer1 % ((uint64_t)stackVariable10 >> 0x20);
         ProcessContextA0(operationResult + 6);
       }
-      *(DataBuffer *)(pcalculatedValue + 4) = *(DataBuffer *)(operationResult[7] + systemDataBuffer2 * 8);
-      *(int **)(operationResult[7] + systemDataBuffer2 * 8) = pcalculatedValue;
+      *(DataBuffer *)(calculatedValue + 4) = *(DataBuffer *)(operationResult[7] + systemDataBuffer2 * 8);
+      *(int **)(operationResult[7] + systemDataBuffer2 * 8) = calculatedValue;
       operationResult[9] = operationResult[9] + 1;
 ProcessCheckpointValidationData3:
-      stackVariable18 = *(int64_t **)(pcalculatedValue + 2);
-      pcalculatedValue[2] = 0;
-      pcalculatedValue[3] = 0;
+      stackVariable18 = *(int64_t **)(calculatedValue + 2);
+      calculatedValue[2] = 0;
+      calculatedValue[3] = 0;
       if (stackVariable18 != (int64_t *)0x0) {
         (**(FunctionPointer**)(*stackVariable18 + 0x38))();
       }
@@ -114790,9 +114797,12 @@ uint8_t SystemExceptionHandlerStateTable;
  * 
  * 美化进度：
  * - 已修复格式问题：5个
- * - 已美化变量名：15个
+ * - 已美化变量名：35个
  * - 已美化参数名：4个
  * - 已添加文档注释：完整
+ * - 已美化异常处理器指针：26个
+ * - 已美化系统资源指针：6个
+ * - 已美化系统验证变量：7个
  * 
  * @note 所有变量名和函数名都已从Ghidra逆向生成的名称
  *       替换为具有语义的名称，提高了代码的可读性和维护性。
