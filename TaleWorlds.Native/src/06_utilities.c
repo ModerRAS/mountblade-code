@@ -197,6 +197,11 @@
 #define DATA_CONTEXT_OFFSET_18 0x18              // 数据上下文偏移量18
 #define DATA_BUFFER_OFFSET_24 0x24               // 数据缓冲区偏移量24
 #define SYSTEM_CONTEXT_OFFSET_98 0x98            // 系统上下文偏移量98
+
+// 队列操作偏移量常量定义
+#define QUEUE_DATA_POINTER_OFFSET 0x20           // 队列数据指针偏移量
+#define QUEUE_SIZE_OFFSET 0x28                   // 队列大小偏移量
+#define QUEUE_CAPACITY_OFFSET 0x2c                // 队列容量偏移量
 #define QUEUE_INFO_OFFSET_8 0x8                  // 队列信息偏移量8
 #define EVENT_HANDLE_OFFSET_8 0x8                // 事件句柄偏移量8
 
