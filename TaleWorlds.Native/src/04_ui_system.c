@@ -48451,13 +48451,13 @@ int CalculateUIImageBlockDifference(undefined1 (*uiContext) [32],int dataSource,
       }
     }
     else if (0 < (int)param_7) {
-      functionResult = (ulonglong)param_7;
+      pixelCount = (ulonglong)param_7;
       do {
-        auVar9 = *uiContext;
-        auVar5 = *resultPointer;
+        tempVector9 = *uiContext;
+        tempVector5 = *resultPointer;
         uiContext = (undefined1 (*) [32])(*uiContext + dataSource);
         resultPointer = (undefined1 (*) [32])(*resultPointer + param_6);
-        auVar6 = vpunpcklbw_avx2(auVar9,*uiContext);
+        tempVector6 = vpunpcklbw_avx2(tempVector9,*uiContext);
         auVar6 = vpmaddubsw_avx2(auVar6,*(undefined1 (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
         auVar6 = vpaddw_avx2(auVar6,_DAT_180948080);
         auVar9 = vpunpckhbw_avx2(auVar9,*uiContext);
@@ -69117,9 +69117,23 @@ int FUN_1806a012f(void)
 
 
 
- void FUN_180700e20(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,int resultPointer,
-void FUN_180700e20(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,int resultPointer,
-                  float *param_6,float *param_7,int param_8)
+ /**
+ * @brief 处理UI变换数据
+ * 
+ * 该函数负责处理UI变换数据的计算和转换
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6（浮点数指针）
+ * @param param_7 参数7（浮点数指针）
+ * @param param_8 参数8
+ * @note 原始函数名: FUN_180700e20
+ */
+void ProcessUITransformData(longlong uiContext, longlong dataSource, int targetBuffer, int bufferSize, int resultPointer,
+                           float *param_6, float *param_7, int param_8)
 
 {
   float floatResult;
