@@ -35078,6 +35078,17 @@ DataBuffer ReturnFixedStatusCodeA2(void)
 
 
 
+/**
+ * @brief 系统配置验证函数C1
+ * 
+ * 验证系统配置的有效性和完整性。
+ * 该函数通过一系列数据操作来验证系统配置的正确性。
+ * 
+ * @note 该函数执行以下验证步骤：
+ *       - 数据缓冲区操作验证
+ *       - 配置参数验证
+ *       - 系统资源清理
+ */
 void ValidateSystemConfigurationC1(void)
 
 {
@@ -35106,6 +35117,14 @@ void ValidateSystemConfigurationC1(void)
 
 
 
+/**
+ * @brief 系统操作处理函数C0
+ * 
+ * 处理系统级别的操作，包括资源清理和系统维护。
+ * 该函数目前主要执行系统资源的清理操作。
+ * 
+ * @note 这是一个简化的系统操作处理函数
+ */
 void ProcessSystemOperationsC0(void)
 
 {
