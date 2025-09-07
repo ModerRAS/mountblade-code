@@ -252511,7 +252511,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     SystemFlagF = 0;
     CoreEngineSignedValueE8 = 0;
     SystemFlagE = 0;
-    FUN_180049bf0(&CoreEngineValue148,&UNK_180a02060);
+    FUN_180049bf0(&CoreEngineValue148,&SystemConfigurationDataB);
     SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
     if (*(void **)(Utf16EndPointer + 8) != NULL) {
       SecondaryProcessingStatusFlag = *(void **)(Utf16EndPointer + 8);
@@ -252544,7 +252544,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     SystemFlagF = 0;
     CoreEngineSignedValueE8 = 0;
     SystemFlagE = 0;
-    FUN_180049bf0(&CoreEngineValue148,&UNK_180a13340);
+    FUN_180049bf0(&CoreEngineValue148,&SystemMemoryBufferA);
     (**(code **)(OperationStatus + 0x10))(&OperationStatus,&DataReferencePointerA);
     SystemChecksumValue = Utf8BufferSize[1];
     if (SystemChecksumValue < (unsigned long long)Utf8BufferSize[2]) {
@@ -252573,7 +252573,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     SystemFlagF = 0;
     CoreEngineSignedValueE8 = 0;
     SystemFlagE = 0;
-    FUN_180049bf0(&CoreEngineValue148,&UNK_180a132f0);
+    FUN_180049bf0(&CoreEngineValue148,&SystemMemoryBufferB);
     (**(code **)(OperationStatus + 0x10))(&OperationStatus,&DataReferencePointerA);
     SystemChecksumValue = Utf8BufferSize[1];
     if (SystemChecksumValue < (unsigned long long)Utf8BufferSize[2]) {
