@@ -245082,7 +245082,18 @@ LAB_18020c64c:
 
 
 
-0c8f0(long long CharacterCode,unsigned long long *Utf8InputBufferSizevoid FUN_18020c8f0(long long CharacterCode,unsigned long long *Utf8InputBufferSize
+/**
+ * @brief 处理系统内存块和事件模板
+ * 
+ * 该函数负责处理系统内存块分配、事件模板管理，
+ * 以及UTF-8输入缓冲区的状态控制。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * 
+ * @note 原始函数名：FUN_18020c8f0
+ */
+void ProcessSystemMemoryBlockAndEventTemplate(long long CharacterCode,unsigned long long *Utf8InputBufferSize)
 {
   uint64_t Utf16Char;
   long long BufferStatus;

@@ -9555,7 +9555,7 @@ LAB_1806577da:
     }
   }
 LAB_1806577f1:
-  bVar2 = true;
+  isProcessingComplete = true;
   ptrLocal3 = (undefined8 *)&UIDefaultResourceBuffer;
   ptrLocal6 = UIResourceManagerHandle;
   while (ptrLocal6 != (undefined8 *)0x0) {
