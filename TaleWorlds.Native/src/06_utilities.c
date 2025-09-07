@@ -100005,7 +100005,17 @@ void Unwind_18090fe50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fe60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统操作处理函数E60
+ * 
+ * 该函数负责处理系统操作，遍历数据上下文并调用系统操作处理函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090fe60
+ * @note 这是一个系统操作处理函数，用于处理数据上下文中的系统操作
+ */
+void ProcessSystemOperationsE60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
