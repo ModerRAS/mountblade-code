@@ -60176,7 +60176,22 @@ void CleanupResourceReferenceCount6c90(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_180906ca0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数6ca0
+ * 
+ * 该函数负责清理资源引用计数，管理内存释放和资源生命周期。
+ * 主要功能包括：
+ * - 检查资源指针有效性
+ * - 计算内存偏移量
+ * - 管理引用计数
+ * - 处理异常情况
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源信息
+ * 
+ * @note 原始函数名：Unwind_180906ca0
+ */
+void CleanupResourceReferenceCount6ca0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
