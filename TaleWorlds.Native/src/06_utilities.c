@@ -135,6 +135,12 @@
 #define ResourceFlagD60 0x10
 #define ResourceFlagMaskD60 0xffffffef
 #define ResourceHandlerOffsetD60 0x48
+#define ResourceFlagD90 0x20
+#define ResourceFlagMaskD90 0xffffffdf
+#define ResourceHandlerOffsetD90 0x68
+#define ResourceFlagDC0 0x40
+#define ResourceFlagMaskDC0 0xffffffbf
+#define ResourceHandlerOffsetDC0 0x48
 #define ExceptionHandlerStatus2Offset 0x148
 #define ExceptionHandlerState2Offset 0x158
 #define ExceptionHandlerTable3Offset 0x120

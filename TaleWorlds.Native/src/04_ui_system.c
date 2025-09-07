@@ -828,71 +828,38 @@ void* UIGestureCoordinates;
 #define CreateUITransformedContext CreateUITransformedContextInternal
 #define NormalizeUIVector NormalizeUIVectorInternal
 
-// UI系统FUN_函数语义化宏定义
-// UI系统处理器指针变量宏定义
-// 原始变量名：_DAT_180d4a8b8 - UI系统像素处理器指针
+// UI系统处理器指针宏定义
 #define UIPixelProcessorPointer _DAT_180d4a8b8
-// 原始变量名：_DAT_180d4a860 - UI系统图像处理器指针
 #define UIImageProcessorPointer _DAT_180d4a860
-// 原始变量名：_DAT_180d4a800 - UI系统颜色处理器指针
 #define UIColorProcessorPointer _DAT_180d4a800
-// 原始变量名：_DAT_180d4a7c8 - UI系统纹理处理器指针
 #define UITextureProcessorPointer _DAT_180d4a7c8
-// 原始变量名：_DAT_180d4a768 - UI系统字体渲染器指针
 #define UIFontRendererPointer _DAT_180d4a768
-// 原始变量名：_DAT_180d4a738 - UI系统着色器处理器指针
 #define UIShaderProcessorPointer _DAT_180d4a738
-// 原始变量名：_DAT_180d4a720 - UI系统动画处理器指针
 #define UIAnimationProcessorPointer _DAT_180d4a720
-// 原始变量名：_DAT_180d4a6e8 - UI系统布局处理器指针
 #define UILayoutProcessorPointer _DAT_180d4a6e8
-// 原始变量名：_DAT_180d4a6c8 - UI系统输入处理器指针
 #define UIInputProcessorPointer _DAT_180d4a6c8
-// 原始变量名：_DAT_180d4a6c0 - UI系统事件处理器指针
 #define UIEventProcessorPointer _DAT_180d4a6c0
-// 原始变量名：_DAT_180d4a6a0 - UI系统备用处理器指针1
 #define UISpareProcessorPointer1 _DAT_180d4a6a0
-// 原始变量名：_DAT_180d4a960 - UI系统备用处理器指针2
 #define UISpareProcessorPointer2 _DAT_180d4a960
-// 原始变量名：_DAT_180d4a940 - UI系统备用处理器指针3
 #define UISpareProcessorPointer3 _DAT_180d4a940
-// 原始变量名：_DAT_180d4a908 - UI系统特殊功能处理器指针1
 #define UISpecialFunctionProcessorPointer1 _DAT_180d4a908
-// 原始变量名：_DAT_180d4a8e8 - UI系统特殊功能处理器指针2
 #define UISpecialFunctionProcessorPointer2 _DAT_180d4a8e8
-// 原始变量名：_DAT_180d4a8a0 - UI系统特殊功能处理器指针3
 #define UISpecialFunctionProcessorPointer3 _DAT_180d4a8a0
-// 原始变量名：_DAT_180d4a878 - UI系统特殊功能处理器指针4
 #define UISpecialFunctionProcessorPointer4 _DAT_180d4a878
-// 原始变量名：_DAT_180d4a840 - UI系统特殊功能处理器指针5
 #define UISpecialFunctionProcessorPointer5 _DAT_180d4a840
-// 原始变量名：_DAT_180d4a818 - UI系统特殊功能处理器指针6
 #define UISpecialFunctionProcessorPointer6 _DAT_180d4a818
-// 原始变量名：_DAT_180d4a7d8 - UI系统特殊功能处理器指针7
 #define UISpecialFunctionProcessorPointer7 _DAT_180d4a7d8
-// 原始变量名：_DAT_180d4a7a0 - UI系统扩展功能处理器指针1
 #define UIExtendedFunctionProcessorPointer1 _DAT_180d4a7a0
-// 原始变量名：_DAT_180d4a770 - UI系统扩展功能处理器指针2
 #define UIExtendedFunctionProcessorPointer2 _DAT_180d4a770
-// 原始变量名：_DAT_180d4a6f0 - UI系统扩展功能处理器指针3
 #define UIExtendedFunctionProcessorPointer3 _DAT_180d4a6f0
-// 原始变量名：_DAT_180d4a6d8 - UI系统扩展功能处理器指针4
 #define UIExtendedFunctionProcessorPointer4 _DAT_180d4a6d8
-// 原始变量名：_DAT_180d4a6b0 - UI系统扩展功能处理器指针5
 #define UIExtendedFunctionProcessorPointer5 _DAT_180d4a6b0
-// 原始变量名：_DAT_180d4a930 - UI系统函数表指针1
 #define UIFunctionTablePointer1 _DAT_180d4a930
-// 原始变量名：_DAT_180d4a900 - UI系统函数表指针2
 #define UIFunctionTablePointer2 _DAT_180d4a900
-// 原始变量名：_DAT_180d4a8d8 - UI系统函数表指针3
 #define UIFunctionTablePointer3 _DAT_180d4a8d8
-// 原始变量名：_DAT_180d4a8b0 - UI系统函数表指针4
 #define UIFunctionTablePointer4 _DAT_180d4a8b0
-// 原始变量名：_DAT_180d4a870 - UI系统函数表指针5
 #define UIFunctionTablePointer5 _DAT_180d4a870
-// 原始变量名：_DAT_180d4a830 - UI系统函数表指针6
 #define UIFunctionTablePointer6 _DAT_180d4a830
-// 原始变量名：_DAT_180d4a7e8 - UI系统函数表指针7
 #define UIFunctionTablePointer7 _DAT_180d4a7e8
 
 // UI系统全局变量宏定义
