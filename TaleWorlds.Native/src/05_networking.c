@@ -263,8 +263,11 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  * 定义网络数据包处理中使用的数组索引，用于访问特定位置的数据
  */
 #define PacketHeaderArrayIndex 1                                // 数据包头数组索引
+#define PacketDataHeaderIndex PacketHeaderArrayIndex               // 数据包头索引别名
 #define PacketSizeArrayIndex 8                                  // 数据包大小数组索引
+#define PacketDataSizeIndex PacketSizeArrayIndex                 // 数据包大小索引别名
 #define NetworkArraySizeIndex 4                                // 网络数组大小索引
+#define ArraySizeIndex NetworkArraySizeIndex                    // 数组大小索引别名
 #define ConnectionDataSizeIndex 1                              // 连接数据大小索引
 #define ConnectionStateDataIndex 1                             // 连接状态数据索引
 #define MergedConnectionDataOffset 8                           // 合并连接数据偏移量
@@ -384,6 +387,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkMagicValidationAlias NetworkMagicValidationIdentifier             // 验证魔数别名
 #define NetworkMagicBinaryDataAlias NetworkMagicBinaryDataIdentifier             // 二进制数据魔数别名
 #define NetworkMagicMemoryValidationAlias NetworkMemoryValidationMagicValue   // 内存验证魔数别名
+#define NetworkMagicEventData NetworkMagicEventIdentifier                // 事件数据魔数别名
 #define NetworkMagicEventDataAlias NetworkMagicEventIdentifier                 // 事件数据魔数别名
 #define NetworkMagicBatchDataAlias NetworkMagicBatchDataIdentifier         // 批处理数据魔数别名
 #define NetworkMagicInvalidAlias NetworkMagicInvalidIdentifier             // 无效数据包魔数别名
@@ -762,16 +766,6 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  * @warning 如果初始化失败，后续的迭代处理将无法正常进行
  * @see HandleNetworkProtocolStackData, VerifyNetworkConnectionHandleSecurity
  */
-/**
- * @brief 初始化网络迭代上下文
- * 
- * 初始化网络连接的迭代上下文，设置迭代参数和控制标志
- * 
- * @param NetworkConnectionContext 网络连接上下文
- * @param ValidationResultData 验证结果数据
- * @param IterationControlFlag 迭代控制标志
- * @return uint32_t 初始化结果，0表示成功，其他值表示错误码
- */
 uint32_t InitializeNetworkIterationContext(int64_t NetworkConnectionContext, int64_t ValidationResultData, uint32_t IterationControlFlag)
 {
   // 迭代上下文初始化变量
@@ -824,15 +818,6 @@ uint32_t InitializeNetworkIterationContext(int64_t NetworkConnectionContext, int
  * @note 此函数会处理网络协议栈的原始数据，调用者需要确保数据格式正确
  * @warning 如果数据格式不正确，可能会导致处理失败或系统异常
  * @see InitializeNetworkConnection, ValidateNetworkConnectionSecurity
- */
-/**
- * @brief 处理网络协议栈数据
- * 
- * 处理网络协议栈的数据包，进行协议解析和数据验证
- * 
- * @param NetworkProtocolStackBuffer 网络协议栈缓冲区指针
- * @param NetworkContextData 网络上下文数据
- * @return uint32_t 处理结果，0表示成功，其他值表示错误码
  */
 uint32_t HandleNetworkProtocolStackData(int64_t *NetworkProtocolStackBuffer, int64_t NetworkContextData)
 {
