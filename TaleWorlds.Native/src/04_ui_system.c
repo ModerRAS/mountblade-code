@@ -68164,15 +68164,21 @@ LAB_18069f85f:
 
 
 
- void FUN_18069f8cb(void)
-void FUN_18069f8cb(void)
+ /**
+ * 初始化UI系统函数
+ * 执行UI系统的初始化操作，调用底层初始化函数
+ * 并将结果存储到指定位置
+ * 
+ * 原始函数名: FUN_18069f8cb
+ */
+void InitializeUISystem(void)
 
 {
-  undefined1 functionResult;
-  longlong unaff_RDI;
+  undefined1 initializationResult;
+  longlong contextPointer;
   
-  functionResult = FUN_1806a02d0();
-  *(undefined1 *)(unaff_RDI + 1) = functionResult;
+  initializationResult = FUN_1806a02d0();
+  *(undefined1 *)(contextPointer + 1) = initializationResult;
   return;
 }
 
@@ -69764,17 +69770,17 @@ LAB_180703442:
 
 
 
- void FUN_180703200(void)
-void FUN_180703200(void)
+ void InitializeUIMemoryArea(void)
+void InitializeUIMemoryArea(void)
 
 {
-  longlong in_RAX;
-  longlong context;
-  int in_R9D;
+  longlong registerRAX;
+  longlong systemContext;
+  int iterationCount;
   
                     // WARNING: Subroutine does not return
-  memset(context + 0x50,0,
-         (longlong)((*(int *)(in_RAX + 4) + (*(int *)(in_RAX + 8) + 0x100) * 4) * in_R9D * 4 + 0xf4)
+  memset(systemContext + 0x50,0,
+         (longlong)((*(int *)(registerRAX + 4) + (*(int *)(registerRAX + 8) + 0x100) * 4) * iterationCount * 4 + 0xf4)
          + -0x50);
 }
 
