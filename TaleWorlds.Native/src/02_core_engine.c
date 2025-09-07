@@ -10151,16 +10151,16 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
  * @note 初始化过程中会创建系统节点并建立数据结构
  */
 void InitializeCoreEngineDataStructure(void) {
-  char SystemNodeInitializedFlag;
-  void *SystemRootNode;
-  int DataComparisonResult;
-  long long *EngineSystemContext;
-  void *SystemTraversalNode;
-  void *SystemSearchNode;
-  void *SystemNextNodeInChain;
-  long long SystemMemoryOffset;
-  void *CreatedSystemNode;
-  void (*SystemNodeInitializer)(void);
+  char IsSystemNodeInitialized;
+  void *SystemRootNodePointer;
+  int NodeDataComparisonResult;
+  long long *CoreEngineSystemContext;
+  void *SystemTraversalPointer;
+  void *SystemSearchPointer;
+  void *SystemNextChainPointer;
+  long long AllocatedMemoryOffset;
+  void *NewSystemNode;
+  void (*SystemInitializationCallback)(void);
   
   EngineSystemContext = (long long *)CoreEngineGetSystemHandle();
   SystemRootNode = (void *)*EngineSystemContext;
@@ -64066,39 +64066,39 @@ void ProcessSystemDataTableCopy(long long CharacterCode,long long *CharacterCode
   long long secondaryLoopCounter;
   bool BooleanValidationFlag9;
   uint64_t SystemStackRegisterFlagB0;
-  long long lStack_a8;
+  long long StackMemoryOffsetA8;
   uint64_t CoreEngineUnsignedValueA0;
   uint32_t SystemOperationFlag98;
   uint64_t SystemOperation90;
-  long long lStack_88;
-  long long lStack_80;
+  long long StackMemoryOffset88;
+  long long StackMemoryOffset80;
   long long CoreEngineSignedValue78;
   uint32_t StackProcessingVariable70;
   unsigned long long StackProcessingUnsignedValue68;
-  long long lStack_60;
+  long long StackMemoryOffset60;
   uint64_t BufferOffset;
   
   BufferOffset = 0xfffffffffffffffe;
-  lStack_88 = 0;
-  lStack_80 = 0;
+  StackMemoryOffset88 = 0;
+  StackMemoryOffset80 = 0;
   MemoryBoundaryEnd = 0;
   CoreEngineSignedValue78 = 0;
   StackProcessingVariable70 = 3;
   EncodingValidationResult = (int)(SystemBufferSize[1] - *CharacterCodeSize >> 3);
   SystemDataTablePointer = (long long)EncodingValidationResult;
-  lStack_60 = SystemDataTablePointer;
+  StackMemoryOffset60 = SystemDataTablePointer;
   if (EncodingValidationResult != 0) {
-    lStack_80 = BufferAllocate(MemoryPoolManager,SystemDataTablePointer * 8,3);
-    CoreEngineSignedValue78 = SystemDataTablePointer * 8 + lStack_80;
+    StackMemoryOffset80 = BufferAllocate(MemoryPoolManager,SystemDataTablePointer * 8,3);
+    CoreEngineSignedValue78 = SystemDataTablePointer * 8 + StackMemoryOffset80;
   }
   if (SystemDataTablePointer < 1) {
-    lStack_88 = lStack_80;
+    StackMemoryOffset88 = StackMemoryOffset80;
     SystemOperationFlag98 = 0x1a;
     CoreEngineUnsignedValueA0 = 0;
-    lStack_a8 = 0;
+    StackMemoryOffsetA8 = 0;
     SystemStackRegisterFlagB0 = 0;
     ProcessSystemStackFlag(0,&SystemStackRegisterFlagB0);
-    EncodingValidationResult = (int)(lStack_a8 >> 3);
+    EncodingValidationResult = (int)(StackMemoryOffsetA8 >> 3);
     if (0 < EncodingValidationResult) {
       do {
         ProcessCharacterCodeMemory(CharacterCode,*(void *)(MemoryBoundaryEnd * 8));
@@ -180773,7 +180773,21 @@ long long ManageSystemBufferSize(long long CharacterCode,unsigned long long Syst
 
 
 
-void FUN_18014d790(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理字符代码系统验证
+ * 
+ * 该函数负责验证字符代码系统的状态，包括字符状态缓冲区检查、
+ * 系统上下文管理和Unicode码点处理。函数会检查字符代码数组的状态，
+ * 并在必要时调用系统事件处理函数。
+ *
+ * @param CharacterCode 字符代码指针数组
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18014d790
+ */
+void ProcessCharacterCodeSystemValidation(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -184817,7 +184831,7 @@ code_r0x000180151fd7:
     (**(code **)(*MemoryBlockListHead + 0x38))(MemoryBlockListHead);
     break;
   case 0x17:
-    lStack_a8 = 0;
+    StackMemoryOffsetA8 = 0;
     CoreEngineUnsignedValueA0 = 0;
     SystemOperationFlag98 = 0;
     uStack_96 = 3;
@@ -184853,7 +184867,7 @@ code_r0x000180151fd7:
                     // WARNING: Subroutine does not return
         CoreEngineProcessSystemEvent();
       }
-      lStack_a8 = 0;
+      StackMemoryOffsetA8 = 0;
       CoreEngineUnsignedValueA0 = 0;
       SystemOperationFlag98 = 0;
     }
@@ -253941,7 +253955,7 @@ uint8_t FUN_1802164d6(void
     SystemEventPointer = &ThreadLocalStorageTemplate;
   }
   else {
-    lStack_a8 = 0;
+    StackMemoryOffsetA8 = 0;
     StackTempPointer = (uint *)0x0;
     SystemOperationFlag98 = 0;
     SystemOperation90 = 0;
@@ -256857,7 +256871,7 @@ LAB_18021a863:
     SystemEventPointer = &ThreadLocalStorageTemplate;
   }
   else {
-    lStack_a8 = 0;
+    StackMemoryOffsetA8 = 0;
     StackTempPointer = (uint *)0x0;
     SystemOperationFlag98 = 0;
     SystemOperation90 = 0;

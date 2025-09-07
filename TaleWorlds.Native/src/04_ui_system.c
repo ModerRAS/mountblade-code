@@ -100071,74 +100071,89 @@ void FUN_18072b12c(void)
 
 
 
- void FUN_18072b160(longlong uiContext,float *dataSource,int targetBuffer)
-void FUN_18072b160(longlong uiContext,float *dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI浮点数据变换和矩阵运算
+ * 
+ * 该函数负责处理UI系统中的浮点数据变换操作，包括：
+ * - 浮点数据的矩阵变换计算
+ * - 数据缓冲区的迭代处理
+ * - 复杂数学运算的优化执行
+ * 
+ * @param uiContext UI上下文指针，用于访问UI系统状态
+ * @param dataSource 浮点数据源指针，包含待处理的输入数据
+ * @param targetBuffer 目标缓冲区大小，控制处理的数据量
+ * 
+ * @note 原始函数名：FUN_18072b160
+ * @note 该函数主要执行高性能的浮点运算，可能用于UI变换或动画计算
+ */
+void ProcessUIFloatDataTransformation(longlong uiContext,float *dataSource,int targetBuffer)
+void ProcessUIFloatDataTransformation(longlong uiContext,float *dataSource,int targetBuffer)
 
 {
-  float floatResult;
-  float localFloat2;
-  float resultValue;
-  float processedFloat;
-  longlong EventDataIndex;
-  longlong contextData;
-  float *presultFloat;
-  longlong localLong8;
-  longlong CharacterDataOffset;
-  int uiOperationResult0;
-  longlong allocatedMemory1;
-  float *pfloatResult2;
+  float inputFloatValue;
+  float tempFloatA;
+  float tempFloatB;
+  float transformedFloat;
+  longlong matrixIndex;
+  longlong processingCounter;
+  float *resultDataPointer;
+  longlong iterationOffset;
+  longlong dataOffset;
+  int loopCounter;
+  longlong calculationBlockSize;
+  float *sourceDataPointer;
   
   if (0 < targetBuffer) {
-    localLong8 = 0;
-    CharacterDataOffset = uiContext - (longlong)dataSource;
-    uiOperationResult0 = 0;
+    iterationOffset = 0;
+    dataOffset = uiContext - (longlong)dataSource;
+    loopCounter = 0;
     do {
-      uiOperationResult0 = uiOperationResult0 + 1;
-      floatResult = *dataSource;
-      contextData = 0;
-      allocatedMemory1 = (longlong)uiOperationResult0 >> 1;
-      if (3 < allocatedMemory1) {
-        pfloatResult2 = (float *)(CharacterDataOffset + -8 + (longlong)dataSource);
-        presultFloat = (float *)(uiContext + 8);
-        EventDataIndex = (allocatedMemory1 - 4U >> 2) + 1;
-        contextData = EventDataIndex * 4;
+      loopCounter = loopCounter + 1;
+      inputFloatValue = *dataSource;
+      processingCounter = 0;
+      calculationBlockSize = (longlong)loopCounter >> 1;
+      if (3 < calculationBlockSize) {
+        sourceDataPointer = (float *)(dataOffset + -8 + (longlong)dataSource);
+        resultDataPointer = (float *)(uiContext + 8);
+        matrixIndex = (calculationBlockSize - 4U >> 2) + 1;
+        processingCounter = matrixIndex * 4;
         do {
-          localFloat2 = pfloatResult2[1];
-          resultValue = presultFloat[-2];
-          presultFloat[-2] = localFloat2 * floatResult + resultValue;
-          processedFloat = *pfloatResult2;
-          pfloatResult2[1] = resultValue * floatResult + localFloat2;
-          localFloat2 = presultFloat[-1];
-          presultFloat[-1] = processedFloat * floatResult + localFloat2;
-          resultValue = pfloatResult2[-1];
-          *pfloatResult2 = localFloat2 * floatResult + processedFloat;
-          localFloat2 = *presultFloat;
-          *presultFloat = resultValue * floatResult + localFloat2;
-          processedFloat = pfloatResult2[-2];
-          pfloatResult2[-1] = localFloat2 * floatResult + resultValue;
-          localFloat2 = presultFloat[1];
-          presultFloat[1] = processedFloat * floatResult + localFloat2;
-          presultFloat = presultFloat + 4;
-          pfloatResult2[-2] = localFloat2 * floatResult + processedFloat;
-          pfloatResult2 = pfloatResult2 + -4;
-          EventDataIndex = EventDataIndex + -1;
-        } while (EventDataIndex != 0);
+          tempFloatA = sourceDataPointer[1];
+          tempFloatB = resultDataPointer[-2];
+          resultDataPointer[-2] = tempFloatA * inputFloatValue + tempFloatB;
+          transformedFloat = *sourceDataPointer;
+          sourceDataPointer[1] = tempFloatB * inputFloatValue + tempFloatA;
+          tempFloatA = resultDataPointer[-1];
+          resultDataPointer[-1] = transformedFloat * inputFloatValue + tempFloatA;
+          tempFloatB = sourceDataPointer[-1];
+          *sourceDataPointer = tempFloatA * inputFloatValue + transformedFloat;
+          tempFloatA = *resultDataPointer;
+          *resultDataPointer = tempFloatB * inputFloatValue + tempFloatA;
+          transformedFloat = sourceDataPointer[-2];
+          sourceDataPointer[-1] = tempFloatA * inputFloatValue + tempFloatB;
+          tempFloatA = resultDataPointer[1];
+          resultDataPointer[1] = transformedFloat * inputFloatValue + tempFloatA;
+          resultDataPointer = resultDataPointer + 4;
+          sourceDataPointer[-2] = tempFloatA * inputFloatValue + transformedFloat;
+          sourceDataPointer = sourceDataPointer + -4;
+          matrixIndex = matrixIndex + -1;
+        } while (matrixIndex != 0);
       }
-      if (contextData < allocatedMemory1) {
-        presultFloat = (float *)(uiContext + ((localLong8 - contextData) + -1) * 4);
+      if (processingCounter < calculationBlockSize) {
+        resultDataPointer = (float *)(uiContext + ((iterationOffset - processingCounter) + -1) * 4);
         do {
-          localFloat2 = *presultFloat;
-          resultValue = *(float *)(uiContext + contextData * 4);
-          *(float *)(uiContext + contextData * 4) = localFloat2 * floatResult + resultValue;
-          contextData = contextData + 1;
-          *presultFloat = resultValue * floatResult + localFloat2;
-          presultFloat = presultFloat + -1;
-        } while (contextData < allocatedMemory1);
+          tempFloatA = *resultDataPointer;
+          tempFloatB = *(float *)(uiContext + processingCounter * 4);
+          *(float *)(uiContext + processingCounter * 4) = tempFloatA * inputFloatValue + tempFloatB;
+          processingCounter = processingCounter + 1;
+          *resultDataPointer = tempFloatB * inputFloatValue + tempFloatA;
+          resultDataPointer = resultDataPointer + -1;
+        } while (processingCounter < calculationBlockSize);
       }
-      *(float *)(CharacterDataOffset + (longlong)dataSource) = -floatResult;
-      localLong8 = localLong8 + 1;
+      *(float *)(dataOffset + (longlong)dataSource) = -inputFloatValue;
+      iterationOffset = iterationOffset + 1;
       dataSource = dataSource + 1;
-    } while (localLong8 < targetBuffer);
+    } while (iterationOffset < targetBuffer);
   }
   return;
 }
