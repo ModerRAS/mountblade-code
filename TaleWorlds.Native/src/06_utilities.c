@@ -19649,7 +19649,7 @@ ProcessDataSecurityValidation:
             systemDataBuffer4 = ValidateParameters(systemContext + 200);
             operationResult4 = floatResultA_04;
             if ((float)(systemDataBuffer4 / 0x30) != 0.0) {
-              in_stack_00000028 = &UNK_180983be8;
+              in_stack_00000028 = &SystemValidationDataTableA8;
               StackParameter38 = StackParameter20;
               StackBuffer30 = register_R13D;
               fStack0000000000000040 = (float)(systemDataBuffer4 / 0x30);
@@ -19896,7 +19896,7 @@ ValidateDataSecurity:
         systemDataBuffer4 = ValidateParameters(systemContext + 200);
         operationResult3 = floatResultA_03;
         if ((float)(systemDataBuffer4 / 0x30) != 0.0) {
-          in_stack_00000028 = &UNK_180983be8;
+          in_stack_00000028 = &SystemValidationDataTableA8;
           StackParameter38 = StackParameter20;
           StackBuffer30 = register_R13D;
           fStack0000000000000040 = (float)(systemDataBuffer4 / 0x30);
@@ -20040,7 +20040,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     validationStatus = ValidateParameters(systemContext + 200);
     dataFlags = floatResultA_00;
     if ((float)(validationStatus / 0x30) != 0.0) {
-      in_stack_00000028 = &UNK_180983be8;
+      in_stack_00000028 = &SystemValidationDataTableA8;
       StackParameter38 = StackParameter20;
       StackBuffer30 = register_R13D;
       fStack0000000000000040 = (float)(validationStatus / 0x30);
