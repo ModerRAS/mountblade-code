@@ -77689,7 +77689,7 @@ void ProcessSystemDataStructureHeapSort(void
           MemoryBlockIndex = MemoryAllocationSize;
         } while (DataConfigurationCounter < in_R11);
       }
-      if (bVar8) {
+      if (ValidationResult) {
         SystemParameter[MemoryAllocationSize] = SystemParameter[DataConfigurationCounter + -1];
         MemoryAllocationSize = DataConfigurationCounter + -1;
       }
@@ -77730,7 +77730,7 @@ void ProcessSystemDataStructureHeapSort(void
           MemoryBlockIndex = bufferAllocationStatus;
         } while (MemoryAllocationSize < MemoryBlockSize);
       }
-      if (bVar8) {
+      if (ValidationResult) {
         SystemParameter[bufferAllocationStatus] = SystemParameter[MemoryAllocationSize + -1];
         bufferAllocationStatus = MemoryAllocationSize + -1;
       }
@@ -77797,7 +77797,7 @@ void ProcessSystemDataStructureHeapSortOptimized(void
         DataConfigurationCounter = MemoryBlockIndex;
       } while (MemoryAllocationSize < MemoryBlockSize);
     }
-    if (bVar8) {
+    if (ValidationResult) {
       SystemParameter[MemoryBlockIndex] = SystemParameter[MemoryAllocationSize + -1];
       MemoryBlockIndex = MemoryAllocationSize + -1;
     }
@@ -78231,13 +78231,13 @@ void ProcessSystemDataStructureAdvancedSortAndMatch(long long SystemContextPoint
         LowByte = true;
       }
       else {
-        pbVar8 = *(byte **)(SystemOffsetValue + 0x28);
-        SystemOffsetValue = *(long long *)(SystemStringIndex + 0x28) - (long long)pbVar8;
+        uint8_t *ByteDataPointer = *(uint8_t **)(SystemOffsetValue + 0x28);
+        SystemOffsetValue = *(long long *)(SystemStringIndex + 0x28) - (long long)ByteDataPointer;
         do {
-          HighByte = *pbVar8;
-          SystemVariable9 = (uint)pbVar8[SystemOffsetValue];
+          HighByte = *ByteDataPointer;
+          SystemVariable9 = (uint)ByteDataPointer[SystemOffsetValue];
           if (HighByte != SystemVariable9) break;
-          pbVar8 = pbVar8 + 1;
+          ByteDataPointer = ByteDataPointer + 1;
         } while (SystemVariable9 != 0);
         LowByte = 0 < (int)(HighByte - SystemVariable9);
       }
@@ -78274,13 +78274,13 @@ void ProcessSystemDataStructureAdvancedSortAndMatch(long long SystemContextPoint
           LowByte = true;
         }
         else {
-          pbVar8 = *(byte **)(DataConfigurationCounter + 0x28);
-          SystemStringIndex = *(long long *)(loopCounter + 0x28) - (long long)pbVar8;
+          uint8_t *ByteDataPointer = *(uint8_t **)(DataConfigurationCounter + 0x28);
+          SystemStringIndex = *(long long *)(loopCounter + 0x28) - (long long)ByteDataPointer;
           do {
-            HighByte = *pbVar8;
-            SystemVariable9 = (uint)pbVar8[SystemStringIndex];
+            HighByte = *ByteDataPointer;
+            SystemVariable9 = (uint)ByteDataPointer[SystemStringIndex];
             if (HighByte != SystemVariable9) break;
-            pbVar8 = pbVar8 + 1;
+            ByteDataPointer = ByteDataPointer + 1;
           } while (SystemVariable9 != 0);
           LowByte = 0 < (int)(HighByte - SystemVariable9);
         }
@@ -94143,7 +94143,7 @@ unsigned long long ProcessSystemContextAndMemoryManagement(void
   }
   else {
     LoopCounter4 = (unsigned long long)SystemStatusCode << 0x20;
-    bVar8 = ProcessSystemParameters(RegisterFramePointer + -0x79,IntegerValue9,RegisterFramePointer + 0x6f,&SystemStackBuffer,LoopCounter4);
+    bool ProcessingResult = ProcessSystemParameters(RegisterFramePointer + -0x79,IntegerValue9,RegisterFramePointer + 0x6f,&SystemStackBuffer,LoopCounter4);
     ProcessStringBuffer = (uint32_t)((unsigned long long)LoopCounter4 >> 0x20);
     if ((SystemStringBuffer30 == '\0') || (*(char *)(RegisterFramePointer + 0x6f) == '\0')) {
       LoopCounter4 = (unsigned long long)(*(char *)(RegisterFramePointer + 0x6f) != '\0') + 0x15;
@@ -94613,8 +94613,8 @@ unsigned long long ProcessCharacterVariableAndStatusBuffer(char *SystemContextPo
     }
     SystemStatusCode = ValidateSystemData(&fStack_108,IntegerValue9,0);
     if ((char)SystemStatusCode != '\0') {
-      bVar8 = ProcessSystemParameters(&fStack_108,IntegerValue9,&fStackX_18,acStackX_20,0);
-      if (bVar8 != 0) {
+      bool ValidationSuccess = ProcessSystemParameters(&fStack_108,IntegerValue9,&fStackX_18,acStackX_20,0);
+      if (ValidationSuccess != 0) {
         *Utf8BufferSize = *Utf8BufferSize == '\0';
         *(uint8_t *)(MemoryBlockSize + 0x1b3e) = 1;
         StatusBuffer = (uint *)(*(long long *)(MemoryBlockSize + 0x1af8) + 0x148);
@@ -94800,9 +94800,9 @@ unsigned long long ProcessDataStructureAndSystemConfiguration(uint64_t SystemCon
     SystemStatusCode = SystemStatusCode & 0xffffffffffffff00;
   }
   else {
-    bVar8 = ProcessSystemParameters(&DataStackBuffer,IntegerValue9,RegisterFramePointer + 0x60,RegisterFramePointer + 0x68,0);
+    bool ParameterValidationResult = ProcessSystemParameters(&DataStackBuffer,IntegerValue9,RegisterFramePointer + 0x60,RegisterFramePointer + 0x68,0);
     StringBuffer3 = *(char **)(RegisterFramePointer + 0x58);
-    if (bVar8 != 0) {
+    if (ParameterValidationResult != 0) {
       *StringBuffer3 = *StringBuffer3 == '\0';
       *(uint8_t *)(RegisterSourceIndex + 0x1b3e) = 1;
       StatusBuffer = (uint *)(*(long long *)(RegisterSourceIndex + 0x1af8) + 0x148);
