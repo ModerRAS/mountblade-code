@@ -30007,9 +30007,13 @@ void ProcessSystemDataWithTimeout(long long *Utf8InputBuffer,uint64_t Utf8Buffer
  * @param Utf8SourcePointer 保留参数1
  * @param Utf16EndPointer 保留参数2
  * 
- 180057e90，ProcessSystemDataTransfer
+ * 
+ * 原始函数名：FUN_180057e90
  */
-void ProcessSystemDataTransfer(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer/**
+void ProcessSystemDataTransfer(long long CharacterCode, uint64_t Utf8BufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
+{
+
+/**
  * @brief 初始化核心引擎系统事件处理器
  * 
  * 该函数负责初始化核心引擎的系统事件处理器，设置事件处理的
@@ -30047,9 +30051,13 @@ void CoreEngineInitializeSystemEventHandler(int64_t SystemContext, uint64_t Even
  * @param Utf8SourcePointer 保留参数1
  * @param Utf16EndPointer 保留参数2
  * 
- 180057ec0，HandleSystemDataSynchronization
+ * 
+ * 原始函数名：FUN_180057ec0
  */
-void HandleSystemDataSynchronization(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer/**
+void HandleSystemDataSynchronization(long long CharacterCode, uint64_t Utf8BufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
+{
+
+/**
  * @brief 清理核心引擎数据缓冲区
  * 
  * 该函数负责清理核心引擎的数据缓冲区，释放不再使用的内存资源。
