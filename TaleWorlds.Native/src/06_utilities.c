@@ -91164,7 +91164,18 @@ void ReleaseExclusiveLockA2(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090f8f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放独占锁A3
+ * 
+ * 该函数检查指定偏移量处的标志位，并在设置时释放独占锁。
+ * 与ReleaseExclusiveLockA2功能相同，但可能在不同的上下文中使用。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含锁信息
+ * 
+ * @note 原始函数名：Unwind_18090f8f0
+ */
+void ReleaseExclusiveLockA3(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x68) != '\0') {
@@ -91175,7 +91186,18 @@ void Unwind_18090f8f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f900(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证并处理数据状态标志A0
+ * 
+ * 该函数检查数据缓冲区的状态标志位，并在需要时调用数据验证处理器。
+ * 主要用于确保数据处理的完整性和一致性。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含状态信息
+ * 
+ * @note 原始函数名：Unwind_18090f900
+ */
+void ValidateAndProcessDataStatusFlagA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x24) & 1) != 0) {
@@ -91198,7 +91220,7 @@ void Unwind_18090f900(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_18090f930
  */
-void Unwind_18090f930(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateAndProcessDataStatusFlagA1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x24) & 2) != 0) {
@@ -91243,7 +91265,7 @@ void Unwind_18090f960(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_18090f970
  */
-void Unwind_18090f970(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerWithContextOffset8(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -91257,7 +91279,18 @@ void Unwind_18090f970(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f980(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器（偏移量0x10）
+ * 
+ * 该函数处理位于偏移量0x10处的异常上下文，并在有效时调用相应的异常处理函数。
+ * 与ExecuteExceptionHandlerWithContextOffset8类似，但操作的是不同的偏移量。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f980
+ */
+void ExecuteExceptionHandlerWithContextOffset10(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -91271,7 +91304,18 @@ void Unwind_18090f980(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f990(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器（偏移量0x18）
+ * 
+ * 该函数处理位于偏移量0x18处的异常上下文，并在有效时调用相应的异常处理函数。
+ * 与前两个异常上下文处理器类似，但操作的是不同的偏移量。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f990
+ */
+void ExecuteExceptionHandlerWithContextOffset18(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
