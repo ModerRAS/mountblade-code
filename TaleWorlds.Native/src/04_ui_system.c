@@ -37774,16 +37774,16 @@ void ProcessUIDataFiltering(longlong uiContext,longlong dataSource,undefined8 *t
   undefined1 auVar30 [16];
   undefined1 auVar31 [16];
   
-  afunctionResult3 = _DAT_180946f20;
-  afunctionResult2 = _DAT_180946f10;
-  afunctionResult1 = _DAT_180946f00;
-  afunctionResult0 = _DAT_180946ef0;
-  auVar9 = _DAT_180946ee0;
+  afunctionResult3 = UIVectorOperationMask6;
+  afunctionResult2 = UIVectorOperationMask5;
+  afunctionResult1 = UIVectorOperationMask4;
+  afunctionResult0 = UIVectorOperationMask3;
+  auVar9 = UIVectorOperationMask2;
   asemaphoreHandle8 = packsswb(*param_6,*param_6);
   asemaphoreHandle9 = pshufb(asemaphoreHandle8,g_simdMultiplyMask);
-  auVar30 = pshufb(asemaphoreHandle8,_DAT_180946f50);
-  auVar31 = pshufb(asemaphoreHandle8,_DAT_180946f60);
-  asemaphoreHandle8 = pshufb(asemaphoreHandle8,_DAT_180946f80);
+  auVar30 = pshufb(asemaphoreHandle8,UIVectorShuffleMask0);
+  auVar31 = pshufb(asemaphoreHandle8,UIVectorShuffleMask1);
+  asemaphoreHandle8 = pshufb(asemaphoreHandle8,UIVectorShuffleMask2);
   if (resultPointer != 0) {
     pafunctionResult4 = (undefined1 (*) [16])(uiContext + -3);
     functionResult5 = (ulonglong)resultPointer;
@@ -37945,13 +37945,13 @@ void ProcessUIRendererData2(ulonglong *uiContext,longlong dataSource,undefined8 
   undefined1 auVar59 [16];
   undefined1 auVar60 [16];
   
-  afunctionResult2 = _DAT_180946f20;
+  afunctionResult2 = UIVectorOperationMask6;
   functionResult9 = (ulonglong)resultPointer;
   auVar62 = packsswb(*param_6,*param_6);
   auVar63 = pshufb(auVar62,g_simdMultiplyMask);
-  auVar64 = pshufb(auVar62,_DAT_180946f50);
-  auVar65 = pshufb(auVar62,_DAT_180946f60);
-  auVar62 = pshufb(auVar62,_DAT_180946f80);
+  auVar64 = pshufb(auVar62,UIVectorShuffleMask0);
+  auVar65 = pshufb(auVar62,UIVectorShuffleMask1);
+  auVar62 = pshufb(auVar62,UIVectorShuffleMask2);
   if (resultPointer != 0) {
     pfunctionResult8 = (ulonglong *)(dataSource * 7 + (longlong)uiContext);
     functionResult = *(ulonglong *)((longlong)uiContext + dataSource * 6);
@@ -38441,10 +38441,10 @@ void ProcessUIRendererData6(longlong uiContext,longlong dataSource,undefined1 (*
   undefined1 auStack_100 [16];
   undefined1 auStack_e0 [16];
   
-  afunctionResult4 = _DAT_180947040;
-  afunctionResult3 = _DAT_180947000;
-  afunctionResult2 = _DAT_180946fe0;
-  afunctionResult1 = _DAT_180946fc0;
+  afunctionResult4 = UIVectorOperationMask10;
+  afunctionResult3 = UIVectorOperationMask9;
+  afunctionResult2 = UIVectorOperationMask8;
+  afunctionResult1 = UIVectorOperationMask7;
   afunctionResult8 = vpacksswb_avx(*param_6,*param_6);
   afunctionResult6._16_16_ = afunctionResult8;
   afunctionResult6._0_16_ = afunctionResult8;
@@ -76584,7 +76584,7 @@ LAB_180710f7f:
     uStack_300 = CONCAT44((int)*(short *)(uiContext + 0x2182),(int)*(short *)(uiContext + 0x2180));
     goto LAB_180710a34;
   }
-  FUN_180722370(resultPointer,&uStack_300);
+  CalculateFontMetricData(resultPointer,&uStack_300);
   if (targetBuffer == 0) {
     validationResult6 = *(int *)(bufferData + 0x1a30 + (longlong)*pvalidationResult1 * 4);
 joined_r0x000180710ac6:
