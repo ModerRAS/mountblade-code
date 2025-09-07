@@ -60421,44 +60421,56 @@ void ProcessUIUnsignedPixelData(uint *uiContext,int dataSource,uint *targetBuffe
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180696a60(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
-void FUN_180696a60(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
+ /**
+ * @brief 计算图像加权绝对差值（高级版本）
+ * 
+ * 该函数使用SIMD指令计算两个图像数据之间的加权绝对差值
+ * 使用向量化处理提高计算效率
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源地址偏移
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @note 原始函数名: FUN_180696a60
+ */
+void CalculateImageWeightedAbsoluteDifferenceOptimized(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
 
 {
-  int operationResult;
-  ulonglong semaphoreHandle;
-  uint uVar3;
-  uint uVar4;
-  uint *puVar5;
-  int iVar6;
-  int iVar7;
-  int iVar8;
-  longlong lVar9;
-  byte *pbVar10;
-  uint *pfunctionResult1;
-  longlong allocatedMemory2;
-  undefined1 afunctionResult3 [16];
-  int operationResult4;
-  int operationResult5;
-  int operationResult6;
-  int operationResult7;
-  undefined1 in_XMM2 [16];
-  undefined1 afunctionResult8 [16];
-  uint *puStackX_18;
-  longlong lStack_48;
+  int systemStatus;
+  ulonglong vectorElementCount;
+  uint pixelValue1;
+  uint pixelValue2;
+  uint *contextPointer;
+  int pixelDiffSum;
+  int weightedDiffSum1;
+  int weightedDiffSum2;
+  longlong remainingBytes;
+  byte *bytePointer;
+  uint *targetPointer;
+  longlong iterationCount;
+  undefined1 vectorResult [16];
+  int vectorComponent0;
+  int vectorComponent1;
+  int vectorComponent2;
+  int vectorComponent3;
+  undefined1 vectorRegister [16];
+  undefined1 sourceVector [16];
+  uint *stackBuffer;
+  longlong loopCounter;
   
-  operationResult = SystemStatusFlag;
-  lStack_48 = 8;
-  puStackX_18 = targetBuffer;
+  systemStatus = SystemStatusFlag;
+  loopCounter = 8;
+  stackBuffer = targetBuffer;
   do {
-    iVar6 = 0;
-    operationResult4 = 0;
-    operationResult5 = 0;
-    operationResult6 = 0;
-    operationResult7 = 0;
-    allocatedMemory2 = 4;
-    puVar5 = uiContext;
-    pfunctionResult1 = puStackX_18;
+    pixelDiffSum = 0;
+    vectorComponent0 = 0;
+    vectorComponent1 = 0;
+    vectorComponent2 = 0;
+    vectorComponent3 = 0;
+    iterationCount = 4;
+    contextPointer = uiContext;
+    targetPointer = stackBuffer;
     do {
       semaphoreHandle = 0;
       if (1 < operationResult) {
@@ -60520,8 +60532,20 @@ void FUN_180696a60(uint *uiContext,int dataSource,uint *targetBuffer,int bufferS
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180696be0(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
-void FUN_180696be0(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
+ /**
+ * @brief 计算图像像素平均值（高级版本）
+ * 
+ * 该函数使用SIMD指令计算图像像素的平均值
+ * 使用向量化处理提高计算效率
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源地址偏移
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @note 原始函数名: FUN_180696be0
+ */
+void CalculateImagePixelAverageOptimized(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
 
 {
   int operationResult;
@@ -60639,8 +60663,20 @@ void FUN_180696be0(uint *uiContext,int dataSource,uint *targetBuffer,int bufferS
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180696d90(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
-void FUN_180696d90(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
+ /**
+ * @brief 计算图像像素标准差（高级版本）
+ * 
+ * 该函数使用SIMD指令计算图像像素的标准差
+ * 使用向量化处理提高计算效率
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源地址偏移
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @note 原始函数名: FUN_180696d90
+ */
+void CalculateImagePixelStandardDeviationOptimized(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
 
 {
   int operationResult;
@@ -60758,8 +60794,20 @@ void FUN_180696d90(uint *uiContext,int dataSource,uint *targetBuffer,int bufferS
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180696f40(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
-void FUN_180696f40(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
+ /**
+ * @brief 计算图像像素中位数（高级版本）
+ * 
+ * 该函数使用SIMD指令计算图像像素的中位数
+ * 使用向量化处理提高计算效率
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源地址偏移
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @note 原始函数名: FUN_180696f40
+ */
+void CalculateImagePixelMedianOptimized(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
 
 {
   int operationResult;
@@ -62228,8 +62276,18 @@ uint FUN_180698140(longlong uiContext)
 
 
 
- void FUN_1806982a0(longlong uiContext,longlong dataSource,int targetBuffer)
-void FUN_1806982a0(longlong uiContext,longlong dataSource,int targetBuffer)
+ /**
+ * @brief UI系统数据处理函数
+ * 
+ * 该函数负责处理UI系统的数据传输和缓冲区操作
+ * 包含数据验证、缓冲区管理和状态更新
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区
+ * @note 原始函数名: FUN_1806982a0
+ */
+void ProcessUIDataTransferHandler(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   int operationResult;
