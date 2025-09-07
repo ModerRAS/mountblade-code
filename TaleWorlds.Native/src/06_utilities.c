@@ -65007,7 +65007,22 @@ void Unwind_180908460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180908480(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_180908480 - 清理资源处理器A0
+// 功能：执行资源清理操作，使用系统清理标志
+#define CleanupResourceHandlerA0 Unwind_180908480
+
+/**
+ * @brief 清理资源处理器A0
+ * 
+ * 该函数负责在异常展开时执行资源清理操作，使用系统清理标志
+ * 确保资源被正确释放，避免内存泄漏
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 此函数在异常处理过程中自动调用
+ */
+void CleanupResourceHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x3b0,0x20,0x20,CleanupResourceHandler,SystemCleanupFlagAlternative);
@@ -65016,7 +65031,18 @@ void Unwind_180908480(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809084a0(void)
+// 原始函数名：Unwind_1809084a0 - 互斥锁销毁器
+// 功能：销毁互斥锁资源
+#define MutexDestroyer Unwind_1809084a0
+
+/**
+ * @brief 互斥锁销毁器
+ * 
+ * 该函数负责销毁互斥锁资源，确保线程同步机制被正确清理
+ * 
+ * @note 此函数在程序退出或异常处理时调用
+ */
+void MutexDestroyer(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -65025,7 +65051,22 @@ void Unwind_1809084a0(void)
 
 
 
-void Unwind_1809084c0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_1809084c0 - 清理资源处理器A1
+// 功能：执行数据缓冲区相关的资源清理操作
+#define CleanupResourceHandlerA1 Unwind_1809084c0
+
+/**
+ * @brief 清理资源处理器A1
+ * 
+ * 该函数负责在异常展开时执行数据缓冲区相关的资源清理操作
+ * 处理数据缓冲区资源的释放和清理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 此函数在异常处理过程中自动调用
+ */
+void CleanupResourceHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x48) + 8,0x20,0x20,CleanupResourceHandler);
@@ -65034,7 +65075,22 @@ void Unwind_1809084c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809084f0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_1809084f0 - 数据验证处理器
+// 功能：执行数据验证相关的资源处理操作
+#define DataValidationHandler Unwind_1809084f0
+
+/**
+ * @brief 数据验证处理器
+ * 
+ * 该函数负责在异常展开时执行数据验证相关的资源处理操作
+ * 确保数据完整性检查被正确执行
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 此函数在异常处理过程中自动调用
+ */
+void DataValidationHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,8,4,ValidateDataHandler);
@@ -65043,7 +65099,22 @@ void Unwind_1809084f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908520(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_180908520 - 系统清理处理器A0
+// 功能：执行系统相关的清理操作
+#define SystemCleanupHandlerA0 Unwind_180908520
+
+/**
+ * @brief 系统清理处理器A0
+ * 
+ * 该函数负责在异常展开时执行系统相关的清理操作
+ * 处理系统资源和状态的清理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 此函数在异常处理过程中自动调用
+ */
+void SystemCleanupHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x30,0x20,0x50,CleanupResourceHandler);
@@ -65052,7 +65123,22 @@ void Unwind_180908520(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908550(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_180908550 - 异常回调执行器A0
+// 功能：执行异常处理回调函数
+#define ExceptionCallbackExecutorA0 Unwind_180908550
+
+/**
+ * @brief 异常回调执行器A0
+ * 
+ * 该函数负责在异常展开时执行异常处理回调函数
+ * 从异常上下文中获取回调函数指针并执行
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 此函数在异常处理过程中自动调用
+ */
+void ExceptionCallbackExecutorA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -65066,7 +65152,22 @@ void Unwind_180908550(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908570(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_180908570 - 清理资源处理器A2
+// 功能：执行资源清理操作
+#define CleanupResourceHandlerA2 Unwind_180908570
+
+/**
+ * @brief 清理资源处理器A2
+ * 
+ * 该函数负责在异常展开时执行资源清理操作
+ * 确保资源被正确释放
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 此函数在异常处理过程中自动调用
+ */
+void CleanupResourceHandlerA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,0x20,0x20,CleanupResourceHandler);
@@ -65077,7 +65178,19 @@ void Unwind_180908570(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809085a0(void)
+// 原始函数名：Unwind_1809085a0 - 异常处理器初始化器A0
+// 功能：初始化异常处理器指针
+#define ExceptionHandlerInitializerA0 Unwind_1809085a0
+
+/**
+ * @brief 异常处理器初始化器A0
+ * 
+ * 该函数负责初始化异常处理器指针，设置为默认异常处理器
+ * 确保异常处理机制正常工作
+ * 
+ * @note 此函数在系统初始化时调用
+ */
+void ExceptionHandlerInitializerA0(void)
 
 {
   ExceptionHandlerPointerA9 = &DefaultExceptionHandlerB;
@@ -100119,7 +100232,7 @@ void CleanupSystemMemoryBufferC(void)
   
   // 检查缓冲区大小是否超过阈值
   if (0xf < SecondaryBufferSizeIndicator) {
-    memoryContext = CONCAT71(uRam0000000180bfc0d9, uRam0000000180bfc0d8);
+    memoryContext = CONCAT71(MemoryContextHighByteD9, MemoryContextLowByteD8);
     memoryPointer = memoryContext;
     
     // 检查内存块大小是否过大
@@ -100138,9 +100251,9 @@ void CleanupSystemMemoryBufferC(void)
   }
   
   // 重置缓冲区状态
-  uRam0000000180bfc0e8 = 0;
+  MemoryContextHighByteE8 = 0;
   SecondaryBufferSizeIndicator = 0xf;
-  uRam0000000180bfc0d8 = 0;
+  MemoryContextLowByteD8 = 0;
   return;
 }
 
@@ -100167,18 +100280,18 @@ void CleanupDataBufferD(void)
   int64_t dataPointer;
   
   // 检查缓冲区大小是否超过阈值
-  if (0xf < uRam0000000180d499c0) {
-    dataContext = CONCAT71(uRam0000000180d499a9, uRam0000000180d499a8);
+  if (0xf < DataBufferSizeIndicatorC0) {
+    dataContext = CONCAT71(DataContextHighByteA9, DataContextLowByteA8);
     dataPointer = dataContext;
     
     // 检查内存块大小是否过大
-    if (0xfff < uRam0000000180d499c0 + 1) {
+    if (0xfff < DataBufferSizeIndicatorC0 + 1) {
       dataPointer = *(int64_t *)(dataContext + -8);
       
       // 验证内存块偏移量的有效性
       if (0x1f < (dataContext - dataPointer) - 8U) {
         // 如果偏移量无效，触发参数验证错误
-        _invalid_parameter_noinfo_noreturn(dataContext - dataPointer, uRam0000000180d499c0 + 0x28);
+        _invalid_parameter_noinfo_noreturn(dataContext - dataPointer, DataBufferSizeIndicatorC0 + 0x28);
       }
     }
     
@@ -100187,9 +100300,9 @@ void CleanupDataBufferD(void)
   }
   
   // 重置缓冲区状态
-  uRam0000000180d499b8 = 0;
-  uRam0000000180d499c0 = 0xf;
-  uRam0000000180d499a8 = 0;
+  DataContextHighByteB8 = 0;
+  DataBufferSizeIndicatorC0 = 0xf;
+  DataContextLowByteA8 = 0;
   return;
 }
 
@@ -100659,7 +100772,7 @@ void FreeSystemMemoryBuffer(void)
   int64_t memoryPointer;
   
   if (0xf < SystemMemoryContextExtendedTable) {
-    memoryContext = CONCAT71(uRam0000000180bfc171,SystemMemoryPointerTable);
+    memoryContext = CONCAT71(MemoryContextHighByte171, SystemMemoryPointerTable);
     memoryPointer = memoryContext;
     if (0xfff < SystemMemoryContextExtendedTable + 1) {
       memoryPointer = *(int64_t *)(memoryContext + -8);
