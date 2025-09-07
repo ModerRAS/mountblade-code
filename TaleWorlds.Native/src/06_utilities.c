@@ -79997,7 +79997,7 @@ void Unwind_18090c660(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c670(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerAtOffset110(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x110) = &DefaultExceptionHandlerB;
@@ -80006,7 +80006,7 @@ void Unwind_18090c670(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c680(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerAtOffset410(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x410) = &DefaultExceptionHandlerB;
@@ -80015,7 +80015,7 @@ void Unwind_18090c680(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c690(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerAtOffset290(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x290) = &DefaultExceptionHandlerB;
@@ -80024,7 +80024,7 @@ void Unwind_18090c690(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c6a0(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerAtOffset2f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x2f0) = &DefaultExceptionHandlerB;
@@ -80033,7 +80033,7 @@ void Unwind_18090c6a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c6b0(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerAtOffset350(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x350) = &DefaultExceptionHandlerB;
@@ -80042,7 +80042,7 @@ void Unwind_18090c6b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c6c0(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerAtOffset188(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x188) = &DefaultExceptionHandlerB;
@@ -80051,7 +80051,7 @@ void Unwind_18090c6c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c6d0(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeFunctionPointerAtOffset138(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x138) != (int64_t *)0x0) {
@@ -80062,7 +80062,7 @@ void Unwind_18090c6d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c6e0(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeFunctionPointerAtOffset130(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x130) != (int64_t *)0x0) {
@@ -89776,6 +89776,18 @@ void Unwind_18090efe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 处理数据缓冲区清理函数A0
+ * 
+ * 该函数负责处理数据缓冲区的清理操作，遍历异常处理器链并执行清理。
+ * 它通过异常上下文指针来访问和管理异常处理相关的数据结构。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f000
+ * @note 语义化名称：ProcessDataBufferCleanupA0
+ */
 void Unwind_18090f000(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -108463,4 +108475,149 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 原始函数名：Unwind_1809066e0 - 异常处理器设置函数6E0
 // 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler6E0 Unwind_1809066e0
+
+// Unwind函数宏定义补充 - 系统异常处理和资源清理函数系列
+
+/**
+ * @brief 处理数据缓冲区清理函数A0
+ * 
+ * 该函数负责处理数据缓冲区的清理操作，调用ProcessDataBufferA3进行具体处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090f0a0
+ */
+#define ProcessDataBufferCleanupA0 Unwind_18090f0a0
+
+/**
+ * @brief 处理数据缓冲区清理函数A1
+ * 
+ * 该函数负责处理数据缓冲区的清理操作，调用ProcessDataBufferA3进行具体处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090f0b0
+ */
+#define ProcessDataBufferCleanupA1 Unwind_18090f0b0
+
+/**
+ * @brief 异常上下文处理函数A0
+ * 
+ * 该函数负责处理异常上下文，清理异常处理相关的数据结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f0c0
+ */
+#define ProcessExceptionContextA0 Unwind_18090f0c0
+
+/**
+ * @brief 异常处理器链执行函数A0
+ * 
+ * 该函数负责执行异常处理器链，按顺序调用多个异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f0d0
+ */
+#define ExecuteExceptionHandlerChainA0 Unwind_18090f0d0
+
+/**
+ * @brief 异常回调执行函数A0
+ * 
+ * 该函数负责执行异常回调函数，处理异常事件的回调逻辑
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090f0e0
+ */
+#define ExecuteExceptionCallbackA0 Unwind_18090f0e0
+
+/**
+ * @brief 数据缓冲区处理函数A0
+ * 
+ * 该函数负责处理数据缓冲区，调用ProcessDataBufferA5进行具体处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090f0f0
+ */
+#define ProcessDataBufferA0 Unwind_18090f0f0
+
+/**
+ * @brief 数据缓冲区处理函数A1
+ * 
+ * 该函数负责处理数据缓冲区，调用ProcessDataBufferA5进行具体处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090f100
+ */
+#define ProcessDataBufferA1 Unwind_18090f100
+
+/**
+ * @brief 异常处理状态清理函数A0
+ * 
+ * 该函数负责清理异常处理状态，重置异常处理相关的状态变量
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f110
+ */
+#define CleanupExceptionStatusA0 Unwind_18090f110
+
+/**
+ * @brief 异常处理器执行函数A0
+ * 
+ * 该函数负责执行异常处理器，调用异常处理回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f120
+ */
+#define ExecuteExceptionHandlerA0 Unwind_18090f120
+
+/**
+ * @brief 异常处理器执行函数A1
+ * 
+ * 该函数负责执行异常处理器，调用异常处理回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f130
+ */
+#define ExecuteExceptionHandlerA1 Unwind_18090f130
+
+/**
+ * @brief 异常处理器配置函数A0
+ * 
+ * 该函数负责配置异常处理器，设置临时和默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f140
+ */
+#define ConfigureExceptionHandlerA0 Unwind_18090f140
 #define SetupExceptionHandler6E0 Unwind_1809066e0

@@ -50621,13 +50621,13 @@ ReferenceCountBufferAllocation:
                 uStack_1d8 = (long long)pCharacterByteCount0 - (long long)ReferenceCountPointer4;
                 if ((long long)uStack_1d8 >> 2 == 0) {
                   BufferStatus1 = 1;
-LAB_18007a142:
+ReferenceCountAllocation:
                   ReferenceCountPointer5 = (int *)BufferAllocate(MemoryPoolManager,BufferStatus1 * 4,3);
                 }
                 else {
                   BufferStatus1 = ((long long)uStack_1d8 >> 2) * 2;
                   ReferenceCountPointer5 = ReferenceCountPointer6;
-                  if (BufferStatus1 != 0) goto LAB_18007a142;
+                  if (BufferStatus1 != 0) goto ReferenceCountAllocation;
                 }
                 if (ReferenceCountPointer4 != pCharacterByteCount0) {
                     // WARNING: Subroutine does not return
@@ -50668,7 +50668,7 @@ LAB_18007a142:
         piStack_210 = pCharacterByteCount6;
         pCoreEngineIntegerValue208 = ReferenceCountPointer3;
         piStack_1f8 = pCharacterByteCount6;
-        if ((((long long)pCharacterByteCount6 - (long long)ReferenceCountPointer6 & 0xfffffffffffffffcU) == 0) || (!hasDataBeenUpdated)        goto LAB_18007a312;
+        if ((((long long)pCharacterByteCount6 - (long long)ReferenceCountPointer6 & 0xfffffffffffffffcU) == 0) || (!hasDataBeenUpdated)        goto SystemEventProcessing;
         hasDataBeenUpdated = piStack_218 != (int *)0x0;
         piStack_218 = ReferenceCountPointer6;
         if (hasDataBeenUpdated) {
@@ -50679,7 +50679,7 @@ LAB_18007a142:
     }
   }
   goto LAB_18007a58b;
-LAB_18007a312:
+SystemEventProcessing:
   if (piStack_218 != (int *)0x0) {
     piStack_218 = ReferenceCountPointer6;
                     // WARNING: Subroutine does not return
@@ -50805,7 +50805,7 @@ LAB_18007a312:
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(ReferenceCountPointer4);
   }
-LAB_18007a58b:
+LoopContinuation:
   Utf16Char9 = Utf16Char9 + 1;
   StackConfigurationFlag = (unsigned long long)Utf16Char9;
   lStack_1d0 = lStack_1d0 + 1;
