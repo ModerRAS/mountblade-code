@@ -73965,19 +73965,46 @@ void ExecuteSystemCleanupAndValidation(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180908e90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器状态并清理资源
+ * 
+ * 该函数负责重置异常处理器的状态并清理相关资源，包括：
+ * - 设置临时异常处理器
+ * - 检查并终止系统（如果需要）
+ * - 重置异常处理器标志
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180908e90
+ * @note 这是一个异常处理器状态重置函数，用于清理异常处理后的状态
+ */
+void ResetExceptionHandlerStateAndCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
+  int64_t *exceptionHandlerCleanupFlag;
+  DataWord *exceptionHandlerStatusWord;
   
+  // 获取异常处理器上下文
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
+  
+  // 设置临时异常处理器
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
+  
+  // 检查并终止系统（如果需要）
+  exceptionHandlerCleanupFlag = (int64_t *)(exceptionHandlerContext + 0x30);
+  if (*exceptionHandlerCleanupFlag != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
+  
+  // 重置异常处理器状态
+  *exceptionHandlerCleanupFlag = 0;
+  exceptionHandlerStatusWord = (DataWord *)(exceptionHandlerContext + 0x40);
+  *exceptionHandlerStatusWord = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &DefaultExceptionHandlerB;
+  
   return;
 }
 
