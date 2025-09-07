@@ -14756,50 +14756,56 @@ SystemCleanupLabel:
 
 
 
-// 函数: void ResetUtilitySystemAA0(void)
-// 功能：重置工具系统到初始状态，清理所有临时数据和缓存
-// 注意：此函数会清除所有运行时状态，恢复系统到默认配置
-void ResetUtilitySystemAA0(void)
+/**
+ * @brief 重置工具系统到初始状态
+ * 
+ * 该函数负责将工具系统重置到初始状态，清理所有临时数据和缓存。
+ * 函数会验证系统资源，处理内存分配和释放，确保系统恢复到默认配置。
+ * 
+ * @note 此函数会清除所有运行时状态，恢复系统到默认配置
+ * @warning 在调用此函数前，确保系统状态稳定，避免数据丢失
+ */
+void ResetUtilitySystemToInitialState(void)
 
 {
-  int validationStatus;
-  int operationResult;
-  int64_t inputParameter;
-  int64_t stackPointer;
-  int64_t adjustedPointer;
-  uint flagsValue;
+  int resourceValidationStatus;
+  int memoryAllocationResult;
+  int64_t systemParameter;
+  int64_t memoryBufferPointer;
+  int64_t adjustedSystemParameter;
+  uint operationFlags;
   int64_t systemContext;
-  int64_t tempRegister;
-  DataBuffer systemConfigurationParameter;
+  int64_t temporaryRegister;
+  DataBuffer systemConfigurationData;
   
-  stackPointer = 0;
-  adjustedPointer = inputParameter + 8;
-  if (inputParameter == 0) {
-    adjustedPointer = stackPointer;
+  memoryBufferPointer = 0;
+  adjustedSystemParameter = systemParameter + 8;
+  if (systemParameter == 0) {
+    adjustedSystemParameter = memoryBufferPointer;
   }
-  validationStatus = ValidateAndProcessSystemResourceA0(adjustedPointer);
-  if (validationStatus != 0) {
+  resourceValidationStatus = ValidateAndProcessSystemResourceA0(adjustedSystemParameter);
+  if (resourceValidationStatus != 0) {
     return;
   }
-  flagsValue = (int)*(uint *)(registerContext + 0x2c) >> 0x1f;
-  operationResult = (*(uint *)(registerContext + 0x2c) ^ flagsValue) - flagsValue;
-  validationStatus = *(int *)(registerContext + 0x28) + 1;
-  if (operationResult < validationStatus) {
-    operationResult = (int)((float)operationResult * 1.5);
-    if (validationStatus <= operationResult) {
-      validationStatus = operationResult;
+  operationFlags = (int)*(uint *)(registerContext + 0x2c) >> 0x1f;
+  memoryAllocationResult = (*(uint *)(registerContext + 0x2c) ^ operationFlags) - operationFlags;
+  resourceValidationStatus = *(int *)(registerContext + 0x28) + 1;
+  if (memoryAllocationResult < resourceValidationStatus) {
+    memoryAllocationResult = (int)((float)memoryAllocationResult * ComponentCapacityGrowthFactor);
+    if (resourceValidationStatus <= memoryAllocationResult) {
+      resourceValidationStatus = memoryAllocationResult;
     }
-    if (validationStatus < 8) {
-      validationStatus = 8;
+    if (resourceValidationStatus < 8) {
+      resourceValidationStatus = 8;
     }
-    if (validationStatus < *(int *)(registerContext + 0x28)) goto ErrorHandlingLabel;
-    if (validationStatus != 0) {
-      if (MaximumMemoryBufferSize < validationStatus * 8 - 1U) goto ErrorHandlingLabel;
-      stackPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),validationStatus * 8,&SystemMemoryPoolB,0xf4,0)
+    if (resourceValidationStatus < *(int *)(registerContext + 0x28)) goto ErrorHandlingLabel;
+    if (resourceValidationStatus != 0) {
+      if (MaximumMemoryBufferSize < resourceValidationStatus * 8 - 1U) goto ErrorHandlingLabel;
+      memoryBufferPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),resourceValidationStatus * 8,&SystemMemoryPoolB,0xf4,0)
       ;
-      if (stackPointer == 0) goto ErrorHandlingLabel;
+      if (memoryBufferPointer == 0) goto ErrorHandlingLabel;
       if (*(int *)(registerContext + 0x28) != 0) {
-          memcpy(stackPointer,*(DataBuffer *)(registerContext + 0x20),(int64_t)*(int *)(registerContext + 0x28) << 3);
+          memcpy(memoryBufferPointer,*(DataBuffer *)(registerContext + 0x20),(int64_t)*(int *)(registerContext + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(registerContext + 0x2c)) && (*(int64_t *)(registerContext + 0x20) != 0)) {
