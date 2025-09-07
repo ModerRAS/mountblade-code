@@ -16104,26 +16104,26 @@ int ValidateAndProcessDataOperation(int64_t dataContext,DataBuffer operationFlag
   
   if ((int)operationFlags < 1) {
     validationResult = ExecuteSystemValidationA0();
-    if ((validationResult == 0) &&
-       (validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + 0x4c),&systemContextBuffer), validationResult == 0)
+    if ((validationResult == OperationSuccess) &&
+       (validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + SystemContextConfigOffset),&systemContextBuffer), validationResult == OperationSuccess)
        ) {
-      if (*(int *)(systemContextBuffer + 0x30) == 1) {
-        *(DataWord *)(systemContextBuffer + 0x30) = 2;
+      if (*(int *)(systemContextBuffer + OperationDataContextOffset) == OperationDataProcessed) {
+        *(DataWord *)(systemContextBuffer + OperationDataContextOffset) = OperationDataComplete;
       }
                     // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(resourceHandle + 0x98));
+      CleanupSystemEventA0(*(DataBuffer *)(resourceHandle + OperationContextBufferOffset));
     }
   }
-  else if (*(int64_t *)(dataContext + 0x18) == 0) {
-    validationResult = 0x1f;
+  else if (*(int64_t *)(dataContext + SystemContextHandleOffset) == 0) {
+    validationResult = OperationInvalidParameter;
   }
   else {
-    allocatedBuffer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),operationFlags,&SystemMemoryPoolC,0x315,0);
+    allocatedBuffer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset),operationFlags,&SystemMemoryPoolC,SystemMemoryAllocationFlag,0);
     if (allocatedBuffer != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(allocatedBuffer,*(DataBuffer *)(contextHandle + 0x18),(int64_t)*(int *)(contextHandle + 0x20));
+      memcpy(allocatedBuffer,*(DataBuffer *)(contextHandle + SystemContextHandleOffset),(int64_t)*(int *)(contextHandle + SystemContextSizeOffset));
     }
-    validationResult = 0x26;
+    validationResult = OperationMemoryError;
   }
   return validationResult;
 }
@@ -49522,10 +49522,16 @@ void Unwind_DestroyMutexB(void)
 
 
 
-void Unwind_1809047c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 销毁互斥锁C - 简化实现
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809047c0
+ */
+void Unwind_DestroyMutexC(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x20));
+  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + MemoryRegionDataReferenceOffset));
   return;
 }
 

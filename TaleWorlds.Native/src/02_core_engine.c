@@ -629,12 +629,16 @@ const void* const SystemContextDataPrimary = (void*)0x180a1ff90;
 const void* const SystemContextDataSecondary = (void*)0x180a1ff8c;
 const void* const SystemContextDataTertiary = (void*)0x180a1ff80;
 const void* const SystemContextDataQuaternary = (void*)0x180a1ef60;
+const void* const SystemContextDataQuinary = (void*)0x180a01ff0;
 
 // 系统字符串常量定义 - 用于替换UNK_180a03008等变量
 const void* const SystemStringPrimary = (void*)0x180a03008;
 const void* const SystemStringSecondary = (void*)0x180a02a80;
 const void* const SystemStringTertiary = (void*)0x180a02a20;
 const void* const SystemStringQuaternary = (void*)0x180a0a2a8;
+const void* const SystemStringQuinary = (void*)0x180a02628;
+const void* const SystemStringSenary = (void*)0x180a135d8;
+const void* const SystemStringSeptenary = (void*)0x180a135f0;
 
 // 系统内存地址常量定义 - 用于替换UNK_180a0ad58等变量
 const void* const SystemMemoryAddressPrimary = (void*)0x180a0ad58;
@@ -2997,6 +3001,10 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ValidateSystemDataStructure FUN_18010e97b
 #define ResetSystemDataStatus FUN_18010e9ca
 #define InitializeSystemDataProcessing FUN_18010ea4d
+
+// 系统初始化和清理函数
+#define InitializeSystemResources FUN_180291500
+#define CleanupSystemResourcesEx FUN_180291610
 #define ConfigureSystemDataBuffer FUN_18010ebc0
 #define SetupSystemDataValidation FUN_18010ec09
 #define ValidateSystemDataIntegrity FUN_18010ec85
@@ -115094,7 +115102,19 @@ void ProcessSystemMemoryPoolInitializationAndCharacterValidation(long long Chara
 
 
 
-0a70(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180120a70(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理多重系统内存池初始化和字符编码验证
+ * 
+ * 该函数负责处理多个系统内存池的初始化，验证字符编码数据，
+ * 并根据不同的字符代码偏移量来决定是否初始化相应的内存池。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return 无
+ */
+void ProcessMultipleSystemMemoryPoolInitializationAndCharacterValidation(long long CharacterCode, uint64_t CharacterCodeSize, uint64_t Utf8InputPointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
@@ -115257,7 +115277,16 @@ void CleanupSystemContextMemory(long long CharacterCode, uint64_t CharacterCodeS
 
 
 
-10b0(long long CharacterCodevoid FUN_1801210b0(long long CharacterCode
+/**
+ * @brief 初始化系统组件和数据结构
+ * 
+ * 该函数负责初始化系统组件和数据结构，计算字符串长度，
+ * 分配内存并复制数据到系统内存池中。
+ * 
+ * @param CharacterCode 系统组件指针
+ * @return 无
+ */
+void InitializeSystemComponents(long long CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -115280,7 +115309,18 @@ void CleanupSystemContextMemory(long long CharacterCode, uint64_t CharacterCodeS
 
 
 
-1130(long long CharacterCode,unsigned long long *CharacterCodeSize,long long Utf8InputPointervoid ProcessStringOperationHandler(long long CharacterCode,unsigned long long *CharacterCodeSize,long long Utf8InputPointer
+/**
+ * @brief 处理字符串操作和内存分配
+ * 
+ * 该函数负责处理字符串操作，包括字符串长度计算、内存分配
+ * 和数据复制。根据输入参数的不同，采用不同的处理策略。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8InputPointer UTF8输入指针
+ * @return 无
+ */
+void ProcessStringOperationHandler(long long CharacterCode, unsigned long long *CharacterCodeSize, long long Utf8InputPointer)
 {
   long long PrimaryDataSize;
   unsigned long long MemoryAllocationIndex;
@@ -199981,54 +200021,71 @@ uint64_t FUN_1801790a0(uint64_t CharacterCode,uint64_t *CharacterCodeSize
 
 
 
-unsigned long long FUN_180179180(long long CharacterCode,long long *CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer,
-                       uint64_t AdditionalParameter1,long long AdditionalParameter2,uint64_t AdditionalParameter3,unsigned long long *AdditionalParameter4
+/**
+ * @brief 处理Unicode字符编码转换
+ * 
+ * 该函数负责处理Unicode字符的编码转换，包括UTF-8到UTF-16的转换过程
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2
+ * @param AdditionalParameter3 额外参数3
+ * @param AdditionalParameter4 额外参数4指针
+ * @return unsigned long long 转换状态码
+ * 
+ * @note 原始函数名：FUN_180179180
+ */
+unsigned long long ProcessUnicodeCharacterConversion(long long CharacterCode,long long *CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer,
+                       uint64_t AdditionalParameter1,long long AdditionalParameter2,uint64_t AdditionalParameter3,unsigned long long *AdditionalParameter4)
 {
   uint64_t *StatusBuffer;
   void *SystemContext;
   uint UnicodeCodePoint;
   unsigned long long MemoryOffsetValue;
   uint64_t *CharacterCodePointer;
-  long long *pMemoryBoundaryEnd;
-  uint64_t uStackX_10;
-  long long *plStack_38;
+  long long *MemoryBoundaryEndPointer;
+  uint64_t ConversionFlag;
+  long long *StackPointer38;
   uint8_t StackArray30 [8];
   uint64_t SystemStackOffset28;
   uint32_t StackUnsigned20;
   
-  MemoryAddressMask = (**(code **)(*CharacterCodeSize + 0x28))(CharacterCodeSize,Utf8InputPointer,Utf16EndPointer,AdditionalParameter4);
-  if ((int)MemoryAddressMask == 0) {
-    pMemoryBoundaryEnd = (long long *)*AdditionalParameter4;
-    MemoryAddressMask = MemoryAddressMask & 0xffffffff;
-    plStack_38 = pMemoryBoundaryEnd;
+  ConversionStatusMask = (**(code **)(*CharacterCodeSize + 0x28))(CharacterCodeSize,Utf8InputPointer,Utf16EndPointer,AdditionalParameter4);
+  if ((int)ConversionStatusMask == 0) {
+    MemoryBoundaryEndPointer = (long long *)*AdditionalParameter4;
+    ConversionStatusMask = ConversionStatusMask & 0xffffffff;
+    StackPointer38 = MemoryBoundaryEndPointer;
     if (AdditionalParameter2 != 0) {
-      uStackX_10 = 0;
-      UnicodeCodePoint = (**(code **)(*CharacterCodeSize + 0x38))(CharacterCodeSize,pMemoryBoundaryEnd,AdditionalParameter2,&uStackX_10);
-      MemoryAddressMask = (unsigned long long)UnicodeCodePoint;
+      ConversionFlag = 0;
+      UnicodeCodePoint = (**(code **)(*CharacterCodeSize + 0x38))(CharacterCodeSize,MemoryBoundaryEndPointer,AdditionalParameter2,&ConversionFlag);
+      ConversionStatusMask = (unsigned long long)UnicodeCodePoint;
       StatusBuffer = (void *)(CharacterCode + 8);
-      uStack_28 = uStackX_10;
+      SystemStackOffset28 = ConversionFlag;
       StackUnsigned20 = *(uint32_t *)(AdditionalParameter2 + 8);
       CharacterCodePointer = StatusBuffer;
-      PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x18);
-      while (PrimaryProcessingStatusFlag != NULL) {
-        if ((long long *)PrimaryProcessingStatusFlag[4] < pMemoryBoundaryEnd) {
-          PrimaryProcessingStatusFlag = (void *)*PrimaryProcessingStatusFlag;
+      SystemProcessingStatusFlag = *(uint64_t **)(CharacterCode + 0x18);
+      while (SystemProcessingStatusFlag != NULL) {
+        if ((long long *)SystemProcessingStatusFlag[4] < MemoryBoundaryEndPointer) {
+          SystemProcessingStatusFlag = (void *)*SystemProcessingStatusFlag;
         }
         else {
-          CharacterCodePointer = PrimaryProcessingStatusFlag;
-          PrimaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
+          CharacterCodePointer = SystemProcessingStatusFlag;
+          SystemProcessingStatusFlag = (void *)SystemProcessingStatusFlag[1];
         }
       }
-      if ((CharacterCodePointer == StatusBuffer) || (pMemoryBoundaryEnd < (long long *)CharacterCodePointer[4])) {
-        CharacterCodePointer = (void *)FUN_180179770(StatusBuffer,StackArray30,StatusBuffer,CharacterCodePointer,&plStack_38);
+      if ((CharacterCodePointer == StatusBuffer) || (MemoryBoundaryEndPointer < (long long *)CharacterCodePointer[4])) {
+        CharacterCodePointer = (void *)FUN_180179770(StatusBuffer,StackArray30,StatusBuffer,CharacterCodePointer,&StackPointer38);
         CharacterCodePointer = (void *)*CharacterCodePointer;
-        pMemoryBoundaryEnd = plStack_38;
+        MemoryBoundaryEndPointer = StackPointer38;
       }
-      FUN_1800863a0(CharacterCodePointer + 5,&uStack_28);
+      FUN_1800863a0(CharacterCodePointer + 5,&SystemStackOffset28);
     }
-    (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd,&SystemSecondaryStatusBuffer,7,&SystemConfigurationData);
+    (**(code **)(*MemoryBoundaryEndPointer + 0x28))(MemoryBoundaryEndPointer,&SystemSecondaryStatusBuffer,7,&SystemConfigurationData);
   }
-  return MemoryAddressMask;
+  return ConversionStatusMask;
 }
 
 
@@ -244933,7 +244990,7 @@ uint8_t FUN_1802164d6(void
   if (CoreEnginePointerBuffer60 != NULL) {
     CharacterCodePointer = CoreEnginePointerBuffer60;
   }
-  MemoryAllocationIndex = InitializeEngineStatusBuffer(&SystemStackFlag,CharacterCodePointer,&UNK_180a01ff0);
+  MemoryAllocationIndex = InitializeEngineStatusBuffer(&SystemStackFlag,CharacterCodePointer,SystemContextDataQuinary);
   BufferStatus = lStack_40;
   if (lStack_40 == 0) {
     BufferStatus = FUN_1801595d0(MemoryAllocationIndex,&SystemEventPointer);
@@ -247831,7 +247888,7 @@ LAB_18021a863:
   if (CoreEnginePointerBuffer60 != NULL) {
     CharacterCodePointer = CoreEnginePointerBuffer60;
   }
-  MemoryAllocationIndex = InitializeEngineStatusBuffer(&SystemStackFlag,CharacterCodePointer,&UNK_180a01ff0);
+  MemoryAllocationIndex = InitializeEngineStatusBuffer(&SystemStackFlag,CharacterCodePointer,SystemContextDataQuinary);
   BufferStatus = lStack_40;
   if (lStack_40 == 0) {
     BufferStatus = FUN_1801595d0(MemoryAllocationIndex,&SystemEventPointer);
@@ -250572,10 +250629,10 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Chara
   }
   IntegerValue = *(int *)(CoreEngineRenderContext + 0x1d44);
   if (IntegerValue == 0) {
-    SecondaryProcessingStatusFlag = &UNK_180a02628;
+    SecondaryProcessingStatusFlag = SystemStringQuinary;
   }
   else if (IntegerValue == 1) {
-    SecondaryProcessingStatusFlag = &UNK_180a135d8;
+    SecondaryProcessingStatusFlag = SystemStringSenary;
   }
   else if (IntegerValue == 2) {
     SecondaryProcessingStatusFlag = &SystemUnknownProcessingStatusFlagH;
