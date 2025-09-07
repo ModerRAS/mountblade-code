@@ -20232,13 +20232,20 @@ undefined8 DestroyUIComponentManager(undefined8 *manager_ptr,ulonglong flags,und
  计算UI组件的位置、旋转和缩放变换，生成最终的变换矩阵。
  * 支持三维空间中的复杂变换计算，包括矩阵乘法、向量归一化和角度计算。
   component_ptr UI组件指针，包含组件的变换配置信息
- *  transform_matrix 变换矩阵指针，用于存储计算结果
- *  position_vector 位置向量数组，包含位置、旋转和缩放信息
- *  flags 变换标志位，控制变换行为
-  void
+ /**
+ * @brief 计算UI组件变换矩阵
  * 
-  原始函数名：FUN_18004c7c0
-  该函数涉及复杂的3D数学计算，包括矩阵变换、向量运算和三角函数
+ * 计算UI组件的3D变换矩阵，包括位置、旋转和缩放变换。
+ * 使用齐次坐标进行矩阵运算，支持各种变换组合。
+ * 
+ * @param component_ptr 组件指针，指向UI组件数据结构
+ * @param transform_matrix 变换矩阵指针，用于存储计算结果
+ * @param position_vector 位置向量数组，包含位置、旋转和缩放信息
+ * @param flags 变换标志位，控制变换行为
+ * 
+ * @note 该函数涉及复杂的3D数学计算，包括矩阵变换、向量运算和三角函数
+ * @warning 调用者需要确保所有指针参数的有效性
+ */
  void CalculateUIComponentTransform(longlong component_ptr,longlong transform_matrix,float *position_vector,longlong flags)
 
 {

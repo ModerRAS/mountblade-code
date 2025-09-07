@@ -173765,7 +173765,12 @@ void ResetUtf8ProcessingState(void)
 
 
 
-3e7f2(voidvoid FUN_18013e7f2(void
+/**
+ * @brief 初始化UTF-8处理系统
+ * @return 无返回值
+ * @note 原始函数名：FUN_18013e7f2
+ */
+void InitializeUtf8ProcessingSystem(void)
 {
   return;
 }
@@ -173822,7 +173827,13 @@ void ProcessUtf8BufferSizeOptimization(int *Utf8InputBuffer,int Utf8BufferSize)
 
 
 
-3e81a(int CharacterCodevoid FUN_18013e81a(int CharacterCode
+/**
+ * @brief 验证UTF-8字符代码
+ * @param CharacterCode 字符代码
+ * @return 验证结果
+ * @note 原始函数名：FUN_18013e81a
+ */
+int ValidateUtf8CharacterCode(int CharacterCode)
 {
   int LockResult;
   uint64_t MemoryAllocationIndex;
@@ -173861,7 +173872,12 @@ void ProcessUtf8BufferSizeOptimization(int *Utf8InputBuffer,int Utf8BufferSize)
 
 
 
-3e8d4(voidvoid FUN_18013e8d4(void
+/**
+ * @brief 完成UTF-8缓冲区处理
+ * @return 无返回值
+ * @note 原始函数名：FUN_18013e8d4
+ */
+void FinalizeUtf8BufferProcessing(void)
 {
   uint32_t *SystemContext;
   uint32_t RegisterValueEDI;
