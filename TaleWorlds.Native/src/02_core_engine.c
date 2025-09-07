@@ -248787,15 +248787,28 @@ uint8_t FUN_180216416(void
 
 
 
-bool FUN_180216430(long long CharacterCode,int Utf8BufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 处理UTF-8到UTF-16的字符编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，管理内存分配，
+ * 并处理系统事件和优先级设置。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return bool 转换成功返回true，失败返回false
+ * 
+ * @note 原始函数名：FUN_180216430
+ */
+bool ProcessUtf8ToUtf16CharacterConversion(long long CharacterCode,int Utf8BufferSize,uint64_t Utf8SourcePointer
 {
   uint Utf16Char;
   long long BufferStatus;
-  uint32_t *systemEventTemplatePointer;
+  uint32_t *SystemEventTemplatePointer;
   int validationResult;
   uint32_t VectorRegisterDa;
-  void *pSystemPriorityLevel;
-  uint32_t *pFunctionAddress;
+  void *SystemPriorityLevelPointer;
+  uint32_t *FunctionAddressPointer;
   uint ProcessingFlags;
   uint64_t SystemStackOffset28;
   
@@ -248803,77 +248816,87 @@ bool FUN_180216430(long long CharacterCode,int Utf8BufferSize,uint64_t Utf8Sourc
      (*(int *)(SystemConfigData + 0xb60) != 1)) {
     return false;
   }
-  pSystemPriorityLevel = (void *)0x18021646e;
-  BufferStatus = FUN_180213bb0();
-  pSystemPriorityLevel = (void *)0x18021647c;
-  FUN_1802164f0(VectorRegisterDa,BufferStatus,Utf8SourcePointer);
+  SystemPriorityLevelPointer = (void *)0x18021646e;
+  BufferStatus = GetSystemBufferStatus();
+  SystemPriorityLevelPointer = (void *)0x18021647c;
+  ProcessSystemBufferOperation(VectorRegisterDa,BufferStatus,Utf8SourcePointer);
   if (BufferStatus == 0) {
-    pSystemPriorityLevel = (void *)0x1802164c4;
+    SystemPriorityLevelPointer = (void *)0x1802164c4;
     ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3);
     return false;
   }
   if (*(int *)(SystemConfigData + 0x9a0) == 0) goto LAB_18040698e;
-  pSystemPriorityLevel = &SystemNullTemplate;
+  SystemPriorityLevelPointer = &SystemNullTemplate;
   uStack_28 = 0;
-  pFunctionAddress = (uint32_t *)0x0;
+  FunctionAddressPointer = (uint32_t *)0x0;
   ProcessingFlags = 0;
-  pFunctionAddress = (uint32_t *)BufferAllocate(MemoryPoolManager,0x22,0x13);
-  *(uint8_t *)pFunctionAddress = 0;
-  Utf16Char = GetMemoryAllocationInfo(pFunctionAddress);
-  *pFunctionAddress = 0x53203e20;
-  pFunctionAddress[1] = 0x444e554f;
-  pFunctionAddress[2] = 0x74533e20;
-  pFunctionAddress[3] = 0x20747261;
-  pFunctionAddress[4] = 0x6e657665;
-  pFunctionAddress[5] = 0x69772074;
-  pFunctionAddress[6] = 0x68206874;
-  pFunctionAddress[7] = 0x6c646e61;
-  *(uint16_t *)(pFunctionAddress + 8) = 0x65;
+  FunctionAddressPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x22,0x13);
+  *(uint8_t *)FunctionAddressPointer = 0;
+  Utf16Char = GetMemoryAllocationInfo(FunctionAddressPointer);
+  *FunctionAddressPointer = 0x53203e20;
+  FunctionAddressPointer[1] = 0x444e554f;
+  FunctionAddressPointer[2] = 0x74533e20;
+  FunctionAddressPointer[3] = 0x20747261;
+  FunctionAddressPointer[4] = 0x6e657665;
+  FunctionAddressPointer[5] = 0x69772074;
+  FunctionAddressPointer[6] = 0x68206874;
+  FunctionAddressPointer[7] = 0x6c646e61;
+  *(uint16_t *)(FunctionAddressPointer + 8) = 0x65;
   ProcessingFlags = 0x21;
   uStack_28.LowPart = Utf16Char;
-  FUN_180628570(&pSystemPriorityLevel,BufferStatus);
+  ProcessSystemPriorityLevelOperation(&SystemPriorityLevelPointer,BufferStatus);
   validationResult = ProcessingFlags + 1;
   if (validationResult != 0) {
     Utf16Char = ProcessingFlags + 2;
-    if (pFunctionAddress == (uint32_t *)0x0) {
+    if (FunctionAddressPointer == (uint32_t *)0x0) {
       if ((int)Utf16Char < 0x10) {
         Utf16Char = 0x10;
       }
-      pFunctionAddress = (uint32_t *)BufferAllocate(MemoryPoolManager,(long long)(int)Utf16Char,0x13);
-      *(uint8_t *)pFunctionAddress = 0;
+      FunctionAddressPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,(long long)(int)Utf16Char,0x13);
+      *(uint8_t *)FunctionAddressPointer = 0;
     }
     else {
       if (Utf16Char <= (uint)uStack_28) goto LAB_180406929;
-      pFunctionAddress = (uint32_t *)AllocateMemoryPool(MemoryPoolManager,pFunctionAddress,Utf16Char,0x10,0x13);
+      FunctionAddressPointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager,FunctionAddressPointer,Utf16Char,0x10,0x13);
     }
-    uStack_28.LowPart = GetMemoryAllocationInfo(pFunctionAddress);
+    uStack_28.LowPart = GetMemoryAllocationInfo(FunctionAddressPointer);
   }
 LAB_180406929:
-  *(uint16_t *)((unsigned long long)ProcessingFlags + (long long)pFunctionAddress) = 10;
-  systemEventTemplatePointer = (uint32_t *)&CoreEngineDataTemplate;
-  if (pFunctionAddress != (uint32_t *)0x0) {
-    systemEventTemplatePointer = pFunctionAddress;
+  *(uint16_t *)((unsigned long long)ProcessingFlags + (long long)FunctionAddressPointer) = 10;
+  SystemEventTemplatePointer = (uint32_t *)&CoreEngineDataTemplate;
+  if (FunctionAddressPointer != (uint32_t *)0x0) {
+    SystemEventTemplatePointer = FunctionAddressPointer;
   }
   ProcessingFlags = validationResult;
-  ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,systemEventTemplatePointer);
-  pSystemPriorityLevel = &SystemNullTemplate;
-  if (pFunctionAddress != (uint32_t *)0x0) {
+  ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,SystemEventTemplatePointer);
+  SystemPriorityLevelPointer = &SystemNullTemplate;
+  if (FunctionAddressPointer != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  pFunctionAddress = (uint32_t *)0x0;
+  FunctionAddressPointer = (uint32_t *)0x0;
   uStack_28 = (unsigned long long)uStack_28.HighPart << 0x20;
-  pSystemPriorityLevel = &ThreadLocalStorageTemplate;
+  SystemPriorityLevelPointer = &ThreadLocalStorageTemplate;
 LAB_18040698e:
-  validationResult = FUN_18084acb0(BufferStatus);
-  FUN_180211a30(validationResult,&SystemCharacterEncodingBuffer);
+  validationResult = ProcessSystemBufferCleanup(BufferStatus);
+  ProcessSystemCharacterEncoding(validationResult,&SystemCharacterEncodingBuffer);
   return validationResult == 0;
 }
 
 
 
  (ram,0x000180406901
-bool FUN_180216464(void
+/**
+ * @brief 验证UTF-16字符编码和系统配置
+ * 
+ * 该函数负责验证UTF-16字符编码的正确性，管理系统配置，
+ * 并处理内存分配和系统事件。
+ * 
+ * @return bool 验证成功返回true，失败返回false
+ * 
+ * @note 原始函数名：FUN_180216464
+ */
+bool ValidateUtf16CharacterEncodingAndSystemConfiguration(void
 {
   uint Utf16Char;
   int CharacterByteCount;
@@ -248881,19 +248904,19 @@ bool FUN_180216464(void
   uint32_t *MemoryAddressMask;
   uint32_t *Utf8InputBufferPointer;
   uint32_t VectorRegisterDa;
-  void *puStack_8;
+  void *SystemStackPointer;
   
-  puStack_8 = (void *)0x18021646e;
-  MemoryBlockIndex = FUN_180213bb0();
-  puStack_8 = (void *)0x18021647c;
-  FUN_1802164f0(VectorRegisterDa,MemoryBlockIndex);
+  SystemStackPointer = (void *)0x18021646e;
+  MemoryBlockIndex = GetSystemBufferStatus();
+  SystemStackPointer = (void *)0x18021647c;
+  ProcessSystemBufferOperation(VectorRegisterDa,MemoryBlockIndex);
   if (MemoryBlockIndex == 0) {
-    puStack_8 = (void *)0x1802164c4;
+    SystemStackPointer = (void *)0x1802164c4;
     ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,SystemConfigurationTemplateSenary);
     return false;
   }
   if (*(int *)(SystemConfigData + 0x9a0) == 0) goto LAB_18040698e;
-  puStack_8 = &SystemNullTemplate;
+  SystemStackPointer = &SystemNullTemplate;
   pMemoryAddressMask = (uint32_t *)BufferAllocate(MemoryPoolManager,0x22,0x13);
   *(uint8_t *)pMemoryAddressMask = 0;
   Utf16Char = GetMemoryAllocationInfo(pMemoryAddressMask);
@@ -248906,7 +248929,7 @@ bool FUN_180216464(void
   pMemoryAddressMask[6] = 0x68206874;
   pMemoryAddressMask[7] = 0x6c646e61;
   *(uint16_t *)(pMemoryAddressMask + 8) = 0x65;
-  FUN_180628570(&puStack_8,MemoryBlockIndex);
+  ProcessSystemPriorityLevelOperation(&SystemStackPointer,MemoryBlockIndex);
   if (pMemoryAddressMask == (uint32_t *)0x0) {
     pMemoryAddressMask = (uint32_t *)BufferAllocate(MemoryPoolManager,0x23,0x13);
     *(uint8_t *)pMemoryAddressMask = 0;
@@ -248923,15 +248946,15 @@ LAB_180406921:
     CharacterCodePointer = pMemoryAddressMask;
   }
   ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,CharacterCodePointer);
-  puStack_8 = &SystemNullTemplate;
+  SystemStackPointer = &SystemNullTemplate;
   if (pMemoryAddressMask != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  puStack_8 = &ThreadLocalStorageTemplate;
+  SystemStackPointer = &ThreadLocalStorageTemplate;
 LAB_18040698e:
-  CharacterByteCount = FUN_18084acb0(MemoryBlockIndex);
-  FUN_180211a30(CharacterByteCount,&SystemCharacterEncodingBuffer);
+  CharacterByteCount = ProcessSystemBufferCleanup(MemoryBlockIndex);
+  ProcessSystemCharacterEncoding(CharacterByteCount,&SystemCharacterEncodingBuffer);
   return CharacterByteCount == 0;
 }
 
