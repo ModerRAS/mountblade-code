@@ -269346,7 +269346,17 @@ FUN_18022a810(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
 
 
 
-long long FUN_18022a890(long long CharacterCode,char Utf8BufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理字符编码的浮点运算
+ * 
+ * 该函数负责处理字符编码相关的浮点数运算，用于字符编码转换。
+ * 
+ * @param CharacterCode 字符编码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return 处理结果状态码
+ */
+#define ProcessCharacterEncodingFloatOperation FUN_18022a890
 {
   uint64_t *StatusBuffer;
   float *pContextSecondaryFloat;
@@ -270037,8 +270047,18 @@ float * FUN_18022b050(long long CharacterCode,float *Utf8InputBufferSize,int Utf
 
 
 
-uint64_t *
-FUN_18022b510(uint64_t CharacterCode,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 初始化UTF-8缓冲区配置
+ * 
+ * 该函数负责初始化UTF-8缓冲区的配置，包括内存分配和字符串处理设置。
+ * 
+ * @param CharacterCode 字符编码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return UTF-8缓冲区指针
+ */
+#define InitializeUtf8BufferConfiguration FUN_18022b510
 {
   *Utf8InputBufferSize = &ThreadLocalStorageTemplate;
   Utf8BufferSize[1] = 0;

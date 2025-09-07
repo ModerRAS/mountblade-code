@@ -4084,16 +4084,16 @@ uint32_t SystemDataWord;
 
 // 异常状态标志变量声明
 uint8_t ExceptionStatusFlagPrimary;       // 异常状态标志Primary
-uint8_t ExceptionStatusFlagA1;       // 异常状态标志A1
+uint8_t ExceptionStatusFlagSecondary;       // 异常状态标志Secondary
 
 // 浮点数验证数组变量声明
 float FloatValidationArray[16];
 
 // 数据处理上下文变量声明
-void* DataProcessingContextA0;
+void* DataProcessingContextPrimary;
 
 // 验证上下文变量声明
-void* ValidationContextA0;
+void* ValidationContextPrimary;
 
 // 异常数据表地址变量声明
 void* ExceptionDataTableAddress;
@@ -8325,12 +8325,12 @@ void* GlobalDataPointerA49Status;     // DAT_180bfa9e8
 void* GlobalDataPointerA49Config;     // DAT_180bfa9f0
 void* GlobalDataPointerA49Cache;      // DAT_180bfa9f8
 void* GlobalDataPointerA50Storage;    // DAT_180bfaa78
-uint8_t SystemDataBufferA80;
-uint8_t SystemDataBufferA88;
-uint8_t SystemDataBufferA90;
-uint8_t UtilitySystemControlFlag620;
-uint8_t UtilitySystemDataPointerD0;
-uint8_t UtilitySystemDataPointerF0;
+uint8_t SystemDataBufferController;
+uint8_t SystemDataBufferManager;
+uint8_t SystemDataBufferHandler;
+uint8_t UtilitySystemControlFlagPrimary;
+uint8_t UtilitySystemDataPointerPrimary;
+uint8_t UtilitySystemDataPointerSecondary;
 uint8_t SystemDataBufferTertiary;
 uint8_t SystemDataBufferQuaternary;
 uint8_t SystemDataBufferQuinary;
@@ -8359,7 +8359,7 @@ uint8_t SystemDataBufferE08;
 uint8_t SystemDataBufferE10;
 uint8_t SystemDataBufferE18;
 uint8_t SystemDataBufferE20;
-uint8_t UtilitySystemControlFlag640;
+uint8_t UtilitySystemControlFlagSecondary;
 uint8_t SystemDataBufferSeptenary;
 uint8_t SystemDataBufferOctonary;
 
@@ -8367,7 +8367,7 @@ uint8_t SystemDataBufferOctonary;
 #define InitializeUtilitySystemControl FUN_180942660
 void* InitializeUtilitySystemControl;
 void* SystemDataBuffer150;
-uint8_t SystemStatusFlag140;
+uint8_t SystemStatusFlagPrimary;
 void* SystemDataBuffer160;
 void* SystemDataBuffer168;
 uint64_t UtilitySystemControlPointer158;
