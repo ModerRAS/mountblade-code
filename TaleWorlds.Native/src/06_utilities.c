@@ -113708,6 +113708,14 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordAN uStack_2a4
 
+// 验证上下文缓冲区
+// 功能：存储验证过程中的上下文数据
+#define ValidationContextBuffer StackValidationContextBuffer
+
+// 验证数据缓冲区A
+// 功能：存储验证数据的缓冲区A
+#define ValidationDataBufferA StackValidationDataBufferA
+
 // 原始变量名：uStack_2a0 - 栈数据字AO
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordAO uStack_2a0
