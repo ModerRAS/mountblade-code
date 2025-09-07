@@ -20073,13 +20073,13 @@ ProcessDataSecurityValidation:
   
   resourcePointer2 = (DataBuffer *)(systemContext + 8);
   StackFloatRegisterA = register_R13D;
-  puStack0000000000000058 = resourcePointer2;
+  StackPointerRegisterA = resourcePointer2;
   validationContext5 = (*(code *)*inputAccumulatorRegister)(resourcePointer2);
   inputParameter3 = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(validationContext5 + 0xd0),&StackBuffer48);
   if (inputParameter3 == 0) {
     StackBuffer70 = &DataValidationErrorBase;
     *(DataWord *)(stackFramePointer + -0xf) = SystemOperationResult;
-    *(float *)(stackFramePointer + -0x10) = fStack0000000000000048;
+    *(float *)(stackFramePointer + -0x10) = StackFloatRegisterA;
     StackParameter78 = register_R13D;
     inputParameter3 = ValidateDataIntegrityA0(floatResultA,&StackBuffer70);
     if (inputParameter3 == 0) {
@@ -20092,15 +20092,15 @@ ProcessDataSecurityValidation:
           dataContext = *(int64_t *)(operationResult0 + 0x10 + validationContext5);
           calculatedOffset = *(int64_t *)(operationResult0 + 8 + validationContext5);
           charSystemStatus = CheckSystemStatus(dataContext,1);
-          resourcePointer2 = puStack0000000000000058;
+          resourcePointer2 = StackPointerRegisterA;
           if ((charSystemStatus == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
             operationResult4 = *(DataWord *)(operationResult0 + 4 + validationContext5);
             stackFramePointer[-4] = &SystemMemoryInitializationReference;
             *(DataWord *)(stackFramePointer + -2) = SystemOperationResult;
-            pmemoryBaseAddress = (DataBuffer *)*puStack0000000000000058;
+            pmemoryBaseAddress = (DataBuffer *)*StackPointerRegisterA;
             *(DataWord *)(stackFramePointer + -1) = operationResult4;
             *(DataWord *)(stackFramePointer + -3) = 0;
-            validationContext5 = (*(code *)*pmemoryBaseAddress)(puStack0000000000000058);
+            validationContext5 = (*(code *)*pmemoryBaseAddress)(StackPointerRegisterA);
             *stackFramePointer = *(DataBuffer *)(*(int64_t *)(validationContext5 + 0x90) + operationResult3 * 8);
             *(ByteFlag *)((int64_t)stackFramePointer + -4) = 0;
             if (*(int *)(dataContext + 0x58) < 1) {
