@@ -50678,7 +50678,7 @@ ReferenceCountAllocation:
       } while( true );
     }
   }
-  goto LAB_18007a58b;
+  goto LoopContinuation;
 SystemEventProcessing:
   if (piStack_218 != (int *)0x0) {
     piStack_218 = ReferenceCountPointer6;
@@ -50809,7 +50809,7 @@ LoopContinuation:
   Utf16Char9 = Utf16Char9 + 1;
   StackConfigurationFlag = (unsigned long long)Utf16Char9;
   lStack_1d0 = lStack_1d0 + 1;
-  if (*ReferenceCountPointer <= (int)Utf16Char9) goto LAB_18007a5ac;
+  if (*ReferenceCountPointer <= (int)Utf16Char9) goto SystemDataRelease;
   goto LAB_180079e40;
 }
 
