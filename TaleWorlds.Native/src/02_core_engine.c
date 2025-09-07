@@ -158721,7 +158721,7 @@ void ProcessSystemContextAndByteBufferAux(void)
 
 
 
-35010(int CharacterCode,uint64_t Utf8BufferSize,uint Utf8SourcePointervoid FUN_180135010(int CharacterCode,uint64_t Utf8BufferSize,uint Utf8SourcePointer
+void FUN_180135010(int CharacterCode,uint64_t Utf8BufferSize,uint Utf8SourcePointer
 {
   long long PrimaryDataSize;
   uint MemoryAllocationIndex;
