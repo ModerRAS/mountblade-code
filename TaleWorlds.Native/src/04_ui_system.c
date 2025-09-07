@@ -9901,37 +9901,37 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
   matrixRow1_Y = minY * scaleY + maxY * sourceY + centerY * rotationX + transformData[0xd];
   matrixRow1_Z = minY * translateZ + maxY * sourceZ + centerY * rotationY + transformData[0xe];
   matrixRow1_W = minY * rotateX + maxY * translateX + centerY * rotationZ + transformData[0xf];
-  fVar25 = *targetBuffer - fStack_f8;
-  fVar31 = targetBuffer[1] - fStack_f4;
-  fVar28 = targetBuffer[2] - fStack_f0;
-  fVar27 = targetBuffer[8];
-  fVar29 = targetBuffer[6] - fStack_f0;
-  fVar26 = targetBuffer[4] - fStack_f8;
-  fVar33 = targetBuffer[5] - fStack_f4;
-  fStack_1b8 = fVar31 * fStack_114 + fVar25 * fStack_118 + fStack_110 * fVar28;
-  fStack_1b4 = fVar31 * fVar35 + fVar25 * fVar34 + fVar36 * fVar28;
-  fVar32 = fVar31 * fStack_104 + fVar25 * fStack_108 + fStack_100 * fVar28;
-  fStack_1ac = fVar31 * fStack_fc + fVar25 * fStack_fc + fStack_fc * fVar28;
-  fStack_1c8 = fVar33 * fStack_114 + fVar26 * fStack_118 + fStack_110 * fVar29;
-  fStack_1c4 = fVar33 * fVar35 + fVar26 * fVar34 + fVar36 * fVar29;
-  fVar25 = fVar33 * fStack_104 + fVar26 * fStack_108 + fStack_100 * fVar29;
-  fStack_1bc = fVar33 * fStack_fc + fVar26 * fStack_fc + fStack_fc * fVar29;
-  if (((fVar25 - fVar27) * (fVar32 + fVar27) <= 0.0) ||
-     ((fVar25 + fVar27) * (fVar32 - fVar27) <= 0.0)) {
-    fVar26 = 3.4028235e+38;
-    lVar23 = uiContext[0x11];
-    operationResult8 = (int)(uiContext[0x12] - lVar23 >> 3);
-    lStack_1a0 = (longlong)operationResult8;
+  minX = *targetPosition - matrixRow1_X;
+  sourceX = targetPosition[1] - matrixRow1_Y;
+  maxY = targetPosition[2] - matrixRow1_Z;
+  centerY = targetPosition[8];
+  scaleY = targetPosition[6] - matrixRow1_Z;
+  minY = targetPosition[4] - matrixRow1_X;
+  sourceY = targetPosition[5] - matrixRow1_Y;
+  clipMinY = sourceX * projMatrix_1_1 + minX * fStack_118 + matrixRow3_Z * maxY;
+  clipMinZ = sourceX * depthY + minX * depthX + depthZ * maxY;
+  scaleX = sourceX * matrixRow2_Y + minX * matrixRow2_X + matrixRow2_Z * maxY;
+  clipFar = sourceX * matrixRow2_W + minX * matrixRow2_W + matrixRow2_W * maxY;
+  clipMaxX = sourceY * projMatrix_1_1 + minY * fStack_118 + matrixRow3_Z * scaleY;
+  clipMaxY = sourceY * depthY + minY * depthX + depthZ * scaleY;
+  minX = sourceY * matrixRow2_Y + minY * matrixRow2_X + matrixRow2_Z * scaleY;
+  clipMinX = sourceY * matrixRow2_W + minY * matrixRow2_W + matrixRow2_W * scaleY;
+  if (((minX - centerY) * (scaleX + centerY) <= 0.0) ||
+     ((minX + centerY) * (scaleX - centerY) <= 0.0)) {
+    minY = 3.4028235e+38;
+    polygonCount = uiContext[0x11];
+    matrixSize = (int)(uiContext[0x12] - polygonCount >> 3);
+    polygonIndex = (longlong)matrixSize;
     fStackX_10 = 0.0;
     fStackX_14 = 0.0;
-    fVar28 = 3.4028235e+38;
+    maxY = 3.4028235e+38;
     fStackX_18 = 0.0;
     fStackX_1c = 0.0;
     pfStackX_20 = bufferSize;
-    fStack_1c0 = fVar25;
-    fStack_1b0 = fVar32;
-    if (0 < operationResult8) {
-      lVar4 = *uiContext;
+    clipMaxZ = minX;
+    clipNear = scaleX;
+    if (0 < matrixSize) {
+      transformMatrix = *uiContext;
       validationResult4 = 1;
       uStack_190 = 0;
       pfunctionResult9 = (undefined4 *)(lVar4 + 4);
@@ -100022,8 +100022,18 @@ void FUN_18072b540(double *uiContext,longlong dataSource,float targetBuffer,int 
 
 
 
- void FUN_18072b830(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
-void FUN_18072b830(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
+ /**
+ * @brief 计算UI缓冲区参数
+ * 
+ * 该函数负责计算UI缓冲区的数学参数和变换
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @note 原始函数名: FUN_18072b830
+ */
+void CalculateUIBufferParameters(longlong uiContext, longlong dataSource, int targetBuffer, int bufferSize)
 
 {
   float *pfloatResult;
