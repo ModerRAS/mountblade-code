@@ -9020,18 +9020,18 @@ uint8_t SystemDataManagementTableA1;
 // 函数: uint8_t UtilityConfigureMemorySettings;
 // 配置内存管理器的设置，包括内存池大小、分配策略等
 uint8_t UtilityConfigureMemorySettings;
-// 系统内存管理表A3
-uint8_t SystemMemoryManagementTableA3;
-// 系统资源管理表A3
-uint8_t SystemResourceManagerTableA3;
-uint8_t UnknownSystemDataO;
+// 系统内存管理表第四索引
+uint8_t SystemMemoryManagementTableQuaternaryIndex;
+// 系统资源管理表第四索引
+uint8_t SystemResourceManagerTableQuaternaryIndex;
+uint8_t SystemConfigurationParameterO;
 
 // 函数: uint8_t UtilitySetupMemoryRegions;
 // 设置内存区域，划分不同用途的内存空间
 uint8_t UtilitySetupMemoryRegions;
-uint8_t UnknownSystemDataP;
-uint8_t UnknownSystemDataQ;
-uint8_t UnknownSystemDataR;
+uint8_t SystemConfigurationParameterP;
+uint8_t SystemConfigurationParameterQ;
+uint8_t SystemConfigurationParameterR;
 uint8_t UnknownSystemDataS;
 uint8_t SystemDataBufferC;
 uint8_t SystemExceptionDataA;
