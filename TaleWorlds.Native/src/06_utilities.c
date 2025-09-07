@@ -4149,17 +4149,17 @@
 // 异常数据表2地址
 #define ExceptionDataTable2Address 0x180a21690
 
-// 异常数据表Tertiary
-// 功能：存储异常处理相关的数据表信息，用于异常处理流程
-#define ExceptionDataTableTertiary UNK_180a21720
+// 异常处理数据表Tertiary
+// 功能：存储异常处理相关的第三级数据表信息和详细参数
+#define ExceptionDataTableTertiaryAddress UNK_180a21720
 
 // 异常处理配置表
 // 功能：存储异常处理的配置信息和参数设置
-#define ExceptionConfigurationTable UNK_18098bd40
+#define ExceptionConfigurationTableAddress UNK_18098bd40
 
 // 异常处理状态表
 // 功能：存储异常处理的当前状态信息和历史记录
-#define ExceptionStatusTable UNK_1809fe100
+#define ExceptionStatusTableAddress UNK_1809fe100
 
 // 异常处理句柄表Primary
 // 功能：存储异常处理的句柄信息和回调函数指针
