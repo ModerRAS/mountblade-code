@@ -144,6 +144,8 @@
 #define ExceptionStateOffset 0x20                     // 异常状态偏移量
 #define ExceptionStatusOffset 0x30                    // 异常状态寄存器偏移量
 #define ExceptionHandlerCallbackOffset10 0xd0         // 异常处理器回调偏移量10
+#define ExceptionDataPtrOffset 0x40                   // 异常数据指针偏移量
+#define ExceptionDataPtrSecondaryOffset 0x68          // 异常数据指针二级偏移量
 
 // 数据集合处理常量定义
 #define DataCollectionItemSize 0x14               // 数据集合中每个项目的大小
@@ -50076,20 +50078,22 @@ void ExecuteExceptionHandlerCallbackD(DataBuffer systemContext,int64_t exception
  * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
  * 并执行相应的异常处理操作，使用不同的偏移地址
  * 
- * @param operationBase 操作基础数据
- * @param dataBuffer 数据缓冲区指针
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * @param systemContext 系统上下文数据
+ * @param exceptionContext 异常上下文指针
+ * @param callbackFlagA 回调标志A
+ * @param callbackFlagB 回调标志B
  * @note 原始函数名：Unwind_180904700
  */
-void ExecuteExceptionHandlerCallbackE(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallbackE(DataBuffer systemContext,int64_t exceptionContext,DataBuffer callbackFlagA,DataBuffer callbackFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
+  int64_t exceptionDataPtr;
   
-  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x68) + ExceptionHandlerCallbackOffset10);
+  exceptionDataPtr = *(int64_t *)(exceptionContext + ExceptionDataPtrSecondaryOffset);
+  exceptionHandlerCallback = *(FunctionPointer**)(exceptionDataPtr + ExceptionHandlerCallbackOffset10);
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x68),0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(exceptionDataPtr,0,0,callbackFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }

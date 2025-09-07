@@ -155588,7 +155588,13 @@ LAB_180133d4a:
 
 
 
-33cc4(voidvoid FUN_180133cc4(void
+/**
+ * @brief 系统内存地址处理器
+ * 
+ * 该函数负责处理系统内存地址、缓冲区状态和数据大小管理。
+ * 原始函数名: FUN_180133cc4
+ */
+void CoreEngineProcessSystemMemoryAddress(void)
 {
   unsigned long long *StatusBuffer;
   long long BufferStatus;
@@ -155659,7 +155665,13 @@ LAB_180133d43:
 
 
 
-33d58(voidvoid FUN_180133d58(void
+/**
+ * @brief 系统内存分配处理器
+ * 
+ * 该函数负责处理系统内存分配、Unicode码点和计算码点管理。
+ * 原始函数名: FUN_180133d58
+ */
+void CoreEngineProcessSystemMemoryAllocation(void)
 {
   unsigned long long *StatusBuffer;
   unsigned long long MemoryAllocationIndex;
