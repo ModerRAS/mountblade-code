@@ -111422,33 +111422,33 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 系统安全验证标志变量已声明为实际变量，无需#define定义
 // 数据验证缓冲区和系统数据缓冲区变量已声明为实际变量，无需#define定义
-#define MemoryAllocationBuffer UNK_180a01660
-#define SystemDataBufferA1 UNK_1809fe210
-#define ResourceValidationBufferA0 UNK_180a3e470
-#define OperationResultBufferA0 UNK_180a07cd0
-#define SystemValidationBufferA0 UNK_180982378
-#define ValidationStackPointerA0 UNK_1809823f8
-#define ValidationContextBufferA0 UNK_180982260
-#define SystemValidationTableA0 UNK_180986390
-#define ValidationStatusTableA0 UNK_180986940
+// 数据验证和系统缓冲区变量
+uint8_t MemoryAllocationBuffer;        // 原始变量名：UNK_180a01660
+uint8_t SystemDataBufferA1;            // 原始变量名：UNK_1809fe210
+uint8_t ResourceValidationBufferA0;    // 原始变量名：UNK_180a3e470
+uint8_t OperationResultBufferA0;        // 原始变量名：UNK_180a07cd0
+uint8_t SystemValidationBufferA0;      // 原始变量名：UNK_180982378
+void* ValidationStackPointerA0;         // 原始变量名：UNK_1809823f8
+uint8_t ValidationContextBufferA0;    // 原始变量名：UNK_180982260
+uint8_t SystemValidationTableA0;        // 原始变量名：UNK_180986390
+uint8_t ValidationStatusTableA0;        // 原始变量名：UNK_180986940
 
-// 全局内存验证常量定义
-#define GlobalMemoryValidationPrimaryConstant DAT_180c4eaa0
-#define GlobalMemoryValidationSecondaryConstant DAT_180c4eaa4
+// 全局内存验证常量
+uint32_t GlobalMemoryValidationPrimaryConstant;   // 原始变量名：DAT_180c4eaa0
+uint32_t GlobalMemoryValidationSecondaryConstant; // 原始变量名：DAT_180c4eaa4
 
-// 系统资源管理表定义
-#define SystemResourceAllocationIterator _DAT_180c86938
-#define SystemFunctionDispatchTable _DAT_180c86968
-#define SystemParameterConfigurationTable _DAT_180c82868
-#define SystemMemoryContextManagementTable _DAT_180bfc171
-#define SystemMemoryPointerManagementTable _DAT_180bfc170
-#define SystemMemoryCapacityManagementTable _DAT_180bfc118
-#define SystemMemoryBaseAddressTable _DAT_180bfc110
-#define SystemMemoryContextHighByteTable SecondaryMemoryContextHighByte
+// 系统资源管理表
+uint8_t SystemResourceAllocationIterator;      // 原始变量名：_DAT_180c86938
+uint8_t SystemFunctionDispatchTable;            // 原始变量名：_DAT_180c86968
+uint8_t SystemParameterConfigurationTable;      // 原始变量名：_DAT_180c82868
+uint8_t SystemMemoryContextManagementTable;    // 原始变量名：DAT_180bfc171
+uint8_t SystemMemoryPointerManagementTable;    // 原始变量名：DAT_180bfc170
+uint8_t SystemMemoryCapacityManagementTable;    // 原始变量名：DAT_180bfc118
+uint8_t SystemMemoryBaseAddressTable;          // 原始变量名：DAT_180bfc110
 
-// 系统内存扩展表定义
-#define SystemMemoryContextExtendedTable _DAT_180bfc188
-#define SystemMemoryBaseExtendedTable _DAT_180bfc180
+// 系统内存扩展表
+uint8_t SystemMemoryContextExtendedTable;      // 原始变量名：DAT_180bfc188
+uint8_t SystemMemoryBaseExtendedTable;        // 原始变量名：DAT_180bfc180
 
 // 系统资源列表管理表定义
 #define SystemResourceAllocationEndTable SystemResourceAllocationEndTablePointer
@@ -111573,7 +111573,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define ExceptionHandlerA79 Unwind_1809040d0
 // 系统异常处理器状态表
 // 功能：存储系统异常处理器的状态信息
-#define SystemExceptionHandlerStateTable _DAT_180d49f80
+uint8_t SystemExceptionHandlerStateTable;    // 原始变量名：_DAT_180d49f80
 
 // 异常处理器指针初始化函数宏定义
 // 原始函数名：Unwind_1809077c0 - 异常处理器指针初始化函数A5
