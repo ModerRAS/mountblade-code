@@ -4843,7 +4843,16 @@ void ActivateUISystem(void)
 
 
  void UIEmptyFunction(void)
- 空函数，用于占位或未来扩展
+/**
+ * 空函数，用于占位或未来扩展
+ * 
+ * 这是一个占位函数，通常用于：
+ * - 保留函数接口以备将来扩展
+ * - 作为默认的空实现
+ * - 在某些条件分支中作为空操作
+ * 
+ * @return 无返回值
+ */
 void UIEmptyFunction(void)
 
 {
@@ -4921,6 +4930,17 @@ void SetUIState(longlong uiContext)
 
 
  void ProcessUIInitialization(void)
+/**
+ * 处理UI系统初始化
+ * 
+ * 执行UI系统的初始化操作，包括：
+ * - 初始化UI渲染器
+ * - 设置默认UI状态
+ * - 分配必要的资源
+ * - 注册事件处理器
+ * 
+ * @return 无返回值
+ */
 void ProcessUIInitialization(void)
 
 {
