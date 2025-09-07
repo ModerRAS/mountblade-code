@@ -293,13 +293,13 @@
 #define ExceptionHandlerAddress3 0x0001808d74b1
 
 // 系统函数地址常量
-#define ResourceDataValidationFunction 0x00018076b630
-#define SystemStatusRetrievalFunction 0x0001808e64d0
+#define ResourceDataValidationFunctionAddress 0x00018076b630
+#define SystemStatusRetrievalFunctionAddress 0x0001808e64d0
 #define RangeValidationFunctionAddress 0x000180867960
 #define DataProcessingFunctionAddress 0x000180867660
 #define ExceptionHandlerFunctionAddress 0x00018008d310
-#define OperationResultCheckFunction 0x0001808fd8d4
-#define CallbackExecutionFunction 0x0001808fd024
+#define OperationResultCheckFunctionAddress 0x0001808fd8d4
+#define CallbackExecutionFunctionAddress 0x0001808fd024
 
 // 系统对象指针地址常量
 #define MutexObjectPointerAddress 0x180c91910
