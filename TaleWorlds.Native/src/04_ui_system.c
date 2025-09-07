@@ -59063,8 +59063,20 @@ void InitializeUIPixelProcessor(longlong uiContext,longlong dataSource,int targe
 
 
 
- void FUN_180695c4d(undefined8 uiContext,longlong dataSource,undefined8 targetBuffer,short *bufferSize)
-void FUN_180695c4d(undefined8 uiContext,longlong dataSource,undefined8 targetBuffer,short *bufferSize)
+ /**
+ * UI系统图像数据处理器初始化函数
+ * 
+ * 该函数负责初始化UI系统的图像数据处理器，设置图像数据处理的参数和缓冲区。
+ * 主要用于处理UI图像的数据操作和转换。
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源，包含图像数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小指针，用于指定处理缓冲区的大小
+ * 
+ * @note 原始函数名：FUN_180695c4d
+ */
+void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,undefined8 targetBuffer,short *bufferSize)
 
 {
   ushort *pfunctionResult;
@@ -59594,8 +59606,18 @@ void FUN_180695c4d(undefined8 uiContext,longlong dataSource,undefined8 targetBuf
 
 
 
- void FUN_180695f0f(undefined8 uiContext,longlong dataSource)
-void FUN_180695f0f(undefined8 uiContext,longlong dataSource)
+ /**
+ * UI系统图像处理器初始化函数
+ * 
+ * 该函数负责初始化UI系统的图像处理器，设置图像处理的参数和状态。
+ * 主要用于处理UI图像的基本操作和变换。
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源，包含图像处理所需的数据
+ * 
+ * @note 原始函数名：FUN_180695f0f
+ */
+void InitializeUIImageProcessor(undefined8 uiContext,longlong dataSource)
 
 {
   undefined4 *pfunctionResult;
@@ -59780,8 +59802,21 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180696370(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
-void FUN_180696370(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
+ /**
+ * UI系统纹理处理器初始化函数
+ * 
+ * 该函数负责初始化UI系统的纹理处理器，设置纹理处理的参数和缓冲区。
+ * 主要用于处理UI纹理的加载、管理和渲染。
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源，包含纹理处理所需的数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小，用于指定处理缓冲区的大小
+ * @param resultPointer 结果指针，用于存储处理结果
+ * 
+ * @note 原始函数名：FUN_180696370
+ */
+void InitializeUITextureProcessor(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
 
 {
   int operationResult;
