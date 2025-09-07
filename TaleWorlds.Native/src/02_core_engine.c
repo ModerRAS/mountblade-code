@@ -117650,33 +117650,44 @@ void ProcessSystemContextFloatCalculationAndValidation(void)
 
 
 
-25f0(uint64_t SystemContextPointer,float *Utf8BufferSizevoid FUN_1801225f0(uint64_t SystemContextPointer,float *Utf8BufferSize
+/**
+ * @brief 处理系统上下文缓冲区和浮点数计算
+ * 
+ * 该函数负责处理系统上下文缓冲区的操作和浮点数计算
+ * 主要包括缓冲区管理、浮点数运算、状态处理等功能
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF8缓冲区大小指针
+ * 
+ * @note 原始函数名：FUN_1801225f0
+ */
+void ProcessSystemContextBufferAndFloatCalculation(uint64_t SystemContextPointer, float *Utf8BufferSize)
 {
-  float *pSystemContextPrimaryFloat;
-  uint32_t *PrimaryProcessingStatusFlag;
-  float CalculatedFilterValue;
-  float FloatVariable4;
-  float FloatVariable5;
-  uint64_t DataSize;
-  uint32_t SystemByteValue;
-  uint32_t ProcessingStatusFlag;
-  float NormalizedParameter;
-  float SystemContextPrimaryFloat0;
-  float SystemContextPrimaryFloat1;
-  float SystemContextPrimaryFloat2;
-  uint32_t QuaternaryReturnCode;
-  bool CurrentByteValue4;
-  byte CurrentByteValue5;
-  uint PrimaryReturnCode;
-  long long in_RAX;
-  long long SystemContext;
-  long long LoopCounter7;
-  long long RegisterFramePointer;
+  float *pPrimaryContextFloat;
+  uint32_t *PrimaryProcessingStateFlag;
+  float FilteredResultValue;
+  float TemporaryFloat4;
+  float TemporaryFloat5;
+  uint64_t DataStructureSize;
+  uint32_t SystemStatusCode;
+  uint32_t ProcessingStateFlag;
+  float NormalizedParameterValue;
+  float PrimaryContextFloat0;
+  float PrimaryContextFloat1;
+  float PrimaryContextFloat2;
+  uint32_t ValidationResultCode;
+  bool ComparisonResult1;
+  byte ComparisonResult2;
+  uint OperationResultCode;
+  long long InputRegisterRAX;
+  long long SystemContextHandle;
+  long long IteratorIndex7;
+  long long FramePointerRegister;
   long long DataNodeIndex;
-  float *RegisterValueR12;
-  long long RegisterValueR13;
-  long long RegisterValueR15;
-  float SystemContextPrimaryFloat8;
+  float *RegisterR12Value;
+  long long RegisterR13Value;
+  long long RegisterR15Value;
+  float PrimaryContextFloat8;
   float in_XMM4_Da;
   float in_XMM5_Da;
   float AuxiliaryFloat10;
