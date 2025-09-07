@@ -54983,7 +54983,7 @@ void Unwind_1809068d0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809068f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180080870(*(int64_t *)(dataBuffer + 0x50) + 0x2f0);
+  InitializeSystemMemoryA2(*(int64_t *)(dataBuffer + 0x50) + 0x2f0);
   return;
 }
 
@@ -55045,7 +55045,7 @@ void Unwind_180906960(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180906970(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_18007f840(dataBuffer + 0x28);
+  ProcessDataBufferA0(dataBuffer + 0x28);
   return;
 }
 
@@ -55065,7 +55065,7 @@ void Unwind_180906980(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180906990(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_18007f840(dataBuffer + 0x40);
+  ProcessDataBufferA0(dataBuffer + 0x40);
   return;
 }
 
@@ -55132,7 +55132,7 @@ void Unwind_1809069d0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809069e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_18007f840(dataBuffer + 0x50);
+  ProcessDataBufferA0(dataBuffer + 0x50);
   return;
 }
 
