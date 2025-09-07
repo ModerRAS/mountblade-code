@@ -14998,48 +14998,57 @@ void CoreEngineInitializeSystemConnectionNode(void
  * 该函数负责初始化核心引擎的文件系统管理器，设置文件系统的
  * 基本配置和数据结构。用于管理引擎的文件操作。
  */
-void CoreEngineInitializeFileSystemManager(void
+/**
+ * @brief 初始化引擎文件系统管理器
+ * 
+ * 该函数负责初始化引擎的文件系统管理器组件，包括文件系统节点的创建和配置。
+ * 遍历系统节点链表，为文件系统管理器分配内存并设置相关参数。
+ * 
+ * @note 此函数在系统初始化阶段被调用，用于建立文件管理的基础设施
+ * @warning 如果初始化失败，可能会影响文件的读写操作
+ */
+void CoreEngineInitializeFileSystemManager(void)
 {
-  char systemStatus;
-  void* CharacterCode;
-  int memoryCompareResult;
-  long long *EngineContext;
-  long long AllocatedMemorySize;
-  uint64_t *CurrentNode;
-  uint64_t *PreviousNode;
-  uint64_t *NextNode;
-  uint64_t *newMemoryNode;
-  uint64_t fileSystemCallback;
+  char FileSystemNodeStatus;                                    // 文件系统节点状态
+  void* FileSystemRootNode;                                    // 文件系统根节点
+  int MemoryComparisonResult;                                  // 内存比较结果
+  long long *EngineSystemContext;                              // 引擎系统上下文
+  long long AllocatedMemorySize;                               // 分配的内存大小
+  uint64_t *CurrentFileSystemNode;                             // 当前文件系统节点
+  uint64_t *PreviousFileSystemNode;                           // 上一个文件系统节点
+  uint64_t *NextFileSystemNode;                               // 下一个文件系统节点
+  uint64_t *NewFileSystemMemoryNode;                           // 新文件系统内存节点
+  uint64_t FileSystemInitializationCallback;                   // 文件系统初始化回调函数
   
-  engineContext = (long long *)CoreEngineGetSystemContext();
-  CharacterCode = (void *)*engineContext;
-  systemStatus = *(char *)((long long)Utf8InputBuffer[1] + SystemNodeStatusOffset);
-  fileSystemCallback = 0;
-  PreviousNode = CharacterCode;
-  CurrentNode = (void *)Utf8InputBuffer[1];
-  while (systemStatus == '\0') {
-    memoryCompareResult = memcmp(CurrentNode + 4,&SystemFileSystemComparisonData,0x10);
-    if (memoryCompareResult < 0) {
-      NextNode = (void *)CurrentNode[2];
-      CurrentNode = PreviousNode;
+  EngineSystemContext = (long long *)CoreEngineGetSystemContext();
+  FileSystemRootNode = (void *)*EngineSystemContext;
+  FileSystemNodeStatus = *(char *)((long long)Utf8InputBuffer[1] + SystemNodeStatusOffset);
+  FileSystemInitializationCallback = 0;
+  PreviousFileSystemNode = FileSystemRootNode;
+  CurrentFileSystemNode = (void *)Utf8InputBuffer[1];
+  while (FileSystemNodeStatus == '\0') {
+    MemoryComparisonResult = memcmp(CurrentFileSystemNode + 4,&SystemFileSystemComparisonData,0x10);
+    if (MemoryComparisonResult < 0) {
+      NextFileSystemNode = (void *)CurrentFileSystemNode[2];
+      CurrentFileSystemNode = PreviousFileSystemNode;
     }
     else {
-      NextNode = (void *)*CurrentNode;
+      NextFileSystemNode = (void *)*CurrentFileSystemNode;
     }
-    PreviousNode = CurrentNode;
-    CurrentNode = NextNode;
-    systemStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    PreviousFileSystemNode = CurrentFileSystemNode;
+    CurrentFileSystemNode = NextFileSystemNode;
+    FileSystemNodeStatus = *(char *)((long long)NextFileSystemNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == CharacterCode) || (memoryCompareResult = memcmp(&SystemFileSystemComparisonData,PreviousNode + 4,0x10), memoryCompareResult < 0)) {
-    AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
-    CoreEngineSetupMemoryNode(engineContext,&NewMemoryNode,PreviousNode,allocatedMemory + 0x20,allocatedMemory);
-    PreviousNode = NewMemoryNode;
+  if ((PreviousFileSystemNode == FileSystemRootNode) || (MemoryComparisonResult = memcmp(&SystemFileSystemComparisonData,PreviousFileSystemNode + 4,0x10), MemoryComparisonResult < 0)) {
+    AllocatedMemorySize = CoreEngineAllocateMemory(EngineSystemContext);
+    CoreEngineSetupMemoryNode(EngineSystemContext,&NewFileSystemMemoryNode,PreviousFileSystemNode,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    PreviousFileSystemNode = NewFileSystemMemoryNode;
   }
-  PreviousNode[6] = 0x42bea5b911d9c4bf;
-  PreviousNode[7] = 0x1aa83fc0020dc1b6;
-  PreviousNode[8] = &SystemDataTemplateSession;
-  PreviousNode[9] = 0;
-  PreviousNode[10] = fileSystemCallback;
+  PreviousFileSystemNode[6] = 0x42bea5b911d9c4bf;
+  PreviousFileSystemNode[7] = 0x1aa83fc0020dc1b6;
+  PreviousFileSystemNode[8] = &SystemDataTemplateSession;
+  PreviousFileSystemNode[9] = 0;
+  PreviousFileSystemNode[10] = FileSystemInitializationCallback;
   return;
 }
 
@@ -174255,7 +174264,7 @@ unsigned long long FUN_180141820(long long *Utf8InputBuffer
                     // WARNING: Subroutine does not return
     memcpy(TemporaryBuffer + 1,*(void *)(SystemStringIndex + 8),(long long)(DataStringLength + 1));
   }
-  SystemStringIndex = FUN_180624c70(&pCalculationFunctionAddress,&SystemMemoryPointer);
+  SystemStringIndex = GetSystemStringIndex(&pCalculationFunctionAddress,&SystemMemoryPointer);
   if (pMemoryOffsetValue != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
