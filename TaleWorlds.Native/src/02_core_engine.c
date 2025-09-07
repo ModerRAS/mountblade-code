@@ -84140,9 +84140,9 @@ void ProcessCharacterCodeStatus(long long CharacterCode
           }
           InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,pMemoryAddressMask);
         }
-        goto LAB_1801047f5;
+        goto UseAlternativeMemoryValue;
       }
-      goto LAB_180104808;
+      goto UseSystemMemoryIndex;
     }
   }
   else {
@@ -84163,7 +84163,7 @@ void ProcessCharacterCodeStatus(long long CharacterCode
     uStack_1a4 = 100;
     if ((*(long long *)(CharacterCode + 0x1b10) == 0) ||
        (StringBuffer = (**(code **)(CharacterCode + 0x1b18))(&uStack_1a4), MemoryAllocationIndex = uStack_1a4, StringBuffer != '\0')) {
-LAB_180104808:
+UseSystemMemoryIndex: // 原始标签：LAB_180104808
       *(uint32_t *)(CharacterCode + 0x1ab0) = MemoryAllocationIndex;
     }
     else if (CoreEngineThreadStatus == '\0') {
@@ -84175,7 +84175,7 @@ LAB_180104808:
       *(uint32_t *)(CharacterCode + 0x1ab0) = *(uint32_t *)(CharacterCode + 0x1af8);
     }
     else {
-LAB_1801047f5:
+UseAlternativeMemoryValue: // 原始标签：LAB_1801047f5
       *(uint32_t *)(CharacterCode + 0x1ab0) = *(uint32_t *)(CharacterCode + 0x1af8);
     }
   }
@@ -113010,7 +113010,7 @@ void ManageSystemDataAccess(int *CharacterCode,int CharacterCodeSize)
 
 
 
-da1c(voidvoid CoreEngineInitializeNetwork(void
+void CoreEngineInitializeNetwork(void)
 {
   long long ResultValue;
   uint64_t Utf16Char;
@@ -113067,7 +113067,7 @@ void CoreEngineInitializeSystemData(int *CharacterCode,int CharacterCodeSize)
 
 
 
-dae0(int *CharacterCode,int CharacterCodeSizevoid ProcessSystemBufferSize(int *CharacterCode,int CharacterCodeSize
+void ProcessSystemBufferSize(int *CharacterCode,int CharacterCodeSize)
 {
   int LockResult;
   int CharacterByteCount;
@@ -243331,7 +243331,7 @@ LAB_180214378:
   ProcessSystemEventQueueData(&SystemEventQueueDataTableUnvigintenary,(double)fStack_6c);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableDuovigintenary,(double)fStack_68);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableTrevigintenary,(double)fStack_64);
-  ProcessSystemEventQueueData(&UNK_180a10898,(double)fStack_60);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableQuattuorvigintenary,(double)fStack_60);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableDuodecenary);
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aCoreEngineValueA8);
