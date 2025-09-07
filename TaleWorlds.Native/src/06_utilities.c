@@ -142,6 +142,32 @@
 #define ExceptionContextOffset 0x60                  // 异常上下文偏移量
 #define ExceptionHandlerOffset 0x18                  // 异常处理器偏移量
 #define ExceptionStateOffset 0x20                     // 异常状态偏移量
+#define ExceptionStatusOffset 0x28                    // 异常状态偏移量
+#define ExceptionDataPtrOffset 0x20                   // 异常数据指针偏移量
+#define ExceptionDataPtrSecondaryOffset 0x28          // 异常数据指针次要偏移量
+#define ExceptionHandlerContextOffset40 0x40          // 异常处理上下文偏移量40
+#define ExceptionHandlerContextOffset48 0x48          // 异常处理上下文偏移量48
+#define ExceptionHandlerContextOffset50 0x50          // 异常处理上下文偏移量50
+#define ExceptionHandlerContextOffset58 0x58          // 异常处理上下文偏移量58
+#define ExceptionHandlerContextOffset60 0x60          // 异常处理上下文偏移量60
+#define ExceptionHandlerContextPointerOffset 0x50      // 异常处理上下文指针偏移量
+#define ExceptionHandlerContextStateOffset 0x58        // 异常处理上下文状态偏移量
+#define ExceptionStatePrimaryOffset 0x20               // 异常状态主偏移量
+#define ExceptionStateSecondaryOffset 0x28             // 异常状态次偏移量
+#define ExceptionHandlerCallbackOffset10 0x10          // 异常处理器回调偏移量10
+#define ExceptionHandlerCallbackOffset30 0x30          // 异常处理器回调偏移量30
+#define ExceptionHandlerCallbackOffsetD0 0xd0          // 异常处理器回调偏移量D0
+#define ExceptionHandlerContextOffsetC0 0xc0           // 异常处理上下文偏移量C0
+#define DataContextOffset68 0x68                       // 数据上下文偏移量68
+#define SystemDataOffset40 0x40                       // 系统数据偏移量40
+#define DataContextOffset50 0x50                       // 数据上下文偏移量50
+#define ExceptionDataBufferOffset20 0x20               // 异常数据缓冲区偏移量20
+#define ExceptionDataBufferOffset10 0x10               // 异常数据缓冲区偏移量10
+#define SystemExceptionDataTableOffset 0x20            // 系统异常数据表偏移量
+#define DefaultExceptionHandlerBOffset 0x10            // 默认异常处理器B偏移量
+#define ExceptionDataTable3Offset 0x18                 // 异常数据表3偏移量
+#define ExceptionDataTable6Offset 0x20                 // 异常数据表6偏移量
+#define SystemContextDataOffset 0x20                   // 系统上下文数据偏移量
 #define ExceptionStatusOffset 0x30                    // 异常状态寄存器偏移量
 #define ExceptionHandlerCallbackOffset10 0xd0         // 异常处理器回调偏移量10
 #define ExceptionDataPtrOffset 0x40                   // 异常数据指针偏移量
@@ -9591,21 +9617,21 @@ uint8_t SystemConfigurationProcessingFunction;
 // 系统内存管理区Primary
 // 功能：用于系统内存管理的区域
 uint8_t SystemMemoryManagementAreaPrimary;
-// 系统内存管理区A1
+// 系统内存管理区Secondary
 // 功能：用于系统内存管理的区域
-uint8_t SystemMemoryManagementAreaA1;
-// 系统内存管理区A2
+uint8_t SystemMemoryManagementAreaSecondary;
+// 系统内存管理区Tertiary
 // 功能：用于系统内存管理的区域
-uint8_t SystemMemoryManagementAreaA2;
-// 系统内存管理区A3
+uint8_t SystemMemoryManagementAreaTertiary;
+// 系统内存管理区Quaternary
 // 功能：用于系统内存管理的区域
-uint8_t SystemMemoryManagementAreaA3;
-// 系统内存管理区A4
+uint8_t SystemMemoryManagementAreaQuaternary;
+// 系统内存管理区Quinary
 // 功能：用于系统内存管理的区域
-uint8_t SystemMemoryManagementAreaA4;
-// 系统内存管理区A5
+uint8_t SystemMemoryManagementAreaQuinary;
+// 系统内存管理区Senary
 // 功能：用于系统内存管理的区域
-uint8_t SystemMemoryManagementAreaA5;
+uint8_t SystemMemoryManagementAreaSenary;
 // 系统内存管理区A6
 // 功能：用于系统内存管理的区域
 uint8_t SystemMemoryManagementAreaA6;
@@ -111283,43 +111309,43 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 系统异常处理器指针表定义
 #define SystemExceptionHandlerManagementTable _DAT_180bf9bd0
-#define SystemExceptionHandlerPointerTableA1 _DAT_180bf9f30
-#define SystemExceptionHandlerPointerTableA2 _DAT_180bf9f90
-#define SystemExceptionHandlerPointerTableA3 _DAT_180bf9ff0
-#define SystemExceptionHandlerPointerTableA4 _DAT_180bfa290
+#define SystemExceptionHandlerPointerTablePrimary _DAT_180bf9f30
+#define SystemExceptionHandlerPointerTableSecondary _DAT_180bf9f90
+#define SystemExceptionHandlerPointerTableTertiary _DAT_180bf9ff0
+#define SystemExceptionHandlerPointerTableQuaternary _DAT_180bfa290
 // 系统资源和异常处理状态表定义
 #define SystemResourceDataTable _DAT_180c92498
-#define SystemResourceDataTableA1 _DAT_180c92488
+#define SystemResourceDataTableSecondary _DAT_180c92488
 #define DefaultExceptionHandlerBPointerTable _DAT_180bf6558
 #define SystemExceptionHandlerStateTable _DAT_180d49f80
 // 系统配置数据表定义
-#define SystemConfigurationDataTableA0 _DAT_180d49ff8
-#define SystemConfigurationDataTableA1 _DAT_180c92510
-#define SystemFlagA0 _DAT_180bf66d8
-#define SystemDataTableA1 _DAT_180c96858
+#define SystemConfigurationDataTablePrimary _DAT_180d49ff8
+#define SystemConfigurationDataTableSecondary _DAT_180c92510
+#define SystemGlobalStatusFlag _DAT_180bf66d8
+#define SystemGlobalDataTableSecondary _DAT_180c96858
 // 系统缓冲区数据表定义
-#define SystemBufferDataTableA0 _DAT_180bfbf64
-#define SystemBufferDataTableA1 _DAT_180bfbf7c
-#define SystemBufferDataTableA2 _DAT_180bfbf60
-#define SystemConfigurationDataTableA2 _DAT_180bf7308
-#define SystemBufferDataTableA3 _DAT_180bfbf78
-#define SystemConfigurationDataTableA3 _DAT_180bf72a8
+#define SystemBufferDataTablePrimary _DAT_180bfbf64
+#define SystemBufferDataTableSecondary _DAT_180bfbf7c
+#define SystemBufferDataTableTertiary _DAT_180bfbf60
+#define SystemConfigurationDataTableTertiary _DAT_180bf7308
+#define SystemBufferDataTableQuaternary _DAT_180bfbf78
+#define SystemConfigurationDataTableQuaternary _DAT_180bf72a8
 // 系统管理数据表定义
-#define SystemManagementDataTableA0 _DAT_180bfbd80
+#define SystemManagementDataTablePrimary _DAT_180bfbd80
 
 // 异常处理执行函数定义
-#define ExecuteExceptionHandlerA0 Unwind_180911160
-#define ExecuteExceptionHandlerA1 Unwind_180911180
-#define ExecuteExceptionHandlerA2 Unwind_1809111a0
-#define ExecuteExceptionHandlerA3 Unwind_1809111c0
+#define ExecuteExceptionHandlerPrimary Unwind_180911160
+#define ExecuteExceptionHandlerSecondary Unwind_180911180
+#define ExecuteExceptionHandlerTertiary Unwind_1809111a0
+#define ExecuteExceptionHandlerQuaternary Unwind_1809111c0
 
 // 异常处理函数定义
-#define ExceptionHandlerA0 Unwind_180903790
-#define ExceptionHandlerA1 Unwind_1809037b0
-#define ExceptionHandlerA2 Unwind_1809037d0
-#define ExceptionHandlerA3 Unwind_1809037f0
-#define ExceptionHandlerA4 Unwind_180903810
-#define ExceptionHandlerA5 Unwind_180903830
+#define ExceptionHandlerPrimary Unwind_180903790
+#define ExceptionHandlerSecondary Unwind_1809037b0
+#define ExceptionHandlerTertiary Unwind_1809037d0
+#define ExceptionHandlerQuaternary Unwind_1809037f0
+#define ExceptionHandlerQuinary Unwind_180903810
+#define ExceptionHandlerSenary Unwind_180903830
 #define ExceptionHandlerA6 Unwind_180903850
 #define ExceptionHandlerA7 Unwind_180903870
 #define ExceptionHandlerA8 Unwind_180903890
