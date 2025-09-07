@@ -8150,15 +8150,15 @@ uint8_t SystemSecurityValidationFlagA97;    // UNK_180a39ef0
 uint8_t SystemSecurityValidationFlagA98;    // UNK_180a39f00
 uint8_t SystemSecurityValidationFlagA99;    // UNK_180a39f18
 uint8_t SystemSecurityValidationFlagA100;   // UNK_180a39f28
-uint8_t UNK_180a39f50;
-uint8_t UNK_180a39f60;
-uint8_t UNK_180a39f78;
-uint8_t UNK_180a39f88;
-uint8_t UNK_180a39f98;
-uint8_t UNK_180a39fb0;
-uint8_t UNK_180a39fc0;
-uint8_t UNK_180a39fe0;
-uint8_t UNK_180a39ff8;
+uint8_t SystemSecurityValidationFlagA101;   // UNK_180a39f50
+uint8_t SystemSecurityValidationFlagA102;   // UNK_180a39f60
+uint8_t SystemSecurityValidationFlagA103;   // UNK_180a39f78
+uint8_t SystemSecurityValidationFlagA104;   // UNK_180a39f88
+uint8_t SystemSecurityValidationFlagA105;   // UNK_180a39f98
+uint8_t SystemSecurityValidationFlagA106;   // UNK_180a39fb0
+uint8_t SystemSecurityValidationFlagA107;   // UNK_180a39fc0
+uint8_t SystemSecurityValidationFlagA108;   // UNK_180a39fe0
+uint8_t SystemSecurityValidationFlagA109;   // UNK_180a39ff8
 uint8_t UNK_180a3a018;
 uint8_t UNK_180a3a038;
 uint8_t UNK_180a3a048;
@@ -42248,7 +42248,18 @@ void InitializeAdvancedSystemContextExceptionHandler(DataBuffer operationBase, i
 
 
 
-void Unwind_1809036a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理清理函数 - 数据缓冲区清理
+ * 
+ * 该函数清理数据缓冲区中的异常处理器，重置相关状态并确保系统稳定性
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_1809036a0
+ */
+void ExceptionHandlerCleanupDataBuffer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -42278,7 +42289,18 @@ void Unwind_1809036a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809036c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理清理函数 - 操作标志清理
+ * 
+ * 该函数清理操作标志相关的异常处理器，重置相关状态并确保系统稳定性
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_1809036c0
+ */
+void ExceptionHandlerCleanupOperationFlags(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
