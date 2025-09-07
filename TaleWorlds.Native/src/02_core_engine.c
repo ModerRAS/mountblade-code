@@ -115116,7 +115116,17 @@ void ProcessStringEncodingConversionB(long long SystemContextPointer,uint64_t Ut
 
 
 
-0a30(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_180120a30(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统内存池初始化和配置
+ * 
+ * 该函数负责系统内存池的初始化和配置管理，确保内存资源正确分配。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessSystemMemoryPoolInitialization(long long SystemContextPointer, uint64_t Utf8BufferSize, uint64_t Utf16InputPointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
@@ -115135,7 +115145,17 @@ void ProcessStringEncodingConversionB(long long SystemContextPointer,uint64_t Ut
 
 
 
-0a70(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_180120a70(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统内存池多重初始化
+ * 
+ * 该函数负责系统内存池的多重初始化操作，处理多个内存区域的配置。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessSystemMemoryPoolMultipleInitialization(long long SystemContextPointer, uint64_t Utf8BufferSize, uint64_t Utf16InputPointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
@@ -115298,7 +115318,14 @@ void CleanupSystemContextMemory(long long SystemContextPointer, uint64_t Utf8Buf
 
 
 
-10b0(long long SystemContextPointervoid FUN_1801210b0(long long SystemContextPointer
+/**
+ * @brief 初始化系统字符串缓冲区
+ * 
+ * 该函数负责系统字符串缓冲区的初始化，包括内存分配和数据复制。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ */
+void InitializeSystemStringBuffer(long long SystemContextPointer)
 {
   long long PrimaryDataSize;
   long long bufferAllocationStatus;
@@ -265034,7 +265061,17 @@ LAB_1802297eb:
 
 
 
-29be0(long long *SystemContextPointer,unsigned long long Utf8BufferSizevoid FUN_180229be0(long long *SystemContextPointer,unsigned long long Utf8BufferSize
+/**
+ * @brief 处理UTF-8缓冲区扩展和内存分配
+ * 
+ * 该函数负责处理UTF-8编码的缓冲区扩展操作，包括内存分配、数据复制和状态管理。
+ * 当现有缓冲区容量不足时，会分配新的内存空间并迁移现有数据。
+ * 
+ * @param SystemContextPointer 系统上下文指针，包含当前缓冲区状态信息
+ * @param Utf8BufferSize 需要处理的UTF-8缓冲区大小
+ * @note 原始函数名：FUN_180229be0
+ */
+void ProcessUtf8BufferExpansion(long long *SystemContextPointer, unsigned long long Utf8BufferSize)
 {
   void *StatusBuffer;
   uint32_t MemoryAllocationIndex;
