@@ -58534,7 +58534,7 @@ undefined4 GetUILayoutStatus(void)
 {
   undefined4 *in_stack_00000028;
   
-  FUN_1806905c0();
+  InitializeUIContext();
   return *in_stack_00000028;
 }
 
@@ -58546,7 +58546,7 @@ longlong CalculateUIBasicLayoutOffset(void)
   int operationResult;
   uint *in_stack_00000038;
   
-  operationResult = FUN_180690800();
+  operationResult = ValidateUIDataStructure();
   return (ulonglong)*in_stack_00000038 - ((longlong)operationResult * (longlong)operationResult >> 10);
 }
 
@@ -58562,8 +58562,8 @@ ulonglong CalculateUIExtendedLayoutOffset(longlong uiContext,undefined4 dataSour
   int iStackX_8;
   
   allocatedMemory = param_8;
-  validationResult = FUN_180690800();
-  compareResult = FUN_180690800(uiContext + 0x20,dataSource,targetBuffer,bufferSize,resultPointer + 0x20,param_6,allocatedMemory + 0x20,
+  validationResult = ValidateUIDataStructure();
+  compareResult = ValidateUIDataStructure(uiContext + 0x20,dataSource,targetBuffer,bufferSize,resultPointer + 0x20,param_6,allocatedMemory + 0x20,
                         0x40,0x40,&param_8);
   *param_7 = (int)param_8 + iStackX_8;
   return (ulonglong)(uint)((int)param_8 + iStackX_8) -
@@ -58578,7 +58578,7 @@ longlong CalculateUIAdvancedLayoutOffset(void)
   int operationResult;
   uint *in_stack_00000038;
   
-  operationResult = FUN_180691080();
+  operationResult = CompareUIDataBlocks();
   return (ulonglong)*in_stack_00000038 - ((longlong)operationResult * (longlong)operationResult >> 10);
 }
 
@@ -58596,8 +58596,8 @@ ulonglong CalculateUICompositeLayoutOffset(longlong uiContext,undefined4 dataSou
   
   semaphoreHandle = param_6;
   allocatedMemory = resultPointer;
-  compareResult = FUN_180691080();
-  iVar4 = FUN_180691080(uiContext + 0x20,dataSource,targetBuffer,bufferSize,allocatedMemory + 0x20,semaphoreHandle,0x40,&resultPointer);
+  compareResult = CompareUIDataBlocks();
+  iVar4 = CompareUIDataBlocks(uiContext + 0x20,dataSource,targetBuffer,bufferSize,allocatedMemory + 0x20,semaphoreHandle,0x40,&resultPointer);
   *param_7 = (int)resultPointer + iStackX_8;
   return (ulonglong)(uint)((int)resultPointer + iStackX_8) -
          ((longlong)(iVar4 + compareResult) * (longlong)(iVar4 + compareResult) >> 0xc) & 0xffffffff;
@@ -58612,7 +58612,7 @@ int CalculateUIRenderBufferSize(void)
   int iStack_18;
   
   *_iStack0000000000000028 = 0;
-  FUN_1806905c0();
+  InitializeUIContext();
   *_iStack0000000000000028 = *_iStack0000000000000028 + iStack0000000000000028;
   return *_iStack0000000000000028 - ((uint)(iStack_18 * iStack_18) >> 8);
 }
