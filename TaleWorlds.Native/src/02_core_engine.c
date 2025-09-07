@@ -45206,7 +45206,7 @@ void ExecuteSystemStatusCheckAndDataProcessing(void
   float *FloatDataArray180;
   uint64_t StackData188;
   
-  uStack0000000000000030 = 0xffffffff;
+  StackValidationFlag = 0xffffffff;
   ProcessSystemMemoryAllocation(RegisterValueR13 + 0x3388,&SystemStackBuffer);
   pSystemContextSecondaryFloat9 = InputParameterArray;
   if ((*(uint *)(SystemContext + 0x100) & 0x4000000) != 0) {
@@ -110466,24 +110466,24 @@ unsigned long long ProcessFloatDataComparisonAndConfiguration(float CharacterCod
   PrimaryReturnCode = 0;
   SystemMemoryAllocationResult = *(uint32_t *)(SystemContext + 0x16c8);
   MemoryAllocationIndex = *(uint32_t *)(SystemContext + 0x16cc);
-  uStack0000000000000028 = *(uint32_t *)(SystemContext + 0x16d0);
-  fStack000000000000002c = *(float *)(SystemContext + 0x16d4);
-  uStack0000000000000030 = 0;
-  SystemContextPrimaryFloat9 = fStack000000000000002c * 0.5;
-  uStack0000000000000034 = *(uint32_t *)(SystemContext + 0x16c8);
-  uStack0000000000000038 = *(uint32_t *)(SystemContext + 0x16cc);
-  uStack000000000000003c = *(uint32_t *)(SystemContext + 0x16d0);
+  StackDataOffset28 = *(uint32_t *)(SystemContext + 0x16d0);
+  StackFloatValue2c = *(float *)(SystemContext + 0x16d4);
+  StackValidationFlag = 0;
+  SystemContextPrimaryFloat9 = StackFloatValue2c * 0.5;
+  StackDataIndex34 = *(uint32_t *)(SystemContext + 0x16c8);
+  StackDataIndex38 = *(uint32_t *)(SystemContext + 0x16cc);
+  StackDataIndex3c = *(uint32_t *)(SystemContext + 0x16d0);
   StackVariable40 = *(uint32_t *)(SystemContext + 0x16d4);
   ProcessSystemConfigurationAndData(SystemContext + 0x1b80,&SystemStackBuffer);
-  uStack0000000000000030 = 0x15;
+  StackValidationFlag = 0x15;
   *(uint32_t *)(SystemContext + 0x16c8) = SystemMemoryAllocationResult;
   *(uint32_t *)(SystemContext + 0x16cc) = MemoryAllocationIndex;
-  *(uint32_t *)(SystemContext + 0x16d0) = uStack0000000000000028;
+  *(uint32_t *)(SystemContext + 0x16d0) = StackDataOffset28;
   *(float *)(SystemContext + 0x16d4) = SystemContextPrimaryFloat9;
   loopCounter = SystemDataConfiguration;
-  uStack0000000000000034 = *(uint32_t *)(SystemDataConfiguration + 0x1818);
-  uStack0000000000000038 = *(uint32_t *)(SystemDataConfiguration + 0x181c);
-  uStack000000000000003c = *(uint32_t *)(SystemDataConfiguration + 0x1820);
+  StackDataIndex34 = *(uint32_t *)(SystemDataConfiguration + 0x1818);
+  StackDataIndex38 = *(uint32_t *)(SystemDataConfiguration + 0x181c);
+  StackDataIndex3c = *(uint32_t *)(SystemDataConfiguration + 0x1820);
   StackVariable40 = *(uint32_t *)(SystemDataConfiguration + 0x1824);
   ProcessSystemConfigurationAndData(SystemDataConfiguration + 0x1b80,&SystemStackBuffer);
   *(void *)(ThreadLocalStorageData + 0x1818) = 0;
@@ -117962,7 +117962,16 @@ void ProcessFloatDataEncodingConversion(uint64_t CharacterCode, float *Character
 
 
 
-25f0(uint64_t CharacterCode,float *CharacterCodeSizevoid FUN_1801225f0(uint64_t CharacterCode,float *CharacterCodeSize
+/**
+ * @brief 处理字符代码和尺寸的浮点运算
+ * 
+ * 该函数负责处理字符代码和相关的浮点运算，用于字符编码转换和尺寸计算
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码尺寸指针
+ * @note 原始函数名：FUN_1801225f0
+ */
+void ProcessCharacterCodeFloatCalculation(uint64_t CharacterCode, float *CharacterCodeSize)
 {
   float *pSystemContextPrimaryFloat;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -118096,7 +118105,17 @@ void ProcessFloatDataEncodingConversion(uint64_t CharacterCode, float *Character
 
 
 
-26e4(uint64_t CharacterCode,float *CharacterCodeSize,long long Utf8InputPointervoid FUN_1801226e4(uint64_t CharacterCode,float *CharacterCodeSize,long long Utf8InputPointer
+/**
+ * @brief 处理UTF8字符编码转换和浮点运算
+ * 
+ * 该函数负责处理UTF8字符编码转换，包括字符代码处理和浮点运算
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码尺寸指针
+ * @param Utf8InputPointer UTF8输入指针
+ * @note 原始函数名：FUN_1801226e4
+ */
+void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, float *CharacterCodeSize, long long Utf8InputPointer)
 {
   float *pSystemContextPrimaryFloat;
   float SystemContextSecondaryFloat;
@@ -118159,7 +118178,17 @@ void ProcessFloatDataEncodingConversion(uint64_t CharacterCode, float *Character
 
 
 
-26e9(uint64_t CharacterCode,float *CharacterCodeSize,long long Utf8InputPointervoid FUN_1801226e9(uint64_t CharacterCode,float *CharacterCodeSize,long long Utf8InputPointer
+/**
+ * @brief 处理UTF8字符编码转换和距离计算
+ * 
+ * 该函数负责处理UTF8字符编码转换，包括字符代码处理和距离计算
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码尺寸指针
+ * @param Utf8InputPointer UTF8输入指针
+ * @note 原始函数名：FUN_1801226e9
+ */
+void ProcessUtf8CharacterEncodingWithDistance(uint64_t CharacterCode, float *CharacterCodeSize, long long Utf8InputPointer)
 {
   float *pSystemContextPrimaryFloat;
   float SystemContextSecondaryFloat;
@@ -118685,7 +118714,17 @@ void ProcessMemoryLock(float *CharacterCode,uint CharacterCodeSize,long long Utf
 
 
 
-3105(float *CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointervoid FUN_180123105(float *CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer
+/**
+ * @brief 处理字符代码和UTF8输入的数据转换
+ * 
+ * 该函数负责处理字符代码指针和UTF8输入数据的转换运算
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码尺寸
+ * @param Utf8InputPointer UTF8输入指针
+ * @note 原始函数名：FUN_180123105
+ */
+void ProcessCharacterCodeWithUtf8Input(float *CharacterCode, uint64_t CharacterCodeSize, long long Utf8InputPointer)
 {
   int *ReferenceCountPointer;
   float SystemContextSecondaryFloat;
@@ -150087,15 +150126,15 @@ LAB_1801327bd:
   }
   SystemContextSecondaryFloat4 = 0.0;
   if (CurrentByteValue7 != 0) {
-    SystemContextSecondaryFloat4 = (float)FUN_1801333d0(PrimaryReturnCode & 0xffffffff);
+    SystemContextSecondaryFloat4 = (float)CalculateSystemValueFromCode(PrimaryReturnCode & 0xffffffff);
   }
   if (*(int *)(SystemContext + 0x1d2c) == -1) {
-    if (*(char *)(SystemContext + 0x1d21) != '\0') goto LAB_180132ba2;
+    if (*(char *)(SystemContext + 0x1d21) != '\0') goto SystemContextProcessingComplete;
   }
   else {
     *(uint8_t *)(SystemContext + 0x1d21) = 1;
     *(int *)(SystemContext + 0x1d30) = *(int *)(SystemContext + 0x1d2c);
-LAB_180132ba2:
+SystemContextProcessingComplete:
     if (*(int *)(SystemContext + 0x1ca0) == 0) {
       *(uint16_t *)(SystemContext + 0x1d09) = 0x101;
       *(uint32_t *)(SystemContext + 0x1d0c) = 0;
@@ -150111,7 +150150,7 @@ LAB_180132ba2:
   *(uint8_t *)(loopCounter8 + 0x1d08) = ProcessingStatusFlag;
   loopCounter4 = *(long long *)(SystemContext + 0x1c98);
   if (((loopCounter4 == 0) || ((*(uint *)(loopCounter4 + 0xc) & 0x40000) != 0)) ||
-     (*(long long *)(SystemContext + 0x1cd8) != 0)) goto LAB_180132de6;
+     (*(long long *)(SystemContext + 0x1cd8) != 0)) goto SystemContextCalculationComplete;
   SystemContextSecondaryFloat9 = (float)(int)(*(float *)(loopCounter8 + 0x19fc) * *(float *)(loopCounter4 + 0x2d8) *
                         *(float *)(loopCounter4 + 0x2dc) * 100.0 * *(float *)(SystemContext + 0x18) + 0.5);
   if (((*(int *)(loopCounter4 + 0x174) == 0) && (*(char *)(loopCounter4 + 0x17d) != '\0')) &&
@@ -150119,7 +150158,7 @@ LAB_180132ba2:
     IntegerValue1 = *(int *)(SystemContext + 0x1d2c);
     if (IntegerValue1 == 0) {
       SystemContextPrimaryFloat9 = -SystemContextSecondaryFloat9;
-LAB_180132c8d:
+SystemContextValueAdjustment:
       SystemContextSecondaryFloat0 = *(float *)(loopCounter4 + 0x8c);
       SystemContextPrimaryFloat9 = (float)(int)(SystemContextPrimaryFloat9 + SystemContextSecondaryFloat0);
       *(float *)(loopCounter4 + 0x8c) = SystemContextPrimaryFloat9;
@@ -150128,14 +150167,14 @@ LAB_180132c8d:
     }
     else {
       SystemContextPrimaryFloat9 = SystemContextSecondaryFloat9;
-      if (IntegerValue1 == 1) goto LAB_180132c8d;
+      if (IntegerValue1 == 1) goto SystemContextValueAdjustment;
     }
     if (IntegerValue1 == 2) {
       SystemContextPrimaryFloat9 = -SystemContextSecondaryFloat9;
     }
     else {
       SystemContextPrimaryFloat9 = SystemContextSecondaryFloat9;
-      if (IntegerValue1 != 3) goto LAB_180132d15;
+      if (IntegerValue1 != 3) goto SystemContextSecondaryValueAdjustment;
     }
     SystemContextSecondaryFloat0 = *(float *)(loopCounter4 + 0x90);
     SystemContextPrimaryFloat9 = (float)(int)(SystemContextPrimaryFloat9 + SystemContextSecondaryFloat0);
@@ -205843,9 +205882,23 @@ LAB_1801807f2:
 
 
 
-81a80(long long CharacterCode,int CharacterCodeSize,float *Utf8InputPointer,float *Utf16EndPointer,float *AdditionalParameter1,
-void FUN_180181a80(long long CharacterCode,int CharacterCodeSize,float *Utf8InputPointer,float *Utf16EndPointer,float *AdditionalParameter1,
-                  float *AdditionalParameter2,long long *AdditionalParameter3,uint64_t AdditionalParameter4
+/**
+ * @brief 计算系统字符度量信息
+ * 
+ * 该函数负责计算系统字符的度量信息，包括字符宽度、高度等属性。
+ * 用于文本渲染和布局系统中字符尺寸的精确计算。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2
+ * @param AdditionalParameter3 额外参数3
+ * @param AdditionalParameter4 额外参数4
+ */
+void CalculateSystemCharacterMetrics(long long CharacterCode,int CharacterCodeSize,float *Utf8InputPointer,float *Utf16EndPointer,float *AdditionalParameter1,
+                                    float *AdditionalParameter2,long long *AdditionalParameter3,uint64_t AdditionalParameter4
 {
   float SystemContextPrimaryFloat;
   float SystemContextSecondaryFloat;
@@ -206006,9 +206059,22 @@ LAB_180181dc2:
 
 
 
-81e30(uint64_t CharacterCode,long long CharacterCodeSize,unsigned long long Utf8InputPointer,int *Utf16EndPointer,
-void FUN_180181e30(uint64_t CharacterCode,long long CharacterCodeSize,unsigned long long Utf8InputPointer,int *Utf16EndPointer,
-                  long long *AdditionalParameter1,float *AdditionalParameter2,float AdditionalParameter3
+/**
+ * @brief 处理系统字符验证
+ * 
+ * 该函数负责处理系统字符的验证操作，确保字符数据的完整性和正确性。
+ * 用于字符编码转换和数据验证过程中。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2
+ * @param AdditionalParameter3 额外参数3
+ */
+void ProcessSystemCharacterValidation(uint64_t CharacterCode,long long CharacterCodeSize,unsigned long long Utf8InputPointer,int *Utf16EndPointer,
+                                     long long *AdditionalParameter1,float *AdditionalParameter2,float AdditionalParameter3
 {
   uint8_t SystemStatusByte;
   long long *BufferAllocationStatus;
@@ -208648,8 +208714,21 @@ LAB_180185b78:
 
 
 
-86ac0(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8InputPointer,uint32_t Utf16EndPointer,
-void FUN_180186ac0(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8InputPointer,uint32_t Utf16EndPointer,
+/**
+ * @brief 编码系统字符数据
+ * 
+ * 该函数负责对系统字符数据进行编码操作，将字符数据转换为特定格式。
+ * 用于数据存储和传输过程中的字符编码处理。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2
+ * @param AdditionalParameter3 额外参数3
+ */
+void EncodeSystemCharacterData(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8InputPointer,uint32_t Utf16EndPointer,
                   uint32_t AdditionalParameter1
 {
   long long *CharacterCode;
@@ -213179,9 +213258,20 @@ long long * FUN_18018c160(long long *CharacterCode,uint64_t *CharacterCodeSize
 
 
 
-8c360(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t *Utf8InputPointer,long long Utf16EndPointer,
-void FUN_18018c360(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t *Utf8InputPointer,long long Utf16EndPointer,
-                  long long *AdditionalParameter1
+/**
+ * @brief 解码系统字符数据
+ * 
+ * 该函数负责对系统字符数据进行解码操作，将编码后的字符数据还原为原始格式。
+ * 用于数据读取和处理过程中的字符解码操作。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ */
+void DecodeSystemCharacterData(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t *Utf8InputPointer,long long Utf16EndPointer,
+                               long long *AdditionalParameter1
 {
   uint64_t *StatusBuffer;
   byte *pHighByte;
@@ -213838,9 +213928,20 @@ LAB_18018cd30:
 
 
 
-8cde0(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,uint64_t Utf16EndPointer,
-void FUN_18018cde0(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,uint64_t Utf16EndPointer,
-                  long long AdditionalParameter1
+/**
+ * @brief 解析系统字符数据
+ * 
+ * 该函数负责解析系统字符数据，将字符数据分解为可处理的组件。
+ * 用于字符数据处理和分析过程中的解析操作。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ */
+void ParseSystemCharacterData(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,uint64_t Utf16EndPointer,
+                              long long AdditionalParameter1
 {
   byte CurrentByteValue;
   byte *pHighByte;
@@ -222364,9 +222465,20 @@ LAB_18019797c:
 
 
 
-985e0(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer,
-void FUN_1801985e0(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer,
-                  uint64_t AdditionalParameter1
+/**
+ * @brief 优化系统字符数据
+ * 
+ * 该函数负责优化系统字符数据的处理，提高数据处理的效率和性能。
+ * 用于字符数据处理过程中的性能优化操作。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ */
+void OptimizeSystemCharacterData(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer,
+                                 uint64_t AdditionalParameter1
 {
   int LockResult;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -222578,9 +222690,20 @@ long long * FUN_180198890(uint64_t CharacterCode,long long *CharacterCodeSize,ui
 
 
 
-98980(long long CharacterCode,long long *CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer,
-void FUN_180198980(long long CharacterCode,long long *CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer,
-                  uint32_t AdditionalParameter1
+/**
+ * @brief 压缩系统字符数据
+ * 
+ * 该函数负责压缩系统字符数据，减少数据占用的存储空间。
+ * 用于数据存储和传输过程中的数据压缩操作。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ */
+void CompressSystemCharacterData(long long CharacterCode,long long *CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer,
+                                 uint32_t AdditionalParameter1
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
@@ -227227,9 +227350,21 @@ long long * FUN_18019eb80(long long CharacterCode,long long *CharacterCodeSize
 
 
 
-9fc10(long long CharacterCode,float *CharacterCodeSize,float *Utf8InputPointer,int Utf16EndPointer,long long *AdditionalParameter1,
-void FUN_18019fc10(long long CharacterCode,float *CharacterCodeSize,float *Utf8InputPointer,int Utf16EndPointer,long long *AdditionalParameter1,
-                  uint32_t AdditionalParameter2
+/**
+ * @brief 规范化系统字符数据
+ * 
+ * 该函数负责规范化系统字符数据，确保数据格式的一致性和标准化。
+ * 用于字符数据处理过程中的格式规范化操作。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2
+ */
+void NormalizeSystemCharacterData(long long CharacterCode,float *CharacterCodeSize,float *Utf8InputPointer,int Utf16EndPointer,long long *AdditionalParameter1,
+                                  uint32_t AdditionalParameter2
 {
   float SystemContextPrimaryFloat;
   float SystemContextSecondaryFloat;
@@ -234703,9 +234838,20 @@ void FUN_180206da0(uint64_t CharacterCode,long long CharacterCodeSize,char *Utf8
 
 
 
-072b0(long long *CharacterCode,int *CharacterCodeSize,long long *Utf8InputPointer,uint64_t Utf16EndPointer,
-void FUN_1802072b0(long long *CharacterCode,int *CharacterCodeSize,long long *Utf8InputPointer,uint64_t Utf16EndPointer,
-                  long long AdditionalParameter1
+/**
+ * @brief 处理系统渲染数据并配置次要渲染参数
+ * 
+ * 该函数负责处理系统渲染数据的次要配置操作，作为主要配置的补充。
+ * 确保渲染系统的完整配置。
+ * 
+ * @param CharacterCode 渲染数据编码指针
+ * @param CharacterCodeSize 渲染数据大小指针
+ * @param Utf8InputPointer 渲染输入指针
+ * @param Utf16EndPointer 渲染结束指针
+ * @param AdditionalParameter1 额外参数1
+ */
+void ProcessSystemRenderDataAndConfigureSecondary(long long *CharacterCode,int *CharacterCodeSize,long long *Utf8InputPointer,uint64_t Utf16EndPointer,
+                                                 long long AdditionalParameter1
 {
   long long PrimaryDataSize;
   long long BufferStatus;
