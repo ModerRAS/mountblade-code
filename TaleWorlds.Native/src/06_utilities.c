@@ -90105,7 +90105,18 @@ void ProcessMemoryOperationAtOffset2810(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_18090e2a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数3CB0 - 处理偏移量0x3CB0的异常上下文
+ * 
+ * 该函数负责处理偏移量0x3CB0处的异常上下文，调用相应的异常处理器
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e2a0
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessExceptionContextAtOffset3CB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -90119,7 +90130,18 @@ void Unwind_18090e2a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e2c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理函数3D38 - 在偏移量0x3D38处处理内存操作
+ * 
+ * 该函数负责在偏移量0x3D38处执行内存操作处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e2c0
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessMemoryOperationAtOffset3D38(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x3d38,0x488,2,ProcessMemoryOperationA3,SystemCleanupFlagAlternative);
@@ -90128,7 +90150,18 @@ void Unwind_18090e2c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e2e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理函数4650 - 在偏移量0x4650处处理内存操作
+ * 
+ * 该函数负责在偏移量0x4650处执行内存操作处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e2e0
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessMemoryOperationAtOffset4650(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 18000,0x908,2,ProcessMemoryOperationA4,SystemCleanupFlagAlternative);
@@ -90137,7 +90170,18 @@ void Unwind_18090e2e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e300(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理函数5868 - 在偏移量0x5868处处理内存操作
+ * 
+ * 该函数负责在偏移量0x5868处执行内存操作处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e300
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessMemoryOperationAtOffset5868(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x5868,0x908,2,ProcessMemoryOperationA4,SystemCleanupFlagAlternative);
@@ -90146,7 +90190,18 @@ void Unwind_18090e300(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e320(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理函数6A80 - 在偏移量0x6A80处处理内存操作
+ * 
+ * 该函数负责在偏移量0x6A80处执行内存操作处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e320
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessMemoryOperationAtOffset6A80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x6a80,0x50,2,ProcessMemoryOperationA2,SystemCleanupFlagAlternative);
@@ -90155,7 +90210,18 @@ void Unwind_18090e320(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e340(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理函数6B28 - 在偏移量0x6B28处处理内存操作
+ * 
+ * 该函数负责在偏移量0x6B28处执行内存操作处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e340
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessMemoryOperationAtOffset6B28(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x6b28,0x488,2,ProcessMemoryOperationA3,SystemCleanupFlagAlternative);
@@ -90164,7 +90230,18 @@ void Unwind_18090e340(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e360(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理函数7440 - 在偏移量0x7440处处理内存操作
+ * 
+ * 该函数负责在偏移量0x7440处执行内存操作处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e360
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessMemoryOperationAtOffset7440(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x7440,0x50,2,ProcessMemoryOperationA2,SystemCleanupFlagAlternative);
@@ -90173,7 +90250,18 @@ void Unwind_18090e360(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e380(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理函数74E8 - 在偏移量0x74E8处处理内存操作
+ * 
+ * 该函数负责在偏移量0x74E8处执行内存操作处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e380
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessMemoryOperationAtOffset74E8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x74e8,0x98,2,ProcessMemoryOperationA1,SystemCleanupFlagAlternative);
@@ -90182,7 +90270,18 @@ void Unwind_18090e380(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e3a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理函数7620 - 在偏移量0x7620处处理内存操作
+ * 
+ * 该函数负责在偏移量0x7620处执行内存操作处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e3a0
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ProcessMemoryOperationAtOffset7620(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x7620,0x248,2,ProcessMemoryOperationA0,SystemCleanupFlagAlternative);
@@ -90191,7 +90290,18 @@ void Unwind_18090e3a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e3c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理函数 - 管理资源的引用计数和内存释放
+ * 
+ * 该函数负责管理资源的引用计数，包括引用计数的增减和内存释放操作
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090e3c0
+ * @note 这是一个异常展开（unwind）处理函数
+ */
+void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
