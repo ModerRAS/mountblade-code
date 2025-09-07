@@ -12814,7 +12814,7 @@ MemoryAllocationReset:
       return 0x1c;
     }
     BufferSize = CalculateBufferSize(*ConfigurationArrayPointer,BufferSize - *(int *)(ConfigurationArrayPointer + 1));
-    StackVariable10 = BufferSize + StackVariable20;
+    StackVariable10 = BufferSize + MemoryOffset;
     if (StackVariable10 == StackVariable20) {
       StackVariable10 = StackVariable20 + 1;
     }

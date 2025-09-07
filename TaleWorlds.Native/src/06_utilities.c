@@ -50056,7 +50056,13 @@ void ExecuteResourceCallbackCleanup(DataBuffer operationBase,int64_t dataBuffer,
 
 
 
-void Unwind_180905050(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放资源引用计数函数
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180905050
+ */
+void ReleaseResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
