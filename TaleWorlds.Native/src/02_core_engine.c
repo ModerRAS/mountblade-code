@@ -371,6 +371,7 @@
 #define ProcessCharacterWithComplexCode FUN_180149590
 #define ProcessCharacterWithSimpleCode FUN_180149b00
 #define ProcessCharacterWithRenderContext FUN_18029eb90
+#define ProcessSystemCharacterDataWithParameters FUN_180180730
 #define ProcessCharacterWithExtendedParameters FUN_180149b31
 #define ProcessCharacterWithRenderData FUN_180149b76
 #define ProcessCharacterNullOperationEx FUN_180149bac
@@ -201438,7 +201439,7 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t CharacterCode,uint
       }
       else {
         ProcessingCounter = (void **)MemoryAllocationIndex;
-        FUN_1800b8300(MemoryAllocationIndex,&pErrorCode);
+        ProcessSystemDataBuffer(MemoryAllocationIndex,&pErrorCode);
         *(uint32_t *)(MemoryAllocationIndex + 0x58) = SystemOperation90;
         *(uint32_t *)(MemoryAllocationIndex + 0x5c) = uStack_8c;
         *(uint32_t *)(MemoryAllocationIndex + 0x60) = StackValidationData;
@@ -201450,7 +201451,7 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t CharacterCode,uint
     else if (MemoryAllocationIndex < *(unsigned long long *)(Utf16EndPointer + 0x28)) {
       *(unsigned long long *)(Utf16EndPointer + 0x20) = MemoryAllocationIndex + 0x70;
       ProcessingCounter = (void **)MemoryAllocationIndex;
-      FUN_1800b8300(MemoryAllocationIndex);
+      ProcessSystemDataBuffer(MemoryAllocationIndex);
       *(uint32_t *)(MemoryAllocationIndex + 0x58) = SystemOperation90;
       *(uint32_t *)(MemoryAllocationIndex + 0x5c) = uStack_8c;
       *(uint32_t *)(MemoryAllocationIndex + 0x60) = StackValidationData;
@@ -204446,7 +204447,7 @@ LAB_1801741dc:
       StringProcessingStatus = StringProcessingStatus + 0xe;
     } while (CharacterStatusBuffer != SystemCharacterStatusBuffer);
   }
-  FUN_1800b8300(TemporaryBuffer,Utf8BufferSize);
+  ProcessSystemDataBuffer(TemporaryBuffer,Utf8BufferSize);
   UnicodeCodePoint = *(uint32_t *)(Utf8BufferSize + 0x5c);
   MemoryAddressMask = *(uint32_t *)(Utf8BufferSize + 0x60);
   CalculatedCodePoint = *(uint32_t *)(Utf8BufferSize + 100);
@@ -204526,7 +204527,7 @@ void ProcessUtf8InputBuffer(void **Utf8InputBuffer,void **Utf8InputBufferSize,lo
   ppErrorCode = CharacterCode;
   if (((long long *)CharacterCode)[1] != ((long long *)CharacterCode)[2]) {
     ppSystemFlagE = Utf8BufferSize;
-    FUN_1800b8300(apMemoryOffsetValue,Utf8SourcePointer);
+    ProcessSystemDataBuffer(apMemoryOffsetValue,Utf8SourcePointer);
     StackProcessingUnsignedValue60 = *(uint32_t *)(Utf8SourcePointer + 0x58);
     SystemUnsignedValue5C = *(uint32_t *)(Utf8SourcePointer + 0x5c);
     BufferOffset = *(uint32_t *)(Utf8SourcePointer + 0x60);
@@ -204534,7 +204535,7 @@ void ProcessUtf8InputBuffer(void **Utf8InputBuffer,void **Utf8InputBufferSize,lo
     SystemValidationPointer = *(void **)(Utf8SourcePointer + 0x68);
     SystemStringIndex = ((long long *)CharacterCode)[1];
     ppErrorCode = (void **)SystemStringIndex;
-    FUN_1800b8300(SystemStringIndex,SystemStringIndex + -0x70);
+    ProcessSystemDataBuffer(SystemStringIndex,SystemStringIndex + -0x70);
     *(uint32_t *)(SystemStringIndex + 0x58) = *(uint32_t *)(SystemStringIndex + -0x18);
     *(uint32_t *)(SystemStringIndex + 0x5c) = *(uint32_t *)(SystemStringIndex + -0x14);
     *(uint32_t *)(SystemStringIndex + 0x60) = *(uint32_t *)(SystemStringIndex + -0x10);
@@ -204568,7 +204569,7 @@ void ProcessUtf8InputBuffer(void **Utf8InputBuffer,void **Utf8InputBufferSize,lo
     }
     *Utf8InputBufferSize = &ThreadLocalStorageTemplate;
     ppErrorCode = Utf8BufferSize;
-    FUN_1800b8300(Utf8BufferSize,apMemoryOffsetValue);
+    ProcessSystemDataBuffer(Utf8BufferSize,apMemoryOffsetValue);
     *(uint32_t *)(Utf8BufferSize + 0xb) = StackProcessingUnsignedValue60;
     *(uint32_t *)((long long)Utf8BufferSize + 0x5c) = SystemUnsignedValue5C;
     *(uint32_t *)(Utf8BufferSize + 0xc) = BufferOffset;
@@ -204596,7 +204597,7 @@ LAB_180174517:
   }
   pCharacterStatusBuffer2 = pCharacterCodeTablePointer + (((long long)Utf8BufferSize - SystemStringIndex) / 0x70) * 0xe;
   ppSystemFlagF = pCharacterStatusBuffer2;
-  FUN_1800b8300(pCharacterStatusBuffer2,Utf8SourcePointer);
+  ProcessSystemDataBuffer(pCharacterStatusBuffer2,Utf8SourcePointer);
   MemoryAllocationIndex = *(uint32_t *)(Utf8SourcePointer + 0x5c);
   UnicodeCodePoint = *(uint32_t *)(Utf8SourcePointer + 0x60);
   MemoryAddressMask = *(uint32_t *)(Utf8SourcePointer + 100);
@@ -210235,10 +210236,10 @@ long long * FUN_18017b6e0(long long *Utf8InputBuffer,uint32_t *Utf8InputBufferSi
   aCoreEngineValueC0[0] = 0;
   SystemFlagH = 0xc;
   strcpy_s(aCoreEngineValueC0,0x40,&CoreEngineStringValueA);
-  FUN_1800b8300(aCoreEnginePointerBuffer78,&pSystemFlagF);
+  ProcessSystemDataBuffer(aCoreEnginePointerBuffer78,&pSystemFlagF);
   ProcessingCounter = 9;
   SystemFlagB = 1;
-  FUN_180180730(CharacterCode,appErrorCode,aCoreEnginePointerBuffer78);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appErrorCode,aCoreEnginePointerBuffer78);
   SystemFlagB = 0;
   appErrorCode[0] = aCoreEnginePointerBuffer78;
   aCoreEnginePointerBuffer78[0] = &ThreadLocalStorageTemplate;
@@ -210352,10 +210353,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   CurrentCharacterA[0] = 0;
   StringLength = 4;
   strcpy_s(CurrentCharacterA,0x40,SystemStringTemplateA);
-  FUN_1800b8300(SystemParameterArray,&CurrentCharacterPointer);
+  ProcessSystemDataBuffer(SystemParameterArray,&CurrentCharacterPointer);
   OperationType = 2;
   ConfigurationFlags = 1;
-  FUN_180180730(CharacterCode,FunctionPointerArray,SystemParameterArray);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,FunctionPointerArray,SystemParameterArray);
   ConfigurationFlags = 0;
   FunctionPointerArray[0] = SystemParameterArray;
   SystemParameterArray[0] = &ThreadLocalStorageTemplate;
@@ -210365,10 +210366,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   SystemBufferA[0] = 0;
   SystemDataLengthA = 7;
   strcpy_s(SystemBufferA,0x40,&CoreEngineStringValueC);
-  FUN_1800b8300(SystemParameterArray,&SystemPointerA);
+  ProcessSystemDataBuffer(SystemParameterArray,&SystemPointerA);
   OperationType = 10;
   ConfigurationFlags = 2;
-  FUN_180180730(CharacterCode,FunctionPointerArray,SystemParameterArray);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,FunctionPointerArray,SystemParameterArray);
   ConfigurationFlags = 0;
   FunctionPointerArray[0] = SystemParameterArray;
   SystemParameterArray[0] = &ThreadLocalStorageTemplate;
@@ -210378,10 +210379,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   CharacterStatusBufferB[0] = 0;
   DataLengthB = 7;
   strcpy_s(CharacterStatusBufferB,0x40,SystemStringTemplateB);
-  FUN_1800b8300(apuStack_628,&SystemValidationPointer8);
+  ProcessSystemDataBuffer(apuStack_628,&SystemValidationPointer8);
   uStack_5d0 = 10;
   SystemUnsignedValue648 = 4;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210391,10 +210392,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   auStack_490[0] = 0;
   uStack_498 = 7;
   strcpy_s(auStack_490,0x40,&CoreEngineStringValueE);
-  FUN_1800b8300(apuStack_628,&puStack_4a8);
+  ProcessSystemDataBuffer(apuStack_628,&puStack_4a8);
   uStack_5d0 = 10;
   SystemUnsignedValue648 = 8;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210404,10 +210405,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   auStack_430[0] = 0;
   uStack_438 = 7;
   strcpy_s(auStack_430,0x40,SystemStringTemplateC);
-  FUN_1800b8300(apuStack_628,&puStack_448);
+  ProcessSystemDataBuffer(apuStack_628,&puStack_448);
   uStack_5d0 = 10;
   SystemUnsignedValue648 = 0x10;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210417,10 +210418,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   auStack_3d0[0] = 0;
   uStack_3d8 = 0x11;
   strcpy_s(auStack_3d0,0x40,&CoreEngineStringValueG);
-  FUN_1800b8300(apuStack_628,&puStack_3e8);
+  ProcessSystemDataBuffer(apuStack_628,&puStack_3e8);
   uStack_5d0 = 7;
   SystemUnsignedValue648 = 0x20;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210430,10 +210431,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   auStack_370[0] = 0;
   uStack_378 = 0x22;
   strcpy_s(auStack_370,0x40,SystemStringTemplateE);
-  FUN_1800b8300(apuStack_628,&pFunctionAddress8);
+  ProcessSystemDataBuffer(apuStack_628,&pFunctionAddress8);
   uStack_5d0 = 0;
   SystemUnsignedValue648 = 0x40;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210443,10 +210444,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   aSystemValue310[0] = 0;
   CoreEngineUnsignedValue318 = 0xb;
   strcpy_s(aSystemValue310,0x40,SystemStringTemplateD);
-  FUN_1800b8300(apuStack_628,&SystemMemoryBuffer);
+  ProcessSystemDataBuffer(apuStack_628,&SystemMemoryBuffer);
   uStack_5d0 = 4;
   SystemUnsignedValue648 = 0x80;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210456,10 +210457,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   aSystemValue2b0[0] = 0;
   SystemValue2b8 = 0x12;
   strcpy_s(aSystemValue2b0,0x40,SystemStringTemplateG);
-  FUN_1800b8300(apuStack_628,&pCharacterTablePointer);
+  ProcessSystemDataBuffer(apuStack_628,&pCharacterTablePointer);
   uStack_5d0 = 2;
   SystemUnsignedValue648 = 0x100;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210469,10 +210470,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   aBufferCurrentCharacter[0] = 0;
   SystemUintBuffer258 = 0x12;
   strcpy_s(aBufferCurrentCharacter,0x40,SystemStringTemplateF);
-  FUN_1800b8300(apuStack_628,&pMemoryCopyBuffer);
+  ProcessSystemDataBuffer(apuStack_628,&pMemoryCopyBuffer);
   uStack_5d0 = 2;
   SystemUnsignedValue648 = 0x200;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210482,10 +210483,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   auStack_1f0[0] = 0;
   uStack_1f8 = 0x1e;
   strcpy_s(auStack_1f0,0x40,SystemStringTemplateI);
-  FUN_1800b8300(apuStack_628,&pCoreEngineUnsignedValue208);
+  ProcessSystemDataBuffer(apuStack_628,&pCoreEngineUnsignedValue208);
   uStack_5d0 = 2;
   SystemUnsignedValue648 = 0x400;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210495,10 +210496,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   auStack_190[0] = 0;
   StackProcessingVariable = 0x1b;
   strcpy_s(auStack_190,0x40,SystemStringTemplateH);
-  FUN_1800b8300(apuStack_628,&pSystemValue1a8);
+  ProcessSystemDataBuffer(apuStack_628,&pSystemValue1a8);
   uStack_5d0 = 2;
   SystemUnsignedValue648 = 0x800;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210508,10 +210509,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   aTemporaryFlag[0] = 0;
   uStack_138 = 0x1b;
   strcpy_s(aTemporaryFlag,0x40,SystemStringTemplateK);
-  FUN_1800b8300(apuStack_628,&CoreEngineValue148);
+  ProcessSystemDataBuffer(apuStack_628,&CoreEngineValue148);
   uStack_5d0 = 2;
   SystemUnsignedValue648 = 0x1000;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210521,10 +210522,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   aSystemFlagG[0] = 0;
   SystemFlagF = 0x18;
   strcpy_s(aSystemFlagG,0x40,SystemStringTemplateJ);
-  FUN_1800b8300(apuStack_628,&pErrorCode);
+  ProcessSystemDataBuffer(apuStack_628,&pErrorCode);
   uStack_5d0 = 0xb;
   SystemUnsignedValue648 = 0x2000;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -210534,10 +210535,10 @@ void InitializeCoreEngineSystemConfiguration(uint64_t CharacterCode
   aStackProcessingVariable70[0] = 0;
   StackProcessingUnsignedValue78 = 0xc;
   strcpy_s(aStackProcessingVariable70,0x40,SystemStringTemplateL);
-  FUN_1800b8300(apuStack_628,&SystemEventPointer);
+  ProcessSystemDataBuffer(apuStack_628,&SystemEventPointer);
   uStack_5d0 = 0xb;
   SystemUnsignedValue648 = 0x4000;
-  FUN_180180730(CharacterCode,appSystemUnsignedValue640,apuStack_628);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appSystemUnsignedValue640,apuStack_628);
   SystemUnsignedValue648 = 0;
   appSystemUnsignedValue640[0] = apuStack_628;
   apuStack_628[0] = &ThreadLocalStorageTemplate;
@@ -211077,10 +211078,10 @@ void ProcessUtf8EncodingConversion(uint64_t CharacterCode,uint64_t Utf8BufferSiz
   aCoreEngineValueC0[0] = 0;
   SystemFlagH = 4;
   strcpy_s(aCoreEngineValueC0,0x40,SystemStringTemplateM);
-  FUN_1800b8300(aCoreEnginePointerBuffer78,&pSystemFlagF);
+  ProcessSystemDataBuffer(aCoreEnginePointerBuffer78,&pSystemFlagF);
   ProcessingCounter = 3;
   SystemFlagB = 1;
-  FUN_180180730(CharacterCode,appErrorCode,aCoreEnginePointerBuffer78);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appErrorCode,aCoreEnginePointerBuffer78);
   SystemFlagB = 0;
   appErrorCode[0] = aCoreEnginePointerBuffer78;
   aCoreEnginePointerBuffer78[0] = &ThreadLocalStorageTemplate;
@@ -211269,10 +211270,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   auStack_550[0] = 0;
   uStack_558 = 0xc;
   strcpy_s(auStack_550,0x40,SystemStringTemplateN);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&puStack_568);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&puStack_568);
   uStack_570 = 1;
   uStack_5e8 = 1;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211282,10 +211283,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   auStack_4f0[0] = 0;
   uStack_4f8 = 5;
   strcpy_s(auStack_4f0,0x40,SystemStringTemplateS);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&SystemValidationPointer8);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&SystemValidationPointer8);
   uStack_570 = 4;
   uStack_5e8 = 2;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211295,10 +211296,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   auStack_490[0] = 0;
   uStack_498 = 6;
   strcpy_s(auStack_490,0x40,SystemStringTemplateT);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&puStack_4a8);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&puStack_4a8);
   uStack_570 = 4;
   uStack_5e8 = 4;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211308,10 +211309,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   auStack_430[0] = 0;
   uStack_438 = 0xf;
   strcpy_s(auStack_430,0x40,SystemStringTemplateP);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&puStack_448);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&puStack_448);
   uStack_570 = 4;
   uStack_5e8 = 8;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211321,10 +211322,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   auStack_3d0[0] = 0;
   uStack_3d8 = 4;
   strcpy_s(auStack_3d0,0x40,SystemStringTemplateO);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&puStack_3e8);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&puStack_3e8);
   uStack_570 = 1;
   uStack_5e8 = 0x10;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211334,10 +211335,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   auStack_370[0] = 0;
   uStack_378 = 3;
   strcpy_s(auStack_370,0x40,SystemStringTemplateR);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&pFunctionAddress8);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&pFunctionAddress8);
   uStack_570 = 1;
   uStack_5e8 = 0x20;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211347,10 +211348,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   aSystemValue310[0] = 0;
   CoreEngineUnsignedValue318 = 0xf;
   strcpy_s(aSystemValue310,0x40,SystemStringTemplateQ);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&SystemMemoryBuffer);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&SystemMemoryBuffer);
   uStack_570 = 1;
   uStack_5e8 = 0x40;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211360,10 +211361,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   aSystemValue2b0[0] = 0;
   SystemValue2b8 = 9;
   strcpy_s(aSystemValue2b0,0x40,SystemStringTemplateG);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&pCharacterTablePointer);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&pCharacterTablePointer);
   uStack_570 = 1;
   uStack_5e8 = 0x80;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211373,10 +211374,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   aBufferCurrentCharacter[0] = 0;
   SystemUintBuffer258 = 0xd;
   strcpy_s(aBufferCurrentCharacter,0x40,SystemStringTemplateF);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&pMemoryCopyBuffer);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&pMemoryCopyBuffer);
   uStack_570 = 1;
   uStack_5e8 = 0x100;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211386,10 +211387,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   auStack_1f0[0] = 0;
   uStack_1f8 = 0x10;
   strcpy_s(auStack_1f0,0x40,SystemStringTemplateI);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&pCoreEngineUnsignedValue208);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&pCoreEngineUnsignedValue208);
   uStack_570 = 0xc;
   uStack_5e8 = 0x200;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211399,10 +211400,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   auStack_190[0] = 0;
   StackProcessingVariable = 0xd;
   strcpy_s(auStack_190,0x40,SystemStringTemplateH);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&pSystemValue1a8);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&pSystemValue1a8);
   uStack_570 = 3;
   uStack_5e8 = 0x400;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211412,10 +211413,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   aTemporaryFlag[0] = 0;
   uStack_138 = 0x18;
   strcpy_s(aTemporaryFlag,0x40,SystemStringTemplateK);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&CoreEngineValue148);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&CoreEngineValue148);
   uStack_570 = 0xb;
   uStack_5e8 = 0x800;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211425,10 +211426,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   aSystemFlagG[0] = 0;
   SystemFlagF = 0xc;
   strcpy_s(aSystemFlagG,0x40,SystemStringTemplateJ);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&pErrorCode);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&pErrorCode);
   uStack_570 = 0xb;
   uStack_5e8 = 0x1000;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -211438,10 +211439,10 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize
   aStackProcessingVariable70[0] = 0;
   StackProcessingUnsignedValue78 = 10;
   strcpy_s(aStackProcessingVariable70,0x40,SystemStringTemplateL);
-  FUN_1800b8300(apSystemUnsignedValue5C8,&SystemEventPointer);
+  ProcessSystemDataBuffer(apSystemUnsignedValue5C8,&SystemEventPointer);
   uStack_570 = 0xb;
   uStack_5e8 = 0x2000;
-  FUN_180180730(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
+  ProcessSystemCharacterDataWithParameters(CharacterCode,appuStack_5e0,apSystemUnsignedValue5C8);
   uStack_5e8 = 0;
   appuStack_5e0[0] = apSystemUnsignedValue5C8;
   apSystemUnsignedValue5C8[0] = &ThreadLocalStorageTemplate;
@@ -222002,7 +222003,7 @@ FUN_18018e7e0(uint64_t *Utf8InputBuffer,long long Utf8BufferSize,uint64_t Utf8So
         DataSize = *(unsigned long long *)(EncodingConversionResult + 0x3c8);
         if (DataSize < *(unsigned long long *)(EncodingConversionResult + 0x3d0)) {
           *(unsigned long long *)(EncodingConversionResult + 0x3c8) = DataSize + 0x58;
-          FUN_1800b8300(DataSize,&SystemTemplatePointer);
+          ProcessSystemDataBuffer(DataSize,&SystemTemplatePointer);
         }
         else {
           ProcessingStatusFlag = *(unsigned long long *)(EncodingConversionResult + 0x3c0);
@@ -222042,7 +222043,7 @@ LAB_18018ef5b:
               SystemDataTablePointer = lStack_1e8;
             } while (MemoryPoolBlockSize + (long long)pMemoryAddressMask != DataSize);
           }
-          FUN_1800b8300(pMemoryAddressMask,&SystemTemplatePointer);
+          ProcessSystemDataBuffer(pMemoryAddressMask,&SystemTemplatePointer);
           CharacterStatusBuffer = *(uint64_t **)(EncodingConversionResult + 0x3c8);
           CharacterCodeTablePointer = *(uint64_t **)(EncodingConversionResult + 0x3c0);
           if (CharacterCodeTablePointer != CharacterStatusBuffer) {
@@ -222077,7 +222078,7 @@ LAB_18018ef5b:
         DataSize = *(unsigned long long *)(EncodingConversionResult + 1000);
         if (DataSize < *(unsigned long long *)(EncodingConversionResult + 0x3f0)) {
           *(unsigned long long *)(EncodingConversionResult + 1000) = DataSize + 0x58;
-          FUN_1800b8300(DataSize,&CoreEnginePointerBuffer158);
+          ProcessSystemDataBuffer(DataSize,&CoreEnginePointerBuffer158);
         }
         else {
           ProcessingStatusFlag = *(unsigned long long *)(EncodingConversionResult + 0x3e0);
@@ -222117,7 +222118,7 @@ LAB_18018f13f:
               SystemDataTablePointer = lStack_1e8;
             } while (MemoryPoolBlockSize + (long long)pMemoryAddressMask != DataSize);
           }
-          FUN_1800b8300(pMemoryAddressMask,&CoreEnginePointerBuffer158);
+          ProcessSystemDataBuffer(pMemoryAddressMask,&CoreEnginePointerBuffer158);
           CharacterStatusBuffer = *(uint64_t **)(EncodingConversionResult + 1000);
           CharacterCodeTablePointer = *(uint64_t **)(EncodingConversionResult + 0x3e0);
           if (CharacterCodeTablePointer != CharacterStatusBuffer) {
@@ -222152,7 +222153,7 @@ LAB_18018f13f:
         DataSize = *(unsigned long long *)(EncodingConversionResult + 0x428);
         if (DataSize < *(unsigned long long *)(EncodingConversionResult + 0x430)) {
           *(unsigned long long *)(EncodingConversionResult + 0x428) = DataSize + 0x58;
-          FUN_1800b8300(DataSize,&pSystemFlagB);
+          ProcessSystemDataBuffer(DataSize,&pSystemFlagB);
         }
         else {
           ProcessingStatusFlag = *(unsigned long long *)(EncodingConversionResult + 0x420);
@@ -222192,7 +222193,7 @@ LAB_18018f31a:
               SystemDataTablePointer = lStack_1e8;
             } while (MemoryPoolBlockSize + (long long)pMemoryAddressMask != DataSize);
           }
-          FUN_1800b8300(pMemoryAddressMask,&pSystemFlagB);
+          ProcessSystemDataBuffer(pMemoryAddressMask,&pSystemFlagB);
           CharacterStatusBuffer = *(uint64_t **)(EncodingConversionResult + 0x428);
           CharacterCodeTablePointer = *(uint64_t **)(EncodingConversionResult + 0x420);
           if (CharacterCodeTablePointer != CharacterStatusBuffer) {
@@ -222227,7 +222228,7 @@ LAB_18018f31a:
         DataSize = *(unsigned long long *)(EncodingConversionResult + 0x448);
         if (DataSize < *(unsigned long long *)(EncodingConversionResult + 0x450)) {
           *(unsigned long long *)(EncodingConversionResult + 0x448) = DataSize + 0x58;
-          FUN_1800b8300(DataSize,&pSystemOperationFlag98);
+          ProcessSystemDataBuffer(DataSize,&pSystemOperationFlag98);
         }
         else {
           ProcessingStatusFlag = *(unsigned long long *)(EncodingConversionResult + 0x440);
@@ -222269,7 +222270,7 @@ LAB_18018f515:
               SystemDataTablePointer = lStack_1e8;
             } while ((long long)pMemoryAddressMask + StringOffset != DataSize);
           }
-          FUN_1800b8300(pMemoryAddressMask,&pSystemOperationFlag98);
+          ProcessSystemDataBuffer(pMemoryAddressMask,&pSystemOperationFlag98);
           CharacterStatusBuffer = *(uint64_t **)(EncodingConversionResult + 0x448);
           CharacterCodeTablePointer = *(uint64_t **)(EncodingConversionResult + 0x440);
           if (CharacterCodeTablePointer != CharacterStatusBuffer) {
@@ -238731,7 +238732,7 @@ LAB_180203d77:
   MemoryAllocationIndex = 0;
 LAB_180203dc0:
   MemoryPoolBlockSize = BufferAllocate(MemoryPoolManager,0x80,(char)Utf8InputBuffer[5]);
-  FUN_1800b8300(MemoryPoolBlockSize + 0x20,AdditionalParameter1);
+  ProcessSystemDataBuffer(MemoryPoolBlockSize + 0x20,AdditionalParameter1);
   *(uint32_t *)(MemoryPoolBlockSize + 0x78) = 0;
                     // WARNING: Subroutine does not return
   AllocateMemoryWithFlags(MemoryPoolBlockSize,SystemDataTablePointer,CharacterCode,MemoryAllocationIndex);
@@ -238772,7 +238773,7 @@ LAB_180203e9b:
 LAB_180203ea4:
   AllocatedMemorySize = BufferAllocate(MemoryPoolManager,0x80,*(uint8_t *)(CharacterCode + 0x28),Utf16EndPointer,
                         0xfffffffffffffffe);
-  FUN_1800b8300(AllocatedMemorySize + 0x20,AdditionalParameter1);
+  ProcessSystemDataBuffer(AllocatedMemorySize + 0x20,AdditionalParameter1);
   *(uint32_t *)(AllocatedMemorySize + 0x78) = 0;
                     // WARNING: Subroutine does not return
   AllocateMemoryWithFlags(AllocatedMemorySize,Utf8SourcePointer,CharacterCode,MemoryAddressMask);
@@ -258852,7 +258853,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
   if (PrimaryProcessingStatusFlag < (void **)Utf8BufferSize[2]) {
     Utf8BufferSize[1] = PrimaryProcessingStatusFlag + 0xf;
     PrimaryStackPointer98 = PrimaryProcessingStatusFlag;
-    FUN_1800b8300(PrimaryProcessingStatusFlag);
+    ProcessSystemDataBuffer(PrimaryProcessingStatusFlag);
     CoreEngineExecuteSystemEvent(PrimaryProcessingStatusFlag + 0xb,&OperationStatus);
   }
   else {
@@ -258864,7 +258865,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
   if (PrimaryProcessingStatusFlag < (void **)Utf8BufferSize[2]) {
     Utf8BufferSize[1] = PrimaryProcessingStatusFlag + 0xf;
     PrimaryStackPointer98 = PrimaryProcessingStatusFlag;
-    FUN_1800b8300(PrimaryProcessingStatusFlag);
+    ProcessSystemDataBuffer(PrimaryProcessingStatusFlag);
     CoreEngineExecuteSystemEvent(PrimaryProcessingStatusFlag + 0xb,&OperationStatus);
   }
   else {
@@ -258889,7 +258890,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
   if (PrimaryProcessingStatusFlag < (void **)Utf8BufferSize[2]) {
     Utf8BufferSize[1] = PrimaryProcessingStatusFlag + 0xf;
     PrimaryStackPointer98 = PrimaryProcessingStatusFlag;
-    FUN_1800b8300(PrimaryProcessingStatusFlag);
+    ProcessSystemDataBuffer(PrimaryProcessingStatusFlag);
     CoreEngineExecuteSystemEvent(PrimaryProcessingStatusFlag + 0xb,&OperationStatus);
   }
   else {
@@ -258902,7 +258903,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
   if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
     Utf8BufferSize[1] = SystemChecksum + 0x78;
     PrimaryStackPointer98 = (void **)SystemChecksum;
-    FUN_1800b8300(SystemChecksum);
+    ProcessSystemDataBuffer(SystemChecksum);
     CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
   }
   else {
@@ -258934,7 +258935,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -258963,7 +258964,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -258992,7 +258993,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259021,7 +259022,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259050,7 +259051,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259079,7 +259080,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259108,7 +259109,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259137,7 +259138,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259166,7 +259167,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259195,7 +259196,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259224,7 +259225,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259253,7 +259254,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259282,7 +259283,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259311,7 +259312,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259340,7 +259341,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259370,7 +259371,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
       if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
         Utf8BufferSize[1] = SystemChecksum + 0x78;
         PrimaryStackPointer98 = (void **)SystemChecksum;
-        FUN_1800b8300(SystemChecksum);
+        ProcessSystemDataBuffer(SystemChecksum);
         CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
       }
       else {
@@ -259400,7 +259401,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
       if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
         Utf8BufferSize[1] = SystemChecksum + 0x78;
         PrimaryStackPointer98 = (void **)SystemChecksum;
-        FUN_1800b8300(SystemChecksum);
+        ProcessSystemDataBuffer(SystemChecksum);
         CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
       }
       else {
@@ -259431,7 +259432,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259461,7 +259462,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259491,7 +259492,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259521,7 +259522,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259551,7 +259552,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259581,7 +259582,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259611,7 +259612,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259641,7 +259642,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259671,7 +259672,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
       Utf8BufferSize[1] = SystemChecksum + 0x78;
       PrimaryStackPointer98 = (void **)SystemChecksum;
-      FUN_1800b8300(SystemChecksum);
+      ProcessSystemDataBuffer(SystemChecksum);
       CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
     }
     else {
@@ -259747,7 +259748,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
         if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
           Utf8BufferSize[1] = SystemChecksum + 0x78;
           PrimaryStackPointer98 = (void **)SystemChecksum;
-          FUN_1800b8300(SystemChecksum);
+          ProcessSystemDataBuffer(SystemChecksum);
           CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&OperationStatus);
         }
         else {
@@ -259834,7 +259835,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
   if (SystemChecksum < (unsigned long long)Utf8BufferSize[2]) {
     Utf8BufferSize[1] = SystemChecksum + 0x78;
     PrimaryStackPointer98 = (void **)SystemChecksum;
-    FUN_1800b8300(SystemChecksum);
+    ProcessSystemDataBuffer(SystemChecksum);
     CoreEngineExecuteSystemEvent(SystemChecksum + 0x58,&StackProcessingVariableBuffer);
   }
   else {
@@ -269839,7 +269840,7 @@ LAB_1802260bd:
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 0xf;
     } while (AllocatedMemorySize + -0x68 + (long long)SecondaryProcessingStatusFlag != SystemDataTablePointer);
   }
-  FUN_1800b8300(pMemoryAddressMask,Utf8BufferSize);
+  ProcessSystemDataBuffer(pMemoryAddressMask,Utf8BufferSize);
   CoreEngineExecuteSystemEvent(pMemoryAddressMask + 0xb,Utf8BufferSize + 0x58);
   SystemDataTablePointer = Utf8InputBuffer[1];
   AllocatedMemorySize = *Utf8InputBuffer;
@@ -276778,7 +276779,7 @@ long long ManageSystemMemoryPool(long long CharacterCode
         ProcessCurrentCharacter = *(unsigned long long *)(CharacterCode + SecondaryProcessingStatusOffset);
         if (ProcessCurrentCharacter < *(unsigned long long *)(CharacterCode + 0x378)) {
           *(unsigned long long *)(CharacterCode + SecondaryProcessingStatusOffset) = ProcessCurrentCharacter + 0x58;
-          FUN_1800b8300(ProcessCurrentCharacter,AllocatedMemorySize);
+          ProcessSystemDataBuffer(ProcessCurrentCharacter,AllocatedMemorySize);
         }
         else {
           Utf16Char4 = *CharacterStatusBuffer;
@@ -276816,7 +276817,7 @@ LAB_18022de69:
               StringProcessingStatus = StringProcessingStatus + 0xb;
             } while (CharacterTablePointer5 + (long long)StringProcessingStatus != ProcessCurrentCharacter);
           }
-          FUN_1800b8300(StringProcessingStatus,AllocatedMemorySize);
+          ProcessSystemDataBuffer(StringProcessingStatus,AllocatedMemorySize);
           systemEventTemplatePointer = *(uint64_t **)(CharacterCode + SecondaryProcessingStatusOffset);
           TemporaryBuffer = (void *)*CharacterStatusBuffer;
           if (TemporaryBuffer != systemEventTemplatePointer) {
