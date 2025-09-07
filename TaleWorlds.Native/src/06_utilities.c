@@ -7581,22 +7581,22 @@ uint8_t UtilityDecompressionStatus;
 #define EncryptUtilityDataA1 FUN_1809422e0
 
 uint8_t EncryptUtilityDataA0;
-uint8_t UtilityEncryptionBufferA;
-uint8_t UtilityEncryptionBufferB;
-uint8_t UtilityEncryptionBufferC;
-uint8_t UtilityEncryptionBufferD;
-uint8_t UtilityEncryptionStatusA;
+uint8_t UtilityEncryptionPrimaryBuffer;
+uint8_t UtilityEncryptionSecondaryBuffer;
+uint8_t UtilityEncryptionTertiaryBuffer;
+uint8_t UtilityEncryptionQuaternaryBuffer;
+uint8_t UtilityEncryptionStatus;
 
 // 原始函数名：FUN_180942300 - 数据解密函数A1
 // 功能：解密已加密的工具数据
 #define DecryptUtilityDataA1 FUN_180942300
 
 uint8_t DecryptUtilityDataA0;
-uint8_t UtilityDecryptionBufferA;
-uint8_t UtilityDecryptionBufferB;
-uint8_t UtilityDecryptionBufferC;
-uint8_t UtilityDecryptionBufferD;
-uint8_t UtilityDecryptionStatusA;
+uint8_t UtilityDecryptionPrimaryBuffer;
+uint8_t UtilityDecryptionSecondaryBuffer;
+uint8_t UtilityDecryptionTertiaryBuffer;
+uint8_t UtilityDecryptionQuaternaryBuffer;
+uint8_t UtilityDecryptionStatus;
 
 // 原始函数名：FUN_180942320 - 数据哈希函数A0
 // 功能：计算工具数据的哈希值
