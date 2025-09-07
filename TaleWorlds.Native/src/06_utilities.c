@@ -8162,7 +8162,7 @@ void* GlobalDataPointerExtendedStorage;    // DAT_180bfa230
 void* GlobalDataPointerExtendedStatus;     // DAT_180bfa238
 void* GlobalDataPointerExtendedConfig;     // DAT_180bfa240
 void* GlobalDataPointerExtendedCache;      // DAT_180bfa248
-void* GlobalDataPointerA38ValidationBuffer;  // DAT_180a22fa8
+void* GlobalDataPointerExtendedValidationBuffer;  // DAT_180a22fa8
 
 // 函数: uint8_t ProcessUtilityData;
 // 
@@ -8504,7 +8504,7 @@ uint8_t ValidateUtilitySystemStorage;
 uint8_t UtilitySystemStorageData1;
 uint8_t UtilitySystemStorageData2;
 
-943180;
+// 原始函数名：FUN_180943180 - 工具系统存储处理函数
 #define ProcessUtilitySystemStorage FUN_180943180
 uint8_t ProcessUtilitySystemStorage;
 uint8_t UtilitySystemStorageData3;
@@ -8531,7 +8531,7 @@ void* SystemMemoryStatusFlag;
 void* SystemMemoryConfigPointer;
 void* SystemMemoryDataBuffer;
 
-943200;
+// 原始函数名：FUN_180943200 - 工具系统函数指针初始化函数
 void* UtilitySystemFunctionPointer;
 void* SystemConfigurationData;
 void* SystemConfigurationStatus;
