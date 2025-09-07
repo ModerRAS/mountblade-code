@@ -1926,9 +1926,9 @@
 // 功能：异常处理器的第一种状态
 #define ExceptionHandlerA UNK_180a3cf50
 
-// 原始变量名：UNK_180a30778 - 异常处理器B
-// 功能：异常处理器的第二种状态
-#define ExceptionHandlerB UNK_180a30778
+// 原始变量名：UNK_180a30778 - 默认异常处理器B
+// 功能：默认异常处理器的第二种状态
+#define DefaultExceptionHandlerB UNK_180a30778
 
 // 原始函数名：FUN_180943090 - 线程本地存储初始化函数A3
 // 功能：初始化线程本地存储A3
@@ -18669,28 +18669,27 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   ByteFlag EncryptionKeyBufferA [32];
   DataWord uStack_308;
   float afStack_304 [3];
-  uint8_t *puStack_2f8;
-  int iStack_2f0;
-  DataBuffer uStack_2e8;
-  uint64_t uStack_2e0;
-  int64_t lStack_2d8;
-  DataBuffer uStack_2d0;
-  DataBuffer uStack_2c8;
-  DataBuffer uStack_2c0;
-  DataBuffer uStack_2b8;
-  DataWord uStack_2b0;
-  uint uStack_2ac;
-  uint8_t *puStack_2a8;
-  int iStack_2a0;
-  uint uStack_298;
-  DataWord uStack_294;
-  int iStack_290;
-  DataWord uStack_28c;
-  uint uStack_288;
-  DataWord uStack_284;
-  DataWord uStack_280;
-  DataWord uStack_27c;
-  uint8_t *puStack_278;
+  uint8_t *securityValidationContext;
+  int cleanupStepIndex;
+  DataBuffer memoryOperationBufferA;
+  uint64_t memoryOperationBufferB;
+  int64_t memoryOperationBufferC;
+  DataBuffer memoryOperationBufferD;
+  DataBuffer memoryOperationBufferE;
+  DataBuffer memoryOperationBufferF;
+  DataBuffer memoryOperationBufferG;
+  DataWord memoryOperationBufferH;
+  uint memoryOperationBufferI;
+  uint8_t *dataProcessingContext;
+  int processingIterationIndex;
+  uint dataProcessingBufferA;
+  DataWord dataProcessingBufferB;
+  int dataProcessingBufferC;
+  DataWord dataProcessingBufferD;
+  uint dataProcessingBufferE;
+  DataWord dataProcessingBufferF;
+  DataWord dataProcessingBufferG;
+  uint8_t *validationContextPointer;
   DataWord uStack_270;
   uint uStack_268;
   DataWord uStack_264;
@@ -18702,12 +18701,12 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   if (operationFlagA != 0) {
     operationStatus = *(int *)(dataBuffer + 0x220);
     if (operationStatus == 0) {
-      puStack_278 = &UNK_180982508;
+      validationContextPointer = &SecurityValidationConfigurationTableA;
       uStack_270 = 0;
       uStack_264 = 0;
       uStack_268 = operationFlagA;
       InitializeMemory(DataProcessingBufferA,*(DataBuffer *)(dataBuffer + 0x228),0x200);
-      ppdataFlags = &puStack_278;
+      ppdataFlags = validationContextPointer;
 SecurityValidationLabel:
       operationStatus = ValidateDataIntegrityA0(operationBase,ppdataFlags);
     }
@@ -20537,10 +20536,11 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
   DataWord uStack_14;
   
   uStack_20 = 0;
-  puStack_28 = &UNK_180986408;
+  DataProcessingContext *dataProcessingContext;
+  dataProcessingContext = &DataProcessingConfigurationTableA1;
   securityCheckValue = 2;
   uStack_14 = 0x20214;
-  operationResult = ValidateDataIntegrityA0(operationBase,&puStack_28);
+  operationResult = ValidateDataIntegrityA0(operationBase,dataProcessingContext);
   if ((int)operationResult == 0) {
     validationContext = *(int64_t *)(operationBase[1] + 0x78);
     calculatedOffset = GetSystemCalculatedOffsetA0();
@@ -20677,56 +20677,56 @@ void ExecuteNoOperationA0(void)
 void ProcessFloatingPointDataA1(int64_t *dataContext)
 
 {
-  float inputValue;
-  DataBuffer *resourceHandle;
-  DataWord *validationStatus;
-  int64_t resourceOffset;
-  char validationFlag;
-  int operationResult;
-  int bufferIndex;
-  int iterationCount;
-  uint64_t memoryAddress;
-  int64_t *contextPointer;
-  int64_t validationContext;
-  uint8_t *dataPointer;
-  int64_t *resourceIterator;
-  int64_t *resourceList;
-  int64_t currentResource;
-  int64_t *nullPointer;
-  uint validationResult;
-  float processedValue;
-  int64_t *finalContext;
-  bool validationComplete;
-  ByteFlag securityBuffer [32];
-  float valueBuffer [2];
-  int64_t *bufferPointer;
-  uint64_t stackGuard;
-  int64_t *contextArray [2];
-  int64_t memoryOffset;
-  int64_t *pointerStack318;
-  DataBuffer resourceStack310;
-  float floatBuffer308 [2];
-  int64_t contextArray300 [2];
-  ByteFlag dataBuffer2f0 [8];
-  DataBuffer validationStack2e8 [2];
-  uint8_t *pointerStack2d8;
-  DataWord validationStack2d0;
-  float floatStack2c8;
-  uint resultStack2c4;
-  DataWord flagStack2c0;
-  DataWord flagStack2bc;
-  DataWord flagStack2b8;
-  DataBuffer resourceStack2b4;
-  DataBuffer resourceStack2ac;
-  DataWord resultStack2a4;
-  DataWord resultStack2a0;
-  DataWord resultStack29c;
-  DataWord resultStack298;
-  int64_t offsetStack294;
-  uint indexStack28c;
-  ByteFlag flagStack288;
-  ByteFlag DataTransferBufferA [512];
-  uint64_t securityStack38;
+  float inputFloatValue;
+  DataBuffer *resourceHandlePointer;
+  DataWord *validationStatusPointer;
+  int64_t resourceDataOffset;
+  char dataValidationFlag;
+  int systemOperationResult;
+  int bufferProcessingIndex;
+  int dataIterationCount;
+  uint64_t memoryBasePointer;
+  int64_t *systemContextPointer;
+  int64_t dataValidationContext;
+  uint8_t *dataProcessingPointer;
+  int64_t *resourceIteratorPointer;
+  int64_t *resourceListPointer;
+  int64_t currentResourceHandle;
+  int64_t *nullContextPointer;
+  uint dataValidationResult;
+  float processedFloatValue;
+  int64_t *finalContextPointer;
+  bool isValidationComplete;
+  ByteFlag securityValidationBuffer [32];
+  float valueProcessingBuffer [2];
+  int64_t *bufferDataPointer;
+  uint64_t stackGuardValue;
+  int64_t *contextProcessingArray [2];
+  int64_t memoryAddressOffset;
+  int64_t *pointerStackBuffer318;
+  DataBuffer resourceStackBuffer310;
+  float floatStackBuffer308 [2];
+  int64_t contextStackArray300 [2];
+  ByteFlag dataStackBuffer2f0 [8];
+  DataBuffer validationStackBuffer2e8 [2];
+  uint8_t *pointerStackBuffer2d8;
+  DataWord validationStackData2d0;
+  float floatStackValue2c8;
+  uint resultStackValue2c4;
+  DataWord flagStackData2c0;
+  DataWord flagStackData2bc;
+  DataWord flagStackData2b8;
+  DataBuffer resourceStackData2b4;
+  DataBuffer resourceStackData2ac;
+  DataWord resultStackData2a4;
+  DataWord resultStackData2a0;
+  DataWord resultStackData29c;
+  DataWord resultStackData298;
+  int64_t offsetStackData294;
+  uint indexStackData28c;
+  ByteFlag flagStackData288;
+  ByteFlag dataTransferBufferA [512];
+  uint64_t securityValidationStack38;
   
   securityStack38 = ExceptionEncryptionKey ^ (uint64_t)securityBuffer;
   nullPointer = (int64_t *)0x0;
@@ -95931,7 +95931,7 @@ void CleanupSystemMemoryBufferA(void)
   
   // 检查缓冲区大小是否超过阈值
   if (0xf < BufferSizeIndicator) {
-    memoryContext = CONCAT71(uRam0000000180bfc121, uRam0000000180bfc120);
+    memoryContext = CONCAT71(MemoryContextHighByte, MemoryContextLowByte);
     memoryPointer = memoryContext;
     
     // 检查内存块大小是否过大
@@ -95950,9 +95950,9 @@ void CleanupSystemMemoryBufferA(void)
   }
   
   // 重置缓冲区状态
-  uRam0000000180bfc130 = 0;
+  MemoryAllocationFlag = 0;
   BufferSizeIndicator = 0xf;
-  uRam0000000180bfc120 = 0;
+  MemoryContextLowByte = 0;
   return;
 }
 
@@ -95982,7 +95982,7 @@ void CleanupSystemMemoryBufferB(void)
   
   // 检查缓冲区大小是否超过阈值
   if (0xf < _DAT_180bfc118) {
-    memoryContext = CONCAT71(uRam0000000180bfc101, DAT_180bfc100);
+    memoryContext = CONCAT71(SecondaryMemoryContextHighByte, DAT_180bfc100);
     memoryPointer = memoryContext;
     
     // 检查内存块大小是否过大
@@ -96024,18 +96024,18 @@ void CleanupSystemMemoryBufferC(void)
   int64_t memoryPointer;
   
   // 检查缓冲区大小是否超过阈值
-  if (0xf < uRam0000000180bfc0f0) {
+  if (0xf < SecondaryBufferSizeIndicator) {
     memoryContext = CONCAT71(uRam0000000180bfc0d9, uRam0000000180bfc0d8);
     memoryPointer = memoryContext;
     
     // 检查内存块大小是否过大
-    if (0xfff < uRam0000000180bfc0f0 + 1) {
+    if (0xfff < SecondaryBufferSizeIndicator + 1) {
       memoryPointer = *(int64_t *)(memoryContext + -8);
       
       // 验证内存块偏移量的有效性
       if (0x1f < (memoryContext - memoryPointer) - 8U) {
         // 如果偏移量无效，触发参数验证错误
-        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer, uRam0000000180bfc0f0 + 0x28);
+        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer, SecondaryBufferSizeIndicator + 0x28);
       }
     }
     
@@ -96045,7 +96045,7 @@ void CleanupSystemMemoryBufferC(void)
   
   // 重置缓冲区状态
   uRam0000000180bfc0e8 = 0;
-  uRam0000000180bfc0f0 = 0xf;
+  SecondaryBufferSizeIndicator = 0xf;
   uRam0000000180bfc0d8 = 0;
   return;
 }

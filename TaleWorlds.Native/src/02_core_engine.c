@@ -5749,6 +5749,18 @@ const char* const SystemKeywordOctodecenary = (const char*)0x180a131d8;
  * @note 使用 SystemComparisonDataPrimary 进行数据比较
  * @note 系统节点使用 SystemNodeIdentifierPrimary 和 SystemNodeIdentifierSecondary 作为标识符
  */
+/**
+ * @brief 初始化核心引擎数据结构
+ * 
+ * 该函数负责初始化核心引擎的数据结构，包括系统节点、内存管理器、
+ * 数据表等关键组件。这是引擎启动过程中的重要步骤。
+ * 
+ * @param 无
+ * @return 无
+ * 
+ * @note 此函数会在引擎启动时自动调用
+ * @note 初始化过程中会创建系统节点并建立数据结构
+ */
 void InitializeCoreEngineDataStructure(void) {
   char SystemNodeInitializedFlag;
   void *SystemRootNode;
@@ -101061,7 +101073,7 @@ code_r0x000180115b16:
 
 
 
-5721(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,int *Utf16InputPointervoid FUN_180115721(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,int *Utf16InputPointer
+void FUN_180115721(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,int *Utf16InputPointer)
 {
   uint8_t aUtf16Char [16];
   int StringComparisonResult;
