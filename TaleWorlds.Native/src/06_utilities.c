@@ -20637,7 +20637,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           ProcessSystemDataA0(validationContext5,auStack_2f0,validationContextPointer4);
           ProcessContext(validationContext5,validationContextPointer4,afStack_348,alStack_300);
           validationContext1 = GetSystemContextHandle(validationContext5,validationContextPointer4);
-          cVar5 = CheckSystemStatus(validationContext1,0);
+          systemStatusChar = CheckSystemStatus(validationContext1,0);
           if ((cVar5 == '\0') && (afStack_348[0] != *(float *)(validationContext1 + 0x4c))) {
             uStack_2c0 = auStack_2f0._0_4_;
             uStack_2bc = auStack_2f0._4_4_;
@@ -20934,8 +20934,8 @@ DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuff
   DataBuffer *resourcePointer;
   byte bVar3;
   DataBuffer memoryBaseAddress;
-  char cVar5;
-  char cVar6;
+  char currentChar;
+  char processedChar;
   int calculatedValue;
   uint securityCheckResult;
   char *pcVar9;
