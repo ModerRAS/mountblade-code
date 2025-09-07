@@ -141058,7 +141058,7 @@ LAB_18012b0d0:
   if (ContextSecondaryFloat7 != 0.0) {
     do {
       CalculatedCodePoint = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
-      MemoryAllocationOffset = FUN_1801296e0(RegisterFramePointer + -0x20);
+      MemoryAllocationOffset = CleanupSystemEventHandling(RegisterFramePointer + -0x20);
       DataSize = SystemCallResourceOperation(MemoryAllocationOffset,(long long)((int)ContextSecondaryFloat6 + 4));
       SystemParameter1 = (void *)CONCAT44(CalculatedCodePoint,0x20);
       ProcessSystemParameters(RegisterFramePointer + -0x20,DataSize,(long long)&StackBuffer58 + 1,&StackBuffer58,
@@ -142410,7 +142410,7 @@ void ExecuteSystemCoreDataProcessing(void)
       }
     }
     if (RegisterFramePointer[0xc] != -NAN) {
-      FUN_1801296e0(RegisterFramePointer + -0x14,SystemParameter2);
+      CleanupSystemEventHandling(RegisterFramePointer + -0x14,SystemParameter2);
       SystemStringIndex = SystemConfigurationHandle;
       ValidationResult = *(void *)(SystemParameter2 + 0x2e8);
       ContextSecondaryFloat6 = *(float *)(SystemConfigurationHandle + 0x189c);

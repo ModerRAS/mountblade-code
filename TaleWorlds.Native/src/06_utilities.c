@@ -67247,7 +67247,19 @@ void ExecuteExceptionHandlerCallbacksAC0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180907ad0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调AD0
+ * 
+ * 该函数用于执行异常处理器回调，调用指定位置的异常处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907ad0
+ */
+void ExecuteExceptionHandlerCallbackAD0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x200) != (code *)0x0) {
@@ -67258,7 +67270,17 @@ void Unwind_180907ad0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907ae0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器AE0
+ * 
+ * 该函数用于设置默认异常处理器到指定位置
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907ae0
+ */
+void SetDefaultExceptionHandlerAE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x180) = &DefaultExceptionHandlerB;
@@ -67267,7 +67289,19 @@ void Unwind_180907ae0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调AF0
+ * 
+ * 该函数用于执行异常处理器回调，调用指定位置的异常处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907af0
+ */
+void ExecuteExceptionHandlerCallbackAF0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x260) != (code *)0x0) {
