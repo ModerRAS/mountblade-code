@@ -97279,7 +97279,7 @@ void CleanupSystemMemoryBufferB(void)
       // 验证内存块偏移量的有效性
       if (0x1f < (memoryContext - memoryPointer) - 8U) {
         // 如果偏移量无效，触发参数验证错误
-        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer, _DAT_180bfc118 + 0x28);
+        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer, SystemMemoryCapacityTable + 0x28);
       }
     }
     
