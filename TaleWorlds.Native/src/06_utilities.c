@@ -10052,11 +10052,11 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
 
 {
   int64_t componentDataContext;
-  int64_t SystemContextHandle;
+  int64_t systemContextHandle;
   int32_t componentBufferSize;
-  uint64_t SystemQueryStatus;
-  uint64_t ComponentProcessStatus;
-  int64_t *CurrentComponentContext;
+  uint64_t systemQueryStatus;
+  uint64_t componentProcessStatus;
+  int64_t *currentComponentContext;
   int32_t CurrentComponentCount;
   uint64_t ComponentLoopCounter;
   int32_t componentListCapacity;
@@ -14133,7 +14133,7 @@ void ProcessSystemEventA3(int64_t eventContext,int64_t systemContext)
     }
     if (status < *(int *)(queueInfo + 0x28)) goto ExitHandler;
     if (status != 0) {
-      if ((0x3ffffffe < status * 8 - 1U) ||
+      if ((MaximumMemoryBufferSize < status * 8 - 1U) ||
          (newBuffer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),status * 8,&SystemMemoryPoolB,
                                 0xf4,0,0,1), newBuffer == 0)) goto ExitHandler;
       if (*(int *)(queueInfo + 0x28) != 0) {
@@ -14201,7 +14201,7 @@ void OptimizeUtilitySystemZ0(DataBuffer systemHandle,DataBuffer optimizationFlag
     }
     if (validationResult < *(int *)(dataBuffer + 0x28)) goto ErrorHandlingLabel;
     if (validationResult != 0) {
-      if ((0x3ffffffe < validationResult * 8 - 1U) ||
+      if ((MaximumMemoryBufferSize < validationResult * 8 - 1U) ||
          (allocatedMemory = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),validationResult * 8,&SystemMemoryPoolB,
                                 0xf4,0), allocatedMemory == 0)) goto ErrorHandlingLabel;
       if (*(int *)(dataBuffer + 0x28) != 0) {
@@ -14267,7 +14267,7 @@ void ResetUtilitySystemAA0(void)
     }
     if (validationStatus < *(int *)(registerContext + 0x28)) goto ErrorHandlingLabel;
     if (validationStatus != 0) {
-      if (0x3ffffffe < validationStatus * 8 - 1U) goto ErrorHandlingLabel;
+      if (MaximumMemoryBufferSize < validationStatus * 8 - 1U) goto ErrorHandlingLabel;
       stackPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),validationStatus * 8,&SystemMemoryPoolB,0xf4,0)
       ;
       if (stackPointer == 0) goto ErrorHandlingLabel;
@@ -14320,7 +14320,7 @@ void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
     }
     if (operationResult < configId) goto ErrorHandlingLabel;
     if (operationResult != 0) {
-      if (0x3ffffffe < operationResult * 8 - 1U) goto ErrorHandlingLabel;
+      if (MaximumMemoryBufferSize < operationResult * 8 - 1U) goto ErrorHandlingLabel;
       systemContext = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),operationResult * 8,&SystemMemoryPoolB,
                                 0xf4);
       if (systemContext == 0) goto ErrorHandlingLabel;
@@ -14846,7 +14846,7 @@ uint64_t ValidateSystemDataIndexAndProcessResource(int64_t systemContext, int64_
     }
   }
   // 更新系统上下文状态
-  *(uint *)(systemContext + 8) = *(int *)(systemContext + 8) + 0xfU & 0xfffffff0;
+  *(uint *)(systemContext + 8) = *(int *)(systemContext + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
   operationStatus = GetSystemCurrentStateA0(*(DataBuffer *)(systemDataPtr + 0x1e0));
   
 OperationComplete:
@@ -15135,7 +15135,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
         return result;
       }
     }
-    *(uint *)(dataPtr + 8) = *(int *)(dataPtr + 8) + 0xfU & 0xfffffff0;
+    *(uint *)(dataPtr + 8) = *(int *)(dataPtr + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
     result = GetSystemCurrentStateA0(*(DataBuffer *)(dataBufferPtr + 0x1e0));
     if ((int)result == 0) {
       return 0;
@@ -15729,7 +15729,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
         return validationStatus;
       }
     }
-    *(uint *)(DataStructureHandle + 8) = *(int *)(DataStructureHandle + 8) + 0xfU & 0xfffffff0;
+    *(uint *)(DataStructureHandle + 8) = *(int *)(DataStructureHandle + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
     validationStatus = GetSystemCurrentStateA0(*(DataBuffer *)(dataStructurePointer + 0x1e0));
     if ((int)validationStatus == 0) {
       return 0;
@@ -16163,7 +16163,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
   if ((*(int *)(dataContext + 0x180) != 0) || (*(int *)(dataContext + 0x184) != 0)) {
     transferSize = 0;
     InitializeSystemContextA0(&transferSize);
-    if (transferSize == *(int64_t *)((int64_t)*(int *)(dataContext + 0x17c) * 8 + 0x180c4f450)) {
+    if (transferSize == *(int64_t *)((int64_t)*(int *)(dataContext + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
       operationResult = ProcessSystemDataEC0(dataContext,dataDescriptor);
       if ((int)operationResult == 0) {
         return 0;
@@ -16369,8 +16369,8 @@ DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
   if (*(int *)(exceptionHandlerContext + 0x200) != 0) {
     if (((*(int *)(exceptionHandlerContext + 0x180) == 0) && (*(int *)(exceptionHandlerContext + 0x184) == 0)) ||
        (InitializeSystemContextA0(&stackBufferSmall),
-       *(int64_t *)((int64_t)*(int *)(exceptionHandlerContext + 0x17c) * 8 + 0x180c4f450) != 0)) {
-      *(uint *)(memoryDescriptor + 8) = *(int *)(memoryDescriptor + 8) + 0xfU & 0xfffffff0;
+       *(int64_t *)((int64_t)*(int *)(exceptionHandlerContext + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase) != 0)) {
+      *(uint *)(memoryDescriptor + 8) = *(int *)(memoryDescriptor + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
       operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(exceptionHandlerContext + 0x1e0));
     }
     else {
@@ -100001,7 +100001,18 @@ void Unwind_180912460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912470(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行ICALL检查函数470
+ * 
+ * 该函数执行guard检查ICALL操作，验证数据缓冲区中的指针和标志
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含ICALL检查所需的数据
+ * 
+ * @note 原始函数名：Unwind_180912470
+ * @note 这是一个异常展开（unwind）处理函数，用于执行ICALL安全检查
+ */
+void ExecuteGuardICallCheck470(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + 0x38),**(ByteFlag **)(dataBuffer + 0x30),
@@ -100011,7 +100022,19 @@ void Unwind_180912470(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809124a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行ICALL检查函数4a0
+ * 
+ * 该函数执行guard检查ICALL操作，验证数据缓冲区中的指针和标志
+ * 与470函数类似但使用不同的偏移量
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含ICALL检查所需的数据
+ * 
+ * @note 原始函数名：Unwind_1809124a0
+ * @note 这是一个异常展开（unwind）处理函数，用于执行ICALL安全检查
+ */
+void ExecuteGuardICallCheck4a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + 0x30),**(ByteFlag **)(dataBuffer + 0x28),
@@ -100022,7 +100045,21 @@ void Unwind_1809124a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809124d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x60偏移异常上下文（4d0版本）
+ * 
+ * 该函数负责处理数据缓冲区0x60偏移量处的异常上下文，执行异常处理操作
+ * 与4e0版本功能相同但函数名不同
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809124d0
+ * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
+ */
+void HandleExceptionContextAtOffset60_4d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
