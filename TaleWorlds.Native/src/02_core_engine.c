@@ -39714,7 +39714,7 @@ SystemStatusValidationLabel:
         SystemChecksumValue = GetMemoryAllocationInfo(DataProcessingBuffer);
         DataProcessingFlags = CONCAT44(DataProcessingFlags.HighPart,SystemChecksumValue);
       }
-LAB_180072934:
+DataProcessingCompleteLabel:
       *(uint16_t *)(DataProcessingBuffer + BufferInitializationFlag) = 0xa0a;
       *(uint8_t *)((long long)(DataProcessingBuffer + BufferInitializationFlag) + 2) = 0;
       BufferInitializationFlag = MemoryAddressMask;
