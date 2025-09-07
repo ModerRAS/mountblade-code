@@ -175040,12 +175040,12 @@ uint32_t ProcessSystemData(long long CharacterCode,long long SystemBufferSize)
           LowByte = 0 < StringLength;
           if (StringLength < 1) {
             TemporaryBuffer = (void *)StringProcessingStatus[1];
-            goto LAB_18014271c;
+            goto StringProcessingComplete;
           }
         }
         TemporaryBuffer = (void *)*StringProcessingStatus;
       }
-LAB_18014271c:
+StringProcessingComplete: // 原始标签：LAB_18014271c
       if (LowByte) {
         StringProcessingStatus = MemoryAddressMask;
       }
@@ -175068,7 +175068,7 @@ LAB_18014271c:
     }
   }
   pMemoryAddressMask = CharacterStatusBuffer;
-LAB_18014276d:
+MemoryValidationComplete: // 原始标签：LAB_18014276d
   if (pMemoryAddressMask == CharacterStatusBuffer) {
     return 0xffffffff;
   }
@@ -175125,12 +175125,12 @@ uint32_t ProcessSystemMemoryAllocationAndStatus(long long CharacterCode,long lon
           LowByte = 0 < StringLength;
           if (StringLength < 1) {
             TemporaryBuffer = (void *)StringProcessingStatus[1];
-            goto LAB_18014271c;
+            goto StringProcessingComplete;
           }
         }
         TemporaryBuffer = (void *)*StringProcessingStatus;
       }
-LAB_18014271c:
+StringProcessingComplete: // 原始标签：LAB_18014271c
       if (LowByte) {
         StringProcessingStatus = MemoryAddressMask;
       }
@@ -175153,7 +175153,7 @@ LAB_18014271c:
     }
   }
   pMemoryAddressMask = CharacterStatusBuffer;
-LAB_18014276d:
+MemoryValidationComplete: // 原始标签：LAB_18014276d
   if (pMemoryAddressMask == CharacterStatusBuffer) {
     return 0xffffffff;
   }
@@ -265296,7 +265296,13 @@ int IdentifySystemKeywordAndReturnStatusCode(void)
 
 
 
-int FUN_1802255e7(void
+/**
+ * 系统状态模式匹配检测函数
+ * 根据输入数据长度匹配不同的系统状态模式
+ * 
+ * @return 匹配成功返回对应的模式代码，失败返回0
+ */
+int CheckSystemStatusPatternMatch(void)
 {
   int LockResult;
   long long BufferStatus;
@@ -265553,7 +265559,13 @@ int FUN_1802255e7(void
 
 
 
-int FUN_180225627(void
+/**
+ * 系统状态模式匹配检测函数（变体A）
+ * 根据输入数据长度匹配不同的系统状态模式
+ * 
+ * @return 匹配成功返回对应的模式代码，失败返回0
+ */
+int CheckSystemStatusPatternMatchVariantA(void)
 {
   int LockResult;
   long long BufferStatus;
@@ -265802,7 +265814,13 @@ int FUN_180225627(void
 
 
 
-int FUN_180225667(void
+/**
+ * 系统状态模式匹配检测函数（变体B）
+ * 根据输入数据长度匹配不同的系统状态模式
+ * 
+ * @return 匹配成功返回对应的模式代码，失败返回0
+ */
+int CheckSystemStatusPatternMatchVariantB(void)
 {
   int LockResult;
   long long BufferStatus;
@@ -266043,7 +266061,13 @@ int FUN_180225667(void
 
 
 
-int FUN_1802256a7(void
+/**
+ * 系统状态模式匹配检测函数（变体C）
+ * 根据输入数据长度匹配不同的系统状态模式
+ * 
+ * @return 匹配成功返回对应的模式代码，失败返回0
+ */
+int CheckSystemStatusPatternMatchVariantC(void)
 {
   int LockResult;
   long long BufferStatus;
@@ -266509,7 +266533,13 @@ int FUN_1802256e7(void
 
 
 
-int FUN_180225727(void
+/**
+ * 系统状态模式匹配检测函数（变体E）
+ * 根据输入数据长度匹配不同的系统状态模式
+ * 
+ * @return 匹配成功返回对应的模式代码，失败返回0
+ */
+int CheckSystemStatusPatternMatchVariantE(void)
 {
   int LockResult;
   long long BufferStatus;

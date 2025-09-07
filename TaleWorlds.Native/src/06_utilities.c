@@ -11916,7 +11916,20 @@ DataBuffer ConditionalResourceRelease(char releaseFlag)
  * @note 此函数为空函数，主要用于系统流程控制
  * @warning 调用此函数不会产生任何效果
  */
-void SystemNoOperationPrimary(void)
+/**
+ * @brief 系统主空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作。主要用于系统初始化、
+ * 异常处理或流程控制中的占位符，保持函数调用的接口一致性。
+ * 这是系统空操作函数的主版本，用于需要函数指针但不执行实际操作的场景。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数为空函数，主要用于系统流程控制
+ * @warning 调用此函数不会产生任何效果
+ * @note 原始函数名：FUN_1808908a0
+ */
+void SystemPrimaryNoOperation(void)
 
 {
   return;
@@ -12173,7 +12186,19 @@ void PerformNoOperation(void)
  * @note 此函数为空函数，主要用于系统初始化时的占位符
  * @warning 调用此函数不会产生任何效果
  */
-void InitializeEmptyFunction(void)
+/**
+ * @brief 初始化空函数
+ * 
+ * 该函数是一个不执行任何操作的初始化函数，主要用于系统初始化时的占位符。
+ * 它保持了函数调用的接口一致性，但实际不执行任何操作。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数为空函数，主要用于系统初始化时的占位符
+ * @warning 调用此函数不会产生任何效果
+ * @note 原始函数名：FUN_180890ac1
+ */
+void InitializeSystemEmptyFunction(void)
 
 {
   return;
@@ -12526,7 +12551,19 @@ uint64_t ProcessUtilitySystemInitialization(void)
  * @param void 无参数
  * @return void 无返回值
  */
-void InitializeMemoryPool(void)
+/**
+ * @brief 初始化系统内存池
+ * 
+ * 初始化系统内存池，为后续的内存分配操作做准备。这是一个初始化函数，
+ * 在系统启动时调用，确保内存管理系统的正常运行。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ * 
+ * @note 此函数为空函数，主要用于系统初始化时的占位符
+ * @note 原始函数名：FUN_180890ac1
+ */
+void InitializeSystemMemoryPool(void)
 
 {
   return;
@@ -12547,7 +12584,18 @@ void InitializeMemoryPool(void)
  */
 #define ReturnErrorStatus FUN_1808909ba
 
-DataBuffer ReturnErrorStatus(void)
+/**
+ * @brief 返回资源无效错误码
+ * 
+ * 返回预定义的资源无效错误码，用于标识资源访问或操作失败的情况。
+ * 该函数提供了统一的错误码返回机制，便于错误处理和调试。
+ * 
+ * @return DataBuffer 返回资源无效错误码(0x1c)
+ * 
+ * @note 此错误码表示资源无效或不可访问
+ * @note 原始函数名：FUN_1808909ba
+ */
+DataBuffer ReturnResourceInvalidErrorCode(void)
 
 {
   return ResourceInvalidErrorCode;
@@ -12718,7 +12766,19 @@ DataBuffer ValidateUtilitySystemState(void)
  * 
  * @note 原始函数名：ExecuteNoOperationA0
  */
-void ExecuteNoOperationFunction(void)
+/**
+ * @brief 执行系统空操作函数
+ * 
+ * 该函数不执行任何操作，直接返回。用于占位或同步目的。
+ * 这是一个空操作函数，主要用于系统同步、占位符或函数指针占位。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数为空函数，主要用于系统同步和占位
+ * @warning 调用此函数不会产生任何效果
+ * @note 原始函数名：ExecuteNoOperationA0
+ */
+void ExecuteSystemNoOperation(void)
 {
   return;
 }
@@ -12726,15 +12786,17 @@ void ExecuteNoOperationFunction(void)
 
 
 /**
- * @brief 返回常量值A0
+ * @brief 返回资源无效错误码（64位版本）
  * 
- * 该函数返回固定的常量值0x1c
+ * 返回预定义的资源无效错误码的64位版本，用于标识资源访问或操作失败的情况。
+ * 该函数提供了统一的错误码返回机制，便于错误处理和调试。
  * 
- * @return 固定常量值0x1c
+ * @return uint64_t 返回资源无效错误码(0x1c)
  * 
+ * @note 此错误码表示资源无效或不可访问
  * @note 原始函数名：FUN_180890ac7
  */
-uint64_t ReturnResourceInvalidErrorCode(void)
+uint64_t ReturnResourceInvalidErrorCode64(void)
 {
   return ResourceInvalidErrorCode;
 }
@@ -12886,26 +12948,45 @@ void SystemReturnEmptyFunction(void)
  * @note 原始函数名：ValidateResourceAccessChain
  * @see QueryAndRetrieveSystemDataA0
  */
+/**
+ * @brief 验证资源访问链
+ * 
+ * 该函数负责验证资源访问链的完整性和有效性。它会检查资源访问路径是否正确，
+ * 确保资源可以被安全地访问。函数会查询系统数据来获取访问链信息，并进行验证。
+ * 
+ * @param resourceHandle 资源句柄，用于标识要验证的资源
+ * @return DataBuffer 验证结果状态，成功返回0，失败返回相应的错误代码
+ * 
+ * @note 原始函数名：ValidateResourceAccessChain
+ * @see QueryAndRetrieveSystemDataA0
+ */
 DataBuffer ValidateResourceAccessChain(int64_t resourceHandle)
 
 {
   DataBuffer validationStatus;
   int64_t accessChain;
   
+  // 查询系统数据获取访问链信息
   validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&accessChain);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
+  
+  // 调整访问链指针
   if (accessChain == 0) {
     accessChain = 0;
   }
   else {
     accessChain = accessChain + -8;
   }
+  
+  // 验证访问链中的资源句柄
   if (*(int64_t *)(accessChain + ExceptionHandlerCallbackOffset10) == 0) {
     return ResourceInvalidErrorCode;
   }
-    ReleaseResource(*(int64_t *)(accessChain + ExceptionHandlerCallbackOffset10),1);
+  
+  // 释放资源
+  ReleaseResource(*(int64_t *)(accessChain + ExceptionHandlerCallbackOffset10),1);
 }
 
 
@@ -13638,24 +13719,43 @@ void UtilityNoOperationE(void)
 // 
 // 返回值:
 //   无
-void ProcessUtilityOperation(int64_t operationParams,uint64_t systemContext)
+/**
+ * @brief 处理工具系统操作
+ * 
+ * 处理工具系统的各种操作请求，包括参数验证和函数调用。
+ * 该函数负责解析操作参数，执行系统操作，并在成功时调用相应的回调函数。
+ * 
+ * @param operationParams 操作参数结构体指针，包含操作所需的参数信息
+ * @param systemContext 系统上下文指针，用于系统级操作和状态管理
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：ProcessUtilityOperation
+ */
+void ProcessUtilitySystemOperation(int64_t operationParams,uint64_t systemContext)
 
 {
-  int OperationResult;
-  uint64_t CallbackData[4];
-  uint32_t OperationParams[2];
-  uint64_t ContextPointer;
-  uint32_t ParamValue;
+  int operationResult;
+  uint64_t callbackData[4];
+  uint32_t operationParams[2];
+  uint64_t contextPointer;
+  uint32_t paramValue;
   int64_t resourceDescriptor;
   
-  ContextPointer = *(uint64_t *)(operationParams + ExceptionHandlerCallbackOffset10);
-  ParamValue = *(uint32_t *)(operationParams + ResourceCallbackDataOffset);
-  OperationParams[0] = 2;
+  // 提取操作参数和上下文信息
+  contextPointer = *(uint64_t *)(operationParams + ExceptionHandlerCallbackOffset10);
+  paramValue = *(uint32_t *)(operationParams + ResourceCallbackDataOffset);
+  operationParams[0] = 2;
   resourceDescriptor = operationParams;
-  OperationResult = ExecuteSystemOperation(systemContext,OperationParams,*(uint32_t *)(resourceDescriptor + ResourceDescriptorValidationOffset),CallbackData);
-  if (OperationResult == 0) {
-    ExecuteCallbackA0(systemContext,CallbackData[0]);
+  
+  // 执行系统操作
+  operationResult = ExecuteSystemOperation(systemContext,operationParams,*(uint32_t *)(resourceDescriptor + ResourceDescriptorValidationOffset),callbackData);
+  
+  // 如果操作成功，执行回调函数
+  if (operationResult == 0) {
+    ExecuteCallbackA0(systemContext,callbackData[0]);
   }
+  
   return;
 }
  (ram,TertiaryExceptionHandlerAddress)
@@ -13796,6 +13896,19 @@ int ProcessResourceCopyOperation(int64_t ResourceOperationContext)
 // 
 // 返回值:
 //   void - 无返回值
+/**
+ * @brief 处理工具数据请求
+ * 
+ * 根据传入的数据句柄和请求信息，处理相应的工具数据请求。
+ * 该函数负责解析数据请求，查询系统数据，并执行相应的数据处理操作。
+ * 
+ * @param dataHandle 数据句柄，包含请求的相关信息
+ * @param requestInfo 请求信息，包含请求的详细参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：ProcessUtilityDataRequest
+ */
 void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
 
 {
@@ -13804,11 +13917,15 @@ void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
   int64_t dataOffset;
   int processingStatus[2];  // 处理状态缓冲区
   
+  // 查询系统数据获取结果缓冲区
   processingStatus[0] = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataHandle + ExceptionHandlerCallbackOffset10),&resultBuffer);
+  
+  // 如果查询成功，处理数据请求
   if (processingStatus[0] == 0) {
     dataOffset = dataHandle + SystemContextDataOffset;
     ProcessDataRequest(requestInfo,processingStatus,*(DataWord *)(dataHandle + 0x14),resultBuffer);
   }
+  
   return;
 }
 
