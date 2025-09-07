@@ -29647,10 +29647,10 @@ void ProcessSystemEventQueue(long long *eventQueuePointer) {
  * @note 原始函数名：FUN_1800578a0
  */
 void CleanupSystemResources(void) {
-  int *referenceCountPointer;
+  int *memoryReferenceCount;
   void *SystemContext;
-  long long memoryOffset;
-  unsigned long long memoryMask;
+  long long memoryBlockOffset;
+  unsigned long long memoryAddressMask;
   
   PrimaryProcessingStatusFlag = SystemMemoryManager;
   if (SystemMemoryManager == NULL) {
@@ -29676,16 +29676,16 @@ void CleanupSystemResources(void) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  memoryMask = (unsigned long long)PrimaryProcessingStatusFlag & 0xffffffffffc00000;
-  if (memoryMask != 0) {
-    memoryOffset = memoryMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - memoryMask >> 0x10) * 0x50;
-    memoryOffset = memoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
-    if ((*(void ***)(memoryMask + 0x70) == &ExceptionList) && (*(char *)(memoryOffset + 0xe) == '\0')) {
-      *PrimaryProcessingStatusFlag = *(void *)(memoryOffset + 0x20);
-      *(uint64_t **)(memoryOffset + 0x20) = PrimaryProcessingStatusFlag;
-      referenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
-      *referenceCountPointer = *referenceCountPointer + -1;
-      if (*referenceCountPointer == 0) {
+  memoryAddressMask = (unsigned long long)PrimaryProcessingStatusFlag & 0xffffffffffc00000;
+  if (memoryAddressMask != 0) {
+    memoryBlockOffset = memoryAddressMask + 0x80 + ((long long)PrimaryProcessingStatusFlag - memoryAddressMask >> 0x10) * 0x50;
+    memoryBlockOffset = memoryBlockOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
+    if ((*(void ***)(memoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(memoryBlockOffset + 0xe) == '\0')) {
+      *PrimaryProcessingStatusFlag = *(void *)(memoryBlockOffset + 0x20);
+      *(uint64_t **)(memoryBlockOffset + 0x20) = PrimaryProcessingStatusFlag;
+      memoryReferenceCount = (int *)(MemoryBlockIndex + 0x18);
+      *memoryReferenceCount = *memoryReferenceCount + -1;
+      if (*memoryReferenceCount == 0) {
         ReleaseMemoryReferenceCount();
         return;
       }
@@ -100035,11 +100035,11 @@ void ProcessFloatDataStructureAndSystemBuffer(float *Utf8InputBuffer,uint64_t Ut
   long long AllocatedMemorySize;
   float CalculatedDistance;
   float FloatVariable7;
-  float fStackX_20;
-  float fStackX_24;
-  float fStack000000000000002c;
-  float fStack0000000000000078;
-  float fStack000000000000007c;
+  float NormalizedDistanceX;
+  float NormalizedDistanceY;
+  float StackBufferOffset2c;
+  float StackBufferOffset78;
+  float StackBufferOffset7c;
   
   SystemContextPrimaryFloat = *(float *)(ProcessingResult + 0x100);
   FloatVariable7 = SystemContextPrimaryFloat + *Utf8InputBuffer;
