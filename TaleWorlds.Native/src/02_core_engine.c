@@ -99,6 +99,7 @@
 #define GetProcessingPointer88 FUN_18014f840                     // 获取处理指针88
 #define ProcessCharacterCodeData FUN_18019c480                    // 处理字符代码数据
 #define ProcessCharacterEncodingAndStringFormatting FUN_18013d22f  // 处理字符编码和字符串格式化
+#define ProcessCharacterCodeValidationAndMemoryManagement FUN_18013d36b  // 处理字符代码验证和内存管理
 #define ProcessCharacterCodeConversionEx FUN_18019c560            // 处理字符代码转换扩展
 #define ProcessCharacterCodeValidationEx FUN_18019c5b0            // 处理字符代码验证扩展
 #define ProcessCharacterEncodingData FUN_180212e40                // 处理字符编码数据
@@ -171433,7 +171434,7 @@ void ProcessCharacterEncodingAndStringFormatting(uint64_t CharacterCode)
  * 
  * @see ProcessCharacterCodeValidationAndMemoryManagement, ProcessSystemMemoryBufferSetup
  */
-void FUN_18013d36b(uint32_t CharacterCode)
+void ProcessCharacterCodeValidationAndMemoryManagement(uint32_t CharacterCode)
 {
   short SystemShortValue1;
   long long BufferStatus;

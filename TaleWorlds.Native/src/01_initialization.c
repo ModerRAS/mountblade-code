@@ -14938,10 +14938,10 @@ void InitializeSystemEventManagerDebug(void)
 
 
 
-// 函数: void InitializeSystemEventManagerL(void)
-// 功能: 初始化系统事件管理器L，用于管理特定类型的事件处理
+// 函数: void InitializeSystemEventManagerResource(void)
+// 功能: 初始化系统事件管理器Resource，用于管理资源类型的事件处理
 // 该函数会创建系统节点并设置系统回调指针
-void InitializeSystemEventManagerL(void)
+void InitializeSystemEventManagerResource(void)
 
 {
   char NodeActiveFlag;
@@ -14990,10 +14990,10 @@ void InitializeSystemEventManagerL(void)
 
 
 
-// 函数: void InitializeSystemEventManagerM(void)
-// 功能: 初始化系统事件管理器M，用于管理特定类型的事件处理
+// 函数: void InitializeSystemEventManagerMemory(void)
+// 功能: 初始化系统事件管理器Memory，用于管理内存相关的事件处理
 // 该函数会创建系统节点并设置相关系统配置
-void InitializeSystemEventManagerM(void)
+void InitializeSystemEventManagerMemory(void)
 
 {
   char NodeActiveFlag;
@@ -15148,10 +15148,10 @@ int InitializeSystemModuleE(void)
 
 
 
-// 函数: void InitializeSystemResourceManagerA(void)
-// 功能: 初始化系统资源管理器A，用于管理游戏核心系统资源
+// 函数: void InitializeSystemResourceManagerPrimary(void)
+// 功能: 初始化系统资源管理器Primary，用于管理游戏核心系统资源
 // 该函数会创建系统节点并设置游戏核心系统ID和初始化函数
-void InitializeSystemResourceManagerA(void)
+void InitializeSystemResourceManagerPrimary(void)
 
 {
   char NodeActiveFlag;
