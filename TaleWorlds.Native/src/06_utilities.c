@@ -8292,16 +8292,16 @@ uint8_t SystemSecurityValidationFlagA192;
 uint8_t SystemSecurityValidationFlagA193;
 uint8_t SystemSecurityValidationFlagA194;
 uint8_t SystemSecurityValidationFlagA195;
-uint8_t UNK_180a3a7a8;
-uint8_t UNK_180a3a7b8;
-uint8_t UNK_180a3a7d0;
-uint8_t UNK_180a3a7e0;
-uint8_t UNK_180a3a7f0;
-uint8_t UNK_180a3a800;
-uint8_t UNK_180a3a820;
-uint8_t UNK_180a3a830;
-uint8_t UNK_180a3a850;
-uint8_t UNK_180a3a860;
+uint8_t SystemSecurityValidationFlagA196;    // UNK_180a3a7a8
+uint8_t SystemSecurityValidationFlagA197;    // UNK_180a3a7b8
+uint8_t SystemSecurityValidationFlagA198;    // UNK_180a3a7d0
+uint8_t SystemSecurityValidationFlagA199;    // UNK_180a3a7e0
+uint8_t SystemSecurityValidationFlagA200;    // UNK_180a3a7f0
+uint8_t SystemSecurityValidationFlagA201;    // UNK_180a3a800
+uint8_t SystemSecurityValidationFlagA202;    // UNK_180a3a820
+uint8_t SystemSecurityValidationFlagA203;    // UNK_180a3a830
+uint8_t SystemSecurityValidationFlagA204;    // UNK_180a3a850
+uint8_t SystemSecurityValidationFlagA205;    // UNK_180a3a860
 uint8_t UNK_180a3a870;
 uint8_t UNK_180a3a880;
 uint8_t UNK_180a3a898;
@@ -24104,7 +24104,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
 DataBuffer ExecuteDataCleanupA0(void)
 
 {
-  short sVar1;
+  short statusFlag;
   int operationResult;
   DataBuffer validationStatus;
   int64_t registerContext;
