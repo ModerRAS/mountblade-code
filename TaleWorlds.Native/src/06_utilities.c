@@ -50017,7 +50017,16 @@ void Catch_180904c60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904db0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化系统数据缓冲区
+ * 
+ * 该函数用于在异常处理时初始化系统数据缓冲区指针
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180904db0
+ */
+void InitializeSystemDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x50) = &SystemDataBuffer;
@@ -50026,7 +50035,16 @@ void Unwind_180904db0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904dc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统清理回调函数
+ * 
+ * 该函数用于在异常处理时执行系统清理回调函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180904dc0
+ */
+void ExecuteSystemCleanupCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x50) != (int64_t *)0x0) {
@@ -50037,7 +50055,17 @@ void Unwind_180904dc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904dd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器
+ * 
+ * 该函数用于在异常处理时配置和初始化异常处理器
+ * 包括设置主异常处理器、临时异常处理器和清理相关资源
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180904dd0
+ */
+void ConfigureExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50070,7 +50098,17 @@ void Unwind_180904dd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904de0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理并重置异常处理器
+ * 
+ * 该函数用于在异常处理时清理互斥锁并重置异常处理器
+ * 这是一个简化版本的异常处理器配置函数
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180904de0
+ */
+void ResetExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50099,7 +50137,17 @@ void Unwind_180904de0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904df0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 简化版异常处理器配置
+ * 
+ * 该函数是异常处理器配置的简化版本，不包含互斥锁清理
+ * 主要用于快速重置异常处理器状态
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180904df0
+ */
+void ConfigureExceptionHandlersSimple(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50127,7 +50175,15 @@ void Unwind_180904df0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904e00(void)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数用于销毁当前线程的互斥锁
+ * 这是一个简单的包装函数，调用底层的互斥锁销毁功能
+ * 
+ * @note 原始函数名：Unwind_180904e00
+ */
+void DestroyMutex(void)
 
 {
   _Mtx_destroy_in_situ();
