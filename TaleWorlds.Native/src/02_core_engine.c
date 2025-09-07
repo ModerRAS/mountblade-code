@@ -166,6 +166,8 @@ const void* const SystemKeyStringBouncinessThreshold = (void*)0x180a0b130;
 const void* const SystemKeyStringContactOffset = (void*)0x180a0b168;
 const void* const SystemKeyStringContactCaptureThreshold = (void*)0x180a0b158;
 const void* const SystemKeyStringSkinWidth = (void*)0x180a0b188;
+const void* const SystemKeyStringLinearDamping = (void*)0x180a0b178;
+const void* const SystemKeyStringAngularDamping = (void*)0x180a0b198;
 
 // 系统事件和配置常量 - 用于替换UNK_180a07xxx变量
 const void* const SystemEventConfigurationPrimary = (void*)0x180a07340;
@@ -426,6 +428,8 @@ const void* const SystemTertiaryProcessingStatusFlagAddress = (void*)0x180a071f8
 // 系统函数指针常量 - 用于替换UNK_18018a0f0等变量
 const void* const SystemFunctionDispatchPointer = (void*)0x18018a0f0;
 const void* const SystemMemoryAllocationPointer = (void*)0x18018c0a0;
+const void* const SystemPhysicsFunctionPointerA = (void*)0x180a0c9a0;
+const void* const SystemPhysicsFunctionPointerB = (void*)0x180a0cb40;
 
 // 系统事件和状态缓冲区常量
 const void* const SystemEventBufferPrimary = (void*)0x180a08850;
@@ -101198,7 +101202,15 @@ void SystemDataMovementHandler(long long MemoryBuffer)
 
 
 
-60e6(uint64_t SystemContextPointer,short Utf8BufferSizevoid FUN_1801160e6(uint64_t SystemContextPointer,short Utf8BufferSize
+/**
+ * @brief 验证整数数据结构
+ * 
+ * 该函数负责验证系统中的整数数据结构，确保数据的完整性和一致性。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ */
+void ValidateIntegerDataStructure(uint64_t SystemContextPointer,short Utf8BufferSize)
 {
   long long DataIndex;
   
@@ -106932,7 +106944,17 @@ void ProcessSystemDataConfiguration(uint64_t SystemContextPointer,char *Utf8Buff
 
 
 
-a0fe(uint64_t SystemContextPointer,char *Utf8BufferSize,uint64_t Utf16InputPointer,long long Utf16EndPointervoid FUN_18011a0fe(uint64_t SystemContextPointer,char *Utf8BufferSize,uint64_t Utf16InputPointer,long long Utf16EndPointer
+/**
+ * @brief 设置整数数据网络
+ * 
+ * 该函数负责设置系统中的整数数据网络，包括数据的传输、验证和处理。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @param Utf16InputPointer UTF16输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ */
+void SetupIntegerDataNetwork(uint64_t SystemContextPointer,char *Utf8BufferSize,uint64_t Utf16InputPointer,long long Utf16EndPointer)
 {
   int LockResult;
   float *pSystemContextFloat2;
@@ -109181,7 +109203,15 @@ bbb0(int *SystemContextPointer,uint32_t Utf8BufferSize,long long Utf16InputPoint
 
 
 
-bc70(int *SystemContextPointer,int Utf8BufferSizevoid FUN_18011bc70(int *SystemContextPointer,int Utf8BufferSize
+/**
+ * @brief 处理整数数据纹理
+ * 
+ * 该函数负责处理系统中的整数数据纹理，包括纹理的加载、验证和处理。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ */
+void ProcessIntegerDataTexture(int *SystemContextPointer,int Utf8BufferSize)
 {
   int LockResult;
   int *pStringComparisonResult;
@@ -112045,7 +112075,15 @@ d940(int *SystemContextPointer,uint32_t *Utf8BufferSizevoid FUN_18011d940(int *S
 
 
 
-d9a0(int *SystemContextPointer,uint64_t *Utf8BufferSizevoid FUN_18011d9a0(int *SystemContextPointer,uint64_t *Utf8BufferSize
+/**
+ * @brief 处理系统数据结构扩展
+ * 
+ * 该函数负责处理系统中的数据结构扩展，支持更大的数据范围和更复杂的操作。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ */
+void ProcessSystemDataStructureEx(int *SystemContextPointer,uint64_t *Utf8BufferSize)
 {
   int LockResult;
   int StringComparisonResult;
@@ -215992,7 +216030,7 @@ LAB_180193810:
         }
         break;
       }
-      DataConfigurationCounter = (long long)&UNK_180a0b130 - (long long)pSystemStatusChar;
+      DataConfigurationCounter = (long long)&SystemKeyStringBouncinessThreshold - (long long)pSystemStatusChar;
       while (*pSystemStatusChar == pSystemStatusChar[DataConfigurationCounter]) {
         pSystemStatusChar = pSystemStatusChar + 1;
         if (pSystemCheckResult <= pSystemStatusChar) goto LAB_180193810;
@@ -216027,7 +216065,7 @@ LAB_1801938a0:
         }
         break;
       }
-      DataConfigurationCounter = (long long)&UNK_180a0b168 - (long long)pSystemStatusChar;
+      DataConfigurationCounter = (long long)&SystemKeyStringContactOffset - (long long)pSystemStatusChar;
       while (*pSystemStatusChar == pSystemStatusChar[DataConfigurationCounter]) {
         pSystemStatusChar = pSystemStatusChar + 1;
         if (pSystemCheckResult <= pSystemStatusChar) goto LAB_1801938a0;
@@ -216062,7 +216100,7 @@ LAB_180193930:
         }
         break;
       }
-      DataConfigurationCounter = (long long)&UNK_180a0b158 - (long long)pSystemStatusChar;
+      DataConfigurationCounter = (long long)&SystemKeyStringContactCaptureThreshold - (long long)pSystemStatusChar;
       while (*pSystemStatusChar == pSystemStatusChar[DataConfigurationCounter]) {
         pSystemStatusChar = pSystemStatusChar + 1;
         if (pSystemCheckResult <= pSystemStatusChar) goto LAB_180193930;
@@ -216097,7 +216135,7 @@ LAB_1801939c0:
         }
         break;
       }
-      DataConfigurationCounter = (long long)&UNK_180a0b188 - (long long)pSystemStatusChar;
+      DataConfigurationCounter = (long long)&SystemKeyStringSkinWidth - (long long)pSystemStatusChar;
       while (*pSystemStatusChar == pSystemStatusChar[DataConfigurationCounter]) {
         pSystemStatusChar = pSystemStatusChar + 1;
         if (pSystemCheckResult <= pSystemStatusChar) goto LAB_1801939c0;
@@ -216144,7 +216182,7 @@ LAB_180193a50:
         }
         goto LAB_180193a66;
       }
-      DataConfigurationCounter = (long long)&UNK_180a0b178 - (long long)pSystemStatusChar;
+      DataConfigurationCounter = (long long)&SystemKeyStringLinearDamping - (long long)pSystemStatusChar;
       while (*pSystemStatusChar == pSystemStatusChar[DataConfigurationCounter]) {
         pSystemStatusChar = pSystemStatusChar + 1;
         if (pSystemCheckResult <= pSystemStatusChar) goto LAB_180193a50;
