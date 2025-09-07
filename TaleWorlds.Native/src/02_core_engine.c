@@ -130453,7 +130453,18 @@ LAB_18012ce0f:
 
 
 
-99d3(uint64_t CharacterCode,uint64_t Utf8BufferSize,float Utf8SourcePointervoid FUN_1801299d3(uint64_t CharacterCode,uint64_t Utf8BufferSize,float Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码转换和验证
+ * 
+ * 该函数负责处理UTF-8字符编码的转换、验证和系统状态检查
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_1801299d3
+ */
+void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t Utf8BufferSize, float Utf8SourcePointer)
 {
   uint16_t *StatusBuffer;
   char SystemCheckResult;
@@ -144336,7 +144347,17 @@ void ProcessSystemFloatValidation(void)
 
 
 
-d910(int CharacterCode,uint64_t *Utf8InputBufferSizevoid FUN_18012d910(int CharacterCode,uint64_t *Utf8InputBufferSize
+/**
+ * @brief 处理字符代码和UTF-8输入缓冲区
+ * 
+ * 该函数负责处理字符代码和UTF-8输入缓冲区的操作和管理
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * 
+ * @note 原始函数名：FUN_18012d910
+ */
+void ProcessCharacterCodeAndUtf8InputBuffer(int CharacterCode, uint64_t *Utf8InputBufferSize)
 {
   uint32_t *StatusBuffer;
   void *SystemContext;
