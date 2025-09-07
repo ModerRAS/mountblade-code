@@ -8103,53 +8103,53 @@ uint8_t SystemSecurityValidationFlagA50;    // UNK_180a39b18
 uint8_t SystemSecurityValidationFlagA51;    // UNK_180a39b30
 uint8_t SystemSecurityValidationFlagA52;    // UNK_180a39b48
 uint8_t SystemSecurityValidationFlagA53;    // UNK_180a39b68
-uint8_t UNK_180a39b78;
-uint8_t UNK_180a39b88;
-uint8_t UNK_180a39ba0;
-uint8_t UNK_180a39bc0;
-uint8_t UNK_180a39bd8;
-uint8_t UNK_180a39bf0;
-uint8_t UNK_180a39c10;
-uint8_t UNK_180a39c30;
-uint8_t UNK_180a39c50;
-uint8_t UNK_180a39c60;
-uint8_t UNK_180a39c80;
-uint8_t UNK_180a39c98;
-uint8_t UNK_180a39cb8;
-uint8_t UNK_180a39ccc;
-uint8_t UNK_180a39cd0;
-uint8_t UNK_180a39cd4;
-uint8_t UNK_180a39cd8;
-uint8_t UNK_180a39ce0;
-uint8_t UNK_180a39cf8;
-uint8_t UNK_180a39d10;
-uint8_t UNK_180a39d28;
-uint8_t UNK_180a39d40;
-uint8_t UNK_180a39d58;
-uint8_t UNK_180a39d70;
-uint8_t UNK_180a39d88;
-uint8_t UNK_180a39d98;
-uint8_t UNK_180a39da8;
-uint8_t UNK_180a39db0;
-uint8_t UNK_180a39dc0;
-uint8_t UNK_180a39dd0;
-uint8_t UNK_180a39de0;
-uint8_t UNK_180a39df0;
-uint8_t UNK_180a39e08;
-uint8_t UNK_180a39e18;
-uint8_t UNK_180a39e30;
-uint8_t UNK_180a39e48;
-uint8_t UNK_180a39e58;
-uint8_t UNK_180a39e78;
-uint8_t UNK_180a39e90;
-uint8_t UNK_180a39ea8;
-uint8_t UNK_180a39eb8;
-uint8_t UNK_180a39ed0;
-uint8_t UNK_180a39ee0;
-uint8_t UNK_180a39ef0;
-uint8_t UNK_180a39f00;
-uint8_t UNK_180a39f18;
-uint8_t UNK_180a39f28;
+uint8_t SystemSecurityValidationFlagA54;    // UNK_180a39b78
+uint8_t SystemSecurityValidationFlagA55;    // UNK_180a39b88
+uint8_t SystemSecurityValidationFlagA56;    // UNK_180a39ba0
+uint8_t SystemSecurityValidationFlagA57;    // UNK_180a39bc0
+uint8_t SystemSecurityValidationFlagA58;    // UNK_180a39bd8
+uint8_t SystemSecurityValidationFlagA59;    // UNK_180a39bf0
+uint8_t SystemSecurityValidationFlagA60;    // UNK_180a39c10
+uint8_t SystemSecurityValidationFlagA61;    // UNK_180a39c30
+uint8_t SystemSecurityValidationFlagA62;    // UNK_180a39c50
+uint8_t SystemSecurityValidationFlagA63;    // UNK_180a39c60
+uint8_t SystemSecurityValidationFlagA64;    // UNK_180a39c80
+uint8_t SystemSecurityValidationFlagA65;    // UNK_180a39c98
+uint8_t SystemSecurityValidationFlagA66;    // UNK_180a39cb8
+uint8_t SystemSecurityValidationFlagA67;    // UNK_180a39ccc
+uint8_t SystemSecurityValidationFlagA68;    // UNK_180a39cd0
+uint8_t SystemSecurityValidationFlagA69;    // UNK_180a39cd4
+uint8_t SystemSecurityValidationFlagA70;    // UNK_180a39cd8
+uint8_t SystemSecurityValidationFlagA71;    // UNK_180a39ce0
+uint8_t SystemSecurityValidationFlagA72;    // UNK_180a39cf8
+uint8_t SystemSecurityValidationFlagA73;    // UNK_180a39d10
+uint8_t SystemSecurityValidationFlagA74;    // UNK_180a39d28
+uint8_t SystemSecurityValidationFlagA75;    // UNK_180a39d40
+uint8_t SystemSecurityValidationFlagA76;    // UNK_180a39d58
+uint8_t SystemSecurityValidationFlagA77;    // UNK_180a39d70
+uint8_t SystemSecurityValidationFlagA78;    // UNK_180a39d88
+uint8_t SystemSecurityValidationFlagA79;    // UNK_180a39d98
+uint8_t SystemSecurityValidationFlagA80;    // UNK_180a39da8
+uint8_t SystemSecurityValidationFlagA81;    // UNK_180a39db0
+uint8_t SystemSecurityValidationFlagA82;    // UNK_180a39dc0
+uint8_t SystemSecurityValidationFlagA83;    // UNK_180a39dd0
+uint8_t SystemSecurityValidationFlagA84;    // UNK_180a39de0
+uint8_t SystemSecurityValidationFlagA85;    // UNK_180a39df0
+uint8_t SystemSecurityValidationFlagA86;    // UNK_180a39e08
+uint8_t SystemSecurityValidationFlagA87;    // UNK_180a39e18
+uint8_t SystemSecurityValidationFlagA88;    // UNK_180a39e30
+uint8_t SystemSecurityValidationFlagA89;    // UNK_180a39e48
+uint8_t SystemSecurityValidationFlagA90;    // UNK_180a39e58
+uint8_t SystemSecurityValidationFlagA91;    // UNK_180a39e78
+uint8_t SystemSecurityValidationFlagA92;    // UNK_180a39e90
+uint8_t SystemSecurityValidationFlagA93;    // UNK_180a39ea8
+uint8_t SystemSecurityValidationFlagA94;    // UNK_180a39eb8
+uint8_t SystemSecurityValidationFlagA95;    // UNK_180a39ed0
+uint8_t SystemSecurityValidationFlagA96;    // UNK_180a39ee0
+uint8_t SystemSecurityValidationFlagA97;    // UNK_180a39ef0
+uint8_t SystemSecurityValidationFlagA98;    // UNK_180a39f00
+uint8_t SystemSecurityValidationFlagA99;    // UNK_180a39f18
+uint8_t SystemSecurityValidationFlagA100;   // UNK_180a39f28
 uint8_t UNK_180a39f50;
 uint8_t UNK_180a39f60;
 uint8_t UNK_180a39f78;
@@ -32407,10 +32407,10 @@ ValidationStateHandler2:
           goto ProcessCheckpointValidationError5;
         }
         uStack_a4 = 0;
-        validationStatus = AllocateMemory(*pdataContext,&uStack_a4);
-        bVar8 = validationStatus == 0;
-        if (bVar8) {
-          if ((uint64_t)pdataContext[2] < (uint64_t)uStack_a4 + 1) {
+        validationStatus = AllocateMemory(*pdataContext,&allocatedMemorySize);
+        isValidationSuccessful = validationStatus == 0;
+        if (isValidationSuccessful) {
+          if ((uint64_t)pdataContext[2] < (uint64_t)allocatedMemorySize + 1) {
             validationStatus = 0x11;
             goto ProcessCheckpointValidationError5;
           }
@@ -32418,7 +32418,7 @@ ValidationStateHandler2:
         }
       }
       operationResult = (uint64_t)validationStatus;
-      if (bVar8) {
+      if (isValidationSuccessful) {
         operationResult = 0;
       }
     }
@@ -94307,7 +94307,7 @@ void HandleDataValidationException(DataBuffer operationBase, int64_t dataBuffer,
   DataBuffer operationResult;
   
   operationResult = SystemCleanupFlagAlternative;
-  FUN_18013ea00(*(DataBuffer *)(dataBuffer + 0xc0));
+  ReleaseDataBuffer(*(DataBuffer *)(dataBuffer + 0xc0));
   *(DataBuffer *)(dataBuffer + 0xc0) = 0;
   *(DataBuffer *)(dataBuffer + 0xa8) = 0;
   *(DataBuffer *)(dataBuffer + 0xa0) = 0;
@@ -94698,16 +94698,19 @@ void UtilityProcessParameter1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 // 函数: void UtilityProcessParameter2(DataBuffer operationBase,int64_t dataBuffer)
+// 功能：处理工具系统参数2，执行状态检查和操作
+// 参数：operationBase-操作句柄，dataBuffer-数据上下文
+// 返回值：无
 void UtilityProcessParameter2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  char cVar1;
-  int operationResult;
+  char statusFlag;
+  int systemCheckResult;
   
   FUN_1808fc5ac();
-  cVar1 = *(char *)(dataBuffer + 0x38);
-  operationResult = func_0x0001808fd8d4();
-  if ((operationResult != 0) && (cVar1 == '\0')) {
+  statusFlag = *(char *)(dataBuffer + 0x38);
+  systemCheckResult = func_0x0001808fd8d4();
+  if ((systemCheckResult != 0) && (statusFlag == '\0')) {
     LOCK();
     _DAT_180c821d0 = 0;
     UNLOCK();
