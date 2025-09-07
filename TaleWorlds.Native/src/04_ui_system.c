@@ -66790,40 +66790,40 @@ void ProcessUIContextDataValidation(int uiContext,int dataSource,int targetBuffe
   storedBufferSize = bufferSize;
   if (uiContext == 0x10) {
     compareResult = (*_DAT_180d4a958)();
-    uVar8 = compareResult + 0x80U >> 8;
-    compareResult = (*_DAT_180d4a958)(bufferSize,param_7,&UiRenderBuffer,0,aiStackX_10);
+    validationValue = compareResult + 0x80U >> 8;
+    compareResult = (*_DAT_180d4a958)(bufferSize,param_7,&UiRenderBuffer,0,stackBuffer);
     bufferValidation = compareResult + 0x80U >> 8;
-    (*_DAT_180d4a958)(bufferSize,param_7,param_9,uiContext2,aiStackX_10);
-    uStack_68 = aiStackX_10[0] + 0x80U >> 8;
-    FUN_180690580(resultPointer,param_8,uiContext0,uiContext3,aiStackX_10);
-    uStack_60 = aiStackX_10[0] + 0x20U >> 6;
-    piVar9 = aiStackX_10;
-    FUN_180690580(param_6,param_8,uiContext1,uiContext3,piVar9);
-    functionResult0 = (undefined4)((ulonglong)piVar9 >> 0x20);
-    uVar5 = aiStackX_10[0] + 0x20U >> 6;
+    (*_DAT_180d4a958)(bufferSize,param_7,param_9,uiContext2,stackBuffer);
+    stackValidation1 = stackBuffer[0] + 0x80U >> 8;
+    FUN_180690580(resultPointer,param_8,uiContext0,uiContext3,stackBuffer);
+    stackValidation2 = stackBuffer[0] + 0x20U >> 6;
+    bufferPointer = stackBuffer;
+    FUN_180690580(param_6,param_8,uiContext1,uiContext3,bufferPointer);
+    functionResult = (undefined4)((ulonglong)bufferPointer >> 0x20);
+    stackValue1 = stackBuffer[0] + 0x20U >> 6;
   }
   else {
-    compareResult = FUN_180690580(param_9,uiContext2,&UiRenderBuffer,0,aiStackX_10);
-    uVar8 = compareResult + 0x20U >> 6;
-    compareResult = FUN_180690580(bufferSize,param_7,&UiRenderBuffer,0,aiStackX_10);
+    compareResult = FUN_180690580(param_9,uiContext2,&UiRenderBuffer,0,stackBuffer);
+    validationValue = compareResult + 0x20U >> 6;
+    compareResult = FUN_180690580(bufferSize,param_7,&UiRenderBuffer,0,stackBuffer);
     bufferValidation = compareResult + 0x20U >> 6;
-    FUN_180690580(bufferSize,param_7,param_9,uiContext2,aiStackX_10);
-    uStack_68 = aiStackX_10[0] + 0x20U >> 6;
-    func_0x000180690120(resultPointer,param_8,uiContext0,uiContext3,aiStackX_10);
-    uStack_60 = aiStackX_10[0] + 8U >> 4;
-    piVar9 = aiStackX_10;
-    func_0x000180690120(param_6,param_8,uiContext1,uiContext3,piVar9);
-    functionResult0 = (undefined4)((ulonglong)piVar9 >> 0x20);
-    uVar5 = aiStackX_10[0] + 8U >> 4;
+    FUN_180690580(bufferSize,param_7,param_9,uiContext2,stackBuffer);
+    stackValidation1 = stackBuffer[0] + 0x20U >> 6;
+    func_0x000180690120(resultPointer,param_8,uiContext0,uiContext3,stackBuffer);
+    stackValidation2 = stackBuffer[0] + 8U >> 4;
+    bufferPointer = stackBuffer;
+    func_0x000180690120(param_6,param_8,uiContext1,uiContext3,bufferPointer);
+    functionResult = (undefined4)((ulonglong)bufferPointer >> 0x20);
+    stackValue1 = stackBuffer[0] + 8U >> 4;
   }
-  uVar4 = 0;
-  isCharacterMatch = uVar8 <= bufferValidation * 5;
-  uVar6 = dataSource - targetBuffer >> 4;
-  while (uVar8 = uVar8 >> 1, uVar8 != 0) {
-    uVar6 = uVar6 + 1;
+  calculatedSize = 0;
+  isCharacterMatch = validationValue <= bufferValidation * 5;
+  sizeCalculation = dataSource - targetBuffer >> 4;
+  while (validationValue = validationValue >> 1, validationValue != 0) {
+    sizeCalculation = sizeCalculation + 1;
   }
   for (compareResult = targetBuffer >> 2; compareResult != 0; compareResult = compareResult >> 2) {
-    uVar6 = uVar6 + 1;
+    sizeCalculation = sizeCalculation + 1;
   }
   uVar8 = uVar6 * uVar6;
   if ((((uStack_68 < uVar8) && (uStack_60 * 4 < uVar8)) && (uVar5 * 4 < uVar8)) && (isCharacterMatch)) {
@@ -67907,16 +67907,16 @@ void FUN_18069f2f0(longlong uiContext)
 
 
  void FUN_18069f51a(void)
-void FUN_18069f51a(void)
+void ProcessUIComponentMemoryAllocation(void)
 
 {
   byte isCharacterMatch;
   int validationResult;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  ulonglong bitMask1;
+  ulonglong bitMask2;
   longlong context;
-  uint uVar5;
-  uint uVar6;
+  uint bitFieldResult;
+  uint characterIndex;
   longlong unaff_R13;
   undefined1 unaff_R14B;
   longlong lVar7;
@@ -67989,7 +67989,7 @@ void FUN_18069f51a(void)
 
 
  void FUN_18069f682(void)
-void FUN_18069f682(void)
+void UIEmptyOperation(void)
 
 {
   return;
@@ -393043,7 +393043,7 @@ ulonglong FUN_18089fad8(void)
 
 
  void FUN_18089fb06(void)
-void FUN_18089fb06(void)
+void CheckUIOperationResult(void)
 
 {
   int operationResult;
@@ -393060,7 +393060,7 @@ void FUN_18089fb06(void)
 
 
  void FUN_18089fb2b(void)
-void FUN_18089fb2b(void)
+void UINoOperation(void)
 
 {
   return;
@@ -393070,18 +393070,18 @@ void FUN_18089fb2b(void)
 
 
  void FUN_18089fb40(longlong uiContext,undefined8 dataSource)
-void FUN_18089fb40(longlong uiContext,undefined8 dataSource)
+void ValidateUIDataSource(longlong uiContext,undefined8 dataSource)
 
 {
   int operationResult;
-  undefined1 auStack_28 [32];
+  undefined1 validationBuffer [32];
   
-  operationResult = FUN_1808ddd30(dataSource,auStack_28,0,0x4f525443,0);
+  operationResult = FUN_1808ddd30(dataSource,validationBuffer,0,0x4f525443,0);
   if (operationResult == 0) {
     operationResult = FUN_1808a7b00(dataSource,uiContext + 8);
     if (operationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808de000(dataSource,auStack_28);
+      FUN_1808de000(dataSource,validationBuffer);
     }
   }
   return;
