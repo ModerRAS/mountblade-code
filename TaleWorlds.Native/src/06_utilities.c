@@ -50446,7 +50446,22 @@ void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
 
 
 
-void Unwind_180904ac0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器C
+ * 
+ * 该函数负责设置默认异常处理器B到指定的数据缓冲区位置。
+ * 这是一个简单的设置函数，用于配置异常处理机制。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区，用于设置异常处理器
+ * 
+ * 功能说明：
+ * 1. 将DefaultExceptionHandlerB的地址设置到数据缓冲区的指定偏移量位置
+ * 2. 偏移量0xb0用于存储异常处理器指针
+ * 
+ * @note 原始函数名：Unwind_180904ac0
+ */
+void SetDefaultExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0xb0) = &DefaultExceptionHandlerB;
@@ -50455,7 +50470,21 @@ void Unwind_180904ac0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904ad0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常回调处理器A0
+ * 
+ * 该函数负责处理异常回调，验证并执行相关的回调函数。
+ * 主要功能包括：
+ * - 验证回调函数指针的有效性
+ * - 执行异常回调函数
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区，包含回调函数信息
+ * 
+ * @note 原始函数名：Unwind_180904ad0
+ * @note 这是一个异常回调处理函数，用于执行系统定义的回调操作
+ */
+void ExceptionCallbackProcessorA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x58) != (int64_t *)0x0) {
