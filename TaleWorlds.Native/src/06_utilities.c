@@ -263,6 +263,9 @@
 // 原始函数名：FUN_1808fc914 - 数据验证处理函数
 #define ValidateDataWithParams FUN_1808fc914
 
+// 原始函数名：FUN_1808fc074 - 系统验证处理函数
+#define ProcessSystemValidation FUN_1808fc074
+
 // 原始函数名：FUN_1803f33b0 - 内存访问处理函数
 #define ProcessMemoryAccess FUN_1803f33b0
 
@@ -94799,7 +94802,7 @@ void UtilityProcessParameter1(DataBuffer operationBase,int64_t dataBuffer)
   int operationResult;
   
   cVar1 = *(char *)(dataBuffer + 0x40);
-  operationResult = func_0x0001808fd8d4();
+  operationResult = CheckOperationResult();
   if ((operationResult != 0) && (cVar1 == '\0')) {
     LOCK();
     _DAT_180c821d0 = 0;
@@ -94825,7 +94828,7 @@ void UtilityProcessParameter2(DataBuffer operationBase,int64_t dataBuffer)
   
   CheckSystemStatus();
   statusFlag = *(char *)(dataBuffer + 0x38);
-  systemCheckResult = func_0x0001808fd8d4();
+  systemCheckResult = CheckOperationResult();
   if ((systemCheckResult != 0) && (statusFlag == '\0')) {
     LOCK();
     _DAT_180c821d0 = 0;
@@ -94845,7 +94848,7 @@ void ExecuteUtilityOperation(DataBuffer *operationBase,int64_t dataBuffer)
 
 {
   ExecuteUtilityOperationWithParams(*(DataBuffer *)(dataBuffer + 0x60),*(DataWord *)(dataBuffer + 0x68),
-                *(DataBuffer *)(dataBuffer + 0x70),FUN_1808fc074,*(DataWord *)*operationBase,operationBase);
+                *(DataBuffer *)(dataBuffer + 0x70),ProcessSystemValidation,*(DataWord *)*operationBase,operationBase);
   return;
 }
 
