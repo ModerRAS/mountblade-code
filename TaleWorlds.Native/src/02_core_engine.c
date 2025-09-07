@@ -210,6 +210,15 @@
 #define GetSystemControlRegister FUN_180225cf2                  // 获取系统控制寄存器
 #define GetSystemInterruptRegister FUN_180225d1e                // 获取系统中断寄存器
 #define GetSystemErrorRegister FUN_180225d4a                    // 获取系统错误寄存器
+#define ProcessCharacterCodeDataEx FUN_18019c480                 // 处理字符代码数据扩展
+#define ProcessSystemStringEncodingEx FUN_180212e40              // 处理系统字符串编码扩展
+#define ProcessSystemStringEncodingVariantB FUN_180212e60         // 处理系统字符串编码变体B
+#define ProcessSystemDataBufferEx FUN_180214c50                  // 处理系统数据缓冲区扩展
+#define ProcessSystemDataBufferVariantB FUN_180214c90            // 处理系统数据缓冲区变体B
+#define ProcessSystemDataBufferVariantC FUN_180214cf0            // 处理系统数据缓冲区变体C
+#define ProcessSystemMemoryAllocationEx FUN_1802161d0             // 处理系统内存分配扩展
+#define ProcessSystemMemoryAllocationVariantB FUN_180216210      // 处理系统内存分配变体B
+#define GetSystemErrorCodeEx FUN_18021aef5                       // 获取系统错误代码扩展
 #define IdentifySystemIdentifierByPatternVariantO FUN_180225667
 #define IdentifySystemIdentifierByPatternVariantP FUN_1802256a7
 #define IdentifySystemIdentifierByPatternVariantQ FUN_1802256e7
