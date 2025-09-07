@@ -15073,8 +15073,8 @@ void CoreEngineInitializeSystemConnectionTemplateB(void)
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -15085,16 +15085,16 @@ void CoreEngineInitializeSystemConnectionTemplateB(void)
     CurrentNode = NextNode;
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
-    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
+    AllocatedMemory = CoreEngineAllocateMemory(SystemContext);
+    CoreEngineSetupMemoryNode(SystemContext,&TemporaryBuffer,StringProcessingStatus,AllocatedMemory + 0x20,AllocatedMemory);
     StringProcessingStatus = TemporaryBuffer;
   }
   StringProcessingStatus[6] = 0x49086ba08ab981a7;
   StringProcessingStatus[7] = 0xa9191d34ad910696;
   StringProcessingStatus[8] = &SystemConnectionTemplateB;
   StringProcessingStatus[9] = 0;
-  StringProcessingStatus[10] = functionCallback;
+  StringProcessingStatus[10] = NetworkSecurityCallback;
   return;
 }
 
@@ -15107,17 +15107,17 @@ void CoreEngineInitializeSystemConnectionTemplateB(void)
  * 该函数负责初始化核心引擎的系统管理器，设置系统组件的
  * 基本配置。用于管理引擎的系统组件。
  */
-void CoreEngineInitializeSystemManager(void
+void CoreEngineInitializeSystemManager(void)
 {
-  char StringBuffer;
-  void *SystemContext;
-  int MemoryMatchResult;
+  char SystemStringBuffer;
+  EngineContext *SystemContext;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
-  void *CurrentNode;
-  void *PreviousNode;
-  void *NextNode;
-  void *TempStackPointer;
+  SystemNode *CurrentNode;
+  SystemNode *PreviousNode;
+  SystemNode *NextNode;
+  StackPointer *TempStackPointer;
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
@@ -157770,7 +157770,7 @@ void InitializeSystemContextAndMemoryManagement(void)
 
 
 
-void FUN_1801348d8(void
+void InitializeSystemFloatValues(void
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
@@ -157900,7 +157900,7 @@ void FUN_1801348d8(void
 
 
 
-void FUN_1801348ee(void
+void ProcessSystemFloatInitialization(void
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
@@ -158032,36 +158032,46 @@ void FUN_1801348ee(void
 
 
 
-void FUN_180134b4f(long long CharacterCode
+/**
+ * @brief 处理字符编码缓冲区扩展
+ * 
+ * 该函数负责管理字符编码的内存缓冲区，当缓冲区满时进行扩展操作
+ * 主要用于处理UTF-8字符编码的内存管理
+ * 
+ * @param CharacterCode 字符代码指针，包含编码相关数据
+ * 
+ * @note 原始函数名：FUN_180134b4f
+ */
+void HandleCharacterEncodingBufferExpansion(long long CharacterCode
 {
   int LockResult;
   int CharacterByteCount;
   int MemoryMatchResult;
-  int *pEncodingValidationResult;
-  uint64_t TemporaryStackValue58;
+  int *EncodingBufferSizePointer;
+  uint64_t SystemFunctionAddress;
   
-  pEncodingValidationResult = (int *)(CharacterCode + 0x1c8);
+  EncodingBufferSizePointer = (int *)(CharacterCode + 0x1c8);
   *(uint32_t *)(CharacterCode + 0x1ac) = *(uint32_t *)(CharacterCode + 0x284);
-  MemoryAllocationSize = *pEncodingValidationResult;
+  int CurrentBufferSize = *EncodingBufferSizePointer;
   CharacterByteCount = *(int *)(CharacterCode + 0x1cc);
-  if (MemoryAllocationSize == CharacterByteCount) {
+  if (CurrentBufferSize == CharacterByteCount) {
     if (CharacterByteCount == 0) {
       CharacterByteCount = 8;
     }
     else {
       CharacterByteCount = CharacterByteCount / 2 + CharacterByteCount;
     }
-    IntegerValue = MemoryAllocationSize + 1;
-    if (MemoryAllocationSize + 1 < CharacterByteCount) {
-      IntegerValue = CharacterByteCount;
+    int NewBufferSize = CurrentBufferSize + 1;
+    if (CurrentBufferSize + 1 < CharacterByteCount) {
+      NewBufferSize = CharacterByteCount;
     }
-    TemporaryStackValue58 = 0x18011d983;
-    ManageSystemReferenceCount(pEncodingValidationResult,IntegerValue);
-    MemoryAllocationSize = *pEncodingValidationResult;
+    SystemFunctionAddress = 0x18011d983;
+    ManageSystemReferenceCount(EncodingBufferSizePointer, NewBufferSize);
+    CurrentBufferSize = *EncodingBufferSizePointer;
   }
-  *(uint32_t *)(*(long long *)(CharacterCode + 0x1d0) + (long long)MemoryAllocationSize * 4) =
+  *(uint32_t *)(*(long long *)(CharacterCode + 0x1d0) + (long long)CurrentBufferSize * 4) =
        *(uint32_t *)(CharacterCode + 0x1ac);
-  *pEncodingValidationResult = *pEncodingValidationResult + 1;
+  *EncodingBufferSizePointer = *EncodingBufferSizePointer + 1;
   return;
 }
 
@@ -158419,7 +158429,15 @@ void ConfigureSystemRenderingParameters(void
 
 
 
-void FUN_180134c48(void
+/**
+ * @brief 初始化系统状态和内存管理
+ * 
+ * 该函数负责初始化系统的核心状态，包括内存管理、浮点运算和系统上下文设置
+ * 这是系统启动时的关键初始化函数
+ * 
+ * @note 原始函数名：FUN_180134c48
+ */
+void InitializeSystemStateAndMemoryManagement(void
 {
   uint32_t *StatusBuffer;
   float ContextSecondaryFloat;
@@ -158439,14 +158457,14 @@ void FUN_180134c48(void
   float SecondaryFloatValue;
   float SystemContextPrimaryFloat2;
   float BaseFloatValue;
-  float SecondaryFloatValue;
-  float fStack0000000000000030;
-  float StackVariable34;
-  float StackVariable38;
-  float fStack0000000000000040;
+  float TertiaryFloatValue;
+  float StackFloatValue30;
+  float StackFloatValue34;
+  float StackFloatValue38;
+  float StackFloatValue40;
   uint32_t StackVariable48;
-  uint32_t uStack000000000000004c;
-  uint32_t uStack0000000000000050;
+  uint32_t StackVariable4c;
+  uint32_t StackVariable50;
   float FloatParameter1;
   char ProcessBuffer1;
   char ProcessBuffer2;
