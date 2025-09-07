@@ -66866,7 +66866,14 @@ void InitializeSystemExceptionDataBufferA(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_180907a10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理函数A
+ * @details 管理资源引用计数，减少引用计数并在必要时处理异常
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_180907a10
+ */
+void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;

@@ -131490,7 +131490,7 @@ LAB_18012b0d0:
     if (FilterInputValue5 != 0.0) {
       do {
         PrimaryReturnCode = CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),0x40800000);
-        FUN_1801296e0(RegisterFramePointer + -0x20,pBufferIndex,FilterInputValue9,ScalingFactor,PrimaryReturnCode);
+        CleanupSystemEventHandling(RegisterFramePointer + -0x20,pBufferIndex,FilterInputValue9,ScalingFactor,PrimaryReturnCode);
         ProcessStringBuffer = (uint32_t)((unsigned long long)PrimaryReturnCode >> 0x20);
         SystemStatusCode = SystemCallResourceOperation(pBufferIndex,(long long)((int)FilterInputValue9 + 4));
         SystemParameter1 = (void *)CONCAT44(ProcessStringBuffer,0x20);
@@ -233704,7 +233704,7 @@ long long * ExecuteSystemMemoryAllocation(void
       SystemContextPrimaryFloat2 = (float)(int)MemoryAllocationConstant;
       if (MatchCounter < 0) {
 
-040b7(void ProcessSystemMemoryOperation(void
+void ProcessSystemMemoryOperation(void
 {
   unsigned long long Utf16Char;
   int CharacterByteCount;
