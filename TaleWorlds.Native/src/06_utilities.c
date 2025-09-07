@@ -22337,7 +22337,7 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
         securityCheckValue = memoryBaseAddress;
       }
       SecurityValidationPointer = &SystemValidationTable;
-      operationResult = ValidateDataIntegrityA0(operationBase,&puStack_28);
+      operationResult = ValidateDataIntegrityA0(operationBase,&SecurityValidationPointer);
       if ((int)operationResult != 0) {
         return operationResult;
       }
@@ -26152,10 +26152,10 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
   ByteFlag securityValidationBuffer [32];
   
   resourcePointer = (DataWord *)ExecuteSystemResourceOperation();
-  uStack_38 = *resourcePointer;
-  uStack_34 = resourcePointer[1];
-  uStack_30 = resourcePointer[2];
-  uStack_2c = resourcePointer[3];
+  ResourceDataValueA = *resourcePointer;
+  ResourceDataValueB = resourcePointer[1];
+  ResourceDataValueC = resourcePointer[2];
+  ResourceDataValueD = resourcePointer[3];
   validationStatus = ExecuteSecurityValidation(dataBuffer,SecurityValidationBufferA,0,0x4c525443);
   if ((((int)validationStatus == 0) && (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + 0x10), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + 0x20), (int)validationStatus == 0)) {
@@ -26163,10 +26163,10 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
     if (*(uint *)(dataBuffer + 8) < 0x5a) {
       if (*(int *)(dataBuffer[1] + 0x18) == 0) {
         systemDataBuffer = *dataBuffer;
-        validationStatus = OperateDataO0(systemDataBuffer,&uStack_38,4);
-        if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(systemDataBuffer,&uStack_34,2), (int)validationStatus == 0)) &&
-           (validationStatus = OperateDataO0(systemDataBuffer,(int64_t)&uStack_34 + 2,2), (int)validationStatus == 0)) {
-          validationStatus = OperateDataO0(systemDataBuffer,&uStack_30,8);
+        validationStatus = OperateDataO0(systemDataBuffer,&ResourceDataValueA,4);
+        if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(systemDataBuffer,&ResourceDataValueB,2), (int)validationStatus == 0)) &&
+           (validationStatus = OperateDataO0(systemDataBuffer,(int64_t)&ResourceDataValueB + 2,2), (int)validationStatus == 0)) {
+          validationStatus = OperateDataO0(systemDataBuffer,&ResourceDataValueC,8);
         }
       }
       else {
