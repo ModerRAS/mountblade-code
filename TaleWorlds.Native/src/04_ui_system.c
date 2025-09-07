@@ -98,6 +98,7 @@
 #define GetUILayoutData FUN_1807079df
 
 // UI系统函数宏定义 - 初始化UI布局系统
+#define CalculateUILayoutMetrics FUN_18069ccd0
 #define InitializeUILayoutSystem FUN_180707a56
 
 // UI系统函数宏定义 - 验证UI布局
@@ -66200,7 +66201,7 @@ void RenderUIButtonInternal(undefined8 uiContext,longlong dataSource,undefined8 
   do {
     memoryOffset = (ulonglong)((uint)loopCounter & 3);
     layoutIndex = (ulonglong)((uint)(loopCounter >> 2) & 3);
-    processResult = FUN_18069ccd0(layoutConfig,layoutOffset,(int)*(char *)(layoutIndex + layoutData2) + (int)*(char *)(memoryOffset + layoutData1)
+    processResult = CalculateUILayoutMetrics(layoutConfig,layoutOffset,(int)*(char *)(layoutIndex + layoutData2) + (int)*(char *)(memoryOffset + layoutData1)
                           ,layoutFlag,baseMemoryAddress);
     resultOffset = processResult + layoutFlag;
     totalResult = totalResult + resultOffset;
@@ -66219,7 +66220,7 @@ void RenderUIButtonInternal(undefined8 uiContext,longlong dataSource,undefined8 
     layoutOffset = (longlong)(int)((uint)(0x13 < (int)iterationCount) * 2);
     memoryOffset = (ulonglong)(layoutFlag & 1) + layoutOffset;
     layoutOffset = (ulonglong)(((byte)iterationCount & 3) != 1 && (iterationCount & 3) != 0) + layoutOffset;
-    processResult = FUN_18069ccd0(layoutConfig,uiContext + 0x32a5,
+    processResult = CalculateUILayoutMetrics(layoutConfig,uiContext + 0x32a5,
                           (int)*(char *)(layoutOffset + 4 + layoutData2) + (int)*(char *)(memoryOffset + 4 + layoutData1),0,
                           baseMemoryAddress);
     layoutFlag = layoutFlag + 1;
@@ -66373,10 +66374,10 @@ void ProcessUIRenderPipelineHandler(longlong uiContext)
         func_0x00018069db00(contextData + 0x38);
       }
       if (piVar8[4] == piVar8[0x12]) {
-        FUN_18069d8a0(uiContext,piVar8 + -8,*piVar8 + lVar4,semaphoreHandle,uVar5,semaphoreHandle);
+        SynchronizeUIResources(uiContext,piVar8 + -8,*piVar8 + lVar4,semaphoreHandle,uVar5,semaphoreHandle);
       }
       else {
-        FUN_18069d9e0(piVar8 + -8,*piVar8 + lVar4,semaphoreHandle,uVar5,semaphoreHandle,*(undefined8 *)(uiContext + 0xf98)
+        ProcessUIResourceUpdate(piVar8 + -8,*piVar8 + lVar4,semaphoreHandle,uVar5,semaphoreHandle,*(undefined8 *)(uiContext + 0xf98)
                      );
         FUN_18069d9e0(piVar8 + 6,piVar8[0xe] + lVar4,semaphoreHandle,uVar5,semaphoreHandle,
                       *(undefined8 *)(uiContext + 0xf98));
