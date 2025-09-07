@@ -47,6 +47,18 @@
 #define UnicodeCodePoint CalculatedCodePoint              // Unicode码点
 #define MemoryAddressHandler LAB_18013b999                // 内存地址处理器
 
+// 栈变量语义化宏定义
+#define StackPointer88 pcStack_88                          // 栈指针88
+#define CharacterBuffer80 CharacterBuffer80               // 字符缓冲区80
+#define StackPointerC0 pcStack_c0                          // 栈指针C0
+#define StackPointerB8 pcStack_b8                          // 栈指针B8
+#define StackPointer110 pcStack_110                        // 栈指针110
+#define StackPointerF0 pcStack_f0                          // 栈指针F0
+#define StackPointerF8 pcStack_f8                          // 栈指针F8
+#define StackPointerE0 lStack_e0                          // 栈指针E0
+#define StackPointerD8 pfStack_d8                          // 栈指针D8
+#define StackPointerB0 pcStack_b0                          // 栈指针B0
+
 // FUN_函数语义化宏定义
 #define ResetCharacterProcessingSystem FUN_18013ce40      // 重置字符处理系统
 #define ProcessCharacterDataWithCode FUN_180136210        // 使用字符代码处理字符数据
