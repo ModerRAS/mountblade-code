@@ -272159,7 +272159,25 @@ uint64_t CalculateAudioSignalAverage(int CharacterCode,uint64_t CharacterCodeSiz
 
 
 
-uint64_t FUN_1807797e0(long long CharacterCode,uint CharacterCodeSize
+// 原始函数名：FUN_1807797e0 - 音频信号处理和权重计算函数
+#define ProcessAudioSignalWithWeights FUN_1807797e0
+
+/**
+ * @brief 音频信号处理和权重计算函数
+ * 
+ * 该函数处理音频信号数据，通过复杂的权重计算和信号处理算法
+ * 来分析和处理音频信号的各个组成部分。
+ * 
+ * @param AudioSignalData 音频信号数据指针
+ * @param SignalBufferSize 信号缓冲区大小
+ * @param CharacterCode 字符编码参数
+ * @param ResultPointer 结果指针，用于返回计算结果
+ * @return int 处理状态码，0表示成功
+ * 
+ * @note 此函数用于音频信号的高级处理和分析
+ * @note 包含权重计算、信号采样和结果处理
+ */
+int ProcessAudioSignalWithWeights(int AudioSignalData,int SignalBufferSize,char *CharacterCode,float *ResultPointer
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
