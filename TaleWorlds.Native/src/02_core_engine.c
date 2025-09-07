@@ -100046,16 +100046,16 @@ void ProcessFloatDataInitialization(void)
   float SystemContextPrimaryFloat6;
   float SecondaryFloatValue;
   uint64_t SystemRegisterFlagX8;
-  float fStackX_10;
-  float fStackX_14;
-  float fStack_78;
-  float fStack_74;
-  float fStack_70;
-  float fStack_6c;
-  uint32_t StackProcessingUnsignedValue68;
+  float StackFloatValue10;
+  float StackFloatValue14;
+  float StackFloatValue78;
+  float StackFloatValue74;
+  float StackFloatValue70;
+  float StackFloatValue6c;
+  uint32_t StackUnsignedValue68;
   uint32_t SystemUnsignedValue64;
-  uint32_t StackProcessingUnsignedValue60;
-  float fStack_5c;
+  uint32_t StackUnsignedValue60;
+  float StackFloatValue5c;
   
   SystemDataRegistry = SystemConfigurationHandle;
   *(uint8_t *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0xb1) = 1;
@@ -100090,23 +100090,23 @@ void ProcessFloatDataInitialization(void)
              (SystemContextPrimaryFloat6 < *(float *)(EncodingConversionResult + 0x234))) &&
             ((*(float *)(EncodingConversionResult + 0x228) <= SystemFloatValue && SystemFloatValue != *(float *)(EncodingConversionResult + 0x228) &&
              (SystemContextPrimaryFloat4 < *(float *)(EncodingConversionResult + 0x230))))) || (*(char *)(MemoryPoolBlockSize + 0x2e38) != '\0')) {
-          fStack_78 = SystemContextPrimaryFloat2;
-          fStack_74 = (float)UnicodeCodePoint;
-          fStack_70 = SecondaryFloatValue;
-          fStack_6c = SystemContextPrimaryFloat3;
-          CharacterVariable5 = ValidateAndProcessSystemFlags(&fStack_78,&fStack_70,1);
+          StackFloatValue78 = SystemContextPrimaryFloat2;
+          StackFloatValue74 = (float)UnicodeCodePoint;
+          StackFloatValue70 = SecondaryFloatValue;
+          StackFloatValue6c = SystemContextPrimaryFloat3;
+          CharacterVariable5 = ValidateAndProcessSystemFlags(&StackFloatValue78,&StackFloatValue70,1);
           if (CharacterVariable5 != '\0') {
             *(uint *)(SystemDataTablePointer + 0x148) = *(uint *)(SystemDataTablePointer + 0x148) | 1;
           }
-          fStack_78 = *(float *)(MemoryPoolBlockSize + 0x1878);
-          fStack_74 = *(float *)(MemoryPoolBlockSize + 0x187c);
-          fStack_70 = *(float *)(MemoryPoolBlockSize + 0x1880);
-          fStack_6c = *(float *)(MemoryPoolBlockSize + 0x1884) * *(float *)(MemoryPoolBlockSize + 0x1628);
+          StackFloatValue78 = *(float *)(MemoryPoolBlockSize + 0x1878);
+          StackFloatValue74 = *(float *)(MemoryPoolBlockSize + 0x187c);
+          StackFloatValue70 = *(float *)(MemoryPoolBlockSize + 0x1880);
+          StackFloatValue6c = *(float *)(MemoryPoolBlockSize + 0x1884) * *(float *)(MemoryPoolBlockSize + 0x1628);
           SystemRegisterFlagX8 = CONCAT44(SecondaryFloatValue,SystemContextPrimaryFloat4);
-          fStackX_10 = SystemContextPrimaryFloat4;
-          fStackX_14 = SystemContextPrimaryFloat6;
-          DataSize = ValidateSystemData(&fStack_78);
-          ProcessSystemRenderDataUpdate(*(void *)(StringOffset + 0x2e8),&fStackX_10,&SystemRegisterFlagX8,DataSize,0x3f800000);
+          StackFloatValue10 = SystemContextPrimaryFloat4;
+          StackFloatValue14 = SystemContextPrimaryFloat6;
+          DataSize = ValidateSystemData(&StackFloatValue78);
+          ProcessSystemRenderDataUpdate(*(void *)(StringOffset + 0x2e8),&StackFloatValue10,&SystemRegisterFlagX8,DataSize,0x3f800000);
           if (*(char *)(SystemDataRegistry + 0x2e38) != '\0') {
             ProcessSystemMemoryManagement(&SystemRenderDataCache);
           }
@@ -263111,6 +263111,16 @@ int ParseSystemKeywordStringAndReturnStatusCode(void
 
 
 
+/**
+ * @brief 系统标识符识别和分类函数（变体K）
+ * 
+ * 根据输入的数据字符串模式和长度，识别并返回对应的系统标识符。
+ * 该函数是IdentifySystemIdentifierByPattern的变体版本，用于处理
+ * 不同类型的系统组件识别和分类。
+ * 
+ * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
+ * @note 原始函数名：FUN_180225577
+ */
 int FUN_180225577(void
 {
   int LockResult;
