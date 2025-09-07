@@ -22024,9 +22024,9 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           ResourcePointerA = *resourcePointer;
           ResourcePointerB = resourcePointer[1];
           validationStatusPointer = (DataWord *)(exceptionHandlerContext5 + 0x100 + (int64_t)exceptionHandlerContextPointer0);
-          uStack_2a4 = *validationStatusPointer;
-          uStack_2a0 = validationStatusPointer[1];
-          uStack_29c = validationStatusPointer[2];
+          ValidationStatusPointerA = *validationStatusPointer;
+          ValidationStatusPointerB = validationStatusPointer[1];
+          ValidationStatusPointerC = validationStatusPointer[2];
           StackDataWordAB = validationStatusPointer[3];
           lStack_294 = *(int64_t *)(exceptionHandlerContext5 + 0x260 + (int64_t)exceptionHandlerContextPointer9);
           StackDataWordW = *(uint *)(exceptionHandlerContext5 + 0x268 + (int64_t)exceptionHandlerContextPointer9);
@@ -22068,7 +22068,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             ExceptionContextProcessorB = DataProcessingStruct._0_4_;
             StatusCounterA = DataProcessingStruct._4_4_;
             fStack_2c8 = afStack_348[0];
-            uStack_2d0 = 0;
+            SystemResetFlagLocal = 0;
             StackPointerVariableE = &ValidationContextBuffer;
             ExceptionContextProcessorA = ExceptionContextProcessorA & 0xffffff00;
             if (*(int *)(exceptionHandlerContext1 + 0x58) < 1) {
@@ -22089,7 +22089,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
                       (uint64_t)*(uint *)((int64_t)operationBase + 0x1c);
               calculatedIndex = operationBase[2];
               plStack_340 = (int64_t *)&SystemValidationTable;
-              uStack_338 = uStack_338 & SystemCleanupFlag00000000;
+              SystemCleanupFlagLocal = SystemCleanupFlagLocal & SystemCleanupFlag00000000;
               operationBase[2] = statusCounter;
               aplStack_330[0] = exceptionHandlerContextPointer6;
               if (calculatedIndex != 0) {
@@ -22112,26 +22112,26 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           exceptionHandlerContextPointer4 = (int64_t *)(uint64_t)systemDataBuffer7;
         } while ((int)systemDataBuffer7 < iterationCount);
       }
-      uStack_310 = SystemCleanupFlagffffffff;
+      SystemCleanupStatusLocal = SystemCleanupFlagffffffff;
       afStack_308[0] = -NAN;
       plStack_318 = (int64_t *)(*(int64_t *)(operationBase[1] + 0x90) + 0x38);
-      ProcessDataAndExecuteOperationO5(plStack_318,&uStack_310,afStack_308);
+      ProcessDataAndExecuteOperationO5(plStack_318,&SystemCleanupStatusLocal,afStack_308);
       afStack_348[0] = afStack_308[0];
       if (afStack_308[0] != -NAN) {
         exceptionHandlerContextPointer6 = plStack_318;
-        ValidationFloatValue8 = (float)uStack_310;
+        ValidationFloatValue8 = (float)SystemCleanupStatusLocal;
         do {
           do {
             exceptionHandlerContext5 = (int64_t)(int)afStack_348[0] * 0x20;
-            uStack_338 = SystemCleanupFlagffffffff;
+            SystemCleanupFlagLocal2 = SystemCleanupFlagffffffff;
             aplStack_330[0] = (int64_t *)CONCAT44(aplStack_330[0]._4_4_,SystemCleanupFlag);
             plStack_340 = *(int64_t **)(exceptionHandlerContextPointer6[2] + 0x18 + exceptionHandlerContext5);
             StackLongIntegerC = exceptionHandlerContext5;
-            ProcessDataConversionDN0(plStack_340,&uStack_338,aplStack_330);
+            ProcessDataConversionDN0(plStack_340,&SystemCleanupFlagLocal2,aplStack_330);
             exceptionHandlerContextPointer4 = plStack_340;
             if ((int)aplStack_330[0] != -1) {
               iterationCount = (int)aplStack_330[0];
-              calculatedValue = (int)uStack_338;
+              calculatedValue = (int)SystemCleanupFlagLocal2;
               do {
                 do {
                   exceptionHandlerContext5 = *(int64_t *)(exceptionHandlerContextPointer4[2] + 8 + (int64_t)iterationCount * 0x10);
@@ -22318,8 +22318,8 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
   uint64_t memoryBaseAddress;
   DataBuffer uStackX_8;
   int64_t alStackX_18 [2];
-  uint8_t *puStack_28;
-  DataWord uStack_20;
+  uint8_t *SecurityValidationPointer;
+  DataWord SystemResetFlagLocal3;
   uint64_t securityCheckValue;
   
   *(ByteFlag *)(operationBase + 4) = 1;
@@ -22331,12 +22331,12 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
     memoryBaseAddress = validationStatus - exceptionHandlerContext;
     if (((dataBuffer != '\0') || (exceptionHandlerContext == 0)) || (47999 < memoryBaseAddress)) {
       operationBase[2] = validationStatus;
-      uStack_20 = 0;
+      SystemResetFlagLocal3 = 0;
       securityCheckValue = 0;
       if (exceptionHandlerContext != 0) {
         securityCheckValue = memoryBaseAddress;
       }
-      puStack_28 = &SystemValidationTable;
+      SecurityValidationPointer = &SystemValidationTable;
       operationResult = ValidateDataIntegrityA0(operationBase,&puStack_28);
       if ((int)operationResult != 0) {
         return operationResult;
