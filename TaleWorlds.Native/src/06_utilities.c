@@ -326,6 +326,16 @@
 #define GOTO_ValidationFailure goto ValidationFailedLabel
 #define GOTO_SecurityTermination goto ValidationFailedLabel
 
+// 系统上下文宏定义
+#define systemContextD SystemContextData
+#define systemContextData SystemContextDataPointer
+
+// 数据处理流程控制标签宏定义
+#define ProcessCheckpointDataFlow ProcessCheckpointDataFlow
+#define ProcessCheckpointParameterValidation ProcessCheckpointParameterValidation
+#define MemoryAllocationLabel MemoryAllocationLabel
+#define ProcessCompleteLabel ProcessCompleteLabel
+
 /**
  * @brief 数据加密处理函数
  * @note 原始函数名：func_0x00018074be80
