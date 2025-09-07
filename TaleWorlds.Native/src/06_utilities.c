@@ -46696,7 +46696,7 @@ void SetupAndCleanupExceptionHandlersA3(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180904030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExceptionHandlerA74(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -46726,7 +46726,7 @@ void Unwind_180904030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExceptionHandlerA75(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -46756,7 +46756,7 @@ void Unwind_180904050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExceptionHandlerA76(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -46786,7 +46786,7 @@ void Unwind_180904070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExceptionHandlerA77(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -49931,7 +49931,7 @@ void Unwind_180904b00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Catch_180904b10(DataBuffer operationBase,int64_t dataBuffer)
+void ExceptionCatcherA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -49950,7 +49950,7 @@ void Catch_180904b10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Catch_180904b50(DataBuffer operationBase,int64_t dataBuffer)
+void ExceptionCatcherA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -49965,7 +49965,7 @@ void Catch_180904b50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Catch_180904b90(DataBuffer operationBase,int64_t dataBuffer)
+void ExceptionCatcherA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   uint64_t systemDataBuffer;
@@ -102852,3 +102852,193 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：fStack_2c8 - 栈浮点数A
 // 功能：存储浮点数的栈变量
 #define StackFloatValueA fStack_2c8
+
+// 异常处理函数宏定义 - 补充Unwind_180904系列函数
+// 原始函数名：Unwind_1809040e0 - 异常处理器E0
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE0 Unwind_1809040e0
+
+// 原始函数名：Unwind_180904130 - 异常处理器E1
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE1 Unwind_180904130
+
+// 原始函数名：Unwind_180904140 - 异常处理器E2
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE2 Unwind_180904140
+
+// 原始函数名：Unwind_180904150 - 异常处理器E3
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE3 Unwind_180904150
+
+// 原始函数名：Unwind_180904160 - 异常处理器E4
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE4 Unwind_180904160
+
+// 原始函数名：Unwind_1809041a0 - 异常处理器E5
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE5 Unwind_1809041a0
+
+// 原始函数名：Unwind_1809041b0 - 异常处理器E6
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE6 Unwind_1809041b0
+
+// 原始函数名：Unwind_1809041d0 - 异常处理器E7
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE7 Unwind_1809041d0
+
+// 原始函数名：Unwind_180904210 - 异常处理器E8
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE8 Unwind_180904210
+
+// 原始函数名：Unwind_180904230 - 异常处理器E9
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE9 Unwind_180904230
+
+// 原始函数名：Unwind_180904250 - 异常处理器E10
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE10 Unwind_180904250
+
+// 原始函数名：Unwind_180904270 - 异常处理器E11
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE11 Unwind_180904270
+
+// 原始函数名：Unwind_180904290 - 异常处理器E12
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE12 Unwind_180904290
+
+// 原始函数名：Unwind_1809042b0 - 异常处理器E13
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE13 Unwind_1809042b0
+
+// 原始函数名：Unwind_1809042d0 - 异常处理器E14
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE14 Unwind_1809042d0
+
+// 原始函数名：Unwind_1809042f0 - 异常处理器E15
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE15 Unwind_1809042f0
+
+// 原始函数名：Unwind_180904350 - 异常处理器E16
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE16 Unwind_180904350
+
+// 原始函数名：Unwind_180904370 - 异常处理器E17
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE17 Unwind_180904370
+
+// 原始函数名：Unwind_180904390 - 异常处理器E18
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE18 Unwind_180904390
+
+// 原始函数名：Unwind_1809043b0 - 异常处理器E19
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE19 Unwind_1809043b0
+
+// 原始函数名：Unwind_1809043d0 - 异常处理器E20
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE20 Unwind_1809043d0
+
+// 原始函数名：Unwind_1809043f0 - 异常处理器E21
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE21 Unwind_1809043f0
+
+// 原始函数名：Unwind_180904410 - 异常处理器E22
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE22 Unwind_180904410
+
+// 原始函数名：Unwind_180904430 - 异常处理器E23
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE23 Unwind_180904430
+
+// 原始函数名：Unwind_180904450 - 异常处理器E24
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE24 Unwind_180904450
+
+// 原始函数名：Unwind_180904470 - 异常处理器E25
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE25 Unwind_180904470
+
+// 原始函数名：Unwind_180904490 - 异常处理器E26
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE26 Unwind_180904490
+
+// 原始函数名：Unwind_1809044b0 - 异常处理器E27
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE27 Unwind_1809044b0
+
+// 原始函数名：Unwind_1809044d0 - 异常处理器E28
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE28 Unwind_1809044d0
+
+// 原始函数名：Unwind_1809044f0 - 异常处理器E29
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE29 Unwind_1809044f0
+
+// 原始函数名：Unwind_180904510 - 异常处理器E30
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE30 Unwind_180904510
+
+// 原始函数名：Unwind_180904530 - 异常处理器E31
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE31 Unwind_180904530
+
+// 原始函数名：Unwind_180904550 - 异常处理器E32
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE32 Unwind_180904550
+
+// 原始函数名：Unwind_180904570 - 异常处理器E33
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE33 Unwind_180904570
+
+// 原始函数名：Unwind_180904590 - 异常处理器E34
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE34 Unwind_180904590
+
+// 原始函数名：Unwind_1809045b0 - 异常处理器E35
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE35 Unwind_1809045b0
+
+// 原始函数名：Unwind_1809045c0 - 异常处理器E36
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE36 Unwind_1809045c0
+
+// 原始函数名：Unwind_1809045f0 - 异常处理器E37
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE37 Unwind_1809045f0
+
+// 原始函数名：Unwind_180904630 - 异常处理器E38
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE38 Unwind_180904630
+
+// 原始函数名：Unwind_180904650 - 异常处理器E39
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE39 Unwind_180904650
+
+// 原始函数名：Unwind_180904660 - 异常处理器E40
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE40 Unwind_180904660
+
+// 原始函数名：Unwind_180904670 - 异常处理器E41
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE41 Unwind_180904670
+
+// 原始函数名：Unwind_180904680 - 异常处理器E42
+// 功能：处理系统异常情况，提供异常恢复机制
+#define ExceptionHandlerE42 Unwind_180904680
+
+// 异常捕获函数宏定义 - 补充Catch系列函数
+// 原始函数名：Catch_180904b10 - 异常捕获器A0
+// 功能：捕获系统异常情况，提供异常处理机制
+#define ExceptionCatcherA0 Catch_180904b10
+
+// 原始函数名：Catch_180904b50 - 异常捕获器A1
+// 功能：捕获系统异常情况，提供异常处理机制
+#define ExceptionCatcherA1 Catch_180904b50
+
+// 原始函数名：Catch_180904b90 - 异常捕获器A2
+// 功能：捕获系统异常情况，提供异常处理机制
+#define ExceptionCatcherA2 Catch_180904b90
+
+// 原始函数名：Catch_180904c60 - 异常捕获器A3
+// 功能：捕获系统异常情况，提供异常处理机制
+#define ExceptionCatcherA3 Catch_180904c60
