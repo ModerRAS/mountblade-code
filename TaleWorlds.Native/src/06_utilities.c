@@ -50792,7 +50792,17 @@ void CloseHandleCleanupA(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809049c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 关闭句柄函数9c0
+ * 
+ * 该函数负责关闭系统句柄，释放相关资源
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含句柄信息
+ * 
+ * @note 原始函数名：Unwind_1809049c0
+ */
+void CloseSystemHandle9c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CloseHandle(**(DataBuffer **)(dataBuffer + 0x40));
