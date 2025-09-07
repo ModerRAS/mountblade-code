@@ -20013,48 +20013,48 @@ void CoreEngineInitializeSystemDataNodeH(void
  * @note 通过memcmp比较节点数据来确定节点位置
  * @note 为新节点分配内存并设置线程参数
  */
-void CoreEngineInitializeSystemThreadNodeI(void
+void CoreEngineInitializeSystemThreadNodeI(void)
 {
-  char NodeInputStringBuffer;
-  void *Utf8InputBuffer;
-  int MemoryCompareResult;
-  long long *SystemHandle;
-  long long MemoryOffset;
-  void *PreviousNode;
-  void *CurrentNode;
-  void *NextNode;
-  void *NewNodePointer;
-  code *ThreadCallback;
+  char ThreadNodeStatus;                                       // 线程节点状态
+  void *ThreadRootNode;                                        // 线程根节点
+  int MemoryComparisonResult;                                  // 内存比较结果
+  long long *SystemContextHandle;                              // 系统上下文句柄
+  long long MemoryAllocationOffset;                            // 内存分配偏移量
+  void *PreviousThreadNode;                                    // 上一个线程节点
+  void *CurrentThreadNode;                                     // 当前线程节点
+  void *NextThreadNode;                                        // 下一个线程节点
+  void *NewThreadNodePointer;                                  // 新线程节点指针
+  code *ThreadInitializationCallback;                          // 线程初始化回调函数
   
-  SystemHandle = (long long *)CoreEngineGetSystemContext();
-  CharacterCode = (void *)*SystemHandle;
-  NodeInputStringBuffer = *(char *)((long long)Utf8InputBuffer[1] + SystemNodeStatusOffset);
-  ThreadCallback = ThreadManagementCallback;
-  CurrentNode = CharacterCode;
-  PreviousNode = (void *)Utf8InputBuffer[1];
-  while (NodeInputStringBuffer == '\0') {
-    MemoryCompareResult = memcmp(PreviousNode + 4,&SystemThreadTemplatePrimary,0x10);
-    if (MemoryCompareResult < 0) {
-      NextNode = (void *)PreviousNode[2];
-      PreviousNode = CurrentNode;
+  SystemContextHandle = (long long *)CoreEngineGetSystemContext();
+  ThreadRootNode = (void *)*SystemContextHandle;
+  ThreadNodeStatus = *(char *)((long long)ThreadRootNode[1] + SystemNodeStatusOffset);
+  ThreadInitializationCallback = ThreadManagementCallback;
+  CurrentThreadNode = ThreadRootNode;
+  PreviousThreadNode = (void *)ThreadRootNode[1];
+  while (ThreadNodeStatus == '\0') {
+    MemoryComparisonResult = memcmp(PreviousThreadNode + 4,&SystemThreadTemplatePrimary,0x10);
+    if (MemoryComparisonResult < 0) {
+      NextThreadNode = (void *)PreviousThreadNode[2];
+      PreviousThreadNode = CurrentThreadNode;
     }
     else {
-      NextNode = (void *)*PreviousNode;
+      NextThreadNode = (void *)*PreviousThreadNode;
     }
-    CurrentNode = PreviousNode;
-    PreviousNode = NextNode;
-    NodeInputStringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    CurrentThreadNode = PreviousThreadNode;
+    PreviousThreadNode = NextThreadNode;
+    ThreadNodeStatus = *(char *)((long long)NextThreadNode + SystemNodeStatusOffset);
   }
-  if ((CurrentNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemThreadTemplatePrimary,CurrentNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
-    CoreEngineSetupMemoryNode(SystemHandle,&NewNodePointer,CurrentNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
-    CurrentNode = NewNodePointer;
+  if ((CurrentThreadNode == ThreadRootNode) || (MemoryComparisonResult = memcmp(&SystemThreadTemplatePrimary,CurrentThreadNode + 4,0x10), MemoryComparisonResult < 0)) {
+    MemoryAllocationOffset = CoreEngineAllocateMemory(SystemContextHandle);
+    CoreEngineSetupMemoryNode(SystemContextHandle,&NewThreadNodePointer,CurrentThreadNode,MemoryAllocationOffset + SystemMemoryAllocationOffset,MemoryAllocationOffset);
+    CurrentThreadNode = NewThreadNodePointer;
   }
-  CurrentNode[6] = 0x421c3cedd07d816d;
-  CurrentNode[7] = 0xbec25de793b7afa6;
-  CurrentNode[8] = &SystemNodeTemplateI;
-  CurrentNode[9] = 0;
-  CurrentNode[10] = ThreadCallback;
+  CurrentThreadNode[6] = 0x421c3cedd07d816d;
+  CurrentThreadNode[7] = 0xbec25de793b7afa6;
+  CurrentThreadNode[8] = &SystemNodeTemplateI;
+  CurrentThreadNode[9] = 0;
+  CurrentThreadNode[10] = ThreadInitializationCallback;
   return;
 }
 
@@ -25013,24 +25013,24 @@ CoreEngineResetThreadLocalStorageArray(uint64_t *threadLocalStorageArray,long lo
  * @note 此函数会重置多个指针字段
  * @note 涉及线程本地存储的管理和清理
  */
-void CoreEngineResetThreadLocalStoragePointerArray(uint64_t *Utf8InputBuffer
+void CoreEngineResetThreadLocalStoragePointerArray(uint64_t *ThreadLocalStoragePointerArray)
 {
-  Utf8InputBuffer[4] = &SystemNullTemplate;
-  if (Utf8InputBuffer[5] != 0) {
+  ThreadLocalStoragePointerArray[4] = &SystemNullTemplate;
+  if (ThreadLocalStoragePointerArray[5] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  Utf8InputBuffer[5] = 0;
-  *(uint32_t *)(CharacterCode + 7) = 0;
-  Utf8InputBuffer[4] = &ThreadLocalStorageTemplate;
-  *Utf8InputBuffer = &SystemNullTemplate;
-  if (Utf8InputBuffer[1] != 0) {
+  ThreadLocalStoragePointerArray[5] = 0;
+  *(uint32_t *)(ThreadLocalStoragePointerArray + 7) = 0;
+  ThreadLocalStoragePointerArray[4] = &ThreadLocalStorageTemplate;
+  *ThreadLocalStoragePointerArray = &SystemNullTemplate;
+  if (ThreadLocalStoragePointerArray[1] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  Utf8InputBuffer[1] = 0;
-  *(uint32_t *)(CharacterCode + 3) = 0;
-  *Utf8InputBuffer = &ThreadLocalStorageTemplate;
+  ThreadLocalStoragePointerArray[1] = 0;
+  *(uint32_t *)(ThreadLocalStoragePointerArray + 3) = 0;
+  *ThreadLocalStoragePointerArray = &ThreadLocalStorageTemplate;
   return;
 }
 
@@ -30028,24 +30028,24 @@ void CleanupSystemResources(void) {
  */
 void ProcessCharacterCharacterStatusBuffer(long long systemContextPointer, long long utf8BufferSize, uint64_t utf16InputPointer, uint64_t utf16EndPointer)
 {
-  char stringBuffer;
-  long long searchResult;
-  char *functionPointer;
-  char *characterProcessingStatusFlag;
-  uint64_t calculatedCodePoint;
-  void *systemStackBuffer;
-  long long coreEngineSignedValue;
-  uint32_t systemPriorityLevel;
-  unsigned long long functionAddress;
+  char CharacterBuffer;                                         // 字符缓冲区
+  long long CharacterSearchResult;                               // 字符搜索结果
+  char *CharacterProcessingFunction;                            // 字符处理函数指针
+  char *CharacterProcessingStatus;                              // 字符处理状态标志
+  uint64_t UnicodeCodePoint;                                    // Unicode码点
+  void *SystemStackBuffer;                                      // 系统栈缓冲区
+  long long CoreEngineSignedValue;                              // 核心引擎有符号值
+  uint32_t SystemPriorityLevel;                                 // 系统优先级
+  unsigned long long FunctionAddress;                           // 函数地址
   
-  calculatedCodePoint = 0xfffffffffffffffe;
-  functionPointer = *(char **)(systemContextPointer + 8);
-  stringBuffer = *functionPointer;
-  characterProcessingStatusFlag = functionPointer;
-  if (stringBuffer != '\0') {
+  UnicodeCodePoint = 0xfffffffffffffffe;
+  CharacterProcessingFunction = *(char **)(systemContextPointer + 8);
+  CharacterBuffer = *CharacterProcessingFunction;
+  CharacterProcessingStatus = CharacterProcessingFunction;
+  if (CharacterBuffer != '\0') {
     do {
-      searchResult = strchr(utf16InputPointer, (int)stringBuffer);
-      if ((searchResult != 0) && (characterProcessingStatusFlag != functionPointer)) {
+      CharacterSearchResult = strchr(utf16InputPointer, (int)CharacterBuffer);
+      if ((CharacterSearchResult != 0) && (CharacterProcessingStatus != CharacterProcessingFunction)) {
         SystemTemplatePointer = &SystemNullTemplate;
         functionAddress = 0;
         coreEngineSignedValue = 0;
