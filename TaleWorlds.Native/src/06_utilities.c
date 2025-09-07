@@ -57976,7 +57976,19 @@ void ValidateExceptionHandlerContextA1(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_180906160(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器A0
+ * 
+ * 管理资源的引用计数，包括内存地址计算、引用计数更新和异常处理
+ * 该函数负责处理资源的生命周期管理，确保正确的内存释放
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_180906160
+ * @warning 此函数涉及系统核心内存管理，调用时需确保系统状态稳定
+ */
+void ManageResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -58012,7 +58024,19 @@ void Unwind_180906160(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906180(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器A1
+ * 
+ * 管理资源的引用计数，从数据缓冲区不同偏移量获取资源指针
+ * 执行内存地址计算和引用计数更新操作
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_180906180
+ * @warning 此函数涉及系统核心内存管理，调用时需确保系统状态稳定
+ */
+void ManageResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
