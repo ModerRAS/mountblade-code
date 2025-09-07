@@ -8368,23 +8368,19 @@ uint8_t GlobalDataPointerCacheValidationBuffer;
 
 // 全局数据指针Final存储区
 // 功能：存储全局数据指针Final的相关信息
-#define GlobalDataPointerFinalStorage DAT_180bfa170
-uint8_t GlobalDataPointerFinalStorage;
+uint8_t GlobalDataPointerFinalStorage;    // 原始变量名：DAT_180bfa170
 
 // 全局数据指针Final状态区
 // 功能：存储全局数据指针Final的状态信息
-#define GlobalDataPointerFinalStatus DAT_180bfa178
-uint8_t GlobalDataPointerFinalStatus;
+uint8_t GlobalDataPointerFinalStatus;     // 原始变量名：DAT_180bfa178
 
 // 全局数据指针Final配置区
 // 功能：存储全局数据指针Final的配置信息
-#define GlobalDataPointerFinalConfig DAT_180bfa180
-uint8_t GlobalDataPointerFinalConfig;
+uint8_t GlobalDataPointerFinalConfig;     // 原始变量名：DAT_180bfa180
 
 // 全局数据指针Final缓存区
 // 功能：存储全局数据指针Final的缓存数据
-#define GlobalDataPointerFinalCache DAT_180bfa188
-uint8_t GlobalDataPointerFinalCache;
+uint8_t GlobalDataPointerFinalCache;      // 原始变量名：DAT_180bfa188
 
 // 全局数据指针Final验证缓冲区
 // 功能：存储全局数据指针Final的验证信息
@@ -16657,7 +16653,7 @@ DataBuffer ValidateAndProcessFloatRange(int64_t rangeContext,int64_t exceptionHa
   switch(*(DataWord *)(rangeContext + 0x18)) {
   case 0:
     if ((0.0 <= rangeValue) && (rangeValue <= 256.0)) goto RangeValidationSuccess;
-    goto joined_r0x00018089322a;
+    goto RangeValidationFailureWithNegativeValue;
   case 1:
   case 2:
   case 3:
@@ -71181,7 +71177,22 @@ void DestroyConditionalMutex(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908770(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理上下文清理函数A0
+ * 
+ * 该函数负责清理异常处理上下文，执行以下操作：
+ * 1. 获取数据上下文指针
+ * 2. 遍历内存块偏移量链表
+ * 3. 执行每个内存块的清理回调函数
+ * 4. 检查数据上下文状态，必要时终止系统
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908770
+ * @warning 此函数包含系统终止调用，确保在调用前系统状态稳定
+ */
+void CleanupExceptionContextA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -71203,7 +71214,21 @@ void Unwind_180908770(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908780(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理回调执行函数A0
+ * 
+ * 该函数负责执行异常处理回调，执行以下操作：
+ * 1. 检查异常处理回调指针是否有效
+ * 2. 如果有效，执行异常处理回调函数
+ * 3. 执行回调函数的特定偏移量处理
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908780
+ * @warning 此函数包含回调函数执行，确保回调函数指针有效
+ */
+void ExecuteExceptionCallbackA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x30) != (int64_t *)0x0) {
