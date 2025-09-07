@@ -170965,20 +170965,20 @@ void ProcessSystemConfigurationData(uint64_t CharacterCode, uint64_t Utf8BufferS
  */
 void ProcessUtf8InputBufferSize(long long CharacterCode, uint64_t *Utf8InputBufferSize, int *Utf8SourcePointer)
 {
-  float SystemContextPrimaryFloat;
-  float ContextSecondaryFloat;
-  short SystemShortValue3;
-  uint64_t *MemoryAddressMask;
+  float PrimaryContextFloat;
+  float SecondaryContextFloat;
+  short SystemShortValue;
+  uint64_t *MemoryAddressPointer;
   long long AllocatedMemorySize;
-  int *pValidationResult;
+  int *ValidationResultPointer;
   unsigned long long SystemChecksum;
-  long long secondaryLoopCounter;
-  int IntegerValue9;
-  unsigned long long Utf16Char;
-  unsigned long long ProcessInputStringBuffer;
+  long long SecondaryLoopCounter;
+  int ProcessingIntegerValue;
+  unsigned long long Utf16Character;
+  unsigned long long InputStringBuffer;
   long long SystemContextValue;
   unsigned long long ValidationResult;
-  unsigned long long Utf16Char4;
+  unsigned long long Utf16CharValue;
   uint Utf16ConversionContext;
   unsigned long long PrimaryReturnCode;
   
