@@ -50098,7 +50098,13 @@ void ReleaseResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905060(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源A0函数
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180905060
+ */
+void CleanupResourceA0Wrapper(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CleanupResourceA0(dataBuffer + 0x70);
