@@ -31454,7 +31454,7 @@ void CoreEngineResetSystemHandle(uint64_t *systemHandle)
  * 
  * @param MemoryManagerHandle 内存管理器句柄指针，指向需要重置的内存管理器结构
  */
-void CoreEngineResetMemoryManager(uint64_t *MemoryManagerHandle{
+void CoreEngineResetMemoryManager(uint64_t *MemoryManagerHandle)
   CoreEngineCleanupMemoryPool(MemoryManagerHandle + 4);
   *MemoryManagerHandle = &MemoryCleanupPointer;
   if (MemoryManagerHandle[1] != 0) {
