@@ -8151,13 +8151,13 @@ void HandleUIEvent(undefined8 uiContext,undefined8 dataSource,undefined8 *target
 {
   undefined8 *pfunctionResult;
   undefined4 semaphoreHandle;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
+  undefined8 eventDataField3;
+  undefined8 eventDataField4;
+  undefined8 eventDataField5;
+  undefined8 eventDataField6;
   undefined8 eventTypeCode;
-  undefined8 uVar8;
-  undefined8 uVar9;
+  undefined8 eventDataField8;
+  undefined8 eventDataField9;
   undefined8 functionResult0;
   undefined8 functionResult1;
   undefined8 functionResult2;
@@ -10199,8 +10199,8 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
         }
         allocatedMemory5 = (longlong)((validationResult1 + 2) % operationResult8);
         if ((!bVar5) ||
-           ((fVar31 = (pfloatResult7[2] - *(float *)(lVar4 + 4 + allocatedMemory5 * 8)) * (fStackX_18 - pfloatResult7[1])
-                      - (fStackX_1c - pfloatResult7[2]) * (pfloatResult7[1] - *(float *)(lVar4 + allocatedMemory5 * 8)),
+           ((fVar31 = (pfloatResult7[2] - *(float *)(lVar4 + 4 + allocatedMemory5 * 8)) * (rotationAngleX - pfloatResult7[1])
+                      - (rotationAngleY - pfloatResult7[2]) * (pfloatResult7[1] - *(float *)(lVar4 + allocatedMemory5 * 8)),
             fVar31 <= 0.0 && (fVar31 < 0.0)))) {
           bVar5 = false;
         }
@@ -10218,8 +10218,8 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
         validationResult4 = validationResult4 + 1;
         if ((!bVar5) ||
            ((fVar31 = *(float *)(lVar4 + 4 + componentIndex3 * 8), fVar33 = *(float *)(lVar4 + componentIndex3 * 8),
-            fVar31 = (fVar31 - *(float *)(lVar4 + 4 + (longlong)(validationResult4 % operationResult8) * 8))                      (fStackX_18 - fVar33) -
-                     (fStackX_1c - fVar31)                      (fVar33 - *(float *)(lVar4 + (longlong)(validationResult4 % operationResult8) * 8)), fVar31 <= 0.0
+            fVar31 = (fVar31 - *(float *)(lVar4 + 4 + (longlong)(validationResult4 % operationResult8) * 8))                      (rotationAngleX - fVar33) -
+                     (rotationAngleY - fVar31)                      (fVar33 - *(float *)(lVar4 + (longlong)(validationResult4 % operationResult8) * 8)), fVar31 <= 0.0
             && (fVar31 < 0.0)))) {
           bVar5 = false;
         }

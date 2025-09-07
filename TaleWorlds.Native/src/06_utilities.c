@@ -10366,7 +10366,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   OperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ObjectHandle + ComponentHandleOffset), SystemContextArray);
   
   // 验证操作结果并处理数据
-  if ((OperationStatus == 0) && (*(int64_t *)(SystemContextArray[0] + SystemContextOffset) != 0)) {
+  if ((OperationStatus == SystemSuccessStatus) && (*(int64_t *)(SystemContextArray[0] + SystemContextOffset) != 0)) {
     DataProcessingBuffer = WorkingDataBuffer;
     ProcessedResourceCount = 0;
     ResourceProcessingLoopCounter = 0;
@@ -10377,17 +10377,17 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
                           &DataProcessingBuffer);
     
     // 处理执行结果
-    if (OperationStatus == 0) {
+    if (OperationStatus == SystemSuccessStatus) {
       if (0 < ResourceProcessingLoopCounter) {
         ResourceArrayIterator = 0;
         do {
           ResourceIdentifier = *(uint64_t *)(DataProcessingBuffer + ResourceArrayIterator);
           OperationStatus = ProcessUtilityOperation(ResourceIdentifier);
-          if (OperationStatus != 2) {
+          if (OperationStatus != SystemErrorStatus) {
               ReleaseResource(ResourceIdentifier, 1);
           }
           ProcessedResourceCount = ProcessedResourceCount + 1;
-          ResourceArrayIterator = ResourceArrayIterator + 8;
+          ResourceArrayIterator = ResourceArrayIterator + ResourceHandleSize;
         } while (ProcessedResourceCount < ResourceProcessingLoopCounter);
       }
       CleanupMemory(&DataProcessingBuffer);
@@ -10453,7 +10453,7 @@ void ProcessResourceCleanup(void)
                           &FunctionCallBuffer);
     
     // 处理执行结果
-    if (OperationResult == 0) {
+    if (OperationResult == SystemSuccessStatus) {
       // 如果有资源需要清理，遍历资源列表
       if (0 < ResourceCount) {
         ResourceOffset = 0;
@@ -10463,14 +10463,14 @@ void ProcessResourceCleanup(void)
           
           // 处理资源操作
           OperationResult = ProcessUtilityOperation(ResourceHandle);
-          if (OperationResult != 2) {
+          if (OperationResult != SystemErrorStatus) {
             // 释放资源（此调用不会返回）
             ReleaseResource(ResourceHandle,1);
           }
           
           // 更新计数器和偏移量
           CleanupCounter = CleanupCounter + 1;
-          ResourceOffset = ResourceOffset + 8;
+          ResourceOffset = ResourceOffset + ResourceHandleSize;
         } while (CleanupCounter < ResourceCount);
       }
       
