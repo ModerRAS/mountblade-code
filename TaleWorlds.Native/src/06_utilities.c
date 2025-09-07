@@ -56674,7 +56674,7 @@ void Unwind_180906de0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180906df0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_18007f840(dataBuffer + 0xd8);
+  ProcessSystemDataA1(dataBuffer + 0xd8);
   return;
 }
 
@@ -57528,7 +57528,7 @@ void Unwind_1809071a0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809071b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_18007f840(dataBuffer + 0x38);
+  ProcessSystemDataA1(dataBuffer + 0x38);
   return;
 }
 
