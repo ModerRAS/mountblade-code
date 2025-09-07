@@ -194356,7 +194356,7 @@ LAB_18016d59c:
 
 
 uint64_t
-FUN_18016d870(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingEx7(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   ProcessUtf8ToUtf16CharacterEncodingEx4(Utf16EndPointer,CharacterCode,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe);
   return CharacterCode;
@@ -269088,7 +269088,7 @@ LAB_18022bda0:
           if (plStack_90 != (long long *)0x0) {
             (**(code **)(*plStack_90 + 0x38))();
           }
-          (**(code **)(*(long long *)(*Utf8InputBuffer2 + 0x10) + 0x10)                    ((long long *)(*Utf8InputBuffer2 + 0x10),&UNK_180a13ad0);
+          (**(code **)(*(long long *)(*Utf8InputBuffer2 + 0x10) + 0x10)                    ((long long *)(*Utf8InputBuffer2 + 0x10),SystemEventTemplatePrimary);
           *(void *)(*Utf8InputBuffer2 + 0xa8) = *(void *)(BufferStatus + 0xa8);
           BufferStatus = CoreEngineEventInitialized;
           SystemStackFlag = *StatusBuffer;
