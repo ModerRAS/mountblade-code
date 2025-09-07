@@ -99,6 +99,43 @@
 #define SystemSuccessStatus 0
 #define SystemErrorStatus 2
 
+// 寄存器上下文偏移常量
+#define RegisterContextPrimaryOffset 0x8
+#define RegisterContextSecondaryOffset 0x10
+#define RegisterContextTertiaryOffset 0x18
+#define RegisterContextQuaternaryOffset 0x20
+#define RegisterContextQuinaryOffset 0x28
+#define RegisterContextSenaryOffset 0x30
+#define RegisterContextSeptenaryOffset 0x38
+
+// 系统栈帧偏移常量
+#define StackFrameContextOffsetC4 0xc4
+#define StackFrameContextOffsetB0 0xb0
+#define StackFrameContextOffsetB8 0xb8
+
+// 输入累加器常量
+#define InputAccumulatorMinValue 0x8c
+#define InputAccumulatorMaxValue 0x8b
+
+// 验证状态码常量
+#define ValidationStatusErrorCode11 0x11
+
+// 数据缓冲区偏移常量
+#define DataBufferOffset18 0x18
+#define DataBufferOffset30 0x30
+#define DataBufferOffset40 0x40
+
+// 系统验证常量
+#define SystemValidationThreshold82 0x82
+#define SystemValidationErrorCode1C 0x1c
+#define SystemContextOffsetB0 0xb0
+
+// 操作基础偏移常量
+#define OperationBaseOffset48 0x48
+#define OperationBaseOffset54 0x54
+#define DataBufferOffset14 0x14
+#define ExceptionHandlerStepSize 0x18
+
 // 系统组件管理常量
 #define SystemComponentListStartOffset 0x140
 #define SystemComponentListEndOffset 0x148
@@ -201,6 +238,18 @@
 // 异常处理器调用偏移量常量
 #define ExceptionHandlerContextOffset60 0x60
 #define ExceptionHandlerTertiaryOffset410 0x410
+
+// 数据处理和内存操作常量
+#define DataBufferPointerOffset70 0x70
+#define DataBufferPointerOffset60 0x60
+#define ValidationResultOffset 0xb0
+#define SystemDataOffset40 0x40
+#define MemoryOperationResultMask 0x1f
+#define MemoryBlockSize 0x100
+#define SystemCleanupFlagffffffe0 0xffffffe0
+#define MemoryAllocationBlockSize 0x20
+#define SystemMemoryBoundary 0x8000000000000000
+#define MemoryAddressCalculationMultiplier 8
 #define ExceptionHandlerQuaternaryOffset418 0x418
 #define ExceptionHandlerQuinaryOffset420 0x420
 #define ExceptionHandlerSenaryOffset428 0x428
@@ -28583,7 +28632,7 @@ uint64_t GetSystemValidationContext(void)
   operationResult = 0;
   dataFlags = 0;
   validationOutcome = 0;
-  if (InputAccumulator < 0x8c) {
+  if (InputAccumulator < InputAccumulatorMinValue) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return (uint64_t)registerValueEDI;
     }
@@ -28599,7 +28648,7 @@ DataCheckpointB:
         validationStatus = AllocateMemory(*exceptionHandlerContextPointer,(int64_t)&ValidationDataBuffer + 4);
         if (validationStatus == 0) {
           if ((uint64_t)stackAllocationCounter + 1 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointContextValidation;
-          validationStatus = 0x11;
+          validationStatus = ValidationStatusErrorCode11;
         }
       }
     }
@@ -28612,13 +28661,13 @@ DataCheckpointB:
     if (validationStatus != 0) {
       return (uint64_t)validationStatus;
     }
-    *(uint *)(StackFrameContext + 0xc4) = (*(uint *)(StackFrameContext + 0xc4) | dataFlags) & ~operationResult;
+    *(uint *)(StackFrameContext + StackFrameContextOffsetC4) = (*(uint *)(StackFrameContext + StackFrameContextOffsetC4) | dataFlags) & ~operationResult;
     InputAccumulator = *(uint *)(registerContext + 8);
   }
   memoryRegionBase = operationResult;
-  if (0x8b < InputAccumulator) {
+  if (InputAccumulatorMaxValue < InputAccumulator) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      memoryRegionBase = OperateDataO0(*registerContext,StackFrameContext + 0xc4,4);
+      memoryRegionBase = OperateDataO0(*registerContext,StackFrameContext + StackFrameContextOffsetC4,4);
     }
     else {
       memoryRegionBase = (uint64_t)registerValueEDI;
@@ -29008,13 +29057,13 @@ uint64_t ValidateAndProcessDataElement(void)
   int64_t contextPointer;
   uint64_t dataLength;
   
-  if (*(int *)(dataBuffer[1] + 0x18) == 0) {
-    operationResult = ProcessDataBlocks(*dataBuffer, contextPointer + 0x30);
+  if (*(int *)(dataBuffer[1] + DataBufferOffset18) == 0) {
+    operationResult = ProcessDataBlocks(*dataBuffer, contextPointer + DataBufferOffset30);
     if ((int)operationResult != 0) {
       return operationResult;
     }
-    if (*(int *)(dataBuffer[1] + 0x18) == 0) {
-      validationResult = ProcessDataElement(*dataBuffer, contextPointer + 0x40, 4);
+    if (*(int *)(dataBuffer[1] + DataBufferOffset18) == 0) {
+      validationResult = ProcessDataElement(*dataBuffer, contextPointer + DataBufferOffset40, 4);
       dataLength = (uint64_t)validationResult;
       if (validationResult == 0) {
           ExecuteDataProcessing();
@@ -30003,20 +30052,20 @@ uint64_t ValidateAndProcessSystemDataB0(void)
   char stackDataBuffer;
   uint stackDataSize;
   
-  validationStatus = QuerySystemDataStatus(*registerContext,systemContext + 0xb0,4);
+  validationStatus = QuerySystemDataStatus(*registerContext,systemContext + SystemContextOffsetB0,4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
-  securityCheckResult = 0x1c;
+  securityCheckResult = SystemValidationErrorCode1C;
   operationResult = 0;
-  if (*(uint *)(registerContext + 8) < 0x82) {
-    if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(uint *)(registerContext + 8) < SystemValidationThreshold82) {
+    if (*(int *)(registerContext[1] + DataBufferOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
     validationStatus = 1;
     if (*exceptionHandlerContextPointer == 0) {
-      memoryRegionBase = 0x1c;
+      memoryRegionBase = SystemValidationErrorCode1C;
     }
     else if (exceptionHandlerContextPointer[2] == 0) {
 DataProcessSectionA:
@@ -30976,10 +31025,10 @@ ValidationLabelB:
       inputParameter3 = 0;
     }
     else {
-      dataFlags = (int)*(uint *)(operationBase + 0x54) >> 0x1f;
+      dataFlags = (int)*(uint *)(operationBase + OperationBaseOffset54) >> 0x1f;
       ploopCounter = stackDataPointer;
-      if ((int)((*(uint *)(operationBase + 0x54) ^ dataFlags) - dataFlags) < (int)stackDataBuffer) {
-        dataFlags = CheckSystemStatusA0(operationBase + 0x48,stackDataBuffer & SystemCleanupFlag);
+      if ((int)((*(uint *)(operationBase + OperationBaseOffset54) ^ dataFlags) - dataFlags) < (int)stackDataBuffer) {
+        dataFlags = CheckSystemStatusA0(operationBase + OperationBaseOffset48,stackDataBuffer & SystemCleanupFlag);
         validationOutcome = (uint64_t)dataFlags;
         ploopCounter = stackDataPointer;
         if (dataFlags != 0) goto ProcessCheckpointStatusValidation;
@@ -30987,15 +31036,15 @@ ValidationLabelB:
       for (; (inputParameter3 = (int)stackDataBuffer, stackDataPointer <= ploopCounter &&
              (ploopCounter < stackDataPointer + (int64_t)inputParameter3 * 3)); ploopCounter = ploopCounter + 3) {
         tempDataPointer = (DataBuffer *)0x0;
-        dataFlags = ValidateDataSecurityA1(operationBase + 0x48,&tempDataPointer);
+        dataFlags = ValidateDataSecurityA1(operationBase + OperationBaseOffset48,&tempDataPointer);
         validationOutcome = (uint64_t)dataFlags;
         if (dataFlags != 0) goto ProcessCheckpointStatusValidation;
         systemDataBuffer = ploopCounter[1];
         *tempDataPointer = *ploopCounter;
         tempDataPointer[1] = systemDataBuffer;
         *(DataWord *)(tempDataPointer + 2) = *(DataWord *)(ploopCounter + 2);
-        *(float *)((int64_t)tempDataPointer + 0x14) =
-             *(float *)((int64_t)ploopCounter + 0x14) + *(float *)(ploopCounter + 2);
+        *(float *)((int64_t)tempDataPointer + DataBufferOffset14) =
+             *(float *)((int64_t)ploopCounter + DataBufferOffset14) + *(float *)(ploopCounter + 2);
         *(ByteFlag *)(tempDataPointer + 3) = 1;
       }
     }
@@ -82718,7 +82767,7 @@ void ExecuteUnwindCallback(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_18090a7d0
  * @note 该函数在异常展开过程中被调用，用于管理异常处理器的状态
  */
-void Unwind_18090a7d0(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionHandlerWithTemporaryHandler(DataBuffer operationBase,int64_t dataBuffer)
 {
   DataBuffer *exceptionDataBuffer;
   
