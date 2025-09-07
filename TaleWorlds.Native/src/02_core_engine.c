@@ -248160,9 +248160,21 @@ void CleanupSystemStatusBufferAndMemory(long long CharacterCode
 
 
 
-int FUN_180215b90(long long CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理UTF-8字符串比较和内存分配
+ * 
+ * 该函数负责处理UTF-8字符串的比较操作，管理内存分配，
+ * 并执行字符串处理的相关验证工作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return int 处理结果，成功返回非负值，失败返回负值
+ * 
+ * @note 原始函数名：FUN_180215b90
+ */
+int ProcessUtf8StringComparisonAndMemoryAllocation(long long CharacterCode,long long Utf8BufferSize
 {
-  byte *pCurrentByteValue;
+  byte *CurrentBytePointer;
   int CharacterByteCount;
   int MemoryMatchResult;
   int validationResult;
@@ -248175,7 +248187,7 @@ int FUN_180215b90(long long CharacterCode,long long Utf8BufferSize
   uint64_t ProcessStringBuffer;
   
   ProcessStringBuffer = 0xfffffffffffffffe;
-  AllocatedMemorySize = FUN_18020fa10(*(void *)(CharacterCode + 0x1f8));
+  AllocatedMemorySize = GetSystemMemoryAllocationSize(*(void *)(CharacterCode + 0x1f8));
   if (AllocatedMemorySize == 0) {
     MemoryAllocationSize = _Mtx_lock(CharacterCode + 0x318);
     if (MemoryAllocationSize != 0) {
@@ -248194,8 +248206,8 @@ int FUN_180215b90(long long CharacterCode,long long Utf8BufferSize
             Utf8OutputPointer = *(byte **)(Utf8BufferSize + 8);
             CurrentMemoryBlockAddress = *Utf8InputBufferPointer - (long long)Utf8OutputPointer;
             do {
-              pCurrentByteValue = Utf8OutputPointer + CurrentMemoryBlockAddress;
-              ComputedResult = (uint)*Utf8OutputPointer - (uint)*pCurrentByteValue;
+              CurrentBytePointer = Utf8OutputPointer + CurrentMemoryBlockAddress;
+              ComputedResult = (uint)*Utf8OutputPointer - (uint)*CurrentBytePointer;
               if (ComputedResult != 0) break;
               Utf8OutputPointer = Utf8OutputPointer + 1;
             } while (*CurrentBytePointer != 0);
