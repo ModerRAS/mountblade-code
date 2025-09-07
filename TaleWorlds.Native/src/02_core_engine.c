@@ -199,9 +199,27 @@
  * 
  * 该函数负责处理系统数据结构的创建和管理
  * 
+ * @note 原始函数名：FUN_180127ca0
+ */
+#define ProcessSystemDataStructure FUN_180127ca0
+
+/**
+ * @brief 计算字符编码浮点值
+ * 
+ * 该函数负责计算字符编码相关的浮点数值
+ * 
+ * @note 原始函数名：FUN_180181d80
+ */
+#define CalculateCharacterEncodingFloatValue FUN_180181d80
+
+/**
+ * @brief 处理系统数据操作
+ * 
+ * 该函数负责处理系统数据操作，包括数据转换和处理
+ * 
  * @note 原始函数名：FUN_18011fbf0
  */
-#define ProcessSystemDataStructure FUN_18011fbf0
+#define ProcessSystemDataOperation FUN_18011fbf0
 
 /**
  * @brief 处理系统特殊数据
@@ -235,9 +253,72 @@
  * 
  * 该函数负责清理系统事件处理的资源和状态
  * 
- * @note 原始函数名：InitializeSystemComponentsA0
+ * @note 原始函数名：FUN_1801296e0
  */
-#define CleanupSystemEventProcessing InitializeSystemComponentsA0
+#define CleanupSystemEventHandling FUN_1801296e0
+
+/**
+ * @brief 执行系统编码转换
+ * 
+ * 该函数负责执行系统编码转换，包括字符集转换
+ * 
+ * @note 原始函数名：FUN_180203e30
+ */
+#define ExecuteSystemEncodingConversion FUN_180203e30
+
+/**
+ * @brief 执行系统内存分配
+ * 
+ * 该函数负责执行系统内存分配操作
+ * 
+ * @note 原始函数名：FUN_180203f10
+ */
+#define ExecuteSystemMemoryAllocation FUN_180203f10
+
+/**
+ * @brief 处理系统内存操作
+ * 
+ * 该函数负责处理系统内存相关操作
+ * 
+ * @note 原始函数名：FUN_1802040b7
+ */
+#define ProcessSystemMemoryOperation FUN_1802040b7
+
+/**
+ * @brief 初始化系统组件
+ * 
+ * 该函数负责初始化系统组件和资源
+ * 
+ * @note 原始函数名：FUN_1802041f0
+ */
+#define InitializeSystemComponents FUN_1802041f0
+
+/**
+ * @brief 处理系统数据缓冲区
+ * 
+ * 该函数负责处理系统数据缓冲区操作
+ * 
+ * @note 原始函数名：FUN_1800b8300
+ */
+#define ProcessSystemDataBuffer FUN_1800b8300
+
+/**
+ * @brief 分配带标志的内存
+ * 
+ * 该函数负责分配带标志的内存块
+ * 
+ * @note 原始函数名：AllocateMemoryWithFlags
+ */
+#define AllocateMemoryWithFlags AllocateMemoryWithFlags
+
+/**
+ * @brief 处理系统缓冲区操作
+ * 
+ * 该函数负责处理系统缓冲区的各种操作
+ * 
+ * @note 原始函数名：ProcessSystemBufferOperation
+ */
+#define ProcessSystemBufferOperation ProcessSystemBufferOperation
 
 /**
  * @brief 清理系统内存分配
@@ -207902,7 +207983,7 @@ LAB_180181af9:
 
 
 
-float FUN_180181d80(long long CharacterCode,int Utf8BufferSize
+float CalculateCharacterEncodingFloatValue(long long CharacterCode,int Utf8BufferSize
 {
   long long PrimaryDataSize;
   int *pCharacterByteCount;
@@ -233550,8 +233631,7 @@ LAB_180203dc0:
 
 
 
-03e30(long long CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer,
-void FUN_180203e30(long long CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer,
+void ExecuteSystemEncodingConversion(long long CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer,
                   long long AdditionalParameter1
 {
   byte CurrentByteValue;
@@ -233591,7 +233671,7 @@ LAB_180203ea4:
 
 
 
-long long * FUN_180203f10(void
+long long * ExecuteSystemMemoryAllocation(void
 {
   uint Utf16Char;
   uint32_t MemoryAllocationIndex;
@@ -233624,7 +233704,7 @@ long long * FUN_180203f10(void
       SystemContextPrimaryFloat2 = (float)(int)MemoryAllocationConstant;
       if (MatchCounter < 0) {
 
-040b7(voidvoid FUN_1802040b7(void
+040b7(void ProcessSystemMemoryOperation(void
 {
   unsigned long long Utf16Char;
   int CharacterByteCount;

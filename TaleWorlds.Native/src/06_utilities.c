@@ -66683,7 +66683,14 @@ void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809079a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文初始化函数A
+ * @details 初始化异常上下文，设置临时异常处理器并重置状态
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_1809079a0
+ */
+void InitializeExceptionContextA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -66835,7 +66842,14 @@ void ResourceReferenceManagerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907a00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统异常数据缓冲区初始化函数A
+ * @details 初始化系统异常数据缓冲区，设置系统异常数据缓冲区A并重置状态
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_180907a00
+ */
+void InitializeSystemExceptionDataBufferA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
