@@ -150112,7 +150112,7 @@ long long ValidateSystemConfiguration(uint64_t CharacterCode
 
 
 
-30010(voidvoid InitializeSystemEx(void
+void InitializeSystemEx(void)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
@@ -152502,7 +152502,7 @@ uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t U
 
 
 
-314c0(long long CharacterCode,float *Utf8InputBufferSize,int Utf8SourcePointervoid ProcessSystemFloatCalculationAndConfiguration(long long CharacterCode,float *Utf8InputBufferSize,int Utf8SourcePointer
+void ProcessSystemFloatCalculationAndConfiguration(long long CharacterCode,float *Utf8InputBufferSize,int Utf8SourcePointer)
 {
   float *pSystemContextPrimaryFloat;
   float ContextSecondaryFloat;

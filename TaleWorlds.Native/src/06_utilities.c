@@ -79493,8 +79493,19 @@ void SetDefaultExceptionHandlerJ(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909ac0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 默认异常处理器设置函数AC0
+ * 
+ * 该函数负责设置默认异常处理器（AC0变体），配置异常处理机制。
+ * 它会将默认异常处理器B设置到异常上下文偏移量58的位置。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909ac0
+ * @note 这是一个默认异常处理器设置函数，用于配置异常处理机制（AC0变体）
+ */
+void SetDefaultExceptionHandlerAC0(DataBuffer operationBase, int64_t dataBuffer)
 {
   **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset58) = &DefaultExceptionHandlerB;
   return;
@@ -79502,8 +79513,19 @@ void Unwind_180909ac0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909ad0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 默认异常处理器设置函数AD0
+ * 
+ * 该函数负责设置默认异常处理器（AD0变体），配置异常处理机制。
+ * 它会将默认异常处理器B设置到内存指针偏移量0的位置。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909ad0
+ * @note 这是一个默认异常处理器设置函数，用于配置异常处理机制（AD0变体）
+ */
+void SetDefaultExceptionHandlerAD0(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(uint8_t **)(dataBuffer + MemoryPointerOffset0) = &DefaultExceptionHandlerB;
   return;
@@ -79511,8 +79533,19 @@ void Unwind_180909ad0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909ae0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 默认异常处理器设置函数AE0
+ * 
+ * 该函数负责设置默认异常处理器（AE0变体），配置异常处理机制。
+ * 它会将默认异常处理器B设置到数据缓冲区偏移量0x2e0的位置。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909ae0
+ * @note 这是一个默认异常处理器设置函数，用于配置异常处理机制（AE0变体）
+ */
+void SetDefaultExceptionHandlerAE0(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(uint8_t **)(dataBuffer + 0x2e0) = &DefaultExceptionHandlerB;
   return;
