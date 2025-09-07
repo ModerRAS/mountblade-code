@@ -152908,7 +152908,7 @@ void ProcessUtf8CharacterEncoding(uint64_t CharacterCode,uint64_t Utf8BufferSize
 
 
 
-319b0(int CharacterCode,int Utf8BufferSizevoid PerformSystemCalculation(int CharacterCode,int Utf8BufferSize
+void PerformSystemCalculation(int CharacterCode,int Utf8BufferSize)
 {
   float *pSystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -157768,7 +157768,7 @@ void CoreEngineProcessSystemMemoryAllocation(void)
 
 
 
-33e10(voidvoid ProcessSystemConfigurationA0(void
+void ProcessSystemConfigurationA0(void)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -176892,11 +176892,11 @@ uint64_t * ProcessSystemDataValidation(uint64_t *Utf8InputBuffer,unsigned long l
     ErrorCode = MemoryAllocationIndex;
     lStack_e0 = CharacterCode;
     pfStack_d8 = Utf8SourcePointer;
-    MemoryBoundaryEnd = FUN_18014e960(aStackValidationData,aProcessingCounter);
+    MemoryBoundaryEnd = GetMemoryBoundaryEnd(aStackValidationData,aProcessingCounter);
     pcStack_c0 = FUN_18014f6a0;
     pcStack_b8 = FUN_18014f660;
     SystemChecksum = MemoryAllocate(MemoryPoolManager,0x38,8,MemoryAllocationFlags);
-    FUN_18014e960(SystemChecksum,MemoryBoundaryEnd);
+    GetMemoryBoundaryEnd(SystemChecksum,MemoryBoundaryEnd);
     aSystemFlagG[0] = SystemChecksum;
     if (*(code **)(MemoryBoundaryEnd + 0x10) != (code *)0x0) {
       (**(code **)(MemoryBoundaryEnd + 0x10))(MemoryBoundaryEnd,0,0);
@@ -176985,7 +176985,7 @@ uint64_t *InitializeUtf16ToUtf8Converter(uint64_t *Utf8InputBuffer,unsigned long
   
   Utf16Char = 0xfffffffffffffffe;
   *Utf8InputBuffer = &SystemCharacterCode;
-  FUN_18014e610(Utf8InputBuffer[0x17]);
+  ProcessCharacterWithSystemBufferEx7(Utf8InputBuffer[0x17]);
   Utf8InputBuffer[0x17] = 0;
   *Utf8InputBuffer = &SystemMemoryBlockTemplate;
   Utf8InputBuffer[2] = &ThreadLocalStorageTemplate;
@@ -177061,7 +177061,7 @@ uint64_t *InitializeUtf16ToUtf8Converter(uint64_t *Utf8InputBuffer,unsigned long
     if (Utf8BufferSize == '\0') {
       CharacterCode = *(long long **)(*(long long *)(CharacterCode + 0xa8) + 0x88);
       CharacterPointer = *(code **)(*Utf8InputBuffer + 0x70);
-      SystemDataRegistry = FUN_18014aa50(aCoreEngineValueA8,&lStack_148);
+      SystemDataRegistry = ProcessCharacterWithSystemData(aCoreEngineValueA8,&lStack_148);
       AllocatedMemorySize = FUN_18014aa50(StackBuffer80,SystemDataRegistry);
       pcStack_110 = FUN_18014f3f0;
       pProcessingCounter = &SystemProcessingCounter;
