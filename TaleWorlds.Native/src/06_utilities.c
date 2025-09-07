@@ -14481,17 +14481,17 @@ void ExecuteUtilityOperation(int64_t operationPointer,int64_t contextPointer)
   int systemExecutionResult;
   int64_t operationContextData;
   
-  if (*(int *)(operationPointer + 0x2c) == 0) {
-    systemExecutionResult = ExecuteSystemOperation(contextPointer,operationPointer + 0x1c,&operationContextData);
+  if (*(int *)(operationPointer + SystemOperationRequestOffset) == 0) {
+    systemExecutionResult = ExecuteSystemOperation(contextPointer,operationPointer + SystemOperationValidationOffset,&operationContextData);
     if (systemExecutionResult != 0) {
       return;
     }
-    systemExecutionResult = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(operationContextData + 0xd0),operationPointer + 0x2c);
+    systemExecutionResult = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(operationContextData + SystemResourceOffset),operationPointer + SystemOperationRequestOffset);
     if (systemExecutionResult != 0) {
       return;
     }
   }
-  ManageSystemResourceCC0(*(DataBuffer *)(contextPointer + 0x98),operationPointer);
+  ManageSystemResourceCC0(*(DataBuffer *)(contextPointer + SystemOperationDataOffset98),operationPointer);
   return;
 }
 
@@ -38576,18 +38576,18 @@ void ExceptionUnwindHandlerA2(DataBuffer exceptionContext,int64_t unwindParam)
   int64_t exceptionHandlerData;
   uint64_t exceptionMemoryRegion;
   
-  exceptionHandlerPointer = *(DataBuffer **)(unwindParam + 0x2b8);
+  exceptionHandlerPointer = *(DataBuffer **)(unwindParam + ExceptionHandlerPointerOffset);
   if (exceptionHandlerPointer == (DataBuffer *)0x0) {
     return;
   }
   exceptionMemoryRegion = (uint64_t)exceptionHandlerPointer & MemoryRegionMask;
   if (exceptionMemoryRegion != 0) {
-    exceptionHandlerData = exceptionMemoryRegion + 0x80 + ((int64_t)exceptionHandlerPointer - exceptionMemoryRegion >> 0x10) * 0x50;
-    exceptionHandlerData = exceptionHandlerData - (uint64_t)*(uint *)(exceptionHandlerData + 4);
-    if ((*(void ***)(exceptionMemoryRegion + 0x70) == &ExceptionList) && (*(char *)(exceptionHandlerData + 0xe) == '\0')) {
-      *exceptionHandlerPointer = *(DataBuffer *)(exceptionHandlerData + 0x20);
-      *(DataBuffer **)(exceptionHandlerData + 0x20) = exceptionHandlerPointer;
-      exceptionReferenceCount = (int *)(exceptionHandlerData + 0x18);
+    exceptionHandlerData = exceptionMemoryRegion + ExceptionMemoryRegionOffset + ((int64_t)exceptionHandlerPointer - exceptionMemoryRegion >> 0x10) * ExceptionMemoryBlockMultiplier;
+    exceptionHandlerData = exceptionHandlerData - (uint64_t)*(uint *)(exceptionHandlerData + ExceptionHandlerPointerOffset4);
+    if ((*(void ***)(exceptionMemoryRegion + ExceptionMemoryRegionOffset70) == &ExceptionList) && (*(char *)(exceptionHandlerData + ExceptionHandlerPointerOffsetE) == '\0')) {
+      *exceptionHandlerPointer = *(DataBuffer *)(exceptionHandlerData + ExceptionHandlerPointerOffset20);
+      *(DataBuffer **)(exceptionHandlerData + ExceptionHandlerPointerOffset20) = exceptionHandlerPointer;
+      exceptionReferenceCount = (int *)(exceptionHandlerData + ExceptionHandlerPointerOffset18);
       *exceptionReferenceCount = *exceptionReferenceCount + -1;
       if (*exceptionReferenceCount == 0) {
         HandleExceptionE0();
@@ -38595,7 +38595,7 @@ void ExceptionUnwindHandlerA2(DataBuffer exceptionContext,int64_t unwindParam)
       }
     }
     else {
-      ManageMemory(exceptionMemoryRegion,SetBitFlag(0xff000000,*(void ***)(exceptionMemoryRegion + 0x70) == &ExceptionList),
+      ManageMemory(exceptionMemoryRegion,SetBitFlag(0xff000000,*(void ***)(exceptionMemoryRegion + ExceptionMemoryRegionOffset70) == &ExceptionList),
                           exceptionHandlerPointer,exceptionMemoryRegion,SystemCleanupFlagAlternative);
     }
   }
