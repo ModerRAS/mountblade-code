@@ -172092,7 +172092,13 @@ void SystemMemoryManager(void)
 
 
 
-3d91a(voidvoid FUN_18013d91a(void
+/**
+ * @brief 系统上下文管理器
+ * 
+ * 该函数负责管理系统上下文的初始化和配置，
+ * 处理系统资源的分配和管理。
+ */
+void SystemContextManager(void)
 {
   int *SystemContext;
   uint64_t *CharacterLimit;
@@ -172106,7 +172112,18 @@ void SystemMemoryManager(void)
 
 
 
-3d950(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18013d950(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16的编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的编码转换操作，
+ * 包括字符表的管理和系统配置的处理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessUtf8ToUtf16Conversion(uint64_t *Utf8InputBuffer, uint64_t Utf8BufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
