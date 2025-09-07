@@ -8209,7 +8209,7 @@ uint8_t ValidateUtilityData;
 // 
 // 返回值：
 //   uint8_t - 加密结果状态
-uint8_t EncryptUtilityDataBD0;
+uint8_t EncryptUtilityData;
 
 // 函数: uint8_t DecryptUtilityDataBE0;
 // 
@@ -8223,7 +8223,7 @@ uint8_t EncryptUtilityDataBD0;
 // 
 // 返回值：
 //   uint8_t - 解密结果状态
-uint8_t DecryptUtilityDataBE0;
+uint8_t DecryptUtilityData;
 
 // 函数: uint8_t CompressUtilityDataBF0;
 // 
@@ -8237,16 +8237,19 @@ uint8_t DecryptUtilityDataBE0;
 // 
 // 返回值：
 //   uint8_t - 压缩结果状态
-uint8_t CompressUtilityDataBF0;
+uint8_t CompressUtilityData;
 
 // 原始函数名：FUN_1809425e0 - 内存管理初始化函数D0
 #define InitializeMemoryManagerD0 FUN_1809425e0
 
-// 函数: uint8_t InitializeMemoryManagerD0;
-uint8_t InitializeMemoryManagerD0;
-uint8_t UtilitySystemMemoryData5;
-uint8_t UtilitySystemMemoryStatus1;
-uint8_t UtilitySystemMemoryData6;
+// 内存管理初始化函数
+uint8_t InitializeMemoryManager;
+// 系统内存数据A
+uint8_t SystemMemoryDataA;
+// 系统内存状态A
+uint8_t SystemMemoryStatusA;
+// 系统内存数据B
+uint8_t SystemMemoryDataB;
 uint8_t UtilitySystemMemoryStatus2;
 uint8_t UtilitySystemInitData1;
 uint8_t UtilitySystemInitData2;
