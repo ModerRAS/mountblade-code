@@ -9767,7 +9767,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   }
   systemHandle = *(int64_t *)(systemContextBuffer + SystemContextOffset);
   if ((systemHandle == 0) || (*(int64_t *)(systemHandle + SYSTEM_CONTEXT_OFFSET) != systemContextBuffer)) {
-    return 0x1c;
+    return SystemContextValidationFailure;
   }
   componentData = *(int64_t *)(systemHandle + COMPONENT_DATA_OFFSET);
   if (systemHandle == 0) {
