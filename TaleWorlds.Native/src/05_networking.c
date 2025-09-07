@@ -4655,5 +4655,10 @@ NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t Heade
     FormatValidationResult = NetworkValidationSuccess;
   }
   
-  return FormatValidationResult;
+  // 返回处理结果
+  if (FormatValidationResult == NetworkValidationSuccess) {
+    return 0;  // 处理成功
+  } else {
+    return 1;  // 处理失败
+  }
 }
