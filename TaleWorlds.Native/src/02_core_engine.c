@@ -50041,28 +50041,26 @@ void ProcessCharacterCode(uint64_t *Utf8InputBuffer,long long Utf8BufferSize
  */
 void ProcessFloatDataNormalization(long long CharacterCode
 {
-  float *pSystemContextPrimaryFloat;
-  float ContextSecondaryFloat;
-  float CalculatedFilterValue;
-  float MatrixTransformMultiplier1;
-  float MatrixTransformMultiplier2;
-  float CalculatedDistance;
-  float FloatVariable7;
-  float ProcessedFloatValue8;
-  float NormalizedParameterValue;
-  float PrimaryFloatValue;
-  float SecondaryFloatValue;
-  float SystemContextPrimaryFloat2;
-  float SystemContextPrimaryFloat3;
-  float SystemContextPrimaryFloat4;
-  float SystemFloatValue;
-  float SystemContextPrimaryFloat6;
-  float SecondaryFloatValue;
-  float SystemContextPrimaryFloat8;
-  float ContextPrimaryFloat9;
-  float ContextSecondaryFloat0;
+  float *pSourceMatrixData;
+  float MatrixElementY;
+  float CrossProductX;
+  float MatrixMultiplier1;
+  float MatrixMultiplier2;
+  float VectorLengthX;
+  float MatrixElementW;
+  float VectorDotProduct;
+  float NormalizationFactor;
+  float CrossProductY;
+  float CrossProductZ;
+  float VectorComponentX;
+  float VectorComponentY;
+  float VectorComponentZ;
+  float VectorComponentW;
+  float CrossProductResultX;
+  float CrossProductResultY;
+  float CrossProductResultZ;
   
-  pSystemContextPrimaryFloat = (float *)(CharacterCode + 0x80);
+  pSourceMatrixData = (float *)(CharacterCode + 0x80);
   *(void *)pSystemContextPrimaryFloat = *(void *)(CharacterCode + 0x40);
   *(void *)(CharacterCode + 0x88) = *(void *)(CharacterCode + 0x48);
   *(void *)(CharacterCode + 0x90) = *(void *)(CharacterCode + 0x50);
