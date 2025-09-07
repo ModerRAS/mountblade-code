@@ -265949,10 +265949,10 @@ int FUN_1802256a7(void
  */
 int FUN_1802256e7(void
 {
-  int LockResult;
-  long long BufferStatus;
+  int ComparisonResult;
+  long long PatternMatchStatus;
   int InputDataLength;
-  long long PatternIndex;
+  long long SearchStartIndex;
   long long MemoryOffset;
   long long SystemDataNode;
   
