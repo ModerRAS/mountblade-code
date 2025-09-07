@@ -413,7 +413,6 @@
 #define ProcessCharacterWithSystemStatus FUN_18014e8b0
 #define ProcessCharacterWithExtendedSystem FUN_18014c430
 #define ProcessCharacterWithSystemInput FUN_18014e020
-#define ProcessCharacterWithSystemOutput FUN_18014c850
 #define ProcessCharacterWithBufferSize FUN_18014c9e0
 #define ProcessCharacterWithValidationEx FUN_18014cb90
 #define ProcessCharacterWithEncodingConversion FUN_18014f980
@@ -174488,7 +174487,17 @@ uint64_t * ProcessUtf8InputBufferAllocation(uint64_t *Utf8InputBuffer
 
 
 
- (ram,0x0001801420ee (ram,0x0001801420f4 (ram,0x0001801420fe (ram,0x000180142103 (ram,0x000180142117 (ram,0x000180142121 (ram,0x00018014212d (ram,0x000180142134 (ram,0x000180141aab (ram,0x000180141ab3 (ram,0x000180141ab9 (ram,0x000180141ac6 (ram,0x000180141af9 (ram,0x000180141b01 (ram,0x000180141b04 (ram,0x000180141ad0 (ram,0x000180141ad5 (ram,0x000180141b1e (ram,0x000180141b2f (ram,0x000180141b49 (ram,0x000180141b4e (ram,0x000180141baf (ram,0x000180141bb7
+ /**
+ * @brief 初始化系统内存池
+ * 
+ * 该函数负责初始化系统的内存池，包括UTF-8输入缓冲区的配置、
+ * 内存分配和系统上下文的设置。这是系统启动过程中的关键步骤。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @return 初始化状态码，成功时返回0，失败时返回错误码
+ * 
+ * @note 原始函数名：FUN_180141820
+ */
 unsigned long long InitializeSystemMemoryPool(long long *Utf8InputBuffer
 {
   char CurrentCharacter;
@@ -179608,7 +179617,19 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *Utf8InputBuffer,long l
 
 
 
-uint64_t * FUN_18014c850(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize
+/**
+ * @brief 管理UTF-8输入缓冲区
+ * 
+ * 该函数负责管理UTF-8输入缓冲区的生命周期，包括缓冲区的创建、
+ * 配置和内存管理。确保UTF-8数据的正确处理和内存安全。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @return 处理后的缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18014c850
+ */
+uint64_t * ManageUtf8InputBuffer(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
@@ -187922,7 +187943,14 @@ LAB_180158a0c:
 
 
 
-uint64_t FUN_180158a70(long long CharacterCode,int Utf8BufferSize
+/**
+ * @brief 处理字符表内存分配和缓冲区管理
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return 处理状态标志，0表示成功，1表示失败
+ * @note 原始函数名：FUN_180158a70
+ */
+uint64_t ProcessCharacterTableMemoryAllocation(long long CharacterCode,int Utf8BufferSize)
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
@@ -188029,7 +188057,14 @@ LAB_180158cb6:
 
 
 
-58ce0(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_180158ce0(uint64_t CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理系统内存管理和字符数据验证
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return 处理结果状态
+ * @note 原始函数名：FUN_180158ce0
+ */
+uint64_t ProcessSystemMemoryManagement(uint64_t CharacterCode,long long Utf8BufferSize)
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
@@ -254949,7 +254984,13 @@ LAB_18021937f:
 
 
 
-193c8(voidvoid FUN_1802193c8(void
+/**
+ * @brief 系统字符数据排序和优化处理函数
+ * 
+ * 该函数负责对系统字符数据进行排序和优化处理，通过比较和交换字符数据块来提高系统性能
+ * 主要用于字符数据的内存管理和优化操作
+ */
+void SortAndOptimizeCharacterData(void)
 {
   long long PrimaryDataSize;
   byte SystemHighByte;
@@ -254960,12 +255001,12 @@ LAB_18021937f:
   long long PatternIndex;
   void *CurrentNode;
   long long MemoryPoolBlockSize;
-  long long secondaryLoopCounter;
-  long long systemLoopCounter;
+  long long SecondaryLoopCounter;
+  long long SystemLoopCounter;
   long long RegisterR13Value;
   uint64_t *CharacterLimit;
   long long EncodingConversionResult;
-  uint64_t uStack0000000000000070;
+  uint64_t StackFrameTemporaryValue;
   
   EncodingConversionResult = (long long)(StackFrameAddressPointer - 1) >> 1;
   do {
