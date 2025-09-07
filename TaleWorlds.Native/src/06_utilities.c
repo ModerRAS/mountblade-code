@@ -127,6 +127,16 @@
 #define SystemEventDataSecondaryOffset 0x34         // 系统事件数据次要偏移量
 #define DataPointerOffset 0x20                     // 数据指针偏移量
 
+// 系统配置偏移量常量
+#define SystemConfigPrimaryOffset 0x180             // 系统配置主偏移量
+#define SystemConfigSecondaryOffset 0x184           // 系统配置次偏移量
+#define SystemConfigTertiaryOffset 0x1e0            // 系统配置第三偏移量
+#define ValidationContextResourceOffset 0x2e8      // 验证上下文资源偏移量
+#define ExceptionHandlerTableOffset 0x2b0           // 异常处理表偏移量
+#define ExceptionHandlerDataOffset 0x78             // 异常处理数据偏移量
+#define FunctionPointerTableOffset 0x150            // 函数指针表偏移量
+#define FunctionPointerSecondaryOffset 0x288        // 函数指针次偏移量
+
 // 数据合并函数定义
 #define CONCAT44(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
 #define SetBitFlag(mask, condition) ((mask) | ((condition) ? 1 : 0))
@@ -15526,7 +15536,7 @@ DataBuffer ConfigureUtilityDataA0(int64_t configPointer,int64_t dataPointer)
       return ResourceAccessDenied;
     }
     *(DataBuffer *)(configPointer + 0x18) =
-         *(DataBuffer *)(*(int64_t *)(*(int64_t *)(systemStackPointer + ExceptionHandlerCallbackOffset10) + 0x2b0) + 0x78);
+         *(DataBuffer *)(*(int64_t *)(*(int64_t *)(systemStackPointer + ExceptionHandlerCallbackOffset10) + ExceptionHandlerTableOffset) + ExceptionHandlerDataOffset);
     configurationStatus = ProcessSystemEventB0(*(DataBuffer *)(dataPointer + 0x98),configPointer);
   }
   return configurationStatus;
@@ -16078,7 +16088,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     *(DataWord *)(dataBufferPtr + 0x60) = VectorComponentY;
     *(DataWord *)(dataBufferPtr + 100) = VectorComponentZ;
     dataBufferPtr = *(int64_t *)(contextPtr + 0x98);
-    if ((*(int *)(dataBufferPtr + 0x180) != 0) || (*(int *)(dataBufferPtr + 0x184) != 0)) {
+    if ((*(int *)(dataBufferPtr + SystemConfigPrimaryOffset) != 0) || (*(int *)(dataBufferPtr + SystemConfigSecondaryOffset) != 0)) {
       systemContextBuffer[0] = 0;
       InitializeSystemContextA0(systemContextBuffer);
       if (systemContextBuffer[0] == *(int64_t *)((int64_t)*(int *)(dataBufferPtr + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
@@ -16090,7 +16100,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
       }
     }
     *(uint *)(dataPtr + 8) = *(int *)(dataPtr + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
-    result = GetSystemCurrentStateA0(*(DataBuffer *)(dataBufferPtr + 0x1e0));
+    result = GetSystemCurrentStateA0(*(DataBuffer *)(dataBufferPtr + SystemConfigTertiaryOffset));
     if ((int)result == 0) {
       return 0;
     }
@@ -16672,7 +16682,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
       return validationStatus;
     }
     dataStructurePointer = *(int64_t *)(ProcessingContext + 0x98);
-    if ((*(int *)(dataStructurePointer + 0x180) != 0) || (*(int *)(dataStructurePointer + 0x184) != 0)) {
+    if ((*(int *)(dataStructurePointer + SystemConfigPrimaryOffset) != 0) || (*(int *)(dataStructurePointer + SystemConfigSecondaryOffset) != 0)) {
       stackBuffer = 0;
       InitializeSystemContextA0(&stackBuffer,DataStructureHandle,ResourceDescriptor,OperationFlags,systemContext);
       if (stackBuffer == *(int64_t *)((int64_t)*(int *)(dataStructurePointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
@@ -20272,30 +20282,45 @@ DataBuffer StoreResourceData(int64_t resourceIndex,DataBuffer resourceHandle,int
 
 
 
-// 函数: DataBuffer ValidateAndProcessResourceAllocation(int minimumSize,int requestedSize,DataBuffer resourceContext,DataBuffer operationFlags,DataBuffer resourceData)
-// 功能：验证并处理资源分配，确保请求的大小满足最小要求，并在必要时进行资源分配
-// 参数：minimumSize - 最小大小要求，requestedSize - 请求的大小，resourceContext - 资源上下文
-//      operationFlags - 操作标志，resourceData - 资源数据
-// 返回值：成功返回0，失败返回非0值
+/**
+ * @brief 验证并处理资源分配
+ * 
+ * 该函数负责验证资源分配请求的有效性，确保请求的大小满足最小要求。
+ * 如果请求的大小小于最小要求，函数会自动调整请求大小。
+ * 成功分配资源后，函数会更新系统状态并设置相应的标志位。
+ * 
+ * @param minimumSize 最小大小要求，确保分配的资源不会小于此值
+ * @param requestedSize 请求的大小，用户希望分配的资源大小
+ * @param resourceContext 资源上下文，包含资源分配所需的上下文信息
+ * @param operationFlags 操作标志，控制资源分配的行为和模式
+ * @param resourceData 资源数据，包含与资源相关的数据信息
+ * 
+ * @return DataBuffer 分配结果
+ *         - 0: 分配成功
+ *         - 非0: 分配失败，返回错误代码
+ * 
+ * @note 该函数会自动调整请求大小以满足最小要求
+ * @warning 调用此函数前应确保resourceContext有效
+ */
 DataBuffer ValidateAndProcessResourceAllocation(int minimumSize,int requestedSize,DataBuffer resourceContext,DataBuffer operationFlags,DataBuffer resourceData)
 
 {
   DataBuffer allocationResult;
-  DataBuffer *memoryResourcePointer;
+  DataBuffer *allocatedMemoryPointer;
   DataWord *statusRegister;
   DataWord statusValue;
   int64_t systemContext;
-  DataBuffer stackData;
+  DataBuffer temporaryStackData;
   
   if (requestedSize < minimumSize) {
     requestedSize = minimumSize;
   }
   allocationResult = AllocateSystemResource(systemContext + 0x10,requestedSize);
   if ((int)allocationResult == 0) {
-    memoryResourcePointer = (DataBuffer *)
+    allocatedMemoryPointer = (DataBuffer *)
              ((int64_t)*(int *)(systemContext + 0x18) * 0x10 + *(int64_t *)(systemContext + ExceptionHandlerCallbackOffset10));
-    *memoryResourcePointer = stackData;
-    memoryResourcePointer[1] = resourceData;
+    *allocatedMemoryPointer = temporaryStackData;
+    allocatedMemoryPointer[1] = resourceData;
     *(int *)(systemContext + 0x18) = *(int *)(systemContext + 0x18) + 1;
     *statusRegister = statusValue;
     *(int *)(systemContext + 0x24) = *(int *)(systemContext + 0x24) + 1;
