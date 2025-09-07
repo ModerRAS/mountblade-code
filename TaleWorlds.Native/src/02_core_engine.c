@@ -2859,7 +2859,23 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
  * 确保内存数据的正确复制和管理。
  */
 #define ProcessSystemMemoryAndCopyData FUN_18009d630
+/**
+ * @brief 处理系统第三级数据并分配内存
+ * 
+ * 该函数负责系统第三级数据的处理操作，包括内存的分配和管理。
+ * 确保第三级数据的正确处理和内存的安全分配。
+ * 
+ * @return 处理结果状态码
+ */
 #define ProcessSystemTertiaryDataAndAllocate FUN_1804c1300
+/**
+ * @brief 处理系统网络数据并配置网络参数
+ * 
+ * 该函数负责系统网络数据的处理操作，包括网络参数的配置和设置。
+ * 确保网络数据的正确处理和网络参数的合理配置。
+ * 
+ * @return 处理结果状态码
+ */
 #define ProcessSystemNetworkAndConfigureData FUN_180630b20
 #define ProcessSystemNetworkAndConfigureSecondary FUN_180630e10
 #define ProcessSystemNetworkAndProcessData FUN_1806298d0
@@ -65344,7 +65360,7 @@ void ProcessEventTemplateData(void
   long long RegisterValueR12;
   long long GeneralRegister14;
   uint64_t *RegisterR15Value;
-  uint64_t uStack0000000000000060;
+  uint64_t EventTemplateData;
   
   if (RegisterValueR12 == 0) {
     CharacterTablePointer = GeneralRegister14 - (long long)RegisterR15Value >> 3;
