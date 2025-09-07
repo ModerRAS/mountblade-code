@@ -3256,6 +3256,10 @@
 // 功能：控制系统重置操作的状态标志
 #define SystemResetFlag _DAT_180c821d0
 
+// 原始变量名：UNK_180d49260 - 系统数据字
+// 功能：存储系统操作相关的数据字信息
+#define SystemDataWord UNK_180d49260
+
 // 原始变量名：_DAT_180d49140 - 异常状态标志A0
 // 功能：存储异常处理的状态标志信息
 #define ExceptionStatusFlagA0 _DAT_180d49140
@@ -94946,7 +94950,7 @@ void Unwind_180912970(DataBuffer operationBase,int64_t dataBuffer)
 }
 
 
-DataWord UNK_180d49260;
+DataWord SystemDataWord;
 
 // 函数: void UtilityProcessParameter1(DataBuffer operationBase,int64_t dataBuffer)
 void UtilityProcessParameter1(DataBuffer operationBase,int64_t dataBuffer)
