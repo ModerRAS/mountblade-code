@@ -114190,7 +114190,7 @@ LabelSystemDataConfiguration:
   }
   else {
     if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto LabelUtfEncodingProcessing;
-    RegisterXMM0Value = (double)FUN_180131aa0(&AdditionalParameter1,3,5,0,0);
+    RegisterXMM0Value = (double)AllocateSystemMemoryBuffer(&AdditionalParameter1,3,5,0,0);
     if ((*(int *)(DataStructureCounter + 0x1cac) == CharacterCodeSize) && (*(char *)(DataStructureCounter + 0x1b3c) == '\0')) {
       MutexLockResult = *(int *)(DataStructureCounter + 0x1b2c);
       goto LabelSystemDataConfiguration;
@@ -114321,7 +114321,7 @@ LAB_18011f1e4:
   }
   else {
     if (in_EAX != 2) goto LAB_18011f326;
-    CharacterCode = (double)FUN_180131aa0(&stack0x000000f0,3,5,0,0);
+    CharacterCode = (double)AllocateSystemMemoryBuffer(&stack0x000000f0,3,5,0,0);
     if ((*(int *)(SystemContext + 0x1cac) == RegisterValueEDI) && (*(char *)(SystemContext + 0x1b3c) == '\0')) {
       in_ECX = *(int *)(SystemContext + 0x1b2c);
       goto LAB_18011f1e4;
@@ -114457,7 +114457,7 @@ char ProcessStringFormattingAndEncoding(char *CharacterCode, uint64_t CharacterC
     if (CurrentCharacter == '\0') {
 StringFormattingComplete:
       if ((CurrentCharacter == '%') && (CharacterCode[1] != '%')) {
-        FUN_180121200(&FormatBuffer, 0x40, CharacterCode, Utf8InputPointer);
+        OperateBufferAndSetParameters(&FormatBuffer, 0x40, CharacterCode, Utf8InputPointer);
         StringProcessingResult = &FormatBuffer;
         while (FormatBuffer == ' ') {
           StringProcessingResult = StringProcessingResult + 1;
