@@ -22016,13 +22016,13 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           exceptionHandlerContextPointer3 = (int64_t *)(exceptionHandlerContext5 + 0xe0 + (int64_t)exceptionHandlerContextPointer0);
           exceptionHandlerContext1 = *exceptionHandlerContextPointer3;
           statusCounter = exceptionHandlerContextPointer3[1];
-          uStack_2c4 = (uint)exceptionHandlerContext1;
-          uStack_2c0 = (DataWord)((uint64_t)exceptionHandlerContext1 >> 0x20);
-          uStack_2bc = (DataWord)statusCounter;
-          uStack_2b8 = (DataWord)(statusCounter >> 0x20);
+          ExceptionContextProcessorA = (uint)exceptionHandlerContext1;
+          ExceptionContextProcessorB = (DataWord)((uint64_t)exceptionHandlerContext1 >> 0x20);
+          StatusCounterA = (DataWord)statusCounter;
+          StatusCounterB = (DataWord)(statusCounter >> 0x20);
           resourcePointer = (DataBuffer *)(exceptionHandlerContext5 + 0xf0 + (int64_t)exceptionHandlerContextPointer0);
-          uStack_2b4 = *resourcePointer;
-          uStack_2ac = resourcePointer[1];
+          ResourcePointerA = *resourcePointer;
+          ResourcePointerB = resourcePointer[1];
           validationStatusPointer = (DataWord *)(exceptionHandlerContext5 + 0x100 + (int64_t)exceptionHandlerContextPointer0);
           uStack_2a4 = *validationStatusPointer;
           uStack_2a0 = validationStatusPointer[1];
@@ -22065,19 +22065,19 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           exceptionHandlerContext1 = GetSystemContextHandle(exceptionHandlerContext5,exceptionHandlerContextPointer4);
           systemStatusChar = CheckSystemStatus(exceptionHandlerContext1,0);
           if ((systemStatusChar == '\0') && (afStack_348[0] != *(float *)(exceptionHandlerContext1 + 0x4c))) {
-            uStack_2c0 = DataProcessingStruct._0_4_;
-            uStack_2bc = DataProcessingStruct._4_4_;
+            ExceptionContextProcessorB = DataProcessingStruct._0_4_;
+            StatusCounterA = DataProcessingStruct._4_4_;
             fStack_2c8 = afStack_348[0];
             uStack_2d0 = 0;
             StackPointerVariableE = &ValidationContextBuffer;
-            uStack_2c4 = uStack_2c4 & 0xffffff00;
+            ExceptionContextProcessorA = ExceptionContextProcessorA & 0xffffff00;
             if (*(int *)(exceptionHandlerContext1 + 0x58) < 1) {
               exceptionDataBuffer2 = &SystemResourceDataBuffer;
             }
             else {
               exceptionDataBuffer2 = *(uint8_t **)(exceptionHandlerContext1 + 0x50);
             }
-            InitializeMemory(&uStack_2b8,exceptionDataBuffer2,0x80);
+            InitializeMemory(&StatusCounterB,exceptionDataBuffer2,0x80);
             exceptionHandlerContext1 = operationBase[4];
             if ((char)exceptionHandlerContext1 == '\0') {
               *(ByteFlag *)(operationBase + 4) = 1;
@@ -99859,7 +99859,7 @@ void ConditionalExecuteFunctionA0(DataBuffer operationBase,int64_t dataBuffer)
 void ExecuteCallbackFunction(DataBuffer *callbackContext)
 
 {
-  func_0x0001808fd024(*(DataWord *)*callbackContext);
+  ExecuteSystemCallback(*(DataWord *)*callbackContext);
   return;
 }
 
@@ -105027,29 +105027,29 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordAH uStack_270
 
-// 原始变量名：uStack_2c4 - 栈数据字AI
+// 原始变量名：ExceptionContextProcessorA - 栈数据字AI
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAI uStack_2c4
+#define StackDataWordAI ExceptionContextProcessorA
 
-// 原始变量名：uStack_2c0 - 栈数据字AQ
+// 原始变量名：ExceptionContextProcessorB - 栈数据字AQ
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAQ uStack_2c0
+#define StackDataWordAQ ExceptionContextProcessorB
 
-// 原始变量名：uStack_2bc - 栈数据字AJ
+// 原始变量名：StatusCounterA - 栈数据字AJ
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAJ uStack_2bc
+#define StackDataWordAJ StatusCounterA
 
-// 原始变量名：uStack_2b8 - 栈数据字AK
+// 原始变量名：StatusCounterB - 栈数据字AK
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAK uStack_2b8
+#define StackDataWordAK StatusCounterB
 
-// 原始变量名：uStack_2b4 - 栈数据字AL
+// 原始变量名：ResourcePointerA - 栈数据字AL
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAL uStack_2b4
+#define StackDataWordAL ResourcePointerA
 
-// 原始变量名：uStack_2ac - 栈数据字AM
+// 原始变量名：ResourcePointerB - 栈数据字AM
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAM uStack_2ac
+#define StackDataWordAM ResourcePointerB
 
 // 原始变量名：uStack_2a4 - 栈数据字AN
 // 功能：存储数据处理过程中的临时数据字
@@ -105379,18 +105379,55 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define OptimizeSystemA Unwind_1809092b0
 
 // 栈变量语义化宏定义
-// 原始变量名：SecurityValidationBufferA - 安全验证缓冲区A
+// 原始变量名：auStack_28 - 安全验证缓冲区A
 // 功能：用于安全验证操作的数据缓冲区
-#define SecurityValidationBufferA SecurityValidationBufferA
+#define SecurityValidationBufferA auStack_28
 
-// 原始变量名：SecurityValidationBufferB - 安全验证缓冲区B
+// 原始变量名：auStack_80 - 安全验证缓冲区B
 // 功能：用于安全验证操作的数据缓冲区
-#define SecurityValidationBufferB SecurityValidationBufferB
+#define SecurityValidationBufferB auStack_80
 
-// 原始变量名：SecurityValidationBufferC - 安全验证缓冲区C
+// 原始变量名：auStack_a0 - 安全验证缓冲区C
 // 功能：用于安全验证操作的数据缓冲区
-#define SecurityValidationBufferC SecurityValidationBufferC
+#define SecurityValidationBufferC auStack_a0
 
-// 原始变量名：DataProcessingStruct - 数据处理结构体
+// 原始变量名：auStack_2f0 - 数据处理结构体
 // 功能：用于处理数据操作的结构体变量
-#define DataProcessingStruct DataProcessingStruct
+#define DataProcessingStruct auStack_2f0
+
+// 异常处理相关栈变量
+// 原始变量名：ExceptionContextProcessorA - 异常上下文处理器A
+// 功能：存储异常上下文处理器的低32位
+#define ExceptionContextProcessorA ExceptionContextProcessorA
+
+// 原始变量名：ExceptionContextProcessorB - 异常上下文处理器B
+// 功能：存储异常上下文处理器的高32位
+#define ExceptionContextProcessorB ExceptionContextProcessorB
+
+// 原始变量名：StatusCounterA - 状态计数器A
+// 功能：存储状态计数的低32位
+#define StatusCounterA StatusCounterA
+
+// 原始变量名：StatusCounterB - 状态计数器B
+// 功能：存储状态计数的高32位
+#define StatusCounterB StatusCounterB
+
+// 原始变量名：ResourcePointerA - 资源指针A
+// 功能：存储资源指针的数据
+#define ResourcePointerA ResourcePointerA
+
+// 原始变量名：ResourcePointerB - 资源指针B
+// 功能：存储资源指针的下一个数据
+#define ResourcePointerB ResourcePointerB
+
+// 原始变量名：uStack_2a4 - 验证状态指针A
+// 功能：存储验证状态指针的数据
+#define ValidationStatusPointerA uStack_2a4
+
+// 原始变量名：uStack_2a0 - 验证状态指针B
+// 功能：存储验证状态指针的下一个数据
+#define ValidationStatusPointerB uStack_2a0
+
+// 原始变量名：uStack_29c - 验证状态指针C
+// 功能：存储验证状态指针的第三个数据
+#define ValidationStatusPointerC uStack_29c
