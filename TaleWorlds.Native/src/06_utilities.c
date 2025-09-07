@@ -14164,31 +14164,31 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始变量名：UNK_180986550 - 数据配置表A2
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA2 UNK_180986550
+#define DataConfigurationTableA2 DataConfigurationTableTertiary
 
 // 原始变量名：UNK_180986590 - 数据配置表A3
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA3 UNK_180986590
+#define DataConfigurationTableA3 DataConfigurationTableQuaternary
 
 // 原始变量名：UNK_1809865f0 - 数据配置表A4
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA4 UNK_1809865f0
+#define DataConfigurationTableA4 DataConfigurationTableQuinary
 
 // 原始变量名：UNK_1809866c0 - 数据配置表A5
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA5 UNK_1809866c0
+#define DataConfigurationTableA5 DataConfigurationTableSenary
 
 // 原始变量名：UNK_180986730 - 数据配置表A6
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA6 UNK_180986730
+#define DataConfigurationTableA6 DataConfigurationTableSeptenary
 
 // 原始变量名：UNK_1809867b0 - 数据配置表A7
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA7 UNK_1809867b0
+#define DataConfigurationTableA7 DataConfigurationTableOctonary
 
 // 原始变量名：UNK_180986850 - 数据配置表A8
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA8 UNK_180986850
+#define DataConfigurationTableA8 DataConfigurationTableNonary
 
 // 原始函数名：FUN_180897d20 - 数据处理函数A0
 // 功能：处理数据块和配置信息
@@ -113435,6 +113435,43 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define SetExceptionDataTablePointersA0 Unwind_180909990
 #define CleanupDataBufferAtOffsetE0A0 Unwind_1809099a0
 #define ProcessSystemStatusUpdateA0 Unwind_180907800
+
+// 工具系统异常处理函数定义
+// 原始函数名：Unwind_180908730 - 异常处理器迭代执行函数
+// 功能：遍历异常处理器上下文指针，执行所有非空的异常处理器回调函数
+#define IterateAndExecuteExceptionHandlers Unwind_180908730
+
+// 原始函数名：Unwind_180908750 - 互斥锁销毁函数
+// 功能：销毁系统互斥锁，清理同步资源
+#define DestroySystemMutex Unwind_180908750
+
+// 原始函数名：Unwind_180908760 - 条件互斥锁销毁函数
+// 功能：销毁指定数据缓冲区中的条件互斥锁
+#define DestroyConditionalMutex Unwind_180908760
+
+// 原始函数名：Unwind_180908770 - 异常处理器链执行函数
+// 功能：遍历异常处理器链，执行所有注册的异常处理器
+#define ExecuteExceptionHandlerChain Unwind_180908770
+
+// 原始函数名：Unwind_180908780 - 系统资源清理函数
+// 功能：清理系统资源，释放内存和处理器资源
+#define CleanupSystemResources Unwind_180908780
+
+// 原始函数名：Unwind_180908790 - 异常状态重置函数
+// 功能：重置异常状态，清理异常处理上下文
+#define ResetExceptionState Unwind_180908790
+
+// 原始函数名：Unwind_1809087a0 - 系统状态验证函数
+// 功能：验证系统状态的一致性和完整性
+#define ValidateSystemState Unwind_1809087a0
+
+// 原始函数名：Unwind_1809087b0 - 系统数据清理函数
+// 功能：清理系统数据，释放数据缓冲区
+#define CleanupSystemData Unwind_1809087b0
+
+// 原始函数名：Unwind_1809087c0 - 系统内存管理函数
+// 功能：管理系统内存分配和释放
+#define ManageSystemMemory Unwind_1809087c0
 
 /**
  * @file 06_utilities.c 总结
