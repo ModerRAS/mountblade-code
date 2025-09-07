@@ -157098,107 +157098,118 @@ int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,u
 
 
 
-34651(uint64_t CharacterCode,int Utf8BufferSize,uint32_t Utf8SourcePointervoid FUN_180134651(uint64_t CharacterCode,int Utf8BufferSize,uint32_t Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码和内存分配
+ * 
+ * 该函数负责处理UTF-8字符编码转换，包括内存分配、数据验证和编码转换操作
+ * 
+ * @param CharacterCode 字符编码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_180134651
+ */
+void ProcessUtf8CharacterEncodingAndMemoryAllocation(uint64_t CharacterCode,int Utf8BufferSize,uint32_t Utf8SourcePointer)
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
   uint32_t UnicodeCodePoint;
-  float FloatVariable4;
-  long long AllocatedMemorySize;
-  long long MemoryBoundaryEnd;
-  long long MemoryPoolBlockSize;
-  int ComputedResult;
-  int IntegerValue9;
-  int IntegerValue0;
-  uint ProcessStringBuffer;
-  int IntegerValue2;
+  float FilterValue;
+  long long MemoryBlockHandle;
+  long long MemoryRegionEnd;
+  long long MemoryPoolSize;
+  int ComputedSize;
+  int ArrayCapacity;
+  int CurrentIndex;
+  uint StringProcessingFlags;
+  int TemporalValue;
   long long ProcessingResult;
-  long long DataSize13;
-  int *ReferenceCountPointer4;
-  unsigned long long Utf16ConversionContext;
-  long long MemoryAllocationOffset;
-  long long SystemContext;
-  int IntegerValue7;
-  uint64_t StackFramePointer;
-  uint64_t SourceIndex;
+  long long DataBlockSize;
+  int *ReferenceCounter;
+  unsigned long long ConversionContext;
+  long long MemoryOffset;
+  long long SystemHandle;
+  int ProcessingStatus;
+  uint64_t FramePointer;
+  uint64_t SourceDataIndex;
   uint64_t DataNodeIndex;
-  unsigned long long MemoryAllocationHandle;
-  uint Utf16Char9;
-  uint64_t RegisterR13Value;
+  unsigned long long AllocationHandle;
+  uint Utf16Char;
+  uint64_t RegisterValue;
   uint64_t CharacterLimit;
-  uint64_t NullPointerValue;
-  float ContextSecondaryFloat0;
-  uint64_t MemoryAllocationCounter;
-  float ContextSecondaryFloat2;
-  float ContextSecondaryFloat3;
-  uint32_t BaseFloatValue;
-  uint32_t FloatRegisterX7_Hi;
-  uint32_t unaff_XMM7_Dc;
-  uint32_t unaff_XMM7_Dd;
-  uint32_t SecondaryFloatValue;
-  uint32_t XMMRegister8_Db;
-  uint32_t unaff_XMM8_Dc;
-  uint32_t unaff_XMM8_Dd;
+  uint64_t NullValue;
+  float MinBoundaryValue;
+  uint64_t AllocationCounter;
+  float RangeStart;
+  float RangeEnd;
+  uint32_t BaseValue;
+  uint32_t RegisterX7_Hi;
+  uint32_t RegisterX7_C;
+  uint32_t RegisterX7_D;
+  uint32_t SecondaryValue;
+  uint32_t RegisterX8_B;
+  uint32_t RegisterX8_C;
+  uint32_t RegisterX8_D;
   
-  *(void *)(ProcessingResult + 0x10) = StackFramePointer;
-  MemoryBoundaryEnd = SystemConfigurationHandle;
-  *(void *)(ProcessingResult + 0x18) = SourceIndex;
+  *(void *)(ProcessingResult + 0x10) = FramePointer;
+  MemoryRegionEnd = SystemConfigurationHandle;
+  *(void *)(ProcessingResult + 0x18) = SourceDataIndex;
   *(void *)(ProcessingResult + 0x20) = DataNodeIndex;
-  MemoryAllocationHandle = 0;
-  *(void *)(ProcessingResult + -8) = RegisterR13Value;
+  AllocationHandle = 0;
+  *(void *)(ProcessingResult + -8) = RegisterValue;
   *(void *)(ProcessingResult + -0x10) = CharacterLimit;
-  *(void *)(ProcessingResult + -0x18) = NullPointerValue;
-  IntegerValue0 = Utf8BufferSize;
+  *(void *)(ProcessingResult + -0x18) = NullValue;
+  CurrentIndex = Utf8BufferSize;
   if (SystemContext != 0) {
-    IntegerValue0 = 0;
+    CurrentIndex = 0;
   }
-  *(uint32_t *)(ProcessingResult + -0x38) = BaseFloatValue;
-  *(uint32_t *)(ProcessingResult + -0x34) = FloatRegisterX7_Hi;
-  *(uint32_t *)(ProcessingResult + -0x30) = unaff_XMM7_Dc;
-  *(uint32_t *)(ProcessingResult + -0x2c) = unaff_XMM7_Dd;
-  *(uint32_t *)(ProcessingResult + -0x48) = SecondaryFloatValue;
-  *(uint32_t *)(ProcessingResult + -0x44) = XMMRegister8_Db;
-  *(uint32_t *)(ProcessingResult + -0x40) = unaff_XMM8_Dc;
-  *(uint32_t *)(ProcessingResult + -0x3c) = unaff_XMM8_Dd;
-  *(uint8_t *)(*(long long *)(MemoryBoundaryEnd + 0x1af8) + 0xb1) = 1;
-  long long AllocatedMemorySize = *(long long *)(MemoryBoundaryEnd + 0x1af8);
-  MemoryAllocationCounter = ProcessDataMatchingOperation(IntegerValue0 + 0x11223347);
-  IntegerValue0 = ValidateSystemDataAndProcessOperation(MemoryAllocationCounter,0,*(uint32_t *                                   (*(long long *)(AllocatedMemorySize + 0x220) + -4 +
-                                   (long long)*(int *)(AllocatedMemorySize + 0x218) * 4));
+  *(uint32_t *)(ProcessingResult + -0x38) = BaseValue;
+  *(uint32_t *)(ProcessingResult + -0x34) = RegisterX7_Hi;
+  *(uint32_t *)(ProcessingResult + -0x30) = RegisterX7_C;
+  *(uint32_t *)(ProcessingResult + -0x2c) = RegisterX7_D;
+  *(uint32_t *)(ProcessingResult + -0x48) = SecondaryValue;
+  *(uint32_t *)(ProcessingResult + -0x44) = RegisterX8_B;
+  *(uint32_t *)(ProcessingResult + -0x40) = RegisterX8_C;
+  *(uint32_t *)(ProcessingResult + -0x3c) = RegisterX8_D;
+  *(uint8_t *)(*(long long *)(MemoryRegionEnd + 0x1af8) + 0xb1) = 1;
+  long long MemoryBlockHandle = *(long long *)(MemoryRegionEnd + 0x1af8);
+  AllocationCounter = ProcessDataMatchingOperation(CurrentIndex + 0x11223347);
+  CurrentIndex = ValidateSystemDataAndProcessOperation(AllocationCounter,0,*(uint32_t *                                   (*(long long *)(MemoryBlockHandle + 0x220) + -4 +
+                                   (long long)*(int *)(MemoryBlockHandle + 0x218) * 4));
   SystemDataTablePointer = SystemConfigurationHandle;
-  if (*(int *)(SystemConfigurationHandle + 0x1b2c) == IntegerValue0) {
-    *(int *)(SystemConfigurationHandle + 0x1b34) = IntegerValue0;
+  if (*(int *)(SystemConfigurationHandle + 0x1b2c) == CurrentIndex) {
+    *(int *)(SystemConfigurationHandle + 0x1b34) = CurrentIndex;
   }
-  if (*(int *)(SystemDataTablePointer + 0x1b30) == IntegerValue0) {
+  if (*(int *)(SystemDataTablePointer + 0x1b30) == CurrentIndex) {
     *(uint8_t *)(SystemDataTablePointer + 0x1b3f) = 1;
   }
-  ReferenceCountPointer4 = (int *)(*(long long *)(SystemDataTablePointer + 0x1af8) + 0x218);
-  *ReferenceCountPointer4 = *ReferenceCountPointer4 + -1;
-  SystemDataTablePointer = FUN_180134480(AllocatedMemorySize);
+  ReferenceCounter = (int *)(*(long long *)(SystemDataTablePointer + 0x1af8) + 0x218);
+  *ReferenceCounter = *ReferenceCounter + -1;
+  SystemDataTablePointer = GetMemoryAllocationInfo(MemoryBlockHandle);
   *(uint32_t *)(SystemDataTablePointer + 0xc) = 0;
   *(int *)(SystemDataTablePointer + 0x10) = Utf8BufferSize;
   *(uint32_t *)(SystemDataTablePointer + 4) = Utf8SourcePointer;
-  ContextSecondaryFloat2 = *(float *)(AllocatedMemorySize + 0x68);
-  *(long long *)(AllocatedMemorySize + 0x210) = SystemDataTablePointer;
-  if (ContextSecondaryFloat2 == 0.0) {
-    ContextSecondaryFloat2 = *(float *)(AllocatedMemorySize + 0x260) - *(float *)(AllocatedMemorySize + 0x40);
+  RangeStart = *(float *)(MemoryBlockHandle + 0x68);
+  *(long long *)(MemoryBlockHandle + 0x210) = SystemDataTablePointer;
+  if (RangeStart == 0.0) {
+    RangeStart = *(float *)(MemoryBlockHandle + 0x260) - *(float *)(MemoryBlockHandle + 0x40);
   }
-  ContextSecondaryFloat0 = *(float *)(AllocatedMemorySize + 0x204) - *(float *)(MemoryBoundaryEnd + 0x166c);
-  *(float *)(SystemDataTablePointer + 0x14) = ContextSecondaryFloat0;
-  ContextSecondaryFloat0 = ContextSecondaryFloat0 + 1.0;
-  ContextSecondaryFloat2 = ContextSecondaryFloat2 - *(float *)(AllocatedMemorySize + 0x8c);
-  if (ContextSecondaryFloat2 <= ContextSecondaryFloat0) {
-    ContextSecondaryFloat2 = ContextSecondaryFloat0;
+  MinBoundaryValue = *(float *)(MemoryBlockHandle + 0x204) - *(float *)(MemoryRegionEnd + 0x166c);
+  *(float *)(SystemDataTablePointer + 0x14) = MinBoundaryValue;
+  MinBoundaryValue = MinBoundaryValue + 1.0;
+  RangeStart = RangeStart - *(float *)(MemoryBlockHandle + 0x8c);
+  if (RangeStart <= MinBoundaryValue) {
+    RangeStart = MinBoundaryValue;
   }
-  *(float *)(SystemDataTablePointer + 0x18) = ContextSecondaryFloat2;
-  *(uint32_t *)(SystemDataTablePointer + 0x24) = *(uint32_t *)(AllocatedMemorySize + 0x104);
-  *(uint32_t *)(SystemDataTablePointer + 0x28) = *(uint32_t *)(AllocatedMemorySize + 0x118);
-  UnicodeCodePoint = *(uint32_t *)(AllocatedMemorySize + 0x104);
+  *(float *)(SystemDataTablePointer + 0x18) = RangeStart;
+  *(uint32_t *)(SystemDataTablePointer + 0x24) = *(uint32_t *)(MemoryBlockHandle + 0x104);
+  *(uint32_t *)(SystemDataTablePointer + 0x28) = *(uint32_t *)(MemoryBlockHandle + 0x118);
+  UnicodeCodePoint = *(uint32_t *)(MemoryBlockHandle + 0x104);
   *(uint32_t *)(SystemDataTablePointer + 0x20) = UnicodeCodePoint;
-  *(uint32_t *)(SystemDataTablePointer + 0x1c) = UnicodeCodePoint;
-  *(uint32_t *)(AllocatedMemorySize + 0x20c) = 0;
-  *(float *)(AllocatedMemorySize + 0x100) = (float)(int)(*(float *)(AllocatedMemorySize + 0x40) + *(float *)(AllocatedMemorySize + 0x204));
-  IntegerValue0 = *(int *)(SystemDataTablePointer + 0x30);
+  *(uint32_t )(SystemDataTablePointer + 0x1c) = UnicodeCodePoint;
+  *(uint32_t *)(MemoryBlockHandle + 0x20c) = 0;
+  *(float )(MemoryBlockHandle + 0x100) = (float)(int)(*(float *)(MemoryBlockHandle + 0x40) + *(float *)(MemoryBlockHandle + 0x204));
+  CurrentIndex = *(int *)(SystemDataTablePointer + 0x30);
   if ((IntegerValue0 != 0) && (IntegerValue0 != Utf8BufferSize + 1)) {
     IntegerValue0 = *(int *)(SystemDataTablePointer + 0x34);
     if (IntegerValue0 < 0) {

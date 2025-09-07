@@ -7471,7 +7471,7 @@ ulonglong UIProcessEventCallback(undefined8 uiContext,undefined8 dataSource,unde
   longlong lVar5;
   undefined *puVar6;
   ulonglong eventTypeCode;
-  bool bVar8;
+  bool EventProcessingResult;  // was bVar8
   undefined *puStack_50;
   char *pcStack_48;
   int iStack_40;
