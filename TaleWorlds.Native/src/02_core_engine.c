@@ -115009,9 +115009,9 @@ uint ValidateSystemDataAndProcessOperation(byte *SystemContextPointer,long long 
   long long DataStructureCounter;
   int RemainingSpace;
   
-  StringComparisonResult = FUN_1801219c0(SystemContextPointer,0);
+  StringComparisonResult = ValidateAndParseUtf8Character(SystemContextPointer,0);
   StringComparisonResult = StringComparisonResult + 1;
-  ValidationCode = FUN_1801219c0(Utf8BufferSize,0);
+  ValidationCode = ValidateAndParseUtf8Character(Utf8BufferSize,0);
   RemainingSpace = ValidationCode + 1 + StringComparisonResult;
   DataStructureCounter = 0;
   if (0 < RemainingSpace) {
@@ -165271,7 +165271,7 @@ long long FUN_18013d540(void
             }
           }
           SecondarySystemDataSize = CONCAT44(AllocatedMemorySize,SystemVariable9);
-          FUN_180121c40(MemoryEndAddressConstant,SystemVariable9,TertiaryProcessingStatusFlag,0);
+          ConvertUtf16ToUtf8Character(MemoryEndAddressConstant,SystemVariable9,TertiaryProcessingStatusFlag,0);
         }
         GlobalUnlock(MemoryBoundaryEnd);
         CloseClipboard();
@@ -165301,7 +165301,7 @@ long long FUN_18013d540(void
   
   ValidationCode = OpenClipboard(0);
   if (ValidationCode != 0) {
-    ValidationCode = FUN_1801219c0(Utf8BufferSize,0);
+    ValidationCode = ValidateAndParseUtf8Character(Utf8BufferSize,0);
     DataStructureCounter = GlobalAlloc(2,(long long)(ValidationCode + 1) * 2);
     if (DataStructureCounter != 0) {
       Utf16Char = GlobalLock(DataStructureCounter);

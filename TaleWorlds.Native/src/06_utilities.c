@@ -18872,13 +18872,13 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
                 CleanupSystemResourceDW0(&StackMemoryBuffer,0);
                 return dataFlags;
               }
-              loopCounter = (uint64_t)uStack_110._4_4_;
-              inputParameter4 = (int)uStack_110;
+              loopCounter = (uint64_t)StackMemoryData._4_4_;
+              inputParameter4 = (int)StackMemoryData;
             }
             stackUIntBuffer[0] = inputParameter4 + 1;
             dataFlags = (uint64_t)stackUIntBuffer[0];
-            uStack_110 = CONCAT44(uStack_110._4_4_,stackUIntBuffer[0]);
-            *(DataWord *)(uStack_118 + (int64_t)inputParameter4 * 4) = operationResult;
+            StackMemoryData = CONCAT44(StackMemoryData._4_4_,stackUIntBuffer[0]);
+            *(DataWord *)(StackMemoryBuffer + (int64_t)inputParameter4 * 4) = operationResult;
             validationContextPointer3 = systemContextPointer;
           }
           arrayIndex = (int)loopCounter;
