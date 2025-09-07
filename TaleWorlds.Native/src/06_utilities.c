@@ -8316,7 +8316,7 @@ uint8_t GlobalDataPointerCacheCache;
 
 // 全局数据指针Cache验证缓冲区
 // 功能：存储全局数据指针Cache的验证信息
-#define GlobalDataPointerCacheValidationBuffer UNK_180a23018
+#define GlobalDataPointerCacheValidationBuffer GlobalDataPointerValidationStorage
 uint8_t GlobalDataPointerCacheValidationBuffer;
 
 // 原始函数名：FUN_180942420 - 全局指针设置函数A37
@@ -8325,27 +8325,27 @@ uint8_t GlobalDataPointerCacheValidationBuffer;
 
 // 原始变量名：DAT_180bfa170 - 全局数据指针Final存储区
 // 功能：存储全局数据指针Final的相关信息
-#define GlobalDataPointerFinalStorage DAT_180bfa170
+#define GlobalDataPointerFinalStorage GlobalDataFinalStorageArea
 uint8_t GlobalDataPointerFinalStorage;
 
 // 原始变量名：DAT_180bfa178 - 全局数据指针Final状态区
 // 功能：存储全局数据指针Final的状态信息
-#define GlobalDataPointerFinalStatus DAT_180bfa178
+#define GlobalDataPointerFinalStatus GlobalDataFinalStatusFlags
 uint8_t GlobalDataPointerFinalStatus;
 
 // 原始变量名：DAT_180bfa180 - 全局数据指针Final配置区
 // 功能：存储全局数据指针Final的配置信息
-#define GlobalDataPointerFinalConfig DAT_180bfa180
+#define GlobalDataPointerFinalConfig GlobalDataFinalConfigurationSettings
 uint8_t GlobalDataPointerFinalConfig;
 
 // 原始变量名：DAT_180bfa188 - 全局数据指针Final缓存区
 // 功能：存储全局数据指针Final的缓存数据
-#define GlobalDataPointerFinalCache DAT_180bfa188
+#define GlobalDataPointerFinalCache GlobalDataFinalCacheBuffer
 uint8_t GlobalDataPointerFinalCache;
 
 // 原始变量名：UNK_180a23000 - 全局数据指针Final验证缓冲区
 // 功能：存储全局数据指针Final的验证信息
-#define GlobalDataPointerFinalValidationBuffer UNK_180a23000
+#define GlobalDataPointerFinalValidationBuffer GlobalDataFinalValidationStorage
 uint8_t GlobalDataPointerFinalValidationBuffer;
 
 // 原始函数名：FUN_180942440 - 全局指针设置函数Extended
@@ -9566,7 +9566,7 @@ uint8_t SystemDataProcessingAreaA2;
 // 功能：用于处理系统数据的区域
 uint8_t SystemDataProcessingAreaA3;
 // 系统配置数据存储
-#define SystemGlobalConfigurationData DAT_180c91d14
+#define SystemGlobalConfigurationData SystemGlobalConfigurationStorage
 uint8_t SystemConfigurationDataStorage;  
 // 系统清理处理器数据存储
 uint8_t SystemCleanupHandlerDataStore;
@@ -9575,18 +9575,18 @@ uint8_t SystemExceptionHandlerTable;
 uint8_t SystemExceptionQueueTable;
 uint8_t SystemExceptionStackTable;
 
-// 系统状态验证函数A0
+// 系统状态验证函数
 // 功能：验证系统状态完整性
-#define ValidateSystemStatusA0 FUN_180943090
+#define ValidateSystemStatus FUN_180943090
 uint8_t SystemStatusValidationFunction;
-// 系统数据表A0
+// 系统全局数据表
 // 功能：存储系统数据表信息
-#define SystemGlobalDataTableA0 DAT_180d49ff8
+#define SystemGlobalDataTable SystemGlobalDataTablePrimary
 uint8_t SystemDataTableStorage;
 
-// 系统配置处理函数A0
+// 系统配置处理函数
 // 功能：处理系统配置操作
-#define ProcessSystemConfigurationA0 FUN_1809430b0
+#define ProcessSystemConfiguration FUN_1809430b0
 uint8_t SystemConfigurationProcessingFunction;
 // 系统内存管理区A0
 // 功能：用于系统内存管理的区域
@@ -10006,7 +10006,7 @@ uint8_t SecurityValidationFlagA274;    // 系统安全验证标志e18
 uint8_t ThreadLocalStorageValidationFlag;    // 线程本地存储验证标志
 // 系统配置数据表A0
 // 功能：存储系统配置数据表信息
-#define SystemGlobalConfigurationTableA0 DAT_180c92510
+#define SystemGlobalConfigurationTableA0 SystemGlobalConfigurationTablePrimary
 uint8_t SystemConfigurationDataTableA0;
 // 系统主缓存状态标志
 char SystemMainCacheStatusFlag;               // 系统主缓存状态标志
@@ -10020,27 +10020,27 @@ void* SystemStatusPointerA0;
 void* SystemDataProcessingFunction;
 // 系统标志变量A0
 // 功能：存储系统状态标志
-#define SystemGlobalStatusFlagA0 DAT_180bf66d8
+#define SystemGlobalStatusFlagA0 SystemGlobalStatusFlags
 ByteFlag SystemFlagA0;
 // 系统数据表A1
 // 功能：存储系统数据表信息
-#define SystemGlobalDataTableA1 DAT_180c96858
+#define SystemGlobalDataTableA1 SystemGlobalDataTableSecondary
 uint8_t SystemDataTableA1;
 // 系统缓冲区数据表A0
 // 功能：存储系统缓冲区数据表信息
-#define SystemBufferDataTableA0 DAT_180bfbf64
+#define SystemBufferDataTableA0 SystemBufferDataTablePrimary
 uint8_t SystemBufferDataTableA0;
 // 系统缓冲区数据表A1
 // 功能：存储系统缓冲区数据表信息
-#define SystemBufferDataTableA1 DAT_180bfbf7c
+#define SystemBufferDataTableA1 SystemBufferDataTableSecondary
 uint8_t SystemBufferDataTableA1;
 // 系统缓冲区数据表A2
 // 功能：存储系统缓冲区数据表信息
-#define SystemBufferDataTableA2 DAT_180bfbf60
+#define SystemBufferDataTableA2 SystemBufferDataTableTertiary
 uint8_t SystemBufferDataTableA2;
 // 系统配置数据表A1
 // 功能：存储系统配置数据表信息
-#define SystemConfigurationDataTableA1 DAT_180bf7308
+#define SystemConfigurationDataTableA1 SystemConfigurationDataTableSecondary
 uint8_t SystemConfigurationDataTableA1;
 // 系统缓冲区数据表A3
 // 功能：存储系统缓冲区数据表信息
@@ -13968,11 +13968,11 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始变量名：UNK_180986350 - 数据块指针表A0
 // 功能：存储数据块指针的表结构
-#define DataBlockPointerTableA0 UNK_180986350
+#define DataBlockPointerTableA0 DataBlockPointerTablePrimary
 
 // 原始变量名：UNK_180986370 - 数据块指针表A1
 // 功能：存储数据块指针的表结构
-#define DataBlockPointerTableA1 UNK_180986370
+#define DataBlockPointerTableA1 DataBlockPointerTableSecondary
 
 /**
  * @brief 数据和指针处理函数A0
@@ -14126,11 +14126,11 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始变量名：UNK_1809864e0 - 数据配置表A0
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA0 UNK_1809864e0
+#define DataConfigurationTableA0 DataConfigurationTablePrimary
 
 // 原始变量名：UNK_180986508 - 数据配置表A1
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA1 UNK_180986508
+#define DataConfigurationTableA1 DataConfigurationTableSecondary
 
 // 原始变量名：UNK_180986550 - 数据配置表A2
 // 功能：存储数据配置信息的表结构
