@@ -50143,7 +50143,13 @@ void CleanupResourceC0Wrapper(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905090(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证系统状态A0函数
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180905090
+ */
+void ValidateSystemStatusA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x50) & 1) != 0) {

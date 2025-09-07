@@ -12802,7 +12802,7 @@ MemoryAllocationReset:
   if ((int)NetworkRequestResult != 0) {
     return NetworkRequestResult;
   }
-  if ((char)StackVariable10 == (char)NetworkRequestResult) {
+  if ((char)MemoryAlignmentMask == (char)NetworkRequestResult) {
     return 0;
   }
   StackVariable10 = 0;
