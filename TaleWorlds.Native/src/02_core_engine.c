@@ -7496,8 +7496,8 @@ void CoreEngineInitializeNetworkConnectionPoolStatusProcessor(void
     CoreEngineSetupNetworkConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,MemoryOffset + 0x20,MemoryOffset);
     CurrentConnection = NewConnectionPointer;
   }
-  CurrentConnection[6] = 0x43330a43fcdb3653;
-  CurrentConnection[7] = 0xdcfdc333a769ec93;
+  CurrentConnection[6] = SystemNodeIdentifierTertiary;
+  CurrentConnection[7] = SystemNodeIdentifierQuaternary;
   CurrentConnection[8] = &SystemDataTemplateN;
   CurrentConnection[9] = 1;
   CurrentConnection[10] = ConnectionInitializer;
@@ -7909,8 +7909,8 @@ void CoreEngineInitializenetworkConnectionPoolStateRecoveryManager(void
     CoreEngineAllocateConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,AllocationSize + 0x20,AllocationSize);
     CurrentConnection = NewConnectionPointer;
   }
-  CurrentConnection[6] = 0x43330a43fcdb3653;
-  CurrentConnection[7] = 0xdcfdc333a769ec93;
+  CurrentConnection[6] = SystemNodeIdentifierTertiary;
+  CurrentConnection[7] = SystemNodeIdentifierQuaternary;
   CurrentConnection[8] = &SystemDataTemplateN;
   CurrentConnection[9] = 1;
   CurrentConnection[10] = StateRecoveryHandler;
@@ -40032,7 +40032,7 @@ void ProcessMemoryBoundaryValidation(long long CharacterCode
 
 
 
-3b64(uint *CharacterCode/**
+/**
  * @brief 处理系统数据结构序列化
  * 
  * 该函数负责处理系统数据结构的序列化操作，包括：
@@ -40047,7 +40047,7 @@ void ProcessMemoryBoundaryValidation(long long CharacterCode
  * @note 包含内存管理和数据复制操作
  * @note 用于系统数据序列化和传输
  */
-void ProcessSystemDataStructureSerialization(uint *DataStructure
+void ProcessSystemDataStructureSerialization(uint *DataStructure)
 {
   ushort Utf16Char;
   uint64_t StatusBufferPointer;
@@ -100024,7 +100024,7 @@ ProcessSystemDataStructureConfiguration_DataProcessing:
 
 
 
-4580(void/**
+/**
  * @brief 完成浮点数据纹理处理
  * 
  * 该函数负责完成浮点数据纹理的处理，包括：
@@ -100036,7 +100036,7 @@ ProcessSystemDataStructureConfiguration_DataProcessing:
  * 
  * 这是一个系统级的处理函数，用于完成浮点数据纹理的最终处理。
  */
-void FinalizeFloatDataTexture(void
+void FinalizeFloatDataTexture(void)
 {
   int *ReferenceCountPointer;
   char SystemCheckResult;
