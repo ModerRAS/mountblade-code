@@ -176115,7 +176115,7 @@ LAB_180146224:
           PrimaryProcessingStatusFlag[3] = 0x6f6d615f;
           PrimaryProcessingStatusFlag[4] = 0x746e75;
           SystemPriorityLevel = 0x13;
-          FUN_180632650(StringProcessingStatus,&SystemValidationPointer);
+          ProcessCharacterWithSystemRegister(StringProcessingStatus,&SystemValidationPointer);
           SystemTemplatePointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
           CoreEngineFreeSystemMemory(PrimaryProcessingStatusFlag);
@@ -176255,7 +176255,7 @@ LAB_1801479b7:
           systemEventTemplatePointer[4] = 0x646c6f68;
           *(uint8_t *)(systemEventTemplatePointer + 5) = 0;
           SystemPriorityLevel = 0x14;
-          FUN_180632650(StringProcessingStatus,&SystemValidationPointer);
+          ProcessCharacterWithSystemRegister(StringProcessingStatus,&SystemValidationPointer);
           SystemTemplatePointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
           CoreEngineFreeSystemMemory(systemEventTemplatePointer);
