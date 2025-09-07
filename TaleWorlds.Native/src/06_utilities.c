@@ -18161,23 +18161,23 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
           if (arrayIndex == 2) {
             arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),&uStackX_18);
             validationStatus = uStackX_18;
-            validationContextPointer3 = plStack_108;
+            validationContextPointer3 = systemContextPointer;
             if ((arrayIndex == 0) &&
                (arrayIndex = PerformSystemValidationCheck(uStackX_18), validationContextPointer3 = plStack_108, 0 < arrayIndex)) {
               do {
                 dataProcessingWordB = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
                 dataProcessingWordA = 0;
                 dataValidationContext = &SystemValidationDataTableA0;
-                DoubleValidateAndExecuteOperation(&puStack_f0,*(DataBuffer *)(operationBase + 0x58));
+                DoubleValidateAndExecuteOperation(dataValidationContext,*(DataBuffer *)(operationBase + 0x58));
                 arrayIndex = PerformSystemValidationCheck(validationStatus);
               } while (0 < arrayIndex);
               dataFlags = (uint64_t)stackUIntBuffer[0];
-              validationContextPointer3 = plStack_108;
+              validationContextPointer3 = systemContextPointer;
             }
           }
           else if (arrayIndex == 3) {
             arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),stackByteBuffer);
-            validationContextPointer3 = plStack_108;
+            validationContextPointer3 = systemContextPointer;
             if (arrayIndex == 0) {
               puStack_d8 = &SystemValidationDataTableA1;
               uStack_c8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
@@ -18188,12 +18188,12 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
               uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
               ValidateAndExecuteOperationA0(&puStack_f0,*(DataBuffer *)(operationBase + 0x58));
-              validationContextPointer3 = plStack_108;
+              validationContextPointer3 = systemContextPointer;
             }
           }
           else if (arrayIndex == 5) {
             arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),validationBuffer1);
-            validationContextPointer3 = plStack_108;
+            validationContextPointer3 = systemContextPointer;
             if (arrayIndex == 0) {
               puStack_d8 = &SystemValidationDataTableA3;
               uStack_c8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
@@ -18214,19 +18214,19 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
               uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
               ProcessSystemEventA0(&puStack_f0,*(DataBuffer *)(operationBase + 0x58));
-              validationContextPointer3 = plStack_108;
+              validationContextPointer3 = systemContextPointer;
             }
           }
           else if (arrayIndex == 6) {
             arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),validationBuffer2);
-            validationContextPointer3 = plStack_108;
+            validationContextPointer3 = systemContextPointer;
             if (arrayIndex == 0) {
               puStack_b8 = &SystemValidationDataTableA7;
               uStack_a8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = 0x3f800000;
               ValidateSystemA0(&puStack_b8,*(DataBuffer *)(operationBase + 0x58));
-              validationContextPointer3 = plStack_108;
+              validationContextPointer3 = systemContextPointer;
             }
           }
           else if ((arrayIndex == 7) &&
@@ -18304,7 +18304,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
             dataFlags = (uint64_t)stackUIntBuffer[0];
             uStack_110 = CONCAT44(uStack_110._4_4_,stackUIntBuffer[0]);
             *(DataWord *)(uStack_118 + (int64_t)inputParameter4 * 4) = operationResult;
-            validationContextPointer3 = plStack_108;
+            validationContextPointer3 = systemContextPointer;
           }
           arrayIndex = (int)loopCounter;
           inputParameter6 = (int)dataFlags;
@@ -18332,15 +18332,15 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
 MemoryAllocationLabel:
       } while (stackIntBuffer[0] != -1);
       stackIntBuffer[0] = -1;
-      dataFlags = uStack_118;
+      dataFlags = memoryOperationCounter;
     }
     resourceIterator = (int64_t)(inputParameter6 + -1);
     if (-1 < inputParameter6 + -1) {
       do {
         securityCheckValueA0 = securityCheckValueA0 & SystemCleanupFlag00000000;
-        plStack_108 = (int64_t *)&SystemConfigurationDataTable;
-        aiStack_f8[0] = *(int *)(dataFlags + resourceIterator * 4);
-        ResetSystemStateA1(&plStack_108,*(DataBuffer *)(operationBase + 0x58));
+        systemContextPointer = (int64_t *)&SystemConfigurationDataTable;
+        arrayIndexBuffer[0] = *(int *)(dataFlags + resourceIterator * 4);
+        ResetSystemStateA1(&systemContextPointer,*(DataBuffer *)(operationBase + 0x58));
         resourceIterator = resourceIterator + -1;
       } while (-1 < resourceIterator);
     }
@@ -90002,7 +90002,18 @@ void Unwind_180911680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809116a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常清理函数 - 上下文偏移量0x2130
+ * 
+ * 清理验证上下文中偏移量0x2130处的异常处理状态
+ * 设置临时异常处理器，然后重置为默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void CleanupExceptionAtOffset2130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90032,7 +90043,18 @@ void Unwind_1809116a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809116c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常清理函数 - 上下文偏移量0x21a0
+ * 
+ * 清理验证上下文中偏移量0x21a0处的异常处理状态
+ * 设置临时异常处理器，然后重置为默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void CleanupExceptionAtOffset21A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;

@@ -168,6 +168,10 @@ const void* const SystemKeyStringContactCaptureThreshold = (void*)0x180a0b158;
 const void* const SystemKeyStringSkinWidth = (void*)0x180a0b188;
 const void* const SystemKeyStringLinearDamping = (void*)0x180a0b178;
 const void* const SystemKeyStringAngularDamping = (void*)0x180a0b198;
+const void* const SystemKeyStringContactOffset = (void*)0x180a0b168;
+const void* const SystemKeyStringContactCaptureThreshold = (void*)0x180a0b158;
+const void* const SystemKeyStringSkinWidth = (void*)0x180a0b188;
+const void* const SystemKeyStringLinearDamping = (void*)0x180a0b178;
 
 // 系统事件和配置常量 - 用于替换UNK_180a07xxx变量
 const void* const SystemEventConfigurationPrimary = (void*)0x180a07340;
@@ -101073,7 +101077,7 @@ code_r0x000180115b16:
 
 
 
-void FUN_180115721(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,int *Utf16InputPointer)
+void ProcessUtf16CharacterData(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,int *Utf16InputPointer)
 {
   uint8_t aUtf16Char [16];
   int StringComparisonResult;
@@ -101520,25 +101524,25 @@ void InitializeSystemMemoryBuffer(long long SystemContextPointer,uint32_t Utf8Bu
   int MemoryValidationResult;
   uint32_t *MemoryAllocationMask;
   
-  loopCounter = SystemContextPointer + 0x18;
+  long long ResourceHandle = SystemContextPointer + 0x18;
   *(uint16_t *)(SystemContextPointer + 0xe18) = 99;
   *(uint32_t *)(SystemContextPointer + 0xe20) = 999;
   if (*(short *)(SystemContextPointer + 0xe16) == 99) {
-    ReleaseSystemResource(loopCounter);
+    ReleaseSystemResource(ResourceHandle);
   }
-  ValidationCode = *(int *)(SystemContextPointer + 0xe1c);
+  int ValidationCode = *(int *)(SystemContextPointer + 0xe1c);
   while (999 < ValidationCode) {
-    ReleaseSystemResource(loopCounter);
+    ReleaseSystemResource(ResourceHandle);
     ValidationCode = *(int *)(SystemContextPointer + 0xe1c);
   }
-  SystemShortValue2 = *(short *)(SystemContextPointer + 0xe16);
-  *(short *)(SystemContextPointer + 0xe16) = SystemShortValue2 + 1;
-  pMemoryAddressMask = (uint32_t *)((long long)SystemShortValue2 * 0x10 + loopCounter);
-  if (pMemoryAddressMask != (uint32_t *)0x0) {
-    *pMemoryAddressMask = Utf8BufferSize;
-    pMemoryAddressMask[1] = 0;
-    pMemoryAddressMask[2] = Utf16InputPointer;
-    pMemoryAddressMask[3] = 0xffffffff;
+  BufferIndex = *(short *)(SystemContextPointer + 0xe16);
+  *(short *)(SystemContextPointer + 0xe16) = BufferIndex + 1;
+  MemoryAllocationMask = (uint32_t *)((long long)BufferIndex * 0x10 + ResourceHandle);
+  if (MemoryAllocationMask != (uint32_t *)0x0) {
+    *MemoryAllocationMask = Utf8BufferSize;
+    MemoryAllocationMask[1] = 0;
+    MemoryAllocationMask[2] = Utf16InputPointer;
+    MemoryAllocationMask[3] = 0xffffffff;
   }
   return;
 }
@@ -112087,7 +112091,7 @@ d900(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputP
 
 
 
-d940(int *SystemContextPointer,uint32_t *Utf8BufferSizevoid FUN_18011d940(int *SystemContextPointer,uint32_t *Utf8BufferSize
+d940(int *SystemContextPointer,uint32_t *Utf8BufferSizevoid ValidateSystemContextData(int *SystemContextPointer,uint32_t *Utf8BufferSize
 {
   int LockResult;
   int StringComparisonResult;
@@ -112244,7 +112248,7 @@ da90(int *SystemContextPointer,int Utf8BufferSizevoid CoreEngineInitializeSystem
 
 
 
-dae0(int *SystemContextPointer,int Utf8BufferSizevoid FUN_18011dae0(int *SystemContextPointer,int Utf8BufferSize
+dae0(int *SystemContextPointer,int Utf8BufferSizevoid ProcessSystemBufferSize(int *SystemContextPointer,int Utf8BufferSize
 {
   int LockResult;
   int StringComparisonResult;
@@ -143293,7 +143297,7 @@ f0c0(voidvoid FUN_18012f0c0(void
 
 
 f260(float *SystemContextPointer,float *Utf8BufferSize,float *Utf16InputPointer,int *Utf16EndPointer,float *AdditionalParameter1,
-void FUN_18012f260(float *SystemContextPointer,float *Utf8BufferSize,float *Utf16InputPointer,int *Utf16EndPointer,float *AdditionalParameter1,
+void ProcessFloatDataWithFilters(float *SystemContextPointer,float *Utf8BufferSize,float *Utf16InputPointer,int *Utf16EndPointer,float *AdditionalParameter1,
                   float *AdditionalParameter2,int AdditionalParameter3
 {
   float SystemContextFloat1;
