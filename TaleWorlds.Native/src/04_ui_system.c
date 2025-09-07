@@ -63985,7 +63985,16 @@ uint FUN_180699e5f(void)
 
 
 
-int FUN_180699f09(void)
+/**
+ * @brief 验证UI系统状态标志
+ * 
+ * 该函数负责验证UI系统的状态标志，检查系统状态的有效性
+ * 并根据验证结果设置相应的标志位
+ * 
+ * @return 验证结果状态码，返回负值表示验证状态
+ * @note 原始函数名: FUN_180699f09
+ */
+int ValidateUIStatusFlags(void)
 
 {
   int unaff_ESI;
@@ -64000,7 +64009,16 @@ int FUN_180699f09(void)
 
 
 
-int FUN_180699f10(void)
+/**
+ * @brief 检查UI系统状态
+ * 
+ * 该函数负责检查UI系统的当前状态，返回状态检查结果
+ * 主要用于系统状态监控和诊断
+ * 
+ * @return 状态检查结果，返回系统状态码
+ * @note 原始函数名: FUN_180699f10
+ */
+int CheckUISystemStatus(void)
 
 {
   int unaff_ESI;
@@ -67656,7 +67674,18 @@ void FUN_18069dfe0(int uiContext,int dataSource,int targetBuffer,undefined8 buff
 
 
 
-int FUN_18069e4f0(byte *uiContext,uint *dataSource)
+/**
+ * @brief 处理UI上下文数据验证
+ * 
+ * 该函数负责处理UI上下文数据的验证操作，包括数据完整性检查
+ * 和状态标志的设置。根据上下文类型执行不同的验证逻辑
+ * 
+ * @param uiContext UI上下文指针，包含系统状态信息
+ * @param dataSource 数据源指针，用于存储验证结果
+ * @return 验证结果状态码，成功返回处理的数据项数量
+ * @note 原始函数名: FUN_18069e4f0
+ */
+int ProcessUIContextValidation(byte *uiContext,uint *dataSource)
 
 {
   uint *pfunctionResult;
@@ -67724,7 +67753,20 @@ int FUN_18069e4f0(byte *uiContext,uint *dataSource)
 
 
 
-int FUN_18069e530(undefined8 uiContext,uint *dataSource,undefined8 targetBuffer,longlong bufferSize)
+/**
+ * @brief 批量处理UI数据验证
+ * 
+ * 该函数负责批量处理UI数据的验证操作，对多个数据源进行
+ * 并行验证，确保数据的一致性和完整性
+ * 
+ * @param uiContext UI上下文指针，包含系统状态信息
+ * @param dataSource 数据源指针数组，用于存储验证结果
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小，指定处理的数据量
+ * @return 批量验证结果状态码
+ * @note 原始函数名: FUN_18069e530
+ */
+int ProcessUIBatchValidation(undefined8 uiContext,uint *dataSource,undefined8 targetBuffer,longlong bufferSize)
 
 {
   int *poperationResult;
@@ -67767,7 +67809,17 @@ int FUN_18069e530(undefined8 uiContext,uint *dataSource,undefined8 targetBuffer,
 
 
 
-int FUN_18069e5d2(longlong uiContext)
+/**
+ * @brief 初始化UI上下文状态
+ * 
+ * 该函数负责初始化UI上下文的状态信息，设置系统的初始状态
+ * 和必要的配置参数
+ * 
+ * @param uiContext UI上下文指针，用于初始化状态信息
+ * @return 初始化结果状态码
+ * @note 原始函数名: FUN_18069e5d2
+ */
+int InitializeUIContextState(longlong uiContext)
 
 {
   byte in_AL;
@@ -68749,7 +68801,18 @@ void FUN_18069f682(void)
 
 
 
-int FUN_18069f6a0(longlong uiContext,longlong dataSource)
+/**
+ * @brief 解码UI字符数据
+ * 
+ * 该函数负责解码UI系统中的字符数据，处理字符映射和
+ * 状态表转换，支持多种字符编码格式
+ * 
+ * @param uiContext UI上下文指针，包含解码所需的状态信息
+ * @param dataSource 数据源指针，包含待解码的字符数据
+ * @return 解码结果状态码，成功返回解码的字符数量
+ * @note 原始函数名: FUN_18069f6a0
+ */
+int DecodeUICharacterData(longlong uiContext,longlong dataSource)
 
 {
   byte bVar1;
@@ -68924,7 +68987,18 @@ void FUN_18069f8cb(void)
 
 
 
-int FUN_18069f8f0(longlong uiContext,longlong dataSource)
+/**
+ * @brief 处理UI字符映射
+ * 
+ * 该函数负责处理UI系统中的字符映射操作，将字符数据
+ * 转换为内部表示形式，支持字符表查找和映射
+ * 
+ * @param uiContext UI上下文指针，包含映射所需的状态信息
+ * @param dataSource 数据源指针，包含待映射的字符数据
+ * @return 映射结果状态码，成功返回映射的字符数量
+ * @note 原始函数名: FUN_18069f8f0
+ */
+int ProcessUICharacterMapping(longlong uiContext,longlong dataSource)
 
 {
   byte bVar1;
@@ -69525,7 +69599,16 @@ LAB_1806a011c:
 
 
 
-int FUN_1806a007d(void)
+/**
+ * @brief 验证UI资源数据
+ * 
+ * 该函数负责验证UI系统资源数据的完整性和有效性，
+ * 检查资源数据的格式和内容是否符合要求
+ * 
+ * @return 验证结果状态码，成功返回验证通过的资源数量
+ * @note 原始函数名: FUN_1806a007d
+ */
+int ValidateUIResourceData(void)
 
 {
   int operationResult;
@@ -69546,7 +69629,16 @@ int FUN_1806a007d(void)
 
 
 
-int FUN_1806a012f(void)
+/**
+ * @brief 检查UI资源状态
+ * 
+ * 该函数负责检查UI系统资源的当前状态，返回资源
+ * 状态检查结果，用于资源管理和调度
+ * 
+ * @return 资源状态检查结果，返回资源状态码
+ * @note 原始函数名: FUN_1806a012f
+ */
+int CheckUIResourceStatus(void)
 
 {
   int operationResult;
