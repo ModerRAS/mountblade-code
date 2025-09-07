@@ -98,6 +98,13 @@
 #define SystemComponentContextOffset 0x48
 #define SystemComponentDataOffset 0x38
 #define SystemComponentStatusOffset 0xe4
+
+// 系统操作处理常量
+#define SystemContextDataOffset 0x80
+#define SystemOperationBlockSize 0x128
+#define SystemOperationDataOffset 0x2a0
+#define SystemOperationStatusOffset 0x30
+#define SystemResourceCleanupOffset 0x40
 #define SystemComponentListOffset 0x4d8
 #define SystemComponentCountOffset 0x4e4
 #define SystemComponentCapacityOffset 0x4e8
@@ -100035,10 +100042,20 @@ void ProcessSystemOperationsE60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fe70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 共享锁释放函数E70
+ * 
+ * 该函数负责释放共享锁资源
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090fe70
+ * @note 这是一个共享锁释放函数，用于释放共享锁资源
+ */
+void ReleaseSharedLockE70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(char *)(dataBuffer + 0x30) != '\0') {
+  if (*(char *)(dataBuffer + SystemOperationStatusOffset) != '\0') {
     ReleaseSRWLockShared(*(DataBuffer *)(dataBuffer + ValidationResultOffset));
   }
   return;
@@ -100046,10 +100063,20 @@ void Unwind_18090fe70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fe80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 共享锁释放函数E80
+ * 
+ * 该函数负责释放共享锁资源（E80变体）
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090fe80
+ * @note 这是一个共享锁释放函数，用于释放共享锁资源（E80变体）
+ */
+void ReleaseSharedLockE80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(char *)(dataBuffer + 0x30) != '\0') {
+  if (*(char *)(dataBuffer + SystemOperationStatusOffset) != '\0') {
     ReleaseSRWLockShared(*(DataBuffer *)(dataBuffer + ValidationResultOffset));
   }
   return;
@@ -100057,21 +100084,41 @@ void Unwind_18090fe80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fe90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 共享锁释放函数E90
+ * 
+ * 该函数负责释放共享锁资源（E90变体，处理间接指针）
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090fe90
+ * @note 这是一个共享锁释放函数，用于释放共享锁资源（E90变体，处理间接指针）
+ */
+void ReleaseSharedLockE90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(char *)(*(DataBuffer **)(dataBuffer + 0x40) + 1) != '\0') {
-    ReleaseSRWLockShared(**(DataBuffer **)(dataBuffer + 0x40));
+  if (*(char *)(*(DataBuffer **)(dataBuffer + SystemResourceCleanupOffset) + 1) != '\0') {
+    ReleaseSRWLockShared(**(DataBuffer **)(dataBuffer + SystemResourceCleanupOffset));
   }
   return;
 }
 
 
 
-void Unwind_18090fea0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据数组处理函数EA0
+ * 
+ * 该函数负责处理数据数组，调用数据数组处理函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090fea0
+ * @note 这是一个数据数组处理函数，用于处理数据数组
+ */
+void ProcessDataArrayEA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + 0x2a0);
+  ProcessDataArrayA0(dataBuffer + SystemOperationDataOffset);
   return;
 }
 
