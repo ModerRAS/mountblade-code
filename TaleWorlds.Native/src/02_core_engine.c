@@ -168994,14 +168994,14 @@ uint64_t * ProcessUtf8InputBufferWithChecksum(byte *Utf8InputBuffer)
   
   *(void *)(RegisterR11 + 8) = SystemContext;
   MemoryBoundaryEnd = SystemConfigurationHandle;
-  *(void *)(in_R11 + -0x48) = ProcessingResult;
-  *(void *)(in_R11 + -0x40) = ProcessingResult;
-  *(void *)(in_R11 + -0x2c) = ProcessingResult;
+  *(void *)(RegisterR11 + -0x48) = ProcessingResult;
+  *(void *)(RegisterR11 + -0x40) = ProcessingResult;
+  *(void *)(RegisterR11 + -0x2c) = ProcessingResult;
   MemoryAllocationSize = *(int *)(MemoryBoundaryEnd + 0x2e2c);
-  *(void *)(in_R11 + -0x34) = ProcessingResult;
+  *(void *)(RegisterR11 + -0x34) = ProcessingResult;
   SystemChecksum = (uint32_t)ProcessingResult;
-  *(void *)(in_R11 + -0x20) = ProcessingResult;
-  *(void *)(in_R11 + 0x18) = CharacterLimit;
+  *(void *)(RegisterR11 + -0x20) = ProcessingResult;
+  *(void *)(RegisterR11 + 0x18) = CharacterLimit;
   SystemMemoryAllocationResult = SystemMemoryPoolBase;
   IntegerValue0 = *(int *)(MemoryBoundaryEnd + 0x2e28);
   StackProcessingVariable44 = SystemChecksum;
