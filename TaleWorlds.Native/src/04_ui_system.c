@@ -62518,10 +62518,10 @@ void RenderUIComponents(longlong uiContext,byte *dataSource,int targetBuffer,und
                        ((ulonglong)dataSource[2] + (ulonglong)dataSource[0xb] * 4) * 4);
       componentIndex = (ulonglong)componentType;
       if (componentType != 0) {
-        lStack_58 = uVar5 * 0x10 + allocatedMemory;
-        lStack_50 = (uVar5 + 0x40) * 0x10 + allocatedMemory;
-        lStack_48 = (uVar5 + 0x80) * 0x10 + allocatedMemory;
-        lStack_40 = ((ulonglong)*(byte *)(((longlong)compareResult + 0x32) * 0x40 + uVar5 + allocatedMemory) + 0xc0) *
+        buttonBuffer = componentIndex * 0x10 + allocatedMemory;
+        textBuffer = (componentIndex + 0x40) * 0x10 + allocatedMemory;
+        imageBuffer = (componentIndex + 0x80) * 0x10 + allocatedMemory;
+        panelBuffer = ((ulonglong)*(byte *)(((longlong)compareResult + 0x32) * 0x40 + componentIndex + allocatedMemory) + 0xc0) *
                     0x10 + allocatedMemory;
         if (0 < iVar6) {
           RenderUIButtonInternal(param_6,param_7,param_8,bufferSize,resultPointer,&lStack_58);

@@ -274197,4 +274197,144 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define ProcessSystemDataTableAndBuffer FUN_18023c450
 
+/**
+ * @brief 处理系统字符串和数据结构
+ * 
+ * 该函数负责处理系统字符串和数据结构的操作，包括字符串的处理和数据结构的管理。
+ * 在核心引擎中用于字符串相关的数据结构处理。
+ * 
+ * @param stringPointer 字符串指针
+ * @param dataPointer 数据指针
+ * @param operationType 操作类型
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18009b220
+ */
+#define ProcessSystemStringAndDataStructure FUN_18009b220
+
+/**
+ * @brief 验证系统字符和处理数据
+ * 
+ * 该函数负责验证系统字符并处理相关数据，包括字符验证和数据处理操作。
+ * 在核心引擎中用于字符数据的验证和处理。
+ * 
+ * @param characterCode 字符代码
+ * @param validationFlag 验证标志
+ * @param processData 处理数据标志
+ * @return 验证和处理结果
+ * 
+ * @note 原始函数名：FUN_180099430
+ */
+#define ValidateSystemCharacterAndProcessData FUN_180099430
+
+/**
+ * @brief 处理目标数据结构
+ * 
+ * 该函数负责处理目标数据结构的操作，包括数据结构的访问和修改。
+ * 在核心引擎中用于目标数据结构的管理和处理。
+ * 
+ * @param targetPointer 目标指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180095280
+ */
+#define ProcessCharacterCodeStructure FUN_180095280
+
+/**
+ * @brief 处理系统数据转换
+ * 
+ * 该函数负责处理系统数据的转换操作，包括数据类型的转换和格式化。
+ * 在核心引擎中用于数据转换相关的操作。
+ * 
+ * @param dataPointer 数据指针
+ * @param conversionType 转换类型
+ * @return 转换结果
+ * 
+ * @note 原始函数名：FUN_18009ec20
+ */
+#define ProcessSystemDataConversion FUN_18009ec20
+
+/**
+ * @brief 管理系统内存管理器
+ * 
+ * 该函数负责管理系统内存管理器的操作，包括内存分配和释放的管理。
+ * 在核心引擎中用于内存管理器的控制。
+ * 
+ * @param memoryManager 内存管理器指针
+ * @return 管理结果状态码
+ * 
+ * @note 原始函数名：FUN_180093af0
+ */
+#define ManageSystemMemoryManager FUN_180093af0
+
+/**
+ * @brief 获取系统状态信息
+ * 
+ * 该函数负责获取系统状态信息，包括系统运行状态和性能信息。
+ * 在核心引擎中用于状态信息的获取。
+ * 
+ * @return 系统状态信息
+ * 
+ * @note 原始函数名：FUN_180092820
+ */
+#define GetSystemStatusInformation FUN_180092820
+
+/**
+ * @brief 处理内存地址掩码
+ * 
+ * 该函数负责处理内存地址掩码的操作，包括地址计算和边界处理。
+ * 在核心引擎中用于内存地址的处理。
+ * 
+ * @param memoryAddress 内存地址指针
+ * @param offset 偏移量
+ * @return 处理结果
+ * 
+ * @note 原始函数名：FUN_180094c20
+ */
+#define ProcessMemoryAddressMask FUN_180094c20
+
+/**
+ * @brief 计算系统代码点
+ * 
+ * 该函数负责计算系统代码点，包括字符编码和代码点转换。
+ * 在核心引擎中用于代码点的计算和处理。
+ * 
+ * @param memoryMask 内存掩码
+ * @param stringPointer 字符串指针
+ * @param template 模板指针
+ * @param flags 标志位
+ * @return 计算的代码点
+ * 
+ * @note 原始函数名：FUN_180095000
+ */
+#define CalculateSystemCodePoint FUN_180095000
+
+/**
+ * @brief 分配系统缓冲区
+ * 
+ * 该函数负责分配系统缓冲区，包括内存分配和缓冲区初始化。
+ * 在核心引擎中用于缓冲区的动态分配。
+ * 
+ * @param bufferSize 缓冲区大小
+ * @param alignment 对齐参数
+ * @return 分配的缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180094e80
+ */
+#define AllocateSystemBuffer FUN_180094e80
+
+/**
+ * @brief 处理系统浮点数据
+ * 
+ * 该函数负责处理系统浮点数据，包括浮点运算和数据转换。
+ * 在核心引擎中用于浮点数据的处理。
+ * 
+ * @param floatPointer 浮点数据指针
+ * @param dataPointer 数据指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18009d8a0
+ */
+#define ProcessSystemFloatData FUN_18009d8a0
+
 
