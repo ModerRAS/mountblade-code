@@ -9911,8 +9911,30 @@ uint8_t SystemThreadCleanerTable;
 uint8_t SystemThreadManagerTable;
 uint8_t SystemThreadControllerTable;
 
-// 函数: uint8_t UtilityCompactMemoryHeap;
-// 压缩内存堆，整理碎片化内存
+/**
+ * @brief 压缩工具系统内存堆
+ * 
+ * 该函数负责压缩工具系统内存堆，整理碎片化内存以提高内存使用效率。
+ * 执行以下操作：
+ * - 分析内存堆碎片分布情况
+ * - 移动内存块以消除碎片
+ * - 合并相邻的空闲内存区域
+ * - 更新内存块指针和引用关系
+ * - 优化内存布局结构
+ * 
+ * @note 压缩操作会改变内存地址，需要更新所有相关指针
+ * @note 压缩过程中会暂时锁定内存堆以防止并发访问冲突
+ * @note 建议在系统空闲或内存碎片较多时调用此函数
+ * @note 压缩完成后会生成内存堆状态报告
+ * 
+ * @return uint8_t 压缩操作结果状态码
+ * @retval 0x00 压缩成功完成
+ * @retval 0x01 压缩失败，内存堆被锁定
+ * @retval 0x02 压缩失败，内存堆数据损坏
+ * @retval 0x03 压缩失败，指针更新错误
+ * @retval 0x04 压缩失败，内存不足
+ * @retval 0xFF 压缩失败，系统错误
+ */
 uint8_t UtilityCompactMemoryHeap;
 uint8_t MemoryHeapCompressionFlag;
 uint8_t MemoryHeapCompactionStatus;
@@ -100127,7 +100149,18 @@ void ClearExclusiveLockResourceAtD8(DataBuffer operationBase, int64_t dataBuffer
 
 
 
-void Unwind_18090fe20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除D0位置独占锁资源副本
+ * 
+ * 该函数是ClearExclusiveLockResourceAtD8的副本，用于清除偏移量0xD0位置的独占锁资源。
+ * 当指定位置的字符不为空时，会释放指定的SRW独占锁资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁资源信息
+ * 
+ * @note 原始函数名：Unwind_18090fe20
+ */
+void ClearExclusiveLockResourceAtD0Duplicate(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0xd8) != '\0') {
@@ -100138,7 +100171,18 @@ void Unwind_18090fe20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fe30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除E0位置独占锁资源
+ * 
+ * 该函数用于清除偏移量0xE0位置的独占锁资源。
+ * 当指定位置的字符不为空时，会释放指定的SRW独占锁资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁资源信息
+ * 
+ * @note 原始函数名：Unwind_18090fe30
+ */
+void ClearExclusiveLockResourceAtE0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0xe8) != '\0') {
@@ -100149,7 +100193,18 @@ void Unwind_18090fe30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fe40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除E0位置独占锁资源副本
+ * 
+ * 该函数是ClearExclusiveLockResourceAtE0的副本，用于清除偏移量0xE0位置的独占锁资源。
+ * 当指定位置的字符不为空时，会释放指定的SRW独占锁资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁资源信息
+ * 
+ * @note 原始函数名：Unwind_18090fe40
+ */
+void ClearExclusiveLockResourceAtE0Duplicate(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0xe8) != '\0') {
@@ -100160,7 +100215,20 @@ void Unwind_18090fe40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fe50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统内存块操作
+ * 
+ * 该函数负责处理系统内存块操作，遍历数据上下文中的内存块并调用系统操作处理函数。
+ * 如果数据上下文为空但异常处理上下文不为空，则会终止系统。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含系统内存块信息
+ * 
+ * @note 原始函数名：Unwind_18090fe50
+ * @note 该函数使用0x128作为内存块大小的步长
+ * @warning 如果数据上下文为空但异常处理上下文不为空，会调用TerminateSystemE0终止系统
+ */
+void ProcessSystemMemoryBlockOperations(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
