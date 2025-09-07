@@ -143009,7 +143009,7 @@ void ProcessCharacterCodeConversionAndValidation(long long CharacterCode)
 
 
 
-ce2e(voidvoid FUN_18012ce2e(void
+void InitializeSystemEventProcessor(void)
 {
   char StringBuffer;
   uint8_t MemoryAllocationIndex;
@@ -143073,7 +143073,7 @@ ce2e(voidvoid FUN_18012ce2e(void
 
 
 
-ce5d(voidvoid FUN_18012ce5d(void
+void ProcessSystemMemoryCleanup(void)
 {
   char StringBuffer;
   uint8_t MemoryAllocationIndex;
@@ -143285,7 +143285,7 @@ void ExecuteSystemConfigurationFilter(void
 
 
 
-d004(voidvoid FUN_18012d004(void
+void InitializeSystemDataProcessor(void)
 {
   char *StringBuffer;
   int *pCharacterByteCount;
@@ -143387,7 +143387,7 @@ d004(voidvoid FUN_18012d004(void
 
 
 
-d04f(voidvoid FUN_18012d04f(void
+void ProcessSystemDataValidation(void)
 {
   char *StringBuffer;
   int *pCharacterByteCount;
