@@ -52797,7 +52797,7 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   int *CoreEngineLoopCounter08;
   uint32_t ProcessingCounter0;
   int *SystemStackPointer1f8;
-  int *StackPointer1f0;
+  int *MemoryAllocationPointer1f0;
   int StackOffset1E8;
   uint8_t (*StackDataBuffer1e0) [16];
   unsigned long long SystemStackData;
@@ -52806,17 +52806,17 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   uint StackValue1c0;
   uint32_t StackValue1bc;
   uint64_t StackProcessingVariable1B8;
-  int *StackPointer1b0;
+  int *SystemStackPointer1b0;
   uint32_t SystemValidationValue1a8;
   uint64_t SystemStackPointer1A0;
   uint64_t StackProcessingVariable;
-  int *StackPointer190;
+  int *SystemStackPointer190;
   uint32_t ProcessingStatus;
   uint64_t SystemUnsignedValue180;
   float NormalizationResult;
   float VectorLength;
   long long StackOffset170;
-  long long *StackPointer168;
+  long long *SystemMemoryPointer168;
   long long *LocalDataStructure160;
   uint32_t StackValue158;
   uint8_t StackDataBuffer150 [16];
@@ -53321,7 +53321,7 @@ SystemDataRelease:
                 SystemStackValue1bc = *(uint32_t *)(BufferStatus3 + BufferStatus1);
                 SystemUnsignedValue1A0 = (int *)CONCAT44((uint32_t)StackProcessingVariable1B8,SystemStackValue1bc);
                 StackProcessingVariable = (int *)CONCAT44(0x7f7fffff,StackProcessingVariable1B8.HighPart);
-                piStack_1b0 = (int *)CONCAT44(piStack_1b0.HighPart,0x7f7fffff);
+                SystemStackPointer1b0 = (int *)CONCAT44(SystemStackPointer1b0.HighPart,0x7f7fffff);
                 MemoryAddressMask1 = (unsigned long long)*systemEventTemplatePointer2;
                 paUnicodeCodePoint7 = *(uint8_t (**) [16])(ReferenceCountPointer218 + MemoryAddressMask1 * 8 + 2);
                 SystemStackValue1c0 = Utf16Char9;
@@ -53359,7 +53359,7 @@ UnicodeBufferAllocation:
                   aMemoryAddressMask7._8_4_ = (uint32_t)StackProcessingVariable1B8;
                   aMemoryAddressMask7.High32Part = StackProcessingVariable1B8.HighPart;
                   *paMemoryAddressMask2 = aMemoryAddressMask7;
-                  *(uint32_t *)paMemoryAddressMask2[1] = piStack_1b0.LowPart;
+                  *(uint32_t *)paMemoryAddressMask2[1] = SystemStackPointer1b0.LowPart;
                   if (*(long long *)(ReferenceCountPointer + MemoryAddressMask1 * 8) != 0) {
                     // WARNING: Subroutine does not return
                     CoreEngineProcessSystemEvent();
@@ -53372,10 +53372,10 @@ UnicodeBufferAllocation:
               lStack_1d0 = lStack_1d0 + 1;
             } while (lStack_1d0 < 3);
           }
-          piStack_1f0 = (int *)((long long)piStack_1f0 + 1);
+          MemoryAllocationPointer1f0 = (int *)((long long)MemoryAllocationPointer1f0 + 1);
           SystemStackPointer1f8 = SystemStackPointer1f8 + 3;
           BufferStatus3 = BufferStatus3 + 0x10;
-        } while ((long long)piStack_1f0 < (long long)MemoryAllocationIndex8);
+        } while ((long long)MemoryAllocationPointer1f0 < (long long)MemoryAllocationIndex8);
         BufferStatus1 = (long long)iStack_1e8;
       }
       CharacterTableIterator = 0;
@@ -53569,7 +53569,7 @@ MemoryAddressProcessingLoop:
     if (!hasDataBeenUpdated) {
       SystemUnsignedValue1A0 = (int *)0x0;
       StackProcessingVariable = (int *)0x0;
-      piStack_190 = (int *)0x0;
+      SystemStackPointer190 = (int *)0x0;
       ProcessingStatus = 3;
       ReferenceCountPointer4 = (int *)BufferAllocate(MemoryPoolManager,4,CONCAT71((uint7)(uint3)(StackProcessingConfigurationFlag >> 8),3));
       *ReferenceCountPointer4 = *pStringComparisonResult0;
@@ -53584,7 +53584,7 @@ MemoryAddressProcessingLoop:
       ReferenceCountPointer5 = pStringComparisonResult0;
       SystemUnsignedValue1A0 = ReferenceCountPointer4;
       StackProcessingVariable = pStringComparisonResult0;
-      piStack_190 = pStringComparisonResult0;
+      SystemStackPointer190 = pStringComparisonResult0;
       if (1 < (unsigned long long)(*(long long *)(*paMemoryAddressMask2 + lStack_170 + 8) - (long long)SystemStackPointer1f8 >> 2)) {
         uStackX_20 = 4;
         pStringComparisonResult5 = (int *)0x0;
@@ -53598,14 +53598,14 @@ MemoryAddressProcessingLoop:
           else {
             SystemStackData = (long long)ReferenceCountPointer210 - (long long)pStringComparisonResult5;
             if ((long long)SystemStackData >> 2 == 0) {
-              piStack_1f0 = (int *)0x1;
+              MemoryAllocationPointer1f0 = (int *)0x1;
 ReferenceCountBufferAllocation:
-              ReferenceCountPointer6 = (int *)BufferAllocate(MemoryPoolManager,(long long)piStack_1f0 * 4,
+              ReferenceCountPointer6 = (int *)BufferAllocate(MemoryPoolManager,(long long)MemoryAllocationPointer1f0 * 4,
                                              CONCAT71((int7)(uStackX_20 >> 8),3));
             }
             else {
-              piStack_1f0 = (int *)(((long long)SystemStackData >> 2) * 2);
-              if (piStack_1f0 != (int *)0x0) goto ReferenceCountBufferAllocation;
+              MemoryAllocationPointer1f0 = (int *)(((long long)SystemStackData >> 2) * 2);
+              if (MemoryAllocationPointer1f0 != (int *)0x0) goto ReferenceCountBufferAllocation;
             }
             if (pStringComparisonResult5 != pStringComparisonResult6) {
                     // WARNING: Subroutine does not return
@@ -53616,7 +53616,7 @@ ReferenceCountBufferAllocation:
                     // WARNING: Subroutine does not return
               CoreEngineFreeSystemMemory(pStringComparisonResult5);
             }
-            ReferenceCountPointer3 = ReferenceCountPointer6 + (long long)piStack_1f0;
+            ReferenceCountPointer3 = ReferenceCountPointer6 + (long long)MemoryAllocationPointer1f0;
             paMemoryAddressMask2 = pStackDataBuffer1e0;
             ReferenceCountPointer218 = ReferenceCountPointer6;
             pCoreEngineLoopCounter08 = ReferenceCountPointer3;
@@ -53635,7 +53635,7 @@ ReferenceCountBufferAllocation:
         SystemStackValue1c0 = 0;
         SystemStackValue1bc = 0;
         StackProcessingVariable1B8 = (int *)0x0;
-        piStack_1b0 = (int *)0x0;
+        SystemStackPointer1b0 = (int *)0x0;
         SystemValue1a8 = 3;
         hasDataBeenUpdated = false;
         IsSystemContextValid = false;
@@ -53649,9 +53649,9 @@ ReferenceCountBufferAllocation:
         SystemStackPointer1f8 = ReferenceCountPointer210;
         if (SystemUnsignedValue180 != 0) {
           do {
-            piStack_1f0 = ReferenceCountPointer0;
+            MemoryAllocationPointer1f0 = ReferenceCountPointer0;
             ReferenceCountPointer6 = (int *)0x0;
-            StringComparisonResult7 = *piStack_1f0;
+            StringComparisonResult7 = *MemoryAllocationPointer1f0;
             if ((SystemValue1c8 & DataProcessingBuffer[StringComparisonResult7]) == 0) {
               if (pStringComparisonResult6 < ReferenceCountPointer3) {
                 *pStringComparisonResult6 = StringComparisonResult7;
@@ -53673,7 +53673,7 @@ ReferenceCountBufferAllocation:
                     // WARNING: Subroutine does not return
                   memmove(ReferenceCountPointer6,pStringComparisonResult5,SystemStackData);
                 }
-                *ReferenceCountPointer6 = *piStack_1f0;
+                *ReferenceCountPointer6 = *MemoryAllocationPointer1f0;
                 if (pStringComparisonResult5 != (int *)0x0) {
                     // WARNING: Subroutine does not return
                   CoreEngineFreeSystemMemory(pStringComparisonResult5);
@@ -53681,7 +53681,7 @@ ReferenceCountBufferAllocation:
                 SystemStackValue1c0 = (uint)ReferenceCountPointer6;
                 SystemStackValue1bc = (uint32_t)((unsigned long long)ReferenceCountPointer6 >> 0x20);
                 ReferenceCountPointer3 = ReferenceCountPointer6 + BufferStatus1;
-                piStack_1b0 = ReferenceCountPointer3;
+                SystemStackPointer1b0 = ReferenceCountPointer3;
                 pStringComparisonResult6 = ReferenceCountPointer6;
               }
               pStringComparisonResult6 = pStringComparisonResult6 + 1;
@@ -53714,15 +53714,15 @@ ReferenceCountAllocation:
                     // WARNING: Subroutine does not return
                   memmove(ReferenceCountPointer5,ReferenceCountPointer4,SystemStackData);
                 }
-                *ReferenceCountPointer5 = *piStack_1f0;
+                *ReferenceCountPointer5 = *MemoryAllocationPointer1f0;
                 pStringComparisonResult0 = ReferenceCountPointer5 + 1;
                 if (ReferenceCountPointer4 != (int *)0x0) {
                     // WARNING: Subroutine does not return
                   CoreEngineFreeSystemMemory(ReferenceCountPointer4);
                 }
-                piStack_190 = ReferenceCountPointer5 + BufferStatus1;
+                SystemStackPointer190 = ReferenceCountPointer5 + BufferStatus1;
                 ReferenceCountPointer6 = pStringComparisonResult5;
-                ReferenceCountPointer3 = piStack_1b0;
+                ReferenceCountPointer3 = SystemStackPointer1b0;
                 ReferenceCountPointer4 = ReferenceCountPointer5;
                 SystemUnsignedValue1A0 = ReferenceCountPointer5;
                 StackProcessingVariable = pStringComparisonResult0;
@@ -53730,11 +53730,11 @@ ReferenceCountAllocation:
               }
             }
             UnicodeCodePoint3 = UnicodeCodePoint3 + 1;
-            piStack_1f0 = piStack_1f0 + 1;
+            MemoryAllocationPointer1f0 = MemoryAllocationPointer1f0 + 1;
             pStringComparisonResult5 = ReferenceCountPointer6;
             ValidationResultPointer4 = (int *)(unsigned long long)UnicodeCodePoint3;
-            ReferenceCountPointer0 = piStack_1f0;
-            ReferenceCountPointer5 = piStack_190;
+            ReferenceCountPointer0 = MemoryAllocationPointer1f0;
+            ReferenceCountPointer5 = SystemStackPointer190;
             IsSystemContextValid = hasDataBeenUpdated;
           } while ((unsigned long long)(long long)(int)UnicodeCodePoint3 < SystemUnsignedValue180);
         }
@@ -53743,7 +53743,7 @@ ReferenceCountAllocation:
         SystemStackValue1bc = (uint32_t)((unsigned long long)ReferenceCountPointer218 >> 0x20);
         StackProcessingVariable1B8.LowPart = SUB84(SystemStackPointer1f8,0);
         StackProcessingVariable1B8.HighPart = (uint32_t)((unsigned long long)SystemStackPointer1f8 >> 0x20);
-        piStack_1b0 = pCoreEngineLoopCounter08;
+        SystemStackPointer1b0 = pCoreEngineLoopCounter08;
         ProcessingCounter0 = 3;
         SystemValue1a8 = 3;
         ReferenceCountPointer210 = pStringComparisonResult6;
@@ -53773,7 +53773,7 @@ SystemEventProcessing:
     *(int **)(*pStackDataBuffer1e0 + lStack_170) = ReferenceCountPointer4;
     StackProcessingVariable = *(int **)(*pStackDataBuffer1e0 + lStack_170 + 8);
     *(int **)(*pStackDataBuffer1e0 + lStack_170 + 8) = pStringComparisonResult0;
-    piStack_190 = *(int **)(pStackDataBuffer1e0[1] + lStack_170);
+    SystemStackPointer190 = *(int **)(pStackDataBuffer1e0[1] + lStack_170);
     *(int **)(pStackDataBuffer1e0[1] + lStack_170) = ReferenceCountPointer5;
     ProcessingStatus = *(uint32_t *)(pStackDataBuffer1e0[1] + lStack_170 + 8);
     *(uint32_t *)(pStackDataBuffer1e0[1] + lStack_170 + 8) = 3;
@@ -180803,7 +180803,19 @@ void FUN_18014d790(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t U
 
  (ram,0x00018014de5c (ram,0x00018014dd9b (ram,0x00018014ddca (ram,0x00018014de09 (ram,0x00018014de17 (ram,0x00018014de1c
 
-4d7f0(long long *CharacterCode,float *CharacterCodeSize,long long *Utf8SourcePointervoid FUN_18014d7f0(long long *CharacterCode,float *CharacterCodeSize,long long *Utf8SourcePointer
+/**
+ * @brief 处理字符代码和UTF-8源数据转换
+ * 
+ * 该函数负责处理字符代码和UTF-8源数据的转换，包括内存分配、
+ * 字符表处理、数据验证和系统状态管理。
+ *
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针数组
+ * 
+ * @note 原始函数名：FUN_18014d7f0
+ */
+void ProcessCharacterCodeAndUtf8SourceConversion(long long *CharacterCode,float *CharacterCodeSize,long long *Utf8SourcePointer)
 {
   long long *CharacterCode;
   uint *PrimaryProcessingStatusFlag;
@@ -181113,7 +181125,19 @@ void FUN_18014d790(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t U
 
 
 
-4e020(long long *CharacterCode,unsigned long long SystemBufferSize,uint32_t *Utf8SourcePointervoid FUN_18014e020(long long *CharacterCode,unsigned long long SystemBufferSize,uint32_t *Utf8SourcePointer
+/**
+ * @brief 处理系统缓冲区和UTF-8源数据管理
+ * 
+ * 该函数负责处理系统缓冲区大小管理和UTF-8源数据的内存管理，
+ * 包括内存分配、数据移动和缓冲区大小计算。
+ *
+ * @param CharacterCode 字符代码指针数组
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_18014e020
+ */
+void ProcessSystemBufferAndUtf8SourceManagement(long long *CharacterCode,unsigned long long SystemBufferSize,uint32_t *Utf8SourcePointer)
 {
   uint32_t Utf16Char;
   uint32_t *PrimaryProcessingStatusFlag;
