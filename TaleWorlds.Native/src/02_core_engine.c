@@ -172807,7 +172807,15 @@ int ProcessCharacterValidateOperation(int CharacterCode)
 
 
 
-3df54(voidvoid FUN_18013df54(void
+/**
+ * @brief 处理字符清除操作
+ * 
+ * 该函数负责清除字符处理系统中的临时数据，
+ * 为下一次处理操作做准备。
+ * 
+ * @note 原始函数名：FUN_18013df54
+ */
+void ProcessCharacterClearOperation(void)
 {
   uint32_t *SystemContext;
   uint32_t RegisterValueEDI;
