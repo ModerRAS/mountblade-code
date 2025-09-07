@@ -92044,7 +92044,19 @@ void Unwind_1809101e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809101f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文清理器1F0
+ * 
+ * 该函数负责清理异常处理上下文中的指定偏移量处的异常处理器
+ * 通过遍历异常上下文的不同偏移量，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基址，用于异常处理上下文
+ * @param dataBuffer 数据缓冲区，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_1809101f0
+ * @note 该函数处理偏移量8处的异常上下文
+ */
+void CleanupExceptionHandlerContext1F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -92058,7 +92070,19 @@ void Unwind_1809101f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910200(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文清理器200
+ * 
+ * 该函数负责清理异常处理上下文中的指定偏移量处的异常处理器
+ * 通过遍历异常上下文的不同偏移量，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基址，用于异常处理上下文
+ * @param dataBuffer 数据缓冲区，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_180910200
+ * @note 该函数处理偏移量0x28处的异常上下文
+ */
+void CleanupExceptionHandlerContext200(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
