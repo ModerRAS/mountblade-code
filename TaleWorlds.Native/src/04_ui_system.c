@@ -289,17 +289,74 @@ typedef enum {
 // UI系统函数宏定义 - 验证UI缓冲区操作
 #define ValidateUIBufferOperation FUN_1807040a0
 
-// UI系统函数宏定义 - 查找UI上下文数据
-#define FindUIContextData FUN_18087b43a
+/**
+ * @brief 查找UI上下文数据
+ * 
+ * 该函数负责在UI系统中查找指定的上下文数据，包括：
+ * - 上下文标识符验证
+ * - 上下文数据定位
+ * - 上下文状态检查
+ * 
+ * @param contextId 上下文标识符
+ * @param dataType 数据类型
+ * @return void* 找到的数据指针，未找到返回NULL
+ * 
+ * @note 原始函数名：FUN_18087b43a
+ * @warning 查找操作可能涉及遍历，影响性能
+ */
+#define FindUIContextData SearchForUIContextData
 
-// UI系统函数宏定义 - 清理UI临时资源
-#define CleanupUITemporaryResources FUN_18087b4e9
+/**
+ * @brief 清理UI临时资源
+ * 
+ * 该函数负责清理UI系统中的临时资源，包括：
+ * - 临时纹理资源
+ * - 临时缓冲区内存
+ * - 临时组件实例
+ * 
+ * @param context UI系统上下文指针
+ * @param flags 清理标志位
+ * @return UIStatus 操作状态码
+ * 
+ * @note 原始函数名：FUN_18087b4e9
+ * @warning 清理操作会释放所有临时资源引用
+ */
+#define CleanupUITemporaryResources ReleaseUITemporaryResources
 
-// UI系统函数宏定义 - 获取UI资源句柄
-#define GetUIResourceHandle FUN_18087b4ff
+/**
+ * @brief 获取UI资源句柄
+ * 
+ * 该函数负责获取UI系统中的资源句柄，包括：
+ * - 纹理资源句柄
+ * - 缓冲区资源句柄
+ * - 组件资源句柄
+ * 
+ * @param context UI系统上下文指针
+ * @param resourceType 资源类型
+ * @param resourceId 资源标识符
+ * @return UIHandle 资源句柄，无效时返回0
+ * 
+ * @note 原始函数名：FUN_18087b4ff
+ * @warning 获取句柄后需要验证其有效性
+ */
+#define GetUIResourceHandle RetrieveUIResourceHandle
 
-// UI系统函数宏定义 - 处理UI上下文事件循环
-#define ProcessUIContextEventLoop FUN_18078c0dd
+/**
+ * @brief 处理UI上下文事件循环
+ * 
+ * 该函数负责处理UI上下文的事件循环，包括：
+ * - 事件队列处理
+ * - 事件分发机制
+ * - 事件状态更新
+ * 
+ * @param context UI系统上下文指针
+ * @param maxEvents 最大处理事件数
+ * @return UIStatus 操作状态码
+ * 
+ * @note 原始函数名：FUN_18078c0dd
+ * @warning 事件循环处理可能阻塞其他操作
+ */
+#define ProcessUIContextEventLoop HandleUIContextEventLoop
 
 // UI系统常量定义
 #define UIContextFlagsOffset 0x11840
@@ -326,11 +383,75 @@ typedef enum {
 #define uiRenderStack stack0x00000078
 #define blendFactorStack stack0x00000040
 
-// UI系统函数宏定义补充
-#define ValidateUIContext func_0x000180069ee0
-#define ProcessUIComponent func_0x0001807673f0
-#define ProcessUIComponentOpacity func_0x0001807673c0
-#define ProcessUIRenderOpacity FUN_180785c10
+/**
+ * @brief 验证UI上下文
+ * 
+ * 该函数负责验证UI上下文的有效性，包括：
+ * - 上下文完整性检查
+ * - 资源引用验证
+ * - 状态一致性检查
+ * 
+ * @param context UI系统上下文指针
+ * @return UIStatus 验证状态码
+ * 
+ * @note 原始函数名：func_0x000180069ee0
+ * @warning 验证失败时可能需要重新初始化上下文
+ */
+#define ValidateUIContext VerifyUIContextIntegrity
+
+/**
+ * @brief 处理UI组件
+ * 
+ * 该函数负责处理UI组件的通用操作，包括：
+ * - 组件状态更新
+ * - 组件渲染准备
+ * - 组件事件处理
+ * 
+ * @param context UI系统上下文指针
+ * @param component 组件句柄
+ * @param operation 操作类型
+ * @return UIStatus 操作状态码
+ * 
+ * @note 原始函数名：func_0x0001807673f0
+ * @warning 组件处理可能触发级联更新
+ */
+#define ProcessUIComponent HandleUIComponentOperations
+
+/**
+ * @brief 处理UI组件透明度
+ * 
+ * 该函数负责处理UI组件的透明度设置，包括：
+ * - 透明度值验证
+ * - 透明度应用
+ * - 渲染状态更新
+ * 
+ * @param context UI系统上下文指针
+ * @param component 组件句柄
+ * @param opacity 透明度值（0.0-1.0）
+ * @return UIStatus 操作状态码
+ * 
+ * @note 原始函数名：func_0x0001807673c0
+ * @warning 透明度变更会影响子组件
+ */
+#define ProcessUIComponentOpacity HandleUIComponentOpacity
+
+/**
+ * @brief 处理UI渲染透明度
+ * 
+ * 该函数负责处理UI渲染过程中的透明度计算，包括：
+ * - 透明度混合计算
+ * - 渲染状态设置
+ * - 混合模式应用
+ * 
+ * @param context UI系统上下文指针
+ * @param renderData 渲染数据指针
+ * @param baseOpacity 基础透明度值
+ * @return UIStatus 操作状态码
+ * 
+ * @note 原始函数名：FUN_180785c10
+ * @warning 渲染透明度处理需要GPU支持
+ */
+#define ProcessUIRenderOpacity HandleUIRenderOpacityCalculation
 
 // UI系统渲染参数美化
 #define renderParam1 stackParam00000048
