@@ -4097,8 +4097,21 @@ void InitializeMemoryAllocator(void)
  * 资源池是系统中用于管理内存、文件、网络等资源的统一接口，
  * 通过资源池可以提高资源利用效率，减少碎片化问题。
  * 
- * @return 无返回值
+ * 工作流程：
+ * 1. 获取系统根表和数据表引用
+ * 2. 在哈希表中查找或创建配置管理器节点
+ * 3. 设置节点的标识符和回调函数
+ * 4. 将节点标记为非活动状态，等待后续激活
+ * 
  * @note 该函数在系统初始化阶段调用，确保资源池管理系统的正常运行
+ * @note 资源池节点使用SystemDataTemplateConfigurationManager作为模板
+ * @note 节点初始状态为非活动，需要后续激活才能使用
+ * 
+ * @warning 调用此函数前必须确保系统根表已正确初始化
+ * @warning 资源池的内存分配基于SystemMemoryAllocationSize计算
+ * 
+ * @see AllocateSystemMemory, GetSystemRootTable, GetSystemMemorySize
+ * @see SystemDataTemplateConfigurationManager, ResourcePoolCallbackNode
  */
 void InitializeResourcePool(void)
 

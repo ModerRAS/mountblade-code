@@ -117030,9 +117030,9 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：存储浮点数组的栈数据
 #define StackFloatArrayD afStack_308
 
-// 原始变量名：validationFloatArray - 栈浮点数组E
-// 功能：存储浮点数组的栈数据
-#define StackFloatArrayE validationFloatArray
+// 验证浮点数组E
+// 功能：存储验证过程中的浮点数组数据
+#define ValidationFloatArrayE validationFloatArray
 
 // 原始变量名：plStack_318 - 栈长整型指针A
 // 功能：存储长整型指针的栈变量
