@@ -119658,7 +119658,7 @@ uint64_t * FUN_180123460(uint64_t *CharacterCode,long long CharacterCodeSize,byt
 
 
 
-3960(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180123960(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+3960(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid ProcessUtf8ToUtf16LongCharacterEncoding(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
 {
   long long PrimaryDataSize;
   
@@ -119709,7 +119709,7 @@ uint64_t * FUN_180123460(uint64_t *CharacterCode,long long CharacterCodeSize,byt
 
 
 
-3a60(long long *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180123a60(long long *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+3a60(long long *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid ProcessUtf8ToUtf16PointerCharacterEncoding(long long *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -119813,7 +119813,7 @@ uint64_t * FUN_180123460(uint64_t *CharacterCode,long long CharacterCodeSize,byt
 
 
 
-3bc0(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180123bc0(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+3bc0(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid ProcessUtf8ToUtf16ExtendedCharacterEncoding(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
 {
   long long PrimaryDataSize;
   

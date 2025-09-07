@@ -24001,6 +24001,7 @@ DataBuffer ProcessDataCollectionA0(int64_t collectionContext,int64_t *dataPointe
   int64_t itemIndex;
   int64_t currentOffset;
   int itemDataBuffer [2];
+  int itemProcessingBuffer [2];
   
   itemCount = (int)dataPointer[1];
   itemBuffer[0] = itemCount;
