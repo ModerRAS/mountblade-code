@@ -38942,8 +38942,8 @@ void ExceptionCleanupHandlerResourceRef(DataBuffer operationBase,int64_t dataBuf
  * 
  * @param exceptionContext 异常上下文指针
  * @param unwindData 解包数据结构
- * @param param3 额外参数3
- * @param param4 额外参数4
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
  */
 void SystemCallHandlerCleanupFunc1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -38966,8 +38966,8 @@ void SystemCallHandlerCleanupFunc1(DataBuffer operationBase,int64_t dataBuffer,D
  * 
  * @param exceptionContext 异常上下文指针
  * @param unwindData 解包数据结构
- * @param param3 额外参数3
- * @param param4 额外参数4
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
  */
 void SystemCallHandlerCleanupFunc2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -38989,8 +38989,8 @@ void SystemCallHandlerCleanupFunc2(DataBuffer operationBase,int64_t dataBuffer,D
  * 
  * @param exceptionContext 异常上下文指针
  * @param unwindData 解包数据结构
- * @param param3 额外参数3
- * @param param4 额外参数4
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
  */
 void SystemCallHandlerCleanupFunc3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -39536,8 +39536,8 @@ void ExceptionCleanupHandlerMemoryContext3(DataBuffer operationBase,int64_t data
  * 
  * @param exceptionContext 异常上下文指针
  * @param unwindData 解包数据结构
- * @param param3 额外参数3
- * @param param4 额外参数4
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
  */
 void SystemCallHandlerCleanupFunc4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -39606,8 +39606,8 @@ void ExceptionCleanupHandlerResourceRef2(DataBuffer operationBase,int64_t dataBu
  * 
  * @param exceptionContext 异常上下文指针
  * @param unwindData 解包数据结构
- * @param param3 额外参数3
- * @param param4 额外参数4
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
  */
 void SystemCallHandlerCleanupFunc5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -39630,8 +39630,8 @@ void SystemCallHandlerCleanupFunc5(DataBuffer operationBase,int64_t dataBuffer,D
  * 
  * @param exceptionContext 异常上下文指针
  * @param unwindData 解包数据结构
- * @param param3 额外参数3
- * @param param4 额外参数4
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
  */
 void SystemCallHandlerCleanupFunc6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -39653,8 +39653,8 @@ void SystemCallHandlerCleanupFunc6(DataBuffer operationBase,int64_t dataBuffer,D
  * 
  * @param exceptionContext 异常上下文指针
  * @param unwindData 解包数据结构
- * @param param3 额外参数3
- * @param param4 额外参数4
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
  */
 void SystemCallHandlerCleanupFunc7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
