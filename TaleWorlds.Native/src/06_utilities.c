@@ -248,6 +248,20 @@
 // 数据验证缓冲区大小常量
 #define DataValidationBufferSize 16
 
+// 异常处理和状态寄存器相关常量
+#define ExceptionHandlerContextOffset 0x18    // 异常处理上下文偏移量
+#define StatusRegisterOffset 0x34            // 状态寄存器偏移量
+#define ProcessingFlagsShift 4                // 处理标志位移量
+#define ValidationFlagShift 1                 // 验证标志位移量
+#define SystemStateFlagShift 7                // 系统状态标志位移量
+#define FloatValidationMask 0x7f800000       // 浮点数验证掩码
+#define IntegerMinValue -0x80000000           // 整数最小值
+
+// 数据处理相关常量
+#define DataConfigurationOffset 0x10          // 数据配置偏移量
+#define ComponentValidationBufferSize 16     // 组件验证缓冲区大小
+#define SystemContextBufferOffset 0x78       // 系统上下文缓冲区偏移量
+
 // 系统内存分配常量
 #define SystemMemoryAllocationFlag 0x315
 
@@ -11169,16 +11183,16 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
     }
     
     // 检查验证上下文状态
-    if ((*(char *)(exceptionHandlerContext + 0x34) == '\0') ||
-       ((*(uint32_t *)(*(int64_t *)(exceptionHandlerContext + 0x18) + 0x34) >> 1 & 1) == 0)) {
-      statusRegister = *(uint32_t *)(*(int64_t *)(exceptionHandlerContext + 0x18) + 0x34);
-      processingFlags = statusRegister >> 4;
+    if ((*(char *)(exceptionHandlerContext + StatusRegisterOffset) == '\0') ||
+       ((*(uint32_t *)(*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset) + StatusRegisterOffset) >> ValidationFlagShift & 1) == 0)) {
+      statusRegister = *(uint32_t *)(*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset) + StatusRegisterOffset);
+      processingFlags = statusRegister >> ProcessingFlagsShift;
       validationFlags = 0;
       statusFlags = 0;
       processedFloatValue = 0.0f;
       
       if ((validationFlags & 1) == 0) {
-        if ((((statusFlags >> 3 & 1) != 0) && (integerConversionValue = (int32_t)processedFloatValue, integerConversionValue != -0x80000000)) &&
+        if ((((statusFlags >> 3 & 1) != 0) && (integerConversionValue = (int32_t)processedFloatValue, integerConversionValue != IntegerMinValue)) &&
            ((float)integerConversionValue != processedFloatValue)) {
           // 使用SIMD指令处理浮点数转换
           simdRegister = 0;
@@ -11189,9 +11203,9 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
         }
         
         // 转换浮点数据并更新上下文
-        processedFloatValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(exceptionHandlerContext + 0x18), processedFloatValue);
-        if (((*(char *)(exceptionHandlerContext + 0x34) == '\0') ||
-            ((*(uint32_t *)(*(int64_t *)(exceptionHandlerContext + 0x18) + 0x34) >> 1 & 1) == 0)) &&
+        processedFloatValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset), processedFloatValue);
+        if (((*(char *)(exceptionHandlerContext + StatusRegisterOffset) == '\0') ||
+            ((*(uint32_t *)(*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset) + StatusRegisterOffset) >> ValidationFlagShift & 1) == 0)) &&
            (processedFloatValue != *(float *)(exceptionHandlerContext + 0x20))) {
           *(float *)(exceptionHandlerContext + 0x20) = processedFloatValue;
           UpdateValidationContextA0(exceptionHandlerContext);
@@ -12421,12 +12435,12 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
         return operationResult;
       }
     }
-    if ((*(char *)(dataContextPointer + 0x34) == '\0') ||
-       ((*(uint *)(*(int64_t *)(dataContextPointer + 0x18) + 0x34) >> 1 & 1) == 0)) {
-      processingFlags = *(uint *)(*(int64_t *)(dataContextPointer + 0x18) + 0x34);
-      bitShiftedFlags = processingFlags >> 4;
+    if ((*(char *)(dataContextPointer + StatusRegisterOffset) == '\0') ||
+       ((*(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset) >> ValidationFlagShift & 1) == 0)) {
+      processingFlags = *(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset);
+      bitShiftedFlags = processingFlags >> ProcessingFlagsShift;
       if ((bitShiftedFlags & 1) == 0) {
-        if ((((processingFlags >> 3 & 1) != 0) && (integerConversionValue = (int)floatDataValue, integerConversionValue != -0x80000000)) &&
+        if ((((processingFlags >> 3 & 1) != 0) && (integerConversionValue = (int)floatDataValue, integerConversionValue != IntegerMinValue)) &&
            ((float)integerConversionValue != floatDataValue)) {
           vectorRegister.xComponent = floatDataValue;
           vectorRegister.yComponent = floatDataValue;
@@ -12520,6 +12534,7 @@ void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
   DataBuffer resultBuffer;
   int operationStatusBuffer [2];
   int64_t dataOffset;
+  int processingStatus[2];  // 处理状态缓冲区
   
   processingStatus[0] = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataHandle + ExceptionHandlerCallbackOffset10),&resultBuffer);
   if (processingStatus[0] == 0) {
@@ -67415,7 +67430,20 @@ void SetDefaultExceptionHandlerB40(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180907b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调函数（偏移量0x50）
+ * 
+ * 该函数负责执行位于数据缓冲区偏移量0x50处的异常处理器回调函数
+ * 用于处理系统异常和清理操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907b50
+ */
+void ExecuteExceptionHandlerCallbackOffset50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -67429,7 +67457,20 @@ void Unwind_180907b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调函数（偏移量0x70）
+ * 
+ * 该函数负责执行位于数据缓冲区偏移量0x70处的异常处理器回调函数
+ * 用于处理系统异常和清理操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907b60
+ */
+void ExecuteExceptionHandlerCallbackOffset70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -67443,7 +67484,18 @@ void Unwind_180907b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907b70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器（偏移量0x50）
+ * 
+ * 该函数负责配置异常处理器，设置默认和临时异常处理器
+ * 并重置相关的状态变量
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907b70
+ */
+void ConfigureExceptionHandlerOffset50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x50) = &DefaultExceptionHandlerB;

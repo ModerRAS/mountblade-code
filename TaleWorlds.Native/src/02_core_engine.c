@@ -29878,9 +29878,9 @@ void ProcessCharacterCode(long long *Utf8InputBuffer
           ComputedResult = LoopIterationCounter;
           SystemProcessingBuffer = &CoreEngineDataTemplate;
           if ((void *)LocalProcessingStatusFlag8[MemoryAlignmentOffset * 4 + 1] != NULL) {
-            StatusBuffer7 = (void *)LocalProcessingStatusFlag8[MemoryAlignmentOffset * 4 + 1];
+            SystemProcessingBuffer = (void *)LocalProcessingStatusFlag8[MemoryAlignmentOffset * 4 + 1];
           }
-          SystemContextValue = strrchr(StatusBuffer7,0x2f);
+          SystemContextValue = strrchr(SystemProcessingBuffer,0x2f);
           if (SystemContextValue == 0) {
             StatusBuffer7 = &CoreEngineDataTemplate;
             if ((void *)PrimaryProcessingStatusFlag[EncodingConversionResult * 4 + 1] != NULL) {
