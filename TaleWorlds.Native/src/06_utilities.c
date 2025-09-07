@@ -101863,6 +101863,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 系统数据验证函数A0
  * 
  * 该函数负责验证系统数据的完整性和有效性，执行多层安全检查
+ * 包括数据格式验证、范围检查和安全性验证
  * 
  * @note 原始函数名：FUN_18089c872
  */
@@ -101872,6 +101873,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 浮点数数据处理函数A0
  * 
  * 该函数负责处理浮点数数据，执行验证和计算操作
+ * 包括浮点数格式检查、数值范围验证和数学运算
  * 
  * @note 原始函数名：FUN_18089c94a
  */
@@ -101881,6 +101883,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 数据处理函数A0
  * 
  * 该函数负责处理数据块，执行验证和操作
+ * 包括数据块分割、格式转换和内容验证
  * 
  * @note 原始函数名：FUN_18089cc80
  */
@@ -101890,6 +101893,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 系统状态查询函数A0
  * 
  * 该函数负责查询系统状态，返回状态信息
+ * 包括系统运行状态、资源使用情况和错误状态
  * 
  * @note 原始函数名：FUN_18089ccb9
  */
@@ -101899,6 +101903,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 数据验证函数A0
  * 
  * 该函数负责验证数据的有效性和完整性
+ * 包括数据格式验证、内容完整性检查和安全性验证
  * 
  * @note 原始函数名：FUN_18089ce30
  */
@@ -101908,6 +101913,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 数据处理函数A0
  * 
  * 该函数负责处理数据操作和验证
+ * 包括数据读取、写入、格式转换和验证操作
  * 
  * @note 原始函数名：FUN_1808a84c0
  */
@@ -101917,6 +101923,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 内存分配函数A0
  * 
  * 该函数负责内存分配和管理操作
+ * 包括内存块分配、大小计算和内存对齐处理
  * 
  * @note 原始函数名：FUN_1808ad600
  */
@@ -101926,6 +101933,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 系统查询函数A0
  * 
  * 该函数负责查询系统信息和状态
+ * 包括系统配置信息、运行状态和性能统计数据
  * 
  * @note 原始函数名：FUN_180748010
  */
@@ -101935,6 +101943,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 数据验证函数A1
  * 
  * 该函数负责验证数据的正确性和安全性
+ * 包括数据格式检查、内容验证和安全性分析
  * 
  * @note 原始函数名：ValidateDataProcessingA0
  */
@@ -101944,6 +101953,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * @brief 数据处理函数A1
  * 
  * 该函数负责处理数据标志和状态
+ * 包括标志位设置、状态管理和数据同步操作
  * 
  * @note 原始函数名：FUN_1808a54c0
  */
