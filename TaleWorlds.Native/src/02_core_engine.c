@@ -147568,7 +147568,7 @@ void ProcessSystemDataFiltering(float FilterInputValue)
 
 
 
-fa7d(voidvoid FUN_18012fa7d(void
+void FUN_18012fa7d(void)
 {
   uint64_t *DataNodeIndex;
   float FloatingPointRegisterA;
@@ -275980,5 +275980,90 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_18021af10
  */
 #define ProcessCharacterEncodingMemoryManagement FUN_18021af10
+
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统资源管理器，包括资源的分配和管理。
+ * 
+ * @note 原始函数名：FUN_18012fa7d
+ */
+#define InitializeSystemResourceManager FUN_18012fa7d
+
+/**
+ * @brief 清理系统资源管理器
+ * 
+ * 该函数负责清理系统资源管理器，包括资源的释放和回收。
+ * 
+ * @note 原始函数名：FUN_18012fa9e
+ */
+#define CleanupSystemResourceManager FUN_18012fa9e
+
+/**
+ * @brief 处理UTF8输入缓冲区验证
+ * 
+ * 该函数负责处理UTF8输入缓冲区的验证操作。
+ * 
+ * @param Utf8InputBuffer UTF8输入缓冲区指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @note 原始函数名：FUN_18012faae
+ */
+#define ValidateUtf8InputBuffer FUN_18012faae
+
+/**
+ * @brief 执行系统状态重置
+ * 
+ * 该函数负责执行系统状态的重置操作。
+ * 
+ * @note 原始函数名：FUN_180130155
+ */
+#define ExecuteSystemStatusReset FUN_180130155
+
+/**
+ * @brief 初始化系统事件处理器
+ * 
+ * 该函数负责初始化系统事件处理器。
+ * 
+ * @note 原始函数名：FUN_1801306c9
+ */
+#define InitializeSystemEventHandler FUN_1801306c9
+
+/**
+ * @brief 清理系统事件处理器
+ * 
+ * 该函数负责清理系统事件处理器。
+ * 
+ * @note 原始函数名：FUN_1801306f3
+ */
+#define CleanupSystemEventHandler FUN_1801306f3
+
+/**
+ * @brief 获取系统内存池块大小
+ * 
+ * 该函数负责获取系统内存池的块大小。
+ * 
+ * @note 原始函数名：FUN_18012fb00
+ */
+#define GetSystemMemoryPoolBlockSize FUN_18012fb00
+
+/**
+ * @brief 处理字符编码转换
+ * 
+ * 该函数负责处理字符编码的转换操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @note 原始函数名：FUN_180130a80
+ */
+#define ProcessCharacterEncodingConversion FUN_180130a80
+
+/**
+ * @brief 验证字符编码数据
+ * 
+ * 该函数负责验证字符编码数据的有效性。
+ * 
+ * @param CharacterCode 字符代码
+ * @note 原始函数名：FUN_180130ae3
+ */
+#define ValidateCharacterEncodingData FUN_180130ae3
 
 
