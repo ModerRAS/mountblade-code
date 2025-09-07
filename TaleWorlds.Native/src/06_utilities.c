@@ -4341,31 +4341,31 @@ extern void* SystemPrimaryResourceTable;
 
 // 全局异常处理器指针A11
 // 功能：存储全局异常处理器A11的指针
-#define GlobalExceptionHandlerPointerA11 DAT_180bf9750
+#define GlobalExceptionHandlerPointerA11 GlobalSystemExceptionHandler11
 
 // 全局异常处理器指针A12
 // 功能：存储全局异常处理器A12的指针
-#define GlobalExceptionHandlerPointerA12 DAT_180bf97b0
+#define GlobalExceptionHandlerPointerA12 GlobalSystemExceptionHandler12
 
 // 默认异常处理器指针A0
 // 功能：存储默认异常处理器A0的指针
-#define DefaultExceptionHandlerPointerA0 DAT_180c92050
+#define DefaultExceptionHandlerPointerA0 DefaultSystemExceptionHandler0
 
 // 默认异常处理器指针A1
 // 功能：存储默认异常处理器A1的指针
-#define DefaultExceptionHandlerPointerA1 DAT_180bfaef0
+#define DefaultExceptionHandlerPointerA1 DefaultSystemExceptionHandler1
 
 // 默认异常处理器指针A2
 // 功能：存储默认异常处理器A2的指针
-#define DefaultExceptionHandlerPointerA2 DAT_180bfb310
+#define DefaultExceptionHandlerPointerA2 DefaultSystemExceptionHandler2
 
 // 默认异常处理器指针A3
 // 功能：存储默认异常处理器A3的指针
-#define DefaultExceptionHandlerPointerA3 DAT_180bfb730
+#define DefaultExceptionHandlerPointerA3 DefaultSystemExceptionHandler3
 
 // 工具系统异常处理器指针5
 // 功能：存储工具系统的异常处理器指针5
-#define SystemUtilityExceptionHandlerA5 DAT_180bf5c30
+#define SystemUtilityExceptionHandlerA5 UtilitySystemExceptionHandler5
 
 // 工具系统异常处理器指针6
 // 功能：存储工具系统的异常处理器指针6
