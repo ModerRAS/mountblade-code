@@ -50161,7 +50161,13 @@ void ValidateSystemStatusA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809050c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理器函数
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809050c0
+ */
+void SetExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x1e8) = &TemporaryExceptionHandler;
