@@ -1247,6 +1247,9 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 原始函数名：FUN_18010be10 - 系统标志A处理函数
 #define ProcessSystemFlagA FUN_18010be10
 
+// 原始函数名：FUN_1801166f0 - 系统上下文和数据处理函数
+#define ProcessSystemContextAndData FUN_1801166f0
+
 // 原始函数名：FUN_18010be40 - 系统标志E处理函数
 #define ProcessSystemFlagE FUN_18010be40
 
@@ -9948,35 +9951,35 @@ void InitializeNetworkSessionNode(void)
   void *tempStackPointer;
   uint64_t reservedStackSpace;
   
-  SystemContextPtr = (long long *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
-  StackConfigurationFlag = 0;
-  TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
-  SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (StringBuffer == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemFileSystemComparisonData,0x10);
-    if (MemoryMatchResult < 0) {
-      NextNode = (void *)CurrentNode[2];
-      SecondaryProcessingStatusFlag = TertiaryProcessingStatusFlag;
+  systemContextPtr = (long long *)CoreEngineGetSystemContext();
+  primaryProcessingStatusFlag = (uint64_t *)*systemContextPtr;
+  statusBuffer = *(char *)((long long)primaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  stackConfigurationFlag = 0;
+  tertiaryProcessingStatusFlag = primaryProcessingStatusFlag;
+  secondaryProcessingStatusFlag = (void *)primaryProcessingStatusFlag[1];
+  while (statusBuffer == '\0') {
+    memoryMatchResult = memcmp(secondaryProcessingStatusFlag + 4, &SystemFileSystemComparisonData, 0x10);
+    if (memoryMatchResult < 0) {
+      nextNode = (void *)currentNode[2];
+      secondaryProcessingStatusFlag = tertiaryProcessingStatusFlag;
     }
     else {
-      NextNode = (void *)*CurrentNode;
+      nextNode = (void *)*currentNode;
     }
-    TertiaryProcessingStatusFlag = SecondaryProcessingStatusFlag;
-    CurrentNode = NextNode;
-    StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    tertiaryProcessingStatusFlag = secondaryProcessingStatusFlag;
+    currentNode = nextNode;
+    statusBuffer = *(char *)((long long)nextNode + SystemNodeStatusOffset);
   }
-  if ((TertiaryProcessingStatusFlag == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemFileSystemComparisonData,TertiaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
-    MemoryAllocationSize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,TertiaryProcessingStatusFlag,MemoryAllocationSize + 0x20,MemoryAllocationSize);
-    TertiaryProcessingStatusFlag = TemporaryBuffer;
+  if ((tertiaryProcessingStatusFlag == primaryProcessingStatusFlag) || (memoryMatchResult = memcmp(&SystemFileSystemComparisonData, tertiaryProcessingStatusFlag + 4, 0x10), memoryMatchResult < 0)) {
+    memoryAllocationSize = CoreEngineAllocateMemory(systemContextPtr);
+    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, tertiaryProcessingStatusFlag, memoryAllocationSize + 0x20, memoryAllocationSize);
+    tertiaryProcessingStatusFlag = temporaryBuffer;
   }
-  TertiaryProcessingStatusFlag[6] = 0x42bea5b911d9c4bf;
-  TertiaryProcessingStatusFlag[7] = 0x1aa83fc0020dc1b6;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateC;
-  TertiaryProcessingStatusFlag[9] = 0;
-  TertiaryProcessingStatusFlag[10] = StackConfigurationFlag;
+  tertiaryProcessingStatusFlag[6] = 0x42bea5b911d9c4bf;
+  tertiaryProcessingStatusFlag[7] = 0x1aa83fc0020dc1b6;
+  tertiaryProcessingStatusFlag[8] = &SystemDataTemplateC;
+  tertiaryProcessingStatusFlag[9] = 0;
+  tertiaryProcessingStatusFlag[10] = stackConfigurationFlag;
   return;
 }
 
@@ -9990,17 +9993,17 @@ void InitializeNetworkSessionNode(void)
  * 和初始化相关的状态数据结构。函数会遍历状态链表，查找合适的
  * 位置插入新的状态节点，并设置节点的标识符和状态回调函数。
  */
-void InitializeNetworkStatusNode(void
+void InitializeNetworkStatusNode(void)
 {
-  char StringBuffer;
-  void *SystemContext;
-  int MemoryMatchResult;
-  long long *EngineContext;
-  long long MemoryAllocationSize;
-  void *CurrentNode;
-  void *PreviousNode;
-  void *NextNode;
-  void *TempStackPointer;
+  char statusBuffer;
+  void *systemContext;
+  int memoryMatchResult;
+  long long *engineContext;
+  long long memoryAllocationSize;
+  void *currentNode;
+  void *previousNode;
+  void *nextNode;
+  void *tempStackPointer;
   code *functionCallback;
   
   SystemContextPtr = (long long *)CoreEngineGetSystemContext();
