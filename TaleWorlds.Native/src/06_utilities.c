@@ -1300,9 +1300,12 @@
 
 /**
  * @brief 系统验证处理函数
+ * 
+ * 该函数负责验证系统的整体状态，包括内存、资源和配置的完整性检查
+ * 
  * @note 原始函数名：FUN_1808fc074
  */
-#define ProcessSystemValidation FUN_1808fc074
+#define ValidateSystemStateAndResources FUN_1808fc074
 
 /**
  * @brief 内存访问处理函数
@@ -3590,10 +3593,11 @@
  * @brief 处理请求数据F0
  * 
  * 该函数负责处理系统请求数据，包括数据验证、格式化和响应生成
+ * 支持多种请求类型和安全验证机制
  * 
  * @note 原始函数名：FUN_180894dd0
  */
-#define ProcessSystemRequest FUN_180894dd0
+#define ProcessSystemRequestWithValidation FUN_180894dd0
 
 /**
  * @brief 验证数据F0
