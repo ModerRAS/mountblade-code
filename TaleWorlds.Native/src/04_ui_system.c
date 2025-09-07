@@ -123087,12 +123087,24 @@ void FUN_180742250(longlong *uiContext,int *dataSource)
 
 
 undefined8
-FUN_180742460(longlong uiContext,longlong dataSource,int targetBuffer,undefined4 bufferSize,undefined4 resultPointer)
+/**
+ * @brief 处理UI上下文分配
+ * 
+ * 分配和管理UI上下文相关的内存资源，包括数据源、目标缓冲区等
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return 处理状态码，0x26表示失败
+ */
+ProcessUIContextAllocation(longlong uiContext,longlong dataSource,int targetBuffer,undefined4 bufferSize,undefined4 resultPointer)
 
 {
-  longlong allocatedMemory;
-  undefined8 semaphoreHandle;
-  ulonglong EventTypeCode;
+  longlong allocatedUIComponentMemory;
+  undefined8 uiSemaphoreHandle;
+  ulonglong uiEventTypeCode;
   
   FUN_180742070();
   *(undefined4 *)(uiBufferData + 0x330) = bufferSize;
