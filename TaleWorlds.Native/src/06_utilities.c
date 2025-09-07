@@ -18760,8 +18760,8 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
               StackResourceFlag = 1;
               ProcessSystemDataA2(stackDataPointer1,*(DataBuffer *)(operationBase + 0x58));
               stackDataPointer2 = &SystemValidationDataTableA2;
-              uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
-              uStack_e8 = 0;
+              StackValidationData = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              StackValidationOffset = 0;
               ValidateAndExecuteOperationA0(stackDataPointer2,*(DataBuffer *)(operationBase + 0x58));
               validationContextPointer3 = systemContextPointer;
             }
