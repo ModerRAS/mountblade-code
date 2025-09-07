@@ -2035,50 +2035,50 @@
 #define InitializeThreadLocalStorageA4 FUN_1809430b0
 
 // Unwind函数语义化宏定义
-// 原始函数名：Unwind_180901f90 - 异常处理回调函数A0
+// 异常处理回调函数A0
 // 功能：处理异常情况的回调函数，在系统异常时被调用
-#define ExceptionHandlerCallbackA0 Unwind_180901f90
+#define ExceptionHandlerCallbackA0 ExceptionHandlerCallbackA0
 
-// 原始函数名：Unwind_180901fa0 - 异常处理回调函数A1
+// 异常处理回调函数A1
 // 功能：处理异常情况的回调函数，在系统异常时被调用
-#define ExceptionHandlerCallbackA1 Unwind_180901fa0
+#define ExceptionHandlerCallbackA1 ExceptionHandlerCallbackA1
 
-// 原始函数名：Unwind_180901fc0 - 异常处理回调函数A2
+// 异常处理回调函数A2
 // 功能：处理异常情况的回调函数，在系统异常时被调用
-#define ExceptionHandlerCallbackA2 Unwind_180901fc0
+#define ExceptionHandlerCallbackA2 ExceptionHandlerCallbackA2
 
 // 原始函数名：Unwind_180901fe0 - 异常处理回调函数A3
 // 功能：处理异常情况的回调函数，在系统异常时被调用
-#define ExceptionHandlerCallbackA3 Unwind_180901fe0
+#define ExceptionHandlerCallbackA3 ExceptionHandlerCallbackA3
 
 // 原始函数名：Unwind_180902010 - 异常处理回调函数A4
 // 功能：处理异常情况的回调函数，在系统异常时被调用
-#define ExceptionHandlerCallbackA4 Unwind_180902010
+#define ExceptionHandlerCallbackA4 ExceptionHandlerCallbackA4
 
 // 原始函数名：Unwind_180902040 - 异常处理回调函数A5
 // 功能：处理异常情况的回调函数，在系统异常时被调用
-#define ExceptionHandlerCallbackA5 Unwind_180902040
+#define ExceptionHandlerCallbackA5 ExceptionHandlerCallbackA5
 
 // 原始函数名：Unwind_180902070 - 异常处理回调函数A6
 // 功能：处理异常情况的回调函数，在系统异常时被调用
-#define ExceptionHandlerCallbackA6 Unwind_180902070
+#define ExceptionHandlerCallbackA6 ExceptionHandlerCallbackA6
 
 // 原始函数名：Unwind_180902080 - 异常处理回调函数A7
 // 功能：处理异常情况的回调函数，在系统异常时被调用
-#define ExceptionHandlerCallbackA7 Unwind_180902080
+#define ExceptionHandlerCallbackA7 ExceptionHandlerCallbackA7
 
 // 原始函数名：Unwind_180902090 - 异常处理回调函数A8
 // 功能：处理异常情况的回调函数，在系统异常时被调用
-#define ExceptionHandlerCallbackA8 Unwind_180902090
+#define ExceptionHandlerCallbackA8 ExceptionHandlerCallbackA8
 
 // 原始函数名：Unwind_1809020c0 - 异常处理回调函数A9
 // 功能：处理异常情况的回调函数，在系统异常时被调用
-#define ExceptionHandlerCallbackA9 Unwind_1809020c0
+#define ExceptionHandlerCallbackA9 ExceptionHandlerCallbackA9
 
 // 异常清理函数A0
 // 功能：清理异常处理相关的资源
 // 原始函数名：Unwind_1809020f0
-#define CleanupExceptionResourcesA0 Unwind_1809020f0
+#define CleanupExceptionResourcesA0 CleanupExceptionResourcesA0
 
 // 原始函数名：Unwind_180902100 - 异常清理函数A1
 // 功能：清理异常状态和资源

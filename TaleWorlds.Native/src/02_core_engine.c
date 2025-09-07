@@ -103641,14 +103641,14 @@ LAB_1801177f4:
         }
         else {
           if (CurrentByteValue2) {
-            pSystemCheckResult5 = (char *)FUN_180124700();
+            pSystemCheckResult5 = (char *)GetSystemErrorMessage();
             MemoryAllocationIndex0 = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
             if (pSystemCheckResult5 != (char *)0x0) {
               bufferAllocationStatus4 = -1;
               do {
                 bufferAllocationStatus4 = bufferAllocationStatus4 + 1;
               } while (pSystemCheckResult5[bufferAllocationStatus4] != '\0');
-              PrimaryProcessingStatusFlag6 = (uint16_t *)FUN_1801246b0();
+              PrimaryProcessingStatusFlag6 = (uint16_t *)GetSystemEventTemplate();
               MemoryAllocationIndex0 = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
               *(uint16_t **)(RegisterFramePointer + -0x12) = PrimaryProcessingStatusFlag6;
               IntegerValue9 = 0;
@@ -103657,7 +103657,7 @@ LAB_1801177f4:
                 FloatVariable43 = RegisterFramePointer[0x78];
                 CalculatedCodePoint2 = *(void *)(RegisterFramePointer + 0x7a);
                 do {
-                  validationResult1 = FUN_180121550(&stack0x00000060,pSystemCheckResult5,0);
+                  validationResult1 = ValidateSystemDataEx(&stack0x00000060,pSystemCheckResult5,0);
                   MemoryAllocationIndex0 = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
                   pSystemCheckResult5 = pSystemCheckResult5 + validationResult1;
                   if (_uStack0000000000000060 == 0.0) break;
@@ -111951,7 +111951,7 @@ unsigned long long ProcessSystemContextWithMixedParameters(long long SystemConte
       SystemStringStringBuffer = SystemFlagB;
       if (CurrentByteValue7) {
         if (SystemFlagB < StringBuffer1) {
-          SystemOperationResult = FUN_180121550(&SystemFlagB,Utf16EndPointer,StringBuffer1);
+          SystemOperationResult = ValidateSystemDataEx(&SystemFlagB,Utf16EndPointer,StringBuffer1);
           SystemStringStringBuffer = Utf16EndPointer + IntegerValue9;
           SystemStatusCode = SystemStatusCode & 0xffffffff00000000;
           pSystemContextFloat13 = (float *)ProcessFloatAndSystemConfiguration(*(void *)(MemoryBlockIndex + 0x19f0),&SystemFlagD,
@@ -112172,7 +112172,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float SystemContextPointer,float Utf8B
     MemoryAllocationIndex3 = extraout_XMM0_Qa;
     if (HighByte0) {
       if (StackParameter2 < StringBuffer) {
-        IntegerValue3 = FUN_180121550(&DataStackBuffer);
+        IntegerValue3 = ValidateSystemDataEx(&DataStackBuffer);
         StringBuffer6 = RegisterGeneral14 + IntegerValue3;
         pSystemFloatValue = (float *)ProcessFloatAndSystemConfiguration(*(void *)(RegisterValueR15 + 0x19f0),&TertiaryDataBuffer,
                                          *(uint32_t *)(RegisterValueR15 + 0x19f8));
