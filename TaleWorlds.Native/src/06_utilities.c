@@ -1077,7 +1077,7 @@
  * 
  * @note 原始函数名：FUN_18013ea00
  */
-#define ManageSystemMemory FUN_18013ea00
+#define ManageSystemMemory ManageSystemMemoryAndResources
 
 /**
  * @brief 系统资源清理函数
@@ -1087,7 +1087,7 @@
  * 
  * @note 原始函数名：FUN_1808fc5ac
  */
-#define CleanupSystemResources FUN_1808fc5ac
+#define CleanupSystemResources CleanupSystemResourcesAndMemory
 
 /**
  * @brief 系统参数配置函数
@@ -1097,7 +1097,7 @@
  * 
  * @note 原始函数名：FUN_1808fc51c
  */
-#define ConfigureSystemParameters FUN_1808fc51c
+#define ConfigureSystemParameters ConfigureSystemParametersAndSettings
 
 /**
  * @brief 系统处理函数A0
@@ -1107,8 +1107,8 @@
  * 
  * @note 原始函数名：FUN_1808fc914
  */
-#define ProcessSystemOperations FUN_1808fc914
-#define ProcessSystemA0 FUN_1808fc914
+#define ProcessSystemOperations ProcessSystemOperationsAndTasks
+#define ProcessSystemA0 ProcessSystemOperationsAndTasks
 
 /**
  * @brief 数据掩码处理函数
@@ -1118,7 +1118,7 @@
  * 
  * @note 原始函数名：FUN_180069530
  */
-#define ProcessDataWithMask FUN_180069530
+#define ProcessDataWithMask ProcessDataWithMaskAndFilter
 
 /**
  * @brief 系统初始化函数A0
@@ -1128,7 +1128,7 @@
  * 
  * @note 原始函数名：FUN_180074a80
  */
-#define InitializeSystemA0 FUN_180074a80
+#define InitializeSystemA0 InitializeSystemComponentsAndMemory
 
 /**
  * @brief 系统终止函数A0
@@ -1138,13 +1138,13 @@
  * 
  * @note 原始函数名：FUN_180080060
  */
-#define TerminateSystemA0 FUN_180080060
+#define TerminateSystemA0 TerminateSystemProcessesAndResources
 
 /**
  * @brief 系统清理函数A0
  * @note 原始函数名：FUN_1800809a0
  */
-#define CleanupSystemA0 FUN_1800809a0
+#define CleanupSystemA0 CleanupSystemMemoryAndData
 
 /**
  * @brief 系统重置函数A0
