@@ -81642,7 +81642,15 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
 
 
 
-void Unwind_18090a470(void)
+/**
+ * @brief 互斥锁销毁函数
+ * 
+ * 该函数负责销毁当前线程的互斥锁资源，释放线程同步相关的内存。
+ * 这是一个简单的清理函数，在系统关闭或线程结束时调用。
+ * 
+ * @note 原始函数名：Unwind_18090a470
+ */
+void DestroyMutexAndReleaseResources(void)
 
 {
   _Mtx_destroy_in_situ();
