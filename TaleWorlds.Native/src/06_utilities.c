@@ -45063,8 +45063,10 @@ void ExceptionHandlerA44(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
  * @param operationBase 操作基地址
  * @param dataBuffer 数据缓冲区
  * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180903cc0
  */
-void Unwind_180903cc0(DataBuffer operationBase,int64_t dataBuffer)
+void ExceptionHandlerA45(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -45092,8 +45094,10 @@ void Unwind_180903cc0(DataBuffer operationBase,int64_t dataBuffer)
  * @param operationBase 操作基地址
  * @param dataBuffer 数据缓冲区
  * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180903cd0
  */
-void Unwind_180903cd0(DataBuffer operationBase,int64_t dataBuffer)
+void ExceptionHandlerA46(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;

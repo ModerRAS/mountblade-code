@@ -227912,7 +227912,7 @@ LAB_180201300:
           pSystemStatusValue = &SystemStatusValueSecondary;
         }
       }
-      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0fa10,pSystemStatusValue);
+      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueQuinary,pSystemStatusValue);
       MutexLockResult = *(int *)(CoreEngineMemoryContext + 0xf50);
       if (MutexLockResult == 0) {
         pSystemStatusValue = &SystemStatusValueTertiary;
@@ -227932,7 +227932,7 @@ LAB_180201300:
           pSystemStatusValue = &SystemStatusValueSecondary;
         }
       }
-      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0fa28,pSystemStatusValue);
+      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueSenary,pSystemStatusValue);
       MutexLockResult = *(int *)(CoreEngineMemoryContext + 0x930);
       if (MutexLockResult == 0) {
         pSystemStatusValue = &SystemStatusValueTertiary;
