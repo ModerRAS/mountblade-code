@@ -122921,7 +122921,7 @@ LAB_180126e9d:
         loopCounter4 = (long long)IntegerValue3;
         do {
           if ((*(char *)(*CharacterCode2 + 0xaf) != '\0') && (*(char *)(*CharacterCode2 + 0xb6) == '\0')) {
-            SystemDataTablePointer = FUN_180126de0(*(void *                                         (*(long long *)(SystemDataTablePointer + 400) + (long long)IntegerValue3 * 8));
+            SystemDataTablePointer = ProcessSystemDataTable(*(void *                                         (*(long long *)(SystemDataTablePointer + 400) + (long long)IntegerValue3 * 8));
             break;
           }
           IntegerValue3 = IntegerValue3 + -1;
@@ -125007,7 +125007,7 @@ void FUN_180127466(void)
     do {
       SystemStringIndex = *(long long *)(SystemContextValue + *(long long *)(SystemContext + 0x1aa8));
       if ((*(char *)(SystemStringIndex + 0xaf) == RegisterValueR12B) || ((*(uint *)(SystemStringIndex + 0xc) & 0x1000000) == 0)      {
-        FUN_180126b00(ReferenceCountPointer);
+        ProcessCharacterCodeOperation(ReferenceCountPointer);
       }
       ComputedResult = *(int *)(SystemContext + 0x1aa0);
       loopCounter = loopCounter + 1;
@@ -125118,7 +125118,7 @@ void FUN_180127648(void)
     do {
       MemoryBlockIndex = *(long long *)(CurrentMemoryBlockAddress + *(long long *)(SystemContext + 0x1aa8));
       if ((*(char *)(MemoryBlockIndex + 0xaf) == RegisterValueR12B) || ((*(uint *)(MemoryBlockIndex + 0xc) & 0x1000000) == 0)) {
-        FUN_180126b00(ReferenceCountPointer);
+        ProcessCharacterCodeOperation(ReferenceCountPointer);
       }
       ComputedResult = *(int *)(SystemContext + 0x1aa0);
       MutexLockResult = MutexLockResult + 1;
@@ -125255,7 +125255,7 @@ void FUN_180127733(void)
       loopCounter = *(long long *)(AllocatedMemorySize + *(long long *)(SystemContext + 0x1aa8));
       if ((*(char *)(loopCounter + 0xaf) == (char)RegisterValueR12D) ||
          ((*(uint *)(loopCounter + 0xc) & 0x1000000) == 0)) {
-        FUN_180126b00();
+        ProcessIntegerCharacterCodePointer();
       }
       ValidationCode = *(int *)(SystemContext + 0x1aa0);
       validationResult = validationResult + 1;
