@@ -251,6 +251,34 @@
 #define ResourceIteratorValueOffset 4
 #define DataContextStep 8
 
+// 线程本地存储相关常量
+#define ThreadLocalStorageOffset 0x17c
+#define ThreadLocalStorageBase 0x180c4f450
+
+// 内存对齐和掩码常量
+#define MemoryAlignmentValue 0xf
+#define MemoryAlignmentMaskValue 0xfffffff0
+#define MaximumMemoryBufferSize 0x3ffffffe
+
+// 异常处理相关地址常量
+#define ExceptionHandlerAddress1 0x0001808d7494
+#define ExceptionHandlerAddress2 0x0001808d74a4
+#define ExceptionHandlerAddress3 0x0001808d74b1
+
+// 系统函数地址常量
+#define ResourceDataValidationFunction 0x00018076b630
+#define SystemStatusRetrievalFunction 0x0001808e64d0
+#define RangeValidationFunctionA0 0x000180867960
+#define DataProcessingFunctionA0 0x000180867660
+#define ExceptionHandlerFunction 0x00018008d310
+#define OperationResultCheckFunction 0x0001808fd8d4
+#define CallbackExecutionFunction 0x0001808fd024
+
+// 系统对象指针地址常量
+#define MutexObjectPointerAddress 0x180c91910
+#define ExceptionCriticalSectionAddress 0x180c82210
+#define ExceptionHandlerParameterAddress 0x180c82238
+
 // Goto 标签宏定义 - 用于美化代码
 #define GOTO_ValidationFailed goto ExecuteSecurityValidation
 #define GOTO_SecurityCheckFailed goto ExecuteSystemSecurityCheck
@@ -15099,7 +15127,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     if ((*(int *)(dataBufferPtr + 0x180) != 0) || (*(int *)(dataBufferPtr + 0x184) != 0)) {
       systemContextBuffer[0] = 0;
       InitializeSystemContextA0(systemContextBuffer);
-      if (systemContextBuffer[0] == *(int64_t *)((int64_t)*(int *)(dataBufferPtr + 0x17c) * 8 + 0x180c4f450)) {
+      if (systemContextBuffer[0] == *(int64_t *)((int64_t)*(int *)(dataBufferPtr + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
         result = ProcessSystemDataEC0(dataBufferPtr,dataPtr);
         if ((int)result == 0) {
           return 0;

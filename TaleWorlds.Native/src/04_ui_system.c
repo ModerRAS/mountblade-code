@@ -1022,6 +1022,26 @@ void* UIGestureCoordinates;
 #define UIFunctionResultTableB UNK_1809535e8
 // 原始变量名：UNK_180954788 - UI函数结果表C
 #define UIFunctionResultTableC UNK_180954788
+// 原始变量名：UNK_1809535d8 - UI函数结果表D
+#define UIFunctionResultTableD UNK_1809535d8
+
+// UI系统验证数据表宏定义
+// 原始变量名：UNK_180954770 - UI验证数据表A
+#define UIValidationDataTableA UNK_180954770
+// 原始变量名：UNK_1809536c0 - UI验证数据表B
+#define UIValidationDataTableB UNK_1809536c0
+// 原始变量名：UNK_180953704 - UI验证数据表C
+#define UIValidationDataTableC UNK_180953704
+
+// UI系统数据表宏定义
+// 原始变量名：UNK_180956f72 - UI数据表A
+#define UIDataTableA UNK_180956f72
+// 原始变量名：UNK_18097edf8 - UI数据表B
+#define UIDataTableB UNK_18097edf8
+// 原始变量名：UNK_180980dc0 - UI数据表C
+#define UIDataTableC UNK_180980dc0
+// 原始变量名：UNK_180981620 - UI数据表D
+#define UIDataTableD UNK_180981620
 
 // UI系统未知函数表宏定义
 #define UIUnknownFunctionTable1 UIUnknownFunctionTable1
@@ -86944,8 +86964,8 @@ undefined8 FUN_18071c1b0(longlong uiContext,int dataSource)
     *(int *)(bufferData + 0x1274) =
          ((iVar6 * 0x40 + *(int *)(bufferPtr + lVar5 * 4 + -4) * -0x40) /
          (*(int *)(bufferPtr + lVar2 * 4) - *(int *)(bufferPtr + lVar5 * 4 + -4))) *
-         ((int)*(short *)(&UNK_1809536a8 + lVar5 * 2) - (int)*(short *)(&UNK_1809536a6 + lVar5 * 2))
-         + *(short *)(&UNK_1809536a6 + lVar5 * 2) * 0x40;
+         ((int)*(short *)(&UICoordinateDataTableB + lVar5 * 2) - (int)*(short *)(&UICoordinateDataTableA + lVar5 * 2))
+         + *(short *)(&UICoordinateDataTableA + lVar5 * 2) * 0x40;
   }
   return 0;
 }
@@ -86963,9 +86983,9 @@ undefined8 FUN_18071c23f(undefined8 uiContext,longlong dataSource,longlong targe
   operationResult = *(int *)(dataSource + -4 + targetBuffer * 4);
   *(int *)(context + 0x1274) =
        ((in_R11D + operationResult * -0x40) / (in_R10D - operationResult)) *
-       ((int)*(short *)(&UNK_1809536a8 + targetBuffer * 2) -
-       (int)*(short *)(&UNK_1809536a6 + targetBuffer * 2)) +
-       *(short *)(&UNK_1809536a6 + targetBuffer * 2) * 0x40;
+       ((int)*(short *)(&UICoordinateDataTableB + targetBuffer * 2) -
+       (int)*(short *)(&UICoordinateDataTableA + targetBuffer * 2)) +
+       *(short *)(&UICoordinateDataTableA + targetBuffer * 2) * 0x40;
   return 0;
 }
 
@@ -87070,20 +87090,20 @@ void FUN_18071c7f0(longlong uiContext,undefined8 dataSource,int targetBuffer,int
   }
   operationResult0 = (int)pcVar9[0x1e] + pcVar9[0x1d] * 2;
   if ((bufferSize == 0) && (operationResult0 < 2)) {
-    pfunctionResult2 = &UNK_1809535ec;
+    pfunctionResult2 = &UIFunctionResultTableA;
   }
   else {
     operationResult0 = operationResult0 + -2;
-    pfunctionResult2 = &UNK_1809535e8;
+    pfunctionResult2 = &UIFunctionResultTableB;
   }
   FUN_1807054a0(dataSource,operationResult0,pfunctionResult2,8);
   uVar5 = (uint)*pcVar9;
   if (resultPointer == 2) {
-    pfunctionResult2 = &UNK_180954788;
+    pfunctionResult2 = &UIFunctionResultTableC;
   }
   else {
-    FUN_1807054a0(dataSource,(int)uVar5 >> 3,&UNK_180954770 + (longlong)pcVar9[0x1d] * 8,8);
-    pfunctionResult2 = &UNK_1809535d8;
+    FUN_1807054a0(dataSource,(int)uVar5 >> 3,&UIFunctionResultTableC + (longlong)pcVar9[0x1d] * 8,8);
+    pfunctionResult2 = &UIFunctionResultTableD;
     uVar5 = (int)*pcVar9 & 7;
   }
   FUN_1807054a0(dataSource,uVar5,pfunctionResult2,8);
@@ -92322,7 +92342,7 @@ void FUN_180722910(longlong uiContext,undefined8 dataSource,int targetBuffer,int
   
   uStack_48 = XorEncryptionKey ^ (ulonglong)auStack_98;
   if ((bufferSize == 0) && (*(int *)(bufferData + 0x970 + (longlong)targetBuffer * 4) == 0)) {
-    iVar4 = ReadUIData(dataSource,&UNK_1809535ec,8);
+    iVar4 = ReadUIData(dataSource,&UIFunctionResultTableA,8);
   }
   else {
     iVar4 = ReadUIData(dataSource,&UNK_1809535e8,8);
@@ -92336,7 +92356,7 @@ void FUN_180722910(longlong uiContext,undefined8 dataSource,int targetBuffer,int
     *(undefined1 *)(uiContext + 0xac8) = functionResult;
   }
   else {
-    cVar2 = ReadUIData(dataSource,&UNK_180954770 + (longlong)cVar2 * 8,8);
+    cVar2 = ReadUIData(dataSource,&UIValidationDataTableA + (longlong)cVar2 * 8,8);
     *(char *)(uiContext + 0xac8) = cVar2 << 3;
     cVar2 = ReadUIData(dataSource,&UNK_1809535d8,8);
     *(char *)(uiContext + 0xac8) = *(char *)(uiContext + 0xac8) + cVar2;
@@ -92453,7 +92473,7 @@ void FUN_18072292c(longlong uiContext,undefined8 dataSource,int targetBuffer,int
   int in_stack_000000c0;
   
   if ((bufferSize == 0) && (*(int *)(bufferData + 0x970 + (longlong)targetBuffer * 4) == 0)) {
-    iVar4 = ReadUIData(dataSource,&UNK_1809535ec,8);
+    iVar4 = ReadUIData(dataSource,&UIFunctionResultTableA,8);
   }
   else {
     iVar4 = ReadUIData(dataSource,&UNK_1809535e8,8);
@@ -92467,7 +92487,7 @@ void FUN_18072292c(longlong uiContext,undefined8 dataSource,int targetBuffer,int
     *(undefined1 *)(uiContext + 0xac8) = functionResult;
   }
   else {
-    cVar2 = ReadUIData(dataSource,&UNK_180954770 + (longlong)cVar2 * 8,8);
+    cVar2 = ReadUIData(dataSource,&UIValidationDataTableA + (longlong)cVar2 * 8,8);
     *(char *)(uiContext + 0xac8) = cVar2 << 3;
     cVar2 = ReadUIData(dataSource,&UNK_1809535d8,8);
     *(char *)(uiContext + 0xac8) = *(char *)(uiContext + 0xac8) + cVar2;
@@ -94812,30 +94832,30 @@ void FUN_180724c50(int *uiContext,int *dataSource,int targetBuffer,int bufferSiz
     piVar7 = (int *)(&UNK_1809536c4 + allocatedMemory * 0xc);
     lVar8 = allocatedMemory1 * 2 + 2;
     piVar9 = (int *)(&UNK_180953700 + lVar8 * 4);
-    pvalidationResult = (int *)(&UNK_180953704 + allocatedMemory1 * 8);
+    pvalidationResult = (int *)(&UIValidationDataTableC + allocatedMemory1 * 8);
     operationResult0 = (int)((ulonglong)
-                   ((*(int *)(&UNK_1809536c0 + allocatedMemory * 0xc) -
-                    *(int *)(&UNK_1809536c0 + allocatedMemory1 * 0xc)) * allocatedMemory2) >> 0x10);
+                   ((*(int *)(&UIValidationDataTableB + allocatedMemory * 0xc) -
+                    *(int *)(&UIValidationDataTableB + allocatedMemory1 * 0xc)) * allocatedMemory2) >> 0x10);
     if (bufferSize < 0x8000) {
-      *uiContext = *(int *)(&UNK_1809536c0 + allocatedMemory1 * 0xc) + operationResult0;
+      *uiContext = *(int *)(&UIValidationDataTableB + allocatedMemory1 * 0xc) + operationResult0;
       uiContext[1] = (int)((ulonglong)((*piVar7 - *piVar3) * allocatedMemory2) >> 0x10) + *piVar3;
       uiContext[2] = (int)((ulonglong)((*piVar5 - *piVar4) * allocatedMemory2) >> 0x10) + *piVar4;
       *dataSource = (int)((ulonglong)((*piVar9 - *piVar6) * allocatedMemory2) >> 0x10) + *piVar6;
-      operationResult0 = (int)((ulonglong)((*(int *)(&UNK_180953704 + lVar8 * 4) - *pvalidationResult) * allocatedMemory2) >> 0x10)
+      operationResult0 = (int)((ulonglong)((*(int *)(&UIValidationDataTableC + lVar8 * 4) - *pvalidationResult) * allocatedMemory2) >> 0x10)
                + *pvalidationResult;
     }
     else {
-      *uiContext = *(int *)(&UNK_1809536c0 + allocatedMemory * 0xc) + operationResult0;
+      *uiContext = *(int *)(&UIValidationDataTableB + allocatedMemory * 0xc) + operationResult0;
       uiContext[1] = (int)((ulonglong)((*piVar7 - *piVar3) * allocatedMemory2) >> 0x10) + *piVar7;
       uiContext[2] = (int)((ulonglong)((*piVar5 - *piVar4) * allocatedMemory2) >> 0x10) + *piVar5;
       *dataSource = (int)((ulonglong)((*piVar9 - *piVar6) * allocatedMemory2) >> 0x10) + *piVar9;
-      operationResult0 = *(int *)(&UNK_180953704 + lVar8 * 4);
+      operationResult0 = *(int *)(&UIValidationDataTableC + lVar8 * 4);
       operationResult0 = operationResult0 + (int)((ulonglong)((operationResult0 - *pvalidationResult) * allocatedMemory2) >> 0x10);
     }
     dataSource[1] = operationResult0;
     return;
   }
-  *(undefined8 *)uiContext = *(undefined8 *)(&UNK_1809536c0 + allocatedMemory1 * 0xc);
+  *(undefined8 *)uiContext = *(undefined8 *)(&UIValidationDataTableB + allocatedMemory1 * 0xc);
   uiContext[2] = *(int *)(&UNK_1809536c8 + allocatedMemory1 * 0xc);
   *(undefined8 *)dataSource = *(undefined8 *)(&UNK_180953700 + allocatedMemory1 * 8);
   return;
