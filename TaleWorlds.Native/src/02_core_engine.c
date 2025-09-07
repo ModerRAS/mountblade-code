@@ -2687,6 +2687,79 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
  * 确保系统数据目标的正确清理。
  */
 #define ProcessSystemDataAndCleanupTarget FUN_18009fbe0
+
+/**
+ * @brief 处理系统字符编码转换和初始化
+ * 
+ * 该函数负责处理系统字符编码的转换操作，包括字符编码的初始化和配置。
+ * 确保系统字符编码的正确转换。
+ */
+#define ProcessSystemCharacterEncodingConversionAndInitialize FUN_180128bd0
+
+/**
+ * @brief 处理系统浮点数据并初始化缓冲区
+ * 
+ * 该函数负责处理系统浮点数据的初始化操作，包括浮点数据缓冲区的设置。
+ * 确保系统浮点数据的正确初始化。
+ */
+#define ProcessSystemFloatDataAndInitializeBuffer FUN_1801296e0
+
+/**
+ * @brief 处理系统数据并分配内存池
+ * 
+ * 该函数负责处理系统数据的内存池分配操作，包括内存池的创建和管理。
+ * 确保系统数据内存池的正确分配。
+ */
+#define ProcessSystemDataAndAllocateMemoryPool FUN_18012f580
+
+/**
+ * @brief 处理系统数据并创建数据结构
+ * 
+ * 该函数负责处理系统数据的数据结构创建操作，包括数据结构的初始化。
+ * 确保系统数据数据结构的正确创建。
+ */
+#define ProcessSystemDataAndCreateDataStructure FUN_18012f6d0
+
+/**
+ * @brief 处理系统内存并初始化扩展组件
+ * 
+ * 该函数负责处理系统内存的扩展组件初始化操作，包括扩展组件的设置。
+ * 确保系统内存扩展组件的正确初始化。
+ */
+#define ProcessSystemMemoryAndInitializeExtendedComponent FUN_180130ec0
+
+/**
+ * @brief 处理系统浮点数据并配置参数
+ * 
+ * 该函数负责处理系统浮点数据的参数配置操作，包括浮点参数的设置。
+ * 确保系统浮点数据参数的正确配置。
+ */
+#define ProcessSystemFloatDataAndConfigureParameters FUN_180131148
+
+/**
+ * @brief 处理系统字符编码并转换格式
+ * 
+ * 该函数负责处理系统字符编码的格式转换操作，包括字符格式的转换。
+ * 确保系统字符编码格式的正确转换。
+ */
+#define ProcessSystemCharacterEncodingAndConvertFormat FUN_180131331
+
+/**
+ * @brief 处理系统数据并分配验证缓冲区
+ * 
+ * 该函数负责处理系统数据的验证缓冲区分配操作，包括验证缓冲区的创建。
+ * 确保系统数据验证缓冲区的正确分配。
+ */
+#define ProcessSystemDataAndAllocateValidationBuffer FUN_180131aac
+
+/**
+ * @brief 处理系统字符编码并转换数据
+ * 
+ * 该函数负责处理系统字符编码的数据转换操作，包括字符数据的转换。
+ * 确保系统字符编码数据的正确转换。
+ */
+#define ProcessSystemCharacterEncodingAndConvertData FUN_180131be4
+
 #define ConfigureSystemDataStructureOffset3b0 FUN_18010d3b0
 #define ConfigureSystemDataStructureOffset470 FUN_18010d470
 #define ConfigureSystemDataStructureOffset4f0 FUN_18010d4f0
@@ -200430,11 +200503,11 @@ void ProcessUtf8InputBufferAndMemoryAllocation(long long CharacterCode,void **Ut
     __0CpuCacheCreationParameters_Granite_Graphine__QEAA_XZ(apEnginePointerBuffer0);
     validationResult = (**(code **)(*Utf8InputBuffer2 + 0x38))(CharacterCode2,0x3fffc00,apEnginePointerBuffer0);
     if (validationResult != 0) {
-      FUN_180626ee0(SystemEventCallbackPointerQuaternary);
+      ProcessSystemEventCallback(SystemEventCallbackPointerQuaternary);
     }
     validationResult = (**(code **)(**(long long **)(CharacterCode + 0xe8) + 0x120)                      (*(long long **)(CharacterCode + 0xe8),apEnginePointerBuffer0,&lStack_6d8);
     if ((lStack_6d8 == 0) || (validationResult != 0)) {
-      FUN_180626ee0(SystemEventCallbackPointerQuinary);
+      ProcessSystemEventCallback(SystemEventCallbackPointerQuinary);
     }
   }
   validationResult = (**(code **)(*plStack_6b8 + 0x130))(plStack_6b8,lStack_6d8);
