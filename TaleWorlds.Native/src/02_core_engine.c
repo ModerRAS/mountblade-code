@@ -144449,7 +144449,14 @@ void SetCharacterEncodingConversionParameters(uint32_t CharacterCode, long long 
 
 
 
-da33(voidvoid FUN_18012da33(void
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作
+ * 
+ * @note 原始函数名：FUN_18012da33
+ */
+void EmptyOperation(void)
 {
   return;
 }
@@ -144493,7 +144500,19 @@ void SetCharacterEncodingInputBuffer(int CharacterCode, uint64_t *Utf8InputBuffe
 
 
 
-da66(uint32_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18012da66(uint32_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18012da66
+ */
+void ProcessUtf8ToUtf16CharacterConversion(uint32_t CharacterCode, uint64_t Utf8BufferSize, long long Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   long long ProcessingResult;
@@ -144512,7 +144531,14 @@ da66(uint32_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer,
 
 
 
-dac6(voidvoid FUN_18012dac6(void
+/**
+ * @brief 空操作函数2
+ * 
+ * 该函数是一个空操作函数，不执行任何操作
+ * 
+ * @note 原始函数名：FUN_18012dac6
+ */
+void EmptyOperation2(void)
 {
   return;
 }
@@ -144521,7 +144547,16 @@ dac6(voidvoid FUN_18012dac6(void
 
 
 
-dad0(int CharacterCodevoid FUN_18012dad0(int CharacterCode
+/**
+ * @brief 处理字符代码和内存块操作
+ * 
+ * 该函数负责处理字符代码和内存块的操作和管理
+ * 
+ * @param CharacterCode 字符代码
+ * 
+ * @note 原始函数名：FUN_18012dad0
+ */
+void ProcessCharacterCodeAndMemoryBlock(int CharacterCode)
 {
   int LockResult;
   long long BufferStatus;

@@ -65839,7 +65839,17 @@ void ExecuteExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907740(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统资源清理A1
+ * 
+ * 该函数负责清理系统资源，重置异常处理器状态，并处理资源释放
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907740
+ */
+void ProcessSystemResourceCleanupA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -65938,7 +65948,16 @@ void SetDefaultExceptionHandlerA1(void)
 
 
 
-void Unwind_180907790(void)
+/**
+ * @brief 设置默认异常处理器A2
+ * 
+ * 该函数将异常处理器指针A2设置为默认异常处理器B。
+ * 这是一个简单的异常处理器重置函数。
+ * 
+ * @note 原始函数名：Unwind_180907790
+ * @note 简化实现：设置默认异常处理器
+ */
+void SetDefaultExceptionHandlerA2(void)
 
 {
   ExceptionHandlerPointerA2 = &DefaultExceptionHandlerB;
@@ -65948,7 +65967,16 @@ void Unwind_180907790(void)
 
 
 
-void Unwind_1809077a0(void)
+/**
+ * @brief 设置默认异常处理器A3
+ * 
+ * 该函数将异常处理器指针A3设置为默认异常处理器B。
+ * 这是一个简单的异常处理器重置函数。
+ * 
+ * @note 原始函数名：Unwind_1809077a0
+ * @note 简化实现：设置默认异常处理器
+ */
+void SetDefaultExceptionHandlerA3(void)
 
 {
   ExceptionHandlerPointerA3 = &DefaultExceptionHandlerB;
@@ -66043,7 +66071,17 @@ void Unwind_1809077f0(void)
 
 
 
-void Unwind_180907800(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统状态更新A0
+ * 
+ * 该函数负责更新系统状态，遍历异常处理上下文并更新状态
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907800
+ */
+void ProcessSystemStatusUpdateA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
