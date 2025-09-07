@@ -100019,14 +100019,33 @@ void Unwind_180911320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器重置函数（偏移量0x1560）
+ * 
+ * 该函数负责重置异常处理器的状态，包括：
+ * - 调用异常处理器回调函数
+ * - 设置临时异常处理器
+ * - 清理状态标志
+ * - 设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911340
+ * @note 这是异常处理系统的关键重置函数
+ */
+void ResetExceptionHandlerAtOffset1560(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
+  FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x1560) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x1560))(exceptionHandlerContext + 0x1550,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionHandlerCallback = *(FunctionPointer**)(exceptionHandlerContext + 0x1560);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(exceptionHandlerContext + 0x1550,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1528) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1530) != 0) {
@@ -100047,14 +100066,33 @@ void Unwind_180911340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器重置函数（偏移量0x15d0）
+ * 
+ * 该函数负责重置异常处理器的状态，包括：
+ * - 调用异常处理器回调函数
+ * - 设置临时异常处理器
+ * - 清理状态标志
+ * - 设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911360
+ * @note 这是异常处理系统的关键重置函数
+ */
+void ResetExceptionHandlerAtOffset15d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
+  FunctionPointer *exceptionHandlerCallback;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x15d0) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x15d0))(exceptionHandlerContext + 0x15c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionHandlerCallback = *(FunctionPointer**)(exceptionHandlerContext + 0x15d0);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(exceptionHandlerContext + 0x15c0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1598) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x15a0) != 0) {
