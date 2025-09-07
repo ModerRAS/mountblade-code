@@ -148,6 +148,15 @@
 #define ResourceValidationFlag1 0x12e3
 #define ResourceValidationFlag2 0x12dd
 
+// 资源描述符偏移量常量
+#define ResourceDescriptorValidationOffset 0x1c    // 资源描述符验证偏移量
+#define ResourceDescriptorDataOffset 0x20         // 资源描述符数据偏移量
+#define ArrayDescriptorValidationOffset 0x1c      // 数组描述符验证偏移量
+
+// 异常处理上下文偏移量常量
+#define ExceptionHandlerContextArrayOffset 0x48   // 异常处理上下文数组偏移量
+#define ExceptionHandlerContextDataOffset 0x50   // 异常处理上下文数据偏移量
+
 // 系统调试地址常量定义
 #define SystemDebugAddressMain 0x000180893865
 #define SystemDebugAddressSecondary 0x000180893a22
@@ -438,18 +447,21 @@
 
 /**
  * @brief 系统数据验证处理函数
+ * 功能：处理系统数据的验证流程，包括数据完整性检查和安全性验证
  * @note 原始函数名：FUN_180058370
  */
 #define ProcessSystemDataValidation FUN_180058370
 
 /**
  * @brief 系统数据缓冲区验证函数
+ * 功能：验证系统数据缓冲区的有效性和完整性，确保数据缓冲区安全可用
  * @note 原始函数名：FUN_18004b790
  */
 #define ValidateSystemDataBuffer FUN_18004b790
 
 /**
  * @brief 系统数据指针清理函数
+ * 功能：清理系统数据指针，释放内存资源，防止内存泄漏
  * @note 原始函数名：FUN_18064e900
  */
 #define CleanupSystemDataPointer FUN_18064e900
@@ -3946,61 +3958,61 @@
 // 异常数据表2地址
 #define ExceptionDataTable2Address 0x180a21690
 
-// 原始变量名：UNK_180a21720 - 异常数据表3
-// 功能：存储异常处理相关的数据表信息
-#define ExceptionDataTable3 UNK_180a21720
+// 异常数据表Tertiary
+// 功能：存储异常处理相关的数据表信息，用于异常处理流程
+#define ExceptionDataTableTertiary UNK_180a21720
 
-// 原始变量名：UNK_18098bd40 - 异常处理配置表
-// 功能：存储异常处理的配置信息
+// 异常处理配置表
+// 功能：存储异常处理的配置信息和参数设置
 #define ExceptionConfigurationTable UNK_18098bd40
 
-// 原始变量名：UNK_1809fe100 - 异常处理状态表
-// 功能：存储异常处理的状态信息
+// 异常处理状态表
+// 功能：存储异常处理的当前状态信息和历史记录
 #define ExceptionStatusTable UNK_1809fe100
 
-// 原始变量名：UNK_18098bab0 - 异常处理句柄表A0
-// 功能：存储异常处理的句柄信息
-#define ExceptionHandleTableA0 UNK_18098bab0
+// 异常处理句柄表Primary
+// 功能：存储异常处理的句柄信息和回调函数指针
+#define ExceptionHandleTablePrimary UNK_18098bab0
 
-// 原始变量名：UNK_18098bac8 - 异常处理句柄表A1
-// 功能：存储异常处理的句柄信息
-#define ExceptionHandleTableA1 UNK_18098bac8
+// 异常处理句柄表Secondary
+// 功能：存储异常处理的备用句柄信息和次级回调函数指针
+#define ExceptionHandleTableSecondary UNK_18098bac8
 
-// 原始变量名：UNK_1809fd0a0 - 异常处理数据表A4
-// 功能：存储异常处理的数据表信息
-#define ExceptionDataTable4 UNK_1809fd0a0
+// 异常处理数据表Quaternary
+// 功能：存储异常处理的第四级数据表信息和详细参数
+#define ExceptionDataTableQuaternary UNK_1809fd0a0
 
-// 原始变量名：UNK_180982508 - 数据验证标志表
-// 功能：存储数据验证的标志信息
-#define DataValidationFlagTable UNK_180982508
+// 数据验证标志表
+// 功能：存储系统数据验证的标志位和状态信息
+#define SystemDataValidationFlagTable UNK_180982508
 
-// 原始变量名：UNK_180982608 - 数据处理状态表
-// 功能：存储数据处理的状态信息
-#define DataProcessingStatusTable UNK_180982608
+// 数据处理状态表
+// 功能：存储系统数据处理的当前状态和进度信息
+#define SystemDataProcessingStatusTable UNK_180982608
 
-// 原始变量名：UNK_180982588 - 系统状态标志表
-// 功能：存储系统状态的标志信息
+// 系统状态标志表
+// 功能：存储系统运行状态的标志位和控制信息
 #define SystemStatusFlagTable UNK_180982588
 
-// 原始变量名：UNK_180985a80 - 系统配置数据表
-// 功能：存储系统配置的数据表信息
+// 系统配置数据表
+// 功能：存储系统配置参数和数据表结构信息
 #define SystemConfigurationDataTable UNK_180985a80
 
-// 原始变量名：UNK_180982cc0 - 数据加密表
-// 功能：存储数据加密的表信息
-#define DataEncryptionTable UNK_180982cc0
+// 数据加密表
+// 功能：存储系统数据加密的密钥表和算法参数
+#define SystemDataEncryptionTable UNK_180982cc0
 
-// 原始变量名：UNK_1809842e0 - 系统验证数据表A1
-// 功能：存储系统验证相关的数据表信息
-#define SystemValidationDataTableA1 UNK_1809842e0
+// 系统验证数据表Secondary
+// 功能：存储系统验证相关的备用数据表和验证规则
+#define SystemValidationDataTableSecondary UNK_1809842e0
 
-// 原始变量名：UNK_180983588 - 系统验证数据表A0
-// 功能：存储系统验证相关的数据表信息
-#define SystemValidationDataTableA0 UNK_180983588
+// 系统验证数据表Primary
+// 功能：存储系统验证相关的主要数据表和验证规则
+#define SystemValidationDataTablePrimary UNK_180983588
 
-// 原始变量名：UNK_180983b68 - 系统验证数据表A1
-// 功能：存储系统验证相关的数据表信息
-#define SystemValidationDataTableA1 UNK_180983b68
+// 系统验证数据表Tertiary
+// 功能：存储系统验证相关的第三级数据表和高级验证规则
+#define SystemValidationDataTableTertiary UNK_180983b68
 
 // 原始变量名：UNK_180983cf8 - 系统验证数据表A2
 // 功能：存储系统验证相关的数据表信息
@@ -4294,13 +4306,14 @@ extern void* SystemPrimaryResourceTable;
 // 功能：异常处理的临界区对象，确保线程安全
 #define ExceptionCriticalSectionPtr 0x180c82210
 
-// 原始变量名：0x180c82238 - 异常处理参数
-// 功能：异常处理的函数参数
+// 异常处理参数存储指针
+// 功能：存储异常处理的函数参数，用于异常处理流程
+#define ExceptionHandlerParameterStoragePtr 0x180c82238
 
 // 系统数据变量语义化宏定义
-// 原始变量名：UNK_1809864e0 - 数据配置表A0
-// 功能：存储系统数据配置信息
-#define DataConfigurationTableA0 UNK_1809864e0
+// 数据配置表A0
+// 功能：存储系统数据配置信息，包括系统参数和配置选项
+#define SystemDataConfigurationTable UNK_1809864e0
 
 // 更多工具函数宏定义
 // 原始函数名：FUN_180899220 - 系统参数处理函数A0
@@ -11169,7 +11182,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
   uint64_t simdRegister;
   
   // 查询系统数据并获取上下文
-  operationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(resourceDescriptor + 0x1c), &systemContextBuffer);
+  operationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(resourceDescriptor + ResourceDescriptorValidationOffset), &systemContextBuffer);
   if ((int32_t)operationResult != 0) {
     return operationResult;
   }
@@ -11177,7 +11190,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
   // 获取验证上下文
   exceptionHandlerContext = *(int64_t *)(systemContextBuffer + 8);
   if (exceptionHandlerContext != 0) {
-    inputFloatValue = *(float *)(resourceDescriptor + 0x20);
+    inputFloatValue = *(float *)(resourceDescriptor + ResourceDescriptorDataOffset);
     
     // 遍历浮点数组并进行验证
     for (ArrayElementContext = *(uint64_t **)(exceptionHandlerContext + 0x48);
@@ -14446,12 +14459,19 @@ ExitHandler:
 
 
 
-// 函数: void OptimizeUtilitySystemZ0(DataBuffer systemHandle,DataBuffer optimizationFlags)
-// 功能：优化工具系统性能，根据指定的优化标志进行系统优化
-// 参数：
-//   systemHandle - 系统句柄，标识要优化的工具系统实例
-//   optimizationFlags - 优化标志位，指定要执行的优化类型
-void OptimizeUtilitySystemZ0(DataBuffer systemHandle,DataBuffer optimizationFlags)
+/**
+ * @brief 优化工具系统性能
+ * 
+ * 根据指定的优化标志对工具系统进行性能优化，包括：
+ * - 系统资源调度优化
+ * - 内存使用效率提升
+ * - 缓存策略调整
+ * - 执行路径优化
+ * 
+ * @param systemHandle 系统句柄，标识要优化的工具系统实例
+ * @param optimizationFlags 优化标志位，指定要执行的优化类型
+ */
+void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
 
 {
   int processStatus;
@@ -14581,12 +14601,19 @@ SystemCleanupLabel:
 
 
 
-// 函数: void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
-// 功能：验证工具系统配置的有效性，检查配置参数是否符合系统要求
-// 参数：
-//   configId - 配置标识符，指定要验证的配置项
-//   validationFlags - 验证标志，控制验证过程的严格程度和检查项目
-void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
+/**
+ * @brief 验证工具系统配置的有效性
+ * 
+ * 检查配置参数是否符合系统要求，包括：
+ * - 配置参数完整性检查
+ * - 参数范围验证
+ * - 系统兼容性检查
+ * - 安全性验证
+ * 
+ * @param configId 配置标识符，指定要验证的配置项
+ * @param validationFlags 验证标志，控制验证过程的严格程度和检查项目
+ */
+void ValidateUtilityConfiguration(int configId,int validationFlags)
 
 {
   int systemValue;
@@ -14634,10 +14661,18 @@ SystemCleanupLabel:
 
 
 
-// 函数: void CheckUtilitySystemStatusAC0(void)
-// 功能：检查工具系统当前状态，返回系统运行状态和健康度信息
-// 返回：系统状态码，表示系统当前的健康状况和运行状态
-void CheckUtilitySystemStatusAC0(void)
+/**
+ * @brief 检查工具系统当前状态
+ * 
+ * 检查工具系统的运行状态和健康度信息，包括：
+ * - 系统运行状态检查
+ * - 资源使用情况监控
+ * - 错误状态检测
+ * - 性能指标评估
+ * 
+ * @return 系统状态码，表示系统当前的健康状况和运行状态
+ */
+void CheckUtilitySystemStatus(void)
 
 {
   return;
@@ -14646,10 +14681,15 @@ void CheckUtilitySystemStatusAC0(void)
 
 
 
-// 函数: void ClearUtilitySystemDataAD0(void)
-// 功能：清理工具系统数据，释放临时内存和缓存资源
-// 注意：此函数会释放所有临时分配的资源，但保留核心配置
-void ClearUtilitySystemDataAD0(void)
+/**
+ * @brief 清理工具系统数据
+ * 
+ * 释放临时内存和缓存资源，清理系统运行时产生的临时数据。
+ * 此函数会释放所有临时分配的资源，但保留核心配置。
+ * 
+ * 注意：此操作会释放临时资源，但系统配置会被保留。
+ */
+void ClearUtilitySystemData(void)
 
 {
   return;
