@@ -175235,7 +175235,7 @@ long long * FUN_18014acf0(long long CharacterCode,long long *Utf8InputBufferSize
   fStack_88 = MatrixElementE;
   fStack_84 = MatrixElementF;
   fStack_80 = MatrixElementG;
-  FUN_1800b9f60(&MatrixElementM);
+  ProcessMatrixElement(&MatrixElementM);
   Utf8InputBuffer[0x1f] = CONCAT44(MatrixElementN,MatrixElementM);
   Utf8InputBuffer[0x20] = CONCAT44(uStack_8c,MatrixElementO);
   Utf8InputBuffer[0x21] = CONCAT44(fStack_84,fStack_88);
@@ -175530,7 +175530,7 @@ long long * FUN_18014acf0(long long CharacterCode,long long *Utf8InputBufferSize
   *(uint32_t *)(StackFrameAddressPointer + -0x25) = MemoryAllocationSize;
   *(uint32_t *)(StackFrameAddressPointer + -0x21) = in_XMM2_Dc;
   *(uint32_t *)(StackFrameAddressPointer + -0x1d) = in_XMM2_Dd;
-  FUN_1800b9f60(StackFrameAddressPointer + -0x39);
+  ProcessMatrixElement(StackFrameAddressPointer + -0x39);
   MemoryAddressMask = *(void *)(StackFrameAddressPointer + -0x31);
   MemoryAllocationIndexPrimary = *(uint32_t *)(StackFrameAddressPointer + -9);
   CalculatedCodePoint = *(void *)(StackFrameAddressPointer + -0x29);
@@ -175742,7 +175742,7 @@ long long * FUN_18014acf0(long long CharacterCode,long long *Utf8InputBufferSize
   *(uint32_t *)(StackFrameAddressPointer + -0x25) = Utf16Char9;
   *(uint32_t *)(StackFrameAddressPointer + -0x21) = in_XMM2_Dc;
   *(uint32_t *)(StackFrameAddressPointer + -0x1d) = in_XMM2_Dd;
-  FUN_1800b9f60(StackFrameAddressPointer + -0x39);
+  ProcessMatrixElement(StackFrameAddressPointer + -0x39);
   MemoryAllocationIndex = *(void *)(StackFrameAddressPointer + -0x31);
   PrimaryReturnCode = *(uint32_t *)(StackFrameAddressPointer + -9);
   UnicodeCodePoint = *(void *)(StackFrameAddressPointer + -0x29);
@@ -175942,7 +175942,7 @@ long long * FUN_18014acf0(long long CharacterCode,long long *Utf8InputBufferSize
   *(uint32_t *)(StackFrameAddressPointer + -0x25) = MemoryAllocationHandle;
   *(uint32_t *)(StackFrameAddressPointer + -0x21) = Utf16Char9;
   *(uint32_t *)(StackFrameAddressPointer + -0x1d) = MemoryAllocationIndexPrimary;
-  FUN_1800b9f60(StackFrameAddressPointer + -0x39);
+  ProcessMatrixElement(StackFrameAddressPointer + -0x39);
   UnicodeCodePoint = *(void *)(StackFrameAddressPointer + -0x31);
   UnicodeCharacterCode = *(uint32_t *)(StackFrameAddressPointer + -9);
   MemoryAddressMask = *(void *)(StackFrameAddressPointer + -0x29);
@@ -176063,7 +176063,7 @@ long long * FUN_18014acf0(long long CharacterCode,long long *Utf8InputBufferSize
   *(uint32_t *)(StackFrameAddressPointer + -0x25) = PrimaryReturnCode;
   *(uint32_t *)(StackFrameAddressPointer + -0x21) = in_XMM2_Dc;
   *(uint32_t *)(StackFrameAddressPointer + -0x1d) = in_XMM2_Dd;
-  FUN_1800b9f60(StackFrameAddressPointer + -0x39);
+  ProcessMatrixElement(StackFrameAddressPointer + -0x39);
   UnicodeCodePoint = *(void *)(StackFrameAddressPointer + -0x31);
   Utf16ConversionContext = *(uint32_t *)(StackFrameAddressPointer + -9);
   MemoryAddressMask = *(void *)(StackFrameAddressPointer + -0x29);
@@ -178637,7 +178637,7 @@ long long FUN_18014e960(long long CharacterCode,long long Utf8BufferSize
   *(void *)(CharacterCode + 0x10) = 0;
   *(code **)(CharacterCode + 0x18) = _guard_check_icall;
   if (CharacterCode != Utf8BufferSize) {
-    FUN_180069130();
+    ProcessSystemOperationFlags();
   }
   *(uint32_t *)(CharacterCode + 0x20) = *(uint32_t *)(Utf8BufferSize + 0x20);
   *(void *)(CharacterCode + 0x28) = *(void *)(Utf8BufferSize + 0x28);
@@ -179890,7 +179890,7 @@ long long * FUN_18014fe60(long long CharacterCode,long long Utf8BufferSize,long 
           else {
             SystemDataStructureRegistry = BufferAllocate(MemoryPoolManager,ProcessingStatusFlag * 0x18,(char)MemoryPoolBlockSizePointer[6]);
           }
-          FUN_180082a50(BufferStatus,MemoryBoundaryEnd,SystemDataStructureRegistry);
+          ProcessBufferStatus(BufferStatus,MemoryBoundaryEnd,SystemDataStructureRegistry);
           if (*Utf8InputBuffer != 0) {
                     // WARNING: Subroutine does not return
             CoreEngineProcessSystemEvent();
@@ -179904,8 +179904,8 @@ long long * FUN_18014fe60(long long CharacterCode,long long Utf8BufferSize,long 
           CalculatedCodePoint = (MemoryPoolBlockSizePointer[4] - *Utf8InputBuffer) / 0x18;
           if (CalculatedCodePoint < ProcessingStatusFlag) {
             SystemDataStructureRegistry = BufferStatus + CalculatedCodePoint * 0x18;
-            FUN_180082a50(BufferStatus,SystemDataStructureRegistry);
-            MemoryBoundaryEnd = FUN_180082a50(SystemDataStructureRegistry,MemoryBoundaryEnd,MemoryPoolBlockSizePointer[4]);
+            ProcessBufferStatus(BufferStatus,SystemDataStructureRegistry);
+            MemoryBoundaryEnd = ProcessBufferStatus(SystemDataStructureRegistry,MemoryBoundaryEnd,MemoryPoolBlockSizePointer[4]);
           }
           else {
             MemoryBoundaryEnd = FUN_180082a50(BufferStatus,MemoryBoundaryEnd);
@@ -180077,7 +180077,7 @@ long long * FUN_18014fe9c(long long CharacterCode,uint64_t Utf8BufferSize,long l
         else {
           SystemDataStructureRegistry = BufferAllocate(MemoryPoolManager,ProcessingStatusFlag * 0x18,(char)MemoryPoolBlockSizePointer[6]);
         }
-        FUN_180082a50(BufferStatus,MemoryBoundaryEnd,SystemDataStructureRegistry);
+        ProcessBufferStatus(BufferStatus,MemoryBoundaryEnd,SystemDataStructureRegistry);
         if (*Utf8InputBuffer != 0) {
                     // WARNING: Subroutine does not return
           CoreEngineProcessSystemEvent();
@@ -180091,8 +180091,8 @@ long long * FUN_18014fe9c(long long CharacterCode,uint64_t Utf8BufferSize,long l
         CalculatedCodePoint = (MemoryPoolBlockSizePointer[4] - *Utf8InputBuffer) / 0x18;
         if (CalculatedCodePoint < ProcessingStatusFlag) {
           SystemDataStructureRegistry = BufferStatus + CalculatedCodePoint * 0x18;
-          FUN_180082a50(BufferStatus,SystemDataStructureRegistry);
-          MemoryBoundaryEnd = FUN_180082a50(SystemDataStructureRegistry,MemoryBoundaryEnd,MemoryPoolBlockSizePointer[4]);
+          ProcessBufferStatus(BufferStatus,SystemDataStructureRegistry);
+          MemoryBoundaryEnd = ProcessBufferStatus(SystemDataStructureRegistry,MemoryBoundaryEnd,MemoryPoolBlockSizePointer[4]);
         }
         else {
           MemoryBoundaryEnd = FUN_180082a50(BufferStatus,MemoryBoundaryEnd);
@@ -223758,7 +223758,7 @@ uint32_t *InitializeUtf8Buffer(uint64_t CharacterCode,uint32_t *Utf8InputBufferS
   Utf8BufferSize[5] = 0;
   Utf8BufferSize[6] = 0;
   Utf8BufferSize[7] = 0x7f7fffff;
-  FUN_1800b9f60(0);
+  ProcessMatrixElement(0);
   return Utf8BufferSize;
 }
 
@@ -267764,7 +267764,7 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
   *(float *)(CharacterCode + 400) = FloatVariable41;
   *(uint32_t *)(CharacterCode + 0x194) = MemoryAddressMask2;
   TemporaryFlag = UnicodeCodePoint5;
-  FUN_1800b9f60();
+  ProcessMatrixElement();
   FUN_18040b250(CharacterCode,UnicodeCodePoint5 & 0xff);
   UnicodeCharacterIndex = 0;
   *(void *)(CharacterCode + 0x150) = 0;

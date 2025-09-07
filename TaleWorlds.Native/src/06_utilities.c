@@ -25039,17 +25039,17 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
             } while ((int)validationStatus < inputParameter);
           }
           inputParameter = dataBuffer[DataBufferOffset12];
-          uStackX_8 = CONCAT44(uStackX_8._4_4_,inputParameter);
+          stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,inputParameter);
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
-                            (*(DataBuffer **)(operationBase + DataBufferOffset8),&uStackX_8,DataProcessingMultiplier4);
+                            (*(DataBuffer **)(operationBase + DataBufferOffset8),&stackDataBuffer,DataProcessingMultiplier4);
           if (operationResult == 0) {
             memoryRegionBase = dataFlags;
             if (0 < inputParameter) {
               do {
-                uStackX_8 = CONCAT44(uStackX_8._4_4_,
+                stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,
                                      *(DataWord *)(*(int64_t *)(dataBuffer + ExceptionHandlerCallbackOffset10) + memoryRegionBase * DataProcessingMultiplier4));
                 operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
-                                  (*(DataBuffer **)(operationBase + DataBufferOffset8),&uStackX_8,DataProcessingMultiplier4);
+                                  (*(DataBuffer **)(operationBase + DataBufferOffset8),&stackDataBuffer,DataProcessingMultiplier4);
                 if (operationResult != 0) {
                   return;
                 }
@@ -25057,9 +25057,9 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
               } while ((int64_t)memoryRegionBase < (int64_t)inputParameter);
             }
             inputParameter = dataBuffer[DataBufferOffset16];
-            uStackX_8 = CONCAT44(uStackX_8._4_4_,inputParameter);
+            stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,inputParameter);
             operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
-                              (*(DataBuffer **)(operationBase + DataBufferOffset8),&uStackX_8,DataProcessingMultiplier4);
+                              (*(DataBuffer **)(operationBase + DataBufferOffset8),&stackDataBuffer,DataProcessingMultiplier4);
             if (operationResult == 0) {
               memoryRegionBase = dataFlags;
               securityCheckResult = dataFlags;
@@ -25072,16 +25072,16 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
                   }
                   validationStatus = *(uint *)(resourceIterator + ExceptionHandlerCallbackOffset10);
                   if (validationStatus < 0x8000) {
-                    uStackX_8 = CONCAT62(uStackX_8._2_6_,(short)validationStatus);
+                    stackDataBuffer = CONCAT62(stackDataBuffer._2_6_,(short)validationStatus);
                     validationOutcome = 2;
                   }
                   else {
                     validationOutcome = 4;
-                    uStackX_8 = CONCAT44(uStackX_8._4_4_,
+                    stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,
                                          (validationStatus & 0xffffc000 | 0x4000) * 2 | validationStatus & 0x7fff);
                   }
                   operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                    (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,validationOutcome);
+                                    (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,validationOutcome);
                   if (operationResult != 0) {
                     return;
                   }
@@ -25096,31 +25096,31 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
               inputParameter = CheckSystemStateAndReturnStatusA2(operationBase,dataBuffer + FloatValueOffset);
               if (inputParameter == 0) {
                 inputParameter = dataBuffer[0x1e];
-                uStackX_8 = CONCAT44(uStackX_8._4_4_,inputParameter);
+                stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,inputParameter);
                 operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                  (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                                  (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                 if (operationResult == 0) {
                   if (0 < inputParameter) {
                     do {
                       resourceIterator = *(int64_t *)(dataBuffer + ResourceDescriptorValidationOffset);
-                      uStackX_8._0_4_ = *(DataWord *)(resourceIterator + dataFlags * 8);
+                      stackDataBuffer._0_4_ = *(DataWord *)(resourceIterator + dataFlags * 8);
                       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
-                                        (*(DataBuffer **)(operationBase + DataBufferOffset8),&uStackX_8,DataProcessingMultiplier4);
+                                        (*(DataBuffer **)(operationBase + DataBufferOffset8),&stackDataBuffer,DataProcessingMultiplier4);
                       if (operationResult != 0) {
                         return;
                       }
-                      uStackX_8 = CONCAT44(uStackX_8._4_4_,*(DataWord *)(resourceIterator + 4 + dataFlags * 8));
+                      stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,*(DataWord *)(resourceIterator + 4 + dataFlags * 8));
                       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                       if (operationResult != 0) {
                         return;
                       }
                       dataFlags = dataFlags + 1;
                     } while ((int64_t)dataFlags < (int64_t)inputParameter);
                   }
-                  uStackX_8 = CONCAT44(uStackX_8._4_4_,dataBuffer[ResourceDescriptorDataOffset]);
+                  stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,dataBuffer[ResourceDescriptorDataOffset]);
                   (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
-                            (*(DataBuffer **)(operationBase + DataBufferOffset8),&uStackX_8,DataProcessingMultiplier4);
+                            (*(DataBuffer **)(operationBase + DataBufferOffset8),&stackDataBuffer,DataProcessingMultiplier4);
                 }
               }
             }
@@ -25718,7 +25718,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
     if (operationResult == 0) {
       uStackX_8 = SetBitFlag(uStackX_8._1_7_,*(ByteFlag *)(dataBuffer + 0x68));
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,1);
+                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,1);
       if (operationResult == 0) {
         operationResult = 0;
         if (0 < (int)dataBuffer[0x68]) {
@@ -25744,72 +25744,72 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
         }
         systemDataBuffer = dataBuffer[100];
         if (systemDataBuffer < 0x8000) {
-          uStackX_8 = CONCAT62(uStackX_8._2_6_,(short)systemDataBuffer);
+          stackDataBuffer = CONCAT62(stackDataBuffer._2_6_,(short)systemDataBuffer);
           memoryRegionBase = 2;
         }
         else {
           memoryRegionBase = 4;
-          uStackX_8 = CONCAT44(uStackX_8._4_4_,(systemDataBuffer & 0xffffc000 | 0x4000) * 2 | systemDataBuffer & 0x7fff);
+          stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,(systemDataBuffer & 0xffffc000 | 0x4000) * 2 | systemDataBuffer & 0x7fff);
         }
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                          (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,memoryRegionBase);
+                          (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,memoryRegionBase);
         if (operationResult == 0) {
-          uStackX_8._0_4_ = dataBuffer[0x65];
+          stackDataBuffer._0_4_ = dataBuffer[0x65];
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                            (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                            (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
           if (((operationResult == 0) && (operationResult = ValidateParametersA1(operationBase,dataBuffer + 0x66), operationResult == 0)) &&
              (operationResult = ValidateParametersA1(operationBase,dataBuffer + 0x67), operationResult == 0)) {
-            uStackX_8._0_4_ = dataBuffer[0x69];
+            stackDataBuffer._0_4_ = dataBuffer[0x69];
             operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                              (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                              (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
             if (operationResult == 0) {
-              uStackX_8._0_4_ = dataBuffer[0x6a];
+              stackDataBuffer._0_4_ = dataBuffer[0x6a];
               operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                                (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
               if (operationResult == 0) {
-                uStackX_8._0_4_ = dataBuffer[0x6b];
+                stackDataBuffer._0_4_ = dataBuffer[0x6b];
                 operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                  (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                                  (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                 if (operationResult == 0) {
-                  uStackX_8._0_4_ = dataBuffer[0x6d];
+                  stackDataBuffer._0_4_ = dataBuffer[0x6d];
                   operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                    (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                                    (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                   if (operationResult == 0) {
-                    uStackX_8._0_4_ = dataBuffer[0x6e];
+                    stackDataBuffer._0_4_ = dataBuffer[0x6e];
                     operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                      (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                                      (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                     if (operationResult == 0) {
-                      uStackX_8._0_4_ = dataBuffer[0x6c];
+                      stackDataBuffer._0_4_ = dataBuffer[0x6c];
                       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                       if (operationResult == 0) {
-                        uStackX_8 = CONCAT44(uStackX_8._4_4_,dataBuffer[0x6f]);
+                        stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,dataBuffer[0x6f]);
                         operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                          (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                                          (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                         if (operationResult == 0) {
                           uStackX_8 = *(DataBuffer *)(dataBuffer + 0x70);
                           operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                            (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,8);
+                                            (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                           if (operationResult == 0) {
                             uStackX_8 = *(DataBuffer *)(dataBuffer + 0x72);
                             operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                              (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,8);
+                                              (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                             if (operationResult == 0) {
                               uStackX_8 = *(DataBuffer *)(dataBuffer + 0x74);
                               operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                                (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,8);
+                                                (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                               if (operationResult == 0) {
-                                uStackX_8._0_4_ = dataBuffer[0x77];
+                                stackDataBuffer._0_4_ = dataBuffer[0x77];
                                 operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                                  (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                                                  (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                                 if (operationResult == 0) {
-                                  uStackX_8._0_4_ = dataBuffer[0x76];
+                                  stackDataBuffer._0_4_ = dataBuffer[0x76];
                                   operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                                    (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                                                    (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                                   if (operationResult == 0) {
-                                    uStackX_8 = CONCAT44(uStackX_8._4_4_,dataBuffer[0x78]);
+                                    stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,dataBuffer[0x78]);
                                     (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                                              (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                                              (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                                   }
                                 }
                               }
@@ -26186,18 +26186,18 @@ DataBuffer ProcessDataStreamA0(int64_t operationBase,DataWord *dataBuffer)
   int inputParameter;
   DataBuffer operationResult;
   int operationStatus;
-  DataBuffer uStackX_8;
+  DataBuffer streamDataBuffer;
   
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,*dataBuffer);
-  operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+  stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,*dataBuffer);
+  operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
   if ((int)operationResult == 0) {
-    uStackX_8 = *(DataBuffer *)(dataBuffer + 2);
-    operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,8);
+    streamDataBuffer = *(DataBuffer *)(dataBuffer + 2);
+    operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&streamDataBuffer,8);
     if ((int)operationResult == 0) {
       inputParameter = dataBuffer[6];
-      uStackX_8 = CONCAT44(uStackX_8._4_4_,inputParameter);
+      stackDataBuffer = CONCAT44(stackDataBuffer._4_4_,inputParameter);
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),&uStackX_8,4);
+                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
       if ((int)operationResult == 0) {
         operationStatus = 0;
         if (0 < inputParameter) {
