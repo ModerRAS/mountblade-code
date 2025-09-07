@@ -207902,7 +207902,20 @@ LAB_180179745:
 
 
 uint64_t *
-FUN_180179770(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
+/**
+ * @brief 处理UTF-8到UTF-16转换的缓冲区管理
+ * 
+ * 该函数管理UTF-8到UTF-16转换过程中的缓冲区分配和字符处理。
+ * 主要用于多语言文本处理的缓冲区管理操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数指针
+ * @return uint64_t* 处理后的缓冲区指针
+ */
+uint64_t *ProcessUtf8ToUtf16BufferManagement(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
              unsigned long long *AdditionalParameter1
 {
   long long *Utf8InputBuffer;
