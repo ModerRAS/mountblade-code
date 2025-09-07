@@ -54717,7 +54717,19 @@ void CleanupExceptionHandling8C0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809058d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理资源管理函数8D0
+ * 
+ * 该函数管理异常处理的资源，包括设置临时异常处理器、
+ * 终止系统、重置状态标志，并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_1809058d0
+ * @note 处理数据缓冲区的0x200、0x208、0x218偏移量的异常处理资源
+ */
+void ManageExceptionHandlingResources8D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x200) = &TemporaryExceptionHandler;
