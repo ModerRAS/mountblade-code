@@ -23020,73 +23020,73 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
       outputBuffer[2] = fieldData2;
       outputBuffer[3] = fieldData3;
     }
-    totalLength = 0;
-    bufferOffset = 0;
-    nodeDataArray = *(uint3 *)((int64_t)itemIndex * 3 + dataContext[6]);
-    while (nodeIndex = (uint)nodeDataArray, nodeIndex != 0xffffff) {
-      systemDataBuffer = *(uint *)(*dataContext + (uint64_t)nodeIndex * 8);
-      if ((systemDataBuffer & 0xffffff) != 0xffffff) {
-        stringAddress = (uint64_t)(systemDataBuffer & 0xffffff) + dataContext[4];
-        stringLength = GetStringLength(stringAddress);
+    totalProcessedLength = 0;
+    currentBufferOffset = 0;
+    nodeDescriptorArray = *(uint3 *)((int64_t)itemIndex * 3 + dataContext[6]);
+    while (currentNodeIndex = (uint)nodeDescriptorArray, currentNodeIndex != 0xffffff) {
+      dataBufferValue = *(uint *)(*dataContext + (uint64_t)currentNodeIndex * 8);
+      if ((dataBufferValue & 0xffffff) != 0xffffff) {
+        stringDataAddress = (uint64_t)(dataBufferValue & 0xffffff) + dataContext[4];
+        stringDataLength = GetStringLength(stringDataAddress);
         if (bufferSize != 0) {
-          stringPointer = (ByteFlag *)((stringLength + -1) + stringAddress);
-          remainingLength = stringLength;
-          while (0 < remainingLength) {
-            copyLength = remainingLength;
-            if ((int)(bufferSize - bufferOffset) <= remainingLength) {
-              copyLength = bufferSize - bufferOffset;
+          stringDataPointer = (ByteFlag *)((stringDataLength + -1) + stringDataAddress);
+          remainingDataLength = stringDataLength;
+          while (0 < remainingDataLength) {
+            copyDataLength = remainingDataLength;
+            if ((int)(bufferSize - currentBufferOffset) <= remainingDataLength) {
+              copyDataLength = bufferSize - currentBufferOffset;
             }
-            remainingLength = remainingLength - copyLength;
-            if (copyLength != 0) {
-              destPointer = charBuffer + (int)bufferOffset;
-              bufferOffset = bufferOffset + copyLength;
+            remainingDataLength = remainingDataLength - copyDataLength;
+            if (copyDataLength != 0) {
+              destinationDataPointer = charBuffer + (int)currentBufferOffset;
+              currentBufferOffset = currentBufferOffset + copyDataLength;
               do {
-                charValue = *stringPointer;
-                stringPointer = stringPointer + -1;
-                *destPointer = charValue;
-                destPointer = destPointer + 1;
-                copyLength = copyLength + -1;
-              } while (copyLength != 0);
+                charValue = *stringDataPointer;
+                stringDataPointer = stringDataPointer + -1;
+                *destinationDataPointer = charValue;
+                destinationDataPointer = destinationDataPointer + 1;
+                copyDataLength = copyDataLength + -1;
+              } while (copyDataLength != 0);
             }
-            bufferOffset = bufferOffset & (int)(bufferOffset - bufferSize) >> 0x1f;
+            currentBufferOffset = currentBufferOffset & (int)(currentBufferOffset - bufferSize) >> 0x1f;
           }
         }
-        totalLength = totalLength + stringLength;
+        totalProcessedLength = totalProcessedLength + stringDataLength;
       }
-      nodeData = *(uint3 *)((uint64_t)nodeIndex * 3 + dataContext[8]);
+      nodeDescriptorArray = *(uint3 *)((uint64_t)currentNodeIndex * 3 + dataContext[8]);
     }
-    processResult = 0;
+    processingResult = 0;
     if (bufferSize != 0) {
-      if (totalLength < bufferSize) {
-        destPointer = charBuffer + totalLength;
-        stringPointer = destPointer + -1;
-        if (charBuffer < stringPointer) {
+      if (totalProcessedLength < bufferSize) {
+        destinationDataPointer = charBuffer + totalProcessedLength;
+        stringDataPointer = destinationDataPointer + -1;
+        if (charBuffer < stringDataPointer) {
           do {
             charValue = *charBuffer;
-            *charBuffer = *stringPointer;
+            *charBuffer = *stringDataPointer;
             charBuffer = charBuffer + 1;
-            *stringPointer = charValue;
-            stringPointer = stringPointer + -1;
+            *stringDataPointer = charValue;
+            stringDataPointer = stringDataPointer + -1;
           } while (charBuffer < stringPointer);
         }
-        *destPointer = 0;
-        processResult = 0;
+        *destinationDataPointer = 0;
+        processingResult = 0;
       }
       else {
-        destPointer = charBuffer + (int)bufferOffset;
-        stringPointer = destPointer + -1;
-        sourcePointer = charBuffer;
-        if (charBuffer < stringPointer) {
+        destinationDataPointer = charBuffer + (int)currentBufferOffset;
+        stringDataPointer = destinationDataPointer + -1;
+        sourceDataPointer = charBuffer;
+        if (charBuffer < stringDataPointer) {
           do {
-            charValue = *sourcePointer;
-            *sourcePointer = *stringPointer;
-            sourcePointer = sourcePointer + 1;
-            *stringPointer = charValue;
-            stringPointer = stringPointer + -1;
-          } while (sourcePointer < stringPointer);
+            charValue = *sourceDataPointer;
+            *sourceDataPointer = *stringDataPointer;
+            sourceDataPointer = sourceDataPointer + 1;
+            *stringDataPointer = charValue;
+            stringDataPointer = stringDataPointer + -1;
+          } while (sourceDataPointer < stringDataPointer);
         }
-        stringPointer = destPointer + (int64_t)(int)(bufferSize - bufferOffset) + -1;
-        if (destPointer < stringPointer) {
+        stringDataPointer = destinationDataPointer + (int64_t)(int)(bufferSize - currentBufferOffset) + -1;
+        if (destinationDataPointer < stringDataPointer) {
           do {
             charValue = *destPointer;
             *destPointer = *stringPointer;
