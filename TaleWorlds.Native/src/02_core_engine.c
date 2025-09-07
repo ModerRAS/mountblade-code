@@ -69,6 +69,7 @@
 #define ProcessUtf8BufferFinalization FUN_180137f90          // 处理UTF-8缓冲区最终化
 #define ValidateSystemConfiguration FUN_18012eff0              // 验证系统配置
 #define ProcessCharacterCode FUN_180174340                 // 处理UTF-8输入缓冲区
+#define ManageMemoryReferenceCount FUN_18014c7d0            // 管理内存引用计数和资源释放
 #define ManageSystemBufferSize FUN_18014d6f0                    // 管理UTF-8缓冲区大小
 #define ConvertUtf16Encoding FUN_180183e30                    // 转换UTF-16编码
 #define ProcessSystemDataTableValidation FUN_18011aad0         // 处理系统数据表验证
@@ -180010,12 +180011,22 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *CharacterCode,long lon
 
 
 
-4c7d0(unsigned long long *CharacterCodevoid FUN_18014c7d0(unsigned long long *CharacterCode
+/**
+ * @brief 管理内存引用计数和资源释放
+ * 
+ * 该函数负责管理系统内存的引用计数，包括内存块的分配、释放和引用计数管理。
+ * 当引用计数降为0时，自动释放相关内存资源。
+ * 
+ * @param CharacterCode 字符代码指针数组，包含内存管理相关信息
+ * 
+ * @note 原始函数名：FUN_18014c7d0
+ */
+void ManageMemoryReferenceCount(unsigned long long *CharacterCode)
 {
   int *ReferenceCountPointer;
-  void *SystemContext;
+  void *PrimaryProcessingStatusFlag;
   long long MemoryOffset;
-  unsigned long long MemoryOffsetValue;
+  unsigned long long MemoryAddressMask;
   
   if (CharacterCode[0xd] != 0) {
                     // WARNING: Subroutine does not return
