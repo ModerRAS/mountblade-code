@@ -10173,7 +10173,7 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
   }
   resourceDecrementResult = *(int *)(localResourceDecrementBuffer[0] + ResourceReferenceCountOffset) + -1;
   *(int *)(localResourceDecrementBuffer[0] + ResourceReferenceCountOffset) = resourceDecrementResult;
-  if (*(int *)(localResourceDecrementBuffer[0] + 0x58) + *(int *)(localResourceDecrementBuffer[0] + 0x54) + resourceDecrementResult != 0) {
+  if (*(int *)(localResourceDecrementBuffer[0] + ResourceTertiaryOffset) + *(int *)(localResourceDecrementBuffer[0] + ResourceSecondaryOffset) + resourceDecrementResult != 0) {
     return 0;
   }
   localResourceDecrementBuffer[0] = 0;
