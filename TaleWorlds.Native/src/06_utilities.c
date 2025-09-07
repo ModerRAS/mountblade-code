@@ -6347,7 +6347,7 @@ uint8_t UtilityProcessData1Status;
 uint8_t UtilityProcessData1Context;
 uint8_t UtilityProcessData1Buffer;
 uint8_t UtilityProcessData1Result;
-uint8_t UtilitySystemData1;
+uint8_t UtilitySystemPrimaryData;
 
 // 函数: uint8_t UtilityProcessDataSecond(void)
 // 
@@ -44121,7 +44121,20 @@ void ExecuteExceptionHandlerCallbackB(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180903b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器清理函数A0
+ * 
+ * 该函数负责清理异常处理器的相关资源。它会验证上下文中的函数指针，
+ * 调用相应的清理函数，并重置异常处理器状态。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含需要清理的资源信息
+ * @param operationFlagA 操作标志A，用于控制清理行为
+ * @param operationFlagB 操作标志B，用于控制清理行为
+ * 
+ * @note 原始函数名：Unwind_180903b00
+ */
+void UnwindCleanupExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -44151,7 +44164,20 @@ void Unwind_180903b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器清理函数A1
+ * 
+ * 该函数负责清理异常处理器的相关资源。它是异常处理器清理函数组的第二个函数，
+ * 功能与A0类似但处理不同的资源区域。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含需要清理的资源信息
+ * @param operationFlagA 操作标志A，用于控制清理行为
+ * @param operationFlagB 操作标志B，用于控制清理行为
+ * 
+ * @note 原始函数名：Unwind_180903b20
+ */
+void UnwindCleanupExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -50000,7 +50026,18 @@ void Unwind_1809050e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809050f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数A0
+ * 
+ * 该函数负责初始化异常处理器。它会设置临时异常处理器，
+ * 检查数据缓冲区状态，清除相关标志位，并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * 
+ * @note 原始函数名：Unwind_1809050f0
+ */
+void InitializeExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x1a8) = &TemporaryExceptionHandler;
@@ -50016,7 +50053,18 @@ void Unwind_1809050f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905100(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数A1
+ * 
+ * 该函数负责初始化异常处理器。它会设置临时异常处理器，
+ * 检查数据缓冲区状态，清除相关标志位，并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * 
+ * @note 原始函数名：Unwind_180905100
+ */
+void InitializeExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x188) = &TemporaryExceptionHandler;
@@ -50137,8 +50185,18 @@ void ConfigureExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180905150(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器初始化函数A2
+ * 
+ * 该函数负责初始化异常处理器。它会设置临时异常处理器，
+ * 检查数据缓冲区状态，清除相关标志位，并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * 
+ * @note 原始函数名：Unwind_180905150
+ */
+void InitializeExceptionHandlerA2(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x128) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x130) != 0) {
@@ -50153,8 +50211,21 @@ void Unwind_180905150(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 异常资源清理函数A3
+ * 
+ * 该函数负责清理异常处理相关的资源。它会遍历数据缓冲区中的资源指针，
+ * 调用每个资源的清理函数，并在必要时执行系统终止操作。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含需要清理的资源信息
+ * @param operationFlagA 操作标志A，用于控制清理行为
+ * @param operationFlagB 操作标志B，用于控制清理行为
+ * 
+ * @note 原始函数名：Unwind_180905160
+ * @warning 函数执行过程中可能会调用系统终止函数
+ */
+void CleanupExceptionResourcesA3(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   DataBuffer *exceptionDataBuffer;
   DataBuffer *resourcePointer;
@@ -50163,7 +50234,7 @@ void Unwind_180905160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   validationStatus = SystemCleanupFlagAlternative;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x110);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x108); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer, 0, operationFlagA, operationFlagB, validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x108) == 0) {
     return;
@@ -50174,8 +50245,21 @@ void Unwind_180905160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 异常资源清理函数A4
+ * 
+ * 该函数负责清理异常处理相关的资源。它会遍历数据缓冲区中的资源指针，
+ * 调用每个资源的清理函数，并在必要时执行系统终止操作。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含需要清理的资源信息
+ * @param operationFlagA 操作标志A，用于控制清理行为
+ * @param operationFlagB 操作标志B，用于控制清理行为
+ * 
+ * @note 原始函数名：Unwind_180905170
+ * @warning 函数执行过程中可能会调用系统终止函数
+ */
+void CleanupExceptionResourcesA4(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   DataBuffer *exceptionDataBuffer;
   DataBuffer *resourcePointer;
@@ -50184,7 +50268,7 @@ void Unwind_180905170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   validationStatus = SystemCleanupFlagAlternative;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x230);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x228); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer, 0, operationFlagA, operationFlagB, validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x228) == 0) {
     return;
