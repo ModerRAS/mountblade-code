@@ -4113,79 +4113,79 @@ extern uint64_t ExceptionOffsetDataValue;
 
 // 全局异常处理器指针A1
 // 功能：存储全局异常处理器A1的指针
-#define GlobalExceptionHandlerPointerA1 _DAT_180bf9390
+#define GlobalExceptionHandlerPointerA1 DAT_180bf9390
 
 // 全局异常处理器指针A2
 // 功能：存储全局异常处理器A2的指针
-#define GlobalExceptionHandlerPointerA2 _DAT_180bf93f0
+#define GlobalExceptionHandlerPointerA2 DAT_180bf93f0
 
 // 全局异常处理器指针A3
 // 功能：存储全局异常处理器A3的指针
-#define GlobalExceptionHandlerPointerA3 _DAT_180bf9450
+#define GlobalExceptionHandlerPointerA3 DAT_180bf9450
 
 // 全局异常处理器指针A4
 // 功能：存储全局异常处理器A4的指针
-#define GlobalExceptionHandlerPointerA4 _DAT_180bf94b0
+#define GlobalExceptionHandlerPointerA4 DAT_180bf94b0
 
 // 全局异常处理器指针A5
 // 功能：存储全局异常处理器A5的指针
-#define GlobalExceptionHandlerPointerA5 _DAT_180bf9510
+#define GlobalExceptionHandlerPointerA5 DAT_180bf9510
 
 // 全局异常处理器指针A6
 // 功能：存储全局异常处理器A6的指针
-#define GlobalExceptionHandlerPointerA6 _DAT_180bf9570
+#define GlobalExceptionHandlerPointerA6 DAT_180bf9570
 
 // 全局异常处理器指针A7
 // 功能：存储全局异常处理器A7的指针
-#define GlobalExceptionHandlerPointerA7 _DAT_180bf95d0
+#define GlobalExceptionHandlerPointerA7 DAT_180bf95d0
 
 // 全局异常处理器指针A8
 // 功能：存储全局异常处理器A8的指针
-#define GlobalExceptionHandlerPointerA8 _DAT_180bf9630
+#define GlobalExceptionHandlerPointerA8 DAT_180bf9630
 
 // 全局异常处理器指针A9
 // 功能：存储全局异常处理器A9的指针
-#define GlobalExceptionHandlerPointerA9 _DAT_180bf9690
+#define GlobalExceptionHandlerPointerA9 DAT_180bf9690
 
 // 全局异常处理器指针A10
 // 功能：存储全局异常处理器A10的指针
-#define GlobalExceptionHandlerPointerA10 _DAT_180bf96f0
+#define GlobalExceptionHandlerPointerA10 DAT_180bf96f0
 
 // 全局异常处理器指针A11
 // 功能：存储全局异常处理器A11的指针
-#define GlobalExceptionHandlerPointerA11 _DAT_180bf9750
+#define GlobalExceptionHandlerPointerA11 DAT_180bf9750
 
 // 全局异常处理器指针A12
 // 功能：存储全局异常处理器A12的指针
-#define GlobalExceptionHandlerPointerA12 _DAT_180bf97b0
+#define GlobalExceptionHandlerPointerA12 DAT_180bf97b0
 
 // 默认异常处理器指针A0
 // 功能：存储默认异常处理器A0的指针
-#define DefaultExceptionHandlerPointerA0 _DAT_180c92050
+#define DefaultExceptionHandlerPointerA0 DAT_180c92050
 
 // 默认异常处理器指针A1
 // 功能：存储默认异常处理器A1的指针
-#define DefaultExceptionHandlerPointerA1 _DAT_180bfaef0
+#define DefaultExceptionHandlerPointerA1 DAT_180bfaef0
 
 // 默认异常处理器指针A2
 // 功能：存储默认异常处理器A2的指针
-#define DefaultExceptionHandlerPointerA2 _DAT_180bfb310
+#define DefaultExceptionHandlerPointerA2 DAT_180bfb310
 
 // 默认异常处理器指针A3
 // 功能：存储默认异常处理器A3的指针
-#define DefaultExceptionHandlerPointerA3 _DAT_180bfb730
+#define DefaultExceptionHandlerPointerA3 DAT_180bfb730
 
 // 工具系统异常处理器指针5
 // 功能：存储工具系统的异常处理器指针5
-#define UtilitySystemExceptionHandlerPointer5 _DAT_180bf5c30
+#define UtilitySystemExceptionHandlerPointer5 DAT_180bf5c30
 
 // 工具系统异常处理器指针6
 // 功能：存储工具系统的异常处理器指针6
-#define UtilitySystemExceptionHandlerPointer6 _DAT_180bf6080
+#define UtilitySystemExceptionHandlerPointer6 DAT_180bf6080
 
 // 系统句柄指针
 // 功能：存储系统句柄的指针
-#define SystemHandlePointer _DAT_180c91900
+#define SystemHandlePointer DAT_180c91900
 
 // 原始函数名：Unwind_180906dd0 - 系统验证清理函数A0
 // 功能：清理系统验证相关的数据和资源
@@ -66927,7 +66927,21 @@ void ProcessExceptionDataA(DataBuffer operationBase,int64_t dataBuffer,DataBuffe
 
 
 
-void Unwind_180907a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数A30
+ * 
+ * 该函数执行异常处理回调，检查并调用位于特定偏移量的函数指针。
+ * 它会验证0x200、0x1e0和0x1c0偏移处的函数指针，如果存在则调用相应的回调函数。
+ * 主要用于异常处理过程中的回调执行和资源清理。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907a30
+ */
+#define ExecuteExceptionHandlerCallbacksA30 Unwind_180907a30
+void ExecuteExceptionHandlerCallbacksA30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x200) != (code *)0x0) {
@@ -66944,7 +66958,21 @@ void Unwind_180907a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数A40
+ * 
+ * 该函数执行异常处理回调，检查并调用位于特定偏移量的函数指针。
+ * 它会验证0x2a0、0x280和0x260偏移处的函数指针，如果存在则调用相应的回调函数。
+ * 主要用于异常处理过程中的回调执行和资源清理。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907a40
+ */
+#define ExecuteExceptionHandlerCallbacksA40 Unwind_180907a40
+void ExecuteExceptionHandlerCallbacksA40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x2a0) != (code *)0x0) {
@@ -66961,7 +66989,19 @@ void Unwind_180907a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907a50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理函数A50
+ * 
+ * 该函数管理资源的引用计数，处理内存地址计算和资源释放。
+ * 它会获取资源指针，计算内存基地址，管理引用计数，并在适当的时候释放资源。
+ * 主要用于异常处理过程中的资源生命周期管理。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180907a50
+ */
+#define ManageResourceReferenceCountA50 Unwind_180907a50
+void ManageResourceReferenceCountA50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -100004,7 +100044,20 @@ void Unwind_180911880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常回调处理器Y0
+ * 
+ * 该函数负责处理异常回调操作，遍历异常数据缓冲区并执行相应的回调函数
+ * 如果发现异常数据指针为空，则终止系统运行
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911890
+ */
+void ProcessExceptionCallbacksY0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
