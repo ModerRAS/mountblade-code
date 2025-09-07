@@ -1156,7 +1156,7 @@ const void* const SystemEventTemplateQuinary = (void*)0x180a13bb8;
 const void* const SystemEventHandlerPrimary = (void*)0x180a13b30;
 const void* const SystemEventHandlerSecondary = (void*)0x180a13b70;
 
-// 系统字符串模板常量 - 用于替换UNK_180a13c2c等变量
+// 系统字符串模板常量 - 用于替换SystemEventStringTemplateA等变量
 const char* const SystemStringTemplatePrimary = (const char*)0x180a13c2c;
 const char* const SystemStringTemplateSecondary = (const char*)0x180a13c94;
 const char* const SystemStringTemplateTertiary = (const char*)0x180a13ca0;
@@ -1165,7 +1165,7 @@ const char* const SystemStringTemplateQuinary = (const char*)0x180a13c70;
 const char* const SystemStringTemplateSenary = (const char*)0x180a13c88;
 const char* const SystemStringTemplateSeptenary = (const char*)0x180a13cac;
 
-// 系统处理状态常量 - 用于替换UNK_180a13c08等变量
+// 系统处理状态常量 - 用于替换SystemProcessingStatusSecondary等变量
 const void* const SystemProcessingStatusPrimary = (void*)0x180a13c08;
 const void* const SystemProcessingStatusSecondary = (void*)0x180a13c48;
 
@@ -270792,7 +270792,7 @@ long long ProcessSystemMemoryAllocation(long long CharacterCode,uint64_t Utf8Buf
             ConfigurationString = StackTempPointer;
           }
         }
-        FUN_180627020(&UNK_180a13c08,ConfigurationString,StatusBuffer3);
+        FUN_180627020(&SystemProcessingStatusSecondary,ConfigurationString,StatusBuffer3);
         SystemEventDispatcher = &ThreadLocalStorageTemplate;
       }
       else {
@@ -270926,19 +270926,19 @@ unsigned long long ValidateCharacterCode(long long CharacterCode
     if (*(void **)(CharacterCode + 0x2d8) != NULL) {
       systemEventTemplatePointer = *(void **)(CharacterCode + 0x2d8);
     }
-    BufferStatus = strstr(systemEventTemplatePointer,&UNK_180a13c2c);
+    BufferStatus = strstr(systemEventTemplatePointer,&SystemEventStringTemplateA);
     if (BufferStatus == 0) {
       systemEventTemplatePointer = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 0x2d8) != NULL) {
         systemEventTemplatePointer = *(void **)(CharacterCode + 0x2d8);
       }
-      BufferStatus = strstr(systemEventTemplatePointer,&UNK_180a13c94);
+      BufferStatus = strstr(systemEventTemplatePointer,&SystemEventStringTemplateB);
       if (BufferStatus == 0) {
         systemEventTemplatePointer = &CoreEngineDataTemplate;
         if (*(void **)(CharacterCode + 0x2d8) != NULL) {
           systemEventTemplatePointer = *(void **)(CharacterCode + 0x2d8);
         }
-        BufferStatus = strstr(systemEventTemplatePointer,&UNK_180a13ca0);
+        BufferStatus = strstr(systemEventTemplatePointer,&SystemEventStringTemplateC);
         if (BufferStatus == 0) {
           systemEventTemplatePointer = &CoreEngineDataTemplate;
           if (*(void **)(CharacterCode + 0x2d8) != NULL) {
@@ -270950,19 +270950,19 @@ unsigned long long ValidateCharacterCode(long long CharacterCode
             if (*(void **)(CharacterCode + 0x2d8) != NULL) {
               systemEventTemplatePointer = *(void **)(CharacterCode + 0x2d8);
             }
-            BufferStatus = strstr(systemEventTemplatePointer,&UNK_180a13c70);
+            BufferStatus = strstr(systemEventTemplatePointer,&SystemEventStringTemplateD);
             if (BufferStatus == 0) {
               systemEventTemplatePointer = &CoreEngineDataTemplate;
               if (*(void **)(CharacterCode + 0x2d8) != NULL) {
                 systemEventTemplatePointer = *(void **)(CharacterCode + 0x2d8);
               }
-              BufferStatus = strstr(systemEventTemplatePointer,&UNK_180a13c88);
+              BufferStatus = strstr(systemEventTemplatePointer,&SystemEventStringTemplateE);
               if (BufferStatus == 0) {
                 systemEventTemplatePointer = &CoreEngineDataTemplate;
                 if (*(void **)(CharacterCode + 0x2d8) != NULL) {
                   systemEventTemplatePointer = *(void **)(CharacterCode + 0x2d8);
                 }
-                BufferStatus = strstr(systemEventTemplatePointer,&UNK_180a13cac);
+                BufferStatus = strstr(systemEventTemplatePointer,&SystemEventStringTemplateF);
                 if (BufferStatus == 0) {
                   systemEventTemplatePointer = &CoreEngineDataTemplate;
                   if (*(void **)(CharacterCode + 0x2d8) != NULL) {
@@ -271038,13 +271038,13 @@ long long FUN_18022e5f7(void
     if (*(void **)(SystemContext + 0x2d8) != NULL) {
       CharacterCodePointer = *(void **)(SystemContext + 0x2d8);
     }
-    BufferStatus = strstr(CharacterCodePointer,&UNK_180a13c94);
+    BufferStatus = strstr(CharacterCodePointer,&SystemEventStringTemplateB);
     if (BufferStatus == 0) {
       DataStructurePointer = &CoreEngineDataTemplate;
       if (*(void **)(SystemContext + 0x2d8) != NULL) {
         CharacterCodePointer = *(void **)(SystemContext + 0x2d8);
       }
-      BufferStatus = strstr(CharacterCodePointer,&UNK_180a13ca0);
+      BufferStatus = strstr(CharacterCodePointer,&SystemEventStringTemplateC);
       if (BufferStatus == 0) {
         DataStructurePointer = &CoreEngineDataTemplate;
         if (*(void **)(SystemContext + 0x2d8) != NULL) {
@@ -271056,19 +271056,19 @@ long long FUN_18022e5f7(void
           if (*(void **)(SystemContext + 0x2d8) != NULL) {
             CharacterCodePointer = *(void **)(SystemContext + 0x2d8);
           }
-          BufferStatus = strstr(CharacterCodePointer,&UNK_180a13c70);
+          BufferStatus = strstr(CharacterCodePointer,&SystemEventStringTemplateD);
           if (BufferStatus == 0) {
             DataStructurePointer = &CoreEngineDataTemplate;
             if (*(void **)(SystemContext + 0x2d8) != NULL) {
               CharacterCodePointer = *(void **)(SystemContext + 0x2d8);
             }
-            BufferStatus = strstr(CharacterCodePointer,&UNK_180a13c88);
+            BufferStatus = strstr(CharacterCodePointer,&SystemEventStringTemplateE);
             if (BufferStatus == 0) {
               DataStructurePointer = &CoreEngineDataTemplate;
               if (*(void **)(SystemContext + 0x2d8) != NULL) {
                 CharacterCodePointer = *(void **)(SystemContext + 0x2d8);
               }
-              BufferStatus = strstr(CharacterCodePointer,&UNK_180a13cac);
+              BufferStatus = strstr(CharacterCodePointer,&SystemEventStringTemplateF);
               if (BufferStatus == 0) {
                 DataStructurePointer = &CoreEngineDataTemplate;
                 if (*(void **)(SystemContext + 0x2d8) != NULL) {
