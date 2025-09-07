@@ -12969,16 +12969,19 @@ void TerminateProcessWithSecurityError(void)
 
 
 
-// 函数: void SystemReturnEmptyFunctionTertiary(void)
-// 
-// 空返回函数C
-// 不执行任何操作直接返回的函数
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 系统第三空返回函数
+ * 
+ * 该函数是一个不执行任何操作的空函数，主要用于系统初始化时的占位符或
+ * 作为函数调用的桩函数。这是系统空返回函数的第三版本，用于不同的调用场景。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数为空函数，主要用于系统初始化时的占位符
+ * @warning 调用此函数不会产生任何效果
+ * 
+ * @see SystemReturnEmptyFunction, SystemReturnEmptyFunctionSecondary
+ */
 void SystemReturnEmptyFunctionTertiary(void)
 
 {
