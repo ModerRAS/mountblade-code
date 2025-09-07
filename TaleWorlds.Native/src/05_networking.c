@@ -75,6 +75,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkErrorSecurity 0xFFFFFFFC                     // 网络错误：安全问题
 #define NetworkErrorInitializationFailed 0x1f                // 网络错误：初始化失败
 #define NetworkOperationSuccess 0x0                          // 网络操作：成功
+#define NetworkOperationFailure 0x1                          // 网络操作：失败
 
 // 网络连接类型定义
 #define NetworkConnectionTypeBase 0x20200                      // 网络连接类型基础值
@@ -4600,50 +4601,50 @@ void CopyNetworkConnectionBuffer(void* SourceBuffer)
 
 
 /**
- * @brief 处理数据包头部
+ * @brief 处理网络数据包头部信息
  * 
- * 处理网络数据包的头部信息，验证头部格式和内容的有效性。
- * 该函数负责解析和验证数据包头部的各个字段，确保数据包符合协议规范。
+ * 该函数负责处理网络数据包的头部信息，验证头部格式和内容的有效性。
+ * 函数解析和验证数据包头部的各个字段，确保数据包符合网络协议规范。
  * 
- * @param PacketData 数据包数据，包含待处理的头部信息
- * @param HeaderContext 头部上下文，包含头部处理的配置信息
+ * @param packetData 数据包数据指针，包含待处理的头部信息
+ * @param headerContext 头部上下文参数，包含头部处理的配置信息
  * @return NetworkHandle 处理结果句柄，0表示处理成功，非0值表示处理失败
  * 
  * @note 这是简化实现，实际应用中需要实现完整的头部处理逻辑
  * @warning 简化实现仅执行基本的验证，不进行实际的头部解析工作
  */
-NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
+NetworkHandle ProcessNetworkPacketHeader(NetworkHandle packetData, int64_t headerContext)
 {
   // 网络数据包头部处理变量
-  uint32_t HeaderIntegrityValidationResult;                     // 头部完整性验证结果
-  uint32_t ContextProcessingStatus;                             // 上下文处理状态
-  uint32_t FormatValidationResult;                              // 格式验证结果
+  uint32_t headerValidationResult;                    // 头部完整性验证结果
+  uint32_t contextProcessingStatus;                   // 上下文处理状态
+  uint32_t formatValidationResult;                   // 格式验证结果
   
   // 初始化处理状态
-  HeaderIntegrityValidationResult = NetworkValidationFailure;
-  ContextProcessingStatus = NetworkValidationFailure;
-  FormatValidationResult = NetworkValidationFailure;
+  headerValidationResult = NetworkValidationFailure;
+  contextProcessingStatus = NetworkValidationFailure;
+  formatValidationResult = NetworkValidationFailure;
   
-  // 验证头部有效性
-  if (PacketData != 0) {
-    HeaderIntegrityValidationResult = NetworkValidationSuccess;
+  // 验证数据包有效性
+  if (packetData != 0) {
+    headerValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
-  if (HeaderContext != 0) {
-    ContextProcessingStatus = NetworkValidationSuccess;
+  if (headerContext != 0) {
+    contextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (HeaderIntegrityValidationResult == NetworkValidationSuccess && 
-      ContextProcessingStatus == NetworkValidationSuccess) {
-    FormatValidationResult = NetworkValidationSuccess;
+  if (headerValidationResult == NetworkValidationSuccess && 
+      contextProcessingStatus == NetworkValidationSuccess) {
+    formatValidationResult = NetworkValidationSuccess;
   }
   
   // 返回处理结果
-  if (FormatValidationResult == NetworkValidationSuccess) {
-    return 0;  // 处理成功
+  if (formatValidationResult == NetworkValidationSuccess) {
+    return NetworkOperationSuccess;  // 处理成功
   } else {
-    return 1;  // 处理失败
+    return NetworkOperationFailure;  // 处理失败
   }
 }
