@@ -165470,7 +165470,7 @@ LAB_180139b2f:
               ProcessSystemEventEx(LongArrayStack1[SystemContextValue],MemoryAddressMask,CONCAT44(FloatStack9,FloatStack8),0);
             }
             LoopIndex = LongArrayStack1[SystemContextValue];
-            FUN_18011cf80(LoopIndex,&FloatStack1,SystemChecksum,FilterInputValue);
+            ProcessCharacterDataProcessing(LoopIndex,&FloatStack1,SystemChecksum,FilterInputValue);
             FUN_18011d200(LoopIndex,&FloatStack1,SystemChecksum,*SystemCharacterStatusPointer,0,0);
             ContextSecondaryFloat1 = FloatStack7;
             ContextPrimaryFloat9 = FloatStack6;
