@@ -30865,7 +30865,7 @@ uint64_t GetGlobalResourcePointer(void)
   int64_t *destinationIndexRegister;
   int64_t systemContext;
   bool validationFlag;
-  char cStack0000000000000090;
+  char validationStatusFlag;
   uint stackDataSize;
   
   if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
@@ -30878,12 +30878,12 @@ uint64_t GetGlobalResourcePointer(void)
   }
   else {
     if (exceptionHandlerContextPointer[2] != 0) {
-      _cStack0000000000000090 = 0;
+      validationStatusFlag = 0;
       operationResult = AllocateMemory(*exceptionHandlerContextPointer,&stackDataBuffer);
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)_cStack0000000000000090 + 4) {
+      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)validationStatusFlag + 4) {
         operationResult = 0x11;
         goto ProcessCheckpointValidationCleanup;
       }
@@ -30911,12 +30911,12 @@ ValidationContextCleanup:
   }
   else {
     if (exceptionHandlerContextPointer[2] != 0) {
-      _cStack0000000000000090 = 0;
+      validationStatusFlag = 0;
       operationResult = AllocateMemory(*exceptionHandlerContextPointer,&stackDataBuffer);
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)_cStack0000000000000090 + 4) {
+      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)validationStatusFlag + 4) {
         operationResult = 0x11;
         goto ProcessCheckpointValidationStateUpdate;
       }
