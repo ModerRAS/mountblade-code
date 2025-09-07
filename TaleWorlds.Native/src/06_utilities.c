@@ -25029,16 +25029,16 @@ DataCheckpointB:
         stackAllocationCounter = 0;
         validationStatus = AllocateMemory(*validationContextPointer,(int64_t)&ValidationDataBuffer + 4);
         if (validationStatus == 0) {
-          if ((uint64_t)uStack0000000000000034 + 1 <= (uint64_t)validationContextPointer[2]) goto ProcessCheckpointContextValidation;
+          if ((uint64_t)stackAllocationCounter + 1 <= (uint64_t)validationContextPointer[2]) goto ProcessCheckpointContextValidation;
           validationStatus = 0x11;
         }
       }
     }
     operationResult = registerValueESI;
     if (validationStatus == 0) {
-      dataFlags = (uint)(cStack0000000000000030 != '\0');
+      dataFlags = (uint)(stackValidationFlag != '\0');
       validationStatus = validationOutcome;
-      operationResult = (uint)(cStack0000000000000030 == '\0');
+      operationResult = (uint)(stackValidationFlag == '\0');
     }
     if (validationStatus != 0) {
       return (uint64_t)validationStatus;
@@ -25853,7 +25853,7 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
     return 0x1c;
   }
   validationContextPointer = (int64_t *)*registerContext;
-  StackParameter38 = CONCAT44(uStack0000000000000044,uStack0000000000000040);
+  stackParameter38 = CONCAT44(stackHighValue,stackLowValue);
   if (*validationContextPointer == 0) {
     operationResult = 0x1c;
   }
