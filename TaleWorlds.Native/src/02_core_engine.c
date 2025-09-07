@@ -19836,11 +19836,11 @@ void SetThreadLocalStorageTemplate(uint64_t *Utf8InputBuffer{
   uint64_t configurationHandle;
   
   configurationHandle = configHandle;
-  MemoryAllocationSize = CoreEngineCompareDataStructures(&CoreEngineDataStructure);
-  if (MemoryAllocationSize == -1) {
-    MemoryAllocationSize = CoreEngineValidateDataStructure(&CoreEngineDataStructure,Utf8BufferSize);
+  CalculatedMemorySize = CoreEngineCompareDataStructures(&CoreEngineDataStructure);
+  if (CalculatedMemorySize == -1) {
+    CalculatedMemorySize = CoreEngineValidateDataStructure(&CoreEngineDataStructure,Utf8BufferSize);
   }
-  StringProcessingStatus = (void *)(CoreEngineDataTablePointer + 0xd0 + (long long)MemoryAllocationSize * 0x100);
+  StringProcessingStatus = (void *)(CoreEngineDataTablePointer + 0xd0 + (long long)CalculatedMemorySize * 0x100);
   MemoryAddressMask = StringProcessingStatus;
   if ((void *)StringProcessingStatus[2] != NULL) {
     StringProcessingStatus = (void *)StringProcessingStatus[2];
@@ -253190,14 +253190,14 @@ int ParseSystemIdentifier(long long CharacterCode
   AllocatedMemorySize = 0;
   if (MemoryAllocationSize == 6) {
     MemoryBoundaryEnd = AllocatedMemorySize;
-    while (DataStructureCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(CharacterCode + 8) + DataStructureCounter) == (&UNK_180a130b4)[DataStructureCounter]    {
+    while (DataStructureCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(CharacterCode + 8) + DataStructureCounter) == (&CharacterComparisonStringA)[DataStructureCounter]    {
       MemoryBoundaryEnd = DataStructureCounter + 1;
       if (DataStructureCounter + 1 == 7) {
         return (int)DataStructureCounter + -3;
       }
     }
   }
-  if ((MemoryAllocationSize == 0xb) && (CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&UNK_180a130c0), CharacterByteCount == 0)) {
+  if ((MemoryAllocationSize == 0xb) && (CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&StringComparisonConstantB), CharacterByteCount == 0)) {
     return 0x30;
   }
   if (MemoryAllocationSize == 7) {
@@ -253267,7 +253267,7 @@ int ParseSystemIdentifier(long long CharacterCode
   }
   if (MemoryAllocationSize == 4) {
     MemoryBoundaryEnd = AllocatedMemorySize;
-    while (DataStructureCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(CharacterCode + 8) + DataStructureCounter) == (&UNK_180a1318c)[DataStructureCounter]    {
+    while (DataStructureCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(CharacterCode + 8) + DataStructureCounter) == (&CharacterComparisonStringB)[DataStructureCounter]    {
       MemoryBoundaryEnd = DataStructureCounter + 1;
       if (DataStructureCounter + 1 == 5) {
         return (int)DataStructureCounter + 9;
@@ -253510,7 +253510,7 @@ int SystemIdentifierParserVariant(void
   DataStructureCounter = 0;
   if (MemoryAllocationSize == 6) {
     AllocatedMemorySize = DataStructureCounter;
-    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a130b4)[MemoryBlockIndex]
+    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringA)[MemoryBlockIndex]
           ) {
       AllocatedMemorySize = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 7) {
@@ -253519,12 +253519,12 @@ int SystemIdentifierParserVariant(void
     }
   }
   if ((MemoryAllocationSize == 0xb) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a130c0), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&StringComparisonConstantB), CharacterByteCount == 0)) {
     return 0x30;
   }
   if (MemoryAllocationSize == 7) {
     AllocatedMemorySize = DataStructureCounter;
-    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13100)[MemoryBlockIndex]
+    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringC)[MemoryBlockIndex]
           ) {
       AllocatedMemorySize = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -253600,7 +253600,7 @@ int SystemIdentifierParserVariant(void
   }
   if (MemoryAllocationSize == 4) {
     AllocatedMemorySize = DataStructureCounter;
-    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       AllocatedMemorySize = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -253875,12 +253875,12 @@ int ValidateSystemStringProcessing(void)
   long long DataNodeIndex;
   
   if ((MemoryAllocationSize == 0xb) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a130c0), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&StringComparisonConstantB), CharacterByteCount == 0)) {
     return 0x30;
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13100)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -253956,7 +253956,7 @@ int ValidateSystemStringProcessing(void)
   }
   if (MemoryAllocationSize == 4) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -254222,7 +254222,7 @@ int FUN_1802252d3(void
   
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13100)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -254298,7 +254298,7 @@ int FUN_1802252d3(void
   }
   if (MemoryAllocationSize == 4) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -254632,7 +254632,7 @@ int FUN_180225317(void
   }
   if (MemoryAllocationSize == 4) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -254956,7 +254956,7 @@ int FUN_180225357(void
   }
   if (MemoryAllocationSize == 4) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -255276,7 +255276,7 @@ int FUN_180225383(void
   }
   if (MemoryAllocationSize == 4) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -255592,7 +255592,7 @@ int FUN_1802253c2(void
   }
   if (MemoryAllocationSize == 4) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -255904,7 +255904,7 @@ int FUN_1802253ee(void
   }
   if (MemoryAllocationSize == 4) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -256212,7 +256212,7 @@ int FUN_18022541a(void
   }
   if (MemoryAllocationSize == 4) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -256516,7 +256516,7 @@ int FUN_180225446(void
   }
   if (MemoryAllocationSize == 4) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -256816,7 +256816,7 @@ int FUN_180225472(void
   }
   if (MemoryAllocationSize == 4) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -257110,7 +257110,7 @@ int FUN_1802254b1(void
   }
   if (MemoryAllocationSize == 4) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a1318c)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&CharacterComparisonStringB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 5) {
@@ -257399,7 +257399,7 @@ int FUN_1802254f0(void
   }
   if (MemoryAllocationSize == 4) {
     MemoryBlockIndex = RegisterSourceIndex;
-    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&UNK_180a1318c)[BufferStatus]
+    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&CharacterComparisonStringB)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
       if (BufferStatus + 1 == 5) {
@@ -257678,7 +257678,7 @@ int FUN_180225537(void
   }
   if (MemoryAllocationSize == 4) {
     MemoryBlockIndex = RegisterSourceIndex;
-    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&UNK_180a1318c)[BufferStatus]
+    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&CharacterComparisonStringB)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
       if (BufferStatus + 1 == 5) {
@@ -257947,7 +257947,7 @@ int FUN_180225577(void
   }
   if (MemoryAllocationSize == 4) {
     MemoryBlockIndex = RegisterSourceIndex;
-    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&UNK_180a1318c)[BufferStatus]
+    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&CharacterComparisonStringB)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
       if (BufferStatus + 1 == 5) {
@@ -258212,7 +258212,7 @@ int FUN_1802255a3(void
   
   if (MemoryAllocationSize == 4) {
     MemoryBlockIndex = RegisterSourceIndex;
-    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&UNK_180a1318c)[BufferStatus]
+    while (BufferStatus = MemoryBlockIndex, *(char *)(*(long long *)(DataNodeIndex + 8) + BufferStatus) == (&CharacterComparisonStringB)[BufferStatus]
           ) {
       MemoryBlockIndex = BufferStatus + 1;
       if (BufferStatus + 1 == 5) {
