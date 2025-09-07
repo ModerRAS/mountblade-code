@@ -80080,7 +80080,15 @@ void CleanupResourceReferenceCountAtPrimaryOffset(void)
 
 
 
-void CleanupResourceReferenceCountAtOffset50(void)
+/**
+ * @brief 清理资源引用计数在偏移量50处
+ * 
+ * 该函数负责在指定偏移量处清理资源引用计数。
+ * 它会销毁互斥锁，确保资源的正确释放。
+ * 
+ * @note 原始函数名：CleanupResourceReferenceCountAtOffset50
+ */
+void CleanupResourceReferenceCountAtSecondaryOffset(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -80089,7 +80097,18 @@ void CleanupResourceReferenceCountAtOffset50(void)
 
 
 
-void DestroyMutexAtOffset70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量70处销毁互斥锁
+ * 
+ * 该函数负责在数据缓冲区的指定偏移量处销毁互斥锁。
+ * 它会获取互斥锁指针并调用销毁函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含互斥锁信息
+ * 
+ * @note 原始函数名：DestroyMutexAtOffset70
+ */
+void DestroyMutexAtExceptionHandlerOffset(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffsetA0));
