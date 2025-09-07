@@ -111420,79 +111420,8 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  */
 #define ExecuteExceptionHandlerA2 Unwind_180910090
 
-// 系统安全验证标志宏定义 - 美化UNK_变量
-#define SecurityValidationFlagA0 UNK_180a395c0
-#define SecurityValidationFlagA1 UNK_180a395e0
-#define SecurityValidationFlagA2 UNK_180a39600
-#define SecurityValidationFlagA3 UNK_180a39628
-#define SecurityValidationFlagA4 UNK_180a39640
-#define SecurityValidationFlagA5 UNK_180a39660
-#define SecurityValidationFlagA6 UNK_180a39688
-#define SecurityValidationFlagA7 UNK_180a396b0
-#define SecurityValidationFlagA8 UNK_180a396c8
-#define SecurityValidationFlagA9 UNK_180a396f0
-#define SecurityValidationFlagA10 UNK_180a39710
-#define SecurityValidationFlagA11 UNK_180a39728
-#define SecurityValidationFlagA12 UNK_180a39740
-#define SecurityValidationFlagA13 UNK_180a39758
-#define SecurityValidationFlagA14 UNK_180a39768
-#define SecurityValidationFlagA15 UNK_180a39788
-#define SecurityValidationFlagA16 UNK_180a397a8
-#define SecurityValidationFlagA17 UNK_180a397c8
-#define SecurityValidationFlagA18 UNK_180a397d8
-#define SecurityValidationFlagA19 UNK_180a397e8
-#define SecurityValidationFlagA20 UNK_180a397f8
-#define SecurityValidationFlagA21 UNK_180a39820
-#define SecurityValidationFlagA22 UNK_180a39850
-#define SecurityValidationFlagA23 UNK_180a39864
-#define SecurityValidationFlagA24 UNK_180a39870
-#define SecurityValidationFlagA25 UNK_180a39888
-#define SecurityValidationFlagA26 UNK_180a398a8
-#define SecurityValidationFlagA27 UNK_180a398b8
-#define SecurityValidationFlagA28 UNK_180a398d8
-#define SecurityValidationFlagA29 UNK_180a398f0
-#define SecurityValidationFlagA30 UNK_180a39910
-#define SecurityValidationFlagA31 UNK_180a39920
-#define SecurityValidationFlagA32 UNK_180a39940
-#define SecurityValidationFlagA33 UNK_180a39970
-#define SecurityValidationFlagA34 UNK_180a39988
-#define SecurityValidationFlagA35 UNK_180a399a8
-#define SecurityValidationFlagA36 UNK_180a399c0
-#define SecurityValidationFlagA37 UNK_180a399e0
-
-// 数据验证缓冲区宏定义 - 美化UNK_变量
-#define DataValidationBufferA UNK_180982378
-#define ValidationStackPointer UNK_1809823f8
-#define ValidationContextBuffer UNK_180982260
-#define SystemValidationTable UNK_180986390
-#define ValidationStatusTable UNK_180986940
-#define SystemDataBuffer UNK_1809fe210
-#define ResourceValidationBuffer UNK_180a3e470
-#define OperationResultBuffer UNK_180a07cd0
-#define SecurityValidationFlagA38 UNK_180a399f0
-
-// 系统数据缓冲区宏定义 - 美化剩余的UNK_变量
-#define ExceptionDataBufferA0 UNK_180a02e68
-#define MemoryBaseAddressA0 UNK_180a01668
-#define DataBufferPointerA0 UNK_180a07218
-#define DataBufferPointerA1 UNK_180a05068
-#define DataBufferPointerA2 UNK_180a05240
-#define SystemMemoryAllocationBuffer UNK_180a01660
-#define ExceptionDataBufferA UNK_180a02e68
-#define ResourceExceptionHandlerBuffer UNK_1809ffa18
-#define ResourceTableA UNK_180a14bb8
-#define ResourceTableB UNK_180a14c60
-#define ExceptionCleanupBuffer UNK_180a14d00
-#define ThreadLocalStorageBuffer UNK_18098b928
-#define SystemResourcePointer UNK_180a17010
-#define SystemConfigurationBuffer UNK_1809fcca0
-#define SystemStateBuffer UNK_1809fcd18
-#define SystemControlBuffer UNK_1809fcc88
-#define SystemExecutionBuffer UNK_180a05168
-#define DataBufferPointerA3 UNK_180a05168
-#define DataBufferPointerA4 UNK_180a07218
-#define DataBufferPointerA5 UNK_180a05068
-#define DataBufferPointerA6 UNK_180a05240
+// 系统安全验证标志变量已声明为实际变量，无需#define定义
+// 数据验证缓冲区和系统数据缓冲区变量已声明为实际变量，无需#define定义
 #define MemoryAllocationBuffer UNK_180a01660
 #define SystemDataBufferA1 UNK_1809fe210
 #define ResourceValidationBufferA0 UNK_180a3e470
