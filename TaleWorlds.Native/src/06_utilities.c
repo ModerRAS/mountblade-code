@@ -82490,7 +82490,19 @@ void CleanupExceptionHandlerContextC(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_18090b510(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调A
+ * 
+ * 执行位于特定偏移位置的异常处理器回调函数。
+ * 该函数从数据缓冲区的指定位置获取异常处理器指针并调用相应的回调函数。
+ * 
+ * @param operationBase 操作基础指针，包含操作相关信息
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器的位置信息
+ * 
+ * @note 函数从dataBuffer + 0x40 + 0x68位置获取异常处理器指针
+ * @note 这是一个异常处理回调执行函数
+ */
+void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
