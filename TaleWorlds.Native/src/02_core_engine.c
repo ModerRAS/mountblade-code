@@ -199997,7 +199997,7 @@ ProcessUtf8EncodingBuffer(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint
   StackProcessingVariable70 = MemoryAddressMask;
   CoreEngineExecuteSystemEvent(aStackProcessingUnsignedValue68,&SystemCharacterStatusBufferPointer);
   MemoryAddressMask = FUN_1801e77d0(aSystemStackFlag,&StackProcessingVariable70);
-  pPerformanceCounterValue = (long long *)FUN_18006b640(UnicodeCodePoint,MemoryAddressMask);
+  pPerformanceCounterValue = (long long *)AllocateSystemContextMemory(UnicodeCodePoint,MemoryAddressMask);
   if (pPerformanceCounterValue != (long long *)0x0) {
     (**(code **)(*pPerformanceCounterValue + 0x28))(pPerformanceCounterValue);
   }
@@ -200675,7 +200675,7 @@ uint64_t ProcessUtf8EncodingStatusSetup(uint64_t CharacterCode,uint64_t SystemBu
   aMemoryOperationStatus[0] = *Utf16EndPointer;
   LocalProcessingStatusFlag = SystemLocalProcessingStatusFlag;
   pcStack_28 = FUN_18016f990;
-  BufferAllocationStatus = (long long *)FUN_18006b640(Utf16Char,aMemoryOperationStatus);
+  BufferAllocationStatus = (long long *)AllocateSystemContextMemory(Utf16Char,aMemoryOperationStatus);
   pPerformanceCounterValue = BufferAllocationStatus;
   if (BufferAllocationStatus != (long long *)0x0) {
     (**(code **)(*BufferAllocationStatus + 0x28))(BufferAllocationStatus);
@@ -212058,7 +212058,7 @@ void SystemDataProcessingFunction(void
     SystemDataStructureHandlePrimary = (code *****)&SystemDataStructureHandle;
     SystemUnsignedValue160 = &SystemMemoryAddressSecondary;
     uStack_158 = &SystemMemoryAddressTertiary;
-    SystemDataStructureHandleSecondary = (code *****)FUN_18006b640(ProcessingStatusFlag,&SystemDataStructureHandle);
+    SystemDataStructureHandleSecondary = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&SystemDataStructureHandle);
     SystemDataStructureHandleTertiary = SystemDataStructureHandleSecondary;
     if ((code ******)pppppcStack_180 != (code ******)0x0) {
       (*(code *)(*pppppcStack_180)[5])(pppppcStack_180);
