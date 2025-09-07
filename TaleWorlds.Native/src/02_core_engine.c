@@ -145374,7 +145374,17 @@ uint64_t FUN_18012fbd0(long long CharacterCode,uint32_t *CharacterCodeSize
 
 
 
-long long FUN_18012fe00(uint64_t CharacterCode
+/**
+ * @brief 验证系统配置
+ * 
+ * 该函数负责验证系统的配置参数，确保系统运行在正确的配置状态下
+ * 
+ * @param CharacterCode 字符编码参数
+ * @return long long 返回验证结果
+ * 
+ * @note 原始函数名：FUN_18012fe00
+ */
+long long ValidateSystemConfiguration(uint64_t CharacterCode
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -155671,7 +155681,18 @@ unsigned long long FUN_180135160(void
 
 
 
-long long FUN_180135260(uint64_t CharacterCode,uint64_t *CharacterCodeSize
+/**
+ * @brief 分配系统内存池
+ * 
+ * 该函数负责分配系统的内存池，为系统运行提供必要的内存资源
+ * 
+ * @param CharacterCode 字符编码参数
+ * @param CharacterCodeSize 字符编码大小指针
+ * @return long long 返回分配结果
+ * 
+ * @note 原始函数名：FUN_180135260
+ */
+long long AllocateSystemMemoryPool(uint64_t CharacterCode,uint64_t *CharacterCodeSize
 {
   uint64_t *StatusBuffer;
   long long BufferStatus;
