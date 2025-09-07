@@ -90077,7 +90077,17 @@ void ReleaseExclusiveLockA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fbb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放排他锁A1
+ * 
+ * 该函数负责在指定的条件下释放SRW排他锁
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁状态信息
+ * 
+ * @note 原始函数名：Unwind_18090fbb0
+ */
+void ReleaseExclusiveLockA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0xb8) != '\0') {
@@ -90088,7 +90098,17 @@ void Unwind_18090fbb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fbc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除验证标志并调用数据处理器A0
+ * 
+ * 该函数负责检查并清除验证标志，然后调用相应的数据验证处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含验证标志信息
+ * 
+ * @note 原始函数名：Unwind_18090fbc0
+ */
+void ClearValidationFlagAndCallHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x60) & 1) != 0) {
