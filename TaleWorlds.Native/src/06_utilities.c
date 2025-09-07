@@ -10378,7 +10378,7 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
 {
   int64_t resourceContextPtr;
   uint64_t resourceDecrementStatus;
-  int resourceDecrementResult;
+  int ResourceDecrementResult;
   int64_t localResourceDecrementBuffer [2];
   
   resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + ResourceConfigurationOffset),localResourceDecrementBuffer);
@@ -11306,7 +11306,7 @@ DataBuffer ValidateUtilitySystemState(void)
   int *operationPointer;
   int64_t basePointer;
   DataWord *DataValidationContext;
-  uint counterValue;
+  uint CounterValue;
   uint64_t adjustedValue;
   int64_t SystemDataProcessingBuffer;
   uint64_t loopCounter;
@@ -12236,19 +12236,19 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
 
 {
   int64_t dataContextPointer;
-  uint resourceFlags;
-  uint systemStatus;
+  uint ResourceFlags;
+  uint SystemStatus;
   uint64_t operationResult;
   DataBuffer *dataArrayPointer;
   DataBuffer *dataIterator;
-  int integerConversionValue;
+  int IntegerConversionValue;
   float floatDataValue;
   ByteFlag vectorRegisterData [16];
   int64_t stackTempValue;
-  uint processingFlags;
-  uint bitShiftedFlags;
+  uint ProcessingFlags;
+  uint BitShiftedFlags;
   DataBuffer vectorRegister;
-  uint maskResult;
+  uint MaskResult;
   
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
   if ((int)operationResult != 0) {
@@ -12390,18 +12390,18 @@ void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
 uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHandle)
 
 {
-  uint operationResult;
+  uint OperationResult;
   uint64_t conversionStatus;
   int64_t dataPointer;
   DataBuffer systemContextBuffer;
   DataWord operationParams [2];
   int64_t contextData;
-  int dataCount;
+  int DataCount;
   
   conversionStatus = InitializeConversionContext(*(DataWord *)(contextHandle + 0x24),&systemContextBuffer);
   if ((int)conversionStatus == 0) {
-    dataCount = *(int *)(contextHandle + 0x18);
-    if ((0 < dataCount) && (*(uint *)(contextHandle + 0x1c) < 2)) {
+    DataCount = *(int *)(contextHandle + 0x18);
+    if ((0 < DataCount) && (*(uint *)(contextHandle + 0x1c) < 2)) {
       dataPointer = 0;
       if (*(uint *)(contextHandle + 0x1c) == 0) {
         contextData = *(int64_t *)(contextHandle + ComponentHandleOffset);
